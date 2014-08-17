@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/about"
+          android:title="@string/about"
+          android:orderInCategory="100"
+          yourapp:showAsAction="never" />
+
+    <item
+            android:id="@+id/action_play"
+            android:orderInCategory="101"
+            yourapp:showAsAction="always"
+            android:icon="@drawable/av_play"
+            android:title="@string/playHymn"/>
+
+    <item
+            android:id="@+id/action_pause"
+            android:orderInCategory="102"
+            yourapp:showAsAction="always"
+            android:icon="@drawable/av_pause"
+            android:title="Pause Hymn"/>
+    <item
+            android:id="@+id/action_fontsize"
+            android:orderInCategory="103"
+            yourapp:showAsAction="always"
+            android:icon="@drawable/fontsize"
+            android:title="Font Size"/>
+
+    <item android:id="@+id/action_search"
+          android:title="menu_search"
+          android:orderInCategory="100"
+        yourapp:showAsAction="always"
+        yourapp:actionViewClass="android.support.v7.widget.SearchView" />
+
+    <item
+            android:id="@+id/action_index"
+            android:orderInCategory="200"
+            yourapp:showAsAction="always"
+            android:icon="@drawable/collections_sort_by_size"
+            android:title="Index"/>
+
+</menu>

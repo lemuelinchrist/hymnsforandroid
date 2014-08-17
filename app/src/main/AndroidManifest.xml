@@ -1,0 +1,44 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lemuelinchrist.android.hymns"
+    android:versionCode="13"
+    android:versionName="2.9">
+
+<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="17" />
+
+    <application android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@drawable/icon"
+         >
+
+        <activity
+                android:name=".HymnsActivity"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait"
+                android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+                android:uiOptions="splitActionBarWhenNarrow">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <meta-data android:name="android.support.UI_OPTIONS"
+                       android:value="splitActionBarWhenNarrow" />
+        </activity>
+        <activity
+                android:name=".IndexActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+            <intent-filter>
+                <action android:name="com.lemuelinchrist.hymns.INDEX"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+
+
+
+
+
+    </application>
+
+</manifest>
