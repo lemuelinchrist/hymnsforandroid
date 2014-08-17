@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, HymnsActivity!</string>
+    <string name="app_name">Hymns</string>
+    <string name="searchString">Search</string>
+    <string name="noText">No:</string>
+    <string name="enterHymnNo">Enter Hymn No.</string>
+    <string name="go">Go</string>
+    <string name="playHymn">Play Hymn</string>
+    <string name="hymnsForAndroid">Hymns for Android</string>
+    <string name="version">v2.8.1</string>
+    <string name="reportAbug">Report bugs: lemuelinchrist@gmail.com</string>
+    <string name="about">About</string>
+    <string name="branch">guitar</string>
+
+
+    <!-- Navigation Drawer -->
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="english">English</string>
+    <string name="choose_font_size">Choose Font Size</string>
+    <string name="choose_hymn_first">Please choose a hymn first before clicking this button.
+    </string>
+    <string name="no_hymn_selected">No Hymn Selected</string>
+    <string name="ok">Ok</string>
+
+    <!-- Navigation Drawer -->
+    <string-array name="font_sizes">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+        <item>Extra Large</item>
+
+    </string-array>
+
+</resources>
