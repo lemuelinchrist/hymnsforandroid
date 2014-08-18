@@ -138,67 +138,15 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
     }
 
     private void downloadSheetMusic() {
-        final String BRANCH = "guitar";
+
         if (!lyricContainer.isHymnDisplayed()) {
             showAlert(R.string.choose_hymn_first, R.string.no_hymn_selected);
             return;
         }
-
-        String sheetMusicLink = lyricContainer.getSheetMusicLink();
-        if (sheetMusicLink != null) {
-            Intent i = new Intent(Intent.ACTION_VIEW);
-
-            if (BRANCH.equals("main")) {
-
-                // old link does not work anymore. change to new link
-                String editedLink = sheetMusicLink.replace("images", "svg");
-                editedLink = editedLink.replace("png", "svg");
-                editedLink = editedLink.replace("_p.", "_g."); // p is for piano, g for guitar
-
-                i.setData(Uri.parse(editedLink));
-                startActivity(i);
-
-            } else if(BRANCH.equals("guitar")) {
-                InputStream in = null;
-                OutputStream out = null;
-                File file = new File(getFilesDir(), "score.png");
-                try
-                {
-                    AssetManager assetManager = getAssets();
-
-                    in = assetManager.open("E60.png");
-                    out = openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
-
-                    byte[] buffer = new byte[1024];
-                    int read;
-                    while ((read = in.read(buffer)) != -1)
-                    {
-                        out.write(buffer, 0, read);
-                    }
-
-                    in.close();
-                    in = null;
-                    out.flush();
-                    out.close();
-                    out = null;
-                } catch (Exception e)
-                {
-                    Log.e("tag", e.getMessage());
-                }
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setDataAndType(
-                        Uri.parse("file://" + getFilesDir() + "/score.png"),
-                        "image/*");
-
-                startActivity(intent);
-
-            }
+        lyricContainer.getSheetMusic();
 
 
-        } else {
-            Toast.makeText(this, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
 
-        }
     }
 
     private void showAlert(int message, int title) {

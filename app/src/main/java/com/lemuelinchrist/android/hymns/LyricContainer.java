@@ -1,18 +1,26 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.net.Uri;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.utils.HymnTextFormatter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -277,14 +285,6 @@ public class LyricContainer extends LinearLayout {
         }
     }
 
-    public String getSheetMusicLink() {
-        if (hymn != null) {
-            return hymn.getSheetMusicLink();
-        } else {
-            return null;
-        }
-    }
-
     public boolean isHymnDisplayed() {
         return (hymn != null);
     }
@@ -312,5 +312,81 @@ public class LyricContainer extends LinearLayout {
 
     public void setLyricChangeListener(LyricChangeListener lyricChangeListener) {
         this.lyricChangeListener = lyricChangeListener;
+    }
+
+
+    public void getSheetMusic() {
+        final String BRANCH = "guitar";
+        String sheetMusicLink = hymn.getSheetMusicLink();
+        if (sheetMusicLink != null) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+
+            if (BRANCH.equals("main")) {
+                String editedLink = sheetMusicLink.replace("_p.", "_g."); // p is for piano, g for guitar
+
+                i.setData(Uri.parse(editedLink));
+                context.startActivity(i);
+
+            } else if(BRANCH.equals("guitar")) {
+                InputStream in = null;
+                OutputStream out = null;
+                File file = new File(context.getFilesDir(), "score.png");
+                try {
+                    AssetManager assetManager = context.getAssets();
+
+                    String hGroup = hymn.getGroup();
+
+                    if (hymn.isNewTune()) {
+                        in = assetManager.open("sheetMusicGuitar/"+"new"+hymn.getParentHymn()+".png");
+                    } else if (hGroup.equals("C") || hGroup.equals("CS") || hGroup.equals("CB") || hGroup.equals("BF")) {
+                        in = assetManager.open("sheetMusicGuitar/"+hymn.getParentHymn() + ".png");
+
+                        // For LongBeach songs
+                    } else if (hymn.getHymnId().startsWith("NS5")) {
+                        in = assetManager.open("sheetMusicGuitar/"+"LB" + hymn.getNo().substring(1) + ".png");
+
+                    } else {
+                        in = assetManager.open("sheetMusicGuitar/"+hymn.getHymnId() + ".png");
+                    }
+
+
+
+                    out = context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
+
+                    byte[] buffer = new byte[1024];
+                    int read;
+                    while ((read = in.read(buffer)) != -1)
+                    {
+                        out.write(buffer, 0, read);
+                    }
+
+                    in.close();
+                    in = null;
+                    out.flush();
+                    out.close();
+                    out = null;
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(
+                            Uri.parse("file://" + context.getFilesDir() + "/score.png"),
+                            "image/*");
+
+                    context.startActivity(intent);
+                } catch(FileNotFoundException e) {
+                    Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
+
+                } catch (Exception e) {
+                    Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
+                    Log.e(LyricContainer.this.getClass().getSimpleName(), e.getMessage());
+                }
+
+
+            }
+
+
+        } else {
+            Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
+
+        }
     }
 }
