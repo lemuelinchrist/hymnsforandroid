@@ -316,7 +316,7 @@ public class LyricContainer extends LinearLayout {
 
 
     public void getSheetMusic() {
-        final String BRANCH = "guitar";
+        final String BRANCH = "main";
         String sheetMusicLink = hymn.getSheetMusicLink();
         if (sheetMusicLink != null) {
             Intent i = new Intent(Intent.ACTION_VIEW);
