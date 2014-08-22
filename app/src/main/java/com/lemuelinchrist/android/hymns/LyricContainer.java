@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.net.Uri;
+import android.os.Environment;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
@@ -19,6 +20,7 @@ import com.lemuelinchrist.android.hymns.utils.HymnTextFormatter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
@@ -268,6 +270,8 @@ public class LyricContainer extends LinearLayout {
         } else if (size.equals("Extra Large")) {
             this.fontSize = 26;
 
+        }else if (size.equals("XXL")) {
+            this.fontSize = 32;
         }
 
 
@@ -316,7 +320,7 @@ public class LyricContainer extends LinearLayout {
 
 
     public void getSheetMusic() {
-        final String BRANCH = "main";
+        final String BRANCH = "guitar";
         String sheetMusicLink = hymn.getSheetMusicLink();
         if (sheetMusicLink != null) {
             Intent i = new Intent(Intent.ACTION_VIEW);
@@ -330,28 +334,33 @@ public class LyricContainer extends LinearLayout {
             } else if(BRANCH.equals("guitar")) {
                 InputStream in = null;
                 OutputStream out = null;
-                File file = new File(context.getFilesDir(), "score.png");
+                File file;
+
                 try {
                     AssetManager assetManager = context.getAssets();
+                    String fileName;
 
-                    String hGroup = hymn.getGroup();
+                    // clear files in internal storage
+//                    String[] fileList = context.getFilesDir().list();
+//                    for(String toDelete:fileList) {
+//                        context.deleteFile(toDelete);
+//                    }
 
-                    if (hymn.isNewTune()) {
-                        in = assetManager.open("sheetMusicGuitar/"+"new"+hymn.getParentHymn()+".png");
-                    } else if (hGroup.equals("C") || hGroup.equals("CS") || hGroup.equals("CB") || hGroup.equals("BF")) {
-                        in = assetManager.open("sheetMusicGuitar/"+hymn.getParentHymn() + ".png");
-
-                        // For LongBeach songs
-                    } else if (hymn.getHymnId().startsWith("NS5")) {
-                        in = assetManager.open("sheetMusicGuitar/"+"LB" + hymn.getNo().substring(1) + ".png");
-
+                    if (hymn.getGroup().equals("C")||hymn.getGroup().equals("CS")) {
+                        fileName = hymn.getParentHymn() + ".svg";
                     } else {
-                        in = assetManager.open("sheetMusicGuitar/"+hymn.getHymnId() + ".png");
+                        fileName = hymn.getHymnId() + ".svg";
                     }
 
+                    final File externalStorageSvgDir = new File(Environment.getExternalStorageDirectory(),"musicSheet");
 
+                    if(!externalStorageSvgDir.mkdirs())
+                        Log.w(LyricContainer.class.getSimpleName(),"warning, directory not created");
 
-                    out = context.openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
+                    file = new File(externalStorageSvgDir, fileName);
+                    in  = assetManager.open("guitarSvg/"+fileName);
+                    out = new FileOutputStream(file);
+
 
                     byte[] buffer = new byte[1024];
                     int read;
@@ -367,9 +376,11 @@ public class LyricContainer extends LinearLayout {
                     out = null;
 
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(
-                            Uri.parse("file://" + context.getFilesDir() + "/score.png"),
-                            "image/*");
+                    intent.setData(
+                            Uri.fromFile(file)
+                    );
+
+                    intent.setClassName("com.android.chrome", "com.google.android.apps.chrome.Main");
 
                     context.startActivity(intent);
                 } catch(FileNotFoundException e) {
