@@ -4,11 +4,8 @@ package com.lemuelinchrist.android.hymns;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -28,17 +25,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.support.v7.app.ActionBar;
 
 
 
 //import com.actionbarsherlock.widget.SearchView;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
-
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 //import android.widget.SearchView;
 
@@ -144,7 +136,6 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
             return;
         }
         lyricContainer.getSheetMusic();
-
 
 
     }
