@@ -386,7 +386,7 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
             }
 
             selectedHymnGroup = hymn.getGroup();
-
+            currentGroupView.setText(lyricContainer.getHymnId());
 
         } else {
             // show instructions
@@ -395,13 +395,14 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
                 findViewById(R.id.instructionLayout).setVisibility(View.VISIBLE);
                 areInstructionsHidden = false;
             }
+            currentGroupView.setText(HymnGroups.valueOf(selectedHymnGroup).getSimpleName());
         }
 
         // scroll back up to the top.
         findViewById(R.id.jellybeanContentScrollView).scrollTo(0, 0);
 
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toLowerCase(), "drawable", getPackageName()));
-        currentGroupView.setText(HymnGroups.valueOf(selectedHymnGroup).getSimpleName());
+
 
     }
 }
