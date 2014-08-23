@@ -320,7 +320,9 @@ public class LyricContainer extends LinearLayout {
 
 
     public void getSheetMusic() {
+        // note: switch this value to "main" if you want to create a version that doesn't include sheet music svg's.
         final String BRANCH = "guitar";
+
         String sheetMusicLink = hymn.getSheetMusicLink();
         if (sheetMusicLink != null) {
             Intent i = new Intent(Intent.ACTION_VIEW);
@@ -346,7 +348,7 @@ public class LyricContainer extends LinearLayout {
 //                        context.deleteFile(toDelete);
 //                    }
 
-                    if (hymn.getGroup().equals("C")||hymn.getGroup().equals("CS")) {
+                    if (!hymn.hasOwnSheetMusic()) {
                         fileName = hymn.getParentHymn() + ".svg";
                     } else {
                         fileName = hymn.getHymnId() + ".svg";
@@ -383,9 +385,6 @@ public class LyricContainer extends LinearLayout {
                     intent.setClassName("com.android.chrome", "com.google.android.apps.chrome.Main");
 
                     context.startActivity(intent);
-                } catch(FileNotFoundException e) {
-                    Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
-
                 } catch (Exception e) {
                     Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
                     Log.e(LyricContainer.this.getClass().getSimpleName(), e.getMessage());

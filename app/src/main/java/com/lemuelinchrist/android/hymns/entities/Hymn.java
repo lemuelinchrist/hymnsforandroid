@@ -35,6 +35,7 @@ public class Hymn {
     private String sheetMusicLink;
 
     private boolean isNewTune = false;
+    private boolean hasOwnSheetMusic = true;
 
     public String getVerse() {
         return verse;
@@ -298,5 +299,13 @@ public class Hymn {
             return false;
         }
         return true;
+    }
+
+    public void setHasOwnSheetMusic(boolean hasOwnSheetMusic) {
+        this.hasOwnSheetMusic = hasOwnSheetMusic;
+    }
+
+    public boolean hasOwnSheetMusic() {
+        return hasOwnSheetMusic;
     }
 }

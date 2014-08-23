@@ -160,8 +160,10 @@ public class HymnsDao {
                     hymn.setTime(parentHymn.getTime());
                 if (isEmpty(hymn.getTune()))
                     hymn.setTune(parentHymn.getTune());
-                if (isEmpty(hymn.getSheetMusicLink()))
+                if (isEmpty(hymn.getSheetMusicLink())) {
                     hymn.setSheetMusicLink(parentHymn.getSheetMusicLink());
+                    hymn.setHasOwnSheetMusic(false);
+                }
                 if (isEmpty(hymn.getKey()))
                     hymn.setKey(parentHymn.getKey());
                 if (isEmpty(hymn.getMainCategory()))
