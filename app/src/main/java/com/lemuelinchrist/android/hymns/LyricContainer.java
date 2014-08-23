@@ -383,7 +383,7 @@ public class LyricContainer extends LinearLayout {
 
                     context.startActivity(intent);
                 } catch (ActivityNotFoundException e) {
-                    Toast.makeText(context, "Please install Google Chrome to display music sheet.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Oops! Chrome not available! To display music sheet, please install Google Chrome from the Play Store.", Toast.LENGTH_LONG).show();
                 } catch (Exception e) {
                     Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
                     Log.e(LyricContainer.this.getClass().getSimpleName(), e.getMessage());
@@ -397,9 +397,5 @@ public class LyricContainer extends LinearLayout {
             Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
 
         }
-    }
-
-    public String getHymnId() {
-        return hymn.getHymnId();
     }
 }

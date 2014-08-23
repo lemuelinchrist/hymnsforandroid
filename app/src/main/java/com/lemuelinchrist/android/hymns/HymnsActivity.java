@@ -386,7 +386,8 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
             }
 
             selectedHymnGroup = hymn.getGroup();
-            currentGroupView.setText(lyricContainer.getHymnId());
+            selectedHymnNumber = hymn.getNo();
+            currentGroupView.setText(hymn.getHymnId());
 
         } else {
             // show instructions
