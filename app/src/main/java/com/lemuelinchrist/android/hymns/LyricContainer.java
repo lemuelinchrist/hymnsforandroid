@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -342,12 +343,6 @@ public class LyricContainer extends LinearLayout {
                     AssetManager assetManager = context.getAssets();
                     String fileName;
 
-                    // clear files in internal storage
-//                    String[] fileList = context.getFilesDir().list();
-//                    for(String toDelete:fileList) {
-//                        context.deleteFile(toDelete);
-//                    }
-
                     if (!hymn.hasOwnSheetMusic()) {
                         fileName = hymn.getParentHymn() + ".svg";
                     } else {
@@ -356,8 +351,10 @@ public class LyricContainer extends LinearLayout {
 
                     final File externalStorageSvgDir = new File(Environment.getExternalStorageDirectory(),"musicSheet");
 
+
+                    externalStorageSvgDir.delete();
                     if(!externalStorageSvgDir.mkdirs())
-                        Log.w(LyricContainer.class.getSimpleName(),"warning, directory not created");
+                        Log.w(LyricContainer.class.getSimpleName(),"directory already exists. no need to create one.");
 
                     file = new File(externalStorageSvgDir, fileName);
                     in  = assetManager.open("guitarSvg/"+fileName);
@@ -385,6 +382,8 @@ public class LyricContainer extends LinearLayout {
                     intent.setClassName("com.android.chrome", "com.google.android.apps.chrome.Main");
 
                     context.startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(context, "Please install Google Chrome to display music sheet.", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
                     Log.e(LyricContainer.this.getClass().getSimpleName(), e.getMessage());
@@ -398,5 +397,9 @@ public class LyricContainer extends LinearLayout {
             Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    public String getHymnId() {
+        return hymn.getHymnId();
     }
 }
