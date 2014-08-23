@@ -4,7 +4,7 @@
     xmlns:yourapp="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/index_search"
           android:title="search index"
-        yourapp:showAsAction="collapseActionView|ifRoom"
+        yourapp:showAsAction="always"
         yourapp:actionViewClass="android.support.v7.widget.SearchView" />
 
 </menu>
