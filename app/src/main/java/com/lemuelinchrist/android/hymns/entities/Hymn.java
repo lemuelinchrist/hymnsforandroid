@@ -111,6 +111,9 @@ public class Hymn {
         this.related.addAll(Arrays.asList(related.split(",")));
         this.related.remove(this.getHymnId());
         this.related.remove("");
+        if ( getParentHymn()!=null && !this.related.contains(getParentHymn())) {
+            this.related.add(getParentHymn());
+        }
 
     }
 

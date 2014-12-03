@@ -23,7 +23,7 @@
     <item
             android:id="@+id/action_fontsize"
             android:orderInCategory="103"
-            yourapp:showAsAction="always"
+            yourapp:showAsAction="ifRoom"
             android:icon="@drawable/fontsize"
             android:title="Font Size"/>
 
