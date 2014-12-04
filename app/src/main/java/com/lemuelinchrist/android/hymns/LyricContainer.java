@@ -135,7 +135,7 @@ public class LyricContainer extends LinearLayout {
                 text.append("Related: ");
                 StringBuilder relatedConcat = new StringBuilder();
                 for (String r : related) {
-                    if (r.charAt(0) == 'T') continue;
+//                    if (r.charAt(0) == 'T') continue;
                     relatedConcat.append(", ");
                     relatedConcat.append(r);
                 }
@@ -352,7 +352,7 @@ public class LyricContainer extends LinearLayout {
                     final File externalStorageSvgDir = new File(Environment.getExternalStorageDirectory(),"musicSheet");
 
 
-                    externalStorageSvgDir.delete();
+                    deleteDirectory(externalStorageSvgDir);
                     if(!externalStorageSvgDir.mkdirs())
                         Log.w(LyricContainer.class.getSimpleName(),"directory already exists. no need to create one.");
 
@@ -397,5 +397,23 @@ public class LyricContainer extends LinearLayout {
             Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    static public boolean deleteDirectory(File path) {
+        if( path.exists() ) {
+            File[] files = path.listFiles();
+            if (files == null) {
+                return true;
+            }
+            for(int i=0; i<files.length; i++) {
+                if(files[i].isDirectory()) {
+                    deleteDirectory(files[i]);
+                }
+                else {
+                    files[i].delete();
+                }
+            }
+        }
+        return( path.delete() );
     }
 }
