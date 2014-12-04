@@ -177,6 +177,7 @@ public class HymnsDao {
                 if (hymn.getStanzas() == null || hymn.getStanzas().isEmpty())
                     hymn.setStanzas(parentHymn.getStanzas());
 
+                // override related no matter if the child is empty or not
                 hymn.addRelated(parentHymn.getRelated());
             }
 
