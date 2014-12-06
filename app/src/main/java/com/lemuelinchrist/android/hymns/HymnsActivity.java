@@ -86,7 +86,7 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
         });
 
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new HymnListAdapter(this,
+        mDrawerList.setAdapter(new HymnDrawerListAdapter(this,
                 R.layout.drawer_list_item));
 
         mDrawerToggle = new ActionBarDrawerToggle(
