@@ -1,24 +1,21 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
+import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
+import com.lemuelinchrist.android.hymns.utils.HymnStack;
 import com.lemuelinchrist.android.hymns.utils.HymnTextFormatter;
+import com.lemuelinchrist.android.hymns.utils.SheetMusic;
 
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -37,6 +34,7 @@ public class LyricContainer extends LinearLayout {
     private HymnStack hymnStack;
     private LyricChangeListener lyricChangeListener;
     private SheetMusic sheetMusic;
+    private HistoryLogBook historyLogBook;
 
 
     public LyricContainer(Context context) {
@@ -65,6 +63,8 @@ public class LyricContainer extends LinearLayout {
 
         // initialize sheetMusic
         sheetMusic = new SheetMusic(context);
+
+        historyLogBook = new HistoryLogBook(context);
 
 
     }
@@ -200,6 +200,8 @@ public class LyricContainer extends LinearLayout {
         // push hymn to stack for back button functionality
 
         hymnStack.push(hymn.getHymnId());
+        historyLogBook.log(hymn.getHymnId());
+
         return hymn;
     }
 
@@ -252,6 +254,8 @@ public class LyricContainer extends LinearLayout {
             hymn.stopHymn();
             hymn = null;
             hymnStack.push(null);
+            historyLogBook.log(hymn.getHymnId());
+
         }
         lyricChangeListener.lyricChanged(hymn);
         return false;

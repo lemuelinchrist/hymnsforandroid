@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns;
+package com.lemuelinchrist.android.hymns.utils;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.lemuelinchrist.android.hymns.LyricContainer;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
 import java.io.File;

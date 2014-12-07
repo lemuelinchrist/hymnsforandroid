@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns;
+package com.lemuelinchrist.android.hymns.utils;
 
 import android.util.Log;
 
