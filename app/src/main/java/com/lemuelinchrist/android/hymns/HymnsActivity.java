@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -31,6 +31,7 @@ import android.support.v7.app.ActionBar;
 
 //import com.actionbarsherlock.widget.SearchView;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
+import com.lemuelinchrist.android.hymns.search.IndexActivity;
 
 //import android.widget.SearchView;
 
@@ -49,7 +50,7 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private TextView currentGroupView;
+//    private TextView currentGroupView;
     private boolean areInstructionsHidden = false;
 
     private ActionBar actionBar;
@@ -66,14 +67,8 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
         lyricContainer.setLyricChangeListener(this);
 
         actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setCustomView(R.layout.actionbar);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setIcon(getResources().getIdentifier("e", "drawable", getPackageName()));
-
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -92,41 +87,30 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
                 mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
-                R.string.drawer_open,  /* "open drawer" description for accessibility */
-                R.string.drawer_close  /* "close drawer" description for accessibility */
+                R.string.drawer_open,
+                R.string.drawer_close
         ) {
             public void onDrawerClosed(View view) {
-                supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                super.onDrawerClosed(view);
             }
 
             public void onDrawerOpened(View drawerView) {
-                supportInvalidateOptionsMenu();  // creates call to onPrepareOptionsMenu()
+                super.onDrawerOpened(drawerView);
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        currentGroupView = (Button) findViewById(R.id.currentGroup);
-        currentGroupView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggleDrawer();
-
-            }
-        });
-
-        ImageView sheetMusicButton = (ImageView) findViewById(R.id.sheetMusicButton);
 
 
-        // download sheet music
-        sheetMusicButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                downloadSheetMusic();
+    }
 
-            }
-        });
-
+    // Warning! this method is very crucial. Without it you will not have a hamburger icon on your
+    // action bar.
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
     }
 
     private void downloadSheetMusic() {
@@ -300,7 +284,11 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
             AlertDialog dialog = builder.create();
             dialog.show();
             ret = true;
-        } else
+        } else if (item.getItemId() == R.id.action_sheetmusic) {
+            downloadSheetMusic();
+            ret = true;
+
+        }else
 
         {
             ret = false;
@@ -387,7 +375,8 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
 
             selectedHymnGroup = hymn.getGroup();
             selectedHymnNumber = hymn.getNo();
-            currentGroupView.setText(hymn.getHymnId());
+//            currentGroupView.setText(hymn.getHymnId());
+            actionBar.setTitle(hymn.getHymnId());
 
         } else {
             // show instructions
@@ -396,7 +385,8 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
                 findViewById(R.id.instructionLayout).setVisibility(View.VISIBLE);
                 areInstructionsHidden = false;
             }
-            currentGroupView.setText(HymnGroups.valueOf(selectedHymnGroup).getSimpleName());
+//            currentGroupView.setText(HymnGroups.valueOf(selectedHymnGroup).getSimpleName());
+            actionBar.setTitle(HymnGroups.valueOf(selectedHymnGroup).getSimpleName());
         }
 
         // scroll back up to the top.

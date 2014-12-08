@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="9"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="21" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +29,7 @@
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".IndexActivity"
+            android:name=".search.IndexActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
             <intent-filter>
