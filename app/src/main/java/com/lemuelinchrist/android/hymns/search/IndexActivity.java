@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns;
+package com.lemuelinchrist.android.hymns.search;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 
+import com.lemuelinchrist.android.hymns.HymnGroups;
+import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 
 public class IndexActivity extends ActionBarActivity {
