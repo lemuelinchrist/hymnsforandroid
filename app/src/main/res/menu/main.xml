@@ -26,6 +26,12 @@
             yourapp:showAsAction="ifRoom"
             android:icon="@drawable/fontsize"
             android:title="Font Size"/>
+    <item
+        android:id="@+id/action_sheetmusic"
+        android:orderInCategory="104"
+        yourapp:showAsAction="ifRoom"
+        android:icon="@drawable/gclef"
+        android:title="Sheet Music"/>
 
     <item android:id="@+id/action_search"
           android:title="menu_search"
@@ -36,7 +42,7 @@
     <item
             android:id="@+id/action_index"
             android:orderInCategory="200"
-            yourapp:showAsAction="always"
+            yourapp:showAsAction="ifRoom"
             android:icon="@drawable/collections_sort_by_size"
             android:title="Index"/>
 
