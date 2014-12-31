@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
@@ -25,7 +28,7 @@ import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 
 public class IndexActivity extends ActionBarActivity {
     private HymnsDao dao;
-    private ListView listView;
+    private RecyclerView mRecyclerView;
     private String selectedHymnGroup;
     private ActionBar actionBar;
 
@@ -36,11 +39,9 @@ public class IndexActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.index_activity);
-        listView = (ListView) findViewById(R.id.indexView);
-        listView = new ListView(this);
-        setContentView(listView);
-
-        getListView().setFastScrollEnabled(true);
+        mRecyclerView = (RecyclerView) findViewById(R.id.indexView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
         // get selected hymn group
@@ -53,15 +54,8 @@ public class IndexActivity extends ActionBarActivity {
         dao.open();
 
 
-        listView.setAdapter(new HymnCursorAdapter(this,
+        mRecyclerView.setAdapter(new HymnCursorAdapter(this,
                 dao.getAllHymnsOfSameLanguage(selectedHymnGroup), R.layout.index_list_content));
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                onListItemClick((ListView) adapterView, view, i, l);
-            }
-        });
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(false);
@@ -111,32 +105,15 @@ public class IndexActivity extends ActionBarActivity {
     }
 
     private void filterList(String filter) {
-        listView.setAdapter(new HymnCursorAdapter(this,
+        mRecyclerView.setAdapter(new HymnCursorAdapter(this,
                 dao.getFilteredHymns(selectedHymnGroup, filter)
                 , R.layout.index_list_content));
-    }
-
-
-    public void onListItemClick(ListView parent, View v, int position, long id) {
-        Cursor cursor = (Cursor) getListView().getItemAtPosition(position);
-
-        Intent data = new Intent();
-        String hymnNo = dao.getHymnNoFromCursor(cursor);
-        data.setData(Uri.parse(hymnNo));
-        setResult(RESULT_OK, data);
-        finish();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         dao.close();
-    }
-
-
-    public ListView getListView() {
-
-        return listView;
     }
 
 
