@@ -21,17 +21,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.support.v7.app.ActionBar;
 
 
 
 //import com.actionbarsherlock.widget.SearchView;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
-import com.lemuelinchrist.android.hymns.search.IndexActivity;
+import com.lemuelinchrist.android.hymns.search.SearchActivity;
 
 //import android.widget.SearchView;
 
@@ -250,7 +247,7 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
             ret = true;
 
         } else if (item.getItemId() == R.id.action_index) {
-            Intent intent = new Intent(getBaseContext(), IndexActivity.class);
+            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
             intent.putExtra("selectedHymnGroup", selectedHymnGroup);
             startActivityForResult(intent, INDEX_REQUEST);
             ret = true;

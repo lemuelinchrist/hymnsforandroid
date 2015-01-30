@@ -5,21 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 
 /**
  * Created by lemuelcantos on 15/8/13.
  */
-public class HymnCursorAdapter extends CursorRecyclerViewAdapter<HymnCursorAdapter.ViewHolder> {
+public class HymnCursorAdapter extends CursorRecyclerViewAdapter<IndexViewHolder> {
     private final Context context;
     private final Cursor cursor;
     private final int layout;
@@ -37,32 +32,32 @@ public class HymnCursorAdapter extends CursorRecyclerViewAdapter<HymnCursorAdapt
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public IndexViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(layout, viewGroup, false);
 
 
-        ViewHolder vh = new ViewHolder(rowView);
+        IndexViewHolder vh = new IndexViewHolder(rowView);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder viewHolder, Cursor cursor) {
-        viewHolder.list_item.setText(cursor.getString(cursor.getColumnIndex("stanza_chorus")));
+    public void onBindViewHolder(final IndexViewHolder indexViewHolder, Cursor cursor) {
+        indexViewHolder.list_item.setText(cursor.getString(cursor.getColumnIndex("stanza_chorus")));
 
         String hymnGroup = cursor.getString(cursor.getColumnIndex(HymnsDao.HymnFields.hymn_group.toString()));
-        viewHolder.imageView.setImageResource(context.getResources().getIdentifier(hymnGroup.toLowerCase(), "drawable", context.getPackageName()));
+        indexViewHolder.imageView.setImageResource(context.getResources().getIdentifier(hymnGroup.toLowerCase(), "drawable", context.getPackageName()));
 
-        viewHolder.hymnNo=dao.getHymnNoFromCursor(cursor);
+        indexViewHolder.hymnNo=dao.getHymnNoFromCursor(cursor);
 
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        indexViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent data = new Intent();
 
-                data.setData(Uri.parse(viewHolder.hymnNo));
+                data.setData(Uri.parse(indexViewHolder.hymnNo));
                 Activity currentActivity = (Activity) context;
                 currentActivity.setResult(currentActivity.RESULT_OK, data);
                 currentActivity.finish();
@@ -70,17 +65,5 @@ public class HymnCursorAdapter extends CursorRecyclerViewAdapter<HymnCursorAdapt
         });
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView list_item;
-        public ImageView imageView;
-        public String hymnNo;
-
-        public ViewHolder(View view) {
-            super(view);
-            list_item = (TextView) view.findViewById(R.id.hymnTitle);
-            imageView = (ImageView) view.findViewById(R.id.hymnGroupImage);
-        }
-
-    }
 }
 

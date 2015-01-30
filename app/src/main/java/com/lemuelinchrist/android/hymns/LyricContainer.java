@@ -242,8 +242,10 @@ public class LyricContainer extends LinearLayout {
                     String hymnNo = translation.substring(groupCharLength);
                     Log.i(this.getClass().getSimpleName(), "Translation found! group: " + iteratedGroupCode + " no:" + hymnNo);
                     displayLyrics(iteratedGroupCode, hymnNo);
-                    if (this.hymn != null)
+                    if (this.hymn != null) {
+                        historyLogBook.log(hymn.getHymnId());
                         return true;
+                    }
                 }
             }
             Log.d(this.getClass().getSimpleName(), "Translation NOT found! clearing Lyric Container");
@@ -254,7 +256,7 @@ public class LyricContainer extends LinearLayout {
             hymn.stopHymn();
             hymn = null;
             hymnStack.push(null);
-            historyLogBook.log(hymn.getHymnId());
+
 
         }
         lyricChangeListener.lyricChanged(hymn);
