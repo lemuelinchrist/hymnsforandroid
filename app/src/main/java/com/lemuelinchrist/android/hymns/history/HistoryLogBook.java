@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,8 +33,12 @@ public class HistoryLogBook {
         } catch (FileNotFoundException e) {
             Log.i(HistoryLogBook.class.getName(),"No logbook file found. Must be first time use. Creating one.");
             logBook = new HashSet<HistoryRecord>();
+        } catch(InvalidClassException e) {
+            Log.e(HistoryLogBook.class.getName(),"Incompatible class! creating new record \n " + e);
+            logBook = new HashSet<HistoryRecord>();
         } catch (Exception e) {
             Log.e(HistoryLogBook.class.getName(),"Error reading history log book! \n " + e);
+            logBook = new HashSet<HistoryRecord>();
         }
 
 
@@ -49,10 +54,6 @@ public class HistoryLogBook {
         // Add the new record. if there was an existing one, it is removed in the previous line and replace with one having the current time.
         logBook.add(record);
 
-//        for (HistoryRecord r: getOrderedRecordList()) {
-//            Log.d(HistoryLogBook.class.getName(), r.toString());
-//        }
-
         // persist logBook
         try {
             InternalStorage.writeObject(context,LOGBOOK_FILE,logBook);
@@ -65,7 +66,12 @@ public class HistoryLogBook {
     public HistoryRecord[] getOrderedRecordList() {
         HistoryRecord[] historyRecords = logBook.toArray(new HistoryRecord[0]);
         Arrays.sort(historyRecords);
-        return  historyRecords;
+
+        if (historyRecords.length>31) {
+            return Arrays.copyOfRange(historyRecords, 0, 30);
+        } else {
+            return historyRecords;
+        }
     }
 
 

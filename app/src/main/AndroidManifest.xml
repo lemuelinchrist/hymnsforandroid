@@ -29,7 +29,7 @@
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".search.IndexActivity"
+            android:name=".search.SearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
             <intent-filter>

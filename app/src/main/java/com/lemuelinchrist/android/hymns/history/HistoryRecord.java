@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by lemuelcantos on 7/12/14.
  */
 
-class HistoryRecord implements Comparable<HistoryRecord>, Serializable {
+public class HistoryRecord implements Comparable<HistoryRecord>, Serializable {
     private Date recordDate;
     private String hymnId;
 
@@ -26,7 +26,7 @@ class HistoryRecord implements Comparable<HistoryRecord>, Serializable {
 
     @Override
     public int compareTo(HistoryRecord historyRecord) {
-        return recordDate.compareTo(historyRecord.getRecordDate());
+        return historyRecord.getRecordDate().compareTo(recordDate);
     }
 
     @Override
