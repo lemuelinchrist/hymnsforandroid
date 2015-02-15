@@ -19,6 +19,7 @@ public class HymnCursorAdapter extends CursorRecyclerViewAdapter<IndexViewHolder
     private final Cursor cursor;
     private final int layout;
     private final HymnsDao dao;
+    private String mode="";
 
     public HymnCursorAdapter(Context context, Cursor cursor, int layout) {
         super(context, cursor);
@@ -44,7 +45,10 @@ public class HymnCursorAdapter extends CursorRecyclerViewAdapter<IndexViewHolder
 
     @Override
     public void onBindViewHolder(final IndexViewHolder indexViewHolder, Cursor cursor) {
-        indexViewHolder.list_item.setText(cursor.getString(cursor.getColumnIndex("stanza_chorus")));
+        StringBuilder text = new StringBuilder();
+
+        if (mode.equals(""))
+        indexViewHolder.list_item.setText(cursor.getString(cursor.getColumnIndex("_id")) +  "\n"+cursor.getString(cursor.getColumnIndex("stanza_chorus")));
 
         String hymnGroup = cursor.getString(cursor.getColumnIndex(HymnsDao.HymnFields.hymn_group.toString()));
         indexViewHolder.imageView.setImageResource(context.getResources().getIdentifier(hymnGroup.toLowerCase(), "drawable", context.getPackageName()));
@@ -65,5 +69,8 @@ public class HymnCursorAdapter extends CursorRecyclerViewAdapter<IndexViewHolder
         });
     }
 
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
 }
 

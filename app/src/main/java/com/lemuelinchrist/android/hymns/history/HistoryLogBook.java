@@ -3,6 +3,8 @@ package com.lemuelinchrist.android.hymns.history;
 import android.content.Context;
 import android.util.Log;
 
+import com.lemuelinchrist.android.hymns.entities.Hymn;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InvalidClassException;
@@ -44,9 +46,19 @@ public class HistoryLogBook {
 
     }
 
-    public void log(String hymnId) {
+    public void log(Hymn hymn) {
         // *** new Date() initializes a Date object with the current time.
-        HistoryRecord record = new HistoryRecord(hymnId,new Date());
+        String firstLine;
+
+
+        // some hymns do not have stanzas, just chorus, so we need this code
+        if (hymn.getFirstStanzaLine()==null || hymn.getFirstStanzaLine().isEmpty()) {
+            firstLine = hymn.getFirstChorusLine();
+        } else {
+            firstLine = hymn.getFirstStanzaLine();
+        }
+
+        HistoryRecord record = new HistoryRecord(hymn.getHymnId(), hymn.getGroup(), firstLine, new Date());
 
         // Remove existing record in the log if any (exiting record means record with the same hymnId)
         logBook.remove(record);
@@ -67,8 +79,8 @@ public class HistoryLogBook {
         HistoryRecord[] historyRecords = logBook.toArray(new HistoryRecord[0]);
         Arrays.sort(historyRecords);
 
-        if (historyRecords.length>31) {
-            return Arrays.copyOfRange(historyRecords, 0, 30);
+        if (historyRecords.length>101) {
+            return Arrays.copyOfRange(historyRecords, 0, 100);
         } else {
             return historyRecords;
         }
