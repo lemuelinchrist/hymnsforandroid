@@ -23,15 +23,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<IndexViewHolder> {
     private final Context context;
     private final int layout;
     private final HistoryRecord[] historyLogBookList;
-    private final HymnsDao dao;
 
     public HistoryAdapter(Context context, int layout) {
         this.context=context;
         this.layout=layout;
         historyLogBookList = new HistoryLogBook(context).getOrderedRecordList();
-        // initialize DAO
-        dao = new HymnsDao(context);
-        dao.open();
+
 
 
     }
@@ -49,10 +46,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<IndexViewHolder> {
 
     @Override
     public void onBindViewHolder(final IndexViewHolder holder, int position) {
-        Hymn hymn= dao.get(historyLogBookList[position].getHymnId());
-        holder.list_item.setText(hymn.getFirstStanzaLine());
-        holder.imageView.setImageResource(context.getResources().getIdentifier(hymn.getGroup().toLowerCase(), "drawable", context.getPackageName()));
-        holder.hymnNo=hymn.getHymnId();
+        HistoryRecord record = historyLogBookList[position];
+        holder.list_item.setText(record.getFirstLine());
+        holder.imageView.setImageResource(context.getResources().getIdentifier(record.getHymnGroup().toLowerCase(), "drawable", context.getPackageName()));
+        holder.hymnNo=record.getHymnId();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -94,7 +94,7 @@ public class SheetMusic {
                 Log.w(LyricContainer.class.getSimpleName(), "directory already exists. no need to create one.");
 
             file = new File(externalStorageSvgDir, fileName);
-            in = assetManager.open("guitarSvg/" + fileName);
+            in = assetManager.open("pianoSvg/" + fileName);
             out = new FileOutputStream(file);
 
 

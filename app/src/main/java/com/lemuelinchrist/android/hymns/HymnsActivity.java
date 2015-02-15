@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -387,10 +388,23 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
         }
 
         // scroll back up to the top.
-        findViewById(R.id.jellybeanContentScrollView).scrollTo(0, 0);
+//        findViewById(R.id.jellybeanContentScrollView).scrollTo(0, 0);
 
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toLowerCase(), "drawable", getPackageName()));
-
+        actionBar.setBackgroundDrawable(new ColorDrawable(HymnGroups.valueOf(selectedHymnGroup).getRgbColor()));
 
     }
+
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        findViewById(R.id.jellybeanContentScrollView).post(new Runnable() {
+//            @Override
+//            public void run () {
+//                Log.d(HymnsActivity.class.getSimpleName(), "window focus changed!!");
+//                findViewById(R.id.jellybeanContentScrollView).scrollTo(0, 0);
+//            }
+//        });
+//    }
+
 }
