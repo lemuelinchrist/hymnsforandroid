@@ -200,7 +200,7 @@ public class LyricContainer extends LinearLayout {
         // push hymn to stack for back button functionality
 
         hymnStack.push(hymn.getHymnId());
-        historyLogBook.log(hymn.getHymnId());
+        historyLogBook.log(hymn);
 
         return hymn;
     }
@@ -243,7 +243,7 @@ public class LyricContainer extends LinearLayout {
                     Log.i(this.getClass().getSimpleName(), "Translation found! group: " + iteratedGroupCode + " no:" + hymnNo);
                     displayLyrics(iteratedGroupCode, hymnNo);
                     if (this.hymn != null) {
-                        historyLogBook.log(hymn.getHymnId());
+                        historyLogBook.log(hymn);
                         return true;
                     }
                 }

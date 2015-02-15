@@ -10,10 +10,14 @@ import java.util.Date;
 public class HistoryRecord implements Comparable<HistoryRecord>, Serializable {
     private Date recordDate;
     private String hymnId;
+    private String firstLine;
+    private String hymnGroup;
 
-    HistoryRecord(String hymnId, Date recordDate) {
+    HistoryRecord(String hymnId, String hymnGroup, String firstLine, Date recordDate) {
         this.hymnId=hymnId;
         this.recordDate=recordDate;
+        this.firstLine=firstLine;
+        this.hymnGroup=hymnGroup;
     }
 
     public String getHymnId() {
@@ -47,5 +51,13 @@ public class HistoryRecord implements Comparable<HistoryRecord>, Serializable {
                 "recordDate=" + recordDate +
                 ", hymnId='" + hymnId + '\'' +
                 '}';
+    }
+
+    public String getFirstLine() {
+        return firstLine;
+    }
+
+    public String getHymnGroup() {
+        return hymnGroup;
     }
 }

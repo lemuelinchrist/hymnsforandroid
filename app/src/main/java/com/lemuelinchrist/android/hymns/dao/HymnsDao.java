@@ -100,7 +100,7 @@ public class HymnsDao {
         String groupClause = "";
         String likeClause = "";
         if (filter != null && !filter.equals("")) {
-            likeClause = " WHERE stanza_chorus LIKE " + "'%" + filter.trim() + "%' ";
+            likeClause = " WHERE stanza_chorus LIKE " + "'%" + filter.trim() + "%' " + " OR NO ='"+ filter.trim() +"'";
         } else {
             groupClause = " and (hymn_group='" + hymnGroup + "') ";
         }

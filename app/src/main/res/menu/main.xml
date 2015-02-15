@@ -11,14 +11,14 @@
             android:id="@+id/action_play"
             android:orderInCategory="101"
             yourapp:showAsAction="always"
-            android:icon="@drawable/av_play"
+            android:icon="@drawable/ic_play_arrow_white"
             android:title="@string/playHymn"/>
 
     <item
             android:id="@+id/action_pause"
             android:orderInCategory="102"
             yourapp:showAsAction="always"
-            android:icon="@drawable/av_pause"
+            android:icon="@drawable/ic_pause_white"
             android:title="Pause Hymn"/>
     <item
             android:id="@+id/action_fontsize"
