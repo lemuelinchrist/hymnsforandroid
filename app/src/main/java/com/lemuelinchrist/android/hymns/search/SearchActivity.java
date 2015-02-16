@@ -1,6 +1,5 @@
 package com.lemuelinchrist.android.hymns.search;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,10 +12,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -26,21 +21,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.lemuelinchrist.android.hymns.HymnGroups;
 import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 
 public class SearchActivity extends ActionBarActivity implements ActionBar.TabListener {
 
     public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
-    public static final String ENTER_LYRIC =   "Enter Lyric                    ";
+    public static final String ENTER_LYRIC =   "Enter First Line             ";
     private String selectedHymnGroup;
     private ActionBar actionBar;
     private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
@@ -86,6 +78,7 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
             }
         });
 
+
         // For each of the sections in the app, add a tab to the action bar.
         for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
             // Create a tab with text corresponding to the page title defined by the adapter.
@@ -129,6 +122,7 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
             item.setIcon(R.drawable.ic_keyboard_white);
         }
         searchBar.getText().clear();
+        showKeyboard();
     }
 
 
@@ -136,32 +130,6 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.index_menu, menu);
-
-//        MenuItem item = menu.findItem(R.id.index_search);
-//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String filter) {
-//                Log.d(this.getClass().getSimpleName(), "Submitted text in the index search");
-//                filterList(filter);
-//                // hide soft keyboard
-//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
-//
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String filter) {
-//                filterList(filter);
-//                return true;
-//            }
-//        });
-//
-//        searchView.setQueryHint("Enter Hymn No");
-//        searchView.onActionViewExpanded();
-
-
 
         /** Get the action view of the menu item whose id is search */
         MenuItem item = menu.findItem(R.id.searchHymns);
@@ -202,6 +170,8 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
             @Override
             public void onTextChanged(CharSequence filter, int start, int before, int count) {
                 filterList(filter.toString());
+                // switch to First-Line tab
+                mViewPager.setCurrentItem(0);
             }
 
             @Override
