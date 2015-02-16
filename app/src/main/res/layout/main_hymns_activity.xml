@@ -86,34 +86,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="- Open Hymn by Number"
+                        android:text="- Open or Search Hymn"
                         android:id="@+id/textView"
                         android:layout_gravity="center_vertical"
                         android:textColor="#787878"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:id="@+id/searchHymnIndexInstruction">
 
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView2"
-                        android:src="@drawable/collections_sort_by_size_black"/>
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="- Search Hymn Index"
-                        android:id="@+id/textView2"
-                        android:layout_gravity="center_vertical"
-                        android:textColor="#787878"/>
-            </LinearLayout>
 
             <LinearLayout
                     android:layout_width="fill_parent"
@@ -176,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="- Download Sheet Music"
+                        android:text="- Sheet Music"
                         android:id="@+id/textView5"
                         android:layout_gravity="center_vertical"
                         android:textColor="#787878"/>
