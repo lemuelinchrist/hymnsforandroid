@@ -33,6 +33,7 @@ public class LyricContainer extends LinearLayout {
     private SharedPreferences sharedPreferences;
     private HymnStack hymnStack;
     private LyricChangeListener lyricChangeListener;
+    private MusicPlayerListener musicPlayerListener;
     private SheetMusic sheetMusic;
     private HistoryLogBook historyLogBook;
 
@@ -89,11 +90,7 @@ public class LyricContainer extends LinearLayout {
             Log.d(this.getClass().getSimpleName(), "Displaying lyrics");
 
             // if there was a previous hymn
-            if (hymn != null) {
-                hymn.stopHymn();
-//                hymnStack.push(hymn.getHymnId());
-
-            }
+            stopPlaying();
 
             hymnsDao.open();
             hymn = hymnsDao.get(selectedHymnGroup + selectedHymnNumber);
@@ -208,11 +205,18 @@ public class LyricContainer extends LinearLayout {
     public void stopPlaying() {
         if (hymn != null) {
             hymn.stopHymn();
+            musicPlayerListener.onMusicStopped();
         }
     }
 
     public void startPlaying() {
-        if (hymn != null) hymn.playHymn();
+
+        if (hymn != null) {
+            hymn.playHymn();
+            musicPlayerListener.onMusicStarted();
+        }
+
+
     }
 
     public boolean translateTo(String selectedHymnGroup) {
@@ -253,7 +257,7 @@ public class LyricContainer extends LinearLayout {
 
             lyricHeader.setText(R.string.enterHymnNo);
             lyricsView.setText("");
-            hymn.stopHymn();
+            stopPlaying();
             hymn = null;
             hymnStack.push(null);
 
@@ -327,4 +331,7 @@ public class LyricContainer extends LinearLayout {
 
     public void getSheetMusic() { sheetMusic.getSheetMusic(hymn);}
 
+    public void setMusicPlayerListener(MusicPlayerListener musicPlayerListener) {
+        this.musicPlayerListener = musicPlayerListener;
+    }
 }

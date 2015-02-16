@@ -2,48 +2,56 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:yourapp="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/about"
-          android:title="@string/about"
-          android:orderInCategory="100"
-          yourapp:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_index"
+        android:orderInCategory="100"
+        yourapp:showAsAction="always"
+        android:icon="@drawable/ic_search_white"
+        android:title="Index"/>
 
     <item
             android:id="@+id/action_play"
             android:orderInCategory="101"
-            yourapp:showAsAction="always"
+            yourapp:showAsAction="ifRoom"
             android:icon="@drawable/ic_play_arrow_white"
             android:title="@string/playHymn"/>
 
-    <item
+    <!--<item
             android:id="@+id/action_pause"
             android:orderInCategory="102"
             yourapp:showAsAction="always"
             android:icon="@drawable/ic_pause_white"
-            android:title="Pause Hymn"/>
-    <item
-            android:id="@+id/action_fontsize"
-            android:orderInCategory="103"
-            yourapp:showAsAction="ifRoom"
-            android:icon="@drawable/fontsize"
-            android:title="Font Size"/>
+            android:title="Pause Hymn"/>-->
+
+
     <item
         android:id="@+id/action_sheetmusic"
         android:orderInCategory="104"
-        yourapp:showAsAction="ifRoom"
-        android:icon="@drawable/gclef"
+        yourapp:showAsAction="never"
+        android:icon="@drawable/gclef_black"
         android:title="Sheet Music"/>
 
-    <item android:id="@+id/action_search"
-          android:title="menu_search"
-          android:orderInCategory="100"
-        yourapp:showAsAction="always"
-        yourapp:actionViewClass="android.support.v7.widget.SearchView" />
-
     <item
-            android:id="@+id/action_index"
-            android:orderInCategory="200"
-            yourapp:showAsAction="ifRoom"
-            android:icon="@drawable/collections_sort_by_size"
-            android:title="Index"/>
+        android:id="@+id/action_fontsize"
+        android:orderInCategory="105"
+        yourapp:showAsAction="never"
+        android:icon="@drawable/fontsize_black"
+        android:title="Font Size"/>
+
+   <!--<item android:id="@+id/action_search"
+          android:title="Go to Hymn"
+          android:orderInCategory="100"
+        yourapp:showAsAction="never"
+        yourapp:actionViewClass="android.support.v7.widget.SearchView" />-->
+
+    <item android:id="@+id/about"
+        android:title="@string/about"
+        android:orderInCategory="1002"
+        android:icon="@drawable/ic_info"
+        yourapp:showAsAction="never" />
+
+
+
 
 </menu>

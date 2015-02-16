@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v7.app.ActionBar;
@@ -31,13 +32,15 @@ import android.support.v7.app.ActionBar;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 
+import java.lang.reflect.Method;
+
 //import android.widget.SearchView;
 
 
 /**
  * Created by lemuelcantos on 17/7/13.
  */
-public class HymnsActivity extends ActionBarActivity implements LyricChangeListener {
+public class HymnsActivity extends ActionBarActivity implements LyricChangeListener,MusicPlayerListener {
     public static final String LOGTAG = "HYMNSLOG";
     protected final int INDEX_REQUEST = 1;
     protected final int SDK_VERSION = Build.VERSION.SDK_INT;
@@ -53,6 +56,7 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
 
     private ActionBar actionBar;
     private SearchView searchView;
+    private MenuItem playMenuItem;
 
 
     @Override
@@ -63,6 +67,7 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
 
         lyricContainer = (LyricContainer) findViewById(R.id.lyric_container);
         lyricContainer.setLyricChangeListener(this);
+        lyricContainer.setMusicPlayerListener(this);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -155,57 +160,65 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
 
-        MenuItem item = menu.findItem(R.id.action_search);
-        searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setIconifiedByDefault(true);
-        searchView.setInputType(InputType.TYPE_CLASS_PHONE);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-
-                selectedHymnNumber = s;
-                Hymn hymn = lyricContainer.displayLyrics(selectedHymnGroup, selectedHymnNumber);
-
-                searchView.setQuery("", false);
-
-                // collapse the search view. Note that this method is used instead of
-                // menuSearch.collapseActionView();
-                // which for some reason does not work
-                searchView.onActionViewCollapsed();
-
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-
-        });
-
-        // collapse action view when out of focus
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b == false) {
-                    searchView.onActionViewCollapsed();
-                }
-            }
-        });
+//        MenuItem item = menu.findItem(R.id.action_search);
+//        searchView = (SearchView) MenuItemCompat.getActionView(item);
+//        searchView.setIconifiedByDefault(true);
+//        searchView.setInputType(InputType.TYPE_CLASS_PHONE);
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//
+//                selectedHymnNumber = s;
+//                Hymn hymn = lyricContainer.displayLyrics(selectedHymnGroup, selectedHymnNumber);
+//
+//                searchView.setQuery("", false);
+//
+//                // collapse the search view. Note that this method is used instead of
+//                // menuSearch.collapseActionView();
+//                // which for some reason does not work
+//                searchView.onActionViewCollapsed();
+//
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                return false;
+//            }
+//
+//        });
+//
+//        // collapse action view when out of focus
+//        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View view, boolean b) {
+//                if (b == false) {
+//                    searchView.onActionViewCollapsed();
+//                }
+//            }
+//        });
 
         //************** make instructions interactive *********************
+
+//        findViewById(R.id.openHymnNumberInstruction).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                searchView.onActionViewExpanded();
+//            }
+//        });
+//        findViewById(R.id.searchHymnIndexInstruction).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                onOptionsItemSelected(menu.findItem(R.id.action_index));
+//
+//            }
+//        });
+
 
         findViewById(R.id.openHymnNumberInstruction).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchView.onActionViewExpanded();
-            }
-        });
-        findViewById(R.id.searchHymnIndexInstruction).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 onOptionsItemSelected(menu.findItem(R.id.action_index));
-
             }
         });
         findViewById(R.id.changeFontSizeInstruction).setOnClickListener(new View.OnClickListener() {
@@ -229,6 +242,7 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
             }
         });
 
+        playMenuItem=menu.findItem(R.id.action_play);
 
         return true;
     }
@@ -257,11 +271,11 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
             if (!lyricContainer.isHymnDisplayed())
                 showAlert(R.string.choose_hymn_first
                         , R.string.no_hymn_selected);
-            lyricContainer.startPlaying();
-            ret = true;
-
-        } else if (item.getItemId() == R.id.action_pause) {
-            lyricContainer.stopPlaying();
+            if (item.getTitle().equals(getString(R.string.playHymn))) {
+                lyricContainer.startPlaying();
+            } else {
+                lyricContainer.stopPlaying();
+            }
             ret = true;
 
         } else if (item.getItemId() == R.id.action_fontsize) {
@@ -393,6 +407,42 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toLowerCase(), "drawable", getPackageName()));
         actionBar.setBackgroundDrawable(new ColorDrawable(HymnGroups.valueOf(selectedHymnGroup).getRgbColor()));
 
+    }
+
+    @Override
+    public void onMusicStarted() {
+        playMenuItem.setIcon(R.drawable.ic_pause_white);
+        playMenuItem.setTitle(getString(R.string.pauseHymn));
+    }
+
+    @Override
+    public void onMusicStopped() {
+        playMenuItem.setIcon(R.drawable.ic_play_arrow_white);
+        playMenuItem.setTitle(getString(R.string.playHymn));
+
+    }
+
+    // This method adds icons in the overflow section of the action bar Menu
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu)
+    {
+        if(featureId == Window.FEATURE_ACTION_BAR && menu != null){
+            if(menu.getClass().getSimpleName().equals("MenuBuilder")){
+                try{
+                    Method m = menu.getClass().getDeclaredMethod(
+                            "setOptionalIconsVisible", Boolean.TYPE);
+                    m.setAccessible(true);
+                    m.invoke(menu, true);
+                }
+                catch(NoSuchMethodException e){
+                    Log.e(this.getClass().getName(), "onMenuOpened", e);
+                }
+                catch(Exception e){
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return super.onMenuOpened(featureId, menu);
     }
 
 //    @Override
