@@ -22,6 +22,7 @@ import java.io.OutputStream;
  */
 public class SheetMusic {
     private Context context;
+    private String folderName="guitarSvg/";
 
     public SheetMusic(Context context) {
         this.context = context;
@@ -94,7 +95,7 @@ public class SheetMusic {
                 Log.w(LyricContainer.class.getSimpleName(), "directory already exists. no need to create one.");
 
             file = new File(externalStorageSvgDir, fileName);
-            in = assetManager.open("pianoSvg/" + fileName);
+            in = assetManager.open(folderName + fileName);
             out = new FileOutputStream(file);
 
 
