@@ -108,6 +108,9 @@ public class Hymn {
 
 
     public void addRelated(String related) {
+        if (related == null) {
+            related = "";
+        }
         this.related.addAll(Arrays.asList(related.split(",")));
         this.related.remove(this.getHymnId());
         this.related.remove("");
