@@ -5,20 +5,29 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by lemuelcantos on 29/1/15.
+ * Created by lemuelcantos on 1/11/15.
  */
-public class HistoryListFragment extends Fragment{
+public abstract class TabFragment extends Fragment {
 
-    private RecyclerView mRecyclerView;
-    private ViewGroup container;
+    protected RecyclerView mRecyclerView;
+    protected ViewGroup container;
+    protected static String selectedHymnGroup;
+    public static final Map<Integer, TabFragment> COLLECTION = new HashMap();
+
+    public TabFragment() {
+        COLLECTION.put(this.getSearchTabIndex(), this);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +47,29 @@ public class HistoryListFragment extends Fragment{
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mRecyclerView.setAdapter(new HistoryAdapter(container.getContext(),R.layout.index_list_content));
+        setRecyclerViewAdapter();
+
         return rootView;
     }
+
+
+    public static void setSelectedHymnGroup(String hymnGroup) {
+        selectedHymnGroup = hymnGroup;
+
+    }
+
+    public abstract int getSearchTabIndex();
+
+    public abstract String getTabName();
+
+    public abstract void setRecyclerViewAdapter();
+
+    public abstract void cleanUp();
+
+
+    public void setSearchFilter(String filter) {
+        Log.i(this.getClass().getName(), "Nothing was done in setSearchFilter() ! !");
+
+    }
+
 }

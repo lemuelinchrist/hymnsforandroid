@@ -89,7 +89,10 @@ public class HymnsDao {
 
     public Cursor getAllHymnsOfSameLanguage(String hymnGroup) {
 
-        return getIndexList(hymnGroup, null);
+        Cursor result = getIndexList(hymnGroup, null);
+
+        Log.d(this.getClass().getName(), "Is cursor null? - " + result.toString());
+        return result;
 
     }
 
@@ -106,11 +109,34 @@ public class HymnsDao {
         }
 
 
-        return database.rawQuery("select * from(" +
+        String sql = "select * from(" +
                 "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL " + groupClause + " \n" +
                 "union\n" +
                 "select first_chorus_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL " + groupClause +
-                ") " + likeClause + "order by lower(trim(trim(stanza_chorus,'\"'),\"'\")) COLLATE LOCALIZED ASC ", null);
+                ") " + likeClause + "order by lower(trim(trim(stanza_chorus,'\"'),\"'\")) COLLATE LOCALIZED ASC ";
+
+        Log.i(this.getClass().getName(), "Using SQL query: " + sql);
+        return database.rawQuery(sql, null);
+    }
+
+    public Cursor getCategoryList(String hymnGroup, String filter) {
+        if (filter != null)
+            filter = filter.replace("'", "''");
+
+        if (hymnGroup == null) hymnGroup = "E";
+
+        String groupClause = "";
+        String likeClause = "";
+        if (filter != null && !filter.equals("")) {
+            likeClause = " and main_category LIKE " + "'%" + filter.trim() + "%' " + " OR sub_category LIKE " + "'%" + filter.trim() + "%' ";
+        } else {
+            groupClause = " and (hymn_group='" + hymnGroup + "') ";
+        }
+
+
+        String sql = "select main_category, sub_category, no, _id, hymn_group, first_stanza_line from hymns where main_category NOT NULL" + groupClause + likeClause;
+        Log.i(HymnsDao.class.getName(), "sql generated for getCategoryList: " + sql);
+        return database.rawQuery(sql, null);
     }
 
     public Hymn get(String hymnId) {
