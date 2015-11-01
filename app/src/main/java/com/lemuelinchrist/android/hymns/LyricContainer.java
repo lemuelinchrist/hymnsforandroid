@@ -157,7 +157,7 @@ public class LyricContainer extends LinearLayout {
                         text.append("<i>@@(" + stanza.getNote() + ")@@</i><br/>");
                     chorusText = "<i>@@" + stanza.getText() + "@@</i><br/>";
                     text.append(chorusText);
-                } else if (stanza.getNo().equals("end-note")) {
+                } else if (stanza.getNo().equals("end-note") || stanza.getNo().equals("beginning-note")) {
                     text.append("<i>" + stanza.getText() + "</i><br/>");
 
                 } else {
