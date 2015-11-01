@@ -1,31 +1,21 @@
-package com.lemuelinchrist.android.hymns.search;
+package com.lemuelinchrist.android.hymns.search.searchadapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.DataSetObserver;
-import android.net.Uri;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 
 /**
  * Created by lemuelcantos on 15/8/13.
  */
-public class HymnCursorAdapter extends SearchAdapter {
-    private final Context context;
-    private final HymnsDao dao;
-    private String mode="";
-    private Cursor cursor;
+abstract public class HymnCursorAdapter extends SearchAdapter {
+    private String mode = "";
+    protected Cursor cursor;
     private boolean mDataValid;
     private int mRowIdColumn;
     private DataSetObserver mDataSetObserver;
 
     public HymnCursorAdapter(Context context, Cursor cursor, int layout) {
-        super(context,layout);
+        super(context, layout);
         this.cursor = cursor;
         mDataValid = cursor != null;
         mRowIdColumn = mDataValid ? cursor.getColumnIndex("_id") : -1;
@@ -33,16 +23,12 @@ public class HymnCursorAdapter extends SearchAdapter {
         if (cursor != null) {
             cursor.registerDataSetObserver(mDataSetObserver);
         }
-        this.context = context;
 
-        // initialize DAO
-        dao = new HymnsDao(context);
-        dao.open();
+
     }
 
 
-
-    public void provisionHolder(final IndexViewHolder indexViewHolder, int position) {
+    protected void provisionHolder(final IndexViewHolder indexViewHolder, int position) {
         if (!mDataValid) {
             throw new IllegalStateException("this should only be called when the cursor is valid");
         }
@@ -50,20 +36,13 @@ public class HymnCursorAdapter extends SearchAdapter {
             throw new IllegalStateException("couldn't move cursor to position " + position);
         }
 
-        if (mode.equals(""))
-        indexViewHolder.list_item.setText(cursor.getString(cursor.getColumnIndex("_id")) +  "\n"+cursor.getString(cursor.getColumnIndex("stanza_chorus")));
-
-        String hymnGroup = cursor.getString(cursor.getColumnIndex(HymnsDao.HymnFields.hymn_group.toString()));
-        indexViewHolder.imageView.setImageResource(context.getResources().getIdentifier(hymnGroup.toLowerCase(), "drawable", context.getPackageName()));
-
-        indexViewHolder.hymnNo=dao.getHymnNoFromCursor(cursor);
+        provisionHolderUsingCursor(indexViewHolder);
 
 
     }
 
-    public void setMode(String mode) {
-        this.mode = mode;
-    }
+    protected abstract void provisionHolderUsingCursor(IndexViewHolder indexViewHolder);
+
 
     public Cursor getCursor() {
         return cursor;
@@ -89,7 +68,6 @@ public class HymnCursorAdapter extends SearchAdapter {
     public void setHasStableIds(boolean hasStableIds) {
         super.setHasStableIds(true);
     }
-
 
 
     /**

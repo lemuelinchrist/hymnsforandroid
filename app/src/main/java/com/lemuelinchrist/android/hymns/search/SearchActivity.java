@@ -32,12 +32,14 @@ import com.lemuelinchrist.android.hymns.R;
 public class SearchActivity extends ActionBarActivity implements ActionBar.TabListener {
 
     public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
-    public static final String ENTER_LYRIC =   "Enter First Line             ";
+    public static final String ENTER_LYRIC = "Enter Search Text             ";
     private String selectedHymnGroup;
     private ActionBar actionBar;
-    private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
+    private SearchTabsPagerAdapter mSearchTabsPagerAdapter;
     private ViewPager mViewPager;
     private EditText searchBar;
+    private int currentSearchableTabPosition = 0;
+    private MenuItem keyboardToggleButton;
 
 
     /**
@@ -62,37 +64,51 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
         // Specify that we will be displaying tabs in the action bar.
         actionBar.setNavigationMode(android.app.ActionBar.NAVIGATION_MODE_TABS);
 
-        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
+        mSearchTabsPagerAdapter = new SearchTabsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager, attaching the adapter and setting up a listener for when the
-        // user swipes between sections.
+
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mAppSectionsPagerAdapter);
+        mViewPager.setAdapter(mSearchTabsPagerAdapter);
         mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                // When swiping between different app sections, select the corresponding tab.
-                // We can also use ActionBar.Tab#select() to do this if we have a reference to the
-                // Tab.
+
                 actionBar.setSelectedNavigationItem(position);
+
+                Log.d(this.getClass().getName(), "Page position changed. new position is: " + position);
+
+                // skip assigning HistoryTabFragment to currentSearchableTabPosition because History
+                // cannot be searched
+                if (!(TabFragment.COLLECTION.get(position) instanceof HistoryTabFragment)) {
+                    Log.d(this.getClass().getName(), "position is not HistoryTabFragment. change currentSearchablePosition variable");
+                    currentSearchableTabPosition = position;
+                }
+
+                // Anything other than FirstLineTabFragment does not need to use numeric keypad
+                if (!(TabFragment.COLLECTION.get(position) instanceof FirstLineTabFragment)) {
+                    if (searchBar.getInputType() == InputType.TYPE_CLASS_PHONE)
+                        toggleInputType();
+
+                }
+
+                searchBar.getText().clear();
+
             }
         });
 
 
         // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by the adapter.
-            // Also specify this Activity object, which implements the TabListener interface, as the
-            // listener for when this tab is selected.
+        for (int i = 0; i < mSearchTabsPagerAdapter.getCount(); i++) {
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText(mAppSectionsPagerAdapter.getPageTitle(i))
+                            .setText(mSearchTabsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
 
-        mAppSectionsPagerAdapter.hymnListFragment.setSelectedHymnGroup(selectedHymnGroup);
+        TabFragment.setSelectedHymnGroup(selectedHymnGroup);
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -103,7 +119,7 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
             case R.id.searchHymns:
                 break;
             case R.id.index_keyboard_toggle:
-                toggleInputType(item);
+                toggleInputType();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -111,17 +127,22 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
         return super.onOptionsItemSelected(item);
     }
 
-    private void toggleInputType(MenuItem item) {
+    private void toggleInputType() {
         if(searchBar.getInputType()== InputType.TYPE_CLASS_PHONE){
             searchBar.setInputType(InputType.TYPE_CLASS_TEXT);
             searchBar.setHint(ENTER_LYRIC);
-            item.setIcon(R.drawable.ic_dialpad_white);
-        } else {
+            keyboardToggleButton.setIcon(R.drawable.ic_dialpad_white);
+            searchBar.getText().clear();
+
+            // Anything other than FirstLineTabFragment does not need to use numeric keypad
+            // So we need this condition to skip toggling for tabs that are not FirstLineTabFragment
+        } else if ((TabFragment.COLLECTION.get(mViewPager.getCurrentItem()) instanceof FirstLineTabFragment)) {
             searchBar.setInputType(InputType.TYPE_CLASS_PHONE);
             searchBar.setHint(ENTER_HYMN_NO);
-            item.setIcon(R.drawable.ic_keyboard_white);
+            keyboardToggleButton.setIcon(R.drawable.ic_keyboard_white);
+            searchBar.getText().clear();
         }
-        searchBar.getText().clear();
+
         showKeyboard();
     }
 
@@ -134,6 +155,8 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
         /** Get the action view of the menu item whose id is search */
         MenuItem item = menu.findItem(R.id.searchHymns);
         View v = MenuItemCompat.getActionView(item);
+
+        keyboardToggleButton = menu.findItem(R.id.index_keyboard_toggle);
 
         /** Get the edit text from the action view */
         searchBar = (EditText) v.findViewById(R.id.txt_search);
@@ -170,8 +193,13 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
             @Override
             public void onTextChanged(CharSequence filter, int start, int before, int count) {
                 filterList(filter.toString());
-                // switch to First-Line tab
-                mViewPager.setCurrentItem(0);
+
+                if (mViewPager.getCurrentItem() != currentSearchableTabPosition) {
+                    Log.d(this.getClass().getName(), "text changed. switching to position " + currentSearchableTabPosition);
+                    mViewPager.setCurrentItem(currentSearchableTabPosition);
+                    searchBar.getText().clear();
+                }
+
             }
 
             @Override
@@ -208,13 +236,13 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
     }
 
     private void filterList(String filter) {
-        mAppSectionsPagerAdapter.hymnListFragment.setFilter(filter);
+        TabFragment.COLLECTION.get(currentSearchableTabPosition).setSearchFilter(filter);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mAppSectionsPagerAdapter.hymnListFragment.destroyDao();
+        TabFragment.COLLECTION.get(currentSearchableTabPosition).cleanUp();
     }
 
     @Override
@@ -238,45 +266,35 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
      * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
      * sections of the app.
      */
-    public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
+    public static class SearchTabsPagerAdapter extends FragmentPagerAdapter {
 
-        HymnListFragment hymnListFragment;
 
-        public AppSectionsPagerAdapter(FragmentManager fm) {
+        public SearchTabsPagerAdapter(FragmentManager fm) {
             super(fm);
-            hymnListFragment = new HymnListFragment();
+
+            // Instantiate all tabs. note that there's no need to keep the references to these instances because
+            // TabFragment class will automatically store them in its own map (COLLECTIONS variable)
+            new FirstLineTabFragment();
+            new CategoryTabFragment();
+            new HistoryTabFragment();
+
         }
 
-        @Override
-        public Fragment getItem(int i) {
-            switch (i) {
-                case 0:
-                    // The first section of the app is the most interesting -- it offers
-                    // a launchpad into the other demonstrations in this example application.
-                    return hymnListFragment;
 
-                default:
-                    // The other sections of the app are dummy placeholders.
-                    return new HistoryListFragment();
-            }
+        @Override
+        public Fragment getItem(int position) {
+            return TabFragment.COLLECTION.get(position);
         }
 
         @Override
         public int getCount() {
-            return 2;
+
+            return TabFragment.COLLECTION.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-
-            switch (position) {
-                case 0:
-                    return "First Line Index";
-
-                case 1:
-                    return "History";
-            }
-            return "";
+            return TabFragment.COLLECTION.get(position).getTabName();
         }
 
 
