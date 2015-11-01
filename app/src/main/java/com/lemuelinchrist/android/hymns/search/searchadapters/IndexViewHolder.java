@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns.search;
+package com.lemuelinchrist.android.hymns.search.searchadapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
