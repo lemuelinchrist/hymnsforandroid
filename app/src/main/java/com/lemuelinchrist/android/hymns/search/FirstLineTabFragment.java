@@ -47,6 +47,11 @@ public class FirstLineTabFragment extends TabFragment {
     }
 
     @Override
+    public boolean canBeSearched() {
+        return true;
+    }
+
+    @Override
     public int getSearchTabIndex() {
         return 0;
     }

@@ -32,13 +32,12 @@ import com.lemuelinchrist.android.hymns.R;
 public class SearchActivity extends ActionBarActivity implements ActionBar.TabListener {
 
     public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
-    public static final String ENTER_LYRIC = "Enter Search Text             ";
+    public static final String ENTER_LYRIC = "Enter Search Text           ";
     private String selectedHymnGroup;
     private ActionBar actionBar;
     private SearchTabsPagerAdapter mSearchTabsPagerAdapter;
     private ViewPager mViewPager;
     private EditText searchBar;
-    private int currentSearchableTabPosition = 0;
     private MenuItem keyboardToggleButton;
 
 
@@ -77,11 +76,16 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
 
                 Log.d(this.getClass().getName(), "Page position changed. new position is: " + position);
 
-                // skip assigning HistoryTabFragment to currentSearchableTabPosition because History
-                // cannot be searched
-                if (!(TabFragment.COLLECTION.get(position) instanceof HistoryTabFragment)) {
-                    Log.d(this.getClass().getName(), "position is not HistoryTabFragment. change currentSearchablePosition variable");
-                    currentSearchableTabPosition = position;
+                // clear focus when history tab is selected because history has no search
+                if ((TabFragment.COLLECTION.get(position) instanceof HistoryTabFragment)) {
+                    Log.d(this.getClass().getName(), "position is not HistoryTabFragment. clear focus of search bar");
+                    // it's the only way to defocus the search bar
+                    searchBar.setFocusable(false);
+                    searchBar.setFocusable(true);
+                    searchBar.setFocusableInTouchMode(true);
+                    hideKeyboard();
+                    return;
+
                 }
 
                 // Anything other than FirstLineTabFragment does not need to use numeric keypad
@@ -145,7 +149,7 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
         }
 
         searchBar.getText().clear();
-        showKeyboard();
+//        showKeyboard();
     }
 
 
@@ -185,6 +189,17 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
             }
         });
 
+        searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus && !TabFragment.COLLECTION.get(mViewPager.getCurrentItem()).canBeSearched()) {
+                    // switch to FirstLine Tab
+                    mViewPager.setCurrentItem(TabFragment.getInstance(FirstLineTabFragment.class).getSearchTabIndex());
+
+                }
+            }
+        });
+
 
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -199,10 +214,6 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
 
                 filterList(filter.toString());
 
-                if (mViewPager.getCurrentItem() != currentSearchableTabPosition) {
-                    Log.d(this.getClass().getName(), "text changed. switching to position " + currentSearchableTabPosition);
-                    mViewPager.setCurrentItem(currentSearchableTabPosition);
-                }
 
             }
 
@@ -211,6 +222,7 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
 
             }
         });
+
 
         searchBar.requestFocus();
         showKeyboard();
@@ -240,13 +252,13 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
     }
 
     private void filterList(String filter) {
-        TabFragment.COLLECTION.get(currentSearchableTabPosition).setSearchFilter(filter);
+        TabFragment.COLLECTION.get(mViewPager.getCurrentItem()).setSearchFilter(filter);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        TabFragment.COLLECTION.get(currentSearchableTabPosition).cleanUp();
+        TabFragment.COLLECTION.get(mViewPager.getCurrentItem()).cleanUp();
     }
 
     @Override

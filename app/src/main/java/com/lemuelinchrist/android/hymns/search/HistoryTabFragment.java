@@ -33,5 +33,10 @@ public class HistoryTabFragment extends TabFragment {
 
     }
 
+    @Override
+    public boolean canBeSearched() {
+        return false;
+    }
+
 
 }

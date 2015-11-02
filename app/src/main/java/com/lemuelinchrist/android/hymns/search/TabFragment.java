@@ -66,6 +66,8 @@ public abstract class TabFragment extends Fragment {
 
     public abstract void cleanUp();
 
+    public abstract boolean canBeSearched();
+
 
     public void setSearchFilter(String filter) {
         Log.i(this.getClass().getName(), "Nothing was done in setSearchFilter() ! !");

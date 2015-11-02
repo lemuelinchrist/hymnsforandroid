@@ -39,6 +39,11 @@ public class CategoryTabFragment extends TabFragment {
     }
 
     @Override
+    public boolean canBeSearched() {
+        return true;
+    }
+
+    @Override
     public void setSearchFilter(String filter) {
         mRecyclerView.setAdapter(new CategoryAdapter(container.getContext(),
                 dao.getCategoryList(selectedHymnGroup, filter), R.layout.index_list_content));
