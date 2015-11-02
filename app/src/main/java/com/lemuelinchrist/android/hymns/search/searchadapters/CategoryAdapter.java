@@ -17,9 +17,9 @@ public class CategoryAdapter extends HymnCursorAdapter {
 
     @Override
     protected void provisionHolderUsingCursor(IndexViewHolder indexViewHolder) {
-        String categoryText = "<b>" + cursor.getString(cursor.getColumnIndex("_id")) + " - " + cursor.getString(cursor.getColumnIndex("main_category"))
+        String categoryText = "<b>" + cursor.getString(cursor.getColumnIndex("main_category"))
                 + " - " + cursor.getString(cursor.getColumnIndex("sub_category")) + "</b>"
-                + "<br/>" + cursor.getString(cursor.getColumnIndex("first_stanza_line"));
+                + "<br/>" + cursor.getString(cursor.getColumnIndex("_id")) + " - " + cursor.getString(cursor.getColumnIndex("first_stanza_line"));
         indexViewHolder.list_item.setText(Html.fromHtml(categoryText));
 
         String hymnGroup = cursor.getString(cursor.getColumnIndex(HymnsDao.HymnFields.hymn_group.toString()));
