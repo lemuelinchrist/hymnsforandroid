@@ -72,4 +72,13 @@ public abstract class TabFragment extends Fragment {
 
     }
 
+    public static TabFragment getInstance(Class tabFragmentClass) {
+        for (TabFragment tab : COLLECTION.values()) {
+            if (tab.getClass().equals(tabFragmentClass)) return tab;
+
+        }
+        Log.w(TabFragment.class.getName(), "Could not find specified class - " + tabFragmentClass);
+        return null;
+    }
+
 }

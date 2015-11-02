@@ -5,6 +5,7 @@ import android.util.Log;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.searchadapters.FirstLineChorusAdapter;
+import com.lemuelinchrist.android.hymns.search.searchadapters.HymnNumberAdapter;
 
 
 public class FirstLineTabFragment extends TabFragment {
@@ -28,10 +29,16 @@ public class FirstLineTabFragment extends TabFragment {
     }
 
     public void setSearchFilter(String filter) {
+        if (filter.matches("^[0-9].*")) {
+            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
+                    dao.getFilteredHymns(selectedHymnGroup, filter)
+                    , R.layout.index_list_content));
+        } else {
+            mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
+                    dao.getFilteredHymns(selectedHymnGroup, filter)
+                    , R.layout.index_list_content));
 
-        mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
-                dao.getFilteredHymns(selectedHymnGroup, filter)
-                , R.layout.index_list_content));
+        }
 
     }
 
