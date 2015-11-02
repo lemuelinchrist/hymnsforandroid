@@ -91,7 +91,9 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
 
                 }
 
+                Log.d(this.getClass().getName(), "trying to clear text. Hope it wont throw error.");
                 searchBar.getText().clear();
+
 
             }
         });
@@ -132,17 +134,17 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
             searchBar.setInputType(InputType.TYPE_CLASS_TEXT);
             searchBar.setHint(ENTER_LYRIC);
             keyboardToggleButton.setIcon(R.drawable.ic_dialpad_white);
-            searchBar.getText().clear();
 
-            // Anything other than FirstLineTabFragment does not need to use numeric keypad
-            // So we need this condition to skip toggling for tabs that are not FirstLineTabFragment
-        } else if ((TabFragment.COLLECTION.get(mViewPager.getCurrentItem()) instanceof FirstLineTabFragment)) {
+        } else {
             searchBar.setInputType(InputType.TYPE_CLASS_PHONE);
             searchBar.setHint(ENTER_HYMN_NO);
             keyboardToggleButton.setIcon(R.drawable.ic_keyboard_white);
-            searchBar.getText().clear();
+            //switch to FirstLine Tab because only this tab uses Phone keyboard type
+            mViewPager.setCurrentItem(TabFragment.getInstance(FirstLineTabFragment.class).getSearchTabIndex());
+
         }
 
+        searchBar.getText().clear();
         showKeyboard();
     }
 
@@ -192,12 +194,14 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
 
             @Override
             public void onTextChanged(CharSequence filter, int start, int before, int count) {
+                // dont do anything if text is empty, otherwise android will throw weird exceptions.
+                if (filter.toString().isEmpty()) return;
+
                 filterList(filter.toString());
 
                 if (mViewPager.getCurrentItem() != currentSearchableTabPosition) {
                     Log.d(this.getClass().getName(), "text changed. switching to position " + currentSearchableTabPosition);
                     mViewPager.setCurrentItem(currentSearchableTabPosition);
-                    searchBar.getText().clear();
                 }
 
             }

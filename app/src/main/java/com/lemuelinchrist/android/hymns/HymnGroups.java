@@ -17,7 +17,7 @@ public enum HymnGroups {
     FR("French", Color.rgb(0xE9, 0x1E, 0x63)),
     BF("Be Filled", Color.rgb(0x00, 0x99, 0xCC)),
     NS("New Songs", Color.rgb(0xCC, 0x00, 0x00)),
-    CH("Children", Color.rgb(0x66, 0x99, 0x00));
+    CH("Children", Color.rgb(0xAF, 0xB4, 0x2B));
 
     private final String simpleName;
     private final int rgbColor;
