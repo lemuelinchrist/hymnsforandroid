@@ -32,7 +32,7 @@ import com.lemuelinchrist.android.hymns.R;
 public class SearchActivity extends ActionBarActivity implements ActionBar.TabListener {
 
     public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
-    public static final String ENTER_LYRIC = "Enter Search Text           ";
+    public static final String ENTER_LYRIC = "Enter Search Text          ";
     private String selectedHymnGroup;
     private ActionBar actionBar;
     private SearchTabsPagerAdapter mSearchTabsPagerAdapter;
