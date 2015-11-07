@@ -3,6 +3,8 @@ package com.lemuelinchrist.android.hymns.utils;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Environment;
@@ -16,12 +18,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * Created by lemuelcantos on 6/12/14.
  */
 public class SheetMusic {
     private Context context;
+
+    // to switch to guitar or piano notes, change value to either guitarSvg/ or pianoSvg/
+    // then copy corresponding folder from HymnsJpa/data/<folderName> to HymnsForAndroid/app/src/main/assets<folderName>
     private String folderName="guitarSvg/";
 
     public SheetMusic(Context context) {
@@ -116,11 +122,21 @@ public class SheetMusic {
                     Uri.fromFile(file)
             );
 
-            intent.setClassName("com.android.chrome", "com.google.android.apps.chrome.Main");
+
+            intent.setClassName("org.mozilla.firefox", "org.mozilla.firefox.App");
+            //test if chrome exists
+            PackageManager packageManager = context.getPackageManager();
+            List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+            boolean isIntentSafe = activities.size() > 0;
+            if (!isIntentSafe) {
+                Log.i(this.getClass().getName(), "firefox not found, finding chrome");
+                intent.setClassName("com.android.chrome", "com.google.android.apps.chrome.Main");
+            }
+
 
             context.startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(context, "Oops! Chrome not available! To display music sheet, please install Google Chrome from the Play Store.", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Oops! Chrome or Firefox not available! To display music sheet, please install Chrome or Firefox.", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
             Log.e(SheetMusic.class.getSimpleName(), e.getMessage());
