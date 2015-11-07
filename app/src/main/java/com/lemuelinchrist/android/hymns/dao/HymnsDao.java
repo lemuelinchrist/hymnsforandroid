@@ -205,6 +205,7 @@ public class HymnsDao {
 
                 // override related no matter if the child is empty or not
                 hymn.addRelated(parentHymn.getRelated());
+
             }
 
 
