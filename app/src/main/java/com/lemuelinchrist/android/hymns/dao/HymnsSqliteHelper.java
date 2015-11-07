@@ -18,7 +18,7 @@ import java.io.OutputStream;
 public class HymnsSqliteHelper extends SQLiteOpenHelper {
 
 
-    private static final int VERSION = 65;
+    private static final int VERSION = 68;
     private static final String DATABASE_NAME = "hymns.sqlite";
     private static File DATABASE_FILE;
 
