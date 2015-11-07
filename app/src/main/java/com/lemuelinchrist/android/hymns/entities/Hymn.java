@@ -2,6 +2,7 @@ package com.lemuelinchrist.android.hymns.entities;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.lemuelinchrist.android.hymns.R;
@@ -191,7 +192,8 @@ public class Hymn {
             showNotAvailableToast();
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            Log.e(this.getClass().getName(),e.getMessage());
+            e.printStackTrace();
         }
 
     }
