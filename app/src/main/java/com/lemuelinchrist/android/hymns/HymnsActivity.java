@@ -20,12 +20,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v7.app.ActionBar;
-
+import android.widget.ScrollView;
 
 
 //import com.actionbarsherlock.widget.SearchView;
@@ -102,6 +104,19 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
+        ScrollView scrollView = (ScrollView)findViewById(R.id.jellybeanContentScrollView);
+        scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+        scrollView.setFocusable(true);
+        scrollView.setFocusableInTouchMode(true);
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.requestFocusFromTouch();
+                return false;
+            }
+        });
 
 
 
