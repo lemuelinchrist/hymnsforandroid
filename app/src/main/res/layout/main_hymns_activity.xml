@@ -19,13 +19,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                >
 
             <com.lemuelinchrist.android.hymns.LyricContainer
                     android:id="@+id/lyric_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                >
+                <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
+                <!--android:descendantFocusability="blocksDescendants"-->
 
                 <TextView
                         android:layout_width="fill_parent"
