@@ -28,7 +28,7 @@ public class SheetMusic {
 
     // to switch to guitar or piano notes, change value to either guitarSvg/ or pianoSvg/
     // then copy corresponding folder from HymnsJpa/data/<folderName> to HymnsForAndroid/app/src/main/assets<folderName>
-    private String folderName="guitarSvg/";
+    private String folderName="pianoSvg/";
 
     public SheetMusic(Context context) {
         this.context = context;
