@@ -16,6 +16,7 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
@@ -28,31 +29,37 @@ public class SheetMusic {
 
     // to switch to guitar or piano notes, change value to either guitarSvg/ or pianoSvg/
     // then copy corresponding folder from HymnsJpa/data/<folderName> to HymnsForAndroid/app/src/main/assets<folderName>
-    private String folderName="pianoSvg/";
+    private String folderName = null;
 
     public SheetMusic(Context context) {
         this.context = context;
 
     }
 
-    public void getSheetMusic(Hymn hymn ) {
-        // note: switch this value to "main" if you want to create a version that doesn't include sheet music svg's.
-        final String BRANCH = "guitar";
+    public void getSheetMusic(Hymn hymn) {
+        // note: switch this value to "onlineOnly" if you want to create a version that doesn't include sheet music svg's.
+        final String BRANCH = "somethingElse";
 
         String sheetMusicLink = hymn.getSheetMusicLink();
         if (sheetMusicLink != null) {
-            Intent i = new Intent(Intent.ACTION_VIEW);
 
-            if (BRANCH.equals("main")) {
-                String editedLink = sheetMusicLink.replace("_p.", "_g."); // p is for piano, g for guitar
+            try {
+                // get folder that contains the svg files
+                // the folder name will either be "pianoSvg" or "guitarSvg" depending on what is currently
+                // in the asset folder
+                for (String assetFolder : context.getAssets().list("")) {
+                    if(assetFolder.contains("Svg")){
+                        this.folderName=assetFolder+"/";
+                        Log.i(this.getClass().getName(),"Svg folder found. folderName is: " + this.folderName);
+                    }
 
-                i.setData(Uri.parse(editedLink));
-                context.startActivity(i);
-
-            } else if (BRANCH.equals("guitar")) {
-
+                } if(this.folderName==null) {
+                    getSheetMusicOnline(sheetMusicLink);
+                }
                 String fileName;
 
+                // after getting folder name, its time to get the svg filename. we can get this either from
+                // the hymn itself or from its parent.
                 if (!hymn.hasOwnSheetMusic()) {
                     fileName = hymn.getParentHymn() + ".svg";
                 } else {
@@ -61,12 +68,26 @@ public class SheetMusic {
 
                 generateGuitarSheet(fileName);
 
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                getSheetMusicOnline(sheetMusicLink);
             }
+
+
 
         } else {
             Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    private void getSheetMusicOnline(String sheetMusicLink) {
+        Log.w(this.getClass().getName(), "svg files not found! resorting to online resource");
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        String editedLink = sheetMusicLink.replace("_p.", "_g."); // p is for piano, g for guitar
+        i.setData(Uri.parse(editedLink));
+        context.startActivity(i);
     }
 
     private boolean deleteDirectory(File path) {
