@@ -1,10 +1,12 @@
 package com.lemuelinchrist.android.hymns.dao;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +20,7 @@ import java.io.OutputStream;
 public class HymnsSqliteHelper extends SQLiteOpenHelper {
 
 
-    private static final int VERSION = 72;
+    private static int version = 0;
     private static final String DATABASE_NAME = "hymns.sqlite";
     private static File DATABASE_FILE;
 
@@ -32,6 +34,18 @@ public class HymnsSqliteHelper extends SQLiteOpenHelper {
     private static HymnsSqliteHelper mInstance;
 
     synchronized static public HymnsSqliteHelper getInstance(Context context) {
+
+        try {
+            version=context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+            Log.i(HymnsSqliteHelper.class.getName(),"version code of this app is: "+version+". using this version for SQLite.");
+
+        } catch (PackageManager.NameNotFoundException e) {
+
+            Log.e(HymnsSqliteHelper.class.getName(),"could not get the version number of this app!! " +
+                    "This is a serious error!! \n"+e.getStackTrace());
+
+        }
+
         if (mInstance == null) {
             mInstance = new HymnsSqliteHelper(context.getApplicationContext());
         }
@@ -39,7 +53,7 @@ public class HymnsSqliteHelper extends SQLiteOpenHelper {
     }
 
     private HymnsSqliteHelper(Context context) {
-        super(context, DATABASE_NAME, null, VERSION);
+        super(context, DATABASE_NAME, null, version);
         this.mContext = context;
         SQLiteDatabase db = null;
         try {
@@ -140,7 +154,7 @@ public class HymnsSqliteHelper extends SQLiteOpenHelper {
         try {
             db = SQLiteDatabase.openDatabase(DATABASE_FILE.getAbsolutePath(), null,
                     SQLiteDatabase.OPEN_READWRITE);
-            db.execSQL("PRAGMA user_version = " + VERSION);
+            db.execSQL("PRAGMA user_version = " + version);
         } catch (SQLiteException e) {
         } finally {
             if (db != null && db.isOpen()) {
