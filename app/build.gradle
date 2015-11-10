@@ -1,5 +1,12 @@
 apply plugin: 'com.android.application'
 
+// you can choose to put either "guitarSvg" or "pianoSvg" depending on the sheet music you want to include
+def svgFolderName="pianoSvg"
+
+allprojects {
+    buildDir = "/Users/lemuelcantos/Desktop/build"
+}
+
 android {
     compileSdkVersion 21
     buildToolsVersion "19.1.0"
@@ -26,3 +33,18 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.3'
     compile 'com.android.support:support-v4:21.0.3'
 }
+
+task copySvgFolder(type: Copy) {
+
+    def sourcePath=""+project.projectDir + "/src/" + svgFolderName
+    println "copying source svg files from: " + sourcePath
+    def destinationPath=""+project.projectDir +'/src/main/assets/svg'
+    println "to: " +destinationPath
+
+    from sourcePath
+    into destinationPath
+
+}
+
+clean.dependsOn copySvgFolder
+clean.mustRunAfter copySvgFolder
