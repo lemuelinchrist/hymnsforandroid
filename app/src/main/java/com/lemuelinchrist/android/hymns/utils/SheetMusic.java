@@ -48,7 +48,7 @@ public class SheetMusic {
                 // the folder name will either be "pianoSvg" or "guitarSvg" depending on what is currently
                 // in the asset folder
                 for (String assetFolder : context.getAssets().list("")) {
-                    if(assetFolder.contains("Svg")){
+                    if(assetFolder.contains("svg")){
                         this.folderName=assetFolder+"/";
                         Log.i(this.getClass().getName(),"Svg folder found. folderName is: " + this.folderName);
                     }
