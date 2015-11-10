@@ -13,6 +13,8 @@ buildscript {
 }
 
 allprojects {
+    buildDir = "/Users/lemuelcantos/Desktop/build"
+
     repositories {
         jcenter()
     }
