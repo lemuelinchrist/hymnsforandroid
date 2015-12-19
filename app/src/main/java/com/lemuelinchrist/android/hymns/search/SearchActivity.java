@@ -156,7 +156,7 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.index_menu, menu);
+        inflater.inflate(R.menu.search_menu, menu);
 
         /** Get the action view of the menu item whose id is search */
         MenuItem item = menu.findItem(R.id.searchHymns);

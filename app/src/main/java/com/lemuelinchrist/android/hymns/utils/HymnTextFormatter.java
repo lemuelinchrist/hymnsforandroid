@@ -14,19 +14,19 @@ import com.lemuelinchrist.android.hymns.HymnsActivity;
 public class HymnTextFormatter {
     public static CharSequence setColorBetweenTokens(CharSequence text,
                                                      String token, int color) {
-        Log.d(HymnsActivity.LOGTAG, "text to be formatted: " + text.toString());
-
+        Log.d(HymnTextFormatter.class.getName(), "text to be formatted: " + text.toString());
+        
         while (true) {
             // Start and end refer to the points where the span will apply
             int tokenLen = token.length();
             int start = text.toString().indexOf(token) + tokenLen;
             int end = text.toString().indexOf(token, start);
 
-            Log.d(HymnsActivity.LOGTAG, "starting index of token: " + start);
-            Log.d(HymnsActivity.LOGTAG, "ending index of token: " + end);
+            Log.d(HymnTextFormatter.class.getName(), "starting index of token: " + start);
+            Log.d(HymnTextFormatter.class.getName(), "ending index of token: " + end);
 
             if (start > -1 && end > -1) {
-                Log.i(HymnsActivity.LOGTAG, "match found at " + start + " , " + end + " !");
+                Log.i(HymnTextFormatter.class.getName(), "match found at " + start + " , " + end + " !");
                 // Copy the spannable string to a mutable spannable string
                 SpannableStringBuilder ssb = new SpannableStringBuilder(text);
 
@@ -47,7 +47,7 @@ public class HymnTextFormatter {
 
     public static CharSequence format(Spanned unformattedText, String hymnGroup) {
 
-        Log.d(HymnsActivity.LOGTAG, "formatting unformatted text!");
+        Log.d(HymnTextFormatter.class.getName(), "formatting unformatted text!");
         CharSequence formattedText;
         // set red color to stanza numbers
         formattedText = setColorBetweenTokens(unformattedText, "##", HymnGroups.valueOf(hymnGroup).getRgbColor());
