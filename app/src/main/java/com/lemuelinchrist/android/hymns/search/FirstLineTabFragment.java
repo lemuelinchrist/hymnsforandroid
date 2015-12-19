@@ -23,7 +23,7 @@ public class FirstLineTabFragment extends TabFragment {
         Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
         if (selectedHymnGroup != null) {
             mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
-                    dao.getAllHymnsOfSameLanguage(selectedHymnGroup), R.layout.index_list_content));
+                    dao.getAllHymnsOfSameLanguage(selectedHymnGroup), R.layout.recyclerview_hymn_list));
         }
 
     }
@@ -32,11 +32,11 @@ public class FirstLineTabFragment extends TabFragment {
         if (filter.matches("^[0-9].*")) {
             mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
                     dao.getFilteredHymns(selectedHymnGroup, filter)
-                    , R.layout.index_list_content));
+                    , R.layout.recyclerview_hymn_list));
         } else {
             mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
                     dao.getFilteredHymns(selectedHymnGroup, filter)
-                    , R.layout.index_list_content));
+                    , R.layout.recyclerview_hymn_list));
 
         }
 

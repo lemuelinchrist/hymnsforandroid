@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:indexMenu="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/searchHymns"
+        android:title="Search"
+        indexMenu:showAsAction="always"
+        indexMenu:actionLayout="@layout/actionbar_search"
+        />
+
+
+    <item android:id="@+id/index_keyboard_toggle"
+        android:title="Toggle Keyboard"
+        android:orderInCategory="110"
+        indexMenu:showAsAction="always"
+        android:icon="@drawable/ic_keyboard_white"
+
+         />
+
+</menu>
