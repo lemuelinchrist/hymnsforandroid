@@ -7,15 +7,11 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.SearchView;
-import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,28 +39,23 @@ import java.lang.reflect.Method;
  * Created by lemuelcantos on 17/7/13.
  */
 public class HymnsActivity extends ActionBarActivity implements LyricChangeListener,MusicPlayerListener {
-    public static final String LOGTAG = "HYMNSLOG";
     protected final int INDEX_REQUEST = 1;
-    protected final int SDK_VERSION = Build.VERSION.SDK_INT;
-
     protected String selectedHymnNumber;
     protected String selectedHymnGroup = "E";
     protected LyricContainer lyricContainer;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-//    private TextView currentGroupView;
     private boolean areInstructionsHidden = false;
 
     private ActionBar actionBar;
-    private SearchView searchView;
     private MenuItem playMenuItem;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(LOGTAG, "start app");
+        Log.d(this.getClass().getName(), "start app");
         setContentView(R.layout.main_hymns_activity);
 
         lyricContainer = (LyricContainer) findViewById(R.id.lyric_container);
@@ -87,7 +78,7 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
 
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new HymnDrawerListAdapter(this,
-                R.layout.drawer_list_item));
+                R.layout.drawer_hymngroup_list));
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
@@ -210,7 +201,7 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
     public boolean onOptionsItemSelected(MenuItem item) {
 
         boolean ret = false;
-        Log.d(LOGTAG, "Item selected: " + item.getItemId());
+        Log.d(this.getClass().getName(), "Item selected: " + item.getItemId());
 
         // code for drawer:
         if (item.getItemId() == android.R.id.home) {
@@ -314,8 +305,8 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
                 }
 
 
-                Log.i(LOGTAG, "selected hymn number: " + selectedHymnNumber);
-                Log.i(LOGTAG, "selected hymn group: " + selectedHymnGroup);
+                Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
+                Log.i(this.getClass().getName(), "selected hymn group: " + selectedHymnGroup);
                 Hymn hymn = lyricContainer.displayLyrics(selectedHymnGroup, selectedHymnNumber);
 
             }
@@ -405,16 +396,5 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
         return super.onMenuOpened(featureId, menu);
     }
 
-//    @Override
-//    public void onWindowFocusChanged(boolean hasFocus) {
-//        super.onWindowFocusChanged(hasFocus);
-//        findViewById(R.id.jellybeanContentScrollView).post(new Runnable() {
-//            @Override
-//            public void run () {
-//                Log.d(HymnsActivity.class.getSimpleName(), "window focus changed!!");
-//                findViewById(R.id.jellybeanContentScrollView).scrollTo(0, 0);
-//            }
-//        });
-//    }
 
 }

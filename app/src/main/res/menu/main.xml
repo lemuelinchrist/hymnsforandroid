@@ -17,13 +17,6 @@
             android:icon="@drawable/ic_play_arrow_white"
             android:title="@string/playHymn"/>
 
-    <!--<item
-            android:id="@+id/action_pause"
-            android:orderInCategory="102"
-            yourapp:showAsAction="always"
-            android:icon="@drawable/ic_pause_white"
-            android:title="Pause Hymn"/>-->
-
 
     <item
         android:id="@+id/action_sheetmusic"
@@ -39,11 +32,6 @@
         android:icon="@drawable/fontsize_black"
         android:title="Font Size"/>
 
-   <!--<item android:id="@+id/action_search"
-          android:title="Go to Hymn"
-          android:orderInCategory="100"
-        yourapp:showAsAction="never"
-        yourapp:actionViewClass="android.support.v7.widget.SearchView" />-->
 
     <item android:id="@+id/about"
         android:title="@string/about"

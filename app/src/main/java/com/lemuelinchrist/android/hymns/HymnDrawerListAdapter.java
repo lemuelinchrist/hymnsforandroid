@@ -16,7 +16,7 @@ public class HymnDrawerListAdapter extends ArrayAdapter<String> {
     private final int layout;
 
     public HymnDrawerListAdapter(Context context, int layout) {
-        super(context, R.layout.drawer_list_item, HymnGroups.getArrayOfSimpleNames());
+        super(context, R.layout.drawer_hymngroup_list, HymnGroups.getArrayOfSimpleNames());
         this.context = context;
         this.layout = layout;
 

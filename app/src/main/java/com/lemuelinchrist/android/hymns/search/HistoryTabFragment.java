@@ -1,8 +1,5 @@
 package com.lemuelinchrist.android.hymns.search;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.ViewGroup;
-
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.search.searchadapters.HistoryAdapter;
 
@@ -24,7 +21,7 @@ public class HistoryTabFragment extends TabFragment {
     @Override
     public void setRecyclerViewAdapter() {
 
-        mRecyclerView.setAdapter(new HistoryAdapter(container.getContext(),R.layout.index_list_content));
+        mRecyclerView.setAdapter(new HistoryAdapter(container.getContext(),R.layout.recyclerview_hymn_list));
 
     }
 
