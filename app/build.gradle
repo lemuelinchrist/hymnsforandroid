@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 // you can choose to put either "guitarSvg" or "pianoSvg" depending on the sheet music you want to include
-def svgFolderName="pianoSvg"
+def svgFolderName="guitarSvg"
 
 allprojects {
     buildDir = "/Users/lemuelcantos/Desktop/build"
@@ -16,7 +16,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 21
         versionCode 74
-        versionName "3.1"
+        versionName "3.2beta"
     }
     buildTypes {
         release {
