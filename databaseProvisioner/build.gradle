@@ -7,4 +7,5 @@ apply plugin: 'idea'
 dependencies {
     compile group: 'org.eclipse.persistence', name: 'org.eclipse.persistence.jpa', version: '2.6.3'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.9.2'
+    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.8.11.2'
 }
