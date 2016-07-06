@@ -27,20 +27,20 @@ import javax.net.ssl.X509TrustManager;
  * Created by lemuelcantos on 6/8/13.
  */
 public class HymnalNetExtractor {
+    public static final String DATA_DIR = "/Users/lemuelcantos/Desktop/repos/hymnsforandroid/databaseProvisioner/data";
+
     public static final String HYMNS_UNIT = "hymnsUnit";
 
     public static final String HYMNAL_NET_CHINESE_SUPPLEMENT = "http://www.hymnal.net/zh_TW/hymn.php/ts/";
-
     public static String HYMNAL_NET_URL = "http://www.hymnal.net/en/hymn.php/h/";
     public static String HYMNAL_NET_CEBUANO = "http://www.hymnal.net/en/hymn.php/cb/";
     public static String HYMNAL_NET_CHINESE = "https://www.hymnal.net/en/hymn/ch/";
     public static String HYMNAL_NET_SELECTED_CHINESE = "http://www.hymnal.net/en/hymn/ts/";
     public static String HYMNAL_NET_LONGBEACH = "http://www.hymnal.net/en/hymn.php/lb/";
     public static String HYMNAL_NET_NEWSONGS = "http://www.hymnal.net/en/hymn.php/ns/";
-    public static String HYMNAL_NET_TAGALOG  = "https://www.hymnal.net/en/hymn/ht/";
 
-    public static final String DATA_DIR = "/Users/lemuelcantos/Google Drive/hymnDev/HymnsForAndroidProject/HymnsJpa/data";
-    public static final String MIDI_PIANO_DIR = DATA_DIR + "/midiTemp";
+    public static String HYMNAL_NET_TAGALOG  = "https://www.hymnal.net/en/hymn/ht/";
+    public static final String MIDI_PIANO_DIR = DATA_DIR + "/midi";
     public static final String SHEET_PIANO_DIR = DATA_DIR + "/pianoSvg";
     public static final String SHEET_GUITAR_DIR = DATA_DIR + "/guitarSvg";
 
