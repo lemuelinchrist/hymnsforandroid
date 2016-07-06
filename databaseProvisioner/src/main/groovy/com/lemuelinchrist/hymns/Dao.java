@@ -20,7 +20,7 @@ public class Dao {
     private final EntityManager em;
 
     public Dao() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(HymnalNetExtractor.HYMNS_UNIT);
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(NewHymnalNetExtractor.HYMNS_UNIT);
         em = factory.createEntityManager();
 
     }

@@ -1,5 +1,6 @@
 package com.lemuelinchrist.hymns;
 
+import com.lemuelinchrist.hymns.archive.HymnalNetExtractor;
 import com.lemuelinchrist.hymns.beans.HymnsEntity;
 
 import java.util.ArrayList;
@@ -11,9 +12,9 @@ import javax.persistence.Persistence;
 /**
  * Created by lemuelcantos on 10/8/13.
  */
-public class ResourceDownloader {
+public class HymnalNetResourceDownloader {
 
-    public static final String DATA_DIR = "/Users/lemuelcantos/Documents/android/HymnsJpa/data";
+    public static final String DATA_DIR = NewHymnalNetExtractor.DATA_DIR;
     public static String SHEET_MUSIC_PIANO_DIR = DATA_DIR + "/sheetMusicPiano";
     public static String SHEET_MUSIC_Guitar_DIR = DATA_DIR + "/sheetMusicGuitar";
     public static String MIDI_PIANO_DIR = DATA_DIR + "/midiPiano";

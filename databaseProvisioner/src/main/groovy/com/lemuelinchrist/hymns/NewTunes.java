@@ -1,7 +1,6 @@
 package com.lemuelinchrist.hymns;
 
-import com.lemuelinchrist.hymns.FileUtils;
-import com.lemuelinchrist.hymns.HymnalNetExtractor;
+import com.lemuelinchrist.hymns.archive.HymnalNetExtractor;
 import com.lemuelinchrist.hymns.beans.HymnsEntity;
 
 import java.io.IOException;

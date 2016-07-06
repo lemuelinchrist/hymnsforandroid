@@ -16,7 +16,7 @@ import java.util.List;
  * Created by lemuelcantos on 9/8/13.
  */
 public class FileUtils {
-    public static final String DATA_DIR = "/Users/lemuelcantos/Google Drive/hymnDev/HymnsForAndroidProject/HymnsJpa/data";
+    public static final String DATA_DIR = NewHymnalNetExtractor.DATA_DIR;
 
     //To search for webpage add hymn# to url
     // to download midi, add hymn# + '/f=mid'
@@ -24,7 +24,6 @@ public class FileUtils {
 
     //https://www.hymnal.net/Hymns/NewTunes/svg/e0496_new_p.svg
     // https://www.hymnal.net/Hymns/NewTunes/svg/e0496_new_g.svg
-    public static String HYMNAL_NET_NEW_TUNE_URL = "https://www.hymnal.net/en/hymn/nt/";
 
     public static List<String> listFilesForFolder(final String folderName) {
         File folder = new File(folderName);
