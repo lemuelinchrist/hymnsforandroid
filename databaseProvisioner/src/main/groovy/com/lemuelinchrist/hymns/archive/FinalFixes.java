@@ -1,6 +1,6 @@
 package com.lemuelinchrist.hymns.archive;
 
-import com.lemuelinchrist.hymns.beans.HymnsEntity;
+import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -1,8 +1,8 @@
 package com.lemuelinchrist.hymns.archive.french;
 
-import com.lemuelinchrist.hymns.Dao;
-import com.lemuelinchrist.hymns.beans.HymnsEntity;
-import com.lemuelinchrist.hymns.beans.StanzaEntity;
+import com.lemuelinchrist.hymns.lib.Dao;
+import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
+import com.lemuelinchrist.hymns.lib.beans.StanzaEntity;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
