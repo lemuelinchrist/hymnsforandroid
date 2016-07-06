@@ -90,28 +90,6 @@ public class HymnalNetExtractor {
         HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
     }
 
-//    private static void extractNewTunes() throws Exception {
-//        String englishHymnNo = "300";
-//        String beFilledNo = "439";
-//        HymnsEntity hymn = convertWebPageToHymn(HYMNAL_NET_NEWTUNES, "BF", englishHymnNo, beFilledNo);
-//
-//
-//        hymn.setFirstStanzaLine(hymn.getFirstStanzaLine()+ " (New Tune)");
-//        if (hymn.getFirstChorusLine()!=null&&!hymn.getFirstChorusLine().isEmpty())
-//            hymn.setFirstChorusLine(hymn.getFirstChorusLine()+ " (New Tune)");
-//        hymn.setParentHymn("E"+englishHymnNo);
-//        saveHymn(hymn);
-//
-//        // get guitar and piano sheet
-//        FileUtils.saveUrl(SHEET_PIANO_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_g", "_p").replace(".svg", ".svg?"));
-//        FileUtils.saveUrl(SHEET_GUITAR_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_p", "_g").replace(".svg", ".svg?"));
-//
-//        // get midi
-//        FileUtils.saveUrl(MIDI_PIANO_DIR + "/" + hymn.getTune() + ".mid", NEW_TUNES_SHEET_LINK + hymn.getParentHymn() + "/f=mid");
-//
-//
-//    }
-
 
     public static HymnsEntity convertWebPageToHymn(String hymnalAddress, String urlNo, String group, String idNo) throws Exception {
         System.out.println("processing Hymn #" + group + urlNo);
