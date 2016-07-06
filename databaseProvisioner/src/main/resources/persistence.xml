@@ -5,8 +5,8 @@
 
     <persistence-unit name="hymnsUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>com.lemuelinchrist.hymns.beans.HymnsEntity</class>
-        <class>com.lemuelinchrist.hymns.beans.StanzaEntity</class>
+        <class>com.lemuelinchrist.hymns.lib.beans.HymnsEntity</class>
+        <class>com.lemuelinchrist.hymns.lib.beans.StanzaEntity</class>
         <properties>
             <property name="eclipselink.jdbc.url"
                       value="jdbc:sqlite:/Users/lemuelcantos/Google Drive/hymnDev/HymnsForAndroidProject/HymnsForAndroid/app/src/main/assets/hymns.sqlite"/>
@@ -21,22 +21,5 @@
                       value="database" />-->
         </properties>
     </persistence-unit>
-    <persistence-unit name="newHymns" transaction-type="RESOURCE_LOCAL">
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>com.lemuelinchrist.hymns.beans.HymnsEntity</class>
-        <class>com.lemuelinchrist.hymns.beans.StanzaEntity</class>
-        <properties>
-            <property name="eclipselink.jdbc.url"
-                      value="jdbc:sqlite:/Users/lemuelcantos/Documents/android/HymnsJpa/data/newHymns.sqlite"/>
-            <property name="eclipselink.jdbc.driver" value="org.sqlite.JDBC"/>
-            <property name="eclipselink.jdbc.user" value=""/>
-            <property name="eclipselink.jdbc.password" value=""/>
-            <!-- <property name="eclipselink.logging.level" value="ALL" />-->
 
-            <!-- EclipseLink should create the database schema automatically -->
-            <property name="eclipselink.ddl-generation" value="create-tables"/>
-            <!--<property name="eclipselink.ddl-generation.output-mode"
-                      value="database" />-->
-        </properties>
-    </persistence-unit>
 </persistence>

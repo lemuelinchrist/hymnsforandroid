@@ -1,11 +1,9 @@
-package com.lemuelinchrist.hymns;
+package com.lemuelinchrist.hymns.lib;
 
-import com.lemuelinchrist.hymns.beans.HymnsEntity;
-import com.lemuelinchrist.hymns.beans.StanzaEntity;
+import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
+import com.lemuelinchrist.hymns.lib.beans.StanzaEntity;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -20,7 +18,7 @@ public class Dao {
     private final EntityManager em;
 
     public Dao() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory(NewHymnalNetExtractor.HYMNS_UNIT);
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(HymnalNetExtractor.HYMNS_UNIT);
         em = factory.createEntityManager();
 
     }

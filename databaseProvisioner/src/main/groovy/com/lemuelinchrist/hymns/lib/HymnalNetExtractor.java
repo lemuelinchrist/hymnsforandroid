@@ -1,14 +1,13 @@
-package com.lemuelinchrist.hymns;
+package com.lemuelinchrist.hymns.lib;
 
-import com.lemuelinchrist.hymns.beans.HymnsEntity;
-import com.lemuelinchrist.hymns.beans.StanzaEntity;
+import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
+import com.lemuelinchrist.hymns.lib.beans.StanzaEntity;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -23,15 +22,11 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.X509TrustManager;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 /**
  * Created by lemuelcantos on 6/8/13.
  */
-public class NewHymnalNetExtractor {
+public class HymnalNetExtractor {
     public static final String HYMNS_UNIT = "hymnsUnit";
 
     public static final String HYMNAL_NET_CHINESE_SUPPLEMENT = "http://www.hymnal.net/zh_TW/hymn.php/ts/";

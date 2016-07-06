@@ -1,4 +1,4 @@
-package com.lemuelinchrist.hymns.beans;
+package com.lemuelinchrist.hymns.lib.beans;
 
 import java.util.Arrays;
 import java.util.HashSet;

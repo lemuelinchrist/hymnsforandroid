@@ -1,7 +1,7 @@
-package com.lemuelinchrist.hymns;
+package com.lemuelinchrist.hymns.lib;
 
-import com.lemuelinchrist.hymns.archive.HymnalNetExtractor;
-import com.lemuelinchrist.hymns.beans.HymnsEntity;
+
+import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import javax.persistence.Persistence;
  */
 public class HymnalNetResourceDownloader {
 
-    public static final String DATA_DIR = NewHymnalNetExtractor.DATA_DIR;
+    public static final String DATA_DIR = HymnalNetExtractor.DATA_DIR;
     public static String SHEET_MUSIC_PIANO_DIR = DATA_DIR + "/sheetMusicPiano";
     public static String SHEET_MUSIC_Guitar_DIR = DATA_DIR + "/sheetMusicGuitar";
     public static String MIDI_PIANO_DIR = DATA_DIR + "/midiPiano";

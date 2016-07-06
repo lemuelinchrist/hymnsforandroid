@@ -1,4 +1,4 @@
-package com.lemuelinchrist.hymns;
+package com.lemuelinchrist.hymns.lib;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by lemuelcantos on 9/8/13.
  */
 public class FileUtils {
-    public static final String DATA_DIR = NewHymnalNetExtractor.DATA_DIR;
+    public static final String DATA_DIR = HymnalNetExtractor.DATA_DIR;
 
     //To search for webpage add hymn# to url
     // to download midi, add hymn# + '/f=mid'
