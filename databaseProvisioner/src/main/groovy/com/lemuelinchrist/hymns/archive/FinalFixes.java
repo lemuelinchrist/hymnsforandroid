@@ -1,4 +1,4 @@
-package com.lemuelinchrist.hymns;
+package com.lemuelinchrist.hymns.archive;
 
 import com.lemuelinchrist.hymns.beans.HymnsEntity;
 

@@ -1,6 +1,6 @@
 package com.lemuelinchrist.hymns.archive.second;
 
-import com.lemuelinchrist.hymns.HymnalNetExtractor;
+import com.lemuelinchrist.hymns.archive.HymnalNetExtractor;
 import com.lemuelinchrist.hymns.beans.HymnsEntity;
 import com.lemuelinchrist.hymns.beans.StanzaEntity;
 

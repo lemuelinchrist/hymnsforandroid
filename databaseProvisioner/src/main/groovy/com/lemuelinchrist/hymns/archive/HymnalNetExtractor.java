@@ -1,5 +1,6 @@
-package com.lemuelinchrist.hymns;
+package com.lemuelinchrist.hymns.archive;
 
+import com.lemuelinchrist.hymns.FileUtils;
 import com.lemuelinchrist.hymns.beans.HymnsEntity;
 import com.lemuelinchrist.hymns.beans.StanzaEntity;
 
