@@ -14,7 +14,7 @@ import javax.persistence.Persistence;
  */
 public class HymnalNetResourceDownloader {
 
-    public static final String DATA_DIR = HymnalNetExtractor.DATA_DIR;
+    public static final String DATA_DIR = Constants.DATA_DIR;
     public static String SHEET_MUSIC_PIANO_DIR = DATA_DIR + "/sheetMusicPiano";
     public static String SHEET_MUSIC_Guitar_DIR = DATA_DIR + "/sheetMusicGuitar";
     public static String MIDI_PIANO_DIR = DATA_DIR + "/midiPiano";
@@ -44,7 +44,7 @@ public class HymnalNetResourceDownloader {
 
         EntityManager em = null;
         try {
-            EntityManagerFactory factory = Persistence.createEntityManagerFactory(HymnalNetExtractor.HYMNS_UNIT);
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory(Constants.HYMNS_UNIT);
             em = factory.createEntityManager();
             for (int x = 1; x <= 1348; x++) {
 
@@ -73,7 +73,7 @@ public class HymnalNetResourceDownloader {
 
         // new songs
         try {
-            EntityManagerFactory factory = Persistence.createEntityManagerFactory(HymnalNetExtractor.HYMNS_UNIT);
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory(Constants.HYMNS_UNIT);
             em = factory.createEntityManager();
             for (int x = 1; x <= 582; x++) {
 

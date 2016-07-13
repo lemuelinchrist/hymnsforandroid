@@ -27,30 +27,7 @@ import javax.net.ssl.X509TrustManager;
  * Created by lemuelcantos on 6/8/13.
  */
 public class HymnalNetExtractor {
-    public static final String DATA_DIR = "/Users/lemuelcantos/Desktop/repos/hymnsforandroid/databaseProvisioner/data";
 
-    public static final String HYMNS_UNIT = "hymnsUnit";
-
-    public static final String HYMNAL_NET_CHINESE_SUPPLEMENT = "http://www.hymnal.net/zh_TW/hymn.php/ts/";
-    public static String HYMNAL_NET_URL = "http://www.hymnal.net/en/hymn.php/h/";
-    public static String HYMNAL_NET_CEBUANO = "http://www.hymnal.net/en/hymn.php/cb/";
-    public static String HYMNAL_NET_CHINESE = "https://www.hymnal.net/en/hymn/ch/";
-    public static String HYMNAL_NET_SELECTED_CHINESE = "http://www.hymnal.net/en/hymn/ts/";
-    public static String HYMNAL_NET_LONGBEACH = "http://www.hymnal.net/en/hymn.php/lb/";
-    public static String HYMNAL_NET_NEWSONGS = "http://www.hymnal.net/en/hymn.php/ns/";
-
-    public static String HYMNAL_NET_TAGALOG  = "https://www.hymnal.net/en/hymn/ht/";
-    public static final String MIDI_PIANO_DIR = DATA_DIR + "/midi";
-    public static final String SHEET_PIANO_DIR = DATA_DIR + "/pianoSvg";
-    public static final String SHEET_GUITAR_DIR = DATA_DIR + "/guitarSvg";
-
-    public static final String NEW_SONGS_SHEET_LINK ="https://www.hymnal.net/en/hymn/ns/";
-    public static final String NEW_TUNES_SHEET_LINK ="https://www.hymnal.net/en/hymn/nt/";
-
-
-    public static String CEBUANO = "cb";
-    public static String LONGBEACH= "NS";
-    public static String HYMNAL_NET_NEWTUNES="http://www.hymnal.net/en/hymn.php/nt/";
 
     public static void main(String args[]) throws Exception {
 //        for(int x=1403; x<=1404; x++){
@@ -62,7 +39,7 @@ public class HymnalNetExtractor {
         Dao dao = new Dao();
 
 
-        convertWebPageToHymn(HYMNAL_NET_NEWSONGS, "NS", "506", "506");
+        convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, "NS", "506", "506");
 
 
     }
@@ -279,11 +256,11 @@ public class HymnalNetExtractor {
         }
 
         // get guitar and piano sheet
-        FileUtils.saveUrl(SHEET_PIANO_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_g", "_p").replace(".svg", ".svg?"));
-        FileUtils.saveUrl(SHEET_GUITAR_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_p", "_g").replace(".svg", ".svg?"));
+        FileUtils.saveUrl(Constants.SHEET_PIANO_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_g", "_p").replace(".svg", ".svg?"));
+        FileUtils.saveUrl(Constants.SHEET_GUITAR_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_p", "_g").replace(".svg", ".svg?"));
 
         // get midi
-        FileUtils.saveUrl(MIDI_PIANO_DIR + "/m" + hymn.getTune() + ".mid", hymnalAddress + hymn.getNo() + "/f=mid");
+        FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune() + ".mid", hymnalAddress + hymn.getNo() + "/f=mid");
 
 
 
