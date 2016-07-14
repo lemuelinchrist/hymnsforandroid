@@ -1,7 +1,6 @@
 package com.lemuelinchrist.hymns
 
 import com.lemuelinchrist.hymns.lib.Constants
-import com.lemuelinchrist.hymns.lib.Dao
 import com.lemuelinchrist.hymns.lib.HymnalNetExtractor
 
 /**
@@ -10,10 +9,10 @@ import com.lemuelinchrist.hymns.lib.HymnalNetExtractor
 class ExtractNS523To543 {
     public static void  main(arg) {
         println 'hello'
-//        HymnalNetExtractor.convertWebPageToHymn(HymnalNetExtractor.HYMNAL_NET_NEWSONGS, "NS", "506", "506");
+        HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, "NS", "506", "506");
 //        Dao dao = new Dao();
 //        dao.find('E1');
-        System.out.println(Constants.TEST);
+        System.out.println(Constants.SQLITE_FILE_PATH);
 
 
     }
