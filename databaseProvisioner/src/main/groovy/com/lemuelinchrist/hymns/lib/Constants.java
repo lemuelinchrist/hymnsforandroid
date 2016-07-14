@@ -20,6 +20,8 @@ public class Constants {
     public static String HYMNAL_NET_URL = HYMNAL_NET + "en/hymn.php/h/";
     public static String HYMNAL_NET_CEBUANO = HYMNAL_NET + "en/hymn/cb/";
     public static String HYMNAL_NET_CHINESE = HYMNAL_NET + "en/hymn/ch/";
+    public static String HYMNAL_NET_DUTCH = HYMNAL_NET + "en/hymn/hd";
+    public static String HYMNAL_NET_GERMAN = HYMNAL_NET + "en/hymn/de";
     public static String HYMNAL_NET_SELECTED_CHINESE = HYMNAL_NET + "en/hymn/ts/";
     public static String HYMNAL_NET_LONGBEACH = HYMNAL_NET + "en/hymn/lb/";
     public static String HYMNAL_NET_NEWSONGS = HYMNAL_NET + "en/hymn/ns/";

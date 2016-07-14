@@ -8,7 +8,7 @@ import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
 /**
  * Created by lemuelcantos on 6/7/16.
  */
-class ExtractNS523To543 {
+class ExtractGerman {
     public static void  main(arg) {
         println 'hello'
         Dao dao = new Dao();
