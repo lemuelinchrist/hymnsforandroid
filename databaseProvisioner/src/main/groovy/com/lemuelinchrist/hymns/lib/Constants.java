@@ -9,20 +9,20 @@ import java.util.Properties;
  */
 public class Constants {
     public static String DATA_DIR;
-    public static final String SHEET_GUITAR_DIR = DATA_DIR + "/guitarSvg";
-    public static final String SHEET_PIANO_DIR = DATA_DIR + "/pianoSvg";
-    public static final String MIDI_PIANO_DIR = DATA_DIR + "/midi";
-    public static final String HYMNS_UNIT = "hymnsUnit";
-    private static final String HYMNAL_NET = "https://www.hymnal.net/";
-    public static final String HYMNAL_NET_CHINESE_SUPPLEMENT = HYMNAL_NET + "zh_TW/hymn.php/ts/";
-    public static final String NEW_SONGS_SHEET_LINK =HYMNAL_NET + "en/hymn/ns/";
-    public static final String NEW_TUNES_SHEET_LINK =HYMNAL_NET + "en/hymn/nt/";
+    public static String SHEET_GUITAR_DIR;
+    public static String SHEET_PIANO_DIR;
+    public static String MIDI_PIANO_DIR;
+    public static String HYMNS_UNIT = "hymnsUnit";
+    private static String HYMNAL_NET = "https://www.hymnal.net/";
+    public static String HYMNAL_NET_CHINESE_SUPPLEMENT = HYMNAL_NET + "zh_TW/hymn.php/ts/";
+    public static String NEW_SONGS_SHEET_LINK =HYMNAL_NET + "en/hymn/ns/";
+    public static String NEW_TUNES_SHEET_LINK =HYMNAL_NET + "en/hymn/nt/";
     public static String HYMNAL_NET_URL = HYMNAL_NET + "en/hymn.php/h/";
-    public static String HYMNAL_NET_CEBUANO = HYMNAL_NET + "en/hymn.php/cb/";
+    public static String HYMNAL_NET_CEBUANO = HYMNAL_NET + "en/hymn/cb/";
     public static String HYMNAL_NET_CHINESE = HYMNAL_NET + "en/hymn/ch/";
     public static String HYMNAL_NET_SELECTED_CHINESE = HYMNAL_NET + "en/hymn/ts/";
-    public static String HYMNAL_NET_LONGBEACH = HYMNAL_NET + "en/hymn.php/lb/";
-    public static String HYMNAL_NET_NEWSONGS = HYMNAL_NET + "en/hymn.php/ns/";
+    public static String HYMNAL_NET_LONGBEACH = HYMNAL_NET + "en/hymn/lb/";
+    public static String HYMNAL_NET_NEWSONGS = HYMNAL_NET + "en/hymn/ns/";
     public static String HYMNAL_NET_TAGALOG  = HYMNAL_NET + "en/hymn/ht/";
     public static String CEBUANO = "cb";
     public static String LONGBEACH= "NS";
@@ -35,9 +35,13 @@ public class Constants {
         try {
             InputStream is = Constants.class.getResourceAsStream("/project.properties");
             prop.load(is);
-            System.out.println("constant: " + prop.getProperty("sqlite.file.path"));
             SQLITE_FILE_PATH = prop.getProperty("sqlite.file.path");
             DATA_DIR= prop.getProperty("data.dir");
+            SHEET_GUITAR_DIR = DATA_DIR + "/guitarSvg";
+            SHEET_PIANO_DIR = DATA_DIR + "/pianoSvg";
+            MIDI_PIANO_DIR = DATA_DIR + "/midi";
+            System.out.println("sqlite file path: " + SQLITE_FILE_PATH);
+            System.out.println("data dir: " + DATA_DIR);
         } catch (IOException e) {
             e.printStackTrace();
         }

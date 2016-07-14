@@ -9,7 +9,7 @@ import com.lemuelinchrist.hymns.lib.HymnalNetExtractor
 class ExtractNS523To543 {
     public static void  main(arg) {
         println 'hello'
-        HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, "NS", "506", "506");
+        HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, "506",'NS', "506");
 //        Dao dao = new Dao();
 //        dao.find('E1');
         System.out.println(Constants.SQLITE_FILE_PATH);
