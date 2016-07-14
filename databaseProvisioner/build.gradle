@@ -1,8 +1,17 @@
 apply plugin: 'groovy'
 apply plugin: 'idea'
 
+ext {
+    sqliteFile=project(':app').projectDir.absolutePath+"/src/main/assets/hymns.sqlite"
+    dataDir=project.projectDir.absolutePath+"/data"
 
+}
 
+processResources {
+    filesMatching("project.properties") {
+        expand(project.properties)
+    }
+}
 
 dependencies {
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.7'
