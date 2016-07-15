@@ -11,6 +11,9 @@ processResources {
     filesMatching("project.properties") {
         expand(project.properties)
     }
+    filesMatching("META-INF/persistence.xml") {
+        expand(project.properties)
+    }
 }
 
 dependencies {

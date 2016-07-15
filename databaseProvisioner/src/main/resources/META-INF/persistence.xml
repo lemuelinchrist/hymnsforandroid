@@ -9,7 +9,7 @@
         <class>com.lemuelinchrist.hymns.lib.beans.StanzaEntity</class>
         <properties>
             <property name="eclipselink.jdbc.url"
-                      value="jdbc:sqlite:/Users/lemuelcantos/Google Drive/hymnDev/HymnsForAndroidProject/HymnsForAndroid/app/src/main/assets/hymns.sqlite"/>
+                      value="jdbc:sqlite:${sqliteFile}"/>
             <property name="eclipselink.jdbc.driver" value="org.sqlite.JDBC"/>
             <property name="eclipselink.jdbc.user" value=""/>
             <property name="eclipselink.jdbc.password" value=""/>
