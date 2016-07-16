@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -27,6 +28,7 @@ import android.widget.ScrollView;
 
 
 //import com.actionbarsherlock.widget.SearchView;
+import android.widget.TextView;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 
@@ -275,7 +277,17 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
             case 0:
                 Dialog aboutDialog = new Dialog(this);
                 aboutDialog.setTitle("About");
-                aboutDialog.setContentView(R.layout.about);
+
+                // Dynamically set the version number
+                try {
+                    String version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+                    aboutDialog.setContentView(R.layout.about);
+                    TextView hymnVersion = (TextView) aboutDialog.findViewById(R.id.hymnVersiontextView);
+                    hymnVersion.setText(version);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+
                 return aboutDialog;
 
         }
