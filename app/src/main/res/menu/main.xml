@@ -21,14 +21,14 @@
     <item
             android:id="@+id/action_sheetmusic"
             android:orderInCategory="104"
-            yourapp:showAsAction="ifRoom"
+            yourapp:showAsAction="never"
             android:icon="@drawable/gclef_black"
             android:title="Sheet Music"/>
 
     <item
             android:id="@+id/action_fontsize"
             android:orderInCategory="105"
-            yourapp:showAsAction="ifRoom"
+            yourapp:showAsAction="never"
             android:icon="@drawable/fontsize_black"
             android:title="Font Size"/>
 
@@ -37,7 +37,7 @@
           android:title="@string/about"
           android:orderInCategory="1002"
           android:icon="@drawable/ic_info"
-          yourapp:showAsAction="ifRoom"/>
+          yourapp:showAsAction="never"/>
 
 
 </menu>
