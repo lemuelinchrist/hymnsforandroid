@@ -16,11 +16,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -134,6 +130,7 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
     }
 
     private void toggleInputType() {
+        Log.d(this.getClass().getName(),"toggling input type");
         if(searchBar.getInputType()== InputType.TYPE_CLASS_PHONE){
             searchBar.setInputType(InputType.TYPE_CLASS_TEXT);
             searchBar.setHint(ENTER_LYRIC);
@@ -224,6 +221,8 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
         });
 
 
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE| WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        searchBar.clearFocus();
         searchBar.requestFocus();
         showKeyboard();
 
@@ -233,13 +232,15 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
 
     private void showKeyboard() {
         // show keyboard
-        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).
-                toggleSoftInput(InputMethodManager.SHOW_FORCED,
-                        InputMethodManager.HIDE_IMPLICIT_ONLY);
+        Log.d(this.getClass().getName(), "Showing Keyboard");
+        InputMethodManager imm = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(searchBar, InputMethodManager.SHOW_IMPLICIT);
     }
 
     private void hideKeyboard() {
         // hide soft keyboard
+        Log.d(this.getClass().getName(), "Hiding Keyboard");
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(searchBar.getWindowToken(), 0);
     }
