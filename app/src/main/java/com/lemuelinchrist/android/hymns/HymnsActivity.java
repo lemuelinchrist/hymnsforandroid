@@ -386,26 +386,22 @@ public class HymnsActivity extends ActionBarActivity implements LyricChangeListe
     }
 
     // This method adds icons in the overflow section of the action bar Menu
+    // NOTE: This is one BIG heck of a boilerplate code
     @Override
-    public boolean onMenuOpened(int featureId, Menu menu)
-    {
-        if(featureId == Window.FEATURE_ACTION_BAR && menu != null){
-            if(menu.getClass().getSimpleName().equals("MenuBuilder")){
-                try{
+    protected boolean onPrepareOptionsPanel(View view, Menu menu) {
+        if (menu != null) {
+            if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
+                try {
                     Method m = menu.getClass().getDeclaredMethod(
                             "setOptionalIconsVisible", Boolean.TYPE);
                     m.setAccessible(true);
                     m.invoke(menu, true);
-                }
-                catch(NoSuchMethodException e){
-                    Log.e(this.getClass().getName(), "onMenuOpened", e);
-                }
-                catch(Exception e){
-                    throw new RuntimeException(e);
+                } catch (Exception e) {
+                    Log.e(getClass().getSimpleName(), "onMenuOpened...unable to set icons for overflow menu", e);
                 }
             }
         }
-        return super.onMenuOpened(featureId, menu);
+        return super.onPrepareOptionsPanel(view, menu);
     }
 
 
