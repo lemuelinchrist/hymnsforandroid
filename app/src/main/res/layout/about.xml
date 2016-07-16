@@ -13,11 +13,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/hymnVersiontextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/version"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <!-- <TextView
