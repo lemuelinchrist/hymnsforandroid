@@ -9,6 +9,7 @@ import java.util.Properties;
  */
 public class Constants {
     public static String DATA_DIR;
+    public static String MIDI_DIR;
     public static String SHEET_GUITAR_DIR;
     public static String SHEET_PIANO_DIR;
     public static String MIDI_PIANO_DIR;
@@ -39,6 +40,7 @@ public class Constants {
             prop.load(is);
             SQLITE_FILE_PATH = prop.getProperty("sqlite.file.path");
             DATA_DIR= prop.getProperty("data.dir");
+            MIDI_DIR=prop.getProperty("midi.dir");
             SHEET_GUITAR_DIR = DATA_DIR + "/guitarSvg";
             SHEET_PIANO_DIR = DATA_DIR + "/pianoSvg";
             MIDI_PIANO_DIR = DATA_DIR + "/midi";
