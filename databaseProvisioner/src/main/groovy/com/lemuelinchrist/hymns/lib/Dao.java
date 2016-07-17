@@ -4,11 +4,13 @@ import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 import com.lemuelinchrist.hymns.lib.beans.StanzaEntity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  * Created by lemuelcantos on 31/10/15.
@@ -22,9 +24,34 @@ public class Dao {
         em = factory.createEntityManager();
 
     }
+
     public HymnsEntity find(String HymnId) {
         return em.find(HymnsEntity.class, HymnId);
 
+
+    }
+
+    public List findAll() {
+        return findAll(null);
+
+    }
+
+    public List findAll(String where) {
+        try {
+            StringBuilder queryString = new StringBuilder("select h from HymnsEntity h");
+            if (where!=null && !where.isEmpty()) {
+                queryString.append(" where ").append(where);
+            }
+            Query query = em.createQuery(queryString.toString());
+            List hymns = query.getResultList();
+
+            return hymns;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (em != null)
+                em.close();
+        }
 
     }
 
@@ -32,26 +59,25 @@ public class Dao {
         em.getTransaction().begin();
         em.persist(hymn);
         em.getTransaction().commit();
-        System.out.println("Hymn "+hymn.getId()+" saved!");
+        System.out.println("Hymn " + hymn.getId() + " saved!");
     }
 
     public void addRelatedHymn(String parentHymn, String relatedToAdd) {
-        if (parentHymn==null || parentHymn.isEmpty()) {
+        if (parentHymn == null || parentHymn.isEmpty()) {
             System.out.println("Warning! no parent hymn! exiting");
             return;
         }
         em.getTransaction().begin();
         HymnsEntity parentEntity = em.find(HymnsEntity.class, parentHymn);
         Set<String> relatedSet = parentEntity.getRelated();
-        if (relatedSet==null) {
-            relatedSet= new HashSet<String>();
+        if (relatedSet == null) {
+            relatedSet = new HashSet<String>();
         }
         relatedSet.add(relatedToAdd);
         parentEntity.setRelated(relatedSet);
         System.out.println("related: " + parentEntity.getRelated());
         em.getTransaction().commit();
-        System.out.println("adding of Related Hymn successful, Hymn "+parentEntity.getId()+" saved!");
-
+        System.out.println("adding of Related Hymn successful, Hymn " + parentEntity.getId() + " saved!");
 
 
     }
@@ -62,12 +88,12 @@ public class Dao {
 
             System.out.println("looking up: " + hymnId);
             HymnsEntity hymn = em.find(HymnsEntity.class, hymnId);
-            System.out.println("trying to delete hymn "+hymn.getId());
+            System.out.println("trying to delete hymn " + hymn.getId());
             em.getTransaction().begin();
             em.remove(hymn);
             em.getTransaction().commit();
 
-            System.out.println("hymn "+hymn.getId()+" DELETED!");
+            System.out.println("hymn " + hymn.getId() + " DELETED!");
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -80,7 +106,7 @@ public class Dao {
         Dao dao = new Dao();
     }
 
-    public void changeHymnNumber(String previousHymnId, String newHymnGroup, String newHymnNo ) {
+    public void changeHymnNumber(String previousHymnId, String newHymnGroup, String newHymnNo) {
         System.out.println("changing hymn ID from " + previousHymnId + " to " + newHymnGroup + newHymnNo);
         HymnsEntity hymn = find(previousHymnId);
         em.detach(hymn);
@@ -88,7 +114,7 @@ public class Dao {
         hymn.setNo(newHymnNo);
         hymn.setHymnGroup(newHymnGroup);
 
-        for(StanzaEntity stanza: hymn.getStanzas()) {
+        for (StanzaEntity stanza : hymn.getStanzas()) {
             stanza.setId(0);
         }
 
@@ -96,20 +122,19 @@ public class Dao {
         Set<String> relatedSet = hymn.getRelated();
 
         // change parents of related hymns
-        for(String related:relatedSet) {
-            if (related==null || related.isEmpty()) continue;
+        for (String related : relatedSet) {
+            if (related == null || related.isEmpty()) continue;
             if (related.equals("CS330")) continue;
-            System.out.println("finding relatd: "+related);
+            System.out.println("finding relatd: " + related);
 
             HymnsEntity relatedHymn = find(related);
             if (relatedHymn.getParentHymn().equals(previousHymnId)) {
                 em.getTransaction().begin();
                 relatedHymn.setParentHymn(newHymnGroup + newHymnNo);
                 em.getTransaction().commit();
-                System.out.println("changed parent hymn of "+related+ " to "+newHymnGroup+newHymnNo);
+                System.out.println("changed parent hymn of " + related + " to " + newHymnGroup + newHymnNo);
             }
         }
-
 
 
         em.getEntityManagerFactory().getCache().evictAll();
@@ -124,14 +149,14 @@ public class Dao {
     // note this method doesnt clear related of Hymn but the related of child hymns
     public void clearRelatedOfChildren(String hymnId) {
         HymnsEntity hymn = find(hymnId);
-        for (String related: hymn.getRelated()) {
-            if (related==null || related.isEmpty()) continue;
+        for (String related : hymn.getRelated()) {
+            if (related == null || related.isEmpty()) continue;
             if (related.equals("CS330")) continue;
-            System.out.println("finding relatd: "+related);
+            System.out.println("finding relatd: " + related);
 
             HymnsEntity relatedHymn = find(related);
-            if (relatedHymn.getParentHymn().equals(hymnId)){
-                System.out.println("Cleanring related of Hymn "+related);
+            if (relatedHymn.getParentHymn().equals(hymnId)) {
+                System.out.println("Cleanring related of Hymn " + related);
                 em.getTransaction().begin();
                 relatedHymn.setRelated(null);
                 em.getTransaction().commit();

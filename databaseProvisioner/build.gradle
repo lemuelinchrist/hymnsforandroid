@@ -15,6 +15,7 @@ apply plugin: 'idea'
 
 ext {
     sqliteFile=project(':app').projectDir.absolutePath+"/src/main/assets/hymns.sqlite"
+    midiDir=project(':app').projectDir.absolutePath+"/src/main/res/raw"
     dataDir=project.projectDir.absolutePath+"/data"
 
 }
