@@ -1,5 +1,7 @@
 package com.lemuelinchrist.hymns.lib;
 
+import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -15,12 +17,13 @@ public class Constants {
     public static String MIDI_PIANO_DIR;
     public static String HYMNS_UNIT = "hymnsUnit";
     private static String HYMNAL_NET = "https://www.hymnal.net/";
-    public static String HYMNAL_NET_CHINESE_SUPPLEMENT = HYMNAL_NET + "zh_TW/hymn.php/ts/";
+    public static String HYMNAL_NET_CHINESE_SUPPLEMENT = HYMNAL_NET + "en/hymn//ts/";
     public static String NEW_SONGS_SHEET_LINK =HYMNAL_NET + "en/hymn/ns/";
     public static String NEW_TUNES_SHEET_LINK =HYMNAL_NET + "en/hymn/nt/";
     public static String HYMNAL_NET_URL = HYMNAL_NET + "en/hymn.php/h/";
     public static String HYMNAL_NET_CEBUANO = HYMNAL_NET + "en/hymn/cb/";
     public static String HYMNAL_NET_CHINESE = HYMNAL_NET + "en/hymn/ch/";
+    public static String HYMNAL_NET_CHILDREN = HYMNAL_NET + "en/hymn/c/";
     public static String HYMNAL_NET_DUTCH = HYMNAL_NET + "en/hymn/hd";
     public static String HYMNAL_NET_GERMAN = HYMNAL_NET + "en/hymn/de";
     public static String HYMNAL_NET_SELECTED_CHINESE = HYMNAL_NET + "en/hymn/ts/";
@@ -51,6 +54,25 @@ public class Constants {
         }
 
 
+    }
+
+    public static String getHymnalNetUrl(HymnsEntity hymn) {
+        if(hymn.getHymnGroup().equals("NS")) {
+            return HYMNAL_NET_NEWSONGS;
+        }
+        if(hymn.getHymnGroup().equals("C")){
+            return HYMNAL_NET_CHINESE;
+        }
+        if(hymn.getHymnGroup().equals("CS")){
+            return HYMNAL_NET_CHINESE_SUPPLEMENT;
+        }
+        if(hymn.getHymnGroup().equals("CH")){
+            return HYMNAL_NET_CHILDREN;
+        }
+
+
+
+        return null;
     }
 
 }
