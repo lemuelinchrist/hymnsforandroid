@@ -17,7 +17,7 @@ public class Constants {
     public static String MIDI_PIANO_DIR;
     public static String HYMNS_UNIT = "hymnsUnit";
     private static String HYMNAL_NET = "https://www.hymnal.net/";
-    public static String HYMNAL_NET_CHINESE_SUPPLEMENT = HYMNAL_NET + "en/hymn//ts/";
+    public static String HYMNAL_NET_CHINESE_SUPPLEMENT = HYMNAL_NET + "en/hymn/ts/";
     public static String NEW_SONGS_SHEET_LINK =HYMNAL_NET + "en/hymn/ns/";
     public static String NEW_TUNES_SHEET_LINK =HYMNAL_NET + "en/hymn/nt/";
     public static String HYMNAL_NET_URL = HYMNAL_NET + "en/hymn.php/h/";
