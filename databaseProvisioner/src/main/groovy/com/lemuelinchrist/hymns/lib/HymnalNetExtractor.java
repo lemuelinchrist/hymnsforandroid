@@ -8,6 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -46,6 +47,10 @@ public class HymnalNetExtractor {
 
 
     public static void enableSSLSocket() throws KeyManagementException, NoSuchAlgorithmException {
+        System.setProperty("http.proxyHost", "sin2.sme.zscalertwo.net");
+        System.setProperty("http.proxyPort", "80");
+        System.setProperty("https.proxyHost", "sin2.sme.zscalertwo.net");
+        System.setProperty("https.proxyPort", "80");
         HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
             public boolean verify(String hostname, SSLSession session) {
                 return true;
@@ -74,7 +79,28 @@ public class HymnalNetExtractor {
         Elements details = doc.select(".common-panel");
         System.out.println("Getting tune from: " + hymnalNetUrl);
 
-        return details.select("label:matches(^Hymn Code)").parents().get(0).select("a").text().trim();
+        String tune = details.select("label:matches(^Hymn Code)").parents().get(0).select("a").text().trim();
+        if (tune.isEmpty()) {
+            throw new RuntimeException("Tune is blank!!");
+        }
+        System.out.println("Tune retrieved successfully: " + tune);
+        return tune;
+
+    }
+
+    public static String getSheetMusicLink(String hymnalNetUrl) throws Exception {
+        enableSSLSocket();
+        Document doc = Jsoup.connect(hymnalNetUrl).get();
+        // get sheet music link
+        Elements sheetMusicElements = doc.select(".leadsheet.piano span");
+        try {
+            String sheetMusicLink = sheetMusicElements.get(0).text();
+            System.out.println("SheetMusicLink retrieved successfully: " + sheetMusicLink);
+            return sheetMusicLink;
+        }catch (Exception e) {
+            System.out.println("warning no sheet Music link");
+        }
+        return null;
 
     }
 
@@ -265,19 +291,28 @@ public class HymnalNetExtractor {
             System.out.println("warning no sheet Music link");
         }
 
+        // ***********************************************
+        // DOWNLOADING RESOURCES
+        // ***********************************************
+        downloadSheetMusicAndMidi(hymnalAddress, hymn);
+
+
+        System.out.println("Hymn info and resources extracted successfully...");
+        System.out.println(hymn);
+
+
+        return hymn;
+    }
+
+    public static void downloadSheetMusicAndMidi(String hymnalAddress, HymnsEntity hymn) throws IOException {
         // get guitar and piano sheet
         FileUtils.saveUrl(Constants.SHEET_PIANO_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_g", "_p").replace(".svg", ".svg?"));
         FileUtils.saveUrl(Constants.SHEET_GUITAR_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_p", "_g").replace(".svg", ".svg?"));
 
         // get midi
-        FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune() + ".mid", hymnalAddress + hymn.getNo() + "/f=mid");
+        FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymnalAddress + hymn.getNo() + "/f=mid");
 
-
-
-        System.out.println(hymn);
-
-
-        return hymn;
+        System.out.println("Hymn resuources downloaded successfully...");
     }
 
 

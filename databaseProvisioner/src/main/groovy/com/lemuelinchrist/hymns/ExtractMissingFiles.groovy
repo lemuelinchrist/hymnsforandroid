@@ -13,25 +13,34 @@ import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
 class ExtractMissingFiles {
     public static void main(arg) {
         println 'hello'
+        checkHymnsWithoutTunesAndUpdate()
+
+    }
+
+    private static void checkHymnsWithoutTunesAndUpdate() {
         HymnalNetExtractor.enableSSLSocket();
 
-
+        def updatedHymns = []
         Dao dao = new Dao();
         def hymns = dao.findAll("h.tune is null and h.parentHymn is null and h.hymnGroup='NS' ");
         hymns.each { HymnsEntity hymn ->
-            if(hymn.no.length()<=3) {
+            if (hymn.no.length() <= 3) {
                 println hymn.id + ": " + hymn.firstStanzaLine + " " + hymn.firstChorusLine
                 try {
                     String tune = HymnalNetExtractor.getTune(Constants.getHymnalNetUrl(hymn) + hymn.no)
-                    println tune
-                    dao.saveTune(hymn,tune);
-                } catch (IndexOutOfBoundsException e) {
+                    String sheetMusicLink = HymnalNetExtractor.getSheetMusicLink(Constants.getHymnalNetUrl(hymn) + hymn.no)
+                    dao.saveTuneAndSheetMusicLink(hymn, tune, sheetMusicLink);
+                    HymnalNetExtractor.downloadSheetMusicAndMidi(Constants.getHymnalNetUrl(hymn) + hymn.no, hymn)
+                    updatedHymns += hymn.id;
+                } catch (Exception e) {
                     println "sorry no tune available yet"
+                    println e.message;
                 }
 
             }
         }
 
+        println 'list of updated hymns: ' + updatedHymns;
     }
 
 
