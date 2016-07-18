@@ -164,11 +164,12 @@ public class Dao {
 
     }
 
-    public void saveTune(HymnsEntity hymn, String tune) {
+    public void saveTuneAndSheetMusicLink(HymnsEntity hymn, String tune, String sheetMusicLink) {
         System.out.println("saving tune of hymn: " + hymn.getId());
         System.out.println("tune is: " + tune);
         em.getTransaction().begin();
         hymn.setTune(tune);
+        hymn.setSheetMusicLink(sheetMusicLink);
         em.getTransaction().commit();
         System.out.println("save successful!");
     }
