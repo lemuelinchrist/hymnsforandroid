@@ -48,9 +48,6 @@ public class Dao {
             return hymns;
         } catch (Exception e) {
             throw new RuntimeException(e);
-        } finally {
-            if (em != null)
-                em.close();
         }
 
     }
@@ -165,5 +162,14 @@ public class Dao {
 
         }
 
+    }
+
+    public void saveTune(HymnsEntity hymn, String tune) {
+        System.out.println("saving tune of hymn: " + hymn.getId());
+        System.out.println("tune is: " + tune);
+        em.getTransaction().begin();
+        hymn.setTune(tune);
+        em.getTransaction().commit();
+        System.out.println("save successful!");
     }
 }

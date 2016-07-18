@@ -68,6 +68,16 @@ public class HymnalNetExtractor {
     }
 
 
+    public static String getTune(String hymnalNetUrl) throws Exception {
+        enableSSLSocket();
+        Document doc = Jsoup.connect(hymnalNetUrl).get();
+        Elements details = doc.select(".common-panel");
+        System.out.println("Getting tune from: " + hymnalNetUrl);
+
+        return details.select("label:matches(^Hymn Code)").parents().get(0).select("a").text().trim();
+
+    }
+
     public static HymnsEntity convertWebPageToHymn(String hymnalAddress, String urlNo, String group, String idNo) throws Exception {
         System.out.println("processing Hymn #" + group + urlNo);
         String url = hymnalAddress + urlNo;
