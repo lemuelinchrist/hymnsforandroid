@@ -17,6 +17,8 @@ ext {
     sqliteFile=(project(':app').projectDir.absolutePath+"/src/main/assets/hymns.sqlite").replace('\\','\\\\')
     midiDir=(project(':app').projectDir.absolutePath+"/src/main/res/raw").replace('\\','\\\\')
     dataDir=(project.projectDir.absolutePath+"/data").replace('\\','\\\\')
+    proxyURL=System.properties['http.proxyHost']
+    proxyPort=System.properties['http.proxyPort']
 
 }
 

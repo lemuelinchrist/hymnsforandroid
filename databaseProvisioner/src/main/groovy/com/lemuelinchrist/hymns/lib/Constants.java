@@ -34,6 +34,8 @@ public class Constants {
     public static String LONGBEACH= "NS";
     public static String HYMNAL_NET_NEWTUNES= HYMNAL_NET + "en/hymn.php/nt/";
     public static String SQLITE_FILE_PATH;
+    public static String PROXY_URL=null;
+    public static String PROXY_PORT=null;
 
     static {
 
@@ -44,6 +46,8 @@ public class Constants {
             SQLITE_FILE_PATH = prop.getProperty("sqlite.file.path");
             DATA_DIR= prop.getProperty("data.dir");
             MIDI_DIR=prop.getProperty("midi.dir");
+            PROXY_URL=prop.getProperty("proxy.url");
+            PROXY_PORT=prop.getProperty("proxy.port");
             SHEET_GUITAR_DIR = DATA_DIR + "/guitarSvg";
             SHEET_PIANO_DIR = DATA_DIR + "/pianoSvg";
             MIDI_PIANO_DIR = DATA_DIR + "/midi";
