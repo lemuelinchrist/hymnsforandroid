@@ -3,6 +3,7 @@ package com.lemuelinchrist.android.hymns.search;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.searchadapters.CategoryAdapter;
+import com.lemuelinchrist.android.hymns.search.searchadapters.HymnCursorAdapter;
 
 /**
  * Created by lemuelcantos on 1/11/15.
@@ -43,7 +44,8 @@ public class CategoryTabFragment extends TabFragment {
 
     @Override
     public void setSearchFilter(String filter) {
-        mRecyclerView.setAdapter(new CategoryAdapter(container.getContext(),
-                dao.getCategoryList(selectedHymnGroup, filter), R.layout.recyclerview_hymn_list));
+//        mRecyclerView.setAdapter(new CategoryAdapter(container.getContext(),
+//                dao.getCategoryList(selectedHymnGroup, filter), R.layout.recyclerview_hymn_list));
+        ((HymnCursorAdapter)mRecyclerView.getAdapter()).setNewCursor(dao.getCategoryList(selectedHymnGroup, filter));
     }
 }
