@@ -2,6 +2,7 @@ package com.lemuelinchrist.android.hymns.search;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+import android.widget.Toast;
 import com.lemuelinchrist.android.hymns.HymnGroups;
 import com.lemuelinchrist.android.hymns.R;
 
@@ -236,6 +238,7 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
         InputMethodManager imm = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(searchBar, InputMethodManager.SHOW_IMPLICIT);
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
     private void hideKeyboard() {
@@ -318,6 +321,18 @@ public class SearchActivity extends ActionBarActivity implements ActionBar.TabLi
 
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.i(this.getClass().getName(), "config changed!!!");
+
+        // Checks whether a hardware keyboard is available
+        if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_NO) {
+            Toast.makeText(this, "keyboard visible", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_YES) {
+            Toast.makeText(this, "keyboard hidden", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
 

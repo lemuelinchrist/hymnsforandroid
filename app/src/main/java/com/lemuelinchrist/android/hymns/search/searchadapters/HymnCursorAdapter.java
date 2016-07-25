@@ -3,6 +3,7 @@ package com.lemuelinchrist.android.hymns.search.searchadapters;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DataSetObserver;
+import android.util.Log;
 
 /**
  * Created by lemuelcantos on 15/8/13.
@@ -16,15 +17,22 @@ abstract public class HymnCursorAdapter extends SearchAdapter {
 
     public HymnCursorAdapter(Context context, Cursor cursor, int layout) {
         super(context, layout);
+        Log.d(this.getClass().getName(),"HymnCursorAdapter created!");
+        setNewCursor(cursor);
+
+
+    }
+
+    public void setNewCursor(Cursor cursor) {
+        Log.d(this.getClass().getName(),"new cursor set!");
         this.cursor = cursor;
         mDataValid = cursor != null;
         mRowIdColumn = mDataValid ? cursor.getColumnIndex("_id") : -1;
-        mDataSetObserver = new NotifyingDataSetObserver();
-        if (cursor != null) {
-            cursor.registerDataSetObserver(mDataSetObserver);
-        }
-
-
+//        mDataSetObserver = new NotifyingDataSetObserver();
+//        if (cursor != null) {
+//            cursor.registerDataSetObserver(mDataSetObserver);
+//        }
+        notifyDataSetChanged();
     }
 
 
