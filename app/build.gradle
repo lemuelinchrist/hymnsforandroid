@@ -12,7 +12,7 @@ allprojects {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "com.lemuelinchrist.android.hymns"
