@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +41,7 @@ import java.lang.reflect.Method;
 /**
  * Created by lemuelcantos on 17/7/13.
  */
-public class HymnsActivity extends ActionBarActivity implements LyricChangeListener,MusicPlayerListener {
+public class HymnsActivity extends AppCompatActivity implements LyricChangeListener,MusicPlayerListener {
     protected final int INDEX_REQUEST = 1;
     protected String selectedHymnNumber;
     protected String selectedHymnGroup = "E";
