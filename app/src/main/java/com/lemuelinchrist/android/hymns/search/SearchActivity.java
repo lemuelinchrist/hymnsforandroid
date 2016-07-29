@@ -13,6 +13,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -27,7 +28,7 @@ import android.widget.Toast;
 import com.lemuelinchrist.android.hymns.HymnGroups;
 import com.lemuelinchrist.android.hymns.R;
 
-public class SearchActivity extends ActionBarActivity implements ActionBar.TabListener {
+public class SearchActivity extends AppCompatActivity implements ActionBar.TabListener {
 
     public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
     public static final String ENTER_LYRIC = "Enter Search Text          ";
