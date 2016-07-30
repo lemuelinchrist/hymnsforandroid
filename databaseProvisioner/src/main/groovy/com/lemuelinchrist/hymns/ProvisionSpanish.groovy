@@ -32,13 +32,13 @@ class ProvisionSpanish {
                     }
 
 
-//                    println "Hymn ${hymnNumber} found!"
+                    println "Hymn ${hymnNumber} found!"
 
 
                 } else if (line.toLowerCase().contains("coro:")) {
                     line = iterator.next().trim();
-//                    if (line.isEmpty()) throw new RuntimeException("blank line after chorus");
-                    if (line.isEmpty()) println("*****${hymnNumber}");
+                    if (line.isEmpty()) throw new RuntimeException("blank line after chorus");
+//                    if (line.isEmpty()) println("*****${hymnNumber}");
 
                 }
 
