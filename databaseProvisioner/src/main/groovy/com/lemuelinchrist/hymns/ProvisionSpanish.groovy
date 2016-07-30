@@ -25,16 +25,20 @@ class ProvisionSpanish {
                 if (line.isEmpty()) {
                     hymnNumber++;
                     if (hymnNumber==501) break;
-                    println("searching for ${hymnNumber}")
+//                    println("searching for ${hymnNumber}")
                     line = iterator.next().trim();
                     if(!line.equals(hymnNumber+".")) {
                         throw new RuntimeException("Missing Hymn: " + hymnNumber);
-
                     }
 
 
-                    println "Hymn ${hymnNumber} found!"
+//                    println "Hymn ${hymnNumber} found!"
 
+
+                } else if (line.toLowerCase().contains("coro:")) {
+                    line = iterator.next().trim();
+//                    if (line.isEmpty()) throw new RuntimeException("blank line after chorus");
+                    if (line.isEmpty()) println("*****${hymnNumber}");
 
                 }
 
