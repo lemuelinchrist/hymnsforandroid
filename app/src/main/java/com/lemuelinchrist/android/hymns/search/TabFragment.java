@@ -49,13 +49,16 @@ public abstract class TabFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                // hide soft keyboard
-//                InputMethodManager imm = (InputMethodManager) container.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                imm.hideSoftInputFromWindow(mRecyclerView.getWindowToken(), 0);
+                Log.d(this.getClass().getName(),"scroll dy = "+dy);
+                if(dy!=0) {  // this condition is important. Otherwise the keyboard will hide everytime the Recyclerview refreshes which is an undesired behavior
+                    // hide soft keyboard
+                    InputMethodManager imm = (InputMethodManager) container.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mRecyclerView.getWindowToken(), 0);
+                }
             }
         });
 
