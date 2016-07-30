@@ -24,6 +24,7 @@ class ProvisionSpanish {
                 line = iterator.next().trim();
                 if (line.isEmpty()) {
                     hymnNumber++;
+                    if (hymnNumber==501) break;
                     println("searching for ${hymnNumber}")
                     line = iterator.next().trim();
                     if(!line.equals(hymnNumber+".")) {
