@@ -17,8 +17,27 @@ class ProvisionSpanish {
 //            println line;
 //        }
         Iterator<String> iterator = file.iterator();
+        String hymnNumber = 0;
         while (iterator.hasNext()) {
-            println "iterator: " +iterator.next();
+            String line = iterator.next().trim();
+            if(line.isEmpty()) {
+                line = iterator.next().trim();
+                if (line.isEmpty()) {
+                    hymnNumber++
+                    line = iterator.next().trim();
+                    if(!line.equals(hymnNumber+".")) {
+                        throw new RuntimeException("Missing Hymn: " + hymnNumber);
+
+                    }
+
+
+                    println "Hymn ${hymnNumber} found!"
+
+
+                }
+
+            }
+
         }
 
     }
