@@ -17,13 +17,14 @@ class ProvisionSpanish {
 //            println line;
 //        }
         Iterator<String> iterator = file.iterator();
-        String hymnNumber = 0;
+        Integer hymnNumber = 0;
         while (iterator.hasNext()) {
             String line = iterator.next().trim();
             if(line.isEmpty()) {
                 line = iterator.next().trim();
                 if (line.isEmpty()) {
-                    hymnNumber++
+                    hymnNumber++;
+                    println("searching for ${hymnNumber}")
                     line = iterator.next().trim();
                     if(!line.equals(hymnNumber+".")) {
                         throw new RuntimeException("Missing Hymn: " + hymnNumber);
