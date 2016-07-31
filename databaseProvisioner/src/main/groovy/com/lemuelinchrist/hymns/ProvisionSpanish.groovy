@@ -40,8 +40,8 @@ class ProvisionSpanish {
                     if (line.isEmpty()) throw new RuntimeException("blank line after chorus");
 //                    if (line.isEmpty()) println("*****${hymnNumber}");
 
-                } else if(!line[0].isInteger()) {
-                    println "non int line: " +line
+                } else if(!line[0].isInteger() && !line[0].equals('(') && !line[0].equals('+')) {
+                    throw new RuntimeException("Invalid start of stanza");
                 }
 
             }
