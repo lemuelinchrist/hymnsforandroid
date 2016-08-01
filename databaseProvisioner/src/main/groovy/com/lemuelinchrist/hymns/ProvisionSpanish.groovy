@@ -12,7 +12,7 @@ class ProvisionSpanish {
     static File spanishRelatedFile;
 
     public static void main(String[] args) throws Exception {
-//        Dao dao = new Dao();
+        Dao dao = new Dao();
         spanishFile = new File(this.getClass().getResource("/spanish.txt").getPath());
         spanishRelatedFile = new File(this.getClass().getResource("/spanishRelated.txt").getPath());
 
@@ -30,7 +30,10 @@ class ProvisionSpanish {
                 line = iterator.next().trim();
                 if (line.isEmpty()) {
                     // finalize current hymn before iterating
+                    println "Hymn conversion done! : "
                     println hymn;
+                    dao.save(hymn);
+                    dao.addRelatedHymn(hymn.parentHymn,hymn.id);
 
                     hymnNumber++;
                     if (hymnNumber==501) break;
@@ -73,6 +76,9 @@ class ProvisionSpanish {
                     stanza.order=++stanzaOrderCounter;
 
                     stanza.text = line + "<br/>"
+                    if (hymn.firstChorusLine==null || hymn.firstChorusLine.isEmpty()) {
+                        hymn.firstChorusLine = line.toUpperCase();
+                    }
 
                 } else if(!line[0].isInteger() && !line[0].equals('(') && !line[0].equals('+')) {
                     throw new RuntimeException("Invalid start of stanza");
@@ -88,6 +94,9 @@ class ProvisionSpanish {
                     }
                     def stanzaCounterDigitCount = stanzaCounter.toString().length()
                     stanza.text = line.substring(stanzaCounterDigitCount).trim() + "<br/>"
+                    if (stanza.no.equals("1")) {
+                        hymn.firstStanzaLine = line.substring(stanzaCounterDigitCount).trim();
+                    }
 
 
                 }
