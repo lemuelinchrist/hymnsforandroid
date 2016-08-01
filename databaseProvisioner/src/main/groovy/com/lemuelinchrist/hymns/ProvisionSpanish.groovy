@@ -57,11 +57,11 @@ class ProvisionSpanish {
                     def related = relatedIterator.next().trim();
                     if (related.isEmpty()) {
                         hymn.parentHymn=null
-                    } else if (!related[0].equals("C")) {
+                    } else if (!related[0].equals("C") && !related[0].equals("N")) {
                         // english
                         hymn.parentHymn="E"+related
                     } else {
-                        // chinese
+                        // chinese and new songs
                         hymn.parentHymn = related;
                     }
 
