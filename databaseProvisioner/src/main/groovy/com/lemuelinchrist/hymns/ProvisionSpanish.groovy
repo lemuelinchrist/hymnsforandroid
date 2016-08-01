@@ -30,10 +30,12 @@ class ProvisionSpanish {
                 line = iterator.next().trim();
                 if (line.isEmpty()) {
                     // finalize current hymn before iterating
-                    println "Hymn conversion done! : "
-                    println hymn;
-                    dao.save(hymn);
-                    dao.addRelatedHymn(hymn.parentHymn,hymn.id);
+                    if (hymnNumber!=0) {
+                        println "Hymn conversion done! : "
+                        println hymn;
+                        dao.save(hymn);
+                        dao.addRelatedHymn(hymn.parentHymn, hymn.id);
+                    }
 
                     hymnNumber++;
                     if (hymnNumber==501) break;
