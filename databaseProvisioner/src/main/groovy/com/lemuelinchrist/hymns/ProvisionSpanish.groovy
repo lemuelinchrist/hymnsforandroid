@@ -101,6 +101,14 @@ class ProvisionSpanish {
                     }
 
 
+                } else if(line[0].equals('(') || line[0].equals('+')) {
+                    stanza=new StanzaEntity();
+                    stanza.parentHymn=hymn;
+                    hymn.stanzas.add(stanza);
+                    stanza.no="end-note";
+                    stanza.order=++stanzaOrderCounter;
+
+                    stanza.text = line + "<br/>"
                 }
 
             } else { // if line isn't empty
