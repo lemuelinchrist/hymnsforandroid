@@ -69,31 +69,23 @@ class ProvisionSpanish {
                 } else if(!line[0].isInteger() && !line[0].equals('(') && !line[0].equals('+')) {
                     throw new RuntimeException("Invalid start of stanza");
                 } else if(line[0].isInteger()) {
-                    // first finalize previous stanza if any
-                    if (stanzaCounter!=0) {
-                        stanza.text = stanzaBuilder.toString();
-                    }
-
 
                     stanza=new StanzaEntity();
                     stanza.parentHymn=hymn;
                     hymn.stanzas.add(stanza);
-                    stanzaBuilder=new StringBuilder();
                     stanza.no=++stanzaCounter;
                     stanza.order=++stanzaOrderCounter;
                     if (!line.contains(""+stanzaCounter)) {
                         throw new RuntimeException("wrong stanza number! "+ line)
                     }
                     def stanzaCounterDigitCount = stanzaCounter.toString().length()
-                    stanzaBuilder.append line.substring(stanzaCounter).trim();
-                    stanzaBuilder.append("<br/>")
+                    stanza.text = line.substring(stanzaCounterDigitCount).trim() + "<br/>"
 
 
                 }
 
             } else { // if line isn't empty
-                stanzaBuilder.append(line);
-                stanzaBuilder.append("<br/>")
+                stanza.text+=line+"<br/>"
             }
 
         }
