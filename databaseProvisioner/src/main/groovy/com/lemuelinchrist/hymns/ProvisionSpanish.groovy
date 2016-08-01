@@ -66,6 +66,14 @@ class ProvisionSpanish {
                     line = iterator.next().trim();
                     if (line.isEmpty()) throw new RuntimeException("blank line after chorus");
 
+                    stanza=new StanzaEntity();
+                    stanza.parentHymn=hymn;
+                    hymn.stanzas.add(stanza);
+                    stanza.no="chorus";
+                    stanza.order=++stanzaOrderCounter;
+
+                    stanza.text = line + "<br/>"
+
                 } else if(!line[0].isInteger() && !line[0].equals('(') && !line[0].equals('+')) {
                     throw new RuntimeException("Invalid start of stanza");
                 } else if(line[0].isInteger()) {
