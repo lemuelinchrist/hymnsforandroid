@@ -12,7 +12,7 @@ class ProvisionSpanish {
     static File spanishRelatedFile;
 
     public static void main(String[] args) throws Exception {
-        Dao dao = new Dao();
+//        Dao dao = new Dao();
         spanishFile = new File(this.getClass().getResource("/spanish.txt").getPath());
         spanishRelatedFile = new File(this.getClass().getResource("/spanishRelated.txt").getPath());
 
@@ -28,7 +28,7 @@ class ProvisionSpanish {
                 line = iterator.next().trim();
                 if (line.isEmpty()) {
                     // finalize current hymn before iterating
-                    println hymn;
+//                    println hymn;
 
                     hymnNumber++;
                     if (hymnNumber==501) break;
@@ -43,6 +43,7 @@ class ProvisionSpanish {
                     hymn.id='S'+hymnNumber
                     hymn.no=hymnNumber
                     hymn.hymnGroup='S'
+                    stanzaCounter=0;
 
                     def related = relatedIterator.next().trim();
                     if (related.isEmpty()) {
@@ -63,6 +64,13 @@ class ProvisionSpanish {
 
                 } else if(!line[0].isInteger() && !line[0].equals('(') && !line[0].equals('+')) {
                     throw new RuntimeException("Invalid start of stanza");
+                } else if(line[0].isInteger()) {
+                    stanza=new StanzaEntity();
+                    stanzaCounter++;
+                    if (!line.contains(""+stanzaCounter)) {
+                        println "wrong stanza number: " + line;
+                    }
+
                 }
 
             }
