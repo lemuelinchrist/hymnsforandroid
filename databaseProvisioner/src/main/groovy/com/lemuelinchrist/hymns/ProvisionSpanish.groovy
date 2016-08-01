@@ -20,15 +20,17 @@ class ProvisionSpanish {
         Iterator<String> relatedIterator = spanishRelatedFile.iterator();
         Integer hymnNumber = 0;
         Integer stanzaCounter = 0;
+        Integer stanzaOrderCounter=0;
         HymnsEntity hymn=null;
         StanzaEntity stanza=null;
+        StringBuilder stanzaBuilder=null;
         while (iterator.hasNext()) {
             String line = iterator.next().trim();
             if(line.isEmpty()) {
                 line = iterator.next().trim();
                 if (line.isEmpty()) {
                     // finalize current hymn before iterating
-//                    println hymn;
+                    println hymn;
 
                     hymnNumber++;
                     if (hymnNumber==501) break;
@@ -43,7 +45,9 @@ class ProvisionSpanish {
                     hymn.id='S'+hymnNumber
                     hymn.no=hymnNumber
                     hymn.hymnGroup='S'
+                    hymn.stanzas=new ArrayList<StanzaEntity>();
                     stanzaCounter=0;
+                    stanzaOrderCounter=0;
 
                     def related = relatedIterator.next().trim();
                     if (related.isEmpty()) {
@@ -65,14 +69,31 @@ class ProvisionSpanish {
                 } else if(!line[0].isInteger() && !line[0].equals('(') && !line[0].equals('+')) {
                     throw new RuntimeException("Invalid start of stanza");
                 } else if(line[0].isInteger()) {
-                    stanza=new StanzaEntity();
-                    stanzaCounter++;
-                    if (!line.contains(""+stanzaCounter)) {
-                        println "wrong stanza number: " + line;
+                    // first finalize previous stanza if any
+                    if (stanzaCounter!=0) {
+                        stanza.text = stanzaBuilder.toString();
                     }
+
+
+                    stanza=new StanzaEntity();
+                    stanza.parentHymn=hymn;
+                    hymn.stanzas.add(stanza);
+                    stanzaBuilder=new StringBuilder();
+                    stanza.no=++stanzaCounter;
+                    stanza.order=++stanzaOrderCounter;
+                    if (!line.contains(""+stanzaCounter)) {
+                        throw new RuntimeException("wrong stanza number! "+ line)
+                    }
+                    def stanzaCounterDigitCount = stanzaCounter.toString().length()
+                    stanzaBuilder.append line.substring(stanzaCounter).trim();
+                    stanzaBuilder.append("<br/>")
+
 
                 }
 
+            } else { // if line isn't empty
+                stanzaBuilder.append(line);
+                stanzaBuilder.append("<br/>")
             }
 
         }
