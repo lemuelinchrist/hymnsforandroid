@@ -26,8 +26,15 @@
             android:title="Sheet Music"/>
 
     <item
+            android:id="@+id/action_searchYoutube"
+            android:orderInCategory="106"
+            yourapp:showAsAction="never"
+            android:icon="@drawable/youtube"
+            android:title="Search YouTube"/>
+
+    <item
             android:id="@+id/action_fontsize"
-            android:orderInCategory="105"
+            android:orderInCategory="107"
             yourapp:showAsAction="never"
             android:icon="@drawable/fontsize_black"
             android:title="Font Size"/>

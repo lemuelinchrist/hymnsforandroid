@@ -201,6 +201,12 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         return true;
     }
 
+    private void checkHymnIsDisplayed() {
+        if (!lyricContainer.isHymnDisplayed())
+            showAlert(R.string.choose_hymn_first
+                    , R.string.no_hymn_selected);
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
 
         boolean ret = false;
@@ -222,9 +228,7 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
             ret = true;
 
         } else if (item.getItemId() == R.id.action_play) {
-            if (!lyricContainer.isHymnDisplayed())
-                showAlert(R.string.choose_hymn_first
-                        , R.string.no_hymn_selected);
+            checkHymnIsDisplayed();
             if (item.getTitle().equals(getString(R.string.playHymn))) {
                 lyricContainer.startPlaying();
             } else {
@@ -254,6 +258,9 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
             downloadSheetMusic();
             ret = true;
 
+        }else if(item.getItemId() == R.id.action_searchYoutube) {
+            checkHymnIsDisplayed();
+            lyricContainer.launchYouTubeApp();
         }else
 
         {
