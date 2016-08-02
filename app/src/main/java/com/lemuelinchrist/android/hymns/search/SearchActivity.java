@@ -194,7 +194,11 @@ public class SearchActivity extends AppCompatActivity implements ActionBar.TabLi
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus && !TabFragment.COLLECTION.get(mViewPager.getCurrentItem()).canBeSearched()) {
                     // switch to FirstLine Tab
-                    mViewPager.setCurrentItem(TabFragment.getInstance(FirstLineTabFragment.class).getSearchTabIndex());
+                    try {
+                        mViewPager.setCurrentItem(TabFragment.getInstance(FirstLineTabFragment.class).getSearchTabIndex());
+                    }catch(Exception e) {
+                        Log.d(this.getClass().getName(),"Exception caught!");
+                    }
 
                 }
             }
