@@ -29,7 +29,7 @@ import android.widget.Toast;
 import com.lemuelinchrist.android.hymns.HymnGroups;
 import com.lemuelinchrist.android.hymns.R;
 
-public class SearchActivity extends AppCompatActivity implements ActionBar.TabListener {
+public class SearchActivity extends AppCompatActivity  {
 
     public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
     public static final String ENTER_LYRIC = "Enter Search Text          ";
@@ -63,11 +63,7 @@ public class SearchActivity extends AppCompatActivity implements ActionBar.TabLi
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        // Specify that we will be displaying tabs in the action bar.
-//        actionBar.setNavigationMode(android.app.ActionBar.NAVIGATION_MODE_TABS);
-
         mSearchTabsPagerAdapter = new SearchTabsPagerAdapter(getSupportFragmentManager());
-
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(mSearchTabsPagerAdapter);
@@ -79,8 +75,6 @@ public class SearchActivity extends AppCompatActivity implements ActionBar.TabLi
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-
-//                actionBar.setSelectedNavigationItem(position);
 
                 Log.d(this.getClass().getName(), "Page position changed. new position is: " + position);
 
@@ -110,14 +104,6 @@ public class SearchActivity extends AppCompatActivity implements ActionBar.TabLi
             }
         });
 
-
-//        // For each of the sections in the app, add a tab to the action bar.
-//        for (int i = 0; i < mSearchTabsPagerAdapter.getCount(); i++) {
-//            actionBar.addTab(
-//                    actionBar.newTab()
-//                            .setText(mSearchTabsPagerAdapter.getPageTitle(i))
-//                            .setTabListener(this));
-//        }
 
         TabFragment.setSelectedHymnGroup(selectedHymnGroup);
 
@@ -279,21 +265,6 @@ public class SearchActivity extends AppCompatActivity implements ActionBar.TabLi
         TabFragment.COLLECTION.get(mViewPager.getCurrentItem()).cleanUp();
     }
 
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in the ViewPager.
-        mViewPager.setCurrentItem(tab.getPosition());
-    }
 
 
     /**
