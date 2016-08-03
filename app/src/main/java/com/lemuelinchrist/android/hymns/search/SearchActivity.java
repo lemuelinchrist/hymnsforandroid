@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,8 +13,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -38,6 +39,7 @@ public class SearchActivity extends AppCompatActivity implements ActionBar.TabLi
     private ViewPager mViewPager;
     private EditText searchBar;
     private MenuItem keyboardToggleButton;
+    private Toolbar tabBar;
 
 
     /**
@@ -47,6 +49,8 @@ public class SearchActivity extends AppCompatActivity implements ActionBar.TabLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
+        tabBar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(tabBar);
 
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
@@ -60,18 +64,23 @@ public class SearchActivity extends AppCompatActivity implements ActionBar.TabLi
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Specify that we will be displaying tabs in the action bar.
-        actionBar.setNavigationMode(android.app.ActionBar.NAVIGATION_MODE_TABS);
+//        actionBar.setNavigationMode(android.app.ActionBar.NAVIGATION_MODE_TABS);
 
         mSearchTabsPagerAdapter = new SearchTabsPagerAdapter(getSupportFragmentManager());
 
 
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(mSearchTabsPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
+
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
 
-                actionBar.setSelectedNavigationItem(position);
+//                actionBar.setSelectedNavigationItem(position);
 
                 Log.d(this.getClass().getName(), "Page position changed. new position is: " + position);
 
@@ -102,13 +111,13 @@ public class SearchActivity extends AppCompatActivity implements ActionBar.TabLi
         });
 
 
-        // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSearchTabsPagerAdapter.getCount(); i++) {
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSearchTabsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-        }
+//        // For each of the sections in the app, add a tab to the action bar.
+//        for (int i = 0; i < mSearchTabsPagerAdapter.getCount(); i++) {
+//            actionBar.addTab(
+//                    actionBar.newTab()
+//                            .setText(mSearchTabsPagerAdapter.getPageTitle(i))
+//                            .setTabListener(this));
+//        }
 
         TabFragment.setSelectedHymnGroup(selectedHymnGroup);
 
