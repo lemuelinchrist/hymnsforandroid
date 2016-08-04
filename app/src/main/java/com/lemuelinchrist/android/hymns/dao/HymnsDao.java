@@ -129,6 +129,28 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
+    public Cursor getAuthorsList(String filter) {
+        if (filter != null)
+            filter = filter.replace("'", "''");
+
+        String groupClause = "";
+        String likeClause = "";
+        if (filter != null && !filter.equals("")) {
+            likeClause = " WHERE author_composer LIKE " + "'%" + filter.trim() + "%' ";
+        }
+
+        String orderBy = "order by author_composer ";
+
+        String sql = "select * from(" +
+                "select author as author_composer, no, _id, hymn_group, first_stanza_line, first_chorus_line from hymns where author_composer NOT NULL and author_composer != '' " + groupClause + " \n" +
+                "union\n" +
+                "select composer as author_composer,  no, _id, hymn_group, first_stanza_line, first_chorus_line from hymns where author_composer NOT NULL and author_composer != '' " + groupClause +
+                ") " + likeClause + orderBy ;
+
+        Log.i(this.getClass().getName(), "Using SQL query: " + sql);
+        return database.rawQuery(sql, null);
+    }
+
     public Cursor getCategoryList(String hymnGroup, String filter) {
         if (filter != null)
             filter = filter.replace("'", "''");

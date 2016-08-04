@@ -239,6 +239,7 @@ public class SearchActivity extends AppCompatActivity  {
             new HymnNumberTabFragment();
             new FirstLineTabFragment();
             new CategoryTabFragment();
+            new AuthorTabFragment();
             new HistoryTabFragment();
 
         }
