@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.search;
 
+import android.text.InputType;
 import android.util.Log;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
@@ -52,6 +53,11 @@ public class HymnNumberTabFragment extends TabFragment {
 
     @Override
     public String getTabName() {
-        return "First Lines";
+        return "Hymn Number";
+    }
+
+    @Override
+    public int getInputType() {
+        return InputType.TYPE_CLASS_PHONE;
     }
 }
