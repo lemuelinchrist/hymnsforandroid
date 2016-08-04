@@ -14,6 +14,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
@@ -37,9 +38,8 @@ public class SearchActivity extends AppCompatActivity  {
     private ActionBar actionBar;
     private SearchTabsPagerAdapter mSearchTabsPagerAdapter;
     private ViewPager mViewPager;
-    private EditText searchBar;
-    private MenuItem keyboardToggleButton;
-    private Toolbar tabBar;
+    private SearchView searchBar;
+//    private MenuItem keyboardToggleButton;
 
 
     /**
@@ -49,7 +49,7 @@ public class SearchActivity extends AppCompatActivity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
-        tabBar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar tabBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tabBar);
 
         // get selected hymn group
@@ -98,7 +98,7 @@ public class SearchActivity extends AppCompatActivity  {
                 }
 
                 Log.d(this.getClass().getName(), "trying to clear text. Hope it wont throw error.");
-                searchBar.getText().clear();
+                searchBar.setQuery("", false);
 
 
             }
@@ -118,9 +118,6 @@ public class SearchActivity extends AppCompatActivity  {
                 finish();
             case R.id.searchHymns:
                 break;
-            case R.id.index_keyboard_toggle:
-                toggleInputType();
-                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -131,19 +128,19 @@ public class SearchActivity extends AppCompatActivity  {
         Log.d(this.getClass().getName(),"toggling input type");
         if(searchBar.getInputType()== InputType.TYPE_CLASS_PHONE){
             searchBar.setInputType(InputType.TYPE_CLASS_TEXT);
-            searchBar.setHint(ENTER_LYRIC);
-            keyboardToggleButton.setIcon(R.drawable.ic_dialpad_white);
+            searchBar.setQueryHint(ENTER_LYRIC);
+//            keyboardToggleButton.setIcon(R.drawable.ic_dialpad_white);
 
         } else {
             searchBar.setInputType(InputType.TYPE_CLASS_PHONE);
-            searchBar.setHint(ENTER_HYMN_NO);
-            keyboardToggleButton.setIcon(R.drawable.ic_keyboard_white);
+            searchBar.setQueryHint(ENTER_HYMN_NO);
+//            keyboardToggleButton.setIcon(R.drawable.ic_keyboard_white);
             //switch to FirstLine Tab because only this tab uses Phone keyboard type
             mViewPager.setCurrentItem(TabFragment.getInstance(FirstLineTabFragment.class).getSearchTabIndex());
 
         }
 
-        searchBar.getText().clear();
+        searchBar.setQuery("", false);
 //        showKeyboard();
     }
 
@@ -155,34 +152,42 @@ public class SearchActivity extends AppCompatActivity  {
 
         /** Get the action view of the menu item whose id is search */
         MenuItem item = menu.findItem(R.id.searchHymns);
-        View v = MenuItemCompat.getActionView(item);
 
-        keyboardToggleButton = menu.findItem(R.id.index_keyboard_toggle);
+//        keyboardToggleButton = menu.findItem(R.id.index_keyboard_toggle);
 
         /** Get the edit text from the action view */
-        searchBar = (EditText) v.findViewById(R.id.txt_search);
-        searchBar.setHint(ENTER_HYMN_NO);
+        searchBar = (SearchView) MenuItemCompat.getActionView(item);
+        searchBar.setQueryHint(ENTER_HYMN_NO);
 
 
         /** Setting an action listener */
-        searchBar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public boolean onQueryTextSubmit(String query) {
                 Log.d(this.getClass().getSimpleName(), "Submitted text in the index search");
 
                 if (searchBar.getInputType()==InputType.TYPE_CLASS_PHONE) {
                     Intent data = new Intent();
-                    data.setData(Uri.parse(selectedHymnGroup+v.getText().toString()));
+                    data.setData(Uri.parse(selectedHymnGroup+query));
                     setResult(RESULT_OK, data);
                     finish();
                 }
 
-                filterList( v.getText().toString());
+                filterList( query);
                 hideKeyboard();
                 return true;
             }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // dont do anything if text is empty, otherwise android will throw weird exceptions.
+                if (newText.isEmpty()) return false;
+
+                filterList(newText);
+                return true;
+            }
         });
+
 
         searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -199,28 +204,6 @@ public class SearchActivity extends AppCompatActivity  {
             }
         });
 
-
-        searchBar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence filter, int start, int before, int count) {
-                // dont do anything if text is empty, otherwise android will throw weird exceptions.
-                if (filter.toString().isEmpty()) return;
-
-                filterList(filter.toString());
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
 
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE| WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);

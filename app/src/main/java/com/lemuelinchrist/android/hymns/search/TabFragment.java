@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,6 +97,10 @@ public abstract class TabFragment extends Fragment {
         }
         Log.w(TabFragment.class.getName(), "Could not find specified class - " + tabFragmentClass);
         return null;
+    }
+
+    public int getInputType() {
+        return InputType.TYPE_CLASS_TEXT;
     }
 
 }
