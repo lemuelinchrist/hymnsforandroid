@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class HymnsDao {
 
-    public static final String ORDER_BY_HYMN_NUMBER="order by _id ";
+    public static final String ORDER_BY_HYMN_NUMBER="order by CAST(no as decimal) ";
 
     private final Context context;
 
