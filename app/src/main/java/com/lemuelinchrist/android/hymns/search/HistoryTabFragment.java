@@ -35,5 +35,9 @@ public class HistoryTabFragment extends TabFragment {
         return false;
     }
 
+    @Override
+    public int getIcon() {
+        return android.R.drawable.ic_menu_recent_history;
+    }
 
 }

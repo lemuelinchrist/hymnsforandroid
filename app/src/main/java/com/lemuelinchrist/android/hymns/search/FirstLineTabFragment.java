@@ -42,6 +42,11 @@ public class FirstLineTabFragment extends TabFragment {
 
     }
 
+    @Override
+    public int getIcon() {
+        return R.drawable.ic_keyboard_tab;
+    }
+
     public void cleanUp() {
         dao.close();
     }
@@ -58,6 +63,6 @@ public class FirstLineTabFragment extends TabFragment {
 
     @Override
     public String getTabName() {
-        return "First Lines";
+        return "  First Lines";
     }
 }

@@ -103,4 +103,6 @@ public abstract class TabFragment extends Fragment {
         return InputType.TYPE_CLASS_TEXT;
     }
 
+    public abstract int getIcon();
+
 }
