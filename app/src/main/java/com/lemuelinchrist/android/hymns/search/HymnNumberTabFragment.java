@@ -53,7 +53,7 @@ public class HymnNumberTabFragment extends TabFragment {
 
     @Override
     public String getTabName() {
-        return "  Hymn Number";
+        return "  Hymn Numbers";
     }
 
     @Override

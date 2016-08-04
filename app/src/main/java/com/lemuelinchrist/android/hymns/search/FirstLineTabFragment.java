@@ -29,16 +29,11 @@ public class FirstLineTabFragment extends TabFragment {
     }
 
     public void setSearchFilter(String filter) {
-        if (filter.matches("^[0-9].*")) {
-            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                    dao.getFilteredHymns(selectedHymnGroup, filter)
-                    , R.layout.recyclerview_hymn_list));
-        } else {
-            mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
-                    dao.getFilteredHymns(selectedHymnGroup, filter)
-                    , R.layout.recyclerview_hymn_list));
 
-        }
+        mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
+                dao.getFilteredHymns(selectedHymnGroup, filter)
+                , R.layout.recyclerview_hymn_list));
+
 
     }
 
