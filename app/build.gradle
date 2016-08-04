@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
 // you can choose to put either "guitarSvg" or "pianoSvg" depending on the sheet music you want to include
-def svgFolderName="guitarSvg"
+def svgFolderName = "pianoSvg"
 //def svgFolderName=""
-def hymnAppVersion="v3.2"
+def hymnAppVersion = "v3.2"
 
 allprojects {
     buildDir = "/Users/lemuelcantos/Desktop/build"
@@ -41,20 +41,24 @@ dependencies {
     compile 'com.android.support:design:23.0.0'
 }
 
-task copySvgFolder(type: Copy) {
-    def sourcePath = "" + project.projectDir + "/src/" + svgFolderName
+task cleanSvg << {
     def destinationPath = "" + project.projectDir + '/src/main/assets/svg'
     delete(destinationPath);
+}
 
-    if(!svgFolderName.isEmpty()) {
-        println "copying source svg files from: " + sourcePath
-        println "to: " + destinationPath
+task copySvgFolder(type: Copy, dependsOn: 'cleanSvg') {
+    def sourcePath = "" + project.projectDir + "/src/" + svgFolderName
+    def destinationPath = "" + project.projectDir + '/src/main/assets/svg'
 
-        from sourcePath
-        into destinationPath
-    }
+
+    println "copying source svg files from: " + sourcePath
+    println "to: " + destinationPath
+
+    from sourcePath
+    into destinationPath
+
 
 }
 
-clean.dependsOn copySvgFolder
-clean.mustRunAfter copySvgFolder
+build.dependsOn copySvgFolder
+build.mustRunAfter copySvgFolder
