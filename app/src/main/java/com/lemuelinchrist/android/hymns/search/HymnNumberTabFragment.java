@@ -1,14 +1,13 @@
 package com.lemuelinchrist.android.hymns.search;
 
 import android.util.Log;
-
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.searchadapters.FirstLineChorusAdapter;
 import com.lemuelinchrist.android.hymns.search.searchadapters.HymnNumberAdapter;
 
 
-public class FirstLineTabFragment extends TabFragment {
+public class HymnNumberTabFragment extends TabFragment {
     // TODO: Rename parameter arguments, choose names that match
 
     private HymnsDao dao;
@@ -22,23 +21,18 @@ public class FirstLineTabFragment extends TabFragment {
 
         Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
         if (selectedHymnGroup != null) {
-            mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
-                    dao.getAllHymnsOfSameLanguage(selectedHymnGroup), R.layout.recyclerview_hymn_list));
+            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
+                    dao.getIndexListOrderBy(selectedHymnGroup,null,HymnsDao.ORDER_BY_HYMN_NUMBER), R.layout.recyclerview_hymn_list));
         }
 
     }
 
     public void setSearchFilter(String filter) {
-        if (filter.matches("^[0-9].*")) {
-            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                    dao.getFilteredHymns(selectedHymnGroup, filter)
-                    , R.layout.recyclerview_hymn_list));
-        } else {
-            mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
-                    dao.getFilteredHymns(selectedHymnGroup, filter)
-                    , R.layout.recyclerview_hymn_list));
 
-        }
+        mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
+                dao.getFilteredHymns(selectedHymnGroup, filter)
+                , R.layout.recyclerview_hymn_list));
+
 
     }
 
@@ -53,7 +47,7 @@ public class FirstLineTabFragment extends TabFragment {
 
     @Override
     public int getSearchTabIndex() {
-        return 1;
+        return 0;
     }
 
     @Override

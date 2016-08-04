@@ -13,7 +13,7 @@ public class CategoryTabFragment extends TabFragment {
 
     @Override
     public int getSearchTabIndex() {
-        return 1;
+        return 2;
     }
 
     @Override
