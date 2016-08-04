@@ -9,23 +9,16 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.TextView;
-
-
 import android.widget.Toast;
 import com.lemuelinchrist.android.hymns.HymnGroups;
 import com.lemuelinchrist.android.hymns.R;
@@ -90,12 +83,7 @@ public class SearchActivity extends AppCompatActivity  {
 
                 }
 
-                // Anything other than FirstLineTabFragment does not need to use numeric keypad
-                if (!(TabFragment.COLLECTION.get(position) instanceof FirstLineTabFragment)) {
-                    if (searchBar.getInputType() == InputType.TYPE_CLASS_PHONE)
-                        toggleInputType();
-
-                }
+                searchBar.setInputType(TabFragment.COLLECTION.get(position).getInputType());
 
                 Log.d(this.getClass().getName(), "trying to clear text. Hope it wont throw error.");
                 searchBar.setQuery("", false);
@@ -124,26 +112,6 @@ public class SearchActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-    private void toggleInputType() {
-        Log.d(this.getClass().getName(),"toggling input type");
-        if(searchBar.getInputType()== InputType.TYPE_CLASS_PHONE){
-            searchBar.setInputType(InputType.TYPE_CLASS_TEXT);
-            searchBar.setQueryHint(ENTER_LYRIC);
-//            keyboardToggleButton.setIcon(R.drawable.ic_dialpad_white);
-
-        } else {
-            searchBar.setInputType(InputType.TYPE_CLASS_PHONE);
-            searchBar.setQueryHint(ENTER_HYMN_NO);
-//            keyboardToggleButton.setIcon(R.drawable.ic_keyboard_white);
-            //switch to FirstLine Tab because only this tab uses Phone keyboard type
-            mViewPager.setCurrentItem(TabFragment.getInstance(FirstLineTabFragment.class).getSearchTabIndex());
-
-        }
-
-        searchBar.setQuery("", false);
-//        showKeyboard();
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
@@ -157,8 +125,9 @@ public class SearchActivity extends AppCompatActivity  {
 
         /** Get the edit text from the action view */
         searchBar = (SearchView) MenuItemCompat.getActionView(item);
-        searchBar.setQueryHint(ENTER_HYMN_NO);
-
+        searchBar.setQueryHint(ENTER_LYRIC);
+        searchBar.setInputType(InputType.TYPE_CLASS_PHONE);
+        searchBar.onActionViewExpanded();
 
         /** Setting an action listener */
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
