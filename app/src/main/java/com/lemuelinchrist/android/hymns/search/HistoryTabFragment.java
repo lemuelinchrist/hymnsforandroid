@@ -10,7 +10,7 @@ public class HistoryTabFragment extends TabFragment {
 
     @Override
     public int getSearchTabIndex() {
-        return 2;
+        return 3;
     }
 
     @Override

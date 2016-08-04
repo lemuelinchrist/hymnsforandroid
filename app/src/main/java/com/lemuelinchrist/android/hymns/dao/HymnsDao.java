@@ -17,6 +17,8 @@ import java.util.ArrayList;
  */
 public class HymnsDao {
 
+    public static final String ORDER_BY_HYMN_NUMBER="order by _id ";
+
     private final Context context;
 
     public String getHymnNoFromCursor(Cursor cursor) {
@@ -97,6 +99,10 @@ public class HymnsDao {
     }
 
     private Cursor getIndexList(String hymnGroup, String filter) {
+        return getIndexListOrderBy(hymnGroup, filter,null);
+    }
+
+    public Cursor getIndexListOrderBy(String hymnGroup, String filter, String orderBy) {
         if (filter != null)
             filter = filter.replace("'", "''");
 
@@ -108,12 +114,16 @@ public class HymnsDao {
             groupClause = " and (hymn_group='" + hymnGroup + "') ";
         }
 
+        if(orderBy==null) {
+            orderBy = "order by lower(trim(trim(stanza_chorus,'\"'),\"'\")) COLLATE LOCALIZED ASC ";
+        }
+
 
         String sql = "select * from(" +
                 "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL " + groupClause + " \n" +
                 "union\n" +
                 "select first_chorus_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL " + groupClause +
-                ") " + likeClause + "order by lower(trim(trim(stanza_chorus,'\"'),\"'\")) COLLATE LOCALIZED ASC ";
+                ") " + likeClause + orderBy ;
 
         Log.i(this.getClass().getName(), "Using SQL query: " + sql);
         return database.rawQuery(sql, null);

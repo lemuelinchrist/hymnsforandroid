@@ -279,6 +279,7 @@ public class SearchActivity extends AppCompatActivity  {
 
             // Instantiate all tabs. note that there's no need to keep the references to these instances because
             // TabFragment class will automatically store them in its own map (COLLECTIONS variable)
+            new HymnNumberTabFragment();
             new FirstLineTabFragment();
             new CategoryTabFragment();
             new HistoryTabFragment();
