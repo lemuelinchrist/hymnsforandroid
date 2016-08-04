@@ -63,6 +63,11 @@ public class SearchActivity extends AppCompatActivity  {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+        // Set Icons
+        for(TabFragment tab:TabFragment.COLLECTION.values()) {
+            tabLayout.getTabAt(tab.getSearchTabIndex()).setIcon(tab.getIcon());
+
+        }
 
 
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {

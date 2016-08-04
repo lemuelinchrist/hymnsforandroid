@@ -53,11 +53,17 @@ public class HymnNumberTabFragment extends TabFragment {
 
     @Override
     public String getTabName() {
-        return "Hymn Number";
+        return "  Hymn Number";
     }
 
     @Override
     public int getInputType() {
         return InputType.TYPE_CLASS_PHONE;
+    }
+
+    @Override
+    public int getIcon() {
+        return R.drawable.ic_dialpad_tab;
+//        return android.R.drawable.ic_dialog_dialer;
     }
 }

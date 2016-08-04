@@ -48,4 +48,9 @@ public class CategoryTabFragment extends TabFragment {
 //                dao.getCategoryList(selectedHymnGroup, filter), R.layout.recyclerview_hymn_list));
         ((HymnCursorAdapter)mRecyclerView.getAdapter()).setNewCursor(dao.getCategoryList(selectedHymnGroup, filter));
     }
+
+    @Override
+    public int getIcon() {
+        return android.R.drawable.ic_menu_directions;
+    }
 }
