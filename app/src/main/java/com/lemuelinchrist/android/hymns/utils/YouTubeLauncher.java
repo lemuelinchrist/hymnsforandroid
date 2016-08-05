@@ -32,7 +32,7 @@ public class YouTubeLauncher {
 
         Log.i(this.getClass().getName(),"Searching YouTube for: " + search.toString());
 //        passDirectlyToYouTube(search);
-        String url ="https://www.youtube.com/results?search_query="+getOnlyStrings(search.toString()).replaceAll(" ","+");
+        String url ="https://www.youtube.com/results?search_query="+getOnlyStrings(search.toString()).trim().replaceAll(" ","+");
         Log.i(this.getClass().getName(),"Converting search to YouTube URL: " + url);
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
