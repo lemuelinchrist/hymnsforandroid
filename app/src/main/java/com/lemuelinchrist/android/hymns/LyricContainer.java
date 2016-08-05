@@ -1,7 +1,6 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.Html;
 import android.util.Log;
@@ -16,6 +15,7 @@ import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 import com.lemuelinchrist.android.hymns.utils.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.utils.SheetMusic;
+import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
 
 import java.util.List;
 
@@ -337,21 +337,10 @@ public class LyricContainer extends LinearLayout {
     }
 
     public void launchYouTubeApp() {
-        StringBuilder search=new StringBuilder();
-        if(hymn.getFirstStanzaLine()!=null && !hymn.getFirstStanzaLine().isEmpty()) {
-            search.append(hymn.getFirstStanzaLine());
-            search.append(" ");
-        }
-        if(hymn.getFirstChorusLine()!=null && !hymn.getFirstChorusLine().isEmpty()) {
-            search.append(hymn.getFirstChorusLine());
-        }
-
-        Log.i(this.getClass().getName(),"Searching YouTube for: " + search.toString());
-        Intent intent = new Intent(Intent.ACTION_SEARCH);
-        intent.setPackage("com.google.android.youtube");
-        intent.putExtra("query",search.toString());
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        YouTubeLauncher launcher=new YouTubeLauncher(context);
+        launcher.launch(hymn);
 
     }
+
+
 }
