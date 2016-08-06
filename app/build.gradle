@@ -47,15 +47,17 @@ task cleanSvg << {
 }
 
 task copySvgFolder(type: Copy, dependsOn: 'cleanSvg') {
-    def sourcePath = "" + project.projectDir + "/src/" + svgFolderName
-    def destinationPath = "" + project.projectDir + '/src/main/assets/svg'
+    if(!svgFolderName.isEmpty()) {
+        def sourcePath = "" + project.projectDir + "/src/" + svgFolderName
+        def destinationPath = "" + project.projectDir + '/src/main/assets/svg'
 
 
-    println "copying source svg files from: " + sourcePath
-    println "to: " + destinationPath
+        println "copying source svg files from: " + sourcePath
+        println "to: " + destinationPath
 
-    from sourcePath
-    into destinationPath
+        from sourcePath
+        into destinationPath
+    }
 
 
 }
