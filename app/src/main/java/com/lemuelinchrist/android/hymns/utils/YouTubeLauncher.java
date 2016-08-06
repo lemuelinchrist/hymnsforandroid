@@ -49,7 +49,8 @@ public class YouTubeLauncher {
     }
 
     private static String getOnlyStrings(String s) {
-        Pattern pattern = Pattern.compile("[^a-z A-Z]");
+        // letters only: [^a-z A-Z]
+        Pattern pattern = Pattern.compile("[\\+\\.;!\"\':,]");
         Matcher matcher = pattern.matcher(s);
         String number = matcher.replaceAll("");
         return number;
