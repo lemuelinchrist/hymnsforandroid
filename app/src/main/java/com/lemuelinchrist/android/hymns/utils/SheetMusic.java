@@ -1,5 +1,7 @@
 package com.lemuelinchrist.android.hymns.utils;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +10,8 @@ import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -55,6 +59,7 @@ public class SheetMusic {
 
                 } if(this.folderName==null) {
                     getSheetMusicOnline(sheetMusicLink);
+                    return;
                 }
                 String fileName;
 
@@ -110,6 +115,35 @@ public class SheetMusic {
     void generateGuitarSheet(String fileName) {
         try {
 
+            // Checking permissions for version Marshmallow or later
+            if (ContextCompat.checkSelfPermission(context,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                // Should we show an explanation?
+                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                    // Show an expanation to the user *asynchronously* -- don't block
+                    // this thread waiting for the user's response! After the user
+                    // sees the explanation, try again to request the permission.
+
+                    throw new NoPermissionException();
+
+                } else {
+
+                    // No explanation needed, we can request the permission.
+
+                    ActivityCompat.requestPermissions((Activity)context,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            1);
+
+                }
+            }
+
+
+
+
             AssetManager assetManager = context.getAssets();
             File file;
             InputStream in;
@@ -158,10 +192,15 @@ public class SheetMusic {
             context.startActivity(intent);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(context, "Oops! Chrome or Firefox not available! To display music sheet, please install Chrome or Firefox.", Toast.LENGTH_LONG).show();
+        } catch (NoPermissionException e) {
+            Toast.makeText(context, "Oops! You didn't grant me permission to write to storage.", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
             Log.e(SheetMusic.class.getSimpleName(), e.getMessage());
         }
 
+    }
+
+    private class NoPermissionException extends Throwable {
     }
 }

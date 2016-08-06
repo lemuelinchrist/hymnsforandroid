@@ -337,8 +337,10 @@ public class LyricContainer extends LinearLayout {
     }
 
     public void launchYouTubeApp() {
-        YouTubeLauncher launcher=new YouTubeLauncher(context);
-        launcher.launch(hymn);
+        if(isHymnDisplayed()) {
+            YouTubeLauncher launcher = new YouTubeLauncher(context);
+            launcher.launch(hymn);
+        }
 
     }
 
