@@ -30,15 +30,22 @@ class ProvisionGerman {
                     line = iterator.next().trim();
                     def hymnNumberText = iterator.next().trim();
                     println hymnNumberText + " " + line
+                    println "*****************************************************************************"
+
+                } else {
+                    println line[0,line.indexOf(" ")]
+
+
 
                 }
 
-                // get next line thats not empty
+
 
 
 
 
             } else { // if line isn't empty
+
             }
 
         }
