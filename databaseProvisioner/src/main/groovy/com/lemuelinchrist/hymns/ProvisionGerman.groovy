@@ -12,7 +12,7 @@ class ProvisionGerman {
     static File spanishRelatedFile;
 
     public static void main(String[] args) throws Exception {
-        Dao dao = new Dao();
+//        Dao dao = new Dao();
         germanFile = new File(this.getClass().getResource("/german/German_hymns.txt").getPath());
 
         Iterator<String> iterator = germanFile.iterator();
