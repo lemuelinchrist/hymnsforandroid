@@ -28,13 +28,25 @@ class ProvisionGerman {
                 line = iterator.next().trim();
                 if(line.isEmpty()) {
                     line = iterator.next().trim();
-                    def hymnNumberText = iterator.next().trim();
+                    String hymnNumberText = iterator.next().trim();
+
+                    println "*****************************************************************************"
                     println hymnNumberText + " " + line
                     println "*****************************************************************************"
 
-                } else {
-                    println line[0,line.indexOf(" ")]
+                    stanzaCounter = 0;
 
+                } else {
+
+
+                    def firstWord =  line.substring(0,line.indexOf(" "))
+                    if (firstWord.isNumber()) {
+                        stanzaCounter++;
+                        println(firstWord)
+                        if (firstWord.toInteger() != stanzaCounter) throw new Exception("stanza counter mismatch! firstWord: " + firstWord + " , stanzaCounter: " + stanzaCounter)
+                    } else {
+
+                    }
 
 
                 }
