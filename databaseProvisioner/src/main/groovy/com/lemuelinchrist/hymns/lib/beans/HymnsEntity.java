@@ -310,6 +310,14 @@ public class HymnsEntity {
         return relatedSet;
     }
 
+    public int getNumberOfChorus() {
+        int numberOfChorus=0;
+        for(StanzaEntity stanza: this.stanzas) {
+            if(stanza.getNo().toLowerCase().trim().equals("chorus")) numberOfChorus++;
+        }
+        return numberOfChorus;
+    }
+
     public void setRelated(Set<String> related) {
         StringBuilder relatedBuilder = new StringBuilder();
         if (related==null) {
