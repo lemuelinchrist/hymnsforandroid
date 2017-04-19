@@ -35,8 +35,8 @@ class ProvisionGerman {
                     // *************** finalizing Hymn ************************************
                     if(hymn!=null) {
                         println hymn;
-                        dao.save(hymn);
-                        dao.addRelatedHymn(hymn.parentHymn, hymn.id);
+//                        dao.save(hymn);
+//                        dao.addRelatedHymn(hymn.parentHymn, hymn.id);
                     }
 
                     try {
@@ -80,8 +80,15 @@ class ProvisionGerman {
                     // trying to check whether the new section is a chorus, or stanza, or something else
                     def firstWord =  line.substring(0,line.indexOf(" "))
 
+                    if (firstWord.equals("----")) {
+                        stanza=new StanzaEntity();
+                        stanza.parentHymn=hymn
+                        stanza.order=stanzaOrderCounter;
+                        hymn.stanzas+=stanza;
+                        stanza.no="end-note";
+                        stanza.text=line.substring(4).trim()+"<br/>";
 
-                    if (firstWord.isNumber()) {
+                    } else if (firstWord.isNumber()) {
                         stanzaCounter++;
                         def lyric = line.substring(line.indexOf(" "), line.size()).trim();
                         if (firstWord.toInteger() != stanzaCounter) throw new Exception("stanza counter mismatch! firstWord: " + firstWord + " , stanzaCounter: " + stanzaCounter);
@@ -103,6 +110,11 @@ class ProvisionGerman {
                         stanza.order=stanzaOrderCounter;
                         hymn.stanzas+=stanza;
                         stanza.no="chorus";
+
+                        if (line.trim()[0].equals("(")) {
+                            stanza.note=line.trim();
+                            line=iterator.next();
+                        }
                         stanza.text=line.trim()+"<br/>";
                         if (hymn.firstChorusLine==null) {
                             hymn.firstChorusLine=line.trim().toUpperCase();

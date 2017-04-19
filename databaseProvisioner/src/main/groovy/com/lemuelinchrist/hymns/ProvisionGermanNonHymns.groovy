@@ -78,7 +78,15 @@ class ProvisionGermanNonHymns {
                     def firstWord =  line.substring(0,line.indexOf(" "))
 
 
-                    if (firstWord.isNumber()) {
+                    if (firstWord.equals("----")) {
+                        stanza=new StanzaEntity();
+                        stanza.parentHymn=hymn
+                        stanza.order=stanzaOrderCounter;
+                        hymn.stanzas+=stanza;
+                        stanza.no="end-note";
+                        stanza.text=line.substring(4).trim()+"<br/>";
+
+                    } else if (firstWord.isNumber()) {
                         stanzaCounter++;
                         def lyric = line.substring(line.indexOf(" "), line.size()).trim();
                         if (firstWord.toInteger() != stanzaCounter) throw new Exception("stanza counter mismatch! firstWord: " + firstWord + " , stanzaCounter: " + stanzaCounter);
