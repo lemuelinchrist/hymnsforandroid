@@ -31,7 +31,7 @@ public class HymnNumberTabFragment extends TabFragment {
     public void setSearchFilter(String filter) {
 
         mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                dao.getFilteredHymns(selectedHymnGroup, filter)
+                dao.getHymnNumberList(selectedHymnGroup, filter)
                 , R.layout.recyclerview_hymn_list));
 
 
