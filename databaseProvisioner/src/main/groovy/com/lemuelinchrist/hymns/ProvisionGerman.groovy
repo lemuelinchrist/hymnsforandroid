@@ -22,12 +22,23 @@ class ProvisionGerman {
         HymnsEntity hymn=null;
         StanzaEntity stanza=null;
         StringBuilder stanzaBuilder=null;
+        ArrayList<String> hymnsWithMoreThanOneChorus= [];
         while (iterator.hasNext()) {
             String line = iterator.next().trim();
             if(line.isEmpty()) {
                 line = iterator.next().trim();
                 if(line.isEmpty()) {
                     // hymn just ended. finalize hymn and prepare a new one
+
+                    // *************** finalizing Hymn ************************************
+                    if(hymn!=null) {
+                        println hymn;
+                    }
+
+
+
+
+
                     try {
                         line = iterator.next().trim();
                     } catch (NoSuchElementException e) {
@@ -40,17 +51,27 @@ class ProvisionGerman {
                     println hymnNumberText + " " + line;
                     println "No of Chorus: " + englishHymn.getNumberOfChorus();
                     println "*****************************************************************************"
+
                     hymn=new HymnsEntity();
                     hymn.id='G'+hymnNumberText
                     hymn.no=hymnNumberText
                     hymn.hymnGroup='G'
                     hymn.stanzas=new ArrayList<StanzaEntity>();
+
+                    String[] subjects = line.split("–")
+                    hymn.mainCategory=subjects[0].trim();
+                    if (subjects.size()>1) {
+                        hymn.subCategory = subjects[1];
+                    }
                     stanzaCounter=0;
                     stanzaOrderCounter=0;
+                    if (englishHymn.getNumberOfChorus() > 1 ) {
+                        hymnsWithMoreThanOneChorus+=hymnNumberText;
+                    }
 
                 } else {
 
-
+                    // trying to check whether the new section is a chorus, or stanza, or something else
                     def firstWord =  line.substring(0,line.indexOf(" "))
                     if (firstWord.isNumber()) {
                         stanzaCounter++;
@@ -59,8 +80,6 @@ class ProvisionGerman {
                     } else {
 
                     }
-
-
                 }
 
 
@@ -72,7 +91,8 @@ class ProvisionGerman {
 
             }
 
-        }
+        } // end of main loop
+        println hymnsWithMoreThanOneChorus
 
     }
 
