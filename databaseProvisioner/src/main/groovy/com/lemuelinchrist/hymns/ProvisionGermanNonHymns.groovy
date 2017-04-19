@@ -36,8 +36,8 @@ class ProvisionGermanNonHymns {
                     // *************** finalizing Hymn ************************************
                     if(hymn!=null) {
                         println hymn;
-//                        dao.save(hymn);
-//                        dao.addRelatedHymn(hymn.parentHymn, hymn.id);
+                        dao.save(hymn);
+                        dao.addRelatedHymn(hymn.parentHymn, hymn.id);
                     }
 
                     try {
