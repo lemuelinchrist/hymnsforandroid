@@ -23,6 +23,8 @@ class ProvisionGerman {
         StanzaEntity stanza=null;
         StringBuilder stanzaBuilder=null;
         ArrayList<String> hymnsWithMoreThanOneChorus= [];
+        HymnsEntity englishHymn;
+        boolean skipBlock=false;
         while (iterator.hasNext()) {
             String line = iterator.next().trim();
             if(line.isEmpty()) {
@@ -35,10 +37,6 @@ class ProvisionGerman {
                         println hymn;
                     }
 
-
-
-
-
                     try {
                         line = iterator.next().trim();
                     } catch (NoSuchElementException e) {
@@ -46,13 +44,14 @@ class ProvisionGerman {
                     }
                     String hymnNumberText = iterator.next().trim().replace("*","").replace("+","");
 
-                    HymnsEntity englishHymn = dao.find("E"+hymnNumberText);
+                    englishHymn = dao.find("E"+hymnNumberText);
                     println "*****************************************************************************"
                     println hymnNumberText + " " + line;
                     println "No of Chorus: " + englishHymn.getNumberOfChorus();
                     println "*****************************************************************************"
 
                     hymn=new HymnsEntity();
+                    stanza=null;
                     hymn.id='G'+hymnNumberText
                     hymn.no=hymnNumberText
                     hymn.hymnGroup='G'
@@ -71,23 +70,51 @@ class ProvisionGerman {
 
                 } else {
 
+
+                    stanzaOrderCounter++;
+                    stanzaBuilder=new StringBuilder();
+                    skipBlock=false;
                     // trying to check whether the new section is a chorus, or stanza, or something else
                     def firstWord =  line.substring(0,line.indexOf(" "))
+
+
                     if (firstWord.isNumber()) {
                         stanzaCounter++;
-                        println(firstWord)
-                        if (firstWord.toInteger() != stanzaCounter) throw new Exception("stanza counter mismatch! firstWord: " + firstWord + " , stanzaCounter: " + stanzaCounter)
-                    } else {
+                        def lyric = line.substring(line.indexOf(" "), line.size()).trim();
+                        if (firstWord.toInteger() != stanzaCounter) throw new Exception("stanza counter mismatch! firstWord: " + firstWord + " , stanzaCounter: " + stanzaCounter);
 
+                        stanza=new StanzaEntity();
+                        stanza.parentHymn=hymn
+                        stanza.order=stanzaOrderCounter;
+                        stanza.no=firstWord;
+                        hymn.stanzas+=stanza;
+                        stanza.text=lyric + "<br/>";
+                        if (stanzaCounter==1) {
+                            hymn.firstStanzaLine=lyric;
+
+                        }
+
+                    } else if ( englishHymn.getNumberOfChorus() > 1 || hymn.firstChorusLine==null ){
+                        stanza=new StanzaEntity();
+                        stanza.parentHymn=hymn
+                        stanza.order=stanzaOrderCounter;
+                        hymn.stanzas+=stanza;
+                        stanza.no="chorus";
+                        stanza.text=line.trim()+"<br/>";
+                        if (hymn.firstChorusLine==null) {
+                            hymn.firstChorusLine=stanza.text;
+                        }
+
+
+                    } else {
+                        skipBlock=true;
                     }
                 }
 
+            } else if (!skipBlock) { // if line isn't empty
 
-
-
-
-
-            } else { // if line isn't empty
+                if (stanza == null) continue;
+                stanza.text+= line.trim() + "<br/>"
 
             }
 
