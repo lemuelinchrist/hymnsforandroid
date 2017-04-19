@@ -105,7 +105,7 @@ class ProvisionGerman {
                         stanza.no="chorus";
                         stanza.text=line.trim()+"<br/>";
                         if (hymn.firstChorusLine==null) {
-                            hymn.firstChorusLine=stanza.text;
+                            hymn.firstChorusLine=line.trim().toUpperCase();
                         }
 
 
