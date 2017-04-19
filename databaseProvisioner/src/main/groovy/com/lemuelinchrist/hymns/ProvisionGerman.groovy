@@ -35,6 +35,8 @@ class ProvisionGerman {
                     // *************** finalizing Hymn ************************************
                     if(hymn!=null) {
                         println hymn;
+                        dao.save(hymn);
+                        dao.addRelatedHymn(hymn.parentHymn, hymn.id);
                     }
 
                     try {
@@ -56,6 +58,7 @@ class ProvisionGerman {
                     hymn.no=hymnNumberText
                     hymn.hymnGroup='G'
                     hymn.stanzas=new ArrayList<StanzaEntity>();
+                    hymn.parentHymn="E"+hymnNumberText;
 
                     String[] subjects = line.split("–")
                     hymn.mainCategory=subjects[0].trim();
