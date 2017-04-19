@@ -129,6 +129,25 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
+    public Cursor getHymnNumberList(String hymnGroup, String filter) {
+
+        String groupClause = "";
+        String likeClause = "";
+        if (filter != null && !filter.equals("")) {
+            likeClause = " AND NO ='"+ filter.trim() +"'";
+        } else {
+            groupClause = " and (hymn_group='" + hymnGroup + "') ";
+        }
+
+        String sql =
+                "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL "
+                        + groupClause + " \n"
+                        + likeClause  ;
+
+        Log.i(this.getClass().getName(), "Using SQL query: " + sql);
+        return database.rawQuery(sql, null);
+    }
+
     public Cursor getAuthorsList(String filter) {
         if (filter != null)
             filter = filter.replace("'", "''");
