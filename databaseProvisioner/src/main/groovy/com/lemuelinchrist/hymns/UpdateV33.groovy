@@ -40,9 +40,14 @@ class UpdateV33 {
 
             }
 
-
             dao.save(hymn);
         }
+
+        //E268
+        HymnsEntity hymn = dao.find("E268")
+        hymn.firstStanzaLine="How I praise Thee, precious Savior,"
+        hymn.stanzas[0].text="How I praise Thee, precious Savior,<br/>That Thy love laid hold of me;<br/>Thou hast saved and cleansed and filled me,<br/>That I might Thy channel be.<br/>"
+        dao.save(hymn)
     }
 
     public static void provisionGerman() {
