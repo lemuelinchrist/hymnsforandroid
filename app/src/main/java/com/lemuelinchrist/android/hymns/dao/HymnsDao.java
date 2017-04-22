@@ -142,7 +142,11 @@ public class HymnsDao {
         String sql =
                 "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL "
                         + groupClause + " \n"
-                        + likeClause  ;
+                        + likeClause
+                        + " ORDER BY " +
+                        "CASE" +
+                        "   WHEN hymn_group = '"+hymnGroup.toUpperCase().trim() + "' THEN 1 ELSE hymn_group " +
+                        "END";
 
         Log.i(this.getClass().getName(), "Using SQL query: " + sql);
         return database.rawQuery(sql, null);
