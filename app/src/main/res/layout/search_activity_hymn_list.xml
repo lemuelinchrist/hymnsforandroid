@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:recyclerviewfastscroller="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -9,6 +10,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/indexView"
-            android:scrollbars="vertical"
             />
-</LinearLayout>
+    <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
+            android:id="@+id/fast_scroller"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+
+            android:layout_alignParentEnd="true"
+            android:paddingRight="@dimen/margin_small"
+            android:paddingEnd="@dimen/margin_small"
+
+            recyclerviewfastscroller:rfs_barColor="#d2d2d2"
+            recyclerviewfastscroller:rfs_handleColor="#d2d2d2"
+            recyclerviewfastscroller:rfs_handleBackground="@drawable/fast_scroller_handle_rounded"
+
+
+    />
+</RelativeLayout>

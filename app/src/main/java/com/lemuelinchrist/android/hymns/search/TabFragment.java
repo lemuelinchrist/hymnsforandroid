@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import com.lemuelinchrist.android.hymns.R;
+import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +48,12 @@ public abstract class TabFragment extends Fragment {
         this.container=container;
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.indexView);
+
+        VerticalRecyclerViewFastScroller fastScroller = (VerticalRecyclerViewFastScroller) rootView.findViewById(R.id.fast_scroller);
+        fastScroller.setRecyclerView(mRecyclerView);
+        mRecyclerView.addOnScrollListener(fastScroller.getOnScrollListener());
+
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 

@@ -12,8 +12,8 @@ class UpdateV33 {
 
     public static void main(String[] args) {
         fixMissingStanzas()
-//        provisionGerman()
-//        provisionGermanNonHymns()
+        provisionGerman()
+        provisionGermanNonHymns()
 
     }
 
