@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                        xmlns:app="http://schemas.android.com/apk/res-auto"
                                         android:id="@+id/drawer_layout"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent">
+
 
     <LinearLayout
             android:id="@+id/content_frame"
@@ -13,57 +15,14 @@
             android:minHeight="20dp"
             android:gravity="center">
 
-
-        <ScrollView
-                android:id="@+id/jellybeanContentScrollView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:visibility="gone"
-                >
-
-            <com.lemuelinchrist.android.hymns.LyricContainer
-                    android:id="@+id/lyric_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                >
-                <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
-                <!--android:descendantFocusability="blocksDescendants"-->
-
-                <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/lyricHeader"
-                        android:background="#e6e6e6"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:minHeight="30dp"
-                        android:text="@string/enterHymnNo"
-                        android:textColor="#4e4e4e"/>
-
-                <TextView
-                        android:id="@+id/jellybeanLyrics"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:textColor="#4e4e4e"
-                        android:textIsSelectable="true"/>
-
-            </com.lemuelinchrist.android.hymns.LyricContainer>
-        </ScrollView>
-
         <LinearLayout
                 android:id="@+id/instructionLayout"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingBottom="30dp">
+                android:paddingBottom="30dp"
+                >
 
             <TextView
                     android:layout_width="wrap_content"
@@ -96,7 +55,6 @@
                         android:textColor="#787878"/>
 
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -132,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView3"
                         android:src="@drawable/fontsize_black"
-                        />
+                />
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -169,6 +127,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/hymn_fragment_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    />
 
     <ListView
             android:id="@+id/left_drawer"

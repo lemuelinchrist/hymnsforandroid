@@ -9,23 +9,19 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v7.app.ActionBar;
-import android.widget.ScrollView;
 
 
 //import com.actionbarsherlock.widget.SearchView;
@@ -53,6 +49,9 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
 
     private ActionBar actionBar;
     private MenuItem playMenuItem;
+    private ViewPager mPager;
+    private LyricContainerPagerAdapter mPagerAdapter;
+    private HymnsActivity hymnActivity;
 
 
     @Override
@@ -61,9 +60,13 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         Log.d(this.getClass().getName(), "start app");
         setContentView(R.layout.main_hymns_activity);
 
-        lyricContainer = (LyricContainer) findViewById(R.id.lyric_container);
-        lyricContainer.setLyricChangeListener(this);
-        lyricContainer.setMusicPlayerListener(this);
+        hymnActivity=this;
+
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPager = (ViewPager) findViewById(R.id.hymn_fragment_viewpager);
+        mPagerAdapter = new LyricContainerPagerAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
+
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -98,20 +101,6 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
-        ScrollView scrollView = (ScrollView)findViewById(R.id.jellybeanContentScrollView);
-        scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
-        scrollView.setFocusable(true);
-        scrollView.setFocusableInTouchMode(true);
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                v.requestFocusFromTouch();
-                return false;
-            }
-        });
-
 
 
     }
@@ -314,16 +303,9 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         if (requestCode == INDEX_REQUEST) {
             if (resultCode == RESULT_OK) {
 
-                //split hymn group from hymn number
                 String rawData = data.getDataString().trim();
-                if (Character.isLetter(rawData.charAt(1))) {
-                    selectedHymnGroup = rawData.substring(0, 2);
-                    selectedHymnNumber = rawData.substring(2);
-                } else {
-                    selectedHymnGroup = rawData.substring(0, 1);
-                    selectedHymnNumber = rawData.substring(1);
-                }
-
+                selectedHymnGroup = LyricContainer.getHymnGroupFromID(rawData);
+                selectedHymnNumber = LyricContainer.getHymnNoFromID(rawData);
 
                 Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
                 Log.i(this.getClass().getName(), "selected hymn group: " + selectedHymnGroup);
@@ -351,7 +333,7 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         if (hymn != null) {
             //hide instructions
             if (areInstructionsHidden == false) {
-                findViewById(R.id.jellybeanContentScrollView).setVisibility(View.VISIBLE);
+                mPager.setVisibility(View.VISIBLE);
                 findViewById(R.id.instructionLayout).setVisibility(View.GONE);
                 areInstructionsHidden = true;
             }
@@ -364,7 +346,7 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         } else {
             // show instructions
             if (areInstructionsHidden == true) {
-                findViewById(R.id.jellybeanContentScrollView).setVisibility(View.GONE);
+                mPager.setVisibility(View.GONE);
                 findViewById(R.id.instructionLayout).setVisibility(View.VISIBLE);
                 areInstructionsHidden = false;
             }
@@ -372,8 +354,6 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
             actionBar.setTitle(HymnGroups.valueOf(selectedHymnGroup).getSimpleName());
         }
 
-        // scroll back up to the top.
-//        findViewById(R.id.jellybeanContentScrollView).scrollTo(0, 0);
 
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toLowerCase(), "drawable", getPackageName()));
         actionBar.setBackgroundDrawable(new ColorDrawable(HymnGroups.valueOf(selectedHymnGroup).getRgbColor()));
@@ -413,4 +393,26 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
     }
 
 
+    private class LyricContainerPagerAdapter extends FragmentStatePagerAdapter {
+        public LyricContainerPagerAdapter(FragmentManager fm) {
+            super(fm);
+
+            lyricContainer=new LyricContainer();
+            lyricContainer.setLyricChangeListener(hymnActivity);
+            lyricContainer.setMusicPlayerListener(hymnActivity);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return lyricContainer;
+        }
+
+        @Override
+        public int getCount() {
+            return 1;
+        }
+    }
+
+
 }
+

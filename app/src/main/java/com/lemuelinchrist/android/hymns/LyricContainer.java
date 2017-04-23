@@ -2,10 +2,16 @@ package com.lemuelinchrist.android.hymns;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
-import android.widget.LinearLayout;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
@@ -24,11 +30,11 @@ import java.util.List;
  * <p/>
  * This Custom view takes care of displaying lyrings and playing songs of that lyric.
  */
-public class LyricContainer extends LinearLayout {
+public class LyricContainer extends Fragment {
     private TextView lyricHeader;
     private Context context;
     private Hymn hymn;
-    private HymnsDao hymnsDao;
+    private static HymnsDao hymnsDao=null;
     private TextView lyricsView;
     private float fontSize;
     private SharedPreferences sharedPreferences;
@@ -39,26 +45,37 @@ public class LyricContainer extends LinearLayout {
     private HistoryLogBook historyLogBook;
 
 
-    public LyricContainer(Context context) {
 
-        super(context);
-        Log.d(this.getClass().getSimpleName(), "LyricContainer(Context context) called!");
-        initialize(context);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        Log.e(getClass().getSimpleName(), "green tea hymnLyric");
 
-    }
+        ViewGroup rootView = (ViewGroup) inflater.inflate(
+                R.layout.hymn_fragment, container, false);
 
-    public LyricContainer(android.content.Context context, android.util.AttributeSet attrs) {
-        super(context, attrs);
-        Log.d(this.getClass().getSimpleName(), "LyricContainer(android.content.Context context, android.util.AttributeSet attrs) called!");
-        initialize(context);
-    }
-
-    private void initialize(Context context) {
-        this.context = context;
-        hymnsDao = new HymnsDao(context);
-        Log.d(this.getClass().getSimpleName(), "entering initialization of LyricContainer!");
+        this.context=getContext();
+        if(hymnsDao==null) {
+            hymnsDao = new HymnsDao(context);
+        }
+        Log.d(this.getClass().getSimpleName(), "entering initialization of new LyricContainer!");
         sharedPreferences = context.getSharedPreferences("Hymns", 0);
         fontSize = sharedPreferences.getFloat("fontSize", 18);
+        lyricHeader = (TextView) rootView.findViewById(context.getResources().getIdentifier("lyricHeader", "id", context.getPackageName()));
+        lyricsView = (TextView) rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
+
+        // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
+        ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.jellybeanContentScrollView);
+        scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+        scrollView.setFocusable(true);
+        scrollView.setFocusableInTouchMode(true);
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.requestFocusFromTouch();
+                return false;
+            }
+        });
 
         //set up hymn stack (for back button functionality)
         hymnStack = new HymnStack();
@@ -68,22 +85,32 @@ public class LyricContainer extends LinearLayout {
 
         historyLogBook = new HistoryLogBook(context);
 
-
+//        rootView.setVisibility(View.GONE);
+        return rootView;
     }
 
-    public Hymn displayLyrics(String hymnId) {
-        //split hymn group from hymn number
-        String selectedHymnGroup;
-        String selectedHymnNumber;
-        if (Character.isLetter(hymnId.charAt(1))) {
-            selectedHymnGroup = hymnId.substring(0, 2);
-            selectedHymnNumber = hymnId.substring(2);
-        } else {
-            selectedHymnGroup = hymnId.substring(0, 1);
-            selectedHymnNumber = hymnId.substring(1);
-        }
 
-        return displayLyrics(selectedHymnGroup, selectedHymnNumber);
+
+    public Hymn displayLyrics(String hymnId) {
+        return displayLyrics(getHymnGroupFromID(hymnId), getHymnNoFromID(hymnId));
+    }
+
+    public static String getHymnGroupFromID(String hymnId) {
+        //split hymn group from hymn number
+        if (Character.isLetter(hymnId.charAt(1))) {
+            return hymnId.substring(0, 2);
+        } else {
+            return hymnId.substring(0, 1);
+        }
+    }
+
+    public static String getHymnNoFromID(String hymnId) {
+        //split hymn group from hymn number
+        if (Character.isLetter(hymnId.charAt(1))) {
+            return hymnId.substring(2);
+        } else {
+            return hymnId.substring(1);
+        }
     }
 
     public Hymn displayLyrics(String selectedHymnGroup, String selectedHymnNumber) {
@@ -144,7 +171,7 @@ public class LyricContainer extends LinearLayout {
             }
 
             // R.id.lyricHeader
-            lyricHeader = (TextView) findViewById(context.getResources().getIdentifier("lyricHeader", "id", context.getPackageName()));
+
             lyricHeader.setText(Html.fromHtml(text.toString()));
 
 
@@ -179,7 +206,7 @@ public class LyricContainer extends LinearLayout {
             // add colors to text
             CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), selectedHymnGroup);
 
-            lyricsView = (TextView) findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
+
             lyricsView.setText(formattedLyrics);
 
             setLyricFontSize(fontSize);
