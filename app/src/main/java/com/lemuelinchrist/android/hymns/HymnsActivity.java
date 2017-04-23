@@ -45,7 +45,6 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private boolean areInstructionsHidden = false;
 
     private ActionBar actionBar;
     private MenuItem playMenuItem;
@@ -157,33 +156,6 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-
-        findViewById(R.id.openHymnNumberInstruction).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onOptionsItemSelected(menu.findItem(R.id.action_index));
-            }
-        });
-        findViewById(R.id.changeFontSizeInstruction).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onOptionsItemSelected(menu.findItem(R.id.action_fontsize));
-
-            }
-        });
-        findViewById(R.id.downloadSheetMusicInstruction).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                downloadSheetMusic();
-            }
-        });
-        findViewById(R.id.playTuneInstruction).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onOptionsItemSelected(menu.findItem(R.id.action_play));
-
-            }
-        });
 
         playMenuItem=menu.findItem(R.id.action_play);
 
@@ -331,26 +303,12 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         Log.d(HymnsActivity.class.getSimpleName(), "Lyric changed!!");
 
         if (hymn != null) {
-            //hide instructions
-            if (areInstructionsHidden == false) {
-                mPager.setVisibility(View.VISIBLE);
-                findViewById(R.id.instructionLayout).setVisibility(View.GONE);
-                areInstructionsHidden = true;
-            }
 
             selectedHymnGroup = hymn.getGroup();
             selectedHymnNumber = hymn.getNo();
-//            currentGroupView.setText(hymn.getHymnId());
             actionBar.setTitle(hymn.getHymnId());
 
         } else {
-            // show instructions
-            if (areInstructionsHidden == true) {
-                mPager.setVisibility(View.GONE);
-                findViewById(R.id.instructionLayout).setVisibility(View.VISIBLE);
-                areInstructionsHidden = false;
-            }
-//            currentGroupView.setText(HymnGroups.valueOf(selectedHymnGroup).getSimpleName());
             actionBar.setTitle(HymnGroups.valueOf(selectedHymnGroup).getSimpleName());
         }
 
@@ -397,19 +355,23 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         public LyricContainerPagerAdapter(FragmentManager fm) {
             super(fm);
 
-            lyricContainer=new LyricContainer();
-            lyricContainer.setLyricChangeListener(hymnActivity);
-            lyricContainer.setMusicPlayerListener(hymnActivity);
+            lyricContainer=LyricContainer.newInstance(HymnsActivity.this, HymnsActivity.this, HymnsActivity.this);
+
         }
 
         @Override
         public Fragment getItem(int position) {
-            return lyricContainer;
+            Log.e(getClass().getSimpleName(), "green tea - position: " + position);
+
+            LyricContainer lyric = LyricContainer.newInstance(HymnsActivity.this, HymnsActivity.this, HymnsActivity.this);
+            lyric.setHymn(selectedHymnGroup+(position+1));
+            return lyric;
+
         }
 
         @Override
         public int getCount() {
-            return 1;
+            return 10;
         }
     }
 

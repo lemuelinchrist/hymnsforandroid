@@ -43,7 +43,7 @@ public class LyricContainer extends Fragment {
     private MusicPlayerListener musicPlayerListener;
     private SheetMusic sheetMusic;
     private HistoryLogBook historyLogBook;
-
+    private String hymnId;
 
 
     @Override
@@ -84,12 +84,30 @@ public class LyricContainer extends Fragment {
         sheetMusic = new SheetMusic(context);
 
         historyLogBook = new HistoryLogBook(context);
+        if(hymnId!=null) {
+            displayLyrics(hymnId);
+        }
 
 //        rootView.setVisibility(View.GONE);
         return rootView;
     }
 
+    public static LyricContainer newInstance(Context context, LyricChangeListener lyricChangeListener, MusicPlayerListener musicPlayerListener) {
+        LyricContainer lyric = new LyricContainer();
 
+        lyric.setContext(context);
+        lyric.setLyricChangeListener(lyricChangeListener);
+        lyric.setMusicPlayerListener(musicPlayerListener);
+        return lyric;
+
+    }
+
+    public void setContext(Context context) {
+        this.context=context;
+    }
+    public void setHymn(String hymnId) {
+        this.hymnId=hymnId;
+    }
 
     public Hymn displayLyrics(String hymnId) {
         return displayLyrics(getHymnGroupFromID(hymnId), getHymnNoFromID(hymnId));
@@ -120,6 +138,9 @@ public class LyricContainer extends Fragment {
             // if there was a previous hymn
             stopPlaying();
 
+            if(hymnsDao==null) {
+                hymnsDao=new HymnsDao(context);
+            }
             hymnsDao.open();
             hymn = hymnsDao.get(selectedHymnGroup + selectedHymnNumber);
 
