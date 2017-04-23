@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        android:id="@+id/jellybeanContentScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout
+                android:id="@+id/lyric_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+        >
+            <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
+            <!--android:descendantFocusability="blocksDescendants"-->
+
+
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/lyricHeader"
+                    android:background="#e6e6e6"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:minHeight="30dp"
+                    android:text="@string/enterHymnNo"
+                    android:textColor="#4e4e4e"/>
+
+            <TextView
+                    android:id="@+id/jellybeanLyrics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#4e4e4e"
+                    android:textIsSelectable="true"/>
+
+        </LinearLayout>
+    </ScrollView>
+
