@@ -18,6 +18,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -30,6 +31,7 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 
 //import android.widget.SearchView;
 
@@ -281,7 +283,9 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
 
                 Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
                 Log.i(this.getClass().getName(), "selected hymn group: " + selectedHymnGroup);
-                Hymn hymn = lyricContainer.displayLyrics(selectedHymnGroup, selectedHymnNumber);
+
+                lyricContainer=mPagerAdapter.getRegisteredFragment(mPager.getCurrentItem());
+                lyricContainer.displayLyrics(selectedHymnGroup, selectedHymnNumber);
 
             }
         }
@@ -352,6 +356,8 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
 
 
     private class LyricContainerPagerAdapter extends FragmentStatePagerAdapter {
+        HashMap<Integer,LyricContainer> registeredFragments = new HashMap<>();
+
         public LyricContainerPagerAdapter(FragmentManager fm) {
             super(fm);
 
@@ -361,7 +367,7 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
 
         @Override
         public Fragment getItem(int position) {
-            Log.e(getClass().getSimpleName(), "green tea - position: " + position);
+            Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
             LyricContainer lyric = LyricContainer.newInstance(HymnsActivity.this, HymnsActivity.this, HymnsActivity.this);
             lyric.setHymn(selectedHymnGroup+(position+1));
@@ -373,6 +379,28 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         public int getCount() {
             return 10;
         }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            LyricContainer fragment = (LyricContainer) super.instantiateItem(container, position);
+            registeredFragments.put(position, fragment);
+            return fragment;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            registeredFragments.remove(position);
+            super.destroyItem(container, position, object);
+        }
+
+        public LyricContainer getRegisteredFragment(int position) {
+            return registeredFragments.get(position);
+        }
+
+        public HashMap<Integer,LyricContainer> getRegisteredFragments() {
+            return registeredFragments;
+        }
+
     }
 
 
