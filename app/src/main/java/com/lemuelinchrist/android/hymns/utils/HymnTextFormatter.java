@@ -5,8 +5,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 
-import com.lemuelinchrist.android.hymns.HymnGroups;
-import com.lemuelinchrist.android.hymns.HymnsActivity;
+import com.lemuelinchrist.android.hymns.HymnGroup;
 
 /**
  * Created by lemuelcantos on 21/7/13.
@@ -50,10 +49,10 @@ public class HymnTextFormatter {
         Log.d(HymnTextFormatter.class.getName(), "formatting unformatted text!");
         CharSequence formattedText;
         // set red color to stanza numbers
-        formattedText = setColorBetweenTokens(unformattedText, "##", HymnGroups.valueOf(hymnGroup).getRgbColor());
+        formattedText = setColorBetweenTokens(unformattedText, "##", HymnGroup.valueOf(hymnGroup).getRgbColor());
 
         // set green color to chorus lyrics
-        formattedText = setColorBetweenTokens(formattedText, "@@", HymnGroups.valueOf(hymnGroup).getRgbColor());
+        formattedText = setColorBetweenTokens(formattedText, "@@", HymnGroup.valueOf(hymnGroup).getRgbColor());
 
         return formattedText;
     }

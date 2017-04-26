@@ -16,7 +16,7 @@ public class HymnDrawerListAdapter extends ArrayAdapter<String> {
     private final int layout;
 
     public HymnDrawerListAdapter(Context context, int layout) {
-        super(context, R.layout.drawer_hymngroup_list, HymnGroups.getArrayOfSimpleNames());
+        super(context, R.layout.drawer_hymngroup_list, HymnGroup.getArrayOfSimpleNames());
         this.context = context;
         this.layout = layout;
 
@@ -30,9 +30,9 @@ public class HymnDrawerListAdapter extends ArrayAdapter<String> {
         View rowView = inflater.inflate(layout, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.hymnGroupName);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.hymnGroupImage);
-        textView.setText(HymnGroups.values()[position].getSimpleName());
+        textView.setText(HymnGroup.values()[position].getSimpleName());
         // Change the icon for Windows and iPhone
-        imageView.setImageResource(context.getResources().getIdentifier(HymnGroups.values()[position].name().toLowerCase(), "drawable", context.getPackageName()));
+        imageView.setImageResource(context.getResources().getIdentifier(HymnGroup.values()[position].name().toLowerCase(), "drawable", context.getPackageName()));
 
 
         return rowView;

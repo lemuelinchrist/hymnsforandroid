@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by lemuelcantos on 18/8/13.
  */
-public enum HymnGroups {
+public enum HymnGroup {
     E("English", Color.rgb(0x3D, 0x57, 0x7A)),
     C("中文", Color.rgb(0x66, 0x99, 0x00)),
     CS("補充本", Color.rgb(0x99, 0x33, 0xCC)),
@@ -34,7 +34,7 @@ public enum HymnGroups {
         return simpleName;
     }
 
-    HymnGroups(String simpleName, int rgbColor) {
+    HymnGroup(String simpleName, int rgbColor) {
 
         this.simpleName = simpleName;
         this.rgbColor = rgbColor;
@@ -42,7 +42,7 @@ public enum HymnGroups {
     }
     public static String[] getArrayOfSimpleNames() {
         List<String> list = new ArrayList<String>();
-        for (HymnGroups group:HymnGroups.values()) {
+        for (HymnGroup group: HymnGroup.values()) {
             list.add(group.getSimpleName());
 
         }
