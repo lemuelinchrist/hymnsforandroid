@@ -27,6 +27,7 @@ import android.support.v7.app.ActionBar;
 
 //import com.actionbarsherlock.widget.SearchView;
 import android.widget.TextView;
+import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 
@@ -53,6 +54,9 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
     private ViewPager mPager;
     private LyricContainerPagerAdapter mPagerAdapter;
     private HymnsActivity hymnActivity;
+    private HymnsDao hymnsDao;
+
+    private HashMap<HymnGroups,String[]> hymnNumbers= new HashMap<>();
 
 
     @Override
@@ -103,6 +107,7 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+        hymnsDao=new HymnsDao(this);
 
     }
 
@@ -281,8 +286,20 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
                 selectedHymnGroup = LyricContainer.getHymnGroupFromID(rawData);
                 selectedHymnNumber = LyricContainer.getHymnNoFromID(rawData);
 
+                if(!hymnNumbers.containsKey(HymnGroups.valueOf(selectedHymnGroup))) {
+                    Log.d(this.getClass().getName(), "generating list of hymns for selected hymn group: " + selectedHymnGroup);
+                    hymnsDao.open();
+                    try {
+
+                        hymnNumbers.put(HymnGroups.valueOf(selectedHymnGroup),
+                                hymnsDao.getHymnNumberArray(selectedHymnGroup));
+                    } finally {
+                        hymnsDao.close();
+                    }
+                }
+
                 Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
-                Log.i(this.getClass().getName(), "selected hymn group: " + selectedHymnGroup);
+
 
                 lyricContainer=mPagerAdapter.getRegisteredFragment(mPager.getCurrentItem());
                 lyricContainer.displayLyrics(selectedHymnGroup, selectedHymnNumber);
@@ -307,7 +324,6 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         Log.d(HymnsActivity.class.getSimpleName(), "Lyric changed!!");
 
         if (hymn != null) {
-
             selectedHymnGroup = hymn.getGroup();
             selectedHymnNumber = hymn.getNo();
             actionBar.setTitle(hymn.getHymnId());
@@ -315,7 +331,6 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         } else {
             actionBar.setTitle(HymnGroups.valueOf(selectedHymnGroup).getSimpleName());
         }
-
 
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toLowerCase(), "drawable", getPackageName()));
         actionBar.setBackgroundDrawable(new ColorDrawable(HymnGroups.valueOf(selectedHymnGroup).getRgbColor()));
