@@ -152,13 +152,13 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
-    public String[] getHymnNumberArray(String hymnGroup) {
+    public ArrayList<String> getHymnNumberArray(String hymnGroup) {
         Cursor cursor =getHymnNumberList(hymnGroup,null);
         ArrayList<String> hymnArray=new ArrayList<>();
         while (cursor.moveToNext()) {
             hymnArray.add(cursor.getString(cursor.getColumnIndex(HymnFields.no.toString())).trim());
         }
-        return hymnArray.toArray(new String[hymnArray.size()]);
+        return hymnArray;
     }
 
     public Cursor getAuthorsList(String filter) {

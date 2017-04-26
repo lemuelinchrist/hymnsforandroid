@@ -32,6 +32,7 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 //import android.widget.SearchView;
@@ -56,7 +57,7 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
     private HymnsActivity hymnActivity;
     private HymnsDao hymnsDao;
 
-    private HashMap<HymnGroups,String[]> hymnNumbers= new HashMap<>();
+    private HashMap<HymnGroups,ArrayList<String>> hymnNumbers= new HashMap<>();
 
 
     @Override
@@ -358,7 +359,7 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         return super.onPrepareOptionsPanel(view, menu);
     }
 
-    public String[] getHymnNumbers(String hymnGroup) {
+    public ArrayList<String> getHymnNumbers(String hymnGroup) {
         if(!hymnNumbers.containsKey(HymnGroups.valueOf(hymnGroup))) {
             Log.d(this.getClass().getName(), "generating list of hymns for selected hymn group: " + hymnGroup);
             hymnsDao.open();
@@ -389,14 +390,14 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
             LyricContainer lyric = LyricContainer.newInstance(HymnsActivity.this, HymnsActivity.this, HymnsActivity.this);
-            lyric.setHymn(selectedHymnGroup+getHymnNumbers(selectedHymnGroup)[position]);
+            lyric.setHymn(selectedHymnGroup+getHymnNumbers(selectedHymnGroup).get(position));
             return lyric;
 
         }
 
         @Override
         public int getCount() {
-            return getHymnNumbers(selectedHymnGroup).length;
+            return getHymnNumbers(selectedHymnGroup).size();
         }
 
         @Override
