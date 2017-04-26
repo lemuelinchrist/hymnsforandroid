@@ -20,7 +20,7 @@ import android.util.Log;
 import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-import com.lemuelinchrist.android.hymns.HymnGroups;
+import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 
 public class SearchActivity extends AppCompatActivity  {
@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity  {
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
         selectedHymnGroup = extras.getString("selectedHymnGroup");
-        setTitle(HymnGroups.valueOf(selectedHymnGroup).getSimpleName() + " Index");
+        setTitle(HymnGroup.valueOf(selectedHymnGroup).getSimpleName() + " Index");
 
 
         actionBar = getSupportActionBar();

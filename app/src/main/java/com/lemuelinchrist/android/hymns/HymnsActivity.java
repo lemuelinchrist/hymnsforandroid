@@ -27,7 +27,6 @@ import android.support.v7.app.ActionBar;
 //import com.actionbarsherlock.widget.SearchView;
 import android.widget.TextView;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
-import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 
 import java.lang.reflect.Method;
@@ -157,7 +156,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private void selectDrawerItem(int position) {
         Log.i(HymnsActivity.class.getSimpleName(), "Drawer Item selected: " + position);
 
-        selectedHymnGroup = HymnGroups.values()[position].name();
+        selectedHymnGroup = HymnGroup.values()[position].name();
 
         if (selectedHymnGroup == null) {
             Log.w(HymnsActivity.class.getSimpleName(), "warning: selected Hymn group currently not supported. Switching to default group: E");
@@ -323,7 +322,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         selectedHymnNumber = LyricContainer.getHymnNoFromID(hymnId);
 
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toLowerCase(), "drawable", getPackageName()));
-        actionBar.setBackgroundDrawable(new ColorDrawable(HymnGroups.valueOf(selectedHymnGroup).getRgbColor()));
+        actionBar.setBackgroundDrawable(new ColorDrawable(HymnGroup.valueOf(selectedHymnGroup).getRgbColor()));
 
     }
 
@@ -362,21 +361,21 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     private class LyricContainerPagerAdapter extends FragmentStatePagerAdapter {
         HashMap<Integer, LyricContainer> registeredFragments = new HashMap<>();
-        private HashMap<HymnGroups, ArrayList<String>> hymnNumbers = new HashMap<>();
+        private HashMap<HymnGroup, ArrayList<String>> hymnNumbers = new HashMap<>();
 
         private ArrayList<String> getHymnNumbers(String hymnGroup) {
-            if (!hymnNumbers.containsKey(HymnGroups.valueOf(hymnGroup))) {
+            if (!hymnNumbers.containsKey(HymnGroup.valueOf(hymnGroup))) {
                 Log.d(this.getClass().getName(), "generating list of hymns for selected hymn group: " + hymnGroup);
                 hymnsDao.open();
                 try {
 
-                    hymnNumbers.put(HymnGroups.valueOf(hymnGroup),
+                    hymnNumbers.put(HymnGroup.valueOf(hymnGroup),
                             hymnsDao.getHymnNumberArray(hymnGroup));
                 } finally {
                     hymnsDao.close();
                 }
             }
-            return hymnNumbers.get(HymnGroups.valueOf(hymnGroup));
+            return hymnNumbers.get(HymnGroup.valueOf(hymnGroup));
         }
 
         public LyricContainerPagerAdapter(FragmentManager fm) {
