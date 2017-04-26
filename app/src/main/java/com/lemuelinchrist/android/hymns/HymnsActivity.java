@@ -54,10 +54,9 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
     private MenuItem playMenuItem;
     private ViewPager mPager;
     private LyricContainerPagerAdapter mPagerAdapter;
-    private HymnsActivity hymnActivity;
     private HymnsDao hymnsDao;
 
-    private HashMap<HymnGroups,ArrayList<String>> hymnNumbers= new HashMap<>();
+
 
 
     @Override
@@ -68,13 +67,10 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
 
         setContentView(R.layout.main_hymns_activity);
 
-        hymnActivity=this;
-
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.hymn_fragment_viewpager);
         mPagerAdapter = new LyricContainerPagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
-
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -290,9 +286,11 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
 
                 Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
 
+                mPager.setCurrentItem(mPagerAdapter.getPositionOfHymnNo(selectedHymnNumber));
 
-                lyricContainer=mPagerAdapter.getRegisteredFragment(mPager.getCurrentItem());
-                lyricContainer.displayLyrics(selectedHymnGroup, selectedHymnNumber);
+//
+//                lyricContainer=mPagerAdapter.getRegisteredFragment(mPager.getCurrentItem());
+//                lyricContainer.displayLyrics(selectedHymnGroup, selectedHymnNumber);
 
             }
         }
@@ -359,30 +357,35 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         return super.onPrepareOptionsPanel(view, menu);
     }
 
-    public ArrayList<String> getHymnNumbers(String hymnGroup) {
-        if(!hymnNumbers.containsKey(HymnGroups.valueOf(hymnGroup))) {
-            Log.d(this.getClass().getName(), "generating list of hymns for selected hymn group: " + hymnGroup);
-            hymnsDao.open();
-            try {
-
-                hymnNumbers.put(HymnGroups.valueOf(hymnGroup),
-                        hymnsDao.getHymnNumberArray(hymnGroup));
-            } finally {
-                hymnsDao.close();
-            }
-        }
-        return hymnNumbers.get(HymnGroups.valueOf(hymnGroup));
-    }
-
 
     private class LyricContainerPagerAdapter extends FragmentStatePagerAdapter {
         HashMap<Integer,LyricContainer> registeredFragments = new HashMap<>();
+        private HashMap<HymnGroups,ArrayList<String>> hymnNumbers= new HashMap<>();
+
+        private ArrayList<String> getHymnNumbers(String hymnGroup) {
+            if(!hymnNumbers.containsKey(HymnGroups.valueOf(hymnGroup))) {
+                Log.d(this.getClass().getName(), "generating list of hymns for selected hymn group: " + hymnGroup);
+                hymnsDao.open();
+                try {
+
+                    hymnNumbers.put(HymnGroups.valueOf(hymnGroup),
+                            hymnsDao.getHymnNumberArray(hymnGroup));
+                } finally {
+                    hymnsDao.close();
+                }
+            }
+            return hymnNumbers.get(HymnGroups.valueOf(hymnGroup));
+        }
 
         public LyricContainerPagerAdapter(FragmentManager fm) {
             super(fm);
 
             lyricContainer=LyricContainer.newInstance(HymnsActivity.this, HymnsActivity.this, HymnsActivity.this);
 
+        }
+
+        public int getPositionOfHymnNo(String hymnNo) {
+            return getHymnNumbers(selectedHymnGroup).indexOf(hymnNo);
         }
 
         @Override
