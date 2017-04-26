@@ -141,10 +141,7 @@ public class SearchActivity extends AppCompatActivity  {
                 Log.d(this.getClass().getSimpleName(), "Submitted text in the index search");
 
                 if (searchBar.getInputType()==InputType.TYPE_CLASS_PHONE) {
-                    Intent data = new Intent();
-                    data.setData(Uri.parse(selectedHymnGroup+query));
-                    setResult(RESULT_OK, data);
-                    finish();
+                    createIntentAndExit(selectedHymnGroup+query);
                 }
 
                 filterList( query);
@@ -187,6 +184,14 @@ public class SearchActivity extends AppCompatActivity  {
 
 
         return true;
+    }
+
+    public void createIntentAndExit(String hymnId) {
+        Intent data = new Intent();
+        data.setData(Uri.parse(hymnId));
+
+        setResult(RESULT_OK, data);
+        finish();
     }
 
     private void showKeyboard() {
