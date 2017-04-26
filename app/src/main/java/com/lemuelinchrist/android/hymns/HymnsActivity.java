@@ -63,6 +63,8 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(this.getClass().getName(), "start app");
+        hymnsDao=new HymnsDao(this);
+
         setContentView(R.layout.main_hymns_activity);
 
         hymnActivity=this;
@@ -107,7 +109,6 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        hymnsDao=new HymnsDao(this);
 
     }
 
@@ -286,18 +287,6 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
                 selectedHymnGroup = LyricContainer.getHymnGroupFromID(rawData);
                 selectedHymnNumber = LyricContainer.getHymnNoFromID(rawData);
 
-                if(!hymnNumbers.containsKey(HymnGroups.valueOf(selectedHymnGroup))) {
-                    Log.d(this.getClass().getName(), "generating list of hymns for selected hymn group: " + selectedHymnGroup);
-                    hymnsDao.open();
-                    try {
-
-                        hymnNumbers.put(HymnGroups.valueOf(selectedHymnGroup),
-                                hymnsDao.getHymnNumberArray(selectedHymnGroup));
-                    } finally {
-                        hymnsDao.close();
-                    }
-                }
-
                 Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
 
 
@@ -369,6 +358,21 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
         return super.onPrepareOptionsPanel(view, menu);
     }
 
+    public String[] getHymnNumbers(String hymnGroup) {
+        if(!hymnNumbers.containsKey(HymnGroups.valueOf(hymnGroup))) {
+            Log.d(this.getClass().getName(), "generating list of hymns for selected hymn group: " + hymnGroup);
+            hymnsDao.open();
+            try {
+
+                hymnNumbers.put(HymnGroups.valueOf(hymnGroup),
+                        hymnsDao.getHymnNumberArray(hymnGroup));
+            } finally {
+                hymnsDao.close();
+            }
+        }
+        return hymnNumbers.get(HymnGroups.valueOf(hymnGroup));
+    }
+
 
     private class LyricContainerPagerAdapter extends FragmentStatePagerAdapter {
         HashMap<Integer,LyricContainer> registeredFragments = new HashMap<>();
@@ -392,7 +396,7 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
 
         @Override
         public int getCount() {
-            return 10;
+            return getHymnNumbers(selectedHymnGroup).length;
         }
 
         @Override
