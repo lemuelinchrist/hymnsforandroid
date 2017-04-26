@@ -136,20 +136,29 @@ public class HymnsDao {
         if (filter != null && !filter.equals("")) {
             likeClause = " AND NO ='"+ filter.trim() +"'";
         } else {
-            groupClause = " and (hymn_group='" + hymnGroup + "') ";
+            groupClause = " and hymn_group = '" + hymnGroup + "' ";
         }
 
         String sql =
                 "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL "
                         + groupClause + " \n"
                         + likeClause
-                        + " ORDER BY no," +
+                        + " ORDER BY CAST(no AS int), " +
                         "CASE" +
                         "   WHEN hymn_group = '"+hymnGroup.toUpperCase().trim() + "' THEN 1 ELSE hymn_group " +
                         "END";
 
         Log.i(this.getClass().getName(), "Using SQL query: " + sql);
         return database.rawQuery(sql, null);
+    }
+
+    public String[] getHymnNumberArray(String hymnGroup) {
+        Cursor cursor =getHymnNumberList(hymnGroup,null);
+        ArrayList<String> hymnArray=new ArrayList<>();
+        while (cursor.moveToNext()) {
+            hymnArray.add(cursor.getString(cursor.getColumnIndex(HymnFields.no.toString())).trim());
+        }
+        return hymnArray.toArray(new String[hymnArray.size()]);
     }
 
     public Cursor getAuthorsList(String filter) {

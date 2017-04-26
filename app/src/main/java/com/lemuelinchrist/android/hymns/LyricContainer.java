@@ -116,9 +116,9 @@ public class LyricContainer extends Fragment {
     public static String getHymnGroupFromID(String hymnId) {
         //split hymn group from hymn number
         if (Character.isLetter(hymnId.charAt(1))) {
-            return hymnId.substring(0, 2);
+            return hymnId.substring(0, 2).toUpperCase();
         } else {
-            return hymnId.substring(0, 1);
+            return hymnId.substring(0, 1).toUpperCase();
         }
     }
 
