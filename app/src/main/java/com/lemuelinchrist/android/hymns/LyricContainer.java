@@ -109,25 +109,7 @@ public class LyricContainer extends Fragment {
     public String getHymn() { return this.hymnId; }
 
     public Hymn displayLyrics(String hymnId) {
-        return displayLyrics(getHymnGroupFromID(hymnId), getHymnNoFromID(hymnId));
-    }
-
-    public static String getHymnGroupFromID(String hymnId) {
-        //split hymn group from hymn number
-        if (Character.isLetter(hymnId.charAt(1))) {
-            return hymnId.substring(0, 2).toUpperCase();
-        } else {
-            return hymnId.substring(0, 1).toUpperCase();
-        }
-    }
-
-    public static String getHymnNoFromID(String hymnId) {
-        //split hymn group from hymn number
-        if (Character.isLetter(hymnId.charAt(1))) {
-            return hymnId.substring(2);
-        } else {
-            return hymnId.substring(1);
-        }
+        return displayLyrics(HymnGroup.getHymnGroupFromID(hymnId).toString(), HymnGroup.getHymnNoFromID(hymnId));
     }
 
     public Hymn displayLyrics(String selectedHymnGroup, String selectedHymnNumber) {
@@ -265,7 +247,8 @@ public class LyricContainer extends Fragment {
 
     }
 
-    public boolean translateTo(String selectedHymnGroup) {
+    public boolean translateTo(HymnGroup hymnGroup) {
+        String selectedHymnGroup = hymnGroup.toString();
 
         if (hymn != null) {
 

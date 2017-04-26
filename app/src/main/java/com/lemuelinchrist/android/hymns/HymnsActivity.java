@@ -9,9 +9,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -30,8 +27,6 @@ import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 //import android.widget.SearchView;
 
@@ -42,18 +37,15 @@ import java.util.HashMap;
 public class HymnsActivity extends AppCompatActivity implements MusicPlayerListener {
     protected final int INDEX_REQUEST = 1;
     protected String selectedHymnNumber;
-    protected String selectedHymnGroup = "E";
-    protected LyricContainer lyricContainer;
+    protected HymnGroup selectedHymnGroup = HymnGroup.E;
+    protected LyricContainer currentLyric;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private static HashMap<HymnGroup, Hymnbook> hymnBookCollection = new HashMap<>();
-    private static HymnsDao dao;
-
     private ActionBar actionBar;
     private MenuItem playMenuItem;
-    private ViewPager lyricPages;
+    private ViewPager lyricPager;
     private Hymnbook hymnbook;
     private HymnsDao hymnsDao;
 
@@ -67,10 +59,9 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         setContentView(R.layout.main_hymns_activity);
 
         // Instantiate a ViewPager and a PagerAdapter.
-        lyricPages = (ViewPager) findViewById(R.id.hymn_fragment_viewpager);
-        hymnbook = new Hymnbook(getSupportFragmentManager(),HymnGroup.valueOf(selectedHymnGroup));
-        lyricPages.setAdapter(hymnbook);
-
+        lyricPager = (ViewPager) findViewById(R.id.hymn_fragment_viewpager);
+        hymnbook = Hymnbook.getInstance(selectedHymnGroup, this);
+        lyricPager.setAdapter(hymnbook);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -105,7 +96,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
+        currentLyric = LyricContainer.newInstance(HymnsActivity.this, HymnsActivity.this);
 
     }
 
@@ -120,11 +111,11 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     private void downloadSheetMusic() {
 
-        if (!lyricContainer.isHymnDisplayed()) {
+        if (!currentLyric.isHymnDisplayed()) {
             showAlert(R.string.choose_hymn_first, R.string.no_hymn_selected);
             return;
         }
-        lyricContainer.getSheetMusic();
+        currentLyric.getSheetMusic();
 
 
     }
@@ -144,14 +135,14 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private void selectDrawerItem(int position) {
         Log.i(HymnsActivity.class.getSimpleName(), "Drawer Item selected: " + position);
 
-        selectedHymnGroup = HymnGroup.values()[position].name();
+        selectedHymnGroup = HymnGroup.values()[position];
 
         if (selectedHymnGroup == null) {
             Log.w(HymnsActivity.class.getSimpleName(), "warning: selected Hymn group currently not supported. Switching to default group: E");
-            selectedHymnGroup = "E";
+            selectedHymnGroup = HymnGroup.E;
         }
 
-        lyricContainer.translateTo(selectedHymnGroup);
+        currentLyric.translateTo(selectedHymnGroup);
         mDrawerLayout.closeDrawer(mDrawerList);
 
     }
@@ -168,7 +159,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     }
 
     private void checkHymnIsDisplayed() {
-        if (!lyricContainer.isHymnDisplayed())
+        if (!currentLyric.isHymnDisplayed())
             showAlert(R.string.choose_hymn_first
                     , R.string.no_hymn_selected);
     }
@@ -189,16 +180,16 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         } else if (item.getItemId() == R.id.action_index) {
             Intent intent = new Intent(getBaseContext(), SearchActivity.class);
-            intent.putExtra("selectedHymnGroup", selectedHymnGroup);
+            intent.putExtra("selectedHymnGroup", selectedHymnGroup.toString());
             startActivityForResult(intent, INDEX_REQUEST);
             ret = true;
 
         } else if (item.getItemId() == R.id.action_play) {
             checkHymnIsDisplayed();
             if (item.getTitle().equals(getString(R.string.playHymn))) {
-                lyricContainer.startPlaying();
+                currentLyric.startPlaying();
             } else {
-                lyricContainer.stopPlaying();
+                currentLyric.stopPlaying();
             }
             ret = true;
 
@@ -212,7 +203,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                     .setItems(fontSizes, new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int which) {
-                            lyricContainer.setLyricFontSize(fontSizes[which]);
+                            currentLyric.setLyricFontSize(fontSizes[which]);
                         }
                     });
 
@@ -226,7 +217,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         } else if (item.getItemId() == R.id.action_searchYoutube) {
             checkHymnIsDisplayed();
-            lyricContainer.launchYouTubeApp();
+            currentLyric.launchYouTubeApp();
         } else
 
         {
@@ -271,7 +262,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     @Override
     public void onPause() {
         super.onPause();
-        lyricContainer.stopPlaying();
+        currentLyric.stopPlaying();
     }
 
     @Override
@@ -281,12 +272,12 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             if (resultCode == RESULT_OK) {
 
                 String rawData = data.getDataString().trim();
-                selectedHymnGroup = LyricContainer.getHymnGroupFromID(rawData);
-                selectedHymnNumber = LyricContainer.getHymnNoFromID(rawData);
+                selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
+                selectedHymnNumber = HymnGroup.getHymnNoFromID(rawData);
 
                 Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
 
-                lyricPages.setCurrentItem(hymnbook.getPositionOfHymnNo(selectedHymnNumber));
+                lyricPager.setCurrentItem(hymnbook.getPositionOfHymnNo(selectedHymnNumber));
 
             }
         }
@@ -295,7 +286,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     @Override
     public void onBackPressed() {
         Log.d(HymnsActivity.class.getSimpleName(), "onBackPressed Called");
-        boolean isLyricContainerEmpty = !lyricContainer.goToPreviousHymn();
+        boolean isLyricContainerEmpty = !currentLyric.goToPreviousHymn();
 
         if (isLyricContainerEmpty) {
             super.onBackPressed();
@@ -306,11 +297,13 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     public void lyricChanged(String hymnId) {
         Log.d(HymnsActivity.class.getSimpleName(), "Lyric changed!!");
 
-        selectedHymnGroup = LyricContainer.getHymnGroupFromID(hymnId);
-        selectedHymnNumber = LyricContainer.getHymnNoFromID(hymnId);
+        selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
+        selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
 
-        actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toLowerCase(), "drawable", getPackageName()));
-        actionBar.setBackgroundDrawable(new ColorDrawable(HymnGroup.valueOf(selectedHymnGroup).getRgbColor()));
+        currentLyric=hymnbook.getLyricContainer(lyricPager.getCurrentItem());
+
+        actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
+        actionBar.setBackgroundDrawable(new ColorDrawable(selectedHymnGroup.getRgbColor()));
 
     }
 
@@ -347,73 +340,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     }
 
 
-    private class Hymnbook extends FragmentStatePagerAdapter {
-        private HashMap<Integer, LyricContainer> registeredFragments = new HashMap<>();
-        private ArrayList<String> hymnNumbers;
-        private HymnGroup hymnGroup;
 
-        public ArrayList<String> getHymnNumbers() {
-            return hymnNumbers;
-        }
-
-        public Hymnbook(FragmentManager fm, HymnGroup hymnGroup) {
-            super(fm);
-            Log.d(Hymnbook.class.getName(), "generating new instance of Hymnbook for selected hymn group: " + hymnGroup);
-            if(dao==null) {
-                dao=new HymnsDao(getApplicationContext());
-            }
-            dao.open();
-            try {
-
-                hymnNumbers=dao.getHymnNumberArray(hymnGroup.toString());
-            } finally {
-                dao.close();
-            }
-            this.hymnGroup = hymnGroup;
-            lyricContainer = LyricContainer.newInstance(HymnsActivity.this, HymnsActivity.this);
-        }
-
-        public int getPositionOfHymnNo(String hymnNo) {
-            return hymnNumbers.indexOf(hymnNo);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            Log.d(getClass().getSimpleName(), "getItem position: " + position);
-
-            LyricContainer lyric = LyricContainer.newInstance(getApplicationContext(),null);
-            lyric.setHymn(hymnGroup.toString() + hymnNumbers.get(position));
-            return lyric;
-
-        }
-
-        @Override
-        public int getCount() {
-            return hymnNumbers.size();
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            LyricContainer fragment = (LyricContainer) super.instantiateItem(container, position);
-            registeredFragments.put(position, fragment);
-            return fragment;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            registeredFragments.remove(position);
-            super.destroyItem(container, position, object);
-        }
-
-        public LyricContainer getLyricContainer(int position) {
-            return registeredFragments.get(position);
-        }
-        public String getHymnId(int position) {
-            return registeredFragments.get(position).getHymn();
-        }
-
-
-    }
 
 
 }
