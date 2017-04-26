@@ -39,7 +39,6 @@ public class LyricContainer extends Fragment {
     private float fontSize;
     private SharedPreferences sharedPreferences;
     private HymnStack hymnStack;
-    private LyricChangeListener lyricChangeListener;
     private MusicPlayerListener musicPlayerListener;
     private SheetMusic sheetMusic;
     private HistoryLogBook historyLogBook;
@@ -92,11 +91,10 @@ public class LyricContainer extends Fragment {
         return rootView;
     }
 
-    public static LyricContainer newInstance(Context context, LyricChangeListener lyricChangeListener, MusicPlayerListener musicPlayerListener) {
+    public static LyricContainer newInstance(Context context, MusicPlayerListener musicPlayerListener) {
         LyricContainer lyric = new LyricContainer();
 
         lyric.setContext(context);
-        lyric.setLyricChangeListener(lyricChangeListener);
         lyric.setMusicPlayerListener(musicPlayerListener);
         return lyric;
 
@@ -108,6 +106,7 @@ public class LyricContainer extends Fragment {
     public void setHymn(String hymnId) {
         this.hymnId=hymnId;
     }
+    public String getHymn() { return this.hymnId; }
 
     public Hymn displayLyrics(String hymnId) {
         return displayLyrics(getHymnGroupFromID(hymnId), getHymnNoFromID(hymnId));
@@ -240,8 +239,6 @@ public class LyricContainer extends Fragment {
             hymnsDao.close();
         }
 
-        if (lyricChangeListener != null)
-            lyricChangeListener.lyricChanged(hymn);
 
         // push hymn to stack for back button functionality
 
@@ -312,7 +309,6 @@ public class LyricContainer extends Fragment {
 
 
         }
-        lyricChangeListener.lyricChanged(hymn);
         return false;
     }
 
@@ -368,15 +364,6 @@ public class LyricContainer extends Fragment {
         }
 
     }
-
-    public LyricChangeListener getLyricChangeListener() {
-        return lyricChangeListener;
-    }
-
-    public void setLyricChangeListener(LyricChangeListener lyricChangeListener) {
-        this.lyricChangeListener = lyricChangeListener;
-    }
-
 
     public void getSheetMusic() { sheetMusic.getSheetMusic(hymn);}
 
