@@ -389,7 +389,7 @@ public class HymnsActivity extends AppCompatActivity implements LyricChangeListe
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
             LyricContainer lyric = LyricContainer.newInstance(HymnsActivity.this, HymnsActivity.this, HymnsActivity.this);
-            lyric.setHymn(selectedHymnGroup+(position+1));
+            lyric.setHymn(selectedHymnGroup+getHymnNumbers(selectedHymnGroup)[position]);
             return lyric;
 
         }
