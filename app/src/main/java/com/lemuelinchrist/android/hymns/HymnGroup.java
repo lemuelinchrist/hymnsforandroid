@@ -25,6 +25,24 @@ public enum HymnGroup {
     private final String simpleName;
     private final int rgbColor;
 
+    public static HymnGroup getHymnGroupFromID(String hymnId) {
+        //split hymn group from hymn number
+        if (Character.isLetter(hymnId.charAt(1))) {
+            return valueOf(hymnId.substring(0, 2).toUpperCase());
+        } else {
+            return valueOf(hymnId.substring(0, 1).toUpperCase());
+        }
+    }
+
+    public static String getHymnNoFromID(String hymnId) {
+        //split hymn group from hymn number
+        if (Character.isLetter(hymnId.charAt(1))) {
+            return hymnId.substring(2);
+        } else {
+            return hymnId.substring(1);
+        }
+    }
+
 
     public int getRgbColor() {
         return rgbColor;
