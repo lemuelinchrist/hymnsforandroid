@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.lemuelinchrist.android.hymns.search.SearchActivity;
 
 
 /**
@@ -31,8 +32,7 @@ public abstract class SearchAdapter extends RecyclerView.Adapter<IndexViewHolder
         View rowView = inflater.inflate(layout, viewGroup, false);
 
 
-        IndexViewHolder vh = new IndexViewHolder(rowView);
-        return vh;
+        return new IndexViewHolder(rowView);
     }
 
     @Override
@@ -44,11 +44,8 @@ public abstract class SearchAdapter extends RecyclerView.Adapter<IndexViewHolder
             @Override
             public void onClick(View view) {
 
-                Intent data = new Intent();
-                data.setData(Uri.parse(holder.hymnNo));
-                Activity currentActivity = (Activity) context;
-                currentActivity.setResult(currentActivity.RESULT_OK, data);
-                currentActivity.finish();
+                ((SearchActivity)context).createIntentAndExit(holder.hymnNo);
+
             }
         });
 

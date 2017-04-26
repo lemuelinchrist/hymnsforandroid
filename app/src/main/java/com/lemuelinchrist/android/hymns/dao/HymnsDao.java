@@ -143,7 +143,7 @@ public class HymnsDao {
                 "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL "
                         + groupClause + " \n"
                         + likeClause
-                        + " ORDER BY " +
+                        + " ORDER BY no," +
                         "CASE" +
                         "   WHEN hymn_group = '"+hymnGroup.toUpperCase().trim() + "' THEN 1 ELSE hymn_group " +
                         "END";
