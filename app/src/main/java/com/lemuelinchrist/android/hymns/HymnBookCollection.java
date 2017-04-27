@@ -58,6 +58,7 @@ public class HymnBookCollection  {
         lyricPager.addOnAdapterChangeListener(new ViewPager.OnAdapterChangeListener() {
             @Override
             public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter1) {
+                if (pagerAdapter==null) return;
                 if(newlySwitchedGroupHymnNumber!=null) {
                     lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(newlySwitchedGroupHymnNumber));
                     newlySwitchedGroupHymnNumber=null;
@@ -83,6 +84,7 @@ public class HymnBookCollection  {
 
             hymnBookAdapters.put(hymnGroup,hymnBookAdapter);
         }
+        lyricPager.setAdapter(null);
         lyricPager.setAdapter(hymnBookAdapters.get(hymnGroup));
         this.currentAdapter=hymnBookAdapters.get(hymnGroup);
 
@@ -99,8 +101,13 @@ public class HymnBookCollection  {
 
         if (currentAdapter!=null && selectedHymnGroup!=currentAdapter.hymnGroup) {
             newlySwitchedGroupHymnNumber=selectedHymnNumber;
+            switchHymnBook(selectedHymnGroup);
+
+        } else {
+            lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
+
         }
-        switchHymnBook(selectedHymnGroup);
+
 
     }
 
