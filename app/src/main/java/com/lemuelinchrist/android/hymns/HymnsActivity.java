@@ -65,6 +65,21 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         hymnbook = Hymnbook.getInstance(selectedHymnGroup, this);
         lyricPager.setAdapter(hymnbook);
         //lyricPager.setPageTransformer(true, new DepthPageTransformer());
+        lyricPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                lyricChanged(hymnbook.getLyricContainer(i).getHymn());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -298,13 +313,15 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     }
 
     public void lyricChanged(String hymnId) {
-        Log.d(HymnsActivity.class.getSimpleName(), "Lyric changed!!");
 
         selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
         selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
 
-        currentLyric=hymnbook.getLyricContainer(lyricPager.getCurrentItem());
+//        currentLyric=hymnbook.getLyricContainer(lyricPager.getCurrentItem());
 
+        Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
+
+        actionBar.setTitle(hymnId);
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
         actionBar.setBackgroundDrawable(new ColorDrawable(selectedHymnGroup.getRgbColor()));
 
