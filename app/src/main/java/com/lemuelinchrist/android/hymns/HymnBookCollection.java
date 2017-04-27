@@ -1,9 +1,12 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,6 +30,7 @@ public class HymnBookCollection  {
 
     private final HymnsActivity context;
     private HymnBookAdapter currentAdapter;
+    private String newlySwitchedGroupHymnNumber=null;
 
     public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
@@ -42,6 +46,8 @@ public class HymnBookCollection  {
             @Override
             public void onPageSelected(int i) {
                 context.lyricChanged(getCurrentHymnId());
+
+
             }
 
             @Override
@@ -49,9 +55,20 @@ public class HymnBookCollection  {
 
             }
         });
+        lyricPager.addOnAdapterChangeListener(new ViewPager.OnAdapterChangeListener() {
+            @Override
+            public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter1) {
+                if(newlySwitchedGroupHymnNumber!=null) {
+                    lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(newlySwitchedGroupHymnNumber));
+                    newlySwitchedGroupHymnNumber=null;
+                }
+            }
+        });
     }
 
+
     public void switchHymnBook(HymnGroup hymnGroup) {
+
         if(!hymnBookAdapters.containsKey(hymnGroup)) {
             Log.d(this.getClass().getName(), "generating new instance of HymnBook for selected hymn group: " + hymnGroup);
             HymnBookAdapter hymnBookAdapter = new HymnBookAdapter(context.getSupportFragmentManager());
@@ -68,6 +85,7 @@ public class HymnBookCollection  {
         }
         lyricPager.setAdapter(hymnBookAdapters.get(hymnGroup));
         this.currentAdapter=hymnBookAdapters.get(hymnGroup);
+
     }
 
     public String getCurrentHymnId() {
@@ -77,7 +95,12 @@ public class HymnBookCollection  {
     public void switchToHymn(String rawData) {
         HymnGroup selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
         String selectedHymnNumber = HymnGroup.getHymnNoFromID(rawData);
-        lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
+
+
+        if (currentAdapter!=null && selectedHymnGroup!=currentAdapter.hymnGroup) {
+            newlySwitchedGroupHymnNumber=selectedHymnNumber;
+        }
+        switchHymnBook(selectedHymnGroup);
 
     }
 
