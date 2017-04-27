@@ -27,7 +27,7 @@ public class SearchActivity extends AppCompatActivity  {
 
     public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
     public static final String ENTER_LYRIC = "Enter Search Text          ";
-    private String selectedHymnGroup;
+    private HymnGroup selectedHymnGroup;
     private ActionBar actionBar;
     private SearchTabsPagerAdapter mSearchTabsPagerAdapter;
     private ViewPager mViewPager;
@@ -47,8 +47,8 @@ public class SearchActivity extends AppCompatActivity  {
 
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
-        selectedHymnGroup = extras.getString("selectedHymnGroup");
-        setTitle(HymnGroup.valueOf(selectedHymnGroup).getSimpleName() + " Index");
+        selectedHymnGroup = (HymnGroup) extras.get("selectedHymnGroup");
+        setTitle(selectedHymnGroup.getSimpleName() + " Index");
 
 
         actionBar = getSupportActionBar();
@@ -98,7 +98,7 @@ public class SearchActivity extends AppCompatActivity  {
         });
 
 
-        TabFragment.setSelectedHymnGroup(selectedHymnGroup);
+        TabFragment.setSelectedHymnGroup(selectedHymnGroup.toString());
 
     }
 
