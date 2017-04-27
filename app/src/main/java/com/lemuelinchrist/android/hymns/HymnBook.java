@@ -14,35 +14,35 @@ import java.util.HashMap;
 /**
  * Created by lemuel on 26/4/2017.
  *
- * A Hymnbook is a collection of Lyrics that belong to a Hymn Group. One hymn group has one and only one instance of Hymnbook
+ * A HymnBook is a collection of Lyrics that belong to a Hymn Group. One hymn group has one and only one instance of HymnBook
  */
-public class Hymnbook extends FragmentStatePagerAdapter {
+public class HymnBook extends FragmentStatePagerAdapter {
     private HashMap<Integer, LyricContainer> registeredFragments = new HashMap<>();
     private ArrayList<String> hymnNumbers;
-    private static HashMap<HymnGroup, Hymnbook> hymnBookCollection = new HashMap<>();
+    private static HashMap<HymnGroup, HymnBook> hymnBookCollection = new HashMap<>();
     private static HymnsDao dao;
     private AppCompatActivity context;
     private HymnGroup hymnGroup;
 
-    public static Hymnbook getInstance(HymnGroup hymnGroup, AppCompatActivity context) {
+    public static HymnBook getInstance(HymnGroup hymnGroup, AppCompatActivity context) {
         if(hymnBookCollection.containsKey(hymnGroup)) {
             return hymnBookCollection.get(hymnGroup);
         } else {
-            Log.d(Hymnbook.class.getName(), "generating new instance of Hymnbook for selected hymn group: " + hymnGroup);
-            Hymnbook hymnbook = new Hymnbook(context.getSupportFragmentManager());
-            hymnbook.context = context;
-            hymnbook.hymnGroup = hymnGroup;
+            Log.d(HymnBook.class.getName(), "generating new instance of HymnBook for selected hymn group: " + hymnGroup);
+            HymnBook hymnBook = new HymnBook(context.getSupportFragmentManager());
+            hymnBook.context = context;
+            hymnBook.hymnGroup = hymnGroup;
             if(dao==null) {
                 dao=new HymnsDao(context);
             }
             dao.open();
             try {
 
-                hymnbook.hymnNumbers=dao.getHymnNumberArray(hymnGroup);
+                hymnBook.hymnNumbers=dao.getHymnNumberArray(hymnGroup);
             } finally {
                 dao.close();
             }
-            return hymnbook;
+            return hymnBook;
         }
     }
 
@@ -50,7 +50,7 @@ public class Hymnbook extends FragmentStatePagerAdapter {
         return hymnNumbers;
     }
 
-    public Hymnbook(FragmentManager fm) {
+    public HymnBook(FragmentManager fm) {
         super(fm);
     }
 
