@@ -180,7 +180,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         } else if (item.getItemId() == R.id.action_index) {
             Intent intent = new Intent(getBaseContext(), SearchActivity.class);
-            intent.putExtra("selectedHymnGroup", selectedHymnGroup.toString());
+            intent.putExtra("selectedHymnGroup", selectedHymnGroup);
             startActivityForResult(intent, INDEX_REQUEST);
             ret = true;
 
