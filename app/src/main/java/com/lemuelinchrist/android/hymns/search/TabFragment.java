@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
+import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
 
@@ -26,7 +27,7 @@ public abstract class TabFragment extends Fragment {
 
     protected RecyclerView mRecyclerView;
     protected ViewGroup container;
-    protected static String selectedHymnGroup;
+    protected static HymnGroup selectedHymnGroup;
     public static final Map<Integer, TabFragment> COLLECTION = new HashMap();
 
     public TabFragment() {
@@ -76,7 +77,7 @@ public abstract class TabFragment extends Fragment {
     }
 
 
-    public static void setSelectedHymnGroup(String hymnGroup) {
+    public static void setSelectedHymnGroup(HymnGroup hymnGroup) {
         selectedHymnGroup = hymnGroup;
 
     }

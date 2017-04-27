@@ -98,7 +98,7 @@ public class SearchActivity extends AppCompatActivity  {
         });
 
 
-        TabFragment.setSelectedHymnGroup(selectedHymnGroup.toString());
+        TabFragment.setSelectedHymnGroup(selectedHymnGroup);
 
     }
 
