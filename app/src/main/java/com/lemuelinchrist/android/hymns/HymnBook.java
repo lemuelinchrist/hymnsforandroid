@@ -38,7 +38,7 @@ public class Hymnbook extends FragmentStatePagerAdapter {
             dao.open();
             try {
 
-                hymnbook.hymnNumbers=dao.getHymnNumberArray(hymnGroup.toString());
+                hymnbook.hymnNumbers=dao.getHymnNumberArray(hymnGroup);
             } finally {
                 dao.close();
             }

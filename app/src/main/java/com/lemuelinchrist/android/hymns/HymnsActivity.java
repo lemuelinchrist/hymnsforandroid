@@ -25,6 +25,8 @@ import android.support.v7.app.ActionBar;
 import android.widget.TextView;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
+import com.lemuelinchrist.android.hymns.utils.DepthPageTransformer;
+import com.lemuelinchrist.android.hymns.utils.ZoomOutPageTransformer;
 
 import java.lang.reflect.Method;
 
@@ -62,6 +64,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         lyricPager = (ViewPager) findViewById(R.id.hymn_fragment_viewpager);
         hymnbook = Hymnbook.getInstance(selectedHymnGroup, this);
         lyricPager.setAdapter(hymnbook);
+        //lyricPager.setPageTransformer(true, new DepthPageTransformer());
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
