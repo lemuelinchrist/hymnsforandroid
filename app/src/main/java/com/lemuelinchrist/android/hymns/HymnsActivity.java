@@ -25,8 +25,6 @@ import android.support.v7.app.ActionBar;
 import android.widget.TextView;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
-import com.lemuelinchrist.android.hymns.utils.DepthPageTransformer;
-import com.lemuelinchrist.android.hymns.utils.ZoomOutPageTransformer;
 
 import java.lang.reflect.Method;
 
@@ -48,7 +46,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private ActionBar actionBar;
     private MenuItem playMenuItem;
     private ViewPager lyricPager;
-    private Hymnbook hymnbook;
+    private HymnBook hymnBook;
     private HymnsDao hymnsDao;
 
 
@@ -62,8 +60,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         // Instantiate a ViewPager and a PagerAdapter.
         lyricPager = (ViewPager) findViewById(R.id.hymn_fragment_viewpager);
-        hymnbook = Hymnbook.getInstance(selectedHymnGroup, this);
-        lyricPager.setAdapter(hymnbook);
+        hymnBook = HymnBook.getInstance(selectedHymnGroup, this);
+        lyricPager.setAdapter(hymnBook);
         //lyricPager.setPageTransformer(true, new DepthPageTransformer());
         lyricPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -72,7 +70,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
             @Override
             public void onPageSelected(int i) {
-                lyricChanged(hymnbook.getLyricContainer(i).getHymn());
+                lyricChanged(hymnBook.getLyricContainer(i).getHymn());
             }
 
             @Override
@@ -295,7 +293,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
                 Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
 
-                lyricPager.setCurrentItem(hymnbook.getPositionOfHymnNo(selectedHymnNumber));
+                lyricPager.setCurrentItem(hymnBook.getPositionOfHymnNo(selectedHymnNumber));
 
             }
         }
@@ -317,7 +315,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
         selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
 
-//        currentLyric=hymnbook.getLyricContainer(lyricPager.getCurrentItem());
+//        currentLyric=hymnBook.getLyricContainer(lyricPager.getCurrentItem());
 
         Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
 
