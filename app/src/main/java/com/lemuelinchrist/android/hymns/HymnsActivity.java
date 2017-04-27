@@ -45,8 +45,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     private ActionBar actionBar;
     private MenuItem playMenuItem;
-    private ViewPager lyricPager;
-    private HymnBook hymnBook;
+    private HymnBookCollection hymnBookCollection;
     private HymnsDao hymnsDao;
 
 
@@ -59,25 +58,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         setContentView(R.layout.main_hymns_activity);
 
         // Instantiate a ViewPager and a PagerAdapter.
-        lyricPager = (ViewPager) findViewById(R.id.hymn_fragment_viewpager);
-        hymnBook = HymnBook.getInstance(selectedHymnGroup, this);
-        lyricPager.setAdapter(hymnBook);
-        //lyricPager.setPageTransformer(true, new DepthPageTransformer());
-        lyricPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-            }
+        hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager));
 
-            @Override
-            public void onPageSelected(int i) {
-                lyricChanged(hymnBook.getLyricContainer(i).getHymn());
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -293,7 +275,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
                 Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
 
-                lyricPager.setCurrentItem(hymnBook.getPositionOfHymnNo(selectedHymnNumber));
+                hymnBookCollection.switchToHymn(rawData);
 
             }
         }
