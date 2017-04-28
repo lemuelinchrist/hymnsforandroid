@@ -1,6 +1,7 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ViewGroup;
+
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 
 import java.util.ArrayList;
@@ -18,10 +20,8 @@ import java.util.HashMap;
 
 /**
  * Created by lemuel on 26/4/2017.
- *
- *
  */
-public class HymnBookCollection  {
+public class HymnBookCollection {
 
     private static HashMap<HymnGroup, HymnBookAdapter> hymnBookAdapters = new HashMap<>();
     private final ViewPager lyricPager;
@@ -30,12 +30,12 @@ public class HymnBookCollection  {
 
     private final HymnsActivity context;
     private HymnBookAdapter currentAdapter;
-    private String newlySwitchedGroupHymnNumber=null;
+    private String newlySwitchedGroupHymnNumber = "1";
 
     public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
-        dao=new HymnsDao(context);
-        this.lyricPager=lyricPager;
+        dao = new HymnsDao(context);
+        this.lyricPager = lyricPager;
         switchHymnBook(HymnGroup.E);
         //lyricPager.setPageTransformer(true, new DepthPageTransformer());
         lyricPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -58,11 +58,15 @@ public class HymnBookCollection  {
         lyricPager.addOnAdapterChangeListener(new ViewPager.OnAdapterChangeListener() {
             @Override
             public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter1) {
-                if (pagerAdapter==null) return;
-                if(newlySwitchedGroupHymnNumber!=null) {
-                    lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(newlySwitchedGroupHymnNumber));
-                    newlySwitchedGroupHymnNumber=null;
-                }
+                if (pagerAdapter == null) return;
+
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(newlySwitchedGroupHymnNumber));
+                        newlySwitchedGroupHymnNumber = "1";
+                    }
+                });
             }
         });
     }
@@ -70,23 +74,23 @@ public class HymnBookCollection  {
 
     public void switchHymnBook(HymnGroup hymnGroup) {
 
-        if(!hymnBookAdapters.containsKey(hymnGroup)) {
+        if (!hymnBookAdapters.containsKey(hymnGroup)) {
             Log.d(this.getClass().getName(), "generating new instance of HymnBook for selected hymn group: " + hymnGroup);
             HymnBookAdapter hymnBookAdapter = new HymnBookAdapter(context.getSupportFragmentManager());
 
             dao.open();
             try {
                 hymnBookAdapter.hymnNumbers = dao.getHymnNumberArray(hymnGroup);
-                hymnBookAdapter.hymnGroup=hymnGroup;
+                hymnBookAdapter.hymnGroup = hymnGroup;
             } finally {
                 dao.close();
             }
 
-            hymnBookAdapters.put(hymnGroup,hymnBookAdapter);
+            hymnBookAdapters.put(hymnGroup, hymnBookAdapter);
         }
         lyricPager.setAdapter(null);
         lyricPager.setAdapter(hymnBookAdapters.get(hymnGroup));
-        this.currentAdapter=hymnBookAdapters.get(hymnGroup);
+        this.currentAdapter = hymnBookAdapters.get(hymnGroup);
 
     }
 
@@ -99,8 +103,8 @@ public class HymnBookCollection  {
         String selectedHymnNumber = HymnGroup.getHymnNoFromID(rawData);
 
 
-        if (currentAdapter!=null && selectedHymnGroup!=currentAdapter.hymnGroup) {
-            newlySwitchedGroupHymnNumber=selectedHymnNumber;
+        if (currentAdapter != null && selectedHymnGroup != currentAdapter.hymnGroup) {
+            newlySwitchedGroupHymnNumber = selectedHymnNumber;
             switchHymnBook(selectedHymnGroup);
 
         } else {
@@ -134,7 +138,7 @@ public class HymnBookCollection  {
         public Fragment getItem(int position) {
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
-            LyricContainer lyric = LyricContainer.newInstance(context,null);
+            LyricContainer lyric = LyricContainer.newInstance(context, null);
             lyric.setHymn(hymnGroup.toString() + hymnNumbers.get(position));
             return lyric;
 
