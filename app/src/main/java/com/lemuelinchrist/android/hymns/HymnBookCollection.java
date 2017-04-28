@@ -55,20 +55,7 @@ public class HymnBookCollection {
 
             }
         });
-        lyricPager.addOnAdapterChangeListener(new ViewPager.OnAdapterChangeListener() {
-            @Override
-            public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter1) {
-                if (pagerAdapter == null) return;
 
-                new Handler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(newlySwitchedGroupHymnNumber));
-                        newlySwitchedGroupHymnNumber = "1";
-                    }
-                });
-            }
-        });
     }
 
 
@@ -100,17 +87,20 @@ public class HymnBookCollection {
 
     public void switchToHymn(String rawData) {
         HymnGroup selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
-        String selectedHymnNumber = HymnGroup.getHymnNoFromID(rawData);
+        final String selectedHymnNumber = HymnGroup.getHymnNoFromID(rawData);
 
 
         if (currentAdapter != null && selectedHymnGroup != currentAdapter.hymnGroup) {
-            newlySwitchedGroupHymnNumber = selectedHymnNumber;
             switchHymnBook(selectedHymnGroup);
 
-        } else {
-            lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
-
         }
+
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
+            }
+        });
 
 
     }
