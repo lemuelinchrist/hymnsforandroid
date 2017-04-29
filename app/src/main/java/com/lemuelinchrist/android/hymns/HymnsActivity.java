@@ -34,7 +34,7 @@ import java.lang.reflect.Method;
 /**
  * Created by lemuelcantos on 17/7/13.
  */
-public class HymnsActivity extends AppCompatActivity implements MusicPlayerListener {
+public class HymnsActivity extends AppCompatActivity implements MusicPlayerListener, OnLyricVisibleListener {
     protected final int INDEX_REQUEST = 1;
     protected String selectedHymnNumber;
     protected HymnGroup selectedHymnGroup = HymnGroup.E;
@@ -58,7 +58,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         // Instantiate a ViewPager and a PagerAdapter.
         hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager));
-
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -279,7 +278,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     }
 
-    public void lyricChanged(String hymnId) {
+    @Override
+    public void onLyricVisible(String hymnId) {
 
         selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
         selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
@@ -291,6 +291,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         actionBar.setTitle(hymnId);
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
         actionBar.setBackgroundDrawable(new ColorDrawable(selectedHymnGroup.getRgbColor()));
+        hymnBookCollection.log();
+
 
     }
 

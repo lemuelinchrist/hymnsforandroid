@@ -4,7 +4,7 @@ apply plugin: 'idea'
 // you can choose to put either "guitarSvg" or "pianoSvg" depending on the sheet music you want to include
 def svgFolderName = "pianoSvg"
 //def svgFolderName=""
-def hymnAppVersion = "v3.2"
+def hymnAppVersion = "v3.3beta"
 
 allprojects {
     buildDir = "/Users/lemuelcantos/Desktop/build"

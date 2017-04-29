@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,32 +26,16 @@ public class HymnBookCollection {
 
     private final HymnsActivity context;
     private HymnBookAdapter currentAdapter;
-    private String newlySwitchedGroupHymnNumber = "1";
+    private HistoryLogBook historyLogBook;
 
     public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
         dao = new HymnsDao(context);
         this.lyricPager = lyricPager;
-        switchHymnBook(HymnGroup.E);
         //lyricPager.setPageTransformer(true, new DepthPageTransformer());
-        lyricPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-            }
+        historyLogBook = new HistoryLogBook(context);
 
-            @Override
-            public void onPageSelected(int i) {
-                context.lyricChanged(getCurrentHymnId());
-
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
-
+        switchHymnBook(HymnGroup.E);
     }
 
 
@@ -99,7 +84,6 @@ public class HymnBookCollection {
             @Override
             public void run() {
                 lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
-                context.lyricChanged(getCurrentHymnId());
             }
         });
 
@@ -111,10 +95,10 @@ public class HymnBookCollection {
     }
 
     public void translateTo(HymnGroup selectedHymnGroup) {
-        if(selectedHymnGroup==currentAdapter.hymnGroup) return;
+        if (selectedHymnGroup == currentAdapter.hymnGroup) return;
         String related = getCurrentHymnLyric().getRelatedHymnOf(selectedHymnGroup);
-        if(related==null) {
-            switchToHymn(selectedHymnGroup+"1");
+        if (related == null) {
+            switchToHymn(selectedHymnGroup + "1");
         } else {
             switchToHymn(related);
         }
@@ -136,6 +120,10 @@ public class HymnBookCollection {
     public void startPlaying() {
         getCurrentHymnLyric().startPlaying();
 
+    }
+
+    public void log() {
+        getCurrentHymnLyric().log();
     }
 
 
@@ -175,6 +163,7 @@ public class HymnBookCollection {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             LyricContainer fragment = (LyricContainer) super.instantiateItem(container, position);
+            fragment.setOnLyricVisibleLIstener(context);
             registeredFragments.put(position, fragment);
             return fragment;
         }
