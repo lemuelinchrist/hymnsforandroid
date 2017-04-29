@@ -36,7 +36,7 @@ public class LyricContainer extends Fragment {
     private Hymn hymn;
     private static HymnsDao hymnsDao=null;
     private TextView lyricsView;
-    private float fontSize;
+    private static float fontSize;
     private SharedPreferences sharedPreferences;
     private HymnStack hymnStack;
     private MusicPlayerListener musicPlayerListener;
@@ -106,7 +106,7 @@ public class LyricContainer extends Fragment {
     public void setHymn(String hymnId) {
         this.hymnId=hymnId;
     }
-    public String getHymn() { return this.hymnId; }
+    public String getHymnId() { return this.hymnId; }
 
     public Hymn displayLyrics(String hymnId) {
         return displayLyrics(HymnGroup.getHymnGroupFromID(hymnId).toString(), HymnGroup.getHymnNoFromID(hymnId));
@@ -247,69 +247,21 @@ public class LyricContainer extends Fragment {
 
     }
 
-    public boolean translateTo(HymnGroup hymnGroup) {
-        String selectedHymnGroup = hymnGroup.toString();
-
-        if (hymn != null) {
-
-            // if selected hymn group did not change, skip translating
-            if (selectedHymnGroup.equals(hymn.getGroup()))
-                return false;
-
-
-            int groupCharLength = selectedHymnGroup.length();
-            for (String translation : hymn.getRelated()) {
-                String iteratedGroupCode;
-                // some hymn group codes have two characters, while others have only one. This if statement determines how many
-                // characters the current group code has.
-                //todo: refactor duplicates of this. perhaps create a method?
-                if (Character.isLetter(translation.charAt(1))) {
-                    iteratedGroupCode = translation.substring(0, 2);
-                } else {
-                    iteratedGroupCode = translation.substring(0, 1);
-                }
-
-
-                Log.d(this.getClass().getSimpleName(), "looping translation groups: " + iteratedGroupCode);
-                if (iteratedGroupCode.equals(selectedHymnGroup)) {
-                    String hymnNo = translation.substring(groupCharLength);
-                    Log.i(this.getClass().getSimpleName(), "Translation found! group: " + iteratedGroupCode + " no:" + hymnNo);
-                    displayLyrics(iteratedGroupCode, hymnNo);
-                    if (this.hymn != null) {
-                        historyLogBook.log(hymn);
-                        return true;
-                    }
-                }
-            }
-            Log.d(this.getClass().getSimpleName(), "Translation NOT found! clearing Lyric Container");
-
-
-            lyricHeader.setText(R.string.enterHymnNo);
-            lyricsView.setText("");
-            stopPlaying();
-            hymn = null;
-            hymnStack.push(null);
-
-
-        }
-        return false;
-    }
-
     public void setLyricFontSize(String size) {
         if (size.equals("Small")) {
-            this.fontSize = 14;
+            fontSize = 14;
 
         } else if (size.equals("Medium")) {
-            this.fontSize = 18;
+            fontSize = 18;
 
         } else if (size.equals("Large")) {
-            this.fontSize = 22;
+            fontSize = 22;
 
         } else if (size.equals("Extra Large")) {
-            this.fontSize = 26;
+            fontSize = 26;
 
         } else if (size.equals("XXL")) {
-            this.fontSize = 32;
+            fontSize = 32;
         }
 
 
@@ -317,7 +269,7 @@ public class LyricContainer extends Fragment {
     }
 
     private void setLyricFontSize(float size) {
-        this.fontSize = size;
+        fontSize = size;
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putFloat("fontSize", size);
         editor.commit();
@@ -363,4 +315,23 @@ public class LyricContainer extends Fragment {
     }
 
 
+    public HymnGroup getHymnGroup() {
+        return HymnGroup.valueOf(hymn.getGroup().trim().toUpperCase());
+    }
+
+
+    public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {
+        for (String related : hymn.getRelated()) {
+            HymnGroup group=HymnGroup.getHymnGroupFromID(related);
+
+            Log.d(this.getClass().getSimpleName(), "looping translation groups: " + group);
+            if (group.equals(selectedHymnGroup)) {
+                String hymnNo = HymnGroup.getHymnNoFromID(related);
+                Log.i(this.getClass().getSimpleName(), "Translation found! group: " + group + " no:" + hymnNo);
+                return related;
+            }
+        }
+        Log.i(this.getClass().getSimpleName(), "Translation NOT found! throwing null.");
+        return null;
+    }
 }

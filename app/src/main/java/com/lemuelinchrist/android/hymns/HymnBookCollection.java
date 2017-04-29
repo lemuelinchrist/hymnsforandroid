@@ -1,15 +1,10 @@
 package com.lemuelinchrist.android.hymns;
 
-import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ViewGroup;
 
@@ -82,10 +77,15 @@ public class HymnBookCollection {
     }
 
     public String getCurrentHymnId() {
-        return currentAdapter.getLyricContainer(lyricPager.getCurrentItem()).getHymn();
+        return getCurrentHymnLyric().getHymnId();
+    }
+
+    private LyricContainer getCurrentHymnLyric() {
+        return currentAdapter.getLyricContainer(lyricPager.getCurrentItem());
     }
 
     public void switchToHymn(String rawData) {
+
         HymnGroup selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
         final String selectedHymnNumber = HymnGroup.getHymnNoFromID(rawData);
 
@@ -102,6 +102,38 @@ public class HymnBookCollection {
             }
         });
 
+
+    }
+
+    public void getSheetMusic() {
+        getCurrentHymnLyric().getSheetMusic();
+    }
+
+    public void translateTo(HymnGroup selectedHymnGroup) {
+        if(selectedHymnGroup==currentAdapter.hymnGroup) return;
+        String related = getCurrentHymnLyric().getRelatedHymnOf(selectedHymnGroup);
+        if(related==null) {
+            switchToHymn(selectedHymnGroup+"1");
+        } else {
+            switchToHymn(related);
+        }
+
+    }
+
+    public void launchYouTubeApp() {
+        getCurrentHymnLyric().launchYouTubeApp();
+    }
+
+    public void setLyricFontSize(String fontSize) {
+        getCurrentHymnLyric().setLyricFontSize(fontSize);
+    }
+
+    public void stopPlaying() {
+        getCurrentHymnLyric().startPlaying();
+    }
+
+    public void startPlaying() {
+        getCurrentHymnLyric().startPlaying();
 
     }
 
