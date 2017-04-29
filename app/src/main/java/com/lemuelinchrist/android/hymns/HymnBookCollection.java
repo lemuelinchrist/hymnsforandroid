@@ -114,7 +114,7 @@ public class HymnBookCollection {
     }
 
     public void stopPlaying() {
-        getCurrentHymnLyric().startPlaying();
+        getCurrentHymnLyric().stopPlaying();
     }
 
     public void startPlaying() {
@@ -149,7 +149,7 @@ public class HymnBookCollection {
         public Fragment getItem(int position) {
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
-            LyricContainer lyric = LyricContainer.newInstance(context, null);
+            LyricContainer lyric = LyricContainer.newInstance(context, context, context);
             lyric.setHymn(hymnGroup.toString() + hymnNumbers.get(position));
             return lyric;
 

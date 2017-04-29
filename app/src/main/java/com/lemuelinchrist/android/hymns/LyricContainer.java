@@ -92,11 +92,12 @@ public class LyricContainer extends Fragment {
         return rootView;
     }
 
-    public static LyricContainer newInstance(Context context, OnLyricVisibleListener lyricVisibleListener) {
+    public static LyricContainer newInstance(Context context, OnLyricVisibleListener lyricVisibleListener, MusicPlayerListener musicPlayerListener) {
         LyricContainer lyric = new LyricContainer();
 
         lyric.setContext(context);
         lyric.setOnLyricVisibleLIstener(lyricVisibleListener);
+        lyric.setMusicPlayerListener(musicPlayerListener);
         return lyric;
 
     }
@@ -108,6 +109,9 @@ public class LyricContainer extends Fragment {
         if (isVisibleToUser && hymn!=null) {
 
             onLyricVisibleLIstener.onLyricVisible(hymn.getHymnId());
+        }
+        if(!isVisibleToUser) {
+            stopPlaying();
         }
 
     }
@@ -358,5 +362,11 @@ public class LyricContainer extends Fragment {
 
     public void log() {
         historyLogBook.log(hymn);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        stopPlaying();
     }
 }

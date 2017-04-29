@@ -45,14 +45,12 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private ActionBar actionBar;
     private MenuItem playMenuItem;
     private HymnBookCollection hymnBookCollection;
-    private HymnsDao hymnsDao;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(this.getClass().getName(), "start app");
-        hymnsDao = new HymnsDao(this);
 
         setContentView(R.layout.main_hymns_activity);
 
@@ -241,12 +239,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         }
         return null;
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-//        hymnBookCollection.stopPlaying();
     }
 
     @Override
