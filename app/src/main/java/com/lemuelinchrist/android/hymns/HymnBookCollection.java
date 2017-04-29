@@ -34,22 +34,23 @@ public class HymnBookCollection implements OnLyricVisibleListener{
         dao = new HymnsDao(context);
         this.lyricPager = lyricPager;
         //lyricPager.setPageTransformer(true, new DepthPageTransformer());
-        this.lyricPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                context.onLyricVisible(getCurrentHymnId());
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+//        this.lyricPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                context.onLyricVisible(getCurrentHymnId());
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
         switchHymnBook(HymnGroup.E);
+        hymnStack.push("E1");
     }
 
 
@@ -91,6 +92,8 @@ public class HymnBookCollection implements OnLyricVisibleListener{
 
         if(hymnId.equals(getCurrentHymnId())) return;
 
+        Log.i(getClass().getName(),"switching to hymn "+hymnId);
+
         HymnGroup selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
         final String selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
 
@@ -104,6 +107,7 @@ public class HymnBookCollection implements OnLyricVisibleListener{
             @Override
             public void run() {
                 lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
+                context.onLyricVisible(getCurrentHymnId());
                 if(log) {
                     log();
                 }
