@@ -34,7 +34,21 @@ public class HymnBookCollection implements OnLyricVisibleListener{
         dao = new HymnsDao(context);
         this.lyricPager = lyricPager;
         //lyricPager.setPageTransformer(true, new DepthPageTransformer());
+        this.lyricPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
+            @Override
+            public void onPageSelected(int position) {
+                context.onLyricVisible(getCurrentHymnId());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         switchHymnBook(HymnGroup.E);
     }
 

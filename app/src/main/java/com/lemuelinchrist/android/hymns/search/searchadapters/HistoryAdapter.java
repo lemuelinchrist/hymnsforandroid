@@ -21,7 +21,7 @@ public class HistoryAdapter extends SearchAdapter {
     @Override
     public void provisionHolder(final IndexViewHolder holder, int position) {
         HistoryRecord record = historyLogBookList[position];
-        holder.list_item.setText(record.getFirstLine());
+        holder.list_item.setText(record.getHymnId() + " - " + record.getFirstLine());
         holder.imageView.setImageResource(context.getResources().getIdentifier(record.getHymnGroup().toLowerCase(), "drawable", context.getPackageName()));
         holder.hymnNo = record.getHymnId();
     }
