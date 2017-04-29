@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
+import com.lemuelinchrist.android.hymns.utils.HymnStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ import java.util.HashMap;
 /**
  * Created by lemuel on 26/4/2017.
  */
-public class HymnBookCollection {
+public class HymnBookCollection implements OnLyricVisibleListener{
 
     private static HashMap<HymnGroup, HymnBookAdapter> hymnBookAdapters = new HashMap<>();
     private final ViewPager lyricPager;
@@ -26,14 +27,13 @@ public class HymnBookCollection {
 
     private final HymnsActivity context;
     private HymnBookAdapter currentAdapter;
-    private HistoryLogBook historyLogBook;
+    private HymnStack hymnStack=new HymnStack();
 
     public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
         dao = new HymnsDao(context);
         this.lyricPager = lyricPager;
         //lyricPager.setPageTransformer(true, new DepthPageTransformer());
-        historyLogBook = new HistoryLogBook(context);
 
         switchHymnBook(HymnGroup.E);
     }
@@ -69,10 +69,16 @@ public class HymnBookCollection {
         return currentAdapter.getLyricContainer(lyricPager.getCurrentItem());
     }
 
-    public void switchToHymn(String rawData) {
+    public void switchToHymn(String hymnId) {
+        switchToHymn(hymnId,false);
+    }
 
-        HymnGroup selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
-        final String selectedHymnNumber = HymnGroup.getHymnNoFromID(rawData);
+    public void switchToHymn(String hymnId, final boolean log) {
+
+        if(hymnId.equals(getCurrentHymnId())) return;
+
+        HymnGroup selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
+        final String selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
 
 
         if (currentAdapter != null && selectedHymnGroup != currentAdapter.hymnGroup) {
@@ -84,6 +90,9 @@ public class HymnBookCollection {
             @Override
             public void run() {
                 lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
+                if(log) {
+                    log();
+                }
             }
         });
 
@@ -124,6 +133,27 @@ public class HymnBookCollection {
 
     public void log() {
         getCurrentHymnLyric().log();
+        hymnStack.push(getCurrentHymnId());
+    }
+
+    @Override
+    public void onLyricVisible(String hymnId) {
+    }
+
+    public void goToPreviousHymn() {
+
+        if (hymnStack.isEmpty()) {
+            return;
+        } else {
+            String poppedHymn = hymnStack.pop();
+
+
+                switchToHymn(poppedHymn);
+            if(hymnStack.isEmpty()) {
+                hymnStack.push(poppedHymn);
+            }
+        }
+
     }
 
 
@@ -149,7 +179,9 @@ public class HymnBookCollection {
         public Fragment getItem(int position) {
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
-            LyricContainer lyric = LyricContainer.newInstance(context, context, context);
+            LyricContainer lyric = LyricContainer.newInstance(context, context);
+            lyric.addLyricVisibleListener(context);
+            lyric.addLyricVisibleListener(HymnBookCollection.this);
             lyric.setHymn(hymnGroup.toString() + hymnNumbers.get(position));
             return lyric;
 
@@ -163,7 +195,6 @@ public class HymnBookCollection {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             LyricContainer fragment = (LyricContainer) super.instantiateItem(container, position);
-            fragment.setOnLyricVisibleLIstener(context);
             registeredFragments.put(position, fragment);
             return fragment;
         }

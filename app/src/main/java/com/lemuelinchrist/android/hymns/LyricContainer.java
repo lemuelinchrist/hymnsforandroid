@@ -23,6 +23,7 @@ import com.lemuelinchrist.android.hymns.utils.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.utils.SheetMusic;
 import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
 
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -38,12 +39,11 @@ public class LyricContainer extends Fragment {
     private TextView lyricsView;
     private static float fontSize;
     private SharedPreferences sharedPreferences;
-    private HymnStack hymnStack;
     private MusicPlayerListener musicPlayerListener;
     private SheetMusic sheetMusic;
     private HistoryLogBook historyLogBook;
     private String hymnId;
-    private OnLyricVisibleListener onLyricVisibleLIstener;
+    private HashSet <OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
 
 
     @Override
@@ -77,9 +77,6 @@ public class LyricContainer extends Fragment {
             }
         });
 
-        //set up hymn stack (for back button functionality)
-        hymnStack = new HymnStack();
-
         // initialize sheetMusic
         sheetMusic = new SheetMusic(context);
 
@@ -92,14 +89,17 @@ public class LyricContainer extends Fragment {
         return rootView;
     }
 
-    public static LyricContainer newInstance(Context context, OnLyricVisibleListener lyricVisibleListener, MusicPlayerListener musicPlayerListener) {
+    public static LyricContainer newInstance(Context context, MusicPlayerListener musicPlayerListener) {
         LyricContainer lyric = new LyricContainer();
 
         lyric.setContext(context);
-        lyric.setOnLyricVisibleLIstener(lyricVisibleListener);
         lyric.setMusicPlayerListener(musicPlayerListener);
         return lyric;
 
+    }
+
+    public void addLyricVisibleListener(OnLyricVisibleListener lyricVisibleListener) {
+        onLyricVisibleLIsteners.add(lyricVisibleListener);
     }
 
     @Override
@@ -107,8 +107,7 @@ public class LyricContainer extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
 
         if (isVisibleToUser && hymn!=null) {
-
-            onLyricVisibleLIstener.onLyricVisible(hymn.getHymnId());
+            onLyricVisible();
         }
         if(!isVisibleToUser) {
             stopPlaying();
@@ -116,10 +115,16 @@ public class LyricContainer extends Fragment {
 
     }
 
+    private void onLyricVisible() {
+        for(OnLyricVisibleListener listener: onLyricVisibleLIsteners) {
+            listener.onLyricVisible(hymn.getHymnId());
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        if(getUserVisibleHint()) onLyricVisibleLIstener.onLyricVisible(hymn.getHymnId());
+        if(getUserVisibleHint()) onLyricVisible();
     }
 
     public void setContext(Context context) {
@@ -246,8 +251,6 @@ public class LyricContainer extends Fragment {
 
         // push hymn to stack for back button functionality
 
-        hymnStack.push(hymn.getHymnId());
-
         return hymn;
     }
 
@@ -304,23 +307,6 @@ public class LyricContainer extends Fragment {
         return (hymn != null);
     }
 
-    public boolean goToPreviousHymn() {
-
-        if (hymnStack.isEmpty()) {
-            return false;
-        } else {
-            String poppedHymn = hymnStack.pop();
-            if (poppedHymn == null)
-                return false;
-
-            else {
-                displayLyrics(poppedHymn);
-                return true;
-            }
-        }
-
-    }
-
     public void getSheetMusic() { sheetMusic.getSheetMusic(hymn);}
 
     public void setMusicPlayerListener(MusicPlayerListener musicPlayerListener) {
@@ -354,10 +340,6 @@ public class LyricContainer extends Fragment {
         }
         Log.i(this.getClass().getSimpleName(), "Translation NOT found! throwing null.");
         return null;
-    }
-
-    public void setOnLyricVisibleLIstener(OnLyricVisibleListener onLyricVisibleLIstener) {
-        this.onLyricVisibleLIstener = onLyricVisibleLIstener;
     }
 
     public void log() {
