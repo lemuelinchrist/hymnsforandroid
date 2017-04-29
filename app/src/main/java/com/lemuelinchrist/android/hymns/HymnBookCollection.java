@@ -99,6 +99,7 @@ public class HymnBookCollection {
             @Override
             public void run() {
                 lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
+                context.lyricChanged(getCurrentHymnId());
             }
         });
 
