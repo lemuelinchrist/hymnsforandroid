@@ -43,6 +43,7 @@ public class LyricContainer extends Fragment {
     private SheetMusic sheetMusic;
     private HistoryLogBook historyLogBook;
     private String hymnId;
+    private OnLyricVisibleListener onLyricVisibleLIstener;
 
 
     @Override
@@ -91,13 +92,30 @@ public class LyricContainer extends Fragment {
         return rootView;
     }
 
-    public static LyricContainer newInstance(Context context, MusicPlayerListener musicPlayerListener) {
+    public static LyricContainer newInstance(Context context, OnLyricVisibleListener lyricVisibleListener) {
         LyricContainer lyric = new LyricContainer();
 
         lyric.setContext(context);
-        lyric.setMusicPlayerListener(musicPlayerListener);
+        lyric.setOnLyricVisibleLIstener(lyricVisibleListener);
         return lyric;
 
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (isVisibleToUser && hymn!=null) {
+
+            onLyricVisibleLIstener.onLyricVisible(hymn.getHymnId());
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getUserVisibleHint()) onLyricVisibleLIstener.onLyricVisible(hymn.getHymnId());
     }
 
     public void setContext(Context context) {
@@ -225,7 +243,6 @@ public class LyricContainer extends Fragment {
         // push hymn to stack for back button functionality
 
         hymnStack.push(hymn.getHymnId());
-        historyLogBook.log(hymn);
 
         return hymn;
     }
@@ -333,5 +350,13 @@ public class LyricContainer extends Fragment {
         }
         Log.i(this.getClass().getSimpleName(), "Translation NOT found! throwing null.");
         return null;
+    }
+
+    public void setOnLyricVisibleLIstener(OnLyricVisibleListener onLyricVisibleLIstener) {
+        this.onLyricVisibleLIstener = onLyricVisibleLIstener;
+    }
+
+    public void log() {
+        historyLogBook.log(hymn);
     }
 }
