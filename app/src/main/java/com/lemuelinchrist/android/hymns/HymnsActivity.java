@@ -282,6 +282,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
         actionBar.setBackgroundDrawable(new ColorDrawable(selectedHymnGroup.getRgbColor()));
 
+        Log.d(getClass().getSimpleName(),"Done painting title");
+
 
     }
 
