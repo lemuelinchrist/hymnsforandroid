@@ -253,7 +253,9 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
                 Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
 
-                hymnBookCollection.switchToHymn(rawData);
+                hymnBookCollection.switchToHymn(rawData,true);
+
+
 
             }
         }
@@ -261,12 +263,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     @Override
     public void onBackPressed() {
-//        Log.d(HymnsActivity.class.getSimpleName(), "onBackPressed Called");
-//        boolean isLyricContainerEmpty = !currentLyric.goToPreviousHymn();
-//
-//        if (isLyricContainerEmpty) {
-//            super.onBackPressed();
-//        }
+        Log.d(HymnsActivity.class.getSimpleName(), "onBackPressed Called");
+        hymnBookCollection.goToPreviousHymn();
 
     }
 
@@ -283,7 +281,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         actionBar.setTitle(hymnId);
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
         actionBar.setBackgroundDrawable(new ColorDrawable(selectedHymnGroup.getRgbColor()));
-        hymnBookCollection.log();
 
 
     }
