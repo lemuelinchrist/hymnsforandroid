@@ -38,7 +38,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     protected final int INDEX_REQUEST = 1;
     protected String selectedHymnNumber;
     protected HymnGroup selectedHymnGroup = HymnGroup.E;
-    protected LyricContainer currentLyric;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -94,7 +93,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        currentLyric = LyricContainer.newInstance(HymnsActivity.this, HymnsActivity.this);
 
     }
 
@@ -109,11 +107,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     private void downloadSheetMusic() {
 
-        if (!currentLyric.isHymnDisplayed()) {
-            showAlert(R.string.choose_hymn_first, R.string.no_hymn_selected);
-            return;
-        }
-        currentLyric.getSheetMusic();
+        hymnBookCollection.getSheetMusic();
 
 
     }
@@ -140,7 +134,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             selectedHymnGroup = HymnGroup.E;
         }
 
-        currentLyric.translateTo(selectedHymnGroup);
+        hymnBookCollection.translateTo(selectedHymnGroup);
         mDrawerLayout.closeDrawer(mDrawerList);
 
     }
@@ -156,11 +150,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         return true;
     }
 
-    private void checkHymnIsDisplayed() {
-        if (!currentLyric.isHymnDisplayed())
-            showAlert(R.string.choose_hymn_first
-                    , R.string.no_hymn_selected);
-    }
 
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -183,11 +172,10 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             ret = true;
 
         } else if (item.getItemId() == R.id.action_play) {
-            checkHymnIsDisplayed();
             if (item.getTitle().equals(getString(R.string.playHymn))) {
-                currentLyric.startPlaying();
+                hymnBookCollection.startPlaying();
             } else {
-                currentLyric.stopPlaying();
+                hymnBookCollection.stopPlaying();
             }
             ret = true;
 
@@ -201,7 +189,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                     .setItems(fontSizes, new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int which) {
-                            currentLyric.setLyricFontSize(fontSizes[which]);
+                            hymnBookCollection.setLyricFontSize(fontSizes[which]);
                         }
                     });
 
@@ -214,8 +202,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             ret = true;
 
         } else if (item.getItemId() == R.id.action_searchYoutube) {
-            checkHymnIsDisplayed();
-            currentLyric.launchYouTubeApp();
+            hymnBookCollection.launchYouTubeApp();
         } else
 
         {
@@ -260,7 +247,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     @Override
     public void onPause() {
         super.onPause();
-        currentLyric.stopPlaying();
+//        hymnBookCollection.stopPlaying();
     }
 
     @Override
@@ -283,12 +270,12 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     @Override
     public void onBackPressed() {
-        Log.d(HymnsActivity.class.getSimpleName(), "onBackPressed Called");
-        boolean isLyricContainerEmpty = !currentLyric.goToPreviousHymn();
-
-        if (isLyricContainerEmpty) {
-            super.onBackPressed();
-        }
+//        Log.d(HymnsActivity.class.getSimpleName(), "onBackPressed Called");
+//        boolean isLyricContainerEmpty = !currentLyric.goToPreviousHymn();
+//
+//        if (isLyricContainerEmpty) {
+//            super.onBackPressed();
+//        }
 
     }
 
