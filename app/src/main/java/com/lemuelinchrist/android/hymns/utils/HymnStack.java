@@ -8,34 +8,27 @@ import java.util.ArrayList;
  * Created by lemuelcantos on 5/9/13.
  */
 public class HymnStack {
-    public static final String BLANK = "blank";
-    ArrayList<String> stack = new ArrayList<String>();
-    private String poppedHymn;
-    private boolean isLastActionPop;
-    private String pushedHymn;
+    private ArrayList<String> stack = new ArrayList<String>();
+
+
+    // the stack requires at least one beginning element
+    public HymnStack(String firstHymn) {
+        stack.add(firstHymn);
+    }
 
     public void push(String hymn) {
 
 
         if (hymn == null) {
-            hymn = BLANK;
+            Log.e(getClass().getSimpleName(), "Strange! why is a null being pushed in the hymn stack?");
         }
 
+        // We dont want to push duplicates
         if (!stack.isEmpty() && stack.get(0).equals(hymn))
             return;
 
-        if (isLastActionPop) {
-            isLastActionPop = false;
-            return;
-        }
-        if (poppedHymn != null) {
-            stack.add(0, poppedHymn);
-            poppedHymn = null;
-        }
-
         stack.add(0, hymn);
-        pushedHymn = hymn;
-        Log.i(this.getClass().getSimpleName(), "stack: " + stack);
+        Log.i(this.getClass().getSimpleName(), "pushed hymn: " + hymn);
     }
 
     public boolean isEmpty() {
@@ -44,24 +37,13 @@ public class HymnStack {
 
     public String pop() {
 
-        if (pushedHymn != null) {
-            String top = stack.remove(0);
-            Log.i(this.getClass().getSimpleName(), "Removed top: " + top);
-            pushedHymn = null;
+        if (stack.size()>1) {
+            stack.remove(0);
         }
-        if (stack.isEmpty())
-            return null;
-
-        isLastActionPop = true;
-
-        poppedHymn = stack.remove(0);
+        String poppedHymn = stack.get(0);
         Log.i(this.getClass().getSimpleName(), "Popped Hymn: " + poppedHymn);
-        if (poppedHymn.equals(BLANK)) {
-            poppedHymn = stack.remove(0);
-            Log.i(this.getClass().getSimpleName(), "Popping again: " + poppedHymn);
-
-        }
         return poppedHymn;
+
     }
 
 
