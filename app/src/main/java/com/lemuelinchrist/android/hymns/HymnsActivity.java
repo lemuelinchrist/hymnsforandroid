@@ -106,7 +106,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         hymnBookCollection.getSheetMusic();
 
-
     }
 
     private void showAlert(int message, int title) {
