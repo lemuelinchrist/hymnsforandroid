@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -21,14 +22,10 @@ import android.widget.ListView;
 import android.support.v7.app.ActionBar;
 
 
-//import com.actionbarsherlock.widget.SearchView;
 import android.widget.TextView;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
-
 import java.lang.reflect.Method;
 
-//import android.widget.SearchView;
 
 
 /**
@@ -194,7 +191,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             dialog.show();
             ret = true;
         } else if (item.getItemId() == R.id.action_sheetmusic) {
-            downloadSheetMusic();
+            Intent intent = new Intent(getBaseContext(), SheetMusicActivity.class);
+            startActivity(intent);
             ret = true;
 
         } else if (item.getItemId() == R.id.action_searchYoutube) {
