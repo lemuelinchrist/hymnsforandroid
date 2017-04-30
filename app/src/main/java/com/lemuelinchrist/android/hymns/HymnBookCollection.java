@@ -18,7 +18,7 @@ import java.util.HashMap;
 /**
  * Created by lemuel on 26/4/2017.
  */
-public class HymnBookCollection implements OnLyricVisibleListener{
+public class HymnBookCollection implements OnLyricVisibleListener {
 
     private static HashMap<HymnGroup, HymnBookAdapter> hymnBookAdapters = new HashMap<>();
     private final ViewPager lyricPager;
@@ -27,7 +27,7 @@ public class HymnBookCollection implements OnLyricVisibleListener{
 
     private final HymnsActivity context;
     private HymnBookAdapter currentAdapter;
-    private HymnStack hymnStack=new HymnStack();
+    private HymnStack hymnStack = new HymnStack("E1");
 
     public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
@@ -50,7 +50,6 @@ public class HymnBookCollection implements OnLyricVisibleListener{
 //            }
 //        });
         switchHymnBook(HymnGroup.E);
-        hymnStack.push("E1");
     }
 
 
@@ -85,14 +84,14 @@ public class HymnBookCollection implements OnLyricVisibleListener{
     }
 
     public void switchToHymn(String hymnId) {
-        switchToHymn(hymnId,false);
+        switchToHymn(hymnId, false);
     }
 
     public void switchToHymn(String hymnId, final boolean log) {
 
-        if(hymnId.equals(getCurrentHymnId())) return;
+        if (hymnId.equals(getCurrentHymnId())) return;
 
-        Log.i(getClass().getName(),"switching to hymn "+hymnId);
+        Log.i(getClass().getName(), "switching to hymn " + hymnId);
 
         HymnGroup selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
         final String selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
@@ -108,7 +107,7 @@ public class HymnBookCollection implements OnLyricVisibleListener{
             public void run() {
                 lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
                 context.onLyricVisible(getCurrentHymnId());
-                if(log) {
+                if (log) {
                     log();
                 }
             }
@@ -160,16 +159,10 @@ public class HymnBookCollection implements OnLyricVisibleListener{
 
     public void goToPreviousHymn() {
 
-        if (hymnStack.isEmpty()) {
-            return;
-        } else {
+        if (!hymnStack.isEmpty()) {
             String poppedHymn = hymnStack.pop();
+            if(poppedHymn!=null) switchToHymn(poppedHymn);
 
-
-                switchToHymn(poppedHymn);
-            if(hymnStack.isEmpty()) {
-                hymnStack.push(poppedHymn);
-            }
         }
 
     }
