@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -33,7 +32,6 @@ import java.lang.reflect.Method;
  */
 public class HymnsActivity extends AppCompatActivity implements MusicPlayerListener, OnLyricVisibleListener {
     protected final int INDEX_REQUEST = 1;
-    protected String selectedHymnNumber;
     protected HymnGroup selectedHymnGroup = HymnGroup.E;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
@@ -97,12 +95,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
-    }
-
-    private void downloadSheetMusic() {
-
-        hymnBookCollection.getSheetMusic();
-
     }
 
     private void showAlert(int message, int title) {
@@ -192,6 +184,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             ret = true;
         } else if (item.getItemId() == R.id.action_sheetmusic) {
             Intent intent = new Intent(getBaseContext(), SheetMusicActivity.class);
+            intent.putExtra("selectedHymnId", hymnBookCollection.getCurrentHymnId());
             startActivity(intent);
             ret = true;
 
@@ -246,14 +239,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
                 String rawData = data.getDataString().trim();
                 selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
-                selectedHymnNumber = HymnGroup.getHymnNoFromID(rawData);
-
-                Log.i(this.getClass().getName(), "selected hymn number: " + selectedHymnNumber);
-
                 hymnBookCollection.switchToHymn(rawData,true);
-
-
-
             }
         }
     }
@@ -269,10 +255,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     public void onLyricVisible(String hymnId) {
 
         selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
-        selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
-
-//        currentLyric=hymnBook.getLyricContainer(lyricPager.getCurrentItem());
-
         Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
 
         actionBar.setTitle(hymnId);
