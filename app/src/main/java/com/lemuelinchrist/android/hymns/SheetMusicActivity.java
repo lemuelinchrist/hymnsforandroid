@@ -21,12 +21,13 @@ public class SheetMusicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sheet_music_activity);
 
-//        actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
         String selectedHymnId = (String) extras.get("selectedHymnId");
+        actionBar.setTitle(selectedHymnId);
 
         WebView webview = (WebView) findViewById(R.id.sheet_music_image);
         webview.getSettings().setBuiltInZoomControls(true);

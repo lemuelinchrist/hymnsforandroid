@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
@@ -130,6 +131,18 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     public void startPlaying() {
         getCurrentHymnLyric().startPlaying();
 
+    }
+
+    public void launchSheetMusic() {
+
+        String sheetMusicId = getCurrentHymnLyric().getRootMusicSheet();
+        if(sheetMusicId!=null) {
+            Intent intent = new Intent(context.getBaseContext(), SheetMusicActivity.class);
+            intent.putExtra("selectedHymnId", sheetMusicId);
+            context.startActivity(intent);
+        } else {
+            Toast.makeText(context, "Sorry! sheet music not available", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void log() {
