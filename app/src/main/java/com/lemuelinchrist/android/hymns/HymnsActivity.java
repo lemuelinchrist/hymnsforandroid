@@ -183,9 +183,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             dialog.show();
             ret = true;
         } else if (item.getItemId() == R.id.action_sheetmusic) {
-            Intent intent = new Intent(getBaseContext(), SheetMusicActivity.class);
-            intent.putExtra("selectedHymnId", hymnBookCollection.getCurrentHymnId());
-            startActivity(intent);
+            hymnBookCollection.launchSheetMusic();
             ret = true;
 
         } else if (item.getItemId() == R.id.action_searchYoutube) {

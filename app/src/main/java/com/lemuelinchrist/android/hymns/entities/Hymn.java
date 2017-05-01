@@ -1,12 +1,14 @@
 package com.lemuelinchrist.android.hymns.entities;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.lemuelinchrist.android.hymns.R;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -314,6 +316,17 @@ public class Hymn {
     }
 
     public boolean hasOwnSheetMusic() {
-        return hasOwnSheetMusic;
+        AssetManager assets = context.getAssets();
+        try {
+            for (String fileName : assets.list("svg")) {
+                if(fileName.equals(hymnId+".svg")) return true;
+            }
+
+        } catch (IOException e) {
+            Log.e(getClass().getName(),"something went wrong while listing files in svg folder",e);
+
+        }
+        return false;
+
     }
 }

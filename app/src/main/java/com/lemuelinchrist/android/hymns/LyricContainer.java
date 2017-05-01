@@ -351,4 +351,21 @@ public class LyricContainer extends Fragment {
         super.onPause();
         stopPlaying();
     }
+
+    public String getRootMusicSheet() {
+        // not all hymns have their own sheet music, but maybe their parent does
+        if (hymn.hasOwnSheetMusic()) {
+            return hymn.getHymnId();
+
+        } else if(hymn.getParentHymn()!=null && !hymn.getParentHymn().isEmpty()){
+            hymnsDao.open();
+            Hymn parentHymn=hymnsDao.get(hymn.getParentHymn());
+            if (parentHymn.hasOwnSheetMusic()) {
+                return parentHymn.getHymnId();
+            }
+            hymnsDao.close();
+
+        }
+        return null;
+    }
 }
