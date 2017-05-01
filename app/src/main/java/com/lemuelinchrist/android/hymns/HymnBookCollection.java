@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -100,10 +101,6 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         });
 
 
-    }
-
-    public void getSheetMusic() {
-        getCurrentHymnLyric().getSheetMusic();
     }
 
     public void translateTo(HymnGroup selectedHymnGroup) {
