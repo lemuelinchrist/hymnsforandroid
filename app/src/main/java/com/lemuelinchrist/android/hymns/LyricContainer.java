@@ -360,10 +360,10 @@ public class LyricContainer extends Fragment {
         } else if(hymn.getParentHymn()!=null && !hymn.getParentHymn().isEmpty()){
             hymnsDao.open();
             Hymn parentHymn=hymnsDao.get(hymn.getParentHymn());
+            hymnsDao.close();
             if (parentHymn.hasOwnSheetMusic()) {
                 return parentHymn.getHymnId();
             }
-            hymnsDao.close();
 
         }
         return null;
