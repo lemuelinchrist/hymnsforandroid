@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SheetMusicActivity"
+            android:name=".sheetmusic.SheetMusicActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
             <intent-filter>

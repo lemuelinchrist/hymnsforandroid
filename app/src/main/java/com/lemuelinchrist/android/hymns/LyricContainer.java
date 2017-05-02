@@ -18,9 +18,7 @@ import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
-import com.lemuelinchrist.android.hymns.utils.HymnStack;
 import com.lemuelinchrist.android.hymns.utils.HymnTextFormatter;
-import com.lemuelinchrist.android.hymns.utils.SheetMusic;
 import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
 
 import java.util.HashSet;
@@ -40,7 +38,6 @@ public class LyricContainer extends Fragment {
     private static float fontSize;
     private SharedPreferences sharedPreferences;
     private MusicPlayerListener musicPlayerListener;
-    private SheetMusic sheetMusic;
     private HistoryLogBook historyLogBook;
     private String hymnId;
     private HashSet <OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
@@ -77,8 +74,7 @@ public class LyricContainer extends Fragment {
             }
         });
 
-        // initialize sheetMusic
-        sheetMusic = new SheetMusic(context);
+
 
         historyLogBook = new HistoryLogBook(context);
         if(hymnId!=null) {
@@ -306,8 +302,6 @@ public class LyricContainer extends Fragment {
     public boolean isHymnDisplayed() {
         return (hymn != null);
     }
-
-    public void getSheetMusic() { sheetMusic.getSheetMusic(hymn);}
 
     public void setMusicPlayerListener(MusicPlayerListener musicPlayerListener) {
         this.musicPlayerListener = musicPlayerListener;

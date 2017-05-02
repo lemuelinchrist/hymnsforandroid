@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns.utils;
+package com.lemuelinchrist.android.hymns.sheetmusic;
 
 import android.Manifest;
 import android.app.Activity;
