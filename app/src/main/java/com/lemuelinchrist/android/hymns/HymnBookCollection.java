@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
-import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
+import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicActivity;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 
 import java.util.ArrayList;

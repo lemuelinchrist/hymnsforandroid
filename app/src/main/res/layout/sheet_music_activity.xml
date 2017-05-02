@@ -6,7 +6,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent">
 
-    <WebView
+    <com.lemuelinchrist.android.hymns.sheetmusic.WebViewWorkaround
             android:id="@+id/sheet_music_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
