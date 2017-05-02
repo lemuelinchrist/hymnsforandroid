@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,34 +37,9 @@ public class SheetMusicActivity extends AppCompatActivity {
         actionBar.hide();
 
         webview = (WebViewWorkaround) findViewById(R.id.sheet_music_image);
+        webview.setGestureDetector(new GestureDetector(new CustomeGestureDetector()));
         webview.getSettings().setBuiltInZoomControls(true);
         webview.loadUrl("file:///android_asset/svg/" + selectedHymnId + ".svg");
-        // we use onTouch because onClick doesn't work
-        webview.setOnTouchListener(new View.OnTouchListener() {
-            private final static long MAX_TOUCH_DURATION = 100;
-            private long m_DownTime=0;
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Log.d(getClass().getName(),"webview touched: " + event.getAction());
-
-                switch (event.getAction()) {
-
-                    case MotionEvent.ACTION_DOWN:
-                        m_DownTime = event.getEventTime(); //init time
-
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        if(event.getEventTime() - m_DownTime <= MAX_TOUCH_DURATION)
-                            //On click action
-                            onClick();
-                            break;
-                    default:
-                        break; //No-Op
-                }
-                return false;
-            }
-        });
 
 
     }
@@ -86,6 +62,36 @@ public class SheetMusicActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private class CustomeGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if(e1 == null || e2 == null) return false;
+            if(e1.getPointerCount() > 1 || e2.getPointerCount() > 1) return false;
+            else {
+                try {
+                    if(e1.getY() - e2.getY() > 20 ) {
+                        // Hide Actionbar
+                        getSupportActionBar().hide();
+                        webview.invalidate();
+                        return false;
+                    }
+                    else if (e2.getY() - e1.getY() > 20 ) {
+                        // Show Actionbar
+                        getSupportActionBar().show();
+                        webview.invalidate();
+                        return false;
+                    }
+
+                } catch (Exception e) {
+                    webview.invalidate();
+                }
+                return false;
+            }
+
+
+        }
     }
 
 }
