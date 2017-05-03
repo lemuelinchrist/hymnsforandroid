@@ -1,10 +1,15 @@
 package com.lemuelinchrist.android.hymns.sheetmusic;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.GestureDetector;
+
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,6 +25,8 @@ import com.lemuelinchrist.android.hymns.R;
 public class SheetMusicActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private WebViewWorkaround webview;
+    private ShareActionProvider shareActionProvider;
+    private SheetMusic sheetMusic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,8 @@ public class SheetMusicActivity extends AppCompatActivity {
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
         String selectedHymnId = (String) extras.get("selectedHymnId");
+        sheetMusic = new SheetMusic(this,selectedHymnId);
+
         actionBar.setTitle(selectedHymnId);
 
         webview = (WebViewWorkaround) findViewById(R.id.sheet_music_image);
@@ -42,6 +51,18 @@ public class SheetMusicActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.sheet_music_menu, menu);
+        MenuItem item = menu.findItem(R.id.sheet_music_share);
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+
+//        shareActionProvider.setShareIntent(shee);
+        return true;
+    }
+
+
 
 
     @Override
