@@ -38,10 +38,12 @@ public class SheetMusic {
     // then copy corresponding folder from HymnsJpa/data/<folderName> to HymnsForAndroid/app/src/main/assets<folderName>
     private String folderName = null;
     private Hymn hymn;
+    private AssetManager assetManager;
 
     public SheetMusic(Context context, String selectedHymnId) {
         this.context = context;
         this.selectedHymnId=selectedHymnId;
+        assetManager = context.getAssets();
 
         // get folder that contains the svg files
         // the folder name will either be "pianoSvg" or "guitarSvg" depending on what is currently
@@ -205,20 +207,32 @@ public class SheetMusic {
         }
 
 
-        AssetManager assetManager = context.getAssets();
-        File file;
-        InputStream in;
-        OutputStream out;
         final File externalStorageSvgDir = new File(Environment.getExternalStorageDirectory(), "musicSheet");
-
 
         deleteDirectory(externalStorageSvgDir);
         if (!externalStorageSvgDir.mkdirs())
             Log.w(LyricContainer.class.getSimpleName(), "directory already exists. no need to create one.");
 
-        file = new File(externalStorageSvgDir, fileName);
+        File file = new File(externalStorageSvgDir, fileName);
+        return writeFile(fileName, file);
+    }
+
+    @NonNull
+    // fileName should just be the name without the path. ex. E1.svg
+    public File saveToCache(String fileName) throws IOException {
+
+        File cacheDir = context.getCacheDir();
+        File outFile = new File(cacheDir, fileName);
+
+        return writeFile(fileName, outFile);
+    }
+
+    @NonNull
+    private File writeFile(String fileName, File destinationFile) throws IOException {
+        InputStream in;
+        OutputStream out;
         in = assetManager.open(folderName + fileName);
-        out = new FileOutputStream(file);
+        out = new FileOutputStream(destinationFile);
 
 
         byte[] buffer = new byte[1024];
@@ -232,7 +246,7 @@ public class SheetMusic {
         out.flush();
         out.close();
         out = null;
-        return file;
+        return destinationFile;
     }
 
     private class NoPermissionException extends Throwable {
