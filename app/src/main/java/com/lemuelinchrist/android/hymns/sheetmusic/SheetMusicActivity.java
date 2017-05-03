@@ -34,7 +34,6 @@ public class SheetMusicActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String selectedHymnId = (String) extras.get("selectedHymnId");
         actionBar.setTitle(selectedHymnId);
-        actionBar.hide();
 
         webview = (WebViewWorkaround) findViewById(R.id.sheet_music_image);
         webview.setGestureDetector(new GestureDetector(new CustomeGestureDetector()));
@@ -44,14 +43,6 @@ public class SheetMusicActivity extends AppCompatActivity {
 
     }
 
-    public void onClick() {
-        if(actionBar.isShowing()) {
-            actionBar.hide();
-        } else {
-            actionBar.show();
-        }
-
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -64,23 +55,44 @@ public class SheetMusicActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void hideActionBar() {
+        // Hide Actionbar
+        actionBar.hide();
+        webview.invalidate();
+    }
+
+    public void showActionBar() {
+        // Show Actionbar
+        actionBar.show();
+        webview.invalidate();
+    }
+
     private class CustomeGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            super.onSingleTapUp(e);
+            if(actionBar.isShowing()) {
+                hideActionBar();
+            } else {
+                showActionBar();
+            }
+
+            return false;
+        }
+
+        @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            if(e1 == null || e2 == null) return false;
-            if(e1.getPointerCount() > 1 || e2.getPointerCount() > 1) return false;
+            if (e1 == null || e2 == null) return false;
+            if (e1.getPointerCount() > 1 || e2.getPointerCount() > 1) return false;
             else {
                 try {
-                    if(e1.getY() - e2.getY() > 20 ) {
-                        // Hide Actionbar
-                        getSupportActionBar().hide();
-                        webview.invalidate();
+                    if (e1.getY() - e2.getY() > 20) {
+                        hideActionBar();
+
                         return false;
-                    }
-                    else if (e2.getY() - e1.getY() > 20 ) {
-                        // Show Actionbar
-                        getSupportActionBar().show();
-                        webview.invalidate();
+                    } else if (e2.getY() - e1.getY() > 20) {
+                        showActionBar();
+
                         return false;
                     }
 
@@ -92,6 +104,10 @@ public class SheetMusicActivity extends AppCompatActivity {
 
 
         }
+
+
     }
+
+
 
 }
