@@ -1,6 +1,5 @@
 package com.lemuelinchrist.android.hymns.sheetmusic;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
@@ -12,9 +11,6 @@ import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.webkit.WebView;
 
 import com.lemuelinchrist.android.hymns.R;
 
@@ -62,7 +58,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 
         try {
-            shareActionProvider.setShareIntent(sheetMusic.shareAsIntent());
+            shareActionProvider.setShareIntent(sheetMusic.shareLinkAsIntent());
         } catch (Exception e) {
             Log.e(getClass().getName(),"something went wrong! ",e);
         }

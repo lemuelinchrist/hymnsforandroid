@@ -67,7 +67,7 @@ public class SheetMusic {
         return (this.folderName==null);
     }
 
-    public Intent shareAsIntent() {
+    public Intent shareLinkAsIntent() {
         HymnsDao dao = new HymnsDao(context);
         dao.open();
         hymn = dao.get(selectedHymnId);
@@ -85,6 +85,16 @@ public class SheetMusic {
 
     }
 
+    public Intent shareSvgAsIntent() {
+//        Uri theUri = Uri.parse("content://com.lemuelinchrist.hymns/"+selectedHymnId+".svg");
+//        Intent theIntent = new Intent(Intent.ACTION_SEND);
+//        theIntent.setType("image/*");
+//        theIntent.putExtra(Intent.EXTRA_STREAM,theUri);
+//        theIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject for message");
+//        theIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Body for message");
+//        startActivity(theIntent);
+    }
+
     public void getSheetMusic(Hymn hymn) {
         // note: switch this value to "onlineOnly" if you want to create a version that doesn't include sheet music svg's.
         final String BRANCH = "somethingElse";
@@ -94,7 +104,7 @@ public class SheetMusic {
 
             if (this.folderName == null) {
 
-                context.startActivity(shareAsIntent());
+                context.startActivity(shareLinkAsIntent());
                 return;
             }
             String fileName;
