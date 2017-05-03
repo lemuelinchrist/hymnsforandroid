@@ -17,6 +17,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.lemuelinchrist.android.hymns.LyricContainer;
+import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
 import java.io.File;
@@ -36,6 +37,7 @@ public class SheetMusic {
     // to switch to guitar or piano notes, change value to either guitarSvg/ or pianoSvg/
     // then copy corresponding folder from HymnsJpa/data/<folderName> to HymnsForAndroid/app/src/main/assets<folderName>
     private String folderName = null;
+    private Hymn hymn;
 
     public SheetMusic(Context context, String selectedHymnId) {
         this.context = context;
@@ -63,6 +65,24 @@ public class SheetMusic {
         return (this.folderName==null);
     }
 
+    public Intent shareAsIntent() {
+        HymnsDao dao = new HymnsDao(context);
+        dao.open();
+        hymn = dao.get(selectedHymnId);
+        dao.close();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        String sheetMusicLink = hymn.getSheetMusicLink();
+        if(sheetMusicLink==null || sheetMusicLink.isEmpty()) {
+            toastSheetMusicNotAvailable(null);
+            return null;
+        }
+        String editedLink = sheetMusicLink.replace("_p.", "_g."); // p is for piano, g for guitar
+        intent.setData(Uri.parse(editedLink));
+        return intent;
+
+
+    }
+
     public void getSheetMusic(Hymn hymn) {
         // note: switch this value to "onlineOnly" if you want to create a version that doesn't include sheet music svg's.
         final String BRANCH = "somethingElse";
@@ -71,7 +91,8 @@ public class SheetMusic {
         if (sheetMusicLink != null) {
 
             if (this.folderName == null) {
-                getSheetMusicOnline(sheetMusicLink);
+
+                context.startActivity(shareAsIntent());
                 return;
             }
             String fileName;
@@ -84,21 +105,13 @@ public class SheetMusic {
                 fileName = hymn.getHymnId() + ".svg";
             }
 
-            shareSheetToBrowser(fileName);
+            shareToBrowser(fileName);
 
 
         } else {
             Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
 
         }
-    }
-
-    private void getSheetMusicOnline(String sheetMusicLink) {
-        Log.w(this.getClass().getName(), "svg files not found! resorting to online resource");
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        String editedLink = sheetMusicLink.replace("_p.", "_g."); // p is for piano, g for guitar
-        i.setData(Uri.parse(editedLink));
-        context.startActivity(i);
     }
 
     private boolean deleteDirectory(File path) {
@@ -119,13 +132,13 @@ public class SheetMusic {
     }
 
     // fileName should just be the name without the path. ex. E1.svg
-    public void shareSheetToBrowser(String fileName) {
+    public void shareToBrowser(String fileName) {
         if (folderName==null) {
             toastSheetMusicNotAvailable(null);
             return;
         }
         try {
-            File file = saveSheetMusicToExternalStorage(fileName);
+            File file = saveToExternalStorage(fileName);
 
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -163,7 +176,7 @@ public class SheetMusic {
 
     @NonNull
     // fileName should just be the name without the path. ex. E1.svg
-    private File saveSheetMusicToExternalStorage(String fileName) throws NoPermissionException, IOException {
+    public File saveToExternalStorage(String fileName) throws NoPermissionException, IOException {
 
         // Checking permissions for version Marshmallow or later
         if (ContextCompat.checkSelfPermission(context,
