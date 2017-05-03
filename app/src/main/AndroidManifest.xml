@@ -45,6 +45,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".sheetmusic.SheetMusicContentProvider"
+            android:authorities="com.lemuelinchrist.hymns"
+            android:grantUriPermissions="true"
+            android:exported="true" />
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
