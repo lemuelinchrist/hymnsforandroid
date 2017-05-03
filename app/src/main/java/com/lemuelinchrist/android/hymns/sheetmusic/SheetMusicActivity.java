@@ -31,7 +31,6 @@ public class SheetMusicActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         setContentView(R.layout.sheet_music_activity);
 
         actionBar = getSupportActionBar();
@@ -48,6 +47,10 @@ public class SheetMusicActivity extends AppCompatActivity {
         webview.setGestureDetector(new GestureDetector(new CustomeGestureDetector()));
         webview.getSettings().setBuiltInZoomControls(true);
         webview.loadUrl("file:///android_asset/svg/" + selectedHymnId + ".svg");
+        // zoom out by default
+        webview.getSettings().setUseWideViewPort(true);
+        webview.getSettings().setLoadWithOverviewMode(true);
+        webview.setInitialScale(1);
 
 
     }
@@ -58,7 +61,11 @@ public class SheetMusicActivity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.sheet_music_share);
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 
-//        shareActionProvider.setShareIntent(shee);
+        try {
+            shareActionProvider.setShareIntent(sheetMusic.shareAsIntent());
+        } catch (Exception e) {
+            Log.e(getClass().getName(),"something went wrong! ",e);
+        }
         return true;
     }
 
