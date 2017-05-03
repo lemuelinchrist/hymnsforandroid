@@ -34,10 +34,6 @@ public class WebViewWorkaround extends WebView {
         return gestureDetector.onTouchEvent(ev) || super.onTouchEvent(ev);
     }
 
-//    @Override
-//    public boolean onSingleTapUp(MotionEvent e) {
-//
-//    }
 
     public void setGestureDetector(GestureDetector gestureDetector) {
         this.gestureDetector = gestureDetector;
