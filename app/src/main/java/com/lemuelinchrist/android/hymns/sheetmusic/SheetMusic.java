@@ -10,6 +10,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -30,14 +31,36 @@ import java.util.List;
  */
 public class SheetMusic {
     private Context context;
+    private String selectedHymnId;
 
     // to switch to guitar or piano notes, change value to either guitarSvg/ or pianoSvg/
     // then copy corresponding folder from HymnsJpa/data/<folderName> to HymnsForAndroid/app/src/main/assets<folderName>
     private String folderName = null;
 
-    public SheetMusic(Context context) {
+    public SheetMusic(Context context, String selectedHymnId) {
         this.context = context;
+        this.selectedHymnId=selectedHymnId;
 
+        // get folder that contains the svg files
+        // the folder name will either be "pianoSvg" or "guitarSvg" depending on what is currently
+        // in the asset folder
+        try {
+            for (String assetFolder : context.getAssets().list("")) {
+                if (assetFolder.contains("svg")) {
+                    this.folderName = assetFolder + "/";
+                    Log.i(this.getClass().getName(), "Svg folder found. folderName is: " + this.folderName);
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            this.folderName=null;
+        }
+
+    }
+
+    public boolean isLocalSheetAvailable() {
+        return (this.folderName==null);
     }
 
     public void getSheetMusic(Hymn hymn) {
@@ -47,38 +70,21 @@ public class SheetMusic {
         String sheetMusicLink = hymn.getSheetMusicLink();
         if (sheetMusicLink != null) {
 
-            try {
-                // get folder that contains the svg files
-                // the folder name will either be "pianoSvg" or "guitarSvg" depending on what is currently
-                // in the asset folder
-                for (String assetFolder : context.getAssets().list("")) {
-                    if(assetFolder.contains("svg")){
-                        this.folderName=assetFolder+"/";
-                        Log.i(this.getClass().getName(),"Svg folder found. folderName is: " + this.folderName);
-                    }
-
-                } if(this.folderName==null) {
-                    getSheetMusicOnline(sheetMusicLink);
-                    return;
-                }
-                String fileName;
-
-                // after getting folder name, its time to get the svg filename. we can get this either from
-                // the hymn itself or from its parent.
-                if (!hymn.hasOwnSheetMusic()) {
-                    fileName = hymn.getParentHymn() + ".svg";
-                } else {
-                    fileName = hymn.getHymnId() + ".svg";
-                }
-
-                generateGuitarSheet(fileName);
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (this.folderName == null) {
                 getSheetMusicOnline(sheetMusicLink);
+                return;
+            }
+            String fileName;
+
+            // after getting folder name, its time to get the svg filename. we can get this either from
+            // the hymn itself or from its parent.
+            if (!hymn.hasOwnSheetMusic()) {
+                fileName = hymn.getParentHymn() + ".svg";
+            } else {
+                fileName = hymn.getHymnId() + ".svg";
             }
 
+            shareSheetToBrowser(fileName);
 
 
         } else {
@@ -112,65 +118,15 @@ public class SheetMusic {
         return (path.delete());
     }
 
-    void generateGuitarSheet(String fileName) {
+    // fileName should just be the name without the path. ex. E1.svg
+    public void shareSheetToBrowser(String fileName) {
+        if (folderName==null) {
+            toastSheetMusicNotAvailable(null);
+            return;
+        }
         try {
+            File file = saveSheetMusicToExternalStorage(fileName);
 
-            // Checking permissions for version Marshmallow or later
-            if (ContextCompat.checkSelfPermission(context,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                    // Show an expanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
-
-                    throw new NoPermissionException();
-
-                } else {
-
-                    // No explanation needed, we can request the permission.
-
-                    ActivityCompat.requestPermissions((Activity)context,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            1);
-
-                }
-            }
-
-
-
-
-            AssetManager assetManager = context.getAssets();
-            File file;
-            InputStream in;
-            OutputStream out;
-            final File externalStorageSvgDir = new File(Environment.getExternalStorageDirectory(), "musicSheet");
-
-
-            deleteDirectory(externalStorageSvgDir);
-            if (!externalStorageSvgDir.mkdirs())
-                Log.w(LyricContainer.class.getSimpleName(), "directory already exists. no need to create one.");
-
-            file = new File(externalStorageSvgDir, fileName);
-            in = assetManager.open(folderName + fileName);
-            out = new FileOutputStream(file);
-
-
-            byte[] buffer = new byte[1024];
-            int read;
-            while ((read = in.read(buffer)) != -1) {
-                out.write(buffer, 0, read);
-            }
-
-            in.close();
-            in = null;
-            out.flush();
-            out.close();
-            out = null;
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(
@@ -195,10 +151,75 @@ public class SheetMusic {
         } catch (NoPermissionException e) {
             Toast.makeText(context, "Oops! You didn't grant me permission to write to storage.", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-            Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
-            Log.e(SheetMusic.class.getSimpleName(), e.getMessage());
+            toastSheetMusicNotAvailable(e);
         }
 
+    }
+
+    private void toastSheetMusicNotAvailable(Exception e) {
+        Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
+        Log.e(SheetMusic.class.getSimpleName(), e.getMessage());
+    }
+
+    @NonNull
+    // fileName should just be the name without the path. ex. E1.svg
+    private File saveSheetMusicToExternalStorage(String fileName) throws NoPermissionException, IOException {
+
+        // Checking permissions for version Marshmallow or later
+        if (ContextCompat.checkSelfPermission(context,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+                throw new NoPermissionException();
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions((Activity) context,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        1);
+
+            }
+        }
+
+
+        AssetManager assetManager = context.getAssets();
+        File file;
+        InputStream in;
+        OutputStream out;
+        final File externalStorageSvgDir = new File(Environment.getExternalStorageDirectory(), "musicSheet");
+
+
+        deleteDirectory(externalStorageSvgDir);
+        if (!externalStorageSvgDir.mkdirs())
+            Log.w(LyricContainer.class.getSimpleName(), "directory already exists. no need to create one.");
+
+        file = new File(externalStorageSvgDir, fileName);
+        in = assetManager.open(folderName + fileName);
+        out = new FileOutputStream(file);
+
+
+        byte[] buffer = new byte[1024];
+        int read;
+        while ((read = in.read(buffer)) != -1) {
+            out.write(buffer, 0, read);
+        }
+
+        in.close();
+        in = null;
+        out.flush();
+        out.close();
+        out = null;
+        return file;
     }
 
     private class NoPermissionException extends Throwable {
