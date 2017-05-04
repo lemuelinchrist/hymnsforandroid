@@ -47,10 +47,14 @@
         </activity>
 
         <provider
-            android:name=".sheetmusic.SheetMusicContentProvider"
+            android:name="android.support.v4.content.FileProvider"
             android:authorities="com.lemuelinchrist.hymns"
             android:grantUriPermissions="true"
-            android:exported="true" />
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 

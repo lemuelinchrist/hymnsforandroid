@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ public class SheetMusic {
 
     public SheetMusic(Context context, String selectedHymnId) {
         this.context = context;
-        this.selectedHymnId=selectedHymnId;
+        this.selectedHymnId = selectedHymnId;
         assetManager = context.getAssets();
 
         // get folder that contains the svg files
@@ -58,13 +59,13 @@ public class SheetMusic {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            this.folderName=null;
+            this.folderName = null;
         }
 
     }
 
     public boolean isLocalSheetAvailable() {
-        return (this.folderName==null);
+        return (this.folderName == null);
     }
 
     public Intent shareLinkAsIntent() {
@@ -74,7 +75,7 @@ public class SheetMusic {
         dao.close();
         Intent intent = new Intent(Intent.ACTION_VIEW);
         String sheetMusicLink = hymn.getSheetMusicLink();
-        if(sheetMusicLink==null || sheetMusicLink.isEmpty()) {
+        if (sheetMusicLink == null || sheetMusicLink.isEmpty()) {
             toastSheetMusicNotAvailable(null);
             return null;
         }
@@ -86,13 +87,24 @@ public class SheetMusic {
     }
 
     public Intent shareSvgAsIntent() {
-//        Uri theUri = Uri.parse("content://com.lemuelinchrist.hymns/"+selectedHymnId+".svg");
-//        Intent theIntent = new Intent(Intent.ACTION_SEND);
-//        theIntent.setType("image/*");
-//        theIntent.putExtra(Intent.EXTRA_STREAM,theUri);
-//        theIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject for message");
-//        theIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Body for message");
-//        startActivity(theIntent);
+        File imagePath;
+        try {
+            imagePath = saveToCache(selectedHymnId + ".svg");
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        Uri contentUri = FileProvider.getUriForFile(context, "com.lemuelinchrist.hymns", imagePath);
+
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+//        intent.setType("image/*");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // temp permission for receiving app to read this file
+        intent.setDataAndType(contentUri, context.getContentResolver().getType(contentUri));
+        intent.putExtra(Intent.EXTRA_STREAM, contentUri);
+        return intent;
     }
 
     public void getSheetMusic(Hymn hymn) {
@@ -145,7 +157,7 @@ public class SheetMusic {
 
     // fileName should just be the name without the path. ex. E1.svg
     public void shareToBrowser(String fileName) {
-        if (folderName==null) {
+        if (folderName == null) {
             toastSheetMusicNotAvailable(null);
             return;
         }

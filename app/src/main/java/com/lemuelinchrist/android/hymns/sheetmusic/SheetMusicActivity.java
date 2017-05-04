@@ -58,7 +58,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 
         try {
-            shareActionProvider.setShareIntent(sheetMusic.shareLinkAsIntent());
+            shareActionProvider.setShareIntent(sheetMusic.shareSvgAsIntent());
         } catch (Exception e) {
             Log.e(getClass().getName(),"something went wrong! ",e);
         }
