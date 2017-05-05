@@ -14,9 +14,10 @@ class UpdateV33 {
 
     public static void main(String[] args) {
 //        extractNS544To565();
-//        fixMissingStanzas()
 //        provisionGerman()
 //        provisionGermanNonHymns()
+//        fixMissingStanzas()
+//        fixSongsWithChorusOnly()
 
     }
 
@@ -27,6 +28,36 @@ class UpdateV33 {
         for (int x = 544; x<=565; x++) {
             HymnsEntity hymn = HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, ""+x, 'NS', ""+x);
             dao.save(hymn);
+        }
+
+    }
+
+    public static void fixSongsWithChorusOnly() {
+        println 'hello'
+        Dao dao = new Dao();
+        HymnsEntity hymn;
+
+        for (int x = 533; x<=565; x++) {
+            hymn = dao.find("NS"+x);
+            boolean hasChorusOnly=true
+            for(StanzaEntity stanza:hymn.getStanzas()) {
+                if (stanza.no.trim().equals("1")) {
+                    hasChorusOnly=false;
+                    break;
+                }
+            }
+            if (hasChorusOnly) {
+
+                int stanzaCounter=0
+                for(StanzaEntity stanza:hymn.getStanzas()) {
+                    if(stanza.no.trim().equals("chorus")){
+                        stanza.no=Integer.toString(++stanzaCounter);
+                    }
+                }
+                println(hymn);
+                dao.save(hymn)
+
+            }
         }
 
     }
