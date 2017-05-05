@@ -19,7 +19,7 @@ android {
         applicationId "com.lemuelinchrist.android.hymns"
         minSdkVersion 15    // Ice cream sandwitch
         targetSdkVersion 24
-        versionCode 89      // increment version code if you want to refresh the database cache of your phone
+        versionCode 92      // increment version code if you want to refresh the database cache of your phone
         versionName hymnAppVersion
     }
     buildTypes {
