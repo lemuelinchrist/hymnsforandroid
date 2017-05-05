@@ -1,6 +1,8 @@
 package com.lemuelinchrist.hymns
 
+import com.lemuelinchrist.hymns.lib.Constants
 import com.lemuelinchrist.hymns.lib.Dao
+import com.lemuelinchrist.hymns.lib.HymnalNetExtractor
 import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
 import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 
@@ -11,9 +13,21 @@ class UpdateV33 {
     // This script tries to fix missing first stanza lines of all hymns.
 
     public static void main(String[] args) {
-        fixMissingStanzas()
-        provisionGerman()
-        provisionGermanNonHymns()
+//        extractNS544To565();
+//        fixMissingStanzas()
+//        provisionGerman()
+//        provisionGermanNonHymns()
+
+    }
+
+    public static void extractNS544To565() {
+        println 'hello'
+        Dao dao = new Dao();
+
+        for (int x = 544; x<=565; x++) {
+            HymnsEntity hymn = HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, ""+x, 'NS', ""+x);
+            dao.save(hymn);
+        }
 
     }
 
