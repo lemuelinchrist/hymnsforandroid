@@ -107,6 +107,7 @@ public class SheetMusic {
         return intent;
     }
 
+    // !! deprecated !!
     public void getSheetMusic(Hymn hymn) {
         // note: switch this value to "onlineOnly" if you want to create a version that doesn't include sheet music svg's.
         final String BRANCH = "somethingElse";
@@ -129,7 +130,7 @@ public class SheetMusic {
                 fileName = hymn.getHymnId() + ".svg";
             }
 
-            shareToBrowser(fileName);
+            shareToBrowser();
 
 
         } else {
@@ -155,12 +156,12 @@ public class SheetMusic {
         return (path.delete());
     }
 
-    // fileName should just be the name without the path. ex. E1.svg
-    public void shareToBrowser(String fileName) {
+    public void shareToBrowser() {
         if (folderName == null) {
             toastSheetMusicNotAvailable(null);
             return;
         }
+        String fileName = selectedHymnId + ".svg";
         try {
             File file = saveToExternalStorage(fileName);
 
