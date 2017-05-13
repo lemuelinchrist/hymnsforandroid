@@ -2,12 +2,14 @@ package com.lemuelinchrist.android.hymns;
 
 //import android.app.ActionBar;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,9 +24,12 @@ import android.support.v7.app.ActionBar;
 
 
 import android.widget.TextView;
-import com.lemuelinchrist.android.hymns.search.SearchActivity;
-import java.lang.reflect.Method;
 
+import com.lemuelinchrist.android.hymns.search.SearchActivity;
+import com.lemuelinchrist.android.hymns.utils.DataCleanSweeper;
+
+import java.io.File;
+import java.lang.reflect.Method;
 
 
 /**
@@ -47,6 +52,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         super.onCreate(savedInstanceState);
         Log.d(this.getClass().getName(), "start app");
 
+        Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
         setContentView(R.layout.main_hymns_activity);
 
         // Instantiate a ViewPager and a PagerAdapter.
@@ -237,7 +243,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
                 String rawData = data.getDataString().trim();
                 selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
-                hymnBookCollection.switchToHymn(rawData,true);
+                hymnBookCollection.switchToHymn(rawData, true);
             }
         }
     }
@@ -259,7 +265,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
         actionBar.setBackgroundDrawable(new ColorDrawable(selectedHymnGroup.getRgbColor()));
 
-        Log.d(getClass().getSimpleName(),"Done painting title");
+        Log.d(getClass().getSimpleName(), "Done painting title");
 
 
     }
@@ -295,9 +301,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         }
         return super.onPrepareOptionsPanel(view, menu);
     }
-
-
-
 
 
 }

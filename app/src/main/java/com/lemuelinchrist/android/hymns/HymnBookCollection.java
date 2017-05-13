@@ -1,6 +1,7 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusic;
 import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicActivity;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 
@@ -111,7 +113,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             switchToHymn(selectedHymnGroup + "1");
         } else {
             log();  // log the hymn first before logging the translated one.
-            switchToHymn(related,true);
+            switchToHymn(related, true);
         }
 
     }
@@ -136,7 +138,14 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     public void launchSheetMusic() {
 
         String sheetMusicId = getCurrentHymnLyric().getRootMusicSheet();
-        if(sheetMusicId!=null) {
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            SheetMusic sheetMusic = new SheetMusic(context,sheetMusicId);
+            sheetMusic.shareToBrowser();
+            return;
+        }
+
+        if (sheetMusicId != null) {
             Intent intent = new Intent(context.getBaseContext(), SheetMusicActivity.class);
             intent.putExtra("selectedHymnId", sheetMusicId);
             context.startActivity(intent);
@@ -158,7 +167,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         if (!hymnStack.isEmpty()) {
             String poppedHymn = hymnStack.pop();
-            if(poppedHymn!=null) switchToHymn(poppedHymn);
+            if (poppedHymn != null) switchToHymn(poppedHymn);
 
         }
 
