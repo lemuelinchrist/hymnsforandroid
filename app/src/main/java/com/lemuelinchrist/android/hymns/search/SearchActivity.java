@@ -245,6 +245,7 @@ public class SearchActivity extends AppCompatActivity  {
             new FirstLineTabFragment();
             new CategoryTabFragment();
             new AuthorTabFragment();
+            new LyricsTabFragment();
             new HistoryTabFragment();
 
         }
