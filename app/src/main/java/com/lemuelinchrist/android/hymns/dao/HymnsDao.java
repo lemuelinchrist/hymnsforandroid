@@ -105,12 +105,21 @@ public class HymnsDao {
 
     public Cursor getIndexListOrderBy(HymnGroup hymnGroup, String filter, String orderBy) {
         if (filter != null)
-            filter = filter.replace("'", "''");
+            filter = filter.replaceAll("[^A-Za-z ]", "");
 
         String groupClause = "";
         String likeClause = "";
         if (filter != null && !filter.equals("")) {
-            likeClause = " WHERE stanza_chorus LIKE " + "'%" + filter.trim() + "%' " + " OR NO ='"+ filter.trim() +"'";
+            StringBuilder likeBuilder = new StringBuilder();
+            String[] words = filter.trim().split(" ");
+            for(int x=0; x<words.length; x++) {
+                likeBuilder.append("stanza_chorus LIKE '%");
+                likeBuilder.append(words[x]);
+                likeBuilder.append("%'");
+                if(x == words.length-1) break;
+                likeBuilder.append(" AND ");
+            }
+            likeClause = " WHERE "+ likeBuilder.toString() + " ";
         } else {
             groupClause = " and (hymn_group='" + hymnGroup + "') ";
         }
