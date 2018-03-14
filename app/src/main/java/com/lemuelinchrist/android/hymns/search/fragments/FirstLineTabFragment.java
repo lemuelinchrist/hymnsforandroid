@@ -10,30 +10,20 @@ import com.lemuelinchrist.android.hymns.search.searchadapters.HymnNumberAdapter;
 
 
 public class FirstLineTabFragment extends TabFragment {
-    // TODO: Rename parameter arguments, choose names that match
-
-    private HymnsDao dao;
-
-
-    @Override
-    public void setRecyclerViewAdapter() {
-
-        dao = new HymnsDao(container.getContext());
-        dao.open();
-
-        Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
-        if (selectedHymnGroup != null) {
-            mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
-                    dao.getAllHymnsOfSameLanguage(selectedHymnGroup), R.layout.recyclerview_hymn_list));
-        }
-
-    }
 
     public void setSearchFilter(String filter) {
 
-        mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
-                dao.getFilteredHymns(selectedHymnGroup, filter)
-                , R.layout.recyclerview_hymn_list));
+        // if user didn't input anything in the search, the default behavior is to list only a certain group of hymns
+        if (selectedHymnGroup != null && filter.equals("")) {
+            Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
+            mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
+                    dao.getAllHymnsOfSameLanguage(selectedHymnGroup), R.layout.recyclerview_hymn_list));
+        } else {
+
+            mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
+                    dao.getFilteredHymns(selectedHymnGroup, filter)
+                    , R.layout.recyclerview_hymn_list));
+        }
 
 
     }
@@ -41,10 +31,6 @@ public class FirstLineTabFragment extends TabFragment {
     @Override
     public int getIcon() {
         return R.drawable.ic_keyboard_tab;
-    }
-
-    public void cleanUp() {
-        dao.close();
     }
 
     @Override

@@ -15,6 +15,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
+import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.search.searchadapters.AuthorAdapter;
 import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
 
 import java.util.HashMap;
@@ -24,6 +26,8 @@ import java.util.Map;
  * Created by lemuelcantos on 1/11/15.
  */
 public abstract class TabFragment extends Fragment {
+
+    protected HymnsDao dao;
 
     protected RecyclerView mRecyclerView;
     protected ViewGroup container;
@@ -86,16 +90,14 @@ public abstract class TabFragment extends Fragment {
 
     public abstract String getTabName();
 
-    public abstract void setRecyclerViewAdapter();
-
-    public abstract void cleanUp();
-
     public abstract boolean canBeSearched();
 
+    public abstract void setSearchFilter(String filter);
 
-    public void setSearchFilter(String filter) {
-        Log.i(this.getClass().getName(), "Nothing was done in setSearchFilter() ! !");
+    public abstract int getIcon();
 
+    public void cleanUp() {
+        dao.close();
     }
 
     public static TabFragment getInstance(Class tabFragmentClass) {
@@ -111,6 +113,12 @@ public abstract class TabFragment extends Fragment {
         return InputType.TYPE_CLASS_TEXT;
     }
 
-    public abstract int getIcon();
+    public void setRecyclerViewAdapter() {
+        dao = new HymnsDao(container.getContext());
+        dao.open();
+
+        setSearchFilter("");
+
+    }
 
 }
