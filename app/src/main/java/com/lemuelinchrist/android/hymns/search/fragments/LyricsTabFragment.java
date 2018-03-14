@@ -4,6 +4,7 @@ import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.TabFragment;
 import com.lemuelinchrist.android.hymns.search.searchadapters.AuthorAdapter;
+import com.lemuelinchrist.android.hymns.search.searchadapters.LyricsAdapter;
 
 /**
  * @author Lemuel Cantos
@@ -29,8 +30,8 @@ public class LyricsTabFragment extends TabFragment {
 
     @Override
     public void setSearchFilter(String filter) {
-        mRecyclerView.setAdapter(new AuthorAdapter(container.getContext(),
-                dao.getByAuthorsOrComposers(filter)
+        mRecyclerView.setAdapter(new LyricsAdapter(container.getContext(),
+                dao.getByLyricText(filter)
                 , R.layout.recyclerview_hymn_list));    }
 
     @Override

@@ -103,23 +103,28 @@ public class HymnsDao {
         return getByFirstLineOrderBy(hymnGroup, filter,null);
     }
 
+    private String buildLikeClause(String columnName, String filter) {
+        filter = filter.replaceAll("[^A-Za-z ]", "");
+
+        StringBuilder likeBuilder = new StringBuilder();
+        String[] words = filter.trim().split(" ");
+        for(int x=0; x<words.length; x++) {
+            likeBuilder.append(columnName);
+            likeBuilder.append(" LIKE '%");
+            likeBuilder.append(words[x]);
+            likeBuilder.append("%'");
+            if(x == words.length-1) break;
+            likeBuilder.append(" AND ");
+        }
+        return likeBuilder.toString();
+    }
+
     public Cursor getByFirstLineOrderBy(HymnGroup hymnGroup, String filter, String orderBy) {
-        if (filter != null)
-            filter = filter.replaceAll("[^A-Za-z ]", "");
 
         String groupClause = "";
         String likeClause = "";
         if (filter != null && !filter.equals("")) {
-            StringBuilder likeBuilder = new StringBuilder();
-            String[] words = filter.trim().split(" ");
-            for(int x=0; x<words.length; x++) {
-                likeBuilder.append("stanza_chorus LIKE '%");
-                likeBuilder.append(words[x]);
-                likeBuilder.append("%'");
-                if(x == words.length-1) break;
-                likeBuilder.append(" AND ");
-            }
-            likeClause = " WHERE "+ likeBuilder.toString() + " ";
+            likeClause = " WHERE "+ buildLikeClause("stanza_chorus", filter) + " ";
         } else {
             groupClause = " and (hymn_group='" + hymnGroup + "') ";
         }
@@ -137,6 +142,13 @@ public class HymnsDao {
 
         Log.i(this.getClass().getName(), "Using SQL query: " + sql);
         return database.rawQuery(sql, null);
+    }
+
+    public Cursor getByLyricText(String filter) {
+        String sql = "select * from stanza WHERE " + buildLikeClause("text", filter) + " ";
+        Log.i(this.getClass().getName(), "Using SQL query: " + sql);
+        return database.rawQuery(sql, null);
+
     }
 
 
