@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns.search.searchadapters;
+package com.lemuelinchrist.android.hymns.search;
 
 import android.content.Context;
 import android.database.Cursor;

@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
 import com.lemuelinchrist.android.hymns.history.HistoryRecord;
+import com.lemuelinchrist.android.hymns.search.IndexViewHolder;
+import com.lemuelinchrist.android.hymns.search.SearchAdapter;
 
 /**
  * Created by lemuelcantos on 27/1/15.

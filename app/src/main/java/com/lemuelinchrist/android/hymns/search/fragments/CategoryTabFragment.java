@@ -4,7 +4,7 @@ import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.TabFragment;
 import com.lemuelinchrist.android.hymns.search.searchadapters.CategoryAdapter;
-import com.lemuelinchrist.android.hymns.search.searchadapters.HymnCursorAdapter;
+import com.lemuelinchrist.android.hymns.search.HymnCursorAdapter;
 
 /**
  * Created by lemuelcantos on 1/11/15.
