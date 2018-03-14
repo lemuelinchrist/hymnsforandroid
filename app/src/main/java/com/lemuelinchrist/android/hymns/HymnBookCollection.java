@@ -51,7 +51,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
             dao.open();
             try {
-                hymnBookAdapter.hymnNumbers = dao.getHymnNumberArray(hymnGroup);
+                hymnBookAdapter.hymnNumbers = dao.getArrayByHymnNo(hymnGroup);
                 hymnBookAdapter.hymnGroup = hymnGroup;
             } finally {
                 dao.close();

@@ -27,7 +27,7 @@ public class HymnsDao {
     }
 
     public Cursor getFilteredHymns(HymnGroup selectedHymnGroup, String filter) {
-        return getIndexList(selectedHymnGroup, filter);
+        return getByFirstLine(selectedHymnGroup, filter);
     }
 
     public static enum HymnFields {
@@ -92,18 +92,18 @@ public class HymnsDao {
 
     public Cursor getAllHymnsOfSameLanguage(HymnGroup hymnGroup) {
 
-        Cursor result = getIndexList(hymnGroup, null);
+        Cursor result = getByFirstLine(hymnGroup, null);
 
         Log.d(this.getClass().getName(), "Is cursor null? - " + result.toString());
         return result;
 
     }
 
-    private Cursor getIndexList(HymnGroup hymnGroup, String filter) {
-        return getIndexListOrderBy(hymnGroup, filter,null);
+    private Cursor getByFirstLine(HymnGroup hymnGroup, String filter) {
+        return getByFirstLineOrderBy(hymnGroup, filter,null);
     }
 
-    public Cursor getIndexListOrderBy(HymnGroup hymnGroup, String filter, String orderBy) {
+    public Cursor getByFirstLineOrderBy(HymnGroup hymnGroup, String filter, String orderBy) {
         if (filter != null)
             filter = filter.replaceAll("[^A-Za-z ]", "");
 
@@ -139,7 +139,8 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
-    public Cursor getHymnNumberList(HymnGroup hymnGroup, String filter) {
+
+    public Cursor getByHymnNo(HymnGroup hymnGroup, String filter) {
 
         String groupClause = "";
         String likeClause = "";
@@ -162,8 +163,8 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
-    public ArrayList<String> getHymnNumberArray(HymnGroup hymnGroup) {
-        Cursor cursor =getHymnNumberList(hymnGroup,null);
+    public ArrayList<String> getArrayByHymnNo(HymnGroup hymnGroup) {
+        Cursor cursor = getByHymnNo(hymnGroup,null);
         ArrayList<String> hymnArray=new ArrayList<>();
         while (cursor.moveToNext()) {
             hymnArray.add(cursor.getString(cursor.getColumnIndex(HymnFields.no.toString())).trim());
@@ -171,7 +172,7 @@ public class HymnsDao {
         return hymnArray;
     }
 
-    public Cursor getAuthorsList(String filter) {
+    public Cursor getByAuthorsOrComposers(String filter) {
         if (filter != null)
             filter = filter.replace("'", "''");
 
@@ -193,7 +194,7 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
-    public Cursor getCategoryList(HymnGroup hymnGroup, String filter) {
+    public Cursor getByCategory(HymnGroup hymnGroup, String filter) {
         if (filter != null)
             filter = filter.replace("'", "''");
 
@@ -209,7 +210,7 @@ public class HymnsDao {
 
 
         String sql = "select main_category, sub_category, no, _id, hymn_group, first_stanza_line from hymns where main_category NOT NULL" + groupClause + likeClause;
-        Log.i(HymnsDao.class.getName(), "sql generated for getCategoryList: " + sql);
+        Log.i(HymnsDao.class.getName(), "sql generated for getByCategory: " + sql);
         return database.rawQuery(sql, null);
     }
 

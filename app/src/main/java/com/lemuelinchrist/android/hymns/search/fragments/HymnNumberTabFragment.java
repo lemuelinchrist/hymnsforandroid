@@ -5,7 +5,6 @@ import android.util.Log;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.TabFragment;
-import com.lemuelinchrist.android.hymns.search.searchadapters.FirstLineChorusAdapter;
 import com.lemuelinchrist.android.hymns.search.searchadapters.HymnNumberAdapter;
 
 
@@ -24,7 +23,7 @@ public class HymnNumberTabFragment extends TabFragment {
         Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
         if (selectedHymnGroup != null) {
             mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                    dao.getIndexListOrderBy(selectedHymnGroup,null,HymnsDao.ORDER_BY_HYMN_NUMBER), R.layout.recyclerview_hymn_list));
+                    dao.getByFirstLineOrderBy(selectedHymnGroup,null,HymnsDao.ORDER_BY_HYMN_NUMBER), R.layout.recyclerview_hymn_list));
         }
 
     }
@@ -32,7 +31,7 @@ public class HymnNumberTabFragment extends TabFragment {
     public void setSearchFilter(String filter) {
 
         mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                dao.getHymnNumberList(selectedHymnGroup, filter)
+                dao.getByHymnNo(selectedHymnGroup, filter)
                 , R.layout.recyclerview_hymn_list));
 
 
