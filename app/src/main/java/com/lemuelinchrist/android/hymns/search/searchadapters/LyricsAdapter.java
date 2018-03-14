@@ -23,9 +23,18 @@ public class LyricsAdapter extends HymnCursorAdapter {
         String no = cursor.getString(cursor.getColumnIndex("no"));
         String text = cursor.getString(cursor.getColumnIndex("text"));
 
-        String lyricText = "<b>"+ parentHymn + " - " + no +"</b><br/>" + text;
+        StringBuilder lyricText = new StringBuilder();
+        lyricText.append("<b>");
+        lyricText.append(parentHymn);
+        lyricText.append(" - ");
+        lyricText.append(no);
+        lyricText.append("</b><br/>");
+        lyricText.append(text.trim());
 
-        indexViewHolder.list_item.setText(Html.fromHtml(lyricText));
+        //remove trailing <br/>
+        lyricText.reverse().delete(0,5).reverse();
+
+        indexViewHolder.list_item.setText(Html.fromHtml(lyricText.toString()));
 
         String hymnGroup = HymnGroup.getHymnGroupFromID(parentHymn).toString();
         indexViewHolder.imageView.setImageResource(context.getResources().getIdentifier(hymnGroup.toLowerCase(), "drawable", context.getPackageName()));
