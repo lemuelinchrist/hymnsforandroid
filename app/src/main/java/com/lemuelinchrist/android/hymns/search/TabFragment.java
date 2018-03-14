@@ -113,7 +113,7 @@ public abstract class TabFragment extends Fragment {
         return InputType.TYPE_CLASS_TEXT;
     }
 
-    public void setRecyclerViewAdapter() {
+    private void setRecyclerViewAdapter() {
         dao = new HymnsDao(container.getContext());
         dao.open();
 

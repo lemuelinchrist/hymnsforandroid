@@ -28,7 +28,13 @@ public class CategoryTabFragment extends TabFragment {
 
     @Override
     public void setSearchFilter(String filter) {
-        ((HymnCursorAdapter)mRecyclerView.getAdapter()).setNewCursor(dao.getByCategory(selectedHymnGroup, filter));
+        if(filter!=null && filter.isEmpty()) {
+            mRecyclerView.setAdapter(new CategoryAdapter(container.getContext(),
+                    dao.getByCategory(selectedHymnGroup, ""), R.layout.recyclerview_hymn_list));
+
+        } else {
+            ((HymnCursorAdapter) mRecyclerView.getAdapter()).setNewCursor(dao.getByCategory(selectedHymnGroup, filter));
+        }
     }
 
     @Override
