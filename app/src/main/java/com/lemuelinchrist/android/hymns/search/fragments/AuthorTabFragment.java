@@ -1,7 +1,8 @@
-package com.lemuelinchrist.android.hymns.search;
+package com.lemuelinchrist.android.hymns.search.fragments;
 
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.search.TabFragment;
 import com.lemuelinchrist.android.hymns.search.searchadapters.AuthorAdapter;
 import com.lemuelinchrist.android.hymns.search.searchadapters.CategoryAdapter;
 import com.lemuelinchrist.android.hymns.search.searchadapters.FirstLineChorusAdapter;
