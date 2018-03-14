@@ -1,14 +1,15 @@
-package com.lemuelinchrist.android.hymns.search;
+package com.lemuelinchrist.android.hymns.search.fragments;
 
-import android.text.InputType;
 import android.util.Log;
+
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.search.TabFragment;
 import com.lemuelinchrist.android.hymns.search.searchadapters.FirstLineChorusAdapter;
 import com.lemuelinchrist.android.hymns.search.searchadapters.HymnNumberAdapter;
 
 
-public class HymnNumberTabFragment extends TabFragment {
+public class FirstLineTabFragment extends TabFragment {
     // TODO: Rename parameter arguments, choose names that match
 
     private HymnsDao dao;
@@ -22,19 +23,24 @@ public class HymnNumberTabFragment extends TabFragment {
 
         Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
         if (selectedHymnGroup != null) {
-            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                    dao.getIndexListOrderBy(selectedHymnGroup,null,HymnsDao.ORDER_BY_HYMN_NUMBER), R.layout.recyclerview_hymn_list));
+            mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
+                    dao.getAllHymnsOfSameLanguage(selectedHymnGroup), R.layout.recyclerview_hymn_list));
         }
 
     }
 
     public void setSearchFilter(String filter) {
 
-        mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                dao.getHymnNumberList(selectedHymnGroup, filter)
+        mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
+                dao.getFilteredHymns(selectedHymnGroup, filter)
                 , R.layout.recyclerview_hymn_list));
 
 
+    }
+
+    @Override
+    public int getIcon() {
+        return R.drawable.ic_keyboard_tab;
     }
 
     public void cleanUp() {
@@ -48,22 +54,11 @@ public class HymnNumberTabFragment extends TabFragment {
 
     @Override
     public int getSearchTabIndex() {
-        return 0;
+        return 1;
     }
 
     @Override
     public String getTabName() {
-        return "  Hymn Numbers";
-    }
-
-    @Override
-    public int getInputType() {
-        return InputType.TYPE_CLASS_PHONE;
-    }
-
-    @Override
-    public int getIcon() {
-        return R.drawable.ic_dialpad_tab;
-//        return android.R.drawable.ic_dialog_dialer;
+        return "  First Lines";
     }
 }

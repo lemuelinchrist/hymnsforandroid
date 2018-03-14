@@ -7,9 +7,9 @@ def svgFolderName = "guitarSvg"
 //def svgFolderName=""
 def hymnAppVersion = "v3.3.1-Guitar"
 
-allprojects {
-    buildDir = "/Users/lemuelcantos/Desktop/build"
-}
+//allprojects {
+//    buildDir = "/Users/lemuelcantos/Desktop/build"
+//}
 
 android {
     compileSdkVersion 24

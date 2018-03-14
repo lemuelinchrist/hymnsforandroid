@@ -26,7 +26,6 @@ import android.support.v7.app.ActionBar;
 import android.widget.TextView;
 
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
-import com.lemuelinchrist.android.hymns.utils.DataCleanSweeper;
 
 import java.io.File;
 import java.lang.reflect.Method;
