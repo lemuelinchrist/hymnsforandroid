@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns.search.searchadapters;
+package com.lemuelinchrist.android.hymns.search;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,7 +10,7 @@ import com.lemuelinchrist.android.hymns.R;
 /**
 * Created by lemuelcantos on 27/1/15.
 */
-class IndexViewHolder extends RecyclerView.ViewHolder {
+public class IndexViewHolder extends RecyclerView.ViewHolder {
     public TextView list_item;
     public ImageView imageView;
     public String hymnNo;

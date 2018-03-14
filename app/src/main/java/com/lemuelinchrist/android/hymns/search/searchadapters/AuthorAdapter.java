@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.text.Html;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.search.HymnCursorAdapter;
+import com.lemuelinchrist.android.hymns.search.IndexViewHolder;
 
 /**
  * Created by lemuelcantos on 31/10/15.
