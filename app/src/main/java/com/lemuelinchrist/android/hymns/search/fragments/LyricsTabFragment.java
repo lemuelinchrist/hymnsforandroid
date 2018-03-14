@@ -28,7 +28,7 @@ public class LyricsTabFragment extends TabFragment {
         dao.open();
 
         mRecyclerView.setAdapter(new AuthorAdapter(container.getContext(),
-                dao.getAuthorsList(""), R.layout.recyclerview_hymn_list));
+                dao.getByAuthorsOrComposers(""), R.layout.recyclerview_hymn_list));
 
     }
 
@@ -46,7 +46,7 @@ public class LyricsTabFragment extends TabFragment {
     @Override
     public void setSearchFilter(String filter) {
         mRecyclerView.setAdapter(new AuthorAdapter(container.getContext(),
-                dao.getAuthorsList(filter)
+                dao.getByAuthorsOrComposers(filter)
                 , R.layout.recyclerview_hymn_list));    }
 
     @Override
