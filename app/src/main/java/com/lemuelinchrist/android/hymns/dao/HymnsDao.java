@@ -104,18 +104,21 @@ public class HymnsDao {
     }
 
     private String buildLikeClause(String columnName, String filter) {
-        filter = filter.replaceAll("[^A-Za-z ]", "");
+        filter = filter.replaceAll("'"," ").replaceAll("[^A-Za-z ]", "");
 
         StringBuilder likeBuilder = new StringBuilder();
         String[] words = filter.trim().split(" ");
         for(int x=0; x<words.length; x++) {
+            if(x!=0 && words[x].trim().length()<3) continue;
             likeBuilder.append(columnName);
             likeBuilder.append(" LIKE '%");
             likeBuilder.append(words[x]);
             likeBuilder.append("%'");
-            if(x == words.length-1) break;
             likeBuilder.append(" AND ");
         }
+        // remove trailing "AND"
+        likeBuilder.reverse().delete(0,4).reverse();
+
         return likeBuilder.toString();
     }
 
