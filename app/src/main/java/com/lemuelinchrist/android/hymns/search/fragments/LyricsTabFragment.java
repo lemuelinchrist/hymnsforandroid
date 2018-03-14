@@ -10,7 +10,6 @@ import com.lemuelinchrist.android.hymns.search.searchadapters.AuthorAdapter;
  * @since 13/3/2018
  */
 public class LyricsTabFragment extends TabFragment {
-    private HymnsDao dao;
 
     @Override
     public int getSearchTabIndex() {
@@ -22,21 +21,6 @@ public class LyricsTabFragment extends TabFragment {
         return "All Lyrics";
     }
 
-    @Override
-    public void setRecyclerViewAdapter() {
-        dao = new HymnsDao(container.getContext());
-        dao.open();
-
-        mRecyclerView.setAdapter(new AuthorAdapter(container.getContext(),
-                dao.getByAuthorsOrComposers(""), R.layout.recyclerview_hymn_list));
-
-    }
-
-    @Override
-    public void cleanUp() {
-        dao.close();
-
-    }
 
     @Override
     public boolean canBeSearched() {

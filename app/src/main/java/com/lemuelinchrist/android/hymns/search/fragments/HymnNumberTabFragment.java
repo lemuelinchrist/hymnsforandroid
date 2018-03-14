@@ -9,36 +9,22 @@ import com.lemuelinchrist.android.hymns.search.searchadapters.HymnNumberAdapter;
 
 
 public class HymnNumberTabFragment extends TabFragment {
-    // TODO: Rename parameter arguments, choose names that match
-
-    private HymnsDao dao;
-
-
-    @Override
-    public void setRecyclerViewAdapter() {
-
-        dao = new HymnsDao(container.getContext());
-        dao.open();
-
-        Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
-        if (selectedHymnGroup != null) {
-            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                    dao.getByFirstLineOrderBy(selectedHymnGroup,null,HymnsDao.ORDER_BY_HYMN_NUMBER), R.layout.recyclerview_hymn_list));
-        }
-
-    }
 
     public void setSearchFilter(String filter) {
 
-        mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                dao.getByHymnNo(selectedHymnGroup, filter)
-                , R.layout.recyclerview_hymn_list));
+        // if user didn't input anything in the search, the default behavior is to list only a certain group of hymns
+        if (selectedHymnGroup != null && filter.equals("")) {
+            Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
+            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
+                    dao.getByFirstLineOrderBy(selectedHymnGroup,null,HymnsDao.ORDER_BY_HYMN_NUMBER), R.layout.recyclerview_hymn_list));
+
+        } else {
+            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
+                    dao.getByHymnNo(selectedHymnGroup, filter)
+                    , R.layout.recyclerview_hymn_list));
+        }
 
 
-    }
-
-    public void cleanUp() {
-        dao.close();
     }
 
     @Override
