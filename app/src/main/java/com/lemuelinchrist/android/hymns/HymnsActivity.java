@@ -26,6 +26,7 @@ import android.support.v7.app.ActionBar;
 import android.widget.TextView;
 
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
+import com.lemuelinchrist.android.hymns.style.TextSize;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -172,7 +173,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         } else if (item.getItemId() == R.id.action_fontsize) {
             // 1. Instantiate an AlertDialog.Builder with its constructor
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            final String[] fontSizes = getResources().getStringArray(R.array.font_sizes);
+            final String[] fontSizes = TextSize.getArrayOfSimpleNames();
 
             // 2. Chain together various setter methods to set the dialog characteristics
             builder.setTitle(R.string.choose_font_size)
