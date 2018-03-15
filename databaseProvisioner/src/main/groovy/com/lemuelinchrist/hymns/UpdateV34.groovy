@@ -12,7 +12,8 @@ class UpdateV34 {
     // This script tries to fix missing first stanza lines of all hymns.
 
     public static void main(String[] args) {
-        extractNS566To617();
+        change587To1087()
+        extractNS566To617()
 //        provisionGerman()
 //        provisionGermanNonHymns()
 //        fixMissingStanzas()
@@ -20,13 +21,19 @@ class UpdateV34 {
 
     }
 
+    static change587To1087() {
+        Dao dao = new Dao()
+        dao.changeHymnNumber("NS587","NS","1087")
+
+    }
+
     public static void extractNS566To617() {
         println 'hello'
         Dao dao = new Dao();
 
-        for (int x = 544; x<=565; x++) {
+        for (int x = 566; x<=617; x++) {
             HymnsEntity hymn = HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, ""+x, 'NS', ""+x);
-            dao.save(hymn);
+            dao.save(hymn)
         }
 
     }
