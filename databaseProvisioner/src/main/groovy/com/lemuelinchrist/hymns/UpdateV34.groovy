@@ -18,9 +18,6 @@ class UpdateV34 {
         extractOthers()
         extractNewTagalog1249To1360()
         extractNewEnglish1249To1360()
-
-
-
     }
 
     static change587To1087() {
