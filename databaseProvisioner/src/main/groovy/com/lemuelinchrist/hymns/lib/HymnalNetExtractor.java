@@ -308,6 +308,10 @@ public class HymnalNetExtractor {
     }
 
     public static void downloadSheetMusicAndMidi(String hymnalAddress, HymnsEntity hymn) throws IOException {
+        if (hymn.getSheetMusicLink()==null || hymn.getSheetMusicLink().isEmpty()) {
+            System.out.println("skipping saving of sheets. link is empty...");
+            return;
+        }
         // get guitar and piano sheet
         FileUtils.saveUrl(Constants.SHEET_PIANO_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_g", "_p").replace(".svg", ".svg?"));
         FileUtils.saveUrl(Constants.SHEET_GUITAR_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_p", "_g").replace(".svg", ".svg?"));
