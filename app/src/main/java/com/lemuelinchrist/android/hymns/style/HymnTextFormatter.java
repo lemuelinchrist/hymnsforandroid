@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns.utils;
+package com.lemuelinchrist.android.hymns.style;
 
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
