@@ -49,7 +49,7 @@ public class LyricContainer extends Fragment {
         Log.e(getClass().getSimpleName(), "green tea hymnLyric");
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.hymn_fragment, container, false);
+                R.layout.lyric_container, container, false);
 
         this.context=getContext();
         if(hymnsDao==null) {

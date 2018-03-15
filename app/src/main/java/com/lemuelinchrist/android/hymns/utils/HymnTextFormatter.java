@@ -11,7 +11,7 @@ import com.lemuelinchrist.android.hymns.HymnGroup;
  * Created by lemuelcantos on 21/7/13.
  */
 public class HymnTextFormatter {
-    public static CharSequence setColorBetweenTokens(CharSequence text,
+    private static CharSequence setColorBetweenTokens(CharSequence text,
                                                      String token, int color) {
         Log.d(HymnTextFormatter.class.getName(), "text to be formatted: " + text.toString());
         
