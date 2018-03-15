@@ -11,13 +11,11 @@ import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
 class UpdateV34 {
     // This script tries to fix missing first stanza lines of all hymns.
 
-    public static void main(String[] args) {
-        change587To1087()
-        extractNS566To617()
-//        provisionGerman()
-//        provisionGermanNonHymns()
-//        fixMissingStanzas()
-//        fixSongsWithChorusOnly()
+    static void main(String[] args) {
+//        change587To1087()
+//        extractNS566To617()
+        extractNewEnglish1249To1360()
+//        extractNewTagalog1249To1360()
 
     }
 
@@ -27,15 +25,33 @@ class UpdateV34 {
 
     }
 
-    public static void extractNS566To617() {
+    static extractNS566To617() {
         println 'hello'
-        Dao dao = new Dao();
+        Dao dao = new Dao()
 
         for (int x = 566; x<=617; x++) {
-            HymnsEntity hymn = HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, ""+x, 'NS', ""+x);
+            HymnsEntity hymn = HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, ""+x, 'NS', ""+x)
             dao.save(hymn)
         }
 
+    }
+
+    static extractNewEnglish1249To1360() {
+        Dao dao = new Dao()
+
+        for (int x = 1349; x<=1360; x++) {
+            HymnsEntity hymn = HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_URL, ""+x, 'E', ""+x)
+            dao.save(hymn)
+        }
+    }
+
+    static extractNewTagalog1249To1360() {
+        Dao dao = new Dao()
+
+        for (int x = 1349; x<=1360; x++) {
+            HymnsEntity hymn = HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_TAGALOG, ""+x, 'T', ""+x)
+            dao.save(hymn)
+        }
     }
 
 
