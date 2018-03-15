@@ -79,6 +79,28 @@ public class Dao {
 
     }
 
+    public void fixParentHymnOfChildren(String parentHymn) {
+        HymnsEntity parentEntity = em.find(HymnsEntity.class, parentHymn);
+        Set<String> relatedSet = parentEntity.getRelated();
+        System.out.println("*** Parent Hymn: " + parentEntity.getId());
+        for(String related: relatedSet) {
+            HymnsEntity relatedEntity = em.find(HymnsEntity.class, related);
+            if(relatedEntity==null) {
+                System.out.println(related + " nonexistent");
+                continue;
+            }
+
+            if(relatedEntity.getParentHymn()==null) {
+                System.out.println("assigning parent hymn of " + relatedEntity.getId() + " to " + parentEntity.getId());
+                em.getTransaction().begin();
+                relatedEntity.setParentHymn(parentEntity.getId());
+                em.getTransaction().commit();
+            }
+
+        }
+
+    }
+
     private void delete(String hymnId) {
         try {
 
