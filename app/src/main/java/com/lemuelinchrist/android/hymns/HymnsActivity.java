@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.style.TextSize;
+import com.lemuelinchrist.android.hymns.style.Theme;
 
 import java.lang.reflect.Method;
 
@@ -191,7 +192,15 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         } else if (item.getItemId() == R.id.action_searchYoutube) {
             hymnBookCollection.launchYouTubeApp();
-        } else
+        } else if (item.getItemId() == R.id.action_nightMode) {
+            if (item.getTitle().equals(getString(R.string.nightMode))) {
+                hymnBookCollection.setTheme(Theme.DARK);
+            } else {
+                hymnBookCollection.setTheme(Theme.LIGHT);
+            }
+            ret = true;
+
+        }else
 
         {
             ret = false;

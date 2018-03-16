@@ -38,7 +38,12 @@
             yourapp:showAsAction="never"
             android:icon="@drawable/fontsize_black"
             android:title="Font Size"/>
-
+    <item
+            android:id="@+id/action_nightMode"
+            android:orderInCategory="108"
+            yourapp:showAsAction="never"
+            android:icon="@drawable/ic_brightness"
+            android:title="Night Mode"/>
 
     <item android:id="@+id/about"
           android:title="@string/about"

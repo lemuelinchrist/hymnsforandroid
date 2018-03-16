@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusic;
 import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicActivity;
+import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private HymnBookAdapter currentAdapter;
     private HymnStack hymnStack = new HymnStack("E1");
 
+    private Theme theme=Theme.LIGHT;
+
     public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
         dao = new HymnsDao(context);
@@ -42,8 +45,23 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         switchHymnBook(HymnGroup.E);
     }
 
+    public void setTheme(Theme theme) {
+        if (this.theme==theme) {
+            return;
+        } else {
+            this.theme=theme;
+            refresh();
+        }
+    }
 
-    public void switchHymnBook(HymnGroup hymnGroup) {
+    private void refresh() {
+        String currentHymnId = getCurrentHymnId();
+        hymnBookAdapters = new HashMap<>();
+        switchHymnBook(HymnGroup.getHymnGroupFromID(currentHymnId));
+        switchToHymn(currentHymnId);
+    }
+
+    private void switchHymnBook(HymnGroup hymnGroup) {
 
         if (!hymnBookAdapters.containsKey(hymnGroup)) {
             Log.d(this.getClass().getName(), "generating new instance of HymnBook for selected hymn group: " + hymnGroup);
@@ -178,6 +196,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         private ArrayList<String> hymnNumbers;
         private HymnGroup hymnGroup;
+        private LyricContainer currentLyricContainer;
 
 
         public ArrayList<String> getHymnNumbers() {
@@ -196,10 +215,11 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         public Fragment getItem(int position) {
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
-            LyricContainer lyric = LyricContainer.newInstance(context, context);
+            LyricContainer lyric = LyricContainer.newInstance(context, context, theme);
             lyric.addLyricVisibleListener(context);
             lyric.addLyricVisibleListener(HymnBookCollection.this);
             lyric.setHymn(hymnGroup.toString() + hymnNumbers.get(position));
+            currentLyricContainer = lyric;
             return lyric;
 
         }
