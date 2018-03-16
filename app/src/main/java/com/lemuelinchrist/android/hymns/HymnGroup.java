@@ -9,21 +9,49 @@ import java.util.List;
  * Created by lemuelcantos on 18/8/13.
  */
 public enum HymnGroup {
-    E("English", Color.rgb(0x3D, 0x57, 0x7A)),
-    C("中文", Color.rgb(0x66, 0x99, 0x00)),
-    CS("補充本", Color.rgb(0x99, 0x33, 0xCC)),
-    CB("Cebuano", Color.rgb(0xFF, 0x88, 0x00)),
-    T("Tagalog", Color.rgb(0x00, 0x96, 0x88)),
-    FR("French", Color.rgb(0xE9, 0x1E, 0x63)),
-    S("Spanish", Color.rgb(0x3F, 0x51, 0xB5)),
-    K("Korean", Color.rgb(0x79, 0x55, 0x48)),
-    G("German", Color.rgb(0xFF, 0x57, 0x22)),
-    BF("Be Filled", Color.rgb(0x00, 0x99, 0xCC)),
-    NS("New Songs", Color.rgb(0xCC, 0x00, 0x00)),
-    CH("Children", Color.rgb(0xAF, 0xB4, 0x2B));
+    E("English", Color.rgb(0x3D, 0x57, 0x7A),
+            Color.rgb(0xB0, 0xBE, 0xC5)),
+    // Green
+    C("中文", Color.rgb(0x66, 0x99, 0x00),
+            Color.rgb(0xA5, 0xD6, 0xA7)),
+    //Purple
+    CS("補充本", Color.rgb(0x99, 0x33, 0xCC),
+            Color.rgb(0xCE, 0x93, 0xD8)),
+    //Orange
+    CB("Cebuano", Color.rgb(0xFF, 0x88, 0x00),
+            Color.rgb(0xFF, 0xCC, 0x80)),
+    //Teal
+    T("Tagalog", Color.rgb(0x00, 0x96, 0x88),
+            Color.rgb(0x80, 0xCB, 0xC4)),
+    //Pink
+    FR("French", Color.rgb(0xE9, 0x1E, 0x63),
+            Color.rgb(0xF4, 0x8F, 0xB1)),
+    //Indigo
+    S("Spanish", Color.rgb(0x3F, 0x51, 0xB5),
+            Color.rgb(0x9F, 0xA8, 0xDA)),
+    //Brown
+    K("Korean", Color.rgb(0x79, 0x55, 0x48),
+            Color.rgb(0xBC, 0xAA, 0xA4)),
+    //Deep Orange
+    G("German", Color.rgb(0xFF, 0x57, 0x22),
+            Color.rgb(0xFF, 0xAB, 0x91)),
+    //Blue
+    BF("Be Filled", Color.rgb(0x00, 0x99, 0xCC),
+            Color.rgb(0x90, 0xCA, 0xF9)),
+    //Red
+    NS("New Songs", Color.rgb(0xCC, 0x00, 0x00),
+            Color.rgb(0xEF, 0x9A, 0x9A)),
+    CH("Children", Color.rgb(0xAF, 0xB4, 0x2B),
+            Color.rgb(0xE6, 0xEE, 0x9C));
 
     private final String simpleName;
-    private final int rgbColor;
+    private final int dayColor;
+    // taken from Google color palette #200 - https://material.io/guidelines/style/color.html#color-color-palette
+    private final int nightColor;
+
+    public int getNightColor() {
+        return nightColor;
+    }
 
     public static HymnGroup getHymnGroupFromID(String hymnId) {
         //split hymn group from hymn number
@@ -44,18 +72,18 @@ public enum HymnGroup {
     }
 
 
-    public int getRgbColor() {
-        return rgbColor;
+    public int getDayColor() {
+        return dayColor;
     }
 
     public String getSimpleName() {
         return simpleName;
     }
 
-    HymnGroup(String simpleName, int rgbColor) {
-
+    HymnGroup(String simpleName, int dayColor, int nightColor) {
+        this.nightColor=nightColor;
         this.simpleName = simpleName;
-        this.rgbColor = rgbColor;
+        this.dayColor = dayColor;
 
     }
     public static String[] getArrayOfSimpleNames() {

@@ -49,10 +49,10 @@ public class HymnTextFormatter {
         Log.d(HymnTextFormatter.class.getName(), "formatting unformatted text!");
         CharSequence formattedText;
         // set red color to stanza numbers
-        formattedText = setColorBetweenTokens(unformattedText, "##", HymnGroup.valueOf(hymnGroup).getRgbColor());
+        formattedText = setColorBetweenTokens(unformattedText, "##", HymnGroup.valueOf(hymnGroup).getDayColor());
 
         // set green color to chorus lyrics
-        formattedText = setColorBetweenTokens(formattedText, "@@", HymnGroup.valueOf(hymnGroup).getRgbColor());
+        formattedText = setColorBetweenTokens(formattedText, "@@", HymnGroup.valueOf(hymnGroup).getDayColor());
 
         return formattedText;
     }

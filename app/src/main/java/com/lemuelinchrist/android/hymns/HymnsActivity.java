@@ -2,14 +2,12 @@ package com.lemuelinchrist.android.hymns;
 
 //import android.app.ActionBar;
 
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,7 +26,6 @@ import android.widget.TextView;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.style.TextSize;
 
-import java.io.File;
 import java.lang.reflect.Method;
 
 
@@ -263,7 +260,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         actionBar.setTitle(hymnId);
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
-        actionBar.setBackgroundDrawable(new ColorDrawable(selectedHymnGroup.getRgbColor()));
+        actionBar.setBackgroundDrawable(new ColorDrawable(selectedHymnGroup.getDayColor()));
 
         Log.d(getClass().getSimpleName(), "Done painting title");
 
