@@ -136,6 +136,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+//        menu.getItem(R.id.action_nightMode);
 
         playMenuItem = menu.findItem(R.id.action_play);
 
@@ -197,12 +198,11 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             hymnBookCollection.launchYouTubeApp();
         } else if (item.getItemId() == R.id.action_nightMode) {
             if (item.getTitle().equals(getString(R.string.nightMode))) {
-                item.setTitle(R.string.dayMode);
                 this.theme=Theme.DARK;
             } else {
-                item.setTitle(R.string.nightMode);
                 this.theme=Theme.LIGHT;
             }
+            item.setTitle(theme.getMenuDisplayText());
             hymnBookCollection.setTheme(this.theme);
             changeActionBarColor();
             ret = true;
