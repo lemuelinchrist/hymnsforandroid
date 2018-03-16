@@ -20,6 +20,7 @@ import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.TextSize;
+import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
 
 import java.util.HashSet;
@@ -42,6 +43,7 @@ public class LyricContainer extends Fragment {
     private HistoryLogBook historyLogBook;
     private String hymnId;
     private HashSet <OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
+    private Theme theme;
 
 
     @Override
@@ -50,7 +52,7 @@ public class LyricContainer extends Fragment {
         Log.e(getClass().getSimpleName(), "green tea hymnLyric");
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.lyric_container, container, false);
+                theme.getStyle(), container, false);
 
         this.context=getContext();
         if(hymnsDao==null) {
@@ -86,11 +88,12 @@ public class LyricContainer extends Fragment {
         return rootView;
     }
 
-    public static LyricContainer newInstance(Context context, MusicPlayerListener musicPlayerListener) {
+    public static LyricContainer newInstance(Context context, MusicPlayerListener musicPlayerListener, Theme theme) {
         LyricContainer lyric = new LyricContainer();
 
         lyric.setContext(context);
         lyric.setMusicPlayerListener(musicPlayerListener);
+        lyric.setTheme(theme);
         return lyric;
 
     }
@@ -346,5 +349,9 @@ public class LyricContainer extends Fragment {
 
         }
         return null;
+    }
+
+    public void setTheme(Theme theme) {
+        this.theme = theme;
     }
 }
