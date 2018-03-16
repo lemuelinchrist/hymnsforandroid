@@ -41,10 +41,12 @@ public enum HymnGroup {
     //Red
     NS("New Songs", Color.rgb(0xCC, 0x00, 0x00),
             Color.rgb(0xEF, 0x9A, 0x9A)),
+    //Lime
     CH("Children", Color.rgb(0xAF, 0xB4, 0x2B),
             Color.rgb(0xE6, 0xEE, 0x9C));
 
     private final String simpleName;
+    // taken from Google Color Palette #500
     private final int dayColor;
     // taken from Google color palette #200 - https://material.io/guidelines/style/color.html#color-color-palette
     private final int nightColor;
