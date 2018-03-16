@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -43,6 +44,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private ActionBar actionBar;
     private MenuItem playMenuItem;
     private HymnBookCollection hymnBookCollection;
+    private Theme theme = Theme.LIGHT;
 
 
     @Override
@@ -59,6 +61,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        changeActionBarColor();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -194,10 +197,14 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             hymnBookCollection.launchYouTubeApp();
         } else if (item.getItemId() == R.id.action_nightMode) {
             if (item.getTitle().equals(getString(R.string.nightMode))) {
-                hymnBookCollection.setTheme(Theme.DARK);
+                item.setTitle(R.string.dayMode);
+                this.theme=Theme.DARK;
             } else {
-                hymnBookCollection.setTheme(Theme.LIGHT);
+                item.setTitle(R.string.nightMode);
+                this.theme=Theme.LIGHT;
             }
+            hymnBookCollection.setTheme(this.theme);
+            changeActionBarColor();
             ret = true;
 
         }else
@@ -207,6 +214,10 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             Log.w(HymnsActivity.class.getSimpleName(), "Warning!! No Item was selected!!");
         }
         return ret;
+    }
+
+    private void changeActionBarColor() {
+        actionBar.setBackgroundDrawable(theme.getActionBarColor(selectedHymnGroup));
     }
 
     private void toggleDrawer() {
@@ -269,7 +280,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         actionBar.setTitle(hymnId);
         actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
-        actionBar.setBackgroundDrawable(new ColorDrawable(selectedHymnGroup.getDayColor()));
+        changeActionBarColor();
 
         Log.d(getClass().getSimpleName(), "Done painting title");
 
