@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -45,6 +46,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private MenuItem playMenuItem;
     private HymnBookCollection hymnBookCollection;
     private Theme theme = Theme.LIGHT;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -54,9 +56,11 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
         setContentView(R.layout.main_hymns_activity);
+        sharedPreferences = getSharedPreferences("Hymns", 0);
+        theme = Theme.valueOf(sharedPreferences.getString("theme", "LIGHT"));
 
         // Instantiate a ViewPager and a PagerAdapter.
-        hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager));
+        hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager),theme);
 
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
@@ -136,7 +140,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-//        menu.getItem(R.id.action_nightMode);
+        menu.findItem(R.id.action_nightMode).setTitle(theme.getMenuDisplayText());
 
         playMenuItem = menu.findItem(R.id.action_play);
 
@@ -205,6 +209,11 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             item.setTitle(theme.getMenuDisplayText());
             hymnBookCollection.setTheme(this.theme);
             changeActionBarColor();
+
+            // persist choice
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("theme", theme.toString());
+            editor.apply();
             ret = true;
 
         }else

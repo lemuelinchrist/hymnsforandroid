@@ -36,10 +36,11 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
     private Theme theme=Theme.LIGHT;
 
-    public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
+    public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager, Theme theme) {
         this.context = context;
         dao = new HymnsDao(context);
         this.lyricPager = lyricPager;
+        this.theme=theme;
         //lyricPager.setPageTransformer(true, new DepthPageTransformer());
 
         switchHymnBook(HymnGroup.E);
