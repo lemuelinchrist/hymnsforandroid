@@ -11,10 +11,24 @@ import com.lemuelinchrist.android.hymns.HymnGroup;
  * Created by lemuelcantos on 21/7/13.
  */
 public class HymnTextFormatter {
+
+    public static CharSequence format(Spanned unformattedText, int color) {
+
+        Log.d(HymnTextFormatter.class.getName(), "formatting unformatted text!");
+        CharSequence formattedText;
+        // set red color to stanza numbers
+        formattedText = setColorBetweenTokens(unformattedText, "##", color);
+
+        // set green color to chorus lyrics
+        formattedText = setColorBetweenTokens(formattedText, "@@", color);
+
+        return formattedText;
+    }
+
     private static CharSequence setColorBetweenTokens(CharSequence text,
                                                      String token, int color) {
         Log.d(HymnTextFormatter.class.getName(), "text to be formatted: " + text.toString());
-        
+
         while (true) {
             // Start and end refer to the points where the span will apply
             int tokenLen = token.length();
@@ -43,17 +57,4 @@ public class HymnTextFormatter {
         return text;
     }
 
-
-    public static CharSequence format(Spanned unformattedText, String hymnGroup) {
-
-        Log.d(HymnTextFormatter.class.getName(), "formatting unformatted text!");
-        CharSequence formattedText;
-        // set red color to stanza numbers
-        formattedText = setColorBetweenTokens(unformattedText, "##", HymnGroup.valueOf(hymnGroup).getDayColor());
-
-        // set green color to chorus lyrics
-        formattedText = setColorBetweenTokens(formattedText, "@@", HymnGroup.valueOf(hymnGroup).getDayColor());
-
-        return formattedText;
-    }
 }

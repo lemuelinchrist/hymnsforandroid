@@ -7,18 +7,23 @@ def svgFolderName = "guitarSvg"
 //def svgFolderName=""
 def hymnAppVersion = "v3.4-beta-Guitar"
 
-//allprojects {
-//    buildDir = "/Users/lemuelcantos/Desktop/build"
-//}
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+    }
+}
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "25"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.3"
 
     defaultConfig {
         applicationId "com.lemuelinchrist.android.hymns"
         minSdkVersion 15    // Ice cream sandwitch
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 94      // increment version code if you want to refresh the database cache of your phone
         versionName hymnAppVersion
     }
@@ -35,11 +40,11 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:24.0.0'
-    compile 'com.android.support:cardview-v7:24.0.0'
-    compile 'com.android.support:recyclerview-v7:24.0.0'
-    compile 'com.android.support:support-v4:24.0.0'
-    compile 'com.android.support:design:24.0.0'
+    compile 'com.android.support:appcompat-v7:26.0.2'
+    compile 'com.android.support:cardview-v7:26.0.2'
+    compile 'com.android.support:recyclerview-v7:26.0.2'
+    compile 'com.android.support:support-v4:26.0.2'
+    compile 'com.android.support:design:26.0.2'
 
     compile 'xyz.danoz:recyclerviewfastscroller:0.1.3'
 }

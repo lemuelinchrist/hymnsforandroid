@@ -233,7 +233,7 @@ public class LyricContainer extends Fragment {
 
 
             // add colors to text
-            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), selectedHymnGroup);
+            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
 
 
             lyricsView.setText(formattedLyrics);
