@@ -13,11 +13,11 @@ class UpdateV34 {
     static Dao dao = new Dao()
 
     static void main(String[] args) {
-        change587To1087()
-        extractNS566To617()
-        extractOthers()
-        extractNewTagalog1249To1360()
-        extractNewEnglish1249To1360()
+//        change587To1087()
+//        extractNS566To617()
+//        extractOthers()
+//        extractNewTagalog1249To1360()
+//        extractNewEnglish1249To1360()
         removeAllTS()
     }
 
