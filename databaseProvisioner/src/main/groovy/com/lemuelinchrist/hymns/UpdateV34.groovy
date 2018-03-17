@@ -18,6 +18,7 @@ class UpdateV34 {
         extractOthers()
         extractNewTagalog1249To1360()
         extractNewEnglish1249To1360()
+        removeAllTS()
     }
 
     static change587To1087() {
@@ -57,6 +58,10 @@ class UpdateV34 {
             dao.save(hymn)
             dao.fixParentHymnOfChildren("E"+x)
         }
+    }
+
+    static removeAllTS() {
+        dao.removeAllTS();
     }
 
 

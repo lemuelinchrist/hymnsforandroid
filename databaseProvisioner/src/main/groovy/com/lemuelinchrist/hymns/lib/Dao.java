@@ -195,4 +195,27 @@ public class Dao {
         em.getTransaction().commit();
         System.out.println("save successful!");
     }
+
+    public void removeAllTS() {
+        List<HymnsEntity> hymns = findAll();
+        for(HymnsEntity hymn: hymns) {
+            System.out.println("******* Examining hymn: " + hymn.getId());
+            String relatedToRemove=null;
+            if (hymn.getRelated()==null) continue;
+            for(String related: hymn.getRelated()) {
+                if(related.contains("TS")) {
+                    System.out.println("Removing " + related);
+                    relatedToRemove=related;
+                    break;
+                }
+            }
+            if (relatedToRemove!=null) {
+                em.getTransaction().begin();
+                Set<String> related = hymn.getRelated();
+                related.remove(relatedToRemove);
+                hymn.setRelated(related);
+                em.getTransaction().commit();
+            }
+        }
+    }
 }
