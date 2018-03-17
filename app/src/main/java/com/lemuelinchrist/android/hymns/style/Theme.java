@@ -10,17 +10,35 @@ import java.util.List;
 
 public enum Theme {
 
-    DARK(R.layout.lyric_container_night, Color.parseColor("#000000"), R.string.dayMode),
-    LIGHT(R.layout.lyric_container, null, R.string.nightMode);
+    DARK(R.layout.lyric_container_night,  R.string.dayMode) {
+        @Override
+        public ColorDrawable getActionBarColor(HymnGroup hymnGroup) {
+            return new ColorDrawable(Color.parseColor("#000000"));
+        }
+
+        @Override
+        public int getTextColor(HymnGroup hymnGroup) {
+            return hymnGroup.getNightColor();
+        }
+    },
+    LIGHT(R.layout.lyric_container, R.string.nightMode) {
+        @Override
+        public ColorDrawable getActionBarColor(HymnGroup hymnGroup) {
+            return new ColorDrawable(hymnGroup.getDayColor());
+        }
+
+        @Override
+        public int getTextColor(HymnGroup hymnGroup) {
+            return hymnGroup.getDayColor();
+        }
+    };
 
     private final int menuDisplayText;
     int style;
-    private final Integer actionBarColor;
 
 
-    Theme(Integer style, Integer actionBarColor, int menuDisplayText) {
+    Theme(Integer style,  int menuDisplayText) {
         this.style=style;
-        this.actionBarColor=actionBarColor;
         this.menuDisplayText=menuDisplayText;
     }
 
@@ -31,12 +49,7 @@ public enum Theme {
     public int getStyle() {
         return style;
     }
-    public ColorDrawable getActionBarColor(HymnGroup hymnGroup) {
-        if (actionBarColor==null) {
-            return new ColorDrawable(hymnGroup.getDayColor());
-        }
-        else {
-            return new ColorDrawable(actionBarColor);
-        }
-    }
+
+    public abstract ColorDrawable getActionBarColor(HymnGroup hymnGroup);
+    public abstract int getTextColor(HymnGroup hymnGroup);
 }

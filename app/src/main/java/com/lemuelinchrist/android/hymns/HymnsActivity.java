@@ -147,82 +147,88 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         return true;
     }
 
-
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        boolean ret = false;
+        boolean ret = true;
         Log.d(this.getClass().getName(), "Item selected: " + item.getItemId());
 
         // code for drawer:
-        if (item.getItemId() == android.R.id.home) {
-            toggleDrawer();
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                toggleDrawer();
+                break;
+            case R.id.about:
+                showDialog(0);
+                break;
+            case R.id.action_index:
+                Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+                intent.putExtra("selectedHymnGroup", selectedHymnGroup);
+                startActivityForResult(intent, INDEX_REQUEST);
+                ret = true;
+                break;
 
-        } else if (item.getItemId() == R.id.about) {
-            showDialog(0);
-            ret = true;
+            case R.id.action_play:
+                if (item.getTitle().equals(getString(R.string.playHymn))) {
+                    hymnBookCollection.startPlaying();
+                } else {
+                    hymnBookCollection.stopPlaying();
+                }
+                break;
 
-        } else if (item.getItemId() == R.id.action_index) {
-            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
-            intent.putExtra("selectedHymnGroup", selectedHymnGroup);
-            startActivityForResult(intent, INDEX_REQUEST);
-            ret = true;
+            case R.id.action_fontsize:
+                launchTextSizeSelector();
+                break;
 
-        } else if (item.getItemId() == R.id.action_play) {
-            if (item.getTitle().equals(getString(R.string.playHymn))) {
-                hymnBookCollection.startPlaying();
-            } else {
-                hymnBookCollection.stopPlaying();
-            }
-            ret = true;
-
-        } else if (item.getItemId() == R.id.action_fontsize) {
-            // 1. Instantiate an AlertDialog.Builder with its constructor
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            final String[] fontSizes = TextSize.getArrayOfSimpleNames();
-
-            // 2. Chain together various setter methods to set the dialog characteristics
-            builder.setTitle(R.string.choose_font_size)
-                    .setItems(fontSizes, new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int which) {
-                            hymnBookCollection.setLyricFontSize(fontSizes[which]);
-                        }
-                    });
-
-            // 3. Get the AlertDialog from create()
-            AlertDialog dialog = builder.create();
-            dialog.show();
-            ret = true;
-        } else if (item.getItemId() == R.id.action_sheetmusic) {
-            hymnBookCollection.launchSheetMusic();
-            ret = true;
-
-        } else if (item.getItemId() == R.id.action_searchYoutube) {
-            hymnBookCollection.launchYouTubeApp();
-        } else if (item.getItemId() == R.id.action_nightMode) {
-            if (item.getTitle().equals(getString(R.string.nightMode))) {
-                this.theme=Theme.DARK;
-            } else {
-                this.theme=Theme.LIGHT;
-            }
-            item.setTitle(theme.getMenuDisplayText());
-            hymnBookCollection.setTheme(this.theme);
-            changeActionBarColor();
-
-            // persist choice
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("theme", theme.toString());
-            editor.apply();
-            ret = true;
-
-        }else
-
-        {
-            ret = false;
-            Log.w(HymnsActivity.class.getSimpleName(), "Warning!! No Item was selected!!");
+            case R.id.action_sheetmusic:
+                hymnBookCollection.launchSheetMusic();
+                break;
+            case R.id.action_searchYoutube:
+                hymnBookCollection.launchYouTubeApp();
+                break;
+            case R.id.action_nightMode:
+                toggleNightMode(item);
+                break;
+            default:
+                ret = false;
+                Log.w(HymnsActivity.class.getSimpleName(), "Warning!! No Item was selected!!");
         }
         return ret;
+    }
+
+    private void toggleNightMode(MenuItem item) {
+        if (item.getTitle().equals(getString(R.string.nightMode))) {
+            this.theme= Theme.DARK;
+        } else {
+            this.theme=Theme.LIGHT;
+        }
+        item.setTitle(theme.getMenuDisplayText());
+        hymnBookCollection.setTheme(this.theme);
+        changeActionBarColor();
+
+        // persist choice
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("theme", theme.toString());
+        editor.apply();
+    }
+
+    private void launchTextSizeSelector() {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final String[] fontSizes = TextSize.getArrayOfSimpleNames();
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setTitle(R.string.choose_font_size)
+                .setItems(fontSizes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        hymnBookCollection.setLyricFontSize(fontSizes[which]);
+                    }
+                });
+
+        // 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        return;
     }
 
     private void changeActionBarColor() {
