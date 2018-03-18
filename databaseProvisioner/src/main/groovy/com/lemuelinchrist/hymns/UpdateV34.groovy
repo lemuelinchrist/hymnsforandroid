@@ -69,6 +69,10 @@ class UpdateV34 {
     static changeLyrics() {
         dao.changeStanza("E1138", 5943,
                 "As we eat Thyself, Lord Jesus,<br/>Consecrated we become;<br/>By Thy wondrous life within us,<br/>Thy obedience is our own.<br/>No more need we strive and struggle,<br/>Consecrated try to be;<br/>Consecration dwells within us —<br/>Now our part to eat of Thee.<br/>")
+        dao.changeStanza("E422", 2154, "My will is not my own<br/>Till Thou hast made it Thine;<br/>If it would reach the monarch's throne<br/>It must its crown resign;<br/>It only stands unbent<br/>Amid the clashing strife,<br/>When on Thy bosom it has leant,<br/>And found in Thee its life.<br/>")
+        dao.changeStanza("C737", 11161, "愛何大，尋回我！<br/>血何寶，贖回我！<br/>恩何豐，帶回我歸羊群！<br/>奇妙恩，帶回我歸羊群！<br/>")
+
+
     }
 
 
