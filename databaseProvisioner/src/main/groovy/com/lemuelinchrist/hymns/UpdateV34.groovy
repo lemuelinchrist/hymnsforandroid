@@ -13,12 +13,13 @@ class UpdateV34 {
     static Dao dao = new Dao()
 
     static void main(String[] args) {
-        change587To1087()
-        extractNS566To617()
-        extractOthers()
-        extractNewTagalog1249To1360()
-        extractNewEnglish1249To1360()
-        removeAllTS()
+//        change587To1087()
+//        extractNS566To617()
+//        extractOthers()
+//        extractNewTagalog1249To1360()
+//        extractNewEnglish1249To1360()
+//        removeAllTS()
+        changeLyrics()
     }
 
     static change587To1087() {
@@ -63,6 +64,11 @@ class UpdateV34 {
     static removeAllTS() {
         dao.removeAllTS()
         dao.removeAllTS()
+    }
+
+    static changeLyrics() {
+        dao.changeStanza("E1138", 5943,
+                "As we eat Thyself, Lord Jesus,<br/>Consecrated we become;<br/>By Thy wondrous life within us,<br/>Thy obedience is our own.<br/>No more need we strive and struggle,<br/>Consecrated try to be;<br/>Consecration dwells within us —<br/>Now our part to eat of Thee.<br/>")
     }
 
 

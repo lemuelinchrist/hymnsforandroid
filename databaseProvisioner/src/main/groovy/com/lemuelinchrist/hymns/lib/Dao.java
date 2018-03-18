@@ -218,4 +218,16 @@ public class Dao {
             }
         }
     }
+
+    public void changeStanza(String hymnId, int stanzaId, String replacement ) {
+        HymnsEntity hymn = find(hymnId);
+        for(StanzaEntity stanza: hymn.getStanzas()) {
+            if(stanza.getId()==stanzaId) {
+                em.getTransaction().begin();
+                stanza.setText(replacement);
+                em.getTransaction().commit();
+            }
+        }
+
+    }
 }
