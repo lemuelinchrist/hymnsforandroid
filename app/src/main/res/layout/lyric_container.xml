@@ -4,6 +4,7 @@
         android:id="@+id/jellybeanContentScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
@@ -11,6 +12,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="#FFFFFF"
         >
             <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
             <!--android:descendantFocusability="blocksDescendants"-->
@@ -35,6 +37,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:background="#FFFFFF"
                     android:layout_marginTop="10dp"
                     android:textColor="#4e4e4e"
                     android:textIsSelectable="true"/>

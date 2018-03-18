@@ -4,12 +4,14 @@
                                         xmlns:app="http://schemas.android.com/apk/res-auto"
                                         android:id="@+id/drawer_layout"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+>
 
     <android.support.v4.view.ViewPager
             android:id="@+id/hymn_fragment_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#000000"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
     />
 
