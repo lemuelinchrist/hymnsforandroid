@@ -230,4 +230,54 @@ public class Dao {
         }
 
     }
+
+    public void fixFirstStanzaLine() {
+        List<HymnsEntity> hymns = findAll("h.firstStanzaLine IS NULL");
+        for(HymnsEntity hymn: hymns) {
+            System.out.println("fixing hymn: " + hymn.getId());
+            System.out.println("first stanza: " + hymn.getFirstStanzaLine());
+            System.out.println("first chorus: " + hymn.getFirstChorusLine());
+            em.getTransaction().begin();
+            hymn.setFirstStanzaLine(hymn.getFirstChorusLine());
+            hymn.setFirstChorusLine(null);
+            em.getTransaction().commit();
+        }
+    }
+
+    public void changeRelatedHymn(String parentHymn, String related) {
+        if (parentHymn == null || parentHymn.isEmpty()) {
+            System.out.println("Warning! no parent hymn! exiting");
+            return;
+        }
+        em.getTransaction().begin();
+        HymnsEntity parentEntity = em.find(HymnsEntity.class, parentHymn);
+        parentEntity.setRelatedString(related);
+        System.out.println("related: " + parentEntity.getRelated());
+        em.getTransaction().commit();
+
+
+    }
+
+    public void fixComposer() {
+        List<HymnsEntity> hymns = findAll("h.composer LIKE '%MIDI%'");
+        for(HymnsEntity hymn: hymns) {
+            System.out.println("fixing hymn: " + hymn.getId());
+            System.out.println("composer : " + hymn.getComposer());
+            em.getTransaction().begin();
+            hymn.setComposer(null);
+            em.getTransaction().commit();
+        }
+    }
+
+    public void changeParentHymn(String hymn, String parent) {
+        if (hymn == null || hymn.isEmpty()) {
+            System.out.println("Warning! no hymn! exiting");
+            return;
+        }
+        em.getTransaction().begin();
+        HymnsEntity hymnEntity = em.find(HymnsEntity.class, hymn);
+        hymnEntity.setParentHymn(parent);
+        System.out.println("parent hymn changed : " + hymnEntity.getId());
+        em.getTransaction().commit();
+    }
 }
