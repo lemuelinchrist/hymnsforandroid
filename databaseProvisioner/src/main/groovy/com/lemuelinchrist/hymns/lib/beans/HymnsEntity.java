@@ -331,4 +331,8 @@ public class HymnsEntity {
 
         this.related = relatedBuilder.toString();
     }
+
+    public void setRelatedString(String related) {
+        this.related = related;
+    }
 }

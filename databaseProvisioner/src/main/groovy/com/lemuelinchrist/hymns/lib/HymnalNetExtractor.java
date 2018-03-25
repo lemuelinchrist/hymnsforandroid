@@ -294,6 +294,12 @@ public class HymnalNetExtractor {
             System.out.println("warning no sheet Music link");
         }
 
+        // **** Important! hymn will not work if first_stanza_line is null
+        if(hymn.getFirstStanzaLine()==null) {
+            hymn.setFirstStanzaLine(hymn.getFirstChorusLine());
+            hymn.setFirstChorusLine(null);
+        }
+
         // ***********************************************
         // DOWNLOADING RESOURCES
         // ***********************************************
