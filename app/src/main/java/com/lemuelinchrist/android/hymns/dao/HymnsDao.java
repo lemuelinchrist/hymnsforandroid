@@ -104,7 +104,7 @@ public class HymnsDao {
     }
 
     private String buildLikeClause(String columnName, String filter) {
-        filter = filter.replaceAll("'"," ").replaceAll("[\\^\"&%$@.,!* ]", "");
+        filter = filter.replaceAll("'"," ").replaceAll("[\\^\"&%$@.,!*]", "");
 
         StringBuilder likeBuilder = new StringBuilder();
         String[] words = filter.trim().split(" ");
