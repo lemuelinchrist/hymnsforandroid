@@ -110,15 +110,17 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             switchHymnBook(selectedHymnGroup);
 
         }
+        context.onLyricVisible(getCurrentHymnId());
+        if (log) {
+            log();
+        }
 
         new Handler().post(new Runnable() {
             @Override
             public void run() {
                 lyricPager.setCurrentItem(currentAdapter.getPositionOfHymnNo(selectedHymnNumber));
-                context.onLyricVisible(getCurrentHymnId());
-                if (log) {
-                    log();
-                }
+
+
             }
         });
 
