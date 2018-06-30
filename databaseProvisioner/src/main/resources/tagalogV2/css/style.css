@@ -1,0 +1,367 @@
+body {
+	font-family: Arial, Verdana, san-serif;
+}
+/*Below is a workaround because iSiloX
+  doesn't seem to consider padding on
+  first element*/
+.dummy p {
+	padding:0px;
+	margin:0px;
+	font-size: 0.2em;
+}
+
+.lasttr p {
+	padding:0px;
+	margin:0px;
+	font-size: 1.2em;
+}
+
+.versionnum p{
+	text-align: right;
+	font-size: .6em;
+	padding: 0.2em 0.5em 0em 0em;
+	margin: 0em;
+}
+
+.maintitle, .classtitle, .selecttitle,
+.blebantitle, .mischead, .mischead,
+.classhymn, .selecthymn, .blebanhymn,
+.mainindex, .toctitle,
+.smainindex,
+.bmainindex,
+.hymntitle, .back, .mainback, .miscbody  {
+	font-weight: bold;
+}
+
+.maintitle, .classtitle, .selecttitle,
+.blebantitle, .mischead,
+.classhymn, .selecthymn,
+.blebanhymn , .miscbody,
+.mainindex, .subindex,
+.smainindex, .ssubindex,
+.bmainindex, .bsubindex,
+.toctitle, .tocclas,
+.tocsel, .tochbb, .miscbody {
+	text-align: center;
+}
+
+.maintitle p{
+	font-size: 1.6em;
+	margin: 0.2em 1em 0.5em 1em;
+}
+
+.container {
+	/*border: .3em solid;*/
+	padding: .3em;
+}
+
+.classtitle, .selecttitle,
+.blebantitle, .mischead,
+.toctitle, .tocclas,
+.tocsel, .tochbb {
+	font-size: 1.4em;	
+}
+
+.classhymn, .selecthymn,
+.miscbody,
+.mainindex, .subindex, .hymntitle,
+.smainindex, .ssubindex,
+.bmainindex, .bsubindex {
+	font-size: 1.2em;	
+}
+
+.blebanhymn {
+	font-size: 1.1em;
+}
+
+.mainback {
+	font-size: .9em;
+}
+
+.back {
+	font-size: .8em;
+}
+
+.miscbody {
+	font-size: 1em;
+}
+
+.hymntitle p{
+	margin-bottom: 0.5em;
+}
+
+.htmeter {
+	font-weight: normal;
+	font-size: 0.8em;
+}
+
+.linkcont {
+	font-size: 1.2em;
+	text-align: center;
+}
+
+.linkcontb {
+	font-size: 1.2em;
+	text-align: center;
+	font-weight: bold;
+}
+
+.linkcont p, .linkcontb p {
+	margin: 0em 0em 1em 0em;
+}
+
+/*.maintitle {
+	border: .18em solid;
+	margin: .5em .5em .5em .5em;	
+}*/
+
+.mischead {
+	border: .2em solid;
+	margin: 0em .5em .5em .5em;
+}
+
+
+.classtitle, .selecttitle,
+.blebantitle, .mainindex, .subindex,
+.smainindex, .ssubindex,
+.bmainindex, .bsubindex {
+	padding: .2em;
+	margin: 0em .5em .5em .5em;
+}
+
+/*
+.classtitle, .selecttitle,
+.blebantitle {
+	padding: .2em;
+	margin: 0em .5em .5em .5em;
+}
+*/
+
+.classtitle p, .selecttitle p,
+.blebantitle p, .mischead p {
+	margin: 0.5em;
+}
+
+.mainindex p, .subindex p,
+.smainindex p, .ssubindex p,
+.bmainindex p, .bsubindex p,
+.tocclas p, .tocsel p, .tochbb p {
+	margin: 0.2em 0.5em 0.5em 0.5em;
+}
+
+/*.maintitle, .mischead {
+	color: #FFFFFF;
+	background-color: #000000;
+	border-color: #999999;
+}*/
+
+.mainindex, .subindex,
+.smainindex, .ssubindex,
+.bmainindex, .bsubindex  {
+	padding: .2em 0em 0em 0em;
+}
+/*
+.mainindex, .smainindex, .bmainindex {
+	margin-bottom: .5em;
+}
+*/
+
+.classtitle, .mainindex {
+	background-color: #847545;
+	/*border-color: #00A383;*/
+	color:#FFFFFF;	
+}
+
+.subindex {
+	background-color: #B2A889;
+	/*border-color: #1F7A68;*/
+	color:#FFFFFF;
+}
+
+.selecttitle, .smainindex {
+	background-color: #515C6B;
+	/*border-color: #C50080;*/
+	color:#FFFFFF;	
+}
+
+.ssubindex {
+	background-color: #68768A;
+	/*border-color:#94256D;*/
+	color:#FFFFFF;
+}
+
+.blebantitle, .bmainindex {
+	background-color: #525E54;
+	/*border-color: #FFC107;*/
+	color:#FFFFFF;	
+}
+
+.bsubindex {
+	background-color: #647C64;
+	/*border-color: #BFA530;*/
+	color:#FFFFFF;
+}
+
+/* Below is temporary 
+.classhymn{
+	background-color: #34D1B2;
+	border-color: #1F7A68;
+}
+.selecthymn{
+	background-color: #E238A7;
+	border-color:#94256D;
+}
+.blebanhymn {
+	
+	background-color: #FFDC40;
+	border-color: #BFA530;
+}
+*/
+
+/*Below is a workaround because iSiloX
+  seems to elongate anchor links downward
+  to the edge of div with border*/
+.clearlink {
+	font-size:0.2em;
+}
+
+/* This is just me being lazy*/
+.bordmarg {
+	font-size:0.1em;
+}
+
+.hymnbody {
+	/*padding-left:5px;*/
+}
+
+.notesbody, .verbody {
+	margin: 0em .5em .5em .5em;
+}
+
+.notesbody {
+	font-size: 1em;
+}
+
+/* These are added because of texts above and below
+the "hymn body" */
+.hbodysup, .hbodysub {
+	font-weight: normal;
+	font-size: 0.8em;
+}
+
+.hbodysup p {
+	margin-top: 0em;
+}
+
+/* Table of Contents Classes */
+.tocmsel, .tocmlink {
+	/*border: .3em solid;*/
+	padding: 1em 1em 1em 1em;
+	margin: .5em .5em .5em .5em;
+}
+
+.tocmlink p.tocitems {
+    /*line-height: 1.5em;*/
+	font-weight: normal;
+	font-size: 1em;
+}
+
+.toctitle p{
+	margin: 0em .5em 0em .5em;
+}
+
+.tocclas, .tocsel, .tochbb {
+	/*border: .2em solid;*/
+	margin: .5em .5em .5em .5em;
+}
+
+.tocclas, .classhymn p.mlinktitle  {
+	background-color: #7E735F;
+	/*border-color: #FFC107;*/
+	color:#FFFFFF;	
+}
+
+.mlinktitle {
+	margin: 0em;
+	padding: 1em;
+}
+
+.tocsel, .selecthymn p.mlinktitle {
+	background-color: #68768A;
+	/*border-color: #C50080;*/
+	color:#FFFFFF;	
+}
+
+.tochbb, .blebanhymn p.mlinktitle {
+	background-color: #647C64;
+	/*border-color: #00A383;*/
+	color:#FFFFFF;	
+}
+
+.tocstitle {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.4em;
+	margin: .5em .5em .5em .5em;
+}
+
+.tocspacer {
+	margin: 10em .5em 10em .5em;
+}
+
+table.maintoctab tr td {
+	/*text-align: center;*/
+	/*vertical-align: middle; <- Won't work with iSilo */
+}
+
+td.maintocclass {
+	font-weight: bold; 
+	background-color: #847545;
+	color: #FFFFFF;
+}
+
+td.subtocclass  {
+	background-color: #C6BB99;
+	width: 160px;
+}
+
+td.maintocsel {
+	font-weight: bold; 
+	background-color: #515C6B;
+	color: #FFFFFF;
+}
+
+td.subtocsel  {
+	background-color: #E5E5E5;
+	/*width: 50px;*/
+}
+
+td.maintochbb {
+	font-weight: bold; 
+	background-color: #525E54;
+	color: #FFFFFF;
+}
+
+td.subtochbb  {
+	background-color: #E6E6E7;
+	/*width: 50px;*/
+}
+
+td.widertd  {
+	width: 160px;
+	text-align: left;
+}
+
+td.classtd {
+	/*width: 180px;*/
+	text-align: left;
+}
+
+.tocpad {
+	font-size:0.5em;
+}
+
+td.tocreturn {
+	font-weight: bold;
+	font-size: 1em;
+}
