@@ -8,7 +8,11 @@ import java.io.File;
  */
 public class ProvisionTagalogV2 {
     public static String ROOT_PATH="tagalogV2/";
+    public static void main(String[] args) {
+        def tagalog = new ProvisionTagalogV2();
+        println tagalog.getfileFromHymn(233).exists();
 
+    }
 
     private File getfileFromHymn(int no) {
         int hundreds = no / 100;
