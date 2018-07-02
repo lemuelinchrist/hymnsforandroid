@@ -1,4 +1,7 @@
-package com.lemuelinchrist.hymns;
+package com.lemuelinchrist.hymns
+
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document;
 
 import java.io.File;
 
@@ -6,16 +9,22 @@ import java.io.File;
  * @author Lemuel Cantos
  * @since 1/7/2018
  */
-public class ProvisionTagalogV2 {
+class ProvisionTagalogV2 {
     public static String ROOT_PATH="tagalogV2/";
-    public static void main(String[] args) {
+    static void main(String[] args) {
         def tagalog = new ProvisionTagalogV2();
         println tagalog.getfileFromHymn(233).exists();
 
     }
 
-    private File getfileFromHymn(int no) {
-        int hundreds = no / 100;
-        return new File(this.getClass().getResource(ROOT_PATH + hundreds +"00-"+ hundreds + "99"+ ".html").getPath());
+    private void getDocument(File file) {
+        Document doc = Jsoup.parse(file)
+    }
+
+    private File getfileFromHymn(int no, String prefix="") {
+        int hundreds = no / 100
+        def path = ROOT_PATH + prefix + hundreds + "00-" + hundreds + "99" + ".html"
+        println "getting file: " + path
+        return new File(this.getClass().getClassLoader().getResource(path).getPath())
     }
 }
