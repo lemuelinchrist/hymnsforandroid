@@ -11,14 +11,26 @@ import java.io.File;
  */
 class ProvisionTagalogV2 {
     public static String ROOT_PATH="tagalogV2/";
+    Document doc
+    int hymnNo
+
+    ProvisionTagalogV2() {
+        doc=getDocumentFromHymn(1,"")
+        doc.select("#t001")
+        for(int x=0;x<100;x++) {
+
+        }
+
+    }
+
     static void main(String[] args) {
         def tagalog = new ProvisionTagalogV2();
         println tagalog.getfileFromHymn(233).exists();
 
     }
 
-    private void getDocument(File file) {
-        Document doc = Jsoup.parse(file)
+    private Document getDocumentFromHymn(int no, String prefix="") {
+        Jsoup.parse(getfileFromHymn(no),"UTF-8","")
     }
 
     private File getfileFromHymn(int no, String prefix="") {
