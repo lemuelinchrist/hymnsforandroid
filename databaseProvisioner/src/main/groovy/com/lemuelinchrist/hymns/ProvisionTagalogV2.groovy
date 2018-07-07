@@ -1,12 +1,8 @@
 package com.lemuelinchrist.hymns
 
-import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
-import org.jsoup.select.Elements;
-
-import java.io.File;
 
 /**
  * @author Lemuel Cantos
@@ -14,22 +10,17 @@ import java.io.File;
  */
 class ProvisionTagalogV2 {
 
-
-    ProvisionTagalogV2() {
-
-
-        for(int x=0;x<100;x++) {
-
+    static void main(String[] args) {
+        for(int x=1; x<1399; x++) {
+            try {
+                println "finding hymn: " + x
+                println new HymnElement(x)
+            } catch (HymnNotFoundException e) {
+                println "not found: " + x
+            }
         }
 
     }
-
-
-    static void main(String[] args) {
-        println new HymnElement(1)
-
-    }
-
 
 }
 
@@ -39,17 +30,31 @@ class HymnElement {
     Document doc
     int hymnNo
     String htmlId;
-    def baseElement
+    Element baseElement
+    String lyrics
 
-    public HymnElement(int no, String prefix="") {
+    public HymnElement(int no, String prefix="") throws HymnNotFoundException {
         this.doc=getDocumentFromHymn(no,prefix)
         htmlId="#t" + String.format("%03d", no)
         baseElement=doc.select(htmlId)[0]
+        if(baseElement==null) {
+            throw new HymnNotFoundException()
+        }
+
 
     }
 
-    public String getLyrics() {
-        baseElement.parent().nextElementSibling().select(".hymnbody p")[0].html()
+    public getLyrics() {
+        getNextSiblingWithClass(baseElement.parent(),"hymnbody").select(".hymnbody p")[0].html()
+    }
+
+    private Element getNextSiblingWithClass(Element element, String className) {
+        def siblingElement= element
+        while(siblingElement.nextElementSibling().select("."+className)[0]==null) {
+            siblingElement= siblingElement.nextElementSibling()
+            if(siblingElement.select(".hymntitle")[0]!=null) throw new Exception("Lyrics not found!!!!");
+        }
+        siblingElement.nextElementSibling()
     }
 
     private Document getDocumentFromHymn(int no, String prefix="") {
