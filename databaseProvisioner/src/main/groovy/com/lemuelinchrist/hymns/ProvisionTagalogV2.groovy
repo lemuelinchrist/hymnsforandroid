@@ -1,6 +1,7 @@
 package com.lemuelinchrist.hymns
 
 import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
+import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -18,8 +19,8 @@ class ProvisionTagalogV2 {
             try {
                 println "finding hymn: " + x
                 def element = new HymnElement(x)
-                println element.getLyrics()
-                element.getHymnsEntity()
+                println element.getHymnsEntity()
+
                 if (element.getLyrics().trim()[0]!="1") unnumberedHyms+=x
             } catch (HymnNotFoundException e) {
                 println "not found: " + x
@@ -57,6 +58,7 @@ class HymnElement {
     String lyrics
     String type
     int no
+    boolean isSingleStanza=false
 
     public HymnElement(int no, String prefix="") throws HymnNotFoundException {
         this.no = no;
@@ -89,7 +91,7 @@ class HymnElement {
 
      }
 
-    public String getHymnsEntity() {
+    public HymnsEntity getHymnsEntity() {
         HymnsEntity hymn = new HymnsEntity()
         hymn.setHymnGroup("T")
         def adjustedNumber
@@ -111,6 +113,44 @@ class HymnElement {
         } else {
             println "no subCategory: " +splitCategories[0]
         }
+
+        // *********** Create Stanzas
+        hymn.setStanzas(new ArrayList<StanzaEntity>())
+        def order=1
+        String[] lyrics = getLyrics().split("<br>")
+        StanzaEntity stanzaEntity
+        for(int i=0; i<lyrics.size(); i++) {
+            String line = lyrics[i].trim()
+            if (line.isEmpty() || i==0) {
+                if(i!=0) {
+                    while(line.isEmpty()) {
+                        i++
+                        line = lyrics[i].trim()
+                    }
+                }
+                stanzaEntity = new StanzaEntity()
+                stanzaEntity.parentHymn=hymn
+                hymn.getStanzas().add stanzaEntity
+                if(!line[0].isNumber()) {
+                    if(i==0) {
+                        stanzaEntity.no="1"
+                        isSingleStanza=true
+                    } else {
+                        stanzaEntity.no="chorus"
+                    }
+                } else {
+                    if(!line.contains(".")) throw new Exception("There's no dot after number!!! " + line)
+                    stanzaEntity.no=line.substring(0, line.indexOf("."))
+                    line=line.substring(line.indexOf(".")+1).trim()
+                }
+                stanzaEntity.order=order++
+                stanzaEntity.text=""
+            }
+            stanzaEntity.text+=line+"<br/>"
+
+        }
+
+        return hymn
 
     }
 
