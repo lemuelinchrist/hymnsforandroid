@@ -19,6 +19,7 @@ class ProvisionTagalogV2 {
                 println "finding hymn: " + x
                 def element = new HymnElement(x)
                 println element.getLyrics()
+                element.getHymnsEntity()
                 if (element.getLyrics().trim()[0]!="1") unnumberedHyms+=x
             } catch (HymnNotFoundException e) {
                 println "not found: " + x
@@ -32,6 +33,8 @@ class ProvisionTagalogV2 {
                 def element = new HymnElement(x, "s")
                 println element.getLyrics()
                 println element.getSecondSetOfLyrics()
+                element.getHymnsEntity()
+
                 if (element.getSecondSetOfLyrics()!=null) secondLyricsCount+=x
             } catch (HymnNotFoundException e) {
                 println "not found: s" + x
@@ -99,6 +102,14 @@ class HymnElement {
         }
         hymn.setId("T"+adjustedNumber)
         hymn.setNo(Integer.toString(adjustedNumber))
+
+        def splitCategories = getCategories().split("—")
+        hymn.setMainCategory(splitCategories[0].trim())
+        if(splitCategories.size()>1) {
+            hymn.setSubCategory(splitCategories[1].trim())
+        } else {
+            println "no subCategory: " +splitCategories[0]
+        }
 
     }
 
