@@ -58,6 +58,10 @@ class HymnElement {
 
     }
 
+    public String getCategories() {
+        baseElement.html().split("<br>")[0]
+    }
+
     public String getLyrics() {
         getNextSiblingWithClass(baseElement.parent(),"hymnbody").select(".hymnbody p")[0].html()
     }
