@@ -32,9 +32,7 @@ class ProvisionTagalogV2 {
             try {
                 println "finding selected hymn: " + x
                 def element = new HymnElement(x, "s")
-                println element.getLyrics()
-                println element.getSecondSetOfLyrics()
-                element.getHymnsEntity()
+                println element.getHymnsEntity()
 
                 if (element.getSecondSetOfLyrics()!=null) secondLyricsCount+=x
             } catch (HymnNotFoundException e) {
@@ -136,7 +134,11 @@ class HymnElement {
                         stanzaEntity.no="1"
                         isSingleStanza=true
                     } else {
-                        stanzaEntity.no="chorus"
+                        if(isSingleStanza) {
+                            stanzaEntity.no=Integer.toString(order)
+                        } else {
+                            stanzaEntity.no = "chorus"
+                        }
                     }
                 } else {
                     if(!line.contains(".")) throw new Exception("There's no dot after number!!! " + line)
