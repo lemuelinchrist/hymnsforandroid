@@ -14,9 +14,21 @@ class ProvisionTagalogV2 {
         for(int x=1; x<1399; x++) {
             try {
                 println "finding hymn: " + x
-                println new HymnElement(x)
+                def element = new HymnElement(x)
+                println element.getLyrics()
             } catch (HymnNotFoundException e) {
                 println "not found: " + x
+            }
+        }
+
+        for(int x=1; x<999; x++) {
+            try {
+                println "finding selected hymn: " + x
+                def element = new HymnElement(x, "s")
+                println element.getLyrics()
+                println element.getSecondSetOfLyrics()
+            } catch (HymnNotFoundException e) {
+                println "not found: s" + x
             }
         }
 
@@ -32,10 +44,12 @@ class HymnElement {
     String htmlId;
     Element baseElement
     String lyrics
+    String type
 
     public HymnElement(int no, String prefix="") throws HymnNotFoundException {
+        this.type=prefix.isEmpty()?"t":prefix
         this.doc=getDocumentFromHymn(no,prefix)
-        htmlId="#t" + String.format("%03d", no)
+        htmlId="#" + type + String.format("%03d", no)
         baseElement=doc.select(htmlId)[0]
         if(baseElement==null) {
             throw new HymnNotFoundException()
@@ -44,9 +58,19 @@ class HymnElement {
 
     }
 
-    public getLyrics() {
+    public String getLyrics() {
         getNextSiblingWithClass(baseElement.parent(),"hymnbody").select(".hymnbody p")[0].html()
     }
+     public String getSecondSetOfLyrics() {
+         try {
+             def sibling = getNextSiblingWithClass(baseElement.parent(), "hymnbody")
+             getNextSiblingWithClass(sibling, "hymnbody")
+                     .select(".hymnbody p")[0].html()
+         } catch (Exception e) {
+             return null;
+         }
+
+     }
 
     private Element getNextSiblingWithClass(Element element, String className) {
         def siblingElement= element
@@ -58,7 +82,7 @@ class HymnElement {
     }
 
     private Document getDocumentFromHymn(int no, String prefix="") {
-        Jsoup.parse(getfileFromHymn(no),"UTF-8","")
+        Jsoup.parse(getfileFromHymn(no, prefix),"UTF-8","")
     }
 
     private File getfileFromHymn(int no, String prefix="") {
@@ -68,8 +92,6 @@ class HymnElement {
         return new File(this.getClass().getClassLoader().getResource(path).getPath())
     }
 
-    String toString() {
-        getLyrics()
-    }
+
 
 }
