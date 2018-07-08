@@ -1,5 +1,6 @@
 package com.lemuelinchrist.hymns
 
+import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -11,27 +12,34 @@ import org.jsoup.nodes.Element
 class ProvisionTagalogV2 {
 
     static void main(String[] args) {
+
+        def unnumberedHyms=[]
         for(int x=1; x<1399; x++) {
             try {
                 println "finding hymn: " + x
                 def element = new HymnElement(x)
                 println element.getLyrics()
+                if (element.getLyrics().trim()[0]!="1") unnumberedHyms+=x
             } catch (HymnNotFoundException e) {
                 println "not found: " + x
             }
         }
 
+        def secondLyricsCount=[]
         for(int x=1; x<999; x++) {
             try {
                 println "finding selected hymn: " + x
                 def element = new HymnElement(x, "s")
                 println element.getLyrics()
                 println element.getSecondSetOfLyrics()
+                if (element.getSecondSetOfLyrics()!=null) secondLyricsCount+=x
             } catch (HymnNotFoundException e) {
                 println "not found: s" + x
             }
         }
 
+        println "second lyrics count: " + secondLyricsCount
+        println "unnumbered hymns: " + unnumberedHyms
     }
 
 }
@@ -45,8 +53,10 @@ class HymnElement {
     Element baseElement
     String lyrics
     String type
+    int no
 
     public HymnElement(int no, String prefix="") throws HymnNotFoundException {
+        this.no = no;
         this.type=prefix.isEmpty()?"t":prefix
         this.doc=getDocumentFromHymn(no,prefix)
         htmlId="#" + type + String.format("%03d", no)
@@ -75,6 +85,22 @@ class HymnElement {
          }
 
      }
+
+    public String getHymnsEntity() {
+        HymnsEntity hymn = new HymnsEntity()
+        hymn.setHymnGroup("T")
+        def adjustedNumber
+
+        if(type.equals("t")) {
+            adjustedNumber=no
+        } else {
+            adjustedNumber=no+10000
+            hymn.setNo()
+        }
+        hymn.setId("T"+adjustedNumber)
+        hymn.setNo(Integer.toString(adjustedNumber))
+
+    }
 
     private Element getNextSiblingWithClass(Element element, String className) {
         def siblingElement= element
