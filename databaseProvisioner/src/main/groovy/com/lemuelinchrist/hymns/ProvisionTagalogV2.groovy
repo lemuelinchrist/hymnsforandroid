@@ -95,6 +95,7 @@ class HymnElement {
         def adjustedNumber
 
         if(type.equals("t")) {
+            hymn.setParentHymn("E"+no)
             adjustedNumber=no
         } else {
             adjustedNumber=no+10000
