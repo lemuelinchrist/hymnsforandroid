@@ -1,5 +1,6 @@
 package com.lemuelinchrist.hymns
 
+import com.lemuelinchrist.hymns.lib.Dao
 import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
 import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 import org.jsoup.Jsoup
@@ -11,15 +12,17 @@ import org.jsoup.nodes.Element
  * @since 1/7/2018
  */
 class ProvisionTagalogV2 {
-
+    static Dao dao = new Dao()
+    static String[] notInDB= []
     static void main(String[] args) {
+
 
         def unnumberedHyms=[]
         for(int x=1; x<1399; x++) {
             try {
                 println "finding hymn: " + x
                 def element = new HymnElement(x)
-                println element.getHymnsEntity()
+                saveHymn element.getHymnsEntity()
 
                 if (element.getLyrics().trim()[0]!="1") unnumberedHyms+=x
             } catch (HymnNotFoundException e) {
@@ -32,7 +35,7 @@ class ProvisionTagalogV2 {
             try {
                 println "finding selected hymn: " + x
                 def element = new HymnElement(x, "s")
-                println element.getHymnsEntity()
+                saveHymn element.getHymnsEntity()
 
                 if (element.getSecondSetOfLyrics()!=null) secondLyricsCount+=x
             } catch (HymnNotFoundException e) {
@@ -42,6 +45,23 @@ class ProvisionTagalogV2 {
 
         println "second lyrics count: " + secondLyricsCount
         println "unnumbered hymns: " + unnumberedHyms
+        println "not in db: " + notInDB
+    }
+
+    static void saveHymn(HymnsEntity newHymn) {
+        println newHymn
+        println "saving hymn..."
+        HymnsEntity dbHymn = dao.find(newHymn.getId())
+        if(dbHymn==null) {
+            notInDB+=newHymn.getId()
+            dao.save(newHymn)
+        } else {
+
+        }
+
+
+
+
     }
 
 }
@@ -142,9 +162,17 @@ class HymnElement {
                     }
                 } else {
                     if(!line.contains(".")) throw new Exception("There's no dot after number!!! " + line)
-                    stanzaEntity.no=line.substring(0, line.indexOf("."))
+                    stanzaEntity.no=line.substring(0, line.indexOf(".")).trim()
                     line=line.substring(line.indexOf(".")+1).trim()
                 }
+
+                // record first line
+                if(stanzaEntity.no=="chorus" && hymn.firstChorusLine==null) {
+                    hymn.firstChorusLine=line
+                } else if (hymn.firstStanzaLine==null) {
+                    hymn.firstStanzaLine=line
+                }
+
                 stanzaEntity.order=order++
                 stanzaEntity.text=""
             }
