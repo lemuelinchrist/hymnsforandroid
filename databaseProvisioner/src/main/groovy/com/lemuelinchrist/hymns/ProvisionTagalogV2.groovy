@@ -46,6 +46,28 @@ class ProvisionTagalogV2 {
             }
         }
 
+        for(int x=20001; x<20006; x++) {
+            try {
+                println "finding banner hymn: " + x
+                def element = new HymnElement(x, "b")
+                saveHymn element.getHymnsEntity(), true
+
+            } catch (HymnNotFoundException e) {
+                println "not found: s" + x
+            }
+        }
+
+        for(int x=30001; x<30020; x++) {
+            try {
+                println "finding banner hymn: " + x
+                def element = new HymnElement(x, "b")
+                saveHymn element.getHymnsEntity(), true
+
+            } catch (HymnNotFoundException e) {
+                println "not found: s" + x
+            }
+        }
+
         println "unnumbered hymns: " + unnumberedHyms
         println "not in db: " + notInDB
         println "hymns with notes: "
@@ -127,9 +149,10 @@ class HymnElement {
         if(type.equals("t")) {
             hymn.setParentHymn("E"+no)
             adjustedNumber=no
-        } else {
+        } else if(type.equals("s")){
             adjustedNumber=no+10000
-            hymn.setNo()
+        } else {
+            adjustedNumber=no
         }
         hymn.setId("T"+adjustedNumber)
         hymn.setNo(Integer.toString(adjustedNumber))
@@ -222,6 +245,9 @@ class HymnElement {
     private File getfileFromHymn(int no, String prefix="") {
         int hundreds = no / 100
         def path = ROOT_PATH + prefix + hundreds + "00-" + hundreds + "99" + ".html"
+        if(prefix=="b") {
+            path=ROOT_PATH +"h4bleban.html"
+        }
         println "getting file: " + path
         return new File(this.getClass().getClassLoader().getResource(path).getPath())
     }
