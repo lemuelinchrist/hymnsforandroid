@@ -18,34 +18,41 @@ class ProvisionTagalogV2 {
 
 
         def unnumberedHyms=[]
+        ArrayList<HymnElement> hymnsWithNotes =[]
         for(int x=1; x<1399; x++) {
             try {
                 println "finding hymn: " + x
                 def element = new HymnElement(x)
                 saveHymn element.getHymnsEntity()
-
+                if(element.getNote()!=null) {
+                    hymnsWithNotes+=element
+                }
                 if (element.getLyrics().trim()[0]!="1") unnumberedHyms+=x
             } catch (HymnNotFoundException e) {
                 println "not found: " + x
             }
         }
 
-        def secondLyricsCount=[]
         for(int x=1; x<999; x++) {
             try {
                 println "finding selected hymn: " + x
                 def element = new HymnElement(x, "s")
                 saveHymn element.getHymnsEntity(), true
-
-                if (element.getSecondSetOfLyrics()!=null) secondLyricsCount+=x
+                if(element.getNote()!=null) {
+                    hymnsWithNotes+=element
+                }
             } catch (HymnNotFoundException e) {
                 println "not found: s" + x
             }
         }
 
-        println "second lyrics count: " + secondLyricsCount
         println "unnumbered hymns: " + unnumberedHyms
         println "not in db: " + notInDB
+        println "hymns with notes: "
+        hymnsWithNotes.each {h ->
+            println h.getHtmlId()
+            println h.getNote()
+        }
     }
 
     static void saveHymn(HymnsEntity newHymn, boolean selected=false) {
@@ -102,16 +109,15 @@ class HymnElement {
     public String getLyrics() {
         getNextSiblingWithClass(baseElement.parent(),"hymnbody").select(".hymnbody p")[0].html()
     }
-     public String getSecondSetOfLyrics() {
-         try {
-             def sibling = getNextSiblingWithClass(baseElement.parent(), "hymnbody")
-             getNextSiblingWithClass(sibling, "hymnbody")
-                     .select(".hymnbody p")[0].html()
-         } catch (Exception e) {
-             return null;
-         }
 
-     }
+    public String getNote() {
+        try {
+            getNextSiblingWithClass(baseElement.parent(), "hbodysup").select(".hbodysup p")[0].html()
+        } catch (Exception e) {
+            null
+        }
+    }
+
 
     public HymnsEntity getHymnsEntity() {
         HymnsEntity hymn = new HymnsEntity()
@@ -141,6 +147,18 @@ class HymnElement {
         def order=1
         String[] lyrics = getLyrics().split("<br>")
         StanzaEntity stanzaEntity
+
+        // beginning-note
+        if (getNote()!=null) {
+            stanzaEntity=new StanzaEntity()
+            stanzaEntity.parentHymn=hymn
+            hymn.getStanzas().add(stanzaEntity)
+            stanzaEntity.no="beginning-note"
+            stanzaEntity.order=order++
+            stanzaEntity.text=getNote()
+        }
+
+
         for(int i=0; i<lyrics.size(); i++) {
             String line = lyrics[i].trim()
             if (line.isEmpty() || i==0) {
