@@ -101,7 +101,7 @@ public class Dao {
 
     }
 
-    private void delete(String hymnId) {
+    public void delete(String hymnId) {
         try {
 
 
