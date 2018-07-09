@@ -56,7 +56,8 @@ class ProvisionTagalogV2 {
             notInDB+=newHymn.getId()
             dao.save(newHymn)
         } else {
-
+            dao.delete(dbHymn.getId())
+            dao.save(newHymn)
         }
 
 
