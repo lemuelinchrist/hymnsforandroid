@@ -78,19 +78,39 @@ class ProvisionTagalogV2 {
     }
 
     static void saveHymn(HymnsEntity newHymn, boolean selected=false) {
-        println newHymn
-        println "saving hymn..."
+
         HymnsEntity dbHymn = dao.find(newHymn.getId())
         if(dbHymn==null) {
             notInDB+=newHymn.getId()
-            dao.save(newHymn)
             if(!selected) {
                 dao.addRelatedHymn(newHymn.parentHymn,newHymn.id)
             }
         } else {
+
+            if (dbHymn.numberOfChorus==1) {
+                def firstChorusFound=false
+                println "purging duplicate chorus"
+                def stanzasToRemove=[]
+                newHymn.stanzas.eachWithIndex {stanza, i ->
+                    if (stanza.no=="chorus") {
+                        if(!firstChorusFound) {
+                            firstChorusFound=true
+                        } else {
+                            stanzasToRemove+=stanza
+                        }
+                    }
+                }
+                stanzasToRemove.each {i ->
+                    newHymn.stanzas.remove(i)
+                }
+            }
+
             dao.delete(dbHymn.getId())
-            dao.save(newHymn)
         }
+
+        println newHymn
+        println "saving hymn..."
+        dao.save(newHymn)
 
 
 
