@@ -105,26 +105,16 @@ public class StanzaEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof StanzaEntity)) return false;
 
         StanzaEntity that = (StanzaEntity) o;
 
+        if (order != that.order) return false;
         if (id != that.id) return false;
-        if (no != null ? !no.equals(that.no) : that.no != null) return false;
-        if (note != null ? !note.equals(that.note) : that.note != null) return false;
         if (parentHymn != null ? !parentHymn.equals(that.parentHymn) : that.parentHymn != null) return false;
+        if (no != null ? !no.equals(that.no) : that.no != null) return false;
         if (text != null ? !text.equals(that.text) : that.text != null) return false;
-
-        return true;
+        return note != null ? note.equals(that.note) : that.note == null;
     }
 
-//    @Override
-//    public int hashCode() {
-//        int result = parentHymn != null ? parentHymn.hashCode() : 0;
-//        result = 31 * result + (no != null ? no.hashCode() : 0);
-//        result = 31 * result + (text != null ? text.hashCode() : 0);
-//        result = 31 * result + (note != null ? note.hashCode() : 0);
-//        result = 31 * result + id;
-//        return result;
-//    }
 }
