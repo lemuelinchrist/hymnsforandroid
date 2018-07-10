@@ -140,6 +140,13 @@ class HymnElement {
         }
     }
 
+    public String getParent() {
+        try {
+            baseElement.parent().select(".parent")[0].html()
+        } catch (Exception e) {
+            null
+        }
+    }
 
     public HymnsEntity getHymnsEntity() {
         HymnsEntity hymn = new HymnsEntity()
@@ -150,6 +157,7 @@ class HymnElement {
             hymn.setParentHymn("E"+no)
             adjustedNumber=no
         } else if(type.equals("s")){
+            hymn.setParentHymn(getParent())
             adjustedNumber=no+10000
         } else {
             adjustedNumber=no
