@@ -213,7 +213,7 @@ class HymnElement {
 
                 // record first line
                 if(stanzaEntity.no=="chorus" && hymn.firstChorusLine==null) {
-                    hymn.firstChorusLine=line
+                    hymn.firstChorusLine=line.toUpperCase()
                 } else if (hymn.firstStanzaLine==null) {
                     hymn.firstStanzaLine=line
                 }
