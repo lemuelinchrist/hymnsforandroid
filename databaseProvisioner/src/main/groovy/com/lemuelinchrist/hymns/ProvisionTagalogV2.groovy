@@ -50,7 +50,7 @@ class ProvisionTagalogV2 {
             try {
                 println "finding banner hymn: " + x
                 def element = new HymnElement(x, "b")
-                saveHymn element.getHymnsEntity(), true
+                saveHymn element.getHymnsEntity()
 
             } catch (HymnNotFoundException e) {
                 println "not found: s" + x
@@ -77,12 +77,12 @@ class ProvisionTagalogV2 {
         }
     }
 
-    static void saveHymn(HymnsEntity newHymn, boolean selected=false) {
+    static void saveHymn(HymnsEntity newHymn) {
 
         HymnsEntity dbHymn = dao.find(newHymn.getId())
         if(dbHymn==null) {
             notInDB+=newHymn.getId()
-            if(!selected) {
+            if(newHymn.parentHymn!=null) {
                 dao.addRelatedHymn(newHymn.parentHymn,newHymn.id)
             }
         } else {
