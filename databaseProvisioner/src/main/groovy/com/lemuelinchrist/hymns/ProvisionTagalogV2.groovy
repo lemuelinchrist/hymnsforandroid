@@ -18,6 +18,7 @@ class ProvisionTagalogV2 {
 
 
         def unnumberedHyms=[]
+        ArrayList<HymnsEntity> doubleLanguage=[]
         ArrayList<HymnElement> hymnsWithNotes =[]
         for(int x=1; x<1399; x++) {
             try {
@@ -37,7 +38,11 @@ class ProvisionTagalogV2 {
             try {
                 println "finding selected hymn: " + x
                 def element = new HymnElement(x, "s")
-                saveHymn element.getHymnsEntity(), true
+                def entity = element.getHymnsEntity()
+                if (entity.firstStanzaLine.contains("<br/>")) {
+                    doubleLanguage+=entity
+                }
+                saveHymn entity
                 if(element.getNote()!=null) {
                     hymnsWithNotes+=element
                 }
@@ -50,8 +55,11 @@ class ProvisionTagalogV2 {
             try {
                 println "finding banner hymn: " + x
                 def element = new HymnElement(x, "b")
-                saveHymn element.getHymnsEntity()
-
+                def entity = element.getHymnsEntity()
+                if (entity.firstStanzaLine.contains("<br/>")) {
+                    doubleLanguage+=entity
+                }
+                saveHymn entity
             } catch (HymnNotFoundException e) {
                 println "not found: s" + x
             }
@@ -61,8 +69,11 @@ class ProvisionTagalogV2 {
             try {
                 println "finding banner hymn: " + x
                 def element = new HymnElement(x, "b")
-                saveHymn element.getHymnsEntity(), true
-
+                def entity = element.getHymnsEntity()
+                if (entity.firstStanzaLine.contains("<br/>")) {
+                    doubleLanguage+=entity
+                }
+                saveHymn entity
             } catch (HymnNotFoundException e) {
                 println "not found: s" + x
             }
@@ -70,10 +81,9 @@ class ProvisionTagalogV2 {
 
         println "unnumbered hymns: " + unnumberedHyms
         println "not in db: " + notInDB
-        println "hymns with notes: "
-        hymnsWithNotes.each {h ->
-            println h.getHtmlId()
-            println h.getNote()
+        println "hymns with double languages: "
+        doubleLanguage.each {h ->
+            println h.id + ": " + h.firstStanzaLine
         }
     }
 
@@ -244,6 +254,8 @@ class HymnElement {
                     hymn.firstChorusLine=line.toUpperCase()
                 } else if (hymn.firstStanzaLine==null) {
                     hymn.firstStanzaLine=line
+                } else if (stanzaEntity.no=="1" && type!="t") {
+                    hymn.firstStanzaLine+="<br/>"+line
                 }
 
                 stanzaEntity.order=order++
