@@ -178,7 +178,7 @@ class HymnElement {
             hymn.getStanzas().add(stanzaEntity)
             stanzaEntity.no="beginning-note"
             stanzaEntity.order=order++
-            stanzaEntity.text=getNote()
+            stanzaEntity.text=getNote()+"<br/>"
         }
 
 
