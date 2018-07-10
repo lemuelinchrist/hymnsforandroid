@@ -160,7 +160,7 @@ public class HymnsDao {
         String groupClause = "";
         String likeClause = "";
         if (filter != null && !filter.equals("")) {
-            likeClause = " AND NO ='"+ filter.trim() +"'";
+            likeClause = " AND NO LIKE '"+ filter.trim() +"%'";
         } else {
             groupClause = " and hymn_group = '" + hymnGroup + "' ";
         }

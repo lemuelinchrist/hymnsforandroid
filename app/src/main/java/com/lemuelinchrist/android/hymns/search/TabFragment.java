@@ -17,7 +17,7 @@ import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.searchadapters.AuthorAdapter;
-import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,9 +54,7 @@ public abstract class TabFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.indexView);
 
-        VerticalRecyclerViewFastScroller fastScroller = (VerticalRecyclerViewFastScroller) rootView.findViewById(R.id.fast_scroller);
-        fastScroller.setRecyclerView(mRecyclerView);
-        mRecyclerView.addOnScrollListener(fastScroller.getOnScrollListener());
+
 
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
