@@ -255,7 +255,7 @@ class HymnElement {
                 } else if (hymn.firstStanzaLine==null) {
                     hymn.firstStanzaLine=line
                 } else if (stanzaEntity.no=="1" && type!="t") {
-                    hymn.firstStanzaLine+="<br/>"+line
+                    hymn.firstStanzaLine+="\n"+line
                 }
 
                 stanzaEntity.order=order++
