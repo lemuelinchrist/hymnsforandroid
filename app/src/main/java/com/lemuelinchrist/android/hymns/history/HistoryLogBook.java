@@ -65,6 +65,7 @@ public class HistoryLogBook {
 
         // Add the new record. if there was an existing one, it is removed in the previous line and replace with one having the current time.
         logBook.add(record);
+        Log.d(this.getClass().getName(),"hymn logged: " +hymn.getHymnId());
 
         // persist logBook
         try {

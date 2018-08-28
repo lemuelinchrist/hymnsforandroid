@@ -49,7 +49,6 @@ public class LyricContainer extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.e(getClass().getSimpleName(), "green tea hymnLyric");
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 theme.getStyle(), container, false);
@@ -119,6 +118,7 @@ public class LyricContainer extends Fragment {
         for(OnLyricVisibleListener listener: onLyricVisibleLIsteners) {
             listener.onLyricVisible(hymn.getHymnId());
         }
+        log();
     }
 
     @Override
