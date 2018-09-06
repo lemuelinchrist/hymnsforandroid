@@ -50,6 +50,10 @@ public class LyricContainer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        if(theme==null) {
+            theme = Theme.valueOf(sharedPreferences.getString("theme", "LIGHT"));
+        }
+
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 theme.getStyle(), container, false);
 
