@@ -50,6 +50,9 @@ public class LyricContainer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        this.context=getContext();
+        sharedPreferences = context.getSharedPreferences("Hymns", 0);
+
         if(theme==null) {
             theme = Theme.valueOf(sharedPreferences.getString("theme", "LIGHT"));
         }
@@ -57,12 +60,10 @@ public class LyricContainer extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 theme.getStyle(), container, false);
 
-        this.context=getContext();
         if(hymnsDao==null) {
             hymnsDao = new HymnsDao(context);
         }
         Log.d(this.getClass().getSimpleName(), "entering initialization of new LyricContainer!");
-        sharedPreferences = context.getSharedPreferences("Hymns", 0);
         fontSize = sharedPreferences.getFloat("fontSize", TextSize.MEDIUM.getValue());
         lyricHeader = (TextView) rootView.findViewById(context.getResources().getIdentifier("lyricHeader", "id", context.getPackageName()));
         lyricsView = (TextView) rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
@@ -122,7 +123,7 @@ public class LyricContainer extends Fragment {
         for(OnLyricVisibleListener listener: onLyricVisibleLIsteners) {
             listener.onLyricVisible(hymn.getHymnId());
         }
-        log();
+        if(hymn!=null) log();
     }
 
     @Override
