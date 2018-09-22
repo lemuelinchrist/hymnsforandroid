@@ -57,7 +57,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     }
 
     private void refresh() {
-        String currentHymnId = getCurrentHymnId();
+        if(getCurrentHymnId()==null) return;
+        String currentHymnId = (getCurrentHymnId()==null)?"E1":getCurrentHymnId();
         hymnBooks = new HashMap<>();
         switchHymnBook(HymnGroup.getHymnGroupFromID(currentHymnId));
         switchToHymn(currentHymnId);
@@ -86,6 +87,9 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     }
 
     public String getCurrentHymnId() {
+        if(getCurrentHymnLyric()==null) {
+            return null;
+        }
         return getCurrentHymnLyric().getHymnId();
     }
 
@@ -106,6 +110,12 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         HymnGroup selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
         final String selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
 
+        // in case of a garbage collection cache wipe. note: this is not tested. probably useless.
+        if(getCurrentHymnLyric()==null) {
+            Log.e(this.getClass().getName(), "current hymn lyric missing! generating new hymn book");
+            hymnBooks = new HashMap<>();
+            switchHymnBook(selectedHymnGroup);
+        }
 
         if (currentHymnBookGroup != null && selectedHymnGroup != currentHymnBookGroup.hymnGroup) {
             switchHymnBook(selectedHymnGroup);
@@ -116,6 +126,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
+                Log.d(getClass().getName(), "position of hymn no: " + currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber));
                 lyricPager.setCurrentItem(currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber));
                 try {
                     context.onLyricVisible(getCurrentHymnId());
@@ -184,7 +195,13 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
     @Override
     public void onLyricVisible(String hymnId) {
-        log();
+
+        // sometimes current hymn lyric is null becuase of a random garbage cleanup.
+        if(getCurrentHymnLyric()==null) {
+            Log.e(getClass().getName(), "Error trying to get current hymn lyric. is null.");
+        } else {
+            log();
+        }
     }
 
     public void goToPreviousHymn() {

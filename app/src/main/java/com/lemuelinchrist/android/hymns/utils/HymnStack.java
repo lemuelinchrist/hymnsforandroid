@@ -21,6 +21,7 @@ public class HymnStack {
 
         if (hymn == null) {
             Log.e(getClass().getSimpleName(), "Strange! why is a null being pushed in the hymn stack?");
+            return;
         }
 
         // We dont want to push duplicates
