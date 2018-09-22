@@ -290,6 +290,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     @Override
     public void onLyricVisible(String hymnId) {
 
+        if (hymnId==null) hymnId="E1";
+
         selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
         Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
 
