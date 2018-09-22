@@ -315,6 +315,9 @@ public class LyricContainer extends Fragment {
 
 
     public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {
+        if(hymn==null) {
+            return null;
+        }
         for (String related : hymn.getRelated()) {
             HymnGroup group=HymnGroup.getHymnGroupFromID(related);
 
