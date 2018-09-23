@@ -26,7 +26,7 @@ import java.util.HashMap;
  */
 public class HymnBookCollection implements OnLyricVisibleListener {
 
-    private static HashMap<HymnGroup, HymnBookGroup> hymnBooks = new HashMap<>();
+    private HashMap<HymnGroup, HymnBookGroup> hymnBooks = new HashMap<>();
     private final ViewPager lyricPager;
     private HymnsDao dao;
     private HashMap<Integer, LyricContainer> registeredFragments = new HashMap<>();
