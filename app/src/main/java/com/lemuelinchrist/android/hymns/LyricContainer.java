@@ -128,6 +128,7 @@ public class LyricContainer extends Fragment {
 
     @Override
     public void onResume() {
+        Log.d(this.getClass().getSimpleName(), "onResume called on LyricContainer with hymn: " + hymn);
         super.onResume();
         if(getUserVisibleHint()) onLyricVisible();
     }
