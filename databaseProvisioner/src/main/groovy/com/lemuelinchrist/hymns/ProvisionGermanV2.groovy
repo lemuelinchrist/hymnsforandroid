@@ -19,23 +19,25 @@ class ProvisionGermanV2 {
     Integer hymnNumber = 0;
     HymnsEntity hymn=null;
     StanzaEntity stanza=null;
-    StringBuilder stanzaBuilder=null;
+    StringBuilder stanzaBuilder=null
+    private Dao dao = new Dao()
 
 
     public static void main(String[] args) {
         def german = new ProvisionGermanV2();
         german.provision();
-
+//        german.removeGermanHymns()
         println "end!!!!!"
     }
 
     void removeGermanHymns() {
-
+        for(int x=1;x<=1336;x++) {
+            dao.delete("G"+x)
+        }
     }
 
 
     void provision() throws Exception {
-//        Dao dao = new Dao();
         germanFile = new File(this.getClass().getResource("/german/New_German_hymns.txt").getPath());
 
         iterator = germanFile.iterator();
@@ -83,6 +85,7 @@ class ProvisionGermanV2 {
         }
 
         println hymn
+        dao.save(hymn)
     }
 
     def createNewHymn() {

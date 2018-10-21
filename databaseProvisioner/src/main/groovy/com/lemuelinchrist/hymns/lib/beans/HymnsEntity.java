@@ -332,7 +332,19 @@ public class HymnsEntity {
         this.related = relatedBuilder.toString();
     }
 
+    public void removeRelated(String relatedText) {
+        Set<String> related = getRelated();
+        related.remove(relatedText);
+        setRelated(related);
+    }
+
     public void setRelatedString(String related) {
         this.related = related;
+    }
+
+    public void addRelated(String relatedText) {
+        Set<String> related = getRelated();
+        related.add(relatedText);
+        setRelated(related);
     }
 }

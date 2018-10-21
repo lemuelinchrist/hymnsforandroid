@@ -55,6 +55,10 @@ public class Dao {
     public void save(HymnsEntity hymn) {
         em.getTransaction().begin();
         em.persist(hymn);
+        if(hymn.getParentHymn()!=null && !hymn.getParentHymn().isEmpty()) {
+            HymnsEntity parentHymn = em.find(HymnsEntity.class, hymn.getParentHymn());
+            parentHymn.addRelated(hymn.getId());
+        }
         em.getTransaction().commit();
         System.out.println("Hymn " + hymn.getId() + " saved!");
     }
@@ -107,9 +111,19 @@ public class Dao {
 
             System.out.println("looking up: " + hymnId);
             HymnsEntity hymn = em.find(HymnsEntity.class, hymnId);
+            if(hymn==null) {
+                System.out.println("Hymn not found");
+                return;
+            }
             System.out.println("trying to delete hymn " + hymn.getId());
+
+
             em.getTransaction().begin();
             em.remove(hymn);
+            if(hymn.getParentHymn()!=null && !hymn.getParentHymn().isEmpty()) {
+                HymnsEntity parentHymn = em.find(HymnsEntity.class, hymn.getParentHymn());
+                parentHymn.removeRelated(hymn.getId());
+            }
             em.getTransaction().commit();
 
             System.out.println("hymn " + hymn.getId() + " DELETED!");
