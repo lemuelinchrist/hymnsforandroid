@@ -60,8 +60,12 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         if(getCurrentHymnId()==null) return;
         String currentHymnId = (getCurrentHymnId()==null)?"E1":getCurrentHymnId();
         hymnBooks = new HashMap<>();
-        switchHymnBook(HymnGroup.getHymnGroupFromID(currentHymnId));
-        switchToHymn(currentHymnId);
+        try {
+            switchHymnBook(HymnGroup.getHymnGroupFromID(currentHymnId));
+            switchToHymn(currentHymnId);
+        } catch (NoSuchHymnGroupException e) {
+          Log.e(this.getClass().getName(),e.getMessage());
+        }
     }
 
     private void switchHymnBook(HymnGroup hymnGroup) {
@@ -107,7 +111,13 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         Log.i(getClass().getName(), "switching to hymn " + hymnId);
 
-        HymnGroup selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
+        HymnGroup selectedHymnGroup = null;
+        try {
+            selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
+        } catch (NoSuchHymnGroupException e) {
+            e.printStackTrace();
+            return;
+        }
         final String selectedHymnNumber = HymnGroup.getHymnNoFromID(hymnId);
 
         // in case of a garbage collection cache wipe. note: this is not tested. probably useless.

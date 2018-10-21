@@ -55,12 +55,16 @@ public enum HymnGroup {
         return nightColor;
     }
 
-    public static HymnGroup getHymnGroupFromID(String hymnId) {
+    public static HymnGroup getHymnGroupFromID(String hymnId) throws NoSuchHymnGroupException {
         //split hymn group from hymn number
-        if (Character.isLetter(hymnId.charAt(1))) {
-            return valueOf(hymnId.substring(0, 2).toUpperCase());
-        } else {
-            return valueOf(hymnId.substring(0, 1).toUpperCase());
+        try {
+            if (Character.isLetter(hymnId.charAt(1))) {
+                return valueOf(hymnId.substring(0, 2).toUpperCase());
+            } else {
+                return valueOf(hymnId.substring(0, 1).toUpperCase());
+            }
+        } catch (IllegalArgumentException e) {
+          throw new NoSuchHymnGroupException("No Such Hymn Group: " + hymnId);
         }
     }
 

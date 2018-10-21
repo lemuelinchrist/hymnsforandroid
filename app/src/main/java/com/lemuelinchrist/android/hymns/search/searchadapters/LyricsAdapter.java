@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.text.Html;
 import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.HymnCursorAdapter;
 import com.lemuelinchrist.android.hymns.search.IndexViewHolder;
@@ -36,10 +37,16 @@ public class LyricsAdapter extends HymnCursorAdapter {
 
         indexViewHolder.list_item.setText(Html.fromHtml(lyricText.toString()));
 
-        String hymnGroup = HymnGroup.getHymnGroupFromID(parentHymn).toString();
-        indexViewHolder.imageView.setImageResource(context.getResources().getIdentifier(hymnGroup.toLowerCase(), "drawable", context.getPackageName()));
+        String hymnGroup = null;
+        try {
+            hymnGroup = HymnGroup.getHymnGroupFromID(parentHymn).toString();
+            indexViewHolder.imageView.setImageResource(context.getResources().getIdentifier(hymnGroup.toLowerCase(), "drawable", context.getPackageName()));
 
-        indexViewHolder.hymnNo = parentHymn;
+            indexViewHolder.hymnNo = parentHymn;
+        } catch (NoSuchHymnGroupException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

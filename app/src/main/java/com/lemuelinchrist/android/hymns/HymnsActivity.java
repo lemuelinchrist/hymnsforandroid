@@ -273,9 +273,13 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         if (requestCode == INDEX_REQUEST) {
             if (resultCode == RESULT_OK) {
 
-                String rawData = data.getDataString().trim();
-                selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
-                hymnBookCollection.switchToHymn(rawData, true);
+                try {
+                    String rawData = data.getDataString().trim();
+                    selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
+                    hymnBookCollection.switchToHymn(rawData, true);
+                } catch (NoSuchHymnGroupException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -292,14 +296,19 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         if (hymnId==null) hymnId="E1";
 
-        selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
-        Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
+        try {
+            selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
+            Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
 
-        actionBar.setTitle(hymnId);
-        actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
-        changeActionBarColor();
+            actionBar.setTitle(hymnId);
+            actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
+            changeActionBarColor();
 
-        Log.d(getClass().getSimpleName(), "Done painting title");
+            Log.d(getClass().getSimpleName(), "Done painting title");
+        } catch (NoSuchHymnGroupException e) {
+            e.printStackTrace();
+        }
+
 
 
     }

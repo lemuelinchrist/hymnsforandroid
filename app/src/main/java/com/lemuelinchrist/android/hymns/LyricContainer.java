@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
@@ -35,14 +34,14 @@ public class LyricContainer extends Fragment {
     private TextView lyricHeader;
     private Context context;
     private Hymn hymn;
-    private static HymnsDao hymnsDao=null;
+    private static HymnsDao hymnsDao = null;
     private TextView lyricsView;
     private static float fontSize;
     private SharedPreferences sharedPreferences;
     private MusicPlayerListener musicPlayerListener;
     private HistoryLogBook historyLogBook;
     private String hymnId;
-    private HashSet <OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
+    private HashSet<OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
     private Theme theme;
 
 
@@ -50,17 +49,17 @@ public class LyricContainer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        this.context=getContext();
+        this.context = getContext();
         sharedPreferences = context.getSharedPreferences("Hymns", 0);
 
-        if(theme==null) {
+        if (theme == null) {
             theme = Theme.valueOf(sharedPreferences.getString("theme", "LIGHT"));
         }
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 theme.getStyle(), container, false);
 
-        if(hymnsDao==null) {
+        if (hymnsDao == null) {
             hymnsDao = new HymnsDao(context);
         }
         Log.d(this.getClass().getSimpleName(), "entering initialization of new LyricContainer!");
@@ -82,9 +81,8 @@ public class LyricContainer extends Fragment {
         });
 
 
-
         historyLogBook = new HistoryLogBook(context);
-        if(hymnId!=null) {
+        if (hymnId != null) {
             displayLyrics(hymnId);
         }
 
@@ -110,39 +108,48 @@ public class LyricContainer extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
 
-        if (isVisibleToUser && hymn!=null) {
+        if (isVisibleToUser && hymn != null) {
             onLyricVisible();
         }
-        if(!isVisibleToUser) {
+        if (!isVisibleToUser) {
             stopPlaying();
         }
 
     }
 
     private void onLyricVisible() {
-        for(OnLyricVisibleListener listener: onLyricVisibleLIsteners) {
+        for (OnLyricVisibleListener listener : onLyricVisibleLIsteners) {
             listener.onLyricVisible(hymn.getHymnId());
         }
-        if(hymn!=null) log();
+        if (hymn != null) log();
     }
 
     @Override
     public void onResume() {
         Log.d(this.getClass().getSimpleName(), "onResume called on LyricContainer with hymn: " + hymn);
         super.onResume();
-        if(getUserVisibleHint()) onLyricVisible();
+        if (getUserVisibleHint()) onLyricVisible();
     }
 
     public void setContext(Context context) {
-        this.context=context;
+        this.context = context;
     }
+
     public void setHymn(String hymnId) {
-        this.hymnId=hymnId;
+        this.hymnId = hymnId;
     }
-    public String getHymnId() { return this.hymnId; }
+
+    public String getHymnId() {
+        return this.hymnId;
+    }
 
     public Hymn displayLyrics(String hymnId) {
-        return displayLyrics(HymnGroup.getHymnGroupFromID(hymnId).toString(), HymnGroup.getHymnNoFromID(hymnId));
+        try {
+            return displayLyrics(HymnGroup.getHymnGroupFromID(hymnId).toString(), HymnGroup.getHymnNoFromID(hymnId));
+        } catch (NoSuchHymnGroupException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public Hymn displayLyrics(String selectedHymnGroup, String selectedHymnNumber) {
@@ -152,8 +159,8 @@ public class LyricContainer extends Fragment {
             // if there was a previous hymn
             stopPlaying();
 
-            if(hymnsDao==null) {
-                hymnsDao=new HymnsDao(context);
+            if (hymnsDao == null) {
+                hymnsDao = new HymnsDao(context);
             }
             hymnsDao.open();
             hymn = hymnsDao.get(selectedHymnGroup + selectedHymnNumber);
@@ -302,7 +309,7 @@ public class LyricContainer extends Fragment {
     }
 
     public void launchYouTubeApp() {
-        if(isHymnDisplayed()) {
+        if (isHymnDisplayed()) {
             YouTubeLauncher launcher = new YouTubeLauncher(context);
             launcher.launch(hymn);
         }
@@ -316,11 +323,16 @@ public class LyricContainer extends Fragment {
 
 
     public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {
-        if(hymn==null) {
+        if (hymn == null) {
             return null;
         }
         for (String related : hymn.getRelated()) {
-            HymnGroup group=HymnGroup.getHymnGroupFromID(related);
+            HymnGroup group = null;
+            try {
+                group = HymnGroup.getHymnGroupFromID(related);
+            } catch (NoSuchHymnGroupException e) {
+                continue;
+            }
 
             Log.d(this.getClass().getSimpleName(), "looping translation groups: " + group);
             if (group.equals(selectedHymnGroup)) {
@@ -348,9 +360,9 @@ public class LyricContainer extends Fragment {
         if (hymn.hasOwnSheetMusic()) {
             return hymn.getHymnId();
 
-        } else if(hymn.getParentHymn()!=null && !hymn.getParentHymn().isEmpty()){
+        } else if (hymn.getParentHymn() != null && !hymn.getParentHymn().isEmpty()) {
             hymnsDao.open();
-            Hymn parentHymn=hymnsDao.get(hymn.getParentHymn());
+            Hymn parentHymn = hymnsDao.get(hymn.getParentHymn());
             hymnsDao.close();
             if (parentHymn.hasOwnSheetMusic()) {
                 return parentHymn.getHymnId();
