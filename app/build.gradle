@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
 // you can choose to put either "guitarSvg" or "pianoSvg" depending on the sheet music you want to include
-def svgFolderName = "pianoSvg"
+def svgFolderName = "guitarSvg"
 //def svgFolderName=""
-def hymnAppVersion = "v3.5-Piano"
+def hymnAppVersion = "v3.5.1-Guitar"
 
 allprojects {
     repositories {
@@ -24,7 +24,7 @@ android {
         applicationId "com.lemuelinchrist.android.hymns"
         minSdkVersion 15    // Ice cream sandwitch
         targetSdkVersion 26
-        versionCode 111      // increment version code if you want to refresh the database cache of your phone
+        versionCode 112      // increment version code if you want to refresh the database cache of your phone
         versionName hymnAppVersion
     }
     buildTypes {
