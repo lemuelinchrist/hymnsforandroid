@@ -1,0 +1,10 @@
+//'cat hymns.sql | sqlite3 hymns.sqlite'
+task importSql(type: Exec) {
+        executable "bash"
+        args "-c", "cat hymns.sql | sqlite3 hymns.sqlite"
+}
+
+task exportSql(type: Exec) {
+        executable "bash"
+        args "-c", "sqlite3 hymns.sqlite .dump > hymns.sql"
+}
