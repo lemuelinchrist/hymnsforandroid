@@ -21,6 +21,9 @@ import java.util.stream.Stream;
 public class ProvisionJapanese {
     File japaneseFile;
     File japaneseSupplementFile;
+    private int x = 0;
+    private String line;
+    private List<String> lines;
 
     public static void main(String[] args) throws Exception {
         ProvisionJapanese japanese = new ProvisionJapanese();
@@ -33,26 +36,23 @@ public class ProvisionJapanese {
         StringBuilder logString = new StringBuilder();
         japaneseSupplementFile = new File(this.getClass().getResource("/japaneseSupplement.txt").getPath());
 
-        List<String> lines = Files.lines(japaneseFile.toPath()).collect(Collectors.toList());
+        lines = Files.lines(japaneseFile.toPath()).collect(Collectors.toList());
         Integer hymnNumber = 0;
         Integer stanzaCounter = 0;
         Integer stanzaOrderCounter = 0;
         HymnsEntity hymn = null;
         StanzaEntity stanza = null;
         StringBuilder stanzaBuilder = null;
-        PrintStream out = new PrintStream(System.out, true, "UTF-8");
 
 
-        for(int x = 0; x<23349; x++) {
-            String line = lines.get(x).trim();
+        for(x=0; hymnNumber!=780; x++) {
+            line = lines.get(x).trim();
 
-            if (line.isEmpty() &&
-                    (x+1)!=lines.size() &&
-                    lines.get(x+1).trim().isEmpty()) {
-                while((x+1)!=lines.size() &&
+            if (isStartOfHymn()) {
+                while((x +1)!= lines.size() &&
                         lines.get(++x).trim().isEmpty());
                 logString.append(++hymnNumber + " ");
-                logString.append(lines.get(x+1).trim());
+                logString.append(lines.get(x +1).trim());
                 logString.append("\n");
 
                 continue;
@@ -71,6 +71,12 @@ public class ProvisionJapanese {
 //            out.println line
 //        }
         log(logString.toString());
+    }
+
+    public boolean isStartOfHymn() {
+        return line.isEmpty() &&
+                (x +1)!=lines.size() &&
+                lines.get(x +1).trim().isEmpty();
     }
 
     public void log(String text) {
