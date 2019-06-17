@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
 /**
  * @author Lemuel Cantos
  * @since 15/6/2019
@@ -46,70 +47,79 @@ public class ProvisionJapanese {
         StanzaEntity stanza = null;
         StringBuilder stanzaBuilder = null;
 
-
-        for(x=0; hymnNumber!=780; x++) {
+        for (x = 0; hymnNumber != 780; x++) {
             line = lines.get(x).trim();
 
             if (isStartOfHymn()) {
-                while((x +1)!= lines.size() &&
-                        lines.get(++x).trim().isEmpty());
-
+                while ((x + 1) != lines.size() &&
+                        lines.get(++x).trim().isEmpty()) {
+                    ;
+                }
 
                 String relatedLine = lines.get(x + 1).trim();
                 logString.append(++hymnNumber + " ");
-                System.out.println("processing #"+hymnNumber);
+                System.out.println("processing Hymn#" + hymnNumber);
                 logString.append(relatedLine);
                 logString.append("\n");
 
-                Integer englishRelated=null;
-                if(relatedLine.contains("英")) {
+                Integer englishRelated = null;
+                if (relatedLine.contains("英")) {
                     englishRelated = Integer.parseInt(relatedLine
-                            .substring(relatedLine.indexOf("英")+1).replaceAll("[^\\d]","" ));
+                            .substring(relatedLine.indexOf("英") + 1).replaceAll("[^\\d]", ""));
                 }
-
 
                 String categoryLine = lines.get(x).trim();
                 assert categoryLine.contains("―");
 
-
                 hymn = new HymnsEntity();
-                hymn.setId("J"+hymnNumber);
+                hymn.setId("J" + hymnNumber);
                 hymn.setHymnGroup("J");
                 hymn.setNo(hymnNumber.toString());
                 hymn.setMainCategory(categoryLine.split("―")[0].trim());
                 hymn.setSubCategory(categoryLine.split("―")[1].trim());
-                if(englishRelated!=null) hymn.setParentHymn("E"+englishRelated);
+                if (englishRelated != null) {
+                    hymn.setParentHymn("E" + englishRelated);
+                }
 
-
-                logString.append(hymn.toString()+"\n");
+                logString.append(hymn.toString() + "\n");
 
                 x++;
                 x++;
-                line = lines.get(x)
-                        .replace("　","")
-                        .replace("１","1")
-                        .replace("２","2")
-                        .replace("３","3")
-                        .replace("４","4")
-                        .replace("５","5")
-                        .replace("６","6")
-                        .replace("７","7")
-                        .replace("８","8")
-                        .replace("９","9")
-                        .replace("０","0")
-                        .trim();
-                if(!line.equals("1") && !line.equals("note")) throw new RuntimeException("line "
-                        + "after hymn "
-                        + "number "
-                        + "should "
-                        + "be first "
-                        + "stanza but "
-                        + "is: "+line);
+                line = convertJapCharacters(x);
+                if (!line.equals("1") && !line.equals("note")) {
+                    throw new RuntimeException("line "
+                            + "after hymn "
+                            + "number "
+                            + "should "
+                            + "be first "
+                            + "stanza but "
+                            + "is: " + line);
+                }
 
-//                while(!isStartOfHymn()) {
-//                    x++;
-//
-//                }
+                stanzaCounter = 0;
+                while (true) {
+                    if (!line.equals("note") && !line.equals("(復)")) {
+                        stanzaCounter++;
+                        System.out.println("stanza " + stanzaCounter);
+                        if (Integer.parseInt(line) != stanzaCounter) {
+                            throw new RuntimeException(line + "!= "
+                                    + "stnazacounter: " + stanzaCounter);
+                        }
+                    }
+                    while (!line.isEmpty()) {
+                        line = lines.get(++x).trim();
+                    }
+                    if (isStartOfHymn()) {
+                        break;
+                    }
+                    line = convertJapCharacters(++x);
+
+                }
+
+                //                while(!isStartOfHymn()) {
+                //                    x++;
+                //
+                //                }
 
                 continue;
             }
@@ -118,10 +128,27 @@ public class ProvisionJapanese {
         log(logString.toString());
     }
 
+    private String convertJapCharacters(int x) {
+        return lines.get(x)
+                .replace("　", "")
+                .replace("１", "1")
+                .replace("２", "2")
+                .replace("３", "3")
+                .replace("４", "4")
+                .replace("５", "5")
+                .replace("６", "6")
+                .replace("７", "7")
+                .replace("８", "8")
+                .replace("９", "9")
+                .replace("０", "0")
+                .replace("(復）", "(復)")
+                .trim();
+    }
+
     public boolean isStartOfHymn() {
         return line.isEmpty() &&
-                (x +1)!=lines.size() &&
-                lines.get(x +1).trim().isEmpty();
+                (x + 1) != lines.size() &&
+                lines.get(x + 1).trim().isEmpty();
     }
 
     public void log(String text) {
