@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -84,8 +85,20 @@ public class ProvisionJapanese {
 
                 x++;
                 x++;
-                line = lines.get(x).replace("　","").trim();
-                if(!line.equals("１") && !line.equals("1") && !line.equals("note")) throw new RuntimeException("line "
+                line = lines.get(x)
+                        .replace("　","")
+                        .replace("１","1")
+                        .replace("２","2")
+                        .replace("３","3")
+                        .replace("４","4")
+                        .replace("５","5")
+                        .replace("６","6")
+                        .replace("７","7")
+                        .replace("８","8")
+                        .replace("９","9")
+                        .replace("０","0")
+                        .trim();
+                if(!line.equals("1") && !line.equals("note")) throw new RuntimeException("line "
                         + "after hymn "
                         + "number "
                         + "should "
@@ -102,17 +115,6 @@ public class ProvisionJapanese {
             }
         }
 
-//        stream.forEach(a -> {
-//            System.out.println(a);
-//            logString.append(a);
-//        });
-
-
-//        while (iterator.hasNext()) {
-//
-//            String line = iterator.next().trim();
-//            out.println line
-//        }
         log(logString.toString());
     }
 
