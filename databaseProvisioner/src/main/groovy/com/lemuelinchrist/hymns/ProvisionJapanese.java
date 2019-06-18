@@ -105,7 +105,11 @@ public class ProvisionJapanese {
                 if (!line.equals("note") && !line.equals("(復)")) {
                     stanzaCounter++;
                     System.out.println("stanza " + stanzaCounter);
-                    if (Integer.parseInt(line) != stanzaCounter) {
+                    final int no = Integer.parseInt(line);
+                    if (no != stanzaCounter) {
+                        if(no==1) {
+                            stanzaCounter=1;
+                        } else
                         throw new RuntimeException(line + "!= "
                                 + "stnazacounter: " + stanzaCounter);
                     }
