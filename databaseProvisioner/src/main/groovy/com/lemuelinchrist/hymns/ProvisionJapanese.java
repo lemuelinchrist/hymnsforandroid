@@ -115,8 +115,10 @@ public class ProvisionJapanese {
                                     + "stnazacounter: " + stanzaCounter);
                         }
                     }
-                    stanza = createNewStanza(hymn,++order);
-                    if(hymn.getFirstStanzaLine()==null) hymn.setFirstStanzaLine(line);
+                    stanza = createNewStanza(hymn, ++order);
+                    if (hymn.getFirstStanzaLine() == null) {
+                        hymn.setFirstStanzaLine(line);
+                    }
                 } else if (line.equals("(復)") && hymn.getFirstChorusLine() == null) {
                     stanza = createNewStanza(hymn, ++order);
                     hymn.setFirstChorusLine(line);
@@ -128,7 +130,7 @@ public class ProvisionJapanese {
                     if (line.isEmpty()) {
                         break;
                     }
-                    stanza.setText(stanza.getText()  + line + "<br/>");
+                    stanza.setText(stanza.getText() + line + "<br/>");
                 }
 
                 if (isStartOfHymn()) {
@@ -139,6 +141,7 @@ public class ProvisionJapanese {
             }
 
             logString.append(hymn.toString() + "\n");
+            dao.save(hymn);
         }
 
         log(logString.toString());
@@ -147,7 +150,11 @@ public class ProvisionJapanese {
     private StanzaEntity createNewStanza(HymnsEntity hymn, int order) {
         StanzaEntity stanza = new StanzaEntity();
         hymn.getStanzas().add(stanza);
-        stanza.setNo(line);
+        if (line.equals("(復)")) {
+            stanza.setNo("chorus");
+        } else {
+            stanza.setNo(line);
+        }
         stanza.setOrder(order);
         stanza.setParentHymn(hymn);
         line = lines.get(++x).trim();
