@@ -49,7 +49,6 @@ public class ProvisionJapanese {
         Integer stanzaCounter = 0;
         Integer stanzaOrderCounter = 0;
         HymnsEntity hymn = null;
-        StanzaEntity stanza = null;
         StringBuilder stanzaBuilder = null;
 
         for (x = 0; hymnNumber != 780; x++) {
@@ -85,8 +84,6 @@ public class ProvisionJapanese {
                 hymn.setParentHymn("E" + englishRelated);
             }
 
-            logString.append(hymn.toString() + "\n");
-
             x++;
             x++;
             line = convertJapCharacters(x);
@@ -101,22 +98,39 @@ public class ProvisionJapanese {
             }
 
             stanzaCounter = 0;
+            int order = 0;
+            hymn.setStanzas(new ArrayList<>());
             while (true) {
+
+                StanzaEntity stanza = null;
                 if (!line.equals("note") && !line.equals("(復)")) {
                     stanzaCounter++;
                     System.out.println("stanza " + stanzaCounter);
-                    final int no = Integer.parseInt(line);
+                    int no = Integer.parseInt(line);
                     if (no != stanzaCounter) {
-                        if(no==1) {
-                            stanzaCounter=1;
-                        } else
-                        throw new RuntimeException(line + "!= "
-                                + "stnazacounter: " + stanzaCounter);
+                        if (no == 1) {
+                            stanzaCounter = 1;
+                        } else {
+                            throw new RuntimeException(line + "!= "
+                                    + "stnazacounter: " + stanzaCounter);
+                        }
                     }
+                    stanza = createNewStanza(hymn,++order);
+                    if(hymn.getFirstStanzaLine()==null) hymn.setFirstStanzaLine(line);
+                } else if (line.equals("(復)") && hymn.getFirstChorusLine() == null) {
+                    stanza = createNewStanza(hymn, ++order);
+                    hymn.setFirstChorusLine(line);
+                } else {
+                    stanza = createNewStanza(hymn, ++order);
                 }
-                while (!line.isEmpty()) {
+                while (true) {
                     line = lines.get(++x).trim();
+                    if (line.isEmpty()) {
+                        break;
+                    }
+                    stanza.setText(stanza.getText()  + line + "<br/>");
                 }
+
                 if (isStartOfHymn()) {
                     break;
                 }
@@ -124,15 +138,21 @@ public class ProvisionJapanese {
 
             }
 
-            //                while(!isStartOfHymn()) {
-            //                    x++;
-            //
-            //                }
-
-            continue;
+            logString.append(hymn.toString() + "\n");
         }
 
         log(logString.toString());
+    }
+
+    private StanzaEntity createNewStanza(HymnsEntity hymn, int order) {
+        StanzaEntity stanza = new StanzaEntity();
+        hymn.getStanzas().add(stanza);
+        stanza.setNo(line);
+        stanza.setOrder(order);
+        stanza.setParentHymn(hymn);
+        line = lines.get(++x).trim();
+        stanza.setText(line + "<br/>");
+        return stanza;
     }
 
     private String convertJapCharacters(int x) {
