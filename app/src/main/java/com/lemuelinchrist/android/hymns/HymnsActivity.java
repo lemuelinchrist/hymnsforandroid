@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.*;
 import android.widget.AdapterView;
@@ -62,6 +63,9 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         // Instantiate a ViewPager and a PagerAdapter.
         hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager),theme);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -301,7 +305,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
 
             actionBar.setTitle(hymnId);
-            actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
+//            actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
             changeActionBarColor();
 
             Log.d(getClass().getSimpleName(), "Done painting title");

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
@@ -64,11 +65,12 @@ public class LyricContainer extends Fragment {
         }
         Log.d(this.getClass().getSimpleName(), "entering initialization of new LyricContainer!");
         fontSize = sharedPreferences.getFloat("fontSize", TextSize.MEDIUM.getValue());
-        lyricHeader = (TextView) rootView.findViewById(context.getResources().getIdentifier("lyricHeader", "id", context.getPackageName()));
-        lyricsView = (TextView) rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
+        lyricHeader = rootView.findViewById(context.getResources().getIdentifier("lyricHeader", "id", context
+                .getPackageName()));
+        lyricsView = rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
 
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
-        ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.jellybeanContentScrollView);
+        NestedScrollView scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
         scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
         scrollView.setFocusable(true);
         scrollView.setFocusableInTouchMode(true);
