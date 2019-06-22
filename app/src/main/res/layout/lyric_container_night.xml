@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<android.support.v4.widget.NestedScrollView
         android:id="@+id/jellybeanContentScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,5 +43,5 @@
                     android:textIsSelectable="true"/>
 
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
