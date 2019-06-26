@@ -1,5 +1,15 @@
 package com.lemuelinchrist.android.hymns;
 
+import java.util.HashSet;
+import java.util.List;
+import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.entities.Hymn;
+import com.lemuelinchrist.android.hymns.entities.Stanza;
+import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
+import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
+import com.lemuelinchrist.android.hymns.style.TextSize;
+import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,19 +22,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
-import com.lemuelinchrist.android.hymns.entities.Hymn;
-import com.lemuelinchrist.android.hymns.entities.Stanza;
-import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
-import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
-import com.lemuelinchrist.android.hymns.style.TextSize;
-import com.lemuelinchrist.android.hymns.style.Theme;
-import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
-
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * Created by lemuelcantos on 27/7/13.

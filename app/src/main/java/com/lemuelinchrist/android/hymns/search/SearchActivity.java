@@ -1,5 +1,13 @@
 package com.lemuelinchrist.android.hymns.search;
 
+import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.R;
+import com.lemuelinchrist.android.hymns.search.fragments.AuthorTabFragment;
+import com.lemuelinchrist.android.hymns.search.fragments.CategoryTabFragment;
+import com.lemuelinchrist.android.hymns.search.fragments.FirstLineTabFragment;
+import com.lemuelinchrist.android.hymns.search.fragments.HistoryTabFragment;
+import com.lemuelinchrist.android.hymns.search.fragments.HymnNumberTabFragment;
+import com.lemuelinchrist.android.hymns.search.fragments.LyricsTabFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -17,12 +25,13 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-import com.lemuelinchrist.android.hymns.HymnGroup;
-import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.search.fragments.*;
 
 public class SearchActivity extends AppCompatActivity  {
 
@@ -59,7 +68,7 @@ public class SearchActivity extends AppCompatActivity  {
 
         mSearchTabsPagerAdapter = new SearchTabsPagerAdapter(getSupportFragmentManager());
 
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager = findViewById(R.id.viewpager);
         mViewPager.setAdapter(mSearchTabsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
