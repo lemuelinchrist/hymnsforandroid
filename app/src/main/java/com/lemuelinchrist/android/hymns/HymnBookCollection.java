@@ -1,5 +1,12 @@
 package com.lemuelinchrist.android.hymns;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusic;
+import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicActivity;
+import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.utils.HymnStack;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
@@ -7,19 +14,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
-import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
-import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusic;
-import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicActivity;
-import com.lemuelinchrist.android.hymns.style.Theme;
-import com.lemuelinchrist.android.hymns.utils.HymnStack;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by lemuel on 26/4/2017.
@@ -34,6 +32,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private final HymnsActivity context;
     private HymnBookGroup currentHymnBookGroup;
     private HymnStack hymnStack = new HymnStack("E1");
+    private NestedScrollView.OnScrollChangeListener onScrollChangeListener;
 
     private Theme theme=Theme.LIGHT;
 
@@ -42,6 +41,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         dao = new HymnsDao(context);
         this.lyricPager = lyricPager;
         this.theme=theme;
+        this.onScrollChangeListener = context;
         //lyricPager.setPageTransformer(true, new DepthPageTransformer());
 
         switchHymnBook(HymnGroup.E);
@@ -251,6 +251,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             LyricContainer lyric = LyricContainer.newInstance(context, context, theme);
             lyric.addLyricVisibleListener(context);
             lyric.addLyricVisibleListener(HymnBookCollection.this);
+            lyric.setOnScrollChangeListener(onScrollChangeListener);
             lyric.setHymn(hymnGroup.toString() + hymnNumbers.get(position));
             currentLyricContainer = lyric;
             return lyric;

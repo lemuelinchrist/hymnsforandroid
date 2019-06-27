@@ -42,7 +42,7 @@ public class LyricContainer extends Fragment {
     private String hymnId;
     private HashSet<OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
     private Theme theme;
-
+    private NestedScrollView.OnScrollChangeListener onScrollChangeListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,7 +79,7 @@ public class LyricContainer extends Fragment {
                 return false;
             }
         });
-
+        scrollView.setOnScrollChangeListener(onScrollChangeListener);
 
         historyLogBook = new HistoryLogBook(context);
         if (hymnId != null) {
@@ -374,5 +374,9 @@ public class LyricContainer extends Fragment {
 
     public void setTheme(Theme theme) {
         this.theme = theme;
+    }
+
+    public void setOnScrollChangeListener(final NestedScrollView.OnScrollChangeListener onScrollChangeListener) {
+        this.onScrollChangeListener = onScrollChangeListener;
     }
 }

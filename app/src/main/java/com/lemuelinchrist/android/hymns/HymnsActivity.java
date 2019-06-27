@@ -17,6 +17,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +35,8 @@ import android.widget.TextView;
 /**
  * Created by lemuelcantos on 17/7/13.
  */
-public class HymnsActivity extends AppCompatActivity implements MusicPlayerListener, OnLyricVisibleListener {
+public class HymnsActivity extends AppCompatActivity implements MusicPlayerListener, OnLyricVisibleListener,
+        NestedScrollView.OnScrollChangeListener {
     protected final int INDEX_REQUEST = 1;
     protected HymnGroup selectedHymnGroup = HymnGroup.E;
     private ListView mDrawerList;
@@ -342,6 +344,22 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         playMenuItem.setTitle(getString(R.string.playHymn));
         isMusicPlaying=false;
         floatingPlayButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_arrow_white));
+    }
+
+    // Hide play button when scrolling to the bottom
+    @Override
+    public void onScrollChange(final NestedScrollView v, final int scrollX, final int scrollY,
+            final int oldScrollX, final int oldScrollY) {
+        // We take the last son in the scrollview
+        View view = v.getChildAt(v.getChildCount() - 1);
+        int diff = (view.getBottom() - (v.getHeight() + v.getScrollY()));
+
+        // if diff is zero, then the bottom has been reached
+        if (diff == 0) {
+            floatingPlayButton.hide();
+        } else {
+            floatingPlayButton.show();
+        }
     }
 
     // This method adds icons in the overflow section of the action bar Menu
