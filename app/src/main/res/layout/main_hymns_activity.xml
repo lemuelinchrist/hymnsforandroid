@@ -33,6 +33,13 @@
                 android:background="#000000"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/play_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ic_play_arrow_white"
+                android:layout_margin="16dp" />
     </android.support.design.widget.CoordinatorLayout>
     <ListView
             android:id="@+id/left_drawer"

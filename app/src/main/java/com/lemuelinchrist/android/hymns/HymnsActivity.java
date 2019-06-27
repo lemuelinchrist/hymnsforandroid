@@ -1,36 +1,34 @@
 package com.lemuelinchrist.android.hymns;
 
-//import android.app.ActionBar;
-
+import java.lang.reflect.Method;
+import com.lemuelinchrist.android.hymns.search.SearchActivity;
+import com.lemuelinchrist.android.hymns.style.TextSize;
+import com.lemuelinchrist.android.hymns.style.Theme;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.support.v7.app.ActionBar;
-
-
 import android.widget.TextView;
-
-import com.lemuelinchrist.android.hymns.search.SearchActivity;
-import com.lemuelinchrist.android.hymns.style.TextSize;
-import com.lemuelinchrist.android.hymns.style.Theme;
-
-import java.lang.reflect.Method;
 
 
 /**
@@ -48,7 +46,9 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private HymnBookCollection hymnBookCollection;
     private Theme theme = Theme.LIGHT;
     private SharedPreferences sharedPreferences;
+    private FloatingActionButton floatingPlayButton;
 
+    private boolean isMusicPlaying = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,10 +69,21 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        changeActionBarColor();
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        floatingPlayButton = findViewById(R.id.play_fab);
+        floatingPlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(final View view) {
+                if(isMusicPlaying) {
+                    hymnBookCollection.stopPlaying();
+                } else {
+                    hymnBookCollection.startPlaying();
+                }
+            }
+        });
+        changeThemeColor();
+
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        mDrawerList = findViewById(R.id.left_drawer);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -207,7 +218,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         }
         item.setTitle(theme.getMenuDisplayText());
         hymnBookCollection.setTheme(this.theme);
-        changeActionBarColor();
+        changeThemeColor();
 
         // persist choice
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -235,8 +246,9 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         return;
     }
 
-    private void changeActionBarColor() {
+    private void changeThemeColor() {
         actionBar.setBackgroundDrawable(theme.getActionBarColor(selectedHymnGroup));
+        floatingPlayButton.setBackgroundTintList(ColorStateList.valueOf(theme.getTextColor(selectedHymnGroup)));
     }
 
     private void toggleDrawer() {
@@ -305,8 +317,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
 
             actionBar.setTitle(hymnId);
-//            actionBar.setIcon(getResources().getIdentifier(selectedHymnGroup.toString().toLowerCase(), "drawable", getPackageName()));
-            changeActionBarColor();
+            changeThemeColor();
 
             Log.d(getClass().getSimpleName(), "Done painting title");
         } catch (NoSuchHymnGroupException e) {
@@ -321,13 +332,16 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     public void onMusicStarted() {
         playMenuItem.setIcon(R.drawable.ic_pause_white);
         playMenuItem.setTitle(getString(R.string.pauseHymn));
+        isMusicPlaying=true;
+        floatingPlayButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_white));
     }
 
     @Override
     public void onMusicStopped() {
         playMenuItem.setIcon(R.drawable.ic_play_arrow_white);
         playMenuItem.setTitle(getString(R.string.playHymn));
-
+        isMusicPlaying=false;
+        floatingPlayButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_arrow_white));
     }
 
     // This method adds icons in the overflow section of the action bar Menu
@@ -348,7 +362,5 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         }
         return super.onPrepareOptionsPanel(view, menu);
     }
-
-
 }
 
