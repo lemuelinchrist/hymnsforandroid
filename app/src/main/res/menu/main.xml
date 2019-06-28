@@ -30,17 +30,23 @@
             android:orderInCategory="106"
             yourapp:showAsAction="never"
             android:icon="@drawable/youtube"
-            android:title="Search YouTube"/>
-
+            android:title="@string/search_youtube"/>
+    <item
+            android:id="@+id/action_settings"
+            android:orderInCategory="107"
+            yourapp:showAsAction="never"
+            android:icon="@drawable/baseline_settings_white_48dp"
+            android:title="@string/settings"
+    />
     <item
             android:id="@+id/action_fontsize"
-            android:orderInCategory="107"
+            android:orderInCategory="108"
             yourapp:showAsAction="never"
             android:icon="@drawable/fontsize_black"
             android:title="Font Size"/>
     <item
             android:id="@+id/action_nightMode"
-            android:orderInCategory="108"
+            android:orderInCategory="109"
             yourapp:showAsAction="never"
             android:icon="@drawable/ic_brightness"
             android:title="Night Mode"/>
