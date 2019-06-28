@@ -1,9 +1,7 @@
 package com.lemuelinchrist.android.hymns.search.fragments;
 
 import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.TabFragment;
-import com.lemuelinchrist.android.hymns.search.searchadapters.AuthorAdapter;
 import com.lemuelinchrist.android.hymns.search.searchadapters.LyricsAdapter;
 
 /**
@@ -14,7 +12,7 @@ public class LyricsTabFragment extends TabFragment {
 
     @Override
     public int getSearchTabIndex() {
-        return 4;
+        return 5;
     }
 
     @Override

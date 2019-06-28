@@ -1,10 +1,9 @@
 package com.lemuelinchrist.android.hymns.search.fragments;
 
 import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.search.HymnCursorAdapter;
 import com.lemuelinchrist.android.hymns.search.TabFragment;
 import com.lemuelinchrist.android.hymns.search.searchadapters.CategoryAdapter;
-import com.lemuelinchrist.android.hymns.search.HymnCursorAdapter;
 
 /**
  * Created by lemuelcantos on 1/11/15.
@@ -13,7 +12,7 @@ public class CategoryTabFragment extends TabFragment {
 
     @Override
     public int getSearchTabIndex() {
-        return 2;
+        return 3;
     }
 
     @Override

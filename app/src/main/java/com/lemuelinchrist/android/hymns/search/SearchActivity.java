@@ -1,13 +1,5 @@
 package com.lemuelinchrist.android.hymns.search;
 
-import com.lemuelinchrist.android.hymns.HymnGroup;
-import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.search.fragments.AuthorTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.CategoryTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.FirstLineTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.HistoryTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.HymnNumberTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.LyricsTabFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -25,13 +17,12 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.R;
+import com.lemuelinchrist.android.hymns.search.fragments.*;
 
 public class SearchActivity extends AppCompatActivity  {
 
@@ -253,6 +244,7 @@ public class SearchActivity extends AppCompatActivity  {
             // TabFragment class will automatically store them in its own map (COLLECTIONS variable)
             new HymnNumberTabFragment();
             new FirstLineTabFragment();
+            new FavoritesTabFragment();
             new CategoryTabFragment();
             new AuthorTabFragment();
             new LyricsTabFragment();

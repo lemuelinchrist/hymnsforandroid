@@ -1,27 +1,28 @@
 package com.lemuelinchrist.android.hymns.search.fragments;
 
+import android.util.Log;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.search.TabFragment;
-import com.lemuelinchrist.android.hymns.search.searchadapters.HistoryAdapter;
+import com.lemuelinchrist.android.hymns.search.searchadapters.FavoritesAdapter;
 
 /**
  * Created by lemuelcantos on 29/1/15.
  */
-public class HistoryTabFragment extends TabFragment {
+public class FavoritesTabFragment extends TabFragment {
 
     @Override
     public int getSearchTabIndex() {
-        return 6;
+        return 2;
     }
 
     @Override
     public String getTabName() {
-        return "History";
+        return "Favorites";
     }
 
     @Override
     public void setSearchFilter(String filter) {
-        mRecyclerView.setAdapter(new HistoryAdapter(container.getContext(),R.layout.recyclerview_hymn_list));
+        mRecyclerView.setAdapter(new FavoritesAdapter(container.getContext(),R.layout.recyclerview_hymn_list));
     }
 
     @Override
@@ -31,7 +32,8 @@ public class HistoryTabFragment extends TabFragment {
 
     @Override
     public int getIcon() {
-        return android.R.drawable.ic_menu_recent_history;
+        Log.d("test","tes1t");
+        return R.drawable.ic_favorite_grey_48dp;
     }
 
 }

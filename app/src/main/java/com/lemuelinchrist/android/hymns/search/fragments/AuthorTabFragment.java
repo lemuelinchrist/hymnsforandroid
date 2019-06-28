@@ -1,7 +1,6 @@
 package com.lemuelinchrist.android.hymns.search.fragments;
 
 import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.TabFragment;
 import com.lemuelinchrist.android.hymns.search.searchadapters.AuthorAdapter;
 
@@ -12,7 +11,7 @@ public class AuthorTabFragment extends TabFragment {
 
     @Override
     public int getSearchTabIndex() {
-        return 3;
+        return 4;
     }
 
     @Override
