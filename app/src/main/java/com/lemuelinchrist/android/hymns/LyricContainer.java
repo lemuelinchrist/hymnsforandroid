@@ -5,7 +5,7 @@ import java.util.List;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
-import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
+import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.TextSize;
 import com.lemuelinchrist.android.hymns.style.Theme;
@@ -30,6 +30,9 @@ import android.widget.TextView;
  * This Custom view takes care of displaying lyrings and playing songs of that lyric.
  */
 public class LyricContainer extends Fragment {
+    public static final String HISTORY_LOGBOOK_FILE="logBook";
+    public static final String FAVE_LOG_BOOK_FILE = "faveLogBook";
+
     private TextView lyricHeader;
     private Context context;
     private Hymn hymn;
@@ -38,7 +41,9 @@ public class LyricContainer extends Fragment {
     private static float fontSize;
     private SharedPreferences sharedPreferences;
     private MusicPlayerListener musicPlayerListener;
-    private HistoryLogBook historyLogBook;
+    private LogBook historyLogBook;
+    private LogBook faveLogBook;
+
     private String hymnId;
     private HashSet<OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
     private Theme theme;
@@ -81,7 +86,9 @@ public class LyricContainer extends Fragment {
         });
         scrollView.setOnScrollChangeListener(onScrollChangeListener);
 
-        historyLogBook = new HistoryLogBook(context);
+        historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
+        faveLogBook = new LogBook(context, FAVE_LOG_BOOK_FILE);
+
         if (hymnId != null) {
             displayLyrics(hymnId);
         }
@@ -316,6 +323,17 @@ public class LyricContainer extends Fragment {
 
     }
 
+    public void fave() {
+        faveLogBook.log(hymn);
+    }
+
+    public boolean isFaved() {
+        return faveLogBook.contains(hymn.getHymnId());
+    }
+
+    public void unfave() {
+        faveLogBook.remove(hymn);
+    }
 
     public HymnGroup getHymnGroup() {
         return HymnGroup.valueOf(hymn.getGroup().trim().toUpperCase());

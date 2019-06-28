@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns.history;
+package com.lemuelinchrist.android.hymns.logbook;
 
 import android.content.Context;
 

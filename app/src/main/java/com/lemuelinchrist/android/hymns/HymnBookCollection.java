@@ -3,6 +3,7 @@ package com.lemuelinchrist.android.hymns;
 import java.util.ArrayList;
 import java.util.HashMap;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusic;
 import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicActivity;
 import com.lemuelinchrist.android.hymns.style.Theme;
@@ -95,6 +96,22 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             return null;
         }
         return getCurrentHymnLyric().getHymnId();
+    }
+
+    public void toggleFave() {
+        if(currentHymnIsFaved()) {
+            getCurrentHymnLyric().unfave();
+        } else {
+            getCurrentHymnLyric().fave();
+        }
+    }
+
+    public boolean currentHymnIsFaved() {
+        if(getCurrentHymnLyric()!=null) {
+            return getCurrentHymnLyric().isFaved();
+        } else {
+            return false;
+        }
     }
 
     private LyricContainer getCurrentHymnLyric() {

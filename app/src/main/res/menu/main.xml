@@ -11,11 +11,11 @@
             android:title="Index"/>
 
     <item
-            android:id="@+id/action_play"
+            android:id="@+id/action_fave"
             android:orderInCategory="101"
             yourapp:showAsAction="ifRoom"
-            android:icon="@drawable/ic_play_arrow_white"
-            android:title="@string/playHymn"/>
+            android:icon="@drawable/ic_favorite_outline_white_48dp"
+            android:title="Fave Hymn"/>
 
 
     <item

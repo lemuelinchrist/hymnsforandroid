@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns.history;
+package com.lemuelinchrist.android.hymns.logbook;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -7,13 +7,13 @@ import java.util.Date;
  * Created by lemuelcantos on 7/12/14.
  */
 
-public class HistoryRecord implements Comparable<HistoryRecord>, Serializable {
+public class HymnRecord implements Comparable<HymnRecord>, Serializable {
     private Date recordDate;
     private String hymnId;
     private String firstLine;
     private String hymnGroup;
 
-    HistoryRecord(String hymnId, String hymnGroup, String firstLine, Date recordDate) {
+    HymnRecord(String hymnId, String hymnGroup, String firstLine, Date recordDate) {
         this.hymnId=hymnId;
         this.recordDate=recordDate;
         this.firstLine=firstLine;
@@ -29,16 +29,16 @@ public class HistoryRecord implements Comparable<HistoryRecord>, Serializable {
     }
 
     @Override
-    public int compareTo(HistoryRecord historyRecord) {
-        return historyRecord.getRecordDate().compareTo(recordDate);
+    public int compareTo(HymnRecord hymnRecord) {
+        return hymnRecord.getRecordDate().compareTo(recordDate);
     }
 
     @Override
     public boolean equals(Object object){
-        if (!(object instanceof HistoryRecord))
+        if (!(object instanceof HymnRecord))
             return false;
 
-        return hymnId.equals(((HistoryRecord) object).getHymnId());
+        return hymnId.equals(((HymnRecord) object).getHymnId());
     }
 
     public int hashCode() {
@@ -47,7 +47,7 @@ public class HistoryRecord implements Comparable<HistoryRecord>, Serializable {
 
     @Override
     public String toString() {
-        return "HistoryRecord{" +
+        return "HymnRecord{" +
                 "recordDate=" + recordDate +
                 ", hymnId='" + hymnId + '\'' +
                 '}';

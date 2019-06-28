@@ -2,8 +2,9 @@ package com.lemuelinchrist.android.hymns.search.searchadapters;
 
 import android.content.Context;
 
-import com.lemuelinchrist.android.hymns.history.HistoryLogBook;
-import com.lemuelinchrist.android.hymns.history.HistoryRecord;
+import com.lemuelinchrist.android.hymns.LyricContainer;
+import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
+import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.search.IndexViewHolder;
 import com.lemuelinchrist.android.hymns.search.SearchAdapter;
 
@@ -12,17 +13,17 @@ import com.lemuelinchrist.android.hymns.search.SearchAdapter;
  */
 public class HistoryAdapter extends SearchAdapter {
 
-    private final HistoryRecord[] historyLogBookList;
+    private final HymnRecord[] historyLogBookList;
 
     public HistoryAdapter(Context context, int layout) {
         super(context, layout);
-        historyLogBookList = new HistoryLogBook(context).getOrderedRecordList();
+        historyLogBookList = new LogBook(context, LyricContainer.HISTORY_LOGBOOK_FILE).getOrderedRecordList();
 
     }
 
     @Override
     public void provisionHolder(final IndexViewHolder holder, int position) {
-        HistoryRecord record = historyLogBookList[position];
+        HymnRecord record = historyLogBookList[position];
         holder.list_item.setText(record.getHymnId() + " - " + record.getFirstLine());
         holder.imageView.setImageResource(context.getResources().getIdentifier(record.getHymnGroup().toLowerCase(), "drawable", context.getPackageName()));
         holder.hymnNo = record.getHymnId();

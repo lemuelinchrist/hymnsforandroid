@@ -1,6 +1,7 @@
 package com.lemuelinchrist.android.hymns;
 
 import java.lang.reflect.Method;
+
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.style.TextSize;
 import com.lemuelinchrist.android.hymns.style.Theme;
@@ -44,7 +45,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private ActionBarDrawerToggle mDrawerToggle;
 
     private ActionBar actionBar;
-    private MenuItem playMenuItem;
+    private MenuItem faveMenuItem;
     private HymnBookCollection hymnBookCollection;
     private Theme theme = Theme.LIGHT;
     private SharedPreferences sharedPreferences;
@@ -159,7 +160,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         inflater.inflate(R.menu.main, menu);
         menu.findItem(R.id.action_nightMode).setTitle(theme.getMenuDisplayText());
 
-        playMenuItem = menu.findItem(R.id.action_play);
+        faveMenuItem = menu.findItem(R.id.action_fave);
+        refreshFaveIcon();
 
         return true;
     }
@@ -184,12 +186,9 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                 ret = true;
                 break;
 
-            case R.id.action_play:
-                if (item.getTitle().equals(getString(R.string.playHymn))) {
-                    hymnBookCollection.startPlaying();
-                } else {
-                    hymnBookCollection.stopPlaying();
-                }
+            case R.id.action_fave:
+                hymnBookCollection.toggleFave();
+                refreshFaveIcon();
                 break;
 
             case R.id.action_fontsize:
@@ -210,6 +209,17 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                 Log.w(HymnsActivity.class.getSimpleName(), "Warning!! No Item was selected!!");
         }
         return ret;
+    }
+
+    private void refreshFaveIcon() {
+        if(faveMenuItem==null) return;
+        if (hymnBookCollection.currentHymnIsFaved()) {
+            faveMenuItem.setIcon(R.drawable.ic_favorite_white_48dp);
+            faveMenuItem.setTitle(getString(R.string.unfaveHymn));
+        } else {
+            faveMenuItem.setIcon(R.drawable.ic_favorite_outline_white_48dp);
+            faveMenuItem.setTitle(getString(R.string.faveHymn));
+        }
     }
 
     private void toggleNightMode(MenuItem item) {
@@ -320,6 +330,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
             actionBar.setTitle(hymnId);
             changeThemeColor();
+            refreshFaveIcon();
 
             Log.d(getClass().getSimpleName(), "Done painting title");
         } catch (NoSuchHymnGroupException e) {
@@ -332,16 +343,12 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     @Override
     public void onMusicStarted() {
-        playMenuItem.setIcon(R.drawable.ic_pause_white);
-        playMenuItem.setTitle(getString(R.string.pauseHymn));
         isMusicPlaying=true;
         floatingPlayButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_white));
     }
 
     @Override
     public void onMusicStopped() {
-        playMenuItem.setIcon(R.drawable.ic_play_arrow_white);
-        playMenuItem.setTitle(getString(R.string.playHymn));
         isMusicPlaying=false;
         floatingPlayButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_arrow_white));
     }
