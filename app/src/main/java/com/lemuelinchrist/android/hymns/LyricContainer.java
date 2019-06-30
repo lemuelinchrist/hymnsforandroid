@@ -1,15 +1,5 @@
 package com.lemuelinchrist.android.hymns;
 
-import java.util.HashSet;
-import java.util.List;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
-import com.lemuelinchrist.android.hymns.entities.Hymn;
-import com.lemuelinchrist.android.hymns.entities.Stanza;
-import com.lemuelinchrist.android.hymns.logbook.LogBook;
-import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
-import com.lemuelinchrist.android.hymns.style.TextSize;
-import com.lemuelinchrist.android.hymns.style.Theme;
-import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,6 +13,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.entities.Hymn;
+import com.lemuelinchrist.android.hymns.entities.Stanza;
+import com.lemuelinchrist.android.hymns.logbook.LogBook;
+import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
+import com.lemuelinchrist.android.hymns.style.TextSize;
+import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
+
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by lemuelcantos on 27/7/13.
@@ -234,7 +235,8 @@ public class LyricContainer extends Fragment {
                         text.append("<i>@@(" + stanza.getNote() + ")@@</i><br/>");
                     chorusText = "<i>@@" + stanza.getText() + "@@</i><br/>";
                     text.append(chorusText);
-                } else if (stanza.getNo().equals("end-note") || stanza.getNo().equals("beginning-note")) {
+                } else if (stanza.getNo().equals("end-note") || stanza.getNo().equals("beginning-note") ||
+                        stanza.getNo().equals("note")) {
                     text.append("<i>" + stanza.getText() + "</i><br/>");
 
                 } else {

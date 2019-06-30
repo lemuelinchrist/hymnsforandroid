@@ -35,6 +35,9 @@ public enum HymnGroup {
     //Deep Orange
     G("German", Color.rgb(0xFF, 0x57, 0x22),
             Color.rgb(0xFF, 0xAB, 0x91)),
+    //Light Green
+    J("Japanese",Color.rgb(0x8B,0xC3,0x4A),
+            Color.rgb(0xAE,0xD5,0x81)),
     //Blue
     BF("Be Filled", Color.rgb(0x00, 0x99, 0xCC),
             Color.rgb(0x90, 0xCA, 0xF9)),
