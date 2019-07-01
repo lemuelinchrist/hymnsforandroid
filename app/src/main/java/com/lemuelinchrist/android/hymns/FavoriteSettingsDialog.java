@@ -1,11 +1,13 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.*;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
+import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 
 import static com.lemuelinchrist.android.hymns.LyricContainer.FAVE_LOG_BOOK_FILE;
@@ -40,7 +42,17 @@ public class FavoriteSettingsDialog extends DialogFragment {
                 })
                 .setNegativeButton("Import", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
+                        ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clip = clipboard.getPrimaryClip();
+                        String importedList = null;
+                        if(clip.getItemCount()!=0) {
+                            importedList = clip.getItemAt(0).getText().toString();
+                        }
+                        if(importedList==null || !startImport(importedList)) {
+                            Toast.makeText(getContext(), "Sorry! Text in clipboard not Valid. Please copy the list to your clipboard first.", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getContext(), "Import Successful!", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
                 .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
@@ -51,5 +63,20 @@ public class FavoriteSettingsDialog extends DialogFragment {
                 });
         // Create the AlertDialog object and return it
         return builder.create();
+    }
+
+    private boolean startImport(String importedList) {
+        boolean isValid = false;
+        HymnsDao hymnsDao = new HymnsDao(getContext());
+        hymnsDao.open();
+        for(String hymnId:importedList.split(",")) {
+            Hymn hymn = hymnsDao.get(hymnId.toUpperCase().trim());
+            if(hymn!=null) {
+                isValid=true;
+                faveLogBook.log(hymn);
+            }
+        }
+        hymnsDao.close();
+        return isValid;
     }
 }
