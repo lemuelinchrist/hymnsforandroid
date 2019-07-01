@@ -1,10 +1,5 @@
 package com.lemuelinchrist.android.hymns;
 
-import java.lang.reflect.Method;
-
-import com.lemuelinchrist.android.hymns.search.SearchActivity;
-import com.lemuelinchrist.android.hymns.style.TextSize;
-import com.lemuelinchrist.android.hymns.style.Theme;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -15,6 +10,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -31,6 +27,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.lemuelinchrist.android.hymns.search.SearchActivity;
+import com.lemuelinchrist.android.hymns.style.TextSize;
+import com.lemuelinchrist.android.hymns.style.Theme;
+
+import java.lang.reflect.Method;
 
 
 /**
@@ -52,6 +53,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private FloatingActionButton floatingPlayButton;
 
     private boolean isMusicPlaying = false;
+    private FragmentManager fragmentManager;
+    private FavoriteSettingsDialog favoriteSettings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,6 +118,9 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+        // Favorite Settings
+        fragmentManager = getSupportFragmentManager();
+        favoriteSettings = new FavoriteSettingsDialog();
     }
 
     // Warning! this method is very crucial. Without it you will not have a hamburger icon on your
@@ -203,6 +209,9 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                 break;
             case R.id.action_nightMode:
                 toggleNightMode(item);
+                break;
+            case R.id.action_settings:
+                favoriteSettings.show(fragmentManager,"settings");
                 break;
             default:
                 ret = false;
