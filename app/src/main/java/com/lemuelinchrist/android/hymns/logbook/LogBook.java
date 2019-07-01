@@ -2,7 +2,6 @@ package com.lemuelinchrist.android.hymns.logbook;
 
 import android.content.Context;
 import android.util.Log;
-
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
 import java.io.FileNotFoundException;
@@ -80,6 +79,15 @@ public class LogBook {
         } else {
             return hymnRecords;
         }
+    }
+
+    public String exportHymnList() {
+        StringBuilder list = new StringBuilder();
+        for(HymnRecord record: logBook) {
+            list.append(record.getHymnId());
+            list.append(",");
+        }
+        return list.toString();
     }
 
     public boolean contains(String hymnId) {

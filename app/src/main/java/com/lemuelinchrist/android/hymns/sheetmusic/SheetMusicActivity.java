@@ -7,11 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.GestureDetector;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-
 import com.lemuelinchrist.android.hymns.R;
 
 /**
@@ -100,7 +98,6 @@ public class SheetMusicActivity extends AppCompatActivity {
             } else {
                 showActionBar();
             }
-
             return false;
         }
 
@@ -119,19 +116,11 @@ public class SheetMusicActivity extends AppCompatActivity {
 
                         return false;
                     }
-
                 } catch (Exception e) {
                     webview.invalidate();
                 }
                 return false;
             }
-
-
         }
-
-
     }
-
-
-
 }
