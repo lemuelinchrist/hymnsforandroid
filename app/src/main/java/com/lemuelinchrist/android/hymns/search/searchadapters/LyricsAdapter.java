@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.text.Html;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.HymnCursorAdapter;
 import com.lemuelinchrist.android.hymns.search.IndexViewHolder;
 
@@ -32,7 +31,7 @@ public class LyricsAdapter extends HymnCursorAdapter {
         lyricText.append("</b><br/>");
         lyricText.append(text.trim());
 
-        //remove trailing <br/>
+        //removeAndSave trailing <br/>
         lyricText.reverse().delete(0,5).reverse();
 
         indexViewHolder.list_item.setText(Html.fromHtml(lyricText.toString()));

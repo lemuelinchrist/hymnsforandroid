@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
@@ -116,7 +115,7 @@ public class HymnsDao {
             likeBuilder.append("%'");
             likeBuilder.append(" AND ");
         }
-        // remove trailing "AND"
+        // removeAndSave trailing "AND"
         likeBuilder.reverse().delete(0,4).reverse();
 
         return likeBuilder.toString();

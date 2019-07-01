@@ -334,7 +334,7 @@ public class LyricContainer extends Fragment {
     }
 
     public void unfave() {
-        faveLogBook.remove(hymn);
+        faveLogBook.removeAndSave(hymn);
     }
 
     public HymnGroup getHymnGroup() {

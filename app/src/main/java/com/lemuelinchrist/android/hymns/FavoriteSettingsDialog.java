@@ -46,7 +46,7 @@ public class FavoriteSettingsDialog extends DialogFragment {
                 .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        // Do nothing
                     }
                 });
         // Create the AlertDialog object and return it

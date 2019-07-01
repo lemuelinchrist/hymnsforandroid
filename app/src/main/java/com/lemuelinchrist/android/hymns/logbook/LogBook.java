@@ -42,21 +42,9 @@ public class LogBook {
     }
 
     public void log(Hymn hymn) {
-        // *** new Date() initializes a Date object with the current time.
-        String firstLine;
-
-
-        // some hymns do not have stanzas, just chorus, so we need this code
-        if (hymn.getFirstStanzaLine()==null || hymn.getFirstStanzaLine().isEmpty()) {
-            firstLine = hymn.getFirstChorusLine();
-        } else {
-            firstLine = hymn.getFirstStanzaLine();
-        }
-
-        HymnRecord record = new HymnRecord(hymn.getHymnId(), hymn.getGroup(), firstLine, new Date());
 
         // Remove existing record in the log if any (exiting record means record with the same hymnId)
-        logBook.remove(record);
+        HymnRecord record = remove(hymn);
 
         // Add the new record. if there was an existing one, it is removed in the previous line and replace with one having the current time.
         logBook.add(record);
@@ -95,7 +83,18 @@ public class LogBook {
         return logBook.contains(record);
     }
 
-    public void remove(Hymn hymn) {
+    public void removeAndSave(Hymn hymn) {
+        HymnRecord record = remove(hymn);
+        // persist logBook
+        try {
+            InternalStorage.writeObject(context,filename,logBook);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d(this.getClass().getName(),"hymn removed: " +hymn.getHymnId());
+    }
+
+    private HymnRecord remove(Hymn hymn) {
         // *** new Date() initializes a Date object with the current time.
         String firstLine;
 
@@ -111,11 +110,6 @@ public class LogBook {
         // Remove existing record in the log if any (exiting record means record with the same hymnId)
         logBook.remove(record);
 
-        // persist logBook
-        try {
-            InternalStorage.writeObject(context,filename,logBook);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return record;
     }
 }
