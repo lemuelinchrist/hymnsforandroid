@@ -1,5 +1,9 @@
 package com.lemuelinchrist.android.hymns;
 
+import java.lang.reflect.Method;
+import com.lemuelinchrist.android.hymns.search.SearchActivity;
+import com.lemuelinchrist.android.hymns.style.TextSize;
+import com.lemuelinchrist.android.hymns.style.Theme;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -27,11 +31,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.lemuelinchrist.android.hymns.search.SearchActivity;
-import com.lemuelinchrist.android.hymns.style.TextSize;
-import com.lemuelinchrist.android.hymns.style.Theme;
-
-import java.lang.reflect.Method;
 
 
 /**
@@ -362,16 +361,15 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         floatingPlayButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_arrow_white));
     }
 
-    // Hide play button when scrolling to the bottom
+    // Hide play button when scrolling down. show it when on top
     @Override
     public void onScrollChange(final NestedScrollView v, final int scrollX, final int scrollY,
             final int oldScrollX, final int oldScrollY) {
         // We take the last son in the scrollview
         View view = v.getChildAt(v.getChildCount() - 1);
-        int diff = (view.getBottom() - (v.getHeight() + v.getScrollY()));
 
-        // if diff is zero, then the bottom has been reached
-        if (diff == 0) {
+        // if diff is zero, then the top has been reached
+        if (v.getScrollY() != 0) {
             floatingPlayButton.hide();
         } else {
             floatingPlayButton.show();
