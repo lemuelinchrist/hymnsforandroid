@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
 
@@ -8,7 +8,7 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="colorControlNormal">@android:color/white</item>
-
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@android:color/background_dark</item>
     </style>
 
 </resources>

@@ -5,12 +5,9 @@ import android.graphics.drawable.ColorDrawable;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public enum Theme {
 
-    DARK(R.layout.lyric_container_night,  R.string.dayMode) {
+    DARK(R.layout.lyric_container_night,  R.string.dayMode, Color.BLACK) {
         @Override
         public ColorDrawable getActionBarColor(HymnGroup hymnGroup) {
             return new ColorDrawable(Color.parseColor("#000000"));
@@ -21,7 +18,7 @@ public enum Theme {
             return hymnGroup.getNightColor();
         }
     },
-    LIGHT(R.layout.lyric_container, R.string.nightMode) {
+    LIGHT(R.layout.lyric_container, R.string.nightMode, Color.WHITE) {
         @Override
         public ColorDrawable getActionBarColor(HymnGroup hymnGroup) {
             return new ColorDrawable(hymnGroup.getDayColor());
@@ -34,12 +31,14 @@ public enum Theme {
     };
 
     private final int menuDisplayText;
+    private final int navigationBarColor;
     int style;
 
 
-    Theme(Integer style,  int menuDisplayText) {
+    Theme(Integer style,  int menuDisplayText, int navigationBarColor) {
         this.style=style;
         this.menuDisplayText=menuDisplayText;
+        this.navigationBarColor=navigationBarColor;
     }
 
     public int getMenuDisplayText() {
@@ -52,4 +51,8 @@ public enum Theme {
 
     public abstract ColorDrawable getActionBarColor(HymnGroup hymnGroup);
     public abstract int getTextColor(HymnGroup hymnGroup);
+
+    public int getNavigationBarColor() {
+        return 0;
+    }
 }
