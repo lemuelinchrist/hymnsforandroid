@@ -16,7 +16,7 @@ class ProvisionGermanV2 {
     Integer stanzaOrderCounter=0;
     String line
     Iterator<String> iterator
-    Integer hymnNumber = 0;
+    Integer hymnNumber = 1000;
     HymnsEntity hymn=null;
     StanzaEntity stanza=null;
     StringBuilder stanzaBuilder=null
@@ -38,7 +38,8 @@ class ProvisionGermanV2 {
 
 
     void provision() throws Exception {
-        germanFile = new File(this.getClass().getResource("/german/New_German_hymns.txt").getPath());
+//        germanFile = new File(this.getClass().getResource("/german/New_German_hymns.txt").getPath());
+        germanFile = new File(this.getClass().getResource("/german/GermanNewHymn_2019Dec.txt").getPath());
 
         iterator = germanFile.iterator();
 
