@@ -1,7 +1,8 @@
 package com.lemuelinchrist.android.hymns.utils;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by lcantos on 27/4/2017.

@@ -1,24 +1,26 @@
 package com.lemuelinchrist.android.hymns;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Handler;
+import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
-import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusic;
 import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicActivity;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
-import android.util.Log;
-import android.view.ViewGroup;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by lemuel on 26/4/2017.

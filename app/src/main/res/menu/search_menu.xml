@@ -7,7 +7,7 @@
         android:id="@+id/searchHymns"
         android:title="Search"
         indexMenu:showAsAction="always"
-        indexMenu:actionViewClass="android.support.v7.widget.SearchView"
+        indexMenu:actionViewClass="androidx.appcompat.widget.SearchView"
         />
 
 
