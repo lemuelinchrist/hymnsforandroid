@@ -50,9 +50,11 @@ dependencies {
 //    compile 'xyz.danoz:recyclerviewfastscroller:0.1.3'
 }
 
-task cleanSvg << {
-    def destinationPath = "" + project.projectDir + '/src/main/assets/svg'
-    delete(destinationPath);
+task cleanSvg {
+    doLast {
+        def destinationPath = "" + project.projectDir + '/src/main/assets/svg'
+        delete(destinationPath);
+    }
 }
 
 task copySvgFolder(type: Copy, dependsOn: 'cleanSvg') {
