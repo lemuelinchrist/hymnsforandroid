@@ -6,10 +6,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
+import android.webkit.WebView;
 import com.lemuelinchrist.android.hymns.R;
 
 /**
@@ -17,8 +16,7 @@ import com.lemuelinchrist.android.hymns.R;
  */
 
 public class SheetMusicActivity extends AppCompatActivity {
-    private ActionBar actionBar;
-    private WebViewWorkaround webview;
+    private WebView webview;
     private ShareActionProvider shareActionProvider;
     private SheetMusic sheetMusic;
 
@@ -27,18 +25,15 @@ public class SheetMusicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sheet_music_activity);
 
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
         String selectedHymnId = (String) extras.get("selectedHymnId");
         sheetMusic = new SheetMusic(this,selectedHymnId);
 
-        actionBar.setTitle(selectedHymnId);
-
-        webview = (WebViewWorkaround) findViewById(R.id.sheet_music_image);
-        webview.setGestureDetector(new GestureDetector(new CustomeGestureDetector()));
+        webview = findViewById(R.id.sheet_music_image);
         webview.getSettings().setBuiltInZoomControls(true);
         webview.loadUrl("file:///android_asset/svg/" + selectedHymnId + ".svg");
         // zoom out by default
@@ -75,52 +70,5 @@ public class SheetMusicActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void hideActionBar() {
-        // Hide Actionbar
-        actionBar.hide();
-        webview.invalidate();
-    }
-
-    public void showActionBar() {
-        // Show Actionbar
-        actionBar.show();
-        webview.invalidate();
-    }
-
-    private class CustomeGestureDetector extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            super.onSingleTapUp(e);
-            if(actionBar.isShowing()) {
-                hideActionBar();
-            } else {
-                showActionBar();
-            }
-            return false;
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            if (e1 == null || e2 == null) return false;
-            if (e1.getPointerCount() > 1 || e2.getPointerCount() > 1) return false;
-            else {
-                try {
-                    if (e1.getY() - e2.getY() > 20) {
-                        hideActionBar();
-
-                        return false;
-                    } else if (e2.getY() - e1.getY() > 20) {
-                        showActionBar();
-
-                        return false;
-                    }
-                } catch (Exception e) {
-                    webview.invalidate();
-                }
-                return false;
-            }
-        }
     }
 }
