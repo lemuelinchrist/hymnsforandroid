@@ -2,19 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lemuelinchrist.android.hymns">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name">
         <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".HymnsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.lemuelinchrist.android.hymns.HymnsActivity" />
+        </activity>
+        <activity
             android:name=".HymnsActivity"
-            android:label="@string/app_name"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
             android:theme="@style/MyMaterialTheme.Base"
             android:uiOptions="splitActionBarWhenNarrow">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -25,8 +36,8 @@
         <activity
             android:name=".search.SearchActivity"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="stateVisible|adjustResize"
-            android:theme="@style/MyMaterialTheme">
+            android:theme="@style/MyMaterialTheme"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="com.lemuelinchrist.hymns.INDEX" />
 
@@ -39,6 +50,7 @@
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="com.lemuelinchrist.hymns.SHEET_MUSIC" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -46,13 +58,12 @@
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.lemuelinchrist.hymns"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

@@ -31,7 +31,7 @@
             android:icon="@drawable/youtube"
             android:title="@string/search_youtube"/>
     <item
-            android:id="@+id/action_settings"
+            android:id="@+id/action_fave_settings"
             android:orderInCategory="107"
             yourapp:showAsAction="never"
             android:icon="@drawable/baseline_settings_white_48dp"
@@ -49,6 +49,13 @@
             yourapp:showAsAction="never"
             android:icon="@drawable/ic_brightness"
             android:title="Night Mode"/>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="110"
+        yourapp:showAsAction="never"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="Settings"
+        />
 
     <item android:id="@+id/about"
           android:title="@string/about"
