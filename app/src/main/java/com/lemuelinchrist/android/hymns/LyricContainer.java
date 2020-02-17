@@ -3,6 +3,7 @@ package com.lemuelinchrist.android.hymns;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
@@ -57,7 +58,7 @@ public class LyricContainer extends Fragment {
                              Bundle savedInstanceState) {
 
         this.context = getContext();
-        sharedPreferences = context.getSharedPreferences("Hymns", 0);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (theme == null) {
             theme = Theme.valueOf(sharedPreferences.getString("theme", "LIGHT"));

@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -65,7 +66,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
         setContentView(R.layout.main_hymns_activity);
-        sharedPreferences = getSharedPreferences("Hymns", 0);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         theme = Theme.valueOf(sharedPreferences.getString("theme", "LIGHT"));
 
         // Instantiate a ViewPager and a PagerAdapter.
@@ -313,6 +314,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     @Override
     // Get what the user chose from the Index of Hymns and display the Hymn
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == INDEX_REQUEST) {
             if (resultCode == RESULT_OK) {
 
