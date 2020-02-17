@@ -67,7 +67,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
         setContentView(R.layout.main_hymns_activity);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        theme = Theme.valueOf(sharedPreferences.getString("theme", "LIGHT"));
+        theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
 
         // Instantiate a ViewPager and a PagerAdapter.
         hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager),theme);
@@ -167,7 +167,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-        menu.findItem(R.id.action_nightMode).setTitle(theme.getMenuDisplayText());
 
         faveMenuItem = menu.findItem(R.id.action_fave);
         refreshFaveIcon();
@@ -205,9 +204,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             case R.id.action_searchYoutube:
                 hymnBookCollection.launchYouTubeApp();
                 break;
-            case R.id.action_nightMode:
-                toggleNightMode(item);
-                break;
             case R.id.action_fave_settings:
                 favoriteSettings.show(fragmentManager,"settings");
                 break;
@@ -233,43 +229,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         }
     }
 
-    private void toggleNightMode(MenuItem item) {
-        if (item.getTitle().equals(getString(R.string.nightMode))) {
-            this.theme= Theme.DARK;
-        } else {
-            this.theme=Theme.LIGHT;
-        }
-        item.setTitle(theme.getMenuDisplayText());
-        hymnBookCollection.setTheme(this.theme);
-        changeThemeColor();
-
-        // persist choice
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("theme", theme.toString());
-        editor.apply();
-    }
-
-//    private void launchTextSizeSelector() {
-//        // 1. Instantiate an AlertDialog.Builder with its constructor
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        final String[] fontSizes = TextSize.getArrayOfSimpleNames();
-//
-//        // 2. Chain together various setter methods to set the dialog characteristics
-//        builder.setTitle(R.string.choose_font_size)
-//                .setItems(fontSizes, new DialogInterface.OnClickListener() {
-//
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        hymnBookCollection.setLyricFontSize(fontSizes[which]);
-//                    }
-//                });
-//
-//        // 3. Get the AlertDialog from create()
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
-//        return;
-//    }
-
     private void changeThemeColor() {
+        hymnBookCollection.setTheme(theme);
         actionBar.setBackgroundDrawable(theme.getActionBarColor(selectedHymnGroup));
         floatingPlayButton.setBackgroundTintList(ColorStateList.valueOf(theme.getTextColor(selectedHymnGroup)));
     }
@@ -323,6 +284,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                 }
                 break;
             case SETTINGS_REQUEST:
+                changeThemeColor();
                 hymnBookCollection.refresh();
                 break;
         }

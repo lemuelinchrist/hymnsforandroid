@@ -60,7 +60,8 @@ public class LyricContainer extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (theme == null) {
-            theme = Theme.valueOf(sharedPreferences.getString("theme", "LIGHT"));
+
+            theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
         }
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(

@@ -38,12 +38,6 @@
             android:title="@string/settings"
     />
     <item
-            android:id="@+id/action_nightMode"
-            android:orderInCategory="109"
-            yourapp:showAsAction="never"
-            android:icon="@drawable/ic_brightness"
-            android:title="Night Mode"/>
-    <item
         android:id="@+id/action_settings"
         android:orderInCategory="110"
         yourapp:showAsAction="never"

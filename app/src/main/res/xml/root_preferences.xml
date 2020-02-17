@@ -18,11 +18,6 @@
 
     <PreferenceCategory app:title="@string/settings_category">
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
-
         <ListPreference
             app:defaultValue="Medium"
             app:entries="@array/font_size"
@@ -33,8 +28,10 @@
             app:icon="@drawable/fontsize_black"
             />
         <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
+            app:key="nightMode"
+            app:defaultValue="false"
+            app:title="@string/nightMode"
+            app:icon ="@drawable/ic_brightness"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

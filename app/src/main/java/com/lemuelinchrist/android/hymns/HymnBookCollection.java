@@ -51,12 +51,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     }
 
     public void setTheme(Theme theme) {
-        if (this.theme==theme) {
-            return;
-        } else {
-            this.theme=theme;
-            refresh();
-        }
+        this.theme = theme;
     }
 
     public void refresh() {

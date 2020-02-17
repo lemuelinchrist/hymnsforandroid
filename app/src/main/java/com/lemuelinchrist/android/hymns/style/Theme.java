@@ -2,6 +2,7 @@ package com.lemuelinchrist.android.hymns.style;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 
@@ -39,6 +40,14 @@ public enum Theme {
         this.style=style;
         this.menuDisplayText=menuDisplayText;
         this.navigationBarColor=navigationBarColor;
+    }
+
+    public static Theme isNightModePreferred(boolean nightModePreferred) {
+        if(nightModePreferred) {
+            return DARK;
+        } else {
+            return LIGHT;
+        }
     }
 
     public int getMenuDisplayText() {
