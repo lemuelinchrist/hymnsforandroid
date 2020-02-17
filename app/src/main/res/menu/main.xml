@@ -38,12 +38,6 @@
             android:title="@string/settings"
     />
     <item
-            android:id="@+id/action_fontsize"
-            android:orderInCategory="108"
-            yourapp:showAsAction="never"
-            android:icon="@drawable/fontsize_black"
-            android:title="Font Size"/>
-    <item
             android:id="@+id/action_nightMode"
             android:orderInCategory="109"
             yourapp:showAsAction="never"

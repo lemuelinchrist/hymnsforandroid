@@ -31,7 +31,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
-import com.lemuelinchrist.android.hymns.style.TextSize;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
 import java.lang.reflect.Method;
@@ -42,7 +41,8 @@ import java.lang.reflect.Method;
  */
 public class HymnsActivity extends AppCompatActivity implements MusicPlayerListener, OnLyricVisibleListener,
         NestedScrollView.OnScrollChangeListener {
-    protected final int INDEX_REQUEST = 1;
+    protected final int SEARCH_REQUEST = 1;
+    protected final int SETTINGS_REQUEST = 2;
     protected HymnGroup selectedHymnGroup = HymnGroup.E;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
@@ -191,7 +191,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             case R.id.action_index:
                 Intent intent = new Intent(getBaseContext(), SearchActivity.class);
                 intent.putExtra("selectedHymnGroup", selectedHymnGroup);
-                startActivityForResult(intent, INDEX_REQUEST);
+                startActivityForResult(intent, SEARCH_REQUEST);
                 ret = true;
                 break;
 
@@ -199,11 +199,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                 hymnBookCollection.toggleFave();
                 refreshFaveIcon();
                 break;
-
-            case R.id.action_fontsize:
-                launchTextSizeSelector();
-                break;
-
             case R.id.action_sheetmusic:
                 hymnBookCollection.launchSheetMusic();
                 break;
@@ -218,7 +213,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                 break;
             case R.id.action_settings:
                 Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
-                startActivity(settingsIntent);
+                startActivityForResult(settingsIntent,SETTINGS_REQUEST);
                 break;
             default:
                 ret = false;
@@ -254,25 +249,25 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         editor.apply();
     }
 
-    private void launchTextSizeSelector() {
-        // 1. Instantiate an AlertDialog.Builder with its constructor
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        final String[] fontSizes = TextSize.getArrayOfSimpleNames();
-
-        // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setTitle(R.string.choose_font_size)
-                .setItems(fontSizes, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int which) {
-                        hymnBookCollection.setLyricFontSize(fontSizes[which]);
-                    }
-                });
-
-        // 3. Get the AlertDialog from create()
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        return;
-    }
+//    private void launchTextSizeSelector() {
+//        // 1. Instantiate an AlertDialog.Builder with its constructor
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        final String[] fontSizes = TextSize.getArrayOfSimpleNames();
+//
+//        // 2. Chain together various setter methods to set the dialog characteristics
+//        builder.setTitle(R.string.choose_font_size)
+//                .setItems(fontSizes, new DialogInterface.OnClickListener() {
+//
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        hymnBookCollection.setLyricFontSize(fontSizes[which]);
+//                    }
+//                });
+//
+//        // 3. Get the AlertDialog from create()
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
+//        return;
+//    }
 
     private void changeThemeColor() {
         actionBar.setBackgroundDrawable(theme.getActionBarColor(selectedHymnGroup));
@@ -315,18 +310,23 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     // Get what the user chose from the Index of Hymns and display the Hymn
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == INDEX_REQUEST) {
-            if (resultCode == RESULT_OK) {
-
-                try {
-                    String rawData = data.getDataString().trim();
-                    selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
-                    hymnBookCollection.switchToHymn(rawData, true);
-                } catch (NoSuchHymnGroupException e) {
-                    e.printStackTrace();
+        switch (requestCode) {
+            case SEARCH_REQUEST:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        String rawData = data.getDataString().trim();
+                        selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
+                        hymnBookCollection.switchToHymn(rawData, true);
+                    } catch (NoSuchHymnGroupException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
+                break;
+            case SETTINGS_REQUEST:
+                hymnBookCollection.refresh();
+                break;
         }
+
     }
 
     @Override

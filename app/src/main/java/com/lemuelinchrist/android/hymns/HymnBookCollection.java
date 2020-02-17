@@ -59,7 +59,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         }
     }
 
-    private void refresh() {
+    public void refresh() {
         if(getCurrentHymnId()==null) return;
         String currentHymnId = (getCurrentHymnId()==null)?"E1":getCurrentHymnId();
         hymnBooks = new HashMap<>();

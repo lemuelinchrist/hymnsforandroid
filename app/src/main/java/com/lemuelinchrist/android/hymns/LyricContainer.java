@@ -21,7 +21,6 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
-import com.lemuelinchrist.android.hymns.style.TextSize;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
 
@@ -71,7 +70,7 @@ public class LyricContainer extends Fragment {
             hymnsDao = new HymnsDao(context);
         }
         Log.d(this.getClass().getSimpleName(), "entering initialization of new LyricContainer!");
-        fontSize = sharedPreferences.getFloat("fontSize", TextSize.MEDIUM.getValue());
+        fontSize = Float.parseFloat(sharedPreferences.getString("sizeFont", "18f"));
         lyricHeader = rootView.findViewById(context.getResources().getIdentifier("lyricHeader", "id", context
                 .getPackageName()));
         lyricsView = rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
@@ -298,7 +297,7 @@ public class LyricContainer extends Fragment {
 
     public void setLyricFontSize(String size) {
 
-        setLyricFontSize(TextSize.get(size).getValue());
+        setLyricFontSize(Float.parseFloat(size));
     }
 
     private void setLyricFontSize(float size) {
