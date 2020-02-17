@@ -23,7 +23,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -53,9 +52,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     private boolean isMusicPlaying = false;
     private boolean preferenceChanged = true;
-
-    private FragmentManager fragmentManager;
-    private FavoriteSettingsDialog favoriteSettings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,10 +113,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        // Favorite Settings
-        fragmentManager = getSupportFragmentManager();
-        favoriteSettings = new FavoriteSettingsDialog();
     }
 
     // Warning! this method is very crucial. Without it you will not have a hamburger icon on your
@@ -275,6 +267,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
 
             actionBar.setTitle(hymnId);
+            changeThemeColor();
             refreshFaveIcon();
 
             Log.d(getClass().getSimpleName(), "Done painting title");
