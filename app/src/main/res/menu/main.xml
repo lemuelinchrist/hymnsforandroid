@@ -45,11 +45,4 @@
         android:title="Settings"
         />
 
-    <item android:id="@+id/about"
-          android:title="@string/about"
-          android:orderInCategory="1002"
-          android:icon="@drawable/ic_info"
-          yourapp:showAsAction="never"/>
-
-
 </menu>

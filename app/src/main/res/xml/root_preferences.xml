@@ -32,6 +32,11 @@
             app:defaultValue="false"
             app:title="@string/nightMode"
             app:icon ="@drawable/ic_brightness"/>
+        <Preference
+            app:key="about"
+            app:title="About Hymns"
+            app:summary="See version or send feedback"
+            app:icon="@drawable/ic_info"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

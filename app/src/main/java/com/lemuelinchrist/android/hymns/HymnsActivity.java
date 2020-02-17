@@ -1,11 +1,9 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -184,9 +181,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             case android.R.id.home:
                 toggleDrawer();
                 break;
-            case R.id.about:
-                showDialog(0);
-                break;
             case R.id.action_index:
                 Intent intent = new Intent(getBaseContext(), SearchActivity.class);
                 intent.putExtra("selectedHymnGroup", selectedHymnGroup);
@@ -245,29 +239,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         }
     }
 
-    @Override
-    // *********** Display About Dialog
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case 0:
-                Dialog aboutDialog = new Dialog(this);
-                aboutDialog.setTitle("About");
 
-                // Dynamically set the version number
-                try {
-                    String version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-                    aboutDialog.setContentView(R.layout.about);
-                    TextView hymnVersion = (TextView) aboutDialog.findViewById(R.id.hymnVersiontextView);
-                    hymnVersion.setText(version);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-                return aboutDialog;
-
-        }
-        return null;
-    }
 
     @Override
     // Get what the user chose from the Index of Hymns and display the Hymn

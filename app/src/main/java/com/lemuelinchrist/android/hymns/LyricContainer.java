@@ -140,8 +140,6 @@ public class LyricContainer extends Fragment {
         Log.d(this.getClass().getSimpleName(), "onResume called on LyricContainer with hymn: " + hymn);
         super.onResume();
         if (getUserVisibleHint()) onLyricVisible();
-
-
     }
 
     public void setContext(Context context) {
@@ -392,7 +390,6 @@ public class LyricContainer extends Fragment {
             if (parentHymn.hasOwnSheetMusic()) {
                 return parentHymn.getHymnId();
             }
-
         }
         return null;
     }
