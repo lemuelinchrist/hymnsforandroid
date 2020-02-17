@@ -198,9 +198,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             case R.id.action_searchYoutube:
                 hymnBookCollection.launchYouTubeApp();
                 break;
-            case R.id.action_fave_settings:
-                favoriteSettings.show(fragmentManager,"settings");
-                break;
             case R.id.action_settings:
                 Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
                 startActivity(settingsIntent);

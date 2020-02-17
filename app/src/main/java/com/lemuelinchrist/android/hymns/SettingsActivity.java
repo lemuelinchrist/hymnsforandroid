@@ -44,6 +44,15 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 }
             });
+            Preference favePreference = findPreference("manageFaves");
+            favePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    DialogFragment favoriteSettingsDialog = new FavoriteSettingsDialog();
+                    favoriteSettingsDialog.show(getFragmentManager(),"manageFaves");
+                    return true;
+                }
+            });
         }
 
         public static class AboutDialog extends DialogFragment {
@@ -51,7 +60,6 @@ public class SettingsActivity extends AppCompatActivity {
             public Dialog onCreateDialog(Bundle savedInstanceState) {
                 FragmentActivity activity = getActivity();
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setTitle("About");
                 // Dynamically set the version number
                 try {
                     String version = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;

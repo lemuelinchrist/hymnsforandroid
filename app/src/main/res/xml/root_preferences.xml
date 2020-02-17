@@ -16,7 +16,7 @@
 
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/settings_category">
+    <PreferenceCategory>
 
         <ListPreference
             app:defaultValue="Medium"
@@ -32,6 +32,12 @@
             app:defaultValue="false"
             app:title="@string/nightMode"
             app:icon ="@drawable/ic_brightness"/>
+        <Preference
+            app:key="manageFaves"
+            app:title="Import/Export Faves"
+            app:icon="@drawable/ic_favorite_black_24dp"
+            app:summary="Make sure to regularly backup your faves"
+            />
         <Preference
             app:key="about"
             app:title="About Hymns"
