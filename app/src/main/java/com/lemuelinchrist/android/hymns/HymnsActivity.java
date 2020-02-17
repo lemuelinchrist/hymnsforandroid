@@ -40,9 +40,8 @@ import java.lang.reflect.Method;
  * Created by lemuelcantos on 17/7/13.
  */
 public class HymnsActivity extends AppCompatActivity implements MusicPlayerListener, OnLyricVisibleListener,
-        NestedScrollView.OnScrollChangeListener {
+        NestedScrollView.OnScrollChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
     protected final int SEARCH_REQUEST = 1;
-    protected final int SETTINGS_REQUEST = 2;
     protected HymnGroup selectedHymnGroup = HymnGroup.E;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
@@ -56,6 +55,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private FloatingActionButton floatingPlayButton;
 
     private boolean isMusicPlaying = false;
+    private boolean preferenceChanged = true;
+
     private FragmentManager fragmentManager;
     private FavoriteSettingsDialog favoriteSettings;
 
@@ -67,7 +68,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
         setContentView(R.layout.main_hymns_activity);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         // Instantiate a ViewPager and a PagerAdapter.
         hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager),theme);
@@ -89,7 +90,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                 }
             }
         });
-        changeThemeColor();
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mDrawerList = findViewById(R.id.left_drawer);
@@ -209,7 +209,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                 break;
             case R.id.action_settings:
                 Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
-                startActivityForResult(settingsIntent,SETTINGS_REQUEST);
+                startActivity(settingsIntent);
                 break;
             default:
                 ret = false;
@@ -230,6 +230,8 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     }
 
     private void changeThemeColor() {
+        theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
+        Log.i(getClass().getSimpleName(), "changeTheme: " + theme.name());
         hymnBookCollection.setTheme(theme);
         actionBar.setBackgroundDrawable(theme.getActionBarColor(selectedHymnGroup));
         floatingPlayButton.setBackgroundTintList(ColorStateList.valueOf(theme.getTextColor(selectedHymnGroup)));
@@ -283,10 +285,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                     }
                 }
                 break;
-            case SETTINGS_REQUEST:
-                changeThemeColor();
-                hymnBookCollection.refresh();
-                break;
         }
 
     }
@@ -308,7 +306,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             Log.i(getClass().getSimpleName(), "Page changed. setting title to: " + hymnId);
 
             actionBar.setTitle(hymnId);
-            changeThemeColor();
             refreshFaveIcon();
 
             Log.d(getClass().getSimpleName(), "Done painting title");
@@ -364,6 +361,21 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             }
         }
         return super.onPrepareOptionsPanel(view, menu);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        preferenceChanged=true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(preferenceChanged) {
+            changeThemeColor();
+            hymnBookCollection.refresh();
+            preferenceChanged=false;
+        }
     }
 }
 
