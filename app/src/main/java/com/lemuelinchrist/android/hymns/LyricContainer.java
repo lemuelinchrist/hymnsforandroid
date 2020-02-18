@@ -71,7 +71,7 @@ public class LyricContainer extends Fragment {
             hymnsDao = new HymnsDao(context);
         }
         Log.d(this.getClass().getSimpleName(), "entering initialization of new LyricContainer!");
-        fontSize = Float.parseFloat(sharedPreferences.getString("sizeFont", "18f"));
+        fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
         lyricHeader = rootView.findViewById(context.getResources().getIdentifier("lyricHeader", "id", context
                 .getPackageName()));
         lyricsView = rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+    <style name="SearchTheme" parent="MyMaterialTheme.Base">
 
     </style>
 
@@ -18,6 +18,6 @@
         </item>
     </style>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light" />
+    <style name="SettingsTheme" parent="Theme.MaterialComponents.Light.DarkActionBar" />
 
 </resources>

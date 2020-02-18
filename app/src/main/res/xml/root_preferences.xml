@@ -19,10 +19,10 @@
     <PreferenceCategory>
 
         <ListPreference
-            app:defaultValue="Medium"
+            app:defaultValue="18f"
             app:entries="@array/font_size"
             app:entryValues="@array/font_size_values"
-            app:key="sizeFont"
+            app:key="FontSize"
             app:title="@string/choose_font_size"
             app:useSimpleSummaryProvider="true"
             app:icon="@drawable/fontsize_black"

@@ -12,7 +12,7 @@
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".HymnsActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/SettingsTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.lemuelinchrist.android.hymns.HymnsActivity" />
@@ -36,7 +36,7 @@
         <activity
             android:name=".search.SearchActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/MyMaterialTheme"
+            android:theme="@style/SearchTheme"
             android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="com.lemuelinchrist.hymns.INDEX" />
