@@ -2,12 +2,12 @@ package com.lemuelinchrist.hymns.lib;
 
 import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 import com.lemuelinchrist.hymns.lib.beans.StanzaEntity;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javax.net.ssl.*;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -17,12 +17,6 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.X509TrustManager;
 
 /**
  * Created by lemuelcantos on 6/8/13.
@@ -244,9 +238,14 @@ public class HymnalNetExtractor {
                 }
                 String text;
                 if(stanza.select("td").size()!=2){
-                    text=formatBreaks(stanza.select(".note").get(0).text());
-                    stanzaEntity.setText(text);
-                    stanzaEntity.setNo("end-note");
+                    try {
+                        text = formatBreaks(stanza.select(".note").get(0).text());
+                        stanzaEntity.setText(text);
+                        stanzaEntity.setNo("end-note");
+                    } catch (Exception e) {
+                        System.out.println("there was supposed to be an end-note but it's not there?");
+                        continue;
+                    }
 
                 } else {
                      text = formatBreaks(stanza.select("td").get(1).html());
