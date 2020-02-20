@@ -15,7 +15,7 @@
             android:textColor="#4e4e4e"
             android:layout_weight="1"
             android:scrollHorizontally="false"
-            android:layout_gravity="left|center_vertical"
+            android:layout_gravity="fill_horizontal|center_vertical"
             android:textIsSelectable="true"
     />
     <TextView
@@ -29,7 +29,7 @@
             android:textColor="#4e4e4e"
             android:layout_weight="1"
             android:scrollHorizontally="false"
-            android:layout_gravity="left|center_vertical"
+            android:layout_gravity="fill_horizontal|center_vertical"
             android:textIsSelectable="true"
     />
 

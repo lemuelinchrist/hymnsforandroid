@@ -264,6 +264,12 @@ public class LyricContainer extends Fragment {
                 }
             }
 
+            // remove unused textview if uneven
+            // if column is odd
+            if (columnNo % 2 != 0) {
+                currentTextLinearLayout.removeViewAt(1);
+            }
+
             // #################### Build Footer
             text= new StringBuilder();
             text.append("Author: " + hymn.getAuthor() + "<br/>");
@@ -294,7 +300,7 @@ public class LyricContainer extends Fragment {
         CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
 
         TextView view;
-        // if column is even
+        // if column is odd
         if (++columnNo % 2 != 0) {
             currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
             stanzaView.addView(currentTextLinearLayout);
