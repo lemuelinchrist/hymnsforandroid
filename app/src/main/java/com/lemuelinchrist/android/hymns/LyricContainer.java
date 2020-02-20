@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
@@ -37,7 +38,6 @@ public class LyricContainer extends Fragment {
 
     private TextView lyricHeader;
     private TextView composerView;
-    private TextView lyricsViewPlaceholder;
     private ViewGroup stanzaView;
 
     private Context context;
@@ -54,6 +54,8 @@ public class LyricContainer extends Fragment {
     private Theme theme;
     private NestedScrollView.OnScrollChangeListener onScrollChangeListener;
     private HymnStack hymnStack;
+    private int columnNo=0;
+    private LinearLayout currentTextLinearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,9 +81,8 @@ public class LyricContainer extends Fragment {
                 .getPackageName()));
 
         // remove placeholder because it only contains dummy lyrics
-        lyricsViewPlaceholder = rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
-        stanzaView = (ViewGroup) lyricsViewPlaceholder.getParent();
-        stanzaView.removeView(lyricsViewPlaceholder);
+        stanzaView = rootView.findViewById(context.getResources().getIdentifier("stanzaView", "id", context.getPackageName()));
+        stanzaView.removeView(stanzaView.getChildAt(0));
 
         composerView = rootView.findViewById(context.getResources().getIdentifier("composer", "id", context.getPackageName()));
 
@@ -223,7 +224,6 @@ public class LyricContainer extends Fragment {
                 text.append("Related: ");
                 StringBuilder relatedConcat = new StringBuilder();
                 for (String r : related) {
-//                    if (r.charAt(0) == 'T') continue;
                     relatedConcat.append(", ");
                     relatedConcat.append(r);
                 }
@@ -293,9 +293,20 @@ public class LyricContainer extends Fragment {
         // add colors to text
         CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
 
-        TextView view = (TextView) LayoutInflater.from(context).inflate(R.layout.lyric_text_view, null);
+        TextView view;
+        // if column is even
+        if (++columnNo % 2 != 0) {
+            currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
+            stanzaView.addView(currentTextLinearLayout);
+            // left column on landscape mode
+            view = (TextView) currentTextLinearLayout.getChildAt(0);
+        } else {
+            // right column on landscape mode
+            view = (TextView) currentTextLinearLayout.getChildAt(1);
+        }
         view.setText(formattedLyrics);
-        stanzaView.addView(view);
+        view.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+
     }
 
     public void stopPlaying() {
@@ -322,9 +333,8 @@ public class LyricContainer extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putFloat("fontSize", size);
         editor.commit();
-        if (lyricHeader != null && lyricsViewPlaceholder != null) {
+        if (lyricHeader != null && composerView!=null) {
             lyricHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
-            lyricsViewPlaceholder.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
             composerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         }
     }
