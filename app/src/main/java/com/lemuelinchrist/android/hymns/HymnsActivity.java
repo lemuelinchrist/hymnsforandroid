@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +23,6 @@ import androidx.core.view.GravityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.style.Theme;
@@ -240,7 +238,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
                     try {
                         String rawData = data.getDataString().trim();
                         selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
-                        hymnBookCollection.switchToHymn(rawData, true);
+                        hymnBookCollection.switchToHymnAndRememberChoice(rawData);
                     } catch (NoSuchHymnGroupException e) {
                         e.printStackTrace();
                     }

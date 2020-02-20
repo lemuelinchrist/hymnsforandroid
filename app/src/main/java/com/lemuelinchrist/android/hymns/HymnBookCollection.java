@@ -6,13 +6,11 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusic;
 import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicActivity;
@@ -115,11 +113,12 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         return currentHymnBookGroup.getLyricContainer(lyricPager.getCurrentItem());
     }
 
-    public void switchToHymn(String hymnId) {
-        switchToHymn(hymnId, false);
+    public void switchToHymnAndRememberChoice(String hymnNo) {
+        hymnStack.push(hymnNo);  // log the hymn first before logging the translated one.
+        switchToHymn(hymnNo);
     }
 
-    public void switchToHymn(String hymnId, final boolean log) {
+    public void switchToHymn(String hymnId) {
 
         if (hymnId.equals(getCurrentHymnId())) return;
 
@@ -170,8 +169,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         if (related == null) {
             switchToHymn(selectedHymnGroup + "1");
         } else {
-            log();  // log the hymn first before logging the translated one.
-            switchToHymn(related, true);
+            switchToHymnAndRememberChoice(related);
         }
 
     }
@@ -212,9 +210,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         }
     }
 
-    public void log() {
+    public void logToHistory() {
         getCurrentHymnLyric().log();
-        hymnStack.push(getCurrentHymnId());
     }
 
     @Override
@@ -224,7 +221,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         if(getCurrentHymnLyric()==null) {
             Log.e(getClass().getName(), "Error trying to get current hymn lyric. is null.");
         } else {
-            log();
+            logToHistory();
         }
     }
 
@@ -235,9 +232,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             if (poppedHymn != null) switchToHymn(poppedHymn);
 
         }
-
     }
-
 
     private class HymnBookGroup extends FragmentStatePagerAdapter {
 
@@ -263,6 +258,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
             LyricContainer lyric = LyricContainer.newInstance(context, context, theme);
+            lyric.setHymnStack(hymnStack);
             lyric.addLyricVisibleListener(context);
             lyric.addLyricVisibleListener(HymnBookCollection.this);
             lyric.setOnScrollChangeListener(onScrollChangeListener);

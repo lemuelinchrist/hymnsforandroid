@@ -47,5 +47,7 @@ public class HymnStack {
 
     }
 
-
+    public boolean contains(String hymnId) {
+        return stack.contains(hymnId);
+    }
 }

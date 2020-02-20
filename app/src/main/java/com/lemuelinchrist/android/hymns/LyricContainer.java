@@ -12,16 +12,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
-
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.utils.HymnStack;
 import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
 
 import java.util.HashSet;
@@ -53,6 +52,7 @@ public class LyricContainer extends Fragment {
     private HashSet<OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
     private Theme theme;
     private NestedScrollView.OnScrollChangeListener onScrollChangeListener;
+    private HymnStack hymnStack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -376,7 +376,8 @@ public class LyricContainer extends Fragment {
     }
 
     public void log() {
-        historyLogBook.log(hymn);
+        if(hymnStack.contains(hymn.getHymnId()))
+            historyLogBook.log(hymn);
     }
 
     @Override
@@ -407,5 +408,9 @@ public class LyricContainer extends Fragment {
 
     public void setOnScrollChangeListener(final NestedScrollView.OnScrollChangeListener onScrollChangeListener) {
         this.onScrollChangeListener = onScrollChangeListener;
+    }
+
+    public void setHymnStack(HymnStack hymnStack) {
+        this.hymnStack=hymnStack;
     }
 }
