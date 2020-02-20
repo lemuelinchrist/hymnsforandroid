@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * Created by lemuelcantos on 27/7/13.
  * <p/>
- * This Custom view takes care of displaying lyrings and playing songs of that lyric.
+ * This Custom view takes care of displaying lyrics and playing songs of that lyric.
  */
 public class LyricContainer extends Fragment {
     public static final String HISTORY_LOGBOOK_FILE="logBook";
@@ -37,7 +37,8 @@ public class LyricContainer extends Fragment {
 
     private TextView lyricHeader;
     private TextView composerView;
-    private TextView lyricsView;
+    private TextView lyricsViewPlaceholder;
+    private ViewGroup stanzaView;
 
     private Context context;
     private Hymn hymn;
@@ -76,7 +77,12 @@ public class LyricContainer extends Fragment {
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
         lyricHeader = rootView.findViewById(context.getResources().getIdentifier("lyricHeader", "id", context
                 .getPackageName()));
-        lyricsView = rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
+
+        // remove placeholder because it only contains dummy lyrics
+        lyricsViewPlaceholder = rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
+        stanzaView = (ViewGroup) lyricsViewPlaceholder.getParent();
+        stanzaView.removeView(lyricsViewPlaceholder);
+
         composerView = rootView.findViewById(context.getResources().getIdentifier("composer", "id", context.getPackageName()));
 
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
@@ -182,6 +188,7 @@ public class LyricContainer extends Fragment {
             //if hymn is still null, it means the user entered a hymn number that doesn't exist
             if (hymn == null) return null;
 
+            // ########################### Build Header
             StringBuilder text = new StringBuilder();
             text.append("<br/><b>" + selectedHymnGroup + hymn.getNo());
             if (hymn.isNewTune()) text.append(" (New Tune)");
@@ -210,6 +217,7 @@ public class LyricContainer extends Fragment {
                 text.append(hymn.getVerse() + "<br/>");
             }
 
+            // ** build related
             List<String> related = hymn.getRelated();
             if (related != null && related.size() != 0) {
                 text.append("Related: ");
@@ -225,48 +233,42 @@ public class LyricContainer extends Fragment {
 
                 text.append("<br/>");
             }
-
-            // R.id.lyricHeader
-
             lyricHeader.setText(Html.fromHtml(text.toString()));
 
+            // ######################## Build Lyric Text
 
-            text = new StringBuilder();
             String chorusText = "";
             for (Stanza stanza : hymn.getStanzas()) {
+                text = new StringBuilder();
                 Log.d(this.getClass().getSimpleName(), "Looping stanza: " + stanza.getNo());
                 if (stanza.getNo().equals("chorus")) {
-                    text.append("<b>##" + stanza.getNo() + "##</b><br/>");
+//                    text.append("<b>##" + stanza.getNo() + "##</b><br/>");
                     if (stanza.getNote() != null)
-                        text.append("<i>@@(" + stanza.getNote() + ")@@</i><br/>");
-                    chorusText = "<i>@@" + stanza.getText() + "@@</i><br/>";
+                        text.append("<i>@@(" + stanza.getNote() + ")@@</i>");
+                    chorusText = "<i>@@" + stanza.getText() + "@@</i>";
                     text.append(chorusText);
+                    buildLyricViewAndAttach(text, selectedHymnGroup);
                 } else if (stanza.getNo().equals("end-note") || stanza.getNo().equals("beginning-note") ||
                         stanza.getNo().equals("note")) {
-                    text.append("<i>" + stanza.getText() + "</i><br/>");
-
+                    text.append("<i>" + stanza.getText() + "</i>");
+                    buildLyricViewAndAttach(text, selectedHymnGroup);
                 } else {
                     // append stanza
                     text.append("<b>##" + stanza.getNo() + "##</b><br/>");
-                    text.append(stanza.getText() + "<br/>");
+                    text.append(stanza.getText());
+                    buildLyricViewAndAttach(text, selectedHymnGroup);
 
                     // append chorus after every stanza
-                    if (hymn.getChorusCount() == 1) text.append(chorusText);
+                    if (hymn.getChorusCount() == 1 && !chorusText.isEmpty())
+                        buildLyricViewAndAttach(new StringBuilder(chorusText), selectedHymnGroup);
                 }
             }
 
-            Log.i(this.getClass().getSimpleName(), text.toString());
-
-            // add colors to text
-            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
-
-            lyricsView.setText(formattedLyrics);
-
-
+            // #################### Build Footer
             text= new StringBuilder();
             text.append("Author: " + hymn.getAuthor() + "<br/>");
             text.append("Composer: " + hymn.getComposer());
-            formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
+            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
             composerView.setText(formattedLyrics);
 
             setLyricFontSize(fontSize);
@@ -285,6 +287,17 @@ public class LyricContainer extends Fragment {
         return hymn;
     }
 
+    private void buildLyricViewAndAttach(StringBuilder text, String selectedHymnGroup) {
+        Log.i(this.getClass().getSimpleName(), text.toString());
+
+        // add colors to text
+        CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
+
+        TextView view = (TextView) LayoutInflater.from(context).inflate(R.layout.lyric_text_view, null);
+        view.setText(formattedLyrics);
+        stanzaView.addView(view);
+    }
+
     public void stopPlaying() {
         if (hymn != null) {
             hymn.stopHymn();
@@ -298,12 +311,9 @@ public class LyricContainer extends Fragment {
             hymn.playHymn();
             musicPlayerListener.onMusicStarted();
         }
-
-
     }
 
     public void setLyricFontSize(String size) {
-
         setLyricFontSize(Float.parseFloat(size));
     }
 
@@ -312,9 +322,9 @@ public class LyricContainer extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putFloat("fontSize", size);
         editor.commit();
-        if (lyricHeader != null && lyricsView != null) {
+        if (lyricHeader != null && lyricsViewPlaceholder != null) {
             lyricHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
-            lyricsView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+            lyricsViewPlaceholder.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
             composerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         }
     }
