@@ -42,6 +42,19 @@
                     android:background="#000000"
                     android:textIsSelectable="true"/>
 
+            <TextView
+                    android:id="@+id/composer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="#000000"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#cccccc"
+                    android:textIsSelectable="true"/>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

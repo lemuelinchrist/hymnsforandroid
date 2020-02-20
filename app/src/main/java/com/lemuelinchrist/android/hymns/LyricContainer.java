@@ -37,10 +37,12 @@ public class LyricContainer extends Fragment {
     public static final String FAVE_LOG_BOOK_FILE = "faveLogBook";
 
     private TextView lyricHeader;
+    private TextView composerView;
+    private TextView lyricsView;
+
     private Context context;
     private Hymn hymn;
     private static HymnsDao hymnsDao = null;
-    private TextView lyricsView;
     private static float fontSize;
     private SharedPreferences sharedPreferences;
     private MusicPlayerListener musicPlayerListener;
@@ -75,6 +77,7 @@ public class LyricContainer extends Fragment {
         lyricHeader = rootView.findViewById(context.getResources().getIdentifier("lyricHeader", "id", context
                 .getPackageName()));
         lyricsView = rootView.findViewById(context.getResources().getIdentifier("jellybeanLyrics", "id", context.getPackageName()));
+        composerView = rootView.findViewById(context.getResources().getIdentifier("composer", "id", context.getPackageName()));
 
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
         NestedScrollView scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
@@ -251,17 +254,20 @@ public class LyricContainer extends Fragment {
                     if (hymn.getChorusCount() == 1) text.append(chorusText);
                 }
             }
-            text.append("<br/>Author: " + hymn.getAuthor() + "<br/>");
-            text.append("Composer: " + hymn.getComposer());
 
             Log.i(this.getClass().getSimpleName(), text.toString());
-
 
             // add colors to text
             CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
 
-
             lyricsView.setText(formattedLyrics);
+
+
+            text= new StringBuilder();
+            text.append("Author: " + hymn.getAuthor() + "<br/>");
+            text.append("Composer: " + hymn.getComposer());
+            formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
+            composerView.setText(formattedLyrics);
 
             setLyricFontSize(fontSize);
 
@@ -309,6 +315,7 @@ public class LyricContainer extends Fragment {
         if (lyricHeader != null && lyricsView != null) {
             lyricHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
             lyricsView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+            composerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         }
     }
 
