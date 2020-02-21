@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -336,6 +337,13 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             hymnBookCollection.refresh();
             preferenceChanged=false;
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // refresh screen when screen orientation changes
+        hymnBookCollection.refresh();
     }
 }
 

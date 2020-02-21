@@ -149,7 +149,9 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                Log.d(getClass().getName(), "position of hymn no: " + currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber));
+                Log.i(getClass().getName(), "Hymn group switch should have been completed by now. \n" +
+                        "position of hymn no: " + currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber) +
+                        "\n attempting to switch to hymn number: " + selectedHymnNumber);
                 lyricPager.setCurrentItem(currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber));
                 try {
                     context.onLyricVisible(getCurrentHymnId());
