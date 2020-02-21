@@ -106,8 +106,6 @@ public class LyricContainer extends Fragment {
         if (hymnId != null) {
             displayLyrics(hymnId);
         }
-
-//        rootView.setVisibility(View.GONE);
         return rootView;
     }
 
@@ -118,7 +116,6 @@ public class LyricContainer extends Fragment {
         lyric.setMusicPlayerListener(musicPlayerListener);
         lyric.setTheme(theme);
         return lyric;
-
     }
 
     public void addLyricVisibleListener(OnLyricVisibleListener lyricVisibleListener) {
@@ -135,7 +132,6 @@ public class LyricContainer extends Fragment {
         if (!isVisibleToUser) {
             stopPlaying();
         }
-
     }
 
     private void onLyricVisible() {

@@ -278,6 +278,7 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
 
     }
 
+
     @Override
     public void onMusicStarted() {
         isMusicPlaying=true;
