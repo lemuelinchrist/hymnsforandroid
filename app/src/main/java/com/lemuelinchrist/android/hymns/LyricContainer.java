@@ -58,6 +58,7 @@ public class LyricContainer extends Fragment {
     private PlayButton playButton;
     private SheetMusicButton sheetMusicButton;
     private FaveButton faveButton;
+    private CopyButton copyButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,6 +114,8 @@ public class LyricContainer extends Fragment {
                 (ImageButton)rootView.findViewById(getRid("sheetMusicButton")));
         faveButton = new FaveButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("faveButton")));
+        copyButton = new CopyButton(hymn,this,
+                (ImageButton)rootView.findViewById(getRid("copyButton")));
 
         return rootView;
     }
@@ -343,7 +346,6 @@ public class LyricContainer extends Fragment {
             YouTubeLauncher launcher = new YouTubeLauncher(context);
             launcher.launch(hymn);
         }
-
     }
 
     public HymnGroup getHymnGroup() {

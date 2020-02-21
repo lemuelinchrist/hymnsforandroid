@@ -6,15 +6,15 @@
     <item
             android:id="@+id/action_index"
             android:orderInCategory="100"
-            yourapp:showAsAction="ifRoom"
+            yourapp:showAsAction="always"
             android:icon="@drawable/ic_search_white"
             android:title="Index"/>
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="110"
-        yourapp:showAsAction="never"
-        android:icon="@drawable/baseline_settings_white_48dp"
+        yourapp:showAsAction="always"
+        android:icon="@drawable/ic_settings_white_48dp"
         android:title="Settings"
         />
 
