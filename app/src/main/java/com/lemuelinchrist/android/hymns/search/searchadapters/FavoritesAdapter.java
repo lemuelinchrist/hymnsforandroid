@@ -1,7 +1,7 @@
 package com.lemuelinchrist.android.hymns.search.searchadapters;
 
 import android.content.Context;
-import com.lemuelinchrist.android.hymns.LyricContainer;
+import com.lemuelinchrist.android.hymns.FaveButton;
 import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.search.IndexViewHolder;
@@ -16,7 +16,7 @@ public class FavoritesAdapter extends SearchAdapter {
 
     public FavoritesAdapter(Context context, int layout) {
         super(context, layout);
-        faveLogBookList = new LogBook(context, LyricContainer.FAVE_LOG_BOOK_FILE).getOrderedRecordList();
+        faveLogBookList = new LogBook(context, FaveButton.FAVE_LOG_BOOK_FILE).getOrderedRecordList();
 
     }
 

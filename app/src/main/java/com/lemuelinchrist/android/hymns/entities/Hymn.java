@@ -5,16 +5,13 @@ import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.widget.Toast;
-
+import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
 import com.lemuelinchrist.android.hymns.R;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Hymn {
     private static final String LOGTAG = "HymnEntity";
@@ -327,6 +324,25 @@ public class Hymn {
 
         }
         return false;
+    }
 
+    public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {
+        for (String related : related) {
+            HymnGroup group;
+            try {
+                group = HymnGroup.getHymnGroupFromID(related);
+            } catch (NoSuchHymnGroupException e) {
+                continue;
+            }
+
+            Log.d(this.getClass().getSimpleName(), "looping translation groups: " + group);
+            if (group.equals(selectedHymnGroup)) {
+                String hymnNo = HymnGroup.getHymnNoFromID(related);
+                Log.i(this.getClass().getSimpleName(), "Translation found! group: " + group + " no:" + hymnNo);
+                return related;
+            }
+        }
+        Log.i(this.getClass().getSimpleName(), "Translation NOT found! throwing null.");
+        return null;
     }
 }

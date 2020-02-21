@@ -39,12 +39,9 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     private ActionBarDrawerToggle mDrawerToggle;
 
     private ActionBar actionBar;
-    private MenuItem faveMenuItem;
     private HymnBookCollection hymnBookCollection;
     private Theme theme = Theme.LIGHT;
     private SharedPreferences sharedPreferences;
-
-    private boolean isMusicPlaying = false;
     private boolean preferenceChanged = true;
 
     @Override
@@ -140,9 +137,6 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
 
-        faveMenuItem = menu.findItem(R.id.action_fave);
-        refreshFaveIcon();
-
         return true;
     }
 
@@ -162,11 +156,6 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
                 startActivityForResult(intent, SEARCH_REQUEST);
                 ret = true;
                 break;
-
-            case R.id.action_fave:
-                hymnBookCollection.toggleFave();
-                refreshFaveIcon();
-                break;
             case R.id.action_settings:
                 Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
                 startActivity(settingsIntent);
@@ -176,17 +165,6 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
                 Log.w(HymnsActivity.class.getSimpleName(), "Warning!! No Item was selected!!");
         }
         return ret;
-    }
-
-    private void refreshFaveIcon() {
-        if(faveMenuItem==null) return;
-        if (hymnBookCollection.currentHymnIsFaved()) {
-            faveMenuItem.setIcon(R.drawable.ic_favorite_white_48dp);
-            faveMenuItem.setTitle(getString(R.string.unfaveHymn));
-        } else {
-            faveMenuItem.setIcon(R.drawable.ic_favorite_outline_white_48dp);
-            faveMenuItem.setTitle(getString(R.string.faveHymn));
-        }
     }
 
     private void changeThemeColor() {
@@ -242,7 +220,6 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
 
             actionBar.setTitle(hymnId);
             changeThemeColor();
-            refreshFaveIcon();
 
             Log.d(getClass().getSimpleName(), "Done painting title");
         } catch (NoSuchHymnGroupException e) {

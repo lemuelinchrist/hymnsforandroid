@@ -37,8 +37,6 @@ import java.util.List;
  */
 public class LyricContainer extends Fragment {
     public static final String HISTORY_LOGBOOK_FILE="logBook";
-    public static final String FAVE_LOG_BOOK_FILE = "faveLogBook";
-
     private TextView lyricHeader;
     private TextView composerView;
     private ViewGroup stanzaView;
@@ -49,7 +47,6 @@ public class LyricContainer extends Fragment {
     private static float fontSize;
     private SharedPreferences sharedPreferences;
     private LogBook historyLogBook;
-    private LogBook faveLogBook;
 
     private String hymnId;
     private HashSet<OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
@@ -60,6 +57,7 @@ public class LyricContainer extends Fragment {
     private CardView cardView;
     private PlayButton playButton;
     private SheetMusicButton sheetMusicButton;
+    private FaveButton faveButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,8 +88,6 @@ public class LyricContainer extends Fragment {
         composerView = rootView.findViewById(getRid("composer"));
         cardView = rootView.findViewById(getRid("buttonCardContainer"));
 
-        ImageButton faveButton = rootView.findViewById(getRid("faveButton"));
-
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
         NestedScrollView scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
         scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
@@ -106,7 +102,6 @@ public class LyricContainer extends Fragment {
         });
 
         historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
-        faveLogBook = new LogBook(context, FAVE_LOG_BOOK_FILE);
 
         if (hymnId != null) {
             displayLyrics(hymnId);
@@ -116,7 +111,8 @@ public class LyricContainer extends Fragment {
                 (ImageButton)rootView.findViewById(getRid("playButton")));
         sheetMusicButton = new SheetMusicButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("sheetMusicButton")));
-
+        faveButton = new FaveButton(hymn,this,
+                (ImageButton)rootView.findViewById(getRid("faveButton")));
 
         return rootView;
     }
@@ -295,10 +291,6 @@ public class LyricContainer extends Fragment {
         } finally {
             hymnsDao.close();
         }
-
-
-        // push hymn to stack for back button functionality
-
         return hymn;
     }
 
@@ -354,44 +346,12 @@ public class LyricContainer extends Fragment {
 
     }
 
-    public void fave() {
-        faveLogBook.log(hymn);
-    }
-
-    public boolean isFaved() {
-        return faveLogBook.contains(hymn.getHymnId());
-    }
-
-    public void unfave() {
-        faveLogBook.removeAndSave(hymn);
-    }
-
     public HymnGroup getHymnGroup() {
         return HymnGroup.valueOf(hymn.getGroup().trim().toUpperCase());
     }
 
-
     public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {
-        if (hymn == null) {
-            return null;
-        }
-        for (String related : hymn.getRelated()) {
-            HymnGroup group = null;
-            try {
-                group = HymnGroup.getHymnGroupFromID(related);
-            } catch (NoSuchHymnGroupException e) {
-                continue;
-            }
-
-            Log.d(this.getClass().getSimpleName(), "looping translation groups: " + group);
-            if (group.equals(selectedHymnGroup)) {
-                String hymnNo = HymnGroup.getHymnNoFromID(related);
-                Log.i(this.getClass().getSimpleName(), "Translation found! group: " + group + " no:" + hymnNo);
-                return related;
-            }
-        }
-        Log.i(this.getClass().getSimpleName(), "Translation NOT found! throwing null.");
-        return null;
+        return hymn.getRelatedHymnOf(selectedHymnGroup);
     }
 
     public void log() {

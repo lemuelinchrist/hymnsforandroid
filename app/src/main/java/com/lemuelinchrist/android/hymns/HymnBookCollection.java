@@ -84,22 +84,6 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         return getCurrentHymnLyric().getHymnId();
     }
 
-    public void toggleFave() {
-        if(currentHymnIsFaved()) {
-            getCurrentHymnLyric().unfave();
-        } else {
-            getCurrentHymnLyric().fave();
-        }
-    }
-
-    public boolean currentHymnIsFaved() {
-        if(getCurrentHymnLyric()!=null) {
-            return getCurrentHymnLyric().isFaved();
-        } else {
-            return false;
-        }
-    }
-
     private LyricContainer getCurrentHymnLyric() {
         return currentHymnBookGroup.getLyricContainer(lyricPager.getCurrentItem());
     }
