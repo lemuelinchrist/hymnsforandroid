@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
@@ -56,6 +57,7 @@ public class LyricContainer extends Fragment {
     private HymnStack hymnStack;
     private int columnNo=0;
     private LinearLayout currentTextLinearLayout;
+    private CardView cardView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,6 +86,7 @@ public class LyricContainer extends Fragment {
         stanzaView.removeView(stanzaView.getChildAt(0));
 
         composerView = rootView.findViewById(getRid("composer"));
+        cardView = rootView.findViewById(getRid("buttonCardContainer"));
 
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
         NestedScrollView scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
@@ -278,6 +281,9 @@ public class LyricContainer extends Fragment {
             composerView.setText(formattedLyrics);
 
             setLyricFontSize(fontSize);
+            if(cardView!=null){
+                cardView.setCardBackgroundColor(getHymnGroup().getDayColor());
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

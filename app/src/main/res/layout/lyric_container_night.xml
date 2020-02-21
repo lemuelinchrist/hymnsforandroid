@@ -28,6 +28,48 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"/>
         <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:layout_gravity="center"
+        >
+
+
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/faveButton"
+                    android:src="@drawable/ic_favorite_border_white_48dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_gravity="left"
+                    android:layout_weight="1" />
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/playButton"
+                    android:src="@drawable/ic_play_arrow_white_48dp"
+                    android:layout_gravity="left"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_weight="1" />
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/sheetMusicButton"
+                    android:src="@drawable/ic_queue_music_white_48dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"/>
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/copyButton"
+                    android:src="@drawable/ic_content_copy_white_48dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_weight="1"
+                    android:layout_gravity="left"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
                 style="@style/NightMode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
