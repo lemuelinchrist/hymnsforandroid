@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                       android:id="@+id/jellybeanContentScrollView"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:background="#000000">
 
-    android:id="@+id/jellybeanContentScrollView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#000000">
+    <LinearLayout
+            android:id="@+id/lyric_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#000000"
+    >
+        <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
+        <!--android:descendantFocusability="blocksDescendants"-->
 
-        <LinearLayout
-                android:id="@+id/lyric_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/lyricHeader"
                 android:background="#000000"
+                android:minHeight="30dp"
+                android:text="@string/enterHymnNo"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:textColor="#cccccc"/>
+        <LinearLayout
+                style="@style/NightMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:id="@+id/stanzaView"
         >
-            <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
-            <!--android:descendantFocusability="blocksDescendants"-->
-
-
-            <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/lyricHeader"
-                    android:background="#000000"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:minHeight="30dp"
-                    android:text="@string/enterHymnNo"
-                    android:textColor="#cccccc"/>
-
             <TextView
                     android:id="@+id/jellybeanLyrics"
                     android:layout_width="wrap_content"
@@ -41,20 +50,20 @@
                     android:textColor="#cccccc"
                     android:background="#000000"
                     android:textIsSelectable="true"/>
-
-            <TextView
-                    android:id="@+id/composer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="10dp"
-                    android:background="#000000"
-                    android:layout_marginTop="10dp"
-                    android:textColor="#cccccc"
-                    android:textIsSelectable="true"/>
-
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+
+        <TextView
+                android:id="@+id/composer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:paddingBottom="10dp"
+                android:background="#000000"
+                android:layout_marginTop="10dp"
+                android:textColor="#cccccc"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:textIsSelectable="true"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
 

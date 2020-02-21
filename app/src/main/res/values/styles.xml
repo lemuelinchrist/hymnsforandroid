@@ -20,4 +20,9 @@
 
     <style name="SettingsTheme" parent="Theme.MaterialComponents.Light.DarkActionBar" />
 
+    <style name="NightMode" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name = "android:textColor">#cccccc</item>
+        <item name = "android:background">#000000</item>
+    </style>
+
 </resources>

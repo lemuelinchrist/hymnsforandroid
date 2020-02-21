@@ -77,14 +77,13 @@ public class LyricContainer extends Fragment {
         }
         Log.d(this.getClass().getSimpleName(), "entering initialization of new LyricContainer!");
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
-        lyricHeader = rootView.findViewById(context.getResources().getIdentifier("lyricHeader", "id", context
-                .getPackageName()));
+        lyricHeader = rootView.findViewById(getRid("lyricHeader"));
 
         // remove placeholder because it only contains dummy lyrics
-        stanzaView = rootView.findViewById(context.getResources().getIdentifier("stanzaView", "id", context.getPackageName()));
+        stanzaView = rootView.findViewById(getRid("stanzaView"));
         stanzaView.removeView(stanzaView.getChildAt(0));
 
-        composerView = rootView.findViewById(context.getResources().getIdentifier("composer", "id", context.getPackageName()));
+        composerView = rootView.findViewById(getRid("composer"));
 
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
         NestedScrollView scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
@@ -107,6 +106,11 @@ public class LyricContainer extends Fragment {
             displayLyrics(hymnId);
         }
         return rootView;
+    }
+
+    private int getRid(String lyricHeader) {
+        return context.getResources().getIdentifier(lyricHeader, "id", context
+                .getPackageName());
     }
 
     public static LyricContainer newInstance(Context context, MusicPlayerListener musicPlayerListener, Theme theme) {
@@ -307,8 +311,11 @@ public class LyricContainer extends Fragment {
             view = (TextView) currentTextLinearLayout.getChildAt(1);
         }
         view.setText(formattedLyrics);
-        view.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
+        // stylize...
+        view.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+        view.setTextColor(theme.getTextColor());
+        view.setBackgroundColor(theme.getTextBackgroundColor());
     }
 
     public void stopPlaying() {
