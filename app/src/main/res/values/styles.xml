@@ -25,4 +25,9 @@
         <item name = "android:background">#000000</item>
     </style>
 
+    <style name="dayMode" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name = "android:textColor">#4e4e4e</item>
+        <item name = "android:background">#FFFFFF</item>
+    </style>
+
 </resources>

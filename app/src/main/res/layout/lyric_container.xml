@@ -7,7 +7,7 @@
         android:id="@+id/jellybeanContentScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        style="@style/dayMode"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -16,14 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#FFFFFF"
+            style="@style/dayMode"
     >
         <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
         <!--android:descendantFocusability="blocksDescendants"-->
 
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="3dp" app:cardElevation="4dp"
+                style="@style/dayMode" app:cardCornerRadius="3dp" app:cardElevation="4dp"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
         >
@@ -36,13 +36,13 @@
                     android:text="@string/headerFiller"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:textColor="#4e4e4e"/>
+                    style="@style/dayMode"/>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
 
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="3dp" app:cardElevation="4dp"
+                style="@style/dayMode" app:cardCornerRadius="3dp" app:cardElevation="4dp"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
         >
@@ -62,9 +62,8 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-                        android:background="#FFFFFF"
+                        style="@style/dayMode"
                         android:layout_marginTop="10dp"
-                        android:textColor="#4e4e4e"
                         android:text="@string/lyricFiller"
                         android:textIsSelectable="true"/>
             </LinearLayout>
@@ -72,7 +71,7 @@
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                app:cardBackgroundColor="#FFFFFF" app:cardCornerRadius="3dp" app:cardElevation="4dp"
+                style="@style/dayMode" app:cardCornerRadius="3dp" app:cardElevation="4dp"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
         >
@@ -84,9 +83,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
-                    android:background="#FFFFFF"
+                    style="@style/dayMode"
                     android:layout_marginTop="10dp"
-                    android:textColor="#4e4e4e"
                     android:text="@string/composerFiller"
                     android:textIsSelectable="true"/>
 
