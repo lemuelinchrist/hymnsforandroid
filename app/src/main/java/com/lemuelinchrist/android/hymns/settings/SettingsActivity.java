@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns;
+package com.lemuelinchrist.android.hymns.settings;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import com.lemuelinchrist.android.hymns.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

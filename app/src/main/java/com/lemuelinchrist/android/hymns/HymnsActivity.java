@@ -23,6 +23,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
+import com.lemuelinchrist.android.hymns.settings.SettingsActivity;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
 
@@ -165,12 +166,6 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
             case R.id.action_fave:
                 hymnBookCollection.toggleFave();
                 refreshFaveIcon();
-                break;
-            case R.id.action_sheetmusic:
-                hymnBookCollection.launchSheetMusic();
-                break;
-            case R.id.action_searchYoutube:
-                hymnBookCollection.launchYouTubeApp();
                 break;
             case R.id.action_settings:
                 Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);

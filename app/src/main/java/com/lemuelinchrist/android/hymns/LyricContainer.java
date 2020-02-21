@@ -21,6 +21,7 @@ import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
+import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicButton;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
@@ -58,6 +59,7 @@ public class LyricContainer extends Fragment {
     private LinearLayout currentTextLinearLayout;
     private CardView cardView;
     private PlayButton playButton;
+    private SheetMusicButton sheetMusicButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,7 +91,6 @@ public class LyricContainer extends Fragment {
         cardView = rootView.findViewById(getRid("buttonCardContainer"));
 
         ImageButton faveButton = rootView.findViewById(getRid("faveButton"));
-        ImageButton sheetMusicButton = rootView.findViewById(getRid("sheetMusicButton"));
 
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
         NestedScrollView scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
@@ -113,6 +114,9 @@ public class LyricContainer extends Fragment {
 
         playButton = new PlayButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("playButton")));
+        sheetMusicButton = new SheetMusicButton(hymn,this,
+                (ImageButton)rootView.findViewById(getRid("sheetMusicButton")));
+
 
         return rootView;
     }
@@ -399,22 +403,6 @@ public class LyricContainer extends Fragment {
     public void onPause() {
         super.onPause();
         playButton.stop();
-    }
-
-    public String getRootMusicSheet() {
-        // not all hymns have their own sheet music, but maybe their parent does
-        if (hymn.hasOwnSheetMusic()) {
-            return hymn.getHymnId();
-
-        } else if (hymn.getParentHymn() != null && !hymn.getParentHymn().isEmpty()) {
-            hymnsDao.open();
-            Hymn parentHymn = hymnsDao.get(hymn.getParentHymn());
-            hymnsDao.close();
-            if (parentHymn.hasOwnSheetMusic()) {
-                return parentHymn.getHymnId();
-            }
-        }
-        return null;
     }
 
     public void setTheme(Theme theme) {

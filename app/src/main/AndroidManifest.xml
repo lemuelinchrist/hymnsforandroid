@@ -2,14 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lemuelinchrist.android.hymns">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name">
         <activity
-            android:name=".SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".HymnsActivity"
             android:theme="@style/SettingsTheme">

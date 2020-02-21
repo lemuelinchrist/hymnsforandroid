@@ -18,19 +18,6 @@
             android:title="Fave Hymn"/>
 
     <item
-            android:id="@+id/action_sheetmusic"
-            android:orderInCategory="104"
-            yourapp:showAsAction="never"
-            android:icon="@drawable/gclef_black"
-            android:title="Sheet Music"/>
-
-    <item
-            android:id="@+id/action_searchYoutube"
-            android:orderInCategory="106"
-            yourapp:showAsAction="never"
-            android:icon="@drawable/youtube"
-            android:title="@string/search_youtube"/>
-    <item
         android:id="@+id/action_settings"
         android:orderInCategory="110"
         yourapp:showAsAction="never"

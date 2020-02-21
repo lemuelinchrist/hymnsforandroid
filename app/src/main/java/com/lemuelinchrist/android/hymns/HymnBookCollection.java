@@ -1,18 +1,13 @@
 package com.lemuelinchrist.android.hymns;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
-import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusic;
-import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicActivity;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 
@@ -174,25 +169,6 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
     public void launchYouTubeApp() {
         getCurrentHymnLyric().launchYouTubeApp();
-    }
-
-    public void launchSheetMusic() {
-
-        String sheetMusicId = getCurrentHymnLyric().getRootMusicSheet();
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            SheetMusic sheetMusic = new SheetMusic(context,sheetMusicId);
-            sheetMusic.shareToBrowser();
-            return;
-        }
-
-        if (sheetMusicId != null) {
-            Intent intent = new Intent(context.getBaseContext(), SheetMusicActivity.class);
-            intent.putExtra("selectedHymnId", sheetMusicId);
-            context.startActivity(intent);
-        } else {
-            Toast.makeText(context, "Sorry! sheet music not available", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void logToHistory() {

@@ -5,12 +5,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.core.view.MenuItemCompat;
-
 import com.lemuelinchrist.android.hymns.R;
 
 /**
@@ -20,7 +18,7 @@ import com.lemuelinchrist.android.hymns.R;
 public class SheetMusicActivity extends AppCompatActivity {
     private WebView webview;
     private ShareActionProvider shareActionProvider;
-    private SheetMusic sheetMusic;
+    private LegacySheetMusic legacySheetMusic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
         String selectedHymnId = (String) extras.get("selectedHymnId");
-        sheetMusic = new SheetMusic(this,selectedHymnId);
+        legacySheetMusic = new LegacySheetMusic(this,selectedHymnId);
 
         webview = findViewById(R.id.sheet_music_image);
         webview.getSettings().setBuiltInZoomControls(true);
@@ -53,7 +51,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 
         try {
-            shareActionProvider.setShareIntent(sheetMusic.shareSvgAsIntent());
+            shareActionProvider.setShareIntent(legacySheetMusic.shareSvgAsIntent());
         } catch (Exception e) {
             Log.e(getClass().getName(),"something went wrong! ",e);
         }

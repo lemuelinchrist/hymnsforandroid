@@ -12,27 +12,21 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-
 import com.lemuelinchrist.android.hymns.LyricContainer;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.List;
 
 /**
  * Created by lemuelcantos on 6/12/14.
  */
-public class SheetMusic {
+public class LegacySheetMusic {
     private Context context;
     private String selectedHymnId;
 
@@ -42,7 +36,7 @@ public class SheetMusic {
     private Hymn hymn;
     private AssetManager assetManager;
 
-    public SheetMusic(Context context, String selectedHymnId) {
+    public LegacySheetMusic(Context context, String selectedHymnId) {
         this.context = context;
         this.selectedHymnId = selectedHymnId;
         assetManager = context.getAssets();
@@ -197,7 +191,7 @@ public class SheetMusic {
 
     private void toastSheetMusicNotAvailable(Exception e) {
         Toast.makeText(context, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
-        Log.e(SheetMusic.class.getSimpleName(), e.getMessage());
+        Log.e(LegacySheetMusic.class.getSimpleName(), e.getMessage());
     }
 
     @NonNull
