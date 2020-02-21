@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,21 +20,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.style.Theme;
-
-import java.lang.reflect.Method;
 
 
 /**
  * Created by lemuelcantos on 17/7/13.
  */
-public class HymnsActivity extends AppCompatActivity implements MusicPlayerListener, OnLyricVisibleListener,
-        NestedScrollView.OnScrollChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
     protected final int SEARCH_REQUEST = 1;
     protected HymnGroup selectedHymnGroup = HymnGroup.E;
     private ListView mDrawerList;
@@ -47,7 +42,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
     private HymnBookCollection hymnBookCollection;
     private Theme theme = Theme.LIGHT;
     private SharedPreferences sharedPreferences;
-    private FloatingActionButton floatingPlayButton;
 
     private boolean isMusicPlaying = false;
     private boolean preferenceChanged = true;
@@ -71,17 +65,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-        floatingPlayButton = findViewById(R.id.play_fab);
-        floatingPlayButton.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(final View view) {
-                if(isMusicPlaying) {
-                    hymnBookCollection.stopPlaying();
-                } else {
-                    hymnBookCollection.startPlaying();
-                }
-            }
-        });
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mDrawerList = findViewById(R.id.left_drawer);
@@ -216,7 +199,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         Log.i(getClass().getSimpleName(), "changeTheme: " + theme.name());
         hymnBookCollection.setTheme(theme);
         actionBar.setBackgroundDrawable(theme.getActionBarColor(selectedHymnGroup));
-        floatingPlayButton.setBackgroundTintList(ColorStateList.valueOf(theme.getTextColor(selectedHymnGroup)));
     }
 
     private void toggleDrawer() {
@@ -226,8 +208,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
             mDrawerLayout.openDrawer(mDrawerList);
         }
     }
-
-
 
     @Override
     // Get what the user chose from the Index of Hymns and display the Hymn
@@ -273,56 +253,6 @@ public class HymnsActivity extends AppCompatActivity implements MusicPlayerListe
         } catch (NoSuchHymnGroupException e) {
             e.printStackTrace();
         }
-
-
-
-    }
-
-
-    @Override
-    public void onMusicStarted() {
-        isMusicPlaying=true;
-        floatingPlayButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_white));
-    }
-
-    @Override
-    public void onMusicStopped() {
-        isMusicPlaying=false;
-        floatingPlayButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_arrow_white));
-    }
-
-    // Hide play button when scrolling down. show it when on top
-    @Override
-    public void onScrollChange(final NestedScrollView v, final int scrollX, final int scrollY,
-            final int oldScrollX, final int oldScrollY) {
-        // We take the last son in the scrollview
-        View view = v.getChildAt(v.getChildCount() - 1);
-
-        // if diff is zero, then the top has been reached
-        if (v.getScrollY() != 0) {
-            floatingPlayButton.hide();
-        } else {
-            floatingPlayButton.show();
-        }
-    }
-
-    // This method adds icons in the overflow section of the action bar Menu
-    // NOTE: This is one BIG heck of a boilerplate code
-    @Override
-    protected boolean onPrepareOptionsPanel(View view, Menu menu) {
-        if (menu != null) {
-            if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
-                try {
-                    Method m = menu.getClass().getDeclaredMethod(
-                            "setOptionalIconsVisible", Boolean.TYPE);
-                    m.setAccessible(true);
-                    m.invoke(menu, true);
-                } catch (Exception e) {
-                    Log.e(getClass().getSimpleName(), "onMenuOpened...unable to set icons for overflow menu", e);
-                }
-            }
-        }
-        return super.onPrepareOptionsPanel(view, menu);
     }
 
     @Override

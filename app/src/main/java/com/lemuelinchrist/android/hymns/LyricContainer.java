@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
@@ -46,18 +47,17 @@ public class LyricContainer extends Fragment {
     private static HymnsDao hymnsDao = null;
     private static float fontSize;
     private SharedPreferences sharedPreferences;
-    private MusicPlayerListener musicPlayerListener;
     private LogBook historyLogBook;
     private LogBook faveLogBook;
 
     private String hymnId;
     private HashSet<OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
     private Theme theme;
-    private NestedScrollView.OnScrollChangeListener onScrollChangeListener;
     private HymnStack hymnStack;
     private int columnNo=0;
     private LinearLayout currentTextLinearLayout;
     private CardView cardView;
+    private PlayButton playButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,6 +88,9 @@ public class LyricContainer extends Fragment {
         composerView = rootView.findViewById(getRid("composer"));
         cardView = rootView.findViewById(getRid("buttonCardContainer"));
 
+        ImageButton faveButton = rootView.findViewById(getRid("faveButton"));
+        ImageButton sheetMusicButton = rootView.findViewById(getRid("sheetMusicButton"));
+
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
         NestedScrollView scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
         scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
@@ -100,7 +103,6 @@ public class LyricContainer extends Fragment {
                 return false;
             }
         });
-        scrollView.setOnScrollChangeListener(onScrollChangeListener);
 
         historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
         faveLogBook = new LogBook(context, FAVE_LOG_BOOK_FILE);
@@ -108,6 +110,10 @@ public class LyricContainer extends Fragment {
         if (hymnId != null) {
             displayLyrics(hymnId);
         }
+
+        playButton = new PlayButton(hymn,this,
+                (ImageButton)rootView.findViewById(getRid("playButton")));
+
         return rootView;
     }
 
@@ -116,11 +122,10 @@ public class LyricContainer extends Fragment {
                 .getPackageName());
     }
 
-    public static LyricContainer newInstance(Context context, MusicPlayerListener musicPlayerListener, Theme theme) {
+    public static LyricContainer newInstance(Context context, Theme theme) {
         LyricContainer lyric = new LyricContainer();
 
         lyric.setContext(context);
-        lyric.setMusicPlayerListener(musicPlayerListener);
         lyric.setTheme(theme);
         return lyric;
     }
@@ -135,9 +140,6 @@ public class LyricContainer extends Fragment {
 
         if (isVisibleToUser && hymn != null) {
             onLyricVisible();
-        }
-        if (!isVisibleToUser) {
-            stopPlaying();
         }
     }
 
@@ -179,9 +181,6 @@ public class LyricContainer extends Fragment {
     public Hymn displayLyrics(String selectedHymnGroup, String selectedHymnNumber) {
         try {
             Log.d(this.getClass().getSimpleName(), "Displaying lyrics");
-
-            // if there was a previous hymn
-            stopPlaying();
 
             if (hymnsDao == null) {
                 hymnsDao = new HymnsDao(context);
@@ -324,21 +323,6 @@ public class LyricContainer extends Fragment {
         view.setBackgroundColor(theme.getTextBackgroundColor());
     }
 
-    public void stopPlaying() {
-        if (hymn != null) {
-            hymn.stopHymn();
-            musicPlayerListener.onMusicStopped();
-        }
-    }
-
-    public void startPlaying() {
-
-        if (hymn != null) {
-            hymn.playHymn();
-            musicPlayerListener.onMusicStarted();
-        }
-    }
-
     public void setLyricFontSize(String size) {
         setLyricFontSize(Float.parseFloat(size));
     }
@@ -356,10 +340,6 @@ public class LyricContainer extends Fragment {
 
     public boolean isHymnDisplayed() {
         return (hymn != null);
-    }
-
-    public void setMusicPlayerListener(MusicPlayerListener musicPlayerListener) {
-        this.musicPlayerListener = musicPlayerListener;
     }
 
     public void launchYouTubeApp() {
@@ -418,7 +398,7 @@ public class LyricContainer extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        stopPlaying();
+        playButton.stop();
     }
 
     public String getRootMusicSheet() {
@@ -439,10 +419,6 @@ public class LyricContainer extends Fragment {
 
     public void setTheme(Theme theme) {
         this.theme = theme;
-    }
-
-    public void setOnScrollChangeListener(final NestedScrollView.OnScrollChangeListener onScrollChangeListener) {
-        this.onScrollChangeListener = onScrollChangeListener;
     }
 
     public void setHymnStack(HymnStack hymnStack) {

@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -33,7 +32,6 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private final HymnsActivity context;
     private HymnBookGroup currentHymnBookGroup;
     private HymnStack hymnStack = new HymnStack("E1");
-    private NestedScrollView.OnScrollChangeListener onScrollChangeListener;
 
     private Theme theme=Theme.LIGHT;
 
@@ -42,8 +40,6 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         dao = new HymnsDao(context);
         this.lyricPager = lyricPager;
         this.theme=theme;
-        this.onScrollChangeListener = context;
-        //lyricPager.setPageTransformer(true, new DepthPageTransformer());
 
         switchHymnBook(HymnGroup.E);
     }
@@ -180,19 +176,6 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         getCurrentHymnLyric().launchYouTubeApp();
     }
 
-    public void setLyricFontSize(String fontSize) {
-        getCurrentHymnLyric().setLyricFontSize(fontSize);
-    }
-
-    public void stopPlaying() {
-        getCurrentHymnLyric().stopPlaying();
-    }
-
-    public void startPlaying() {
-        getCurrentHymnLyric().startPlaying();
-
-    }
-
     public void launchSheetMusic() {
 
         String sheetMusicId = getCurrentHymnLyric().getRootMusicSheet();
@@ -218,6 +201,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
     @Override
     public void onLyricVisible(String hymnId) {
+        // Sometimes music might be playing in the background. Stop it.
+        PlayButton.stopCurrentlyPlayingButton();
 
         // sometimes current hymn lyric is null becuase of a random garbage cleanup.
         if(getCurrentHymnLyric()==null) {
@@ -240,7 +225,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         private ArrayList<String> hymnNumbers;
         private HymnGroup hymnGroup;
-        private LyricContainer currentLyricContainer;
+        LyricContainer currentLyricContainer;
 
 
         public ArrayList<String> getHymnNumbers() {
@@ -259,15 +244,14 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         public Fragment getItem(int position) {
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
-            LyricContainer lyric = LyricContainer.newInstance(context, context, theme);
+            LyricContainer lyric = LyricContainer.newInstance(context, theme);
             lyric.setHymnStack(hymnStack);
             lyric.addLyricVisibleListener(context);
             lyric.addLyricVisibleListener(HymnBookCollection.this);
-            lyric.setOnScrollChangeListener(onScrollChangeListener);
             lyric.setHymn(hymnGroup.toString() + hymnNumbers.get(position));
             currentLyricContainer = lyric;
-            return lyric;
 
+            return lyric;
         }
 
         @Override
