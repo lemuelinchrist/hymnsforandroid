@@ -78,6 +78,7 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:layout_gravity="center"
                 android:id="@+id/stanzaView"
         >
             <TextView

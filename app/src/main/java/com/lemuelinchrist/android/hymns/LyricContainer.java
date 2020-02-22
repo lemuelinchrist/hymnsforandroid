@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
@@ -53,7 +54,7 @@ public class LyricContainer extends Fragment {
     private HymnStack hymnStack;
     private int columnNo=0;
     private LinearLayout currentTextLinearLayout;
-    private View buttonsContainer;
+    private CardView buttonsContainer;
     private PlayButton playButton;
     private SheetMusicButton sheetMusicButton;
     private FaveButton faveButton;
@@ -105,6 +106,10 @@ public class LyricContainer extends Fragment {
 
         if (hymnId != null) {
             displayLyrics(hymnId);
+        }
+
+        if(buttonsContainer !=null ){
+            buttonsContainer.setCardBackgroundColor(getHymnGroup().getDayColor());
         }
 
         playButton = new PlayButton(hymn,this,
@@ -282,9 +287,6 @@ public class LyricContainer extends Fragment {
             composerView.setText(formattedLyrics);
 
             setLyricFontSize(fontSize);
-            if(buttonsContainer !=null){
-                buttonsContainer.setBackgroundColor(getHymnGroup().getDayColor());
-            }
 
         } catch (Exception e) {
             e.printStackTrace();
