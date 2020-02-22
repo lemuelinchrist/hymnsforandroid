@@ -14,15 +14,10 @@ import com.lemuelinchrist.android.hymns.entities.Stanza;
  * @author Lemuel Cantos
  * @since 22/2/2020
  */
-public class CopyButton {
-    private final Hymn hymn;
-    private final Fragment parentFragment;
-    private final ImageButton imageButton;
+public class CopyButton extends ContentComponent<ImageButton> {
 
     public CopyButton(final Hymn hymn, final Fragment parentFragment, ImageButton imageButton) {
-        this.hymn = hymn;
-        this.parentFragment = parentFragment;
-        this.imageButton = imageButton;
+        super(hymn, parentFragment, imageButton);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +29,6 @@ public class CopyButton {
                     lyric.append(stanza.getText().replace("<br/>","\n"));
                     lyric.append("\n");
                 }
-                Context context = parentFragment.getContext();
                 ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("Hymn lyrics", lyric.toString());
                 assert clipboard != null;

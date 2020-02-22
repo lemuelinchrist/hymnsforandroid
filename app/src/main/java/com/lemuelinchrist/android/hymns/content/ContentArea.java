@@ -66,12 +66,10 @@ public class ContentArea extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         this.context = getContext();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (theme == null) {
-
             theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
         }
 
