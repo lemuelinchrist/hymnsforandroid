@@ -43,6 +43,7 @@
                         android:text="@string/subjectFiller"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:paddingBottom="10dp"
                         android:layout_centerInParent="true"
                         style="@style/dayMode"/>
                 <TextView
