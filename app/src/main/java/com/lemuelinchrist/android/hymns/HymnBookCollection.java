@@ -11,11 +11,14 @@ import com.lemuelinchrist.android.hymns.content.ContentArea;
 import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
 import com.lemuelinchrist.android.hymns.content.PlayButton;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.lemuelinchrist.android.hymns.content.ContentArea.HISTORY_LOGBOOK_FILE;
 
 /**
  * Created by lemuel on 26/4/2017.
@@ -47,8 +50,14 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     }
 
     public void refresh() {
-        if(getCurrentHymnId()==null) return;
-        String currentHymnId = (getCurrentHymnId()==null)?"E1":getCurrentHymnId();
+        String currentHymnId;
+        // If current hymn id is not present, get it from history
+        if(getCurrentHymnId()==null) {
+            LogBook historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
+            currentHymnId = historyLogBook.getOrderedRecordList()[0].getHymnId();
+        } else {
+            currentHymnId =  getCurrentHymnId();
+        }
         hymnBooks = new HashMap<>();
         try {
             switchHymnBook(HymnGroup.getHymnGroupFromID(currentHymnId));
