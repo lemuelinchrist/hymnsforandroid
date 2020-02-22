@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import com.lemuelinchrist.android.hymns.content.ContentArea;
+import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
+import com.lemuelinchrist.android.hymns.content.PlayButton;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
@@ -22,7 +25,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private HashMap<HymnGroup, HymnBookGroup> hymnBooks = new HashMap<>();
     private final ViewPager lyricPager;
     private HymnsDao dao;
-    private HashMap<Integer, LyricContainer> registeredFragments = new HashMap<>();
+    private HashMap<Integer, ContentArea> registeredFragments = new HashMap<>();
 
     private final HymnsActivity context;
     private HymnBookGroup currentHymnBookGroup;
@@ -84,7 +87,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         return getCurrentHymnLyric().getHymnId();
     }
 
-    private LyricContainer getCurrentHymnLyric() {
+    private ContentArea getCurrentHymnLyric() {
         return currentHymnBookGroup.getLyricContainer(lyricPager.getCurrentItem());
     }
 
@@ -185,7 +188,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         private ArrayList<String> hymnNumbers;
         private HymnGroup hymnGroup;
-        LyricContainer currentLyricContainer;
+        ContentArea currentContentArea;
 
 
         public ArrayList<String> getHymnNumbers() {
@@ -204,12 +207,12 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         public Fragment getItem(int position) {
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
-            LyricContainer lyric = LyricContainer.newInstance(context, theme);
+            ContentArea lyric = ContentArea.newInstance(context, theme);
             lyric.setHymnStack(hymnStack);
             lyric.addLyricVisibleListener(context);
             lyric.addLyricVisibleListener(HymnBookCollection.this);
             lyric.setHymn(hymnGroup.toString() + hymnNumbers.get(position));
-            currentLyricContainer = lyric;
+            currentContentArea = lyric;
 
             return lyric;
         }
@@ -221,7 +224,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            LyricContainer fragment = (LyricContainer) super.instantiateItem(container, position);
+            ContentArea fragment = (ContentArea) super.instantiateItem(container, position);
             registeredFragments.put(position, fragment);
             return fragment;
         }
@@ -232,7 +235,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             super.destroyItem(container, position, object);
         }
 
-        LyricContainer getLyricContainer(int position) {
+        ContentArea getLyricContainer(int position) {
             return registeredFragments.get(position);
         }
 

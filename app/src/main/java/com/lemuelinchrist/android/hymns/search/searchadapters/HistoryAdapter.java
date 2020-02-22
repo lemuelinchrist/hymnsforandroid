@@ -1,8 +1,7 @@
 package com.lemuelinchrist.android.hymns.search.searchadapters;
 
 import android.content.Context;
-
-import com.lemuelinchrist.android.hymns.LyricContainer;
+import com.lemuelinchrist.android.hymns.content.ContentArea;
 import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.search.IndexViewHolder;
@@ -17,7 +16,7 @@ public class HistoryAdapter extends SearchAdapter {
 
     public HistoryAdapter(Context context, int layout) {
         super(context, layout);
-        historyLogBookList = new LogBook(context, LyricContainer.HISTORY_LOGBOOK_FILE).getOrderedRecordList();
+        historyLogBookList = new LogBook(context, ContentArea.HISTORY_LOGBOOK_FILE).getOrderedRecordList();
 
     }
 

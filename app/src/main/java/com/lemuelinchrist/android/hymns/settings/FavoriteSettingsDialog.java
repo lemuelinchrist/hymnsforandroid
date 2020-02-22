@@ -10,7 +10,7 @@ import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 
-import static com.lemuelinchrist.android.hymns.FaveButton.FAVE_LOG_BOOK_FILE;
+import static com.lemuelinchrist.android.hymns.content.FaveButton.FAVE_LOG_BOOK_FILE;
 
 /**
  * @author Lemuel Cantos

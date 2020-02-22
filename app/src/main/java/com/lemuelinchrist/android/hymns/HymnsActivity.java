@@ -22,6 +22,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
+import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.settings.SettingsActivity;
 import com.lemuelinchrist.android.hymns.style.Theme;

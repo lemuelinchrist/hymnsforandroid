@@ -1,7 +1,7 @@
 package com.lemuelinchrist.android.hymns.search.searchadapters;
 
 import android.content.Context;
-import com.lemuelinchrist.android.hymns.FaveButton;
+import com.lemuelinchrist.android.hymns.content.FaveButton;
 import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.search.IndexViewHolder;

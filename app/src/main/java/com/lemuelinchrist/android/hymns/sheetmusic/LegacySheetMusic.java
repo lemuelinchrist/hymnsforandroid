@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import com.lemuelinchrist.android.hymns.LyricContainer;
+import com.lemuelinchrist.android.hymns.content.ContentArea;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
@@ -229,7 +229,7 @@ public class LegacySheetMusic {
 
         deleteDirectory(externalStorageSvgDir);
         if (!externalStorageSvgDir.mkdirs())
-            Log.w(LyricContainer.class.getSimpleName(), "directory already exists. no need to create one.");
+            Log.w(ContentArea.class.getSimpleName(), "directory already exists. no need to create one.");
 
         File file = new File(externalStorageSvgDir, fileName);
         return writeFile(fileName, file);

@@ -1,9 +1,10 @@
-package com.lemuelinchrist.android.hymns;
+package com.lemuelinchrist.android.hymns.content;
 
 
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.fragment.app.Fragment;
+import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
 /**

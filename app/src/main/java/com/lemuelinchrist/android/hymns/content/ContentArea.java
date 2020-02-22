@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns;
+package com.lemuelinchrist.android.hymns.content;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,6 +17,9 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
+import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
@@ -35,7 +38,7 @@ import java.util.List;
  * <p/>
  * This Custom view takes care of displaying lyrics and playing songs of that lyric.
  */
-public class LyricContainer extends Fragment {
+public class ContentArea extends Fragment {
     public static final String HISTORY_LOGBOOK_FILE="logBook";
     private TextView lyricHeader;
     private TextView composerView;
@@ -129,8 +132,8 @@ public class LyricContainer extends Fragment {
                 .getPackageName());
     }
 
-    public static LyricContainer newInstance(Context context, Theme theme) {
-        LyricContainer lyric = new LyricContainer();
+    public static ContentArea newInstance(Context context, Theme theme) {
+        ContentArea lyric = new ContentArea();
 
         lyric.setContext(context);
         lyric.setTheme(theme);

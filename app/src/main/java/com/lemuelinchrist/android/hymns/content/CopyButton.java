@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns;
+package com.lemuelinchrist.android.hymns.content;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
