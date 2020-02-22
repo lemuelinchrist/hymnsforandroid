@@ -7,7 +7,7 @@ import com.lemuelinchrist.android.hymns.R;
 
 public enum Theme {
 
-    DARK(R.layout.lyric_container_night,  R.string.dayMode, Color.BLACK,0xFFcccccc,Color.BLACK) {
+    DARK(R.layout.content_area_night,  R.string.dayMode, Color.BLACK,0xFFcccccc,Color.BLACK) {
         @Override
         public ColorDrawable getActionBarColor(HymnGroup hymnGroup) {
             return new ColorDrawable(Color.parseColor("#000000"));
@@ -18,7 +18,7 @@ public enum Theme {
             return hymnGroup.getNightColor();
         }
     },
-    LIGHT(R.layout.lyric_container, R.string.nightMode, Color.WHITE,0xFF4e4e4e, Color.WHITE) {
+    LIGHT(R.layout.content_area, R.string.nightMode, Color.WHITE,0xFF4e4e4e, Color.WHITE) {
         @Override
         public ColorDrawable getActionBarColor(HymnGroup hymnGroup) {
             return new ColorDrawable(hymnGroup.getDayColor());

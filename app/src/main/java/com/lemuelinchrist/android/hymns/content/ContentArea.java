@@ -62,6 +62,7 @@ public class ContentArea extends Fragment {
     private SheetMusicButton sheetMusicButton;
     private FaveButton faveButton;
     private CopyButton copyButton;
+    private TextView subjectHeader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,6 +87,7 @@ public class ContentArea extends Fragment {
         // remove placeholder because it only contains dummy lyrics
         stanzaView = rootView.findViewById(getRid("stanzaView"));
         stanzaView.removeView(stanzaView.getChildAt(0));
+        subjectHeader = rootView.findViewById(getRid("subjectHeader"));
 
         composerView = rootView.findViewById(getRid("composer"));
         buttonsContainer = rootView.findViewById(getRid("buttonContainer"));
@@ -201,17 +203,19 @@ public class ContentArea extends Fragment {
 
             // ########################### Build Header
             StringBuilder text = new StringBuilder();
-            text.append("<br/><b>" + selectedHymnGroup + hymn.getNo());
-            if (hymn.isNewTune()) text.append(" (New Tune)");
             text.append("<br/>");
             if (hymn.getMainCategory() != null) {
-                text.append(hymn.getMainCategory());
+                text.append("<b>" + hymn.getMainCategory() +"</b>");
             }
             if (hymn.getSubCategory() != null) {
-                text.append(" - " + hymn.getSubCategory() + "</b><br/>");
-            } else if (hymn.getMainCategory() != null || hymn.getSubCategory() != null) {
-                text.append("</b><br/>");
+                text.append("<br/>" + hymn.getSubCategory());
             }
+            subjectHeader.setText(Html.fromHtml(text.toString()));
+
+
+            text = new StringBuilder();
+            // **** tune header
+            if (hymn.isNewTune()) text.append("(New Tune)<br/>");
             if (hymn.getMeter() != null && !hymn.getMeter().equals("")) {
                 text.append("Meter: ");
                 text.append(hymn.getMeter() + "<br/>");
@@ -335,6 +339,7 @@ public class ContentArea extends Fragment {
         editor.commit();
         if (lyricHeader != null && composerView!=null) {
             lyricHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+            subjectHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
             composerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         }
     }

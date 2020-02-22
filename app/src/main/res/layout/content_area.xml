@@ -28,16 +28,32 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 app:cardBackgroundColor="#FFFFFF">
-            <TextView
-                    android:layout_width="fill_parent"
+            <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/lyricHeader"
-                    android:minHeight="30dp"
-                    android:text="@string/headerFiller"
+                    android:orientation="vertical"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    style="@style/dayMode"/>
+            >
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/subjectHeader"
+                        android:text="@string/subjectFiller"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        style="@style/dayMode"/>
+                <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/lyricHeader"
+                        android:text="@string/headerFiller"
+                        style="@style/dayMode"/>
+            </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView android:layout_width="wrap_content" android:layout_height="wrap_content"
