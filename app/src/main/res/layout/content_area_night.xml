@@ -15,30 +15,38 @@
     >
         <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
         <!--android:descendantFocusability="blocksDescendants"-->
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/subjectHeader"
-                android:text="@string/subjectFiller"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_centerInParent="true"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:paddingTop="10dp"
-                style="@style/NightMode"/>
-        <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/lyricHeader"
+        <LinearLayout
                 style="@style/NightMode"
-                android:minHeight="30dp"
-                android:text="@string/enterHymnNo"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"/>
+                android:id="@+id/mainHeaderContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/subjectHeader"
+                    android:text="@string/subjectFiller"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="10dp"
+                    style="@style/NightMode"/>
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/lyricHeader"
+                    style="@style/NightMode"
+                    android:minHeight="30dp"
+                    android:text="@string/enterHymnNo"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"/>
+        </LinearLayout>
+
+
         <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,14 +63,14 @@
                     android:src="@drawable/ic_favorite_border_white_48dp"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_gravity="left"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
             <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/playButton"
                     android:src="@drawable/ic_play_arrow_white_48dp"
                     android:layout_gravity="left"
                     style="?android:attr/borderlessButtonStyle"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"/>
             <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/sheetMusicButton"

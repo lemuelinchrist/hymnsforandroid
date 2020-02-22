@@ -80,12 +80,12 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             if (hymn.getSubCategory() != null) {
                 text.append("<br/>" + hymn.getSubCategory());
             }
+            if (hymn.isNewTune()) text.append("<br/>(New Tune)");
             subjectHeader.setText(Html.fromHtml(text.toString()));
 
 
             text = new StringBuilder();
             // **** tune header
-            if (hymn.isNewTune()) text.append("(New Tune)<br/>");
             if (hymn.getMeter() != null && !hymn.getMeter().equals("")) {
                 text.append("Meter: ");
                 text.append(hymn.getMeter() + "<br/>");

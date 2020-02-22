@@ -22,6 +22,7 @@
         <!--android:descendantFocusability="blocksDescendants"-->
 
         <androidx.cardview.widget.CardView
+                android:id="@+id/mainHeaderContainer"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 style="@style/dayMode" app:cardCornerRadius="3dp" app:cardElevation="4dp"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
