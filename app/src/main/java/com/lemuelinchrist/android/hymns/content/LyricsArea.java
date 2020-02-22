@@ -6,6 +6,7 @@ import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -72,12 +73,15 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             if (hymn == null) return;
 
             // ########################### Build Header
+            boolean headerContentPresent=false;
             StringBuilder text = new StringBuilder();
             text.append("<br/>");
-            if (hymn.getMainCategory() != null) {
+            if (isNotEmpty(hymn.getMainCategory())) {
+                headerContentPresent=true;
                 text.append("<b>" + hymn.getMainCategory() + "</b>");
             }
-            if (hymn.getSubCategory() != null) {
+            if (isNotEmpty(hymn.getSubCategory())) {
+                headerContentPresent=true;
                 text.append("<br/>" + hymn.getSubCategory());
             }
             if (hymn.isNewTune()) text.append("<br/>(New Tune)");
@@ -86,18 +90,22 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
             text = new StringBuilder();
             // **** tune header
-            if (hymn.getMeter() != null && !hymn.getMeter().equals("")) {
+            if (isNotEmpty(hymn.getMeter())) {
+                headerContentPresent=true;
                 text.append("Meter: ");
                 text.append(hymn.getMeter() + "<br/>");
             }
-            if (hymn.getTime() != null && !hymn.getTime().equals("")) {
+            if (isNotEmpty(hymn.getTime())) {
+                headerContentPresent=true;
                 text.append("Time: ");
                 text.append(hymn.getTime());
             }
-            if (hymn.getKey() != null) {
+            if (isNotEmpty(hymn.getKey())) {
+                headerContentPresent=true;
                 text.append(" - " + hymn.getKey() + "<br/>");
             }
-            if (hymn.getVerse() != null) {
+            if (isNotEmpty(hymn.getVerse())) {
+                headerContentPresent=true;
                 text.append("Verses: ");
                 text.append(hymn.getVerse() + "<br/>");
             }
@@ -105,6 +113,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // ** build related
             List<String> related = hymn.getRelated();
             if (related != null && related.size() != 0) {
+                headerContentPresent=true;
                 text.append("Related: ");
                 StringBuilder relatedConcat = new StringBuilder();
                 for (String r : related) {
@@ -118,6 +127,10 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 text.append("<br/>");
             }
             lyricHeader.setText(Html.fromHtml(text.toString()));
+            if(!headerContentPresent) {
+                View mainHeaderContainer = view.findViewById(getRid("mainHeaderContainer"));
+                ((ViewGroup)mainHeaderContainer.getParent()).removeView(mainHeaderContainer);
+            }
 
             // ######################## Build Lyric Text
 
@@ -157,10 +170,13 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
             // #################### Build Footer
             text = new StringBuilder();
-            text.append("Author: " + hymn.getAuthor() + "<br/>");
-            text.append("Composer: " + hymn.getComposer());
-            composerView.setText(Html.fromHtml(text.toString()));
-
+            if(isNotEmpty(hymn.getAuthor()) || isNotEmpty(hymn.getComposer())) {
+                text.append("Author: " + hymn.getAuthor() + "<br/>");
+                text.append("Composer: " + hymn.getComposer());
+                composerView.setText(Html.fromHtml(text.toString()));
+            } else {
+                ((ViewGroup)composerView.getParent()).removeView(composerView);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -193,5 +209,9 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         view.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
         view.setTextColor(theme.getTextColor());
         view.setBackgroundColor(theme.getTextBackgroundColor());
+    }
+
+    private boolean isNotEmpty(String string) {
+        return string!=null && !string.isEmpty();
     }
 }
