@@ -19,6 +19,7 @@ import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -133,8 +134,13 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // ######################## Build Lyric Text
 
             String chorusText = "";
-            for (Stanza stanza : hymn.getStanzas()) {
-                text = new StringBuilder();
+            text = new StringBuilder();
+            ArrayList<Stanza> stanzas = hymn.getStanzas();
+            if(stanzas.get(0).getNo().equals("beginning-note")) {
+                text.append("<i>" + stanzas.get(0).getText() + "</i><br/>");
+                stanzas.remove(stanzas.get(0));
+            }
+            for (Stanza stanza : stanzas) {
                 Log.d(this.getClass().getSimpleName(), "Looping stanza: " + stanza.getNo());
                 if (stanza.getNo().equals("chorus")) {
 //                    text.append("<b>##" + stanza.getNo() + "##</b><br/>");
@@ -143,8 +149,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                     chorusText = "<i>@@" + stanza.getText() + "@@</i>";
                     text.append(chorusText);
                     buildLyricViewAndAttach(text, hymn.getGroup());
-                } else if (stanza.getNo().equals("end-note") || stanza.getNo().equals("beginning-note") ||
-                        stanza.getNo().equals("note")) {
+                } else if (stanza.getNo().equals("end-note") || stanza.getNo().equals("note")) {
                     text.append("<i>" + stanza.getText() + "</i>");
                     buildLyricViewAndAttach(text, hymn.getGroup());
                 } else {
@@ -158,6 +163,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                         buildLyricViewAndAttach(new StringBuilder(chorusText), hymn.getGroup());
                     }
                 }
+                text = new StringBuilder();
             }
 
             // remove unused textview if uneven
