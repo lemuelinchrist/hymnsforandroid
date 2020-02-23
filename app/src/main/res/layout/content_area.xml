@@ -34,7 +34,7 @@
                     style="@style/dayMode" app:cardCornerRadius="3dp" app:cardElevation="4dp"
                     android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="28dp"
                     app:cardBackgroundColor="#FFFFFF">
                 <LinearLayout
                         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView android:layout_width="wrap_content"
                                                android:layout_height="wrap_content"
-                                               style="@style/dayMode" app:cardCornerRadius="20dp"
+                                               style="@style/dayMode" app:cardCornerRadius="25dp"
                                                app:cardElevation="6dp"
                                                android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
                                                app:cardBackgroundColor="#000000"
