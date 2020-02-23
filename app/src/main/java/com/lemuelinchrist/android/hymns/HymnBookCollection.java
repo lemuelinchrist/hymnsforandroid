@@ -11,6 +11,7 @@ import com.lemuelinchrist.android.hymns.content.ContentArea;
 import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
 import com.lemuelinchrist.android.hymns.content.PlayButton;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
+import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
@@ -54,7 +55,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         // If current hymn id is not present, get it from history
         if(getCurrentHymnId()==null) {
             LogBook historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
-            currentHymnId = historyLogBook.getOrderedRecordList()[0].getHymnId();
+            HymnRecord[] records = historyLogBook.getOrderedRecordList();
+            currentHymnId = records.length>0 ? records[0].getHymnId() : "E1";
         } else {
             currentHymnId =  getCurrentHymnId();
         }
