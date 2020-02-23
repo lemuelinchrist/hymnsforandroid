@@ -93,28 +93,28 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             if (isNotEmpty(hymn.getMeter())) {
                 headerContentPresent=true;
                 text.append("Meter: ");
-                text.append(hymn.getMeter() + "<br/>");
+                text.append(hymn.getMeter());
             }
             if (isNotEmpty(hymn.getTime())) {
                 headerContentPresent=true;
-                text.append("Time: ");
+                text.append("<br/>Time: ");
                 text.append(hymn.getTime());
             }
             if (isNotEmpty(hymn.getKey())) {
                 headerContentPresent=true;
-                text.append(" - " + hymn.getKey() + "<br/>");
+                text.append(" - " + hymn.getKey());
             }
             if (isNotEmpty(hymn.getVerse())) {
                 headerContentPresent=true;
-                text.append("Verses: ");
-                text.append(hymn.getVerse() + "<br/>");
+                text.append("<br/>Verses: ");
+                text.append(hymn.getVerse());
             }
 
             // ** build related
             List<String> related = hymn.getRelated();
             if (related != null && related.size() != 0) {
                 headerContentPresent=true;
-                text.append("Related: ");
+                text.append("<br/>Related: ");
                 StringBuilder relatedConcat = new StringBuilder();
                 for (String r : related) {
                     relatedConcat.append(", ");
@@ -123,13 +123,11 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
                 if (relatedConcat.length() > 2)
                     text.append(relatedConcat.substring(2));
-
-                text.append("<br/>");
             }
             lyricHeader.setText(Html.fromHtml(text.toString()));
             if(!headerContentPresent) {
                 View mainHeaderContainer = view.findViewById(getRid("mainHeaderContainer"));
-                ((ViewGroup)mainHeaderContainer.getParent()).removeView(mainHeaderContainer);
+                mainHeaderContainer.setVisibility(View.GONE);
             }
 
             // ######################## Build Lyric Text
