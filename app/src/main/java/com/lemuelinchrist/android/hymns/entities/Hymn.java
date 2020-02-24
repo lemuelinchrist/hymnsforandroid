@@ -314,6 +314,7 @@ public class Hymn {
 
     public boolean hasOwnSheetMusic() {
         AssetManager assets = context.getAssets();
+        Log.e(getClass().getName(), "Looking for svg file: " + hymnId+".svg");
         try {
             for (String fileName : assets.list("svg")) {
                 if(fileName.equals(hymnId+".svg")) return true;
