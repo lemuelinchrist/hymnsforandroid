@@ -35,7 +35,8 @@
                     android:orientation="vertical"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-            >
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -44,8 +45,8 @@
                         android:text="@string/subjectFiller"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:paddingBottom="10dp"
                         android:layout_centerInParent="true"
+                        android:layout_marginBottom="10dp"
                         style="@style/dayMode"/>
                 <TextView
                         android:layout_width="fill_parent"
@@ -53,7 +54,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/lyricHeader"
                         android:text="@string/headerFiller"
-                        style="@style/dayMode"/>
+                        style="@style/dayMode" android:layout_marginBottom="10dp"/>
                 <androidx.cardview.widget.CardView android:layout_width="wrap_content"
                                                    android:layout_height="wrap_content"
                                                    style="@style/dayMode" app:cardCornerRadius="25dp"
@@ -61,9 +62,7 @@
                                                    android:layout_marginLeft="10dp"
                                                    android:layout_marginRight="10dp"
                                                    app:cardBackgroundColor="#000000"
-                                                   android:layout_marginTop="10dp"
                                                    android:layout_gravity="center"
-                                                   android:layout_marginBottom="20dp"
                                                    android:id="@+id/buttonContainer">
 
                     <LinearLayout
@@ -124,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_gravity="center"
-                    android:paddingTop="10dp"
+                    android:paddingTop="15dp"
                     android:paddingBottom="10dp"
                     android:id="@+id/stanzaView"
             >

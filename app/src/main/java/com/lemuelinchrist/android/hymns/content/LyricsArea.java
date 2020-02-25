@@ -76,7 +76,6 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // ########################### Build Header
             boolean headerContentPresent=false;
             StringBuilder text = new StringBuilder();
-            text.append("<br/>");
             if (isNotEmpty(hymn.getMainCategory())) {
                 headerContentPresent=true;
                 text.append("<b>" + hymn.getMainCategory() + "</b>");
@@ -88,12 +87,11 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             if (hymn.isNewTune()) text.append("<br/>(New Tune)");
             subjectHeader.setText(Html.fromHtml(text.toString()));
 
-
             text = new StringBuilder();
             // **** tune header
             if (isNotEmpty(hymn.getMeter())) {
                 headerContentPresent=true;
-                text.append("Meter: ");
+                text.append("<br/>Meter: ");
                 text.append(hymn.getMeter());
             }
             if (isNotEmpty(hymn.getTime())) {
@@ -125,10 +123,13 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 if (relatedConcat.length() > 2)
                     text.append(relatedConcat.substring(2));
             }
-            lyricHeader.setText(Html.fromHtml(text.toString()));
+
             if(!headerContentPresent) {
                 View mainHeaderContainer = view.findViewById(getRid("mainHeaderContainer"));
                 mainHeaderContainer.setVisibility(View.GONE);
+            } else {
+                // Use text.substring to remove the leading <br/>
+                lyricHeader.setText(Html.fromHtml(text.substring(5)));
             }
 
             // ######################## Build Lyric Text

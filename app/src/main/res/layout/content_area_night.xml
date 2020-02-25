@@ -12,6 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingTop="10dp"
     >
         <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
         <!--android:descendantFocusability="blocksDescendants"-->
@@ -32,8 +33,7 @@
                     android:layout_centerInParent="true"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
-                    android:paddingTop="10dp"
-                    style="@style/NightMode"/>
+                    style="@style/NightMode" android:paddingBottom="10dp"/>
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
