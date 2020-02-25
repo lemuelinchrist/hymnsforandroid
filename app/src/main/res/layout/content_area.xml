@@ -33,8 +33,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp">
                 <TextView
@@ -54,7 +54,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/lyricHeader"
                         android:text="@string/headerFiller"
-                        style="@style/dayMode" android:layout_marginBottom="10dp"/>
+                        style="@style/dayMode" android:layout_marginBottom="15dp"/>
                 <androidx.cardview.widget.CardView android:layout_width="wrap_content"
                                                    android:layout_height="wrap_content"
                                                    style="@style/dayMode" app:cardCornerRadius="25dp"
