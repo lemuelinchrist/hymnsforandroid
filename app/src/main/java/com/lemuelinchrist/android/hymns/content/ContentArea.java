@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.content;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -51,6 +52,7 @@ public class ContentArea extends Fragment {
     private FaveButton faveButton;
     private CopyButton copyButton;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,11 +84,18 @@ public class ContentArea extends Fragment {
                 return false;
             }
         });
+
+        historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
+
+        //Sometimes hymnId can be null when app wakes up from a sleep several hours long. need to retrieve it from history
+        if(hymnId==null) {
+            hymnId = historyLogBook.getOrderedRecordList()[0].getHymnId();
+        }
+
         hymnsDao.open();
         hymn = hymnsDao.get(hymnId);
         hymnsDao.close();
 
-        historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
         LyricsArea lyricsArea = new LyricsArea(hymn,this,scrollView);
 
         if (hymnId != null) {

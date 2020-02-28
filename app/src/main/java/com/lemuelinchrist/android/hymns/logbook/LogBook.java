@@ -31,13 +31,13 @@ public class LogBook {
             logBook = (Set<HymnRecord>)InternalStorage.readObject(this.context, filename);
         } catch (FileNotFoundException e) {
             Log.i(LogBook.class.getName(),"No logbook file found. Must be first time use. Creating one.");
-            logBook = new HashSet<HymnRecord>();
+            logBook = new HashSet<>();
         } catch(InvalidClassException e) {
             Log.e(LogBook.class.getName(),"Incompatible class! creating new record \n " + e);
-            logBook = new HashSet<HymnRecord>();
+            logBook = new HashSet<>();
         } catch (Exception e) {
             Log.e(LogBook.class.getName(),"Error reading history log book! \n " + e);
-            logBook = new HashSet<HymnRecord>();
+            logBook = new HashSet<>();
         }
     }
 
