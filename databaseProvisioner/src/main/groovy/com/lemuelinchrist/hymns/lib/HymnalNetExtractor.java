@@ -327,6 +327,26 @@ public class HymnalNetExtractor {
         System.out.println("Hymn resuources downloaded successfully...");
     }
 
+    public static void downloadMidi(String hymnalAddress, HymnsEntity hymn, String hymnIdInUrl) throws IOException {
+        try {
+            // get midi
+            FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymnalAddress + hymnIdInUrl + "/f=mid");
+            System.out.println("Hymn resuources downloaded successfully...");
+        } catch (Exception e) {
+
+        }
+    }
+
+    public static void downloadTune(String hymnalAddress, HymnsEntity hymn, String hymnIdInUrl) throws IOException {
+        try {
+            // get midi
+            FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymnalAddress + hymnIdInUrl + "/f=tune");
+            System.out.println("Hymn resuources downloaded successfully...");
+        } catch (Exception e) {
+
+        }
+    }
+
 
     public static String formatBreaks(String htmlString) {
         final String br = "<br/>";
