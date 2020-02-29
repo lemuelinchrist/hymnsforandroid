@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
 // you can choose to put either "guitarSvg" or "pianoSvg" depending on the sheet music you want to include
-def svgFolderName = "guitarSvg"
+def svgFolderName = "pianoSvg"
 //def svgFolderName=""
-def hymnAppVersion = "v4.0-Guitar"
+def hymnAppVersion = "v4.0-Piano"
 def androidVersion = '28.0.0'
 
 allprojects {
@@ -18,13 +18,13 @@ allprojects {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.0"
+    compileSdkVersion 29
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.lemuelinchrist.android.hymns"
         minSdkVersion 15    // Ice cream sandwitch
-        targetSdkVersion 28
+        targetSdkVersion 29
         // increment version code if you want to refresh the database cache of your phone
         versionCode 130
         versionName hymnAppVersion
@@ -45,10 +45,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.1.0'
-
-//    compile 'xyz.danoz:recyclerviewfastscroller:0.1.3'
     implementation 'androidx.preference:preference:1.1.0'
 }
 
