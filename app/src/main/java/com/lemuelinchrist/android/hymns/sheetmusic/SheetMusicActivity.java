@@ -1,14 +1,17 @@
 package com.lemuelinchrist.android.hymns.sheetmusic;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.core.view.MenuItemCompat;
+import androidx.preference.PreferenceManager;
 import com.lemuelinchrist.android.hymns.R;
 
 /**
@@ -19,6 +22,7 @@ public class SheetMusicActivity extends AppCompatActivity {
     private WebView webview;
     private ShareActionProvider shareActionProvider;
     private LegacySheetMusic legacySheetMusic;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,12 @@ public class SheetMusicActivity extends AppCompatActivity {
         webview.getSettings().setLoadWithOverviewMode(true);
         webview.setInitialScale(1);
 
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(sharedPreferences.getBoolean("keepDisplayOn",false)) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
     }
 
     @Override
@@ -57,9 +66,6 @@ public class SheetMusicActivity extends AppCompatActivity {
         }
         return true;
     }
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

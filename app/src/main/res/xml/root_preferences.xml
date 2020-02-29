@@ -19,30 +19,36 @@
     <PreferenceCategory>
 
         <ListPreference
-            app:defaultValue="18f"
-            app:entries="@array/font_size"
-            app:entryValues="@array/font_size_values"
-            app:key="FontSize"
-            app:title="@string/choose_font_size"
-            app:useSimpleSummaryProvider="true"
-            app:icon="@drawable/fontsize_black"
-            />
+                app:defaultValue="18f"
+                app:entries="@array/font_size"
+                app:entryValues="@array/font_size_values"
+                app:key="FontSize"
+                app:title="@string/choose_font_size"
+                app:useSimpleSummaryProvider="true"
+                app:icon="@drawable/fontsize_black"
+        />
         <SwitchPreferenceCompat
-            app:key="nightMode"
-            app:defaultValue="false"
-            app:title="@string/nightMode"
-            app:icon ="@drawable/ic_brightness"/>
+                app:key="nightMode"
+                app:defaultValue="false"
+                app:title="@string/nightMode"
+                app:icon="@drawable/ic_brightness"/>
+        <SwitchPreferenceCompat
+                app:key="keepDisplayOn"
+                app:defaultValue="false"
+                app:title="@string/keepDisplayOn"
+                app:icon="@drawable/ic_lightbulb_outline_black_48dp"
+                app:summary="Screen will never go to sleep"/>
         <Preference
-            app:key="manageFaves"
-            app:title="Import/Export Faves"
-            app:icon="@drawable/ic_settings_favorite_black_32dp"
-            app:summary="Make sure to regularly backup your faves"
-            />
+                app:key="manageFaves"
+                app:title="Import/Export Faves"
+                app:icon="@drawable/ic_settings_favorite_black_32dp"
+                app:summary="Make sure to regularly backup your faves"
+        />
         <Preference
-            app:key="about"
-            app:title="About Hymns"
-            app:summary="See version or send feedback"
-            app:icon="@drawable/ic_info"/>
+                app:key="about"
+                app:title="About Hymns"
+                app:summary="See version or send feedback"
+                app:icon="@drawable/ic_info"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

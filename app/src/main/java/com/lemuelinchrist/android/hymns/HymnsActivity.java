@@ -7,12 +7,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import androidx.appcompat.app.ActionBar;
@@ -21,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
@@ -94,6 +91,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        setDisplayConfig();
     }
 
     // Warning! this method is very crucial. Without it you will not have a hamburger icon on your
@@ -200,7 +198,6 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
                 }
                 break;
         }
-
     }
 
     @Override
@@ -237,9 +234,18 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     public void onResume() {
         super.onResume();
         if(preferenceChanged) {
+            setDisplayConfig();
             changeThemeColor();
             hymnBookCollection.refresh();
             preferenceChanged=false;
+        }
+    }
+
+    private void setDisplayConfig() {
+        if(sharedPreferences.getBoolean("keepDisplayOn",false)) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
 
