@@ -129,7 +129,13 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 mainHeaderContainer.setVisibility(View.GONE);
             } else {
                 // Use text.substring to remove the leading <br/>
-                lyricHeader.setText(Html.fromHtml(text.substring(5)));
+                String header;
+                if(text.length()>5) {
+                    header = text.substring(5);
+                } else {
+                    header = "";
+                }
+                lyricHeader.setText(Html.fromHtml(header));
             }
 
             // ######################## Build Lyric Text
