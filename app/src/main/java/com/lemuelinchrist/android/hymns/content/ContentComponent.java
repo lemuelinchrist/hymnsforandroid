@@ -2,6 +2,8 @@ package com.lemuelinchrist.android.hymns.content;
 
 import android.content.Context;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
@@ -9,7 +11,7 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
  * @author Lemuel Cantos
  * @since 22/2/2020
  */
-public abstract class ContentComponent<V extends View> {
+public abstract class ContentComponent<V extends View> extends AppCompatActivity {
     protected final Hymn hymn;
     protected final Fragment parentFragment;
     protected final V view;
