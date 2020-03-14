@@ -146,9 +146,19 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
-    public Cursor getByLyricText(String filter) {
-        String sql = "select * from stanza WHERE " + buildLikeClause("text", filter) + " ";
-        Log.i(this.getClass().getName(), "Using SQL query: " + sql);
+    public Cursor getByLyricText(HymnGroup hymnGroup, String filter) {
+
+        String groupClause = "";
+        String likeClause = "";
+        if (filter != null && !filter.equals("")) {
+            likeClause = " WHERE "+ buildLikeClause("stanza_chorus", filter) + " ";
+        } else {
+            groupClause = " and (hymn_group='" + hymnGroup + "') ";
+        }
+
+        String sql = "select s.* from hymns h join stanza s on h._id = s.parent_hymn WHERE " + buildLikeClause("text", filter) + " " + groupClause + " \n" +
+                " " + "order by CAST(h.no as decimal) , s.id " ;
+         Log.i(this.getClass().getName(), "Using SQL query: " + sql);
         return database.rawQuery(sql, null);
 
     }
@@ -159,13 +169,13 @@ public class HymnsDao {
         String groupClause = "";
         String likeClause = "";
         if (filter != null && !filter.equals("")) {
-            likeClause = " AND NO LIKE '%"+ filter.trim() +"'";
+              likeClause = " AND NO = '"+ filter.trim() +"'";
         } else {
             groupClause = " and hymn_group = '" + hymnGroup + "' ";
         }
 
         String sql =
-                "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL "
+               "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and hymn_group in ('E', 'ML', 'BF', 'NS','CH') "
                         + groupClause + " \n"
                         + likeClause
                         + " ORDER BY CAST(no AS int), " +
@@ -212,7 +222,7 @@ public class HymnsDao {
         if (filter != null)
             filter = filter.replace("'", "''");
 
-        if (hymnGroup == null) hymnGroup = HymnGroup.E;
+      if (hymnGroup == null) hymnGroup = HymnGroup.ML;
 
         String groupClause = "";
         String likeClause = "";

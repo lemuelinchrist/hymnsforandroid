@@ -29,7 +29,7 @@ public class LyricsTabFragment extends TabFragment {
     @Override
     public void setSearchFilter(String filter) {
         mRecyclerView.setAdapter(new LyricsAdapter(container.getContext(),
-                dao.getByLyricText(filter)
+                dao.getByLyricText(selectedHymnGroup, filter)
                 , R.layout.recyclerview_hymn_list));    }
 
     @Override

@@ -9,13 +9,14 @@ import java.util.List;
  * Created by lemuelcantos on 18/8/13.
  */
 public enum HymnGroup {
+    // Green
+    ML("മലയാളം", Color.rgb(0x66, 0x99, 0x00),
+            Color.rgb(0xA5, 0xD6, 0xA7)),
+
     E("English", Color.rgb(0x3D, 0x57, 0x7A),
             Color.rgb(0xB0, 0xBE, 0xC5)),
-    // Green
-    C("中文", Color.rgb(0x66, 0x99, 0x00),
-            Color.rgb(0xA5, 0xD6, 0xA7)),
-    //Purple
-    CS("補充本", Color.rgb(0x99, 0x33, 0xCC),
+   //Purple
+  /*  CS("補充本", Color.rgb(0x99, 0x33, 0xCC),
             Color.rgb(0xCE, 0x93, 0xD8)),
     //Orange
     CB("Cebuano", Color.rgb(0xFF, 0x88, 0x00),
@@ -38,12 +39,18 @@ public enum HymnGroup {
     //Light Green
     J("Japanese",Color.rgb(0x8B,0xC3,0x4A),
             Color.rgb(0xAE,0xD5,0x81)),
+
+
+*/
     //Blue
     BF("Be Filled", Color.rgb(0x00, 0x99, 0xCC),
             Color.rgb(0x90, 0xCA, 0xF9)),
+
+
     //Red
     NS("New Songs", Color.rgb(0xCC, 0x00, 0x00),
             Color.rgb(0xEF, 0x9A, 0x9A)),
+
     //Lime
     CH("Children", Color.rgb(0xAF, 0xB4, 0x2B),
             Color.rgb(0xE6, 0xEE, 0x9C));

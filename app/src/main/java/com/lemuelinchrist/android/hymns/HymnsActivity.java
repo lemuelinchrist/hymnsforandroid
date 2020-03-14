@@ -31,7 +31,7 @@ import com.lemuelinchrist.android.hymns.style.Theme;
 public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
     protected final int SEARCH_REQUEST = 1;
-    protected HymnGroup selectedHymnGroup = HymnGroup.E;
+    protected HymnGroup selectedHymnGroup = HymnGroup.ML;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -122,7 +122,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
 
         if (selectedHymnGroup == null) {
             Log.w(HymnsActivity.class.getSimpleName(), "warning: selected Hymn group currently not supported. Switching to default group: E");
-            selectedHymnGroup = HymnGroup.E;
+            selectedHymnGroup = HymnGroup.ML;
         }
 
         hymnBookCollection.translateTo(selectedHymnGroup);
@@ -210,7 +210,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     public void onLyricVisible(String hymnId) {
 
-        if (hymnId==null) hymnId="E1";
+        if (hymnId==null) hymnId="ML1";
 
         try {
             selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);
