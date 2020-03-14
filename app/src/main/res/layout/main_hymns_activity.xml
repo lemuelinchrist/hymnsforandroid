@@ -26,13 +26,13 @@
 
             />
         </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.viewpager.widget.ViewPager
-                android:id="@+id/hymn_fragment_viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#000000"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+            android:id="@+id/hymn_fragment_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <ListView
             android:id="@+id/left_drawer"

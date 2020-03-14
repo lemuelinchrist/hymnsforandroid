@@ -37,7 +37,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     private ActionBarDrawerToggle mDrawerToggle;
 
     private ActionBar actionBar;
-    private HymnBookCollection hymnBookCollection;
+    public HymnBookCollection hymnBookCollection;
     private Theme theme = Theme.LIGHT;
     private SharedPreferences sharedPreferences;
     private boolean preferenceChanged = true;

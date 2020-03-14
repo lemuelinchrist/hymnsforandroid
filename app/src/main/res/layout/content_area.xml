@@ -4,7 +4,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
 
-        android:id="@+id/jellybeanContentScrollView"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/jellybeanContentScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/dayMode"
@@ -55,6 +56,29 @@
                         android:id="@+id/lyricHeader"
                         android:text="@string/headerFiller"
                         style="@style/dayMode" android:layout_marginBottom="15dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/relatedHeader"
+                    android:text="Related"
+                    style="@style/dayMode"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/hymnLink"
+                    android:src="@drawable/ic_favorite_border_white_48dp"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_gravity="left"
+                    android:layout_weight="1" android:scaleType="center"
+                    android:adjustViewBounds="true"/>
+            </LinearLayout>
+
                 <androidx.cardview.widget.CardView android:layout_width="wrap_content"
                                                    android:layout_height="wrap_content"
                                                    style="@style/dayMode" app:cardCornerRadius="25dp"

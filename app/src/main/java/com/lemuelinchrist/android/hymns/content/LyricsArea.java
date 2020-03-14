@@ -1,21 +1,32 @@
 package com.lemuelinchrist.android.hymns.content;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import com.lemuelinchrist.android.hymns.HymnBookCollection;
 import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.HymnsActivity;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
+import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
@@ -31,18 +42,18 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
     private final ViewGroup stanzaView;
     private final TextView composerView;
     private final TextView lyricHeader;
+    private final Button hymnLink;
     private final SharedPreferences sharedPreferences;
     private final Theme theme;
     private int columnNo=0;
     private LinearLayout currentTextLinearLayout;
     private static float fontSize;
-
-
+    protected HymnGroup selectedHymnGroup = HymnGroup.E;
+    protected final int SEARCH_REQUEST = 1;
     public LyricsArea(Hymn hymn, Fragment parentFragment, NestedScrollView view) {
         super(hymn, parentFragment, view);
-
         // Load saved data
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(parentFragment.getContext());
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
         theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
 
@@ -56,13 +67,39 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         lyricHeader = view.findViewById(getRid("lyricHeader"));
         lyricHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
+        hymnLink = view.findViewById(getRid("hymnLink"));
+        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+        hymnLink.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (hymnLink.getText().toString().equals("E1")) {
+                    selectDrawerItem(0);
+                }
+                if (hymnLink.getText().toString().equals("C1")) {
+                    selectDrawerItem(1);
+                }
+
+            }
+        });
         composerView = view.findViewById(getRid("composer"));
         composerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
     }
 
+    private void selectDrawerItem(int position) {
+        Log.i(HymnsActivity.class.getSimpleName(), "Drawer Item selected: " + position);
+
+        selectedHymnGroup = HymnGroup.values()[position];
+
+        if (selectedHymnGroup == null) {
+            Log.w(HymnsActivity.class.getSimpleName(), "warning: selected Hymn group currently not supported. Switching to default group: E");
+            selectedHymnGroup = HymnGroup.E;
+        }
+
+        ((HymnsActivity)parentFragment.getContext()).hymnBookCollection.translateTo(selectedHymnGroup);
+
+    }
     private int getRid(String lyricHeader) {
-        return context.getResources().getIdentifier(lyricHeader, "id", context
+        return parentFragment.getContext().getResources().getIdentifier(lyricHeader, "id", parentFragment.getContext()
                 .getPackageName());
     }
 
@@ -113,15 +150,21 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             List<String> related = hymn.getRelated();
             if (related != null && related.size() != 0) {
                 headerContentPresent=true;
-                text.append("<br/>Related: ");
+                //text.append("<br/>Related: ");
                 StringBuilder relatedConcat = new StringBuilder();
                 for (String r : related) {
                     relatedConcat.append(", ");
                     relatedConcat.append(r);
+                    if (r.equals("C1")) {
+                        hymnLink.setText(Html.fromHtml("C1"));
+                    }
+                    if (r.equals("E1")) {
+                        hymnLink.setText(Html.fromHtml("E1"));
+                    }
                 }
 
-                if (relatedConcat.length() > 2)
-                    text.append(relatedConcat.substring(2));
+               // if (relatedConcat.length() > 2)
+                   // text.append(relatedConcat.substring(2));
             }
 
             if(!headerContentPresent) {
@@ -200,7 +243,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         TextView view;
         // if column is odd
         if (++columnNo % 2 != 0) {
-            currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
+            currentTextLinearLayout = (LinearLayout) LayoutInflater.from(parentFragment.getContext()).inflate(R.layout.stanza_linear_layout, null);
             stanzaView.addView(currentTextLinearLayout);
             // left column on landscape mode
             view = (TextView) currentTextLinearLayout.getChildAt(0);
