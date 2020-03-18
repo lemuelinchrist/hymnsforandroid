@@ -137,9 +137,9 @@ public class HymnsDao {
 
 
         String sql = "select * from(" +
-                "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL " + groupClause + " \n" +
+                "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' " + groupClause + " \n" +
                 "union\n" +
-                "select first_chorus_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL " + groupClause +
+                "select first_chorus_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' " + groupClause +
                 ") " + likeClause + orderBy ;
 
         Log.i(this.getClass().getName(), "Using SQL query: " + sql);
@@ -165,7 +165,7 @@ public class HymnsDao {
         }
 
         String sql =
-                "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL "
+                "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' "
                         + groupClause + " \n"
                         + likeClause
                         + " ORDER BY CAST(no AS int), " +

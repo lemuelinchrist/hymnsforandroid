@@ -21,20 +21,29 @@ class UpdateV412 {
 //        changeLyrics()
         List<HymnsEntity> hymns = dao.findAll(" h.hymnGroup='Z'")
         for(HymnsEntity hymn: hymns) {
-            if(hymn.parentHymn!=null && !hymn.parentHymn.isEmpty()) {
-                dao.addRelatedHymn(hymn.getParentHymn(),hymn.getId())
-            }
+            fixRelated(hymn)
+
         }
 
         hymns = dao.findAll(" h.hymnGroup='ZS'")
         for(HymnsEntity hymn: hymns) {
-            if(hymn.parentHymn!=null && !hymn.parentHymn.isEmpty()) {
-                dao.addRelatedHymn(hymn.getParentHymn(),hymn.getId())
-            }
+            fixRelated(hymn)
         }
+
+
     }
 
-
+    public static void fixRelated(HymnsEntity hymn) {
+        if (hymn.parentHymn != null && !hymn.parentHymn.isEmpty()) {
+            dao.addRelatedHymn(hymn.getParentHymn(), hymn.getId())
+        } else {
+            String parentHymnID = hymn.id.replace("Z", "C")
+            hymn.parentHymn = parentHymnID
+            dao.save(hymn)
+            dao.addRelatedHymn(parentHymnID, hymn.getId())
+            dao.addRelatedHymn(hymn.getId(), parentHymnID)
+        }
+    }
 
 
 }

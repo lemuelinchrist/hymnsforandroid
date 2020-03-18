@@ -151,7 +151,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 Log.d(this.getClass().getSimpleName(), "Looping stanza: " + stanza.getNo());
                 if (stanza.getNo().equals("chorus")) {
 //                    text.append("<b>##" + stanza.getNo() + "##</b><br/>");
-                    if (stanza.getNote() != null)
+                    if (isNotEmpty(stanza.getNote()))
                         text.append("<i>@@(" + stanza.getNote() + ")@@</i>");
                     chorusText = "<i>@@" + stanza.getText() + "@@</i>";
                     text.append(chorusText);
