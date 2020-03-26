@@ -41,11 +41,14 @@ public class SheetMusicActivity extends AppCompatActivity {
 
         webview = findViewById(R.id.sheet_music_image);
         webview.getSettings().setBuiltInZoomControls(true);
+        // disable zoom buttons
+        webview.getSettings().setDisplayZoomControls(false);
         webview.loadUrl("file:///android_asset/svg/" + selectedHymnId + ".svg");
         // zoom out by default
         webview.getSettings().setUseWideViewPort(true);
         webview.getSettings().setLoadWithOverviewMode(true);
         webview.setInitialScale(1);
+
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if(sharedPreferences.getBoolean("keepDisplayOn",false)) {
