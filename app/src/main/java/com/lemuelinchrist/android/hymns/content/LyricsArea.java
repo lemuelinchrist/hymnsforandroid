@@ -2,7 +2,11 @@ package com.lemuelinchrist.android.hymns.content;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.util.Log;
@@ -12,9 +16,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.view.ViewGroup.LayoutParams;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.Color;
+import android.view.Gravity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
@@ -31,6 +42,7 @@ import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,19 +54,23 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
     private final ViewGroup stanzaView;
     private final TextView composerView;
     private final TextView lyricHeader;
-    private final Button hymnLink;
+    //private final Button hymnLink;
     private final SharedPreferences sharedPreferences;
     private final Theme theme;
     private int columnNo=0;
     private LinearLayout currentTextLinearLayout;
     private static float fontSize;
+    private static float fontSize1;
     protected HymnGroup selectedHymnGroup = HymnGroup.E;
     protected final int SEARCH_REQUEST = 1;
+    private Drawable drawable;
+    private LinearLayout layoutRelated;
     public LyricsArea(Hymn hymn, Fragment parentFragment, NestedScrollView view) {
         super(hymn, parentFragment, view);
         // Load saved data
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(parentFragment.getContext());
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
+        fontSize1 = Float.parseFloat(sharedPreferences.getString("FontSize", "10f"));
         theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
 
         // remove placeholder because it only contains dummy lyrics
@@ -67,29 +83,21 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         lyricHeader = view.findViewById(getRid("lyricHeader"));
         lyricHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
-        hymnLink = view.findViewById(getRid("hymnLink"));
-        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
-        hymnLink.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (hymnLink.getText().toString().equals("E1")) {
-                    selectDrawerItem(0);
-                }
-                if (hymnLink.getText().toString().equals("C1")) {
-                    selectDrawerItem(1);
-                }
-
-            }
-        });
         composerView = view.findViewById(getRid("composer"));
         composerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
-
+        layoutRelated = view.findViewById(getRid("layoutRelated"));
     }
-
-    private void selectDrawerItem(int position) {
-        Log.i(HymnsActivity.class.getSimpleName(), "Drawer Item selected: " + position);
-
-        selectedHymnGroup = HymnGroup.values()[position];
-
+    public HymnGroup getHymnGroup(String hymnNo) {
+        try {
+            selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnNo);
+        } catch (com.lemuelinchrist.android.hymns.NoSuchHymnGroupException e) {
+            Log.e(this.getClass().getName(),e.getMessage());
+        }
+        return selectedHymnGroup;
+    }
+    private void selectDrawerItem() {
+        //Log.i(HymnsActivity.class.getSimpleName(), "Drawer Item selected: " + position);
+        //getHymnGroup();
         if (selectedHymnGroup == null) {
             Log.w(HymnsActivity.class.getSimpleName(), "warning: selected Hymn group currently not supported. Switching to default group: E");
             selectedHymnGroup = HymnGroup.E;
@@ -103,6 +111,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 .getPackageName());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void displayLyrics() {
         try {
             Log.d(this.getClass().getSimpleName(), "Displaying lyrics");
@@ -155,16 +164,105 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 for (String r : related) {
                     relatedConcat.append(", ");
                     relatedConcat.append(r);
-                    if (r.equals("C1")) {
-                        hymnLink.setText(Html.fromHtml("C1"));
+                    if (getHymnGroup(r) == HymnGroup.ML) {
+                        Button hymnLink = new Button(parentFragment.getContext());
+                        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                        hymnLink.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                selectDrawerItem();
+                            }
+                        });
+                        LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                        layoutRelated.addView(hymnLink, lp);
+                        ColorDrawable cd = new ColorDrawable(Color.parseColor("#FFFFFF"));
+                        hymnLink.setTextColor(Color.parseColor("#FFFFFF"));
+                        hymnLink.setTextSize(5);
+                        hymnLink.setBackground(parentFragment.getContext().getResources()
+                                .getDrawable(R.drawable.rounded));
+                        hymnLink.setText(Html.fromHtml(r));
                     }
-                    if (r.equals("E1")) {
-                        hymnLink.setText(Html.fromHtml("E1"));
+                    if (getHymnGroup(r) == HymnGroup.E) {
+                        Button hymnLink = new Button(parentFragment.getContext());
+                        hymnLink.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                selectDrawerItem();
+                            }
+                        });
+                        hymnLink.setBackground(parentFragment.getContext().getResources()
+                                .getDrawable(R.drawable.rounded));
+                        hymnLink.setText(Html.fromHtml(r));
+                        hymnLink.setTextColor(Color.parseColor("#FFFFFF"));
+                        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, 5);
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200,
+                                LayoutParams.WRAP_CONTENT);
+                        params.weight = 1;
+                        params.gravity = Gravity.LEFT;
+                        hymnLink.setLayoutParams(params);
+                        layoutRelated.addView(hymnLink);
+                    }
+                    if (getHymnGroup(r) == HymnGroup.BF) {
+                        Button hymnLink = new Button(parentFragment.getContext());
+                        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                        View view = new View(parentFragment.getContext());
+                        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(10,
+                                LayoutParams.WRAP_CONTENT);
+                        params1.weight = 1;
+                        view.setLayoutParams(params1);
+                        hymnLink.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                selectDrawerItem();
+                            }
+                        });
+                        hymnLink.setBackground(parentFragment.getContext().getResources()
+                                .getDrawable(R.drawable.rounded_button));
+                        hymnLink.setText(Html.fromHtml(r));
+                        ColorDrawable cd = new ColorDrawable(Color.parseColor("#FFFFFF"));
+                        hymnLink.setTextColor(Color.parseColor("#FFFFFF"));
+                       // hymnLink.setTextSize(5);
+                        //hymnLink.setWidth(1);
+                        //hymnLink.setBackgroundColor(Color.parseColor("#E79E7F"));
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200,
+                                LayoutParams.WRAP_CONTENT);
+                        params.weight = 6;
+                        params.gravity = Gravity.LEFT;
+                        hymnLink.setLayoutParams(params);
+                        layoutRelated.addView(hymnLink);
+                        layoutRelated.addView(view);
+                    }
+                    if (getHymnGroup(r) == HymnGroup.NS) {
+                        Button hymnLink = new Button(parentFragment.getContext());
+                        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                        View view = new View(parentFragment.getContext());
+                        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(10,
+                                LayoutParams.WRAP_CONTENT);
+                        params1.weight = 1;
+                        view.setLayoutParams(params1);
+                        //hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+                        hymnLink.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                selectDrawerItem();
+                            }
+                        });
+                        hymnLink.setWidth(1);
+                        hymnLink.setBackground(parentFragment.getContext().getResources()
+                                .getDrawable(R.drawable.rounded_button));
+                        hymnLink.setText(Html.fromHtml(r));
+                        ColorDrawable cd = new ColorDrawable(Color.parseColor("#FFFFFF"));
+                        hymnLink.setTextColor(Color.parseColor("#FFFFFF"));
+                        //hymnLink.setTextSize(5);
+                        //hymnLink.setBackgroundColor(Color.parseColor("#E79E7F"));
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200,
+                                LayoutParams.WRAP_CONTENT);
+                        params.weight = 6;
+                        params.gravity = Gravity.LEFT;
+                         hymnLink.setLayoutParams(params);
+                        layoutRelated.addView(hymnLink);
+                        layoutRelated.addView(view);
                     }
                 }
 
                // if (relatedConcat.length() > 2)
-                   // text.append(relatedConcat.substring(2));
+                  //  text.append(relatedConcat.substring(2));
             }
 
             if(!headerContentPresent) {
@@ -172,7 +270,12 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 mainHeaderContainer.setVisibility(View.GONE);
             } else {
                 // Use text.substring to remove the leading <br/>
-                lyricHeader.setText(Html.fromHtml(text.substring(5)));
+                if(!text.toString().equals("")) {
+                    lyricHeader.setText(Html.fromHtml(text.substring(5)));
+                }
+                else {
+                    lyricHeader.setText(Html.fromHtml(""));
+                }
             }
 
             // ######################## Build Lyric Text

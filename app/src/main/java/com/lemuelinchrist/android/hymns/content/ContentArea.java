@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
@@ -51,6 +53,7 @@ public class ContentArea extends Fragment {
     private SheetMusicButton sheetMusicButton;
     private FaveButton faveButton;
     private CopyButton copyButton;
+    private Button hymnLink;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -104,7 +107,11 @@ public class ContentArea extends Fragment {
 
         buttonContainer = rootView.findViewById(getRid("buttonContainer"));
         if(buttonContainer !=null ){
-            buttonContainer.setCardBackgroundColor(getHymnGroup().getDayColor());
+               buttonContainer.setCardBackgroundColor(getHymnGroup().getDayColor());
+        }
+        hymnLink = rootView.findViewById(getRid("hymnLink"));
+        if(hymnLink !=null ){
+           // hymnLink.setBackgroundColor(getHymnGroup().getDayColor());
         }
 
         playButton = new PlayButton(hymn,this,
