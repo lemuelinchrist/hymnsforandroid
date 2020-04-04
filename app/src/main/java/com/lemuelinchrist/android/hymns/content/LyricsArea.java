@@ -23,6 +23,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.ContextThemeWrapper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -165,44 +166,52 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                     relatedConcat.append(", ");
                     relatedConcat.append(r);
                     if (getHymnGroup(r) == HymnGroup.ML) {
-                        Button hymnLink = new Button(parentFragment.getContext());
-                        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                        int buttonStyle = R.style.Large;
+
+                        Button hymnLink = new Button(new ContextThemeWrapper(parentFragment.getContext(), buttonStyle),
+                                null, buttonStyle);
+                        hymnLink.setBackground(parentFragment.getContext().getResources()
+                                .getDrawable(R.drawable.rounded));
                         hymnLink.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 selectDrawerItem();
                             }
                         });
-                        LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-                        layoutRelated.addView(hymnLink, lp);
-                        ColorDrawable cd = new ColorDrawable(Color.parseColor("#FFFFFF"));
-                        hymnLink.setTextColor(Color.parseColor("#FFFFFF"));
-                        hymnLink.setTextSize(5);
-                        hymnLink.setBackground(parentFragment.getContext().getResources()
-                                .getDrawable(R.drawable.rounded));
                         hymnLink.setText(Html.fromHtml(r));
+                        hymnLink.setGravity(Gravity.CENTER);
+                        hymnLink.setTextColor(Color.parseColor("#FFFFFF"));
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(150,
+                                70);
+                        hymnLink.setLayoutParams(params);
+                        layoutRelated.addView(hymnLink);
                     }
                     if (getHymnGroup(r) == HymnGroup.E) {
-                        Button hymnLink = new Button(parentFragment.getContext());
+                        int buttonStyle = R.style.Large;
+
+                        Button hymnLink = new Button(new ContextThemeWrapper(parentFragment.getContext(), buttonStyle),
+                                null, buttonStyle);
+                        //Button hymnLink = new Button(parentFragment.getContext());
                         hymnLink.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 selectDrawerItem();
                             }
                         });
                         hymnLink.setBackground(parentFragment.getContext().getResources()
-                                .getDrawable(R.drawable.rounded));
+                                .getDrawable(R.drawable.rounded_english));
+
                         hymnLink.setText(Html.fromHtml(r));
+                        hymnLink.setGravity(Gravity.CENTER);
                         hymnLink.setTextColor(Color.parseColor("#FFFFFF"));
-                        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, 5);
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200,
-                                LayoutParams.WRAP_CONTENT);
-                        params.weight = 1;
-                        params.gravity = Gravity.LEFT;
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(150,
+                                70);
                         hymnLink.setLayoutParams(params);
                         layoutRelated.addView(hymnLink);
                     }
                     if (getHymnGroup(r) == HymnGroup.BF) {
-                        Button hymnLink = new Button(parentFragment.getContext());
-                        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                        int buttonStyle = R.style.Large;
+
+                        Button hymnLink = new Button(new ContextThemeWrapper(parentFragment.getContext(), buttonStyle),
+                                null, buttonStyle);
                         View view = new View(parentFragment.getContext());
                         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(10,
                                 LayoutParams.WRAP_CONTENT);
@@ -217,45 +226,38 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                                 .getDrawable(R.drawable.rounded_button));
                         hymnLink.setText(Html.fromHtml(r));
                         ColorDrawable cd = new ColorDrawable(Color.parseColor("#FFFFFF"));
+                        hymnLink.setGravity(Gravity.CENTER);
                         hymnLink.setTextColor(Color.parseColor("#FFFFFF"));
-                       // hymnLink.setTextSize(5);
-                        //hymnLink.setWidth(1);
-                        //hymnLink.setBackgroundColor(Color.parseColor("#E79E7F"));
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200,
-                                LayoutParams.WRAP_CONTENT);
-                        params.weight = 6;
-                        params.gravity = Gravity.LEFT;
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(150,
+                                70);
                         hymnLink.setLayoutParams(params);
                         layoutRelated.addView(hymnLink);
                         layoutRelated.addView(view);
                     }
                     if (getHymnGroup(r) == HymnGroup.NS) {
-                        Button hymnLink = new Button(parentFragment.getContext());
-                        hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+                        int buttonStyle = R.style.Large;
+
+                        Button hymnLink = new Button(new ContextThemeWrapper(parentFragment.getContext(), buttonStyle),
+                                null, buttonStyle);
                         View view = new View(parentFragment.getContext());
                         LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(10,
                                 LayoutParams.WRAP_CONTENT);
                         params1.weight = 1;
                         view.setLayoutParams(params1);
-                        //hymnLink.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
                         hymnLink.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 selectDrawerItem();
                             }
                         });
-                        hymnLink.setWidth(1);
                         hymnLink.setBackground(parentFragment.getContext().getResources()
                                 .getDrawable(R.drawable.rounded_button));
                         hymnLink.setText(Html.fromHtml(r));
                         ColorDrawable cd = new ColorDrawable(Color.parseColor("#FFFFFF"));
+                        hymnLink.setGravity(Gravity.CENTER);
                         hymnLink.setTextColor(Color.parseColor("#FFFFFF"));
-                        //hymnLink.setTextSize(5);
-                        //hymnLink.setBackgroundColor(Color.parseColor("#E79E7F"));
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200,
-                                LayoutParams.WRAP_CONTENT);
-                        params.weight = 6;
-                        params.gravity = Gravity.LEFT;
-                         hymnLink.setLayoutParams(params);
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(150,
+                                70);
+                        hymnLink.setLayoutParams(params);
                         layoutRelated.addView(hymnLink);
                         layoutRelated.addView(view);
                     }
