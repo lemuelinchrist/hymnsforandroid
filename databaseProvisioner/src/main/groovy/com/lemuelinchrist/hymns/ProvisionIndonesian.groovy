@@ -80,13 +80,15 @@ class ProvisionIndonesian {
 
     def createNewHymn() {
         println "******* Generating Chinese Hymn ${hymnCounter}..."
+
+        stanzaCounter = 0
+        stanzaOrderCounter = 0
+
         hymn = new HymnsEntity();
         hymn.id = 'I' + hymnCounter
         hymn.no = hymnCounter.toString()
         hymn.hymnGroup = 'I'
         hymn.stanzas = new ArrayList<StanzaEntity>()
-        stanzaCounter = 0
-        stanzaOrderCounter = 0
 
         def splitCategories = iterator.next().trim().split(" - ")
         if (splitCategories.length!=2) {
@@ -113,15 +115,42 @@ class ProvisionIndonesian {
 
         }
 
+        // generate first stanza
 
-
-
+        StanzaEntity stanza = createNewStanza()
+        hymn.stanzas+=stanza
+        hymn.firstStanzaLine+=stanza.text.split("<br/>")[0]
 
     }
 
-//    StanzaEntity createNewStanza() {
-//
-//
-//        return stanza
-//    }
+    StanzaEntity createNewStanza() {
+        StanzaEntity stanza = new StanzaEntity()
+        while (true) {
+            line = iterator.next().trim()
+            if(!line.isEmpty()) break
+        }
+
+        def numberInLine = line.split(" ")[0]
+
+        stanzaCounter++
+        stanzaOrderCounter++
+
+        if(!numberInLine.equals(stanzaCounter.toString())) {
+            throw new Exception("stanza "+ stanzaCounter + " not found: " + hymn.id)
+        }
+        stanza.setParentHymn(hymn)
+        stanza.setNo(stanzaCounter.toString())
+        stanza.setOrder(stanzaOrderCounter)
+
+        stanza.text=''
+        line = line.replace(numberInLine,"").trim()
+        while(true) {
+            stanza.text+=line
+            stanza.text+="<br/>"
+            line = iterator.next().trim()
+            if(line.isEmpty()) break
+        }
+
+        return stanza
+    }
 }
