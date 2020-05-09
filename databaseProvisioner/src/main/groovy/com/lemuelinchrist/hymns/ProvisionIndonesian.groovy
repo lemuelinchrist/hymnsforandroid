@@ -39,7 +39,7 @@ class ProvisionIndonesian {
 
         while (iterator.hasNext()) {
 
-            line = iterator.next().trim()
+            lookForTheNextNonEmptyLine()
 
 
 
@@ -57,29 +57,28 @@ class ProvisionIndonesian {
                 }
                 finalizeCurrentHymn()
                 createNewHymn()
-                println hymn
 
             } else if (line.isEmpty()) {
                 finalizeCurrentHymn()
-//                break
+                break
             } else {
-//                    createNewStanza()
-
+                   hymn.stanzas+= createNewStanza()
             }
 
-//            println hymn
         }
-
+        finalizeCurrentHymn()
         println("missing hymns: " + malformedHymns)
 
     }
 
     def finalizeCurrentHymn() {
-
+        if (hymn==null) return
+        println hymn
+        dao.save(hymn)
     }
 
     def createNewHymn() {
-        println "******* Generating Chinese Hymn ${hymnCounter}..."
+        println "******* Generating Indonesian Hymn ${hymnCounter}..."
 
         stanzaCounter = 0
         stanzaOrderCounter = 0
@@ -110,13 +109,13 @@ class ProvisionIndonesian {
             if(chineseHymn.getParentHymn()!=null && !chineseHymn.getParentHymn().isEmpty()) {
                 hymn.parentHymn=chineseHymn.getParentHymn()
             } else {
-                hymn.parentHymn=chineseHymn
+                hymn.parentHymn=chineseHymn.id
             }
 
         }
 
         // generate first stanza
-
+        lookForTheNextNonEmptyLine()
         StanzaEntity stanza = createNewStanza()
         hymn.stanzas+=stanza
         hymn.firstStanzaLine+=stanza.text.split("<br/>")[0]
@@ -125,26 +124,28 @@ class ProvisionIndonesian {
 
     StanzaEntity createNewStanza() {
         StanzaEntity stanza = new StanzaEntity()
-        while (true) {
-            line = iterator.next().trim()
-            if(!line.isEmpty()) break
-        }
-
-        def numberInLine = line.split(" ")[0]
-
-        stanzaCounter++
-        stanzaOrderCounter++
-
-        if(!numberInLine.equals(stanzaCounter.toString())) {
-            throw new Exception("stanza "+ stanzaCounter + " not found: " + hymn.id)
-        }
         stanza.setParentHymn(hymn)
-        stanza.setNo(stanzaCounter.toString())
-        stanza.setOrder(stanzaOrderCounter)
+        stanza.text = ''
+        stanza.order = ++stanzaOrderCounter
 
-        stanza.text=''
-        line = line.replace(numberInLine,"").trim()
-        while(true) {
+
+        if(line.equals("Koor:")) {
+            lookForTheNextNonEmptyLine()
+            if(hymn.firstChorusLine==null || hymn.firstChorusLine.isEmpty()) {
+                hymn.firstChorusLine=line
+            }
+            stanza.no= "chorus"
+        } else {
+            def numberInLine = line.split(" ")[0]
+            stanzaCounter++
+            if(!numberInLine.equals(stanzaCounter.toString()) && hymn.no!="388" && hymn.no!="485" && hymn.no!="717") {
+                throw new Exception("stanza "+ stanzaCounter + " not found: " + hymn.id)
+            }
+            stanza.no = numberInLine
+            line = line.replace(numberInLine,"").trim()
+        }
+
+        while(iterator.hasNext()) {
             stanza.text+=line
             stanza.text+="<br/>"
             line = iterator.next().trim()
@@ -152,5 +153,12 @@ class ProvisionIndonesian {
         }
 
         return stanza
+    }
+
+    def lookForTheNextNonEmptyLine() {
+        while (iterator.hasNext()) {
+            line = iterator.next().trim()
+            if(!line.isEmpty()) break
+        }
     }
 }
