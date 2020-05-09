@@ -2,15 +2,19 @@ package com.lemuelinchrist.android.hymns.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import androidx.preference.PreferenceManager;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by lemuelcantos on 24/7/13.
@@ -20,6 +24,7 @@ public class HymnsDao {
     public static final String ORDER_BY_HYMN_NUMBER="order by CAST(no as decimal) ";
 
     private final Context context;
+    private final SharedPreferences sharedPreferences;
 
     public String getHymnNoFromCursor(Cursor cursor) {
         return cursor.getString(cursor.getColumnIndex("_id"));
@@ -44,9 +49,9 @@ public class HymnsDao {
     private HymnsSqliteHelper dbHelper;
 
     public HymnsDao(Context context) {
-        this.context = context
-        ;
+        this.context = context;
         dbHelper = HymnsSqliteHelper.getInstance(context);
+        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public void open() throws SQLException {
@@ -127,6 +132,7 @@ public class HymnsDao {
         String likeClause = "";
         if (filter != null && !filter.equals("")) {
             likeClause = " WHERE "+ buildLikeClause("stanza_chorus", filter) + " ";
+            groupClause = getDisabledHymnGroupClause();
         } else {
             groupClause = " and (hymn_group='" + hymnGroup + "') ";
         }
@@ -160,6 +166,7 @@ public class HymnsDao {
         String likeClause = "";
         if (filter != null && !filter.equals("")) {
             likeClause = " AND NO LIKE '%"+ filter.trim() +"'";
+            groupClause = getDisabledHymnGroupClause();
         } else {
             groupClause = " and hymn_group = '" + hymnGroup + "' ";
         }
@@ -177,6 +184,22 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
+    private String getDisabledHymnGroupClause() {
+        Set<String> disabled = sharedPreferences.getStringSet("disableLanguages",new HashSet<String>());
+        if(disabled.size()==0) {
+            return "";
+        }
+        StringBuilder disabledBuilder = new StringBuilder();
+        for(String d:disabled) {
+            disabledBuilder.append("'");
+            disabledBuilder.append(d);
+            disabledBuilder.append("'");
+            disabledBuilder.append(" ");
+        }
+
+        return " and hymn_group not in ("+ disabledBuilder.toString().trim().replace(" ",", ") +") ";
+    }
+
     public ArrayList<String> getArrayByHymnNo(HymnGroup hymnGroup) {
         Cursor cursor = getByHymnNo(hymnGroup,null);
         ArrayList<String> hymnArray=new ArrayList<>();
@@ -190,7 +213,7 @@ public class HymnsDao {
         if (filter != null)
             filter = filter.replace("'", "''");
 
-        String groupClause = "";
+        String groupClause = getDisabledHymnGroupClause();
         String likeClause = "";
         if (filter != null && !filter.equals("")) {
             likeClause = " WHERE author_composer LIKE " + "'%" + filter.trim() + "%' ";
@@ -217,7 +240,8 @@ public class HymnsDao {
         String groupClause = "";
         String likeClause = "";
         if (filter != null && !filter.equals("")) {
-            likeClause = " and main_category LIKE " + "'%" + filter.trim() + "%' " + " OR sub_category LIKE " + "'%" + filter.trim() + "%' ";
+            likeClause = " and ( main_category LIKE " + "'%" + filter.trim() + "%' " + " OR sub_category LIKE " + "'%" + filter.trim() + "%') ";
+            groupClause = getDisabledHymnGroupClause();
         } else {
             groupClause = " and (hymn_group='" + hymnGroup + "') ";
         }

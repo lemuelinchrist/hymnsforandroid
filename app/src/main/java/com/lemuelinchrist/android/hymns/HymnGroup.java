@@ -1,6 +1,7 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,6 @@ public enum HymnGroup {
         }
     }
 
-
     public int getDayColor() {
         return dayColor;
     }
@@ -110,5 +110,20 @@ public enum HymnGroup {
         return list.toArray(new String[list.size()]);
     }
 
+    public static String[] getArrayOfCodes() {
+        List<String> list = new ArrayList<String>();
+        for (HymnGroup group: HymnGroup.values()) {
+            list.add(group.name());
 
+        }
+        return list.toArray(new String[list.size()]);
+    }
+
+    public static HymnGroup getFromSimpleName(String simpleName) {
+        for (HymnGroup group: HymnGroup.values()) {
+            if(group.getSimpleName().equals(simpleName)) return group;
+        }
+        Log.e(HymnGroup.class.getSimpleName(), "warning: selected Hymn group not found. Switching to default group: E");
+        return HymnGroup.E;
+    }
 }

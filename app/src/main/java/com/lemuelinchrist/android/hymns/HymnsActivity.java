@@ -1,7 +1,5 @@
 package com.lemuelinchrist.android.hymns;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -41,6 +39,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     private Theme theme = Theme.LIGHT;
     private SharedPreferences sharedPreferences;
     private boolean preferenceChanged = true;
+    private HymnDrawer hymnDrawer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,8 +72,9 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         });
 
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new HymnDrawerListAdapter(this,
-                R.layout.drawer_hymngroup_list));
+        hymnDrawer = new HymnDrawer(this,
+                R.layout.drawer_hymngroup_list);
+        mDrawerList.setAdapter(hymnDrawer);
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
@@ -103,31 +103,12 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         mDrawerToggle.syncState();
     }
 
-    private void showAlert(int message, int title) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message).setTitle(title);
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
     private void selectDrawerItem(int position) {
         Log.i(HymnsActivity.class.getSimpleName(), "Drawer Item selected: " + position);
 
-        selectedHymnGroup = HymnGroup.values()[position];
-
-        if (selectedHymnGroup == null) {
-            Log.w(HymnsActivity.class.getSimpleName(), "warning: selected Hymn group currently not supported. Switching to default group: E");
-            selectedHymnGroup = HymnGroup.E;
-        }
-
+        selectedHymnGroup = hymnDrawer.getSelectedHymnGroup(position);
         hymnBookCollection.translateTo(selectedHymnGroup);
         mDrawerLayout.closeDrawer(mDrawerList);
-
     }
 
 

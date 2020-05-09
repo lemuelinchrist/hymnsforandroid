@@ -36,13 +36,19 @@
                 app:key="keepDisplayOn"
                 app:defaultValue="false"
                 app:title="@string/keepDisplayOn"
-                app:icon="@drawable/ic_lightbulb_outline_black_48dp"
+                app:icon="@drawable/ic_lightbulb_outline_black_32dp"
                 app:summary="Screen will never go to sleep"/>
         <Preference
                 app:key="manageFaves"
                 app:title="Import/Export Faves"
                 app:icon="@drawable/ic_settings_favorite_black_32dp"
                 app:summary="Make sure to regularly backup your faves"
+        />
+        <MultiSelectListPreference
+                app:key="disableLanguages"
+                app:title="Disable Languages"
+                app:summary="Disable Languages you do not use"
+                app:icon="@drawable/ic_library_books_black_32dp"
         />
         <Preference
                 app:key="about"
