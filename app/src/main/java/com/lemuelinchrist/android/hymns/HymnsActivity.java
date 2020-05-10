@@ -71,11 +71,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
             }
         });
 
-        // set up the drawer's list view with items and click listener
-        hymnDrawer = new HymnDrawer(this,
-                R.layout.drawer_hymngroup_list);
-        mDrawerList.setAdapter(hymnDrawer);
-
+        refreshHymnDrawer();
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
                 mDrawerLayout,         /* DrawerLayout object */
@@ -92,6 +88,12 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setDisplayConfig();
+    }
+
+    private void refreshHymnDrawer() {
+        hymnDrawer = new HymnDrawer(this,
+                R.layout.drawer_hymngroup_list);
+        mDrawerList.setAdapter(hymnDrawer);
     }
 
     // Warning! this method is very crucial. Without it you will not have a hamburger icon on your
@@ -217,6 +219,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         if(preferenceChanged) {
             setDisplayConfig();
             changeThemeColor();
+            refreshHymnDrawer();
             hymnBookCollection.refresh();
             preferenceChanged=false;
         }
