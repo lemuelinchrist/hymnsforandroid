@@ -118,8 +118,6 @@ class ProvisionIndonesian {
         lookForTheNextNonEmptyLine()
         StanzaEntity stanza = createNewStanza()
         hymn.stanzas+=stanza
-        hymn.firstStanzaLine+=stanza.text.split("<br/>")[0]
-
     }
 
     StanzaEntity createNewStanza() {
@@ -128,8 +126,10 @@ class ProvisionIndonesian {
         stanza.text = ''
         stanza.order = ++stanzaOrderCounter
 
+        if(line.equals("Syair Kedua") || line.equals("Syair Kesatu")) {
+            stanza.no="beginning-note"
 
-        if(line.equals("Koor:")) {
+        } else if(line.equals("Koor:")) {
             lookForTheNextNonEmptyLine()
             if(hymn.firstChorusLine==null || hymn.firstChorusLine.isEmpty()) {
                 hymn.firstChorusLine=line
@@ -151,6 +151,8 @@ class ProvisionIndonesian {
             line = iterator.next().trim()
             if(line.isEmpty()) break
         }
+
+        if(stanzaCounter==1) hymn.firstStanzaLine+=stanza.text.split("<br/>")[0]
 
         return stanza
     }
