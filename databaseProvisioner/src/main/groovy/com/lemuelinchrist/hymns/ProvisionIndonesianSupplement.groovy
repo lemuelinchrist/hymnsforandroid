@@ -144,7 +144,7 @@ class ProvisionIndonesianSupplement {
         } else {
             def numberInLine = line.split(" ")[0]
             stanzaCounter++
-            if(!numberInLine.equals(stanzaCounter.toString()) && hymn.id != "IS702") {
+            if(!numberInLine.equals(stanzaCounter.toString()) && hymn.id != "I1702") {
                 throw new Exception("stanza "+ stanzaCounter + " not found: " + hymn.id)
             }
             stanza.no = numberInLine
