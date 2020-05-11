@@ -1,16 +1,10 @@
 package com.lemuelinchrist.hymns.lib.beans;
 
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  * Created by lcantos on 8/6/13.
@@ -344,6 +338,9 @@ public class HymnsEntity {
 
     public void addRelated(String relatedText) {
         Set<String> related = getRelated();
+        if(related==null) {
+            related = new HashSet<>();
+        }
         related.add(relatedText);
         setRelated(related);
     }

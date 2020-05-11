@@ -3,14 +3,13 @@ package com.lemuelinchrist.hymns.lib;
 import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 import com.lemuelinchrist.hymns.lib.beans.StanzaEntity;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by lemuelcantos on 31/10/15.
@@ -27,7 +26,6 @@ public class Dao {
 
     public HymnsEntity find(String HymnId) {
         return em.find(HymnsEntity.class, HymnId);
-
 
     }
 
@@ -57,6 +55,9 @@ public class Dao {
         em.persist(hymn);
         if(hymn.getParentHymn()!=null && !hymn.getParentHymn().isEmpty()) {
             HymnsEntity parentHymn = em.find(HymnsEntity.class, hymn.getParentHymn());
+            if(parentHymn==null) {
+                throw new RuntimeException("parentHymn is non-existent: " +hymn.getId());
+            }
             parentHymn.addRelated(hymn.getId());
         }
         em.getTransaction().commit();
