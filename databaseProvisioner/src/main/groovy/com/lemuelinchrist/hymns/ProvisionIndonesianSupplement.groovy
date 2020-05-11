@@ -74,7 +74,7 @@ class ProvisionIndonesianSupplement {
     def finalizeCurrentHymn() {
         if (hymn==null) return
         println hymn
-//        dao.save(hymn)
+        dao.save(hymn)
     }
 
     def createNewHymn() {
