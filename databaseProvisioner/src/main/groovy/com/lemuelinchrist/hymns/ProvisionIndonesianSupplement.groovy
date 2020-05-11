@@ -84,9 +84,9 @@ class ProvisionIndonesianSupplement {
         stanzaOrderCounter = 0
 
         hymn = new HymnsEntity();
-        hymn.id = 'IS' + (hymnCounter-1000)
-        hymn.no = hymnCounter.toString()
-        hymn.hymnGroup = 'IS'
+        hymn.id = 'I' + (hymnCounter)
+        hymn.no = (hymnCounter).toString()
+        hymn.hymnGroup = 'I'
         hymn.stanzas = new ArrayList<StanzaEntity>()
 
         def categories = iterator.next().trim()
@@ -124,7 +124,7 @@ class ProvisionIndonesianSupplement {
         lookForTheNextNonEmptyLine()
         StanzaEntity stanza = createNewStanza()
         hymn.stanzas+=stanza
-        hymn.firstStanzaLine+=stanza.text.split("<br/>")[0]
+        hymn.firstStanzaLine=stanza.text.split("<br/>")[0]
 
     }
 
@@ -135,7 +135,7 @@ class ProvisionIndonesianSupplement {
         stanza.order = ++stanzaOrderCounter
 
 
-        if(line.equals("Koor:")) {
+        if(line.equals("Koor:") || line.equals("Koor :")) {
             lookForTheNextNonEmptyLine()
             if(hymn.firstChorusLine==null || hymn.firstChorusLine.isEmpty()) {
                 hymn.firstChorusLine=line
@@ -144,7 +144,7 @@ class ProvisionIndonesianSupplement {
         } else {
             def numberInLine = line.split(" ")[0]
             stanzaCounter++
-            if(!numberInLine.equals(stanzaCounter.toString()) ) {
+            if(!numberInLine.equals(stanzaCounter.toString()) && hymn.id != "IS702") {
                 throw new Exception("stanza "+ stanzaCounter + " not found: " + hymn.id)
             }
             stanza.no = numberInLine

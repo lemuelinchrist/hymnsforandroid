@@ -152,7 +152,7 @@ class ProvisionIndonesian {
             if(line.isEmpty()) break
         }
 
-        if(stanzaCounter==1) hymn.firstStanzaLine+=stanza.text.split("<br/>")[0]
+        if(stanzaCounter==1) hymn.firstStanzaLine=stanza.text.split("<br/>")[0]
 
         return stanza
     }
