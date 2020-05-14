@@ -51,6 +51,7 @@ public class ContentArea extends Fragment {
     private SheetMusicButton sheetMusicButton;
     private FaveButton faveButton;
     private CopyButton copyButton;
+    private YoutubePianoButton youtubePianoButton;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -115,6 +116,8 @@ public class ContentArea extends Fragment {
                 (ImageButton)rootView.findViewById(getRid("faveButton")));
         copyButton = new CopyButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("copyButton")));
+        youtubePianoButton = new YoutubePianoButton(hymn,this,
+                (ImageButton)rootView.findViewById(getRid("youtubePianoButton")));
 
         return rootView;
     }

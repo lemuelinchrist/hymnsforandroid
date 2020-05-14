@@ -252,6 +252,16 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
+    public String getYoutubeLinkFromTune(String tune) {
+        try {
+            Cursor cursor = database.rawQuery("select * from tune where _id='" + tune + "'", null);
+            cursor.moveToNext();
+            return cursor.getString(cursor.getColumnIndex("youtube_link"));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public Hymn get(String hymnId) {
         if (hymnId == null) return null;
         Cursor cursor = null;
