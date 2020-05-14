@@ -7,6 +7,7 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>com.lemuelinchrist.hymns.lib.beans.HymnsEntity</class>
         <class>com.lemuelinchrist.hymns.lib.beans.StanzaEntity</class>
+        <class>com.lemuelinchrist.hymns.lib.beans.TuneEntity</class>
         <properties>
             <property name="eclipselink.jdbc.url"
                       value="jdbc:sqlite:${sqliteFile}"/>
