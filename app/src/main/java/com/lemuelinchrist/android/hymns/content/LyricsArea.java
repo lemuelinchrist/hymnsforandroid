@@ -143,34 +143,37 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             String chorusText = "";
             text = new StringBuilder();
             ArrayList<Stanza> stanzas = hymn.getStanzas();
-            if(stanzas.get(0).getNo().equals("beginning-note")) {
-                text.append("<i>" + stanzas.get(0).getText() + "</i><br/>");
-                stanzas.remove(stanzas.get(0));
-            }
             for (Stanza stanza : stanzas) {
                 Log.d(this.getClass().getSimpleName(), "Looping stanza: " + stanza.getNo());
                 if (stanza.getNo().equals("chorus")) {
-//                    text.append("<b>##" + stanza.getNo() + "##</b><br/>");
                     if (isNotEmpty(stanza.getNote()))
                         text.append("<i>@@(" + stanza.getNote() + ")@@</i>");
                     chorusText = "<i>@@" + stanza.getText() + "@@</i>";
                     text.append(chorusText);
                     buildLyricViewAndAttach(text, hymn.getGroup());
-                } else if (stanza.getNo().equals("end-note") || stanza.getNo().equals("note")) {
-                    text.append("<i>" + stanza.getText() + "</i>");
-                    buildLyricViewAndAttach(text, hymn.getGroup());
+                    text = new StringBuilder();
+                } else if (stanza.getNo().contains("note")) {
+                    // notes do not have their own lyric view unlike normal stanzas and choruses
+                    text.append("<i>" + stanza.getText() + "</i><br/>");
                 } else {
                     // append stanza
                     text.append("<b>##" + stanza.getNo() + "##</b><br/>");
                     text.append(stanza.getText());
                     buildLyricViewAndAttach(text, hymn.getGroup());
+                    text = new StringBuilder();
+
 
                     // append chorus after every stanza
                     if (hymn.getChorusCount() == 1 && !chorusText.isEmpty()) {
                         buildLyricViewAndAttach(new StringBuilder(chorusText), hymn.getGroup());
+                        text = new StringBuilder();
                     }
                 }
-                text = new StringBuilder();
+
+                if(stanza.getNo().equals("end-node")) {
+                    buildLyricViewAndAttach(text,hymn.getGroup());
+                    text = new StringBuilder();
+                }
             }
 
             // remove unused textview if uneven
