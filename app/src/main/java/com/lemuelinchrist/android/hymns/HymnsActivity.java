@@ -48,6 +48,10 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
 
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
         setContentView(R.layout.main_hymns_activity);
+
+        // set default value of preferences
+        PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 

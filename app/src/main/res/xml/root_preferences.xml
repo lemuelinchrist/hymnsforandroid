@@ -49,7 +49,15 @@
                 app:title="Disable Languages"
                 app:summary="Disable Languages you do not use"
                 app:icon="@drawable/ic_library_books_black_32dp"
+                app:defaultValue="@array/disabled_languages_default"
         />
+        <SwitchPreferenceCompat
+                app:key="youtubePiano"
+                app:defaultValue="false"
+                app:title="@string/youtube_piano"
+                app:summary="Enable Button that links Hymn to Piano Videos in YouTube (suitable for Zoom)"
+                app:icon="@drawable/ic_live_tv_black_32dp"/>
+
         <Preference
                 app:key="about"
                 app:title="About Hymns"
