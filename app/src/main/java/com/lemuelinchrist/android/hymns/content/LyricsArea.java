@@ -123,7 +123,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 for (String r : related) {
                     // remove languages that are disabled or not supported
                     try {
-                        if (disabledLanguages.contains(HymnGroup.getHymnGroupFromID(r))) {
+                        if (disabledLanguages.contains(HymnGroup.getHymnGroupFromID(r).name())) {
                             continue;
                         }
                     } catch (NoSuchHymnGroupException e) {
