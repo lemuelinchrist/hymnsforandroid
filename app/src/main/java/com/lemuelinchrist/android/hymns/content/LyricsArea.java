@@ -150,7 +150,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                         text.append("<i>@@(" + stanza.getNote() + ")@@</i>");
                     chorusText = "<i>@@" + stanza.getText() + "@@</i>";
                     text.append(chorusText);
-                    buildLyricViewAndAttach(text, hymn.getGroup());
+                    buildLyricViewAndAttach(text, hymn.getGroup(), false);
                     text = new StringBuilder();
                 } else if (stanza.getNo().contains("note")) {
                     // notes do not have their own lyric view unlike normal stanzas and choruses
@@ -159,20 +159,15 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                     // append stanza
                     text.append("<b>##" + stanza.getNo() + "##</b><br/>");
                     text.append(stanza.getText());
-                    buildLyricViewAndAttach(text, hymn.getGroup());
+                    buildLyricViewAndAttach(text, hymn.getGroup(), false);
                     text = new StringBuilder();
 
 
                     // append chorus after every stanza
                     if (hymn.getChorusCount() == 1 && !chorusText.isEmpty()) {
-                        buildLyricViewAndAttach(new StringBuilder(chorusText), hymn.getGroup());
+                        buildLyricViewAndAttach(new StringBuilder(chorusText), hymn.getGroup(), false);
                         text = new StringBuilder();
                     }
-                }
-
-                if(stanza.getNo().equals("end-node")) {
-                    buildLyricViewAndAttach(text,hymn.getGroup());
-                    text = new StringBuilder();
                 }
             }
 
@@ -180,6 +175,11 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // if column is odd
             if (columnNo % 2 != 0) {
                 currentTextLinearLayout.removeViewAt(1);
+            }
+
+            // notes usually do not have their own view except if they are the last
+            if(stanzas.get(stanzas.size()-1).getNo().contains("note")) {
+                buildLyricViewAndAttach(text,hymn.getGroup(),true);
             }
 
             // #################### Build Footer
@@ -200,7 +200,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
     }
 
-    private void buildLyricViewAndAttach(StringBuilder text, String selectedHymnGroup) {
+    private void buildLyricViewAndAttach(StringBuilder text, String selectedHymnGroup, boolean isTrailingNote) {
         Log.i(this.getClass().getSimpleName(), text.toString());
 
         // add colors to text
@@ -208,7 +208,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
         TextView view;
         // if column is odd
-        if (++columnNo % 2 != 0) {
+        if (++columnNo % 2 != 0 || isTrailingNote) {
             currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
             stanzaView.addView(currentTextLinearLayout);
             // left column on landscape mode
@@ -223,6 +223,10 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         view.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
         view.setTextColor(theme.getTextColor());
         view.setBackgroundColor(theme.getTextBackgroundColor());
+
+        // trailing notes have a row exclusively to themselves
+        if(isTrailingNote)
+            currentTextLinearLayout.removeViewAt(1);
     }
 
     private boolean isNotEmpty(String string) {
