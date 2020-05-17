@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
@@ -20,7 +21,9 @@ import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Lemuel Cantos
@@ -36,6 +39,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
     private int columnNo=0;
     private LinearLayout currentTextLinearLayout;
     private static float fontSize;
+    private final Set<String> disabledLanguages;
 
 
     public LyricsArea(Hymn hymn, Fragment parentFragment, NestedScrollView view) {
@@ -45,6 +49,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
         theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
+        disabledLanguages = sharedPreferences.getStringSet("disableLanguages",new HashSet<String>());
 
         // remove placeholder because it only contains dummy lyrics
         stanzaView = view.findViewById(getRid("stanzaView"));
@@ -116,6 +121,14 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 text.append("<br/>Related: ");
                 StringBuilder relatedConcat = new StringBuilder();
                 for (String r : related) {
+                    // remove languages that are disabled or not supported
+                    try {
+                        if (disabledLanguages.contains(HymnGroup.getHymnGroupFromID(r))) {
+                            continue;
+                        }
+                    } catch (NoSuchHymnGroupException e) {
+                        continue;
+                    }
                     relatedConcat.append(", ");
                     relatedConcat.append(r);
                 }
