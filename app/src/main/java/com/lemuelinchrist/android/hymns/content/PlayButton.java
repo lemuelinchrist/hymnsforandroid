@@ -20,6 +20,7 @@ public class PlayButton extends ContentComponent<ImageButton> {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                logToHistory();
                 if(isPlaying){
                     stop();
                 } else {

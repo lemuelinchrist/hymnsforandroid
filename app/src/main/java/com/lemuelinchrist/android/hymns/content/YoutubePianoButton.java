@@ -41,6 +41,7 @@ public class YoutubePianoButton extends ContentComponent<ImageButton> {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                logToHistory();
                 if(link!=null) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(link));

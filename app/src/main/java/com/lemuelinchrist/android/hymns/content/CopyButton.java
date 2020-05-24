@@ -22,6 +22,7 @@ public class CopyButton extends ContentComponent<ImageButton> {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                logToHistory();
                 StringBuilder lyric = new StringBuilder();
                 lyric.append(hymn.getHymnId() + "\n\n");
                 for(Stanza stanza:hymn.getStanzas()) {

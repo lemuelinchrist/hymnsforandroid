@@ -28,6 +28,7 @@ public class FaveButton extends ContentComponent<ImageButton> {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                logToHistory();
                 if(faved){
                     unfave();
                 } else {
