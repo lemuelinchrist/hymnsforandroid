@@ -231,6 +231,16 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
+    public Cursor getByKey(String filter) {
+        String sql = QueryBuilder.newInstance(context,"hymns")
+                .addNotNullClause("key")
+                .addDisabledHymnGroupClause()
+                .addLikeClause("key",filter)
+                .addOrderByClause("key")
+                .build();
+        return database.rawQuery(sql, null);
+    }
+
     public Cursor getByCategory(HymnGroup hymnGroup, String filter) {
         if (filter != null)
             filter = filter.replace("'", "''");

@@ -7,14 +7,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -24,17 +19,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.tabs.TabLayout;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.search.fragments.AuthorTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.CategoryTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.FavoritesTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.FirstLineTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.HistoryTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.HymnNumberTabFragment;
-import com.lemuelinchrist.android.hymns.search.fragments.LyricsTabFragment;
+import com.lemuelinchrist.android.hymns.search.fragments.*;
 
 public class SearchActivity extends AppCompatActivity  {
 
@@ -261,6 +249,7 @@ public class SearchActivity extends AppCompatActivity  {
             new AuthorTabFragment();
             new LyricsTabFragment();
             new HistoryTabFragment();
+            new MusicKeyTabFragment();
 
         }
 
