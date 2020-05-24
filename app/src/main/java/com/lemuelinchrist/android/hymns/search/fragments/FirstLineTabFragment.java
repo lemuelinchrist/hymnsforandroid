@@ -1,12 +1,9 @@
 package com.lemuelinchrist.android.hymns.search.fragments;
 
 import android.util.Log;
-
 import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.TabFragment;
 import com.lemuelinchrist.android.hymns.search.searchadapters.FirstLineChorusAdapter;
-import com.lemuelinchrist.android.hymns.search.searchadapters.HymnNumberAdapter;
 
 
 public class FirstLineTabFragment extends TabFragment {
@@ -17,11 +14,11 @@ public class FirstLineTabFragment extends TabFragment {
         if (selectedHymnGroup != null && filter.equals("")) {
             Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
             mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
-                    dao.getAllHymnsOfSameLanguage(selectedHymnGroup), R.layout.recyclerview_hymn_list));
+                    dao.getByFirstLine(selectedHymnGroup,null), R.layout.recyclerview_hymn_list));
         } else {
 
             mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
-                    dao.getFilteredHymns(selectedHymnGroup, filter)
+                    dao.getByFirstLine(selectedHymnGroup, filter)
                     , R.layout.recyclerview_hymn_list));
         }
 

@@ -2,48 +2,34 @@ package com.lemuelinchrist.android.hymns.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import androidx.preference.PreferenceManager;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by lemuelcantos on 24/7/13.
  */
 public class HymnsDao {
-
-    public static final String ORDER_BY_HYMN_NUMBER="order by CAST(no as decimal) ";
-
     private final Context context;
-    private final SharedPreferences sharedPreferences;
 
     public String getHymnNoFromCursor(Cursor cursor) {
         return cursor.getString(cursor.getColumnIndex("_id"));
     }
 
-    public Cursor getFilteredHymns(HymnGroup selectedHymnGroup, String filter) {
-        return getByFirstLine(selectedHymnGroup, filter);
-    }
-
     public static enum HymnFields {
         _id, hymn_group, first_stanza_line, first_chorus_line, main_category, sub_category, meter, author,
         composer, time, key, tune, no, parent_hymn, sheet_music_link, verse, related
-
     }
 
     public static enum StanzaFields {
         parent_hymn, no, text, note, ID
     }
-
 
     private SQLiteDatabase database;
     private HymnsSqliteHelper dbHelper;
@@ -51,7 +37,6 @@ public class HymnsDao {
     public HymnsDao(Context context) {
         this.context = context;
         dbHelper = HymnsSqliteHelper.getInstance(context);
-        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public void open() throws SQLException {
@@ -89,9 +74,7 @@ public class HymnsDao {
             database.insert("stanza", null, values);
         }
 
-
         Log.d(HymnsDao.class.getSimpleName(), "Save Complete!");
-
     }
 
     public Cursor getAllHymnsOfSameLanguage(HymnGroup hymnGroup) {
@@ -100,104 +83,43 @@ public class HymnsDao {
 
         Log.d(this.getClass().getName(), "Is cursor null? - " + result.toString());
         return result;
-
     }
 
-    private Cursor getByFirstLine(HymnGroup hymnGroup, String filter) {
-        return getByFirstLineOrderBy(hymnGroup, filter,null);
-    }
-
-    private String buildLikeClause(String columnName, String filter) {
-        filter = filter.replaceAll("'"," ").replaceAll("[\\^\"&%$@.,!*]", "");
-
-        StringBuilder likeBuilder = new StringBuilder();
-        String[] words = filter.trim().split(" ");
-        for(int x=0; x<words.length; x++) {
-            if(x!=0 && words[x].trim().length()<3) continue;
-            likeBuilder.append(columnName);
-            likeBuilder.append(" LIKE '%");
-            likeBuilder.append(words[x]);
-            likeBuilder.append("%'");
-            likeBuilder.append(" AND ");
-        }
-        // removeAndSave trailing "AND"
-        likeBuilder.reverse().delete(0,4).reverse();
-
-        return likeBuilder.toString();
-    }
-
-    public Cursor getByFirstLineOrderBy(HymnGroup hymnGroup, String filter, String orderBy) {
-
-        String groupClause = "";
-        String likeClause = "";
-        if (filter != null && !filter.equals("")) {
-            likeClause = " WHERE "+ buildLikeClause("stanza_chorus", filter) + " ";
-            groupClause = getDisabledHymnGroupClause();
-        } else {
-            groupClause = " and (hymn_group='" + hymnGroup + "') ";
-        }
-
-        if(orderBy==null) {
-            orderBy = "order by lower(trim(trim(stanza_chorus,'\"'),\"'\")) COLLATE LOCALIZED ASC ";
-        }
-
-
-        String sql = "select * from(" +
-                "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' " + groupClause + " \n" +
+    public Cursor getByFirstLine(HymnGroup hymnGroup, String filter) {
+        String fromClause = "(select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' \n" +
                 "union\n" +
-                "select first_chorus_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' " + groupClause +
-                ") " + likeClause + orderBy ;
+                "select first_chorus_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' ) ";
 
-        Log.i(this.getClass().getName(), "Using SQL query: " + sql);
-        return database.rawQuery(sql, null);
+        String orderBy = " lower(trim(trim(stanza_chorus,'\"'),\"'\")) ";
+
+        QueryBuilder builder = QueryBuilder.newInstance(context, fromClause)
+                .addDisabledHymnGroupClause()
+                .addLikeClause("stanza_chorus",filter)
+                .addOrderByClause(orderBy);
+        if(filter==null || filter.trim().isEmpty()) {
+            builder.addFilterGroupClause(hymnGroup.name());
+        }
+
+        return database.rawQuery(builder.build(), null);
     }
 
     public Cursor getByLyricText(String filter) {
-        String sql = "select * from stanza WHERE " + buildLikeClause("text", filter) + " ";
-        Log.i(this.getClass().getName(), "Using SQL query: " + sql);
+        String sql = QueryBuilder.newInstance(context, "stanza")
+                .addLikeClause("text",filter)
+                .build();
         return database.rawQuery(sql, null);
-
     }
-
 
     public Cursor getByHymnNo(HymnGroup hymnGroup, String filter) {
-
-        String groupClause = "";
-        String likeClause = "";
-        if (filter != null && !filter.equals("")) {
-            likeClause = " AND NO LIKE '%"+ filter.trim() +"'";
-            groupClause = getDisabledHymnGroupClause();
-        } else {
-            groupClause = " and hymn_group = '" + hymnGroup + "' ";
+        QueryBuilder builder = QueryBuilder.newInstance(context, "hymns")
+                .addDisabledHymnGroupClause()
+                .addLikeClause("no",filter)
+                .addOrderByHymnGroup(hymnGroup.toString());
+        if(filter==null || filter.trim().isEmpty()) {
+            builder.addFilterGroupClause(hymnGroup.name())
+                    .addOrderByClause(" CAST(no as decimal) ");
         }
-
-        String sql =
-                "select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' "
-                        + groupClause + " \n"
-                        + likeClause
-                        + " ORDER BY CAST(no AS int), " +
-                        "CASE" +
-                        "   WHEN hymn_group = '"+hymnGroup + "' THEN 1 ELSE hymn_group " +
-                        "END";
-
-        Log.i(this.getClass().getName(), "Using SQL query: " + sql);
-        return database.rawQuery(sql, null);
-    }
-
-    private String getDisabledHymnGroupClause() {
-        Set<String> disabled = sharedPreferences.getStringSet("disableLanguages",new HashSet<String>());
-        if(disabled.size()==0) {
-            return "";
-        }
-        StringBuilder disabledBuilder = new StringBuilder();
-        for(String d:disabled) {
-            disabledBuilder.append("'");
-            disabledBuilder.append(d);
-            disabledBuilder.append("'");
-            disabledBuilder.append(" ");
-        }
-
-        return " and hymn_group not in ("+ disabledBuilder.toString().trim().replace(" ",", ") +") ";
+        return database.rawQuery(builder.build(), null);
     }
 
     public ArrayList<String> getArrayByHymnNo(HymnGroup hymnGroup) {
@@ -210,24 +132,11 @@ public class HymnsDao {
     }
 
     public Cursor getByAuthorsOrComposers(String filter) {
-        if (filter != null)
-            filter = filter.replace("'", "''");
-
-        String groupClause = getDisabledHymnGroupClause();
-        String likeClause = "";
-        if (filter != null && !filter.equals("")) {
-            likeClause = " WHERE author_composer LIKE " + "'%" + filter.trim() + "%' ";
-        }
-
-        String orderBy = "order by author_composer ";
-
-        String sql = "select * from(" +
-                "select author as author_composer, no, _id, hymn_group, first_stanza_line, first_chorus_line from hymns where author_composer NOT NULL and author_composer != '' " + groupClause + " \n" +
-                "union\n" +
-                "select composer as author_composer,  no, _id, hymn_group, first_stanza_line, first_chorus_line from hymns where author_composer NOT NULL and author_composer != '' " + groupClause +
-                ") " + likeClause + orderBy ;
-
-        Log.i(this.getClass().getName(), "Using SQL query: " + sql);
+        String sql = QueryBuilder.newInstance(context, "hymns")
+                .addDisabledHymnGroupClause()
+                .addLikeClause("author",filter)
+                .addLikeClause("composer",filter)
+                .build();
         return database.rawQuery(sql, null);
     }
 
@@ -242,23 +151,12 @@ public class HymnsDao {
     }
 
     public Cursor getByCategory(HymnGroup hymnGroup, String filter) {
-        if (filter != null)
-            filter = filter.replace("'", "''");
-
-        if (hymnGroup == null) hymnGroup = HymnGroup.E;
-
-        String groupClause = "";
-        String likeClause = "";
-        if (filter != null && !filter.equals("")) {
-            likeClause = " and ( main_category LIKE " + "'%" + filter.trim() + "%' " + " OR sub_category LIKE " + "'%" + filter.trim() + "%') ";
-            groupClause = getDisabledHymnGroupClause();
-        } else {
-            groupClause = " and (hymn_group='" + hymnGroup + "') ";
-        }
-
-
-        String sql = "select main_category, sub_category, no, _id, hymn_group, first_stanza_line from hymns where main_category NOT NULL" + groupClause + likeClause;
-        Log.i(HymnsDao.class.getName(), "sql generated for getByCategory: " + sql);
+        String sql = QueryBuilder.newInstance(context, "hymns")
+                .addNotNullClause("main_category")
+                .addDisabledHymnGroupClause()
+                .addLikeClause("main_category",filter)
+                .addLikeClause("sub_category",filter)
+                .build();
         return database.rawQuery(sql, null);
     }
 
@@ -302,8 +200,6 @@ public class HymnsDao {
                 stanzas.add(stanza);
 
             }
-            ;
-
             hymn.setStanzas(stanzas);
             cursor.close();
 
@@ -340,7 +236,6 @@ public class HymnsDao {
                 hymn.addRelated(parentHymn.getRelated());
 
             }
-
 
             return hymn;
         } catch (Exception e) {
@@ -380,9 +275,4 @@ public class HymnsDao {
         if (hymn.getTune() != null) hymn.setTune(hymn.getTune().trim());
         return hymn;
     }
-
-
 }
-
-
-

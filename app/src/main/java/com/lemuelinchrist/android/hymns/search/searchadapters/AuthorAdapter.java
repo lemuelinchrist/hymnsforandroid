@@ -24,13 +24,10 @@ public class AuthorAdapter extends HymnCursorAdapter {
             first_line = cursor.getString(cursor.getColumnIndex("first_chorus_line"));
         }
 
-        String author_composer = cursor.getString(cursor.getColumnIndex("author_composer"));
-        if (author_composer.trim().equals("*")) {
-            author_composer="* LSM";
-        }
-        if (author_composer.trim().equals("+")) {
-            author_composer="+ Translated";
-        }
+        String author = retouch(cursor.getString(cursor.getColumnIndex("author")));
+        String composer = retouch(cursor.getString(cursor.getColumnIndex("composer")));
+        String author_composer = author + " - " + composer;
+
         String categoryText = "<b>" + author_composer + "</b>"
                 + "<br/>" + cursor.getString(cursor.getColumnIndex("_id")) + " - " + first_line;
         indexViewHolder.list_item.setText(Html.fromHtml(categoryText));
@@ -40,5 +37,18 @@ public class AuthorAdapter extends HymnCursorAdapter {
 
         indexViewHolder.hymnNo = cursor.getString(cursor.getColumnIndex("_id"));
 
+    }
+
+    private String retouch(String name) {
+        if(name==null || name.trim().isEmpty()) {
+            return "Unknown";
+        }
+        if (name.trim().equals("*")) {
+            return "* LSM";
+        }
+        if (name.trim().equals("+")) {
+            return "+ Translated";
+        }
+        return name;
     }
 }

@@ -3,7 +3,6 @@ package com.lemuelinchrist.android.hymns.search.fragments;
 import android.text.InputType;
 import android.util.Log;
 import com.lemuelinchrist.android.hymns.R;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.search.TabFragment;
 import com.lemuelinchrist.android.hymns.search.searchadapters.HymnNumberAdapter;
 
@@ -16,7 +15,7 @@ public class HymnNumberTabFragment extends TabFragment {
         if (selectedHymnGroup != null && filter.equals("")) {
             Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
             mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
-                    dao.getByFirstLineOrderBy(selectedHymnGroup,null,HymnsDao.ORDER_BY_HYMN_NUMBER), R.layout.recyclerview_hymn_list));
+                    dao.getByHymnNo(selectedHymnGroup, filter), R.layout.recyclerview_hymn_list));
 
         } else {
             mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),

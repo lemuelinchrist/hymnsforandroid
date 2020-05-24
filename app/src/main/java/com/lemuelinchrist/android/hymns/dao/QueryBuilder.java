@@ -2,9 +2,12 @@ package com.lemuelinchrist.android.hymns.dao;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import androidx.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,7 +17,7 @@ import java.util.Set;
 public class QueryBuilder {
     private final SharedPreferences sharedPreferences;
     private final String fromClause;
-    private String likeClause;
+    private List<String> likeClauseList;
     private String groupClause;
     private String notNullClause;
     private String orderBy;
@@ -40,16 +43,25 @@ public class QueryBuilder {
             sql.append(PLACEHOLDER);
             sql.append(groupClause);
         }
-        if(likeClause!=null) {
+        if(likeClauseList!=null && likeClauseList.size()>0) {
             sql.append(PLACEHOLDER);
-            sql.append(likeClause);
+            sql.append("(");
+            for(String likeClause: likeClauseList) {
+                sql.append(likeClause);
+                sql.append(" OR ");
+            }
+            // remove trailing "OR"
+            sql.reverse().delete(0,3).reverse();
+            sql.append(")");
         }
         if(orderBy!=null) {
             sql.append(" ORDER BY ");
             sql.append(orderBy);
         }
 
-        return sql.toString().replaceFirst(PLACEHOLDER," WHERE ").replaceAll(PLACEHOLDER," AND ");
+        String sqlString = sql.toString().replaceFirst(PLACEHOLDER, " WHERE ").replaceAll(PLACEHOLDER, " AND ");
+        Log.i(this.getClass().getName(), "sql generated: " + sqlString);
+        return sqlString;
     }
 
     public static QueryBuilder newInstance(Context context, String fromClause) {
@@ -58,10 +70,10 @@ public class QueryBuilder {
 
     public QueryBuilder addLikeClause(String columnName, String filter) {
         if(isEmpty(filter)) return this;
-
-        filter = filter.replaceAll("'"," ").replaceAll("[\\^\"&%$@.,!*]", "");
+        filter = filter.replaceAll("'"," ").replaceAll("[\\^\"&%$@.,!]", "").trim();
 
         StringBuilder likeBuilder = new StringBuilder();
+        likeBuilder.append("(");
         String[] words = filter.trim().split(" ");
         for(int x=0; x<words.length; x++) {
             if(x!=0 && words[x].trim().length()<3) continue;
@@ -74,8 +86,12 @@ public class QueryBuilder {
         }
         // removeAndSave trailing "AND"
         likeBuilder.reverse().delete(0,4).reverse();
+        likeBuilder.append(")");
 
-        likeClause =likeBuilder.toString();
+        if(likeClauseList==null) {
+            likeClauseList = new ArrayList<>();
+        }
+        likeClauseList.add(likeBuilder.toString());
 
         return this;
     }
@@ -97,6 +113,7 @@ public class QueryBuilder {
         return this;
     }
 
+    // Note that this method will overwrite whatever the addDisabledHymnGroupClause will generate because the field they use is the same
     public QueryBuilder addFilterGroupClause(String hymnGroup) {
         groupClause = " hymn_group='" + hymnGroup + "' ";
         return this;
@@ -104,7 +121,9 @@ public class QueryBuilder {
 
     public QueryBuilder addNotNullClause(String column) {
         if(notNullClause==null) notNullClause="";
-        notNullClause += " " + column + " NOT NULL " + "AND";
+        notNullClause += " " + column + " NOT NULL AND "
+                + column + "!= '' "
+                + "AND ";
         return this;
     }
 
@@ -121,7 +140,7 @@ public class QueryBuilder {
         return this;
     }
 
-    private boolean isEmpty(String string) {
+    public static boolean isEmpty(String string) {
         return (string == null || string.isEmpty());
     }
 }
