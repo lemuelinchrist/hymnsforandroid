@@ -93,11 +93,12 @@ public class HymnsDao {
         String orderBy = " lower(trim(trim(stanza_chorus,'\"'),\"'\")) ";
 
         QueryBuilder builder = QueryBuilder.newInstance(context, fromClause)
-                .addDisabledHymnGroupClause()
-                .addLikeClause("stanza_chorus",filter)
-                .addOrderByClause(orderBy);
-        if(filter==null || filter.trim().isEmpty()) {
-            builder.addFilterGroupClause(hymnGroup.name());
+                .orderBy(orderBy);
+        if (filter == null || filter.trim().isEmpty()) {
+            builder.showOnlyOneHymnGroup(hymnGroup.name());
+        } else {
+            builder.excludeDisabledHymnGroups()
+                    .addFilter("stanza_chorus", filter);
         }
 
         return database.rawQuery(builder.build(), null);
@@ -105,26 +106,27 @@ public class HymnsDao {
 
     public Cursor getByLyricText(String filter) {
         String sql = QueryBuilder.newInstance(context, "stanza")
-                .addLikeClause("text",filter)
+                .addFilter("text", filter)
                 .build();
         return database.rawQuery(sql, null);
     }
 
     public Cursor getByHymnNo(HymnGroup hymnGroup, String filter) {
-        QueryBuilder builder = QueryBuilder.newInstance(context, "hymns")
-                .addDisabledHymnGroupClause()
-                .addLikeClause("no",filter)
-                .addOrderByHymnGroup(hymnGroup.toString());
-        if(filter==null || filter.trim().isEmpty()) {
-            builder.addFilterGroupClause(hymnGroup.name())
-                    .addOrderByClause(" CAST(no as decimal) ");
+        QueryBuilder builder = QueryBuilder.newInstance(context, "hymns");
+        if (filter == null || filter.trim().isEmpty()) {
+            builder.showOnlyOneHymnGroup(hymnGroup.name())
+                    .orderBy("CAST(no as decimal)");
+        } else {
+            builder.excludeDisabledHymnGroups()
+                    .addFilter("no", filter)
+                    .orderByHymnGroup(hymnGroup.toString());
         }
         return database.rawQuery(builder.build(), null);
     }
 
     public ArrayList<String> getArrayByHymnNo(HymnGroup hymnGroup) {
-        Cursor cursor = getByHymnNo(hymnGroup,null);
-        ArrayList<String> hymnArray=new ArrayList<>();
+        Cursor cursor = getByHymnNo(hymnGroup, null);
+        ArrayList<String> hymnArray = new ArrayList<>();
         while (cursor.moveToNext()) {
             hymnArray.add(cursor.getString(cursor.getColumnIndex(HymnFields.no.toString())).trim());
         }
@@ -133,29 +135,32 @@ public class HymnsDao {
 
     public Cursor getByAuthorsOrComposers(String filter) {
         String sql = QueryBuilder.newInstance(context, "hymns")
-                .addDisabledHymnGroupClause()
-                .addLikeClause("author",filter)
-                .addLikeClause("composer",filter)
+                .excludeDisabledHymnGroups()
+                .addFilter("author", filter)
+                .addFilter("composer", filter)
                 .build();
         return database.rawQuery(sql, null);
     }
 
-    public Cursor getByKey(String filter) {
-        String sql = QueryBuilder.newInstance(context,"hymns")
-                .addNotNullClause("key")
-                .addDisabledHymnGroupClause()
-                .addLikeClause("key",filter)
-                .addOrderByClause("key")
+    public Cursor getByKeyOrTune(String filter) {
+        String sql = QueryBuilder.newInstance(context, "hymns")
+                .excludeNullOnColumn("key")
+                .excludeNullOnColumn("tune")
+                .excludeDisabledHymnGroups()
+                .addFilter("first_stanza_line", filter)
+                .addFilter("key", filter)
+                .addFilter("tune", filter)
+                .orderBy("tune, key")
                 .build();
         return database.rawQuery(sql, null);
     }
 
     public Cursor getByCategory(HymnGroup hymnGroup, String filter) {
         String sql = QueryBuilder.newInstance(context, "hymns")
-                .addNotNullClause("main_category")
-                .addDisabledHymnGroupClause()
-                .addLikeClause("main_category",filter)
-                .addLikeClause("sub_category",filter)
+                .excludeNullOnColumn("main_category")
+                .excludeDisabledHymnGroups()
+                .addFilter("main_category", filter)
+                .addFilter("sub_category", filter)
                 .build();
         return database.rawQuery(sql, null);
     }

@@ -17,7 +17,7 @@ public class MusicKeyTabFragment extends TabFragment {
 
     @Override
     public String getTabName() {
-        return "Keys";
+        return "Music";
     }
 
     @Override
@@ -29,15 +29,15 @@ public class MusicKeyTabFragment extends TabFragment {
     public void setSearchFilter(String filter) {
         if(filter!=null && filter.isEmpty()) {
             mRecyclerView.setAdapter(new MusicKeyAdapter(container.getContext(),
-                    dao.getByKey(""), R.layout.recyclerview_hymn_list));
+                    dao.getByKeyOrTune(""), R.layout.recyclerview_hymn_list));
 
         } else {
-            ((HymnCursorAdapter) mRecyclerView.getAdapter()).setNewCursor(dao.getByKey(filter));
+            ((HymnCursorAdapter) mRecyclerView.getAdapter()).setNewCursor(dao.getByKeyOrTune(filter));
         }
     }
 
     @Override
     public int getIcon() {
-        return android.R.drawable.ic_menu_directions;
+        return R.drawable.ic_music_note_white_search_48dp;
     }
 }

@@ -68,7 +68,7 @@ public class QueryBuilder {
         return new QueryBuilder(context, fromClause);
     }
 
-    public QueryBuilder addLikeClause(String columnName, String filter) {
+    public QueryBuilder addFilter(String columnName, String filter) {
         if(isEmpty(filter)) return this;
         filter = filter.replaceAll("'"," ").replaceAll("[\\^\"&%$@.,!]", "").trim();
 
@@ -96,7 +96,7 @@ public class QueryBuilder {
         return this;
     }
 
-    public QueryBuilder addDisabledHymnGroupClause() {
+    public QueryBuilder excludeDisabledHymnGroups() {
         Set<String> disabled = sharedPreferences.getStringSet("disableLanguages",new HashSet<String>());
         if(disabled.size()==0) {
             return this;
@@ -114,12 +114,12 @@ public class QueryBuilder {
     }
 
     // Note that this method will overwrite whatever the addDisabledHymnGroupClause will generate because the field they use is the same
-    public QueryBuilder addFilterGroupClause(String hymnGroup) {
+    public QueryBuilder showOnlyOneHymnGroup(String hymnGroup) {
         groupClause = " hymn_group='" + hymnGroup + "' ";
         return this;
     }
 
-    public QueryBuilder addNotNullClause(String column) {
+    public QueryBuilder excludeNullOnColumn(String column) {
         if(notNullClause==null) notNullClause="";
         notNullClause += " " + column + " NOT NULL AND "
                 + column + "!= '' "
@@ -127,12 +127,12 @@ public class QueryBuilder {
         return this;
     }
 
-    public QueryBuilder addOrderByClause(String orderBy) {
-        this.orderBy = orderBy + " COLLATE LOCALIZED ASC ";
+    public QueryBuilder orderBy(String orderBy) {
+        this.orderBy = " " + orderBy + " COLLATE LOCALIZED ASC ";
         return this;
     }
 
-    public QueryBuilder addOrderByHymnGroup(String hymnGroup) {
+    public QueryBuilder orderByHymnGroup(String hymnGroup) {
         this.orderBy = " CAST(no AS int), " +
                 "CASE" +
                 "   WHEN hymn_group = '"+hymnGroup + "' THEN 1 ELSE hymn_group " +
