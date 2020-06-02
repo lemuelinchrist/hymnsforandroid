@@ -64,6 +64,8 @@ public enum HymnGroup {
     // taken from Google color palette #200 - https://material.io/guidelines/style/color.html#color-color-palette
     private final int nightColor;
 
+    public static final String DEFAULT_HYMN_NUMBER="E1";
+
     public int getNightColor() {
         return nightColor;
     }
@@ -88,6 +90,10 @@ public enum HymnGroup {
         } else {
             return hymnId.substring(1);
         }
+    }
+
+    public static HymnGroup getDefaultHymnGroup() {
+        return HymnGroup.getHymnGroupFromID(DEFAULT_HYMN_NUMBER);
     }
 
     public int getDayColor() {
@@ -127,6 +133,6 @@ public enum HymnGroup {
             if(group.getSimpleName().equals(simpleName)) return group;
         }
         Log.e(HymnGroup.class.getSimpleName(), "warning: selected Hymn group not found. Switching to default group: E");
-        return HymnGroup.E;
+        return getDefaultHymnGroup();
     }
 }

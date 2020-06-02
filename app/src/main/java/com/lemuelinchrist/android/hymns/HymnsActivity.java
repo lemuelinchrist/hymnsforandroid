@@ -29,7 +29,7 @@ import com.lemuelinchrist.android.hymns.style.Theme;
 public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
     protected final int SEARCH_REQUEST = 1;
-    protected HymnGroup selectedHymnGroup = HymnGroup.E;
+    protected HymnGroup selectedHymnGroup = HymnGroup.getDefaultHymnGroup();
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -197,7 +197,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     public void onLyricVisible(String hymnId) {
 
-        if (hymnId==null) hymnId="E1";
+        if (hymnId==null) hymnId=HymnGroup.DEFAULT_HYMN_NUMBER;
 
         try {
             selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);

@@ -148,9 +148,9 @@ public class HymnsDao {
                 .excludeNullOnColumn("tune")
                 .excludeDisabledHymnGroups()
                 .addFilter("first_stanza_line", filter)
-                .addFilter("key", filter)
-                .addFilter("tune", filter)
-                .orderBy("tune, key")
+                .addStricterFilter("key", filter)
+                .addStricterFilter("tune", filter)
+                .orderBy("tune")
                 .build();
         return database.rawQuery(sql, null);
     }

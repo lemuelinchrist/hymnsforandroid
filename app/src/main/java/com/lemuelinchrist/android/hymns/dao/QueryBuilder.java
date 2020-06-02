@@ -96,6 +96,26 @@ public class QueryBuilder {
         return this;
     }
 
+    public QueryBuilder addStricterFilter(String columnName, String filter) {
+        if(isEmpty(filter)) return this;
+        filter = filter.replaceAll("'"," ").replaceAll("[\\^\"&%$@.,!]", "").trim();
+
+        StringBuilder likeBuilder = new StringBuilder();
+        likeBuilder.append("(");
+        likeBuilder.append(columnName);
+        likeBuilder.append(" LIKE '");
+        likeBuilder.append(filter);
+        likeBuilder.append("%'");
+        likeBuilder.append(")");
+
+        if(likeClauseList==null) {
+            likeClauseList = new ArrayList<>();
+        }
+        likeClauseList.add(likeBuilder.toString());
+
+        return this;
+    }
+
     public QueryBuilder excludeDisabledHymnGroups() {
         Set<String> disabled = sharedPreferences.getStringSet("disableLanguages",new HashSet<String>());
         if(disabled.size()==0) {

@@ -28,7 +28,7 @@ public class YoutubePianoButton extends ContentComponent<ImageButton> {
 
         if(hymn.getTune()!=null && !hymn.getTune().isEmpty()) {
             hymnsDao.open();
-            link = hymnsDao.getYoutubeLinkFromTune(hymn.getTune());
+            link = "https://www.youtube.com/embed/"+hymnsDao.getYoutubeLinkFromTune(hymn.getTune());
             hymnsDao.close();
         }
 

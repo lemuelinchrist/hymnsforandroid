@@ -16,10 +16,10 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
+import com.lemuelinchrist.android.hymns.content.sheetmusic.SheetMusicButton;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
-import com.lemuelinchrist.android.hymns.sheetmusic.SheetMusicButton;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
@@ -194,7 +194,8 @@ public class ContentArea extends Fragment {
     }
 
     public void log() {
-        if(hymnStack.contains(hymn.getHymnId()))
+        // No need to log default hymn number since it's the starting point anyway
+        if(hymnStack.contains(hymn.getHymnId()) && !getHymnId().equals(HymnGroup.DEFAULT_HYMN_NUMBER))
             historyLogBook.log(hymn);
     }
 

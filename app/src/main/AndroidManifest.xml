@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".sheetmusic.SheetMusicActivity"
+            android:name=".content.sheetmusic.SheetMusicActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/NoActionBar">
             <intent-filter>

@@ -106,7 +106,17 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             }
             if (isNotEmpty(hymn.getKey())) {
                 headerContentPresent=true;
-                text.append(" - " + hymn.getKey());
+                if(!text.toString().contains("Time: ")) {
+                    text.append("<br/>Key: ");
+                } else {
+                    text.append(" - ");
+                }
+                text.append(hymn.getKey());
+            }
+            if (isNotEmpty(hymn.getTune())) {
+                headerContentPresent=true;
+                text.append("<br/>Tune: ");
+                text.append(hymn.getTune());
             }
             if (isNotEmpty(hymn.getVerse())) {
                 headerContentPresent=true;

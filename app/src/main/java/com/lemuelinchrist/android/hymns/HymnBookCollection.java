@@ -33,7 +33,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
     private final HymnsActivity context;
     private HymnBookGroup currentHymnBookGroup;
-    private HymnStack hymnStack = new HymnStack("E1");
+    private HymnStack hymnStack = new HymnStack(HymnGroup.DEFAULT_HYMN_NUMBER);
 
     private Theme theme=Theme.LIGHT;
 
@@ -43,7 +43,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         this.lyricPager = lyricPager;
         this.theme=theme;
 
-        switchHymnBook(HymnGroup.E);
+        switchHymnBook(HymnGroup.getDefaultHymnGroup());
     }
 
     public void setTheme(Theme theme) {
@@ -56,7 +56,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         if(getCurrentHymnId()==null) {
             LogBook historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
             HymnRecord[] records = historyLogBook.getOrderedRecordList();
-            currentHymnId = records.length>0 ? records[0].getHymnId() : "E1";
+            currentHymnId = records.length>0 ? records[0].getHymnId() : HymnGroup.DEFAULT_HYMN_NUMBER;
         } else {
             currentHymnId =  getCurrentHymnId();
         }
