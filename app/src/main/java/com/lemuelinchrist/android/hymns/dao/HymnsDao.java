@@ -165,13 +165,16 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
-    public String getYoutubeLinkFromTune(String tune) {
+    public ArrayList<String> getYoutubeLinksFromHymnNo(String tune) {
+        ArrayList<String> links = new ArrayList<>();
         try {
             Cursor cursor = database.rawQuery("select * from tune where _id='" + tune + "'", null);
-            cursor.moveToNext();
-            return cursor.getString(cursor.getColumnIndex("youtube_link"));
+            while (cursor.moveToNext()) {
+                links.add(cursor.getString(cursor.getColumnIndex("youtube_link")) + "|" + cursor.getString(cursor.getColumnIndex("comment")));
+            }
+            return links;
         } catch (Exception e) {
-            return null;
+            return links;
         }
     }
 
