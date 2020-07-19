@@ -195,7 +195,8 @@ public class ContentArea extends Fragment {
 
     public void log() {
         // No need to log default hymn number since it's the starting point anyway
-        if(hymnStack.contains(hymn.getHymnId()) && !getHymnId().equals(HymnGroup.DEFAULT_HYMN_NUMBER))
+        // NOTE: possible null pointer here!
+        if(hymnStack != null && hymnStack.contains(hymn.getHymnId()) && !getHymnId().equals(HymnGroup.DEFAULT_HYMN_NUMBER))
             historyLogBook.log(hymn);
     }
 
