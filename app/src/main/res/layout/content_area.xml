@@ -103,15 +103,20 @@
                                 android:layout_weight="1" android:adjustViewBounds="true"/>
                         <ImageButton
                                 android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/similarTuneButton"
+                                android:src="@drawable/ic_related_hymns_white_28dp"
+                                android:layout_gravity="left"
+                                style="?android:attr/borderlessButtonStyle"
+                                android:layout_weight="1" android:adjustViewBounds="true"/>
+                        <ImageButton
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/copyButton"
                                 android:src="@drawable/ic_content_copy_white_48dp"
                                 style="?android:attr/borderlessButtonStyle"
                                 android:layout_weight="1"
                                 android:layout_gravity="left" android:adjustViewBounds="true"/>
 
-
                     </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 

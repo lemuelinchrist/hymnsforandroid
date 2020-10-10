@@ -57,6 +57,12 @@
                 app:title="@string/youtube_piano"
                 app:summary="Enable Button that links Hymn to Piano Videos in YouTube (suitable for Zoom)"
                 app:icon="@drawable/ic_live_tv_black_32dp"/>
+        <SwitchPreferenceCompat
+                app:key="similarTune"
+                app:defaultValue="false"
+                app:title="@string/similarTuneSwitch"
+                app:summary="Enable Button for switching to hymns with a similar tune"
+                app:icon="@drawable/ic_related_hymns_black_32dp"/>
 
         <Preference
                 app:key="about"

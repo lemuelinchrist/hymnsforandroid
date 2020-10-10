@@ -135,4 +135,15 @@ public enum HymnGroup {
         Log.e(HymnGroup.class.getSimpleName(), "warning: selected Hymn group not found. Switching to default group: E");
         return getDefaultHymnGroup();
     }
+
+    public boolean isBigHymnLanguage() {
+        switch (this) {
+            case NS:
+            case BF:
+            case CH:
+                return false;
+            default:
+                return true;
+        }
+    }
 }

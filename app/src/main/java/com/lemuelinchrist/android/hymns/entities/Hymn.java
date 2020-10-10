@@ -29,7 +29,7 @@ public class Hymn {
     private String composer;
     private String time;
     private String key;
-    private String tune;
+    private String tune="";
     private String no;
     private String parentHymn;
     private String sheetMusicLink;
@@ -345,5 +345,13 @@ public class Hymn {
         }
         Log.i(this.getClass().getSimpleName(), "Translation NOT found! throwing null.");
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Hymn hymn = (Hymn) o;
+        return hymnId.equals(hymn.hymnId);
     }
 }

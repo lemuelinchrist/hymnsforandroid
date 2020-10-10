@@ -26,7 +26,7 @@ import com.lemuelinchrist.android.hymns.style.Theme;
 /**
  * Created by lemuelcantos on 17/7/13.
  */
-public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleListener,
+public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleListener, HymnSwitcher,
         SharedPreferences.OnSharedPreferenceChangeListener {
     protected final int SEARCH_REQUEST = 1;
     protected HymnGroup selectedHymnGroup = HymnGroup.getDefaultHymnGroup();
@@ -40,6 +40,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     private SharedPreferences sharedPreferences;
     private boolean preferenceChanged = true;
     private HymnDrawer hymnDrawer;
+    private static HymnSwitcher hymnSwitcher;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setDisplayConfig();
+        hymnSwitcher=this;
     }
 
     private void refreshHymnDrawer() {
@@ -227,6 +229,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
             hymnBookCollection.refresh();
             preferenceChanged=false;
         }
+        hymnSwitcher=this;
     }
 
     private void setDisplayConfig() {
@@ -242,6 +245,15 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         super.onConfigurationChanged(newConfig);
         // refresh screen when screen orientation changes
         hymnBookCollection.refresh();
+    }
+
+    @Override
+    public void switchToHymn(String hymnId) {
+        hymnBookCollection.switchToHymn(hymnId);
+    }
+
+    public static HymnSwitcher getHymnSwitcher() {
+        return hymnSwitcher;
     }
 }
 
