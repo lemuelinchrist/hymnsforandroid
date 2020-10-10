@@ -346,4 +346,8 @@ public class Hymn {
         Log.i(this.getClass().getSimpleName(), "Translation NOT found! throwing null.");
         return null;
     }
+
+    public HymnGroup getHymnGroup() {
+        return HymnGroup.valueOf(getGroup().trim().toUpperCase());
+    }
 }

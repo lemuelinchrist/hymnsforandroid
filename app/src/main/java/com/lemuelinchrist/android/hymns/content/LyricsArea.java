@@ -241,6 +241,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             view = (TextView) currentTextLinearLayout.getChildAt(1);
         }
         view.setText(formattedLyrics);
+        view.setGravity(hymn.getHymnGroup().getTextAlignment());
 
         // stylize...
         view.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);

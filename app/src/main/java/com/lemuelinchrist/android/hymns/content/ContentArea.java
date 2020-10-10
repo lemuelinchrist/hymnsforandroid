@@ -105,7 +105,7 @@ public class ContentArea extends Fragment {
 
         buttonContainer = rootView.findViewById(getRid("buttonContainer"));
         if(buttonContainer !=null ){
-            buttonContainer.setCardBackgroundColor(getHymnGroup().getDayColor());
+            buttonContainer.setCardBackgroundColor(hymn.getHymnGroup().getDayColor());
         }
 
         playButton = new PlayButton(hymn,this,
@@ -183,10 +183,6 @@ public class ContentArea extends Fragment {
             YouTubeLauncher launcher = new YouTubeLauncher(context);
             launcher.launch(hymn);
         }
-    }
-
-    public HymnGroup getHymnGroup() {
-        return HymnGroup.valueOf(hymn.getGroup().trim().toUpperCase());
     }
 
     public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {
