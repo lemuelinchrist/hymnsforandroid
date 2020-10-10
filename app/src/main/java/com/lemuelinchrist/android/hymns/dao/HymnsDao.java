@@ -11,6 +11,7 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lemuelcantos on 24/7/13.
@@ -176,6 +177,35 @@ public class HymnsDao {
         } catch (Exception e) {
             return links;
         }
+    }
+
+    public List<Hymn> getHymnsWithSimilarTune(Hymn targetHymn) {
+        HymnGroup targetHymnGroup = HymnGroup.valueOf(targetHymn.getGroup());
+        ArrayList<Hymn> hymns = new ArrayList<>();
+        if(targetHymn.getTune()==null || targetHymn.getTune().isEmpty()) {
+            return hymns;
+        }
+        Cursor cursor = getByKeyOrTune(targetHymn.getTune());
+        while (cursor.moveToNext()) {
+            String hymnId = cursor.getString(cursor.getColumnIndex("_id"));
+            Hymn hymn  = get(hymnId);
+            // only the current Hymn Group and non Big Hymns can be added to list
+            if(!HymnGroup.valueOf(hymn.getGroup()).isBigHymnLanguage() || hymn.getGroup().equals(targetHymn.getGroup())) {
+                if(!hymns.contains(hymn)) {
+                    hymns.add(hymn);
+                }
+            } else {
+                String relatedHymnId = hymn.getRelatedHymnOf(targetHymnGroup);
+                if(relatedHymnId!=null) {
+                    hymn = get(relatedHymnId);
+                    if(!hymns.contains(hymn)) {
+                        hymns.add(hymn);
+                    }
+                }
+            }
+        }
+        hymns.remove(targetHymn);
+        return hymns;
     }
 
     public Hymn get(String hymnId) {
