@@ -60,10 +60,10 @@ class ProvisionFarsi {
                 stanza.text+=line + '<br/>'
 
                 if(stanza.no=='1' && isEmpty(hymn.firstStanzaLine)) {
-                    hymn.firstStanzaLine=line
+                    hymn.firstStanzaLine=removeBeginningSymbol(line)
                 }
                 if(stanza.no=='chorus' && isEmpty(hymn.firstChorusLine)) {
-                    hymn.firstChorusLine=line
+                    hymn.firstChorusLine=removeBeginningSymbol(line)
                 }
 
             }
@@ -79,6 +79,14 @@ class ProvisionFarsi {
         if (hymn==null) return
         println hymn
         dao.save(hymn)
+    }
+
+    String removeBeginningSymbol(String targetLine) {
+        if("!،.:".contains(targetLine.reverse()[0])) {
+            return targetLine.reverse().substring(1).reverse()
+        } else {
+            return targetLine
+        }
     }
 
     def createNewHymn() {
