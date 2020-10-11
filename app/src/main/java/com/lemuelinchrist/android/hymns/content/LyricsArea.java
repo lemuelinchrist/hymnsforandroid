@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,7 +172,12 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 if (stanza.getNo().equals("chorus")) {
                     if (isNotEmpty(stanza.getNote()))
                         text.append("<i>@@(" + stanza.getNote() + ")@@</i>");
-                    chorusText = "<i>@@" + stanza.getText() + "@@</i>";
+                    if(hymn.getHymnGroup().getTextAlignment()== Gravity.RIGHT) {
+                        // no italics for right to left languages
+                        chorusText = "@@" + stanza.getText() + "@@";
+                    } else {
+                        chorusText = "<i>@@" + stanza.getText() + "@@</i>";
+                    }
                     text.append(chorusText);
                     buildLyricViewAndAttach(text, hymn.getHymnGroup(), false);
                     text = new StringBuilder();
