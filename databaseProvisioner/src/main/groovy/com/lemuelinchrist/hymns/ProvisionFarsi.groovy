@@ -59,7 +59,7 @@ class ProvisionFarsi {
             } else {
                 stanza.text+=line + '<br/>'
 
-                if(stanza.no=='1' && isEmpty(hymn.firstChorusLine)) {
+                if(stanza.no=='1' && isEmpty(hymn.firstStanzaLine)) {
                     hymn.firstStanzaLine=line
                 }
                 if(stanza.no=='chorus' && isEmpty(hymn.firstChorusLine)) {
