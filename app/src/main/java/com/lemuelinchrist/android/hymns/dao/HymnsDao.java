@@ -180,7 +180,6 @@ public class HymnsDao {
     }
 
     public List<Hymn> getHymnsWithSimilarTune(Hymn targetHymn) {
-        HymnGroup targetHymnGroup = HymnGroup.valueOf(targetHymn.getGroup());
         ArrayList<Hymn> hymns = new ArrayList<>();
         if(targetHymn.getTune()==null || targetHymn.getTune().isEmpty()) {
             return hymns;
@@ -190,12 +189,12 @@ public class HymnsDao {
             String hymnId = cursor.getString(cursor.getColumnIndex("_id"));
             Hymn hymn  = get(hymnId);
             // only the current Hymn Group and non Big Hymns can be added to list
-            if(!HymnGroup.valueOf(hymn.getGroup()).isBigHymnLanguage() || hymn.getGroup().equals(targetHymn.getGroup())) {
+            if(!hymn.getHymnGroup().isBigHymnLanguage() || hymn.getHymnGroup().equals(targetHymn.getHymnGroup())) {
                 if(!hymns.contains(hymn)) {
                     hymns.add(hymn);
                 }
             } else {
-                String relatedHymnId = hymn.getRelatedHymnOf(targetHymnGroup);
+                String relatedHymnId = hymn.getRelatedHymnOf(targetHymn.getHymnGroup());
                 if(relatedHymnId!=null) {
                     hymn = get(relatedHymnId);
                     if(!hymns.contains(hymn)) {
@@ -241,7 +240,7 @@ public class HymnsDao {
             hymn.setStanzas(stanzas);
             cursor.close();
 
-            hymn.setNewTune(hymn.getGroup().equals("BF") && hymn.getTune() != null);
+            hymn.setNewTune(hymn.getHymnGroup().equals(HymnGroup.BF) && hymn.getTune() != null);
             // *** Get Parent Hymn then Merge!
             Hymn parentHymn = get(hymn.getParentHymn());
             if (parentHymn != null) {

@@ -173,7 +173,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                         text.append("<i>@@(" + stanza.getNote() + ")@@</i>");
                     chorusText = "<i>@@" + stanza.getText() + "@@</i>";
                     text.append(chorusText);
-                    buildLyricViewAndAttach(text, hymn.getGroup(), false);
+                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false);
                     text = new StringBuilder();
                 } else if (stanza.getNo().contains("note")) {
                     // notes do not have their own lyric view unlike normal stanzas and choruses
@@ -182,13 +182,13 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                     // append stanza
                     text.append("<b>##" + stanza.getNo() + "##</b><br/>");
                     text.append(stanza.getText());
-                    buildLyricViewAndAttach(text, hymn.getGroup(), false);
+                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false);
                     text = new StringBuilder();
 
 
                     // append chorus after every stanza
                     if (hymn.getChorusCount() == 1 && !chorusText.isEmpty()) {
-                        buildLyricViewAndAttach(new StringBuilder(chorusText), hymn.getGroup(), false);
+                        buildLyricViewAndAttach(new StringBuilder(chorusText), hymn.getHymnGroup(), false);
                         text = new StringBuilder();
                     }
                 }
@@ -202,7 +202,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
             // notes usually do not have their own view except if they are the last
             if(stanzas.get(stanzas.size()-1).getNo().contains("note")) {
-                buildLyricViewAndAttach(text,hymn.getGroup(),true);
+                buildLyricViewAndAttach(text,hymn.getHymnGroup(),true);
             }
 
             // #################### Build Footer
@@ -223,11 +223,11 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
     }
 
-    private void buildLyricViewAndAttach(StringBuilder text, String selectedHymnGroup, boolean isTrailingNote) {
+    private void buildLyricViewAndAttach(StringBuilder text, HymnGroup selectedHymnGroup, boolean isTrailingNote) {
         Log.i(this.getClass().getSimpleName(), text.toString());
 
         // add colors to text
-        CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(HymnGroup.valueOf(selectedHymnGroup)));
+        CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(selectedHymnGroup));
 
         TextView view;
         // if column is odd
