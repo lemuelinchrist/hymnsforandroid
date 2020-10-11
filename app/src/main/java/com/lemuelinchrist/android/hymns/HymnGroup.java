@@ -163,4 +163,15 @@ public enum HymnGroup {
     public int getTextAlignment() {
         return textAlignment;
     }
+
+    public boolean isBigHymnLanguage() {
+        switch (this) {
+            case NS:
+            case BF:
+            case CH:
+                return false;
+            default:
+                return true;
+        }
+    }
 }

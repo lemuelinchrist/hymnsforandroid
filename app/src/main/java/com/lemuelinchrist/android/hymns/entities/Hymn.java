@@ -347,16 +347,15 @@ public class Hymn {
         return null;
     }
 
-<<<<<<< HEAD
     public HymnGroup getHymnGroup() {
         return HymnGroup.valueOf(getGroup().trim().toUpperCase());
-=======
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Hymn hymn = (Hymn) o;
         return hymnId.equals(hymn.hymnId);
->>>>>>> 59a2206... Add similar tune button
     }
 }
