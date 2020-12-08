@@ -106,12 +106,21 @@ class ProvisionFarsi {
         line = line.replace("SUBJECT:","").trim()
         def splitLine = line.split("–")
         hymn.mainCategory = splitLine[0].trim()
-        hymn.subCategory = splitLine[1].trim()
+        if(splitLine.size()>1) {
+            hymn.subCategory = splitLine[1].trim()
+        }
         lookForTheNextNonEmptyLine()
         if(!line.contains("METER:")) throw new Exception("meter not found")
         line = line.replace("METER:","").trim()
         hymn.meter=line
+
         lookForTheNextNonEmptyLine()
+        if(line.contains("VERSES:")) {
+            line = line.replace("VERSES:", "").trim()
+            hymn.verse = line
+            lookForTheNextNonEmptyLine()
+        }
+
         if(!line.contains("AUTHOR:")) throw new Exception("author not found")
         line = line.replace("AUTHOR:","").trim()
         hymn.author=line
