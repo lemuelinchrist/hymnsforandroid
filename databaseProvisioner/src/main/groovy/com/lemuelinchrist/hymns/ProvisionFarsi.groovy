@@ -133,7 +133,9 @@ class ProvisionFarsi {
         line = line.replace("RELATED:","").trim()
         splitLine = line.split(",")
         splitLine.each {l ->
-            if(l.contains("E")) hymn.parentHymn=l.trim()
+            if((l.contains("E")) || l.contains("NS") || l.contains("CH")) {
+                hymn.parentHymn=l.trim()
+            }
         }
         hymn.stanzas = new ArrayList<StanzaEntity>()
         println "******* Start Generating Farsi Hymn ${hymn.id}..."
