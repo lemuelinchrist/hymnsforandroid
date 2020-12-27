@@ -347,6 +347,10 @@ public class Hymn {
         return null;
     }
 
+    public HymnGroup getHymnGroup() {
+        return HymnGroup.valueOf(getGroup().trim().toUpperCase());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
