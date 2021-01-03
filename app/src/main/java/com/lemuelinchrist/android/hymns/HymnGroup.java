@@ -2,6 +2,7 @@ package com.lemuelinchrist.android.hymns;
 
 import android.graphics.Color;
 import android.util.Log;
+import android.view.Gravity;
 
 import java.util.ArrayList;
 import java.util.List;
