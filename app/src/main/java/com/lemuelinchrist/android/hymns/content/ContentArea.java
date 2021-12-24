@@ -22,7 +22,6 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
-import com.lemuelinchrist.android.hymns.utils.YouTubeLauncher;
 
 import java.util.HashSet;
 
@@ -51,7 +50,7 @@ public class ContentArea extends Fragment {
     private SheetMusicButton sheetMusicButton;
     private FaveButton faveButton;
     private CopyButton copyButton;
-    private YoutubePianoButton youtubePianoButton;
+    private YoutubeButton youtubeButton;
     private SimilarTuneButton similarTuneButton;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -117,7 +116,7 @@ public class ContentArea extends Fragment {
                 (ImageButton)rootView.findViewById(getRid("faveButton")));
         copyButton = new CopyButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("copyButton")));
-        youtubePianoButton = new YoutubePianoButton(hymn,this,
+        youtubeButton = new YoutubeButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("youtubePianoButton")));
         similarTuneButton = new SimilarTuneButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("similarTuneButton")));
@@ -175,17 +174,6 @@ public class ContentArea extends Fragment {
 
     public String getHymnId() {
         return this.hymnId;
-    }
-
-    public boolean isHymnDisplayed() {
-        return (hymn != null);
-    }
-
-    public void launchYouTubeApp() {
-        if (isHymnDisplayed()) {
-            YouTubeLauncher launcher = new YouTubeLauncher(context);
-            launcher.launch(hymn);
-        }
     }
 
     public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {

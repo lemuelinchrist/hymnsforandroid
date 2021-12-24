@@ -22,13 +22,14 @@ import java.util.ArrayList;
  * @author Lemuel Cantos
  * @since 22/2/2020
  */
-public class YoutubePianoButton extends ContentComponent<ImageButton> {
+public class YoutubeButton extends ContentComponent<ImageButton> {
 
     private static HymnsDao hymnsDao;
+    private final String youtubePreference;
     private ArrayList<String> links= new ArrayList<>();
     private ArrayList<String> comments= new ArrayList<>();
 
-    public YoutubePianoButton(final Hymn hymn, final Fragment parentFragment, ImageButton imageButton) {
+    public YoutubeButton(final Hymn hymn, final Fragment parentFragment, ImageButton imageButton) {
         super(hymn, parentFragment, imageButton);
 
         if (hymnsDao == null) {
@@ -37,6 +38,8 @@ public class YoutubePianoButton extends ContentComponent<ImageButton> {
 
         if(hymn.getTune()!=null && !hymn.getTune().isEmpty()) {
             hymnsDao.open();
+
+            // Prepare Links
             ArrayList<String> youtubeLinksFromHymnNo = hymnsDao.getYoutubeLinksFromHymnNo(hymn.getHymnId());
             if(youtubeLinksFromHymnNo.size()==0) {
                 // maybe its parent has links
@@ -46,12 +49,16 @@ public class YoutubePianoButton extends ContentComponent<ImageButton> {
                 links.add("https://www.youtube.com/embed/"+ link.split("\\|")[0].trim());
                 comments.add(link.split("\\|")[1].trim());
             }
+
             hymnsDao.close();
         }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        if(links.size()==0 || !sharedPreferences.getBoolean("youtubePiano",false)) {
+        youtubePreference = sharedPreferences.getString("youtubeButton", "disabled");
+        if(youtubePreference.equals("disabled") ||
+                (youtubePreference.equals("piano") && links.size()==0)
+        ) {
             imageButton.setVisibility(View.GONE);
         }
 
@@ -59,12 +66,22 @@ public class YoutubePianoButton extends ContentComponent<ImageButton> {
             @Override
             public void onClick(View v) {
                 logToHistory();
-                if(links.size()>1) {
-                    DialogFragment tuneDialog = new ChooseTuneDialogFragment(comments,YoutubePianoButton.this);
-                    tuneDialog.show(((FragmentActivity)context).getSupportFragmentManager(),"YouTube");
-                } else if (links.size()==1) {
-                    launchYouTube(0);
+                switch (youtubePreference) {
+                    case "piano":
+                        if(links.size()>1) {
+                            DialogFragment tuneDialog = new ChooseTuneDialogFragment(comments, YoutubeButton.this);
+                            tuneDialog.show(((FragmentActivity)context).getSupportFragmentManager(),"YouTube");
+                        } else if (links.size()==1) {
+                            launchYouTube(0);
+                        }
+                        break;
+                    case "search":
+                        YouTubeSearchLauncher youTubeSearchLauncher = new YouTubeSearchLauncher(context);
+                        youTubeSearchLauncher.launch(hymn);
+                        break;
+
                 }
+
             }
         });
     }
@@ -77,9 +94,9 @@ public class YoutubePianoButton extends ContentComponent<ImageButton> {
 
     public static class ChooseTuneDialogFragment extends DialogFragment {
         private ArrayList<String> comments;
-        private YoutubePianoButton listener;
+        private YoutubeButton listener;
 
-        public ChooseTuneDialogFragment(ArrayList comments,YoutubePianoButton listener) {
+        public ChooseTuneDialogFragment(ArrayList comments, YoutubeButton listener) {
             this.comments=comments;
             this.listener=listener;
         }

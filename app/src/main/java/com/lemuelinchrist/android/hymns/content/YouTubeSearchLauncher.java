@@ -1,4 +1,4 @@
-package com.lemuelinchrist.android.hymns.utils;
+package com.lemuelinchrist.android.hymns.content;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +12,10 @@ import java.util.regex.Pattern;
 /**
  * Created by lcantos on 5/8/2016.
  */
-public class YouTubeLauncher {
+public class YouTubeSearchLauncher {
 
     Context context;
-    public YouTubeLauncher(Context context) {
+    public YouTubeSearchLauncher(Context context) {
         this.context=context;
     }
 

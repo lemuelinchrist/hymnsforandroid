@@ -165,10 +165,6 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
     }
 
-    public void launchYouTubeApp() {
-        getCurrentHymnLyric().launchYouTubeApp();
-    }
-
     public void logToHistory() {
         getCurrentHymnLyric().log();
     }
