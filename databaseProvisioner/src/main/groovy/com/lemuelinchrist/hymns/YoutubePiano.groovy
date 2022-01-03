@@ -24,14 +24,14 @@ class YoutubePiano {
     }
 
     void provision() {
-        def pianoHymns = new File(this.getClass().getResource("/pianoHymns.txt").getPath());
+        def pianoHymns = new File(this.getClass().getResource("/pianoHymns202112.txt").getPath());
         def iterator = pianoHymns.iterator();
         String line;
         def processedHymns = []
 
         while (iterator.hasNext()) {
             line = iterator.next().trim()
-            Pattern pattern = Pattern.compile('.*?href="(.*?)".*?noopener">(.*?)</a></span>(.*)');
+            Pattern pattern = Pattern.compile('.*?href="(.*?)".*?noopener">(\\d*?)</a></span>(.*)');
             Matcher matcher = pattern.matcher(line);
             if (matcher.find())
             {
@@ -54,7 +54,7 @@ class YoutubePiano {
                 println "href = " + code
 
                 if(!number.isNumber()) {
-                    throw new Exception("hymn number invalid")
+                    throw new Exception("hymn number invalid: " + number)
                 }
 
                 HymnsEntity hymn = dao.find("E"+number)
