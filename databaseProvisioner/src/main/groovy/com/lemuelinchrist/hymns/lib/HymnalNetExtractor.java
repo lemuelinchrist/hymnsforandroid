@@ -322,7 +322,16 @@ public class HymnalNetExtractor {
         FileUtils.saveUrl(Constants.SHEET_GUITAR_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_p", "_g").replace(".svg", ".svg?"));
 
         // get midi
-        FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymnalAddress + hymn.getNo() + "/f=mid");
+        try {
+            FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymn.getSheetMusicLink().replace("/svg/", "/midi/")
+                    .replace("_p.svg", ".mid")
+                    .replace("_g.svg", ".mid"));
+        } catch (Exception e) {
+            // try downloading tune midi instead
+            FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymn.getSheetMusicLink().replace("/svg/", "/midi/tunes/")
+                    .replace("_p.svg", "_tune.midi")
+                    .replace("_g.svg", "_tune.midi"));
+        }
 
         System.out.println("Hymn resuources downloaded successfully...");
     }
@@ -330,7 +339,9 @@ public class HymnalNetExtractor {
     public static void downloadMidi(String hymnalAddress, HymnsEntity hymn, String hymnIdInUrl) throws IOException {
         try {
             // get midi
-            FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymnalAddress + hymnIdInUrl + "/f=mid");
+            FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymn.getSheetMusicLink().replace("/svg/","/midi/")
+                    .replace("_p.svg",".mid")
+                    .replace("_g.svg",".mid"));
             System.out.println("Hymn resuources downloaded successfully...");
         } catch (Exception e) {
 
