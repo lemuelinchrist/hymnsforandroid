@@ -42,12 +42,12 @@ public class HymnalNetExtractor {
 
     public static void enableSSLSocket() throws KeyManagementException, NoSuchAlgorithmException {
 
-        if(Constants.PROXY_PORT!=null) {
-            System.setProperty("http.proxyHost", Constants.PROXY_URL);
-            System.setProperty("http.proxyPort", Constants.PROXY_PORT);
-            System.setProperty("https.proxyHost", Constants.PROXY_URL);
-            System.setProperty("https.proxyPort", Constants.PROXY_PORT);
-        }
+//        if(Constants.PROXY_PORT!=null) {
+//            System.setProperty("http.proxyHost", Constants.PROXY_URL);
+//            System.setProperty("http.proxyPort", Constants.PROXY_PORT);
+//            System.setProperty("https.proxyHost", Constants.PROXY_URL);
+//            System.setProperty("https.proxyPort", Constants.PROXY_PORT);
+//        }
         HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
             public boolean verify(String hostname, SSLSession session) {
                 return true;
