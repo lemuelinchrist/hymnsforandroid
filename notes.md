@@ -8,3 +8,5 @@ This is due to the Android App requiring JDK v11 to build, but the database prov
 * rebuild databaseProvisioner using Gradle
 * When you run your Groovy script, make sure the run configuration is set to use oracle java 1.8
 
+If you need to run the Hymn app, do the above steps using android 11 instead of 1.8
+
