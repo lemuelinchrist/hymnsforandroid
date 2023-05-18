@@ -206,7 +206,7 @@ public class ContentArea extends Fragment {
     }
 
     void setUpWebview(ViewGroup rootView) {
-        CardView youtubeWebViewCard = (CardView) rootView.findViewById(getRid("youtube_web_view_card")); //
+        View youtubeWebViewCard = (View) rootView.findViewById(getRid("youtube_web_view_card")); //
         WebView youtubeWebView = (WebView) rootView.findViewById(getRid("youtube_web_view")); //todo find or bind web view
         JsonFetch jsonFetch = new JsonFetch();
         jsonFetch.webView = youtubeWebView;

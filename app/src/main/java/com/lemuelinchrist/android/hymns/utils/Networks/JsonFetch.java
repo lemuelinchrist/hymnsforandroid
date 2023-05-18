@@ -31,7 +31,7 @@ import java.util.Scanner;
 
 public class JsonFetch extends AsyncTask<Hymn, Void, HymnYT> {
     public WebView webView;
-    public CardView cardView;
+    public View cardView;
 
     @Override
     protected HymnYT doInBackground(Hymn... params) {

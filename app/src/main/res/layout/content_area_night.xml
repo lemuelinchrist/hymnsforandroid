@@ -1,143 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                                       android:id="@+id/jellybeanContentScrollView"
-                                       android:layout_width="match_parent"
-                                       android:layout_height="wrap_content"
-                                       style="@style/NightMode">
+    android:id="@+id/jellybeanContentScrollView"
+    style="@style/NightMode"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
-            style="@style/NightMode"
-            android:id="@+id/lyric_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="10dp"
-    >
+        android:id="@+id/lyric_container"
+        style="@style/NightMode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
         <!--This will solve the lyric autoscrolling problem but it blocks the lyrics from being selectable-->
         <!--android:descendantFocusability="blocksDescendants"-->
         <LinearLayout
+            android:id="@+id/mainHeaderContainer"
+            style="@style/NightMode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/subjectHeader"
                 style="@style/NightMode"
-                android:id="@+id/mainHeaderContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/subjectHeader"
-                    android:text="@string/subjectFiller"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_centerInParent="true"
-                    android:paddingLeft="30dp"
-                    android:paddingRight="30dp"
-                    style="@style/NightMode" android:paddingBottom="10dp"/>
-            <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/lyricHeader"
-                    style="@style/NightMode"
-                    android:minHeight="30dp"
-                    android:text="@string/enterHymnNo"
-                    android:paddingLeft="30dp"
-                    android:paddingRight="30dp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp">
+                android:paddingBottom="10dp"
+                android:text="@string/subjectFiller"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/lyricHeader"
+                style="@style/NightMode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="@string/enterHymnNo"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
 
 
             <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/faveButton"
-                    android:src="@drawable/ic_favorite_border_white_48dp"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_gravity="left"
-                    android:layout_weight="1"/>
+                android:id="@+id/faveButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:src="@drawable/ic_favorite_border_white_48dp" />
+
             <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/playButton"
-                    android:src="@drawable/ic_play_arrow_white_48dp"
-                    android:layout_gravity="left"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_weight="1"/>
+                android:id="@+id/playButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:src="@drawable/ic_play_arrow_white_48dp" />
+
             <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/sheetMusicButton"
-                    android:src="@drawable/ic_queue_music_white_48dp"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_gravity="left"
-                    android:layout_weight="1"/>
+                android:id="@+id/sheetMusicButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:src="@drawable/ic_queue_music_white_48dp" />
+
             <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/youtubePianoButton"
-                    android:src="@drawable/ic_live_tv_white_28dp"
-                    android:layout_gravity="left"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_weight="1" />
+                android:id="@+id/youtubePianoButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:src="@drawable/ic_live_tv_white_28dp" />
+
             <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/similarTuneButton"
-                    android:src="@drawable/ic_related_hymns_white_28dp"
-                    android:layout_gravity="left"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_weight="1" />
+                android:id="@+id/similarTuneButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:src="@drawable/ic_related_hymns_white_28dp" />
+
             <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/copyButton"
-                    android:src="@drawable/ic_content_copy_white_48dp"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_weight="1"
-                    android:layout_gravity="left"/>
+                android:id="@+id/copyButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:src="@drawable/ic_content_copy_white_48dp" />
 
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/stanzaView"
+            style="@style/NightMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/jellybeanLyrics"
                 style="@style/NightMode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:layout_gravity="center"
-                android:id="@+id/stanzaView"
-        >
-            <TextView
-                    android:id="@+id/jellybeanLyrics"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginTop="10dp"
-                    style="@style/NightMode"
-                    android:textIsSelectable="true"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textIsSelectable="true" />
         </LinearLayout>
 
         <TextView
-                android:id="@+id/composer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="10dp"
-                style="@style/NightMode"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:textIsSelectable="true"/>
+            android:id="@+id/composer"
+            style="@style/NightMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textIsSelectable="true" />
+
+        <LinearLayout
+            android:id="@+id/youtube_web_view_card"
+            style="@style/dayMode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="50dp"
+            android:visibility="gone">
+
+            <WebView
+                android:id="@+id/youtube_web_view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
 
