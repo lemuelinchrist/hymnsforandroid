@@ -2,5 +2,5 @@
 # Download APK
 [Download HYMN for Android](https://github.com/nextcodelab/hymnsforandroid/raw/master/app/release/app-release.apk).
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
+![Screen](https://raw.githubusercontent.com/nextcodelab/hymnsforandroid/802dd4572a4c8e2bae7009198f2905a6a7aa951f/app/images/screen1.jpg)
 
