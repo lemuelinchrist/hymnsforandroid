@@ -10,10 +10,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageButton;
+
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.content.sheetmusic.SheetMusicButton;
@@ -22,6 +25,7 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
+import com.lemuelinchrist.android.hymns.utils.Networks.JsonFetch;
 
 import java.util.HashSet;
 
@@ -31,7 +35,7 @@ import java.util.HashSet;
  * This Custom view takes care of displaying lyrics and playing songs of that lyric.
  */
 public class ContentArea extends Fragment {
-    public static final String HISTORY_LOGBOOK_FILE="logBook";
+    public static final String HISTORY_LOGBOOK_FILE = "logBook";
 
     private Context context;
     private Hymn hymn;
@@ -86,10 +90,10 @@ public class ContentArea extends Fragment {
             }
         });
 
-        historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
+        historyLogBook = new LogBook(context, HISTORY_LOGBOOK_FILE);
 
         //Sometimes hymnId can be null when app wakes up from a sleep several hours long. need to retrieve it from history
-        if(hymnId==null) {
+        if (hymnId == null) {
             hymnId = historyLogBook.getOrderedRecordList()[0].getHymnId();
         }
 
@@ -97,30 +101,30 @@ public class ContentArea extends Fragment {
         hymn = hymnsDao.get(hymnId);
         hymnsDao.close();
 
-        LyricsArea lyricsArea = new LyricsArea(hymn,this,scrollView);
+        LyricsArea lyricsArea = new LyricsArea(hymn, this, scrollView);
 
         if (hymnId != null) {
             lyricsArea.displayLyrics();
         }
 
         buttonContainer = rootView.findViewById(getRid("buttonContainer"));
-        if(buttonContainer !=null ){
+        if (buttonContainer != null) {
             buttonContainer.setCardBackgroundColor(hymn.getHymnGroup().getDayColor());
         }
 
-        playButton = new PlayButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("playButton")));
-        sheetMusicButton = new SheetMusicButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("sheetMusicButton")));
-        faveButton = new FaveButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("faveButton")));
-        copyButton = new CopyButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("copyButton")));
-        youtubeButton = new YoutubeButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("youtubePianoButton")));
-        similarTuneButton = new SimilarTuneButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("similarTuneButton")));
-
+        playButton = new PlayButton(hymn, this,
+                (ImageButton) rootView.findViewById(getRid("playButton")));
+        sheetMusicButton = new SheetMusicButton(hymn, this,
+                (ImageButton) rootView.findViewById(getRid("sheetMusicButton")));
+        faveButton = new FaveButton(hymn, this,
+                (ImageButton) rootView.findViewById(getRid("faveButton")));
+        copyButton = new CopyButton(hymn, this,
+                (ImageButton) rootView.findViewById(getRid("copyButton")));
+        youtubeButton = new YoutubeButton(hymn, this,
+                (ImageButton) rootView.findViewById(getRid("youtubePianoButton")));
+        similarTuneButton = new SimilarTuneButton(hymn, this,
+                (ImageButton) rootView.findViewById(getRid("similarTuneButton")));
+        setUpWebview(rootView);
         return rootView;
     }
 
@@ -183,7 +187,7 @@ public class ContentArea extends Fragment {
     public void log() {
         // No need to log default hymn number since it's the starting point anyway
         // NOTE: possible null pointer here!
-        if(hymnStack != null && hymnStack.contains(hymn.getHymnId()) && !getHymnId().equals(HymnGroup.DEFAULT_HYMN_NUMBER))
+        if (hymnStack != null && hymnStack.contains(hymn.getHymnId()) && !getHymnId().equals(HymnGroup.DEFAULT_HYMN_NUMBER))
             historyLogBook.log(hymn);
     }
 
@@ -198,6 +202,16 @@ public class ContentArea extends Fragment {
     }
 
     public void setHymnStack(HymnStack hymnStack) {
-        this.hymnStack=hymnStack;
+        this.hymnStack = hymnStack;
+    }
+
+    void setUpWebview(ViewGroup rootView) {
+        CardView youtubeWebViewCard = (CardView) rootView.findViewById(getRid("youtube_web_view_card")); //
+        WebView youtubeWebView = (WebView) rootView.findViewById(getRid("youtube_web_view")); //todo find or bind web view
+        JsonFetch jsonFetch = new JsonFetch();
+        jsonFetch.webView = youtubeWebView;
+        jsonFetch.cardView = youtubeWebViewCard;
+        jsonFetch.execute(hymn);
+
     }
 }

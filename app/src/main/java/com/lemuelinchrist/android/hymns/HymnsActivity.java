@@ -21,6 +21,7 @@ import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.settings.SettingsActivity;
 import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.utils.Networks.NetworkCache;
 
 
 /**
@@ -45,6 +46,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        NetworkCache.LoadHymnTunes(this);
         Log.d(this.getClass().getName(), "start app");
 
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
