@@ -47,7 +47,7 @@ public class JsonFetch extends AsyncTask<Hymn, Void, HymnYT> {
         }
 
         Exception exception = null;
-        String urlString = "https://raw.githubusercontent.com/nextcodelab/data-base-server/main/host_data/bible/hymn_tunes.json";
+        String urlString = "https://raw.githubusercontent.com/nextcodelab/hymnsforandroid/master/app/src/main/java/com/lemuelinchrist/android/hymns/utils/Networks/hymn_tunes.json";
         URL url = null;
         URLConnection urlConnection = null;
         try {
