@@ -32,6 +32,7 @@ public abstract class TabFragment extends Fragment {
     protected ViewGroup container;
     protected static HymnGroup selectedHymnGroup;
     public static final Map<Integer, TabFragment> COLLECTION = new HashMap();
+    protected String savedQuery="";
 
     public TabFragment() {
         COLLECTION.put(this.getSearchTabIndex(), this);
@@ -92,6 +93,14 @@ public abstract class TabFragment extends Fragment {
     public abstract void setSearchFilter(String filter);
 
     public abstract int getIcon();
+
+    public void setSavedQuery(String savedQuery) {
+        this.savedQuery = savedQuery;
+    }
+
+    public String getSavedQuery() {
+        return savedQuery;
+    }
 
     public void cleanUp() {
         dao.close();

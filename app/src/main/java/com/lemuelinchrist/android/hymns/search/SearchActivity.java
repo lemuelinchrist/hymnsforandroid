@@ -78,22 +78,21 @@ public class SearchActivity extends AppCompatActivity  {
                 Log.d(this.getClass().getName(), "Page position changed. new position is: " + position);
 
                 // clear focus when history tab is selected because history has no search
-                if ((TabFragment.COLLECTION.get(position) instanceof HistoryTabFragment)) {
-                    Log.d(this.getClass().getName(), "position is not HistoryTabFragment. clear focus of search bar");
+                TabFragment currentTabFragment = TabFragment.COLLECTION.get(position);
+                if ((currentTabFragment instanceof HistoryTabFragment)) {
+                    Log.d(this.getClass().getName(), "position is HistoryTabFragment. clear focus of search bar");
                     // it's the only way to defocus the search bar
                     searchBar.setFocusable(false);
                     searchBar.setFocusable(true);
                     searchBar.setFocusableInTouchMode(true);
                     hideKeyboard();
                     return;
-
                 }
 
-                searchBar.setInputType(TabFragment.COLLECTION.get(position).getInputType());
+                searchBar.setInputType(currentTabFragment.getInputType());
 
                 Log.d(this.getClass().getName(), "trying to clear text. Hope it wont throw error.");
-                searchBar.setQuery("", false);
-
+                searchBar.setQuery(currentTabFragment.getSavedQuery(), false);
 
             }
         });
@@ -145,7 +144,7 @@ public class SearchActivity extends AppCompatActivity  {
                     createIntentAndExit(selectedHymnGroup+query);
                 }
 
-                filterList( query);
+                filterListAndSaveQuery( query);
                 hideKeyboard();
                 return true;
             }
@@ -155,7 +154,7 @@ public class SearchActivity extends AppCompatActivity  {
                 // dont do anything if text is empty, otherwise android will throw weird exceptions.
                 if (newText.isEmpty()) return false;
 
-                filterList(newText);
+                filterListAndSaveQuery(newText);
                 return true;
             }
         });
@@ -218,8 +217,10 @@ public class SearchActivity extends AppCompatActivity  {
 
     }
 
-    private void filterList(String filter) {
-        TabFragment.COLLECTION.get(mViewPager.getCurrentItem()).setSearchFilter(filter);
+    private void filterListAndSaveQuery(String query) {
+        TabFragment currentTabFragment = TabFragment.COLLECTION.get(mViewPager.getCurrentItem());
+        currentTabFragment.setSavedQuery(query);
+        currentTabFragment.setSearchFilter(query);
     }
 
     @Override
