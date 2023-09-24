@@ -23,6 +23,10 @@ ext {
 
 }
 
+compileGroovy {
+    options.encoding = 'UTF-8'
+}
+
 processResources {
     filesMatching("project.properties") {
         expand(project.properties)

@@ -204,6 +204,7 @@ public class HymnalNetExtractor {
             String[] href = relatedsongs.select("a:contains(Tagalog)").attr("href").split("/");
             relatedSet.add("T" + href[href.length - 1]);
         }
+        System.setProperty("file.encoding", "UTF-8");
         if (relatedsongs.select("a:contains(繁)").size() > 0) {
             String[] href = relatedsongs.select("a:contains(繁)").attr("href").split("/");
             relatedSet.add("C" + href[href.length - 1]);

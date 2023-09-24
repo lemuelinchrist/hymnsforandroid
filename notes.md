@@ -10,3 +10,6 @@ This is due to the Android App requiring JDK v11 to build, but the database prov
 
 If you need to run the Hymn app, do the above steps using android 11 instead of 1.8
 
+### 2
+Null pointer exception at Persistence.createEntityManagerFactory(Constants.HYMNS_UNIT)  
+Solution: same as above
