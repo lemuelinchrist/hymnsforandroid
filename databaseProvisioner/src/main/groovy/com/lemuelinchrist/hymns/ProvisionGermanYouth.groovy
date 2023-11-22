@@ -28,7 +28,6 @@ class ProvisionGermanYouth {
     public static void main(String[] args) {
         def german = new ProvisionGermanYouth();
         german.provision();
-//        german.removeGermanHymns()
         println "end!!!!!"
     }
 
@@ -41,7 +40,7 @@ class ProvisionGermanYouth {
 
     void provision() throws Exception {
 //        germanFile = new File(this.getClass().getResource("/german/New_German_hymns.txt").getPath());
-        germanFile = new File(this.getClass().getResource("/german/GermanYPsongs.txt").getPath());
+        germanFile = new File(this.getClass().getResource("/german/GermanYPsongs_v2.txt").getPath());
 
         iterator = germanFile.iterator();
 
@@ -50,24 +49,13 @@ class ProvisionGermanYouth {
             line = iterator.next().trim();
             if(line.isNumber()) {
                 createNewStanza()
-//                line = iterator.next().trim();
-//                if (line.matches('YPG\\d*')) {
-//                    wrapup()
-//                    createNewHymn()
-//
-//                } else if(line.isEmpty()) {
-//                    wrapup()
-//                    break
-//                } else {
-//                    createNewStanza()
-//
-//                }
-
 
             } else if (line.matches('^YPG.*')) {
                 wrapup()
                 createNewHymn()
-            }else {
+            } else if(line.contains("**end**")) {
+                wrapup()
+            } else {
 
                 stanza.text+=line+"<br/>"
             }
@@ -98,7 +86,7 @@ class ProvisionGermanYouth {
         }
 
         println hymn
-//        dao.save(hymn)
+        dao.save(hymn)
     }
 
     def createNewHymn() {
@@ -137,8 +125,8 @@ class ProvisionGermanYouth {
                 }
             } else if (nextText.contains("Meter:")) {
                 hymn.meter = nextText.substring(nextText.indexOf(":") + 1).trim()
-            } else if (nextText.contains("*")) {
-                hymn.verse = nextText.substring(nextText.indexOf("*") + 1).trim()
+            } else if (nextText.contains("Verses:")) {
+                hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.matches('^[0-9]+$')) {
                 line = nextText;
                 stanza = createNewStanza()
