@@ -49,7 +49,7 @@ class ProvisionSpanishSupplement {
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber() || line.split("\\.")[0].isNumber()) {
+            if(line.isNumber() || line.split("\\.")[0].isNumber() || line.toLowerCase().contains("coro:")) {
                 createNewStanza()
 
             } else if (line.matches('^HSE-.*')) {
@@ -85,6 +85,28 @@ class ProvisionSpanishSupplement {
                 hymn.firstChorusLine = firstChorus.text.substring(0,firstChorus.text.indexOf("<")).toUpperCase()
                 break
             }
+        }
+
+        // save video and soundcloud links
+        if(videoLink!=null) {
+            stanza = new StanzaEntity()
+            stanza.setNo("YouTube Link")
+            stanza.setParentHymn(hymn)
+            stanza.text = videoLink
+            stanza.order = ++stanzaOrderCounter
+            hymn.getStanzas().add(stanza)
+
+            videoLink=null
+        }
+        if(soundcloudLink!=null) {
+            stanza = new StanzaEntity()
+            stanza.setNo("SoundCloud Link")
+            stanza.setParentHymn(hymn)
+            stanza.text = soundcloudLink
+            stanza.order = ++stanzaOrderCounter
+            hymn.getStanzas().add(stanza)
+
+            soundcloudLink=null
         }
 
         println hymn
@@ -131,9 +153,13 @@ class ProvisionSpanishSupplement {
                 hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("music soundcloud:")) {
                 soundcloudLink=nextText.substring(nextText.indexOf(":") + 1).trim()
+            } else if (nextText.toLowerCase().contains("soundcloud:")) {
+                soundcloudLink=nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("video:")) {
                 videoLink=nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("hymn code hymnalnet:")) {
+                hymn.tune = nextText.substring(nextText.indexOf(":") + 1).trim()
+            } else if (nextText.toLowerCase().contains("tune on hymnalnet:")) {
                 hymn.tune = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.matches('^[0-9]+$')) {
                 line = nextText;
@@ -162,9 +188,9 @@ class ProvisionSpanishSupplement {
                 anomalies.add(hymn.id)
             }
         } else {
-//            if(!line.contains("chorus")) {
-//                throw new Exception("Cant make out line. supposed to be chorus or stanza no: " +line)
-//            }
+            if(!line.toLowerCase().contains("coro:")) {
+                throw new Exception("Cant make out line. supposed to be chorus or stanza no: " +line)
+            }
 
             no="chorus"
         }
