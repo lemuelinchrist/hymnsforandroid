@@ -28,12 +28,12 @@ class ProvisionSpanishSupplement {
 
 
     public static void main(String[] args) {
-        def german = new ProvisionSpanishSupplement();
-        german.provision();
+        def spanish = new ProvisionSpanishSupplement();
+        spanish.provision();
         println "end!!!!!"
     }
 
-    void removeGermanHymns() {
+    void removeSpanishHymns() {
         for(int x=1001;x<=1272;x++) {
             dao.delete("S"+x)
         }
@@ -41,7 +41,6 @@ class ProvisionSpanishSupplement {
 
 
     void provision() throws Exception {
-//        spanishFile = new File(this.getClass().getResource("/german/New_German_hymns.txt").getPath());
         spanishFile = new File(this.getClass().getResource("/HImnosCanticosEspirituales.txt").getPath());
 
         iterator = spanishFile.iterator();
@@ -49,7 +48,7 @@ class ProvisionSpanishSupplement {
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber() || line.split("\\.")[0].isNumber() || line.toLowerCase().contains("coro:")) {
+            if(line.isNumber() || line.split("\\.")[0].isNumber() || line.contains("Coro")) {
                 createNewStanza()
 
             } else if (line.matches('^HSE-.*')) {
@@ -118,7 +117,7 @@ class ProvisionSpanishSupplement {
             throw new Exception("Hymn numbers in text file not in sequence!! no. " + (ssNo-1) )
         }
         hymnNumber++;
-        println "******* Generating German Hymn ${hymnNumber}..."
+        println "******* Generating Spanish Hymn ${hymnNumber}..."
         hymn = new HymnsEntity();
         hymn.id = 'S' + hymnNumber
         hymn.no = hymnNumber.toString()
@@ -188,7 +187,7 @@ class ProvisionSpanishSupplement {
                 anomalies.add(hymn.id)
             }
         } else {
-            if(!line.toLowerCase().contains("coro:")) {
+            if(!line.contains("Coro")) {
                 throw new Exception("Cant make out line. supposed to be chorus or stanza no: " +line)
             }
 
