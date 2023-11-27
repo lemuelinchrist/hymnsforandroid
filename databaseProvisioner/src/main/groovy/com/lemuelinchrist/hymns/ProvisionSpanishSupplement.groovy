@@ -109,7 +109,7 @@ class ProvisionSpanishSupplement {
         }
 
         println hymn
-//        dao.save(hymn)
+        dao.save(hymn)
     }
 
     def createNewHymn() {
@@ -142,8 +142,10 @@ class ProvisionSpanishSupplement {
                 hymn.setRelatedString(nextText.replace(" ", "")
                         .replace(";", ","))
                 for (String oneRelated : hymn.getRelated()) {
-                    if (oneRelated.contains("E") || oneRelated.contains("NS")) {
-                        hymn.parentHymn = oneRelated.replace(" ", "")
+                    if (oneRelated.contains("E") || oneRelated.contains("NS") || oneRelated.contains("BF")) {
+                        if(hymn.parentHymn==null || hymn.parentHymn == "BF") { // BF has least priority
+                            hymn.parentHymn = oneRelated.replace(" ", "")
+                        }
                     }
                 }
             } else if (nextText.contains("Meter:")) {
