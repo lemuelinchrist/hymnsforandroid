@@ -1,8 +1,14 @@
 package com.lemuelinchrist.android.hymns.content;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -11,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.HymnGroup;
@@ -20,11 +27,7 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.Theme;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Lemuel Cantos
@@ -179,22 +182,29 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                         chorusText = "<i>@@" + stanza.getText() + "@@</i>";
                     }
                     text.append(chorusText);
-                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false);
+                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false,false);
                     text = new StringBuilder();
                 } else if (stanza.getNo().contains("note")) {
                     // notes do not have their own lyric view unlike normal stanzas and choruses
                     text.append("<i>" + stanza.getText() + "</i><br/>");
+                } else if(stanza.getNo().toLowerCase().contains("youtube") ||
+                        stanza.getNo().toLowerCase().contains("soundcloud")) {
+                    // append stanza
+                    text.append(stanza.getText().trim());
+                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false,true);
+                    text = new StringBuilder();
                 } else {
                     // append stanza
                     text.append("<b>##" + stanza.getNo() + "##</b><br/>");
                     text.append(stanza.getText());
-                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false);
+                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false,false);
                     text = new StringBuilder();
 
 
                     // append chorus after every stanza
                     if (hymn.getChorusCount() == 1 && !chorusText.isEmpty()) {
-                        buildLyricViewAndAttach(new StringBuilder(chorusText), hymn.getHymnGroup(), false);
+                        buildLyricViewAndAttach(new StringBuilder(chorusText), hymn.getHymnGroup(),
+                                false,false);
                         text = new StringBuilder();
                     }
                 }
@@ -208,7 +218,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
             // notes usually do not have their own view except if they are the last
             if(stanzas.get(stanzas.size()-1).getNo().contains("note")) {
-                buildLyricViewAndAttach(text,hymn.getHymnGroup(),true);
+                buildLyricViewAndAttach(text,hymn.getHymnGroup(),true,false);
             }
 
             // #################### Build Footer
@@ -229,11 +239,8 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
     }
 
-    private void buildLyricViewAndAttach(StringBuilder text, HymnGroup selectedHymnGroup, boolean isTrailingNote) {
+    private void buildLyricViewAndAttach(final StringBuilder text, HymnGroup selectedHymnGroup, boolean isTrailingNote, boolean isLink) {
         Log.i(this.getClass().getSimpleName(), text.toString());
-
-        // add colors to text
-        CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(selectedHymnGroup));
 
         TextView view;
         // if column is odd
@@ -246,7 +253,27 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // right column on landscape mode
             view = (TextView) currentTextLinearLayout.getChildAt(1);
         }
-        view.setText(formattedLyrics);
+
+        if(isLink) {
+            SpannableString spannableString = new SpannableString(text);
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    // Handle the click event, for example, open a browser
+                    openWebPage(text.toString());
+                }
+            };
+            // Set the ClickableSpan on the specific portion of the text
+            spannableString.setSpan(clickableSpan, 0, text.length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            view.setText(spannableString);
+            view.setMovementMethod(LinkMovementMethod.getInstance());
+        } else {
+            // add colors to text
+            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(selectedHymnGroup));
+            view.setText(formattedLyrics);
+        }
+
         view.setGravity(hymn.getHymnGroup().getTextAlignment());
 
         // stylize...
@@ -257,6 +284,11 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         // trailing notes have a row exclusively to themselves
         if(isTrailingNote)
             currentTextLinearLayout.removeViewAt(1);
+    }
+
+    private void openWebPage(String text) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(text));
+        context.startActivity(intent);
     }
 
     private boolean isNotEmpty(String string) {

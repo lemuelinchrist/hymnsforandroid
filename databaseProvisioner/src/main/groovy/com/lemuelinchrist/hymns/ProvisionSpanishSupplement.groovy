@@ -200,7 +200,7 @@ class ProvisionSpanishSupplement {
         stanza = new StanzaEntity()
         stanza.setNo(no)
         stanza.setParentHymn(hymn)
-        stanza.text=no.equals('chorus')? no+"<br/>" : ""
+        stanza.text=""
         stanza.order= ++stanzaOrderCounter
         hymn.getStanzas().add(stanza)
         return stanza
