@@ -30,11 +30,13 @@ class ProvisionSpanishSupplement {
     public static void main(String[] args) {
         def spanish = new ProvisionSpanishSupplement();
         spanish.provision();
+//        spanish.removeSpanishHymns()
+
         println "end!!!!!"
     }
 
     void removeSpanishHymns() {
-        for(int x=1001;x<=1272;x++) {
+        for(int x=1001;x<=1275;x++) {
             dao.delete("S"+x)
         }
     }
