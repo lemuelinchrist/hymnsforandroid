@@ -58,7 +58,7 @@ class ProvisionSpanishSupplement {
                 createNewHymn()
             } else if(line.contains("**end**")) {
                 wrapup()
-            } else {
+            } else if(!line.isEmpty()) {
 
                 stanza.text+=line+"<br/>"
             }
