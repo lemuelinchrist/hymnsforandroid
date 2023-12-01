@@ -190,7 +190,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 } else if(stanza.getNo().toLowerCase().contains("youtube") ||
                         stanza.getNo().toLowerCase().contains("soundcloud")) {
                     // append stanza
-                    text.append(stanza.getText().trim());
+                    text.append(stanza.getText().trim() + "\n");
                     buildLyricViewAndAttach(text, hymn.getHymnGroup(), false,true);
                     text = new StringBuilder();
                 } else {
@@ -260,7 +260,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 @Override
                 public void onClick(@NonNull View widget) {
                     // Handle the click event, for example, open a browser
-                    openWebPage(text.toString());
+                    openWebPage(text.toString().trim());
                 }
             };
             // Set the ClickableSpan on the specific portion of the text
