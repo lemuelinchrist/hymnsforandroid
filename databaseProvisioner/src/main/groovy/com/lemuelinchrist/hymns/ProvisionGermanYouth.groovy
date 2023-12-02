@@ -28,11 +28,12 @@ class ProvisionGermanYouth {
     public static void main(String[] args) {
         def german = new ProvisionGermanYouth();
         german.provision();
+//        german.removeGermanHymns()
         println "end!!!!!"
     }
 
     void removeGermanHymns() {
-        for(int x=1;x<=1336;x++) {
+        for(int x=2001;x<=2271;x++) {
             dao.delete("G"+x)
         }
     }
@@ -48,14 +49,14 @@ class ProvisionGermanYouth {
 
             line = iterator.next().trim();
             if(line.isNumber()) {
-                createNewStanza()
+                createNewStanza(false)
 
             } else if (line.matches('^YPG.*')) {
                 wrapup()
                 createNewHymn()
             } else if(line.contains("**end**")) {
                 wrapup()
-            } else {
+            } else if(!line.isEmpty()){
 
                 stanza.text+=line+"<br/>"
             }
@@ -129,7 +130,7 @@ class ProvisionGermanYouth {
                 hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.matches('^[0-9]+$')) {
                 line = nextText;
-                stanza = createNewStanza()
+                stanza = createNewStanza(false)
                 break
 
             } else if(nextText.isEmpty()) {
@@ -137,7 +138,7 @@ class ProvisionGermanYouth {
             } else {
 //                throw new Exception("Can't make out text content: " + nextText)
                 line = nextText;
-                stanza = createNewStanza()
+                stanza = createNewStanza(true)
                 break
             }
 
@@ -145,7 +146,7 @@ class ProvisionGermanYouth {
 
     }
 
-    StanzaEntity createNewStanza() {
+    StanzaEntity createNewStanza(boolean isFirstLineLyric) {
         String no = line;
         if(line.isNumber()) {
             stanzaCounter++
@@ -165,7 +166,11 @@ class ProvisionGermanYouth {
         stanza = new StanzaEntity()
         stanza.setNo(no)
         stanza.setParentHymn(hymn)
-        stanza.text=""
+        if(isFirstLineLyric) {
+            stanza.text=line.trim() + "<br/>"
+        } else {
+            stanza.text=""
+        }
         stanza.order= ++stanzaOrderCounter
         hymn.getStanzas().add(stanza)
         return stanza
