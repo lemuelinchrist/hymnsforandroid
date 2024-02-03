@@ -16,7 +16,7 @@ class ProvisionSlovak {
     Integer stanzaOrderCounter=0;
     String line
     Iterator<String> iterator
-    Integer hymnNumber = 1000;
+    Integer hymnNumber = 0;
     HymnsEntity hymn=null;
     StanzaEntity stanza=null;
     StringBuilder stanzaBuilder=null
@@ -37,13 +37,13 @@ class ProvisionSlovak {
 
     void removeSpanishHymns() {
         for(int x=1001;x<=1349;x++) {
-            dao.delete("S"+x)
+            dao.delete("SK"+x)
         }
     }
 
 
     void provision() throws Exception {
-        slovakFile = new File(this.getClass().getResource("/2024_02 Hymns SK_final.txt").getPath());
+        slovakFile = new File(this.getClass().getResource("/2024_02HymnsSK_final.txt").getPath());
 
         iterator = slovakFile.iterator();
 
@@ -53,7 +53,7 @@ class ProvisionSlovak {
             if(line.isNumber() || line.split("\\.")[0].isNumber() || line.contains("Coro")) {
                 createNewStanza()
 
-            } else if (line.matches('^HSE-.*')) {
+            } else if (line.matches('^HYMN: SK.*')) {
                 wrapup()
                 createNewHymn()
             } else if(line.contains("**end**")) {
@@ -75,18 +75,18 @@ class ProvisionSlovak {
             hymn.getStanzas().get(0).no=1;
         }
 
-        for(StanzaEntity firstStanza: hymn.getStanzas()) {
-            if(firstStanza.no.equals("1")) {
-                hymn.firstStanzaLine = firstStanza.text.substring(0,firstStanza.text.indexOf("<"))
-                break
-            }
-        }
-        for(StanzaEntity firstChorus: hymn.getStanzas()) {
-            if(firstChorus.no.contains("chorus")) {
-                hymn.firstChorusLine = firstChorus.text.substring(0,firstChorus.text.indexOf("<")).toUpperCase()
-                break
-            }
-        }
+//        for(StanzaEntity firstStanza: hymn.getStanzas()) {
+//            if(firstStanza.no.equals("1")) {
+//                hymn.firstStanzaLine = firstStanza.text.substring(0,firstStanza.text.indexOf("<"))
+//                break
+//            }
+//        }
+//        for(StanzaEntity firstChorus: hymn.getStanzas()) {
+//            if(firstChorus.no.contains("chorus")) {
+//                hymn.firstChorusLine = firstChorus.text.substring(0,firstChorus.text.indexOf("<")).toUpperCase()
+//                break
+//            }
+//        }
 
         // save video and soundcloud links
         if(videoLink!=null) {
@@ -111,17 +111,17 @@ class ProvisionSlovak {
         }
 
         println hymn
-        dao.save(hymn)
+//        dao.save(hymn)
     }
 
     def createNewHymn() {
-        if (line.replaceAll('[^0-9]','') != Integer.toString(ssNo++)) {
-            throw new Exception("Hymn numbers in text file not in sequence!! no. " + (ssNo-1) )
-        }
-        hymnNumber++;
-        println "******* Generating Spanish Hymn ${hymnNumber}..."
+//        if (line.replaceAll('[^0-9]','') != Integer.toString(ssNo++)) {
+//            throw new Exception("Hymn numbers in text file not in sequence!! no. " + (ssNo-1) )
+//        }
+        hymnNumber = Integer.parseInt( line.replaceAll('[^0-9]',''));
+        println "******* Generating Slovak Hymn ${hymnNumber}..."
         hymn = new HymnsEntity();
-        hymn.id = 'S' + hymnNumber
+        hymn.id = 'SK' + hymnNumber
         hymn.no = hymnNumber.toString()
         hymn.hymnGroup = 'S'
         hymn.stanzas = new ArrayList<StanzaEntity>();
@@ -131,7 +131,7 @@ class ProvisionSlovak {
         String nextText;
         while (true) {
             nextText = iterator.next().trim()
-            if (nextText.contains("Subject:")) {
+            if (nextText.toLowerCase().contains("subject:")) {
                 nextText = nextText.substring(nextText.indexOf(":") + 1).trim()
                 String[] subjectArray = nextText.split("–")
                 hymn.setMainCategory(subjectArray[0].trim())
@@ -139,7 +139,7 @@ class ProvisionSlovak {
                     hymn.setSubCategory(subjectArray[1].trim())
                 }
 
-            } else if (nextText.contains("Related:")) {
+            } else if (nextText.toLowerCase().contains("related:")) {
                 nextText = nextText.substring(nextText.indexOf(":") + 1).trim()
                 hymn.setRelatedString(nextText.replace(" ", "")
                         .replace(";", ","))
@@ -150,9 +150,9 @@ class ProvisionSlovak {
                         }
                     }
                 }
-            } else if (nextText.contains("Meter:")) {
+            } else if (nextText.toLowerCase().contains("meter:")) {
                 hymn.meter = nextText.substring(nextText.indexOf(":") + 1).trim()
-            } else if (nextText.contains("Verses:")) {
+            } else if (nextText.toLowerCase().contains("verses:")) {
                 hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("music soundcloud:")) {
                 soundcloudLink=nextText.substring(nextText.indexOf(":") + 1).trim()
@@ -164,7 +164,19 @@ class ProvisionSlovak {
                 hymn.tune = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("tune on hymnalnet:")) {
                 hymn.tune = nextText.substring(nextText.indexOf(":") + 1).trim()
-            } else if (nextText.matches('^[0-9]+$')) {
+            } else if(nextText.toLowerCase().contains("author")) {
+                hymn.author = nextText.substring(nextText.indexOf(":") + 1).trim()
+            } else if(nextText.toLowerCase().contains("composer")) {
+                hymn.composer = nextText.substring(nextText.indexOf(":") + 1).trim()
+            } else if(nextText.toLowerCase().contains("first line stanza")) {
+                hymn.firstStanzaLine = nextText.substring(nextText.indexOf(":") + 1)
+                        .replaceAll("<",'').replaceAll(">",'').trim()
+                if(hymn.firstStanzaLine.isEmpty()) hymn.firstStanzaLine=null
+            } else if(nextText.toLowerCase().contains("first line chorus")) {
+                hymn.firstChorusLine = nextText.substring(nextText.indexOf(":") + 1)
+                        .replaceAll("<",'').replaceAll(">",'').toUpperCase().trim()
+                if(hymn.firstChorusLine.isEmpty()) hymn.firstChorusLine=null
+            } else if (nextText.toLowerCase().matches('^[0-9]+$')) {
                 line = nextText;
                 stanza = createNewStanza()
                 break
