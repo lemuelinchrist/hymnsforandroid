@@ -74,11 +74,14 @@ public enum HymnGroup {
     CH("Children", Color.rgb(0xAF, 0xB4, 0x2B),
             Color.rgb(0xE6, 0xEE, 0x9C),
             Gravity.LEFT),
-
     //Deep Purple
     F("Farsi", Color.rgb(0x67, 0x3A, 0xB7),
             Color.rgb(0x95, 0x75, 0xCD),
-            Gravity.RIGHT);
+            Gravity.RIGHT),
+    // Purple
+    SK("Slovak", Color.rgb(0x9C, 0x27, 0xB0),
+            Color.rgb(0xBA, 0x68, 0xC8),
+            Gravity.LEFT);
 
     private final String simpleName;
     // taken from Google Color Palette #500

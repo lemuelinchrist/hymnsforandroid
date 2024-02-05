@@ -21,7 +21,7 @@ class ProvisionSlovak {
     StanzaEntity stanza=null;
     StringBuilder stanzaBuilder=null
     int ssNo=1;
-    Set<Integer> anomalies = new HashSet<>();
+    List<String> anomalies = new ArrayList<>();
     private Dao dao = new Dao()
     String videoLink=null
     String soundcloudLink=null
@@ -43,17 +43,17 @@ class ProvisionSlovak {
 
 
     void provision() throws Exception {
-        slovakFile = new File(this.getClass().getResource("/2024_02HymnsSK_final.txt").getPath());
+        slovakFile = new File(this.getClass().getResource("/2024_02HymnsSK_final_proof02.txt").getPath());
 
         iterator = slovakFile.iterator();
 
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber() || line.split("\\.")[0].isNumber() || line.contains("Coro")) {
+            if(line.isNumber() || line.split("\\.")[0].isNumber() || line.contains("CHORUS")) {
                 createNewStanza()
 
-            } else if (line.matches('^HYMN: SK.*')) {
+            } else if (line.matches('^HYMN:.*')) {
                 wrapup()
                 createNewHymn()
             } else if(line.contains("**end**")) {
@@ -65,7 +65,10 @@ class ProvisionSlovak {
 
         }
 
-        println("anomalies: " + anomalies.toString())
+        println("anomalies: ")
+        for(String anomaly: anomalies) {
+            println(anomaly)
+        }
     }
 
     def wrapup() {
@@ -111,17 +114,20 @@ class ProvisionSlovak {
         }
 
         println hymn
-//        dao.save(hymn)
+        dao.save(hymn)
     }
 
     def createNewHymn() {
 //        if (line.replaceAll('[^0-9]','') != Integer.toString(ssNo++)) {
 //            throw new Exception("Hymn numbers in text file not in sequence!! no. " + (ssNo-1) )
 //        }
+        if(!line.trim().matches(".*SK\\d+\$")) {
+            anomalies.add("Hymn number doesn't follow format: " + line)
+        }
         hymnNumber = Integer.parseInt( line.replaceAll('[^0-9]',''));
         println "******* Generating Slovak Hymn ${hymnNumber}..."
         hymn = new HymnsEntity();
-        hymn.id = 'SK' + hymnNumber
+        hymn.id = line.trim()
         hymn.no = hymnNumber.toString()
         hymn.hymnGroup = 'S'
         hymn.stanzas = new ArrayList<StanzaEntity>();
@@ -152,7 +158,7 @@ class ProvisionSlovak {
                 }
             } else if (nextText.toLowerCase().contains("meter:")) {
                 hymn.meter = nextText.substring(nextText.indexOf(":") + 1).trim()
-            } else if (nextText.toLowerCase().contains("verses:")) {
+            } else if (nextText.toLowerCase().contains("verse:")) {
                 hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("music soundcloud:")) {
                 soundcloudLink=nextText.substring(nextText.indexOf(":") + 1).trim()
@@ -203,8 +209,10 @@ class ProvisionSlovak {
                 anomalies.add(hymn.id)
             }
         } else {
-            if(!line.contains("Coro")) {
-                throw new Exception("Cant make out line. supposed to be chorus or stanza no: " +line)
+            if(!line.contains("CHORUS")) {
+                def error = "Problem stanza in " + hymn.id + ". The first line is supposed to be marked as CHORUS or a stanza no: " + line
+//                throw new Exception(error)
+                anomalies.add(error)
             }
 
             no="chorus"
