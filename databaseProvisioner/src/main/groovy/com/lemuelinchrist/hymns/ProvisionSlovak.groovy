@@ -127,9 +127,9 @@ class ProvisionSlovak {
         hymnNumber = Integer.parseInt( line.replaceAll('[^0-9]',''));
         println "******* Generating Slovak Hymn ${hymnNumber}..."
         hymn = new HymnsEntity();
-        hymn.id = line.trim()
+        hymn.id = line.substring(line.indexOf(":") + 1).trim()
         hymn.no = hymnNumber.toString()
-        hymn.hymnGroup = 'S'
+        hymn.hymnGroup = 'SK'
         hymn.stanzas = new ArrayList<StanzaEntity>();
         stanzaCounter = 0
         stanzaOrderCounter = 0
@@ -158,6 +158,7 @@ class ProvisionSlovak {
                 }
             } else if (nextText.toLowerCase().contains("meter:")) {
                 hymn.meter = nextText.substring(nextText.indexOf(":") + 1).trim()
+                if(hymn.meter.isEmpty()) hymn.meter=null;
             } else if (nextText.toLowerCase().contains("verse:")) {
                 hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("music soundcloud:")) {
@@ -172,8 +173,10 @@ class ProvisionSlovak {
                 hymn.tune = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if(nextText.toLowerCase().contains("author")) {
                 hymn.author = nextText.substring(nextText.indexOf(":") + 1).trim()
+                if(hymn.author.isEmpty()) hymn.author=null;
             } else if(nextText.toLowerCase().contains("composer")) {
                 hymn.composer = nextText.substring(nextText.indexOf(":") + 1).trim()
+                if(hymn.composer.isEmpty()) hymn.composer=null;
             } else if(nextText.toLowerCase().contains("first line stanza")) {
                 hymn.firstStanzaLine = nextText.substring(nextText.indexOf(":") + 1)
                         .replaceAll("<",'').replaceAll(">",'').trim()
