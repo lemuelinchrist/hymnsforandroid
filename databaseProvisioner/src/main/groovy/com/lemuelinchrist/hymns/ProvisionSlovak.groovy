@@ -43,7 +43,7 @@ class ProvisionSlovak {
 
 
     void provision() throws Exception {
-        slovakFile = new File(this.getClass().getResource("/2024_02HymnsSK_final_proof02.txt").getPath());
+        slovakFile = new File(this.getClass().getResource("/2024_02HymnsSK_final_proof03.txt").getPath());
 
         iterator = slovakFile.iterator();
 
@@ -139,10 +139,12 @@ class ProvisionSlovak {
             nextText = iterator.next().trim()
             if (nextText.toLowerCase().contains("subject:")) {
                 nextText = nextText.substring(nextText.indexOf(":") + 1).trim()
-                String[] subjectArray = nextText.split("–")
+                String[] subjectArray = nextText.split("–|-")
                 hymn.setMainCategory(subjectArray[0].trim())
                 if (subjectArray.size() > 1) {
                     hymn.setSubCategory(subjectArray[1].trim())
+                } else {
+                    hymn.setSubCategory("")
                 }
 
             } else if (nextText.toLowerCase().contains("related:")) {
