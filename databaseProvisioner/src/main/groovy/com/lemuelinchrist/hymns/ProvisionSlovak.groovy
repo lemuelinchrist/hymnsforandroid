@@ -43,7 +43,7 @@ class ProvisionSlovak {
 
 
     void provision() throws Exception {
-        slovakFile = new File(this.getClass().getResource("/2024_02HymnsSK_final_proof03.txt").getPath());
+        slovakFile = new File(this.getClass().getResource("/2024_02HymnsSK_final_proof05.txt").getPath());
 
         iterator = slovakFile.iterator();
 
@@ -169,7 +169,7 @@ class ProvisionSlovak {
                 soundcloudLink=nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("video:")) {
                 videoLink=nextText.substring(nextText.indexOf(":") + 1).trim()
-            } else if (nextText.toLowerCase().contains("hymn code hymnalnet:")) {
+            } else if (nextText.toLowerCase().contains("hymn code:")) {
                 hymn.tune = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("tune on hymnalnet:")) {
                 hymn.tune = nextText.substring(nextText.indexOf(":") + 1).trim()
