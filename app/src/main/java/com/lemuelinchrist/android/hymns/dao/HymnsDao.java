@@ -258,10 +258,10 @@ public class HymnsDao {
                 }
                 if (isEmpty(hymn.getKey()))
                     hymn.setKey(parentHymn.getKey());
-                if (isEmpty(hymn.getMainCategory()))
+                if (isEmpty(hymn.getMainCategory())) {
                     hymn.setMainCategory(parentHymn.getMainCategory());
-                if (isEmpty(hymn.getSubCategory()))
                     hymn.setSubCategory(parentHymn.getSubCategory());
+                }
                 if (isEmpty(hymn.getMeter()))
                     hymn.setMeter(parentHymn.getMeter());
                 if (isEmpty(hymn.getVerse()))

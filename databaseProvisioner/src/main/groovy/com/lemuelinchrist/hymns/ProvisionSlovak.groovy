@@ -43,7 +43,7 @@ class ProvisionSlovak {
 
 
     void provision() throws Exception {
-        slovakFile = new File(this.getClass().getResource("/2024_02HymnsSK_final_proof05.txt").getPath());
+        slovakFile = new File(this.getClass().getResource("/2024_02HymnsSK_final_proof06.txt").getPath());
 
         iterator = slovakFile.iterator();
 
