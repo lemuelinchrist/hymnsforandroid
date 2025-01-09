@@ -11,6 +11,8 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
  */
 class ProvisionFrench2 {
     static File frenchFile;
+    static final GROUP_ID="FR";
+    static final CHORUS_WORD="Refrain";
     Integer stanzaCounter = 0;
     Integer stanzaOrderCounter=0;
     String line
@@ -36,7 +38,7 @@ class ProvisionFrench2 {
 
     void removefrenchHymns() {
         for(int x=216;x<=248;x++) {
-            dao.delete("FR"+x)
+            dao.delete(GROUP_ID+x)
         }
     }
 
@@ -49,10 +51,10 @@ class ProvisionFrench2 {
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber() || line.split("\\.")[0].isNumber() || line.contains("Coro")) {
+            if(line.isNumber() || line.split("\\.")[0].isNumber() || line.contains(CHORUS_WORD)) {
                 createNewStanza()
 
-            } else if (line.matches('^FR-.*')) {
+            } else if (line.matches('^'+GROUP_ID+'-.*')) {
                 wrapup()
                 createNewHymn()
             } else if(line.contains("**end**")) {
@@ -110,7 +112,7 @@ class ProvisionFrench2 {
         }
 
         println hymn
-//        dao.save(hymn)
+        dao.save(hymn)
     }
 
     def createNewHymn() {
@@ -120,9 +122,9 @@ class ProvisionFrench2 {
         hymnNumber++;
         println "******* Generating french Hymn ${hymnNumber}..."
         hymn = new HymnsEntity();
-        hymn.id = 'S' + hymnNumber
+        hymn.id = GROUP_ID + hymnNumber
         hymn.no = hymnNumber.toString()
-        hymn.hymnGroup = 'S'
+        hymn.hymnGroup = GROUP_ID
         hymn.stanzas = new ArrayList<StanzaEntity>();
         stanzaCounter = 0
         stanzaOrderCounter = 0
@@ -190,7 +192,7 @@ class ProvisionFrench2 {
                 anomalies.add(hymn.id)
             }
         } else {
-            if(!line.contains("Coro")) {
+            if(!line.contains(CHORUS_WORD)) {
                 throw new Exception("Cant make out line. supposed to be chorus or stanza no: " +line)
             }
 
