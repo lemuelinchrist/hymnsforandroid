@@ -3,9 +3,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
 // you can choose to put either "guitarSvg" or "pianoSvg" depending on the sheet music you want to include
-def svgFolderName = "pianoSvg"
+def svgFolderName = "guitarSvg"
 //def svgFolderName=""
-def hymnAppVersion = "v4.16BETA2-Piano"
+def hymnAppVersion = "v4.16-Guitar"
 //def androidVersion = '28.0.0'
 // filename: HymnsForAndroidv4.x-Piano.apk
 
@@ -28,7 +28,7 @@ android {
         minSdkVersion 15    // Ice cream sandwitch
         targetSdkVersion 29
         // increment version code if you want to refresh the database cache of your phone
-        versionCode 205
+        versionCode 206
         versionName hymnAppVersion
     }
     buildTypes {
