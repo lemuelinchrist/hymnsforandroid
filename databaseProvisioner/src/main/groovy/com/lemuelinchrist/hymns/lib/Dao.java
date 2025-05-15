@@ -185,9 +185,10 @@ public class Dao {
         for(Object o: allhymns) {
             HymnsEntity hymnCursor = (HymnsEntity) o;
             if(hymnCursor.getRelated()!=null && hymnCursor.getRelated()
-                    .contains(previousHymnId)){
+                    .contains(previousHymnId) && !hymnCursor.getRelated().contains(newHymnGroup + newHymnNo)){
                 HashSet<String> newSet = new HashSet<>(hymnCursor.getRelated());
                 newSet.remove(previousHymnId);
+                newSet.add(newHymnGroup + newHymnNo);
 
                 em.getTransaction().begin();
                 hymnCursor.setRelated(newSet);
