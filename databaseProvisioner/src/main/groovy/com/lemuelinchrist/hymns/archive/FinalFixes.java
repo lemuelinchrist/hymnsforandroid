@@ -2,10 +2,10 @@ package com.lemuelinchrist.hymns.archive;
 
 import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
 import java.util.Arrays;
 import java.util.HashSet;

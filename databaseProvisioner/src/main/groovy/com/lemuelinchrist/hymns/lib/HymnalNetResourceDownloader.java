@@ -5,9 +5,9 @@ import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 
 import java.util.ArrayList;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 /**
  * Created by lemuelcantos on 10/8/13.

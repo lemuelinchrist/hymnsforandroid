@@ -4,10 +4,10 @@ import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 import com.lemuelinchrist.hymns.lib.beans.StanzaEntity;
 import com.lemuelinchrist.hymns.lib.beans.TuneEntity;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -151,7 +151,9 @@ public class Dao {
     public void changeHymnNumber(String previousHymnId, String newHymnGroup, String newHymnNo) {
         System.out.println("changing hymn ID from " + previousHymnId + " to " + newHymnGroup + newHymnNo);
         HymnsEntity hymn = find(previousHymnId);
-        em.detach(hymn);
+        if(hymn!=null && em.contains(hymn)) {
+            em.detach(hymn);
+        }
         hymn.setId(newHymnGroup + newHymnNo);
         hymn.setNo(newHymnNo);
         hymn.setHymnGroup(newHymnGroup);

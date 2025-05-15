@@ -1,20 +1,20 @@
 package com.lemuelinchrist.hymns.lib.beans;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 
 /**
  * Created by lcantos on 8/6/13.
  */
 @Entity
-@javax.persistence.Table(name = "stanza", schema = "", catalog = "")
+@jakarta.persistence.Table(name = "stanza", schema = "", catalog = "")
 public class StanzaEntity {
 
 
@@ -22,17 +22,17 @@ public class StanzaEntity {
     @JoinColumn(name="parent_hymn")
     private HymnsEntity parentHymn;
     @Basic
-    @javax.persistence.Column(name = "no")
+    @jakarta.persistence.Column(name = "no")
     private String no;
     @Basic
-    @javax.persistence.Column(name = "text")
+    @jakarta.persistence.Column(name = "text")
     private String text;
     @Basic
-    @javax.persistence.Column(name = "note")
+    @jakarta.persistence.Column(name = "note")
     private String note;
 
     @Basic
-    @javax.persistence.Column(name = "n_order")
+    @jakarta.persistence.Column(name = "n_order")
     private int order;
 
     public int getOrder() {
@@ -54,7 +54,7 @@ public class StanzaEntity {
     @Id
     @SequenceGenerator(name="STANZA", sequenceName="stanza",allocationSize=1)
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "STANZA")
-    @javax.persistence.Column(name = "id")
+    @jakarta.persistence.Column(name = "id")
     private int id;
 
     public HymnsEntity getParentHymn() {

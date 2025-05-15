@@ -1,6 +1,6 @@
 package com.lemuelinchrist.hymns.lib.beans;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -10,66 +10,66 @@ import java.util.Set;
  * Created by lcantos on 8/6/13.
  */
 @Entity
-@javax.persistence.Table(name = "hymns", schema = "", catalog = "")
+@jakarta.persistence.Table(name = "hymns", schema = "", catalog = "")
 public class HymnsEntity {
 
     @Id
-    @javax.persistence.Column(name = "_id")
+    @jakarta.persistence.Column(name = "_id")
     private String id;
     @Basic
-    @javax.persistence.Column(name = "hymn_group")
+    @jakarta.persistence.Column(name = "hymn_group")
     private String hymnGroup;
     @Basic
-    @javax.persistence.Column(name = "first_stanza_line")
+    @jakarta.persistence.Column(name = "first_stanza_line")
     private String firstStanzaLine;
     @Basic
-    @javax.persistence.Column(name = "first_chorus_line")
+    @jakarta.persistence.Column(name = "first_chorus_line")
     private String firstChorusLine;
     @Basic
-    @javax.persistence.Column(name = "main_category")
+    @jakarta.persistence.Column(name = "main_category")
     private String mainCategory;
     @Basic
-    @javax.persistence.Column(name = "sub_category")
+    @jakarta.persistence.Column(name = "sub_category")
     private String subCategory;
     @Basic
-    @javax.persistence.Column(name = "meter")
+    @jakarta.persistence.Column(name = "meter")
     private String meter;
     @Basic
-    @javax.persistence.Column(name = "author")
+    @jakarta.persistence.Column(name = "author")
     private String author;
     @Basic
-    @javax.persistence.Column(name = "composer")
+    @jakarta.persistence.Column(name = "composer")
     private String composer;
     @Basic
-    @javax.persistence.Column(name = "time")
+    @jakarta.persistence.Column(name = "time")
     private String time;
     @Basic
-    @javax.persistence.Column(name = "key")
+    @jakarta.persistence.Column(name = "key")
     private String key;
     @Basic
-    @javax.persistence.Column(name = "tune")
+    @jakarta.persistence.Column(name = "tune")
     private String tune;
     @Basic
-    @javax.persistence.Column(name = "no")
+    @jakarta.persistence.Column(name = "no")
     private String no;
     @Basic
-    @javax.persistence.Column(name = "related")
+    @jakarta.persistence.Column(name = "related")
     private String related;
 
 
     @OneToMany(mappedBy="parentHymn", fetch = FetchType.EAGER,cascade= CascadeType.ALL)
     private List<StanzaEntity> stanzas;
     @Basic
-    @javax.persistence.Column(name = "parent_hymn")
+    @jakarta.persistence.Column(name = "parent_hymn")
     private String parentHymn;
     @Basic
-    @javax.persistence.Column(name = "sheet_music_link")
+    @jakarta.persistence.Column(name = "sheet_music_link")
     private String sheetMusicLink;
 //    @OneToMany(mappedBy="hymn",fetch = FetchType.EAGER,cascade=CascadeType.ALL,orphanRemoval=true)
 //    private List<RelatedEntity> relatedHymns;
 
     @Basic
-    @javax.persistence.Column(name = "verse")
+    @jakarta.persistence.Column(name = "verse")
     private String verse;
 
 
