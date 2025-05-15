@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -180,6 +181,21 @@ public class Dao {
             }
         }
 
+        List allhymns = findAll();
+        for(Object o: allhymns) {
+            HymnsEntity hymnCursor = (HymnsEntity) o;
+            if(hymnCursor.getRelated()!=null && hymnCursor.getRelated()
+                    .contains(previousHymnId)){
+                HashSet<String> newSet = new HashSet<>(hymnCursor.getRelated());
+                newSet.remove(previousHymnId);
+
+                em.getTransaction().begin();
+                hymnCursor.setRelated(newSet);
+                em.getTransaction().commit();
+                System.out.println("found hymn" + hymnCursor.getId() + " referencing old number");
+
+            }
+        }
 
         em.getEntityManagerFactory().getCache().evictAll();
 

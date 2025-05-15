@@ -8,12 +8,12 @@ import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
 /**
  * Created by lemuelcantos on 6/7/16.
  */
-class ExtractNS1001 {
+class MoveNS1001toNS1086 {
     public static void  main(arg) {
         println 'hello'
         Dao dao = new Dao()
         int newHymnNo=10000
-        for(int x=1001; x<1086; x++)  {
+        for(int x=1001; x<=1086; x++)  {
             newHymnNo++
             dao.changeHymnNumber("NS"+ x.toString(),"NS", newHymnNo.toString())
         }
