@@ -222,6 +222,7 @@ public class HymnalNetExtractor {
         boolean firstChorusSet = false;
         boolean autoNumberVerses = false;
         int autoVerseNo = 1;
+        String lastChorusText = null;
 
         if (verseElements.size() > 0) {
             for (Element verse : verseElements) {
@@ -258,8 +259,9 @@ public class HymnalNetExtractor {
 
                 // Get the text from text-container
                 Element textContainer = verse.selectFirst("div.text-container");
+                String text = "";
                 if (textContainer != null) {
-                    String text = formatBreaks(textContainer.html())
+                    text = formatBreaks(textContainer.html())
                             .replace("&nbsp;", "")
                             .replace("\n","");
                     stanzaEntity.setText(text);
@@ -274,6 +276,14 @@ public class HymnalNetExtractor {
                     }
                 } else {
                     stanzaEntity.setText("");
+                }
+
+                // Skip duplicate consecutive choruses
+                if ("chorus".equals(stanzaNo)) {
+                    if (lastChorusText != null && lastChorusText.equals(text)) {
+                        continue; // skip this duplicate chorus
+                    }
+                    lastChorusText = text;
                 }
 
                 stanzaEntity.setOrder(order++);
