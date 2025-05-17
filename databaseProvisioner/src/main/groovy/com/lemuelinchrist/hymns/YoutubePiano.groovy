@@ -24,28 +24,35 @@ class YoutubePiano {
     }
 
     void provision() {
-        def pianoHymns = new File(this.getClass().getResource("/pianoHymns202112.txt").getPath());
+        def resource = this.getClass().getResource("/pianoHymns202112.txt")
+        println "Resource: $resource"
+        if (resource == null) {
+            throw new Exception("Resource not found!")
+        }
+        def pianoHymns = new File(resource.getPath());
         def iterator = pianoHymns.iterator();
         String line;
         def processedHymns = []
 
         while (iterator.hasNext()) {
             line = iterator.next().trim()
-            Pattern pattern = Pattern.compile('.*?href="(.*?)".*?noopener">(\\d*?)</a></span>(.*)');
-            Matcher matcher = pattern.matcher(line);
-            if (matcher.find())
-            {
-                def title = matcher.group(3).trim()
-                def number = matcher.group(2).trim()
+            println "DEBUG: $line"
+            Pattern pattern = Pattern.compile(
+                    /<a\s+[^>]*href="([^"]*youtube\.com\/embed\/[^"]*)"[^>]*>(\d+)<\/a>(.*)/)
+            Matcher matcher = pattern.matcher(line)
+            def found = matcher.find()
+            println "DEBUG: matcher found: $found"
+            if (found) {
                 def link = matcher.group(1).trim()
+                def number = matcher.group(2).trim()
+                def title = matcher.group(3).trim()
 
                 def splitStr = link.split("\\/")
-                def code = splitStr[splitStr.length-1].trim().split('&amp;')[0].split("\\?")[0]
+                def code = splitStr[splitStr.length - 1].trim().split('&amp;')[0].split("\\?")[0]
 
-                if (!title.contains('(')) title="1st tune"
+                if (!title.contains('(')) title = "1st tune"
                 splitStr = title.split("\\(")
-                def comment = splitStr[splitStr.length-1].trim().split("\\)")[0].trim().replace("&nbsp;"," ")
-
+                def comment = splitStr[splitStr.length - 1].trim().split("\\)")[0].trim().replace("&nbsp;", " ")
 
 
                 println "**************************************"
@@ -53,21 +60,21 @@ class YoutubePiano {
                 println "title = " + comment
                 println "href = " + code
 
-                if(!number.isNumber()) {
+                if (!number.isNumber()) {
                     throw new Exception("hymn number invalid: " + number)
                 }
 
-                HymnsEntity hymn = dao.find("E"+number)
-                if(hymn==null) {
+                HymnsEntity hymn = dao.find("E" + number)
+                if (hymn == null) {
                     throw new Exception("hymn not found")
                 }
                 TuneEntity tune = new TuneEntity();
-                tune.id=hymn.id
-                tune.comment=comment
-                tune.youtubeLink=code
+                tune.id = hymn.id
+                tune.comment = comment
+                tune.youtubeLink = code
 
                 println tune
-                processedHymns+=hymn.id
+                processedHymns += hymn.id
                 try {
                     dao.save(tune)
                 } catch (Exception e) {
