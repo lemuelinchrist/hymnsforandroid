@@ -29,14 +29,14 @@ class ProvisionSpanishSupplement {
 
     public static void main(String[] args) {
         def spanish = new ProvisionSpanishSupplement();
+        spanish.removeSpanishHymns()
         spanish.provision();
-//        spanish.removeSpanishHymns()
 
         println "end!!!!!"
     }
 
     void removeSpanishHymns() {
-        for(int x=1001;x<=1391;x++) {
+        for(int x=1001;x<=1394;x++) {
             dao.delete("S"+x)
         }
     }
