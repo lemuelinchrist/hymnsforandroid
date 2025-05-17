@@ -220,6 +220,8 @@ public class HymnalNetExtractor {
         ArrayList<StanzaEntity> stanzaEntities = new ArrayList<>();
         int order = 1;
         boolean firstChorusSet = false;
+        boolean autoNumberVerses = false;
+        int autoVerseNo = 1;
 
         if (verseElements.size() > 0) {
             for (Element verse : verseElements) {
@@ -236,7 +238,15 @@ public class HymnalNetExtractor {
                         if (verseNum != null) {
                             stanzaNo = verseNum.text().trim();
                         } else {
-                            stanzaNo = "verse";
+                            // If this is the first stanza and has no number, start auto-numbering
+                            if (stanzaEntities.isEmpty()) {
+                                autoNumberVerses = true;
+                                stanzaNo = String.valueOf(autoVerseNo++);
+                            } else if (autoNumberVerses) {
+                                stanzaNo = String.valueOf(autoVerseNo++);
+                            } else {
+                                stanzaNo = "verse";
+                            }
                         }
                     } else if ("chorus".equals(type)) {
                         stanzaNo = "chorus";
@@ -256,7 +266,7 @@ public class HymnalNetExtractor {
 
                     // Set first lines for hymn
                     if ("1".equals(stanzaNo)) {
-                        hymn.setFirstStanzaLine(text.substring(0,text.indexOf("<")).trim());
+                        hymn.setFirstStanzaLine(text.substring(0, text.indexOf("<")).trim());
                     }
                     if ("chorus".equals(stanzaNo) && !firstChorusSet) {
                         hymn.setFirstChorusLine(text.substring(0, text.indexOf("<")).trim().toUpperCase());
