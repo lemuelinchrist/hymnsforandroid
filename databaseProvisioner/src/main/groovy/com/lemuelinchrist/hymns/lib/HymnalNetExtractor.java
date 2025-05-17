@@ -267,11 +267,13 @@ public class HymnalNetExtractor {
                     stanzaEntity.setText(text);
 
                     // Set first lines for hymn
+                    int brIndex = text.indexOf("<");
+                    String firstLine = (brIndex >= 0) ? text.substring(0, brIndex).trim() : text.trim();
                     if ("1".equals(stanzaNo)) {
-                        hymn.setFirstStanzaLine(text.substring(0, text.indexOf("<")).trim());
+                        hymn.setFirstStanzaLine(firstLine);
                     }
                     if ("chorus".equals(stanzaNo) && !firstChorusSet) {
-                        hymn.setFirstChorusLine(text.substring(0, text.indexOf("<")).trim().toUpperCase());
+                        hymn.setFirstChorusLine(firstLine.toUpperCase());
                         firstChorusSet = true;
                     }
                 } else {

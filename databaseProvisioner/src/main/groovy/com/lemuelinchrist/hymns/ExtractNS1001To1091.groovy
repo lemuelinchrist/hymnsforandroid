@@ -13,6 +13,7 @@ class ExtractNS1001To1091 {
         println 'hello'
         Dao dao = new Dao()
 
+
         for (int x = 1001; x<=1091; x++) {
             HymnsEntity hymn = HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, ""+x, 'NS', ""+x);
             dao.save(hymn);
