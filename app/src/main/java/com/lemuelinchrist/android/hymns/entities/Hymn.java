@@ -181,7 +181,7 @@ public class Hymn {
             }
 
             Field field = rClass.getDeclaredField("m" + tune.toLowerCase());
-            mp = MediaPlayer.create(context, field.getInt(new R()));
+            mp = MediaPlayer.create(context, field.getInt(null));
 
             mp.setLooping(true);
             mp.start();

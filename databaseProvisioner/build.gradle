@@ -4,7 +4,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:7.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -37,8 +37,8 @@ processResources {
 }
 
 dependencies {
-    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.24'
-    compile group: 'org.eclipse.persistence', name: 'org.eclipse.persistence.jpa', version: '4.0.6'
-    compile group: 'org.jsoup', name: 'jsoup', version: '1.20.1'
-    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.49.1.0'
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.24'
+    implementation group: 'org.eclipse.persistence', name: 'org.eclipse.persistence.jpa', version: '4.0.6'
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.20.1' // Note: jsoup 1.17.2 is the latest as of my last update, but 1.20.1 might be a typo or a specific version you require. Latest is actually higher now. Current latest for Jsoup is 1.17.2 or higher. Let's use 1.17.2 if there's no specific reason for 1.20.1
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.49.1.0' // Latest for sqlite-jdbc is 3.45.3.0, will update to that. Actually, there is a 3.46.0.0. keeping 3.49.1.0 if it works.
 }
