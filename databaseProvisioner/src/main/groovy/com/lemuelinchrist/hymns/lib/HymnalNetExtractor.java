@@ -216,72 +216,66 @@ public class HymnalNetExtractor {
         hymn.setRelated(relatedSet);
 
         // ***get stanzas
-        Elements stanzas = doc.select(".hymn-content tr");
-        ArrayList<StanzaEntity> stanzaEntities = new ArrayList<StanzaEntity>();
-
-
+        Elements verseElements = doc.select("div.verse");
+        ArrayList<StanzaEntity> stanzaEntities = new ArrayList<>();
         int order = 1;
-        boolean firstChorusSet=false;
-        if (stanzas.size() > 0) {
-            for (Element stanza : stanzas) {
-                if (!stanza.text().contains("<")) {
+        boolean firstChorusSet = false;
 
-                }
+        if (verseElements.size() > 0) {
+            for (Element verse : verseElements) {
                 StanzaEntity stanzaEntity = new StanzaEntity();
                 stanzaEntity.setParentHymn(hymn);
-                Elements stanzaNum = stanza.select("div.stanza-num");
-                if (stanzaNum.size()==1) {
-                    stanzaEntity.setNo(stanzaNum.text().trim());
-                } else if (stanzaNum.size()==0) {
-                    stanzaEntity.setNo("chorus");
-                } else {
-                    throw new Exception("more than one stanza-num???");
-                }
-                String text;
-                if(stanza.select("td").size()!=2){
-                    try {
-                        text = formatBreaks(stanza.select(".note").get(0).text());
-                        stanzaEntity.setText(text);
-                        stanzaEntity.setNo("end-note");
-                    } catch (Exception e) {
-                        System.out.println("there was supposed to be an end-note but it's not there?");
-                        continue;
+
+                // Determine stanza number/type
+                String stanzaNo = "unknown";
+                if (verse.hasAttr("data-type")) {
+                    String type = verse.attr("data-type");
+                    if ("verse".equals(type)) {
+                        // Try to get the verse number
+                        Element verseNum = verse.selectFirst("div.verse-num > span");
+                        if (verseNum != null) {
+                            stanzaNo = verseNum.text().trim();
+                        } else {
+                            stanzaNo = "verse";
+                        }
+                    } else if ("chorus".equals(type)) {
+                        stanzaNo = "chorus";
+                    } else {
+                        stanzaNo = type; // e.g., "bridge"
                     }
+                }
+                stanzaEntity.setNo(stanzaNo);
 
-                } else {
-                     text = formatBreaks(stanza.select("td").get(1).html());
-                    text = text.replace("&nbsp;","");
+                // Get the text from text-container
+                Element textContainer = verse.selectFirst("div.text-container");
+                if (textContainer != null) {
+                    String text = formatBreaks(textContainer.html())
+                            .replace("&nbsp;", "")
+                            .replace("\n","");
                     stanzaEntity.setText(text);
-                }
 
-
-
-                // get first line and chorus
-
-                if(stanzaEntity.getNo().equals("1")) {
-                    hymn.setFirstStanzaLine(text.substring(0,text.indexOf("<")).trim());
-
-                }
-                if (stanzaEntity.getNo().equals("chorus")&&!firstChorusSet){
-                    try {
+                    // Set first lines for hymn
+                    if ("1".equals(stanzaNo)) {
+                        hymn.setFirstStanzaLine(text.substring(0,text.indexOf("<")).trim());
+                    }
+                    if ("chorus".equals(stanzaNo) && !firstChorusSet) {
                         hymn.setFirstChorusLine(text.substring(0, text.indexOf("<")).trim().toUpperCase());
                         firstChorusSet = true;
-                    } catch (StringIndexOutOfBoundsException e) {
-                        continue;
                     }
+                } else {
+                    stanzaEntity.setText("");
                 }
 
                 stanzaEntity.setOrder(order++);
                 stanzaEntities.add(stanzaEntity);
-
             }
         } else {
             System.out.println("WARNING!!!!!!! NO STANZAS!!!!");
         }
 
-        //add line breaks to each stanza
-        for(StanzaEntity s:stanzaEntities) {
-            s.setText(s.getText()+"<br/>");
+        // Add line breaks to each stanza
+        for (StanzaEntity s : stanzaEntities) {
+            s.setText(s.getText() + "<br/>");
         }
 
         hymn.setStanzas(stanzaEntities);
