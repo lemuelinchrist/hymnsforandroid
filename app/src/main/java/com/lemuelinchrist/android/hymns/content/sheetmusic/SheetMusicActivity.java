@@ -31,8 +31,11 @@ public class SheetMusicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sheet_music_activity);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        // Make sure your theme has an ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
 
         // get selected hymn group
         Bundle extras = getIntent().getExtras();

@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns;
 
+import com.lemuelinchrist.android.hymns.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -134,23 +135,20 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         Log.d(this.getClass().getName(), "Item selected: " + item.getItemId());
 
         // code for drawer:
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                toggleDrawer();
-                break;
-            case R.id.action_index:
-                Intent intent = new Intent(getBaseContext(), SearchActivity.class);
-                intent.putExtra("selectedHymnGroup", selectedHymnGroup);
-                startActivityForResult(intent, SEARCH_REQUEST);
-                ret = true;
-                break;
-            case R.id.action_settings:
-                Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
-                startActivity(settingsIntent);
-                break;
-            default:
-                ret = false;
-                Log.w(HymnsActivity.class.getSimpleName(), "Warning!! No Item was selected!!");
+        final int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            toggleDrawer();
+        } else if (itemId == R.id.action_index) {
+            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+            intent.putExtra("selectedHymnGroup", selectedHymnGroup);
+            startActivityForResult(intent, SEARCH_REQUEST);
+            ret = true;
+        } else if (itemId == R.id.action_settings) {
+            Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
+            startActivity(settingsIntent);
+        } else {
+            ret = false;
+            Log.w(HymnsActivity.class.getSimpleName(), "Warning!! No Item was selected!!");
         }
         return ret;
     }

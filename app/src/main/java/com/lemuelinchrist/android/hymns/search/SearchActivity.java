@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.search;
 
+import com.lemuelinchrist.android.hymns.R;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -105,14 +106,14 @@ public class SearchActivity extends AppCompatActivity  {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                setResult(RESULT_CANCELED, null);
-                finish();
-            case R.id.searchHymns:
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            setResult(RESULT_CANCELED, null);
+            finish();
+        } else if (id == R.id.searchHymns) {
+            // do nothing
+        } else {
+            return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
     }
