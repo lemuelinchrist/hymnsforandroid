@@ -46,7 +46,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         webview.getSettings().setBuiltInZoomControls(true);
         // disable zoom buttons
         webview.getSettings().setDisplayZoomControls(false);
-        webview.loadUrl("file:///android_asset/svg/" + selectedHymnId + ".svg");
+        webview.loadUrl("file:///android_asset/"+legacySheetMusic.getSvgFolder()+"/" + selectedHymnId + ".svg");
         // zoom out by default
         webview.getSettings().setUseWideViewPort(true);
         webview.getSettings().setLoadWithOverviewMode(true);

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.preference.PreferenceManager;
 import com.lemuelinchrist.android.hymns.content.ContentArea;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
@@ -27,6 +29,7 @@ import java.util.List;
  * Created by lemuelcantos on 6/12/14.
  */
 public class LegacySheetMusic {
+    private String svgFolder = "pianoSvg";
     private Context context;
     private String selectedHymnId;
 
@@ -40,13 +43,14 @@ public class LegacySheetMusic {
         this.context = context;
         this.selectedHymnId = selectedHymnId;
         assetManager = context.getAssets();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         // get folder that contains the svg files
-        // the folder name will either be "pianoSvg" or "guitarSvg" depending on what is currently
-        // in the asset folder
+        // the folder name will either be "pianoSvg" or "guitarSvg" depending on the preference.
         try {
+            svgFolder = sharedPreferences.getString("sheetMusicType", "pianoSvg");
             for (String assetFolder : context.getAssets().list("")) {
-                if (assetFolder.contains("svg")) {
+                if (assetFolder.contains(svgFolder)) {
                     this.folderName = assetFolder + "/";
                     Log.i(this.getClass().getName(), "Svg folder found. folderName is: " + this.folderName);
                 }
@@ -265,6 +269,10 @@ public class LegacySheetMusic {
         out.close();
         out = null;
         return destinationFile;
+    }
+
+    public String getSvgFolder() {
+        return svgFolder;
     }
 
     private class NoPermissionException extends Throwable {

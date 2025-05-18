@@ -1,10 +1,12 @@
 package com.lemuelinchrist.android.hymns.entities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.widget.Toast;
+import androidx.preference.PreferenceManager;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
 import com.lemuelinchrist.android.hymns.R;
@@ -316,7 +318,9 @@ public class Hymn {
         AssetManager assets = context.getAssets();
         Log.e(getClass().getName(), "Looking for svg file: " + hymnId+".svg");
         try {
-            for (String fileName : assets.list("svg")) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            String svgFolder = sharedPreferences.getString("sheetMusicType", "pianoSvg");
+            for (String fileName : assets.list(svgFolder)) {
                 if(fileName.equals(hymnId+".svg")) return true;
             }
 

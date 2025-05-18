@@ -22,10 +22,21 @@
         <item>Searches YouTube for any relevant videos</item>
     </string-array>
 
+
     <string-array name="youtube_button_preference_values">
         <item>disabled</item>
         <item>piano</item>
         <item>search</item>
+    </string-array>
+
+    <string-array name="sheet_music_type_preference">
+        <item>Piano Sheet Music</item>
+        <item>Guitar Sheet Music</item>
+    </string-array>
+
+    <string-array name="sheet_music_type_preference_values">
+        <item>pianoSvg</item>
+        <item>guitarSvg</item>
     </string-array>
 
     <string-array name="disabled_languages_default">

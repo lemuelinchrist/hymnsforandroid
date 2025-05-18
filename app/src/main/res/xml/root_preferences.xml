@@ -49,6 +49,14 @@
                 app:title="@string/similarTuneSwitch"
                 app:summary="Enable Button for switching to hymns with a similar tune"
                 app:icon="@drawable/ic_related_hymns_black_32dp"/>
+        <ListPreference
+                app:key="sheetMusicType"
+                app:defaultValue="pianoSvg"
+                app:entries="@array/sheet_music_type_preference"
+                app:entryValues="@array/sheet_music_type_preference_values"
+                app:title="@string/sheetMusicType"
+                app:useSimpleSummaryProvider="true"
+                app:icon="@drawable/ic_sheet_music_type_black_32dp"/>
         <Preference
                 app:key="about"
                 app:title="About Hymns"
