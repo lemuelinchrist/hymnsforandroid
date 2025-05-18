@@ -1,51 +1,33 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme for activities that need an ActionBar handled by the theme -->
-    <style name="MyMaterialTheme.Base.WithActionBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorOnSecondary">@android:color/black</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">
-            @android:color/background_dark
-        </item>
-        <!-- Other app-wide attributes -->
+    <style name="SearchTheme" parent="MyMaterialTheme.Base">
+
     </style>
 
-    <!-- Base application theme for activities that use NoActionBar -->
-    <style name="MyMaterialTheme.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorOnSecondary">@android:color/black</item>
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
         <item name="colorControlNormal">@android:color/white</item>
         <item name="android:navigationBarColor" tools:targetApi="lollipop">
             @android:color/background_dark
         </item>
     </style>
 
-    <!-- Applied to HymnsActivity in Manifest, which seems to use its own Toolbar -->
-    <style name="AppTheme.HymnsActivity" parent="MyMaterialTheme.Base" />
+    <style name="SettingsTheme" parent="Theme.MaterialComponents.Light.DarkActionBar" />
 
-    <style name="SearchTheme" parent="MyMaterialTheme.Base">
-        <!-- Specifics for Search Theme if any, otherwise it inherits from MyMaterialTheme.Base -->
+    <style name="NightMode" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name = "android:textColor">#cccccc</item>
+        <item name = "android:background">#000000</item>
     </style>
 
-    <!-- For SheetMusicActivity, which explicitly needs no action bar -->
-    <style name="NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- windowActionBar=false and windowNoTitle=true are implicit in .NoActionBar themes -->
-    </style>
-
-    <!-- SettingsTheme was already MaterialComponents, ensure it uses a DayNight variant if your app supports dark mode -->
-    <style name="SettingsTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Customize your settings theme here -->
-    </style>
-
-    <style name="NightMode" parent="Theme.MaterialComponents.DayNight">
-        <item name="android:textColor">#cccccc</item>
-        <item name="android:background">#000000</item>
-        <!-- Add other Material attributes for dark mode if needed -->
-    </style>
-
-    <style name="dayMode" parent="Theme.MaterialComponents.DayNight">
-        <item name="android:textColor">#4e4e4e</item>
-        <item name="android:background">#FFFFFF</item>
+    <style name="dayMode" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name = "android:textColor">#4e4e4e</item>
+        <item name = "android:background">#FFFFFF</item>
     </style>
 
 </resources>
