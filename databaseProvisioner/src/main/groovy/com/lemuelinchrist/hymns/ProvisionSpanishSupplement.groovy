@@ -16,7 +16,6 @@ class ProvisionSpanishSupplement {
     Integer stanzaOrderCounter=0;
     String line
     Iterator<String> iterator
-    Integer hymnNumber = 1000;
     HymnsEntity hymn=null;
     StanzaEntity stanza=null;
     StringBuilder stanzaBuilder=null
@@ -50,7 +49,7 @@ class ProvisionSpanishSupplement {
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber() || line.split("\\.")[0].isNumber() || line.contains("Coro")) {
+            if(line.isNumber() || line.split("\\.")[0].isNumber() || (line.contains("Coro")&& !line.contains("Coro parte"))   ) {
                 createNewStanza()
 
             } else if (line.matches('^HSE-.*')) {
@@ -116,13 +115,14 @@ class ProvisionSpanishSupplement {
 
     def createNewHymn() {
         if (line.replaceAll('[^0-9]','') != Integer.toString(ssNo++)) {
-            throw new Exception("Hymn numbers in text file not in sequence!! no. " + (ssNo-1) )
+//            throw new Exception("Hymn numbers in text file not in sequence!! no. " + (ssNo-1) )
         }
-        hymnNumber++;
-        println "******* Generating Spanish Hymn ${hymnNumber}..."
+        ssNo=Integer.parseInt(line.replaceAll('[^0-9]',''))
+//        hymnNumber++;
+        println "******* Generating Spanish Hymn ${ssNo}..."
         hymn = new HymnsEntity();
-        hymn.id = 'S' + hymnNumber
-        hymn.no = hymnNumber.toString()
+        hymn.id = 'S' + ssNo
+        hymn.no = ssNo.toString()
         hymn.hymnGroup = 'S'
         hymn.stanzas = new ArrayList<StanzaEntity>();
         stanzaCounter = 0
