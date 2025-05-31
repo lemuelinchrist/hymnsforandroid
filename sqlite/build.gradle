@@ -2,9 +2,32 @@
 task importSql(type: Exec) {
         executable "bash"
         args "-c", "cat hymns.sql | sqlite3 hymns.sqlite"
+
+        doFirst {
+                def dbFile = file("${projectDir}/hymns.sqlite")
+                if (dbFile.exists()) {
+                        dbFile.delete()
+                        println "Deleted existing hymns.sqlite"
+                }
+        }
+
+        doLast {
+                copy {
+                        from "${projectDir}/hymns.sqlite"
+                        into "${rootProject.projectDir}/app/src/main/assets"
+                }
+                println "Copied SQLite file to src/main/assets/"
+        }
 }
 
 task exportSql(type: Exec) {
         executable "bash"
         args "-c", "sqlite3 hymns.sqlite .dump > hymns.sql"
+        doFirst {
+                copy {
+                        from "${rootProject.projectDir}/app/src/main/assets/hymns.sqlite"
+                        into "${projectDir}"
+                }
+                println "Copied SQLite file to src/main/assets/"
+        }
 }
