@@ -23,6 +23,7 @@ class ProvisionGermanYouth {
     int ypg=1;
     Set<Integer> anomalies = new HashSet<>();
     private Dao dao = new Dao()
+    String soundcloudLink=null
 
 
     public static void main(String[] args) {
@@ -86,6 +87,19 @@ class ProvisionGermanYouth {
             }
         }
 
+
+        // save soundclound in hymns
+        if(soundcloudLink!=null) {
+            stanza = new StanzaEntity()
+            stanza.setNo("SoundCloud Link")
+            stanza.setParentHymn(hymn)
+            stanza.text = soundcloudLink
+            stanza.order = ++stanzaOrderCounter
+            hymn.getStanzas().add(stanza)
+
+            soundcloudLink=null
+        }
+
         println hymn
         dao.save(hymn)
     }
@@ -128,6 +142,8 @@ class ProvisionGermanYouth {
                 hymn.meter = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.contains("Verses:")) {
                 hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
+            } else if (nextText.contains("Soundcloud:")) {
+                soundcloudLink=nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.matches('^[0-9]+$')) {
                 line = nextText;
                 stanza = createNewStanza(false)

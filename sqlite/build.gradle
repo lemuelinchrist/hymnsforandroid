@@ -28,6 +28,6 @@ task exportSql(type: Exec) {
                         from "${rootProject.projectDir}/app/src/main/assets/hymns.sqlite"
                         into "${projectDir}"
                 }
-                println "Copied SQLite file to src/main/assets/"
+                println "Copied SQLite file to sqlite/"
         }
 }
