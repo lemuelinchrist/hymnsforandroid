@@ -27,8 +27,8 @@ class ProvisionGermanYouth {
 
     public static void main(String[] args) {
         def german = new ProvisionGermanYouth();
+        german.removeGermanHymns()
         german.provision();
-//        german.removeGermanHymns()
         println "end!!!!!"
     }
 
