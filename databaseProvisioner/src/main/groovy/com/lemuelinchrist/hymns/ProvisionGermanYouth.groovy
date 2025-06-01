@@ -49,7 +49,7 @@ class ProvisionGermanYouth {
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber()) {
+            if(line.isNumber() || line.toLowerCase().contains("chorus")) {
                 createNewStanza(false)
 
             } else if (line.matches('^YPG.*')) {
@@ -135,6 +135,8 @@ class ProvisionGermanYouth {
                 String[] relatedArray = nextText.split(",")
                 for (String oneRelated : relatedArray) {
                     if (oneRelated.contains("E")) {
+                        hymn.parentHymn = oneRelated.replace(" ", "")
+                    } else if (oneRelated.contains("NS")) {
                         hymn.parentHymn = oneRelated.replace(" ", "")
                     }
                 }
