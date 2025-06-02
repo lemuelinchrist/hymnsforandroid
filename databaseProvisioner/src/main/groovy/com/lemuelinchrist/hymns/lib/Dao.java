@@ -60,11 +60,23 @@ public class Dao {
             if(parentHymn==null) {
                 throw new RuntimeException("parentHymn is non-existent: " +hymn.getId());
             }
-            parentHymn.addRelated(hymn.getId());
+
+            // Get current related set
+            Set<String> relatedSet = parentHymn.getRelated();
+            if (relatedSet == null) {
+                relatedSet = new HashSet<>();
+            }
+
+            // Add the new hymn ID
+            relatedSet.add(hymn.getId());
+
+            // IMPORTANT: Use the setter to let JPA know it changed
+            parentHymn.setRelated(relatedSet);
         }
         em.getTransaction().commit();
         System.out.println("Hymn " + hymn.getId() + " saved!");
     }
+
 
     public void save(TuneEntity tune) {
         em.getTransaction().begin();
