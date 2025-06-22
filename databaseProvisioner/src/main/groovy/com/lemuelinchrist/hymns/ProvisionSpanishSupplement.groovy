@@ -49,7 +49,8 @@ class ProvisionSpanishSupplement {
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber() || line.split("\\.")[0].isNumber() || (line.contains("Coro")&& !line.contains("Coro parte"))   ) {
+            if(line.isNumber() || line.split("\\.")[0].isNumber() || (line.matches(".*\\bCoro\\b.*")
+                    && !line.contains("Coro parte"))   ) {
                 createNewStanza()
 
             } else if (line.matches('^HSE-.*')) {
