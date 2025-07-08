@@ -117,7 +117,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 }
                 text.append(hymn.getKey());
             }
-            if (isNotEmpty(hymn.getTune())) {
+            if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0")) {
                 headerContentPresent=true;
                 text.append("<br/>Tune: ");
                 text.append(hymn.getTune());
