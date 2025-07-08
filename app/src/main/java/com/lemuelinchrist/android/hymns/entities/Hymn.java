@@ -177,7 +177,7 @@ public class Hymn {
                 return;
             }
 
-            if (tune == null || tune.equals("")) {
+            if (tune == null || tune.equals("") || tune.equals("0")) {
                 showNotAvailableToast();
                 return;
             }
