@@ -82,6 +82,8 @@ There appears to be a `tune` table, but its schema is not fully defined in the d
 
 ## How to Query
 
+**Important Note on Character Encoding:** The database contains text with special characters (e.g., accented letters, curly apostrophes). When querying the database and exporting data to files (like CSV), it is crucial to use **UTF-8 encoding** to prevent character corruption. Failure to do so will result in characters being replaced by placeholders like `?`.
+
 The database can be queried using the `sqlite3.exe` command-line tool located in the `sqlite` directory of this workspace.
 
 ### Example Queries
