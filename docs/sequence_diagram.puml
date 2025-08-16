@@ -1,0 +1,37 @@
+@startuml
+title Sequence Diagram: Displaying a Hymn from Search
+
+actor User
+
+participant SearchActivity <<Activity>>
+participant HymnsActivity <<Activity>>
+participant HymnBookCollection <<Controller>>
+participant ViewPager <<Android View>>
+participant ContentArea <<Fragment>>
+
+User -> SearchActivity: Selects a hymn
+activate SearchActivity
+
+SearchActivity -> HymnsActivity: onActivityResult(hymnId)
+deactivate SearchActivity
+activate HymnsActivity
+
+HymnsActivity -> HymnBookCollection: switchToHymnAndRememberChoice(hymnId)
+activate HymnBookCollection
+
+HymnBookCollection -> HymnBookCollection: hymnStack.push(hymnId)
+HymnBookCollection -> HymnBookCollection: switchToHymn(hymnId)
+
+HymnBookCollection -> ViewPager: setCurrentItem(position)
+activate ViewPager
+
+ViewPager -> ContentArea: Create/Show Fragment
+deactivate ViewPager
+activate ContentArea
+
+ContentArea -> HymnsActivity: onLyricVisible(hymnId)
+deactivate ContentArea
+
+HymnsActivity -> HymnsActivity: actionBar.setTitle(hymnId)
+deactivate HymnsActivity
+@enduml
