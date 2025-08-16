@@ -1,0 +1,26 @@
+@startuml
+title Hymns for Android - Component Diagram
+
+' Define the main components
+component [HymnsActivity] as Activity <<Android Activity>>
+component [HymnBookCollection] as Collection <<Controller>>
+component [ContentArea] as Fragment <<Android Fragment>>
+component [HymnsDao] as DAO <<Data Access>>
+database "hymns.sqlite" as DB
+
+' Define entities
+class Hymn <<Entity>>
+class Stanza <<Entity>>
+
+' Define relationships
+Activity *-- "1" Collection : manages
+Collection o-- "many" Fragment : creates & manages
+Collection ..> DAO : uses to get hymn lists
+Fragment ..> DAO : uses to get hymn details
+DAO ..> DB : queries
+
+Fragment ..> Hymn : displays
+DAO ..> Hymn : builds from DB
+DAO ..> Stanza : builds from DB
+Hymn "1" *-- "*" Stanza : contains
+@enduml
