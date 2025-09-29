@@ -30,7 +30,7 @@ The app can be built with different sheet music variants:
 - **sqlite**: SQLite database module for hymn data storage
 - **databaseProvisioner**: Module for generating and provisioning the hymn database
 
-For more details on the database, please see the [Database Specification](database_spec.md).
+For more details on the database, please see the [Database Specification](docs/database_spec.md).
 
 ## Development Setup
 
@@ -49,13 +49,7 @@ For more details on the database, please see the [Database Specification](databa
 
 2. Open the project in Android Studio
 
-3. Choose the sheet music variant by uncommenting the appropriate line in `app/build.gradle`:
-   ```groovy
-   // def svgFolderName = "pianoSvg"
-   // def svgFolderName = "guitarSvg"
-   ```
-
-4. Build the project:
+3. Build the project:
    ```
    ./gradlew assembleDebug
    ```
