@@ -1,4 +1,5 @@
-//'cat hymns.sql | sqlite3 hymns.sqlite'
+// Prerequisite: Please install sqlite3
+
 task importSql(type: Exec) {
         executable "bash"
         args "-c", "cat hymns.sql | sqlite3 hymns.sqlite"
