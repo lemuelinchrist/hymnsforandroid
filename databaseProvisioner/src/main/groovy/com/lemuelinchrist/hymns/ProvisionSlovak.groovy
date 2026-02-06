@@ -29,14 +29,14 @@ class ProvisionSlovak {
 
     public static void main(String[] args) {
         def slovak = new ProvisionSlovak();
+        slovak.removeSlovakHymns()
         slovak.provision();
-//        spanish.removeSpanishHymns()
 
         println "end!!!!!"
     }
 
-    void removeSpanishHymns() {
-        for(int x=1001;x<=1349;x++) {
+    void removeSlovakHymns() {
+        for(int x=1;x<=3050;x++) {
             dao.delete("SK"+x)
         }
     }
