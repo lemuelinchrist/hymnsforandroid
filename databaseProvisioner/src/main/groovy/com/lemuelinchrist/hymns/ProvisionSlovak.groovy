@@ -36,7 +36,7 @@ class ProvisionSlovak {
     }
 
     void removeSlovakHymns() {
-        for(int x=1;x<=3050;x++) {
+        for(int x=1;x<=3055;x++) {
             dao.delete("SK"+x)
         }
     }
@@ -149,8 +149,14 @@ class ProvisionSlovak {
 
             } else if (nextText.toLowerCase().contains("related:")) {
                 nextText = nextText.substring(nextText.indexOf(":") + 1).trim()
-                hymn.setRelatedString(nextText.replace(" ", "")
-                        .replace(";", ","))
+                String processedRelated = nextText.replace(" ", "").replace(";", ",")
+
+                // LB hymns are appended to NS hymns starting at 10001 (LB1 -> NS10001)
+                processedRelated = processedRelated.replaceAll(/LB(\d+)/) { all, num ->
+                    "NS" + (Integer.parseInt(num) + 10000)
+                }
+
+                hymn.setRelatedString(processedRelated)
                 for (String oneRelated : hymn.getRelated()) {
                     if (oneRelated.contains("E") || oneRelated.contains("NS") || oneRelated.contains("BF")) {
                         if(hymn.parentHymn==null || hymn.parentHymn == "BF") { // BF has least priority
@@ -161,7 +167,7 @@ class ProvisionSlovak {
             } else if (nextText.toLowerCase().contains("meter:")) {
                 hymn.meter = nextText.substring(nextText.indexOf(":") + 1).trim()
                 if(hymn.meter.isEmpty()) hymn.meter=null;
-            } else if (nextText.toLowerCase().contains("verse:")) {
+            } else if (nextText.toLowerCase().contains("verse:") || nextText.toLowerCase().contains("verses:")) {
                 hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.toLowerCase().contains("music soundcloud:")) {
                 soundcloudLink=nextText.substring(nextText.indexOf(":") + 1).trim()
