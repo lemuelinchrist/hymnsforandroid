@@ -297,7 +297,7 @@ public class HymnsEntity {
     }
 
     public Set<String> getRelated() {
-        if (related==null) return null;
+        if (related==null) return new HashSet<>();
         String [] relatedArray = related.split(",");
         HashSet<String> relatedSet = new HashSet<String>(Arrays.asList(relatedArray));
 
@@ -314,7 +314,7 @@ public class HymnsEntity {
 
     public void setRelated(Set<String> related) {
         StringBuilder relatedBuilder = new StringBuilder();
-        if (related==null) {
+        if (related==null || related.isEmpty()) {
             this.related=null;
             return;
         }
@@ -328,6 +328,7 @@ public class HymnsEntity {
 
     public void removeRelated(String relatedText) {
         Set<String> related = getRelated();
+        if (related == null) return;
         related.remove(relatedText);
         setRelated(related);
     }
