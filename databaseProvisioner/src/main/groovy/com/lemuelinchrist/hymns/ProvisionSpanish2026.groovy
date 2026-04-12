@@ -35,7 +35,7 @@ class ProvisionSpanish2026 {
     }
 
     void removeSpanishHymns() {
-        for(int x=1;x<=200;x++) {
+        for(int x=1;x<=500;x++) {
             dao.delete("S"+x)
         }
     }
