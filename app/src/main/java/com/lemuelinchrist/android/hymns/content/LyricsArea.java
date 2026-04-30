@@ -186,7 +186,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                     text = new StringBuilder();
                 } else if (stanza.getNo().contains("note")) {
                     // notes do not have their own lyric view unlike normal stanzas and choruses
-                    text.append("<i>" + stanza.getText() + "</i><br/>");
+                    text.append("<i>%%" + stanza.getText() + "%%</i><br/>");
                 } else if(stanza.getNo().toLowerCase().contains("youtube") ||
                         stanza.getNo().toLowerCase().contains("soundcloud")) {
                     // append stanza

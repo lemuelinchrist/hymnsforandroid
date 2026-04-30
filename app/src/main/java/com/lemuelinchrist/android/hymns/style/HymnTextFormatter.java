@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.style;
 
+import android.graphics.Color;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -21,6 +22,9 @@ public class HymnTextFormatter {
 
         // set green color to chorus lyrics
         formattedText = setColorBetweenTokens(formattedText, "@@", color);
+
+        // set red color to notes. Material Red 700 is used as it is readable on both light and dark themes
+        formattedText = setColorBetweenTokens(formattedText, "%%", Color.parseColor("#D32F2F"));
 
         return formattedText;
     }
