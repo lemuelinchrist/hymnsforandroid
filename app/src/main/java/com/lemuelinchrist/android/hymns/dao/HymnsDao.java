@@ -200,6 +200,10 @@ public class HymnsDao {
                     if(!hymns.contains(hymn)) {
                         hymns.add(hymn);
                     }
+                } else {
+                    if(!hymns.contains(hymn)) {
+                        hymns.add(hymn);
+                    }
                 }
             }
         }

@@ -55,6 +55,8 @@ class ProvisionGermanYouth {
             } else if (line.matches('^YPG.*')) {
                 wrapup()
                 createNewHymn()
+            } else if (line.startsWith("End-note:")) {
+                createNewNote()
             } else if(line.contains("**end**")) {
                 wrapup()
             } else if(!line.isEmpty()){
@@ -65,6 +67,16 @@ class ProvisionGermanYouth {
         }
 
         println("anomalies: " + anomalies.toString())
+    }
+
+    def createNewNote() {
+        stanza = new StanzaEntity()
+        stanza.setNo("note")
+        stanza.setParentHymn(hymn)
+        stanza.text=""
+        stanza.order= ++stanzaOrderCounter
+        hymn.getStanzas().add(stanza)
+        return stanza
     }
 
     def wrapup() {

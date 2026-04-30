@@ -32,6 +32,38 @@ This document specifies the schema of the `hymns.sqlite` database and provides g
 | F    | Farsi       | Farsi hymns.                      |
 | SK   | Slovak      | Slovak hymns.                     |
 
+## Database Lifecycle & Source of Truth
+
+Understanding the flow of data is crucial for maintaining the hymnal. The database is not edited directly; instead, it follows a multi-stage generation process.
+
+### 1. The Real Source of Truth: Text Files
+The definitive content of the hymns (lyrics, metadata) lives in raw text files within the `databaseProvisioner/src/main/resources/` directory (e.g., `Spanish2026.txt`). Any permanent changes to hymn content **must** be made in these files.
+
+### 2. Provisioning (Groovy Scripts)
+When the text files are updated, specialized Groovy scripts in `databaseProvisioner/src/main/groovy/` (like `ProvisionSpanish2026.groovy`) are executed. These scripts:
+1.  Read the raw text files.
+2.  Parse the stanzas and metadata.
+3.  Wipe the existing data and re-populate the local `sqlite/hymns.sqlite` file using the `Dao.java` class.
+
+### 3. The SQL Export (`hymns.sql`)
+Since `hymns.sqlite` is a binary file and not ideal for version control, the "Source of Truth" for the database structure and data in Git is `sqlite/hymns.sql`. 
+- To capture changes made by the Groovy scripts into Git, run: `./gradlew :sqlite:exportSql`. This task dumps the state of `sqlite/hymns.sqlite` into the `hymns.sql` file.
+
+### 4. Build-Time Import
+When the Android app is built (Debug or Release), the Gradle build process automatically triggers the `:sqlite:importSql` task. 
+- This task deletes any existing `hymns.sqlite`, recreates it by executing the commands in `hymns.sql`, and copies the resulting binary into the app's assets folder (`app/src/main/assets/hymns.sqlite`).
+
+**Summary Table:**
+
+| File / Component | Role | Persistence |
+| :--- | :--- | :--- |
+| `*.txt` (Resources) | **The True Source** | Permanent / Version Controlled |
+| `hymns.sqlite` | Transient Working DB | Volatile / Ignored by Git |
+| `hymns.sql` | DB Source of Truth | Permanent / Version Controlled |
+| `app/.../hymns.sqlite` | Final App Asset | Generated / Overwritten on Build |
+
+---
+
 ## Database Schema
 
 The database contains the following tables:

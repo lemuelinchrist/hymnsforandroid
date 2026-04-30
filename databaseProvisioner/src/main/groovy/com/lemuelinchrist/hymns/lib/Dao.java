@@ -61,6 +61,10 @@ public class Dao {
                 throw new RuntimeException("parentHymn is non-existent: " +hymn.getId());
             }
 
+            if (hymn.getTune() == null || hymn.getTune().isEmpty()) {
+                hymn.setTune(parentHymn.getTune());
+            }
+
             // Get current related set
             Set<String> relatedSet = parentHymn.getRelated();
             if (relatedSet == null) {
