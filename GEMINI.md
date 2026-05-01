@@ -40,9 +40,15 @@ You can choose to build the app with different sheet music variants by editing t
 
 *   **Architecture:** Before making code changes, please review the `docs/APP_ARCHITECTURE.md` file to understand the application's architecture.
 *   **Database:** The application uses a SQLite database to store hymn data. The schema is documented in the `docs/database_spec.md` file. The database is provisioned using the `databaseProvisioner` module.
+*   **Feature Guides:** Detailed explanations of complex features:
+    *   **Similar Tune:** See `docs/FEATURE_SIMILAR_TUNE.md` for information on how tunes are cross-linked across languages.
 *   **Hymn Groups:** Hymns are categorized into groups based on language or collection. These groups are defined in the `HymnGroup.java` enum.
 *   **Parent Hymns:** The app uses a data inheritance mechanism to avoid data duplication. A "child" hymn can inherit data from a "parent" hymn. This is implemented in the `HymnsDao.java` file.
 *   **Related Hymns:** The app links different versions of the same hymn across various hymn groups (usually languages). This is done using the `related` column in the `hymns` table.
+
+## Agent Guidelines
+
+*   **Proposal Confirmation:** Always wait for explicit user confirmation before implementing any proposed strategy, documentation plan, or architectural change. Even if a plan is presented and approved in principle, do not execute until a clear directive is given to proceed with the specific implementation.
 
 ## Gemini Persona
 
