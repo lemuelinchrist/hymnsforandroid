@@ -1,6 +1,7 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
@@ -135,7 +136,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         }
 
 
-        new Handler().post(new Runnable() {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
                 Log.i(getClass().getName(), "Hymn group switch should have been completed by now. \n" +

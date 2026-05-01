@@ -246,6 +246,14 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (hymnSwitcher == this) {
+            hymnSwitcher = null;
+        }
+    }
+
+    @Override
     public void switchToHymn(String hymnId) {
         hymnBookCollection.switchToHymn(hymnId);
     }
