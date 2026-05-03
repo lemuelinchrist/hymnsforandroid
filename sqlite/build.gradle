@@ -1,13 +1,13 @@
 // Prerequisite: Please install sqlite3
 
-task importSql(type: Exec) {
+tasks.register('importSql', Exec) {
         executable "bash"
         args "-c", "cat hymns.sql | sqlite3 hymns.sqlite"
 
         doFirst {
                 def dbFile = file("${projectDir}/hymns.sqlite")
                 if (dbFile.exists()) {
-                        dbFile.delete()
+                        delete dbFile
                         println "Deleted existing hymns.sqlite"
                 }
         }
@@ -21,11 +21,11 @@ task importSql(type: Exec) {
         }
 }
 
-task exportSql(type: Exec) {
+tasks.register('exportSql', Exec) {
         executable "bash"
         args "-c", "sqlite3 hymns.sqlite .dump > hymns.sql"
         doFirst {
-                copy {
+                project.copy {
                         from "${rootProject.projectDir}/app/src/main/assets/hymns.sqlite"
                         into "${projectDir}"
                 }

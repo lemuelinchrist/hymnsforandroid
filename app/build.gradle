@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
-def hymnAppVersion = "v4.23beta6"
+def hymnAppVersion = "v4.23beta7"
 
 
 allprojects {
@@ -21,7 +21,7 @@ android {
         minSdkVersion 15    // Ice cream sandwitch
         targetSdkVersion 34
         // increment version code if you want to refresh the database cache of your phone
-        versionCode 241
+        versionCode 242
         versionName hymnAppVersion
     }
     buildTypes {
@@ -59,7 +59,7 @@ android {
 }
 
 // Make sure importSql runs before assembling the app
-tasks.whenTaskAdded { task ->
+tasks.configureEach { task ->
     if (task.name.contains("assemble") || task.name.contains("compile") || task.name.contains("package")) {
         task.dependsOn(":sqlite:importSql")
     }

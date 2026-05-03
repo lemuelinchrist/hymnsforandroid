@@ -49,7 +49,7 @@ class ProvisionGermanYouth {
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber() || line.toLowerCase().contains("chorus")) {
+            if(line.isNumber() || line.toLowerCase().startsWith("chorus")) {
                 createNewStanza(false)
 
             } else if (line.matches('^YPG.*')) {
@@ -159,6 +159,11 @@ class ProvisionGermanYouth {
             } else if (nextText.contains("Soundcloud:")) {
                 soundcloudLink=nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.matches('^[0-9]+$')) {
+                line = nextText;
+                stanza = createNewStanza(false)
+                break
+
+            } else if (nextText.toLowerCase().startsWith("chorus")) {
                 line = nextText;
                 stanza = createNewStanza(false)
                 break

@@ -49,7 +49,7 @@ class ProvisionSpanish2026 {
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber() || line.split("\\.")[0].isNumber() || (line.matches(".*\\bCoro\\b.*")
+            if(line.isNumber() || line.split("\\.")[0].isNumber() || (line.matches(".*Coro.*:")
                     && !line.contains("Coro parte"))   ) {
                 createNewStanza()
 
@@ -176,6 +176,11 @@ class ProvisionSpanish2026 {
             } else if (nextText.toLowerCase().contains("tune on hymnalnet:")) {
                 hymn.tune = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.matches('^[0-9]+$')) {
+                line = nextText;
+                stanza = createNewStanza()
+                break
+
+            } else if (nextText.matches(".*Coro.*:")) {
                 line = nextText;
                 stanza = createNewStanza()
                 break
