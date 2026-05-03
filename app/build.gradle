@@ -30,9 +30,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
-        abortOnError false
-    }
 
     applicationVariants.all { variant ->
         variant.outputs.all {
@@ -55,6 +52,9 @@ dependencies {
 android {
     testOptions {
         unitTests.returnDefaultValues = true
+    }
+    lint {
+        abortOnError false
     }
 }
 

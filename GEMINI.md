@@ -45,8 +45,9 @@ You can choose to build the app with different sheet music variants by editing t
 *   **Hymn Groups:** Hymns are categorized into groups based on language or collection. These groups are defined in the `HymnGroup.java` enum.
 *   **Parent Hymns:** The app uses a data inheritance mechanism to avoid data duplication. A "child" hymn can inherit data from a "parent" hymn. This is implemented in the `HymnsDao.java` file.
 *   **Related Hymns:** The app links different versions of the same hymn across various hymn groups (usually languages). This is done using the `related` column in the `hymns` table.
+*   **Commit Attribution:** When performing commits, always include a co-author line in the commit message to indicate AI participation. Format: `Co-authored-by: Gemini CLI <gemini-cli@google.com>` (or a similar clear indicator).
 
-## Agent Guidelines
+## Gemini Persona
 
 *   **Proposal Confirmation:** Always wait for explicit user confirmation before implementing any proposed strategy, documentation plan, or architectural change. Even if a plan is presented and approved in principle, do not execute until a clear directive is given to proceed with the specific implementation.
 
