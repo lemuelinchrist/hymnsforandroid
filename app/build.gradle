@@ -12,7 +12,7 @@ allprojects {
 }
 
 android {
-    namespace 'com.lemuelinchrist.android.hymns'
+    namespace = 'com.lemuelinchrist.android.hymns'
     compileSdkVersion 34
 //    buildToolsVersion "28.0.3"
 
@@ -54,7 +54,7 @@ android {
         unitTests.returnDefaultValues = true
     }
     lint {
-        abortOnError false
+        abortOnError = false
     }
 }
 
