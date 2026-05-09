@@ -9,6 +9,15 @@ This document specifies the schema of the `hymns.sqlite` database and provides g
 - **Parent Hymn**: A data inheritance mechanism that allows a "child" hymn to inherit data from a "parent" hymn. This is implemented in the `HymnsDao.java` file and is used to avoid data duplication. When a hymn is loaded, the DAO checks for a `parent_hymn` and merges the data, with the child's data taking precedence. For example, if a Tagalog hymn has an English parent, it can inherit the composer, meter, and tune, while still providing its own Tagalog stanzas.
 - **Related Hymn**: A system for linking different versions of the same hymn across various hymn groups (usually languages). The `related` column in the `hymns` table stores a comma-separated list of other hymn IDs. This allows the app to find and display hymns with the same tune in different languages, creating a web of connections between hymn translations.
 
+### Choosing Between Parent and Related
+
+When connecting hymns across languages, use this rule of thumb:
+- **Parent**: Use when the child hymn is a direct translation or adaptation that should **inherit** metadata (tune, composer, category, etc.) from another hymn to avoid duplication.
+- **Related**: Use when hymns merely share a tune or are loosely connected. This creates a link in the UI but does **not** trigger data inheritance.
+
+### The Rule of Reciprocity
+Unlike the `parent_hymn` (which is a one-way pointer), the `related` column should ideally be **reciprocal**. If `Hymn A` lists `Hymn B` as related, `Hymn B` should also list `Hymn A` in its `related` column to ensure the connection works regardless of which hymn the user starts from.
+
 ### Available Hymn Groups
 
 | Code | Simple Name | Description                       |
@@ -52,6 +61,12 @@ Since `hymns.sqlite` is a binary file and not ideal for version control, the "So
 ### 4. Build-Time Import
 When the Android app is built (Debug or Release), the Gradle build process automatically triggers the `:sqlite:importSql` task. 
 - This task deletes any existing `hymns.sqlite`, recreates it by executing the commands in `hymns.sql`, and copies the resulting binary into the app's assets folder (`app/src/main/assets/hymns.sqlite`).
+
+### Manual Developer Workflow
+If you make manual edits to `sqlite/hymns.sql` (e.g., for quick fixes to relationships):
+1.  Apply your changes to `sqlite/hymns.sql`.
+2.  Run `./gradlew :sqlite:importSql` to rebuild the binary `hymns.sqlite` and copy it to the app's `assets` folder.
+3.  Verify the change in the app or by querying the asset directly.
 
 **Summary Table:**
 
@@ -99,11 +114,17 @@ The database contains the following tables:
 | `text`        | TEXT    | The text of the stanza.                   |
 | `note`        | TEXT    | Any notes associated with the stanza.     |
 | `id`          | INTEGER | The unique ID of the stanza.              |
-| `n_order`     | INTEGER | The order of the stanza within the hymn.  |
+| `n_order`     | INTEGER | The sorting order of the stanza.           |
 
 ### `tune`
 
-There appears to be a `tune` table, but its schema is not fully defined in the database.
+Stores external media links (like YouTube) for specific tunes.
+
+| Column          | Type    | Description                                |
+| --------------- | ------- | ------------------------------------------ |
+| `_id`           | VARCHAR | The tune identifier (links to `hymns.tune`).|
+| `comment`       | VARCHAR | Description of the link (e.g., "Piano").    |
+| `youtube_link`  | TEXT    | The URL to the YouTube video.              |
 
 ### `SEQUENCE`
 
@@ -129,5 +150,5 @@ c:\dev\hymnsforandroid\sqlite\sqlite3.exe c:\dev\hymnsforandroid\app\src\main\as
 **Get the stanzas for a hymn:**
 
 ```shell
-c:\dev\hymnsforandroid\sqlite\sqlite3.exe c:\dev\hymnsforandroid\app\src\main\assets\hymns.sqlite "SELECT * FROM stanza WHERE parent_hymn='E1'"
+c:\dev\hymnsforandroid\sqlite\sqlite3.exe c:\dev\hymnsforandroid\app\src\main\assets\hymns.sqlite "SELECT * FROM stanza WHERE parent_hymn='E1' ORDER BY n_order"
 ```

@@ -27,15 +27,6 @@ To build and run the project, you will need:
 
 The build process automatically imports the hymn data from the `sqlite` module into the main application.
 
-**Sheet Music Variants:**
-
-You can choose to build the app with different sheet music variants by editing the `app/build.gradle` file and uncommenting one of the following lines:
-
-```groovy
-// def svgFolderName = "pianoSvg"
-// def svgFolderName = "guitarSvg"
-```
-
 ## Development Conventions
 
 *   **Architecture:** Before making code changes, please review the `docs/APP_ARCHITECTURE.md` file to understand the application's architecture.
@@ -49,8 +40,5 @@ You can choose to build the app with different sheet music variants by editing t
 
 ## Gemini Persona
 
-*   **Proposal Confirmation:** Always wait for explicit user confirmation before implementing any proposed strategy, documentation plan, or architectural change. Even if a plan is presented and approved in principle, do not execute until a clear directive is given to proceed with the specific implementation.
-
-## Gemini Persona
-
-Please have a lighthearted conversational and funny tone. i want you to play the role of a pair-programming buddy.
+* **Proposal Confirmation:** Always wait for explicit user confirmation before implementing any proposed strategy, documentation plan, or architectural change. Even if a plan is presented and approved in principle, do not execute until a clear directive is given to proceed with the specific implementation.
+* Please have a lighthearted conversational and funny tone. I want you to play the role of a pair-programming buddy.
