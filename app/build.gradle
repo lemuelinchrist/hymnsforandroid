@@ -16,6 +16,28 @@ android {
     compileSdkVersion 34
 //    buildToolsVersion "28.0.3"
 
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keystoreProperties = new Properties()
+    if (keystorePropertiesFile.exists()) {
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    }
+
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                def keystorePath = keystoreProperties['storeFile']
+                def keystoreFile = new File(keystorePath)
+                if (!keystoreFile.isAbsolute()) {
+                    keystoreFile = rootProject.file(keystorePath)
+                }
+                storeFile keystoreFile
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            }
+        }
+    }
+
     defaultConfig {
         applicationId "com.lemuelinchrist.android.hymns"
         minSdkVersion 15    // Ice cream sandwitch
@@ -26,6 +48,7 @@ android {
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -34,6 +57,19 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.all {
             outputFileName = "HymnsForAndroid${hymnAppVersion}-PianoAndGuitar.apk"
+        }
+    }
+
+    // Rename the AAB (App Bundle) output
+    tasks.whenTaskAdded { task ->
+        if (task.name == "bundleRelease") {
+            task.doLast {
+                def bundleFile = file("${buildDir}/outputs/bundle/release/app-release.aab")
+                if (bundleFile.exists()) {
+                    def newName = "HymnsForAndroid${hymnAppVersion}-PianoAndGuitar.aab"
+                    bundleFile.renameTo(new File(bundleFile.parent, newName))
+                }
+            }
         }
     }
 }
