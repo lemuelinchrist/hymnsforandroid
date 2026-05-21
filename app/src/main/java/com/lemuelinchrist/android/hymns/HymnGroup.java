@@ -81,6 +81,10 @@ public enum HymnGroup {
     // Purple
     SK("Slovak", Color.rgb(0x9C, 0x27, 0xB0),
             Color.rgb(0xBA, 0x68, 0xC8),
+            Gravity.LEFT),
+    //Light Blue
+    GK("Greek", Color.rgb(0x03, 0xA9, 0xF4),
+            Color.rgb(0x4F, 0xC3, 0xF7),
             Gravity.LEFT);
 
     private final String simpleName;
