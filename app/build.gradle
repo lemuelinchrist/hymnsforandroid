@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
-def hymnAppVersion = "v4.23"
+def hymnAppVersion = "v4.25"
 
 
 allprojects {
@@ -43,7 +43,7 @@ android {
         minSdkVersion 15    // Ice cream sandwitch
         targetSdkVersion 34
         // increment version code if you want to refresh the database cache of your phone
-        versionCode 243
+        versionCode 246
         versionName hymnAppVersion
     }
     buildTypes {

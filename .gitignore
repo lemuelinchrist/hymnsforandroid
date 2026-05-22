@@ -6,3 +6,10 @@ hymnsforandroid.Rproj
 sqlite/nppBackup
 keystore.properties
 hymnsKey.jks
+
+# Gemini CLI settings
+.gemini/
+
+# SQLite database artifacts
+app/src/main/assets/hymns.sqlite
+sqlite/hymns.sqlite
