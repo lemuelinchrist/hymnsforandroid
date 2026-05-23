@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
 def hymnAppVersion = "v4.25"
+def autoVersionCode = ((System.currentTimeMillis() - 1704067200000L) / 60000).toInteger()
 
 
 allprojects {
@@ -42,8 +43,10 @@ android {
         applicationId "com.lemuelinchrist.android.hymns"
         minSdkVersion 15    // Ice cream sandwitch
         targetSdkVersion 34
-        // increment version code if you want to refresh the database cache of your phone
-        versionCode 246
+        // The version code is automatically generated based on the number of minutes since Jan 1, 2024.
+        // This ensures that every build has a higher version code than the last, 
+        // which is required to refresh the database cache of your phone.
+        versionCode autoVersionCode
         versionName hymnAppVersion
     }
     buildTypes {

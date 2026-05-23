@@ -89,20 +89,21 @@ def preprocess_greek_hymns(input_path, output_path):
                 if not p: continue
                 
                 # Check if it looks like a hymn code (Letter + Number)
-                if p.startswith('Α-NS') and any(char.isdigit() for char in p):
+                # Note: Handling both Greek and English versions of A and K
+                if (p.startswith('Α-NS') or p.startswith('A-NS')) and any(char.isdigit() for char in p):
                     code = 'NS' + ''.join(filter(str.isdigit, p))
                     mapped_related.append(code)
                     if not current_hymn['parent']:
                         current_hymn['parent'] = code
-                elif p.startswith('Α-') and any(char.isdigit() for char in p):
+                elif (p.startswith('Α-') or p.startswith('A-')) and any(char.isdigit() for char in p):
                     code = 'E' + ''.join(filter(str.isdigit, p))
                     mapped_related.append(code)
                     if not current_hymn['parent']:
                         current_hymn['parent'] = code
-                elif p.startswith('Κ-s') and any(char.isdigit() for char in p):
+                elif (p.startswith('Κ-s') or p.startswith('K-s')) and any(char.isdigit() for char in p):
                     code = 'CS' + ''.join(filter(str.isdigit, p))
                     mapped_related.append(code)
-                elif p.startswith('Κ-') and any(char.isdigit() for char in p):
+                elif (p.startswith('Κ-') or p.startswith('K-')) and any(char.isdigit() for char in p):
                     code = 'C' + ''.join(filter(str.isdigit, p))
                     mapped_related.append(code)
                 elif p.startswith('E') and any(char.isdigit() for char in p):
