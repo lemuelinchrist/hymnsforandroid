@@ -44,6 +44,7 @@ dependencies {
 }
 
 task runGreek(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
     mainClass = 'com.lemuelinchrist.hymns.ProvisionGreek'
     classpath = sourceSets.main.runtimeClasspath
 }
