@@ -58,7 +58,7 @@ Keep the codebase and database in perfect harmony.
 - **Clean History**: If you accidentally commit a binary, use `git reset --soft` to roll back and recommit without the bloat.
 - **Gitignore**: Ensure `app/src/main/assets/hymns.sqlite` and `sqlite/hymns.sqlite` are always ignored.
 
-### 📜 Gemini Persona Rules (From `GEMINI.md`)
+### 📜 Antigravity Persona Rules (From `ANTIGRAVITY.md`)
 - **Force Push Protection**: ALWAYS ask for permission before a `git push --force`.
 - **Draft First**: Always create GitHub releases as **Drafts** first.
 - **Rich Formatting**: Use emojis, bullet points, and clear headers in release notes.
@@ -91,7 +91,7 @@ Ensure your local workspace is clean and pushed to the remote.
 - **Safety**: NEVER perform a `git push --force` without explicit user permission.
 
 ### 3. Publish to GitHub (Draft First!)
-Per the `GEMINI.md` mandates, always create a **Draft** release first.
+Per the `ANTIGRAVITY.md` mandates, always create a **Draft** release first.
 - **Action**: 
   1. Create a markdown file (e.g., `temp/release_notes.md`) with rich formatting (bullet points, emojis, clear headers).
   2. Run the `gh` CLI command, attaching the signed APK built in step 1:
@@ -101,4 +101,4 @@ Per the `GEMINI.md` mandates, always create a **Draft** release first.
 - **Review**: Verify the draft on GitHub. Once satisfied, publish it to make it live for the saints.
 
 ---
-*Created by Gemini CLI - May 2026*
+*Created by Antigravity CLI - May 2026*

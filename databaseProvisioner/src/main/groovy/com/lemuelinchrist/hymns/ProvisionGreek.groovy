@@ -6,7 +6,7 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 
 /**
  *
- * @author Gemini CLI
+ * @author Antigravity CLI
  * @since 2026-05-21
  *
  */
