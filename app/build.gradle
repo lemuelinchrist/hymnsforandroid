@@ -41,7 +41,7 @@ android {
 
     defaultConfig {
         applicationId "com.lemuelinchrist.android.hymns"
-        minSdkVersion 15    // Ice cream sandwitch
+        minSdkVersion 21    // Lollipop
         targetSdkVersion 34
         // The version code is automatically generated based on the number of minutes since Jan 1, 2024.
         // This ensures that every build has a higher version code than the last, 
