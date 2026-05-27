@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
-def hymnAppVersion = "v4.25"
+def hymnAppVersion = "v4.26"
 def autoVersionCode = ((System.currentTimeMillis() - 1704067200000L) / 60000).toInteger()
 
 
@@ -14,7 +14,7 @@ allprojects {
 
 android {
     namespace = 'com.lemuelinchrist.android.hymns'
-    compileSdkVersion 34
+    compileSdkVersion 35
 //    buildToolsVersion "28.0.3"
 
     def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -42,7 +42,7 @@ android {
     defaultConfig {
         applicationId "com.lemuelinchrist.android.hymns"
         minSdkVersion 21    // Lollipop
-        targetSdkVersion 34
+        targetSdkVersion 35
         // The version code is automatically generated based on the number of minutes since Jan 1, 2024.
         // This ensures that every build has a higher version code than the last, 
         // which is required to refresh the database cache of your phone.
