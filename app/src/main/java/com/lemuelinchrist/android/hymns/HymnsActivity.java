@@ -15,6 +15,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
@@ -51,6 +54,42 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
         setContentView(R.layout.main_hymns_activity);
 
+        // set up Toolbar and Action Bar first so they are available for other components
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        // Apply window insets for edge-to-edge display on Android 15+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root_layout), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+            // Dynamically set the height of the status bar scrim
+            View statusScrim = findViewById(R.id.status_bar_scrim);
+            if (statusScrim != null) {
+                ViewGroup.LayoutParams params = statusScrim.getLayoutParams();
+                params.height = systemBars.top;
+                statusScrim.setLayoutParams(params);
+            }
+            
+            // Apply padding to the DrawerLayout (the child) to keep content safe from side cutouts
+            View drawerLayout = findViewById(R.id.drawer_layout);
+            drawerLayout.setPadding(systemBars.left, 0, systemBars.right, 0);
+
+            return insets;
+        });
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.toolbar), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+            // Top padding for the Toolbar so it stays below status bar icons
+            // When height is wrap_content, this will increase the total height of the toolbar
+            v.setPadding(0, systemBars.top, 0, 0);
+
+            return insets;
+        });
+
         // set default value of preferences
         PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
 
@@ -60,15 +99,16 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         // Instantiate a ViewPager and a PagerAdapter.
         hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager),theme);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mDrawerList = findViewById(R.id.left_drawer);
+
+        // Apply window insets to the Navigation Drawer to handle status bar and nav bar overlap
+        ViewCompat.setOnApplyWindowInsetsListener(mDrawerList, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, systemBars.top, 0, systemBars.bottom);
+            return insets;
+        });
+
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -158,6 +198,11 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         Log.i(getClass().getSimpleName(), "changeTheme: " + theme.name());
         hymnBookCollection.setTheme(theme);
         actionBar.setBackgroundDrawable(theme.getActionBarColor(selectedHymnGroup));
+        
+        // Ensure the window draws behind the status bar and apply the dark tint
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.parseColor("#44000000"));
     }
 
     private void toggleDrawer() {

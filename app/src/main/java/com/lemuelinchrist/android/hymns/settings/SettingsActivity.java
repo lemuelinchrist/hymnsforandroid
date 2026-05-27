@@ -1,14 +1,18 @@
 package com.lemuelinchrist.android.hymns.settings;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.preference.MultiSelectListPreference;
@@ -23,14 +27,32 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Settings");
+        }
+
+        // Apply window insets to handle edge-to-edge display on Android 15+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.settings_layout), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+            // Top padding for the AppBar so it stays below status bar icons
+            findViewById(R.id.appbar).setPadding(0, systemBars.top, 0, 0);
+
+            // Bottom padding for the root layout so content stays above nav bar
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
+
+            return insets;
+        });
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.settings, new SettingsFragment())
                 .commit();
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
@@ -42,7 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     DialogFragment aboutFragment = new AboutDialog();
-                    aboutFragment.show(getFragmentManager(),"About");
+                    aboutFragment.show(getParentFragmentManager(), "About");
                     return true;
                 }
             });
@@ -51,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
                     DialogFragment favoriteSettingsDialog = new FavoriteSettingsDialog();
-                    favoriteSettingsDialog.show(getFragmentManager(),"manageFaves");
+                    favoriteSettingsDialog.show(getParentFragmentManager(), "manageFaves");
                     return true;
                 }
             });
@@ -60,25 +82,25 @@ public class SettingsActivity extends AppCompatActivity {
             disableLanguages.setEntries(HymnGroup.getArrayOfSimpleNames());
             disableLanguages.setEntryValues(HymnGroup.getArrayOfCodes());
         }
+    }
 
-        public static class AboutDialog extends DialogFragment {
-            @Override
-            public Dialog onCreateDialog(Bundle savedInstanceState) {
-                FragmentActivity activity = getActivity();
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                // Dynamically set the version number
-                try {
-                    String version = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
-                    LayoutInflater inflater = requireActivity().getLayoutInflater();
-                    View inflate = inflater.inflate(R.layout.about, null);
-                    TextView hymnVersion = inflate.findViewById(R.id.hymnVersiontextView);
-                    hymnVersion.setText(version);
-                    builder.setView(inflate);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
-                return builder.create();
+    public static class AboutDialog extends DialogFragment {
+        @Override
+        public android.app.Dialog onCreateDialog(Bundle savedInstanceState) {
+            FragmentActivity activity = getActivity();
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            // Dynamically set the version number
+            try {
+                String version = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
+                LayoutInflater inflater = requireActivity().getLayoutInflater();
+                View inflate = inflater.inflate(R.layout.about, null);
+                TextView hymnVersion = inflate.findViewById(R.id.hymnVersiontextView);
+                hymnVersion.setText(version);
+                builder.setView(inflate);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
+            return builder.create();
         }
     }
 }

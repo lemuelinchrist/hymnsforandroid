@@ -13,12 +13,19 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="colorControlNormal">@android:color/white</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">
-            @android:color/background_dark
-        </item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">#44000000</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
-    <style name="SettingsTheme" parent="Theme.MaterialComponents.Light.DarkActionBar" />
+    <style name="SettingsTheme" parent="MyMaterialTheme.Base">
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="titleTextColor">@android:color/black</item>
+        <item name="colorControlNormal">@android:color/black</item>
+        <item name="colorPrimary">@android:color/white</item>
+    </style>
 
     <style name="NightMode" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name = "android:textColor">#cccccc</item>

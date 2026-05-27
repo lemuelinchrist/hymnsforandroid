@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -53,6 +56,14 @@ public abstract class TabFragment extends Fragment {
         this.container=container;
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.indexView);
+
+        // Apply window insets to handle bottom navigation bar overlap on Android 15+
+        mRecyclerView.setClipToPadding(false);
+        ViewCompat.setOnApplyWindowInsetsListener(mRecyclerView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom);
+            return insets;
+        });
 
 
 

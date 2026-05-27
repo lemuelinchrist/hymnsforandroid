@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import androidx.cardview.widget.CardView;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.HymnGroup;
@@ -66,6 +69,14 @@ public class ContentArea extends Fragment {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 theme.getStyle(), container, false);
+
+        // Apply window insets to handle bottom navigation bar overlap on Android 15+
+        rootView.setClipToPadding(false);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom);
+            return insets;
+        });
 
         if (hymnsDao == null) {
             hymnsDao = new HymnsDao(context);

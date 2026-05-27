@@ -12,7 +12,10 @@ import android.webkit.WebView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
+import androidx.core.graphics.Insets;
 import androidx.core.view.MenuItemCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
 import com.lemuelinchrist.android.hymns.R;
 
@@ -30,6 +33,16 @@ public class SheetMusicActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sheet_music_activity);
+
+        // Apply window insets to handle edge-to-edge display on Android 15+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.sheet_music_layout), new androidx.core.view.OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            }
+        });
 
         // Make sure your theme has an ActionBar
         if (getSupportActionBar() != null) {

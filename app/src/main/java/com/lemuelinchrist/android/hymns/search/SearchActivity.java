@@ -15,7 +15,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
 import androidx.core.view.MenuItemCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -44,8 +47,29 @@ public class SearchActivity extends AppCompatActivity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
+
         Toolbar tabBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tabBar);
+
+        // Apply window insets for edge-to-edge display on Android 15+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.viewpager), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+            // Bottom padding for the ViewPager is removed to prevent sliding artifacts.
+            // Side padding is kept for safe area.
+            v.setPadding(systemBars.left, 0, systemBars.right, 0);
+
+            return insets;
+        });
+
+        ViewCompat.setOnApplyWindowInsetsListener(tabBar, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+            // Top padding for the Toolbar so it stays below status bar icons
+            v.setPadding(0, systemBars.top, 0, 0);
+
+            return insets;
+        });
 
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
