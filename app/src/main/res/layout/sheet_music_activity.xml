@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/sheet_music_layout"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="#FFFFFF">
 
     <WebView
             android:id="@+id/sheet_music_image"
@@ -11,7 +11,5 @@
             android:layout_height="match_parent"
             android:focusable="true"
     />
-
-
 
 </LinearLayout>

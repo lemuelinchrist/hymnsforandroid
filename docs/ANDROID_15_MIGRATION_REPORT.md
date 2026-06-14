@@ -42,6 +42,13 @@ This document provides an exhaustive technical breakdown of the migration from T
   - **Z-Order Dominance**: Applied `android:elevation="99dp"` to ensure it stays on top of both the content *and* the navigation drawer.
   - **Persistence**: Because it is outside the `DrawerLayout`, the 25% dark tint (`#44000000`) remains perfectly stationary even when the drawer slides out.
 
+### 5. Ultimate Immersion (Sheet Music)
+- **Problem**: In previous versions, the action bar and system bars took up significant screen space when viewing sheet music SVG files.
+- **Solution**: 
+  - **Layout Stripping**: Removed the `AppBarLayout` and `Toolbar` from `sheet_music_activity.xml`.
+  - **Programmatic Immersive Mode**: Used `WindowInsetsControllerCompat` in `SheetMusicActivity.java` to hide both the status bar and navigation bar.
+  - **Result**: The music now fills 100% of the screen. Users can reveal system bars temporarily via a swipe-to-show gesture.
+
 ---
 
 ## ⚙️ Engineering Standards & Builds
