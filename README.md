@@ -16,6 +16,12 @@ Hymns For Android is available to download on the Google Play Store:
 
 Alternatively, you can download the APKs directly from the [GitHub Releases](https://github.com/lemuelinchrist/hymnsforandroid/releases) page.
 
+> [!WARNING]
+> **Important Note for Upgrading Users:**  
+> Starting with version v5.0+, the app is signed using a new, more secure 4096-bit signing key (upgraded from the legacy 1024-bit key). Due to this signature change, you cannot install this version as an in-place upgrade over versions prior to v5.0.  
+> **You must uninstall the old version of the app first** before installing the new release from Google Play or via the APK.
+
+
 ## Overview
 
 Hymns For Android is a comprehensive digital hymnal application that provides access to a collection of Hymns and Spiritual Songs with lyrics and sheet music for both piano and guitar. The app is designed to be a convenient replacement for traditional hymn books, offering a user-friendly interface and powerful search capabilities.
