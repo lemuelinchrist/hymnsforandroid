@@ -2,6 +2,19 @@
 
 [![Latest Version](https://img.shields.io/badge/version-v4.19-blue.svg)](https://github.com/lemuelinchrist/hymnsforandroid/releases)
 [![Android Version](https://img.shields.io/badge/android-4.0.3%2B-green.svg)](https://developer.android.com/about/versions/android-4.0.3)
+[![Get it on Google Play](https://img.shields.io/badge/Google%20Play-Get%20it%20on-green?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns)
+
+<p align="center">
+  <img src="docs/playStore/1024x500-Banner.png" alt="Hymns For Android Banner" width="100%">
+</p>
+
+## Download
+
+Hymns For Android is available to download on the Google Play Store:
+
+[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="60">](https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns)
+
+Alternatively, you can download the APKs directly from the [GitHub Releases](https://github.com/lemuelinchrist/hymnsforandroid/releases) page.
 
 ## Overview
 
