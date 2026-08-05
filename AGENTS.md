@@ -93,3 +93,22 @@ The Android app's source code is located in `app/src/main/java/com/lemuelinchris
 
 ### Running the Database Provisioner
 The `databaseProvisioner` module is used to build the `hymns.sqlite` database from source files. To run it, execute its Gradle tasks from within Android Studio.
+
+## 7. Publishing a GitHub Release
+
+There is no CI/CD workflow for this (no `.github/workflows`) — releases are created manually. The pattern below is inferred from past releases (v4.23–v5.1) and is not officially documented elsewhere, so treat it as the convention to follow, not a guaranteed spec.
+
+1. Bump `hymnAppVersion` in `app/build.gradle` (e.g. `"v5.1"` -> `"v5.2"`). `versionCode` is auto-derived from a timestamp, so it doesn't need manual bumping.
+2. Build the release artifacts: `./gradlew clean assembleRelease bundleRelease`. This produces:
+   - `app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk`
+   - `app/build/outputs/bundle/release/HymnsForAndroidvX.Y-PianoAndGuitar.aab` (for Google Play)
+3. Create the GitHub release with the APK attached, using the `gh` CLI. Tag and title follow the `vX.Y` convention (title is `vX.Y - <short description>`):
+   ```shell
+   gh release create vX.Y \
+     "app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk" \
+     --draft \
+     --title "vX.Y - <short description>" \
+     --notes "<release notes>"
+   ```
+   Use `--draft` first so it can be previewed on GitHub before publishing; drop the flag (or `gh release edit vX.Y --draft=false`) to publish. Check `gh release view vX.Y` or recent releases (`gh release list`) for tone/format examples.
+4. The `.aab` bundle is for Google Play Console upload, not attached to the GitHub release.
