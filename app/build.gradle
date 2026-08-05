@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
-def hymnAppVersion = "v5.1"
+def hymnAppVersion = "v5.2"
 def autoVersionCode = ((System.currentTimeMillis() - 1704067200000L) / 60000).toInteger()
 
 
