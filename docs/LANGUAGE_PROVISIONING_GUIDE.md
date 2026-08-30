@@ -86,8 +86,9 @@ Always use a "Clean Slate" build to ensure no stale assets are included.
 - **Output**: `app/build/outputs/apk/release/HymnsForAndroidvX.XX-PianoAndGuitar.apk`.
 
 ### 2. Commit and Sync
-Ensure your local workspace is clean and pushed to the remote.
-- **Action**: `git add . && git commit -m "Your descriptive message" && git push origin master`
+- **Staging**: Never use `git add .` or `git add -A`. Stage specific files by name (e.g. `git add sqlite/hymns.sql databaseProvisioner/src/main/resources/Spanish2026.txt`). This repo commonly has untracked build artifacts, IDE files, and even stray secrets (e.g. `upload_certificate.pem`) sitting in the working tree — a blanket `add` will happily commit them.
+- **Committing**: Only commit when the user asks for it. Run `git status`/`git diff --staged` first and confirm the diff is what you expect.
+- **Pushing**: Never run `git push` (to any branch, `master` included) without the user's explicit go-ahead in that turn. A prior approval to push doesn't carry forward to later commits.
 - **Safety**: NEVER perform a `git push --force` without explicit user permission.
 
 ### 3. Publish to GitHub (Draft First!)
