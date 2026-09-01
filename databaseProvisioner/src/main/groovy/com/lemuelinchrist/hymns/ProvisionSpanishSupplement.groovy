@@ -19,7 +19,7 @@ class ProvisionSpanishSupplement {
     HymnsEntity hymn=null;
     StanzaEntity stanza=null;
     StringBuilder stanzaBuilder=null
-    int ssNo=1001;
+    int ssNo=1;
     Set<Integer> anomalies = new HashSet<>();
     private Dao dao = new Dao()
     String videoLink=null
@@ -35,6 +35,11 @@ class ProvisionSpanishSupplement {
     }
 
     void removeSpanishHymns() {
+        for(int x=1;x<=506;x++) {
+            dao.delete("SS"+x)
+        }
+        // one-time migration cleanup: this collection used to be provisioned under the 'S' group
+        // as S2000-S2506 before it was split into its own 'SS' group. Remove any leftover legacy rows.
         for(int x=2000;x<=2506;x++) {
             dao.delete("S"+x)
         }
@@ -132,11 +137,11 @@ class ProvisionSpanishSupplement {
         }
         ssNo=Integer.parseInt(line.replaceAll('[^0-9]',''))
 //        hymnNumber++;
-        println "******* Generating Spanish Hymn ${ssNo}..."
+        println "******* Generating Spanish Supplement Hymn ${ssNo}..."
         hymn = new HymnsEntity();
-        hymn.id = 'S' + ssNo
+        hymn.id = 'SS' + ssNo
         hymn.no = ssNo.toString()
-        hymn.hymnGroup = 'S'
+        hymn.hymnGroup = 'SS'
         hymn.stanzas = new ArrayList<StanzaEntity>();
         stanzaCounter = 0
         stanzaOrderCounter = 0

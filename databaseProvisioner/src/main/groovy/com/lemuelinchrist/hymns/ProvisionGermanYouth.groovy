@@ -16,7 +16,7 @@ class ProvisionGermanYouth {
     Integer stanzaOrderCounter=0;
     String line
     Iterator<String> iterator
-    Integer hymnNumber = 2000;
+    Integer hymnNumber = 0;
     HymnsEntity hymn=null;
     StanzaEntity stanza=null;
     StringBuilder stanzaBuilder=null
@@ -34,6 +34,11 @@ class ProvisionGermanYouth {
     }
 
     void removeGermanHymns() {
+        for(int x=1;x<=271;x++) {
+            dao.delete("GY"+x)
+        }
+        // one-time migration cleanup: this collection used to be provisioned under the 'G' group
+        // as G2001-G2271 before it was split into its own 'GY' group. Remove any leftover legacy rows.
         for(int x=2001;x<=2271;x++) {
             dao.delete("G"+x)
         }
@@ -121,11 +126,11 @@ class ProvisionGermanYouth {
             throw new Exception("Hymn numbers in text file not in sequence!! no. " + (ypg-1) )
         }
         hymnNumber++;
-        println "******* Generating German Hymn ${hymnNumber}..."
+        println "******* Generating German Youth Hymn ${hymnNumber}..."
         hymn = new HymnsEntity();
-        hymn.id = 'G' + hymnNumber
+        hymn.id = 'GY' + hymnNumber
         hymn.no = hymnNumber.toString()
-        hymn.hymnGroup = 'G'
+        hymn.hymnGroup = 'GY'
         hymn.stanzas = new ArrayList<StanzaEntity>();
         stanzaCounter = 0
         stanzaOrderCounter = 0
