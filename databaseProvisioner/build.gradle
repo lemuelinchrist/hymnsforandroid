@@ -48,3 +48,21 @@ task runGreek(type: JavaExec) {
     mainClass = 'com.lemuelinchrist.hymns.ProvisionGreek'
     classpath = sourceSets.main.runtimeClasspath
 }
+
+task runSpanish2026(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionSpanish2026'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runGermanYouth(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionGermanYouth'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runSpanishSupplement(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionSpanishSupplement'
+    classpath = sourceSets.main.runtimeClasspath
+}

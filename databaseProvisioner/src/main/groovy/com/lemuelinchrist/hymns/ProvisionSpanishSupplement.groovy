@@ -56,6 +56,8 @@ class ProvisionSpanishSupplement {
             } else if (line.matches('^HSE-.*')) {
                 wrapup()
                 createNewHymn()
+            } else if (line.startsWith("End-note:")) {
+                createNewNote()
             } else if(line.contains("**end**")) {
                 wrapup()
             } else if(!line.isEmpty()) {
@@ -66,6 +68,16 @@ class ProvisionSpanishSupplement {
         }
 
         println("anomalies: " + anomalies.toString())
+    }
+
+    def createNewNote() {
+        stanza = new StanzaEntity()
+        stanza.setNo("note")
+        stanza.setParentHymn(hymn)
+        stanza.text=""
+        stanza.order= ++stanzaOrderCounter
+        hymn.getStanzas().add(stanza)
+        return stanza
     }
 
     def wrapup() {

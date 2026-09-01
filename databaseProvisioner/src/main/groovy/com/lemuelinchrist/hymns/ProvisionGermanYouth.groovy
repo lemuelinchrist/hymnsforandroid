@@ -158,6 +158,8 @@ class ProvisionGermanYouth {
                 hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.contains("Soundcloud:")) {
                 soundcloudLink=nextText.substring(nextText.indexOf(":") + 1).trim()
+            } else if (nextText.toLowerCase().contains("hymn code hymnalnet:")) {
+                hymn.tune = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.matches('^[0-9]+$')) {
                 line = nextText;
                 stanza = createNewStanza(false)
