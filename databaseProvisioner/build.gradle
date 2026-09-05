@@ -66,3 +66,15 @@ task runSpanishSupplement(type: JavaExec) {
     mainClass = 'com.lemuelinchrist.hymns.ProvisionSpanishSupplement'
     classpath = sourceSets.main.runtimeClasspath
 }
+
+// New Songs sync from hymnal.net (2026-09-05). Runs on top of the current DB state
+// (does NOT reset via importSql) since these scripts only add/update NS hymns by ID.
+task runExtractNS1092To1161(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.ExtractNS1092To1161'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runExtractNS613To614(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.ExtractNS613To614'
+    classpath = sourceSets.main.runtimeClasspath
+}

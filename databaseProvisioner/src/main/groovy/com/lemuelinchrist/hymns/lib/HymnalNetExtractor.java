@@ -89,7 +89,7 @@ public class HymnalNetExtractor {
         enableSSLSocket();
         Document doc = Jsoup.connect(hymnalNetUrl).get();
         // get sheet music link
-        Elements sheetMusicElements = doc.select(".leadsheet.piano span");
+        Elements sheetMusicElements = doc.select(".leadsheet span.svg");
         try {
             String sheetMusicLink = sheetMusicElements.get(0).text();
             System.out.println("SheetMusicLink retrieved successfully: " + sheetMusicLink);
@@ -303,7 +303,7 @@ public class HymnalNetExtractor {
         hymn.setStanzas(stanzaEntities);
 
         // get sheet music link
-        Elements sheetMusicElements = doc.select(".leadsheet.piano span");
+        Elements sheetMusicElements = doc.select(".leadsheet span.svg");
         try {
             hymn.setSheetMusicLink(sheetMusicElements.get(0).text());
         }catch (Exception e) {
