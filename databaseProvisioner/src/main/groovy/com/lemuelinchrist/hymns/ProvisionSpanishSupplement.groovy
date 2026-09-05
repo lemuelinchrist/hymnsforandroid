@@ -54,8 +54,8 @@ class ProvisionSpanishSupplement {
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isNumber() || line.split("\\.")[0].isNumber() || (line.matches(".*\\bCoro\\b.*")
-                    && !line.contains("Coro parte"))   ) {
+            if(line.isNumber() || (line.split("\\.").length>0 && line.split("\\.")[0].isNumber()) || (line.matches(".*\\bCoro\\b.*")
+                    && !line.matches(".*Coro.*parte.*"))   ) {
                 createNewStanza()
 
             } else if (line.matches('^HSE-.*')) {
@@ -185,6 +185,11 @@ class ProvisionSpanishSupplement {
             } else if (nextText.matches('^[0-9]+$')) {
                 line = nextText;
                 stanza = createNewStanza()
+                break
+
+            } else if (nextText.startsWith("End-note:")) {
+                line = nextText;
+                stanza = createNewNote()
                 break
 
             } else if(nextText.isEmpty()) {

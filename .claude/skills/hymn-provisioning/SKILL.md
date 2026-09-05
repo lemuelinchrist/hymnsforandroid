@@ -24,8 +24,10 @@ This skill is the condensed playbook for the common case: **correcting or updati
 | Script | Resource file | ID range owned |
 |---|---|---|
 | `ProvisionSpanish2026.groovy` | `Spanish2026.txt` | S1–S1000 |
-| `ProvisionSpanishSupplement.groovy` | `HImnosCanticosEspirituales.txt` (name doesn't match "supplement" — verify by reading the script's `spanishFile =` line, not just the filename) | S2000–S2506 |
-| `ProvisionGermanYouth.groovy` | `german/GermanYPsongs_v2.txt` | G2001–G2271 |
+| `ProvisionSpanishSupplement.groovy` | `HImnosCanticosEspirituales.txt` (name doesn't match "supplement" — verify by reading the script's `spanishFile =` line, not just the filename) | SS1–SS506 (own `SS` hymn group as of the v5.4 split; was `S2000`–`S2506` before that) |
+| `ProvisionGermanYouth.groovy` | `german/GermanYPsongs_v2.txt` | GY1–GY271 (own `GY` hymn group as of the v5.4 split; was `G2001`–`G2271` before that) |
+
+`SS` and `GY` are dedicated `HymnGroup` entries (own section in the app, own icon), not just an ID-prefix convention — see `app/src/main/java/com/lemuelinchrist/android/hymns/HymnGroup.java`. English "New Songs" (`NS`) is a different case: it isn't sourced from an editable `.txt`/`Provision*.groovy` at all — it was populated long ago by one-off `Extract*.groovy`/`Update*.groovy` scripts scraping hymnal.net. There's no resource file to edit for an `NS` correction; see the one-off single-hymn fix section below.
 
 When a new correction file arrives (e.g. via email) and you need to figure out which resource it replaces, don't guess from the filename alone:
 1. Diff line counts (`wc -l`) against candidate resource files — an exact match is strong evidence.
@@ -48,6 +50,20 @@ grep "^HSE-" path/to/file.txt | sort | uniq -d
 ```
 
 If you find a duplicate introduced by an external contributor's file, flag it to them and wait for their decision rather than guessing a renumbering yourself.
+
+## One-off fixes to a single hymn (no owning script/resource file)
+
+Sometimes a fix is a one- or two-field correction to a single hymn that isn't covered by any `Provision*.groovy`/`.txt` pair — e.g. a hymn in the `NS` group (see table above), or any group where re-running the real provisioning script would be overkill for a single-value fix.
+
+**Don't write a one-off `Update*.groovy` script for this**, even though older scripts like `UpdateV33.groovy`/`UpdateV34.groovy` set that precedent. A committed Groovy script for a single-hymn fix is dead weight: it doesn't get re-run automatically (unlike a real `Provision*` script wired into a Gradle task), so it just sits in the repo unless someone remembers to run it, and if a fix needs to survive future `importSql`/`exportSql` cycles, it needs to land in `hymns.sql` anyway.
+
+Instead:
+1. Query the current value(s) to confirm what needs to change (`sqlite3 app/src/main/assets/hymns.sqlite "SELECT ..."`).
+2. Edit `sqlite/hymns.sql` directly — find the `INSERT INTO hymns VALUES(...)` line for that hymn ID and change the relevant field(s) in place (or the `INSERT INTO stanza`/`tune` line, if that's what needs fixing).
+3. Run `./gradlew :sqlite:importSql` to rebuild `hymns.sqlite` from the edited `hymns.sql` and confirm the fix with a `sqlite3` query.
+4. Commit `sqlite/hymns.sql` as-is — no script needed. Because no `Provision*` script touches that hymn's ID range, the hand-edited row survives every future re-provisioning run untouched.
+
+This is exactly the "Manual Developer Workflow" already documented in `docs/database_spec.md` — it's the right tool for a single-hymn fix, not a new provisioning script.
 
 ## Verifying a fix without building the app
 

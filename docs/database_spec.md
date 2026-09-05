@@ -31,7 +31,7 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | T    | Tagalog     | Tagalog hymns.                    |
 | FR   | French      | French hymns.                     |
 | S    | Spanish     | Spanish hymns.                    |
-| SS   | Supl. Español | Spanish supplement.              |
+| SS   | Spanish Youth | Spanish supplement.              |
 | K    | Korean      | Korean hymns.                     |
 | G    | German      | German hymns.                     |
 | GY   | German Youth | German youth hymns.              |
