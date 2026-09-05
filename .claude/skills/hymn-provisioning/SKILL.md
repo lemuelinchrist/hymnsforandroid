@@ -33,6 +33,19 @@ When a new correction file arrives (e.g. via email) and you need to figure out w
 1. Diff line counts (`wc -l`) against candidate resource files — an exact match is strong evidence.
 2. Confirm by reading the actual `<scriptName>.groovy`'s hardcoded `getResource("/...")` call — the filename in the script is the ground truth, not the name of the file someone emailed you.
 
+## Keeping Victor's copies of the Spanish/German source files in sync
+
+`Spanish2026.txt`, `HImnosCanticosEspirituales.txt` (Spanish Youth/Supplement), and `german/GermanYPsongs_v2.txt` (German Youth) are maintained by an external contributor, Victor, over email — **he is not a developer and has no git access**, so our repo copy and his own working copy are two independent files that only stay in sync because we manually pass changes back and forth. Whenever we make **any manual edit directly to one of these three files** (a disambiguation fix, a `Related:` link, anything beyond just applying a file Victor sent verbatim), his copy is now stale and **must be sent back to him**, or his next round of corrections will silently overwrite our fix.
+
+- Before editing, know that these are literally the same three files Victor edits and emails back — there is no separate "our version"/"his version" distinction in the pipeline; the resource `.txt` *is* his file.
+- After any direct edit (not just re-applying a file he sent), copy the current resource file(s) into `docs/v5.4/` (or the current version's docs folder) with a dated filename, following the existing naming pattern (e.g. `Supplemental_spanish_hymns_hymnsapp2026_renumbered_<date>.txt`), and flag to the user that these need to go back to Victor.
+- **When in doubt about whether a file has drifted from what Victor last sent**, don't guess — diff the live resource file against his last-received copy (archived in `docs/v5.4/`) directly:
+  ```bash
+  diff <(tr -d '\r' < docs/v5.4/<his_last_file>.txt) <(tr -d '\r' < databaseProvisioner/src/main/resources/<resource>.txt)
+  ```
+  A clean diff means no send-back is needed for that file; don't assume based on memory of what you think you touched — verify all three files this way if there's any uncertainty, since it's cheap and it's exactly what settled this question on 2026-09-05 (only the Supplement file had drifted; the other two were byte-identical to what he'd sent).
+- If a fix diverges from what hymnal.net/Victor's own source literally shows (e.g. an invented disambiguation suffix on a tune code), explain *why* in the message back to him — he may otherwise "correct" it back to the literal value next time he touches that hymn.
+
 ## Splitting a combined collection into its own `HymnGroup`
 
 Some collections were historically appended onto the end of a parent group's ID range instead of getting their own section (`SS`/`GY` used to be `S2000+`/`G2001+` before the v5.4 split — see the mapping table). If asked to split one out (e.g. an Indonesian Supplement still living as high-numbered `I` IDs), the app side needs no DAO/UI changes — `HymnGroup` is a clean enum everything else iterates generically — but the checklist is:
