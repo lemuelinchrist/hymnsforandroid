@@ -185,8 +185,10 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                     buildLyricViewAndAttach(text, hymn.getHymnGroup(), false,false);
                     text = new StringBuilder();
                 } else if (stanza.getNo().contains("note")) {
-                    // notes do not have their own lyric view unlike normal stanzas and choruses
-                    text.append("<i>%%" + stanza.getText() + "%%</i><br/>");
+                    // notes get their own full-width row, regardless of where they fall in the hymn
+                    text.append("<i>%%" + stanza.getText() + "%%</i>");
+                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), true, false);
+                    text = new StringBuilder();
                 } else if(stanza.getNo().toLowerCase().contains("youtube") ||
                         stanza.getNo().toLowerCase().contains("soundcloud")) {
                     // append stanza
@@ -216,11 +218,6 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 currentTextLinearLayout.removeViewAt(1);
             }
 
-            // notes usually do not have their own view except if they are the last
-            if(stanzas.get(stanzas.size()-1).getNo().contains("note")) {
-                buildLyricViewAndAttach(text,hymn.getHymnGroup(),true,false);
-            }
-
             // #################### Build Footer
             text = new StringBuilder();
             if(isNotEmpty(hymn.getAuthor()) || isNotEmpty(hymn.getComposer())) {
@@ -239,12 +236,22 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
     }
 
-    private void buildLyricViewAndAttach(final StringBuilder text, HymnGroup selectedHymnGroup, boolean isTrailingNote, boolean isLink) {
+    private void buildLyricViewAndAttach(final StringBuilder text, HymnGroup selectedHymnGroup, boolean isFullWidthRow, boolean isLink) {
         Log.i(this.getClass().getSimpleName(), text.toString());
 
         TextView view;
-        // if column is odd
-        if (++columnNo % 2 != 0 || isTrailingNote) {
+        if (isFullWidthRow) {
+            // close out any half-filled row left pending by the previous stanza, since its
+            // right column would otherwise be orphaned once currentTextLinearLayout is replaced below
+            if (columnNo % 2 != 0) {
+                currentTextLinearLayout.removeViewAt(1);
+            }
+            currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
+            stanzaView.addView(currentTextLinearLayout);
+            view = (TextView) currentTextLinearLayout.getChildAt(0);
+            // next stanza must start a fresh row rather than trying to fill this row's (removed) right column
+            columnNo = 0;
+        } else if (++columnNo % 2 != 0) {
             currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
             stanzaView.addView(currentTextLinearLayout);
             // left column on landscape mode
@@ -281,8 +288,8 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         view.setTextColor(theme.getTextColor());
         view.setBackgroundColor(theme.getTextBackgroundColor());
 
-        // trailing notes have a row exclusively to themselves
-        if(isTrailingNote)
+        // notes have a row exclusively to themselves
+        if(isFullWidthRow)
             currentTextLinearLayout.removeViewAt(1);
     }
 
