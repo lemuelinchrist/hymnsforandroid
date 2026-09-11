@@ -121,7 +121,7 @@ The reliable path is UI navigation:
 
 1. Launch `HymnsActivity` — it opens on the default/last-viewed hymn.
 2. Tap the hamburger icon (top-left) to open the language/group drawer.
-3. Tap the target `HymnGroup` (e.g. "Spanish Youth" for `SS`, "Japanese" for `J`).
+3. Tap the target `HymnGroup` (e.g. "Spanish Youth" for `SY`, "Japanese" for `J`).
    **The search tab that opens next is scoped to whatever group you're currently in**,
    so you must switch groups *before* searching if you want a hymn from a different
    group than the one you landed on.

@@ -36,10 +36,15 @@ class ProvisionSpanishSupplement {
 
     void removeSpanishHymns() {
         for(int x=1;x<=506;x++) {
+            dao.delete("SY"+x)
+        }
+        // one-time migration cleanup: this collection used to be provisioned under the 'SS' group
+        // (ID prefix renamed to 'SY' for consistency with German Youth's 'GY'). Remove any leftover legacy rows.
+        for(int x=1;x<=506;x++) {
             dao.delete("SS"+x)
         }
         // one-time migration cleanup: this collection used to be provisioned under the 'S' group
-        // as S2000-S2506 before it was split into its own 'SS' group. Remove any leftover legacy rows.
+        // as S2000-S2506 before it was split into its own group. Remove any leftover legacy rows.
         for(int x=2000;x<=2506;x++) {
             dao.delete("S"+x)
         }
@@ -139,9 +144,9 @@ class ProvisionSpanishSupplement {
 //        hymnNumber++;
         println "******* Generating Spanish Supplement Hymn ${ssNo}..."
         hymn = new HymnsEntity();
-        hymn.id = 'SS' + ssNo
+        hymn.id = 'SY' + ssNo
         hymn.no = ssNo.toString()
-        hymn.hymnGroup = 'SS'
+        hymn.hymnGroup = 'SY'
         hymn.stanzas = new ArrayList<StanzaEntity>();
         stanzaCounter = 0
         stanzaOrderCounter = 0

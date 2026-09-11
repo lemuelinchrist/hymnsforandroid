@@ -24,10 +24,10 @@ This skill is the condensed playbook for the common case: **correcting or updati
 | Script | Resource file | ID range owned |
 |---|---|---|
 | `ProvisionSpanish2026.groovy` | `Spanish2026.txt` | S1–S1000 |
-| `ProvisionSpanishSupplement.groovy` | `HImnosCanticosEspirituales.txt` (name doesn't match "supplement" — verify by reading the script's `spanishFile =` line, not just the filename) | SS1–SS506 (own `SS` hymn group as of the v5.4 split; was `S2000`–`S2506` before that) |
+| `ProvisionSpanishSupplement.groovy` | `HImnosCanticosEspirituales.txt` (name doesn't match "supplement" — verify by reading the script's `spanishFile =` line, not just the filename) | SY1–SY506 (own `SY` hymn group; was `S2000`–`S2506` before the v5.4 split, then `SS1`–`SS506` until the v5.4.5 rename to `SY` for naming consistency with German Youth's `GY`) |
 | `ProvisionGermanYouth.groovy` | `german/GermanYPsongs_v2.txt` | GY1–GY271 (own `GY` hymn group as of the v5.4 split; was `G2001`–`G2271` before that) |
 
-`SS` and `GY` are dedicated `HymnGroup` entries (own section in the app, own icon), not just an ID-prefix convention — see `app/src/main/java/com/lemuelinchrist/android/hymns/HymnGroup.java`. English "New Songs" (`NS`) is a different case: it isn't sourced from an editable `.txt`/`Provision*.groovy` at all — it was populated long ago by one-off `Extract*.groovy`/`Update*.groovy` scripts scraping hymnal.net. There's no resource file to edit for an `NS` correction; see the one-off single-hymn fix section below.
+`SY` and `GY` are dedicated `HymnGroup` entries (own section in the app, own icon), not just an ID-prefix convention — see `app/src/main/java/com/lemuelinchrist/android/hymns/HymnGroup.java`. English "New Songs" (`NS`) is a different case: it isn't sourced from an editable `.txt`/`Provision*.groovy` at all — it was populated long ago by one-off `Extract*.groovy`/`Update*.groovy` scripts scraping hymnal.net. There's no resource file to edit for an `NS` correction; see the one-off single-hymn fix section below.
 
 When a new correction file arrives (e.g. via email) and you need to figure out which resource it replaces, don't guess from the filename alone:
 1. Diff line counts (`wc -l`) against candidate resource files — an exact match is strong evidence.
@@ -48,7 +48,7 @@ When a new correction file arrives (e.g. via email) and you need to figure out w
 
 ## Splitting a combined collection into its own `HymnGroup`
 
-Some collections were historically appended onto the end of a parent group's ID range instead of getting their own section (`SS`/`GY` used to be `S2000+`/`G2001+` before the v5.4 split — see the mapping table). If asked to split one out (e.g. an Indonesian Supplement still living as high-numbered `I` IDs), the app side needs no DAO/UI changes — `HymnGroup` is a clean enum everything else iterates generically — but the checklist is:
+Some collections were historically appended onto the end of a parent group's ID range instead of getting their own section (`SY`/`GY` used to be `S2000+`/`G2001+` before the v5.4 split — see the mapping table). If asked to split one out (e.g. an Indonesian Supplement still living as high-numbered `I` IDs), the app side needs no DAO/UI changes — `HymnGroup` is a clean enum everything else iterates generically — but the checklist is:
 
 1. Add a new `HymnGroup` enum entry (`app/src/main/java/.../HymnGroup.java`) with its own display name and color.
 2. Add a placeholder icon at `app/src/main/res/drawable-xhdpi/<lowercase-code>.png` (icon lookup is `getIdentifier(group.name().toLowerCase(), "drawable", ...)` — one file covers every UI surface).
@@ -56,6 +56,19 @@ Some collections were historically appended onto the end of a parent group's ID 
 4. **Critical**: update the script's `removeXxxHymns()` to delete **both** the new ID range **and** the old legacy range, permanently (a one-time migration cleanup that costs nothing to leave in place forever). Forgetting this leaves orphaned rows under the old prefix that never get cleaned up by any future re-run — verify with a targeted count query (`WHERE _id LIKE 'S2%' AND CAST(substr(_id,2) AS INTEGER) >= 2000`, not a naive `LIKE` that also matches legitimate low IDs).
 5. Grep **every** resource file (not just the one being split) for cross-references to the old ID range in `Related:` lines, and remap them — a split commonly breaks reciprocal links from a sibling collection (e.g. German Youth hymns referencing old Spanish-Supplement IDs).
 6. Document the new group in `docs/database_spec.md`'s hymn group table and this skill's ID-range table.
+
+## Renaming an existing `HymnGroup`'s ID prefix (not a split — the group already has its own section)
+
+Different from the split above: here the group already has its own `HymnGroup` enum entry and section, but the *ID prefix itself* needs to change (e.g. `SS` → `SY`, done in v5.4.5 so Spanish Youth's IDs would match German Youth's `GY` pattern, at Victor's suggestion). The hard part isn't the owning script — it's that `Dao.save()`'s reciprocal-linking (see the `Related:` gotcha elsewhere in this doc) will have auto-populated the *old* prefix into the `related` field of hymns in **completely unrelated groups** (English, Be Filled, New Songs, German Youth, etc.) that have no owning `Provision*.groovy` script to rerun. A resource-file-and-rerun approach alone cannot reach those.
+
+1. **Bulk-rename directly in `sqlite/hymns.sql`** (the committed source of truth) with a precise, anchored regex — e.g. `perl -pi -e 's/\bSS([0-9]+)\b/SY$1/g' sqlite/hymns.sql`. Word-boundary-anchor it to `<prefix><digits>` so it can't match inside an unrelated substring. Verify before/after counts (`grep -oE '\bSS[0-9]+\b' | wc -l` should hit 0 after, and the new-prefix count should match the old one exactly). This single pass fixes the group's own `_id`/`parent_hymn` rows *and* every reciprocal `related` reference sitting in other groups' rows, in one shot.
+2. Rename the `HymnGroup` enum constant itself (the enum name *is* the ID prefix — `getHymnGroupFromID()` parses it via `valueOf()`, so this is the only Java-side change needed for ID parsing to work).
+3. Rename the icon file to match (`getIdentifier(group.name().toLowerCase(), ...)`).
+4. In the owning `Provision*.groovy`: update the ID-generation prefix and `hymn.hymnGroup` literal, and add the old prefix to `removeXxxHymns()`'s permanent legacy-cleanup list (same reasoning as the split checklist's item 4).
+5. Grep sibling resource files for `Related: <oldprefix><digits>` cross-references and remap them (needed so a *future* rerun of that sibling's script doesn't write the old prefix back).
+6. `importSql` the bulk-renamed sql, then rerun the owning script. This is safe to do in this order and doesn't create duplicate reciprocal entries: `Dao.save()`'s reciprocal-add uses a `Set<String>`, so re-adding an ID that's already present (from the bulk rename) is a no-op.
+7. Verify with three checks: `PRAGMA integrity_check`, zero rows with the old prefix anywhere in `hymns`/`stanza`, and that a known cross-group reciprocal link (e.g. the English/New Songs parent of a translated hymn) shows the new prefix.
+8. **This does not require any user-data migration**, because `HymnsSqliteHelper` has no DB migration logic at all — `versionCode` always increases (it's timestamp-derived), so `onUpgrade()` always fires and unconditionally replaces the entire bundled `hymns.sqlite` with the new one on every app update (`doUpgrade()` is an empty no-op). The one accepted, unavoidable side effect: any user who had favorited/viewed a hymn under the old ID before the update will have a stale ID in their (separately-stored, not-wiped) Favorites/History log — this is the same tradeoff already incurred, apparently without incident, by the original `S2000+`→`SS` split.
 
 ## Gotcha: each script parses a different, hand-rolled set of field keywords
 

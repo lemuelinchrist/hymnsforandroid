@@ -47,7 +47,7 @@ public enum HymnGroup {
             Color.rgb(0x9F, 0xA8, 0xDA),
             Gravity.LEFT),
     //Indigo
-    SS("Spanish Youth", Color.rgb(0x3F, 0x51, 0xB5),
+    SY("Spanish Youth", Color.rgb(0x3F, 0x51, 0xB5),
             Color.rgb(0x9F, 0xA8, 0xDA),
             Gravity.LEFT),
     //Brown
