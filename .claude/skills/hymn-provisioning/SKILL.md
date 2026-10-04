@@ -15,6 +15,7 @@ This skill is the condensed playbook for the common case: **correcting or updati
 
 `databaseProvisioner/src/main/resources/*.txt` (git-tracked source) → `Provision*.groovy` (parses + writes via JPA) → `app/src/main/assets/hymns.sqlite` (gitignored binary, live DB) → `sqlite/hymns.sql` (git-tracked full SQL dump — the *actual* source of truth for content).
 
+- **Run every `databaseProvisioner`/`sqlite` Gradle task from WSL with the Linux JDK**: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runGerman`. Running the same task through the Windows JVM (`cmd.exe /c "... gradlew.bat ..."`) against this SQLite file failed at random points with duplicate `stanza.id`/`hymns._id` PRIMARY KEY errors and once `SQLITE_CORRUPT` (2026-10-04). It's not EclipseLink pooling: forcing a single connection just deadlocked, because nested eager loads need a second connection.
 - `./gradlew :sqlite:importSql` — wipes local `hymns.sqlite`, rebuilds it from `sqlite/hymns.sql`, copies it into `app/src/main/assets/`. Run this **before** provisioning, so you start from the last committed state.
 - A `Provision*.groovy` script connects straight to `app/src/main/assets/hymns.sqlite` (path templated into `databaseProvisioner/src/main/resources/META-INF/persistence.xml` via `${sqliteFile}`). Each script deletes its own ID range first (e.g. `removeSpanishHymns()` wipes S1–S1000), then re-parses its `.txt` resource file and re-inserts via `Dao.save()`. This delete-then-reinsert pattern is what makes re-running a script safe/idempotent.
 - `./gradlew :sqlite:exportSql` — dumps the now-updated `hymns.sqlite` back into `sqlite/hymns.sql`. Run this **after** provisioning, and commit `hymns.sql` (never the `.sqlite` binaries — they're gitignored on purpose).
@@ -26,6 +27,7 @@ This skill is the condensed playbook for the common case: **correcting or updati
 | `ProvisionSpanish2026.groovy` | `Spanish2026.txt` | S1–S1000 |
 | `ProvisionSpanishSupplement.groovy` | `HImnosCanticosEspirituales.txt` (name doesn't match "supplement" — verify by reading the script's `spanishFile =` line, not just the filename) | SY1–SY506 (own `SY` hymn group; was `S2000`–`S2506` before the v5.4 split, then `SS1`–`SS506` until the v5.4.5 rename to `SY` for naming consistency with German Youth's `GY`) |
 | `ProvisionGermanYouth.groovy` | `german/GermanYPsongs_v2.txt` | GY1–GY271 (own `GY` hymn group as of the v5.4 split; was `G2001`–`G2271` before that) |
+| `ProvisionGermanV2.groovy` (Gradle `runGerman`) | `german/New_German_hymns.txt` (G1–G460, the main German hymnal, maintained by Isaiah's team) **and** `german/GermanNewHymn_2019Dec.txt` (G1001–G1020) | deletes G1–G1336, re-provisions both files. `G10001`/`G10002` (German "non-hymns", from the old one-off `UpdateV33.groovy`) are outside the range and untouched. Drops `R` (Russian) entries from `Related:` since the app has no Russian group. |
 
 `SY` and `GY` are dedicated `HymnGroup` entries (own section in the app, own icon), not just an ID-prefix convention — see `app/src/main/java/com/lemuelinchrist/android/hymns/HymnGroup.java`. English "New Songs" (`NS`) is a different case: it isn't sourced from an editable `.txt`/`Provision*.groovy` at all — it was populated long ago by one-off `Extract*.groovy`/`Update*.groovy` scripts scraping hymnal.net. There's no resource file to edit for an `NS` correction; see the one-off single-hymn fix section below.
 
@@ -69,6 +71,20 @@ Different from the split above: here the group already has its own `HymnGroup` e
 6. `importSql` the bulk-renamed sql, then rerun the owning script. This is safe to do in this order and doesn't create duplicate reciprocal entries: `Dao.save()`'s reciprocal-add uses a `Set<String>`, so re-adding an ID that's already present (from the bulk rename) is a no-op.
 7. Verify with three checks: `PRAGMA integrity_check`, zero rows with the old prefix anywhere in `hymns`/`stanza`, and that a known cross-group reciprocal link (e.g. the English/New Songs parent of a translated hymn) shows the new prefix.
 8. **This does not require any user-data migration**, because `HymnsSqliteHelper` has no DB migration logic at all — `versionCode` always increases (it's timestamp-derived), so `onUpgrade()` always fires and unconditionally replaces the entire bundled `hymns.sqlite` with the new one on every app update (`doUpgrade()` is an empty no-op). The one accepted, unavoidable side effect: any user who had favorited/viewed a hymn under the old ID before the update will have a stale ID in their (separately-stored, not-wiped) Favorites/History log — this is the same tradeoff already incurred, apparently without incident, by the original `S2000+`→`SS` split.
+
+## Gotcha: re-provisioning can silently undo fixes that were made directly in `hymns.sql`
+
+Over the years some typo fixes were applied straight to `hymns.sql` (e.g. German fixes in commits `c2e4455d` 2020 and `712a39c6` 2023) and never made it back into the source `.txt` or to the external contributor. When a contributor later sends a "corrected" file, it can be **older than the DB in some places** — re-provisioning from it regresses those hymns with no error. Real case (v5.5 German import): Isaiah's file reintroduced `Lieht`/`Eingel`/`in ihn`/a dropped word, and turned a chorus back into a numbered stanza.
+
+So before running a `Provision*` script on a new contributor file, **snapshot the DB and diff the owning group's stanzas/fields before vs after**:
+
+```bash
+cp app/src/main/assets/hymns.sqlite /tmp/.../before.sqlite   # after importSql, before provisioning
+# ...provision...
+# then compare per hymn: SELECT parent_hymn, group_concat(no||'|'||text,'##') ... GROUP BY parent_hymn on both DBs
+```
+
+For each changed hymn, decide which side is right. Fix the source `.txt` for any DB-side fix the file lacks, re-run, and repeat until only the contributor's intended changes remain. Then send the merged file back to the contributor (see the sync section above), or their next revision will drop those fixes again. Expect noise: `related` on English parents gets reordered (it's a `HashSet`), and `tune`/`related` get filled on the children by `Dao.save()`'s parent inheritance.
 
 ## Gotcha: each script parses a different, hand-rolled set of field keywords
 

@@ -25,8 +25,11 @@ class ProvisionGermanV2 {
 
     public static void main(String[] args) {
         def german = new ProvisionGermanV2();
-        german.provision();
-//        german.removeGermanHymns()
+        german.removeGermanHymns()
+        // Main German hymnal (G1-G460)
+        german.provision("/german/New_German_hymns.txt", 0)
+        // German new hymns (G1001-G1020)
+        german.provision("/german/GermanNewHymn_2019Dec.txt", 1000)
         println "end!!!!!"
     }
 
@@ -37,16 +40,24 @@ class ProvisionGermanV2 {
     }
 
 
-    void provision() throws Exception {
-//        germanFile = new File(this.getClass().getResource("/german/New_German_hymns.txt").getPath());
-        germanFile = new File(this.getClass().getResource("/german/GermanNewHymn_2019Dec.txt").getPath());
+    void provision(String resource, Integer startNumber) throws Exception {
+        germanFile = new File(this.getClass().getResource(resource).getPath());
+        hymnNumber = startNumber
+        hymn = null
 
         iterator = germanFile.iterator();
 
         while (iterator.hasNext()) {
 
             line = iterator.next().trim();
-            if(line.isEmpty()) {
+            if (hymn == null && line.matches('G\\d+')) {
+                // first hymn header with no blank line before it (start of file)
+                createNewHymn()
+            } else if(line.isEmpty()) {
+                if (!iterator.hasNext()) {
+                    wrapup()
+                    break
+                }
                 line = iterator.next().trim();
                 if (line.matches('G\\d*')) {
                     wrapup()
@@ -66,6 +77,9 @@ class ProvisionGermanV2 {
                 stanza.text+=line+"<br/>"
             }
 
+            if (!iterator.hasNext()) {
+                wrapup()
+            }
         }
 
     }
@@ -87,6 +101,7 @@ class ProvisionGermanV2 {
 
         println hymn
         dao.save(hymn)
+        hymn = null
     }
 
     def createNewHymn() {
@@ -107,7 +122,8 @@ class ProvisionGermanV2 {
             nextText = iterator.next().trim()
             if (nextText.contains("Subject:")) {
                 nextText = nextText.substring(nextText.indexOf(":") + 1).trim()
-                String[] subjectArray = nextText.split("–")
+                // en dash is the standard separator; also accept " - "
+                String[] subjectArray = nextText.split("–| - ", 2)
                 hymn.setMainCategory(subjectArray[0].trim())
                 if (subjectArray.size() > 1) {
                     hymn.setSubCategory(subjectArray[1].trim())
@@ -115,17 +131,20 @@ class ProvisionGermanV2 {
 
             } else if (nextText.contains("Related:")) {
                 nextText = nextText.substring(nextText.indexOf(":") + 1).trim()
-                hymn.setRelatedString(nextText.replace(" ", ""))
-                String[] relatedArray = nextText.split(",")
-                for (String oneRelated : relatedArray) {
-                    if (oneRelated.contains("E")) {
-                        hymn.parentHymn = oneRelated.replace(" ", "")
+                // Drop "R" (Russian) references: the app has no Russian hymns
+                List<String> relatedList = nextText.split(",")
+                        .collect { it.replace(" ", "") }
+                        .findAll { !it.isEmpty() && !it.startsWith("R") }
+                hymn.setRelatedString(relatedList.join(","))
+                for (String oneRelated : relatedList) {
+                    if (oneRelated.startsWith("E")) {
+                        hymn.parentHymn = oneRelated
                     }
                 }
             } else if (nextText.contains("Meter: ")) {
-                hymn.meter = nextText.substring(nextText.indexOf(":") + 1)
+                hymn.meter = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.contains("Reference:")) {
-                hymn.verse = nextText.substring(nextText.indexOf(":") + 1)
+                hymn.verse = nextText.substring(nextText.indexOf(":") + 1).trim()
             } else if (nextText.isEmpty()) {
                 line = iterator.next().trim();
                 stanza = createNewStanza()
