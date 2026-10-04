@@ -6,8 +6,8 @@ converter is designed**. Update it whenever something new is learned, so nothing
 - Started: 2026-10-02
 - Last updated: 2026-10-05 (end of session 2)
 - Status: **converter working for piano and guitar sheets** (§18). 96.8% of piano and 96.5% of guitar sheets
-  convert and verify (§18 results). Asset cleanup pushed (`1e727e1e`) and the design/tools committed
-  (`f2d219ff`); the converter itself, the skill and this update are **uncommitted**.
+  convert and verify (§18 results). Everything is committed and pushed (latest: `64db0472`); generated
+  output lives in the git-ignored `build/` folder.
 
 ---
 
