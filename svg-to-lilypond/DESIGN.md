@@ -4,9 +4,10 @@ Living document. Records **what we've learned** about the hymnal.net lead-sheet 
 converter is designed**. Update it whenever something new is learned, so nothing gets lost between sessions.
 
 - Started: 2026-10-02
-- Last updated: 2026-10-04
-- Status: **design approved** (decisions in §13). Asset cleanup done and pushed (commit `1e727e1e`, §11).
-  Converter not started; next is milestone 1 (§14).
+- Last updated: 2026-10-05 (end of session 2)
+- Status: **converter working for piano and guitar sheets** (§18). 96.8% of piano and 96.5% of guitar sheets
+  convert and verify (§18 results). Asset cleanup pushed (`1e727e1e`) and the design/tools committed
+  (`f2d219ff`); the converter itself, the skill and this update are **uncommitted**.
 
 ---
 
@@ -470,6 +471,143 @@ From the user, 2026-10-04. The current converter should not block these:
 
 ---
 
+## 18. Implementation status and findings (2026-10-05)
+
+### How to run
+`python3 tools/convert.py --group E [-j 14]` (piano), or `python3 tools/convert.py path/to/X.svg ...`.
+Outputs in `build/`: `ir/` (JSON), `ly/` (LilyPond), `svg/` (our re-render), `report_<group>_piano.json`.
+Statuses: `ACCEPT` (all checks pass), `REVIEW` (something to look at), `recognition_error`, `render_error`.
+Whole English set takes ~5 min on 14 processes.
+
+### Results (full run, 2026-10-05, after all fixes)
+Status meanings:
+- `ACCEPT`: every check passes.
+- `ACCEPT_DB_MISMATCH`: converted and internally consistent (bars add up, re-render reads back the same, no
+  symbol missing), but the *database* disagrees on the tune code or lyric words. The DB is usually the wrong
+  one (see findings), but these are the files to spot-check.
+- `ACCEPT_TAIL_UNVERIFIED`: the original SVG overflows its page; only page 1 of our render was compared.
+- `REVIEW`: a concrete check failed (reasons below). Not silently converted.
+
+| | Piano | Guitar |
+|---|---|---|
+| files | 3,179 | 3,179 |
+| `ACCEPT` | 2,940 | 2,886 |
+| `ACCEPT_DB_MISMATCH` | 116 | 160 |
+| `ACCEPT_TAIL_UNVERIFIED` | 21 | 22 |
+| **accepted in total** | **3,077 (96.8%)** | **3,068 (96.5%)** |
+| `REVIEW` + errors | 102 | 111 |
+
+By group (piano accepted of total): E 1,350/1,362 (99.1%), NS 1,157/1,230 (94.1%), CS 284/291, BF 97/98,
+C 121/124, CH 68/74. Guitar is within a point of piano in every group.
+
+What `ACCEPT` requires: V1 bars add up (with time changes); V2 our render reads back as the same music and text
+(incl. bar types, voltas, marks, fermatas, chord order); V3/V4 tune code or MIDI (soft-tolerant); V8 lyric words;
+a *model-free coverage check* (same number of noteheads/rests/scripts/dots/accidentals/chord characters in the
+original and our render); no warnings, no unplaced text, one page.
+
+Remaining `REVIEW` reasons, piano (guitar is similar):
+| Count | Reason |
+|---|---|
+| 16 | round-trip event differs (E1337, NS299, NS376 ...): ties/slurs/marks that read differently in a re-render |
+| 16 | bar line / volta end lands on a different measure in the re-render (NS32, NS170, NS216 ...) |
+| 13 | bar sum: tuplet or duration shapes not understood, e.g. a bracket over 4 notes, mixed beamed/tied groups (NS32, NS121, NS445 ...) |
+| 7 | key-signature change whose cancellation prints differently (E323, E924, E1337) |
+| 7 | dot count differs (dotted whole notes: E522, E887, E983) |
+| 6 | a curve whose ends can't be matched to notes (E1170, NS145, NS231) |
+| 5 | exotic chord (add9, diminished over bass, Eb#/G): NS876, CS107 |
+| 4 | two curves open across a system break (E1340, NS127, NS410) |
+| 2 | one emit error (NS746) and one unsupported notehead (NS812: cross noteheads for spoken text) |
+
+### Pipeline modules
+`svgscan.py` (primitives) -> `recognize.py` (IR) -> `emit_ly.py` (.ly) -> LilyPond -> `recognize.py` ->
+`convert.py` (compare IR vs IR', layout calibration) with `verify.py` (V1, V3, V8, hyphen repair).
+`batch.py` runs recognition + V1/V3 only (fast, no rendering).
+
+### Findings that changed the design (each cost real debugging time)
+**Recognition**
+- Stems can be up to ~6 units long (low notes); beam polygons cover stems, and a 16th's secondary beam sits
+  ~0.9 from the stem tip (tolerance must be ~2.3). Dots for notes below the staff sit up to top+8.
+- A tie/slur is a closed shape: use the **x extent of the whole path**. A dashed slur is several tiny pieces
+  sharing one origin: merge by origin, flag `dashed`, emit `\slurDashed`. A curve that runs past the
+  last note continues on the next system: carry it across.
+- Chord names: a new chord starts at a root letter (A-G) not preceded by '/'; accidentals are separate
+  glyphs at scale 0.0032. The chord row rises (up to ~12 above the staff) when a boxed mark is above it,
+  so the search band must be wide. Qualities in the corpus: '', m, 7, m7, sus4, sus2, maj7, +, o, o7, m6, 6.
+- Time signature changes are common (also at the start of a later system): cluster time glyphs by x, record
+  `time_change` on the measure, and check bars against the current time.
+- Triplets: italic digit; group of N consecutive events nearest the digit's centre; durations scale by den/N.
+- Marks above the staff: Chorus, Bridge, Bro:/Sis:/All:, Part 1, Fine, D.C. ... A box is four 0.116-thin rects.
+  Stanza labels ("1.", "(C)") share a baseline with a lyric line; tell them apart from marks that way.
+- Lyric syllable -> note: monotone DP on |syllable centre - head centre| using real font widths (C059
+  stands in for Century Schoolbook L). LilyPond shifts syllables away from collisions, so **x-based
+  assignment from a re-render is unreliable**; compare syllable text order in V2 instead.
+- Originals omit hyphens drawn too tightly, and 2.24 shortens hyphens (0.5 wide). Hyphen flags are
+  repaired from DB words (`verify.repair_hyphens`).
+
+**Verification**
+- DB tune codes count a tied pair once, are sometimes just wrong (E534: the sheet clearly shows G = degree
+  3, code says 4), and for C (Chinese) have a leading space. V3 has `exact | soft | fail`.
+- V8 (words rebuilt from syllables must exist in the DB stanza text) is the best lyric check.
+- Compare re-renders on **text and music only**; layout numbers differ because the originals came from
+  another LilyPond version.
+
+**LilyPond pitfalls**
+- `\partial` takes ONE duration: 5/16 must be `16*5`, not `4 16`.
+- With `\autoBeamOff`, manually beamed notes count as a lyric melisma. We avoid the issue by emitting one
+  lyric token per note (syllable or `_`) with `\set ignoreMelismata = ##t`.
+- `\addlyrics { \verseOne }` needs the backslash.
+- Extra automatic line breaks appear because 2.24 spaces notes wider: forbid them with
+  `NonMusicalPaperColumn.line-break-permission = ##f` and give one `\break` per original system.
+- Python `%` formatting: any `%` in a LilyPond comment inside a %-format template must be `%%`.
+- Output goes to `build/` (not /tmp): temp dirs are on another filesystem and `os.replace` fails.
+- Glob `E1*.svg` also matches E10.svg: match output names exactly (multi-page output is `X-1.svg`).
+- Glyph shapes change per LilyPond version: after rendering, rerun `glyph_census.py` + `glyph_names.py`
+  (the census now includes `build/svg/`). New shapes of known symbols are normal.
+
+**Layout**
+- Fixed formulas for title/staff/verse spacing don't survive different title blocks (CH has no hymn
+  number). `convert.py` now renders, measures the staff/title/verse positions of the result, and corrects
+  `top-margin`, `\vspace`, `system-system-spacing`, `score-markup-spacing` (max 2 corrections). Median
+  residual is 0.01 staff spaces.
+
+**Added in session 2 (each learned the hard way)**
+- **Honesty gap found via the side-by-side of NS948: repeats, voltas and the final thick bar were silently
+  missing** because V2 compared only what the IR models. Fix: the **model-free coverage check** (symbol counts in
+  original vs render) now forces `REVIEW` for anything printed but not modelled. Keep it.
+- Bar lines: group thin (T) / thick (K) rects and repeat dot *pairs* (D) by x; signatures T, TT, TK, DTK (`:|.`),
+  KTD (`.|:`), DTKTD. A start-repeat drawn at the start of a line belongs to the previous system's last bar.
+  A single dot near the middle of the staff is a note dot; a vertically aligned pair is a repeat sign.
+- Voltas: long thin horizontal line above the staff (stroke ~0.205) with end ticks, label as tiny digit glyphs
+  ("1.–2." is `one period hyphen hyphen two period`). Emit with `\set Score.repeatCommands = #'((volta "1.–2."))`
+  and `((volta #f))` after the bar (combine end+start in one command). LilyPond draws the en dash differently:
+  compare labels without dashes.
+- Chord names are placed by *time*: a chord can sit mid-way through a sustained note. Attach to a note if one
+  starts there, else record an offset inside the note (beat-snapped from x). An early chord drawn left of the
+  next note belongs to that note unless that note already has its own chord. The x->time mapping differs per
+  LilyPond version, so V2 compares only the chord *order* inside a note; offsets are estimates.
+- Fermatas are centred on notes (`^\fermata`); segno/coda are signs (`\musicglyph`); several marks on one note
+  must be emitted as one stacked `\mark \markup { \column { ... } }` (one `\mark` per moment).
+- Key changes occur at line starts *and* mid-line right after a bar: scan every boundary for key-signature
+  accidentals (>= 2 units left of the next note), compare with the current key, emit `\key`.
+- `(Guitar)`, `(Guitar: Capo N)` and similar italic lines belong in the title block (`\fill-line` under the title).
+- The subtitle is exactly 3.5 below the title baseline: use that, not the distance to the staff.
+- `hymns.sqlite` is **rewritten by Gradle/IDE builds** while we run (it was corrupted mid-batch once). The checks
+  now read a private snapshot `build/hymns_snapshot.sqlite` built from the committed `sqlite/hymns.sql`
+  (auto-rebuilt when older than the dump). Never point batch tools at the shared file.
+- Layout self-calibration: the first-staff position responds to `\vspace` non-linearly and negative values clamp,
+  so use a bracketing search (`next_vspace`), up to 8 corrections. `markup-system-spacing` does NOT move the
+  first staff after a custom `bookTitleMarkup`.
+- Boxes (`\box`) get different padding in LilyPond 2.24: detect a box by a thin horizontal rect above and below
+  the text, both about text-wide, not by exact offsets.
+- Time per run: piano all groups ~25 min, guitar ~25 min on 15 processes. `tools/regress.py` (36 files) ~1 min.
+
+### Known unresolved cases
+E1242 and ~20 NS sheets (the original SVG overflows its page; the rest is on our page 2 and is not compared),
+E635/E871/E1240 (syllables of one word on different lyric rows), tune-code disagreements (the DB is wrong
+where checked by eye; see `ACCEPT_DB_MISMATCH`), and the REVIEW table above.
+
+---
+
 ## 16. Tools & data in this folder
 
 | Path | What |
@@ -477,6 +615,7 @@ From the user, 2026-10-04. The current converter should not block these:
 | `tools/svgscan.py` | SVG → absolute primitives; `staves()`. `python3 tools/svgscan.py file.svg` prints a summary. |
 | `tools/glyph_census.py` | Collects all glyph outlines → `data/glyph_census.json`, contact sheets in `build/`. |
 | `tools/glyph_names.py` | Names glyphs against Emmentaler → `data/glyph_names.json` (+ table in `build/glyph_names.txt`). |
+| `tools/recognize.py`, `emit_ly.py`, `verify.py`, `convert.py`, `batch.py` | The converter (§18). |
 | `tools/features.py` | Per-file features → `data/features.csv`. The scoring in §5 was done ad hoc from this CSV. |
 | `tools/asset_audit.py` | `dups`: compare `* (1).svg` duplicates with base and live. `pairs ID…`: piano vs guitar vs live note counts. Live downloads cached in `build/fresh/`. |
 | `data/difficulty_ranking.json` | Piano files sorted by difficulty score. |
@@ -518,3 +657,7 @@ Python 3.12 with fontTools/numpy/Pillow.
 - **2026-10-04 (later):** Emulator check of the asset fixes (§11). Corrected an earlier claim: the app does not
   hide the sheet button for missing sheets, it shows a toast. Confirmed the serif-font overlap in the
   Android WebView. Build note: from WSL, build with `cmd.exe /c "set JAVA_HOME=C:\Users\lemue\.jdks\ms-17.0.16&& gradlew.bat :app:assembleDebug"`.
+- **2026-10-05 (session 2):** Built the converter (recognize / emit / verify / convert), tests and tools; findings in §18.
+  English piano 1,350/1,362 accepted; all groups piano 3,077/3,179 and guitar 3,068/3,179. Wrote the Claude skill
+  (`.claude/skills/svg-to-lilypond/SKILL.md`). Corrected an overstatement along the way: the first New Songs run had
+  counted sheets as accepted that lacked repeats and voltas; the coverage check was added to prevent that.
