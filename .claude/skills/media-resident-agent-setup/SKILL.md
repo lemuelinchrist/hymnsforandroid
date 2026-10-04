@@ -61,6 +61,41 @@ Notes:
 - `media` has 8 cores / ~14 GB shared with other services: use `-j 6` (not the 15 used on the 16-core dev PC).
 - Python here is 3.14; the tools only use the standard library plus the three packages above.
 
+## Step 2b - Android build toolchain (optional; not needed for the converter)
+Lets the media agent build the debug APK (`./gradlew :app:assembleDebug`). It does NOT give an emulator, and release
+signing (`keystore.properties`, the `.jks` keys) stays a PC-only concern. The build needs JDK 17 (AGP 8.13.2 / Gradle
+8.13; no JDK existed on media), the Android SDK with platform 36, and `bash` + `sqlite3` (the `:sqlite:importSql` task
+runs `cat hymns.sql | sqlite3 ...`).
+```
+ssh media 'sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openjdk-17-jdk-headless unzip'
+```
+Command-line tools (no root; the version number changes, so read it from Google's index instead of hard-coding):
+```
+ssh media 'curl -fsS https://dl.google.com/android/repository/repository2-3.xml | grep -A40 "cmdline-tools;latest" | grep -m1 -E "linux.*zip|<url>.*linux"'
+# 2026-10-05: commandlinetools-linux-16111833_latest.zip, sha1 e025545c62a8e64c7559119566a569fb1dec5f60 (verify with sha1sum -c)
+ssh media 'mkdir -p ~/android-sdk/cmdline-tools && cd /tmp && curl -fsSO https://dl.google.com/android/repository/commandlinetools-linux-<N>_latest.zip && unzip -q commandlinetools-linux-<N>_latest.zip -d ~/android-sdk/cmdline-tools && mv ~/android-sdk/cmdline-tools/cmdline-tools ~/android-sdk/cmdline-tools/latest'
+ssh media 'export ANDROID_HOME=$HOME/android-sdk; yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "platforms;android-36" "build-tools;36.0.0"'
+```
+(`sdkmanager` is deprecated in favour of a new "Android CLI" but still works; accepting the SDK licenses is part of
+installing, so mention it to the user. Result: about 490 MB in `~/android-sdk`.)
+
+**`local.properties` is tracked in git and holds a Windows `sdk.dir`.** On media, point it at the SDK without making a
+git-visible change:
+```
+ssh media 'cd ~/hymnsforandroid && git update-index --skip-worktree local.properties && printf "sdk.dir=/home/lemuel/android-sdk\n" > local.properties'
+```
+(If `git pull` ever complains about `local.properties`, run `git update-index --no-skip-worktree local.properties`,
+`git checkout local.properties`, pull, then redo the two commands. Never commit this file from media.)
+
+Verify (about 1.5 minutes; use `bash`, not `sh`: `/bin/sh` is dash and the wrapper fails; `--no-daemon` so no Gradle
+daemon stays resident next to the other services):
+```
+ssh media 'cd ~/hymnsforandroid && ./gradlew :app:assembleDebug --no-daemon 2>&1 | tail -5'
+```
+Expect `BUILD SUCCESSFUL` and `app/build/outputs/apk/debug/HymnsForAndroidv5.4.6-PianoAndGuitar.apk` (about 98.7 MB). The
+build also regenerates the git-ignored `app/src/main/assets/hymns.sqlite`; `git status` still shows `.gradle/`,
+`app/build/`, `build/` as untracked (same as on the PC) - never `git add` them.
+
 ## Step 3 - clone/update the repo
 ```
 ssh media 'test -d ~/hymnsforandroid/.git && (cd ~/hymnsforandroid && git pull --ff-only) || git clone git@github.com:lemuelinchrist/hymnsforandroid.git ~/hymnsforandroid'
@@ -189,7 +224,8 @@ Done once from the PC: packages installed (LilyPond 2.24.4, librsvg2-bin, sqlite
 was already there), repo cloned over GitHub SSH (36 s, 864 MB), repo-local git identity set, `CLAUDE.local.md`
 excluded via `.git/info/exclude`, `python3 tools/regress.py -j 6` -> `36/36 as expected` on LilyPond 2.24.4, service
 enabled and started, trust prompt cleared, `ListAgents` shows `hymnsforandroid` as a Remote Control row. Not tested:
-an actual host reboot (Linger=yes, unit enabled).
+an actual host reboot (Linger=yes, unit enabled). Android toolchain (Step 2b) added the same day: JDK 17.0.20, SDK
+platform 36 / build-tools 36.0.0, `./gradlew :app:assembleDebug --no-daemon` -> BUILD SUCCESSFUL in 1m37s.
 
 ## Keeping media and the PC in sync
 Work happens in two checkouts (the PC and media). Only commit from one at a time and `git pull --ff-only` before
