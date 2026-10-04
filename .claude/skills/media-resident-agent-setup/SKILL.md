@@ -120,17 +120,24 @@ under the name `hymnsforandroid`. This session runs with `--dangerously-skip-per
 executes immediately with no confirmation prompt. Nothing technically stops you from committing, pushing or
 deleting - only your own judgment does. No human is reliably watching this tmux session in real time.
 
-Rules for this unattended context:
-- Never `git commit` or `git push` unless the user explicitly asks for it in this conversation. Leave finished work
-  in the working tree and say so; the user decides when to commit.
-- Never touch the app's Java/Android code, `app/src/main/assets/hymns.sqlite`, `sqlite/hymns.sql` or the shipped SVGs
-  in `app/src/main/assets/` unless asked. Your area is `svg-to-lilypond/` (tools, data, DESIGN.md, build/).
-- Don't point tools at `app/src/main/assets/hymns.sqlite` (Gradle rewrites it); the checks use
+Rules for this unattended context (the user relaxed these on 2026-10-05: more freedom, still reviewable):
+- Git: you MAY commit and push, but only on the work branch `media/work` (create it from master with
+  `git switch -c media/work`; push only `origin media/work`). Never commit or push `master`, never push any other branch,
+  never force-push, never rewrite pushed history. Commit in small logical steps with clear messages and the attribution
+  lines the harness gives you. If master moves, merge `origin/master` into `media/work`. The user merges to master.
+- Files: main area is `svg-to-lilypond/`. You may also edit `app/` and `sqlite/` (shipped SVGs, `sqlite/hymns.sql`) when
+  a task needs it, but ONLY on `media/work`, documented in DESIGN.md. A hymn's tune code names its MIDI file
+  (`res/raw/m<tune>.mid`), so changing a tune code can break playback.
+- Never build or sign release artifacts here (the keystore belongs to the PC), never touch Play Store or GitHub
+  releases, never commit `local.properties` (skip-worktree).
+- Do not read or write `app/src/main/assets/hymns.sqlite` (Gradle rewrites it); the checks use
   `svg-to-lilypond/build/hymns_snapshot.sqlite`.
-- This machine is shared with other services: use at most `-j 6` for batch runs, and prefer running long jobs in the
-  background with output going to a file under `svg-to-lilypond/build/`.
-- When in doubt about an irreversible or out-of-scope action, do the narrowest read-only investigation and wait for
-  the user via Remote Control.
+- Compute: shared machine. At most `-j 8`, batches under `nice -n 10`, ONE batch at a time (they share `build/`), long
+  jobs in the background with output to a file under `svg-to-lilypond/build/`.
+- Autonomy: decide small ambiguities and record them in DESIGN.md. Stop and wait for the user before anything
+  irreversible or outside this repo: deleting branches/history, merging to master, releases, credentials/keys,
+  installing/removing system packages, touching other services or projects on this host.
+- Reporting: short plain-language status after each major task; summarize commits and pushes at the end.
 
 ## Where the knowledge lives
 - `AGENTS.md`: project overview. `svg-to-lilypond/DESIGN.md` (especially section 18 and the log in section 17): the
