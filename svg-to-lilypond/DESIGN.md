@@ -737,7 +737,7 @@ where checked by eye; see `ACCEPT_DB_MISMATCH`), and the REVIEW table above.
 | `experiments/cmp.py`, `report.py`, `glyphs.py` | Early comparison helpers from the E1 experiment (superseded by `tools/`). |
 | `ly/` | **Committed** generated `.ly` for the accepted sheets (3,080 piano, 3,071 guitar) + `status.csv` + README. Never hand-edit; refresh after significant converter changes. |
 | `tools/svg_text_to_paths.py` | Outlines the `<text>` of a LilyPond SVG so it needs no installed fonts (section 15.1). |
-| `tools/transpose_check.py` | `\\transpose` round-trip and semitone check for converted hymns (section 15.1). |
+| `tools/transpose_check.py` | `\transpose` round-trip and semitone check for converted hymns (section 15.1). |
 | `build/` | Generated renders, contact sheets. Git-ignored and safe to delete. |
 
 Rebuild everything: `cd svg-to-lilypond && python3 tools/glyph_census.py && python3 tools/glyph_names.py > build/glyph_names.txt && python3 tools/features.py`
@@ -777,7 +777,7 @@ Python 3.12 with fontTools/numpy/Pillow.
 - **2026-10-05 (media host, visual review):** see section 18 "Visual review 2026-10-05". Six defects found and fixed by eye (staff size from viewBox, boxed marks as scripts, dashed ties, lyric spacing + hyphens with automatic fallback, verse-block refrains, hyphen repair); regression list now 43 entries, all as expected.
 - **2026-10-05 (media host, full run):** piano 3,080/3,179, guitar 3,071/3,179 accepted; strict ACCEPT 3,001 / 2,989; TAIL_UNVERIFIED tier empty. New glyph ids named. See section 18.
 - **2026-10-05 (media host):** accepted `.ly` files committed under `svg-to-lilypond/ly/` (user decision: they took ~6.5 h to build). REVIEW sheets stay in `build/`.
-- **2026-10-05 (media host, task 2):** app-readiness prototype: text-as-outline tool, size comparison, `\\transpose` checked on 11 hymns; report in section 15.1.
+- **2026-10-05 (media host, task 2):** app-readiness prototype: text-as-outline tool, size comparison, `\transpose` checked on 11 hymns; report in section 15.1.
 - **2026-10-05 (session 2):** Built the converter (recognize / emit / verify / convert), tests and tools; findings in §18.
   English piano 1,350/1,362 accepted; all groups piano 3,077/3,179 and guitar 3,068/3,179. Wrote the Claude skill
   (`.claude/skills/svg-to-lilypond/SKILL.md`). Corrected an overstatement along the way: the first New Songs run had
