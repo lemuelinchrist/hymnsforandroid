@@ -1017,7 +1017,8 @@ def find_voltas(sc, systems):
         text = re.sub(r'-+', '\u2013', text)
         ticks = [lx for lx, ly, lx2, lw in sc.lines if abs(lx - lx2) < 0.01 and 0.15 < lw < 0.3 and abs(ly - y) < 0.05]
         sy['voltas'].append({'x1': x1, 'x2': x2, 'label': text or None,
-                             'left_tick': any(abs(t - x1) < 0.05 for t in ticks)})
+                             'left_tick': any(abs(t - x1) < 0.05 for t in ticks),
+                             'right_tick': any(abs(t - x2) < 0.05 for t in ticks)})
 
 
 def apply_voltas(sy, sys_measures, vstate):
@@ -1030,7 +1031,14 @@ def apply_voltas(sy, sys_measures, vstate):
             continue
         if seg['label']:
             covered[0]['volta_start'] = seg['label']
-        covered[-1]['volta_end'] = True
+        elif covered[0] is sys_measures[0] and vstate.get('last_end') is not None:
+            # an unlabeled bracket at the very start of the line continues the previous line's bracket: what looked
+            # like its end (a tick at the line break) was only the break
+            vstate['last_end'].pop('volta_end', None)
+        vstate['last_end'] = None
+        if seg.get('right_tick', True):                 # no end tick: the bracket is still open (continues on the next line)
+            covered[-1]['volta_end'] = True
+            vstate['last_end'] = covered[-1]
 
 
 def assign_scripts(systems, ir):
