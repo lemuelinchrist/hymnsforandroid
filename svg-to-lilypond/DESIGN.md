@@ -495,6 +495,24 @@ The fonts' licences allow embedding glyph outlines in documents (URW fonts: GPL/
 Caveat: nothing here was run in a real Android WebView; the claim "no installed fonts needed" rests on the files
 containing no text at all.
 
+**Emulator attempt (2026-10-05, media host): inconclusive, and why.** Installed in user space under
+`/home/lemuel/android-sdk`: `emulator` 37.2.12 and `system-images;android-34;default;x86_64` (about 2.5 GB), AVD `hymns34`.
+`/dev/kvm` exists but belongs to group `kvm` and user `lemuel` is not in it, so the emulator ran in pure software
+(`-accel off`): ~7-25 min to boot, host load average 16 on 8 cores, repeated "System UI / system isn't responding"
+dialogs, host-side graphics crash with `-gpu swiftshader_indirect`, and the sheet never rendered. Stopped to protect the
+shared host. What did work: the debug APK builds from a detached worktree (`git worktree add --detach <dir> HEAD`,
+copy `local.properties`), installs, and `SheetMusicActivity` starts directly with
+`adb shell am start -n com.lemuelinchrist.android.hymns/.content.sheetmusic.SheetMusicActivity -e selectedHymnId <ID>`
+(opens `file:///android_asset/pianoSvg/<ID>.svg`).
+Test plan once KVM is available (user action: `sudo usermod -aG kvm lemuel`, then restart the agent so the group applies):
+in the worktree overwrite five asset slots with one hymn (E505, a sheet whose original says `font-family="serif"`):
+E1 = shipped original (baseline), E2 = our render (text), E3 = `svg_text_to_paths` output, E4 = our render +
+`@font-face` with `url(../fonts/C059-*.otf)` (fonts copied to `assets/fonts/`), E5 = our render + `@font-face` with
+`data:` URI fonts; build, install, start each id, screenshot with `adb exec-out screencap -p`. Expected: E2 and E1 show the
+overlap, E3 and E5 are correct; E4 is the unknown. The test assets and APK from this attempt were built in the
+session scratchpad and are not in the repo. A desktop Chromium run would be only a proxy (WebView treats
+`file:///android_asset` specially).
+
 **(b) Sizes.** Shipped originals (accepted sheets): mean 102 KB raw, 8.8 KB gzipped (the APK stores assets deflated);
 folders 320 MB piano / 295 MB guitar on disk. Our renders: mean 117 KB raw, 9.5 KB gz (+14% raw, +8% gz; 365 MB piano
 build folder). With text outlined (route 2) the 20 test sheets grew 166 -> 230 KB raw and 13 -> 33 KB gz on average
