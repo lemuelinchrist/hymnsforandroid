@@ -124,7 +124,7 @@ def recognize(path):
                 systems[i]['rests'].append({'x': x, 'y': y, 'type': sub})
         elif kind == 'accidentals':
             if s < STAFF_SCALE * 0.9:
-                i = system_of(y, -12.0, 1.0)
+                i = system_of(y, -19.0, 1.0)
                 if i is not None:
                     systems[i]['chordacc'].append({'x': x, 'y': y, 'type': sub})
             else:
@@ -200,20 +200,25 @@ def recognize(path):
         groups.setdefault((round(ox, 3), round(oy, 3)), []).append((ox, oy, nums))
     for (_, _), pieces in groups.items():
         ox, oy = pieces[0][0], pieces[0][1]
-        xs = [n for _, _, nums in pieces for n in nums[0::2]]
-        ys = [n for _, _, nums in pieces for n in nums[1::2]]
-        x0, x1 = min(xs), max(xs)
-        i = system_of(oy + min(ys), -8, 12)
-        if i is None:
-            continue
-        systems[i]['curves'].append({'x0': ox + x0, 'x1': ox + x1, 'y0': oy + ys[0], 'y1': oy + ys[len(ys) // 2],
-                                     'dashed': len(pieces) > 2})
+        widths = [max(nums[0::2]) - min(nums[0::2]) for _, _, nums in pieces]
+        dashed = len(pieces) > 2 or (len(pieces) == 2 and max(widths) < 1.0)
+        # two long pieces with one origin are two real curves (a tie and a slur on the same note), not one dashed one
+        parts = [pieces] if (dashed or len(pieces) == 1) else [[pc] for pc in pieces]
+        for part in parts:
+            xs = [n for _, _, nums in part for n in nums[0::2]]
+            ys = [n for _, _, nums in part for n in nums[1::2]]
+            x0, x1 = min(xs), max(xs)
+            i = system_of(oy + min(ys), -8, 12)
+            if i is None:
+                continue
+            systems[i]['curves'].append({'x0': ox + x0, 'x1': ox + x1, 'y0': oy + ys[0], 'y1': oy + ys[len(ys) // 2],
+                                         'dashed': dashed})
 
     # chord-name text, lyric text, other text
     other = []
     for text, x, y, fam, size, weight, style in sc.texts:
         if fam in ('sans', 'sans-serif') and size < 2.1:
-            i = system_of(y, -12.0, 1.0)            # chord row rises when a boxed mark sits above the staff
+            i = system_of(y, -19.0, 1.0)            # chord row rises when a boxed mark sits above the staff
             if i is not None:
                 systems[i]['chords'].append({'x': x, 'y': y, 'text': text, 'size': size})
                 continue
@@ -272,7 +277,7 @@ def build_ir(path, sc, systems, other):
     measures = []
     lead_sigs = []
     volta_state = {'open': None}
-    state = {'open': None}
+    state = {'open': []}
     for sy in systems:
         ev_x0 = sy['clef']['x'] if sy['clef'] else 0
         changes = [(x, parse_time(items)) for x, items in time_clusters(sy['timesig'])]
@@ -286,8 +291,10 @@ def build_ir(path, sc, systems, other):
         bar_sig = {round(g['x'], 2): g['sig'] for g in body}
         lead_sigs.append(lead[-1]['sig'] if lead else None)
         ev_xs = sorted([h['x'] for h in sy['heads']] + [r['x'] for r in sy['rests']])
+        # a key change in the middle of the previous line stays in force: start this system from the current key
+        sys_base_alters = key_alters(cur_key[0] if cur_key[0] in ('flat', 'sharp') else 'flat', cur_key[1])
         key_changes, cur_key = detect_key_changes(sy, [g['x'] for g in body], ev_xs, cur_key, first_check_start=sy['index'] > 0)
-        sys_measures = split_system(sy, bar_xs, key, base_alters, ir, state, bar_sig, key_changes)
+        sys_measures = split_system(sy, bar_xs, key, sys_base_alters, ir, state, bar_sig, key_changes)
         apply_voltas(sy, sys_measures, volta_state)
         for cx, new_time in changes:
             for m in sys_measures:
@@ -626,34 +633,56 @@ def attach_lyrics_and_curves(sy, events, ir, state):
     if not notes:
         return
     first_x, last_x = notes[0]['x'], notes[-1]['x']
+    # Curves still open from the previous system (a tie and a slur can both leave a line) are matched with the
+    # curves that arrive at the start of this one, biggest to biggest.
+    openers = sorted(state['open'], key=lambda o: -o['size'])
+    state['open'] = []
+    arriving = sorted([c for c in sy['curves'] if c['x0'] < first_x - 1.5], key=lambda c: -(c['x1'] - c['x0']))
+    for c in arriving:
+        if not openers:
+            break
+        o = openers.pop(0)
+        opener = o['ev']
+        b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
+        if same_pitch(opener, b) and opener.get('tie_open'):
+            opener['tie'] = True
+            if c.get('dashed'):
+                opener['tie_dashed'] = True
+        else:
+            opener['slur_start'] = True
+            b['slur_end'] = True
+            if c.get('dashed'):
+                opener['slur_dashed'] = True
+        opener.pop('tie_open', None)
+        c['_done'] = True
+    if openers:
+        ir['warnings'].append('a curve left the previous system but none arrives here')
     for c in sorted(sy['curves'], key=lambda c: c['x0']):
+        if c.get('_done'):
+            continue
         a = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x0']))
         b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
-        starts_before = c['x0'] < first_x - 1.5          # continues from previous system
-        ends_after = c['x1'] > last_x + HEAD_W + 2.0     # continues to next system
-        if starts_before and state['open'] is not None:
-            opener = state['open']
-            state['open'] = None
-            if same_pitch(opener, b) and opener.get('tie_open'):
-                opener['tie'] = True
-                if c.get('dashed'):
-                    opener['tie_dashed'] = True
-            else:
-                opener['slur_start'] = True
-                b['slur_end'] = True
-                if c.get('dashed'):
-                    opener['slur_dashed'] = True
-            opener.pop('tie_open', None)
-            continue
+        ends_after = c['x1'] > last_x + HEAD_W + 2.0 or c['x1'] >= sy['x2'] - 0.3     # continues to next system
         if ends_after:
-            if state['open'] is not None:
-                ir['warnings'].append('two curves open across a system break')
             a['tie_open'] = True
-            state['open'] = a
+            state['open'].append({'ev': a, 'size': c['x1'] - c['x0']})
             continue
         if a is b:
-            ir['warnings'].append('curve with identical endpoints at x=%.1f' % c['x0'])
-            continue
+            # a curve shorter than the note spacing (a tie or slur between notes that nearly touch): both ends pick
+            # the same note. It arrives at that note if its right end is nearer the note's centre, else it leaves it.
+            i = notes.index(b)
+            cb = b['x'] + HEAD_W / 2
+            if abs(c['x1'] - cb) <= abs(c['x0'] - cb) and i > 0:
+                a = notes[i - 1]
+            elif i + 1 < len(notes):
+                b = notes[i + 1]
+            else:                                        # leaves the last note of the line: continues on the next system
+                a['tie_open'] = True
+                state['open'].append({'ev': a, 'size': c['x1'] - c['x0']})
+                continue
+            if a is b:
+                ir['warnings'].append('curve with identical endpoints at x=%.1f' % c['x0'])
+                continue
         if same_pitch(a, b) and notes.index(b) == notes.index(a) + 1:
             a['tie'] = True
             if c.get('dashed'):
