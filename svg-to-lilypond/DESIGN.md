@@ -518,6 +518,34 @@ Remaining `REVIEW` reasons, piano (guitar is similar):
 | 4 | two curves open across a system break (E1340, NS127, NS410) |
 | 2 | one emit error (NS746) and one unsupported notehead (NS812: cross noteheads for spoken text) |
 
+### Visual review 2026-10-05 (task 1 of the media-host session)
+Method: 140 random sheets (70 piano, 70 guitar; seed fixed, lists in `build/sample_*.txt`) were converted on LilyPond
+2.24.4, 36 side-by-side images viewed (21 piano, 15 guitar) with `tools/compare_png.py`, plus the two known
+`TAIL_UNVERIFIED` files NS523 and E1242. Statuses of the 140: 138 `ACCEPT`, 2 `ACCEPT_TAIL_UNVERIFIED` (NS523, E1242);
+no `ACCEPT_DB_MISMATCH` fell into the sample (they are ~4%), so that tier was only seen via E1242-guitar. Music
+(notes, pitches, beams, ties, slurs, chords, key/time, repeats, voltas, fermatas, title block, footer) looked right on
+every image. What was **wrong** (all found by eye, none by the automatic checks):
+
+| # | Defect | How common | Fix |
+|---|---|---|---|
+| 1 | **Sheets typeset on a smaller staff size were rendered at size 16.** The originals have `viewBox` widths 163.8 / 169.5 / 175.5 / 182.0 / 189.0 / 204.8 instead of 153.57 (staff size 13-15.3 pt on the same Letter page, so more bars fit per line). We forced the original line breaks onto a size-16 page: lines overflow, LilyPond squeezes notes or the staff runs off the page. E1242-guitar was `ACCEPT` while its last system left the page; NS523/E1242 spilled to page 2 (`ACCEPT_TAIL_UNVERIFIED`). | 281 of 3,179 sheets per variant (8.8%), both variants | `recognize` records `page_w` from the viewBox; `emit_ly` sets `set-global-staff-size = 16*153.5737/page_w` and converts mm with `215.9/page_w`. NS523, NS123, E1242 now render on one page and are fully verified (`ACCEPT`). |
+| 2 | **"Chorus" (boxed) marks collided with the lyrics of the system above.** The original has chord names above the box above the staff; our `\mark` went above the chord row. | every sheet with a boxed mark (~10-15%) | marks are emitted as `^\markup` scripts on the note (centred), except on notes that also carry a fermata (kept as `\mark`: a script stacks over the fermata and moves it). |
+| 3 | **Dashed ties printed solid** (NS499: `F.~F` with a dashed tie in the original). Only dashed *slurs* were modelled. | rare (a few sheets) | `tie_dashed` flag in recognize/IR, `\once \tieDashed` in emit. |
+| 4 | **Lyric words run together** ("ThatGod", "Whichfor") and **hyphens vanished** in tight syllables ("decreas-ing", "children"): 2.24 packs lyrics tighter than the originals. | very common (most sheets, mildly) | `LyricSpace.minimum-distance = 2.5` and `LyricHyphen.minimum-distance = 0.6` in the Lyrics context. A dense system then overflows and LilyPond squeezes the notes (NS123 had a dotted half 2.7 from its rest instead of 5.7), which the checks do not see, so `convert.py` now (a) computes `squeezed` (neighbouring events less than half as far apart as in the original) and (b) re-converts with LilyPond's own word spacing (hyphen fix kept) when the wide version ends in REVIEW or is squeezed. |
+| 5 | **Indented refrain paragraphs inside a verse lost their gap and indent** (NS534 "(They said:)", E1242, C439...). The IR kept only the text lines. | sheets with a refrain in the verse block (est. 3-5%) | stanza lines now carry `pos` (x, y); `stanza_body` rebuilds the gap and indent with `\translate` (a `\vspace` inside a `\column` costs an extra whole line). `convert.compare_ir` ignores `pos`. |
+| 6 | `repair_hyphens` did not join a word when one of its hyphens was already present ("de-creas-ing" lost the first). | rare | any missing hyphen in the DB-proven word is restored. |
+
+Also fixed on the way: `glyph_names.py` had the 2.24.3 font path hard-coded and silently did nothing on this host
+(2.24.4) - now globbed; one new glyph id `0e14944b` = `scripts.ufermata` (score 0.745, runner-up 0.18) at staff size 13
+in 2.24.4 renders (merged into `data/glyph_names.json`; `data/glyph_census.json` was regenerated from the current
+corpus plus the renders in `build/svg`, which is why it shrank). `convert.py`'s layout search now remembers its best
+one-page attempt and returns to it when a correction overshoots onto a second page.
+
+Not fixed, noted: (a) chord names sit a little lower and closer to the lyric line above than in the original on sheets
+with a boxed mark (cosmetic); (b) an `ACCEPT` does not check page geometry: add a bounding-box test if renders are ever
+shipped (defect 1 would have been caught by "no ink right of the right margin"); (c) horizontal spacing differs
+slightly everywhere (accepted by design); (d) `ACCEPT_DB_MISMATCH` was not covered by this random sample, see task 4.
+
 ### Pipeline modules
 `svgscan.py` (primitives) -> `recognize.py` (IR) -> `emit_ly.py` (.ly) -> LilyPond -> `recognize.py` ->
 `convert.py` (compare IR vs IR', layout calibration) with `verify.py` (V1, V3, V8, hyphen repair).
@@ -657,6 +685,7 @@ Python 3.12 with fontTools/numpy/Pillow.
 - **2026-10-04 (later):** Emulator check of the asset fixes (§11). Corrected an earlier claim: the app does not
   hide the sheet button for missing sheets, it shows a toast. Confirmed the serif-font overlap in the
   Android WebView. Build note: from WSL, build with `cmd.exe /c "set JAVA_HOME=C:\Users\lemue\.jdks\ms-17.0.16&& gradlew.bat :app:assembleDebug"`.
+- **2026-10-05 (media host, visual review):** see section 18 "Visual review 2026-10-05". Six defects found and fixed by eye (staff size from viewBox, boxed marks as scripts, dashed ties, lyric spacing + hyphens with automatic fallback, verse-block refrains, hyphen repair); regression list now 43 entries, all as expected.
 - **2026-10-05 (session 2):** Built the converter (recognize / emit / verify / convert), tests and tools; findings in §18.
   English piano 1,350/1,362 accepted; all groups piano 3,077/3,179 and guitar 3,068/3,179. Wrote the Claude skill
   (`.claude/skills/svg-to-lilypond/SKILL.md`). Corrected an overstatement along the way: the first New Songs run had

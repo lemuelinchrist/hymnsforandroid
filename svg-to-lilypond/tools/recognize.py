@@ -83,6 +83,9 @@ def key_alters(kind, n):
 
 
 # ---------------------------------------------------------------- main
+STD_PAGE_W = 153.5737          # viewBox width (staff spaces) of a Letter page at staff size 16; some sheets use a smaller size
+
+
 def recognize(path):
     sc = parse(path)
     sts = staves(sc)
@@ -250,7 +253,9 @@ def build_ir(path, sc, systems, other):
 
     clusters0 = time_clusters(s0['timesig'])
     time = parse_time(clusters0[0][1]) if clusters0 and clusters0[0][0] < first_head_x else None
-    ir = {'source': os.path.basename(os.path.dirname(path)) + '/' + os.path.basename(path), 'format': sc.fmt,
+    vb = re.search(r'viewBox="([^"]*)"', open(path, encoding='utf8', errors='ignore').read(600))
+    page_w = float(vb.group(1).split()[2]) if vb else STD_PAGE_W
+    ir = {'page_w': page_w, 'source': os.path.basename(os.path.dirname(path)) + '/' + os.path.basename(path), 'format': sc.fmt,
           'key': key, 'time': time, 'systems': [], 'measures': [], 'warnings': [], 'other_text': other}
 
     cur_key = (kind if kind in ('flat', 'sharp') else 'none', n_key)
@@ -617,6 +622,8 @@ def attach_lyrics_and_curves(sy, events, ir, state):
             state['open'] = None
             if same_pitch(opener, b) and opener.get('tie_open'):
                 opener['tie'] = True
+                if c.get('dashed'):
+                    opener['tie_dashed'] = True
             else:
                 opener['slur_start'] = True
                 b['slur_end'] = True
@@ -635,6 +642,8 @@ def attach_lyrics_and_curves(sy, events, ir, state):
             continue
         if same_pitch(a, b) and notes.index(b) == notes.index(a) + 1:
             a['tie'] = True
+            if c.get('dashed'):
+                a['tie_dashed'] = True
         else:
             a['slur_start'] = True
             b['slur_end'] = True
@@ -671,7 +680,7 @@ def clean_event(e):
          'tie': e.get('tie', False), 'slur_start': e.get('slur_start', False), 'slur_end': e.get('slur_end', False),
          'lyrics': e.get('lyrics'), 'tuplet': e.get('tuplet'),
          'beam_start': e.get('beam_start', False), 'beam_end': e.get('beam_end', False), 'marks': e.get('marks'), 'mid_chords': e.get('mid_chords') or None, 'fermata': e.get('fermata'), 'signs': e.get('signs'),
-         'slur_dashed': e.get('slur_dashed', False)}
+         'slur_dashed': e.get('slur_dashed', False), 'tie_dashed': e.get('tie_dashed', False)}
     if e['kind'] == 'note':
         d.update({'letter': e['letter'], 'octave': e['octave'], 'alter': e['alter'], 'step': e['step'],
                   'acc': e['acc']})
@@ -734,7 +743,7 @@ def extract_text(systems, other, ir, rects):
     cols = {}
     for o in verse_texts:
         if 'bold' in o['weight'] and re.fullmatch(r'\d+\.', o['text']):
-            cols.setdefault(round(o['x']), []).append({'number': o['text'], 'y': o['y'], 'x': o['x'], 'lines': []})
+            cols.setdefault(round(o['x']), []).append({'number': o['text'], 'y': o['y'], 'x': o['x'], 'lines': [], 'pos': []})
     stanzas = sorted([st for v in cols.values() for st in v], key=lambda st: (st['x'], st['y']))
     for o in sorted(verse_texts, key=lambda o: (o['y'], o['x'])):
         if 'bold' in o['weight'] and re.fullmatch(r'\d+\.', o['text']):
@@ -745,10 +754,11 @@ def extract_text(systems, other, ir, rects):
             continue
         st = max(cands, key=lambda st: st['y'])
         st['lines'].append(o['text'])
+        st['pos'].append([round(o['x'], 2), round(o['y'], 2)])
     # group stanzas into columns (left to right)
     colx = sorted(set(round(st['x']) for st in stanzas))
     out['verses'] = [{'x': cx, 'y': min(st['y'] for st in stanzas if round(st['x']) == cx),
-                      'stanzas': [{'number': st['number'], 'lines': st['lines']}
+                      'stanzas': [{'number': st['number'], 'lines': st['lines'], 'pos': st['pos']}
                                            for st in stanzas if round(st['x']) == cx]} for cx in colx]
     for k in ('title', 'subtitle', 'number'):
         if out[k]:

@@ -111,6 +111,7 @@ def emit_melody(ir):
             for sg in (e.get('signs') or []):
                 out.append('\\mark \\markup { \\musicglyph "scripts.%s" }' % sg)
             mks = e.get('marks') or []
+            mark_txt = ''
             if mks:
                 def mark_markup(mk):
                     inner = q(mk['text'])
@@ -121,17 +122,25 @@ def emit_melody(ir):
                     if mk.get('boxed'):
                         inner = '\\box ' + inner
                     return inner
+                # a script (not \mark): the originals put the box between chord names and staff, a \mark would go
+                # above the chord row and collide with the lyrics of the system above. With a fermata on the same
+                # note keep \mark (a script would stack over the fermata and move it, which the checks notice).
                 if len(mks) == 1:
-                    out.append('\\mark \\markup { %s }' % mark_markup(mks[0]))
-                else:            # LilyPond keeps one \mark per moment: stack several as a column (top first)
-                    out.append('\\mark \\markup { \\column { %s } }' % ' '.join('\\line { %s }' % mark_markup(m)
-                                                                                for m in mks))
+                    mk_ly = '\\markup { %s }' % mark_markup(mks[0])
+                else:            # several marks on one note: stack them as a column (top first)
+                    mk_ly = '\\markup { \\column { %s } }' % ' '.join('\\line { %s }' % mark_markup(m) for m in mks)
+                if e.get('fermata'):
+                    out.append('\\mark ' + mk_ly)
+                else:
+                    mark_txt = '^' + mk_ly
             if e['kind'] == 'rest':
                 tok = 'r' + event_dur(e)
             else:
                 tok = ly_pitch(e['letter'], e['alter'], e['octave']) + event_dur(e)
                 if e['tie']:
                     tok += '~'
+                    if e.get('tie_dashed'):
+                        tok = '\\once \\tieDashed ' + tok
             if e.get('slur_end'):
                 tok += ')'
                 if dashed_open[0]:
@@ -148,6 +157,7 @@ def emit_melody(ir):
                 tok += ']'
             if e.get('fermata'):
                 tok += '^\\fermata' if e['fermata'] == 'up' else '_\\fermata'
+            tok += mark_txt
             out.append(tok)
         elif kind == 'time':
             out.append(time_token(item[1]))
@@ -242,6 +252,25 @@ def emit_lyrics(ir, warnings):
     return blocks
 
 
+def stanza_body(st):
+    """Lines of one stanza. A sub-paragraph inside a stanza (refrain: a blank gap and an indent in the original) keeps
+    its extra vertical gap and its indent."""
+    pos = st.get('pos')
+    if not pos or len(pos) != len(st['lines']):
+        return ' '.join(q(l) for l in st['lines'])
+    dys = sorted(b[1] - a[1] for a, b in zip(pos, pos[1:]) if b[1] > a[1])
+    pitch = dys[len(dys) // 2] if dys else 0
+    x0 = min(p[0] for p in pos)
+    out = []
+    cum = 0.0
+    for i, (l, (x, y)) in enumerate(zip(st['lines'], pos)):
+        if i and pitch and y - pos[i - 1][1] - pitch > 0.4:
+            cum += y - pos[i - 1][1] - pitch       # a \\vspace inside a \\column costs a whole extra line: shift instead
+        dx = x - x0 if x - x0 > 0.4 else 0.0
+        out.append('\\translate #\'(%.2f . %.2f) %s' % (dx, -cum, q(l)) if (dx or cum) else q(l))
+    return ' '.join(out)
+
+
 def emit_verses(ir):
     cols = ir['text']['verses']
     if not cols:
@@ -252,7 +281,7 @@ def emit_verses(ir):
         for i, st in enumerate(col['stanzas']):
             if i:
                 lines.append('\\vspace #0.88')
-            body = ' '.join(q(l) for l in st['lines'])
+            body = stanza_body(st)
             lines.append('\\line { \\bold %s \\column { %s } }' % (q(st['number']), body))
         return '\\left-column {\n      ' + '\n      '.join(lines) + '\n    }'
     if len(cols) == 1:
@@ -262,13 +291,18 @@ def emit_verses(ir):
     return '\\markup {\n  \\fill-line {\n    %s\n  }\n}\n' % inner
 
 
+def mm_per_space(ir):
+    """Letter page width / viewBox width: sheets typeset with a smaller staff size have a wider viewBox."""
+    return 215.9 / ir.get('page_w', 153.5737)
+
+
 def default_params(ir):
     t = ir['text']
     tops = [s['top'] for s in ir['systems']]
     title_y = t['title']['y'] if t['title'] else 9.63
     gaps = [b - a for a, b in zip(tops, tops[1:])]
     verse_y = min((c['y'] for c in t['verses']), default=None)
-    return {'top_margin': 8.91 + (title_y - 9.63) * 1.406,
+    return {'top_margin': 8.91 + (title_y - 9.63) * mm_per_space(ir),
             'vspace': 0.68 + (tops[0] - 22.967) / 3.0,
             'sys_gap': (sum(gaps) / len(gaps)) if gaps else 12.87,
             'score_gap': (verse_y - tops[-1] - 2.0) if verse_y else 15.0}
@@ -312,7 +346,7 @@ def emit(ir, variant='piano', params=None):
     ly = []
     ly.append('\\version "2.24.3"\n')
     ly.append('%% Generated by svg-to-lilypond from %s\n' % ir['source'])
-    ly.append('#(set-global-staff-size 16)\n')
+    ly.append('#(set-global-staff-size %.3f)\n' % (16 * 153.5737 / ir.get('page_w', 153.5737)))
     score_markup_gap = P['score_gap']
     ly.append('''\\paper {
   #(set-paper-size "letter")
@@ -354,6 +388,12 @@ def emit(ir, variant='piano', params=None):
     for k, body in lyr:
         ly.append('verse%s = \\lyricmode {\n  %s\n}\n' % (['One', 'Two', 'Three', 'Four'][k], body))
     addl = ''.join('    \\addlyrics { \\verse%s }\n' % ['One', 'Two', 'Three', 'Four'][k] for k, _ in lyr)
+    # 2.24 packs syllables tighter than the originals: keep words apart and hyphens drawn (the wider word gap is
+    # dropped by convert.py when a dense system overflows with it and ends in REVIEW)
+    lyr_ctx = '    \\context {\n      \\Lyrics\n      \\override LyricHyphen.minimum-distance = #0.6\n'
+    if P.get('lyric_space'):
+        lyr_ctx += '      \\override LyricSpace.minimum-distance = #%.1f\n' % P['lyric_space']
+    lyr_ctx += '    }\n'
     ly.append('''\\score {
   <<
     \\new ChordNames \\with {
@@ -370,13 +410,17 @@ def emit(ir, variant='piano', params=None):
       \\override RehearsalMark.self-alignment-X = #CENTER
     }
     \\context {
+      \\Staff
+      \\override TextScript.self-alignment-X = #CENTER
+    }
+%s    \\context {
       \\Score
       %% line breaks come only from the explicit break marks (one per original system)
       \\override NonMusicalPaperColumn.line-break-permission = ##f
     }
   }
 }
-''' % addl)
+''' % (addl, lyr_ctx))
     ly.append(emit_verses(ir))
     for ins in ir['text']['instructions']:
         if ins['y'] < tops[0] - 0.5:

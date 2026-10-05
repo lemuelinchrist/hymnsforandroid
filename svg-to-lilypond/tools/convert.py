@@ -98,9 +98,10 @@ def compare_ir(a, b):
             diffs.append('%s %r vs %r' % (k, va, vb))
     if ''.join(f['text'] for f in ta['footer']).replace(' ', '') != ''.join(f['text'] for f in tb['footer']).replace(' ', ''):
         diffs.append('footer differs')
-    if ta['verses'] != tb['verses']:
-        va = [(c['x'] and 0, c['stanzas']) for c in ta['verses']]
-        vb = [(c['x'] and 0, c['stanzas']) for c in tb['verses']]
+    if True:
+        def plain(cols):             # positions ('pos') are layout, not content
+            return [(c['x'] and 0, [(st['number'], st['lines']) for st in c['stanzas']]) for c in cols]
+        va, vb = plain(ta['verses']), plain(tb['verses'])
         if va != vb:
             diffs.append('verse block differs')
     if [i['text'] for i in ta['instructions']] != [i['text'] for i in tb['instructions']]:
@@ -180,7 +181,7 @@ def next_vspace(history, target):
 def adjust_params(p, d, history, got_top0, target_top0):
     p = dict(p)
     if 'title' in d:
-        p['top_margin'] += d['title'] * 1.406
+        p['top_margin'] += d['title'] * p.get('mm_per_space', 1.406)
         got_top0 += d['title']                            # moving the title also moves the staff
     history.append((p['vspace'], got_top0))
     p['vspace'] = next_vspace(history, target_top0)
@@ -208,6 +209,38 @@ def render(ly_path, svg_out):
 
 
 def process(path, variant=None):
+    """Convert with the wide lyric spacing; if that ends in REVIEW (a dense system overflows and LilyPond squeezes
+    the notes), convert again with LilyPond's own spacing and keep that result when it is better."""
+    res = process_once(path, variant, LYRIC_SPACE)
+    if res.get('status') == 'REVIEW' or res.get('squeezed'):
+        res2 = process_once(path, variant, None)
+        if (res2.get('status') != 'REVIEW' and res.get('status') == 'REVIEW') or \
+                (res2.get('status') != 'REVIEW' and res2.get('squeezed', 0) < res.get('squeezed', 0)):
+            res2['lyric_space'] = 'default'
+            return res2
+        process_once(path, variant, LYRIC_SPACE)       # leave the .ly/.svg of the preferred version in build/
+    return res
+
+
+def squeezed_events(ir, ir2):
+    """Number of neighbouring events that our render put less than half as far apart as the original (a system that
+    overflowed with the wide lyric spacing is compressed by LilyPond; the checks do not see that)."""
+    a = [e for m in ir['measures'] for e in m['events']]
+    b = [e for m in ir2['measures'] for e in m['events']]
+    if len(a) != len(b):
+        return 0
+    n = 0
+    for i in range(1, len(a)):
+        if a[i]['x'] > a[i - 1]['x'] and b[i]['x'] > b[i - 1]['x'] and a[i]['x'] - a[i - 1]['x'] > 3.0 and \
+                (b[i]['x'] - b[i - 1]['x']) < 0.5 * (a[i]['x'] - a[i - 1]['x']):
+            n += 1
+    return n
+
+
+LYRIC_SPACE = 2.5
+
+
+def process_once(path, variant, lyric_space):
     hid = os.path.basename(path)[:-4]
     variant = variant or os.path.basename(os.path.dirname(path)).replace('Svg', '')
     res = {'id': hid, 'variant': variant}
@@ -232,35 +265,52 @@ def process(path, variant=None):
     json.dump(ir, open(os.path.join(BUILD, 'ir', variant, hid + '.json'), 'w'))
     from emit_ly import default_params
     params = default_params(ir)
+    params['lyric_space'] = lyric_space
+    params['mm_per_space'] = 215.9 / ir.get('page_w', 153.5737)
     ir2 = None
     history = []
-    for attempt in range(9):                      # emit -> render -> measure -> correct layout (max 8 corrections)
-        try:
-            text, ewarn = emit(ir, variant, params)
-        except Exception as e:  # noqa: BLE001
-            res.update(status='emit_error', detail=repr(e)[:160])
-            return res
-        res['emit_warnings'] = ewarn
+    overflow = ir.get('max_y', 0) > 198.75 * ir.get('page_w', 153.5737) / 153.5737
+    best = None                                   # best attempt that kept the page count of the original
+
+    def attempt_once(params):
+        text, ewarn = emit(ir, variant, params)
         ly_path = os.path.join(BUILD, 'ly', variant, hid + '.ly')
         os.makedirs(os.path.dirname(ly_path), exist_ok=True)
         open(ly_path, 'w', encoding='utf8').write(text)
         svg_path, msgs, pages = render(ly_path, os.path.join(BUILD, 'svg', variant, hid + '.svg'))
-        res['lilypond_msgs'] = msgs[:3]
-        res['pages'] = pages
         if svg_path is None:
-            res.update(status='render_error', detail='; '.join(msgs[:2])[:200])
-            return res
+            return dict(err=('render_error', '; '.join(msgs[:2])[:200]))
         try:
             ir2 = recognize(svg_path)
         except Exception as e:  # noqa: BLE001
-            res.update(status='roundtrip_recognition_error', detail=repr(e)[:200])
+            return dict(err=('roundtrip_recognition_error', repr(e)[:200]))
+        return dict(ewarn=ewarn, svg_path=svg_path, msgs=msgs, pages=pages, ir2=ir2, d=layout_deltas(ir, ir2))
+
+    for attempt in range(9):                      # emit -> render -> measure -> correct layout (max 8 corrections)
+        try:
+            r = attempt_once(params)
+        except Exception as e:  # noqa: BLE001
+            res.update(status='emit_error', detail=repr(e)[:160])
             return res
-        d = layout_deltas(ir, ir2)
-        res['layout_err'] = d
+        if r.get('err'):
+            res.update(status=r['err'][0], detail=r['err'][1])
+            return res
+        ewarn, svg_path, msgs, pages, ir2, d = (r[k] for k in ('ewarn', 'svg_path', 'msgs', 'pages', 'ir2', 'd'))
+        if (pages == 1 or overflow) and d:
+            score = max(abs(v) for v in d.values())
+            if best is None or score < best[0]:
+                best = (score, params)
         if attempt == 8 or not d or max(abs(v) for v in d.values()) < 0.25:
             break
         params = adjust_params(params, d, history, ir2['systems'][0]['top'], ir['systems'][0]['top'])
-    overflow = ir.get('max_y', 0) > 198.75
+    if pages != 1 and not overflow and best is not None:      # the search overshot onto a second page: go back
+        r = attempt_once(best[1])
+        if not r.get('err'):
+            ewarn, svg_path, msgs, pages, ir2, d = (r[k] for k in ('ewarn', 'svg_path', 'msgs', 'pages', 'ir2', 'd'))
+    res['emit_warnings'] = ewarn
+    res['lilypond_msgs'] = msgs[:3]
+    res['pages'] = pages
+    res['layout_err'] = d
     res['original_overflows_page'] = overflow
     cmp_ir = ir
     if overflow and pages > 1:
@@ -272,6 +322,7 @@ def process(path, variant=None):
         diffs = [d for d in diffs if not d.startswith(('verse block differs', 'footer differs'))]
         res['tail_unverified'] = True
     res['v2'] = diffs
+    res['squeezed'] = 0 if (diffs or (overflow and pages > 1)) else squeezed_events(ir, ir2)
     if pages == 1:
         cov = coverage_diff(path, svg_path)
         res['coverage'] = cov
