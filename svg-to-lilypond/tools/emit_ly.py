@@ -282,7 +282,10 @@ def emit_verses(ir):
             if i:
                 lines.append('\\vspace #0.88')
             body = stanza_body(st)
-            lines.append('\\line { \\bold %s \\column { %s } }' % (q(st['number']), body))
+            if st['number'] is None:                                   # unnumbered block (bridge, ending, children's song)
+                lines.append('\\column { %s }' % body)
+            else:
+                lines.append('\\line { \\bold %s \\column { %s } }' % (q(st['number']), body))
         return '\\left-column {\n      ' + '\n      '.join(lines) + '\n    }'
     if len(cols) == 1:
         inner = '\\null\n    \\line { %s \\hspace #1.1 }\n    \\null' % col_markup(cols[0])

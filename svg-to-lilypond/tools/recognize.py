@@ -809,21 +809,36 @@ def extract_text(systems, other, ir, rects):
         if 'bold' in o['weight'] and re.fullmatch(r'\d+\.', o['text']):
             cols.setdefault(round(o['x']), []).append({'number': o['text'], 'y': o['y'], 'x': o['x'], 'lines': [], 'pos': []})
     stanzas = sorted([st for v in cols.values() for st in v], key=lambda st: (st['x'], st['y']))
+    free = []
     for o in sorted(verse_texts, key=lambda o: (o['y'], o['x'])):
         if 'bold' in o['weight'] and re.fullmatch(r'\d+\.', o['text']):
             continue
-        cands = [st for st in stanzas if st['y'] <= o['y'] + 0.01 and o['x'] > st['x'] and o['x'] - st['x'] < 6]
+        # a line belongs to the nearest column to its left (refrain paragraphs are indented ~7 units more than the
+        # stanza text; columns are 40+ units apart), and to the last stanza above it in that column
+        cands = [st for st in stanzas if st['y'] <= o['y'] + 0.01 and o['x'] > st['x'] and o['x'] - st['x'] < 20]
         if not cands:
-            out['leftover'].append(o)
+            free.append(o)                        # not under a numbered stanza: an unnumbered block (bridge, ending...)
             continue
-        st = max(cands, key=lambda st: st['y'])
+        st = max(cands, key=lambda st: (round(st['x']), st['y']))
         st['lines'].append(o['text'])
         st['pos'].append([round(o['x'], 2), round(o['y'], 2)])
-    # group stanzas into columns (left to right)
-    colx = sorted(set(round(st['x']) for st in stanzas))
-    out['verses'] = [{'x': cx, 'y': min(st['y'] for st in stanzas if round(st['x']) == cx),
-                      'stanzas': [{'number': st['number'], 'lines': st['lines'], 'pos': st['pos']}
-                                           for st in stanzas if round(st['x']) == cx]} for cx in colx]
+    # unnumbered blocks: lines with one left edge, top to bottom, form one block (a column of its own)
+    blocks = []
+    for o in sorted(free, key=lambda o: (round(o['x'], 1), o['y'])):
+        for b in blocks:
+            if abs(b['x'] - o['x']) < 1.0 and o['y'] >= b['pos'][-1][1]:
+                b['lines'].append(o['text'])
+                b['pos'].append([round(o['x'], 2), round(o['y'], 2)])
+                break
+        else:
+            blocks.append({'number': None, 'x': o['x'], 'y': o['y'], 'lines': [o['text']], 'pos': [[round(o['x'], 2), round(o['y'], 2)]]})
+    # group stanzas into columns (left to right); a block is a column of its own
+    columns = {}
+    for st in stanzas + blocks:
+        columns.setdefault(round(st['x']), []).append(st)
+    out['verses'] = [{'x': cx, 'y': min(st['y'] for st in sts),
+                      'stanzas': [{'number': st['number'], 'lines': st['lines'], 'pos': st['pos']} for st in sts]}
+                     for cx, sts in sorted(columns.items())]
     for k in ('title', 'subtitle', 'number'):
         if out[k]:
             out[k] = {'text': out[k]['text'], 'x': out[k]['x'], 'y': out[k]['y']}
