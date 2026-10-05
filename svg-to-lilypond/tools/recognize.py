@@ -211,6 +211,15 @@ def recognize(path):
             i = system_of(oy + min(ys), -8, 12)
             if i is None:
                 continue
+            # a slur lifted above a tuplet bracket sits between two systems: assign it to the system whose
+            # noteheads it actually joins (nearest head height at the curve's ends)
+            cy = oy + ys[0]
+            def head_gap(k):
+                near = [h for h in systems[k]['heads'] if min(abs(h['x'] - (ox + x0)), abs(h['x'] - (ox + x1))) < 3.5]
+                return min([abs(h['y'] - cy) for h in near] or [1e9])
+            cands = [k for k, t in enumerate(tops) if t - 8 <= oy + min(ys) <= t + 12]
+            if len(cands) > 1:
+                i = min(cands, key=head_gap)
             systems[i]['curves'].append({'x0': ox + x0, 'x1': ox + x1, 'y0': oy + ys[0], 'y1': oy + ys[len(ys) // 2],
                                          'dashed': dashed})
 
@@ -637,14 +646,14 @@ def attach_lyrics_and_curves(sy, events, ir, state):
     # curves that arrive at the start of this one, biggest to biggest.
     openers = sorted(state['open'], key=lambda o: -o['size'])
     state['open'] = []
-    arriving = sorted([c for c in sy['curves'] if c['x0'] < first_x - 1.5], key=lambda c: -(c['x1'] - c['x0']))
+    arriving = sorted([c for c in sy['curves'] if c['x0'] < first_x - 0.4], key=lambda c: -(c['x1'] - c['x0']))
     for c in arriving:
         if not openers:
             break
         o = openers.pop(0)
         opener = o['ev']
         b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
-        if same_pitch(opener, b) and opener.get('tie_open'):
+        if same_pitch(opener, b) and opener.get('tie_open') and b is notes[0]:      # a tie joins neighbouring notes only
             opener['tie'] = True
             if c.get('dashed'):
                 opener['tie_dashed'] = True
@@ -664,7 +673,7 @@ def attach_lyrics_and_curves(sy, events, ir, state):
         b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
         ends_after = c['x1'] > last_x + HEAD_W + 2.0 or c['x1'] >= sy['x2'] - 0.3     # continues to next system
         if ends_after:
-            a['tie_open'] = True
+            a['tie_open'] = a is notes[-1]                  # only the last note of the line can be tied over the break
             state['open'].append({'ev': a, 'size': c['x1'] - c['x0']})
             continue
         if a is b:
@@ -796,7 +805,7 @@ def extract_text(systems, other, ir, rects):
             boxed = any(y - 3.4 < r[1] < y - 1.4 for r in hor) and any(y - 0.2 < r[1] < y + 1.5 for r in hor)
             out['marks'].append({'text': t, 'x': x, 'y': y, 'width': w, 'bold': bold, 'boxed': boxed,
                                  'italic': 'italic' in o['style'], 'system': sysi})
-        elif abs(size - 2.2) < 0.05 and y > tops[-1] + 14:
+        elif abs(size - 2.2) < 0.05 and y > tops[-1] + 10:
             verse_texts.append(o)
         elif abs(size - 2.2) < 0.05 and bold and re.fullmatch(r'(\d+\.|\(.*\))', t):
             out['labels'].append(o)                           # stanza label at the start of a lyric line
