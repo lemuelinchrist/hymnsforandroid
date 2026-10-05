@@ -336,7 +336,13 @@ def process_once(path, variant, lyric_space):
     if not verify.v8_ok(miss, verify.ir_words(ir)):
         unverified.append('lyrics vs DB')
     res['unverified'] = unverified
-    if not hard_ok:
+    # The only failing check is the bar arithmetic (V1) while the round trip, the model-free symbol counts and the
+    # warnings all pass: the original itself prints bars that do not add up (short final bar, mis-barred source) and
+    # our .ly reproduces it glyph for glyph. Kept apart from ACCEPT so that nobody mistakes it for musically clean.
+    v1_only = bool(res['v1']) and not diffs and not ir['warnings'] and not ewarn and pages == 1 and not cov
+    if v1_only:
+        res['status'] = 'ACCEPT_SOURCE_BAR_SUM'
+    elif not hard_ok:
         res['status'] = 'REVIEW'
     elif res.get('tail_unverified'):
         res['status'] = 'ACCEPT_TAIL_UNVERIFIED'

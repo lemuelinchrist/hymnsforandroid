@@ -229,7 +229,17 @@ def recognize(path):
         if 'italic' in o['style'] and re.fullmatch(r'[2-9]', o['text']) and o['size'] < 1.9:
             i = system_of(o['y'], -7, 11)
             if i is not None:
-                systems[i]['tuplets'].append({'x': o['x'], 'y': o['y'], 'n': int(o['text'])})
+                tb = {'x': o['x'], 'y': o['y'], 'n': int(o['text'])}
+                # the bracket: two horizontal pieces either side of the digit, ~0.6 above its baseline; its ends
+                # tell which notes are in the group (the digit alone cannot: 3 over quarter, quarter, 2 eighths)
+                dx = o['x'] + 0.45
+                hs = [l for l in sc.lines if abs(l[2] - l[0]) > 0.8 and abs(l[1] - (o['y'] - 0.6)) < 0.8]
+                left = [l for l in hs if min(l[0], l[2]) < dx and max(l[0], l[2]) > dx - 2.2 and max(l[0], l[2]) <= dx + 0.2]
+                right = [l for l in hs if max(l[0], l[2]) > dx and min(l[0], l[2]) >= dx - 0.2 and min(l[0], l[2]) < dx + 3.2]
+                if left and right:
+                    tb['x0'] = min(min(l[0], l[2]) for l in left)
+                    tb['x1'] = max(max(l[0], l[2]) for l in right)
+                systems[i]['tuplets'].append(tb)
                 continue
         rest.append(o)
     return build_ir(path, sc, systems, rest)
@@ -517,7 +527,11 @@ def count_dots(e, sy):
     xs = []
     for d in sy['dots']:
         dx = d['x'] - e['x']
-        if 1.2 < dx < 3.6 and (abs(d['y'] - e['y']) < 0.08 or abs(d['y'] - (e['y'] - 0.5)) < 0.08):
+        if any(abs(d2['x'] - d['x']) < 0.05 and 0.9 < abs(d2['y'] - d['y']) < 1.1 for d2 in sy['dots']):
+            continue                  # one of a vertical pair: a repeat sign, not an augmentation dot
+        whole_rest = e['kind'] == 'rest' and e.get('base') == 1      # hangs from line 4: its dot is half a space below
+        if 1.2 < dx < 3.6 and (abs(d['y'] - e['y']) < 0.08 or abs(d['y'] - (e['y'] - 0.5)) < 0.08 or
+                               (whole_rest and abs(d['y'] - (e['y'] + 0.5)) < 0.08)):
             xs.append(d['x'])
     xs.sort()
     # consecutive dots are ~1 apart
@@ -651,6 +665,12 @@ def attach_lyrics_and_curves(sy, events, ir, state):
                 a['slur_dashed'] = True
 
 
+def frac_of(e):
+    """Written duration of an event (before any tuplet scaling)."""
+    d = Fraction(1, e['base'])
+    return d * Fraction(2 ** e['dots'] * 2 - 1, 2 ** e['dots']) if e['dots'] else d
+
+
 def assign_tuplets(sy, measures, ir):
     """Italic digit above/below a group of n consecutive events scales their durations."""
     for e in [e for m in measures for e in m['events']]:
@@ -658,6 +678,22 @@ def assign_tuplets(sy, measures, ir):
     for t in sy['tuplets']:
         n = t['n']
         cx = t['x'] + 0.45
+        den = {2: 3, 3: 2, 4: 3, 5: 4, 6: 4, 7: 4, 8: 6, 9: 8}[n]
+        if 'x0' in t:                 # group = the events inside the bracket (may be more events than the digit)
+            for m in measures:
+                grp = [e for e in m['events'] if e['x'] + HEAD_W > t['x0'] + 0.2 and e['x'] < t['x1'] - 0.2]   # head overlaps the bracket
+                if len(grp) < 2 or any(e.get('tuplet') for e in grp):
+                    continue
+                total = sum(frac_of(e) for e in grp)
+                u = total / n                                    # one tuplet unit
+                if u.numerator == 1 and (u.denominator & (u.denominator - 1)) == 0:     # unit is a power of two
+                    for k, e in enumerate(grp):
+                        e['tuplet'] = {'num': n, 'den': den, 'start': k == 0, 'end': k == len(grp) - 1}
+                    break
+            else:
+                grp = None
+            if grp:
+                continue
         best, bd = None, 1e9
         for m in measures:
             evs = m['events']
@@ -670,7 +706,6 @@ def assign_tuplets(sy, measures, ir):
         if best is None or bd > 2.5:
             ir['warnings'].append('tuplet number %d at x=%.1f not matched to a group' % (n, t['x']))
             continue
-        den = {2: 3, 3: 2, 4: 3, 5: 4, 6: 4, 7: 4, 8: 6, 9: 8}[n]
         for k, e in enumerate(best):
             e['tuplet'] = {'num': n, 'den': den, 'start': k == 0, 'end': k == n - 1}
 
