@@ -518,6 +518,31 @@ Remaining `REVIEW` reasons, piano (guitar is similar):
 | 4 | two curves open across a system break (E1340, NS127, NS410) |
 | 2 | one emit error (NS746) and one unsupported notehead (NS812: cross noteheads for spoken text) |
 
+### Full run after the visual-review fixes (2026-10-05, media host, LilyPond 2.24.4, `-j 8` under nice)
+| | Piano | Guitar |
+|---|---|---|
+| files | 3,179 | 3,179 |
+| `ACCEPT` | 3,001 (was 2,940) | 2,989 (was 2,886) |
+| `ACCEPT_DB_MISMATCH` | 79 (was 116) | 82 (was 160) |
+| `ACCEPT_TAIL_UNVERIFIED` | 0 (was 21) | 0 (was 22) |
+| **accepted in total** | **3,080 (96.9%)** | **3,071 (96.6%)** |
+| `REVIEW` | 97 | 106 |
+| `recognition_error` / `emit_error` | 1 / 1 (NS812, NS746) | 1 / 1 |
+
+Changes behind the numbers: no sheet spills to a second page any more (staff size from the viewBox), so the
+`TAIL_UNVERIFIED` tier is empty and those 43 sheets are now fully verified; the hyphen repair removed ~40-80 false
+`DB_MISMATCH`es. 264 piano / 296 guitar sheets (8-9%) are rendered with LilyPond's own word spacing because the wider
+spacing made a dense system overflow (`lyric_space: "default"` in the report).
+The first pass of this run ended with 30 piano + 30 guitar `roundtrip_recognition_error` (unknown glyph ids in
+renders at other staff sizes: flags d3/d4/u4, digits, rests.4, natural at scale 0.0040); after naming them (census +
+`glyph_names.py`, all scores 0.77-0.92) 58 of the 60 convert and are accepted. The REVIEW list is otherwise the old one
+(round-trip differences, bar sums, volta placement, dotted whole notes, key cancellation, curves); NS349 (3/2 bar) and
+NS10082 (Chorus mark on a rest) are the two that the glyph update exposed. Timing: ~75 min E, ~2 h NS, ~12 min each
+for CS/BF/C/CH per variant at `-j 8` (about 3x slower than the old `-j 14` figures: fewer cores, nice, retries).
+Open question: the earlier table listed 7 dot-count and 7 key-change REVIEWs; this run has E522 E887 E983 E1097 E1186
+E1250 (dots) and E323 E879 E924 (flats/naturals), consistent with that, but I did not diff against the old reports
+(they were not kept), so a regression among them is not excluded.
+
 ### Visual review 2026-10-05 (task 1 of the media-host session)
 Method: 140 random sheets (70 piano, 70 guitar; seed fixed, lists in `build/sample_*.txt`) were converted on LilyPond
 2.24.4, 36 side-by-side images viewed (21 piano, 15 guitar) with `tools/compare_png.py`, plus the two known
@@ -686,6 +711,7 @@ Python 3.12 with fontTools/numpy/Pillow.
   hide the sheet button for missing sheets, it shows a toast. Confirmed the serif-font overlap in the
   Android WebView. Build note: from WSL, build with `cmd.exe /c "set JAVA_HOME=C:\Users\lemue\.jdks\ms-17.0.16&& gradlew.bat :app:assembleDebug"`.
 - **2026-10-05 (media host, visual review):** see section 18 "Visual review 2026-10-05". Six defects found and fixed by eye (staff size from viewBox, boxed marks as scripts, dashed ties, lyric spacing + hyphens with automatic fallback, verse-block refrains, hyphen repair); regression list now 43 entries, all as expected.
+- **2026-10-05 (media host, full run):** piano 3,080/3,179, guitar 3,071/3,179 accepted; strict ACCEPT 3,001 / 2,989; TAIL_UNVERIFIED tier empty. New glyph ids named. See section 18.
 - **2026-10-05 (session 2):** Built the converter (recognize / emit / verify / convert), tests and tools; findings in §18.
   English piano 1,350/1,362 accepted; all groups piano 3,077/3,179 and guitar 3,068/3,179. Wrote the Claude skill
   (`.claude/skills/svg-to-lilypond/SKILL.md`). Corrected an overstatement along the way: the first New Songs run had
