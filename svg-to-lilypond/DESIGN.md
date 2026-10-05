@@ -469,6 +469,67 @@ From the user, 2026-10-04. The current converter should not block these:
   capo, plus capo text). Blocked until V7 shows how often guitar chords are exactly the transposed
   piano chords.
 
+### 15.1 App-readiness prototype (2026-10-05, media host; no app code touched)
+Question: can the app ship sheets rendered from our `.ly`? Three things were checked on LilyPond 2.24.4.
+
+**(a) Fonts / "serif" overlap in the WebView.** The app loads each sheet with
+`webview.loadUrl("file:///android_asset/<folder>/<id>.svg")` (SheetMusicActivity), so the SVG itself must be
+self-sufficient. LilyPond's SVG backend already converts *music* glyphs to paths, but lyrics, chords, titles are
+`<text font-family=...>` and there is **no LilyPond option to outline them** (`lilypond -dhelp`: `svg-woff` only changes how
+music glyphs are referenced, `music-strings-to-paths` only affects music-font strings; no PDF/Ghostscript SVG device on
+this host either). Routes tried:
+1. `rsvg-convert -f svg`: works (cairo outlines everything) but 37 KB -> 617 KB per sheet (every notehead as absolute
+   path data). Rejected.
+2. **`tools/svg_text_to_paths.py`** (new): replaces each `<text>` by `<use xlink:href>` references to glyph outlines
+   from the real fonts (Century Schoolbook L -> URW C059, sans-serif/Trebuchet -> DejaVu Sans, CJK fallback ->
+   Droid Sans Fallback), each glyph defined once per file in `<defs>`. Needs only fontTools. Tested on 20 sheets
+   (12 piano, 8 guitar, incl. Chinese C439/CS308, the large NS123, E1242): 0 `<text>` left in every file, all render
+   in rsvg; pixel difference from the text version is 0.3-1% of pixels (no kerning pairs are applied; sub-0.1 staff
+   space drift on long words; visually identical side by side), Chinese sheets differ more only because the
+   reference render used another CJK font. Runs in ~0.02 s per file.
+3. Not tested (no emulator on this host): `@font-face` with the fonts shipped once as app assets and referenced from
+   each SVG's `<style>`. Zero per-file cost, but a WebView loading `file:///android_asset` SVGs may refuse a font
+   from another `file://` URL. Worth an emulator test before choosing; a `data:` URI font per file always works but
+   costs about as much as route 2.
+The fonts' licences allow embedding glyph outlines in documents (URW fonts: GPL/AGPL with font exception; DejaVu: free).
+Caveat: nothing here was run in a real Android WebView; the claim "no installed fonts needed" rests on the files
+containing no text at all.
+
+**(b) Sizes.** Shipped originals (accepted sheets): mean 102 KB raw, 8.8 KB gzipped (the APK stores assets deflated);
+folders 320 MB piano / 295 MB guitar on disk. Our renders: mean 117 KB raw, 9.5 KB gz (+14% raw, +8% gz; 365 MB piano
+build folder). With text outlined (route 2) the 20 test sheets grew 166 -> 230 KB raw and 13 -> 33 KB gz on average
+(the sample leans to big sheets). Extrapolated to the corpus: about +55 KB raw / +20 KB gz per sheet, i.e. roughly
+530 MB raw and ~90 MB deflated per variant versus 320 MB / ~27 MB today (estimate, not measured on a full run).
+For comparison the `.ly` source is 4.5 KB per sheet (28 MB for both variants raw), but the app cannot run LilyPond.
+Ways to cut it if size matters: ship the fonts once (3 above), round the glyph path coordinates, or outline only
+lyric/chord words that occur in several sheets via shared symbols (not possible across files).
+
+**(c) Transposition.** `tools/transpose_check.py` wraps melody and chords in `\transpose c <to>`, re-renders, reads the
+render back with the recognizer and checks (1) every note, every chord root and slash-chord bass, and the key tonic
+moved by the same number of semitones, (2) everything else is unchanged (durations, ties, slurs, beams, lyrics, marks,
+repeats, voltas, bar types, chord order and qualities) using the converter's own `compare_ir` with pitches neutralised,
+(3) transposing back gives exactly the original IR. Results on 11 hymns (piano E625 slash chords, NS516 repeat + volta +
+Ab key, E751 sharps, E26 four sharps with double sharps, NS499 ties and dashed ties, E1 pickup, BF3, E643 in 6/4,
+NS948 repeats/voltas, CS308 Chinese; guitar E5 capo 3, NS534) at +2, +5, -2 semitones (and +6 on 6 of them): **all OK**,
+one page each, e.g. NS516 Ab -> Bb with `Eb/G` -> `F/A`, `Fm` -> `Gm`, volta brackets intact (viewed). What does not
+work or needs care:
+- c -> ges (+6, six or seven flats, double flats appear) renders fine in LilyPond but three of six sheets failed
+  *our checker* with two unknown glyph ids (probably double flat / large key signature shapes): needs a glyph census
+  of transposed renders before extreme keys can be verified automatically.
+- `\transpose` picks sharp/flat spelling itself (a "Gb" hymn may come out as "F#"); to force a spelling use the
+  target pitch (`ges` vs `fis`).
+- Guitar sheets already contain the capo transposition and a "(Guitar: Capo N)" title line: transposing a guitar
+  sheet needs the capo number recomputed (or guitar chords derived from the piano chords, section 15 "Single source").
+- Playback: the MIDI file is fixed per tune code, so audio will not follow a transposed sheet.
+- The text of the title block and verses is not transposed (no pitch content); the hymn's key in the database is not touched.
+
+**Recommended next steps.** (1) Decide the font route with an emulator test (route 3 vs 2), then add
+`svg_text_to_paths` as the last step of the pipeline for any sheets that ship. (2) Keep shipping the original SVG for the
+~100 REVIEW sheets per variant; only swap accepted ones (list in `ly/status.csv`). (3) For transposition in the app a
+server/offline step is needed (LilyPond cannot run on the phone): pre-render the 12 keys for chosen hymns, or move
+to an in-app renderer (e.g. verovio/MusicXML) - a separate project; the `.ly` files are the right archival source for either.
+(4) Add a geometry check (no ink outside the page, no overlapping text) to the acceptance tests before shipping renders.
+
 ---
 
 ## 18. Implementation status and findings (2026-10-05)
@@ -675,6 +736,8 @@ where checked by eye; see `ACCEPT_DB_MISMATCH`), and the REVIEW table above.
 | `experiments/E1_opus_variant.ly`, `E1_sonnet_variant.ly` | Hand-written E1 transcriptions (layout experiments, §8). |
 | `experiments/cmp.py`, `report.py`, `glyphs.py` | Early comparison helpers from the E1 experiment (superseded by `tools/`). |
 | `ly/` | **Committed** generated `.ly` for the accepted sheets (3,080 piano, 3,071 guitar) + `status.csv` + README. Never hand-edit; refresh after significant converter changes. |
+| `tools/svg_text_to_paths.py` | Outlines the `<text>` of a LilyPond SVG so it needs no installed fonts (section 15.1). |
+| `tools/transpose_check.py` | `\\transpose` round-trip and semitone check for converted hymns (section 15.1). |
 | `build/` | Generated renders, contact sheets. Git-ignored and safe to delete. |
 
 Rebuild everything: `cd svg-to-lilypond && python3 tools/glyph_census.py && python3 tools/glyph_names.py > build/glyph_names.txt && python3 tools/features.py`
@@ -714,6 +777,7 @@ Python 3.12 with fontTools/numpy/Pillow.
 - **2026-10-05 (media host, visual review):** see section 18 "Visual review 2026-10-05". Six defects found and fixed by eye (staff size from viewBox, boxed marks as scripts, dashed ties, lyric spacing + hyphens with automatic fallback, verse-block refrains, hyphen repair); regression list now 43 entries, all as expected.
 - **2026-10-05 (media host, full run):** piano 3,080/3,179, guitar 3,071/3,179 accepted; strict ACCEPT 3,001 / 2,989; TAIL_UNVERIFIED tier empty. New glyph ids named. See section 18.
 - **2026-10-05 (media host):** accepted `.ly` files committed under `svg-to-lilypond/ly/` (user decision: they took ~6.5 h to build). REVIEW sheets stay in `build/`.
+- **2026-10-05 (media host, task 2):** app-readiness prototype: text-as-outline tool, size comparison, `\\transpose` checked on 11 hymns; report in section 15.1.
 - **2026-10-05 (session 2):** Built the converter (recognize / emit / verify / convert), tests and tools; findings in §18.
   English piano 1,350/1,362 accepted; all groups piano 3,077/3,179 and guitar 3,068/3,179. Wrote the Claude skill
   (`.claude/skills/svg-to-lilypond/SKILL.md`). Corrected an overstatement along the way: the first New Songs run had
