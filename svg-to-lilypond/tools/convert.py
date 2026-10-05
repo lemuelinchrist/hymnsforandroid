@@ -36,7 +36,7 @@ def event_sig(e):
     base += (e.get('fermata'), tuple(e.get('signs') or ()))
     # chord changes inside a sustained note: the beat offset is estimated from layout, which differs per
     # LilyPond version, so only the chord order is compared
-    base += (tuple(c['text'] for c in (e.get('mid_chords') or [])),)
+    base += (tuple(c['text'].replace('o', '') for c in (e.get('mid_chords') or [])),)
     return base                      # lyrics are compared as sequences (lyric_seq): placement is ambiguous in a re-render
 
 

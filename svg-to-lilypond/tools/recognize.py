@@ -623,8 +623,11 @@ def attach_chords(sy, events, starts=None, beat=None):
             else:
                 sy.setdefault('unattached_chords', []).append(ch['text'])
             continue
+        step = Fraction(1, 16)
+        while any(mc['offset'] == [off.numerator, off.denominator] for mc in host['mid_chords']) and off + step < dur:
+            off += step                  # two chords snapped to one beat: the later one (further right) takes the next sixteenth
         if any(mc['offset'] == [off.numerator, off.denominator] for mc in host['mid_chords']):
-            sy.setdefault('unattached_chords', []).append(ch['text'])      # two chords on one beat: ambiguous
+            sy.setdefault('unattached_chords', []).append(ch['text'])      # no room left in the note
             continue
         host['mid_chords'].append({'text': ch['text'], 'offset': [off.numerator, off.denominator]})
 
@@ -653,7 +656,7 @@ def attach_lyrics_and_curves(sy, events, ir, state):
         o = openers.pop(0)
         opener = o['ev']
         b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
-        if same_pitch(opener, b) and opener.get('tie_open') and b is notes[0]:      # a tie joins neighbouring notes only
+        if same_pitch(opener, b) and opener.get('tie_open') and b is events[0]:      # a tie joins neighbouring notes only
             opener['tie'] = True
             if c.get('dashed'):
                 opener['tie_dashed'] = True
@@ -673,7 +676,7 @@ def attach_lyrics_and_curves(sy, events, ir, state):
         b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
         ends_after = c['x1'] > last_x + HEAD_W + 2.0 or c['x1'] >= sy['x2'] - 0.3     # continues to next system
         if ends_after:
-            a['tie_open'] = a is notes[-1]                  # only the last note of the line can be tied over the break
+            a['tie_open'] = a is events[-1]                 # only the last event of the line (not followed by a rest) can be tied over the break
             state['open'].append({'ev': a, 'size': c['x1'] - c['x0']})
             continue
         if a is b:
@@ -692,7 +695,7 @@ def attach_lyrics_and_curves(sy, events, ir, state):
             if a is b:
                 ir['warnings'].append('curve with identical endpoints at x=%.1f' % c['x0'])
                 continue
-        if same_pitch(a, b) and notes.index(b) == notes.index(a) + 1:
+        if same_pitch(a, b) and events.index(b) == events.index(a) + 1:       # neighbours, no rest between
             a['tie'] = True
             if c.get('dashed'):
                 a['tie_dashed'] = True
