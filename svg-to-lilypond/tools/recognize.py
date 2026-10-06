@@ -226,16 +226,18 @@ def recognize(path):
     # chord-name text, lyric text, other text
     other = []
     for text, x, y, fam, size, weight, style in sc.texts:
-        if is_sans(fam) and size < 2.1:
+        if is_sans(fam) and (size < 2.1 or text == '\u00b0'):     # a degree sign (diminished) is drawn bigger
             i = system_of(y, -19.0, 1.0)            # chord row rises when a boxed mark sits above the staff
             if i is not None:
-                systems[i]['chords'].append({'x': x, 'y': y, 'text': text, 'size': size})
+                systems[i]['chords'].append({'x': x, 'y': y, 'text': 'o' if text == '\u00b0' else text, 'size': size})
                 continue
         if not is_sans(fam) and fam != 'Trebuchet MS' and abs(size - 2.47) < 0.05 and 'italic' not in style:
             cand = [i for i, t in enumerate(tops) if y > t + 3.0]
             if cand:
                 systems[cand[-1]]['lyrics'].append({'x': x, 'y': y, 'text': text, 'bold': 'bold' in weight})
                 continue
+        if fam == 'Arial Heavy':               # a heavy title face with no weight attribute (NS10025)
+            weight = 'bold'
         other.append({'text': text, 'x': x, 'y': y, 'family': fam, 'size': size, 'weight': weight, 'style': style})
 
     tempo, rest = None, []
@@ -390,7 +392,8 @@ def split_system(sy, bar_xs, key, base_alters, ir, state, bar_sig, key_changes=(
     # events: notes and rests
     events = []
     for h in sy['heads']:
-        events.append({'kind': 'note', 'x': h['x'], 'y': h['y'], 'head': h['type']})
+        events.append({'kind': 'note', 'x': h['x'], 'y': h['y'], 'head': h['type'].replace('cross', ''),
+                       'cross': h['type'].endswith('cross')})
     for r in sy['rests']:
         events.append({'kind': 'rest', 'x': r['x'], 'y': r['y'], 'rtype': r['type']})
     events.sort(key=lambda e: (e['x'], e['y']))
@@ -781,6 +784,8 @@ def clean_event(e):
     if e['kind'] == 'note':
         d.update({'letter': e['letter'], 'octave': e['octave'], 'alter': e['alter'], 'step': e['step'],
                   'acc': e['acc']})
+        if e.get('cross'):
+            d['cross'] = True
     return d
 
 
@@ -805,7 +810,7 @@ def extract_text(systems, other, ir, rects):
             out['footer'].append(o)
         elif abs(size - 3.11) < 0.05 and bold:
             out['title'] = o
-        elif 'italic' in o['style'] and re.match(r'\((Guitar|Piano)', t):
+        elif re.match(r'\((Guitar|Piano)', t):
             out['instructions'].append(o)               # "(Guitar: Capo 1)" etc.: a line under the title
         elif abs(size - 5.87) < 0.1:
             out['number'] = o

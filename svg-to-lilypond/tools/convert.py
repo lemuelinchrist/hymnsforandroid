@@ -32,7 +32,7 @@ def event_sig(e):
              e.get('tie', False), e.get('slur_start', False),
             e.get('slur_end', False), (t['num'], t['den'], t['start'], t['end']) if t else None)
     if e['kind'] == 'note':
-        base += (e['letter'], e['octave'], e['alter'])
+        base += (e['letter'], e['octave'], e['alter'], bool(e.get('cross')))
     base += (tuple((m['text'], bool(m['boxed'])) for m in (e.get('marks') or [])),)
     base += (e.get('fermata'), tuple(e.get('signs') or ()))
     # chord changes inside a sustained note: the beat offset is estimated from layout, which differs per
@@ -58,6 +58,8 @@ def compare_ir(a, b):
         diffs.append('key %s vs %s' % (a['key'], b['key']))
     if a['time'] != b['time']:
         diffs.append('time %s vs %s' % (a['time'], b['time']))
+    if a.get('tempo') != b.get('tempo'):
+        diffs.append('tempo %s vs %s' % (a.get('tempo'), b.get('tempo')))
     sa, sb = [s['measures'] for s in a['systems']], [s['measures'] for s in b['systems']]
     if sa != sb:
         diffs.append('system layout (measures per system) %s vs %s' % (sa, sb))
@@ -297,6 +299,22 @@ def process_once(path, variant, lyric_space):
             res.update(status=r['err'][0], detail=r['err'][1])
             return res
         ewarn, svg_path, msgs, pages, ir2, d = (r[k] for k in ('ewarn', 'svg_path', 'msgs', 'pages', 'ir2', 'd'))
+        if attempt == 0 and pages != 1 and not overflow:
+            # a tall sheet (its lowest text is close to the footer) spills onto page 2 with the standard bottom
+            # margin: let it use more of the page before the layout search starts
+            for bm in (9.0, 6.0, 3.0):
+                params['bottom_margin'] = bm
+                r2 = attempt_once(params)
+                if not r2.get('err') and r2['pages'] == 1:
+                    r = r2
+                    ewarn, svg_path, msgs, pages, ir2, d = (r[k] for k in ('ewarn', 'svg_path', 'msgs', 'pages', 'ir2', 'd'))
+                    break
+            else:
+                params.pop('bottom_margin', None)
+                r = attempt_once(params)
+                ewarn, svg_path, msgs, pages, ir2, d = (r[k] for k in ('ewarn', 'svg_path', 'msgs', 'pages', 'ir2', 'd'))
+        if os.environ.get('CONVERT_DEBUG'):
+            print('attempt', attempt, 'vspace %.2f top_margin %.2f' % (params['vspace'], params['top_margin']), 'pages', pages, d)
         if (pages == 1 or overflow) and d:
             score = max(abs(v) for v in d.values())
             if best is None or score < best[0]:

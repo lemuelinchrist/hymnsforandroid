@@ -126,6 +126,8 @@ def walk_events(ir):
 
 def emit_melody(ir):
     out = []
+    if ir.get('tempo'):
+        out.append('\\tempo %d = %d' % (ir['tempo']['dur'], ir['tempo']['bpm']))
     dashed_open = [False]
     for item in walk_events(ir):
         kind = item[0]
@@ -164,6 +166,8 @@ def emit_melody(ir):
                 tok = 'r' + event_dur(e)
             else:
                 tok = ly_pitch(e['letter'], e['alter'], e['octave']) + event_dur(e)
+                if e.get('cross'):
+                    tok = "\\once \\override NoteHead.style = #'cross " + tok
                 if e['tie']:
                     tok += '~'
                     if e.get('tie_dashed'):
@@ -383,7 +387,7 @@ def emit(ir, variant='piano', params=None):
   left-margin = 12.7\\mm
   right-margin = 8.89\\mm
   top-margin = %.2f\\mm
-  bottom-margin = 12.5\\mm
+  bottom-margin = %.2f\\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -406,7 +410,7 @@ def emit(ir, variant='piano', params=None):
   scoreTitleMarkup = ##f
   tagline = \\markup \\line { \\hspace #1.84 \\override #'(font-name . "Trebuchet MS") %s }
 }
-''' % (top_margin_mm, instr_line, vspace_title, sys_gap, sys_gap, score_markup_gap, score_markup_gap, q(footer)))
+''' % (top_margin_mm, P.get('bottom_margin', 12.5), instr_line, vspace_title, sys_gap, sys_gap, score_markup_gap, score_markup_gap, q(footer)))
     ly.append('\\header {\n  title = %s\n  subtitle = %s\n  opus = %s\n}\n' % (
         q(t['title']['text'] if t['title'] else ''), q(t['subtitle']['text'] if t['subtitle'] else ''),
         q(t['number']['text'] if t['number'] else '')))
