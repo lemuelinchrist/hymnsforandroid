@@ -231,10 +231,11 @@ def recognize(path):
             if i is not None:
                 systems[i]['chords'].append({'x': x, 'y': y, 'text': 'o' if text == '\u00b0' else text, 'size': size})
                 continue
-        if not is_sans(fam) and fam != 'Trebuchet MS' and abs(size - 2.47) < 0.05 and 'italic' not in style:
+        if not is_sans(fam) and fam != 'Trebuchet MS' and abs(size - 2.47) < 0.05:
             cand = [i for i, t in enumerate(tops) if y > t + 3.0]
             if cand:
-                systems[cand[-1]]['lyrics'].append({'x': x, 'y': y, 'text': text, 'bold': 'bold' in weight})
+                systems[cand[-1]]['lyrics'].append({'x': x, 'y': y, 'text': text, 'bold': 'bold' in weight,
+                                                     'italic': 'italic' in style})
                 continue
         if fam == 'Arial Heavy':               # a heavy title face with no weight attribute (NS10025)
             weight = 'bold'
@@ -817,7 +818,10 @@ def extract_text(systems, other, ir, rects):
         elif abs(size - 2.2) < 0.05 and bold and out['title'] and abs(y - out['title']['y'] - 3.5) < 0.7 and \
                 out['subtitle'] is None:                      # the subtitle sits 3.5 below the title baseline
             out['subtitle'] = o
-        elif 'italic' in o['style'] and not (abs(size - 2.2) < 0.05 and any(tp - 9 < y < tp - 0.3 for tp in tops)
+        elif 'italic' in o['style'] and abs(size - 1.96) < 0.05 and y > tops[-1] + 10 and \
+                any(abs(y - vt['y']) < 40 for vt in verse_texts):
+            verse_texts.append(o)                             # footnote under the last stanza of a column (C316)
+        elif 'italic' in o['style'] and not (abs(size - 2.2) < 0.05 and any(tp - 11 < y < tp - 0.3 for tp in tops)
                                               and y > tops[0] - 8):
             out['instructions'].append(o)
         elif abs(size - 1.75) < 0.05 and re.fullmatch(r'\d+', t):
@@ -825,8 +829,8 @@ def extract_text(systems, other, ir, rects):
         elif abs(size - 2.2) < 0.05 and bold and re.fullmatch(r'(\d+\.|\(.*\))', t) and \
                 any(abs(y - ly) < 1.2 for ly in lyric_ys):
             out['labels'].append(o)                           # stanza label sharing a baseline with a lyric line
-        elif abs(size - 2.2) < 0.05 and any(tp - 9 < y < tp - 0.3 for tp in tops) and not o['family'].startswith('sans'):
-            sysi = max(i for i, tp in enumerate(tops) if tp - 9 < y < tp - 0.3)
+        elif abs(size - 2.2) < 0.05 and any(tp - 11 < y < tp - 0.3 for tp in tops) and not o['family'].startswith('sans'):
+            sysi = max(i for i, tp in enumerate(tops) if tp - 11 < y < tp - 0.3)
             w = text_width(t, 2.2, bold)
             # a box = a thin horizontal rect above the text and one below it, both about as wide as the text
             # (padding differs per LilyPond version, so no exact offsets)
@@ -834,8 +838,8 @@ def extract_text(systems, other, ir, rects):
             boxed = any(y - 3.4 < r[1] < y - 1.4 for r in hor) and any(y - 0.2 < r[1] < y + 1.5 for r in hor)
             out['marks'].append({'text': t, 'x': x, 'y': y, 'width': w, 'bold': bold, 'boxed': boxed,
                                  'italic': 'italic' in o['style'], 'system': sysi})
-        elif abs(size - 2.2) < 0.05 and y > tops[-1] + 10:
-            verse_texts.append(o)
+        elif (abs(size - 2.2) < 0.05 or abs(size - 1.96) < 0.05) and y > tops[-1] + 10:
+            verse_texts.append(o)                             # 1.96: footnotes under the last column (C316)
         elif abs(size - 2.2) < 0.05 and bold and re.fullmatch(r'(\d+\.|\(.*\))', t):
             out['labels'].append(o)                           # stanza label at the start of a lyric line
         else:
@@ -955,6 +959,8 @@ def assign_lyrics(systems, ir):
                 if e.get('lyrics') is None:
                     e['lyrics'] = {}
                 e['lyrics'][li] = {'text': l['text'], 'hyphen': hy, 'extender': ex, 'stanza': lab[0] if lab else None}
+                if l.get('italic'):
+                    e['lyrics'][li]['italic'] = True
 
 
 def assign_marks(systems, ir):

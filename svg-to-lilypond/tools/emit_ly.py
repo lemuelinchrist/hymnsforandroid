@@ -100,6 +100,9 @@ def walk_events(ir):
     for m in ir['measures']:
         sys_last[m['system']] = m['n']
     ms = ir['measures']
+    from verify import dur_of
+    cur_len = Fraction(ir['time']['num'], ir['time']['den']) if ir.get('time') else None
+    applied = cur_len                  # the measure length LilyPond is using now (a \time command resets it)
     for mi, m in enumerate(ms):
         prev_ended = mi > 0 and ms[mi - 1].get('volta_end')
         if m.get('volta_start') and not prev_ended:
@@ -107,7 +110,17 @@ def walk_events(ir):
         if m.get('key_change'):
             yield ('key', m['key_change'])
         if m.get('time_change'):
-            yield ('time', m['time_change'])
+            tc = m['time_change']
+            cur_len = applied = Fraction(tc['num'], tc['den'])
+            yield ('time', tc)
+        # a source that draws longer bars than its time signature (3/2 bars under 3/4): without this LilyPond
+        # would add a bar line in the middle that the original does not have
+        if mi > 0 and cur_len:
+            msum = sum((dur_of(e) for e in m['events']), Fraction(0))
+            want = msum if msum > cur_len else cur_len
+            if want != applied:
+                applied = want
+                yield ('mlen', want)
         for e in m['events']:
             t = e.get('tuplet')
             if t and t['start']:
@@ -192,6 +205,8 @@ def emit_melody(ir):
             out.append(tok)
         elif kind == 'time':
             out.append(time_token(item[1]))
+        elif kind == 'mlen':
+            out.append('\\set Timing.measureLength = #(ly:make-moment %d %d)' % (item[1].numerator, item[1].denominator))
         elif kind == 'key':
             out.append('\\key %s \\major' % LY_KEY[item[1]['tonic']])
         elif kind == 'break':
@@ -274,7 +289,7 @@ def emit_lyrics(ir, warnings):
                 continue
             if syl.get('stanza'):
                 toks.append('\\set stanza = %s' % q(syl['stanza']))
-            toks.append(q(syl['text']))
+            toks.append(('\\markup \\italic ' if syl.get('italic') else '') + q(syl['text']))
             if syl.get('hyphen'):
                 toks.append('--')
             elif syl.get('extender'):
