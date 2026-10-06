@@ -16,6 +16,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
+import pagefit  # noqa: E402
 import verify  # noqa: E402
 from emit_ly import emit  # noqa: E402
 from recognize import recognize, RecognitionError  # noqa: E402
@@ -326,6 +327,9 @@ def process_once(path, variant, lyric_space):
     if pages == 1:
         cov = coverage_diff(path, svg_path)
         res['coverage'] = cov
+        res['pagefit'] = pagefit.page_fit_problems(svg_path, path)
+        if res['pagefit']:
+            cov = cov + ['page fit: ' + p for p in res['pagefit']]     # same effect: not a clean render
     else:
         cov = []
     hard_ok = (not res['v1'] and not diffs and not ir['warnings'] and not ewarn and
