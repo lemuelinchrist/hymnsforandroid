@@ -547,6 +547,12 @@ work or needs care:
 server/offline step is needed (LilyPond cannot run on the phone): pre-render the 12 keys for chosen hymns, or move
 to an in-app renderer (e.g. verovio/MusicXML) - a separate project; the `.ly` files are the right archival source for either.
 (4) Add a geometry check (no ink outside the page, no overlapping text) to the acceptance tests before shipping renders.
+(4a) Done on branch `media/pagefit`: `tools/pagefit.py` (ink margin per page edge, relative to the original) is part of `convert.py`; not yet run over the full corpus, overlapping text is still unchecked.
+
+**Order of work (decided 2026-10-06).** First finish the conversion: full run with the page-fit check, then the leftover sheets
+(`data/leftovers.txt`), then the tune-code list. **Last, deferred:** the in-app viewer that replaces shipped SVGs
+(owner's plan: smaller app). Candidates: Verovio via MusicXML (proof of concept first) or a custom `Canvas` renderer
+over the IR with the music font shipped once. This supersedes the font-route decision in (1) if the viewer goes ahead.
 
 ---
 
