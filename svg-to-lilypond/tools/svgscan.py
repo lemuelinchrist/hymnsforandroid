@@ -94,6 +94,11 @@ def parse(path):
     return sc
 
 
+def is_sans(fam):
+    """Chord-name font: 'sans' / 'sans-serif' in current files, 'LilyPond Sans Serif' in the oldest ones."""
+    return fam in ('sans', 'sans-serif') or (fam or '').startswith('LilyPond Sans')
+
+
 def staves(sc, tol=0.02):
     """Group staff lines into 5-line staves. Returns list of (top_y, x1, x2)."""
     rows = sorted(set((round(l[1], 3), round(l[0], 2), round(l[2], 2)) for l in sc.lines

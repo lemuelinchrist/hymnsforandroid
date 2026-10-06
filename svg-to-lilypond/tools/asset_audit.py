@@ -12,7 +12,7 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(__file__))
-from svgscan import parse, staves  # noqa: E402
+from svgscan import parse, staves, is_sans  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -49,7 +49,7 @@ def sig(path):
     s = parse(path)
     tops = [st[0] for st in staves(s)]
     staff_of = lambda y: next((i for i, t in enumerate(tops) if t > y), len(tops))  # chord sits above its staff
-    chords = sorted((t for t in s.texts if t[3] in ('sans', 'sans-serif') and t[4] < 2.1),
+    chords = sorted((t for t in s.texts if is_sans(t[3]) and t[4] < 2.1),
                     key=lambda t: (staff_of(t[2]), round(t[1], 1)))
     return {'chords': ''.join(c[0] for c in chords), 'heads': len([g for g in s.glyphs if g[3] >= 0.0039]),
             'texts': len(s.texts)}

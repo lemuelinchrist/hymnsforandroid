@@ -9,7 +9,7 @@ import sys
 from fractions import Fraction
 
 sys.path.insert(0, os.path.dirname(__file__))
-from svgscan import parse, staves  # noqa: E402
+from svgscan import parse, staves, is_sans  # noqa: E402
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 GLYPHS = {k: v['name'] for k, v in json.load(open(os.path.join(HERE, 'data/glyph_names.json'))).items()}
@@ -226,20 +226,34 @@ def recognize(path):
     # chord-name text, lyric text, other text
     other = []
     for text, x, y, fam, size, weight, style in sc.texts:
-        if fam in ('sans', 'sans-serif') and size < 2.1:
+        if is_sans(fam) and size < 2.1:
             i = system_of(y, -19.0, 1.0)            # chord row rises when a boxed mark sits above the staff
             if i is not None:
                 systems[i]['chords'].append({'x': x, 'y': y, 'text': text, 'size': size})
                 continue
-        if fam not in ('sans', 'sans-serif', 'Trebuchet MS') and abs(size - 2.47) < 0.05 and 'italic' not in style:
+        if not is_sans(fam) and fam != 'Trebuchet MS' and abs(size - 2.47) < 0.05 and 'italic' not in style:
             cand = [i for i, t in enumerate(tops) if y > t + 3.0]
             if cand:
                 systems[cand[-1]]['lyrics'].append({'x': x, 'y': y, 'text': text, 'bold': 'bold' in weight})
                 continue
         other.append({'text': text, 'x': x, 'y': y, 'family': fam, 'size': size, 'weight': weight, 'style': style})
 
-    rest = []
+    tempo, rest = None, []
     for o in other:
+        # tempo mark: a note head above the staff and '= 160' to its right (the head is not a melody note)
+        tm = re.fullmatch(r'=\s*(\d+)', o['text'])
+        if tm and tempo is None:
+            for sy in systems:
+                near = [h for h in sy['heads'] if h['type'] in ('s1', 's2') and 0.5 < o['x'] - h['x'] < 3.5
+                        and h['y'] < sy['top'] - 1.0 and abs(h['y'] - (o['y'] - 0.5)) < 1.5]
+                if near:
+                    h = near[0]
+                    sy['heads'].remove(h)
+                    sy['stems'] = [st for st in sy['stems'] if not (abs(st['x'] - h['x']) < 1.9 and st['y2'] < sy['top'] - 0.5)]
+                    tempo = {'dur': 4 if h['type'] == 's2' else 2, 'bpm': int(tm.group(1)), 'x': h['x'], 'y': h['y']}
+                    break
+            if tempo:
+                continue
         if 'italic' in o['style'] and re.fullmatch(r'[2-9]', o['text']) and o['size'] < 1.9:
             i = system_of(o['y'], -7, 11)
             if i is not None:
@@ -256,7 +270,10 @@ def recognize(path):
                 systems[i]['tuplets'].append(tb)
                 continue
         rest.append(o)
-    return build_ir(path, sc, systems, rest)
+    ir = build_ir(path, sc, systems, rest)
+    if tempo:
+        ir['tempo'] = {'dur': tempo['dur'], 'bpm': tempo['bpm']}
+    return ir
 
 
 # ---------------------------------------------------------------- build IR
@@ -484,6 +501,8 @@ def split_system(sy, bar_xs, key, base_alters, ir, state, bar_sig, key_changes=(
             for e in out[0]['events']:
                 starts[id(e)] += full - first_sum
     attach_chords(sy, events, starts, beat)
+    for t in sy.get('tail_chords', []):
+        ir.setdefault('tail_chords', []).append({'system': sy['index'], 'text': t})
     if sy.get('unattached_chords'):
         ir['warnings'].append('chord(s) not attached to any note: %s' % sy['unattached_chords'][:3])
     attach_lyrics_and_curves(sy, events, ir, state)
@@ -563,7 +582,7 @@ def chord_clusters(sy):
     """Chord names are loose texts + accidental glyphs. A new chord starts at a root letter A-G that doesn't
     directly follow a slash; everything else (accidentals, quality, superscripts, '/bass') continues it."""
     items = [('t', c['x'], c['text']) for c in sy['chords']] + \
-            [('g', a['x'], {'flat': 'b', 'sharp': '#', 'natural': 'n'}.get(a['type'], '?')) for a in sy['chordacc']]
+            [('g', a['x'], {'flat': 'b', 'sharp': '#', 'natural': 'n', 'doublesharp': '##', 'flatflat': 'bb'}.get(a['type'], '?')) for a in sy['chordacc']]
     items.sort(key=lambda it: it[1])
     chords, cur, prev = [], None, None
     for kind, x, text in items:
@@ -598,7 +617,10 @@ def attach_chords(sy, events, starts=None, beat=None):
                 host, x0, x1 = e, e['x'], nxt
                 break
         if host is None:
-            sy.setdefault('unattached_chords', []).append(ch['text'])
+            if ch['x'] >= sy['x2'] - 0.2:           # printed after the staff has ended (some sources continue the chord row)
+                sy.setdefault('tail_chords', []).append(ch['text'])
+            else:
+                sy.setdefault('unattached_chords', []).append(ch['text'])
             continue
         dur = Fraction(1, host['base']) * (2 - Fraction(1, 2 ** host['dots'])) if host['dots'] else Fraction(1, host['base'])
         frac = (ch['x'] - x0) / max(1e-6, x1 - x0)

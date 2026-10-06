@@ -46,15 +46,42 @@ def frac_to_durations(f):
     raise ValueError('cannot express %s' % f)
 
 
+ACC_LY = {'': '', 'b': 'es', '#': 'is', 'bb': 'eses', '##': 'isis'}
+
+
 def chord_to_ly(text):
-    m = re.fullmatch(r'([A-G])([b#]?)(.*?)(?:/([A-G])([b#]?))?', text)
+    m = re.fullmatch(r'([A-G])(bb|##|[b#]?)(.*?)(?:/([A-G])(bb|##|[b#]?))?', text)
     if not m or m.group(3) not in QUALITY:
         return None
-    root = m.group(1).lower() + {'': '', 'b': 'es', '#': 'is'}[m.group(2)]
+    root = m.group(1).lower() + ACC_LY[m.group(2)]
     out = root + QUALITY[m.group(3)]
     if m.group(4):
-        out += '/' + m.group(4).lower() + {'': '', 'b': 'es', '#': 'is'}[m.group(5)]
+        out += '/' + m.group(4).lower() + ACC_LY[m.group(5)]
     return out
+
+
+def chord_override(text):
+    """Chord whose quality LilyPond has no name for (Aadd9): (markup override, plain root chord) or None.
+    The suffix is printed raised, like the originals do; the root decides the pitch only."""
+    m = re.fullmatch(r'([A-G])([b#]?)(add\d+|[A-Za-z]*\d+[A-Za-z0-9+]*)', text)
+    if not m:
+        return None
+    root = m.group(1).lower() + {'': '', 'b': 'es', '#': 'is'}[m.group(2)]
+    acc = {'': '', 'b': ' \\flat', '#': ' \\sharp'}[m.group(2)]
+    return '\\once \\override ChordName.text = \\markup { %s%s \\super %s } ' % (q(m.group(1)), acc, q(m.group(3))), root
+
+
+def chord_item(c, dur_str, warnings):
+    """LilyPond text for chord name `c` lasting `dur_str`; a skip when `c` is empty or unsupported."""
+    ly = chord_to_ly(c) if c else None
+    if ly:
+        return chord_token(ly, dur_str)
+    if c:
+        ov = chord_override(c)
+        if ov:
+            return ov[0] + ov[1] + dur_str
+        warnings.append('unsupported chord %r' % c)
+    return 's' + dur_str
 
 
 def time_token(t):
@@ -202,11 +229,7 @@ def emit_chords(ir, warnings):
                 segs.append((Fraction(*mc['offset']), mc['text']))
             segs.sort(key=lambda x: x[0])
             if len(segs) == 1:
-                c = segs[0][1]
-                ly = chord_to_ly(c) if c else None
-                if c and ly is None:
-                    warnings.append('unsupported chord %r' % c)
-                out.append(chord_token(ly, event_dur(e)) if ly else 's' + event_dur(e))
+                out.append(chord_item(segs[0][1], event_dur(e), warnings))
                 continue
             total = Fraction(1, e['dur']) * ((2 - Fraction(1, 2 ** e['dots'])) if e['dots'] else 1)
             for k, (off, c) in enumerate(segs):
@@ -217,14 +240,18 @@ def emit_chords(ir, warnings):
                     warnings.append('cannot split chord duration %s' % d)
                     dstr = '16'
                 first, _, rest = dstr.partition(' ')
-                ly = chord_to_ly(c) if c else None
-                if c and ly is None:
-                    warnings.append('unsupported chord %r' % c)
-                out.append(chord_token(ly, first) if ly else 's' + first)
+                out.append(chord_item(c, first, warnings))
                 if rest:
                     out.append('s' + rest)
         elif kind == 'bar':
             out.append('|')
+    last_sys = max(m['system'] for m in ir['measures'])
+    tail = ir.get('tail_chords') or []
+    if tail and any(t['system'] != last_sys for t in tail):
+        warnings.append('chords after the end of a system that is not the last: %s' % [t['text'] for t in tail][:3])
+    else:
+        for t in tail:                       # chord names printed after the music ended: quarter notes, chord line only
+            out.append(chord_item(t['text'], '4', warnings))
     return ' '.join(out)
 
 

@@ -114,7 +114,7 @@ def compare_ir(a, b):
 def glyph_counts(path):
     """Counts of music symbols by name, independent of the IR (a model-free coverage check)."""
     from recognize import gname
-    from svgscan import parse
+    from svgscan import parse, is_sans
     c = collections.Counter()
     sc = parse(path)
     for gid, x, y, scale in sc.glyphs:
@@ -123,7 +123,7 @@ def glyph_counts(path):
             c[n] += 1
     # chord-name text fragments (letters, quality, '/'): same chord names must print the same number of pieces
     # (the 'o' of a diminished chord is text in the originals but a drawn circle in LilyPond 2.24: not counted)
-    c['chord_text_chars'] = sum(len(t[0].replace('o', '')) for t in sc.texts if t[3] in ('sans', 'sans-serif') and t[4] < 2.1)
+    c['chord_text_chars'] = sum(len(t[0].replace('o', '')) for t in sc.texts if is_sans(t[3]) and t[4] < 2.1)
     return c
 
 
