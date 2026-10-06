@@ -28,8 +28,8 @@
     \fill-line { \bold \italic "(Guitar)" \null }
     \vspace #1.40
   }
-  system-system-spacing = #'((basic-distance . 12.82) (minimum-distance . 12.82) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.66) (minimum-distance . 12.66) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.80) (minimum-distance . 14.80) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
@@ -50,7 +50,7 @@ global = {
 melody = {
   \clef treble
   \global
-  f'8 | e'4 e'8 e'4 e'8 | g'4 g'8 g'4 g'8 | a'4 a'8 a'8([ g'8) f'8] \break | g'4.~ g'4 f'8 | e'4 e'8 e'4 e'8 | g'4 g'8 g'4 g'8 | a'4 a'8 a'8([ g'8) f'8] \break | g'4.~ g'4 g'8 | c''4 c''8 b'4 a'8 | b'4 a'8 g'4 c'8 | a'4 a'8[ a'8( g'8) f'8] | g'4.~ g'4 f'8 \break | e'4 e'8 e'4 e'8 | g'4 g'8 g'4 g'8 | a'4 a'8 a'8([ g'8) f'8] | g'2.~ \break | g'4 r8 r4 c''8^\markup { \box \bold "Chorus" } | c''4. a'4 f'8 | f'8[ g'8 a'8] g'4 c''8 | c''4. g'4 e'8 \break | e'8[ f'8 g'8] e'4 g'8 | g'4. g'8[ g'8 g'8] | g'4 g'8 a'4 g'8 | g'2.~ \break | g'4.~ g'4 c''8 | c''4. a'4 f'8 | f'8[ g'8 a'8] g'4 c''8 | c''4. g'4 e'8 \break | e'8[ f'8 g'8] e'4 g'8 | g'4 g'8 g'4 g'8 | e'4.~ e'4 d'8 | c'2.~ | c'4. r4. \bar "|."
+  f'8 | e'4 e'8 e'4 e'8 | g'4 g'8 g'4 g'8 | a'4 a'8 a'8([ g'8) f'8] \break | g'4.~ g'4 f'8 | e'4 e'8 e'4 e'8 | g'4 g'8 g'4 g'8 | a'4 a'8 a'8([ g'8) f'8] \break | g'4.~ g'4 g'8 | c''4 c''8 b'4 a'8 | b'4 a'8 g'4 c'8 | a'4 a'8[ a'8( g'8) f'8] | g'4.~ g'4 f'8 \break | e'4 e'8 e'4 e'8 | g'4 g'8 g'4 g'8 | a'4 a'8 a'8([ g'8) f'8] | g'2.~ \break | g'4 r8 r4 c''8^\markup { \box \bold "Chorus" } | c''4. a'4 f'8 | f'8[ g'8 a'8] g'4 c''8 | c''4. g'4 e'8 \break | e'8[ f'8 g'8] e'4 g'8 | g'4. g'8[ g'8 g'8] | g'4 g'8 a'4 g'8 | g'2.( \break | g'4.~ g'4) c''8 | c''4. a'4 f'8 | f'8[ g'8 a'8] g'4 c''8 | c''4. g'4 e'8 \break | e'8[ f'8 g'8] e'4 g'8 | g'4 g'8 g'4 g'8 | e'4.~ e'4 d'8 | c'2.~ | c'4. r4. \bar "|."
 }
 
 harmonies = \chordmode {

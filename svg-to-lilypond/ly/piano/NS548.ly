@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  bes'8[^\markup { \box \bold "Chorus" } a'16 bes'16~] | bes'4 d''8[ c''16 bes'16~] bes'4. bes'16[ c''16] | d''8[ c''8 bes'8 a'16 g'16(] g'8[ f'8) bes'8 a'16 bes'16~] \break | bes'4 d''8[ c''16 bes'16~] bes'4. bes'16[ c''16] | d''8[ c''8 bes'8 a'16 g'16~] g'8[ f'8 d'8 c'16 d'16~] \break | d'4 f'8[ ees'16 d'16~] d'4. c'16[ d'16] | ees'8[ d'8 c'8 bes16 c'16~] c'8[ bes8 bes8 a16 bes16~] | bes1 \break | r4 g'8[ g'8] g'8[ g'8 a'8 bes'8] | a'8 f'4.~ f'2 | r4 g'8[ g'16 g'16~] g'8[ g'8 f'8 ees'16 f'16~] | f'1 \break | r4 g'8[ g'8] g'8[ g'8 a'8 bes'8] | bes'8 g'4.~ g'2 | r4 g'8[ g'16 g'16~] g'8[ g'8 a'16 bes'8.] | c''2. r4 \bar "|."
+  bes'8[^\markup { \box \bold "Chorus" } a'16 bes'16~] | bes'4 d''8[ c''16 bes'16~] bes'4. bes'16[ c''16] | d''8[ c''8 bes'8 a'16 g'16~(] g'8[ f'8) bes'8 a'16 bes'16~] \break | bes'4 d''8[ c''16 bes'16~] bes'4. bes'16[ c''16] | d''8[ c''8 bes'8 a'16 g'16~] g'8[ f'8 d'8 c'16 d'16~] \break | d'4 f'8[ ees'16 d'16~] d'4. c'16[ d'16] | ees'8[ d'8 c'8 bes16 c'16~] c'8[ bes8 bes8 a16 bes16~] | bes1 \break | r4 g'8[ g'8] g'8[ g'8 a'8 bes'8] | a'8 f'4.~ f'2 | r4 g'8[ g'16 g'16~] g'8[ g'8 f'8 ees'16 f'16~] | f'1 \break | r4 g'8[ g'8] g'8[ g'8 a'8 bes'8] | bes'8 g'4.~ g'2 | r4 g'8[ g'16 g'16~] g'8[ g'8 a'16 bes'8.] | c''2. r4 \bar "|."
 }
 
 harmonies = \chordmode {

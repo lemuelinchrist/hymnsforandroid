@@ -27,8 +27,8 @@
     }
     \vspace #0.85
   }
-  system-system-spacing = #'((basic-distance . 14.22) (minimum-distance . 14.22) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 14.21) (minimum-distance . 14.21) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.98) (minimum-distance . 14.98) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
@@ -84,6 +84,7 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
+      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score

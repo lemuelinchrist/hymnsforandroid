@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  r4 ees'8[ ees'8] f'4 f'4 | aes'4 aes'8[ g'8(] g'8 f'4.) | r4 ees'8[ ees'8] f'4 f'8[ f'8] | c'4 ees'8[ d'8~] d'2 \break | r4 ees'8[ ees'8] f'4 f'4 | aes'4 aes'8[ g'8(] g'8 f'4.) | r4 ees'8[ ees'8] f'4 f'8[ f'8] | c'8[ c'8 ees'8 d'8~] d'2 \break | r4 bes'4^\markup { \box \bold "Chorus" } bes'4 bes'4 | c''4( bes'8)[ bes'8~] bes'2 | r8 bes'8[ bes'8 bes'8] aes'8([ g'8~ g'8) f'8] | ees'4 g'8[ f'8~] f'2 \break | r4 bes'4 bes'4 bes'4 | c''4( bes'8)[ bes'8~] bes'2 | r8 bes'8[ bes'8 bes'8] aes'8([ g'8~ g'8) f'8] | ees'4( g'8)[ f'8~] f'2 \bar "|."
+  r4 ees'8[ ees'8] f'4 f'4 | aes'4 aes'8[ g'8~(] g'8 f'4.) | r4 ees'8[ ees'8] f'4 f'8[ f'8] | c'4 ees'8[ d'8~] d'2 \break | r4 ees'8[ ees'8] f'4 f'4 | aes'4 aes'8[ g'8~(] g'8 f'4.) | r4 ees'8[ ees'8] f'4 f'8[ f'8] | c'8[ c'8 ees'8 d'8~] d'2 \break | r4 bes'4^\markup { \box \bold "Chorus" } bes'4 bes'4 | c''4( bes'8)[ bes'8~] bes'2 | r8 bes'8[ bes'8 bes'8] aes'8([ g'8~ g'8) f'8] | ees'4 g'8[ f'8~] f'2 \break | r4 bes'4 bes'4 bes'4 | c''4( bes'8)[ bes'8~] bes'2 | r8 bes'8[ bes'8 bes'8] aes'8([ g'8~ g'8) f'8] | ees'4( g'8)[ f'8~] f'2 \bar "|."
 }
 
 harmonies = \chordmode {

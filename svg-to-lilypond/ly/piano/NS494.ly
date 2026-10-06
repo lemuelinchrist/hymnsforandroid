@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  r4 a'4 g'4 f'4 | c'4 f'4 d'4 f'8[ a'8~] | a'2. c'4 | d'4 f'4 d'4 f'8[ g'8~] | g'2. c'4 \break | d'4 f'4 d'4 f'4 | g'4 a'8[ bes'8~] bes'4. f'8 | bes'4 a'4 f'4 d'4 | g'1~ | g'1 \break | r4 a'8[ c''8~]^\markup { \box \bold "Chorus" } c''4 a'8[ f'8~] | f'4 a'8[ a'8(] a'8 g'4.) | r4 a'8[ c''8~] c''4 a'8[ f'8~] | f'4 a'8[ a'8~] a'8 g'4. \break | r4 d'8[ d'8] bes'4 a'4 | g'4( a'8)[ g'8~] g'2 | r8 d'8[ d'8 d'8] bes'4 a'8[ c''8~] | c''1 \break | r8 bes'8[ bes'8 bes'8] a'4 bes'8[ g'8~] | g'1 | \set Score.repeatCommands = #'((volta "1.–3.")) r8 bes'8[ bes'8 bes'8] a'4 bes'8[ a'8~] | a'8 g'4.~ g'2 \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "4.")) r8 bes'8[ bes'8 bes'8] a'4 a'8[ a'8~] | a'8 f'4.~ f'2 \bar "|." \set Score.repeatCommands = #'((volta #f))
+  r4 a'4 g'4 f'4 | c'4 f'4 d'4 f'8[ a'8~] | a'2. c'4 | d'4 f'4 d'4 f'8[ g'8~] | g'2. c'4 \break | d'4 f'4 d'4 f'4 | g'4 a'8[ bes'8~] bes'4. f'8 | bes'4 a'4 f'4 d'4 | g'1~ | g'1 \break | r4 a'8[ c''8~]^\markup { \box \bold "Chorus" } c''4 a'8[ f'8~] | f'4 a'8[ a'8~(] a'8 g'4.) | r4 a'8[ c''8~] c''4 a'8[ f'8~] | f'4 a'8[ a'8~] a'8 g'4. \break | r4 d'8[ d'8] bes'4 a'4 | g'4( a'8)[ g'8~] g'2 | r8 d'8[ d'8 d'8] bes'4 a'8[ c''8~] | c''1 \break | r8 bes'8[ bes'8 bes'8] a'4 bes'8[ g'8~] | g'1 | \set Score.repeatCommands = #'((volta "1.–3.")) r8 bes'8[ bes'8 bes'8] a'4 bes'8[ a'8~] | a'8 g'4.~ g'2 \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "4.")) r8 bes'8[ bes'8 bes'8] a'4 a'8[ a'8~] | a'8 f'4.~ f'2 \bar "|." \set Score.repeatCommands = #'((volta #f))
 }
 
 harmonies = \chordmode {

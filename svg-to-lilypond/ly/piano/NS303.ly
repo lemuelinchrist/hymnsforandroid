@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  aes'4 aes'8[ aes'8~] aes'8[ f'8~ f'8 bes'8~] | bes'8[ aes'8~ aes'8 f'8~] f'4 ees'4 | des'4 des'8[ des'8~] des'8[ bes8~ bes8 f'8~] \break | f'2. r8 aes8 | aes'4 aes'8[ aes'8~] aes'8[ f'8~ f'8 bes'8~] | bes'8[ aes'8~ aes'8 f'8~] f'4 ees'4 | des'4 ees'8[ f'8~] f'8[ ees'8~ ees'8 des'8~] \break | des'2 aes'4 ges'4 | f'2 aes'4 f'8[ ges'8~] | ges'8[ bes'8~] bes'2. | bes'4 bes'8[ bes'8~] bes'8[ aes'8~ aes'8 ees'8~] \break | ees'2 aes'4 ges'4 | f'2 aes'4 f'8[ ges'8~] | ges'8[ bes'8~] bes'2. | bes'8[ bes'8 bes'8 bes'8(] bes'8[ c''8)] des''4 \break | c''2 bes'4( c''4) | des''4 aes'8[ aes'8~] aes'8[ f'8~ f'8 bes'8~] | bes'2. c''4 | des''4 aes'8[ aes'8~] aes'8[ ges'8] f'4 \break | ees'2 bes'4( c''4) | des''4 aes'8[ aes'8~] aes'8[ f'8~ f'8 bes'8~] | bes'2 bes'4( c''4) | des''4 des''8 des''4( c''4) des''8 | des''2. r4 \bar "|."
+  aes'4 aes'8[ aes'8~] aes'8[ f'8~ f'8 bes'8~] | bes'8[ aes'8~ aes'8 f'8~] f'4 ees'4 | des'4 des'8[ des'8~] des'8[ bes8~ bes8 f'8~] \break | f'2. r8 aes8 | aes'4 aes'8[ aes'8~] aes'8[ f'8~ f'8 bes'8~] | bes'8[ aes'8~ aes'8 f'8~] f'4 ees'4 | des'4 ees'8[ f'8~] f'8[ ees'8~ ees'8 des'8~] \break | des'2 aes'4 ges'4 | f'2 aes'4 f'8[ ges'8~] | ges'8[ bes'8~] bes'2. | bes'4 bes'8[ bes'8~] bes'8[ aes'8~ aes'8 ees'8~] \break | ees'2 aes'4 ges'4 | f'2 aes'4 f'8[ ges'8~] | ges'8[ bes'8~] bes'2. | bes'8[ bes'8 bes'8 bes'8~(] bes'8[ c''8)] des''4 \break | c''2 bes'4( c''4) | des''4 aes'8[ aes'8~] aes'8[ f'8~ f'8 bes'8~] | bes'2. c''4 | des''4 aes'8[ aes'8~] aes'8[ ges'8] f'4 \break | ees'2 bes'4( c''4) | des''4 aes'8[ aes'8~] aes'8[ f'8~ f'8 bes'8~] | bes'2 bes'4( c''4) | des''4 des''8 des''4( c''4) des''8 | des''2. r4 \bar "|."
 }
 
 harmonies = \chordmode {

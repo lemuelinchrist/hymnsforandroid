@@ -50,7 +50,7 @@ global = {
 melody = {
   \clef treble
   \global
-  r4 a8.[ a16] cis'8.[ cis'16] e'4 | fis'4. a'8~ a'2 | r4 d'8.[ d'16] fis'4 a'4 | c''4. a'8~ a'2 \break | r4 a'4 fis'4 e'4 | fis'8 e'4.~ e'4 cis'8[ b8(] | b2 b8[ cis'8] e'4~ | e'1) \break | r4 a8.[ a16] cis'4 e'4 | fis'4. a'8~ a'2 | r4 d'4 fis'8.[ fis'16] a'4 | c''4. a'8~ a'2 \break | r4 a'4 fis'4 e'4 | fis'8 e'4.~ e'4 cis'8[ a8~] | a1~ | a1 \break | r4 cis''4^\markup { \box \bold "Chorus" } b'4 a'4 | cis''4. a'8~ a'2 | r4 c''4 b'8.[ b'16] a'4 | c''4. a'8~ a'2 \break | r4 cis''4 cis''4 cis''4 | cis''8 a'4.~ a'8[ a'8 cis''8 b'8(] | b'2~ b'8)[ gis'8 fis'8 e'8~] | e'1 \break | r4 cis''4 b'4 a'4 | cis''4. a'8~ a'2 | r4 c''8.[ c''16] b'8.[ b'16] a'4 | c''4. a'8~ a'2 \break | r4 cis''4 cis''4 cis''4 | cis''8 a'4.~ a'4 b'8[ a'8~] | a'1~ | a'4 r2. \bar "|."
+  r4 a8.[ a16] cis'8.[ cis'16] e'4 | fis'4. a'8~ a'2 | r4 d'8.[ d'16] fis'4 a'4 | c''4. a'8~ a'2 \break | r4 a'4 fis'4 e'4 | fis'8 e'4.~ e'4 cis'8[ b8~(] | b2 b8[ cis'8] e'4~ | e'1) \break | r4 a8.[ a16] cis'4 e'4 | fis'4. a'8~ a'2 | r4 d'4 fis'8.[ fis'16] a'4 | c''4. a'8~ a'2 \break | r4 a'4 fis'4 e'4 | fis'8 e'4.~ e'4 cis'8[ a8~] | a1~ | a1 \break | r4 cis''4^\markup { \box \bold "Chorus" } b'4 a'4 | cis''4. a'8~ a'2 | r4 c''4 b'8.[ b'16] a'4 | c''4. a'8~ a'2 \break | r4 cis''4 cis''4 cis''4 | cis''8 a'4.~ a'8[ a'8 cis''8 b'8~(] | b'2~ b'8)[ gis'8 fis'8 e'8~] | e'1 \break | r4 cis''4 b'4 a'4 | cis''4. a'8~ a'2 | r4 c''8.[ c''16] b'8.[ b'16] a'4 | c''4. a'8~ a'2 \break | r4 cis''4 cis''4 cis''4 | cis''8 a'4.~ a'4 b'8[ a'8~] | a'1~ | a'4 r2. \bar "|."
 }
 
 harmonies = \chordmode {

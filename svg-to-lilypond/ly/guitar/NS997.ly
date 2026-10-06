@@ -28,8 +28,8 @@
     \fill-line { \bold \italic "(Guitar)" \null }
     \vspace #1.03
   }
-  system-system-spacing = #'((basic-distance . 14.11) (minimum-distance . 14.11) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 14.95) (minimum-distance . 14.95) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 14.10) (minimum-distance . 14.10) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.97) (minimum-distance . 14.97) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
@@ -85,6 +85,7 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
+      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score

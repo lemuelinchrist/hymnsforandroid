@@ -50,7 +50,7 @@ global = {
 melody = {
   \clef treble
   \global
-  a'4 a'8[ a'8(] a'8[ g'8)] f'4 | bes'4 bes'8[ bes'8~] bes'2 | a'4 a'8[ a'8~] a'8[ g'8] f'4 | a'4 g'8[ g'8~] g'2 \break | a'4 a'8[ a'8~] a'8[ g'8] f'4 | bes'4 bes'8[ bes'8~] bes'2 | a'4 a'8[ g'8~] g'8[ f'8] e'4 | f'1^\markup { "Fine" } \break \bar "||" | a'4 a'8[ a'8~] a'8[ g'8] f'4 | bes'4 bes'8[ bes'8~] bes'2 | a'4 a'8[ a'8~] a'8[ g'8] f'4 | a'4 g'8[ g'8~] g'2 \break | a'8[ a'8 a'8 a'8~] a'8[ g'8] f'4 | bes'4 bes'8[ bes'8~] bes'2 | a'4 a'8 g'4( f'8) e'4 | f'1^\markup { \column { \line { "D.C. al Fine" } \line { "D.C. al Fine" } } } \bar "|."
+  a'4 a'8[ a'8~(] a'8[ g'8)] f'4 | bes'4 bes'8[ bes'8~] bes'2 | a'4 a'8[ a'8~] a'8[ g'8] f'4 | a'4 g'8[ g'8~] g'2 \break | a'4 a'8[ a'8~] a'8[ g'8] f'4 | bes'4 bes'8[ bes'8~] bes'2 | a'4 a'8[ g'8~] g'8[ f'8] e'4 | f'1^\markup { "Fine" } \break \bar "||" | a'4 a'8[ a'8~] a'8[ g'8] f'4 | bes'4 bes'8[ bes'8~] bes'2 | a'4 a'8[ a'8~] a'8[ g'8] f'4 | a'4 g'8[ g'8~] g'2 \break | a'8[ a'8 a'8 a'8~] a'8[ g'8] f'4 | bes'4 bes'8[ bes'8~] bes'2 | a'4 a'8 g'4( f'8) e'4 | f'1^\markup { \column { \line { "D.C. al Fine" } \line { "D.C. al Fine" } } } \bar "|."
 }
 
 harmonies = \chordmode {

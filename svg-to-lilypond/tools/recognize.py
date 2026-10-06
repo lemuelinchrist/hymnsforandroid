@@ -656,7 +656,7 @@ def attach_lyrics_and_curves(sy, events, ir, state):
         o = openers.pop(0)
         opener = o['ev']
         b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
-        if same_pitch(opener, b) and opener.get('tie_open') and b is events[0]:      # a tie joins neighbouring notes only
+        if same_pitch(opener, b) and o['tie_open'] and b is events[0]:      # a tie joins neighbouring notes only
             opener['tie'] = True
             if c.get('dashed'):
                 opener['tie_dashed'] = True
@@ -665,7 +665,6 @@ def attach_lyrics_and_curves(sy, events, ir, state):
             b['slur_end'] = True
             if c.get('dashed'):
                 opener['slur_dashed'] = True
-        opener.pop('tie_open', None)
         c['_done'] = True
     if openers:
         ir['warnings'].append('a curve left the previous system but none arrives here')
@@ -676,8 +675,9 @@ def attach_lyrics_and_curves(sy, events, ir, state):
         b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
         ends_after = c['x1'] > last_x + HEAD_W + 2.0 or c['x1'] >= sy['x2'] - 0.3     # continues to next system
         if ends_after:
-            a['tie_open'] = a is events[-1]                 # only the last event of the line (not followed by a rest) can be tied over the break
-            state['open'].append({'ev': a, 'size': c['x1'] - c['x0']})
+            # only the last event of the line can be tied over the break (the flag belongs to this curve: a tie and a
+            # slur can leave the same note)
+            state['open'].append({'ev': a, 'size': c['x1'] - c['x0'], 'tie_open': a is events[-1]})
             continue
         if a is b:
             # a curve shorter than the note spacing (a tie or slur between notes that nearly touch): both ends pick
@@ -689,8 +689,7 @@ def attach_lyrics_and_curves(sy, events, ir, state):
             elif i + 1 < len(notes):
                 b = notes[i + 1]
             else:                                        # leaves the last note of the line: continues on the next system
-                a['tie_open'] = True
-                state['open'].append({'ev': a, 'size': c['x1'] - c['x0']})
+                state['open'].append({'ev': a, 'size': c['x1'] - c['x0'], 'tie_open': a is events[-1]})
                 continue
             if a is b:
                 ir['warnings'].append('curve with identical endpoints at x=%.1f' % c['x0'])

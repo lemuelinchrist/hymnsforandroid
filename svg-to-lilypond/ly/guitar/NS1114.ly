@@ -50,7 +50,7 @@ global = {
 melody = {
   \clef treble
   \global
-  bes4 \bar ".|:" | ees'8 ees'4.~ ees'4 ees'8[ f'8] | g'8 ees'4.~ ees'4 ees'8[ g'8] | f'4 f'4 ees'8[ c'8~ c'8 bes8~] | bes2 r4 bes4 \break | ees'4. f'8~ f'4 g'4 | ees'4. f'8~ f'4 g'4 | ees'4. f'8( f'4 g'4) | d'1 \break | g'4. aes'8~ aes'4 bes'4 | bes'4. aes'8~ aes'4 g'4 | f'2 f'8[ ees'8~ ees'8 d'8~] | d'2. r4 \break | bes'4. g'8~ g'4 bes'4 | aes'8[ g'8~ g'8 f'8(] f'4 ees'4) | r4 bes'4 g'4 ees'4 | c'2. ees'4 \break | ees'1( | d'2.) r4 | r4 g'4 g'4 ees'8[ ees'8] | aes'2( g'2) \break | g'2( f'2 | ees'2.) r4 | r2. bes4 | c'2. ees'4 | d'2. f'4 | ees'1 \break | \set Score.repeatCommands = #'((volta "1.")) r2. bes4 \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "2.")) r2. bes4 | \set Score.repeatCommands = #'((volta #f)) c'2. ees'4 | d'2. f'4 | g'8 ees'4.~ ees'2~ | ees'2 r2 \bar "|."
+  bes4 \bar ".|:" | ees'8 ees'4.~ ees'4 ees'8[ f'8] | g'8 ees'4.~ ees'4 ees'8[ g'8] | f'4 f'4 ees'8[ c'8~ c'8 bes8~] | bes2 r4 bes4 \break | ees'4. f'8~ f'4 g'4 | ees'4. f'8~ f'4 g'4 | ees'4. f'8~( f'4 g'4) | d'1 \break | g'4. aes'8~ aes'4 bes'4 | bes'4. aes'8~ aes'4 g'4 | f'2 f'8[ ees'8~ ees'8 d'8~] | d'2. r4 \break | bes'4. g'8~ g'4 bes'4 | aes'8[ g'8~ g'8 f'8~(] f'4 ees'4) | r4 bes'4 g'4 ees'4 | c'2. ees'4 \break | ees'1( | d'2.) r4 | r4 g'4 g'4 ees'8[ ees'8] | aes'2( g'2) \break | g'2( f'2 | ees'2.) r4 | r2. bes4 | c'2. ees'4 | d'2. f'4 | ees'1 \break | \set Score.repeatCommands = #'((volta "1.")) r2. bes4 \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "2.")) r2. bes4 | \set Score.repeatCommands = #'((volta #f)) c'2. ees'4 | d'2. f'4 | g'8 ees'4.~ ees'2~ | ees'2 r2 \bar "|."
 }
 
 harmonies = \chordmode {

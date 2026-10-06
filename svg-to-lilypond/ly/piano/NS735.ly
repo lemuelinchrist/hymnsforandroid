@@ -27,7 +27,7 @@
     }
     \vspace #0.84
   }
-  system-system-spacing = #'((basic-distance . 12.34) (minimum-distance . 12.34) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.24) (minimum-distance . 12.24) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  b8 | e'4 e'8[ e'8~] e'4 fis'8[ fis'8(] | fis'8 e'4.) e'4 b8[ cis'8~] | cis'4. e'8~ e'2 \break | e'2. r8 b8 | e'4 e'8[ e'8~] e'4 fis'8[ fis'8(] | fis'8 e'4.) e'8( b4.) | cis'4.( b8~ b2~ | b2.) r4 \break | e'4 e'8[ e'8~] e'4 fis'8[ fis'8~] | fis'8 e'4. e'4 b'8[ b'8~] | b'1~ | b'2 a'4 gis'4 \break | fis'2 fis'4 gis'4 | fis'4 e'8[ e'8~] e'2 | fis'4.( e'8) fis'4 gis'8[ e'8~] | e'2 cis'4 e'8[ e'8~] \break | e'1~ | e'1~ | e'1~ | e'2. r4 \break | b'2.^\markup { \box \bold "Chorus" } b'4 | b'4 a'4 gis'4 fis'8[ e'8~] | e'2. cis'8[ cis'8~] | cis'8[ e'8~ e'8 fis'8] fis'4 e'4 \break | b'2. b'4 | b'4 a'8[ gis'8~] gis'8[ fis'8~ fis'8 e'8~] | e'2 cis'4 e'8[ e'8~] | e'2. r8 b8 \break | b'2. b'8[ b'8(] | b'8[ a'8~ a'8) gis'8~] gis'4 fis'8[ a'8~] | a'2. r4 | a'4 gis'4 fis'4 gis'8[ e'8~] \break | e'1~ | e'4 r8 cis'8 cis'4 e'8[ fis'8(] | fis'2~ fis'8[ gis'8 fis'8 e'8~] | e'2) cis'4 e'8[ e'8~] \break | e'1~ | e'1~ | e'1~ | e'2 r2 \bar "|."
+  b8 | e'4 e'8[ e'8~] e'4 fis'8[ fis'8~(] | fis'8 e'4.) e'4 b8[ cis'8~] | cis'4. e'8~( e'2 \break | e'2.) r8 b8 | e'4 e'8[ e'8~] e'4 fis'8[ fis'8~(] | fis'8 e'4.) e'8( b4.) | cis'4.( b8~ b2~ | b2.) r4 \break | e'4 e'8[ e'8~] e'4 fis'8[ fis'8~] | fis'8 e'4. e'4 b'8[ b'8~] | b'1~ | b'2 a'4 gis'4 \break | fis'2 fis'4 gis'4 | fis'4 e'8[ e'8~] e'2 | fis'4.( e'8) fis'4 gis'8[ e'8~] | e'2 cis'4 e'8[ e'8(] \break | e'1~ | e'1~ | e'1~ | e'2.) r4 \break | b'2.^\markup { \box \bold "Chorus" } b'4 | b'4 a'4 gis'4 fis'8[ e'8~] | e'2. cis'8[ cis'8~] | cis'8[ e'8~ e'8 fis'8] fis'4 e'4 \break | b'2. b'4 | b'4 a'8[ gis'8~] gis'8[ fis'8~ fis'8 e'8~] | e'2 cis'4 e'8[ e'8~] | e'2. r8 b8 \break | b'2. b'8[ b'8~(] | b'8[ a'8~ a'8) gis'8~] gis'4 fis'8[ a'8~] | a'2. r4 | a'4 gis'4 fis'4 gis'8[ e'8(] \break | e'1~ | e'4) r8 cis'8 cis'4 e'8[ fis'8~(] | fis'2~ fis'8[ gis'8 fis'8 e'8~] | e'2) cis'4 e'8[ e'8(] \break | e'1~ | e'1~ | e'1~ | e'2) r2 \bar "|."
 }
 
 harmonies = \chordmode {

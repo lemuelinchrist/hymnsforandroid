@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  r4 e'8[ e'8] e'8[ e'8 g'8 f'8(] | f'4 e'8)[ c'8~] c'4. e'8 | f'8[ e'8 d'8 c'16 c'16~] c'8[ b8 c'8 d'16 d'16~] | d'8 e'4.~ e'2 \break | r8 e'8[ e'8 e'8] e'8[ e'8 e'8 g'8] | f'8[ e'8 d'8 c'8~] c'4. e'8 | f'8[ e'8 d'8( c'8)] d'4.( c'8) | c'2. r8 g'8 \break | a'2 b'4 a'4 | g'2 c'2 | r8 f'8[ f'8 e'8] d'8[ c'8 d'8 e'8~] | e'8 g'4.~ g'4. g'8 \break | a'4.( c''8) d''4 b'8([ a'8)] | g'2 c''8[^\fermata c'8 d'8 e'8] | r8 f'8[ f'8 e'8] d'4.( c'8) | c'1 \bar "|."
+  r4 e'8[ e'8] e'8[ e'8 g'8 f'8~(] | f'4 e'8)[ c'8~] c'4. e'8 | f'8[ e'8 d'8 c'16 c'16~] c'8[ b8 c'8 d'16 d'16~] | d'8 e'4.~ e'2 \break | r8 e'8[ e'8 e'8] e'8[ e'8 e'8 g'8] | f'8[ e'8 d'8 c'8~] c'4. e'8 | f'8[ e'8 d'8( c'8)] d'4.( c'8) | c'2. r8 g'8 \break | a'2 b'4 a'4 | g'2 c'2 | r8 f'8[ f'8 e'8] d'8[ c'8 d'8 e'8~] | e'8 g'4.~ g'4. g'8 \break | a'4.( c''8) d''4 b'8([ a'8)] | g'2 c''8[^\fermata c'8 d'8 e'8] | r8 f'8[ f'8 e'8] d'4.( c'8) | c'1 \bar "|."
 }
 
 harmonies = \chordmode {

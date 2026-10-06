@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  d'4 | d'4 b'4 b'4. a'8 | a'8[ g'8~ g'8 b8~] b4 d'4 | d'4. c'8 c'8([ d'8) c'8 e'8~] \break | e'2. d'4 | d'4. a'8 a'4 g'4 | g'4. fis'8 a4. b8 | c'4. d'8 e'4 d'4 \break | b2. b4 | d'4 b'4 b'4. a'8 | a'8[ g'8~ g'8 b8~] b4 d'4 | e'4 c''4 c''4. b'8 \break | b'8[ a'8~ a'8 e'8~] e'4 d'4 | e'4. fis'8 g'4 a'4 | g'8[ fis'8~] fis'4 e'4. fis'8 | g'1~ \break | g'4 r4 \tuplet 3/2 { b'4^\markup { \box \bold "Chorus" } c''4 d''4 } | d''2 c''2~ | c''2 \tuplet 3/2 { a'4 b'4 c''4 } | c''2 b'2~ \break | b'2 \tuplet 3/2 { g'4 a'4 b'4 } | b'4. a'8 a'4 b'4 | c''4. c''8 b'4 a'4 | b'1~ \break | b'2 \tuplet 3/2 { b'4 c''4 d''4 } | d''4. c''8 c''2~ | c''2 \tuplet 3/2 { a'4 b'4 c''4 } | c''2 b'2~ \break | b'2 \tuplet 3/2 { g'4 a'4 b'4 } | b'4. a'8 a'4 b'4 | c''4. c''8 b'4 a'4 | g'1~ | \set Score.repeatCommands = #'((volta #f)) g'4 r2. \bar "|."
+  d'4 | d'4 b'4 b'4. a'8 | a'8[ g'8~ g'8 b8~] b4 d'4 | d'4. c'8 c'8([ d'8) c'8 e'8~] \break | e'2. d'4 | d'4. a'8 a'4 g'4 | g'4. fis'8 a4. b8 | c'4. d'8 e'4 d'4 \break | b2. b4 | d'4 b'4 b'4. a'8 | a'8[ g'8~ g'8 b8~] b4 d'4 | e'4 c''4 c''4. b'8 \break | b'8[ a'8~ a'8 e'8~] e'4 d'4 | e'4. fis'8 g'4 a'4 | g'8[ fis'8~] fis'4 e'4. fis'8 | g'1~ \break | g'4 r4 \tuplet 3/2 { b'4^\markup { \box \bold "Chorus" } c''4 d''4 } | d''2 c''2~ | c''2 \tuplet 3/2 { a'4 b'4 c''4 } | c''2 b'2~ \break | b'2 \tuplet 3/2 { g'4 a'4 b'4 } | b'4. a'8 a'4 b'4 | c''4. c''8 b'4 a'4 | b'1~ \break | b'2 \tuplet 3/2 { b'4 c''4 d''4 } | d''4. c''8 c''2~ | c''2 \tuplet 3/2 { a'4 b'4 c''4 } | c''2 b'2~ \break | b'2 \tuplet 3/2 { g'4 a'4 b'4 } | b'4. a'8 a'4 b'4 | c''4. c''8 b'4 a'4 | g'1~ | g'4 r2. \bar "|."
 }
 
 harmonies = \chordmode {
@@ -84,6 +84,7 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
+      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score

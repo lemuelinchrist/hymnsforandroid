@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  b4 | e'4( fis'4) gis'4 a'4 | cis'2. e'4 | e'2.( e'8[ fis'8)] | fis'2. b4 \break | e'4 fis'4 gis'4 a'4 | cis'2. e'4 | e'2 b4.( gis'8) | fis'4.( gis'8) fis'8( e'4.) \break | gis'4( a'4) b'4( cis''4) | b'2. a'4 | gis'2 b'2 | b'1 \break | gis'4( a'4) b'4( cis''4) | b'2. a'4 | gis'2 b'2 | b'2. r4 \bar "|."
+  b4 | e'4( fis'4) gis'4 a'4 | cis'2. e'4 | e'2.~( e'8[ fis'8)] | fis'2. b4 \break | e'4 fis'4 gis'4 a'4 | cis'2. e'4 | e'2 b4.( gis'8) | fis'4.( gis'8) fis'8( e'4.) \break | gis'4( a'4) b'4( cis''4) | b'2. a'4 | gis'2 b'2 | b'1 \break | gis'4( a'4) b'4( cis''4) | b'2. a'4 | gis'2 b'2 | b'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {

@@ -50,7 +50,7 @@ global = {
 melody = {
   \clef treble
   \global
-  f'4 g'4 | a'4 c''4( c''4 b'4 | bes'4) r4 bes'4 a'4 | g'4 c'2. \break | \set Score.repeatCommands = #'((volta "1.–3.")) r4 f'4 f'4 g'4 | a'4 c''4~ c''4 a'4 | bes'2 bes'4 a'4 | g'1 \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "4.")) r4 f'4 f'4 g'4 | a'4 c''4( c''4 a'4) | g'2 a'2 | f'1 \bar "|." \set Score.repeatCommands = #'((volta #f))
+  f'4 g'4 | a'4 c''4~( c''4 b'4 | bes'4) r4 bes'4 a'4 | g'4 c'2. \break | \set Score.repeatCommands = #'((volta "1.–3.")) r4 f'4 f'4 g'4 | a'4 c''4~ c''4 a'4 | bes'2 bes'4 a'4 | g'1 \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "4.")) r4 f'4 f'4 g'4 | a'4 c''4~( c''4 a'4) | g'2 a'2 | f'1 \bar "|." \set Score.repeatCommands = #'((volta #f))
 }
 
 harmonies = \chordmode {

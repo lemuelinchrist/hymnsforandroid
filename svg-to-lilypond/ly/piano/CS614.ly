@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  r4 g'4^\markup { \box \bold "副" } a'4 b'4 | c''4 c''8[ c''8(] c''8[ b'8)] a'4 | b'2 g'4 b'4 | a'8 a'4 a'8 a'8([ b'8)] c''4 \break | b'4 g'4 a'4 b'4 | c''4 c''8[ c''8(] c''8[ b'8)] a'4 | b'2 g'4 b'4 | a'8 a'4 a'8 a'8([ g'8)] fis'4 \break | g'4 r4 d'4 e'4 | d'4 fis'8[ fis'8] fis'8 g'4. | a'2 a'8([ g'8)] fis'4 | g'4 b'8[ b'8] b'8 c''4. \break | b'2 d'4 e'4 | d'4 fis'8[ fis'8] fis'8 g'4. | a'2 a'8([ g'8)] fis'4 | g'1 \break | r4 g'8[ g'8] g'8[ fis'8~] fis'4 | fis'8 e'4 e'8 e'2 | r4 fis'8[ fis'8] fis'8 e'4 e'8 | e'8( d'4) d'8 d'2 | r4 g'8[ g'8] g'8[ fis'8~] fis'4 \break | fis'8 e'4 e'8 e'2 | r4 fis'8[ fis'8] fis'4 e'8[ fis'8] | g'2. fis'8[ g'8] | a'1 | r4 a'4 a'8([ g'8~ g'8) fis'8] | g'1 \bar "|."
+  r4 g'4^\markup { \box \bold "副" } a'4 b'4 | c''4 c''8[ c''8~(] c''8[ b'8)] a'4 | b'2 g'4 b'4 | a'8 a'4 a'8 a'8([ b'8)] c''4 \break | b'4 g'4 a'4 b'4 | c''4 c''8[ c''8~(] c''8[ b'8)] a'4 | b'2 g'4 b'4 | a'8 a'4 a'8 a'8([ g'8)] fis'4 \break | g'4 r4 d'4 e'4 | d'4 fis'8[ fis'8] fis'8 g'4. | a'2 a'8([ g'8)] fis'4 | g'4 b'8[ b'8] b'8 c''4. \break | b'2 d'4 e'4 | d'4 fis'8[ fis'8] fis'8 g'4. | a'2 a'8([ g'8)] fis'4 | g'1 \break | r4 g'8[ g'8] g'8[ fis'8~] fis'4 | fis'8 e'4 e'8 e'2 | r4 fis'8[ fis'8] fis'8 e'4 e'8 | e'8( d'4) d'8 d'2 | r4 g'8[ g'8] g'8[ fis'8~] fis'4 \break | fis'8 e'4 e'8 e'2 | r4 fis'8[ fis'8] fis'4 e'8[ fis'8] | g'2. fis'8[ g'8] | a'1 | r4 a'4 a'8([ g'8~ g'8) fis'8] | g'1 \bar "|."
 }
 
 harmonies = \chordmode {

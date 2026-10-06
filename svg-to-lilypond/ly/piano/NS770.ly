@@ -25,7 +25,7 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.85
+    \vspace #0.74
   }
   system-system-spacing = #'((basic-distance . 12.56) (minimum-distance . 12.56) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.01) (minimum-distance . 15.01) (padding . 0) (stretchability . 0))
@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  g'4 f'4 | ees'8[ ees'8 ees'8 ees'8] ees'8[ c''8~ c''8 c''8(] | c''8 bes'4.~ bes'4.) g'8 \break | aes'4 g'8[ f'8~] f'8[ ees'8 ees'8 ees'8] | ees'8[ ees'8 d'8 d'8] c'8[ c'8] bes4 \break | r4 ees'8[ ees'8] ees'8[ c''8~ c''8 c''8(] | c''8 bes'4.~ bes'4.) g'8 | aes'8[ g'8~ g'8 f'8~] f'8[ ees'8 ees'8 c'8] \break | ees'8([ f'8) g'8 f'8~] f'8[ f'8 g'8 aes'8] | r4 aes'8[ g'8] aes'8[ g'8 f'8 ees'8] | ees'8([ d'8~ d'8) ees'8~] ees'8[ bes8~ bes8 c'8] \break | r4 aes'8[ g'8] aes'8[ g'8 f'8 ees'8] | ees'8[ ees'8 d'8 bes'8~] bes'8[ d'8~ d'8 c'8] \break | r4 aes'8[ g'8] aes'8[ g'8 f'8 ees'8] | ees'4 d'8[ ees'8~] ees'8[ bes8~ bes8 c'8] | r4 aes'8[ g'8] aes'8[ g'8 aes'8 bes'8] \break | bes'4. g'8^\markup { \box \bold "Chorus" } aes'8[ g'8 f'8 ees'8] | ees'8[ ees'8 ees'8 ees'8] ees'8[ c''8~ c''8 c''8(] \break | c''8[ bes'8~ bes'8) g'8] aes'8[ g'8 f'8 ees'8] | ees'8[ c'8 ees'8 c'8] ees'4 g'8[ f'8(] \break | f'8 g'4.) aes'8[ g'8 f'8 ees'8] | ees'4 ees'8[ ees'8] ees'8[ c''8~ c''8 c''8(] \break | c''8[ bes'8~ bes'8) g'8] aes'8[ g'8 f'8 ees'8] | f'2~ f'8([ g'8 f'8 ees'8~] | ees'1) \bar "|."
+  g'4 f'4 | ees'8[ ees'8 ees'8 ees'8] ees'8[ c''8~ c''8 c''8~(] | c''8 bes'4.~ bes'4.) g'8 \break | aes'4 g'8[ f'8~] f'8[ ees'8 ees'8 ees'8] | ees'8[ ees'8 d'8 d'8] c'8[ c'8] bes4 \break | r4 ees'8[ ees'8] ees'8[ c''8~ c''8 c''8~(] | c''8 bes'4.~ bes'4.) g'8 | aes'8[ g'8~ g'8 f'8~] f'8[ ees'8 ees'8 c'8] \break | ees'8([ f'8) g'8 f'8~] f'8[ f'8 g'8 aes'8] | r4 aes'8[ g'8] aes'8[ g'8 f'8 ees'8] | ees'8([ d'8~ d'8) ees'8~] ees'8[ bes8~ bes8 c'8] \break | r4 aes'8[ g'8] aes'8[ g'8 f'8 ees'8] | ees'8[ ees'8 d'8 bes'8~] bes'8[ d'8~ d'8 c'8] \break | r4 aes'8[ g'8] aes'8[ g'8 f'8 ees'8] | ees'4 d'8[ ees'8~] ees'8[ bes8~ bes8 c'8] | r4 aes'8[ g'8] aes'8[ g'8 aes'8 bes'8] \break | bes'4. g'8^\markup { \box \bold "Chorus" } aes'8[ g'8 f'8 ees'8] | ees'8[ ees'8 ees'8 ees'8] ees'8[ c''8~ c''8 c''8(] \break | c''8[ bes'8~ bes'8) g'8] aes'8[ g'8 f'8 ees'8] | ees'8[ c'8 ees'8 c'8] ees'4 g'8[ f'8(] \break | f'8 g'4.) aes'8[ g'8 f'8 ees'8] | ees'4 ees'8[ ees'8] ees'8[ c''8~ c''8 c''8(] \break | c''8[ bes'8~ bes'8) g'8] aes'8[ g'8 f'8 ees'8] | f'2~ f'8([ g'8 f'8 ees'8~] | ees'1) \bar "|."
 }
 
 harmonies = \chordmode {

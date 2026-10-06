@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  cis'8[ d'8 e'8 e'8~] e'2 | cis'8[ d'8 e'8 e'8~] e'2 | cis'8[ d'8 e'8 e'8~] e'8 cis''4. | \defaultTimeSignature \time 2/4 a'4 e'4 \break | \defaultTimeSignature \time 4/4 d'4. d'8 d'8[ e'8 d'8 cis'8~] | cis'2 cis'8[ cis'8 d'8 cis'8] | b4 e'2.~ | e'2. r4 \break | cis'8[ d'8 e'8 e'8~] e'2 | cis'8[ d'8 e'8 e'8~] e'2 | cis'8[ d'8 e'8 e'8~] e'8 cis''4. | \defaultTimeSignature \time 2/4 a'4 e'4 \break | \defaultTimeSignature \time 4/4 d'4. d'8 d'8[ e'8 d'8 cis'8~] | cis'2 cis'8[ cis'8 d'8 cis'8] | b4 e'2.~ | e'2. r4 \break | r4 fis'8[ fis'8] fis'8[ gis'8] a'4 | gis'4 gis'8[ gis'8(] gis'8 e'4.) | cis''4 cis''8[ cis''8] cis''4 gis'4 | a'1 \break | fis'4. fis'8~ fis'4 a'4 | gis'2. e'4 | cis''2 cis''4 gis'4 | a'1 \break | fis'4 fis'4 fis'4 a'4 | gis'4.~ gis'8 \tuplet 3/2 { gis'4 a'4 b'4 } | b'1 | a'2. r4 \bar "|."
+  cis'8[ d'8 e'8 e'8~] e'2 | cis'8[ d'8 e'8 e'8~] e'2 | cis'8[ d'8 e'8 e'8~] e'8 cis''4. | \defaultTimeSignature \time 2/4 a'4 e'4 \break | \defaultTimeSignature \time 4/4 d'4. d'8 d'8[ e'8 d'8 cis'8~] | cis'2 cis'8[ cis'8 d'8 cis'8] | b4 e'2.~ | e'2. r4 \break | cis'8[ d'8 e'8 e'8~] e'2 | cis'8[ d'8 e'8 e'8~] e'2 | cis'8[ d'8 e'8 e'8~] e'8 cis''4. | \defaultTimeSignature \time 2/4 a'4 e'4 \break | \defaultTimeSignature \time 4/4 d'4. d'8 d'8[ e'8 d'8 cis'8~] | cis'2 cis'8[ cis'8 d'8 cis'8] | b4 e'2.~ | e'2. r4 \break | r4 fis'8[ fis'8] fis'8[ gis'8] a'4 | gis'4 gis'8[ gis'8~(] gis'8 e'4.) | cis''4 cis''8[ cis''8] cis''4 gis'4 | a'1 \break | fis'4. fis'8~ fis'4 a'4 | gis'2. e'4 | cis''2 cis''4 gis'4 | a'1 \break | fis'4 fis'4 fis'4 a'4 | gis'4.~ gis'8 \tuplet 3/2 { gis'4 a'4 b'4 } | b'1 | a'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {

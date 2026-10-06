@@ -622,6 +622,69 @@ Open question: the earlier table listed 7 dot-count and 7 key-change REVIEWs; th
 E1250 (dots) and E323 E879 E924 (flats/naturals), consistent with that, but I did not diff against the old reports
 (they were not kept), so a regression among them is not excluded.
 
+### Review tail, task 3 (2026-10-05/06, media host): 99.6% accepted
+Final full run on LilyPond 2.24.4 (`-j 8`, nice; E 1 h, NS 2 h, CS/BF/C/CH ~12 min each per variant) plus the re-test of
+the two regressions it showed:
+
+| | Piano | Guitar |
+|---|---|---|
+| files | 3,179 | 3,179 |
+| `ACCEPT` (clean) | 3,089 | 3,084 |
+| `ACCEPT_DB_MISMATCH` | 73 | 76 |
+| `ACCEPT_SOURCE_BAR_SUM` (new tier) | 4 | 4 |
+| **accepted in total** | **3,166 (99.59%)** | **3,164 (99.53%)** |
+| `REVIEW` | 11 | 13 |
+| no `.ly` (`recognition_error` / `emit_error`) | 2 (NS812, NS746) | 2 |
+
+(Before this task: piano 3,080, guitar 3,071; at the very start of the media-host session 3,077 / 3,068.) Every sheet of
+E is accepted in both variants; all of BF is accepted. 268 piano / 303 guitar sheets (~9%) use LilyPond's own word
+spacing (wide spacing made a dense system overflow).
+
+**New tier `ACCEPT_SOURCE_BAR_SUM`** (NS121 NS202 NS281 CS744): the only failing check is the bar arithmetic (V1), while the
+round trip, the model-free symbol counts and the warnings all pass: the original prints bars that do not add up (a short
+final bar, a mis-barred source) and our `.ly` reproduces it glyph for glyph. Counted as accepted but kept apart from `ACCEPT`.
+
+**Defects fixed (each found on real sheets; all in `recognize.py` unless noted):**
+| Defect | Sheets | Fix |
+|---|---|---|
+| Tuplet whose bracket covers more events than its digit (3 over quarter, quarter, two eighths) | NS32 NS445 NS584 NS624 NS712 CS1003 | the group is the events under the bracket (its end ticks are two horizontal pieces either side of the digit); unit check: written total / n must be a power of two |
+| Repeat-sign dots read as a rest's augmentation dot | NS10046 | a vertical pair of dots is never an augmentation dot |
+| Dotted whole rest lost its dot | E522 E887 E983 E1097 E1186 E1250 | its dot sits half a space *below* the rest origin |
+| **Key change in the middle of a line was forgotten on the next system**: notes read with the old key's accidentals (a real musical error, caught only by the symbol-count check) | E323 E879 E924 NS732 NS10049 (+ guitar) | each system starts from the key current at the end of the previous one |
+| Curves leaving a line: a tie and a slur on the same note | E1170 NS145 NS231 NS413 NS537 NS1064 E1340 NS127 NS410 NS10075 | `state['open']` is a list; open curves are paired with arriving ones biggest to biggest; **two long pieces with one origin are two curves** (only >= 3 pieces, or 2 tiny ones, are one dashed curve); the flag "can be a tie" belongs to the open curve, not the note (a shared note lost it: NS160, NS402) |
+| Tie vs slur | NS504 NS533 NS786 BF446 | a tie needs adjacent *events* (no rest, no note between); over a line break last event to first event; a half-tie stub at a line start begins only 1.1 before the first note (arrival test is `x0 < first_x - 0.4`) |
+| Slur lifted above a tuplet bracket assigned to the system above | NS806 | a curve between two systems goes to the system whose noteheads it joins |
+| Chord names above three stacked boxed marks not found | E1337 | chord band extended from 12 to 19 spaces above the staff |
+| Two chord changes inside one long note snapped to the same beat | E16 E539 E760 E1072 (guitar) | the later one takes the next free sixteenth |
+| Diminished chord inside a note: LilyPond draws the "o" as a glyph | NS376 | the comparison ignores "o" for chord changes inside a note too (it already did for the chord on a note) |
+| Volta bracket continuing over a line break (a tick at the break is not an end) | NS170 NS216 NS679 NS749 NS863 NS970 NS1038 NS1040 NS965 CS928 | an unlabeled bracket at the very start of a line cancels the previous line's "end" |
+| Indented refrain paragraphs and unnumbered blocks (Bridge, Ending, children's songs) in the verse area | NS750 and ~30 more (NS540 NS626 NS639 NS890 NS10042 CS149 CH35 CH46 CH55 CH56 CH59 ...) | lines belong to the nearest column to their left (indent up to 20); unmatched lines form unnumbered blocks emitted as plain columns |
+| Verse block too close to the last staff lost its stanza numbers (the threshold was 14 below the staff), which also made the layout calibration chase the wrong line | NS506 NS972 NS1032 NS1068 NS1144 E1337 | threshold 10 |
+
+**Still `REVIEW` / no `.ly` (13 piano, 15 guitar; each with a reason):**
+- *Source quirks our `.ly` cannot show:* CS107 CS602 CS710 CH52 print chord names over bars that have no notes (a chord
+  needs a note); NS349 lacks a bar line after a fermata (LilyPond draws the bar by itself; would need cadenza mode).
+- *Not modelled:* NS812 cross noteheads (spoken text); NS746 no time signature; NS531 (`##` chord), NS876 (`add9`), guitar
+  NS160 (`F?m`) exotic chords; NS471 guitar (stacked marks `3.` `3.` `4.` `4.` on one note).
+- *Text we do not place:* NS407 (instruction syllables above the music), NS1152 (`°` marks), NS10025 (one line of text),
+  C316 (footnotes below the music).
+
+**Lessons worth keeping**
+- The model-free symbol counts (coverage) found the key-change error that every model-based check missed. Keep them.
+- Anything in `recognize.py` that compares "nearest note by x" fails for objects drawn very close together (short ties,
+  half-tie stubs, two curves on one note): check geometry (which end, which side) before guessing.
+- LilyPond's `\vspace` inside a `\column` costs a whole extra baseline; use `\translate` to shift lines.
+- A full run takes ~6.5 h at `-j 8` under nice; re-running only the previous REVIEW list (about 100 sheets per variant)
+  takes ~15 minutes and is the right loop while fixing; validate with a full run at the end and diff against the saved
+  reports (`build/prev_reports/`) so a regression is caught (NS160 and NS402 were).
+
+**Task 4 (report only): database tune codes.** `tools/tune_mismatch_report.py` writes `build/db_tune_mismatches.txt`: 48
+hymns whose database tune code disagrees with the melody on the sheet *and* with the MIDI top voice (e.g. CH7: code
+`11111111555511`, our reading `66666666333366`: the same shape on another reference note, probably a different key
+convention; BF135: `465341653` vs `132715327`). Both variants agree for every one. The database was not touched; the tune
+code names the MIDI file, so changing one can break playback. Treat the list as "worth a human look", not as proof the
+database is wrong: some are probably our reading of the key.
+
 ### Visual review 2026-10-05 (task 1 of the media-host session)
 Method: 140 random sheets (70 piano, 70 guitar; seed fixed, lists in `build/sample_*.txt`) were converted on LilyPond
 2.24.4, 36 side-by-side images viewed (21 piano, 15 guitar) with `tools/compare_png.py`, plus the two known
@@ -754,6 +817,7 @@ where checked by eye; see `ACCEPT_DB_MISMATCH`), and the REVIEW table above.
 | `experiments/E1_opus_variant.ly`, `E1_sonnet_variant.ly` | Hand-written E1 transcriptions (layout experiments, §8). |
 | `experiments/cmp.py`, `report.py`, `glyphs.py` | Early comparison helpers from the E1 experiment (superseded by `tools/`). |
 | `ly/` | **Committed** generated `.ly` for the accepted sheets (3,080 piano, 3,071 guitar) + `status.csv` + README. Never hand-edit; refresh after significant converter changes. |
+| `tools/tune_mismatch_report.py` | Lists hymns whose DB tune code disagrees with the sheet (writes `build/db_tune_mismatches.txt`). |
 | `tools/svg_text_to_paths.py` | Outlines the `<text>` of a LilyPond SVG so it needs no installed fonts (section 15.1). |
 | `tools/transpose_check.py` | `\transpose` round-trip and semitone check for converted hymns (section 15.1). |
 | `build/` | Generated renders, contact sheets. Git-ignored and safe to delete. |
@@ -796,6 +860,7 @@ Python 3.12 with fontTools/numpy/Pillow.
 - **2026-10-05 (media host, full run):** piano 3,080/3,179, guitar 3,071/3,179 accepted; strict ACCEPT 3,001 / 2,989; TAIL_UNVERIFIED tier empty. New glyph ids named. See section 18.
 - **2026-10-05 (media host):** accepted `.ly` files committed under `svg-to-lilypond/ly/` (user decision: they took ~6.5 h to build). REVIEW sheets stay in `build/`.
 - **2026-10-05 (media host, task 2):** app-readiness prototype: text-as-outline tool, size comparison, `\transpose` checked on 11 hymns; report in section 15.1.
+- **2026-10-05/06 (media host, task 3):** review tail worked class by class (bar sums, tuplet brackets, dots, key changes across systems, curves across line breaks, voltas, verse blocks). Final: piano 3,166/3,179, guitar 3,164/3,179; new tier `ACCEPT_SOURCE_BAR_SUM`; 13+15 sheets left with reasons. Task 4 list written. See section 18.
 - **2026-10-05 (session 2):** Built the converter (recognize / emit / verify / convert), tests and tools; findings in §18.
   English piano 1,350/1,362 accepted; all groups piano 3,077/3,179 and guitar 3,068/3,179. Wrote the Claude skill
   (`.claude/skills/svg-to-lilypond/SKILL.md`). Corrected an overstatement along the way: the first New Songs run had

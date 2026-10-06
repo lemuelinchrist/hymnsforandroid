@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  \tuplet 3/2 { e'4 d'4 c'4 } \bar ".|:" | e'1~ | e'4. e'8 \tuplet 3/2 { e'4 d'4 c'4 } | d'1~ \break | d'2. d'8[ e'8] | f'8[ f'8~ f'8 f'8(] f'2~ | f'2.) e'8[ d'8] | e'8[ g'8~] g'2. \break | g'1 | a'1~ | a'2 a'4 c''4 | b'4( g'8)[ e'8~] e'2 \break | e'2. e'8[ g'8] | a'1~ | a'4. a'8 \tuplet 3/2 { a'4( b'4) c''4 } | \set Score.repeatCommands = #'((volta "1.")) b'1~ | b'2 \tuplet 3/2 { e'4 d'4 c'4 } \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "2.")) b'1~ | \set Score.repeatCommands = #'((volta #f)) b'2 \tuplet 3/2 { e'4 d'4 c'4 } | c'1~ | c'2 c'4 d'4 | c'1~ | c'2 r2 \bar "|."
+  \tuplet 3/2 { e'4 d'4 c'4 } \bar ".|:" | e'1~ | e'4. e'8 \tuplet 3/2 { e'4 d'4 c'4 } | d'1~ \break | d'2. d'8[ e'8] | f'8[ f'8~ f'8 f'8~(] f'2~ | f'2.) e'8[ d'8] | e'8[ g'8~(] g'2. \break | g'1) | a'1~ | a'2 a'4 c''4 | b'4( g'8)[ e'8~(] e'2 \break | e'2.) e'8[ g'8] | a'1~ | a'4. a'8 \tuplet 3/2 { a'4( b'4) c''4 } | \set Score.repeatCommands = #'((volta "1.")) b'1~ | b'2 \tuplet 3/2 { e'4 d'4 c'4 } \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "2.")) b'1~ | \set Score.repeatCommands = #'((volta #f)) b'2 \tuplet 3/2 { e'4 d'4 c'4 } | c'1~ | c'2 c'4 d'4 | c'1~ | c'2 r2 \bar "|."
 }
 
 harmonies = \chordmode {

@@ -50,7 +50,7 @@ global = {
 melody = {
   \clef treble
   \global
-  r8 d'8[ g'8~ g'8] fis'8[ e'8 fis'8 g'8~] | g'8[ g'8~ g'8 e'8(] e'8[ d'8)] d'4 | r4 g'4 fis'8[ e'8 fis'8 g'8~] | g'8[ g'8 g'8 e'8~] e'2 \break | r4 g'4 fis'8[ e'8 fis'8 g'8~] | g'8[ g'8~ g'8 e'8(] e'8[ d'8)] d'4 | r4 g'4 fis'8[ e'8~ e'8 g'8~] | g'8[ g'8~ g'8 a'8~] a'2 \break | r4 b'4 a'8[ g'8 fis'8 e'8~] | e'8[ e'8~ e'8 fis'8~] fis'8[ e'8] d'4 | r4 b'4 a'8[ g'8 fis'8 e'8~] | e'8[ e'8~ e'8 fis'8~] fis'2 \break | r4 b'4 a'8[ g'8 fis'8 e'8~] | e'8[ e'8~ e'8 fis'8~] fis'8[ fis'8~ fis'8 g'8~] | g'4. g'8~ g'4. a'8~ | a'2. r4 \break | b'4^\markup { \box \bold "Chorus" } b'8[ a'8~] a'4 a'8[ b'8~] | b'4 a'8[ g'8~] g'4. d'8 | b'4 b'8[ c''8~] c''8[ b'8~ b'8 g'8~] | g'8[ g'8~ g'8 a'8~] a'4. d'8 \break | g'4 g'8[ a'8~] a'8[ b'8~ b'8 c''8~] | c''8[ b'8~ b'8 g'8~] g'4. d'8 | g'8[ g'8~ g'8 g'8] fis'4 g'8[ g'8~] | g'2. r4 \bar "|."
+  r8 d'8[ g'8~ g'8] fis'8[ e'8 fis'8 g'8~] | g'8[ g'8~ g'8 e'8~(] e'8[ d'8)] d'4 | r4 g'4 fis'8[ e'8 fis'8 g'8~] | g'8[ g'8 g'8 e'8~] e'2 \break | r4 g'4 fis'8[ e'8 fis'8 g'8~] | g'8[ g'8~ g'8 e'8~(] e'8[ d'8)] d'4 | r4 g'4 fis'8[ e'8~ e'8 g'8~] | g'8[ g'8~ g'8 a'8~] a'2 \break | r4 b'4 a'8[ g'8 fis'8 e'8~] | e'8[ e'8~ e'8 fis'8~] fis'8[ e'8] d'4 | r4 b'4 a'8[ g'8 fis'8 e'8~] | e'8[ e'8~ e'8 fis'8~] fis'2 \break | r4 b'4 a'8[ g'8 fis'8 e'8~] | e'8[ e'8~ e'8 fis'8~] fis'8[ fis'8~ fis'8 g'8~] | g'4. g'8~ g'4. a'8~ | a'2. r4 \break | b'4^\markup { \box \bold "Chorus" } b'8[ a'8~] a'4 a'8[ b'8~] | b'4 a'8[ g'8~] g'4. d'8 | b'4 b'8[ c''8~] c''8[ b'8~ b'8 g'8~] | g'8[ g'8~ g'8 a'8~] a'4. d'8 \break | g'4 g'8[ a'8~] a'8[ b'8~ b'8 c''8~] | c''8[ b'8~ b'8 g'8~] g'4. d'8 | g'8[ g'8~ g'8 g'8] fis'4 g'8[ g'8~] | g'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {

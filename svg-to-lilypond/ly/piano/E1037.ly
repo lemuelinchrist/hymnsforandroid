@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  ees'8.[ ees'16] | ees'2 \tuplet 3/2 { c'8([ des'8) ees'8] } | f'4 ees'4 ees'8.[ aes'16] | g'8.[ aes'16] g'4 f'4 \break | ees'2 ees'8.[ ees'16] | ees'2 \tuplet 3/2 { c'8([ des'8) ees'8] } | f'4 ees'4 ees'8.[ aes'16] | g'8.[ aes'16] g'4 bes'4 \break | aes'2 \tuplet 3/2 { ees'8[ f'8 ees'8] } | bes'2( \tuplet 3/2 { bes'8[ c''8) bes'8] } | aes'4 aes'4 aes'8[ bes'8] | c''2 c'4 \break | f'2^\fermata ees'8.[ ees'16] | ees'2 \tuplet 3/2 { c'8([ des'8) ees'8] } | f'4 ees'4 c''8.[ c''16] | c''2 \tuplet 3/2 { aes'8([ bes'8) c''8] } \break | des''4 c''4 bes'8[ aes'8] | aes'4. g'8 aes'8.[ f'16] | ees'2 ees'8[ ees'8] | ees'4. ees'8 ees'8[ ees'8] | ees'2 r4 \bar "|."
+  ees'8.[ ees'16] | ees'2 \tuplet 3/2 { c'8([ des'8) ees'8] } | f'4 ees'4 ees'8.[ aes'16] | g'8.[ aes'16] g'4 f'4 \break | ees'2 ees'8.[ ees'16] | ees'2 \tuplet 3/2 { c'8([ des'8) ees'8] } | f'4 ees'4 ees'8.[ aes'16] | g'8.[ aes'16] g'4 bes'4 \break | aes'2 \tuplet 3/2 { ees'8[ f'8 ees'8] } | bes'2~( \tuplet 3/2 { bes'8[ c''8) bes'8] } | aes'4 aes'4 aes'8[ bes'8] | c''2 c'4 \break | f'2^\fermata ees'8.[ ees'16] | ees'2 \tuplet 3/2 { c'8([ des'8) ees'8] } | f'4 ees'4 c''8.[ c''16] | c''2 \tuplet 3/2 { aes'8([ bes'8) c''8] } \break | des''4 c''4 bes'8[ aes'8] | aes'4. g'8 aes'8.[ f'16] | ees'2 ees'8[ ees'8] | ees'4. ees'8 ees'8[ ees'8] | ees'2 r4 \bar "|."
 }
 
 harmonies = \chordmode {

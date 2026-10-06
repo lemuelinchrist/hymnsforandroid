@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  c'8[ c'8 d'8] \bar ".|:" | e'2. e'8([ f'8)] | g'2. a'8[ b'8] | c''2 c''8([ b'8)] g'4 \break | a'2. a'8[ a'8] | g'8 e'4.~ e'4 f'8[ e'8] | d'2. e'8[ d'8] \break | \set Score.repeatCommands = #'((volta "1.")) d'8[ c'8(] c'2.~ | c'2.) c'8[ d'8] | d'8[ e'8(] e'2.~ | e'2) r8 c'8[ c'8 d'8] \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "2.")) d'8 c'4.~ c'4 c'8[ d'8] | d'8[ c'8~] c'2.~ | c'2 r2 | \set Score.repeatCommands = #'((volta #f))
+  c'8[ c'8 d'8] \bar ".|:" | e'2. e'8([ f'8)] | g'2. a'8[ b'8] | c''2 c''8([ b'8)] g'4 \break | a'2. a'8[ a'8] | g'8 e'4.~ e'4 f'8[ e'8] | d'2. e'8[ d'8] \break | \set Score.repeatCommands = #'((volta "1.")) d'8[ c'8~(] c'2.~ | c'2.) c'8[ d'8] | d'8[ e'8~(] e'2.~ | e'2) r8 c'8[ c'8 d'8] \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "2.")) d'8 c'4.~ c'4 c'8[ d'8] | d'8[ c'8~] c'2.~ | c'2 r2 | \set Score.repeatCommands = #'((volta #f))
 }
 
 harmonies = \chordmode {

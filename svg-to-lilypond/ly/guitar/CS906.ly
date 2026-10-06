@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  e'1^\markup { \italic \bold "(吉他)" } | f'2. r8 f'8 | g'2. d'4 | e'2~ e'8 r4. | a'2~ a'8[ a8 b8( c'8)] | d'4. e'8 d'4 r4 \break | g'2~ g'8[ g8 a8( b8)] | c'4. d'8 c'4 r4 | c''2~ c''8[ c'8 d'8( e'8)] | fis'4. e'8 d'4 a4 | b2 r4 d'4 | e'2~ e'8[ e'8( f'8) g'8] \break | a'4. a8 a4 r4 | d'2~ d'8[ d'8( e'8) f'8] | g'2 g4 r4 | c'2~ c'8[ c'8( d'8) e'8] | f'2~ f'8[ f'8 g'8 a'8] | b'4. a'8 g'4 d'4 \break | e'2. r4 | g'2 e'4 r8. e'16 | a'2 a4 r4 | a'2 c'4 r8. a'16 | c''2 ees'4 r8. c''16 | c''2 d'4 r4 \break | d'2~ d'8[ d'8( c'8) b8] | g'4. e'8 c'4 r4 | f'2~ f'8[ f'8( e'8) d'8] | d''4. b'8 g'4 r4 | a'2~ a'8[ a'8( b'8) c''8] | e''2~ e''8[ c''8 g'8 e'8] \break | d'2( d'8[ a'8) b'8( a'8)] | g'8([ d''8) b'8 g'8] f'8[ d'8 b8 g8] | c'1 | c'2 r2 | g'1 | g'2. r4 \bar "|."
+  e'1^\markup { \italic \bold "(吉他)" } | f'2. r8 f'8 | g'2. d'4 | e'2~ e'8 r4. | a'2~ a'8[ a8 b8( c'8)] | d'4. e'8 d'4 r4 \break | g'2~ g'8[ g8 a8( b8)] | c'4. d'8 c'4 r4 | c''2~ c''8[ c'8 d'8( e'8)] | fis'4. e'8 d'4 a4 | b2 r4 d'4 | e'2~ e'8[ e'8( f'8) g'8] \break | a'4. a8 a4 r4 | d'2~ d'8[ d'8( e'8) f'8] | g'2 g4 r4 | c'2~ c'8[ c'8( d'8) e'8] | f'2~ f'8[ f'8 g'8 a'8] | b'4. a'8 g'4 d'4 \break | e'2. r4 | g'2 e'4 r8. e'16 | a'2 a4 r4 | a'2 c'4 r8. a'16 | c''2 ees'4 r8. c''16 | c''2 d'4 r4 \break | d'2~ d'8[ d'8( c'8) b8] | g'4. e'8 c'4 r4 | f'2~ f'8[ f'8( e'8) d'8] | d''4. b'8 g'4 r4 | a'2~ a'8[ a'8( b'8) c''8] | e''2~ e''8[ c''8 g'8 e'8] \break | d'2~( d'8[ a'8) b'8( a'8)] | g'8([ d''8) b'8 g'8] f'8[ d'8 b8 g8] | c'1 | c'2 r2 | g'1 | g'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {

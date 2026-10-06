@@ -9,7 +9,7 @@ All code, data and the full technical record live in `svg-to-lilypond/`. **Read 
 ("Implementation status and findings") before debugging anything** — most surprises have already been found there.
 
 The SVGs are LilyPond output (vector, exact coordinates). The converter reads them deterministically
-(no OCR / vision), builds an intermediate representation (IR), writes `.ly`, renders it with LilyPond 2.24.3,
+(no OCR / vision), builds an intermediate representation (IR), writes `.ly`, renders it with LilyPond 2.24.3/2.24.4,
 re-reads the render and compares. Nothing is judged by eye except failures.
 
 ## Prerequisites (check, don't assume)
@@ -41,7 +41,8 @@ Never run the glyph census (below) while a batch is running.
 |---|---|---|
 | `ACCEPT` | bars add up, re-render reads back identical, symbol counts match, tune code and DB lyrics agree | done |
 | `ACCEPT_DB_MISMATCH` | converted and internally consistent, but the database tune code / lyric words disagree (usually the DB is wrong) | done; list them for a spot check |
-| `ACCEPT_TAIL_UNVERIFIED` | original SVG overflows its page; only page 1 of our render was compared | done, note it |
+| `ACCEPT_TAIL_UNVERIFIED` | original SVG overflows its page; only page 1 of our render was compared | done, note it (no sheet needs this any more: staff size now follows the original viewBox) |
+| `ACCEPT_SOURCE_BAR_SUM` | only the bar arithmetic fails; the round trip and symbol counts pass: the original prints bars that do not add up | done, but not musically clean: say so |
 | `REVIEW` | at least one check failed — reason is the first of `v1`/`v2`/`v3`/`v8`/`warnings` in the report | see below |
 | `recognition_error` | e.g. unknown glyph ids, non-treble clef, unsupported notehead/rest | see below |
 | `render_error` / `emit_error` | LilyPond or the emitter failed | run `lilypond` on `build/ly/.../<id>.ly` and read the error |
@@ -79,13 +80,15 @@ Read it with the image Read tool. Judge music and text; ignore small horizontal 
 ## 7. What is and isn't modelled (be honest in reports)
 Modelled and verified: pitches, durations, dots, ties, slurs (also dashed), beams, triplets, chords (incl. slash, 7, m7, sus,
 maj7, dim, 9; and chord changes inside a sustained note), key and time signatures (and their changes), repeat/double/final
-bars, voltas, text marks (boxed or not, stacked), fermatas, segno/coda, multiple lyric verses with hyphens, stanza labels,
+bars, voltas (also across a line break), text marks (boxed or not, stacked), fermatas, segno/coda, multiple lyric verses with hyphens, stanza labels,
 verse block text, title/subtitle/number/footer, the "(Guitar: Capo N)" title-block line, multi-page overflow (page 1 only).
 Not modelled: grace notes, cross noteheads (NS812), ornaments other than fermata, bass/other clefs, tuplets whose bracket
 spans a different number of notes than its digit (NS445), `add9` and diminished-over-bass chords, chord *offsets* inside
 long notes beyond beat-snapping (estimated from layout, version-dependent).
 Anything unmodelled that prints must end up `REVIEW` — the coverage check exists for that. Never report a REVIEW file as converted.
 
-## 8. Latest results (2026-10-05)
-Piano 3,077/3,179 accepted (2,940 strict); guitar 3,068/3,179 (2,886 strict). Full numbers, remaining failure reasons and
-timings: `svg-to-lilypond/DESIGN.md` §18. A full run is ~25 min per variant; run it after changing the recognizer.
+## 8. Latest results (2026-10-06)
+Piano 3,166/3,179 accepted (3,089 clean), guitar 3,164/3,179 (3,084 clean). The 13+15 left each have a reason in
+`svg-to-lilypond/DESIGN.md` section 18 ("Review tail"). The accepted `.ly` files are committed in `svg-to-lilypond/ly/` (never hand-edit;
+refresh after a significant converter change). A full run is ~3 h per variant on this host (`-j 8`, nice); while fixing,
+re-run only the previous REVIEW list (~15 min) and finish with a full run, diffing against the saved reports.

@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  c''4 b'4 a'4 g'4 | f'4 e'4 d'4 c'4 | d'4. g'16[ g'16] g'4^\fermata d'4 | e'4 e'8[ e'8] fis'4 e'8[ fis'8] \break | \defaultTimeSignature \time 6/4 g'2 b'4. a'8 g'4 g'4 | \defaultTimeSignature \time 4/4 c''8 c''4.~ c''4 c''4 | d''8 d''4.~ d''4 d''4 | d''8 c''4.( c''2~ | c''2.) r4 \break | e'4. e'8 g'4. f'8 | e'2. e'4 | a'4 b'4 g'4 fis'8[ fis'8] | g'2. g'4 | g'4. d'8 e'4 f'4 | e'2. a'4 \break | a'4. e'8 fis'4 g'4 | fis'2. b'4 | b'4. fis'8 g'4 a'4 | g'2. g'8[ g'8] | c''1( | d''1) | c''1~ | c''2. r4 \bar "|."
+  c''4 b'4 a'4 g'4 | f'4 e'4 d'4 c'4 | d'4. g'16[ g'16] g'4^\fermata d'4 | e'4 e'8[ e'8] fis'4 e'8[ fis'8] \break | \defaultTimeSignature \time 6/4 g'2 b'4. a'8 g'4 g'4 | \defaultTimeSignature \time 4/4 c''8 c''4.~ c''4 c''4 | d''8 d''4.~ d''4 d''4 | d''8 c''4.~( c''2~ | c''2.) r4 \break | e'4. e'8 g'4. f'8 | e'2. e'4 | a'4 b'4 g'4 fis'8[ fis'8] | g'2. g'4 | g'4. d'8 e'4 f'4 | e'2. a'4 \break | a'4. e'8 fis'4 g'4 | fis'2. b'4 | b'4. fis'8 g'4 a'4 | g'2. g'8[ g'8] | c''1( | d''1) | c''1~ | c''2. r4 \bar "|."
 }
 
 harmonies = \chordmode {

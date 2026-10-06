@@ -27,8 +27,8 @@
     }
     \vspace #0.88
   }
-  system-system-spacing = #'((basic-distance . 13.55) (minimum-distance . 13.55) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 13.58) (minimum-distance . 13.58) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 15.04) (minimum-distance . 15.04) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  ees'16[ f'16]^\markup { \box \bold "Chorus" } | g'8.[ ees'16~] ees'4 \tuplet 3/2 { aes'4 g'4 f'4 } | f'2. r8 ees'16[ f'16] | g'8.[ ees'16~] ees'4 \tuplet 3/2 { c''4 bes'4 bes'4 } \break | bes'2. r8 aes'16[ bes'16] | c''4. bes'16([ aes'16)] bes'2 | g'4 f'4 f'8 ees'4. | aes'8[ aes'16 aes'16 aes'8 g'8] f'8[ ees'16 ees'16 ees'8 f'8] | f'1 \break | \set Score.repeatCommands = #'((volta #f)) r8 ees'8[ ees'8 ees'8] ees'8[ ees'16 ees'16~ ees'8 f'8] | d'1 | r8 ees'8~[ ees'8 ees'16 ees'16] r16 ees'16~[ ees'16 ees'16 ees'8 f'8] | d'1 \break | f'8[ f'16 f'16~ f'8 ees'8] ees'8 d'4. | g'4 bes'8[ g'16 f'16~] f'8[ ees'8~ ees'8 ees'16 ees'16] | f'8[ aes'16 aes'16 aes'8 g'8] aes'8([ g'8 f'8) ees'8] | f'1 \break | g'8.[ ees'16~^\markup { \box \bold "Chorus" } ees'16 ees'16 ees'16 ees'16] aes'8[ g'16 g'16~ g'8 f'8] | f'1 | g'8.[ ees'16~ ees'16 ees'16 ees'16 ees'16] c''8[ bes'16 bes'16~ bes'8 bes'8] | bes'2. r8 aes'16[ bes'16] \break | c''4. bes'16[ aes'16] bes'2 | g'4 f'4 f'8[ ees'8~ ees'8 ees'16 ees'16] | f'8[ aes'16 aes'16 aes'8 g'8] f'8[ ees'8 ees'8 f'8] | f'1 \break | r2. r8^\markup { \bold "Final Chorus" } ees'16[ f'16]^\markup { \box \bold "Chorus" } | g'8.[ ees'16~] ees'4 \tuplet 3/2 { aes'4 g'4 f'4 } | f'2. r8 ees'16[ f'16] | g'8.[ ees'16~] ees'4 \tuplet 3/2 { c''4 bes'4 bes'4 } \break | bes'2. r8 aes'16[ bes'16] | c''4. bes'16([ aes'16)] bes'2 | g'4 f'4 f'8 ees'4. | aes'8[ aes'16 aes'16 aes'8 g'8] f'8[ f'8 ees'8 d'8] | ees'1~ | ees'1 \bar "|."
+  ees'16[ f'16]^\markup { \box \bold "Chorus" } | g'8.[ ees'16~] ees'4 \tuplet 3/2 { aes'4 g'4 f'4 } | f'2. r8 ees'16[ f'16] | g'8.[ ees'16~] ees'4 \tuplet 3/2 { c''4 bes'4 bes'4 } \break | bes'2. r8 aes'16[ bes'16] | c''4. bes'16([ aes'16)] bes'2 | g'4 f'4 f'8 ees'4. | aes'8[ aes'16 aes'16 aes'8 g'8] f'8[ ees'16 ees'16 ees'8 f'8] | f'1 \break | r8 ees'8[ ees'8 ees'8] ees'8[ ees'16 ees'16~ ees'8 f'8] | d'1 | r8 ees'8~[ ees'8 ees'16 ees'16] r16 ees'16~[ ees'16 ees'16 ees'8 f'8] | d'1 \break | f'8[ f'16 f'16~ f'8 ees'8] ees'8 d'4. | g'4 bes'8[ g'16 f'16~] f'8[ ees'8~ ees'8 ees'16 ees'16] | f'8[ aes'16 aes'16 aes'8 g'8] aes'8([ g'8 f'8) ees'8] | f'1 \break | g'8.[ ees'16~^\markup { \box \bold "Chorus" } ees'16 ees'16 ees'16 ees'16] aes'8[ g'16 g'16~ g'8 f'8] | f'1 | g'8.[ ees'16~ ees'16 ees'16 ees'16 ees'16] c''8[ bes'16 bes'16~ bes'8 bes'8] | bes'2. r8 aes'16[ bes'16] \break | c''4. bes'16[ aes'16] bes'2 | g'4 f'4 f'8[ ees'8~ ees'8 ees'16 ees'16] | f'8[ aes'16 aes'16 aes'8 g'8] f'8[ ees'8 ees'8 f'8] | f'1 \break | r2. r8^\markup { \bold "Final Chorus" } ees'16[ f'16]^\markup { \box \bold "Chorus" } | g'8.[ ees'16~] ees'4 \tuplet 3/2 { aes'4 g'4 f'4 } | f'2. r8 ees'16[ f'16] | g'8.[ ees'16~] ees'4 \tuplet 3/2 { c''4 bes'4 bes'4 } \break | bes'2. r8 aes'16[ bes'16] | c''4. bes'16([ aes'16)] bes'2 | g'4 f'4 f'8 ees'4. | aes'8[ aes'16 aes'16 aes'8 g'8] f'8[ f'8 ees'8 d'8] | ees'1~ | ees'1 \bar "|."
 }
 
 harmonies = \chordmode {
@@ -84,6 +84,7 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
+      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score
