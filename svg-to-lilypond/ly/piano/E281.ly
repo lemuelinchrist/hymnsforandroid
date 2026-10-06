@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -84,7 +84,6 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
-      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score
@@ -104,10 +103,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "4." \column { "Lord, the Spirit, Peace divine," "Still this restless heart of mine," "Speak to calm this tossing sea," "Stayed in Thy tranquillity." } }
       \vspace #0.88
-      \line { \bold "5." \column { "Lord, the Spirit, Joy divine," "Gladden Thou this heart of mine;" "In the desert ways I’ll sing:" "Spring, O Well, forever spring!" } }
+      \line { \bold "5." \column { "Lord, the Spirit, Joy divine," "Gladden Thou this heart of mine;" "In the desert ways I’ll sing:" "Spring, O Well, forever spring!" \translate #'(3.25 . -1.50) "(Repeat the last line of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last line of each stanza)" \null }

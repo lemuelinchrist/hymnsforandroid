@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -101,10 +101,8 @@ verseOne = \lyricmode {
     \line { \left-column {
       \line { \bold "2." \column { "Oh, what a fact! Oh, what a bliss!" "That I of Christ a member am." "With all the saints I blend as one" "And share the life of the new man." "Joined to our great ascended Head," "We’ll be the Church of His own plan." } }
       \vspace #0.88
-      \line { \bold "3." \column { "Oh, what a breadth! Oh, what a length!" "The height, the depth unsearchable!" "Christ the Lord is unlimited," "So vast, immense, immeas’rable." "All that He is and all He has" "Is now our life unspeakable." } }
+      \line { \bold "3." \column { "Oh, what a breadth! Oh, what a length!" "The height, the depth unsearchable!" "Christ the Lord is unlimited," "So vast, immense, immeas’rable." "All that He is and all He has" "Is now our life unspeakable." \translate #'(3.24 . -2.00) "(Repeat the last two lines of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last two lines of each stanza)" \null }

@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -98,10 +98,8 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \column { "The water in the word, the water in the word," "Washing by the water, the water in the word," "That He might sanctify her, cleansing her," "Cleansing by the washing of the water in the word," \translate #'(0.00 . -7.50) "That He might present" \translate #'(0.00 . -7.50) "The church to Himself glorious," \translate #'(0.00 . -7.50) "Not having spot or wrinkle" \translate #'(0.00 . -7.50) "Or any such things, any such things." \translate #'(0.00 . -9.00) "The water in the word, the water in the word," \translate #'(0.00 . -9.00) "Washing by the water, the water in the word," \translate #'(0.00 . -9.00) "That He might sanctify her, cleansing her," \translate #'(0.00 . -9.00) "Cleansing by the washing of the water in the word." }
+      \column { "The water in the word, the water in the word," "Washing by the water, the water in the word," "That He might sanctify her, cleansing her," "Cleansing by the washing of the water in the word," \translate #'(0.00 . -1.50) "(Repeat)" \translate #'(0.00 . -4.50) "That He might present" \translate #'(0.00 . -4.50) "The church to Himself glorious," \translate #'(0.00 . -4.50) "Not having spot or wrinkle" \translate #'(0.00 . -4.50) "Or any such things, any such things." \translate #'(0.00 . -6.00) "The water in the word, the water in the word," \translate #'(0.00 . -6.00) "Washing by the water, the water in the word," \translate #'(0.00 . -6.00) "That He might sanctify her, cleansing her," \translate #'(0.00 . -6.00) "Cleansing by the washing of the water in the word." }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat)" \null }

@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -84,7 +84,6 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
-      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score
@@ -100,10 +99,8 @@ verseOne = \lyricmode {
     \line { \left-column {
       \line { \bold "2." \column { "In my spirit, I can see You in the church;" "It’s Your heart’s desire, for it a people You will search." "Here I’ll stay, within Your perfect will," "Built up into a home, Your glory here to fill." "In the church! I must no longer roam." } }
       \vspace #0.88
-      \line { \bold "3." \column { "In Your purpose, we just flow along in life." "It’s so simple, no more unrest and strife." "In the churches, we just enjoy You, Lord." "Here You can build us up, for we’re in one accord;" "In the churches—we know You’ll be back soon." } }
+      \line { \bold "3." \column { "In Your purpose, we just flow along in life." "It’s so simple, no more unrest and strife." "In the churches, we just enjoy You, Lord." "Here You can build us up, for we’re in one accord;" "In the churches—we know You’ll be back soon." \translate #'(3.24 . -1.50) "(Repeat chorus and second verse)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat chorus and second verse)" \null }

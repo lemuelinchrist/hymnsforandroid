@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -105,10 +105,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "4." \column { "From Thy fulness grace outpouring," "Show me ever greater things;" "Raise me higher, sunward soaring," "Mounting as on eagle-wings." "By the brightness of Thy face," "Ever let me grow in grace." } }
       \vspace #0.88
-      \line { \bold "5." \column { "Let me, then, be always growing," "Never, never standing still," "Listening, learning, better knowing" "Thee and Thy most blessed will." "Till I win the glorious race," "Daily let me grow in grace." } }
+      \line { \bold "5." \column { "Let me, then, be always growing," "Never, never standing still," "Listening, learning, better knowing" "Thee and Thy most blessed will." "Till I win the glorious race," "Daily let me grow in grace." \translate #'(3.24 . -1.50) "(Repeat the last two lines of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last two lines of each stanza)" \null }

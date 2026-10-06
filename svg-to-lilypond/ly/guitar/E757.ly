@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -109,10 +109,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "6." \column { "O Savior Christ, Thou too art Man;" "Thou hast been troubled, tempted, tried;" "Thy kind but searching glance can scan" "The very wounds that shame would hide." } }
       \vspace #0.88
-      \line { \bold "7." \column { "Thy touch has still its ancient power;" "No word from Thee can fruitless fall;" "Hear in this solemn evening hour," "And in Thy mercy heal us all." } }
+      \line { \bold "7." \column { "Thy touch has still its ancient power;" "No word from Thee can fruitless fall;" "Hear in this solemn evening hour," "And in Thy mercy heal us all." \translate #'(3.24 . -2.00) "Vv. 4 and 5 may be omitted if hymn is sung for physical healing." } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "Vv. 4 and 5 may be omitted if hymn is sung for physical healing." \null }

@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 9.03\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -106,9 +106,7 @@ verseOne = \lyricmode {
     \left-column {
       \line { \bold "5." \column { "Go forth! Our Shepherd yearns that more" "Lost prodigals we’d find" "Into each wounded heart outpour" "Fresh, timely oil and wine!" \translate #'(3.84 . -2.00) "Search out the weak, the wayward, lost;" \translate #'(3.84 . -2.00) "In meekness bring them home!" \translate #'(3.84 . -2.00) "Warm, tender love they need the most" \translate #'(3.84 . -2.00) "And God’s acceptance shown." } }
       \vspace #0.88
-      \line { \bold "6." \column { "The Lord is pleased to build His home" "In every contrite heart;" "The feeble in His hand become" "His warring counterpart." \translate #'(3.84 . -2.00) "Christ will all Satan’s work efface" \translate #'(3.84 . -2.00) "Through wisdom full and grace;" \translate #'(3.84 . -2.00) "The church will e’er His foe disgrace" \translate #'(3.84 . -2.00) "To universal praise!" } }
+      \line { \bold "6." \column { "The Lord is pleased to build His home" "In every contrite heart;" "The feeble in His hand become" "His warring counterpart." \translate #'(3.84 . -2.00) "Christ will all Satan’s work efface" \translate #'(3.84 . -2.00) "Through wisdom full and grace;" \translate #'(3.84 . -2.00) "The church will e’er His foe disgrace" \translate #'(3.84 . -2.00) "To universal praise!" \translate #'(3.84 . -4.00) "* Psa. 139:9" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "* Psa. 139:9" \null }

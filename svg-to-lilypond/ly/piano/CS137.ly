@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.88\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -98,10 +98,8 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \line { \bold "2." \column { "願主多賜我以那靈，" "以你新鮮生命來供應，" "從我心中浸透、充盈，" "直達圓周，處處都光明；" "你多方運行並工作，" "像神聖膏油在塗抹，" "將我的心、靈全浸潤過，" "且來挑旺我深處愛火。" "有你，我靈會飛揚；" "有你，我心會歌唱；" "靈會飛揚，心會歌唱，" "生活如同在天上！" } }
+      \line { \bold "2." \column { "願主多賜我以那靈，" "以你新鮮生命來供應，" "從我心中浸透、充盈，" "直達圓周，處處都光明；" "你多方運行並工作，" "像神聖膏油在塗抹，" "將我的心、靈全浸潤過，" "且來挑旺我深處愛火。" "有你，我靈會飛揚；" "有你，我心會歌唱；" "靈會飛揚，心會歌唱，" "生活如同在天上！" \translate #'(3.24 . -1.50) "（重複一至八行）" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "（重複一至八行）" \null }

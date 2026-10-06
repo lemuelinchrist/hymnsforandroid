@@ -8,8 +8,8 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.92\mm
-  bottom-margin = 12.5\mm
+  top-margin = 8.91\mm
+  bottom-margin = 9.00\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -25,10 +25,10 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.70
+    \vspace #1.17
   }
-  system-system-spacing = #'((basic-distance . 13.47) (minimum-distance . 13.47) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 14.96) (minimum-distance . 14.96) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 13.46) (minimum-distance . 13.46) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.98) (minimum-distance . 14.98) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }

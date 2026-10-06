@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -102,10 +102,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Yet, what delights our heart the most" "Is not Thy love, Thy grace;" "But it is Thine own loving Self" "That satisfies always." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Oh, Thou art fairer than the fair," "And sweeter than the sweet;" "Beside Thee, none in heaven or earth" "Our heart’s desire could meet." } }
+      \line { \bold "4." \column { "Oh, Thou art fairer than the fair," "And sweeter than the sweet;" "Beside Thee, none in heaven or earth" "Our heart’s desire could meet." \translate #'(3.25 . -1.50) "* An Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "* An Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" \null }

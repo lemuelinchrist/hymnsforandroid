@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -108,9 +108,7 @@ verseOne = \lyricmode {
     \left-column {
       \line { \bold "6." \column { "When all Thy members self forsake," "Thy glorious Body, Lord, is known;" "When of Thy Person we partake," "The one new man is shown." } }
       \vspace #0.88
-      \line { \bold "7." \column { "The church life is the one new man" "In every local church expressed;" "Thy Body is a corporate man," "One Person manifest." } }
+      \line { \bold "7." \column { "The church life is the one new man" "In every local church expressed;" "Thy Body is a corporate man," "One Person manifest." \translate #'(3.24 . -1.50) "(Repeat the last two lines of each stanza)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last two lines of each stanza)" \null }

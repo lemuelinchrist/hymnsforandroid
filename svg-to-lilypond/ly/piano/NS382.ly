@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -108,9 +108,7 @@ verseOne = \lyricmode {
     \left-column {
       \line { \bold "6." \column { "Grace upon grace," "The Triune God is processed for us to enjoy;" "The law is over," "Now we can partake of His supply through grace." } }
       \vspace #0.88
-      \line { \bold "7." \column { "From glory to glory," "We are in the process of being transformed;" "Beholding, reflecting," "To God’s image with all saints we’ll be conformed." } }
+      \line { \bold "7." \column { "From glory to glory," "We are in the process of being transformed;" "Beholding, reflecting," "To God’s image with all saints we’ll be conformed." \translate #'(3.25 . -1.50) "Download all the songs from Ordinary Days at: tinyurl.com/ordinarydays" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "Download all the songs from Ordinary Days at: tinyurl.com/ordinarydays" \null }

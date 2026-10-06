@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -102,10 +102,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Serving Christ, just let Him kiss you," "Living with Him all the day," "Worshipping God by our living" "Is the gospel-serving way." } }
       \vspace #0.88
-      \line { \bold "4." \column { "In the Body let us serve Him," "Nothing natural, there, can be;" "Through Christ’s death and resurrection," "Worship in reality." } }
+      \line { \bold "4." \column { "In the Body let us serve Him," "Nothing natural, there, can be;" "Through Christ’s death and resurrection," "Worship in reality." \translate #'(3.24 . -1.50) "(End with chorus)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(End with chorus)" \null }

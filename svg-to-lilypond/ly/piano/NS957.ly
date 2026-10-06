@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.63\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -100,10 +100,8 @@ verseOne = \lyricmode {
     \line { \left-column {
       \line { \bold "2." \column { "He loved them to the uttermost," "He washed His loved ones feet," "Produced this pleasant atmosphere" "Where all the saints can meet;" "His fragrant love has filled the room," "The service of our dear Bridegroom," "Jesus the Savior purifies His bride." } }
       \vspace #0.88
-      \line { \bold "3." \column { "He loved them to the uttermost," "His Spirit was poured out;" "His living word enlightens us," "Removes all fear and doubt;" "The inner law of life dispensed," "Our heart filled in the deepest sense," "Maintains our love for Jesus and His own." } }
+      \line { \bold "3." \column { "He loved them to the uttermost," "His Spirit was poured out;" "His living word enlightens us," "Removes all fear and doubt;" "The inner law of life dispensed," "Our heart filled in the deepest sense," "Maintains our love for Jesus and His own." \translate #'(2.73 . -2.00) "(2022 Oct. ITERO, Message 5)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(2022 Oct. ITERO, Message 5)" \null }

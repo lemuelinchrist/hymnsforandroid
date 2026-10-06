@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.67\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -105,16 +105,12 @@ verseTwo = \lyricmode {
     \left-column {
       \line { \bold "3." \column { "In Thy life we’d grow, e’ermore advancing," "Under Thy dispensing daily be." "Thorough dealings work Thou in our being," "Deepening our roots and love for Thee." "Make us hunger so on Thy word to feed," "That high peak truth be stored in us." "Lab’ring on the riches of Thy speaking," "We’d share the good deposit thus." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Vessels with humanity uplifted;" "Tempered, balanced, to Thy mold conformed." "Live reality which is in Jesus" "To express the Christ within us formed." "Then the self deny, in the Body serve," "Invest our talents faithfully." "In the morn revived, o’ercoming daily;" "Outflow of life our work shall be." } }
+      \line { \bold "4." \column { "Vessels with humanity uplifted;" "Tempered, balanced, to Thy mold conformed." "Live reality which is in Jesus" "To express the Christ within us formed." "Then the self deny, in the Body serve," "Invest our talents faithfully." "In the morn revived, o’ercoming daily;" "Outflow of life our work shall be." \translate #'(2.57 . -2.00) "⠀" } }
     }
     \left-column {
       \line { \bold "5." \column { "To the world proclaim the kingdom’s gospel," "Nourish saints in homes with warm embrace," "All perfect in groups by mutual teaching," "And in meetings speak the words of grace." "The perfected saints, hence, the Body build;" "The Bride at last shall be prepared." "Lo! The beachhead of the coming Kingdom;" "The present age’s end declared!" } }
       \vspace #0.88
-      \line { \bold "6." \column { "How we yearn to see the King in glory!" "In our lifetime may His coming be." "In the kingdom manifested fully," "Reign as kings with Christ—our hope we’ll see!" "Make us ready, Lord—in Thy presence, meet—" "On spices’ mountain Thee to face." "Then forever in the Holy City," "Loud and resoundingly we’ll praise!" } }
+      \line { \bold "6." \column { "How we yearn to see the King in glory!" "In our lifetime may His coming be." "In the kingdom manifested fully," "Reign as kings with Christ—our hope we’ll see!" "Make us ready, Lord—in Thy presence, meet—" "On spices’ mountain Thee to face." "Then forever in the Holy City," "Loud and resoundingly we’ll praise!" \translate #'(2.57 . -2.00) "(Chorus is only sung at the end of every two stanzas.)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "⠀" \null }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Chorus is only sung at the end of every two stanzas.)" \null }

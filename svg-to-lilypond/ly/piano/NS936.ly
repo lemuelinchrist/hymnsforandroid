@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.61\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -106,10 +106,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "5." \column { "New Jerusalem, His glorious bride, to bring" "To the earth from heaven, queen unto her King," "He now sends His seven searching, burning eyes," "His economy to fully realize!" } }
       \vspace #0.88
-      \line { \bold "6." \column { "When at last we rest in our eternal home," "In our God and Father through our Lord the Son," "Ever shall the Spirit, through the ages long," "Teach our hearts to sing again a blessed new song!" } }
+      \line { \bold "6." \column { "When at last we rest in our eternal home," "In our God and Father through our Lord the Son," "Ever shall the Spirit, through the ages long," "Teach our hearts to sing again a blessed new song!" \translate #'(2.78 . -2.00) "* In the sense of inspiring reverential awe." } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "* In the sense of inspiring reverential awe." \null }

@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 6.37\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -28,8 +28,8 @@
     \fill-line { \bold \italic "(Guitar: Capo 1)" \null }
     \vspace #0.87
   }
-  system-system-spacing = #'((basic-distance . 13.48) (minimum-distance . 13.48) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 14.82) (minimum-distance . 14.82) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 13.62) (minimum-distance . 13.62) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.93) (minimum-distance . 14.93) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
@@ -85,7 +85,6 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
-      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score

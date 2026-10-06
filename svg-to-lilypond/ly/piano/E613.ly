@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -102,10 +102,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "But I am calm with Thee, my God," "Beneath these glorious skies;" "And to the height on which I stand" "Nor storms nor clouds can rise." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Oh, this is life! oh, this is joy," "My God, to find Thee so;" "Thy face to see, Thy voice to hear," "And all Thy love to know." } }
+      \line { \bold "4." \column { "Oh, this is life! oh, this is joy," "My God, to find Thee so;" "Thy face to see, Thy voice to hear," "And all Thy love to know." \translate #'(3.24 . -1.50) "(Repeat the last line of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last line of each stanza)" \null }

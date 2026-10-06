@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -103,10 +103,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Will you be a loving seeker?" "Not a poor, dead law keeper?" "We can read His word day by day," "Infuse us Lord, we pray." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Are you in His recovery?" "Do you know the highest story" "Is the mingling of both God and man" "To fulfill His eternal plan?" \translate #'(3.25 . -1.50) "We have climbed the mountain," \translate #'(3.25 . -1.50) "We are in the light," \translate #'(3.25 . -1.50) "We have changed our diet," \translate #'(3.25 . -1.50) "We are eating Christ!" } }
+      \line { \bold "4." \column { "Are you in His recovery?" "Do you know the highest story" "Is the mingling of both God and man" "To fulfill His eternal plan?" \translate #'(3.25 . -1.50) "We have climbed the mountain," \translate #'(3.25 . -1.50) "We are in the light," \translate #'(3.25 . -1.50) "We have changed our diet," \translate #'(3.25 . -1.50) "We are eating Christ!" \translate #'(3.25 . -3.00) "(Repeat the last line of each verse)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last line of each verse)" \null }

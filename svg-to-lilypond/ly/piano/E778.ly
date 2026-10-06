@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.90\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -102,10 +102,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Keep up the song of faith," "The foe will hear and flee;" "Oh, let not Satan hush your song," "For praise is victory." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Keep up the song of faith," "The dawn will break ere long," "And we shall go to meet the Lord," "And join the endless song." } }
+      \line { \bold "4." \column { "Keep up the song of faith," "The dawn will break ere long," "And we shall go to meet the Lord," "And join the endless song." \translate #'(3.24 . -1.50) "(Repeat the last line of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last line of each stanza)" \null }

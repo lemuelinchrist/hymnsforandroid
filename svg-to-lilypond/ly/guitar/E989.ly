@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -103,9 +103,7 @@ verseOne = \lyricmode {
       \line { \bold "3." \column { "Jesus, my Savior, the same as of old," "While I was wand’ring in darkness and cold," "Gently and long did He plead with my soul," "Calling for me, for me!" "Calling for me, for me," "Calling for me, for me;" "Gently and long did He plead with my soul," "Calling for me, for me!" } }
     }
     \left-column {
-      \line { \bold "4." \column { "Jesus, my Savior, shall come from on high." "Sweet is the promise as weary years fly:" "O I shall see Him descend from the sky," "Coming for me, for me!" "Coming for me, for me," "Coming for me, for me;" "O I shall see Him descend from the sky," "Coming for me, for me!" } }
+      \line { \bold "4." \column { "Jesus, my Savior, shall come from on high." "Sweet is the promise as weary years fly:" "O I shall see Him descend from the sky," "Coming for me, for me!" "Coming for me, for me," "Coming for me, for me;" "O I shall see Him descend from the sky," "Coming for me, for me!" \translate #'(3.24 . -2.00) "(Repeat the last two lines of each stanza for chorus)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last two lines of each stanza for chorus)" \null }

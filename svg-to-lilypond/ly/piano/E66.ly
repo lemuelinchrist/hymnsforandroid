@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -106,10 +106,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "5." \column { "Weak is the effort of our heart," "And cold our warmest thought;" "But when we see Thee as Thou art," "We’ll praise Thee as we ought." } }
       \vspace #0.88
-      \line { \bold "6." \column { "Till then we would Thy love proclaim" "With every fleeting breath;" "And triumph in that blessed Name" "Which quells the pow’r of death." } }
+      \line { \bold "6." \column { "Till then we would Thy love proclaim" "With every fleeting breath;" "And triumph in that blessed Name" "Which quells the pow’r of death." \translate #'(3.24 . -1.50) "(Repeat the last two lines of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last two lines of each stanza)" \null }

@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -26,7 +26,7 @@
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
     \fill-line { \bold \italic "(Guitar)" \null }
-    \vspace #0.85
+    \vspace #0.86
   }
   system-system-spacing = #'((basic-distance . 13.18) (minimum-distance . 13.18) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
@@ -85,7 +85,6 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
-      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score

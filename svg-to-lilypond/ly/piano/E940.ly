@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -102,10 +102,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Here we come Thy name to praise," "Let us feel Thy presence near;" "May Thy glory meet our eyes," "While we in Thy house appear:" "Here afford us, Lord, a taste" "Of our everlasting feast." } }
       \vspace #0.88
-      \line { \bold "4." \column { "May Thy gospel’s joyful sound" "Conquer sinners, comfort saints;" "Make the fruits of grace abound," "Bring relief for all complaints:" "Thus may all our Lord’s Days prove," "Till we meet the Lord above." } }
+      \line { \bold "4." \column { "May Thy gospel’s joyful sound" "Conquer sinners, comfort saints;" "Make the fruits of grace abound," "Bring relief for all complaints:" "Thus may all our Lord’s Days prove," "Till we meet the Lord above." \translate #'(3.24 . -1.50) "(Repeat the last two lines of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last two lines of each stanza)" \null }

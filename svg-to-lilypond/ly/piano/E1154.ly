@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 6.37\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -102,9 +102,7 @@ verseOne = \lyricmode {
       \line { \bold "3." \column { "O come Beloved," "On my garden blow," "That the odor of spices" "May break forth and flow," "That the odor of spices" "May break forth and flow." "My spouse, My sister," "I’m come into My garden" "To feast upon wine, milk and honey." } }
     }
     \left-column {
-      \line { \bold "4." \column { "Set me, Lord Jesus," "As seal on Thine heart;" "Jealousy’s cruel as Sheol," "And love’s strong as death," "Jealousy’s cruel as Sheol," "And love’s strong as death." "Much water cannot" "Quench love, nor do floods drown it." "All man could give for love is contemned." } }
+      \line { \bold "4." \column { "Set me, Lord Jesus," "As seal on Thine heart;" "Jealousy’s cruel as Sheol," "And love’s strong as death," "Jealousy’s cruel as Sheol," "And love’s strong as death." "Much water cannot" "Quench love, nor do floods drown it." "All man could give for love is contemned." \translate #'(3.24 . -1.50) "(Repeat the last three lines of each stanza)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last three lines of each stanza)" \null }

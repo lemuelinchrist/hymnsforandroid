@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -108,9 +108,7 @@ verseOne = \lyricmode {
     \left-column {
       \line { \bold "6." \column { "Christ is objective too," "But subjective are we" "In our experience;" "Our spirit is the key." "God, throne, and holiest—we see" "Our spirit now contains all three." } }
       \vspace #0.88
-      \line { \bold "7." \column { "Leviticus is past," "And Aaron’s work is o’er;" "Melchisedec is here," "High Priest forevermore;" "His ministry is now so fine:" "He comes to feed us bread and wine." } }
+      \line { \bold "7." \column { "Leviticus is past," "And Aaron’s work is o’er;" "Melchisedec is here," "High Priest forevermore;" "His ministry is now so fine:" "He comes to feed us bread and wine." \translate #'(3.25 . -1.50) "(Repeat the last line of each stanza)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last line of each stanza)" \null }

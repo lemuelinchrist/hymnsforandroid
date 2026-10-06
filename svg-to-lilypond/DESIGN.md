@@ -567,13 +567,11 @@ over the IR with the music font shipped once. This supersedes the font-route dec
 
 ## 18. Implementation status and findings (2026-10-05)
 
-> **Current status (end of 2026-10-06): read this first.** Before this day's last round: piano 3,166 / guitar 3,164 of
-> 3,179 sheets accepted (99.6%). Since then, branch `media/leftovers` (not merged to master) converts all 28 sheets that were
-> left over, adds the page-fit check (`tools/pagefit.py`, in `convert.py`) and fixes several recognizer classes; `regress.py` is
-> 85/85. **A full run on that code was started on the media host the night of 2026-10-06 and has not reported yet**: until it
-> does, the numbers above are the last measured ones, `ly/` and `ly/status.csv` are from the old run, and some accepted sheets
-> may fall back to `REVIEW` (page fit, or a regression from the wider recognizer rules). First thing to do next: read the
-> agent's report on `media/work`, look at every sheet that was accepted before and is not now, then decide on merging.
+> **Current status (2026-10-07): read this first.** Full run on branch `media/work` (= the page-fit check + the "leftovers"
+> converter fixes, `regress.py` 85/85): **piano 3,174 / guitar 3,175 of 3,179 sheets accepted (99.8%)**; clean `ACCEPT` 3,096 /
+> 3,094. 9 sheets are not accepted (5 piano, 4 guitar): `data/leftovers.txt`. The accepted `.ly` sources are in `ly/`
+> (6,349 files, `ly/status.csv`). Branch not merged to master. Details: "Full run with page fit and leftovers (2026-10-07)" below.
+>
 > **Open, in the owner's order:** (1) the full-run report above; (2) `build/db_tune_mismatches.txt` (48 hymns whose database
 > tune code disagrees with sheet and MIDI; needs the owner's review, the database must not be changed without it);
 > (3) last and deferred: the in-app viewer that replaces shipped SVGs (Verovio via MusicXML as a proof of concept, or a custom
@@ -660,6 +658,40 @@ for CS/BF/C/CH per variant at `-j 8` (about 3x slower than the old `-j 14` figur
 Open question: the earlier table listed 7 dot-count and 7 key-change REVIEWs; this run has E522 E887 E983 E1097 E1186
 E1250 (dots) and E323 E879 E924 (flats/naturals), consistent with that, but I did not diff against the old reports
 (they were not kept), so a regression among them is not excluded.
+
+### Full run with page fit and leftovers (2026-10-07, media host)
+Code: `media/work` at 5080fdbc (page-fit check `tools/pagefit.py` + the 4 "leftovers" commits). Same rules as before (`-j 8`,
+nice, one batch; ~3.5 h per variant). Baseline for the diff: the 3,166 piano / 3,164 guitar reports of 2026-10-06.
+
+| | Piano | Guitar |
+|---|---|---|
+| `ACCEPT` (clean) | 3,096 | 3,094 |
+| `ACCEPT_DB_MISMATCH` | 74 | 77 |
+| `ACCEPT_SOURCE_BAR_SUM` | 4 (NS121 NS202 NS349 NS746) | 4 (same) |
+| **accepted in total** | **3,174 (99.84%)** | **3,175 (99.87%)** |
+| `REVIEW` | 5 | 4 |
+| newly accepted vs baseline | 13 | 15 |
+| accepted before, not now | 5 | 4 |
+| sheets rendered with LilyPond's own word spacing | 466 (14.7%) | 467 |
+
+The 13 piano / 15 guitar former leftovers (CS107 CS602 CS710 CH52 NS349 NS407 NS531 NS746 NS812 NS876 NS1152 NS10025
+C316, plus NS160 NS471 on guitar) are all accepted now. The share of sheets that fall back to the default word spacing
+rose from ~9% to ~15%: the page-fit check turns a wide-spacing overflow into REVIEW, and the fallback then rescues it.
+
+**Accepted before, not accepted now (all looked at by eye):**
+| Sheet | Variant | Reason |
+|---|---|---|
+| E149 | piano | page fit only: line 2 runs off the right edge (ink 0.0 from the right edge, original 6.3); guitar E149 passes |
+| E1076 | both | page fit only: the verse columns and the long footnote run off the right edge (0.0); the original itself is cut off at the left edge (0.0), so its own margin is no help |
+| E1261 | both | page fit only: verse text shifted left, stanza numbers off the left edge (0.2) and a non-italic footnote running off the right (0.0); original margins 7.2 / 6.3 |
+| NS281 | both | **regression**: a stray bar line after the first note of line 2 (measures per system `[5,3,4,5]` vs the original `[5,4,5,6]`); was in `ACCEPT_SOURCE_BAR_SUM`. Likely the new lead-bar handling in system 0 |
+| CS744 | both | same kind of bar-count difference as NS281 (measures 21/22/28) plus ink 0.0-0.5 from the right edge; was in `ACCEPT_SOURCE_BAR_SUM` |
+
+**Is the page-fit check too strict?** No. In every sheet examined (E149, E1076, E1261) ink really touched or crossed the page
+edge and the sheet was visibly wrong; the check found them where no other check could. `MIN_MARGIN` stays 2.0. The three
+`E` sheets fail ONLY the page-fit check (so do E1076/E1261 on guitar); the footnote handling in verse columns is the likely
+common cause (footnote not italic, no line width limit, columns shifted). Not fixed yet (as instructed); next fixes: the
+footnote width, NS281/CS744 lead bars, E149 piano spacing.
 
 ### Review tail, task 3 (2026-10-05/06, media host): 99.6% accepted
 Final full run on LilyPond 2.24.4 (`-j 8`, nice; E 1 h, NS 2 h, CS/BF/C/CH ~12 min each per variant) plus the re-test of

@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -103,10 +103,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "I wandered far and found no home;" "If not my feet, my heart did roam." "But I have found my family—" "Christ and the church—a place for me!" } }
       \vspace #0.88
-      \line { \bold "4." \column { "Let us proclaim the jubilee," "Announce good news, set captives free!" "Trumpet salvation to all men—" "God is our portion once again!" } }
+      \line { \bold "4." \column { "Let us proclaim the jubilee," "Announce good news, set captives free!" "Trumpet salvation to all men—" "God is our portion once again!" \translate #'(3.24 . -1.50) "Verse and chorus can be sung together." } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "Verse and chorus can be sung together." \null }

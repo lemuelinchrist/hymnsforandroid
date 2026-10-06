@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -102,10 +102,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "No longer I alone that live," "But God together lives with me." "Built with the saints in the Triune God," "His universal house we’ll be," "And His organic Body we" "For His expression corp’rately." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Jerusalem, the ultimate," "Of visions the totality;" "The Triune God, tripartite man—" "A loving pair eternally—" "As man yet God they coinhere," "A mutual dwelling place to be;" "God’s glory in humanity" "Shines forth in splendor radiantly!" } }
+      \line { \bold "4." \column { "Jerusalem, the ultimate," "Of visions the totality;" "The Triune God, tripartite man—" "A loving pair eternally—" "As man yet God they coinhere," "A mutual dwelling place to be;" "God’s glory in humanity" "Shines forth in splendor radiantly!" \translate #'(3.24 . -1.50) "(Repeat the last two lines of each stanza.)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last two lines of each stanza.)" \null }

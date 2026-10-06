@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 6.36\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -103,9 +103,7 @@ verseOne = \lyricmode {
       \line { \bold "3." \column { "Living for Jesus wherever I am," "Doing each duty in His holy name;" "Willing to suffer affliction and loss," "Deeming each trial a part of my cross." } }
     }
     \left-column {
-      \line { \bold "4." \column { "Living for Jesus through earth’s little while," "My dearest treasure, the light of His smile;" "Seeking the lost ones He died to redeem," "Bringing the weary to find rest in Him." } }
+      \line { \bold "4." \column { "Living for Jesus through earth’s little while," "My dearest treasure, the light of His smile;" "Seeking the lost ones He died to redeem," "Bringing the weary to find rest in Him." \translate #'(3.25 . -2.00) "The Compilers prefer that the New Testament word, “redemption,” be used and sung instead of “atonement.”" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "The Compilers prefer that the New Testament word, “redemption,” be used and sung instead of “atonement.”" \null }

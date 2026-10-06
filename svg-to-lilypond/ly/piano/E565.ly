@@ -8,8 +8,8 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  top-margin = 8.90\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -25,10 +25,10 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.72
+    \vspace #0.66
   }
-  system-system-spacing = #'((basic-distance . 14.18) (minimum-distance . 14.18) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 14.93) (minimum-distance . 14.93) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 14.26) (minimum-distance . 14.26) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.99) (minimum-distance . 14.99) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
@@ -84,7 +84,6 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
-      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score

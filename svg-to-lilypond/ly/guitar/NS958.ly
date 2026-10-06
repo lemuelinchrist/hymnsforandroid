@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.61\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -108,10 +108,8 @@ verseTwo = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "It covers, bends, endures all things," "Love’s strength to last is great;" "The love of God, like none on earth," "Cannot discriminate." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Now let this love, the love of Christ," "Support, sustain the weak;" "Supply the love to build the church," "And care for all God’s sheep." } }
+      \line { \bold "4." \column { "Now let this love, the love of Christ," "Support, sustain the weak;" "Supply the love to build the church," "And care for all God’s sheep." \translate #'(2.77 . -2.00) "(cf. 2022 Spring ITERO, Message 1)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(cf. 2022 Spring ITERO, Message 1)" \null }

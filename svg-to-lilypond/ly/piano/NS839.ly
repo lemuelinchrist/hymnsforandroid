@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 9.03\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -102,10 +102,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Gain Christ for Christ to be in us," "The land we all possess;" "Now we respond to overcome," "Christ’s riches to express!" } }
       \vspace #0.88
-      \line { \bold "4." \column { "Our Christian call to live by faith" "And not by what we see" "Is Christ in us, the faithful One," "In whom is victory!" } }
+      \line { \bold "4." \column { "Our Christian call to live by faith" "And not by what we see" "Is Christ in us, the faithful One," "In whom is victory!" \translate #'(3.84 . -2.00) "(2021 July Training Joshua, Message 1)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(2021 July Training Joshua, Message 1)" \null }

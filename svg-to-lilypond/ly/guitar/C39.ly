@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.97\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -84,7 +84,6 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
-      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score
@@ -108,10 +107,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "6." \column { "我們因你愛子受死，" "歸你名下作你眾子；" "從前你是何等可怕，" "今日你是親愛阿爸。" } }
       \vspace #0.88
-      \line { \bold "7." \column { "阿爸父神，愛深、恩高，" "你的兒女無法圖報；" "我們惟有永遠感戴，" "向你讚美、向你敬拜。" } }
+      \line { \bold "7." \column { "阿爸父神，愛深、恩高，" "你的兒女無法圖報；" "我們惟有永遠感戴，" "向你讚美、向你敬拜。" \translate #'(3.25 . -2.00) "第一節的『實際』指基督。" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "第一節的『實際』指基督。" \null }

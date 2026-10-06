@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 6.38\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -157,15 +157,7 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "30." \column { "Just to enjoy Thy word," "Richly, in many ways," "Till it is our memorial," "Throughout eternal days." } }
       \vspace #0.88
-      \line { \bold "31." \column { "Just to enjoy Thy word," "Faithful Thy surety;" "Though heav’n and earth shall pass away," "It stands eternally." } }
+      \line { \bold "31." \column { "Just to enjoy Thy word," "Faithful Thy surety;" "Though heav’n and earth shall pass away," "It stands eternally." \translate #'(1.89 . -1.50) "The following can be grouped together:" \translate #'(1.89 . -1.50) "Suggestion 1: Stanzas 1, 4-7, 30." \translate #'(1.89 . -1.50) "Suggestion 2: Stanzas 1-17." \translate #'(1.89 . -1.50) "Suggestion 3: Stanzas 2, 3, 18-31." } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "The following can be grouped together:" \null }
-
-\markup \fill-line { \null \fontsize #-1 \italic "Suggestion 1: Stanzas 1, 4-7, 30." \null }
-
-\markup \fill-line { \null \fontsize #-1 \italic "Suggestion 2: Stanzas 1-17." \null }
-
-\markup \fill-line { \null \fontsize #-1 \italic "Suggestion 3: Stanzas 2, 3, 18-31." \null }

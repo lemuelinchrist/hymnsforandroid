@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -103,10 +103,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Oh, what a thought! Oh, what a boast!" "Christ shall in me be magnified." "In nothing shall I be ashamed," "For He in all shall be applied." "In woe or blessing, death or life," "Through me shall Christ be testified." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Oh, what a prize! Oh, what a gain!" "Christ is the goal toward which I press." "Nothing I treasure, nor aught desire," "But Christ of all-inclusiveness." "My hope, my glory, and my crown" "Is Christ, the One of peerlessness." } }
+      \line { \bold "4." \column { "Oh, what a prize! Oh, what a gain!" "Christ is the goal toward which I press." "Nothing I treasure, nor aught desire," "But Christ of all-inclusiveness." "My hope, my glory, and my crown" "Is Christ, the One of peerlessness." \translate #'(3.25 . -2.00) "(Repeat the last two lines of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last two lines of each stanza)" \null }

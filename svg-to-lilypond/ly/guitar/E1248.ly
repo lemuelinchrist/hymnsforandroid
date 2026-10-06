@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -103,9 +103,7 @@ verseOne = \lyricmode {
       \line { \bold "3." \column { "O Lord, against these days," "Inspire some for Your building," "Just as in Ezra’s day—" "A remnant who are willing" "To come and work in Your house," "Oh, what a blessed charge!" "Your heart’s desire, is our desire—" "We come, O Lord, to build." } }
     }
     \left-column {
-      \line { \bold "4." \column { "Within those whom You’d call" "Put such a restless caring" "For building to give all—" "These times are for preparing;" "The gates of hell cannot prevail" "Against the builded Church!" "The hours are few, the builders too—" "Lord, build, O build in us!" } }
+      \line { \bold "4." \column { "Within those whom You’d call" "Put such a restless caring" "For building to give all—" "These times are for preparing;" "The gates of hell cannot prevail" "Against the builded Church!" "The hours are few, the builders too—" "Lord, build, O build in us!" \translate #'(3.24 . -2.00) "(Repeat the last four lines)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last four lines)" \null }

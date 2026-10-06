@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -102,10 +102,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "I cannot sing enough of Thee," "The sweetest name on earth;" "A note so full of melody" "Comes from my heart so joyously," "And fills my soul with mirth." } }
       \vspace #0.88
-      \line { \bold "4." \column { "I cannot speak enough of Thee," "I have so much to tell;" "Thy heart it beats so tenderly" "As Thou dost draw me close to Thee," "And whisper, “All is well.”" } }
+      \line { \bold "4." \column { "I cannot speak enough of Thee," "I have so much to tell;" "Thy heart it beats so tenderly" "As Thou dost draw me close to Thee," "And whisper, “All is well.”" \translate #'(3.24 . -1.50) "An Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "An Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" \null }

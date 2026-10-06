@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.63\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -105,10 +105,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "4." \column { "In the divine economy" "Christ is the one who fills all things;" "He who ascended far above all," "Now fills my spirit when I call." } }
       \vspace #0.88
-      \line { \bold "5." \column { "In the divine economy" "Christ has accomplished everything;" "Christ my beginning and Christ my end," "Alpha – Omega, Praise to Him!" } }
+      \line { \bold "5." \column { "In the divine economy" "Christ has accomplished everything;" "Christ my beginning and Christ my end," "Alpha – Omega, Praise to Him!" \translate #'(2.77 . -2.00) "(cf. 2010 Thanksgiving Day Conference, Message 2)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(cf. 2010 Thanksgiving Day Conference, Message 2)" \null }

@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -104,9 +104,7 @@ verseOne = \lyricmode {
       \line { \bold "4." \column { "“Lord, whence are those blood-drops all the way" "That mark out the mountain’s track?”" "“They were shed for one who had gone astray" "Ere the Shepherd could bring him back.”" "“Lord, whence are Thy hands so rent and torn?”" "“They’re pierced tonight by many a thorn.”" } }
     }
     \left-column {
-      \line { \bold "5." \column { "And all through the mountains, thunder-riven," "And up from the rocky steep," "There arose a cry to the gate of heaven," "“Rejoice! I have found My sheep!”" "And the angels echoed around the throne," "“Rejoice, for the Lord brings back His own!”" } }
+      \line { \bold "5." \column { "And all through the mountains, thunder-riven," "And up from the rocky steep," "There arose a cry to the gate of heaven," "“Rejoice! I have found My sheep!”" "And the angels echoed around the throne," "“Rejoice, for the Lord brings back His own!”" \translate #'(3.25 . -1.50) "(Repeat the last line of each stanza)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last line of each stanza)" \null }

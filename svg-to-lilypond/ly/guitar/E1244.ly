@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -107,9 +107,7 @@ verseOne = \lyricmode {
     \left-column {
       \line { \bold "5." \column { "On all His chosen ones" "The precious oil comes down:" "Anointing as it runs," "Anointing on and on." "E’en to His skirts (the meanest name" "That longs to love the bleeding Lamb)." } }
       \vspace #0.88
-      \line { \bold "6." \column { "From Aaron’s beard it rolls," "(Those nearest to His face)," "The humble, trembling souls" "Who know abundant grace;" "The grace, the grace for all is free," "For, lo, it reaches now to me!" } }
+      \line { \bold "6." \column { "From Aaron’s beard it rolls," "(Those nearest to His face)," "The humble, trembling souls" "Who know abundant grace;" "The grace, the grace for all is free," "For, lo, it reaches now to me!" \translate #'(3.24 . -2.00) "(Repeat the last line of each stanza)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last line of each stanza)" \null }

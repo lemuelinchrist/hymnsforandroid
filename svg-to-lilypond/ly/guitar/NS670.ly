@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -105,10 +105,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "4." \column { "God’s loving seekers will enjoy" "Great blessing rich and full;" "God as the Author is conveyed," "Our portion, wonderful." } }
       \vspace #0.88
-      \line { \bold "5." \column { "The loving seekers of God’s Word," "Will often see God’s face;" "His countenance, when lifted up," "Infuse His loving grace." } }
+      \line { \bold "5." \column { "The loving seekers of God’s Word," "Will often see God’s face;" "His countenance, when lifted up," "Infuse His loving grace." \translate #'(3.24 . -1.50) "(Do not repeat Chorus after verse 5)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Do not repeat Chorus after verse 5)" \null }

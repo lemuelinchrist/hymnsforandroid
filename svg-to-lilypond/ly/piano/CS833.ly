@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.98\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -97,10 +97,8 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \line { \bold "2." \column { "現在你心思不需完全明白，" "不必知道為甚麼，或怎樣；" "因祂要給你遠超你心所望，" "遠超你頭腦所領會得來。" \translate #'(3.25 . -1.50) "你能彀經歷人生奇妙大改變，" \translate #'(3.25 . -1.50) "你能彀進入偉大的情境；" \translate #'(3.25 . -1.50) "你能彀經歷超越榮耀的事情，" \translate #'(3.25 . -1.50) "如果你讓救主進入你的心。" } }
+      \line { \bold "2." \column { "現在你心思不需完全明白，" "不必知道為甚麼，或怎樣；" "因祂要給你遠超你心所望，" "遠超你頭腦所領會得來。" \translate #'(3.25 . -1.50) "你能彀經歷人生奇妙大改變，" \translate #'(3.25 . -1.50) "你能彀進入偉大的情境；" \translate #'(3.25 . -1.50) "你能彀經歷超越榮耀的事情，" \translate #'(3.25 . -1.50) "如果你讓救主進入你的心。" \translate #'(3.25 . -3.00) "（第一節）" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "（第一節）" \null }

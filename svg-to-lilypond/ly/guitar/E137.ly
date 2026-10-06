@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -103,10 +103,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Tell forth the only Name that’s giv’n" "On which we now may call," "The Name adored by hosts in heav’n," "And crown Him Lord of all." } }
       \vspace #0.88
-      \line { \bold "4." \column { "In glory all the ransomed throng" "Soon at His feet shall fall;" "Join in the blest eternal song," "And crown Him Lord of all." } }
+      \line { \bold "4." \column { "In glory all the ransomed throng" "Soon at His feet shall fall;" "Join in the blest eternal song," "And crown Him Lord of all." \translate #'(3.24 . -2.00) "(Repeat the last two lines of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last two lines of each stanza)" \null }

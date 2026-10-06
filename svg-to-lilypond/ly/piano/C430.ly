@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.97\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -110,13 +110,7 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "7." \column { "為叫我們得著榮耀，" "神也必須完全作到：" "模成神子形像。" } }
       \vspace #0.88
-      \line { \bold "8." \column { "基督的愛不能隔絕，" "為將這事作得確切：" "模成祂的形像。" } }
+      \line { \bold "8." \column { "基督的愛不能隔絕，" "為將這事作得確切：" "模成祂的形像。" \translate #'(3.24 . -1.50) "羅馬八章二十六至三十九節。" \translate #'(3.24 . -1.50) "二十九節：『效法祂兒子的模樣，』" \translate #'(3.24 . -1.50) "應譯作『模成神兒子的形像。』" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "羅馬八章二十六至三十九節。" \null }
-
-\markup \fill-line { \null \fontsize #-1 \italic "二十九節：『效法祂兒子的模樣，』" \null }
-
-\markup \fill-line { \null \fontsize #-1 \italic "應譯作『模成神兒子的形像。』" \null }

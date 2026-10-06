@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.63\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -99,10 +99,8 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \line { \bold "2." \column { "Now everyone can feast on Him!" "Open deeply and be filled to the brim!" "Partake of Christ as the tree of life." "Express Him together." "Give Christ the first place in our hearts." "As we love Him all His life He imparts." "In spirit He fills eternally!" "Satisfied forever!" } }
+      \line { \bold "2." \column { "Now everyone can feast on Him!" "Open deeply and be filled to the brim!" "Partake of Christ as the tree of life." "Express Him together." "Give Christ the first place in our hearts." "As we love Him all His life He imparts." "In spirit He fills eternally!" "Satisfied forever!" \translate #'(2.73 . -2.00) "(Verse and chorus can be sung together.)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Verse and chorus can be sung together.)" \null }

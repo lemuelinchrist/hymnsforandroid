@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -104,9 +104,7 @@ verseOne = \lyricmode {
       \line { \bold "4." \column { "We are one as people of the Lord;" "We declare that we are really one!" "Not just word, but life in one accord" "Testify what God in us hath done." \translate #'(3.25 . -1.50) "Eat the bread and drink the wine, ye saints!" \translate #'(3.25 . -1.50) "We are one in Him fore’er." \translate #'(3.25 . -1.50) "Stand in oneness on the local ground," \translate #'(3.25 . -1.50) "Eat and drink in oneness there!" } }
     }
     \left-column {
-      \line { \bold "5." \column { "Eat the bread, ye people of the Lord:" "Praise His name, for He has made us one." "Now we come to eat in one accord" "As the church which He has made His own." } }
+      \line { \bold "5." \column { "Eat the bread, ye people of the Lord:" "Praise His name, for He has made us one." "Now we come to eat in one accord" "As the church which He has made His own." \translate #'(3.24 . -1.50) "(Do not repeat chorus after last verse)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Do not repeat chorus after last verse)" \null }

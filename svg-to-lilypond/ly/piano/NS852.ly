@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 9.03\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -100,12 +100,8 @@ verseOne = \lyricmode {
     \line { \left-column {
       \line { \bold "2." \column { "Now through the gospel, Christ’s vict’ry is my claim," "And through His ministry in life I am the same." } }
       \vspace #0.88
-      \line { \bold "3." \column { "Now Him who loved us is comfort, hope, and grace," "As we anticipate His coming, shining face!" } }
+      \line { \bold "3." \column { "Now Him who loved us is comfort, hope, and grace," "As we anticipate His coming, shining face!" \translate #'(3.84 . -2.00) "You can repeat using “Don’t be discouraged”" \translate #'(3.84 . -2.00) "and change to third person." } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "You can repeat using “Don’t be discouraged”" \null }
-
-\markup \fill-line { \null \fontsize #-1 \italic "and change to third person." \null }

@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -103,10 +103,8 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Only this I know: I tell Him" "All my doubts and griefs and fears;" "Oh, how patiently He listens!" "And my drooping soul He cheers;" "Do you think He ne’er reproves me?" "What a false friend He would be," "If He never, never told me" "Of the sins which He must see." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Would you like to know that sweetness" "Of the secret of the Lord?" "Go and hide beneath His shadow;" "This shall then be your reward;" "And whene’er you leave the silence" "Of that happy meeting-place," "By the Spirit bear the image" "Of the Master in your face." } }
+      \line { \bold "4." \column { "Would you like to know that sweetness" "Of the secret of the Lord?" "Go and hide beneath His shadow;" "This shall then be your reward;" "And whene’er you leave the silence" "Of that happy meeting-place," "By the Spirit bear the image" "Of the Master in your face." \translate #'(3.25 . -1.50) "(Repeat the last line of each stanza)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Repeat the last line of each stanza)" \null }

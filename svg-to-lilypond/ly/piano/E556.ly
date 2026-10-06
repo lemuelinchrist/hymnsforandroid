@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -110,9 +110,7 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "7." \column { "Fair as the moon, conformed to Him I’d be," "Clear as the sun, unto His stature grown;" "For my Beloved, all to please His heart," "For my Beloved, that His life be shown." } }
       \vspace #0.88
-      \line { \bold "8." \column { "Thou art my life, and I Thine image real;" "Love in such union is as death most strong," "Ne’er can it be destroyed or e’er replaced" "Till Thou on spices mountains come ere long." } }
+      \line { \bold "8." \column { "Thou art my life, and I Thine image real;" "Love in such union is as death most strong," "Ne’er can it be destroyed or e’er replaced" "Till Thou on spices mountains come ere long." \translate #'(3.24 . -1.50) "Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" } }
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" \null }

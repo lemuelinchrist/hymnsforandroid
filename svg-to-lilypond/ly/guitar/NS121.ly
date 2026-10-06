@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -50,7 +50,7 @@ global = {
 melody = {
   \clef treble
   \global
-  a'2 fis'2 | d'2. e'8[ fis'8] | g'8[ a'16 g'16~ g'8 fis'8] e'4. d'8 | g'4 fis'4 d'2 \break | a'2 fis'2 | d'2. e'8[ fis'8] | g'8[ a'16 g'16~ g'8 fis'8] e'4. d'8 | g'4 fis'4 d'2 \break | a'2^\markup { \box \bold "Chorus" } a'2 | fis'4( e'16[ d'16~ d'16 e'16] fis'4~ fis'2) | a'2 a'2 | fis'8([ e'16 d'16~ d'16 e'16 fis'8~] fis'2) |
+  a'2 fis'2 | d'2. e'8[ fis'8] | g'8[ a'16 g'16~ g'8 fis'8] e'4. d'8 | g'4 fis'4 d'2 \break | a'2 fis'2 | d'2. e'8[ fis'8] | g'8[ a'16 g'16~ g'8 fis'8] e'4. d'8 | g'4 fis'4 d'2 \break | a'2^\markup { \box \bold "Chorus" } a'2 | \set Timing.measureLength = #(ly:make-moment 5 4) fis'4( e'16[ d'16~ d'16 e'16] fis'4~ fis'2) | \set Timing.measureLength = #(ly:make-moment 1 1) a'2 a'2 | fis'8([ e'16 d'16~ d'16 e'16 fis'8~] fis'2) |
 }
 
 harmonies = \chordmode {

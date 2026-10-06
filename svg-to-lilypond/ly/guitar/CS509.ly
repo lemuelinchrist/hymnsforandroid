@@ -8,8 +8,8 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.92\mm
-  bottom-margin = 12.5\mm
+  top-margin = 8.91\mm
+  bottom-margin = 9.00\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -25,7 +25,7 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #-1.18
+    \vspace #0.74
   }
   system-system-spacing = #'((basic-distance . 13.45) (minimum-distance . 13.45) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.01) (minimum-distance . 15.01) (padding . 0) (stretchability . 0))

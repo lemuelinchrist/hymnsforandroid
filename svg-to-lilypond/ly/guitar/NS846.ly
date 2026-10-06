@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 9.03\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -100,7 +100,7 @@ verseOne = \lyricmode {
     \left-column {
       \line { \bold "2." \column { "Cleanse me from all things sinful;" "Deal with all worldly idols." "Separate me from all defilement." "Then impart life into me;" "Flow throughout my whole being." "Saturate me with Your life element." } }
       \vspace #0.88
-      \line { \bold "3." \column { "Here the air is so clear, Lord." "Speak to me through Your Word more." "Have Your way in me; heav’nly Light, do shine!" "Search my heart, every chamber;" "From each part, darkness scatter." "Make my whole body full of light divine!*" } }
+      \line { \bold "3." \column { "Here the air is so clear, Lord." "Speak to me through Your Word more." "Have Your way in me; heav’nly Light, do shine!" "Search my heart, every chamber;" "From each part, darkness scatter." "Make my whole body full of light divine!*" \translate #'(3.84 . -2.00) "* cf. Matt. 6:22" } }
     }
     \left-column {
       \line { \bold "4." \column { "In Your presence, I linger." "It’s Your beauty—I’m captured!" "You have won me with Your attractiveness." "Vanity I’m exhaling," "All Your fullness inhaling;" "Deeply breathe into me Your holiness." } }
@@ -109,5 +109,3 @@ verseOne = \lyricmode {
     }
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "* cf. Matt. 6:22" \null }

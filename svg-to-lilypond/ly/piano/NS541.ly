@@ -9,7 +9,7 @@
   left-margin = 12.7\mm
   right-margin = 8.89\mm
   top-margin = 8.91\mm
-  bottom-margin = 12.5\mm
+  bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -98,10 +98,8 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \line { \bold "2." \column { "We need to eat the Lord," "Absorb His pure Word" "And breathe in Christ as life;" "And as we breathe God in," "The Spirit begins" "Dispensing the life supply." } }
+      \line { \bold "2." \column { "We need to eat the Lord," "Absorb His pure Word" "And breathe in Christ as life;" "And as we breathe God in," "The Spirit begins" "Dispensing the life supply." \translate #'(3.24 . -1.50) "(Chorus)" } }
     } \hspace #1.1 }
     \null
   }
 }
-
-\markup \fill-line { \null \fontsize #-1 \italic "(Chorus)" \null }
