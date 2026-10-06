@@ -318,7 +318,14 @@ def build_ir(path, sc, systems, other):
         body = [g for g in groups if g['x'] >= first_x - 0.5]
         bar_xs = [round(g['x'], 2) for g in body]
         bar_sig = {round(g['x'], 2): g['sig'] for g in body}
-        lead_sigs.append(lead[-1]['sig'] if lead else None)
+        silent_bar = None
+        if sy['index'] == 0 and time is not None and lead and lead[-1]['sig'] == 'T' and \
+                any(c['x'] < lead[-1]['x'] for c in chord_clusters(sy)):
+            # a chord name before the first bar line and no note: a silent first bar (NS746)
+            silent_bar = round(lead[-1]['x'], 2)
+            bar_xs = [silent_bar] + bar_xs
+            bar_sig[silent_bar] = lead[-1]['sig']
+        lead_sigs.append(None if silent_bar else (lead[-1]['sig'] if lead else None))
         ev_xs = sorted([h['x'] for h in sy['heads']] + [r['x'] for r in sy['rests']])
         # a key change in the middle of the previous line stays in force: start this system from the current key
         sys_base_alters = key_alters(cur_key[0] if cur_key[0] in ('flat', 'sharp') else 'flat', cur_key[1])
@@ -466,6 +473,17 @@ def split_system(sy, bar_xs, key, base_alters, ir, state, bar_sig, key_changes=(
     for k in range(len(bounds) - 1):
         evs = [e for e in events if bounds[k] < e['x'] - 0.3 <= bounds[k + 1] or
                (bounds[k] < e['x'] <= bounds[k + 1] and False)]
+        if not evs and sy['index'] == 0 and k == 0 and not meas and ir.get('time') and bounds[1] < 1e8:
+            # a silent first bar that only carries a chord name (NS746): a hidden whole-bar rest
+            cl = [c for c in chord_clusters(sy) if c['x'] < bounds[1]]
+            full = Fraction(ir['time']['num'], ir['time']['den'])
+            shape = [(b, d) for b in (1, 2, 4, 8) for d in (0, 1)
+                     if Fraction(1, b) * ((2 - Fraction(1, 2 ** d)) if d else 1) == full]
+            if cl and shape:
+                ev = {'kind': 'rest', 'x': cl[0]['x'], 'y': top + 2, 'rtype': 'hidden', 'hidden': True,
+                      'base': shape[0][0], 'dots': shape[0][1]}
+                events.append(ev)
+                evs = [ev]
         if not evs:
             continue
         meas.append({'bar_before': bounds[k], 'bar_after': bounds[k + 1], 'events': evs})
@@ -782,6 +800,8 @@ def clean_event(e):
          'lyrics': e.get('lyrics'), 'tuplet': e.get('tuplet'),
          'beam_start': e.get('beam_start', False), 'beam_end': e.get('beam_end', False), 'marks': e.get('marks'), 'mid_chords': e.get('mid_chords') or None, 'fermata': e.get('fermata'), 'signs': e.get('signs'),
          'slur_dashed': e.get('slur_dashed', False), 'tie_dashed': e.get('tie_dashed', False)}
+    if e.get('hidden'):
+        d['hidden'] = True
     if e['kind'] == 'note':
         d.update({'letter': e['letter'], 'octave': e['octave'], 'alter': e['alter'], 'step': e['step'],
                   'acc': e['acc']})

@@ -34,7 +34,7 @@ def event_sig(e):
     if e['kind'] == 'note':
         base += (e['letter'], e['octave'], e['alter'], bool(e.get('cross')))
     base += (tuple((m['text'], bool(m['boxed'])) for m in (e.get('marks') or [])),)
-    base += (e.get('fermata'), tuple(e.get('signs') or ()))
+    base += (e.get('fermata'), tuple(e.get('signs') or ()), bool(e.get('hidden')))
     # chord changes inside a sustained note: the beat offset is estimated from layout, which differs per
     # LilyPond version, so only the chord order is compared
     base += (tuple(c['text'].replace('o', '') for c in (e.get('mid_chords') or [])),)

@@ -1,32 +1,4 @@
-# Sheets not converted (2026-10-06): 13 piano + 15 guitar. Compare each against the original by eye.
-# variant | id | status | first reason reported by the converter
-# Images: python3 tools/convert.py --variant <v> ../app/src/main/assets/<v>Svg/<ID>.svg ; python3 tools/compare_png.py <ID> --variant <v>
-
-guitar | C316     | REVIEW             | footer differs
-piano  | C316     | REVIEW             | footer differs
-guitar | CH52     | REVIEW             | chord(s) not attached to any note: ['D', 'G', 'A']
-piano  | CH52     | REVIEW             | chord(s) not attached to any note: ['Eb', 'Eb/G', 'Ab']
-guitar | CS107    | REVIEW             | chord(s) not attached to any note: ['D', 'A7', 'D']
-piano  | CS107    | REVIEW             | chord(s) not attached to any note: ['F/C', 'C7', 'F']
-guitar | CS602    | REVIEW             | chord(s) not attached to any note: ['Cm', 'F', 'Bb']
-piano  | CS602    | REVIEW             | chord(s) not attached to any note: ['Cm', 'F', 'Bb']
-guitar | CS710    | REVIEW             | chord(s) not attached to any note: ['D', 'A7', 'D']
-piano  | CS710    | REVIEW             | chord(s) not attached to any note: ['F/C', 'C7', 'F']
-guitar | NS160    | REVIEW             | unsupported chord 'F?m'
-guitar | NS349    | REVIEW             | measure 12 (system 2) has 3/2, expected 3/4
-piano  | NS349    | REVIEW             | measure 12 (system 2) has 3/2, expected 3/4
-guitar | NS407    | REVIEW             | instruction 'te' above the music is not emitted yet
-piano  | NS407    | REVIEW             | instruction 'te' above the music is not emitted yet
-guitar | NS471    | REVIEW             | measure 15 event 2: ('note', 8, 0, None, False, False, False, None, 'G', 4, 0, (('3.', False), ('3.', False), ('4.', False), ('4.', False)), None, (),
-guitar | NS531    | REVIEW             | unplaced text: ['D', 'D', 'A', 'B']
-piano  | NS531    | REVIEW             | unsupported chord '##'
-guitar | NS746    | emit_error         | no time signature
-piano  | NS746    | emit_error         | no time signature
-guitar | NS812    | recognition_error  | unsupported notehead s2cross
-piano  | NS812    | recognition_error  | unsupported notehead s2cross
-guitar | NS876    | REVIEW             | unsupported chord 'Gadd9'
-piano  | NS876    | REVIEW             | unsupported chord 'Aadd9'
-guitar | NS1152   | REVIEW             | unplaced text: ['°', '°', '°']
-piano  | NS1152   | REVIEW             | unplaced text: ['°', '°', '°']
-guitar | NS10025  | REVIEW             | unplaced text: ['Whom have I in heave']
-piano  | NS10025  | REVIEW             | unplaced text: ['Whom have I in heave']
+# Leftover sheets (2026-10-06): the 28 sheets that were not converted before (13 piano + 15 guitar) now all convert on branch media/leftovers.
+# Status after the fixes (piano and guitar): ACCEPT for all except NS349 and NS746 (ACCEPT_SOURCE_BAR_SUM) and CS602 (ACCEPT_DB_MISMATCH).
+# Known imperfections: NS10025 guitar fits on one page but its spacing is tighter than the original; NS746's "Note on ..." box is placed
+# in the verse area and loses its italics. Re-check them by eye after the next full run.

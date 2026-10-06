@@ -549,6 +549,15 @@ to an in-app renderer (e.g. verovio/MusicXML) - a separate project; the `.ly` fi
 (4) Add a geometry check (no ink outside the page, no overlapping text) to the acceptance tests before shipping renders.
 (4a) Done on branch `media/pagefit`: `tools/pagefit.py` (ink margin per page edge, relative to the original) is part of `convert.py`; not yet run over the full corpus, overlapping text is still unchecked.
 
+**Leftover sheets (2026-10-06, branch `media/leftovers`).** All 28 leftover sheets convert now; `regress.py` 85/85. Fixes:
+chord names with a raised suffix (`Aadd9`, `\\once \\override ChordName.text`); double-sharp/flat chord roots (new glyph id registered by hand);
+the old chord font name `LilyPond Sans Serif` (`svgscan.is_sans`); chords printed after the staff ends (`ir['tail_chords']`, emitted as quarter
+notes in the chord line only); degree sign as a diminished chord; tempo mark (`ir['tempo']`, `\\tempo`); cross noteheads; longer-than-signature
+bars (`\\set Timing.measureLength`); italic lyric syllables; small italic footnotes in the verse column; a silent first bar with a chord
+(hidden whole-bar rest `s1` and `\\partial` for the pickup that follows); a stacked-mark band of 11 spaces; title face `Arial Heavy`; capo line
+without italics; and a bottom-margin retry (9, 6, 3 mm) when a tall sheet spills onto a second page. The full run on `media/work` predates these
+fixes: merge `media/leftovers`, then run the full batch again.
+
 **Order of work (decided 2026-10-06).** First finish the conversion: full run with the page-fit check, then the leftover sheets
 (`data/leftovers.txt`), then the tune-code list. **Last, deferred:** the in-app viewer that replaces shipped SVGs
 (owner's plan: smaller app). Candidates: Verovio via MusicXML (proof of concept first) or a custom `Canvas` renderer

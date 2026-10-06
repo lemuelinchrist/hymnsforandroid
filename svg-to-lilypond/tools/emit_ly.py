@@ -84,6 +84,14 @@ def chord_item(c, dur_str, warnings):
     return 's' + dur_str
 
 
+def partial_cmd(f):
+    try:
+        one = frac_to_durations(f)
+        return '\\partial %s' % (one if ' ' not in one else '%d*%d' % (f.denominator, f.numerator))
+    except ValueError:
+        return '\\partial %d*%d' % (f.denominator, f.numerator)
+
+
 def time_token(t):
     sym = '\\numericTimeSignature ' if (t['symbol'] is None and (t['num'], t['den']) in ((4, 4), (2, 2))) else \
         '\\defaultTimeSignature '
@@ -121,6 +129,8 @@ def walk_events(ir):
             if want != applied:
                 applied = want
                 yield ('mlen', want)
+            if msum < cur_len and any(e.get('hidden') for e in ms[mi - 1]['events']):
+                yield ('partial', msum)          # a pickup after a silent bar: LilyPond must not wait for a full bar
         for e in m['events']:
             t = e.get('tuplet')
             if t and t['start']:
@@ -176,7 +186,7 @@ def emit_melody(ir):
                 else:
                     mark_txt = '^' + mk_ly
             if e['kind'] == 'rest':
-                tok = 'r' + event_dur(e)
+                tok = ('s' if e.get('hidden') else 'r') + event_dur(e)
             else:
                 tok = ly_pitch(e['letter'], e['alter'], e['octave']) + event_dur(e)
                 if e.get('cross'):
@@ -205,6 +215,8 @@ def emit_melody(ir):
             out.append(tok)
         elif kind == 'time':
             out.append(time_token(item[1]))
+        elif kind == 'partial':
+            out.append(partial_cmd(item[1]))
         elif kind == 'mlen':
             out.append('\\set Timing.measureLength = #(ly:make-moment %d %d)' % (item[1].numerator, item[1].denominator))
         elif kind == 'key':
@@ -241,6 +253,8 @@ def emit_chords(ir, warnings):
             out.append('}')
         elif kind == 'time':
             out.append(time_token(item[1]))
+        elif kind == 'partial':
+            out.append(partial_cmd(item[1]))
         elif kind == 'event':
             e = item[1]
             segs = [(Fraction(0), e.get('chord'))]
