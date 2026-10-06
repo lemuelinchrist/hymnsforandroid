@@ -552,13 +552,29 @@ to an in-app renderer (e.g. verovio/MusicXML) - a separate project; the `.ly` fi
 
 ## 18. Implementation status and findings (2026-10-05)
 
+> **Current status (2026-10-06): read this first.** Piano 3,166 / guitar 3,164 of 3,179 sheets accepted (99.6%); the
+> accepted `.ly` sources are committed in `svg-to-lilypond/ly/`. 13 piano + 15 guitar sheets are not converted: the list
+> with reasons is `data/leftovers.txt`. Details, fixes and lessons: the subsections "Review tail, task 3",
+> "Full run after the visual-review fixes" and "Visual review 2026-10-05" below. The older "Results (full run, 2026-10-05)"
+> table, the first REVIEW-reasons table and "Known unresolved cases" further down are **historical** (kept for the record).
+> App-readiness findings (fonts, sizes, transposition, emulator attempt): section 15.1.
+>
+> **Continuing on another machine.** `git switch media/work` (branch on GitHub, not merged to master). Needs
+> LilyPond 2.24.x, rsvg-convert, ImageMagick, sqlite3 and Python 3 with numpy, Pillow, fontTools (see the skill file
+> `.claude/skills/svg-to-lilypond/SKILL.md`). `build/` is not in git: to look at a sheet run
+> `cd svg-to-lilypond && python3 tools/convert.py --variant piano ../app/src/main/assets/pianoSvg/NS349.svg`
+> then `python3 tools/compare_png.py NS349` and open `build/compare/piano_NS349.png` (left = original, right = ours).
+> `python3 tools/regress.py -j 4` (69 sheets, ~3 min) must print `69/69 as expected` after any change to the tools.
+> Glyph shapes can differ with the LilyPond version: if a new version reports `unknown glyph ids`, follow the skill file
+> section 4. Not committed on purpose: `local.properties` (SDK path), signing keys.
+
 ### How to run
 `python3 tools/convert.py --group E [-j 14]` (piano), or `python3 tools/convert.py path/to/X.svg ...`.
 Outputs in `build/`: `ir/` (JSON), `ly/` (LilyPond), `svg/` (our re-render), `report_<group>_piano.json`.
 Statuses: `ACCEPT` (all checks pass), `REVIEW` (something to look at), `recognition_error`, `render_error`.
 Whole English set takes ~5 min on 14 processes.
 
-### Results (full run, 2026-10-05, after all fixes)
+### Results (full run, 2026-10-05, after all fixes) - HISTORICAL, superseded by the current status above
 Status meanings:
 - `ACCEPT`: every check passes.
 - `ACCEPT_DB_MISMATCH`: converted and internally consistent (bars add up, re-render reads back the same, no
