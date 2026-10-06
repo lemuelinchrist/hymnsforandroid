@@ -567,12 +567,20 @@ over the IR with the music font shipped once. This supersedes the font-route dec
 
 ## 18. Implementation status and findings (2026-10-05)
 
-> **Current status (2026-10-06): read this first.** Piano 3,166 / guitar 3,164 of 3,179 sheets accepted (99.6%); the
-> accepted `.ly` sources are committed in `svg-to-lilypond/ly/`. 13 piano + 15 guitar sheets are not converted: the list
-> with reasons is `data/leftovers.txt`. Details, fixes and lessons: the subsections "Review tail, task 3",
-> "Full run after the visual-review fixes" and "Visual review 2026-10-05" below. The older "Results (full run, 2026-10-05)"
-> table, the first REVIEW-reasons table and "Known unresolved cases" further down are **historical** (kept for the record).
-> App-readiness findings (fonts, sizes, transposition, emulator attempt): section 15.1.
+> **Current status (end of 2026-10-06): read this first.** Before this day's last round: piano 3,166 / guitar 3,164 of
+> 3,179 sheets accepted (99.6%). Since then, branch `media/leftovers` (not merged to master) converts all 28 sheets that were
+> left over, adds the page-fit check (`tools/pagefit.py`, in `convert.py`) and fixes several recognizer classes; `regress.py` is
+> 85/85. **A full run on that code was started on the media host the night of 2026-10-06 and has not reported yet**: until it
+> does, the numbers above are the last measured ones, `ly/` and `ly/status.csv` are from the old run, and some accepted sheets
+> may fall back to `REVIEW` (page fit, or a regression from the wider recognizer rules). First thing to do next: read the
+> agent's report on `media/work`, look at every sheet that was accepted before and is not now, then decide on merging.
+> **Open, in the owner's order:** (1) the full-run report above; (2) `build/db_tune_mismatches.txt` (48 hymns whose database
+> tune code disagrees with sheet and MIDI; needs the owner's review, the database must not be changed without it);
+> (3) last and deferred: the in-app viewer that replaces shipped SVGs (Verovio via MusicXML as a proof of concept, or a custom
+> `Canvas` renderer over the IR; this also settles the font route, section 15.1). Known imperfections: NS10025 guitar (tight
+> spacing) and NS746 (its "Note on ..." box loses its italics). Details of the fixes: "Leftover sheets (2026-10-06)" below.
+> The older "Results (full run, 2026-10-05)" table, the first REVIEW-reasons table and "Known unresolved cases" further down are
+> **historical**. App-readiness findings (fonts, sizes, transposition, emulator attempt): section 15.1.
 >
 > **Continuing on another machine.** `git switch media/work` (branch on GitHub, not merged to master). Needs
 > LilyPond 2.24.x, rsvg-convert, ImageMagick, sqlite3 and Python 3 with numpy, Pillow, fontTools (see the skill file
