@@ -195,11 +195,12 @@ def repair_hyphens(ir, hymn_id):
                 if i + L > len(syls):
                     break
                 acc += _norm_word(syls[i + L - 1]['text'])
-                if L >= 2 and acc in dbw and all(not syls[j]['hyphen'] for j in range(i, i + L - 1)) and \
+                if L >= 2 and acc in dbw and any(not syls[j]['hyphen'] for j in range(i, i + L - 1)) and \
                         any(_norm_word(syls[j]['text']) not in dbw for j in range(i, i + L)):
                     for j in range(i, i + L - 1):
-                        syls[j]['hyphen'] = True
-                    fixed += L - 1
+                        if not syls[j]['hyphen']:
+                            syls[j]['hyphen'] = True
+                            fixed += 1
                     i += L
                     done = True
                     break

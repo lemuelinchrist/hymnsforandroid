@@ -2,6 +2,7 @@
 
 usage: python3 tools/emit_ly.py ir.json > out.ly      (normally called from convert.py)
 """
+import math
 import re
 import sys
 from fractions import Fraction
@@ -46,15 +47,50 @@ def frac_to_durations(f):
     raise ValueError('cannot express %s' % f)
 
 
+ACC_LY = {'': '', 'b': 'es', '#': 'is', 'bb': 'eses', '##': 'isis'}
+
+
 def chord_to_ly(text):
-    m = re.fullmatch(r'([A-G])([b#]?)(.*?)(?:/([A-G])([b#]?))?', text)
+    m = re.fullmatch(r'([A-G])(bb|##|[b#]?)(.*?)(?:/([A-G])(bb|##|[b#]?))?', text)
     if not m or m.group(3) not in QUALITY:
         return None
-    root = m.group(1).lower() + {'': '', 'b': 'es', '#': 'is'}[m.group(2)]
+    root = m.group(1).lower() + ACC_LY[m.group(2)]
     out = root + QUALITY[m.group(3)]
     if m.group(4):
-        out += '/' + m.group(4).lower() + {'': '', 'b': 'es', '#': 'is'}[m.group(5)]
+        out += '/' + m.group(4).lower() + ACC_LY[m.group(5)]
     return out
+
+
+def chord_override(text):
+    """Chord whose quality LilyPond has no name for (Aadd9): (markup override, plain root chord) or None.
+    The suffix is printed raised, like the originals do; the root decides the pitch only."""
+    m = re.fullmatch(r'([A-G])([b#]?)(add\d+|[A-Za-z]*\d+[A-Za-z0-9+]*)', text)
+    if not m:
+        return None
+    root = m.group(1).lower() + {'': '', 'b': 'es', '#': 'is'}[m.group(2)]
+    acc = {'': '', 'b': ' \\flat', '#': ' \\sharp'}[m.group(2)]
+    return '\\once \\override ChordName.text = \\markup { %s%s \\super %s } ' % (q(m.group(1)), acc, q(m.group(3))), root
+
+
+def chord_item(c, dur_str, warnings):
+    """LilyPond text for chord name `c` lasting `dur_str`; a skip when `c` is empty or unsupported."""
+    ly = chord_to_ly(c) if c else None
+    if ly:
+        return chord_token(ly, dur_str)
+    if c:
+        ov = chord_override(c)
+        if ov:
+            return ov[0] + ov[1] + dur_str
+        warnings.append('unsupported chord %r' % c)
+    return 's' + dur_str
+
+
+def partial_cmd(f):
+    try:
+        one = frac_to_durations(f)
+        return '\\partial %s' % (one if ' ' not in one else '%d*%d' % (f.denominator, f.numerator))
+    except ValueError:
+        return '\\partial %d*%d' % (f.denominator, f.numerator)
 
 
 def time_token(t):
@@ -73,6 +109,9 @@ def walk_events(ir):
     for m in ir['measures']:
         sys_last[m['system']] = m['n']
     ms = ir['measures']
+    from verify import dur_of
+    cur_len = Fraction(ir['time']['num'], ir['time']['den']) if ir.get('time') else None
+    applied = cur_len                  # the measure length LilyPond is using now (a \time command resets it)
     for mi, m in enumerate(ms):
         prev_ended = mi > 0 and ms[mi - 1].get('volta_end')
         if m.get('volta_start') and not prev_ended:
@@ -80,7 +119,20 @@ def walk_events(ir):
         if m.get('key_change'):
             yield ('key', m['key_change'])
         if m.get('time_change'):
-            yield ('time', m['time_change'])
+            tc = m['time_change']
+            cur_len = applied = Fraction(tc['num'], tc['den'])
+            yield ('time', tc)
+        # a source that draws bars of another length than its time signature (3/2 bars under 3/4, a 9/8 bar followed by
+        # a 7/8 bar): without this LilyPond adds its own bar line where the original has none, or misses the original's
+        if mi > 0 and cur_len:
+            msum = sum((dur_of(e) for e in m['events']), Fraction(0))
+            if msum < cur_len and any(e.get('hidden') for e in ms[mi - 1]['events']):
+                yield ('partial', msum)          # a pickup after a silent bar: LilyPond must not wait for a full bar
+            else:
+                want = msum if (mi < len(ms) - 1 and msum > 0) else cur_len     # the last bar needs no length of its own
+                if want != applied:
+                    applied = want
+                    yield ('mlen', want)
         for e in m['events']:
             t = e.get('tuplet')
             if t and t['start']:
@@ -99,6 +151,8 @@ def walk_events(ir):
 
 def emit_melody(ir):
     out = []
+    if ir.get('tempo'):
+        out.append('\\tempo %d = %d' % (ir['tempo']['dur'], ir['tempo']['bpm']))
     dashed_open = [False]
     for item in walk_events(ir):
         kind = item[0]
@@ -111,6 +165,7 @@ def emit_melody(ir):
             for sg in (e.get('signs') or []):
                 out.append('\\mark \\markup { \\musicglyph "scripts.%s" }' % sg)
             mks = e.get('marks') or []
+            mark_txt = ''
             if mks:
                 def mark_markup(mk):
                     inner = q(mk['text'])
@@ -121,17 +176,27 @@ def emit_melody(ir):
                     if mk.get('boxed'):
                         inner = '\\box ' + inner
                     return inner
+                # a script (not \mark): the originals put the box between chord names and staff, a \mark would go
+                # above the chord row and collide with the lyrics of the system above. With a fermata on the same
+                # note keep \mark (a script would stack over the fermata and move it, which the checks notice).
                 if len(mks) == 1:
-                    out.append('\\mark \\markup { %s }' % mark_markup(mks[0]))
-                else:            # LilyPond keeps one \mark per moment: stack several as a column (top first)
-                    out.append('\\mark \\markup { \\column { %s } }' % ' '.join('\\line { %s }' % mark_markup(m)
-                                                                                for m in mks))
+                    mk_ly = '\\markup { %s }' % mark_markup(mks[0])
+                else:            # several marks on one note: stack them as a column (top first)
+                    mk_ly = '\\markup { \\column { %s } }' % ' '.join('\\line { %s }' % mark_markup(m) for m in mks)
+                if e.get('fermata'):
+                    out.append('\\mark ' + mk_ly)
+                else:
+                    mark_txt = '^' + mk_ly
             if e['kind'] == 'rest':
-                tok = 'r' + event_dur(e)
+                tok = ('s' if e.get('hidden') else 'r') + event_dur(e)
             else:
                 tok = ly_pitch(e['letter'], e['alter'], e['octave']) + event_dur(e)
+                if e.get('cross'):
+                    tok = "\\once \\override NoteHead.style = #'cross " + tok
                 if e['tie']:
                     tok += '~'
+                    if e.get('tie_dashed'):
+                        tok = '\\once \\tieDashed ' + tok
             if e.get('slur_end'):
                 tok += ')'
                 if dashed_open[0]:
@@ -148,9 +213,14 @@ def emit_melody(ir):
                 tok += ']'
             if e.get('fermata'):
                 tok += '^\\fermata' if e['fermata'] == 'up' else '_\\fermata'
+            tok += mark_txt
             out.append(tok)
         elif kind == 'time':
             out.append(time_token(item[1]))
+        elif kind == 'partial':
+            out.append(partial_cmd(item[1]))
+        elif kind == 'mlen':
+            out.append('\\set Timing.measureLength = #(ly:make-moment %d %d)' % (item[1].numerator, item[1].denominator))
         elif kind == 'key':
             out.append('\\key %s \\major' % LY_KEY[item[1]['tonic']])
         elif kind == 'break':
@@ -185,6 +255,8 @@ def emit_chords(ir, warnings):
             out.append('}')
         elif kind == 'time':
             out.append(time_token(item[1]))
+        elif kind == 'partial':
+            out.append(partial_cmd(item[1]))
         elif kind == 'event':
             e = item[1]
             segs = [(Fraction(0), e.get('chord'))]
@@ -192,11 +264,7 @@ def emit_chords(ir, warnings):
                 segs.append((Fraction(*mc['offset']), mc['text']))
             segs.sort(key=lambda x: x[0])
             if len(segs) == 1:
-                c = segs[0][1]
-                ly = chord_to_ly(c) if c else None
-                if c and ly is None:
-                    warnings.append('unsupported chord %r' % c)
-                out.append(chord_token(ly, event_dur(e)) if ly else 's' + event_dur(e))
+                out.append(chord_item(segs[0][1], event_dur(e), warnings))
                 continue
             total = Fraction(1, e['dur']) * ((2 - Fraction(1, 2 ** e['dots'])) if e['dots'] else 1)
             for k, (off, c) in enumerate(segs):
@@ -207,14 +275,18 @@ def emit_chords(ir, warnings):
                     warnings.append('cannot split chord duration %s' % d)
                     dstr = '16'
                 first, _, rest = dstr.partition(' ')
-                ly = chord_to_ly(c) if c else None
-                if c and ly is None:
-                    warnings.append('unsupported chord %r' % c)
-                out.append(chord_token(ly, first) if ly else 's' + first)
+                out.append(chord_item(c, first, warnings))
                 if rest:
                     out.append('s' + rest)
         elif kind == 'bar':
             out.append('|')
+    last_sys = max(m['system'] for m in ir['measures'])
+    tail = ir.get('tail_chords') or []
+    if tail and any(t['system'] != last_sys for t in tail):
+        warnings.append('chords after the end of a system that is not the last: %s' % [t['text'] for t in tail][:3])
+    else:
+        for t in tail:                       # chord names printed after the music ended: quarter notes, chord line only
+            out.append(chord_item(t['text'], '4', warnings))
     return ' '.join(out)
 
 
@@ -233,13 +305,32 @@ def emit_lyrics(ir, warnings):
                 continue
             if syl.get('stanza'):
                 toks.append('\\set stanza = %s' % q(syl['stanza']))
-            toks.append(q(syl['text']))
+            toks.append(('\\markup \\italic ' if syl.get('italic') else '') + q(syl['text']))
             if syl.get('hyphen'):
                 toks.append('--')
             elif syl.get('extender'):
                 toks.append('__')
         blocks.append((k, ' '.join(toks)))
     return blocks
+
+
+def stanza_body(st):
+    """Lines of one stanza. A sub-paragraph inside a stanza (refrain: a blank gap and an indent in the original) keeps
+    its extra vertical gap and its indent."""
+    pos = st.get('pos')
+    if not pos or len(pos) != len(st['lines']):
+        return ' '.join(q(l) for l in st['lines'])
+    dys = sorted(b[1] - a[1] for a, b in zip(pos, pos[1:]) if b[1] > a[1])
+    pitch = dys[len(dys) // 2] if dys else 0
+    x0 = min(p[0] for p in pos)
+    out = []
+    cum = 0.0
+    for i, (l, (x, y)) in enumerate(zip(st['lines'], pos)):
+        if i and pitch and y - pos[i - 1][1] - pitch > 0.4:
+            cum += y - pos[i - 1][1] - pitch       # a \\vspace inside a \\column costs a whole extra line: shift instead
+        dx = x - x0 if x - x0 > 0.4 else 0.0
+        out.append('\\translate #\'(%.2f . %.2f) %s' % (dx, -cum, q(l)) if (dx or cum) else q(l))
+    return ' '.join(out)
 
 
 def emit_verses(ir):
@@ -252,8 +343,11 @@ def emit_verses(ir):
         for i, st in enumerate(col['stanzas']):
             if i:
                 lines.append('\\vspace #0.88')
-            body = ' '.join(q(l) for l in st['lines'])
-            lines.append('\\line { \\bold %s \\column { %s } }' % (q(st['number']), body))
+            body = stanza_body(st)
+            if st['number'] is None:                                   # unnumbered block (bridge, ending, children's song)
+                lines.append('\\column { %s }' % body)
+            else:
+                lines.append('\\line { \\bold %s \\column { %s } }' % (q(st['number']), body))
         return '\\left-column {\n      ' + '\n      '.join(lines) + '\n    }'
     if len(cols) == 1:
         inner = '\\null\n    \\line { %s \\hspace #1.1 }\n    \\null' % col_markup(cols[0])
@@ -262,13 +356,18 @@ def emit_verses(ir):
     return '\\markup {\n  \\fill-line {\n    %s\n  }\n}\n' % inner
 
 
+def mm_per_space(ir):
+    """Letter page width / viewBox width: sheets typeset with a smaller staff size have a wider viewBox."""
+    return 215.9 / ir.get('page_w', 153.5737)
+
+
 def default_params(ir):
     t = ir['text']
     tops = [s['top'] for s in ir['systems']]
     title_y = t['title']['y'] if t['title'] else 9.63
     gaps = [b - a for a, b in zip(tops, tops[1:])]
     verse_y = min((c['y'] for c in t['verses']), default=None)
-    return {'top_margin': 8.91 + (title_y - 9.63) * 1.406,
+    return {'top_margin': 8.91 + (title_y - 9.63) * mm_per_space(ir),
             'vspace': 0.68 + (tops[0] - 22.967) / 3.0,
             'sys_gap': (sum(gaps) / len(gaps)) if gaps else 12.87,
             'score_gap': (verse_y - tops[-1] - 2.0) if verse_y else 15.0}
@@ -312,14 +411,14 @@ def emit(ir, variant='piano', params=None):
     ly = []
     ly.append('\\version "2.24.3"\n')
     ly.append('%% Generated by svg-to-lilypond from %s\n' % ir['source'])
-    ly.append('#(set-global-staff-size 16)\n')
+    ly.append('#(set-global-staff-size %.3f)\n' % (16 * 153.5737 / ir.get('page_w', 153.5737)))
     score_markup_gap = P['score_gap']
     ly.append('''\\paper {
   #(set-paper-size "letter")
   left-margin = 12.7\\mm
   right-margin = 8.89\\mm
   top-margin = %.2f\\mm
-  bottom-margin = 12.5\\mm
+  bottom-margin = %.2f\\mm
   indent = 0
   #(define fonts
      (set-global-fonts
@@ -342,7 +441,7 @@ def emit(ir, variant='piano', params=None):
   scoreTitleMarkup = ##f
   tagline = \\markup \\line { \\hspace #1.84 \\override #'(font-name . "Trebuchet MS") %s }
 }
-''' % (top_margin_mm, instr_line, vspace_title, sys_gap, sys_gap, score_markup_gap, score_markup_gap, q(footer)))
+''' % (top_margin_mm, P.get('bottom_margin', 12.5), instr_line, vspace_title, sys_gap, sys_gap, score_markup_gap, score_markup_gap, q(footer)))
     ly.append('\\header {\n  title = %s\n  subtitle = %s\n  opus = %s\n}\n' % (
         q(t['title']['text'] if t['title'] else ''), q(t['subtitle']['text'] if t['subtitle'] else ''),
         q(t['number']['text'] if t['number'] else '')))
@@ -354,6 +453,12 @@ def emit(ir, variant='piano', params=None):
     for k, body in lyr:
         ly.append('verse%s = \\lyricmode {\n  %s\n}\n' % (['One', 'Two', 'Three', 'Four'][k], body))
     addl = ''.join('    \\addlyrics { \\verse%s }\n' % ['One', 'Two', 'Three', 'Four'][k] for k, _ in lyr)
+    # 2.24 packs syllables tighter than the originals: keep words apart and hyphens drawn (the wider word gap is
+    # dropped by convert.py when a dense system overflows with it and ends in REVIEW)
+    lyr_ctx = '    \\context {\n      \\Lyrics\n      \\override LyricHyphen.minimum-distance = #0.6\n'
+    if P.get('lyric_space'):
+        lyr_ctx += '      \\override LyricSpace.minimum-distance = #%.1f\n' % P['lyric_space']
+    lyr_ctx += '    }\n'
     ly.append('''\\score {
   <<
     \\new ChordNames \\with {
@@ -370,19 +475,27 @@ def emit(ir, variant='piano', params=None):
       \\override RehearsalMark.self-alignment-X = #CENTER
     }
     \\context {
+      \\Staff
+      \\override TextScript.self-alignment-X = #CENTER
+    }
+%s    \\context {
       \\Score
       %% line breaks come only from the explicit break marks (one per original system)
       \\override NonMusicalPaperColumn.line-break-permission = ##f
     }
   }
 }
-''' % addl)
+''' % (addl, lyr_ctx))
     ly.append(emit_verses(ir))
     for ins in ir['text']['instructions']:
         if ins['y'] < tops[0] - 0.5:
             continue                                       # emitted in the title block
         if ins['y'] > tops[-1] + 14:                       # page-level note below the music
-            ly.append('\\markup \\fill-line { \\null \\fontsize #-1 \\italic %s \\null }\n' % q(ins['text']))
+            from recognize import text_width
+            usable = ir.get('page_w', 153.5737) - 21.59 / mm_per_space(ir) - 11.0      # between the page margins, with room for a rough width estimate
+            w = text_width(ins['text'], 1.96, False) * 2 ** (-1 / 6)                  # width at \\fontsize #-1
+            fs = -1 if w <= usable else max(-8.0, -1 + 6 * math.log2(usable / w))     # a footnote wider than the page shrinks
+            ly.append('\\markup \\fill-line { \\null \\fontsize #%.1f \\italic %s \\null }\n' % (fs, q(ins['text'])))
         else:
             warnings.append('instruction %r above the music is not emitted yet' % ins['text'])
     if ir['text']['leftover']:

@@ -9,7 +9,7 @@ import sys
 from fractions import Fraction
 
 sys.path.insert(0, os.path.dirname(__file__))
-from svgscan import parse, staves  # noqa: E402
+from svgscan import parse, staves, is_sans  # noqa: E402
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 GLYPHS = {k: v['name'] for k, v in json.load(open(os.path.join(HERE, 'data/glyph_names.json'))).items()}
@@ -83,6 +83,9 @@ def key_alters(kind, n):
 
 
 # ---------------------------------------------------------------- main
+STD_PAGE_W = 153.5737          # viewBox width (staff spaces) of a Letter page at staff size 16; some sheets use a smaller size
+
+
 def recognize(path):
     sc = parse(path)
     sts = staves(sc)
@@ -121,7 +124,7 @@ def recognize(path):
                 systems[i]['rests'].append({'x': x, 'y': y, 'type': sub})
         elif kind == 'accidentals':
             if s < STAFF_SCALE * 0.9:
-                i = system_of(y, -12.0, 1.0)
+                i = system_of(y, -19.0, 1.0)
                 if i is not None:
                     systems[i]['chordacc'].append({'x': x, 'y': y, 'type': sub})
             else:
@@ -197,39 +200,83 @@ def recognize(path):
         groups.setdefault((round(ox, 3), round(oy, 3)), []).append((ox, oy, nums))
     for (_, _), pieces in groups.items():
         ox, oy = pieces[0][0], pieces[0][1]
-        xs = [n for _, _, nums in pieces for n in nums[0::2]]
-        ys = [n for _, _, nums in pieces for n in nums[1::2]]
-        x0, x1 = min(xs), max(xs)
-        i = system_of(oy + min(ys), -8, 12)
-        if i is None:
-            continue
-        systems[i]['curves'].append({'x0': ox + x0, 'x1': ox + x1, 'y0': oy + ys[0], 'y1': oy + ys[len(ys) // 2],
-                                     'dashed': len(pieces) > 2})
+        widths = [max(nums[0::2]) - min(nums[0::2]) for _, _, nums in pieces]
+        dashed = len(pieces) > 2 or (len(pieces) == 2 and max(widths) < 1.0)
+        # two long pieces with one origin are two real curves (a tie and a slur on the same note), not one dashed one
+        parts = [pieces] if (dashed or len(pieces) == 1) else [[pc] for pc in pieces]
+        for part in parts:
+            xs = [n for _, _, nums in part for n in nums[0::2]]
+            ys = [n for _, _, nums in part for n in nums[1::2]]
+            x0, x1 = min(xs), max(xs)
+            i = system_of(oy + min(ys), -8, 12)
+            if i is None:
+                continue
+            # a slur lifted above a tuplet bracket sits between two systems: assign it to the system whose
+            # noteheads it actually joins (nearest head height at the curve's ends)
+            cy = oy + ys[0]
+            def head_gap(k):
+                near = [h for h in systems[k]['heads'] if min(abs(h['x'] - (ox + x0)), abs(h['x'] - (ox + x1))) < 3.5]
+                return min([abs(h['y'] - cy) for h in near] or [1e9])
+            cands = [k for k, t in enumerate(tops) if t - 8 <= oy + min(ys) <= t + 12]
+            if len(cands) > 1:
+                i = min(cands, key=head_gap)
+            systems[i]['curves'].append({'x0': ox + x0, 'x1': ox + x1, 'y0': oy + ys[0], 'y1': oy + ys[len(ys) // 2],
+                                         'dashed': dashed})
 
     # chord-name text, lyric text, other text
     other = []
     for text, x, y, fam, size, weight, style in sc.texts:
-        if fam in ('sans', 'sans-serif') and size < 2.1:
-            i = system_of(y, -12.0, 1.0)            # chord row rises when a boxed mark sits above the staff
+        if is_sans(fam) and (size < 2.1 or text == '\u00b0'):     # a degree sign (diminished) is drawn bigger
+            i = system_of(y, -19.0, 1.0)            # chord row rises when a boxed mark sits above the staff
             if i is not None:
-                systems[i]['chords'].append({'x': x, 'y': y, 'text': text, 'size': size})
+                systems[i]['chords'].append({'x': x, 'y': y, 'text': 'o' if text == '\u00b0' else text, 'size': size})
                 continue
-        if fam not in ('sans', 'sans-serif', 'Trebuchet MS') and abs(size - 2.47) < 0.05 and 'italic' not in style:
+        if not is_sans(fam) and fam != 'Trebuchet MS' and abs(size - 2.47) < 0.05:
             cand = [i for i, t in enumerate(tops) if y > t + 3.0]
             if cand:
-                systems[cand[-1]]['lyrics'].append({'x': x, 'y': y, 'text': text, 'bold': 'bold' in weight})
+                systems[cand[-1]]['lyrics'].append({'x': x, 'y': y, 'text': text, 'bold': 'bold' in weight,
+                                                     'italic': 'italic' in style})
                 continue
+        if fam == 'Arial Heavy':               # a heavy title face with no weight attribute (NS10025)
+            weight = 'bold'
         other.append({'text': text, 'x': x, 'y': y, 'family': fam, 'size': size, 'weight': weight, 'style': style})
 
-    rest = []
+    tempo, rest = None, []
     for o in other:
+        # tempo mark: a note head above the staff and '= 160' to its right (the head is not a melody note)
+        tm = re.fullmatch(r'=\s*(\d+)', o['text'])
+        if tm and tempo is None:
+            for sy in systems:
+                near = [h for h in sy['heads'] if h['type'] in ('s1', 's2') and 0.5 < o['x'] - h['x'] < 3.5
+                        and h['y'] < sy['top'] - 1.0 and abs(h['y'] - (o['y'] - 0.5)) < 1.5]
+                if near:
+                    h = near[0]
+                    sy['heads'].remove(h)
+                    sy['stems'] = [st for st in sy['stems'] if not (abs(st['x'] - h['x']) < 1.9 and st['y2'] < sy['top'] - 0.5)]
+                    tempo = {'dur': 4 if h['type'] == 's2' else 2, 'bpm': int(tm.group(1)), 'x': h['x'], 'y': h['y']}
+                    break
+            if tempo:
+                continue
         if 'italic' in o['style'] and re.fullmatch(r'[2-9]', o['text']) and o['size'] < 1.9:
             i = system_of(o['y'], -7, 11)
             if i is not None:
-                systems[i]['tuplets'].append({'x': o['x'], 'y': o['y'], 'n': int(o['text'])})
+                tb = {'x': o['x'], 'y': o['y'], 'n': int(o['text'])}
+                # the bracket: two horizontal pieces either side of the digit, ~0.6 above its baseline; its ends
+                # tell which notes are in the group (the digit alone cannot: 3 over quarter, quarter, 2 eighths)
+                dx = o['x'] + 0.45
+                hs = [l for l in sc.lines if abs(l[2] - l[0]) > 0.8 and abs(l[1] - (o['y'] - 0.6)) < 0.8]
+                left = [l for l in hs if min(l[0], l[2]) < dx and max(l[0], l[2]) > dx - 2.2 and max(l[0], l[2]) <= dx + 0.2]
+                right = [l for l in hs if max(l[0], l[2]) > dx and min(l[0], l[2]) >= dx - 0.2 and min(l[0], l[2]) < dx + 3.2]
+                if left and right:
+                    tb['x0'] = min(min(l[0], l[2]) for l in left)
+                    tb['x1'] = max(max(l[0], l[2]) for l in right)
+                systems[i]['tuplets'].append(tb)
                 continue
         rest.append(o)
-    return build_ir(path, sc, systems, rest)
+    ir = build_ir(path, sc, systems, rest)
+    if tempo:
+        ir['tempo'] = {'dur': tempo['dur'], 'bpm': tempo['bpm']}
+    return ir
 
 
 # ---------------------------------------------------------------- build IR
@@ -250,14 +297,16 @@ def build_ir(path, sc, systems, other):
 
     clusters0 = time_clusters(s0['timesig'])
     time = parse_time(clusters0[0][1]) if clusters0 and clusters0[0][0] < first_head_x else None
-    ir = {'source': os.path.basename(os.path.dirname(path)) + '/' + os.path.basename(path), 'format': sc.fmt,
+    vb = re.search(r'viewBox="([^"]*)"', open(path, encoding='utf8', errors='ignore').read(600))
+    page_w = float(vb.group(1).split()[2]) if vb else STD_PAGE_W
+    ir = {'page_w': page_w, 'source': os.path.basename(os.path.dirname(path)) + '/' + os.path.basename(path), 'format': sc.fmt,
           'key': key, 'time': time, 'systems': [], 'measures': [], 'warnings': [], 'other_text': other}
 
     cur_key = (kind if kind in ('flat', 'sharp') else 'none', n_key)
     measures = []
     lead_sigs = []
     volta_state = {'open': None}
-    state = {'open': None}
+    state = {'open': []}
     for sy in systems:
         ev_x0 = sy['clef']['x'] if sy['clef'] else 0
         changes = [(x, parse_time(items)) for x, items in time_clusters(sy['timesig'])]
@@ -269,10 +318,19 @@ def build_ir(path, sc, systems, other):
         body = [g for g in groups if g['x'] >= first_x - 0.5]
         bar_xs = [round(g['x'], 2) for g in body]
         bar_sig = {round(g['x'], 2): g['sig'] for g in body}
-        lead_sigs.append(lead[-1]['sig'] if lead else None)
+        silent_bar = None
+        if sy['index'] == 0 and time is not None and lead and lead[-1]['sig'] == 'T' and \
+                any(c['x'] < lead[-1]['x'] for c in chord_clusters(sy)):
+            # a chord name before the first bar line and no note: a silent first bar (NS746)
+            silent_bar = round(lead[-1]['x'], 2)
+            bar_xs = [silent_bar] + bar_xs
+            bar_sig[silent_bar] = lead[-1]['sig']
+        lead_sigs.append(None if silent_bar else (lead[-1]['sig'] if lead else None))
         ev_xs = sorted([h['x'] for h in sy['heads']] + [r['x'] for r in sy['rests']])
+        # a key change in the middle of the previous line stays in force: start this system from the current key
+        sys_base_alters = key_alters(cur_key[0] if cur_key[0] in ('flat', 'sharp') else 'flat', cur_key[1])
         key_changes, cur_key = detect_key_changes(sy, [g['x'] for g in body], ev_xs, cur_key, first_check_start=sy['index'] > 0)
-        sys_measures = split_system(sy, bar_xs, key, base_alters, ir, state, bar_sig, key_changes)
+        sys_measures = split_system(sy, bar_xs, key, sys_base_alters, ir, state, bar_sig, key_changes)
         apply_voltas(sy, sys_measures, volta_state)
         for cx, new_time in changes:
             for m in sys_measures:
@@ -342,7 +400,8 @@ def split_system(sy, bar_xs, key, base_alters, ir, state, bar_sig, key_changes=(
     # events: notes and rests
     events = []
     for h in sy['heads']:
-        events.append({'kind': 'note', 'x': h['x'], 'y': h['y'], 'head': h['type']})
+        events.append({'kind': 'note', 'x': h['x'], 'y': h['y'], 'head': h['type'].replace('cross', ''),
+                       'cross': h['type'].endswith('cross')})
     for r in sy['rests']:
         events.append({'kind': 'rest', 'x': r['x'], 'y': r['y'], 'rtype': r['type']})
     events.sort(key=lambda e: (e['x'], e['y']))
@@ -414,6 +473,17 @@ def split_system(sy, bar_xs, key, base_alters, ir, state, bar_sig, key_changes=(
     for k in range(len(bounds) - 1):
         evs = [e for e in events if bounds[k] < e['x'] - 0.3 <= bounds[k + 1] or
                (bounds[k] < e['x'] <= bounds[k + 1] and False)]
+        if not evs and sy['index'] == 0 and k == 0 and not meas and ir.get('time') and bounds[1] < 1e8:
+            # a silent first bar that only carries a chord name (NS746): a hidden whole-bar rest
+            cl = [c for c in chord_clusters(sy) if c['x'] < bounds[1]]
+            full = Fraction(ir['time']['num'], ir['time']['den'])
+            shape = [(b, d) for b in (1, 2, 4, 8) for d in (0, 1)
+                     if Fraction(1, b) * ((2 - Fraction(1, 2 ** d)) if d else 1) == full]
+            if cl and shape:
+                ev = {'kind': 'rest', 'x': cl[0]['x'], 'y': top + 2, 'rtype': 'hidden', 'hidden': True,
+                      'base': shape[0][0], 'dots': shape[0][1]}
+                events.append(ev)
+                evs = [ev]
         if not evs:
             continue
         meas.append({'bar_before': bounds[k], 'bar_after': bounds[k + 1], 'events': evs})
@@ -453,6 +523,8 @@ def split_system(sy, bar_xs, key, base_alters, ir, state, bar_sig, key_changes=(
             for e in out[0]['events']:
                 starts[id(e)] += full - first_sum
     attach_chords(sy, events, starts, beat)
+    for t in sy.get('tail_chords', []):
+        ir.setdefault('tail_chords', []).append({'system': sy['index'], 'text': t})
     if sy.get('unattached_chords'):
         ir['warnings'].append('chord(s) not attached to any note: %s' % sy['unattached_chords'][:3])
     attach_lyrics_and_curves(sy, events, ir, state)
@@ -512,7 +584,11 @@ def count_dots(e, sy):
     xs = []
     for d in sy['dots']:
         dx = d['x'] - e['x']
-        if 1.2 < dx < 3.6 and (abs(d['y'] - e['y']) < 0.08 or abs(d['y'] - (e['y'] - 0.5)) < 0.08):
+        if any(abs(d2['x'] - d['x']) < 0.05 and 0.9 < abs(d2['y'] - d['y']) < 1.1 for d2 in sy['dots']):
+            continue                  # one of a vertical pair: a repeat sign, not an augmentation dot
+        whole_rest = e['kind'] == 'rest' and e.get('base') == 1      # hangs from line 4: its dot is half a space below
+        if 1.2 < dx < 3.6 and (abs(d['y'] - e['y']) < 0.08 or abs(d['y'] - (e['y'] - 0.5)) < 0.08 or
+                               (whole_rest and abs(d['y'] - (e['y'] + 0.5)) < 0.08)):
             xs.append(d['x'])
     xs.sort()
     # consecutive dots are ~1 apart
@@ -528,7 +604,7 @@ def chord_clusters(sy):
     """Chord names are loose texts + accidental glyphs. A new chord starts at a root letter A-G that doesn't
     directly follow a slash; everything else (accidentals, quality, superscripts, '/bass') continues it."""
     items = [('t', c['x'], c['text']) for c in sy['chords']] + \
-            [('g', a['x'], {'flat': 'b', 'sharp': '#', 'natural': 'n'}.get(a['type'], '?')) for a in sy['chordacc']]
+            [('g', a['x'], {'flat': 'b', 'sharp': '#', 'natural': 'n', 'doublesharp': '##', 'flatflat': 'bb'}.get(a['type'], '?')) for a in sy['chordacc']]
     items.sort(key=lambda it: it[1])
     chords, cur, prev = [], None, None
     for kind, x, text in items:
@@ -563,7 +639,10 @@ def attach_chords(sy, events, starts=None, beat=None):
                 host, x0, x1 = e, e['x'], nxt
                 break
         if host is None:
-            sy.setdefault('unattached_chords', []).append(ch['text'])
+            if ch['x'] >= sy['x2'] - 0.2:           # printed after the staff has ended (some sources continue the chord row)
+                sy.setdefault('tail_chords', []).append(ch['text'])
+            else:
+                sy.setdefault('unattached_chords', []).append(ch['text'])
             continue
         dur = Fraction(1, host['base']) * (2 - Fraction(1, 2 ** host['dots'])) if host['dots'] else Fraction(1, host['base'])
         frac = (ch['x'] - x0) / max(1e-6, x1 - x0)
@@ -588,8 +667,11 @@ def attach_chords(sy, events, starts=None, beat=None):
             else:
                 sy.setdefault('unattached_chords', []).append(ch['text'])
             continue
+        step = Fraction(1, 16)
+        while any(mc['offset'] == [off.numerator, off.denominator] for mc in host['mid_chords']) and off + step < dur:
+            off += step                  # two chords snapped to one beat: the later one (further right) takes the next sixteenth
         if any(mc['offset'] == [off.numerator, off.denominator] for mc in host['mid_chords']):
-            sy.setdefault('unattached_chords', []).append(ch['text'])      # two chords on one beat: ambiguous
+            sy.setdefault('unattached_chords', []).append(ch['text'])      # no room left in the note
             continue
         host['mid_chords'].append({'text': ch['text'], 'offset': [off.numerator, off.denominator]})
 
@@ -607,39 +689,70 @@ def attach_lyrics_and_curves(sy, events, ir, state):
     if not notes:
         return
     first_x, last_x = notes[0]['x'], notes[-1]['x']
+    # Curves still open from the previous system (a tie and a slur can both leave a line) are matched with the
+    # curves that arrive at the start of this one, biggest to biggest.
+    openers = sorted(state['open'], key=lambda o: -o['size'])
+    state['open'] = []
+    arriving = sorted([c for c in sy['curves'] if c['x0'] < first_x - 0.4], key=lambda c: -(c['x1'] - c['x0']))
+    for c in arriving:
+        if not openers:
+            break
+        o = openers.pop(0)
+        opener = o['ev']
+        b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
+        if same_pitch(opener, b) and o['tie_open'] and b is events[0]:      # a tie joins neighbouring notes only
+            opener['tie'] = True
+            if c.get('dashed'):
+                opener['tie_dashed'] = True
+        else:
+            opener['slur_start'] = True
+            b['slur_end'] = True
+            if c.get('dashed'):
+                opener['slur_dashed'] = True
+        c['_done'] = True
+    if openers:
+        ir['warnings'].append('a curve left the previous system but none arrives here')
     for c in sorted(sy['curves'], key=lambda c: c['x0']):
+        if c.get('_done'):
+            continue
         a = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x0']))
         b = min(notes, key=lambda n: abs((n['x'] + HEAD_W / 2) - c['x1']))
-        starts_before = c['x0'] < first_x - 1.5          # continues from previous system
-        ends_after = c['x1'] > last_x + HEAD_W + 2.0     # continues to next system
-        if starts_before and state['open'] is not None:
-            opener = state['open']
-            state['open'] = None
-            if same_pitch(opener, b) and opener.get('tie_open'):
-                opener['tie'] = True
-            else:
-                opener['slur_start'] = True
-                b['slur_end'] = True
-                if c.get('dashed'):
-                    opener['slur_dashed'] = True
-            opener.pop('tie_open', None)
-            continue
+        ends_after = c['x1'] > last_x + HEAD_W + 2.0 or c['x1'] >= sy['x2'] - 0.3     # continues to next system
         if ends_after:
-            if state['open'] is not None:
-                ir['warnings'].append('two curves open across a system break')
-            a['tie_open'] = True
-            state['open'] = a
+            # only the last event of the line can be tied over the break (the flag belongs to this curve: a tie and a
+            # slur can leave the same note)
+            state['open'].append({'ev': a, 'size': c['x1'] - c['x0'], 'tie_open': a is events[-1]})
             continue
         if a is b:
-            ir['warnings'].append('curve with identical endpoints at x=%.1f' % c['x0'])
-            continue
-        if same_pitch(a, b) and notes.index(b) == notes.index(a) + 1:
+            # a curve shorter than the note spacing (a tie or slur between notes that nearly touch): both ends pick
+            # the same note. It arrives at that note if its right end is nearer the note's centre, else it leaves it.
+            i = notes.index(b)
+            cb = b['x'] + HEAD_W / 2
+            if abs(c['x1'] - cb) <= abs(c['x0'] - cb) and i > 0:
+                a = notes[i - 1]
+            elif i + 1 < len(notes):
+                b = notes[i + 1]
+            else:                                        # leaves the last note of the line: continues on the next system
+                state['open'].append({'ev': a, 'size': c['x1'] - c['x0'], 'tie_open': a is events[-1]})
+                continue
+            if a is b:
+                ir['warnings'].append('curve with identical endpoints at x=%.1f' % c['x0'])
+                continue
+        if same_pitch(a, b) and events.index(b) == events.index(a) + 1:       # neighbours, no rest between
             a['tie'] = True
+            if c.get('dashed'):
+                a['tie_dashed'] = True
         else:
             a['slur_start'] = True
             b['slur_end'] = True
             if c.get('dashed'):
                 a['slur_dashed'] = True
+
+
+def frac_of(e):
+    """Written duration of an event (before any tuplet scaling)."""
+    d = Fraction(1, e['base'])
+    return d * Fraction(2 ** e['dots'] * 2 - 1, 2 ** e['dots']) if e['dots'] else d
 
 
 def assign_tuplets(sy, measures, ir):
@@ -649,6 +762,22 @@ def assign_tuplets(sy, measures, ir):
     for t in sy['tuplets']:
         n = t['n']
         cx = t['x'] + 0.45
+        den = {2: 3, 3: 2, 4: 3, 5: 4, 6: 4, 7: 4, 8: 6, 9: 8}[n]
+        if 'x0' in t:                 # group = the events inside the bracket (may be more events than the digit)
+            for m in measures:
+                grp = [e for e in m['events'] if e['x'] + HEAD_W > t['x0'] + 0.2 and e['x'] < t['x1'] - 0.2]   # head overlaps the bracket
+                if len(grp) < 2 or any(e.get('tuplet') for e in grp):
+                    continue
+                total = sum(frac_of(e) for e in grp)
+                u = total / n                                    # one tuplet unit
+                if u.numerator == 1 and (u.denominator & (u.denominator - 1)) == 0:     # unit is a power of two
+                    for k, e in enumerate(grp):
+                        e['tuplet'] = {'num': n, 'den': den, 'start': k == 0, 'end': k == len(grp) - 1}
+                    break
+            else:
+                grp = None
+            if grp:
+                continue
         best, bd = None, 1e9
         for m in measures:
             evs = m['events']
@@ -661,7 +790,6 @@ def assign_tuplets(sy, measures, ir):
         if best is None or bd > 2.5:
             ir['warnings'].append('tuplet number %d at x=%.1f not matched to a group' % (n, t['x']))
             continue
-        den = {2: 3, 3: 2, 4: 3, 5: 4, 6: 4, 7: 4, 8: 6, 9: 8}[n]
         for k, e in enumerate(best):
             e['tuplet'] = {'num': n, 'den': den, 'start': k == 0, 'end': k == n - 1}
 
@@ -671,10 +799,14 @@ def clean_event(e):
          'tie': e.get('tie', False), 'slur_start': e.get('slur_start', False), 'slur_end': e.get('slur_end', False),
          'lyrics': e.get('lyrics'), 'tuplet': e.get('tuplet'),
          'beam_start': e.get('beam_start', False), 'beam_end': e.get('beam_end', False), 'marks': e.get('marks'), 'mid_chords': e.get('mid_chords') or None, 'fermata': e.get('fermata'), 'signs': e.get('signs'),
-         'slur_dashed': e.get('slur_dashed', False)}
+         'slur_dashed': e.get('slur_dashed', False), 'tie_dashed': e.get('tie_dashed', False)}
+    if e.get('hidden'):
+        d['hidden'] = True
     if e['kind'] == 'note':
         d.update({'letter': e['letter'], 'octave': e['octave'], 'alter': e['alter'], 'step': e['step'],
                   'acc': e['acc']})
+        if e.get('cross'):
+            d['cross'] = True
     return d
 
 
@@ -699,14 +831,17 @@ def extract_text(systems, other, ir, rects):
             out['footer'].append(o)
         elif abs(size - 3.11) < 0.05 and bold:
             out['title'] = o
-        elif 'italic' in o['style'] and re.match(r'\((Guitar|Piano)', t):
+        elif re.match(r'\((Guitar|Piano)', t):
             out['instructions'].append(o)               # "(Guitar: Capo 1)" etc.: a line under the title
         elif abs(size - 5.87) < 0.1:
             out['number'] = o
         elif abs(size - 2.2) < 0.05 and bold and out['title'] and abs(y - out['title']['y'] - 3.5) < 0.7 and \
                 out['subtitle'] is None:                      # the subtitle sits 3.5 below the title baseline
             out['subtitle'] = o
-        elif 'italic' in o['style'] and not (abs(size - 2.2) < 0.05 and any(tp - 9 < y < tp - 0.3 for tp in tops)
+        elif 'italic' in o['style'] and abs(size - 1.96) < 0.05 and y > tops[-1] + 10 and text_width(t, 1.96, False) < 40 and \
+                any(abs(y - vt['y']) < 40 for vt in verse_texts):
+            verse_texts.append(o)                             # footnote under the last stanza of a column (C316)
+        elif 'italic' in o['style'] and not (abs(size - 2.2) < 0.05 and any(tp - 11 < y < tp - 0.3 for tp in tops)
                                               and y > tops[0] - 8):
             out['instructions'].append(o)
         elif abs(size - 1.75) < 0.05 and re.fullmatch(r'\d+', t):
@@ -714,8 +849,8 @@ def extract_text(systems, other, ir, rects):
         elif abs(size - 2.2) < 0.05 and bold and re.fullmatch(r'(\d+\.|\(.*\))', t) and \
                 any(abs(y - ly) < 1.2 for ly in lyric_ys):
             out['labels'].append(o)                           # stanza label sharing a baseline with a lyric line
-        elif abs(size - 2.2) < 0.05 and any(tp - 9 < y < tp - 0.3 for tp in tops) and not o['family'].startswith('sans'):
-            sysi = max(i for i, tp in enumerate(tops) if tp - 9 < y < tp - 0.3)
+        elif abs(size - 2.2) < 0.05 and any(tp - 11 < y < tp - 0.3 for tp in tops) and not o['family'].startswith('sans'):
+            sysi = max(i for i, tp in enumerate(tops) if tp - 11 < y < tp - 0.3)
             w = text_width(t, 2.2, bold)
             # a box = a thin horizontal rect above the text and one below it, both about as wide as the text
             # (padding differs per LilyPond version, so no exact offsets)
@@ -723,8 +858,8 @@ def extract_text(systems, other, ir, rects):
             boxed = any(y - 3.4 < r[1] < y - 1.4 for r in hor) and any(y - 0.2 < r[1] < y + 1.5 for r in hor)
             out['marks'].append({'text': t, 'x': x, 'y': y, 'width': w, 'bold': bold, 'boxed': boxed,
                                  'italic': 'italic' in o['style'], 'system': sysi})
-        elif abs(size - 2.2) < 0.05 and y > tops[-1] + 14:
-            verse_texts.append(o)
+        elif (abs(size - 2.2) < 0.05 or abs(size - 1.96) < 0.05) and y > tops[-1] + 10:
+            verse_texts.append(o)                             # 1.96: footnotes under the last column (C316)
         elif abs(size - 2.2) < 0.05 and bold and re.fullmatch(r'(\d+\.|\(.*\))', t):
             out['labels'].append(o)                           # stanza label at the start of a lyric line
         else:
@@ -734,22 +869,38 @@ def extract_text(systems, other, ir, rects):
     cols = {}
     for o in verse_texts:
         if 'bold' in o['weight'] and re.fullmatch(r'\d+\.', o['text']):
-            cols.setdefault(round(o['x']), []).append({'number': o['text'], 'y': o['y'], 'x': o['x'], 'lines': []})
+            cols.setdefault(round(o['x']), []).append({'number': o['text'], 'y': o['y'], 'x': o['x'], 'lines': [], 'pos': []})
     stanzas = sorted([st for v in cols.values() for st in v], key=lambda st: (st['x'], st['y']))
+    free = []
     for o in sorted(verse_texts, key=lambda o: (o['y'], o['x'])):
         if 'bold' in o['weight'] and re.fullmatch(r'\d+\.', o['text']):
             continue
-        cands = [st for st in stanzas if st['y'] <= o['y'] + 0.01 and o['x'] > st['x'] and o['x'] - st['x'] < 6]
+        # a line belongs to the nearest column to its left (refrain paragraphs are indented ~7 units more than the
+        # stanza text; columns are 40+ units apart), and to the last stanza above it in that column
+        cands = [st for st in stanzas if st['y'] <= o['y'] + 0.01 and o['x'] > st['x'] and o['x'] - st['x'] < 20]
         if not cands:
-            out['leftover'].append(o)
+            free.append(o)                        # not under a numbered stanza: an unnumbered block (bridge, ending...)
             continue
-        st = max(cands, key=lambda st: st['y'])
+        st = max(cands, key=lambda st: (round(st['x']), st['y']))
         st['lines'].append(o['text'])
-    # group stanzas into columns (left to right)
-    colx = sorted(set(round(st['x']) for st in stanzas))
-    out['verses'] = [{'x': cx, 'y': min(st['y'] for st in stanzas if round(st['x']) == cx),
-                      'stanzas': [{'number': st['number'], 'lines': st['lines']}
-                                           for st in stanzas if round(st['x']) == cx]} for cx in colx]
+        st['pos'].append([round(o['x'], 2), round(o['y'], 2)])
+    # unnumbered blocks: lines with one left edge, top to bottom, form one block (a column of its own)
+    blocks = []
+    for o in sorted(free, key=lambda o: (round(o['x'], 1), o['y'])):
+        for b in blocks:
+            if abs(b['x'] - o['x']) < 1.0 and o['y'] >= b['pos'][-1][1]:
+                b['lines'].append(o['text'])
+                b['pos'].append([round(o['x'], 2), round(o['y'], 2)])
+                break
+        else:
+            blocks.append({'number': None, 'x': o['x'], 'y': o['y'], 'lines': [o['text']], 'pos': [[round(o['x'], 2), round(o['y'], 2)]]})
+    # group stanzas into columns (left to right); a block is a column of its own
+    columns = {}
+    for st in stanzas + blocks:
+        columns.setdefault(round(st['x']), []).append(st)
+    out['verses'] = [{'x': cx, 'y': min(st['y'] for st in sts),
+                      'stanzas': [{'number': st['number'], 'lines': st['lines'], 'pos': st['pos']} for st in sts]}
+                     for cx, sts in sorted(columns.items())]
     for k in ('title', 'subtitle', 'number'):
         if out[k]:
             out[k] = {'text': out[k]['text'], 'x': out[k]['x'], 'y': out[k]['y']}
@@ -828,6 +979,8 @@ def assign_lyrics(systems, ir):
                 if e.get('lyrics') is None:
                     e['lyrics'] = {}
                 e['lyrics'][li] = {'text': l['text'], 'hyphen': hy, 'extender': ex, 'stanza': lab[0] if lab else None}
+                if l.get('italic'):
+                    e['lyrics'][li]['italic'] = True
 
 
 def assign_marks(systems, ir):
@@ -928,7 +1081,8 @@ def find_voltas(sc, systems):
         text = re.sub(r'-+', '\u2013', text)
         ticks = [lx for lx, ly, lx2, lw in sc.lines if abs(lx - lx2) < 0.01 and 0.15 < lw < 0.3 and abs(ly - y) < 0.05]
         sy['voltas'].append({'x1': x1, 'x2': x2, 'label': text or None,
-                             'left_tick': any(abs(t - x1) < 0.05 for t in ticks)})
+                             'left_tick': any(abs(t - x1) < 0.05 for t in ticks),
+                             'right_tick': any(abs(t - x2) < 0.05 for t in ticks)})
 
 
 def apply_voltas(sy, sys_measures, vstate):
@@ -941,7 +1095,14 @@ def apply_voltas(sy, sys_measures, vstate):
             continue
         if seg['label']:
             covered[0]['volta_start'] = seg['label']
-        covered[-1]['volta_end'] = True
+        elif covered[0] is sys_measures[0] and vstate.get('last_end') is not None:
+            # an unlabeled bracket at the very start of the line continues the previous line's bracket: what looked
+            # like its end (a tick at the line break) was only the break
+            vstate['last_end'].pop('volta_end', None)
+        vstate['last_end'] = None
+        if seg.get('right_tick', True):                 # no end tick: the bracket is still open (continues on the next line)
+            covered[-1]['volta_end'] = True
+            vstate['last_end'] = covered[-1]
 
 
 def assign_scripts(systems, ir):

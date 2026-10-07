@@ -16,6 +16,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
+import pagefit  # noqa: E402
 import verify  # noqa: E402
 from emit_ly import emit  # noqa: E402
 from recognize import recognize, RecognitionError  # noqa: E402
@@ -31,12 +32,12 @@ def event_sig(e):
              e.get('tie', False), e.get('slur_start', False),
             e.get('slur_end', False), (t['num'], t['den'], t['start'], t['end']) if t else None)
     if e['kind'] == 'note':
-        base += (e['letter'], e['octave'], e['alter'])
+        base += (e['letter'], e['octave'], e['alter'], bool(e.get('cross')))
     base += (tuple((m['text'], bool(m['boxed'])) for m in (e.get('marks') or [])),)
-    base += (e.get('fermata'), tuple(e.get('signs') or ()))
+    base += (e.get('fermata'), tuple(e.get('signs') or ()), bool(e.get('hidden')))
     # chord changes inside a sustained note: the beat offset is estimated from layout, which differs per
     # LilyPond version, so only the chord order is compared
-    base += (tuple(c['text'] for c in (e.get('mid_chords') or [])),)
+    base += (tuple(c['text'].replace('o', '') for c in (e.get('mid_chords') or [])),)
     return base                      # lyrics are compared as sequences (lyric_seq): placement is ambiguous in a re-render
 
 
@@ -57,6 +58,8 @@ def compare_ir(a, b):
         diffs.append('key %s vs %s' % (a['key'], b['key']))
     if a['time'] != b['time']:
         diffs.append('time %s vs %s' % (a['time'], b['time']))
+    if a.get('tempo') != b.get('tempo'):
+        diffs.append('tempo %s vs %s' % (a.get('tempo'), b.get('tempo')))
     sa, sb = [s['measures'] for s in a['systems']], [s['measures'] for s in b['systems']]
     if sa != sb:
         diffs.append('system layout (measures per system) %s vs %s' % (sa, sb))
@@ -98,9 +101,10 @@ def compare_ir(a, b):
             diffs.append('%s %r vs %r' % (k, va, vb))
     if ''.join(f['text'] for f in ta['footer']).replace(' ', '') != ''.join(f['text'] for f in tb['footer']).replace(' ', ''):
         diffs.append('footer differs')
-    if ta['verses'] != tb['verses']:
-        va = [(c['x'] and 0, c['stanzas']) for c in ta['verses']]
-        vb = [(c['x'] and 0, c['stanzas']) for c in tb['verses']]
+    if True:
+        def plain(cols):             # positions ('pos') are layout, not content
+            return [(c['x'] and 0, [(st['number'], st['lines']) for st in c['stanzas']]) for c in cols]
+        va, vb = plain(ta['verses']), plain(tb['verses'])
         if va != vb:
             diffs.append('verse block differs')
     if [i['text'] for i in ta['instructions']] != [i['text'] for i in tb['instructions']]:
@@ -112,7 +116,7 @@ def compare_ir(a, b):
 def glyph_counts(path):
     """Counts of music symbols by name, independent of the IR (a model-free coverage check)."""
     from recognize import gname
-    from svgscan import parse
+    from svgscan import parse, is_sans
     c = collections.Counter()
     sc = parse(path)
     for gid, x, y, scale in sc.glyphs:
@@ -121,7 +125,7 @@ def glyph_counts(path):
             c[n] += 1
     # chord-name text fragments (letters, quality, '/'): same chord names must print the same number of pieces
     # (the 'o' of a diminished chord is text in the originals but a drawn circle in LilyPond 2.24: not counted)
-    c['chord_text_chars'] = sum(len(t[0].replace('o', '')) for t in sc.texts if t[3] in ('sans', 'sans-serif') and t[4] < 2.1)
+    c['chord_text_chars'] = sum(len(t[0].replace('o', '')) for t in sc.texts if is_sans(t[3]) and t[4] < 2.1)
     return c
 
 
@@ -180,7 +184,7 @@ def next_vspace(history, target):
 def adjust_params(p, d, history, got_top0, target_top0):
     p = dict(p)
     if 'title' in d:
-        p['top_margin'] += d['title'] * 1.406
+        p['top_margin'] += d['title'] * p.get('mm_per_space', 1.406)
         got_top0 += d['title']                            # moving the title also moves the staff
     history.append((p['vspace'], got_top0))
     p['vspace'] = next_vspace(history, target_top0)
@@ -208,6 +212,45 @@ def render(ly_path, svg_out):
 
 
 def process(path, variant=None):
+    """Convert with the wide lyric spacing; if that ends in REVIEW (a dense system overflows and LilyPond squeezes
+    the notes), convert again with LilyPond's own spacing and keep that result when it is better."""
+    res = process_once(path, variant, LYRIC_SPACE)
+    if res.get('status') == 'REVIEW' or res.get('squeezed'):
+        res2 = process_once(path, variant, None)
+        if (res2.get('status') != 'REVIEW' and res.get('status') == 'REVIEW') or \
+                (res2.get('status') != 'REVIEW' and res2.get('squeezed', 0) < res.get('squeezed', 0)):
+            res2['lyric_space'] = 'default'
+            return res2
+        if res2.get('status') == 'REVIEW' and (res.get('pagefit') or res2.get('pagefit')):
+            # a very dense system still runs off the page with LilyPond's own spacing: pack the words tighter
+            for tight in (0.6, 0.3):
+                res3 = process_once(path, variant, tight)
+                if res3.get('status') != 'REVIEW':
+                    res3['lyric_space'] = 'tight %.1f' % tight
+                    return res3
+        process_once(path, variant, LYRIC_SPACE)       # leave the .ly/.svg of the preferred version in build/
+    return res
+
+
+def squeezed_events(ir, ir2):
+    """Number of neighbouring events that our render put less than half as far apart as the original (a system that
+    overflowed with the wide lyric spacing is compressed by LilyPond; the checks do not see that)."""
+    a = [e for m in ir['measures'] for e in m['events']]
+    b = [e for m in ir2['measures'] for e in m['events']]
+    if len(a) != len(b):
+        return 0
+    n = 0
+    for i in range(1, len(a)):
+        if a[i]['x'] > a[i - 1]['x'] and b[i]['x'] > b[i - 1]['x'] and a[i]['x'] - a[i - 1]['x'] > 3.0 and \
+                (b[i]['x'] - b[i - 1]['x']) < 0.5 * (a[i]['x'] - a[i - 1]['x']):
+            n += 1
+    return n
+
+
+LYRIC_SPACE = 2.5
+
+
+def process_once(path, variant, lyric_space):
     hid = os.path.basename(path)[:-4]
     variant = variant or os.path.basename(os.path.dirname(path)).replace('Svg', '')
     res = {'id': hid, 'variant': variant}
@@ -232,35 +275,68 @@ def process(path, variant=None):
     json.dump(ir, open(os.path.join(BUILD, 'ir', variant, hid + '.json'), 'w'))
     from emit_ly import default_params
     params = default_params(ir)
+    params['lyric_space'] = lyric_space
+    params['mm_per_space'] = 215.9 / ir.get('page_w', 153.5737)
     ir2 = None
     history = []
-    for attempt in range(9):                      # emit -> render -> measure -> correct layout (max 8 corrections)
-        try:
-            text, ewarn = emit(ir, variant, params)
-        except Exception as e:  # noqa: BLE001
-            res.update(status='emit_error', detail=repr(e)[:160])
-            return res
-        res['emit_warnings'] = ewarn
+    overflow = ir.get('max_y', 0) > 198.75 * ir.get('page_w', 153.5737) / 153.5737
+    best = None                                   # best attempt that kept the page count of the original
+
+    def attempt_once(params):
+        text, ewarn = emit(ir, variant, params)
         ly_path = os.path.join(BUILD, 'ly', variant, hid + '.ly')
         os.makedirs(os.path.dirname(ly_path), exist_ok=True)
         open(ly_path, 'w', encoding='utf8').write(text)
         svg_path, msgs, pages = render(ly_path, os.path.join(BUILD, 'svg', variant, hid + '.svg'))
-        res['lilypond_msgs'] = msgs[:3]
-        res['pages'] = pages
         if svg_path is None:
-            res.update(status='render_error', detail='; '.join(msgs[:2])[:200])
-            return res
+            return dict(err=('render_error', '; '.join(msgs[:2])[:200]))
         try:
             ir2 = recognize(svg_path)
         except Exception as e:  # noqa: BLE001
-            res.update(status='roundtrip_recognition_error', detail=repr(e)[:200])
+            return dict(err=('roundtrip_recognition_error', repr(e)[:200]))
+        return dict(ewarn=ewarn, svg_path=svg_path, msgs=msgs, pages=pages, ir2=ir2, d=layout_deltas(ir, ir2))
+
+    for attempt in range(9):                      # emit -> render -> measure -> correct layout (max 8 corrections)
+        try:
+            r = attempt_once(params)
+        except Exception as e:  # noqa: BLE001
+            res.update(status='emit_error', detail=repr(e)[:160])
             return res
-        d = layout_deltas(ir, ir2)
-        res['layout_err'] = d
+        if r.get('err'):
+            res.update(status=r['err'][0], detail=r['err'][1])
+            return res
+        ewarn, svg_path, msgs, pages, ir2, d = (r[k] for k in ('ewarn', 'svg_path', 'msgs', 'pages', 'ir2', 'd'))
+        if attempt == 0 and pages != 1 and not overflow:
+            # a tall sheet (its lowest text is close to the footer) spills onto page 2 with the standard bottom
+            # margin: let it use more of the page before the layout search starts
+            for bm in (9.0, 6.0, 3.0):
+                params['bottom_margin'] = bm
+                r2 = attempt_once(params)
+                if not r2.get('err') and r2['pages'] == 1:
+                    r = r2
+                    ewarn, svg_path, msgs, pages, ir2, d = (r[k] for k in ('ewarn', 'svg_path', 'msgs', 'pages', 'ir2', 'd'))
+                    break
+            else:
+                params.pop('bottom_margin', None)
+                r = attempt_once(params)
+                ewarn, svg_path, msgs, pages, ir2, d = (r[k] for k in ('ewarn', 'svg_path', 'msgs', 'pages', 'ir2', 'd'))
+        if os.environ.get('CONVERT_DEBUG'):
+            print('attempt', attempt, 'vspace %.2f top_margin %.2f' % (params['vspace'], params['top_margin']), 'pages', pages, d)
+        if (pages == 1 or overflow) and d:
+            score = max(abs(v) for v in d.values())
+            if best is None or score < best[0]:
+                best = (score, params)
         if attempt == 8 or not d or max(abs(v) for v in d.values()) < 0.25:
             break
         params = adjust_params(params, d, history, ir2['systems'][0]['top'], ir['systems'][0]['top'])
-    overflow = ir.get('max_y', 0) > 198.75
+    if pages != 1 and not overflow and best is not None:      # the search overshot onto a second page: go back
+        r = attempt_once(best[1])
+        if not r.get('err'):
+            ewarn, svg_path, msgs, pages, ir2, d = (r[k] for k in ('ewarn', 'svg_path', 'msgs', 'pages', 'ir2', 'd'))
+    res['emit_warnings'] = ewarn
+    res['lilypond_msgs'] = msgs[:3]
+    res['pages'] = pages
+    res['layout_err'] = d
     res['original_overflows_page'] = overflow
     cmp_ir = ir
     if overflow and pages > 1:
@@ -272,9 +348,13 @@ def process(path, variant=None):
         diffs = [d for d in diffs if not d.startswith(('verse block differs', 'footer differs'))]
         res['tail_unverified'] = True
     res['v2'] = diffs
+    res['squeezed'] = 0 if (diffs or (overflow and pages > 1)) else squeezed_events(ir, ir2)
     if pages == 1:
         cov = coverage_diff(path, svg_path)
         res['coverage'] = cov
+        res['pagefit'] = pagefit.page_fit_problems(svg_path, path)
+        if res['pagefit']:
+            cov = cov + ['page fit: ' + p for p in res['pagefit']]     # same effect: not a clean render
     else:
         cov = []
     hard_ok = (not res['v1'] and not diffs and not ir['warnings'] and not ewarn and
@@ -285,7 +365,13 @@ def process(path, variant=None):
     if not verify.v8_ok(miss, verify.ir_words(ir)):
         unverified.append('lyrics vs DB')
     res['unverified'] = unverified
-    if not hard_ok:
+    # The only failing check is the bar arithmetic (V1) while the round trip, the model-free symbol counts and the
+    # warnings all pass: the original itself prints bars that do not add up (short final bar, mis-barred source) and
+    # our .ly reproduces it glyph for glyph. Kept apart from ACCEPT so that nobody mistakes it for musically clean.
+    v1_only = bool(res['v1']) and not diffs and not ir['warnings'] and not ewarn and pages == 1 and not cov
+    if v1_only:
+        res['status'] = 'ACCEPT_SOURCE_BAR_SUM'
+    elif not hard_ok:
         res['status'] = 'REVIEW'
     elif res.get('tail_unverified'):
         res['status'] = 'ACCEPT_TAIL_UNVERIFIED'

@@ -1,4 +1,15 @@
 {
+ "68092f88": {
+  "name": "noteheads.s2",
+  "score": 0.966,
+  "runner_up": "noteheads.s2diamond (0.510)",
+  "count": 383050,
+  "files": 6248,
+  "scales": {
+   "0.0040": 383050
+  },
+  "example": "pianoSvg/NS1009.svg"
+ },
  "d265dc03": {
   "name": "noteheads.s2",
   "score": 0.858,
@@ -10,27 +21,27 @@
   },
   "example": "pianoSvg/BF101.svg"
  },
- "68092f88": {
-  "name": "noteheads.s2",
-  "score": 0.966,
-  "runner_up": "noteheads.s2diamond (0.510)",
-  "count": 217595,
-  "files": 3366,
-  "scales": {
-   "0.0040": 217595
-  },
-  "example": "pianoSvg/NS1009.svg"
- },
  "ff1641d0": {
   "name": "dots.dot",
   "score": 0.945,
   "runner_up": "period (0.557)",
-  "count": 86186,
-  "files": 8537,
+  "count": 111322,
+  "files": 11182,
   "scales": {
-   "0.0040": 86186
+   "0.0040": 111322
   },
   "example": "pianoSvg/BF101.svg"
+ },
+ "b6001bc7": {
+  "name": "noteheads.s1",
+  "score": 0.918,
+  "runner_up": "noteheads.s2 (0.506)",
+  "count": 59306,
+  "files": 5760,
+  "scales": {
+   "0.0040": 59306
+  },
+  "example": "pianoSvg/NS1009.svg"
  },
  "9c75ef6a": {
   "name": "noteheads.s1",
@@ -54,14 +65,48 @@
   },
   "example": "pianoSvg/BF51.svg"
  },
- "b6001bc7": {
-  "name": "noteheads.s1",
-  "score": 0.918,
-  "runner_up": "noteheads.s2 (0.506)",
-  "count": 33202,
-  "files": 3103,
+ "fb7c3844": {
+  "name": "accidentals.flat",
+  "score": 0.749,
+  "runner_up": "pedal.e (0.133)",
+  "count": 36067,
+  "files": 3683,
   "scales": {
-   "0.0040": 33202
+   "0.0040": 36067
+  },
+  "example": "pianoSvg/E505.svg"
+ },
+ "606d4651": {
+  "name": "noteheads.s2",
+  "score": 0.952,
+  "runner_up": "noteheads.s2diamond (0.505)",
+  "count": 35914,
+  "files": 280,
+  "scales": {
+   "0.0040": 35914
+  },
+  "example": "pianoSvg/NS1043.svg"
+ },
+ "0b8dc72c": {
+  "name": "accidentals.flat",
+  "score": 0.609,
+  "runner_up": "pedal.e (0.121)",
+  "count": 29442,
+  "files": 1884,
+  "scales": {
+   "0.0032": 29217,
+   "0.0040": 225
+  },
+  "example": "pianoSvg/E505.svg"
+ },
+ "60ef2f12": {
+  "name": "clefs.G",
+  "score": 0.95,
+  "runner_up": "clefs.G_change (0.269)",
+  "count": 29010,
+  "files": 6248,
+  "scales": {
+   "0.0040": 29010
   },
   "example": "pianoSvg/NS1009.svg"
  },
@@ -76,17 +121,16 @@
   },
   "example": "pianoSvg/BF101.svg"
  },
- "0b8dc72c": {
-  "name": "accidentals.flat",
-  "score": 0.609,
-  "runner_up": "pedal.e (0.121)",
-  "count": 28522,
-  "files": 1890,
+ "7ed3bf60": {
+  "name": "flags.u3",
+  "score": 0.965,
+  "runner_up": "flags.u4 (0.277)",
+  "count": 25404,
+  "files": 4248,
   "scales": {
-   "0.0032": 28486,
-   "0.0040": 36
+   "0.0040": 25404
   },
-  "example": "pianoSvg/E505.svg"
+  "example": "pianoSvg/NS1000.svg"
  },
  "ca74aaf1": {
   "name": "accidentals.flat",
@@ -111,16 +155,16 @@
   },
   "example": "pianoSvg/BF101.svg"
  },
- "fb7c3844": {
-  "name": "accidentals.flat",
-  "score": 0.749,
-  "runner_up": "pedal.e (0.133)",
-  "count": 20893,
-  "files": 2052,
+ "0e9e835d": {
+  "name": "accidentals.sharp",
+  "score": 0.928,
+  "runner_up": "rests.2 (0.243)",
+  "count": 19106,
+  "files": 2478,
   "scales": {
-   "0.0040": 20893
+   "0.0040": 19106
   },
-  "example": "pianoSvg/E505.svg"
+  "example": "pianoSvg/E870.svg"
  },
  "354bd868": {
   "name": "flags.u3",
@@ -144,17 +188,6 @@
   },
   "example": "pianoSvg/BF133.svg"
  },
- "60ef2f12": {
-  "name": "clefs.G",
-  "score": 0.95,
-  "runner_up": "clefs.G_change (0.269)",
-  "count": 16247,
-  "files": 3366,
-  "scales": {
-   "0.0040": 16247
-  },
-  "example": "pianoSvg/NS1009.svg"
- },
  "79bbb3f3": {
   "name": "noteheads.s2",
   "score": 0.855,
@@ -165,17 +198,6 @@
    "0.0040": 16126
   },
   "example": "pianoSvg/BF412.svg"
- },
- "7ed3bf60": {
-  "name": "flags.u3",
-  "score": 0.965,
-  "runner_up": "flags.u4 (0.277)",
-  "count": 15178,
-  "files": 2445,
-  "scales": {
-   "0.0040": 15178
-  },
-  "example": "pianoSvg/NS1000.svg"
  },
  "1d6d9de1": {
   "name": "noteheads.s2",
@@ -189,16 +211,38 @@
   },
   "example": "pianoSvg/BF442.svg"
  },
- "0e9e835d": {
-  "name": "accidentals.sharp",
-  "score": 0.928,
-  "runner_up": "rests.2 (0.243)",
-  "count": 11100,
-  "files": 1345,
+ "e27fc7a0": {
+  "name": "rests.2",
+  "score": 0.796,
+  "runner_up": "accidentals.sharp (0.247)",
+  "count": 10672,
+  "files": 4202,
   "scales": {
-   "0.0040": 11100
+   "0.0040": 10672
   },
-  "example": "pianoSvg/E870.svg"
+  "example": "pianoSvg/NS1009.svg"
+ },
+ "f20c7bd2": {
+  "name": "dots.dot",
+  "score": 0.797,
+  "runner_up": "scripts.staccato (0.506)",
+  "count": 9664,
+  "files": 504,
+  "scales": {
+   "0.0040": 9664
+  },
+  "example": "pianoSvg/BF412.svg"
+ },
+ "f7e65ecc": {
+  "name": "noteheads.s0",
+  "score": 0.852,
+  "runner_up": "rests.M3 (0.265)",
+  "count": 9360,
+  "files": 2394,
+  "scales": {
+   "0.0040": 9360
+  },
+  "example": "pianoSvg/NS1009.svg"
  },
  "3e9facd0": {
   "name": "rests.2",
@@ -210,6 +254,17 @@
    "0.0040": 8716
   },
   "example": "pianoSvg/BF101.svg"
+ },
+ "5acd2335": {
+  "name": "flags.d3",
+  "score": 0.961,
+  "runner_up": "flags.d4 (0.234)",
+  "count": 7952,
+  "files": 2766,
+  "scales": {
+   "0.0040": 7952
+  },
+  "example": "pianoSvg/NS1000.svg"
  },
  "a850d073": {
   "name": "noteheads.s0",
@@ -233,16 +288,16 @@
   },
   "example": "pianoSvg/BF101.svg"
  },
- "e27fc7a0": {
-  "name": "rests.2",
-  "score": 0.796,
-  "runner_up": "accidentals.sharp (0.247)",
-  "count": 6253,
-  "files": 2294,
+ "3d5599cb": {
+  "name": "noteheads.s2",
+  "score": 0.854,
+  "runner_up": "noteheads.s2diamond (0.461)",
+  "count": 5726,
+  "files": 30,
   "scales": {
-   "0.0040": 6253
+   "0.0040": 5726
   },
-  "example": "pianoSvg/NS1009.svg"
+  "example": "pianoSvg/NS1058.svg"
  },
  "fe5c5d72": {
   "name": "noteheads.s1",
@@ -255,16 +310,28 @@
   },
   "example": "pianoSvg/BF51.svg"
  },
- "f7e65ecc": {
-  "name": "noteheads.s0",
-  "score": 0.852,
-  "runner_up": "rests.M3 (0.265)",
-  "count": 5416,
-  "files": 1341,
+ "5a0d964c": {
+  "name": "noteheads.s1",
+  "score": 0.858,
+  "runner_up": "noteheads.s2 (0.505)",
+  "count": 5214,
+  "files": 260,
   "scales": {
-   "0.0040": 5416
+   "0.0040": 5214
   },
-  "example": "pianoSvg/NS1009.svg"
+  "example": "pianoSvg/NS1056.svg"
+ },
+ "fd2cde0f": {
+  "name": "accidentals.sharp",
+  "score": 0.842,
+  "runner_up": "rests.2 (0.246)",
+  "count": 5213,
+  "files": 1372,
+  "scales": {
+   "0.0032": 5039,
+   "0.0040": 174
+  },
+  "example": "pianoSvg/E870.svg"
  },
  "7574c82d": {
   "name": "accidentals.sharp",
@@ -278,38 +345,16 @@
   },
   "example": "pianoSvg/BF152.svg"
  },
- "f20c7bd2": {
-  "name": "dots.dot",
-  "score": 0.797,
-  "runner_up": "scripts.staccato (0.506)",
-  "count": 4832,
-  "files": 252,
+ "7b138f01": {
+  "name": "timesig.C44",
+  "score": 0.936,
+  "runner_up": "rests.M3 (0.369)",
+  "count": 4224,
+  "files": 4150,
   "scales": {
-   "0.0040": 4832
+   "0.0040": 4224
   },
-  "example": "pianoSvg/BF412.svg"
- },
- "5acd2335": {
-  "name": "flags.d3",
-  "score": 0.961,
-  "runner_up": "flags.d4 (0.234)",
-  "count": 4522,
-  "files": 1560,
-  "scales": {
-   "0.0040": 4522
-  },
-  "example": "pianoSvg/NS1000.svg"
- },
- "fd2cde0f": {
-  "name": "accidentals.sharp",
-  "score": 0.842,
-  "runner_up": "rests.2 (0.246)",
-  "count": 3996,
-  "files": 924,
-  "scales": {
-   "0.0032": 3996
-  },
-  "example": "pianoSvg/E870.svg"
+  "example": "pianoSvg/NS1009.svg"
  },
  "eb690b4a": {
   "name": "timesig.C44",
@@ -322,16 +367,16 @@
   },
   "example": "pianoSvg/BF101.svg"
  },
- "606d4651": {
-  "name": "noteheads.s2",
-  "score": 0.952,
-  "runner_up": "noteheads.s2diamond (0.505)",
-  "count": 3474,
-  "files": 26,
+ "296228a7": {
+  "name": "rests.3",
+  "score": 0.932,
+  "runner_up": "rests.M2 (0.124)",
+  "count": 3584,
+  "files": 1234,
   "scales": {
-   "0.0040": 3474
+   "0.0040": 3584
   },
-  "example": "pianoSvg/NS1043.svg"
+  "example": "pianoSvg/NS1009.svg"
  },
  "915cf1b0": {
   "name": "noteheads.s2",
@@ -343,6 +388,28 @@
    "0.0040": 3302
   },
   "example": "pianoSvg/NS788.svg"
+ },
+ "3c4d62f6": {
+  "name": "rests.1",
+  "score": 0.996,
+  "runner_up": "rests.0 (0.364)",
+  "count": 3296,
+  "files": 1752,
+  "scales": {
+   "0.0040": 3296
+  },
+  "example": "pianoSvg/BF134.svg"
+ },
+ "3641c018": {
+  "name": "accidentals.flat",
+  "score": 0.503,
+  "runner_up": "pedal.e (0.112)",
+  "count": 3215,
+  "files": 139,
+  "scales": {
+   "0.0032": 3215
+  },
+  "example": "pianoSvg/BF425.svg"
  },
  "bcc5cda2": {
   "name": "rests.3",
@@ -366,16 +433,16 @@
   },
   "example": "pianoSvg/E505.svg"
  },
- "3c4d62f6": {
-  "name": "rests.1",
-  "score": 0.996,
-  "runner_up": "rests.0 (0.364)",
-  "count": 2588,
-  "files": 1364,
+ "885899f4": {
+  "name": "accidentals.flat",
+  "score": 0.674,
+  "runner_up": "pedal.e (0.128)",
+  "count": 2447,
+  "files": 150,
   "scales": {
-   "0.0040": 2588
+   "0.0040": 2447
   },
-  "example": "pianoSvg/BF134.svg"
+  "example": "pianoSvg/NS1001.svg"
  },
  "0c353650": {
   "name": "noteheads.s1",
@@ -388,27 +455,38 @@
   },
   "example": "pianoSvg/BF412.svg"
  },
- "7b138f01": {
-  "name": "timesig.C44",
-  "score": 0.936,
-  "runner_up": "rests.M3 (0.369)",
-  "count": 2291,
-  "files": 2250,
+ "b54f1e68": {
+  "name": "clefs.G",
+  "score": 0.804,
+  "runner_up": "clefs.G_change (0.278)",
+  "count": 2294,
+  "files": 280,
   "scales": {
-   "0.0040": 2291
+   "0.0040": 2294
   },
-  "example": "pianoSvg/NS1009.svg"
+  "example": "pianoSvg/NS1043.svg"
  },
- "296228a7": {
-  "name": "rests.3",
-  "score": 0.932,
-  "runner_up": "rests.M2 (0.124)",
-  "count": 2232,
-  "files": 724,
+ "b21f7ebd": {
+  "name": "accidentals.sharp",
+  "score": 0.88,
+  "runner_up": "rests.2 (0.248)",
+  "count": 2280,
+  "files": 146,
   "scales": {
-   "0.0040": 2232
+   "0.0040": 2280
   },
-  "example": "pianoSvg/NS1009.svg"
+  "example": "pianoSvg/NS1043.svg"
+ },
+ "3b59c5a8": {
+  "name": "flags.u3",
+  "score": 0.935,
+  "runner_up": "flags.u4 (0.277)",
+  "count": 2222,
+  "files": 238,
+  "scales": {
+   "0.0040": 2222
+  },
+  "example": "pianoSvg/NS1059.svg"
  },
  "0fe72ce0": {
   "name": "clefs.G",
@@ -421,6 +499,17 @@
   },
   "example": "pianoSvg/NS1000.svg"
  },
+ "c407899e": {
+  "name": "four",
+  "score": 0.838,
+  "runner_up": "fattened.four (0.795)",
+  "count": 1673,
+  "files": 1593,
+  "scales": {
+   "0.0040": 1673
+  },
+  "example": "pianoSvg/NS1054.svg"
+ },
  "7f62c1dc": {
   "name": "noteheads.s1",
   "score": 0.86,
@@ -431,17 +520,6 @@
    "0.0040": 1662
   },
   "example": "pianoSvg/NS1001.svg"
- },
- "3641c018": {
-  "name": "accidentals.flat",
-  "score": 0.503,
-  "runner_up": "pedal.e (0.112)",
-  "count": 1616,
-  "files": 70,
-  "scales": {
-   "0.0032": 1616
-  },
-  "example": "pianoSvg/BF425.svg"
  },
  "c3a7297f": {
   "name": "four",
@@ -476,6 +554,28 @@
   },
   "example": "pianoSvg/BF425.svg"
  },
+ "328d3c7a": {
+  "name": "accidentals.natural",
+  "score": 0.93,
+  "runner_up": "rests.M2 (0.259)",
+  "count": 1402,
+  "files": 814,
+  "scales": {
+   "0.0040": 1402
+  },
+  "example": "pianoSvg/E839.svg"
+ },
+ "954843fe": {
+  "name": "scripts.ufermata",
+  "score": 0.827,
+  "runner_up": "scripts.downbow (0.162)",
+  "count": 1372,
+  "files": 824,
+  "scales": {
+   "0.0040": 1372
+  },
+  "example": "pianoSvg/NS1021.svg"
+ },
  "d1c865f2": {
   "name": "noteheads.s0",
   "score": 0.853,
@@ -486,6 +586,28 @@
    "0.0040": 1370
   },
   "example": "pianoSvg/NS1000.svg"
+ },
+ "52ef05e7": {
+  "name": "rests.2",
+  "score": 0.799,
+  "runner_up": "accidentals.sharp (0.251)",
+  "count": 1368,
+  "files": 240,
+  "scales": {
+   "0.0040": 1368
+  },
+  "example": "pianoSvg/NS1043.svg"
+ },
+ "4cc6f65e": {
+  "name": "three",
+  "score": 0.941,
+  "runner_up": "fattened.three (0.874)",
+  "count": 1357,
+  "files": 1329,
+  "scales": {
+   "0.0040": 1357
+  },
+  "example": "pianoSvg/E839.svg"
  },
  "6a169b43": {
   "name": "scripts.ufermata",
@@ -542,6 +664,28 @@
   },
   "example": "pianoSvg/NS1156.svg"
  },
+ "be1aa565": {
+  "name": "dots.dot",
+  "score": 0.792,
+  "runner_up": "scripts.staccato (0.505)",
+  "count": 1108,
+  "files": 58,
+  "scales": {
+   "0.0040": 1108
+  },
+  "example": "pianoSvg/E1242.svg"
+ },
+ "ec4e7d33": {
+  "name": "noteheads.s0",
+  "score": 0.849,
+  "runner_up": "rests.M3 (0.259)",
+  "count": 1044,
+  "files": 180,
+  "scales": {
+   "0.0040": 1044
+  },
+  "example": "pianoSvg/NS1059.svg"
+ },
  "17817d3c": {
   "name": "rests.2",
   "score": 0.797,
@@ -575,17 +719,6 @@
   },
   "example": "pianoSvg/BF51.svg"
  },
- "c407899e": {
-  "name": "four",
-  "score": 0.838,
-  "runner_up": "fattened.four (0.795)",
-  "count": 878,
-  "files": 834,
-  "scales": {
-   "0.0040": 878
-  },
-  "example": "pianoSvg/NS1054.svg"
- },
  "c821a765": {
   "name": "rests.2",
   "score": 0.798,
@@ -596,17 +729,6 @@
    "0.0040": 808
   },
   "example": "pianoSvg/NS1000.svg"
- },
- "3d5599cb": {
-  "name": "noteheads.s2",
-  "score": 0.854,
-  "runner_up": "noteheads.s2diamond (0.461)",
-  "count": 740,
-  "files": 2,
-  "scales": {
-   "0.0040": 740
-  },
-  "example": "pianoSvg/NS1058.svg"
  },
  "bb92e663": {
   "name": "accidentals.natural",
@@ -619,27 +741,16 @@
   },
   "example": "pianoSvg/BF135.svg"
  },
- "4cc6f65e": {
-  "name": "three",
-  "score": 0.941,
-  "runner_up": "fattened.three (0.874)",
-  "count": 714,
-  "files": 699,
+ "8a36ecec": {
+  "name": "period",
+  "score": 0.689,
+  "runner_up": "scripts.staccato (0.483)",
+  "count": 698,
+  "files": 304,
   "scales": {
-   "0.0040": 714
+   "0.0025": 698
   },
-  "example": "pianoSvg/E839.svg"
- },
- "328d3c7a": {
-  "name": "accidentals.natural",
-  "score": 0.93,
-  "runner_up": "rests.M2 (0.259)",
-  "count": 706,
-  "files": 424,
-  "scales": {
-   "0.0040": 706
-  },
-  "example": "pianoSvg/E839.svg"
+  "example": "pianoSvg/C293.svg"
  },
  "832c7148": {
   "name": "flags.u3",
@@ -663,6 +774,17 @@
   },
   "example": "pianoSvg/C17.svg"
  },
+ "f1ebd801": {
+  "name": "accidentals.sharp",
+  "score": 0.836,
+  "runner_up": "rests.2 (0.249)",
+  "count": 591,
+  "files": 96,
+  "scales": {
+   "0.0032": 591
+  },
+  "example": "pianoSvg/NS1043.svg"
+ },
  "25a9c931": {
   "name": "noteheads.s0",
   "score": 0.738,
@@ -674,49 +796,27 @@
   },
   "example": "pianoSvg/BF443.svg"
  },
- "be1aa565": {
-  "name": "dots.dot",
-  "score": 0.792,
-  "runner_up": "scripts.staccato (0.505)",
-  "count": 562,
-  "files": 30,
+ "a9180427": {
+  "name": "rests.3",
+  "score": 0.781,
+  "runner_up": "rests.M2 (0.124)",
+  "count": 556,
+  "files": 132,
   "scales": {
-   "0.0040": 562
+   "0.0040": 556
   },
-  "example": "pianoSvg/E1242.svg"
+  "example": "pianoSvg/NS1059.svg"
  },
- "5a0d964c": {
-  "name": "noteheads.s1",
-  "score": 0.858,
-  "runner_up": "noteheads.s2 (0.505)",
-  "count": 546,
-  "files": 24,
+ "1ab37884": {
+  "name": "six",
+  "score": 0.867,
+  "runner_up": "fattened.six (0.794)",
+  "count": 527,
+  "files": 523,
   "scales": {
-   "0.0040": 546
+   "0.0040": 527
   },
-  "example": "pianoSvg/NS1056.svg"
- },
- "8a36ecec": {
-  "name": "period",
-  "score": 0.689,
-  "runner_up": "scripts.staccato (0.483)",
-  "count": 524,
-  "files": 229,
-  "scales": {
-   "0.0025": 524
-  },
-  "example": "pianoSvg/C293.svg"
- },
- "885899f4": {
-  "name": "accidentals.flat",
-  "score": 0.674,
-  "runner_up": "pedal.e (0.128)",
-  "count": 518,
-  "files": 34,
-  "scales": {
-   "0.0040": 518
-  },
-  "example": "pianoSvg/NS1001.svg"
+  "example": "pianoSvg/NS1021.svg"
  },
  "646fbbd9": {
   "name": "accidentals.sharp",
@@ -739,6 +839,17 @@
    "0.0040": 483
   },
   "example": "pianoSvg/BF432.svg"
+ },
+ "9b1adb69": {
+  "name": "noteheads.s1",
+  "score": 0.743,
+  "runner_up": "noteheads.s2 (0.482)",
+  "count": 480,
+  "files": 30,
+  "scales": {
+   "0.0040": 480
+  },
+  "example": "pianoSvg/NS1058.svg"
  },
  "0ac9ed42": {
   "name": "clefs.G",
@@ -773,6 +884,39 @@
   },
   "example": "pianoSvg/E505.svg"
  },
+ "deb98323": {
+  "name": "flags.d3",
+  "score": 0.94,
+  "runner_up": "flags.d4 (0.230)",
+  "count": 446,
+  "files": 136,
+  "scales": {
+   "0.0040": 446
+  },
+  "example": "pianoSvg/NS1087.svg"
+ },
+ "333a2301": {
+  "name": "eight",
+  "score": 0.839,
+  "runner_up": "fattened.eight (0.792)",
+  "count": 440,
+  "files": 430,
+  "scales": {
+   "0.0040": 440
+  },
+  "example": "pianoSvg/NS1021.svg"
+ },
+ "37991299": {
+  "name": "rests.1",
+  "score": 0.996,
+  "runner_up": "rests.0 (0.364)",
+  "count": 412,
+  "files": 160,
+  "scales": {
+   "0.0040": 412
+  },
+  "example": "pianoSvg/BF446.svg"
+ },
  "21ea74c8": {
   "name": "eight",
   "score": 0.846,
@@ -784,16 +928,16 @@
   },
   "example": "pianoSvg/BF53.svg"
  },
- "b21f7ebd": {
-  "name": "accidentals.sharp",
-  "score": 0.88,
-  "runner_up": "rests.2 (0.248)",
-  "count": 384,
-  "files": 22,
+ "d552b020": {
+  "name": "two",
+  "score": 0.937,
+  "runner_up": "fattened.two (0.889)",
+  "count": 375,
+  "files": 307,
   "scales": {
-   "0.0040": 384
+   "0.0040": 375
   },
-  "example": "pianoSvg/NS1043.svg"
+  "example": "build/piano/BF434.svg"
  },
  "b94906c3": {
   "name": "two",
@@ -806,6 +950,17 @@
   },
   "example": "pianoSvg/BF434.svg"
  },
+ "5ce6a5db": {
+  "name": "flags.u4",
+  "score": 0.963,
+  "runner_up": "flags.u5 (0.666)",
+  "count": 312,
+  "files": 108,
+  "scales": {
+   "0.0040": 312
+  },
+  "example": "pianoSvg/NS1042.svg"
+ },
  "f1644f57": {
   "name": "noteheads.s0",
   "score": 0.854,
@@ -817,16 +972,16 @@
   },
   "example": "pianoSvg/BF442.svg"
  },
- "1ab37884": {
-  "name": "six",
-  "score": 0.867,
-  "runner_up": "fattened.six (0.794)",
+ "09ce4ed3": {
+  "name": "clefs.G",
+  "score": 0.781,
+  "runner_up": "clefs.G_change (0.277)",
   "count": 284,
-  "files": 281,
+  "files": 30,
   "scales": {
    "0.0040": 284
   },
-  "example": "pianoSvg/NS1021.svg"
+  "example": "pianoSvg/NS1058.svg"
  },
  "573922da": {
   "name": "noteheads.s1",
@@ -850,6 +1005,17 @@
   },
   "example": "pianoSvg/BF412.svg"
  },
+ "e006b243": {
+  "name": "flags.u3",
+  "score": 0.9,
+  "runner_up": "flags.u4 (0.271)",
+  "count": 252,
+  "files": 28,
+  "scales": {
+   "0.0040": 252
+  },
+  "example": "pianoSvg/NS1058.svg"
+ },
  "b2cb7398": {
   "name": "flags.u4",
   "score": 0.953,
@@ -860,17 +1026,6 @@
    "0.0040": 246
   },
   "example": "pianoSvg/C319.svg"
- },
- "333a2301": {
-  "name": "eight",
-  "score": 0.839,
-  "runner_up": "fattened.eight (0.792)",
-  "count": 243,
-  "files": 236,
-  "scales": {
-   "0.0040": 243
-  },
-  "example": "pianoSvg/NS1021.svg"
  },
  "8201ea65": {
   "name": "clefs.G",
@@ -894,60 +1049,27 @@
   },
   "example": "pianoSvg/E1242.svg"
  },
- "3b59c5a8": {
-  "name": "flags.u3",
-  "score": 0.935,
-  "runner_up": "flags.u4 (0.277)",
-  "count": 228,
-  "files": 22,
-  "scales": {
-   "0.0040": 228
-  },
-  "example": "pianoSvg/NS1059.svg"
- },
- "b54f1e68": {
-  "name": "clefs.G",
-  "score": 0.804,
-  "runner_up": "clefs.G_change (0.278)",
-  "count": 224,
-  "files": 26,
-  "scales": {
-   "0.0040": 224
-  },
-  "example": "pianoSvg/NS1043.svg"
- },
- "37991299": {
-  "name": "rests.1",
-  "score": 0.996,
-  "runner_up": "rests.0 (0.364)",
-  "count": 206,
-  "files": 80,
-  "scales": {
-   "0.0040": 206
-  },
-  "example": "pianoSvg/BF446.svg"
- },
- "d552b020": {
-  "name": "two",
-  "score": 0.937,
-  "runner_up": "fattened.two (0.889)",
-  "count": 199,
-  "files": 161,
-  "scales": {
-   "0.0040": 199
-  },
-  "example": "build/piano/BF434.svg"
- },
  "07b4cd70": {
   "name": "rests.0",
   "score": 0.998,
   "runner_up": "rests.1 (0.362)",
-  "count": 191,
-  "files": 101,
+  "count": 220,
+  "files": 120,
   "scales": {
-   "0.0040": 191
+   "0.0040": 220
   },
   "example": "pianoSvg/CH45.svg"
+ },
+ "bbffe079": {
+  "name": "timesig.C44",
+  "score": 0.912,
+  "runner_up": "rests.M3 (0.368)",
+  "count": 218,
+  "files": 210,
+  "scales": {
+   "0.0040": 218
+  },
+  "example": "pianoSvg/NS1056.svg"
  },
  "f0ad7ccb": {
   "name": "flags.d3",
@@ -959,17 +1081,6 @@
    "0.0040": 190
   },
   "example": "pianoSvg/NS750.svg"
- },
- "5ce6a5db": {
-  "name": "flags.u4",
-  "score": 0.963,
-  "runner_up": "flags.u5 (0.666)",
-  "count": 181,
-  "files": 64,
-  "scales": {
-   "0.0040": 181
-  },
-  "example": "pianoSvg/NS1042.svg"
  },
  "533c8849": {
   "name": "flags.u3",
@@ -1004,16 +1115,16 @@
   },
   "example": "pianoSvg/NS788.svg"
  },
- "52ef05e7": {
-  "name": "rests.2",
-  "score": 0.799,
-  "runner_up": "accidentals.sharp (0.251)",
-  "count": 166,
-  "files": 26,
+ "6604fddf": {
+  "name": "fattened.one",
+  "score": 0.686,
+  "runner_up": "one (0.568)",
+  "count": 168,
+  "files": 164,
   "scales": {
-   "0.0040": 166
+   "0.0025": 168
   },
-  "example": "pianoSvg/NS1043.svg"
+  "example": "pianoSvg/NS1061.svg"
  },
  "944138ec": {
   "name": "noteheads.s1",
@@ -1026,6 +1137,17 @@
   },
   "example": "pianoSvg/NS1156.svg"
  },
+ "cbc11b83": {
+  "name": "rests.2",
+  "score": 0.777,
+  "runner_up": "accidentals.sharp (0.249)",
+  "count": 152,
+  "files": 28,
+  "scales": {
+   "0.0040": 152
+  },
+  "example": "pianoSvg/NS1058.svg"
+ },
  "04e74129": {
   "name": "rests.2",
   "score": 0.798,
@@ -1036,6 +1158,17 @@
    "0.0040": 142
   },
   "example": "pianoSvg/E505.svg"
+ },
+ "c7c422db": {
+  "name": "fattened.two",
+  "score": 0.815,
+  "runner_up": "two (0.762)",
+  "count": 138,
+  "files": 134,
+  "scales": {
+   "0.0025": 138
+  },
+  "example": "pianoSvg/NS1061.svg"
  },
  "43026470": {
   "name": "flags.u3",
@@ -1059,6 +1192,17 @@
   },
   "example": "pianoSvg/E1242.svg"
  },
+ "45a77f7f": {
+  "name": "flags.d4",
+  "score": 0.949,
+  "runner_up": "flags.d3 (0.242)",
+  "count": 134,
+  "files": 50,
+  "scales": {
+   "0.0040": 134
+  },
+  "example": "build/piano/CS605.svg"
+ },
  "0e4598ed": {
   "name": "flags.d4",
   "score": 0.95,
@@ -1069,6 +1213,28 @@
    "0.0040": 132
   },
   "example": "pianoSvg/CS605.svg"
+ },
+ "26623c05": {
+  "name": "rests.3",
+  "score": 0.762,
+  "runner_up": "rests.M2 (0.128)",
+  "count": 128,
+  "files": 18,
+  "scales": {
+   "0.0040": 128
+  },
+  "example": "pianoSvg/NS1058.svg"
+ },
+ "71960be4": {
+  "name": "noteheads.s0",
+  "score": 0.687,
+  "runner_up": "rests.M3 (0.274)",
+  "count": 128,
+  "files": 20,
+  "scales": {
+   "0.0040": 128
+  },
+  "example": "pianoSvg/NS1058.svg"
  },
  "c00a5f36": {
   "name": "rests.2",
@@ -1092,6 +1258,17 @@
   },
   "example": "pianoSvg/C293.svg"
  },
+ "98df8e21": {
+  "name": "rests.0",
+  "score": 0.998,
+  "runner_up": "rests.1 (0.362)",
+  "count": 104,
+  "files": 44,
+  "scales": {
+   "0.0040": 104
+  },
+  "example": "pianoSvg/NS1016.svg"
+ },
  "03e55124": {
   "name": "flags.d3",
   "score": 0.94,
@@ -1102,17 +1279,6 @@
    "0.0040": 98
   },
   "example": "pianoSvg/NS1015.svg"
- },
- "6604fddf": {
-  "name": "fattened.one",
-  "score": 0.686,
-  "runner_up": "one (0.568)",
-  "count": 91,
-  "files": 88,
-  "scales": {
-   "0.0025": 91
-  },
-  "example": "pianoSvg/NS1061.svg"
  },
  "07011f96": {
   "name": "two",
@@ -1136,17 +1302,6 @@
   },
   "example": "pianoSvg/CS601.svg"
  },
- "ec4e7d33": {
-  "name": "noteheads.s0",
-  "score": 0.849,
-  "runner_up": "rests.M3 (0.259)",
-  "count": 80,
-  "files": 18,
-  "scales": {
-   "0.0040": 80
-  },
-  "example": "pianoSvg/NS1059.svg"
- },
  "299055ee": {
   "name": "clefs.G",
   "score": 0.801,
@@ -1169,17 +1324,6 @@
   },
   "example": "pianoSvg/E839.svg"
  },
- "c7c422db": {
-  "name": "fattened.two",
-  "score": 0.815,
-  "runner_up": "two (0.762)",
-  "count": 74,
-  "files": 71,
-  "scales": {
-   "0.0025": 74
-  },
-  "example": "pianoSvg/NS1061.svg"
- },
  "f6e0d92c": {
   "name": "rests.3",
   "score": 0.762,
@@ -1190,17 +1334,6 @@
    "0.0040": 72
   },
   "example": "pianoSvg/NS10082.svg"
- },
- "45a77f7f": {
-  "name": "flags.d4",
-  "score": 0.949,
-  "runner_up": "flags.d3 (0.242)",
-  "count": 72,
-  "files": 27,
-  "scales": {
-   "0.0040": 72
-  },
-  "example": "build/piano/CS605.svg"
  },
  "175cd61f": {
   "name": "nine",
@@ -1213,6 +1346,17 @@
   },
   "example": "pianoSvg/E1001.svg"
  },
+ "078ab886": {
+  "name": "nine",
+  "score": 0.858,
+  "runner_up": "fattened.nine (0.776)",
+  "count": 68,
+  "files": 66,
+  "scales": {
+   "0.0040": 68
+  },
+  "example": "build/piano/E1001.svg"
+ },
  "bdc69937": {
   "name": "flags.u3",
   "score": 0.908,
@@ -1223,6 +1367,17 @@
    "0.0040": 66
   },
   "example": "pianoSvg/E1242.svg"
+ },
+ "dbb45cf1": {
+  "name": "four",
+  "score": 0.819,
+  "runner_up": "fattened.four (0.799)",
+  "count": 66,
+  "files": 58,
+  "scales": {
+   "0.0040": 66
+  },
+  "example": "pianoSvg/NS1087.svg"
  },
  "b5eec5d8": {
   "name": "noteheads.s0",
@@ -1235,6 +1390,17 @@
   },
   "example": "pianoSvg/NS10082.svg"
  },
+ "48fa12ca": {
+  "name": "accidentals.natural",
+  "score": 0.906,
+  "runner_up": "rests.M2 (0.258)",
+  "count": 64,
+  "files": 20,
+  "scales": {
+   "0.0040": 64
+  },
+  "example": "guitarSvg/E193.svg"
+ },
  "477655ce": {
   "name": "four",
   "score": 0.836,
@@ -1245,6 +1411,17 @@
    "0.0040": 58
   },
   "example": "pianoSvg/NS1022.svg"
+ },
+ "2dd8f17d": {
+  "name": "rests.1",
+  "score": 0.996,
+  "runner_up": "rests.0 (0.364)",
+  "count": 58,
+  "files": 26,
+  "scales": {
+   "0.0040": 58
+  },
+  "example": "pianoSvg/NS1058.svg"
  },
  "2149e457": {
   "name": "timesig.C22",
@@ -1257,38 +1434,27 @@
   },
   "example": "pianoSvg/C1006.svg"
  },
- "98df8e21": {
-  "name": "rests.0",
-  "score": 0.998,
-  "runner_up": "rests.1 (0.362)",
+ "aea0cd0f": {
+  "name": "timesig.C22",
+  "score": 0.946,
+  "runner_up": "timesig.C44 (0.314)",
   "count": 52,
-  "files": 22,
+  "files": 52,
   "scales": {
    "0.0040": 52
   },
-  "example": "pianoSvg/NS1016.svg"
+  "example": "build/piano/C1006.svg"
  },
- "9b1adb69": {
-  "name": "noteheads.s1",
-  "score": 0.743,
-  "runner_up": "noteheads.s2 (0.482)",
-  "count": 46,
-  "files": 2,
+ "8a9e05b9": {
+  "name": "three",
+  "score": 0.922,
+  "runner_up": "fattened.three (0.867)",
+  "count": 52,
+  "files": 48,
   "scales": {
-   "0.0040": 46
+   "0.0040": 52
   },
-  "example": "pianoSvg/NS1058.svg"
- },
- "a9180427": {
-  "name": "rests.3",
-  "score": 0.781,
-  "runner_up": "rests.M2 (0.124)",
-  "count": 46,
-  "files": 14,
-  "scales": {
-   "0.0040": 46
-  },
-  "example": "pianoSvg/NS1059.svg"
+  "example": "pianoSvg/NS1087.svg"
  },
  "7c003f72": {
   "name": "noteheads.s0",
@@ -1301,16 +1467,27 @@
   },
   "example": "pianoSvg/NS812.svg"
  },
- "f1ebd801": {
-  "name": "accidentals.sharp",
-  "score": 0.836,
-  "runner_up": "rests.2 (0.249)",
-  "count": 43,
-  "files": 9,
+ "9eee9954": {
+  "name": "rests.4",
+  "score": 0.848,
+  "runner_up": "rests.6 (0.166)",
+  "count": 44,
+  "files": 26,
   "scales": {
-   "0.0032": 43
+   "0.0040": 44
   },
-  "example": "pianoSvg/NS1043.svg"
+  "example": "pianoSvg/NS1101.svg"
+ },
+ "877f3665": {
+  "name": "scripts.ufermata",
+  "score": 0.75,
+  "runner_up": "scripts.downbow (0.175)",
+  "count": 42,
+  "files": 32,
+  "scales": {
+   "0.0040": 42
+  },
+  "example": "pianoSvg/NS1059.svg"
  },
  "0a3113bd": {
   "name": "accidentals.natural",
@@ -1333,17 +1510,6 @@
    "0.0040": 36
   },
   "example": "pianoSvg/CS861.svg"
- },
- "078ab886": {
-  "name": "nine",
-  "score": 0.858,
-  "runner_up": "fattened.nine (0.776)",
-  "count": 36,
-  "files": 35,
-  "scales": {
-   "0.0040": 36
-  },
-  "example": "build/piano/E1001.svg"
  },
  "d308b201": {
   "name": "flags.d3",
@@ -1411,28 +1577,6 @@
   },
   "example": "pianoSvg/NS1003.svg"
  },
- "09ce4ed3": {
-  "name": "clefs.G",
-  "score": 0.781,
-  "runner_up": "clefs.G_change (0.277)",
-  "count": 32,
-  "files": 2,
-  "scales": {
-   "0.0040": 32
-  },
-  "example": "pianoSvg/NS1058.svg"
- },
- "2dd8f17d": {
-  "name": "rests.1",
-  "score": 0.996,
-  "runner_up": "rests.0 (0.364)",
-  "count": 32,
-  "files": 14,
-  "scales": {
-   "0.0040": 32
-  },
-  "example": "pianoSvg/NS1058.svg"
- },
  "f81a3324": {
   "name": "flags.d3",
   "score": 0.909,
@@ -1444,6 +1588,28 @@
   },
   "example": "pianoSvg/NS1150.svg"
  },
+ "3337de7d": {
+  "name": "fattened.three",
+  "score": 0.804,
+  "runner_up": "three (0.722)",
+  "count": 32,
+  "files": 32,
+  "scales": {
+   "0.0025": 32
+  },
+  "example": "build/piano/CS601.svg"
+ },
+ "67408a65": {
+  "name": "flags.d3",
+  "score": 0.92,
+  "runner_up": "flags.d4 (0.229)",
+  "count": 32,
+  "files": 10,
+  "scales": {
+   "0.0040": 32
+  },
+  "example": "build/piano/NS10082.svg"
+ },
  "1349a376": {
   "name": "four",
   "score": 0.817,
@@ -1454,28 +1620,6 @@
    "0.0040": 30
   },
   "example": "pianoSvg/BF425.svg"
- },
- "26623c05": {
-  "name": "rests.3",
-  "score": 0.762,
-  "runner_up": "rests.M2 (0.128)",
-  "count": 30,
-  "files": 2,
-  "scales": {
-   "0.0040": 30
-  },
-  "example": "pianoSvg/NS1058.svg"
- },
- "9eee9954": {
-  "name": "rests.4",
-  "score": 0.848,
-  "runner_up": "rests.6 (0.166)",
-  "count": 30,
-  "files": 18,
-  "scales": {
-   "0.0040": 30
-  },
-  "example": "pianoSvg/NS1101.svg"
  },
  "5e53ff3f": {
   "name": "rests.3",
@@ -1499,38 +1643,27 @@
   },
   "example": "pianoSvg/E505.svg"
  },
- "deb98323": {
-  "name": "flags.d3",
-  "score": 0.94,
-  "runner_up": "flags.d4 (0.230)",
-  "count": 28,
-  "files": 10,
-  "scales": {
-   "0.0040": 28
-  },
-  "example": "pianoSvg/NS1087.svg"
- },
- "954843fe": {
-  "name": "scripts.ufermata",
-  "score": 0.827,
-  "runner_up": "scripts.downbow (0.162)",
-  "count": 26,
-  "files": 17,
-  "scales": {
-   "0.0040": 26
-  },
-  "example": "pianoSvg/NS1021.svg"
- },
- "aea0cd0f": {
-  "name": "timesig.C22",
-  "score": 0.946,
-  "runner_up": "timesig.C44 (0.314)",
+ "832043c0": {
+  "name": "timesig.C44",
+  "score": 0.767,
+  "runner_up": "rests.M3 (0.381)",
   "count": 26,
   "files": 26,
   "scales": {
    "0.0040": 26
   },
-  "example": "build/piano/C1006.svg"
+  "example": "pianoSvg/NS1058.svg"
+ },
+ "8e61c0d7": {
+  "name": "eight",
+  "score": 0.841,
+  "runner_up": "fattened.eight (0.805)",
+  "count": 26,
+  "files": 22,
+  "scales": {
+   "0.0040": 26
+  },
+  "example": "pianoSvg/NS1043.svg"
  },
  "85b37514": {
   "name": "rests.4",
@@ -1554,16 +1687,16 @@
   },
   "example": "pianoSvg/E1242.svg"
  },
- "cbc11b83": {
-  "name": "rests.2",
-  "score": 0.777,
-  "runner_up": "accidentals.sharp (0.249)",
+ "1ce30034": {
+  "name": "two",
+  "score": 0.845,
+  "runner_up": "fattened.two (0.818)",
   "count": 24,
-  "files": 2,
+  "files": 16,
   "scales": {
    "0.0040": 24
   },
-  "example": "pianoSvg/NS1058.svg"
+  "example": "build/piano/E1326.svg"
  },
  "5dea5ec4": {
   "name": "four",
@@ -1587,16 +1720,16 @@
   },
   "example": "pianoSvg/NS1024.svg"
  },
- "bbffe079": {
-  "name": "timesig.C44",
-  "score": 0.912,
-  "runner_up": "rests.M3 (0.368)",
+ "997070eb": {
+  "name": "fattened.four",
+  "score": 0.654,
+  "runner_up": "four (0.598)",
   "count": 20,
   "files": 20,
   "scales": {
-   "0.0040": 20
+   "0.0025": 20
   },
-  "example": "pianoSvg/NS1056.svg"
+  "example": "build/piano/CS601.svg"
  },
  "44a02ef9": {
   "name": "six",
@@ -1620,6 +1753,28 @@
   },
   "example": "pianoSvg/NS1156.svg"
  },
+ "852a729e": {
+  "name": "six",
+  "score": 0.862,
+  "runner_up": "fattened.six (0.796)",
+  "count": 18,
+  "files": 16,
+  "scales": {
+   "0.0040": 18
+  },
+  "example": "build/piano/E1070.svg"
+ },
+ "5b900c60": {
+  "name": "flags.u4",
+  "score": 0.924,
+  "runner_up": "flags.u5 (0.675)",
+  "count": 18,
+  "files": 8,
+  "scales": {
+   "0.0040": 18
+  },
+  "example": "build/piano/E1304.svg"
+ },
  "af7c138c": {
   "name": "eight",
   "score": 0.844,
@@ -1642,16 +1797,16 @@
   },
   "example": "pianoSvg/E1071.svg"
  },
- "3337de7d": {
-  "name": "fattened.three",
-  "score": 0.804,
-  "runner_up": "three (0.722)",
+ "621fa127": {
+  "name": "fattened.one",
+  "score": 0.82,
+  "runner_up": "one (0.763)",
   "count": 16,
-  "files": 16,
+  "files": 12,
   "scales": {
-   "0.0025": 16
+   "0.0040": 16
   },
-  "example": "build/piano/CS601.svg"
+  "example": "build/piano/E1071.svg"
  },
  "ea62027a": {
   "name": "flags.u4",
@@ -1664,17 +1819,6 @@
   },
   "example": "pianoSvg/NS1034.svg"
  },
- "621fa127": {
-  "name": "fattened.one",
-  "score": 0.82,
-  "runner_up": "one (0.763)",
-  "count": 13,
-  "files": 9,
-  "scales": {
-   "0.0040": 13
-  },
-  "example": "build/piano/E1071.svg"
- },
  "738f3ad6": {
   "name": "accidentals.doublesharp",
   "score": 0.728,
@@ -1686,28 +1830,6 @@
   },
   "example": "pianoSvg/E237.svg"
  },
- "e006b243": {
-  "name": "flags.u3",
-  "score": 0.9,
-  "runner_up": "flags.u4 (0.271)",
-  "count": 12,
-  "files": 2,
-  "scales": {
-   "0.0040": 12
-  },
-  "example": "pianoSvg/NS1058.svg"
- },
- "71960be4": {
-  "name": "noteheads.s0",
-  "score": 0.687,
-  "runner_up": "rests.M3 (0.274)",
-  "count": 12,
-  "files": 2,
-  "scales": {
-   "0.0040": 12
-  },
-  "example": "pianoSvg/NS1058.svg"
- },
  "ae73f472": {
   "name": "two",
   "score": 0.854,
@@ -1718,6 +1840,17 @@
    "0.0040": 12
   },
   "example": "pianoSvg/NS904.svg"
+ },
+ "a356cc32": {
+  "name": "accidentals.doublesharp",
+  "score": 0.728,
+  "runner_up": "noteheads.s2cross (0.367)",
+  "count": 12,
+  "files": 6,
+  "scales": {
+   "0.0040": 12
+  },
+  "example": "build/piano/E237.svg"
  },
  "12ec93ff": {
   "name": "flags.d4",
@@ -1741,27 +1874,38 @@
   },
   "example": "pianoSvg/NS10013.svg"
  },
- "8a9e05b9": {
-  "name": "three",
-  "score": 0.922,
-  "runner_up": "fattened.three (0.867)",
-  "count": 10,
-  "files": 8,
-  "scales": {
-   "0.0040": 10
-  },
-  "example": "pianoSvg/NS1087.svg"
- },
- "997070eb": {
-  "name": "fattened.four",
-  "score": 0.654,
-  "runner_up": "four (0.598)",
+ "53b7290a": {
+  "name": "fattened.five",
+  "score": 0.811,
+  "runner_up": "five (0.676)",
   "count": 10,
   "files": 10,
   "scales": {
    "0.0025": 10
   },
-  "example": "build/piano/CS601.svg"
+  "example": "build/piano/NS10013.svg"
+ },
+ "cd865c13": {
+  "name": "flags.d4",
+  "score": 0.825,
+  "runner_up": "flags.d3 (0.267)",
+  "count": 10,
+  "files": 4,
+  "scales": {
+   "0.0040": 10
+  },
+  "example": "build/piano/E1304.svg"
+ },
+ "4fe4c8b9": {
+  "name": "fattened.one",
+  "score": 0.826,
+  "runner_up": "one (0.753)",
+  "count": 10,
+  "files": 6,
+  "scales": {
+   "0.0040": 10
+  },
+  "example": "build/piano/NS349.svg"
  },
  "fcfd8c00": {
   "name": "accidentals.sharp",
@@ -1818,16 +1962,16 @@
   },
   "example": "pianoSvg/NS812.svg"
  },
- "48fa12ca": {
-  "name": "accidentals.natural",
-  "score": 0.906,
-  "runner_up": "rests.M2 (0.258)",
+ "51ec3e94": {
+  "name": "scripts.segno",
+  "score": 0.937,
+  "runner_up": "scripts.varcoda (0.217)",
   "count": 8,
-  "files": 4,
+  "files": 8,
   "scales": {
    "0.0040": 8
   },
-  "example": "guitarSvg/E193.svg"
+  "example": "build/piano/CH39.svg"
  },
  "7320999b": {
   "name": "scripts.ufermata",
@@ -1861,17 +2005,6 @@
    "0.0040": 6
   },
   "example": "pianoSvg/E870.svg"
- },
- "dbb45cf1": {
-  "name": "four",
-  "score": 0.819,
-  "runner_up": "fattened.four (0.799)",
-  "count": 6,
-  "files": 6,
-  "scales": {
-   "0.0040": 6
-  },
-  "example": "pianoSvg/NS1087.svg"
  },
  "99e1b709": {
   "name": "rests.3",
@@ -1939,27 +2072,27 @@
   },
   "example": "pianoSvg/NS771.svg"
  },
- "a356cc32": {
-  "name": "accidentals.doublesharp",
-  "score": 0.728,
-  "runner_up": "noteheads.s2cross (0.367)",
+ "0fd3ca3f": {
+  "name": "nine",
+  "score": 0.858,
+  "runner_up": "fattened.nine (0.785)",
   "count": 6,
-  "files": 3,
+  "files": 6,
   "scales": {
    "0.0040": 6
   },
-  "example": "build/piano/E237.svg"
+  "example": "pianoSvg/NS1043.svg"
  },
- "53b7290a": {
-  "name": "fattened.five",
-  "score": 0.811,
-  "runner_up": "five (0.676)",
-  "count": 5,
-  "files": 5,
+ "0e14944b": {
+  "name": "scripts.ufermata",
+  "score": 0.745,
+  "runner_up": "scripts.downbow (0.180)",
+  "count": 6,
+  "files": 6,
   "scales": {
-   "0.0025": 5
+   "0.0040": 6
   },
-  "example": "build/piano/NS10013.svg"
+  "example": "build/piano/E1242.svg"
  },
  "c08e62e1": {
   "name": "flags.u4",
@@ -2060,6 +2193,61 @@
   },
   "example": "pianoSvg/NS812.svg"
  },
+ "e69b943d": {
+  "name": "fattened.six",
+  "score": 0.846,
+  "runner_up": "six (0.760)",
+  "count": 4,
+  "files": 4,
+  "scales": {
+   "0.0025": 4
+  },
+  "example": "build/piano/NS10013.svg"
+ },
+ "38a10176": {
+  "name": "rests.4",
+  "score": 0.818,
+  "runner_up": "rests.6 (0.166)",
+  "count": 4,
+  "files": 4,
+  "scales": {
+   "0.0040": 4
+  },
+  "example": "build/piano/NS1019.svg"
+ },
+ "e30f0c27": {
+  "name": "accidentals.natural",
+  "score": 0.889,
+  "runner_up": "rests.M2 (0.251)",
+  "count": 4,
+  "files": 2,
+  "scales": {
+   "0.0040": 4
+  },
+  "example": "build/piano/NS673.svg"
+ },
+ "1f1d13e0": {
+  "name": "three",
+  "score": 0.843,
+  "runner_up": "fattened.three (0.814)",
+  "count": 4,
+  "files": 4,
+  "scales": {
+   "0.0040": 4
+  },
+  "example": "build/piano/NS681.svg"
+ },
+ "dd871d13": {
+  "name": "four",
+  "score": 0.8,
+  "runner_up": "fattened.four (0.796)",
+  "count": 4,
+  "files": 4,
+  "scales": {
+   "0.0040": 4
+  },
+  "example": "build/piano/NS681.svg"
+ },
  "dfcfd701": {
   "name": "two",
   "score": 0.931,
@@ -2081,50 +2269,6 @@
    "0.0040": 2
   },
   "example": "pianoSvg/NS1042.svg"
- },
- "0fd3ca3f": {
-  "name": "nine",
-  "score": 0.858,
-  "runner_up": "fattened.nine (0.785)",
-  "count": 2,
-  "files": 2,
-  "scales": {
-   "0.0040": 2
-  },
-  "example": "pianoSvg/NS1043.svg"
- },
- "8e61c0d7": {
-  "name": "eight",
-  "score": 0.841,
-  "runner_up": "fattened.eight (0.805)",
-  "count": 2,
-  "files": 2,
-  "scales": {
-   "0.0040": 2
-  },
-  "example": "pianoSvg/NS1043.svg"
- },
- "832043c0": {
-  "name": "timesig.C44",
-  "score": 0.767,
-  "runner_up": "rests.M3 (0.381)",
-  "count": 2,
-  "files": 2,
-  "scales": {
-   "0.0040": 2
-  },
-  "example": "pianoSvg/NS1058.svg"
- },
- "877f3665": {
-  "name": "scripts.ufermata",
-  "score": 0.75,
-  "runner_up": "scripts.downbow (0.175)",
-  "count": 2,
-  "files": 2,
-  "scales": {
-   "0.0040": 2
-  },
-  "example": "pianoSvg/NS1059.svg"
  },
  "6a21e86c": {
   "name": "scripts.ufermata",
@@ -2225,26 +2369,37 @@
   },
   "example": "guitarSvg/NS160.svg"
  },
- "e69b943d": {
-  "name": "fattened.six",
-  "score": 0.846,
-  "runner_up": "six (0.760)",
+ "3a89cbf1": {
+  "name": "flags.u4",
+  "score": 0.895,
+  "runner_up": "flags.u5 (0.686)",
   "count": 2,
   "files": 2,
   "scales": {
-   "0.0025": 2
+   "0.0040": 2
   },
-  "example": "build/piano/NS10013.svg"
+  "example": "build/piano/NS899.svg"
  },
- "51ec3e94": {
-  "name": "scripts.segno",
-  "score": 0.937,
-  "runner_up": "scripts.varcoda (0.217)",
-  "count": 1,
+ "a6b14606": {
+  "name": "rests.4",
+  "score": 0.774,
+  "runner_up": "rests.6 (0.159)",
+  "count": 2,
+  "files": 2,
+  "scales": {
+   "0.0040": 2
+  },
+  "example": "build/piano/NS899.svg"
+ },
+ "3629b4c4": {
+  "name": "accidentals.doublesharp",
+  "score": null,
+  "runner_up": "",
+  "count": 2,
   "files": 1,
   "scales": {
-   "0.0040": 1
+   "0.0032": 2
   },
-  "example": "build/piano/CH39.svg"
+  "example": "our render of guitarSvg/NS160 (chord F##m), added by hand: LilyPond 2.24.3 chord-name double sharp"
  }
 }

@@ -20,7 +20,8 @@ from fontTools.pens.boundsPen import BoundsPen
 from fontTools.ttLib import TTFont
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-FONT = '/usr/share/lilypond/2.24.3/fonts/otf/emmentaler-20.otf'
+import glob as _glob
+FONT = sorted(_glob.glob('/usr/share/lilypond/*/fonts/otf/emmentaler-20.otf'))[-1]     # whichever LilyPond is installed
 CELL = 256         # px per cell (~10 font units per px)
 N = 32             # normalized bitmap size
 
