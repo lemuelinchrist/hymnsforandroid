@@ -668,7 +668,7 @@ Open question: the earlier table listed 7 dot-count and 7 key-change REVIEWs; th
 E1250 (dots) and E323 E879 E924 (flats/naturals), consistent with that, but I did not diff against the old reports
 (they were not kept), so a regression among them is not excluded.
 
-#### Clean full run on media/fix5 (2026-10-07, media host)
+### Clean full run on media/fix5 (2026-10-07, media host)
 
 All groups, both variants, `-j 8` under `nice`, 02:28-10:02 (about 7.5 h), baseline = the earlier 2026-10-07 reports.
 - **Totals:** piano 3,099 ACCEPT + 74 ACCEPT_DB_MISMATCH + 6 ACCEPT_SOURCE_BAR_SUM = 3,179; guitar 3,096 + 77 + 6 = 3,179.
@@ -683,7 +683,7 @@ All groups, both variants, `-j 8` under `nice`, 02:28-10:02 (about 7.5 h), basel
 - **Accepted with a squeezed-note count above 0** (accepted, but worth a look): piano E17 E608 E1107 E1110 NS320 NS368 NS682 NS791;
   guitar E1137 NS320 NS368 NS682 NS791 NS10082.
 
-## Full run with page fit and leftovers (2026-10-07, media host)
+### Full run with page fit and leftovers (2026-10-07, media host)
 Code: `media/work` at 5080fdbc (page-fit check `tools/pagefit.py` + the 4 "leftovers" commits). Same rules as before (`-j 8`,
 nice, one batch; ~3.5 h per variant). Baseline for the diff: the 3,166 piano / 3,164 guitar reports of 2026-10-06.
 
