@@ -103,8 +103,10 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Yet, what delights our heart the most" "Is not Thy love, Thy grace;" "But it is Thine own loving Self" "That satisfies always." } }
       \vspace #0.88
-      \line { \bold "4." \column { "Oh, Thou art fairer than the fair," "And sweeter than the sweet;" "Beside Thee, none in heaven or earth" "Our heart’s desire could meet." \translate #'(3.25 . -2.00) "* An Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" } }
+      \line { \bold "4." \column { "Oh, Thou art fairer than the fair," "And sweeter than the sweet;" "Beside Thee, none in heaven or earth" "Our heart’s desire could meet." } }
     } \hspace #1.1 }
     \null
   }
 }
+
+\markup \fill-line { \null \fontsize #-1.0 \italic "* An Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" \null }

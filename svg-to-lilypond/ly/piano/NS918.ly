@@ -109,7 +109,9 @@ verseTwo = \lyricmode {
     \left-column {
       \line { \bold "5." \column { "To the world proclaim the kingdom’s gospel," "Nourish saints in homes with warm embrace," "All perfect in groups by mutual teaching," "And in meetings speak the words of grace." "The perfected saints, hence, the Body build;" "The Bride at last shall be prepared." "Lo! The beachhead of the coming Kingdom;" "The present age’s end declared!" } }
       \vspace #0.88
-      \line { \bold "6." \column { "How we yearn to see the King in glory!" "In our lifetime may His coming be." "In the kingdom manifested fully," "Reign as kings with Christ—our hope we’ll see!" "Make us ready, Lord—in Thy presence, meet—" "On spices’ mountain Thee to face." "Then forever in the Holy City," "Loud and resoundingly we’ll praise!" \translate #'(2.57 . -2.00) "(Chorus is only sung at the end of every two stanzas.)" } }
+      \line { \bold "6." \column { "How we yearn to see the King in glory!" "In our lifetime may His coming be." "In the kingdom manifested fully," "Reign as kings with Christ—our hope we’ll see!" "Make us ready, Lord—in Thy presence, meet—" "On spices’ mountain Thee to face." "Then forever in the Holy City," "Loud and resoundingly we’ll praise!" } }
     }
   }
 }
+
+\markup \fill-line { \null \fontsize #-1.0 \italic "(Chorus is only sung at the end of every two stanzas.)" \null }

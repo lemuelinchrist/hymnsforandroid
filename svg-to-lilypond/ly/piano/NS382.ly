@@ -108,7 +108,9 @@ verseOne = \lyricmode {
     \left-column {
       \line { \bold "6." \column { "Grace upon grace," "The Triune God is processed for us to enjoy;" "The law is over," "Now we can partake of His supply through grace." } }
       \vspace #0.88
-      \line { \bold "7." \column { "From glory to glory," "We are in the process of being transformed;" "Beholding, reflecting," "To God’s image with all saints we’ll be conformed." \translate #'(3.25 . -1.50) "Download all the songs from Ordinary Days at: tinyurl.com/ordinarydays" } }
+      \line { \bold "7." \column { "From glory to glory," "We are in the process of being transformed;" "Beholding, reflecting," "To God’s image with all saints we’ll be conformed." } }
     }
   }
 }
+
+\markup \fill-line { \null \fontsize #-1.0 \italic "Download all the songs from Ordinary Days at: tinyurl.com/ordinarydays" \null }

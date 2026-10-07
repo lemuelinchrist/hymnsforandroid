@@ -6,7 +6,7 @@ to the original (`ACCEPT`, `ACCEPT_DB_MISMATCH`) are here; sheets still in `REVI
 
 - **Generated: never hand-edit.** Fix `tools/recognize.py` / `emit_ly.py` / `verify.py` and re-run
   (`python3 tools/convert.py --group NS --variant piano -j 8`), then refresh this folder.
-- `status.csv`: status per file, whether it uses the wider lyric word spacing (`wide`) or LilyPond's own (`default`),
+- `status.csv`: status per file, whether it uses the wider lyric word spacing (`wide`), LilyPond's own (`default`) or the tight fallback (`tight 0.6`, `tight 0.3`),
   and the converter commit that produced it.
 - Commit a refresh only after a significant converter change (a full regeneration rewrites most files).
 - Results and known gaps: `../DESIGN.md` section 18.

@@ -105,8 +105,10 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "4." \column { "In the divine economy" "Christ is the one who fills all things;" "He who ascended far above all," "Now fills my spirit when I call." } }
       \vspace #0.88
-      \line { \bold "5." \column { "In the divine economy" "Christ has accomplished everything;" "Christ my beginning and Christ my end," "Alpha – Omega, Praise to Him!" \translate #'(2.77 . -2.00) "(cf. 2010 Thanksgiving Day Conference, Message 2)" } }
+      \line { \bold "5." \column { "In the divine economy" "Christ has accomplished everything;" "Christ my beginning and Christ my end," "Alpha – Omega, Praise to Him!" } }
     } \hspace #1.1 }
     \null
   }
 }
+
+\markup \fill-line { \null \fontsize #-1.0 \italic "(cf. 2010 Thanksgiving Day Conference, Message 2)" \null }

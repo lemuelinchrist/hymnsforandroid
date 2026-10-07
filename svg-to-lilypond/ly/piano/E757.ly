@@ -108,8 +108,10 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "6." \column { "O Savior Christ, Thou too art Man;" "Thou hast been troubled, tempted, tried;" "Thy kind but searching glance can scan" "The very wounds that shame would hide." } }
       \vspace #0.88
-      \line { \bold "7." \column { "Thy touch has still its ancient power;" "No word from Thee can fruitless fall;" "Hear in this solemn evening hour," "And in Thy mercy heal us all." \translate #'(3.24 . -1.50) "Vv. 4 and 5 may be omitted if hymn is sung for physical healing." } }
+      \line { \bold "7." \column { "Thy touch has still its ancient power;" "No word from Thee can fruitless fall;" "Hear in this solemn evening hour," "And in Thy mercy heal us all." } }
     } \hspace #1.1 }
     \null
   }
 }
+
+\markup \fill-line { \null \fontsize #-1.0 \italic "Vv. 4 and 5 may be omitted if hymn is sung for physical healing." \null }

@@ -95,4 +95,4 @@ verseOne = \lyricmode {
 }
 
 
-\markup \fill-line { \null \fontsize #-1 \italic "The countermelodies can be sung together with the chorus." \null }
+\markup \fill-line { \null \fontsize #-1.0 \italic "The countermelodies can be sung together with the chorus." \null }

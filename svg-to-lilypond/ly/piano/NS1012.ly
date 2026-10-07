@@ -100,8 +100,10 @@ verseOne = \lyricmode {
     \line { \left-column {
       \line { \bold "2." \column { "And he who keeps His commandments" "Abides in Him, and He in him." "And in this we know He abides in us," "By the Spirit whom He gave to us." } }
       \vspace #0.88
-      \line { \bold "3." \column { "And we know and have believed" "The love which God has in us." "God is love, and he who abides in love" "Abides in God and God abides in him." \translate #'(2.78 . -2.00) "(Verse and chorus can be sung together in round)" } }
+      \line { \bold "3." \column { "And we know and have believed" "The love which God has in us." "God is love, and he who abides in love" "Abides in God and God abides in him." } }
     } \hspace #1.1 }
     \null
   }
 }
+
+\markup \fill-line { \null \fontsize #-1.0 \italic "(Verse and chorus can be sung together in round)" \null }

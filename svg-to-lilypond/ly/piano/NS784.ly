@@ -95,4 +95,4 @@ verseOne = \lyricmode {
 }
 
 
-\markup \fill-line { \null \fontsize #-1 \italic "Part 1 and Part 2 can be sung together." \null }
+\markup \fill-line { \null \fontsize #-1.0 \italic "Part 1 and Part 2 can be sung together." \null }

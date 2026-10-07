@@ -96,13 +96,14 @@ verseOne = \lyricmode {
 
 \markup {
   \fill-line {
-    \left-column {
+    \null
+    \line { \left-column {
       \line { \bold "2." \column { "Roses fade around me," "Lilies bloom and die," "Earthly sunbeams vanish—" "Radiant still the sky!" "Jesus, Henna-flower,*" "Blooming for His own," "Jesus, heaven’s sunshine," "Never will leave me alone." } }
       \vspace #0.88
       \line { \bold "3." \column { "Steps unseen before me," "Hidden dangers near;" "Nearer still my Savior," "Whispering, “Be of cheer“;" "Joys, like birds of springtime," "To my heart have flown," "Singing all so sweetly," "“He will not leave me alone.”" } }
-    }
-    \left-column {
-      \column { "An Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" }
-    }
+    } \hspace #1.1 }
+    \null
   }
 }
+
+\markup \fill-line { \null \fontsize #-1.0 \italic "An Old World plant, prized for its fragrant yellow and white flowers. (Song of Sol. 1:14, A.S.V.)" \null }

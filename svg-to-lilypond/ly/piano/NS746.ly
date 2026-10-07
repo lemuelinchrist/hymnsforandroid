@@ -107,7 +107,9 @@ verseOne = \lyricmode {
       \line { \bold "5." \column { "’Tis not to win we’re fighting;" "We fight from victory;" "Our Captain is Conqu’ror" "And us to glory leads!" "Our banners we’re unfurling;" "Our armor’s linen bright;" "Our Love finds us lovely;" "Our foes are terrified!" \translate #'(3.87 . -2.00) "From glory unto glory," \translate #'(3.87 . -2.00) "E’er higher we ascend;" \translate #'(3.87 . -2.00) "We’re pressing onward, upward," \translate #'(3.87 . -2.00) "Jerusalem to Zion go," \translate #'(3.87 . -2.00) "This age to end!" } }
     }
     \left-column {
-      \column { "Note on “our armor’s linen bright”:" "The saints fight with soft, linen armor" "(“Senir” meaning “soft armor” in S.S. 4:8; Rev. 19:14)." "Hard metal armor is unnecessary," "for Christ has already won the victory!" "Hallelujah!" }
+      \column { "Note on “our armor’s linen bright”:" "The saints fight with soft, linen armor" \translate #'(0.00 . -3.00) "Hard metal armor is unnecessary," \translate #'(0.00 . -3.00) "for Christ has already won the victory!" \translate #'(0.00 . -3.00) "Hallelujah!" }
     }
   }
 }
+
+\markup \fill-line { \null \fontsize #-1.0 \italic "(“Senir” meaning “soft armor” in S.S. 4:8; Rev. 19:14)." \null }

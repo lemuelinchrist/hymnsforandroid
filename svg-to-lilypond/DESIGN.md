@@ -567,10 +567,11 @@ over the IR with the music font shipped once. This supersedes the font-route dec
 
 ## 18. Implementation status and findings (2026-10-05)
 
-> **Current status (2026-10-07): read this first.** Full run on branch `media/work` (= the page-fit check + the "leftovers"
-> converter fixes, `regress.py` 85/85): **piano 3,174 / guitar 3,175 of 3,179 sheets accepted (99.8%)**; clean `ACCEPT` 3,096 /
-> 3,094. 9 sheets are not accepted (5 piano, 4 guitar): `data/leftovers.txt`. The accepted `.ly` sources are in `ly/`
-> (6,349 files, `ly/status.csv`). Branch not merged to master. Details: "Full run with page fit and leftovers (2026-10-07)" below.
+> **Current status (2026-10-07, clean full run on `media/fix5` code = 01146a30, `regress.py` 94/94): read this first.**
+> **Piano 3,179 / guitar 3,179 of 3,179 sheets accepted (100%).** Clean `ACCEPT` 3,099 piano / 3,096 guitar;
+> `ACCEPT_DB_MISMATCH` 74 / 77; `ACCEPT_SOURCE_BAR_SUM` 6 / 6. No sheet accepted on the earlier run is lost. `data/leftovers.txt` is
+> empty (known imperfections listed there). Accepted `.ly` sources: `ly/` (6,358 files, `ly/status.csv`). Branch not merged to master.
+> Details: "Clean full run on media/fix5 (2026-10-07)" below.
 >
 > **Open, in the owner's order:** (1) the full-run report above; (2) `build/db_tune_mismatches.txt` (48 hymns whose database
 > tune code disagrees with sheet and MIDI; needs the owner's review, the database must not be changed without it);
@@ -667,7 +668,22 @@ Open question: the earlier table listed 7 dot-count and 7 key-change REVIEWs; th
 E1250 (dots) and E323 E879 E924 (flats/naturals), consistent with that, but I did not diff against the old reports
 (they were not kept), so a regression among them is not excluded.
 
-### Full run with page fit and leftovers (2026-10-07, media host)
+#### Clean full run on media/fix5 (2026-10-07, media host)
+
+All groups, both variants, `-j 8` under `nice`, 02:28-10:02 (about 7.5 h), baseline = the earlier 2026-10-07 reports.
+- **Totals:** piano 3,099 ACCEPT + 74 ACCEPT_DB_MISMATCH + 6 ACCEPT_SOURCE_BAR_SUM = 3,179; guitar 3,096 + 77 + 6 = 3,179.
+  No REVIEW, no errors, no page-fit problems, no multi-page sheets.
+- **Accepted before and not now:** none. **Tier changes among accepted sheets:** none.
+- **The 9 former failures** all convert: piano E149 (tight 0.3), E1076, E1261, NS281 (SOURCE_BAR_SUM), CS744 (SOURCE_BAR_SUM, default spacing);
+  guitar E1076, E1261, NS281, CS744 (E149 guitar already passed with default spacing).
+- **Lyric spacing:** piano wide 2,711 / default 467 / tight 0.3 one (E149) / tight 0.6 none; guitar wide 2,711 / default 468 / no tight.
+- **Looked at by eye (E149, NS281, CS744 piano; E1261 guitar):** layout close to the original. Imperfections seen, not fixed:
+  CS744 (and NS121) have no final bar line; E1261 footnote sits directly under the last verse line (original leaves a gap);
+  E149 piano with tight spacing runs a few syllables together ("Ten thou-sand heav'n-ly", "Sound the note").
+- **Accepted with a squeezed-note count above 0** (accepted, but worth a look): piano E17 E608 E1107 E1110 NS320 NS368 NS682 NS791;
+  guitar E1137 NS320 NS368 NS682 NS791 NS10082.
+
+## Full run with page fit and leftovers (2026-10-07, media host)
 Code: `media/work` at 5080fdbc (page-fit check `tools/pagefit.py` + the 4 "leftovers" commits). Same rules as before (`-j 8`,
 nice, one batch; ~3.5 h per variant). Baseline for the diff: the 3,166 piano / 3,164 guitar reports of 2026-10-06.
 
@@ -895,7 +911,7 @@ where checked by eye; see `ACCEPT_DB_MISMATCH`), and the REVIEW table above.
 | `data/difficulty_ranking.json` | Piano files sorted by difficulty score. |
 | `experiments/E1_opus_variant.ly`, `E1_sonnet_variant.ly` | Hand-written E1 transcriptions (layout experiments, §8). |
 | `experiments/cmp.py`, `report.py`, `glyphs.py` | Early comparison helpers from the E1 experiment (superseded by `tools/`). |
-| `ly/` | **Committed** generated `.ly` for the accepted sheets (3,080 piano, 3,071 guitar) + `status.csv` + README. Never hand-edit; refresh after significant converter changes. |
+| `ly/` | **Committed** generated `.ly` for the accepted sheets (3,179 piano, 3,179 guitar) + `status.csv` + README. Never hand-edit; refresh after significant converter changes. |
 | `tools/tune_mismatch_report.py` | Lists hymns whose DB tune code disagrees with the sheet (writes `build/db_tune_mismatches.txt`). |
 | `tools/svg_text_to_paths.py` | Outlines the `<text>` of a LilyPond SVG so it needs no installed fonts (section 15.1). |
 | `tools/transpose_check.py` | `\transpose` round-trip and semitone check for converted hymns (section 15.1). |

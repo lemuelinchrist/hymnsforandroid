@@ -95,4 +95,4 @@ verseOne = \lyricmode {
 }
 
 
-\markup \fill-line { \null \fontsize #-1 \italic "(All parts can be sung together in round and then all arrive together on Part 3)" \null }
+\markup \fill-line { \null \fontsize #-1.0 \italic "(All parts can be sung together in round and then all arrive together on Part 3)" \null }

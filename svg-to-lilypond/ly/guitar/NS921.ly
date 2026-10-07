@@ -96,4 +96,4 @@ verseOne = \lyricmode {
 }
 
 
-\markup \fill-line { \null \fontsize #-1 \italic "(The two parts can be sung as a round.)" \null }
+\markup \fill-line { \null \fontsize #-1.0 \italic "(The two parts can be sung as a round.)" \null }

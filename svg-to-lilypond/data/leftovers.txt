@@ -1,13 +1,2 @@
-# Sheets not accepted after the full run of 2026-10-07 (4 guitar, 5 piano). All other sheets are accepted.
-# variant | id | status | reason
-# Images: python3 tools/convert.py --variant <v> ../app/src/main/assets/<v>Svg/<ID>.svg ; python3 tools/compare_png.py <ID> --variant <v>
-
-guitar | CS744    | REVIEW   | page fit: ink 0.5 from right edge (need 2.0) | measure 17 (system 3) has 7/8, expected 3/4
-piano  | CS744    | REVIEW   | page fit: ink 0.0 from right edge (need 2.0) | measure 17 (system 3) has 7/8, expected 3/4
-piano  | E149     | REVIEW   | page fit: ink 0.0 from right edge (need 2.0)
-guitar | E1076    | REVIEW   | page fit: ink 0.0 from right edge (need 2.0)
-piano  | E1076    | REVIEW   | page fit: ink 0.0 from right edge (need 2.0)
-guitar | E1261    | REVIEW   | page fit: ink 0.2 from left edge (need 2.0); ink 0.0 from right edge (need 2.0)
-piano  | E1261    | REVIEW   | page fit: ink 0.2 from left edge (need 2.0); ink 0.0 from right edge (need 2.0)
-guitar | NS281    | REVIEW   | measure 4 (system 0) has 9/8, expected 1
-piano  | NS281    | REVIEW   | measure 4 (system 0) has 9/8, expected 1
+# Sheets not accepted after the full run of 2026-10-07 (media/fix5 code): none. All 3,179 sheets are accepted in both variants.
+# Known imperfections: CS744 and NS121 have no final bar line; E1261 footnote touches the last verse; see DESIGN.md section 18.

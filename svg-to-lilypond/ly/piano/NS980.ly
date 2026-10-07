@@ -102,8 +102,10 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "The God-men’s right to participate in God’s divinity" "Includes God’s sonship made through Jesus Christ, God the Father’s family;" "God’s sons! God’s likeness! Manifested radiantly!" "We shall see Christ, yes, even as He is, and like Him, just like Him," "Just like Him we all shall be." } }
       \vspace #0.88
-      \line { \bold "4." \column { "The God-men’s right to participate in God’s divinity" "Includes being born the children of the Lord, even of the God-man gene;" "God’s kind! God’s species! Constitute this realm divine!" "We enter into the kingdom of the Son of His love, of His love," "Of His love for all mankind." \translate #'(2.78 . -2.00) "(cf. 2023 July Semiannual Training, Message 10)" } }
+      \line { \bold "4." \column { "The God-men’s right to participate in God’s divinity" "Includes being born the children of the Lord, even of the God-man gene;" "God’s kind! God’s species! Constitute this realm divine!" "We enter into the kingdom of the Son of His love, of His love," "Of His love for all mankind." } }
     } \hspace #1.1 }
     \null
   }
 }
+
+\markup \fill-line { \null \fontsize #-1.0 \italic "(cf. 2023 July Semiannual Training, Message 10)" \null }
