@@ -221,6 +221,13 @@ def process(path, variant=None):
                 (res2.get('status') != 'REVIEW' and res2.get('squeezed', 0) < res.get('squeezed', 0)):
             res2['lyric_space'] = 'default'
             return res2
+        if res2.get('status') == 'REVIEW' and (res.get('pagefit') or res2.get('pagefit')):
+            # a very dense system still runs off the page with LilyPond's own spacing: pack the words tighter
+            for tight in (0.6, 0.3):
+                res3 = process_once(path, variant, tight)
+                if res3.get('status') != 'REVIEW':
+                    res3['lyric_space'] = 'tight %.1f' % tight
+                    return res3
         process_once(path, variant, LYRIC_SPACE)       # leave the .ly/.svg of the preferred version in build/
     return res
 

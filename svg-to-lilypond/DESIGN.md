@@ -580,6 +580,14 @@ over the IR with the music font shipped once. This supersedes the font-route dec
 > The older "Results (full run, 2026-10-05)" table, the first REVIEW-reasons table and "Known unresolved cases" further down are
 > **historical**. App-readiness findings (fonts, sizes, transposition, emulator attempt): section 15.1.
 >
+> **Fixes after the 2026-10-07 full run (branch `media/fix5`, not yet re-run on the whole corpus):** the nine sheets that
+> regressed or failed the page-fit check (NS281 CS744 both variants, E149 piano, E1076 and E1261 both variants) convert again,
+> `regress.py` 94/94. Causes: the measure-length rule only handled bars longer than the time signature (now every bar whose
+> length differs, so a 9/8 bar followed by a 7/8 bar keeps the original's bar lines); a footnote moved into the verse column
+> must be short (< 40 units); a footnote wider than the page shrinks to fit; a very dense system falls back to tighter lyric
+> spacing (0.6, then 0.3) when the page-fit check is what fails. The bar-length rule touches every sheet with an irregular
+> bar, so re-run at least those (compute the list from `build/ir`) before trusting the 9 / 9 result.
+>
 > **Continuing on another machine.** `git switch media/work` (branch on GitHub, not merged to master). Needs
 > LilyPond 2.24.x, rsvg-convert, ImageMagick, sqlite3 and Python 3 with numpy, Pillow, fontTools (see the skill file
 > `.claude/skills/svg-to-lilypond/SKILL.md`). `build/` is not in git: to look at a sheet run

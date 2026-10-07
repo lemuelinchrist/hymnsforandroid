@@ -838,7 +838,7 @@ def extract_text(systems, other, ir, rects):
         elif abs(size - 2.2) < 0.05 and bold and out['title'] and abs(y - out['title']['y'] - 3.5) < 0.7 and \
                 out['subtitle'] is None:                      # the subtitle sits 3.5 below the title baseline
             out['subtitle'] = o
-        elif 'italic' in o['style'] and abs(size - 1.96) < 0.05 and y > tops[-1] + 10 and \
+        elif 'italic' in o['style'] and abs(size - 1.96) < 0.05 and y > tops[-1] + 10 and text_width(t, 1.96, False) < 40 and \
                 any(abs(y - vt['y']) < 40 for vt in verse_texts):
             verse_texts.append(o)                             # footnote under the last stanza of a column (C316)
         elif 'italic' in o['style'] and not (abs(size - 2.2) < 0.05 and any(tp - 11 < y < tp - 0.3 for tp in tops)

@@ -2,6 +2,7 @@
 
 usage: python3 tools/emit_ly.py ir.json > out.ly      (normally called from convert.py)
 """
+import math
 import re
 import sys
 from fractions import Fraction
@@ -121,16 +122,17 @@ def walk_events(ir):
             tc = m['time_change']
             cur_len = applied = Fraction(tc['num'], tc['den'])
             yield ('time', tc)
-        # a source that draws longer bars than its time signature (3/2 bars under 3/4): without this LilyPond
-        # would add a bar line in the middle that the original does not have
+        # a source that draws bars of another length than its time signature (3/2 bars under 3/4, a 9/8 bar followed by
+        # a 7/8 bar): without this LilyPond adds its own bar line where the original has none, or misses the original's
         if mi > 0 and cur_len:
             msum = sum((dur_of(e) for e in m['events']), Fraction(0))
-            want = msum if msum > cur_len else cur_len
-            if want != applied:
-                applied = want
-                yield ('mlen', want)
             if msum < cur_len and any(e.get('hidden') for e in ms[mi - 1]['events']):
                 yield ('partial', msum)          # a pickup after a silent bar: LilyPond must not wait for a full bar
+            else:
+                want = msum if (mi < len(ms) - 1 and msum > 0) else cur_len     # the last bar needs no length of its own
+                if want != applied:
+                    applied = want
+                    yield ('mlen', want)
         for e in m['events']:
             t = e.get('tuplet')
             if t and t['start']:
@@ -489,7 +491,11 @@ def emit(ir, variant='piano', params=None):
         if ins['y'] < tops[0] - 0.5:
             continue                                       # emitted in the title block
         if ins['y'] > tops[-1] + 14:                       # page-level note below the music
-            ly.append('\\markup \\fill-line { \\null \\fontsize #-1 \\italic %s \\null }\n' % q(ins['text']))
+            from recognize import text_width
+            usable = ir.get('page_w', 153.5737) - 21.59 / mm_per_space(ir) - 11.0      # between the page margins, with room for a rough width estimate
+            w = text_width(ins['text'], 1.96, False) * 2 ** (-1 / 6)                  # width at \\fontsize #-1
+            fs = -1 if w <= usable else max(-8.0, -1 + 6 * math.log2(usable / w))     # a footnote wider than the page shrinks
+            ly.append('\\markup \\fill-line { \\null \\fontsize #%.1f \\italic %s \\null }\n' % (fs, q(ins['text'])))
         else:
             warnings.append('instruction %r above the music is not emitted yet' % ins['text'])
     if ir['text']['leftover']:
