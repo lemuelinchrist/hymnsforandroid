@@ -350,17 +350,89 @@ goes into a review report with the reason.
 The two variants differ in **chord names** (transposed for capo), an italic "(Guitar: Capo N)" line,
 and small typographic differences such as "Trinity — His Plan" with spaces.
 
-- **Capo** appears on guitar sheets as follows: none 1,426, 3 → 1,056, 1 → 677, 2 → 71, 4 → 12. With no
-  capo, the guitar chords presumably equal the piano chords. Verify this with V7.
-- **Decided (2026-10-04): two independent `.ly` files per hymn**, one per SVG
-  (`ly/piano/E1.ly`, `ly/guitar/E1.ly`). This means some duplication. A single shared source is a
-  future goal (§15).
-- Guitar chords are stored as printed, not computed by transposition, because enharmonic spelling may
-  differ. Verify against transposition anyway (V7).
-- After the 2026-10-04 asset cleanup, every hymn has exactly one piano and one guitar SVG, and all
-  3,179 pairs agree note-for-note.
+- **Decided (2026-10-08, Lemuel): one source per hymn, the piano `.ly`.** The guitar sheet is derived from it by a
+  conservative conversion step (§10.2). Guitar charts for E may be a little busier than hymnal.net's guitar sheets;
+  that is accepted. This replaces the 2026-10-04 decision of two independent `.ly` files per hymn. `ly/guitar/`
+  stays as the test reference until the derived sheets are checked, then it can go.
 
----
+### 10.1 What the two variants share (measured 2026-10-08 on all 3,179 `ly/` pairs)
+
+**Melody, rhythm and lyrics are the same.** Pitches and durations are identical in 3,158 pairs. 18 guitar sheets are
+written in another key instead of using a capo (E13, E36, E39, E46, E56, E87, E112, E205, E222, E386, E474, E578,
+E810, E905, E1020, E1163, E1290, E1311). 3 differ in one note (E8 tie vs slur, E630 and E902 an octave), most likely a
+slip in one of the original sheets. Other textual differences are converter details (a `_` skip moved inside a
+melisma, a markup attached one note later). The guitar sheet is **not** a simplified copy of the piano sheet; only
+the chord line differs.
+
+**Chords** (guitar compared with the piano chords moved down by the capo):
+
+| Relation | Hymns |
+|---|---|
+| Exactly the transposed piano chords | 541 |
+| Same, some chord changes left out | 32 |
+| Same chords, simplified (slash bass or extension dropped) | 1,462 |
+| A different, simpler harmony in places | 1,142 |
+
+- After moving down by the capo, dropping the slash bass and merging repeated chords, 1,909 of 3,175 hymns (60%) have
+  exactly the guitar sheet's chord changes, and 94.8% of all guitar chord symbols (77,767 of 82,004) are the same
+  root and major/minor. The derived chart prints 9,810 chord changes that the guitar sheets leave out.
+- The simplification is almost only in **E**: the guitar keeps every piano chord change in 98% of BF, 95% CH, 92% NS,
+  86% CS, 77% C, but only **20% of E** hymns (75% of E chord changes). Example E118: piano "G/B D G" (moving bass under
+  a held G), "Am/C", a short "C" at the end of bar 7, "D/F♯ G" (passing), "D/A A7" → guitar keeps G, Am, drops the C
+  and the passing chords, "A7".
+- **Rules for passing chords don't help.** Tested against the guitar sheets: drop chords of 1/8 or less; drop short
+  chords on weak beats; drop a short chord between two identical chords; drop "X/5th → V". None agrees better than
+  keeping every chord (88.5% of keep/drop decisions); each removes about as many chords the guitar keeps as it removes
+  chords it leaves out. The guitar arrangers were not consistent. Only "1/8 or less" is nearly safe (383 right, 102
+  wrong).
+- **Capo follows from the piano key** (most common choice per key = the guitar sheet's in 3,102 of 3,179):
+
+| Piano key | F | D | E♭ | C | G | B♭ | A♭ | A | E | D♭ | B |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Hymns | 811 | 441 | 433 | 429 | 396 | 244 | 223 | 84 | 68 | 37 | 12 |
+| Capo | 3 | 0 | 1 | 0 | 0 | 3 | 1 | 0 | 2 | 1 | 4 |
+
+  Minor keys: not seen in the corpus as `\key … \minor` so far; if one appears, use the capo of its relative major.
+- **Capo text:** C and CS sheets carry "(吉他: Capo N)" / "(吉他)" as a markup on the first note (413 files); all other
+  groups carry "(Guitar: Capo N)" / "(Guitar)" as a line under the title (2,762 files; E1 is one of the 2 E files
+  with the markup form). Capo 0 prints "(Guitar)" / "(吉他)".
+
+### 10.2 Guitar conversion (piano `.ly` → guitar `.ly`)
+
+Only steps that cannot drop a chord the guitar sheets keep:
+1. Capo from the key table above.
+2. Chords moved down by the capo **by interval**, so spelling stays right (capo 1 = minor second down, 2 = major
+   second, 3 = minor third, 4 = major third). Melody and key unchanged.
+3. Slash basses removed (G/B → G).
+4. Repeated chords merged: a chord equal to the one sounding is replaced by a spacer (`s`) of the same length.
+5. Capo text added as on the existing guitar sheets (§10.1).
+
+6. A chord at the **start of a system** is always printed, even when it repeats the one sounding (the original sheets
+   do this too).
+7. **Page fit:** if the extra capo line pushes a sheet onto a second page, it is derived again with the gap above the
+   verse block (`score-markup-spacing`) 2.5 staff spaces smaller, as hymnal.net's own guitar sheets do (NS576: 12.00
+   on their guitar sheet vs 14.35 on the piano sheet).
+
+Not done (for now): weak-beat and passing-chord rules, dropping 7ths and other extensions. Optional, off by default:
+drop chords of 1/8 or less (`--drop-short`).
+
+Tool: `tools/guitar_from_piano.py` (`--all` derive into `build/guitar_derived/`, `--compile` render with the page-fit
+fallback into `build/guitar_derived_svg/`, `--check` compare with `ly/guitar/`).
+
+**First full run (2026-10-08, local, LilyPond 2.24.3, 12 processes, ~40 min):**
+- All 3,179 derived sheets compile; 3,174 on one page as derived, 5 needed the page-fit fallback (NS10025, NS1058,
+  NS1124, NS576, NS746), then one page. LilyPond warnings are the same as for the piano `.ly` (checked file by file on
+  the 27 sheets that have any).
+- Capo: 0 → 1,350, 1 → 693, 2 → 68, 3 → 1,055, 4 → 13. Same capo as the hymnal.net guitar sheet: 3,105 of 3,179.
+  The 74 others (listed by `--check`) are mostly guitar sheets without a capo in a key the table puts a capo on (e.g.
+  NS1126 B♭ without capo), the 18 sheets written in another key, and hymns with a key change.
+- Chords, for the 3,105 with the same capo: 1,822 have exactly the guitar sheet's chord changes; 163 have them plus
+  extra changes; 1,120 differ in some chords (the "different, simpler harmony" class of §10.1). 95.2% of the guitar
+  sheets' chord symbols are reproduced (76,454 of 80,334, root + major/minor); 9,901 extra chord changes are printed.
+- **hymnal.net error found:** NS160's guitar sheet says capo 4 but prints D♯-major chords (would sound 3 semitones too
+  high). The derived sheet has D-major chords with capo 4, which is right.
+- Looked at by eye: E118 (extra chords exactly the expected ones: bar 2 "D G", bar 7 "C", bar 15 "G D", bar 24 "G"),
+  E5, C1002 (capo marker identical to the original), NS576 (tight fallback; looks fine).
 
 ## 11. Asset problems found, and fixed 2026-10-04
 
@@ -434,6 +506,7 @@ New SVGs arrive via the hymnal.net sync (`HymnalNetExtractor` → `databaseProvi
 2. **Fidelity target confirmed:** semantic + visual equivalence with the same fixed layout (§8), not
    pixel identity. Screen-adaptive layout is a future goal (§15).
 3. **Two independent `.ly` files** (piano, guitar) per hymn for now. A single source is a future goal.
+   *Superseded 2026-10-08:* one source, the piano `.ly`; guitar derived (§10).
 4. **Asset fixes: done** in this task (§11).
 5. **End goal: the app ships sheet music rendered from `.ly`.** See §15.
 
@@ -465,9 +538,7 @@ From the user, 2026-10-04. The current converter should not block these:
   can be dropped.
 - **Guitar "chords only" view:** hide melody notes for guitarists and show chords + lyrics. Keep chords,
   melody and lyrics as separate variables in the `.ly` (`harmonies`, `melody`, `verseN`).
-- **Single source per hymn:** merge piano/guitar into one `.ly` (guitar = piano chords transposed by
-  capo, plus capo text). Blocked until V7 shows how often guitar chords are exactly the transposed
-  piano chords.
+- **Single source per hymn:** decided 2026-10-08: the piano `.ly` is the source, guitar is derived (§10).
 
 ### 15.1 App-readiness prototype (2026-10-05, media host; no app code touched)
 Question: can the app ship sheets rendered from our `.ly`? Three things were checked on LilyPond 2.24.4.
@@ -914,6 +985,7 @@ where checked by eye; see `ACCEPT_DB_MISMATCH`), and the REVIEW table above.
 | `ly/` | **Committed** generated `.ly` for the accepted sheets (3,179 piano, 3,179 guitar) + `status.csv` + README. Never hand-edit; refresh after significant converter changes. |
 | `tools/tune_mismatch_report.py` | Lists hymns whose DB tune code disagrees with the sheet (writes `build/db_tune_mismatches.txt`). |
 | `tools/svg_text_to_paths.py` | Outlines the `<text>` of a LilyPond SVG so it needs no installed fonts (section 15.1). |
+| `tools/guitar_from_piano.py` | Derives the guitar `.ly` from the piano `.ly` (section 10.2): `--all`, `--compile`, `--check`. |
 | `tools/transpose_check.py` | `\transpose` round-trip and semitone check for converted hymns (section 15.1). |
 | `build/` | Generated renders, contact sheets. Git-ignored and safe to delete. |
 
@@ -960,3 +1032,6 @@ Python 3.12 with fontTools/numpy/Pillow.
   English piano 1,350/1,362 accepted; all groups piano 3,077/3,179 and guitar 3,068/3,179. Wrote the Claude skill
   (`.claude/skills/svg-to-lilypond/SKILL.md`). Corrected an overstatement along the way: the first New Songs run had
   counted sheets as accepted that lacked repeats and voltas; the coverage check was added to prevent that.
+- **2026-10-08:** Piano vs guitar measured on all 3,179 `ly/` pairs (§10.1). Lemuel decided: piano `.ly` only, guitar
+  derived by a conservative conversion (§10.2), slightly busier E charts accepted. `tools/guitar_from_piano.py` written;
+  first full run: all 3,179 derived sheets compile on one page (5 with the page-fit fallback); results in §10.2.
