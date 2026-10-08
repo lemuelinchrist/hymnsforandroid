@@ -329,7 +329,7 @@ INSERT INTO hymns VALUES('E302','Edwin Othello Excell (1851-1921)','Edwin Othell
 INSERT INTO hymns VALUES('E303','James Martin Gray (1851-1935)','Daniel Brink Towner (1850-1919)','I AM REDEEMED, BUT NOT WITH SILVER;','Nor silver nor gold hath obtained my redemption;','E','C Major','Assurance and Joy of Salvation','12.11.12.11. with chorus.','303','Redeemed by the Blood','4/4','553515354542',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0303_g.svg',NULL,'T303,S243,');
 INSERT INTO hymns VALUES('E304','From the Overcomer Magazine','T. Willey',NULL,'How should the Lord keep back His sword from blood?','E','C Major','Assurance and Joy of Salvation','10.10.10.10.10.10.','304','Redeemed by the Blood','4/4','3556561171',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0304_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E305','Philip Paul Bliss (1838-1876)','James McGranahan (1840-1907)','SING, OH, SING OF MY REDEEMER,','I will sing of my Redeemer,','E','G Major','Assurance and Joy of Salvation','8.7.8.7. with chorus.','305','Redeemed by the Blood','9/8','5123332122572444323',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0305_g.svg',NULL,'S244,');
-INSERT INTO hymns VALUES('E306','M. Fraser (1917-?)','M. A. Sea',NULL,'I belong to Jesus;','E','G Major','Assurance and Joy of Salvation','6.5.7.5.','306','Redeemed by the Blood','4/4','53216151253',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0306_g.svg',NULL,'T306,S245,FR56,');
+INSERT INTO hymns VALUES('E306','M. Fraser (1917-?)','M. A. Sea',NULL,'I belong to Jesus;','E','G Major','Assurance and Joy of Salvation','6.5.7.5.','306','Redeemed by the Blood','4/4','53216171253',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0306_g.svg',NULL,'T306,S245,FR56,');
 INSERT INTO hymns VALUES('E307','William McKendree Darwood (circa 1835-1914)','John Robson Sweney (1837-1899)','O CALVARY! DARK CALVARY!','On Calvary''s brow my Savior died','E','Ab Major','Assurance and Joy of Salvation','8.8.8.8.D.','307','Redeemed by the Blood','4/4','3215351743267653',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0307_g.svg',NULL,'T307,C97,I97,K97,J97,Z97,');
 INSERT INTO hymns VALUES('E308','Fanny Jane Crosby (1820-1915)','Mrs. Joseph F. Knapp','THIS IS MY STORY, THIS IS MY SONG,','Blessed assurance, Jesus is mine;','E','Db Major','Assurance and Joy of Salvation','9.10.9.9. with chorus.','308','Born of the Spirit','9/8','321554565',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0308_g.svg',NULL,'T308,K265,J265,I265,FR58,G148,C265,CB308,GY55,F308,SK308,S252,Z265,');
 INSERT INTO hymns VALUES('E309','Rufus Henry McDaniel (1850-1940)','Charles Hutchinson Gabriel (1856-1932)','SINCE JESUS CAME INTO MY HEART!','What a wonderful change in my life has been wrought','E','G Major','Assurance and Joy of Salvation','12.8.12.8. with chorus.','309','Changed in Life','4/4','345671123343',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0309_g.svg',NULL,'K241,J241,I241,BF260,T309,GK3,G149,FR59,GY56,CB309,C241,F309,S253,Z241,');
@@ -557,7 +557,7 @@ INSERT INTO hymns VALUES('E530','Will Lamartine Thompson (1847-1909)','Will Lama
 INSERT INTO hymns VALUES('E531','Jane C. Bonar','Theodore E. Perkins (1831-1912)',NULL,'Fade, fade each earthly joy;','E','Eb Major','Experience of Christ','6.4.6.4.6.6.6.4.','531','As Everything','6/8','56532121235',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0531_g.svg',NULL,'Z389,J389,T531,CB531,I389,BF162,K389,C389,S419,');
 INSERT INTO hymns VALUES('E532','Charles Wesley (1707-1788)','Henry James Ernest Holmes (1852-?)',NULL,'Thou hidden sources of calm repose,','E','F Major','Experience of Christ','8.8.8.8.8.8.','532','As Everything','3/4','123542123436511712',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0532_g.svg',NULL,'K391,J391,I391,T532,C391,Z391,S420,CB532,');
 INSERT INTO hymns VALUES('E533','Anon.','C. Fishwick',NULL,'For every sin however deep,','E','F Major','Experience of Christ','8.8.8.6.','533','As the All-Sufficient One','3/4','5123355444433262',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0533_g.svg',NULL,'C387,Z387,K387,T533,I387,J387,');
-INSERT INTO hymns VALUES('E534','Oswald Jeffrey Smith (1889-1986)','Anon.','THE SAVIOR CAN SOLVE EVERY PROBLEM,','The Savior can lift every burden,','E','Eb Major','Experience of Christ','9.8.9.8. with chorus.','534','As the All-Sufficient One','4/4','55465123353333334',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0534_g.svg',NULL,'T534,');
+INSERT INTO hymns VALUES('E534','Oswald Jeffrey Smith (1889-1986)','Anon.','THE SAVIOR CAN SOLVE EVERY PROBLEM,','The Savior can lift every burden,','E','Eb Major','Experience of Christ','9.8.9.8. with chorus.','534','As the All-Sufficient One','4/4','55365123353333334',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0534_g.svg',NULL,'T534,');
 INSERT INTO hymns VALUES('E535','Charles Wesley (1707-1788)','Henri Frederick Hemy (1818-1888)',NULL,'All things are possible to him','E','G Major','Experience of Christ','8.8.8.8.8.8.','535','As the All-Sufficient One','3/4','3211712671',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0535_g.svg',NULL,'G219,ZS431,CS431,T535,CB535,S421,SK535,');
 INSERT INTO hymns VALUES('E536','*','I. E. Rummery',NULL,'Objective and subjective Christ is to us,','E','G Major','Experience of Christ','11.11.11.11.','536','As the Subjective One','3/4','51123321271',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0536_g.svg',NULL,'C398,Z398,T536,K398,CB536,S422,I398,G220,J398,');
 INSERT INTO hymns VALUES('E537','*','Albert Benjamin Simpson (1843-1919)','SO SUBJECTIVE IS MY CHRIST TO ME!','Christ to me is so subjective,','E','F Major','Experience of Christ','8.7.8.7. with chorus.','537','As the Subjective One','6/8','55324712316515312',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0537_g.svg',NULL,'C397,T537,K397,CB537,S423,J397,I397,G221,Z397,');
@@ -589,7 +589,7 @@ INSERT INTO hymns VALUES('E562','C. B. J. Root','D. C. Wright','ABIDING, ABIDING
 INSERT INTO hymns VALUES('E563','J. Denham Smith','Arthur Seymour Sullivan (1842-1900)',NULL,'Abide in Thee! In that deep love of Thine,','E','Eb Major','Experience of Christ','10.10.10.10.','563','Abiding in Him','4/4','3214323127',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0563_g.svg',NULL,'C420,Z420,K420,S444,T563,I420,FR104,J420,BF75,');
 INSERT INTO hymns VALUES('E564','Albert Benjamin Simpson (1843-1919)','James H. Burke','I''M ABIDING IN THE LORD','I have learned the wondrous secret','E','D Major','Experience of Christ','8.7.8.7.D. with chorus.','564','Abiding in Him','4/4','543321554366665',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0564_g.svg',NULL,'ZS432,S445,CS432,T564,F564,SK564,');
 INSERT INTO hymns VALUES('E565','William Orcutt Cushing (1823-1902)','Ira David Sankey (1840-1908)','UNDER HIS WINGS, UNDER HIS WINGS,','Under His wings I am safely abiding;','E','Db Major','Experience of Christ','11.10.11.10. with chorus.','565','Abiding in Him','6/4','34455556354',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0565_g.svg',NULL,'K492,J492,C492,I492,Z492,');
-INSERT INTO hymns VALUES('E566','William Orcutt Cushing (1823-1902)','Ira David Sankey (1840-1908)','HIDING IN THEE, HIDING IN THEE,','Oh, safe to the Rock that is higher than I,','E','Eb Major','Experience of Christ','11.11.11.11. with chorus.','566','Abiding in Him','4/4','5554332117671',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0566_g.svg',NULL,'');
+INSERT INTO hymns VALUES('E566','William Orcutt Cushing (1823-1902)','Ira David Sankey (1840-1908)','HIDING IN THEE, HIDING IN THEE,','Oh, safe to the Rock that is higher than I,','E','Eb Major','Experience of Christ','11.11.11.11. with chorus.','566','Abiding in Him','4/4','554332117671',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0566_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E567','James George Deck (1807-1884)','From Little Flock Hymns with Optional Tunes',NULL,'O Lamb of God, still keep me','E','F Major','Experience of Christ','7.6.7.6.','567','Abiding in Him','4/4','5334721544342',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0567_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E568','Louisa M. R. Stead (circa 1850-1917)','William James Kirkpatrick (1838-1921)',NULL,'''Tis so sweet to trust in Jesus,','E','G Major','Experience of Christ','8.7.8.7.D.','568','Trusting Him','4/4','321761651353212',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0568_g.svg',NULL,'I516,J516,T568,C516,Z516,K516,');
 INSERT INTO hymns VALUES('E569','Edgar Page Stites (1836-1921)','Ira David Sankey (1840-1908)','TRUSTING AS THE MOMENT FLY,','Simply trusting every day;','E','F Major','Experience of Christ','7.7.7.7.D.','569','Trusting Him','6/4','324332116165132',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0569_g.svg',NULL,'F569,S448,FR105,');
@@ -621,7 +621,7 @@ INSERT INTO hymns VALUES('E594','*','From Franz Joseph Haydn (1732-1809)','FOLLO
 INSERT INTO hymns VALUES('E595','Margaret E. Barber, adapted (1869-1930)','Robert Lowry (1826-1899)',NULL,'There is always something over,','E','G Major','Experience of Christ','8.7.8.7.D. with repeat.','595','His Overflowing Satisfaction','6/4','333321511327123',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0595_g.svg',NULL,'Z434,CS434,T589,ZS434,G250,S461,F595,T595,CB595,C434,');
 INSERT INTO hymns VALUES('E596','Sister Eva of Friedenshort, adapted','George Coles Stebbins (1846-1945)',NULL,'Mine is the earth, the worlds in all their fulness;','E','Bb Major','Experience of Christ','11.10.11.10.','596','General','4/4','53465712715',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0596_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E597','Charles Wesley (1707-1788)','George Frederick Handel, arranged (1685-1759)',NULL,'I know that my Redeemer lives','E','C Major','Experience of Christ','8.6.8.6.','597','General','3/4','5132164343',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0597_g.svg',NULL,',FR120,S491,');
-INSERT INTO hymns VALUES('E598','Christian Friedrich Richter (1676-1711)','Edward John Hopkins, adapted (1818-1901)',NULL,'All fair within those children of the light,','E','F Major','Experience of Christ','10.10.10.10.8.8.8.8.','598','General','4/4','55651171231',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0598_g.svg',NULL,'C440,J440,T598,I440,K440,Z440,');
+INSERT INTO hymns VALUES('E598','Christian Friedrich Richter (1676-1711)','Edward John Hopkins, adapted (1818-1901)',NULL,'All fair within those children of the light,','E','F Major','Experience of Christ','10.10.10.10.8.8.8.8.','598','General','4/4','5565117123',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0598_g.svg',NULL,'C440,J440,T598,I440,K440,Z440,');
 INSERT INTO hymns VALUES('E599','William Tidd Matson (1833-1899)','W. Moore',NULL,'Lord, I was blind; I could not see','E','F Major','Experience of Christ','8.8.8.8.','599','General','4/2','3321362171',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0599_g.svg',NULL,'BF106,S492,');
 INSERT INTO hymns VALUES('E600','Isaac Watts (1674-1748)','Thomas Hastings (1784-1872)',NULL,'My God, my Portion, and my Love,','E','G Major','Experience of God','8.6.8.6. with repeat.','600','As the Everlasting Portion','6/8','51122321566165',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0600_g.svg','Psalms 16,Psalms 90,','C441,K441,T600,J441,FR234,CB600,I441,BF78,S493,Z441,');
 INSERT INTO hymns VALUES('E601','Anna Laetitia Waring (1823-1910)','Swiss melody','OH, PEACE OF GOD THAT PASSETH THOUGHT,','My heart is resting, O my God,','E','A Major','Experience of God','8.6.8.6.D.','601','As the Everlasting Portion','3/4','55655655153335432',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0601_g.svg',NULL,'');
@@ -686,7 +686,7 @@ INSERT INTO hymns VALUES('E659','G. M. J.','James McGranahan (1840-1907)','IF GO
 INSERT INTO hymns VALUES('E660','Anon.','F. W. Blunt',NULL,'In nothing be anxious; the Lord is at hand.','E','G Major','Encouragement','11.11.11.11.','660','For Not Being Anxious','4/4','56711755655',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0660_g.svg',NULL,'K481,J481,C481,I481,Z481,T660,');
 INSERT INTO hymns VALUES('E661','Frances Ridley Havergal (1836-1879)','From German',NULL,'Master, how shall I bless Thy name','E','E Major','Encouragement','8.6.8.6.8.6.','661','For Not Being Anxious','6/4','5333234275111712',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0661_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E662','Margaret E. Barber (1869-1930)','Anon.',NULL,'"On toward the goal!" Press on!','E','Ab Major','Encouragement','6.6.8.6.','662','For Pressing On','6/8','53721655665653',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0662_g.svg',NULL,'C484,J484,S533,I484,K484,T662,Z484,');
-INSERT INTO hymns VALUES('E663','Henry Alford (1810-1871)','From Franz Joseph Haydn (1732-1809)',NULL,'"Forward!" be our watchword,','E','F Major','Encouragement','6.5.6.5.D. with chorus.','663','For Pressing On','4/4','33221555662',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0663_g.svg',NULL,'C483,S534,K483,J483,I483,T663,CB663,Z483,');
+INSERT INTO hymns VALUES('E663','Henry Alford (1810-1871)','From Franz Joseph Haydn (1732-1809)',NULL,'"Forward!" be our watchword,','E','F Major','Encouragement','6.5.6.5.D. with chorus.','663','For Pressing On','4/4','33221555662443326',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0663_g.svg',NULL,'C483,S534,K483,J483,I483,T663,CB663,Z483,');
 INSERT INTO hymns VALUES('E664','John Nelson Darby (1800-1882)','Geistliche Lieder, German',NULL,'Rise, my soul, thy God directs thee;','E','A Major','Encouragement','8.7.8.7.','664','For Pressing On','3/4','355117665',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0664_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E665','John Morison','Neil Dougall (1776-1862)',NULL,'Come, let us to the Lord our God','E','D Major','Encouragement','8.6.8.6.','665','For Returning to the Lord','4/4','135653321651651232',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0665_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E666','*','Lowell Mason (1792-1872)',NULL,'Watch, for the night is ending!','E','F Major','Encouragement','7.6.7.5.D.','666','For Watching','4/4','5345565111123',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0666_g.svg',NULL,'C486,C485,Z486,S536,K486,T666,I486,CB666,I485,J486,Z485,');
@@ -1283,7 +1283,7 @@ INSERT INTO hymns VALUES('E1256','','',NULL,'Praise the Lord, we''re in the Lord
 INSERT INTO hymns VALUES('E1257','','','''TIS THE LOCAL CHURCH, THE CHURCH GOD HAS CHOSEN,','Do you see them in the cities,','E','Bb Major','The Church','8.7.8.7. with chorus.','1257','Her Local Expression','4/4','556712156712165',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1257_g.svg',NULL,'T1257,ZS514,G360,S670,I1514,CS514,CB1257,');
 INSERT INTO hymns VALUES('E1258','','Rowland Huw Prichard (1811-1887)',NULL,'Oh, how lovable, how precious','E','F Major','The Church','8.7.8.7.D.','1258','Her Local Expression','3/4','121234321254332121',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1258_g.svg','Psalms 84,','ZS536,K784,S671,CS536,');
 INSERT INTO hymns VALUES('E1259','','Arthur Seymour Sullivan (1842-1900)','SEE THE LOCAL CHURCHES,','See the local churches,','E','Eb Major','The Church','6.5.6.5.D. with chorus.','1259','Her Local Expression','4/4','555556522123',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1259_g.svg',NULL,'CS511,ZS511,I1511,S672,T1259,');
-INSERT INTO hymns VALUES('E1260','','',NULL,'We''re in the local church,','E','C Major','The Church','Peculiar Meter.','1260','Her Local Expression','4/4','1356611251',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1260_g.svg',NULL,'FR161,G361,CB1260,T1260,I1516,S673,ZS516,CS516,');
+INSERT INTO hymns VALUES('E1260','','',NULL,'We''re in the local church,','E','C Major','The Church','Peculiar Meter.','1260','Her Local Expression','4/4','1356361251',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1260_g.svg',NULL,'FR161,G361,CB1260,T1260,I1516,S673,ZS516,CS516,');
 INSERT INTO hymns VALUES('E1261','','William Fiske Sherwin (1826-1888)','PURPOSE, PURPOSE, THINE ETERNAL PURPOSE;','In Chicago land we must take our stand','E','Ab Major','The Church','Peculiar Meter.','1261','Her Local Expression','4/4','5534564321',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1261_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E1262','','Ira David Sankey (1840-1908)',NULL,'It''s by our mingled spirit, Lord,','E','Eb Major','The Church','8.6.8.6.D.','1262','Her Local Expression','6/8','55112177442543',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1262_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E1263','','Franz Joseph Haydn (1732-1809)',NULL,'There''s a church in New York City,','E','Eb Major','The Church','8.7.8.7.D.','1263','Her Local Expression','4/4','12324327165432315',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1263_g.svg',NULL,'');
@@ -1553,7 +1553,7 @@ INSERT INTO hymns VALUES('C178','','','看，這神聖筵席！','為這筵席�
 INSERT INTO hymns VALUES('C179','','',NULL,'當我注視你這桌子，','C','降B大調3/4','讚美主','8686','179','對祂的記念',NULL,' 5565565321','E220',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C180','','',NULL,'在此我要，','C','降E大調4/4','讚美主','10 10 10 10','180','對祂的記念',NULL,' 3123543321','E225',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C181','','','你嘗死亡苦味，','哦主耶穌，藉著餅杯，','C','降E大調4/4','讚美主','8787雙副','181','對祂的記念',NULL,' 546553543243321','E227',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('C182','','',NULL,'在你首次要顯你死之時，','C','降E大調4/4','讚美主','10 10 10 10 10 10','182','對祂的記念',NULL,' 11265333445',NULL,NULL,NULL,'I182,Z182,');
+INSERT INTO hymns VALUES('C182','','',NULL,'在你首次要顯你死之時，','C','降E大調4/4','讚美主','10 10 10 10 10 10','182','對祂的記念',NULL,'3556561171',NULL,NULL,NULL,'I182,Z182,');
 INSERT INTO hymns VALUES('C183','','',NULL,'咒詛祂受，祝福我享；','C','G大調3/4','讚美主','8888','183','對祂的記念',NULL,' 1712353232165121',NULL,NULL,NULL,'I183,Z183,');
 INSERT INTO hymns VALUES('C184','','',NULL,'主耶穌，當那晚間，','C','降E大調4/4','讚美主','7676雙','184','對祂的記念',NULL,' 12333331122771','E213',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C185','','',NULL,'為著這餅我感謝你，','C','G大調3/4','讚美主','8686','185','對祂的記念',NULL,' 54351527543','E222',NULL,NULL,NULL);
@@ -1583,7 +1583,7 @@ INSERT INTO hymns VALUES('C208','','','求你賜下焚燒靈，','我今舉手�
 INSERT INTO hymns VALUES('C209','','',NULL,'耶穌，你的全勝的愛，','C','降B大調6/8','聖靈的豐滿','8686重','209','火',NULL,' 51122321566165','E264',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C210','','','我是呼出我的愁苦，','主，求你向我吹聖靈，','C','降B大調3/4','聖靈的豐滿','8787副','210','氣',NULL,' 555316533342543','E255',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C211','','',NULL,'生命之主，向我吹氣，','C','F大調3/4','聖靈的豐滿','8888','211','氣',NULL,' 33333543117123212','E254',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('C212','','','吹到！吹到！','聖靈的大風，','C','降B大調4/4','聖靈的豐滿','特副','212','風',NULL,' 55172133425231',NULL,NULL,NULL,'I212,Z212,');
+INSERT INTO hymns VALUES('C212','','','吹到！吹到！','聖靈的大風，','C','降B大調4/4','聖靈的豐滿','特副','212','風',NULL,'5534564321',NULL,NULL,NULL,'I212,Z212,');
 INSERT INTO hymns VALUES('C213','','','大能主阿，求你降臨，','主阿，願你屬天之風，','C','降E大調4/4','聖靈的豐滿','8686副','213','風',NULL,' 53455655323453','E257',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C214','','','哦主，現在將我來吹！','哦主，向我吹風，','C','E大調4/4','聖靈的豐滿','12 12 12 8副','214','風',NULL,' 561333321444','E256',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C215','','','在我裡面有一奇妙恩膏，','奇妙的恩膏住我裡面，','C','降A大調4/4','聖靈的豐滿','97107副','215','膏油',NULL,' 3556121332354671','E266',NULL,NULL,NULL);
@@ -1800,7 +1800,7 @@ INSERT INTO hymns VALUES('C426','','','信而順從！','當我同主行動，',
 INSERT INTO hymns VALUES('C427','','','無論何處要我跟隨，','我今聽見救主招呼，','C','G大調4/4','經歷基督','8889副','427','跟隨祂',NULL,' 5133433257213221','E586',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C428','','','步步追，步步隨，','跟主行走，心中甜美，','C','F大調4/4','經歷基督','8787副','428','跟隨祂',NULL,' 5671321611353232','E587',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C429','','',NULL,'『出到營外』就耶穌，','C','G大調4/4','經歷基督','7777','429','跟隨祂',NULL,' 35234233523421','E583',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('C430','','','模成，模成神子形像！','神照祂所豫知豫定，','C','D大調4/4','經歷基督','886副','430','模成祂的形像',NULL,' 54565424347653',NULL,NULL,NULL,'I430,Z430,');
+INSERT INTO hymns VALUES('C430','','','模成，模成神子形像！','神照祂所豫知豫定，','C','D大調4/4','經歷基督','886副','430','模成祂的形像',NULL,'5321176554353212',NULL,NULL,NULL,'I430,Z430,');
 INSERT INTO hymns VALUES('C431','','',NULL,'看！從那些卑賤瓦器，','C','降E大調3/4','經歷基督','8787','431','彰顯祂',NULL,' 53531765311235432','E590',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C432','','','寶貝放在瓦器裡面，','神的自己照在我心，','C','G大調3/4','經歷基督','8888副','432','彰顯祂',NULL,' 5135332234442171',NULL,NULL,NULL,'I432,Z432,');
 INSERT INTO hymns VALUES('C433','','','哦，求主救我脫離自己！','非我惟主，','C','降E大調2/2','經歷基督','11 10 11 10副','433','彰顯祂',NULL,' 17123324352','E591',NULL,NULL,NULL);
@@ -1853,7 +1853,7 @@ INSERT INTO hymns VALUES('C479','','',NULL,'要思想耶穌，','C','降D大調4
 INSERT INTO hymns VALUES('C480','','',NULL,'你們能否順從','C','E大調4/4','鼓勵','6565雙','480','順從主',NULL,' 35651543211','E657',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C481','','',NULL,'應當一無罣慮，','C','降A大調4/4','鼓勵','11 11 11 11','481','相信主',NULL,' 56711755655','E660',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C482','','','天地雖能被焚燒，','神的應許不能廢去，','C','降A大調6/8','鼓勵','8686副','482','相信主',NULL,' 34323215666443',NULL,NULL,NULL,'I482,Z482,');
-INSERT INTO hymns VALUES('C483','','',NULL,'前進！是我口號，','C','G大調4/4','鼓勵','656565雙','483','努力向前',NULL,' 33221555662','E663',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('C483','','',NULL,'前進！是我口號，','C','G大調4/4','鼓勵','656565雙','483','努力向前',NULL,'33221555662443326','E663',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C484','','',NULL,'當向標竿力前！','C','降B大調6/8','鼓勵','6686','484','努力向前',NULL,' 53721655665653','E662',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C485','','',NULL,'靠著恩主全能神，','C','降D大調4/4','鼓勵','第一辭76737773','485','努力向前',NULL,' 565565515544655','E666',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C487','','',NULL,'靈要操練運用，','C','D大調4/4','鼓勵','6565','487','運用靈',NULL,' 11265333445',NULL,NULL,NULL,'I487,Z487,');
@@ -2066,7 +2066,7 @@ INSERT INTO hymns VALUES('C693','','','榮耀！榮耀！阿利路亞！','基�
 INSERT INTO hymns VALUES('C694','','',NULL,'主是生命，主是復活，','C','D大調2/4','福音','8686重','694','生命',NULL,' 17654321566771','E1015',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C695','','','真福音，真福音，','救主為我死，','C','G大調4/4','福音','10 10 10 6副','695','生命',NULL,' 1121765123','E1014',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C696','','',NULL,'聽阿，有一隱藏奧祕，','C','降E大調2/4','福音','8886雙','696','奧祕',NULL,' 333135553222123335','E1073',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('C697','','','大信息！真奧祕！','大喜信息！驚天動地！','C','G大調3/2','福音','8888副','697','奧祕',NULL,' 332117615',NULL,NULL,NULL,'I697,Z697,');
+INSERT INTO hymns VALUES('C697','','','大信息！真奧祕！','大喜信息！驚天動地！','C','G大調3/2','福音','8888副','697','奧祕',NULL,'5123512334321321',NULL,NULL,NULL,'I697,Z697,');
 INSERT INTO hymns VALUES('C698','','',NULL,'我主耶穌是生命源，','C','D大調4/4','福音','特','698','活水',NULL,' 3455517666','E1069',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C699','','',NULL,'你的罪雖像硃紅，','C','降A大調3/4','福音','特','699','罪',NULL,' 555345655171765','E1037',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C700','','',NULL,'若盡得世界，','C','降E大調3/4','福音','10 9 10 9雙','700','虛空與痛苦',NULL,' 5565351217','E1079',NULL,NULL,NULL);
@@ -2130,8 +2130,8 @@ INSERT INTO hymns VALUES('C757','','','來罷！親愛主！','我能否忘快�
 INSERT INTO hymns VALUES('C758','','',NULL,'自伯大尼','C','D大調8/4','榮耀的盼望','11 10 11 10 11 11 11 11','758','渴望與祈求',NULL,' 712323653216','E958',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C759','','',NULL,'等到何日恩主纔回來？','C','降A大調4/4','榮耀的盼望','特','759','渴望與祈求',NULL,' 51321716532122432','E962',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C760','','','你來！就來！','自從當年','C','降A大調6/8','榮耀的盼望','11 10 11 10副','760','渴望與祈求',NULL,' 321171216651113211712','E959',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('C761','','',NULL,'主耶穌，主耶穌！','C','C大調4/4','榮耀的盼望','特','761','渴望與祈求',NULL,' 5123512334321321',NULL,NULL,NULL,'I761,Z761,');
-INSERT INTO hymns VALUES('C762','','','是否須再等幾年，','我主，我正等候你再臨，','C','D大調4/4','榮耀的盼望','9496雙副','762','渴望與祈求',NULL,' 3213211615312',NULL,NULL,NULL,'I762,Z762,');
+INSERT INTO hymns VALUES('C761','','',NULL,'主耶穌，主耶穌！','C','C大調4/4','榮耀的盼望','特','761','渴望與祈求',NULL,'35532123532',NULL,NULL,NULL,'I761,Z761,');
+INSERT INTO hymns VALUES('C762','','','是否須再等幾年，','我主，我正等候你再臨，','C','D大調4/4','榮耀的盼望','9496雙副','762','渴望與祈求',NULL,'3213211615312321321',NULL,NULL,NULL,'I762,Z762,');
 INSERT INTO hymns VALUES('C763','','','祂來，祂來，','榮耀盼望是基督，','C','降B大調6/8','榮耀的盼望','特副','763','基督作榮耀',NULL,' 5566116355663','E949',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C764','','','榮耀！榮耀！','歷代隱藏奧祕，','C','降B大調4/4','榮耀的盼望','11 9 11 9副','764','基督在我裏面',NULL,' 55653121671','E948',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C765','','',NULL,'當我恩主降臨時候，','C','降A大調4/4','榮耀的盼望','8884重','765','與主相見',NULL,' 5333234322','E965',NULL,NULL,NULL);
@@ -2166,7 +2166,7 @@ INSERT INTO hymns VALUES('CS13','Adapted',NULL,NULL,'我要永遠的歌唱','CS'
 INSERT INTO hymns VALUES('CS14',NULL,NULL,NULL,'你們要向主稱頌，','CS','C大調4/4','你們要向主稱頌',NULL,'14',NULL,'4/4','34556351111765',NULL,NULL,NULL,'I1014,ZS14,');
 INSERT INTO hymns VALUES('CS15','Adapted','Down by the Riverside','今在靈裡我能享受','我要不住讚美稱頌神，','CS','G大調4/4','我要不住讚美稱頌神',NULL,'15',NULL,'4/4','332356113','NS131',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS16','Adapted',NULL,NULL,'我們同聲讚美','CS','e小調4/4','召會的讚美','11.10.11.10. with chorus.','16',NULL,'4/4','671233343463','E1222',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('CS17',NULL,NULL,NULL,'樂，樂，樂，','CS','G大調4/4','樂！樂！樂',NULL,'17',NULL,'4/4','321332172',NULL,NULL,NULL,'I1017,ZS17,');
+INSERT INTO hymns VALUES('CS17',NULL,NULL,NULL,'樂，樂，樂，','CS','G大調4/4','樂！樂！樂',NULL,'17',NULL,'4/4','321332172432221231',NULL,NULL,NULL,'I1017,ZS17,');
 INSERT INTO hymns VALUES('CS18','Edwin Othello Excell','Edwin Othello Excell','自從我被贖回，','我有一詩歌我愛唱，','CS','G大調4/4','自從我被贖回','8.6.8.6. with chorus.','18',NULL,'4/4','5123456543133215','E302',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS19','Charles Hutchinson Gabriel','Charles Hutchinson Gabriel','何等希奇！何等奇妙！','我在拿撒勒人耶穌面前','CS','降A大調4/4','我在拿撒勒人耶穌面前','8.7.8.7. with chorus.','19',NULL,'4/4','553512311777121','E290',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS20','Edward Perronet','James Ellor','加冠祂，加冠，加冠，','何等權能！耶穌尊名！','CS','降B大調3/4','加冠祂萬有主','8.6.8.6. with repeat.','20',NULL,'3/4','51234512171','E139',NULL,NULL,NULL);
@@ -2203,7 +2203,7 @@ INSERT INTO hymns VALUES('CS123',NULL,NULL,NULL,'阿利路亞！阿利路亞！'
 INSERT INTO hymns VALUES('CS124','Adapted',NULL,NULL,'是生命，生命','CS','G大調4/4','是生命使我們高聲喊',NULL,'124',NULL,'4/4','123333432311122123',NULL,NULL,NULL,'ZS124,');
 INSERT INTO hymns VALUES('CS125','Adapted','Charles Austin Miles',NULL,'主是生命種子，','CS','降B大調4/4','主是生命種子','14.14.14.14. with chorus.','125',NULL,'4/4','53332117121615','E1242',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS126',NULL,NULL,NULL,'生命的種子撒我裡，','CS','D大調4/4','我要讓祂長大',NULL,'126',NULL,NULL,' 55556531555531',NULL,NULL,NULL,'ZS126,');
-INSERT INTO hymns VALUES('CS127','Adapted',NULL,NULL,'主，給我們看見你心意，','CS','d小調4/4','國度原是主的自己',NULL,'127',NULL,'4/4','32163212612756',NULL,NULL,NULL,'I1127,ZS127,');
+INSERT INTO hymns VALUES('CS127','Adapted',NULL,NULL,'主，給我們看見你心意，','CS','d小調4/4','國度原是主的自己',NULL,'127',NULL,'4/4','3216321266712756',NULL,NULL,NULL,'I1127,ZS127,');
 INSERT INTO hymns VALUES('CS128',NULL,NULL,NULL,'國度就是基督作生命，','CS','D大調2/4','國度就是基督作生命',NULL,'128',NULL,NULL,' 35555154257776543',NULL,NULL,NULL,'I1128,ZS128,');
 INSERT INTO hymns VALUES('CS129',NULL,NULL,NULL,'耶穌我太陽，','CS','G大調4/4','耶穌我太陽',NULL,'129',NULL,NULL,' 5123332311',NULL,NULL,NULL,'I1129,ZS129,');
 INSERT INTO hymns VALUES('CS130',NULL,NULL,NULL,'主耶穌，作了我人位；','CS','F大調4/4','主耶穌作了我人位',NULL,'130',NULL,NULL,' 5113321252244271',NULL,NULL,NULL,'I1130,ZS130,');
@@ -2300,7 +2300,7 @@ INSERT INTO hymns VALUES('CS407',NULL,NULL,NULL,'哦，讓我們將','CS','F大�
 INSERT INTO hymns VALUES('CS408','Adapted','Herbert G. Tovey',NULL,'挖透我，挖透我，','CS','降B大調4/4','挖透我','9.10.9.10. with chorus.','408',NULL,'4/4','345565123','E1214',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS409','Adapted',NULL,'哦主阿！更多來湧流！','有一生命比心思更深，','CS','降E大調2/2','哦主阿，更多來湧流',NULL,'409',NULL,'4/4','53217167534555323465','NS217',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS410','Adapted','George Bennard','主，我寶貝這生命的流，','從我靈裡深處，','CS','降B大調6/8','主，我寶貝這生命的流','12.8.12.8. with chorus.','410',NULL,'3/4','345465556576','E1191',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('CS411',NULL,NULL,NULL,'我們可以立刻勝過仇敵，','CS','G大調4/4','取用寶血','特','411',NULL,'4/4','1112332321',NULL,NULL,NULL,'I1411,ZS411,');
+INSERT INTO hymns VALUES('CS411',NULL,NULL,NULL,'我們可以立刻勝過仇敵，','CS','G大調4/4','取用寶血','特','411',NULL,'4/4','1112332321221217',NULL,NULL,NULL,'I1411,ZS411,');
 INSERT INTO hymns VALUES('CS412',NULL,NULL,NULL,'喫喝主的話就不萎縮，','CS','D大調4/4','在話的水裡泡','特','412',NULL,'4/4','123216121',NULL,NULL,NULL,'I1412,ZS412,');
 INSERT INTO hymns VALUES('CS413','Adapted','Scotch Air',NULL,'『阿們』，主耶穌！','CS','F大調4/4','阿們，主耶穌','8.6.8.6.D.','413',NULL,'4/4','511132123211356',NULL,NULL,NULL,'I1413,ZS413,');
 INSERT INTO hymns VALUES('CS414','Adapted',NULL,NULL,'你若要脫離世界的轄制，','CS','F大調4/4','阿們神的話語','10.6.10.6. with chorus.','414',NULL,'4/4','3343512345553132','E1218',NULL,NULL,NULL);
@@ -2316,11 +2316,11 @@ INSERT INTO hymns VALUES('CS423','Adapted','Friedrich-Wilhelm Moller','向前跑
 INSERT INTO hymns VALUES('CS424','Adapted','William Augustine Ogden','當望斷以及於祂！','我們有當跑的路，','CS','G大調4/4','一路跑盡','11.9.11.9. with chorus.','424',NULL,'4/4','55111176554221111721','E1206',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS425',NULL,NULL,NULL,'曙光初現，心清靈明，','CS','E大調4/4','與主相見在清晨','特','425',NULL,'4/4','511123666332121217',NULL,NULL,NULL,'ZS425,');
 INSERT INTO hymns VALUES('CS426',NULL,NULL,NULL,'我們是一粒粒『麥子』，','CS','e小調4/4','我們是一粒粒『麥子』','特','426',NULL,'4/4','312321177127121776',NULL,NULL,NULL,'ZS426,');
-INSERT INTO hymns VALUES('CS427','Adapted',NULL,'願神這永遠經綸異象，','主呼召我們在這裡，','CS','D大調4/4','為神永遠的經綸',NULL,'427',NULL,'4/4','55555431','NS28',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('CS427','Adapted',NULL,'願神這永遠經綸異象，','主呼召我們在這裡，','CS','D大調4/4','為神永遠的經綸',NULL,'427',NULL,'4/4','5555543144424275','NS28',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS428',NULL,NULL,NULL,'讓我愛而不受感戴，','CS','e小調4/4','讓我愛',NULL,'428',NULL,'4/4','336617665671132117',NULL,NULL,NULL,'ZS428,');
 INSERT INTO hymns VALUES('CS429',NULL,NULL,NULL,'	主阿，在那清晨，你去海邊等待彼得；','CS','降E大調','追求與長進','特','429',NULL,'4/4','53345752123453',NULL,NULL,NULL,'ZS429,');
 INSERT INTO hymns VALUES('CS501','Adapted','Ira David Sankey',NULL,'今從律法轉向基督，','CS','E大調6/8','基督乃是殿，城，與地','8.8.8.6. with chorus.','501',NULL,'6/8','1333432135556523','E1224',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('CS502','Adapted',NULL,NULL,'當神將那被擄的帶回錫安，','CS','F大調4/4','神將被擄的帶回錫安','特','502',NULL,'2/4','12333444555543',NULL,NULL,NULL,'I1502,ZS502,');
+INSERT INTO hymns VALUES('CS502','Adapted',NULL,NULL,'當神將那被擄的帶回錫安，','CS','F大調4/4','神將被擄的帶回錫安','特','502',NULL,'2/4','51355654355',NULL,NULL,NULL,'I1502,ZS502,');
 INSERT INTO hymns VALUES('CS503','Adapted','Anthony Johnson Showalter',NULL,'落到巴比倫，','CS','A大調4/4','回耶路撒冷','10.9.10.9. with chorus.','503',NULL,'4/4','3332122216','E1252',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS504','Adapted',NULL,NULL,'我已揀選了錫安，','CS','G大調6/4','我已揀選了錫安','特','504',NULL,'6/4','555321651232','E1338',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS505','Adapted','R. L.',NULL,'耶和華所救贖的民','CS','降A大調4/4','歌唱到來錫安','特','505',NULL,'4/4','55635635635','E1341',NULL,NULL,NULL);
@@ -2334,7 +2334,7 @@ INSERT INTO hymns VALUES('CS512','Adapted','Robert A. Schumann',NULL,'在啟示�
 INSERT INTO hymns VALUES('CS513','Adapted',NULL,NULL,'看哪！','CS','F大調4/4','救贖者的讚美','特','513',NULL,'4/4','511111111223','E1348',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS514','Adapted',NULL,'這是地方召會，','看哪！他們在各城裡，','CS','C大調4/4','這是地方召會','8.7.8.7. with chorus.','514',NULL,'4/4','556712156712165','E1257',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS515','Adapted','Welsh Air Luther O. Emerson',NULL,'這是地方召會宣告：','CS','G大調4/4','這是地方召會宣告','8.4.8.4.8.8.8.4.','515',NULL,'4/4','176121756771','E1096',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('CS516','Adapted',NULL,NULL,'在地方召會中─','CS','C大調4/4','在地方召會中','特','516',NULL,'4/4','1356611251','E1260',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('CS516','Adapted',NULL,NULL,'在地方召會中─','CS','C大調4/4','在地方召會中','特','516',NULL,'4/4','1356361251','E1260',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS517','Adapted',NULL,NULL,'基督是元首，','CS','降A大調4/4','基督是元首，在地方召會',NULL,'517',NULL,'4/4','3323121615',NULL,NULL,NULL,'I1517,ZS517,');
 INSERT INTO hymns VALUES('CS518',NULL,NULL,NULL,'地方召會，可愛的召會，','CS','F大調2/2','地方召會─可愛的召會','特','518',NULL,'2/2','51355631351325721',NULL,NULL,NULL,'I1518,ZS518,');
 INSERT INTO hymns VALUES('CS519','Adapted',NULL,'哦，地方召會，','看哪，萬民流歸這山，','CS','C大調4/4','地方召會，主何等祝福你','8.7.8.7. with chorus.','519',NULL,'4/4','556712156712165',NULL,NULL,NULL,'I1519,ZS519,');
@@ -2353,7 +2353,7 @@ INSERT INTO hymns VALUES('CS531',NULL,NULL,NULL,'我們在流中，','CS','G大�
 INSERT INTO hymns VALUES('CS532','Adapted','Anon.','哦！我們竟成為','何等奇妙的事實，','CS','F大調4/4','我竟成為你基業','8.7.8.7. with chorus.','532',NULL,'4/4','33355433235321',NULL,NULL,NULL,'I1532,ZS532,');
 INSERT INTO hymns VALUES('CS533',NULL,NULL,NULL,'我們在曠野流落，','CS','C大調2/4','榮耀在望','特','533',NULL,'2/4','5556715553251',NULL,NULL,NULL,'I1533,ZS533,');
 INSERT INTO hymns VALUES('CS601',NULL,'Trench C. J.','建造我，主耶穌！','神的生命，是人需要；','CS','G大調4/4','建造是神的目標','7.6.7.6.D.','601',NULL,'4/4','35656121223261121',NULL,NULL,NULL,'I1601,ZS601,');
-INSERT INTO hymns VALUES('CS602',NULL,NULL,NULL,'我們看見你榮耀計畫，','CS','降B大調4/4','為你計畫我們獻自己','特','602',NULL,'4/4','35656121223261121',NULL,NULL,NULL,'I1602,ZS602,');
+INSERT INTO hymns VALUES('CS602',NULL,NULL,NULL,'我們看見你榮耀計畫，','CS','降B大調4/4','為你計畫我們獻自己','特','602',NULL,'4/4','56121316556121316',NULL,NULL,NULL,'I1602,ZS602,');
 INSERT INTO hymns VALUES('CS603','Adapted',NULL,NULL,'記得大衛起誓：','CS','降E大調4/4','建造當趁今日','特','603',NULL,'4/4','56121316556121316','E1248',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS604',NULL,NULL,NULL,'全地平靜安息，','CS','降E大調2/4','我們手拿線鉈','特','604',NULL,'2/4','51333355443322',NULL,NULL,NULL,'I1604,ZS604,');
 INSERT INTO hymns VALUES('CS605','Adapted','William James Kirkpatrick','為建造！為建造！','萬世之前主選我，','CS','降E大調4/4','為建造','7.7.7.3. with chorus.','605',NULL,'4/4','12333331355555',NULL,NULL,NULL,'I1605,ZS605,');
@@ -2453,7 +2453,7 @@ INSERT INTO hymns VALUES('CS828','Adapted',NULL,NULL,'你若渴慕得著主，',
 INSERT INTO hymns VALUES('CS829',NULL,NULL,NULL,'你若虛空，','CS','G大調4/4','你的答案乃是耶穌','特','829',NULL,'4/4','55555556165727135',NULL,NULL,NULL,'I1829,ZS829,');
 INSERT INTO hymns VALUES('CS830','Adapted','William James Kirkpatrick',NULL,'呼喊主的名，','CS','A大調4/4','呼喊主名必得救','特','830',NULL,'4/4','5512312165',NULL,NULL,NULL,'I1830,ZS830,');
 INSERT INTO hymns VALUES('CS831',NULL,NULL,NULL,'朋友，朋友，','CS','a小調6/8','呼召','特','831',NULL,'6/8','3666671766771767',NULL,NULL,NULL,'I1831,ZS831,');
-INSERT INTO hymns VALUES('CS832','Horatius Bonar','John Bacchus Dykes',NULL,'我聽見了主耶穌說：','CS','d小調4/4','我聽見了主耶穌說','8.6.8.6.D.','832',NULL,'4/4','33667117766665',NULL,NULL,NULL,'ZS832,');
+INSERT INTO hymns VALUES('CS832','Horatius Bonar','John Bacchus Dykes',NULL,'我聽見了主耶穌說：','CS','d小調4/4','我聽見了主耶穌說','8.6.8.6.D.','832',NULL,'4/4','3216321266712756',NULL,NULL,NULL,'ZS832,');
 INSERT INTO hymns VALUES('CS833',NULL,NULL,NULL,'有一新生命，','CS','F大調4/4','有一新生命','特','833',NULL,'4/4','55533332133',NULL,NULL,NULL,'I1833,ZS833,');
 INSERT INTO hymns VALUES('CS834','Adapted','William Augustine Ogden','聽，主正在邀請，','『各樣都齊備』，','CS','降B大調4/4','各樣都齊備','特','834',NULL,'4/4','55565322116711765','E1330',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS835','Adapted',NULL,NULL,'何大憐憫，','CS','降B大調2/4','全家得救','11.10.11.10','835',NULL,'2/4','35131215176',NULL,NULL,NULL,'I1835,ZS835,');
@@ -2549,7 +2549,7 @@ INSERT INTO hymns VALUES('BF55','','',NULL,'Lord, I love You.','BF',NULL,NULL,NU
 INSERT INTO hymns VALUES('BF56','','','LORD, I''VE SEEN YOUR PURPOSE.','Though I love You, Lord,','BF',NULL,NULL,NULL,'56',NULL,NULL,NULL,'NS246',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF57','','','OH, LORD JESUS!','When all around my sky is falling','BF',NULL,NULL,NULL,'57',NULL,NULL,NULL,'NS204',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF58','','',NULL,'With the kisses of Your mouth,','BF',NULL,NULL,NULL,'58',NULL,NULL,NULL,'NS365',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF59','','',NULL,'I heard the voice of Jesus say, (New Tune)','BF','C Minor',NULL,NULL,'59',NULL,'4/4','32163212612756','E323','http://www.hymnal.net/Hymns/NewTunes/svg/e0323_new_g.svg',NULL,NULL);
+INSERT INTO hymns VALUES('BF59','','',NULL,'I heard the voice of Jesus say, (New Tune)','BF','C Minor',NULL,NULL,'59',NULL,'4/4','3216321266711233','E323','http://www.hymnal.net/Hymns/NewTunes/svg/e0323_new_g.svg',NULL,NULL);
 INSERT INTO hymns VALUES('BF60','','','AS THIS LIFE FLOWS THROUGH ME,','Christ has come to be life — the processed Divine Trinity.','BF',NULL,NULL,NULL,'60',NULL,NULL,NULL,'NS149',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF61','','',NULL,'O Love, that wilt not let me go, (New Tune)','BF','F Major',NULL,NULL,'61',NULL,'4/4','3333212111651132','E432','http://www.hymnal.net/Hymns/NewTunes/svg/e0432_new_g.svg',NULL,NULL);
 INSERT INTO hymns VALUES('BF62','','','I GIVE YOU THE FIRST PLACE IN ALL THINGS BY FAITH;','Loving You Lord''s all I''m living for,','BF',NULL,NULL,NULL,'62',NULL,NULL,NULL,'NS107',NULL,NULL,NULL);
@@ -3164,7 +3164,7 @@ INSERT INTO hymns VALUES('CB645','Helen Howarth Lemmel','Helen Howarth Lemmel','
 INSERT INTO hymns VALUES('CB656','Emily May Grimes','Harold Green',NULL,'"Isipa S’ya," himoang sumbanan,','CB','C Major','PAGDASIG','10.10.10.10.','656','NGA MAG-ISIP NI CRISTO','4/4','1461111765','E656',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB657','Margaret E. Barber bio','William Henry Monk',NULL,'Makasugot ba mo’s','CB','D Major','PAGDASIG','6.5.6.5.D.','657','NGA MOSUGOT SA GINOO','4/4','35651543211','E657',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB659','G. M. J.','James McGranahan','KON ANG ATONG DIOS DAPIG KANATO?','Magkalipay ta diha sa Ginoo,','CB','F Major','PAGDASIG','11.8.11.8. with chorus.','659','NGA MAGKALIPAY DIHA SA GINOO','4/4','53321121765','E659',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('CB663','Henry Alford','Franz Joseph Haydn',NULL,'"Sulong!" Isinggit ta,','CB','F Major','PAGDASIG','6.5.6.5.D.','663','NGA MAGPADAYON','4/4','33221555662','E663',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('CB663','Henry Alford','Franz Joseph Haydn',NULL,'"Sulong!" Isinggit ta,','CB','F Major','PAGDASIG','6.5.6.5.D.','663','NGA MAGPADAYON','4/4','33221555662443326','E663',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB666',NULL,'Lowell Mason',NULL,'Matapos nang gabii,','CB','F Major','PAGDASIG','7.6.7.5.D.','666','NGA MAGTUKAW','4/4','5345565111123','E666',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB671','Margaret E. Barber bio','James Langran',NULL,'Sa kahiladman sa Imong Ngalan,','CB','F Major','PAGLIPAY SA MGA PAGSULAY','10.10.10.10.','671','PINAAGI SA NGALAN SA GINOO','4/4','3123543321','E671',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB679','Fanny Jane Crosby','William Howard Doane','SA MGA BUKTON NI JESUS,','Sa mga bukton ni Jesus,','CB','F Major','PAGLIPAY SA MGA PAGSULAY','7.6.7.6.D. with chorus.','679','PINAAGI SA MGA BUKTON SA GINOO','4/4','32151343565312','E679',NULL,NULL,NULL);
@@ -3433,7 +3433,7 @@ INSERT INTO hymns VALUES('CB1252','Adapted','Anthony Johnson Showalter',NULL,'Sa
 INSERT INTO hymns VALUES('CB1254','Adapted','Alfred Henry Ackley','MAGMALIG-ON SA PAGTUKOD KARON,','Panahon na gyud karon pagtukod sa templo,','CB','Ab Major','ANG IGLESIA','Peculiar Meter.','1254','ANG PAHIULI SA GINOO','6/8','5566116355663','E1254',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB1255','Adapted',NULL,'ALANG’S GINOO,','Alang ta’s pagpahiuli’s','CB','G Major','ANG IGLESIA','Peculiar Meter.','1255','ANG PAHIULI SA GINOO','4/4','1515123144123','E1255',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB1257','Adapted',NULL,'IGLESIA LOKAL NGA PINILI SA DIOS,','Nakita ba’s syudad sila,','CB','Bb Major','ANG IGLESIA','8.7.8.7. with chorus.','1257','ANG LOKAL NGA PAGPADAYAG NIYA','4/4','556712156712165','E1257',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('CB1260','Adapted',NULL,NULL,'Na’s iglesia lokal, pinili’s Dios;','CB','C Major','ANG IGLESIA','Peculiar Meter.','1260','ANG LOKAL NGA PAGPADAYAG NIYA','4/4','1356611251','E1260',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('CB1260','Adapted',NULL,NULL,'Na’s iglesia lokal, pinili’s Dios;','CB','C Major','ANG IGLESIA','Peculiar Meter.','1260','ANG LOKAL NGA PAGPADAYAG NIYA','4/4','1356361251','E1260',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB1266','Adapted',NULL,'CRISTO UG IGLESIA,','Magmainiton gyud kita,','CB','C Major','ANG IGLESIA','Peculiar Meter.','1266','ANG LOKAL NGA PAGPADAYAG NIYA','4/4','1111113511111531','E1266',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB1273','Adapted','William James Kirkpatrick','DAG-ON TA! DAG-ON TA!','Gitawag na tang Cristo,','CB','D Major','ANG IGLESIA','7.7.7.3. with chorus.','1273','ANG MGA MANANAUG','4/4','12333331355555','E1273',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CB1278','Adapted',NULL,NULL,'Sa iglesia dunay gugma alang nimo,','CB','Db Major','ANG IGLESIA','11.11.11.11.','1278','LINANGKOB','4/4','123354323217','E1278',NULL,NULL,NULL);
@@ -3482,7 +3482,7 @@ INSERT INTO hymns VALUES('NS24',NULL,NULL,NULL,'Lord, You are more precious than
 INSERT INTO hymns VALUES('NS25','Y. J. L. S. H. T.','Y. J. L.',NULL,'O Lord, I love You,','NS','F Major','Experience of Christ',NULL,'25','Loving Him','3/4','345465321721',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0025_p.svg',NULL,'SY210,SK3004,ZS327,GY129,F1402,GK103,T20004,CS327,BF30,');
 INSERT INTO hymns VALUES('NS26','John Nelson Darby bio',NULL,NULL,'O the joy of having nothing and being nothing, seeing nothing','NS','D Major','Experience of Christ',NULL,'26','His Overflowing Satisfaction','4/4','1233455334554',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0026_p.svg','Psalms 73:25,','');
 INSERT INTO hymns VALUES('NS27','John Nelson Darby bio',NULL,NULL,'Oh! the joy of having nothing,','NS','F Major','Experience of Christ',NULL,'27','His Overflowing Satisfaction','4/4','3553255213317337',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0027_p.svg',NULL,'SY295,BF28,GY118,ZS329,CS329,T20005,');
-INSERT INTO hymns VALUES('NS28','Korean',NULL,'OH, MAY A CLEAR, CONTROLLING VISION OF','God has called us for His purpose,','NS','D Major','Ultimate Manifestation',NULL,'28','God’s Eternal Purpose','4/4','55555431',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0028_p.svg',NULL,'GY216,BF39,SY94,SK3018,I1429,ZS427,CS427,');
+INSERT INTO hymns VALUES('NS28','Korean',NULL,'OH, MAY A CLEAR, CONTROLLING VISION OF','God has called us for His purpose,','NS','D Major','Ultimate Manifestation',NULL,'28','God’s Eternal Purpose','4/4','5555543144424275',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0028_p.svg',NULL,'GY216,BF39,SY94,SK3018,I1429,ZS427,CS427,');
 INSERT INTO hymns VALUES('NS29',NULL,NULL,NULL,'SET YOUR MIND ON THE THINGS WHICH ARE ABOVE,','NS','D Major','Scriptures for Singing',NULL,'29',NULL,'4/4','153564566545',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0029_p.svg','Colossians 3:1-4,','');
 INSERT INTO hymns VALUES('NS30','A. J.','Heidi Johnsen',NULL,'Take time to receive Him—the blessing’s outpoured,','NS','F Major','Encouragement',NULL,'30','For Fellowship with the Lord','3/4','53432177615',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0030_p.svg',NULL,'SY40,');
 INSERT INTO hymns VALUES('NS31',NULL,NULL,NULL,'The flowing of life divine,','NS','E Major','Various Aspects of the Inner Life',NULL,'31','The Fellowship of Life','4/4','33512222254433',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0031_p.svg',NULL,'');
@@ -3500,7 +3500,7 @@ INSERT INTO hymns VALUES('NS42','E. J. C.','E. J. C.','LORD, I LOVE YOU MORE TOD
 INSERT INTO hymns VALUES('NS43',NULL,NULL,NULL,'LORD, I LOVE YOU, I JUST WANT TO LOVE YOU.','NS','C Major','Experience of Christ',NULL,'43','Loving Him','4/4','1563166545',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0043_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS44',NULL,NULL,NULL,'WE LOVE YOU, LORD, WE LOVE YOU.','NS','D Major','Experience of Christ',NULL,'44','Loving Him','4/4','35111212343213212',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0044_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS45',NULL,NULL,NULL,'The last Adam became a life-giving Spirit.','NS','E Major','Scriptures for Singing',NULL,'45',NULL,'4/4','5121231432122',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0045_p.svg','1 Corinthians 15:45b,','SK3019,');
-INSERT INTO hymns VALUES('NS46',NULL,NULL,'DRAW ME, LORD, EACH DAY.','Lord, You love me so immensely;','NS','F Major','Experience of Christ',NULL,'46','Loving Him','4/4','33332252',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0046_p.svg',NULL,'SY23,BF19,GY85,');
+INSERT INTO hymns VALUES('NS46',NULL,NULL,'DRAW ME, LORD, EACH DAY.','Lord, You love me so immensely;','NS','F Major','Experience of Christ',NULL,'46','Loving Him','4/4','3333225211117737',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0046_p.svg',NULL,'SY23,BF19,GY85,');
 INSERT INTO hymns VALUES('NS47','P. C.','P. C.','HALLELUJAH, HALLELUJAH, HALLELUJAH,','Known of my Father before time began,','NS','F Major','Blessing of the Trinity',NULL,'47','His Salvation','3/4','1111111512',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0047_p.svg',NULL,'BF29,GY161,SY117,');
 INSERT INTO hymns VALUES('NS48','P. C.','P. C.','FOR THIS HE CAME DOWN TO US,','God wants someone to love Him,','NS','F Major','Encouragement',NULL,'48','For Loving the Lord','4/4','11231232217567',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0048_p.svg',NULL,'SY284,BF49,GY132,');
 INSERT INTO hymns VALUES('NS49','P. W.','P. W.','BY A TOUCH OF HIS DEAR LOVE,','There are times and times again,','NS','Ab Major','Experience of Christ',NULL,'49','General','4/4','35113544322123',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0049_p.svg',NULL,'SY404,BF161,');
@@ -3527,7 +3527,7 @@ INSERT INTO hymns VALUES('NS69',NULL,NULL,'OH, OUR LOVE!','Jesus won’t You com
 INSERT INTO hymns VALUES('NS70','K. S. J.','K. S. J.',NULL,'I will not let Thee go, my Lord,','NS','F Major','Consecration',NULL,'70','Surrendering All to the Lord','3/4','5333451111443432',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0070_p.svg',NULL,'BF342,');
 INSERT INTO hymns VALUES('NS71',NULL,NULL,NULL,'I have lived my life by myself,','NS','G Major','Experience of Christ',NULL,'71','As the Emancipator','4/4','55613214',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0071_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS72','E. C.',NULL,NULL,'He’s the Spirit of reality,','NS','F Major','Fulness of the Spirit',NULL,'72','As the Spirit of Reality','4/4','123211235',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0072_p.svg',NULL,'BF72,');
-INSERT INTO hymns VALUES('NS73','A. K.','A. K.',NULL,'TRUST IN JEHOVAH WITH ALL YOUR HEART,','NS','D Major','Encouragement',NULL,'73','For Trusting the Lord','4/4','534555531',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0073_p.svg','Proverbs 3:5-6,Romans 11:33,Romans 11:36,','');
+INSERT INTO hymns VALUES('NS73','A. K.','A. K.',NULL,'TRUST IN JEHOVAH WITH ALL YOUR HEART,','NS','D Major','Encouragement',NULL,'73','For Trusting the Lord','4/4','5534555311234433213212',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0073_p.svg','Proverbs 3:5-6,Romans 11:33,Romans 11:36,','');
 INSERT INTO hymns VALUES('NS74','B. B. M. H.','D. J.',NULL,'Jesus, O living Word of God,','NS','F Major','Experience of Christ',NULL,'74','As Life','4/4','1232217112355176',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0074_p.svg',NULL,'SY99,BF13,GY93,');
 INSERT INTO hymns VALUES('NS75',NULL,NULL,'WATER YOU, WATER YOU,','From my spirit, when I’m sensing the supply','NS','F Major','Meetings',NULL,'75','Functioning','4/4','12332121161',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0075_p.svg',NULL,'BF288,CS136,T10108,ZS136,');
 INSERT INTO hymns VALUES('NS76',NULL,NULL,NULL,'The Lord has put me in the Body,','NS','D Major','The Church',NULL,'76','As Christ’s Body','4/4','555556554',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0076_p.svg',NULL,',T10624,');
@@ -3599,7 +3599,7 @@ INSERT INTO hymns VALUES('NS152',NULL,NULL,'LORD, I FULLY CONSECRATE MYSELF TO B
 INSERT INTO hymns VALUES('NS153',NULL,NULL,NULL,'Thy word is sweet unto my taste,','NS','F Major','Scriptures for Singing',NULL,'153',NULL,'4/4','533355443222432',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0153_p.svg','Psalms 119:103,Matthew 26:41,2 Timothy 2:22,','BF322,');
 INSERT INTO hymns VALUES('NS154',NULL,NULL,NULL,'God’s love: long, broad, high, and deep,','NS','Ab Major','Experience of Christ',NULL,'154','As Life','4/4','51612165561612321',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0154_p.svg',NULL,'BF157,C330,Z330');
 INSERT INTO hymns VALUES('NS155',NULL,NULL,NULL,'Let the word of Christ dwell in you','NS','D Major','Scriptures for Singing',NULL,'155',NULL,'4/4','13555653555653',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0155_p.svg','Colossians 3:16-17,','');
-INSERT INTO hymns VALUES('NS156',NULL,NULL,NULL,'Lord, I love You,','NS','D Major','Experience of Christ',NULL,'156','Loving Him','4/4','12351236',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0156_p.svg',NULL,'BF324,');
+INSERT INTO hymns VALUES('NS156',NULL,NULL,NULL,'Lord, I love You,','NS','D Major','Experience of Christ',NULL,'156','Loving Him','4/4','123511236',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0156_p.svg',NULL,'BF324,');
 INSERT INTO hymns VALUES('NS157','P. J. Heidi Johnsen',NULL,'DAY BY DAY,','We’re renewed and revived by the Lord day by day;','NS','G Major','Experience of Christ',NULL,'157','General','4/4','543351553321',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0157_p.svg','2 Corinthians 4:16,John 1:16,Proverbs 4:18,Lamentations 3:22-23,2 Corinthians 3:18,Psalms 84:7,Isaiah 28:13,Acts 2:46,1 Corinthians 14:31,Exodus 23:30,2 Corinthians 4:17,','');
 INSERT INTO hymns VALUES('NS158',NULL,NULL,'MOMENTS WITH YOU,','Immersed in Thy love;','NS','C Major','Experience of Christ',NULL,'158','Loving Him','4/4','32135321635',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0158_p.svg',NULL,'SY34,CS158,');
 INSERT INTO hymns VALUES('NS159','E. C.','E. C.','INCORPORATION! INCORPORATION—','Christ’s divinity’s glorious indeed;','NS','Db Major','Praise of the Lord',NULL,'159','Incorporation','4/4','1235565465',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0159_p.svg',NULL,'');
@@ -3775,8 +3775,8 @@ INSERT INTO hymns VALUES('NS330',NULL,NULL,'LORD, I CALL,','Turn, turn my heart 
 INSERT INTO hymns VALUES('NS331','M. C.','H. H.',NULL,'O God of love, in Your everlasting love,','NS','F Major','Experience of God',NULL,'331','His Purpose in Justification','3/4','51711671765',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0331_p.svg','Jeremiah,','');
 INSERT INTO hymns VALUES('NS332','E. P.','E. P.','SEARCH ME, O GOD, AND KNOW MY HEART;','Lord, You have searched me and You have known me.','NS','Eb Major','Various Aspects of the Inner Life',NULL,'332','Dealing with the Heart','4/4','3334443231',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0332_p.svg','Psalms 139,','BF344,');
 INSERT INTO hymns VALUES('NS333','Adapted','John Robson Sweney','FILL ME NOW! FILL ME NOW!','O how glorious! O how precious!','NS','F Major','Fulness of the Spirit','8.7.8.7. with chorus.','333','The Filling','6/4','332156123456532',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0333_p.svg',NULL,'');
-INSERT INTO hymns VALUES('NS334',NULL,NULL,NULL,'Emmanuel, Emmanuel,','NS','C Major','Praise of the Lord',NULL,'334','His Name','4/4','5176476536542543',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0334_p.svg',NULL,'');
-INSERT INTO hymns VALUES('NS335',NULL,NULL,NULL,'For I’m persuaded to believe','NS','C Major','Scriptures for Singing',NULL,'335',NULL,'4/4',NULL,NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0335_p.svg','Romans 8:38-39,','');
+INSERT INTO hymns VALUES('NS334',NULL,NULL,NULL,'Emmanuel, Emmanuel,','NS','C Major','Praise of the Lord',NULL,'334','His Name','4/4','517617653456',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0334_p.svg',NULL,'');
+INSERT INTO hymns VALUES('NS335',NULL,NULL,NULL,'For I’m persuaded to believe','NS','C Major','Scriptures for Singing',NULL,'335',NULL,'4/4','567111111233333332116123',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0335_p.svg','Romans 8:38-39,','');
 INSERT INTO hymns VALUES('NS336',NULL,NULL,NULL,'Great is the mystery of godliness,','NS','C Major','Scriptures for Singing',NULL,'336',NULL,'4/4','1516546571',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0336_p.svg','1 Timothy 3:15-16,','');
 INSERT INTO hymns VALUES('NS337',NULL,NULL,NULL,'Glory! Glory! Christ is life in me,','NS','Ab Major','Scriptures for Singing','9.9.11.9.','337',NULL,'4/4','335427113662321765',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0337_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS338',NULL,NULL,NULL,'Blessed are those who wash their robes','NS','D Major','Scriptures for Singing',NULL,'338',NULL,'4/4','1115556543334555432',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0338_p.svg','Revelation 22:13-14,','BF217,');
@@ -3790,7 +3790,7 @@ INSERT INTO hymns VALUES('NS345','Dallan Forgaill bio Mary Elizabeth Byrne Elean
 INSERT INTO hymns VALUES('NS346',NULL,NULL,NULL,'You shall love the Lord your God','NS','C Major','Scriptures for Singing',NULL,'346',NULL,'4/4',NULL,NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0346_p.svg','Luke 10:27,','');
 INSERT INTO hymns VALUES('NS347','R. A. R. M.','R. A. R. M.','OH, COME SEE A MAN,','One day as the Lord passed a well,','NS','C Major','Gospel',NULL,'347','General','4/4','5151252334323212',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0347_p.svg','John 4,',',GY240,SY291,');
 INSERT INTO hymns VALUES('NS348',NULL,NULL,NULL,'Incarnation','NS','Bb Major','Ultimate Manifestation',NULL,'348','God’s Eternal Purpose','4/4','1115444533354445',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0348_p.svg',NULL,'');
-INSERT INTO hymns VALUES('NS349',NULL,NULL,NULL,'The Lord be with your spirit,','NS','C Major','Scriptures for Singing',NULL,'349',NULL,'4/4',NULL,NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0349_p.svg','2 Timothy 4:22,','');
+INSERT INTO hymns VALUES('NS349',NULL,NULL,NULL,'The Lord be with your spirit,','NS','C Major','Scriptures for Singing',NULL,'349',NULL,'4/4','5112123517671',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0349_p.svg','2 Timothy 4:22,','');
 INSERT INTO hymns VALUES('NS350','M. D.','Grace Notes Brothers',NULL,'O Lord, we’d know Your heart today,','NS','F Major','Consecration',NULL,'350','Constrained by the Lord’s Love','4/4','3333212111651132',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0350_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS351','FTTJ Chinese','FTTJ','THROUGHOUT ALL THE WORLD, WHO COMPARES WITH THEE?','Jesus Lord, my best love Thou art,','NS','C Major','Experience of Christ',NULL,'351','Loving Him','4/4','3231116565644325',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0351_p.svg',NULL,'ZS345,I2028,CS345,SY236,GY141,');
 INSERT INTO hymns VALUES('NS352','J. G.','J. G.','IT WAS FOR HER THE CHURCH—HIS BRIDE','Don’t you want to know your God?','NS','Eb Major','The Church',NULL,'352','Her Attraction','4/4','123117157675656',NULL,'http://www.hymnal.net/Hymns/NewSongs/svg/ns0352_p.svg',NULL,'SK3025,CS352,BF372,GY197,SY109,');
@@ -4076,7 +4076,7 @@ INSERT INTO hymns VALUES('CH32',NULL,NULL,'YES, I WILL LISTEN,','There’s a par
 INSERT INTO hymns VALUES('CH33',NULL,NULL,NULL,'Did the mountains and the trees just happen?','CH','C Major','Gospel',NULL,'33','God’s Creation','4/4','12333316651233215',NULL,'http://www.hymnal.net/Hymns/Children/svg/child0033_g.svg',NULL,'');
 INSERT INTO hymns VALUES('CH34',NULL,NULL,NULL,'God said, God saw,','CH','F Major','Gospel',NULL,'34','God’s Creation','4/4','152531432',NULL,'http://www.hymnal.net/Hymns/Children/svg/child0034_g.svg',NULL,'');
 INSERT INTO hymns VALUES('CH35',NULL,NULL,NULL,'God is so good,','CH','F Major','Experience of God',NULL,'35','As Love','4/4','11322243335424321',NULL,'http://www.hymnal.net/Hymns/Children/svg/child0035_g.svg',NULL,'');
-INSERT INTO hymns VALUES('CH36',NULL,NULL,NULL,'God will do what He said He will do.','CH','C Major','Praise of the Lord',NULL,'36','His Faithfulness','4/4','1355566655444433225',NULL,'http://www.hymnal.net/Hymns/Children/svg/child0036_g.svg',NULL,'');
+INSERT INTO hymns VALUES('CH36',NULL,NULL,NULL,'God will do what He said He will do.','CH','C Major','Praise of the Lord',NULL,'36','His Faithfulness','4/4','1355666655444433225',NULL,'http://www.hymnal.net/Hymns/Children/svg/child0036_g.svg',NULL,'');
 INSERT INTO hymns VALUES('CH37',NULL,NULL,NULL,'Heaven’s for earth,','CH','C Major','Gospel',NULL,'37','God’s Creation','4/4','5355356543234',NULL,'http://www.hymnal.net/Hymns/Children/svg/child0037_g.svg',NULL,'');
 INSERT INTO hymns VALUES('CH38',NULL,NULL,'ENDING:','Look at all the flowers','CH','C Major','Gospel',NULL,'38','God’s Creation','4/4','555653555562',NULL,'http://www.hymnal.net/Hymns/Children/svg/child0038_g.svg',NULL,'');
 INSERT INTO hymns VALUES('CH39',NULL,NULL,NULL,'Never forget! That it’s God who created you,','CH','D Major','Gospel',NULL,'39','God’s Creation','4/4','353532112165',NULL,'http://www.hymnal.net/Hymns/Children/svg/child0039_g.svg',NULL,'');
@@ -4222,7 +4222,7 @@ INSERT INTO hymns VALUES('BF437','Margaret E. Barber bio','R. H.',NULL,'Thou Mag
 INSERT INTO hymns VALUES('BF438','Ray Palmer','Melissa Rosado',NULL,'I give my heart to Thee, (New Tune)','BF','Eb Major','Experience of Christ',NULL,'438','Love for Him','4/4','1517777111761','E543','https://www.hymnal.net/Hymns/NewTunes/svg/e0543_new_p.svg',NULL,'SY371,');
 INSERT INTO hymns VALUES('BF439','Charles Wesley bio','Lewis Edson',NULL,'Arise, my soul, arise! (New Tune)','BF','G Major','Assurance and Joy of Salvation','6.6.6.6.8.8.8.','439','Reconciled to God','4/4','111565512321','E300','https://www.hymnal.net/Hymns/Hymnal/svg/e0300b_p.svg',NULL,NULL);
 INSERT INTO hymns VALUES('C1001','Anon.','Anonymous',NULL,'頌讚與尊貴與榮耀歸你，','C','F Major','讚美主','Peculiar Meter.','1001','一般','4/4','5556665531','E241','https://www.hymnal.net/Hymns/Chinese/svg/c1001_p.svg',NULL,NULL);
-INSERT INTO hymns VALUES('C1002',NULL,NULL,NULL,'阿利路、阿利路、','C','Ab Major','讚美主','Peculiar Meter.','1002','一般','4/4','34555117666443211',NULL,NULL,NULL,'Z1002,');
+INSERT INTO hymns VALUES('C1002',NULL,NULL,NULL,'阿利路、阿利路、','C','Ab Major','讚美主','Peculiar Meter.','1002','一般','4/4','34555111666443221',NULL,NULL,NULL,'Z1002,');
 INSERT INTO hymns VALUES('C1003',NULL,'Charles Austin Miles',NULL,'諸天述說神的榮耀；','C','G Major','福音','8.8.8.8. with chorus.','1003','宇宙的奧祕','6/8','55345123211121615','E1403','','',NULL);
 INSERT INTO hymns VALUES('C1004',NULL,'Anonymous',NULL,'人是神造的容器，','C','F Major','福音','7.7.7.7.','1004','人生的意義','4/4','32143212176543','E1404','','',NULL);
 INSERT INTO hymns VALUES('C1005','Witness Lee','Thomas Campbell',NULL,'何大神蹟！何深奧祕！','C','G Major','經歷神','8.8.8.8.8.8. with repeat.','1005','神人聯調','4/4','1123546721','NS151','','',NULL);
@@ -4446,7 +4446,7 @@ INSERT INTO hymns VALUES('FR213',NULL,NULL,NULL,'Tu changeas mon deuil en une da
 INSERT INTO hymns VALUES('FR214',NULL,NULL,NULL,'Oh ! quel miracle ! Oh ! quel mystère !','FR',NULL,'NOUVEAUX CANTIQUES',NULL,'214','L''ECONOMIE ETERNELLE DE DIEU',NULL,NULL,'NS151',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('FR215',NULL,NULL,NULL,'Dieu dans l''éternité passée','FR',NULL,'NOUVEAUX CANTIQUES',NULL,'215','L''ECONOMIE ETERNELLE DE DIEU',NULL,NULL,'NS180',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('NS481','W. W. C.','W. W. C.','LORD, ONCE MORE I’D GIVE MYSELF UNTO THEE;','We have not one regret for taking this way,','NS','F Major','Consecration',NULL,'481','Willing to Suffer for the Lord','4/4','3332166123212',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0481_p.svg',NULL,'C481c,');
-INSERT INTO hymns VALUES('NS482','J. L.','J. L. W. J.','UNDER A CLEAR SKY,','And let them make a sanctuary for Me,','NS','F Major','Consecration',NULL,'482','Building God’s House','4/4','1231432123216432',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0482_p.svg',NULL,'');
+INSERT INTO hymns VALUES('NS482','J. L.','J. L. W. J.','UNDER A CLEAR SKY,','And let them make a sanctuary for Me,','NS','F Major','Consecration',NULL,'482','Building God’s House','4/4','512314321253216432',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0482_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS483',NULL,'','LET ME HEAR YOUR VOICE;','My love is like a dove,','NS','F Major','Scriptures for Singing',NULL,'483',NULL,'4/4','532176112232',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0483_p.svg','Song of Songs 2:14,','');
 INSERT INTO hymns VALUES('NS484',NULL,'M. F.',NULL,'FOR IN HIM DWELLS','NS','Eb Major','Scriptures for Singing',NULL,'484',NULL,'9/8','4565323431456532343',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0484_p.svg','Colossians 2:9,John 1:16,','');
 INSERT INTO hymns VALUES('NS485',NULL,'V. S.',NULL,'PUT ON THEREFORE, AS GOD’S CHOSEN ONES,','NS','C Major','Scriptures for Singing',NULL,'485',NULL,'4/4','12321236551765655',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0485_p.svg','Colossians 3:12-13,','');
@@ -5663,7 +5663,7 @@ INSERT INTO hymns VALUES('NS547',NULL,'Dale Mary Garratt',NULL,'BELOVED, LET US 
 INSERT INTO hymns VALUES('NS548','S. A. W.','S. A. W.','KISS THE SON, KISS THE ONE','Serving in my mingled spirit','NS','Bb Major','Experience of Christ',NULL,'548','Loving Him','4/4','17132112321765',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0548_p.svg',NULL,',GY145,GK110,SY37,SK3043,');
 INSERT INTO hymns VALUES('NS549',NULL,'J. W.',NULL,'LET HIM TAKE THE WATER OF LIFE FREELY.','NS','C Major','Scriptures for Singing',NULL,'549',NULL,'4/4','123334326135111217535',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0549_p.svg','Revelation 22:17,','');
 INSERT INTO hymns VALUES('NS550',NULL,'J. H. Y. P.',NULL,'THEN YOU SHALL BE MY PERSONAL TREASURE','NS','D Major','Scriptures for Singing',NULL,'550',NULL,'6/8','535432344332112332',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0550_p.svg','Exodus 19:5b-6a,Revelation 1:6,','');
-INSERT INTO hymns VALUES('NS551',NULL,'S. K.',NULL,'FOR THE WORD OF THE CROSS','NS','F Major','Scriptures for Singing',NULL,'551',NULL,'4/4','123234443224433',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0551_p.svg','1 Corinthians 1:18-19,','');
+INSERT INTO hymns VALUES('NS551',NULL,'S. K.',NULL,'FOR THE WORD OF THE CROSS','NS','F Major','Scriptures for Singing',NULL,'551',NULL,'4/4','12323434224433',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0551_p.svg','1 Corinthians 1:18-19,','');
 INSERT INTO hymns VALUES('NS552','S. A. W.','S. A. W.','NOTHING BUT LOVE, POURED FROM ABOVE','The church as the bride is a matter of love,','NS','D Major','Experience of Christ',NULL,'552','Loving Him','4/4','5565323212164617123432',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0552_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS553','T. P.','T. P.','REJOICE IN THE LORD! REJOICE IN THE LORD ALWAYS!','Rejoice in the Lord! Rejoice in the Lord!','NS','F Major','Scriptures for Singing',NULL,'553',NULL,'4/4','51235512356521',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0553_p.svg','Philippians 4:4,','');
 INSERT INTO hymns VALUES('NS554','T. J.','LSM Timothy Training Song Tape',NULL,'IN OUR HEART, IN OUR HEART, IN OUR HEART, IN OUR HEART,','NS','Bb Major','Scriptures for Singing',NULL,'554',NULL,'2/4','3453453453451176567',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0554_p.svg','2 Corinthians 3:1-6,','');
@@ -7802,7 +7802,7 @@ INSERT INTO hymns VALUES('NS720','H. J.','H. J.','THIS IS THE YEAR OF JUBILEE!',
 INSERT INTO hymns VALUES('NS721','P. J.','H. J.','CHRIST HAS PROCLAIMED THE JUBILEE,','I was so full, but still so poor,','NS','E Major','Gospel',NULL,'721','Freedom','4/4','5123331223211165',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0721_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS722','S. A. W.','S. A. W.','JUBILEE! JUBILEE!','This is the year of Jubilee,','NS','C Major','Gospel',NULL,'722','Freedom','4/4','55555565111123',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0722_p.svg',NULL,'SY78,');
 INSERT INTO hymns VALUES('NS723','H. J.','H. J.','GREAT RESOLUTIONS IN HEART AND GREAT SEARCHINGS OF HEART,','In these last days before the Lord’s coming,','NS','D Major','Consecration',NULL,'723','Living for the Lord','4/4','32352112321112321',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0723_p.svg',NULL,'SY267,');
-INSERT INTO hymns VALUES('NS724','M. C.','Tune: Oh Shenandoah',NULL,'Emmanuel—His name men calleth,','NS','Eb Major','Praise of the Lord',NULL,'724','His Name','4/4','32352112321112321',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0724_p.svg','Matthew 1:23,18:20,28:20,','');
+INSERT INTO hymns VALUES('NS724','M. C.','Tune: Oh Shenandoah',NULL,'Emmanuel—His name men calleth,','NS','Eb Major','Praise of the Lord',NULL,'724','His Name','4/4','51112355317656535',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0724_p.svg','Matthew 1:23,18:20,28:20,','');
 INSERT INTO hymns VALUES('NS725',NULL,'H. J.',NULL,'AND HE HAS SAID TO ME,','NS','Eb Major','Scriptures for Singing',NULL,'725',NULL,'4/4','13112121661213',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0725_p.svg','2 Corinthians 12:9,','');
 INSERT INTO hymns VALUES('NS726','M. C.',NULL,'SPREAD THE JUBILEE, LIVE THE JUBILEE!','Bringing in the good news we announce the gospel.','NS','Bb Major','Gospel','Peculiar Meter.','726','Freedom','4/4','555653111216',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0726_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS727','M. C.','Jean Sibelius',NULL,'OPEN MY EYES, SAVIOR, TRUE SIGHT NOW RENDER!','NS','F Major','Gospel','11.10.11.10.','727','Freedom','4/4','32343231223',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0727_p.svg',NULL,'');
@@ -8028,7 +8028,7 @@ INSERT INTO hymns VALUES('Z178','','','看，这神圣筵席！','为这筵席�
 INSERT INTO hymns VALUES('Z179','','','','当我注视你这桌子，','Z','降B大调3/4','赞美主','8686','179','对祂的记念','','5565565321','E220','','',NULL);
 INSERT INTO hymns VALUES('Z180','','','','在此我要，','Z','降E大调4/4','赞美主','10 10 10 10','180','对祂的记念','','3123543321','E225','','',NULL);
 INSERT INTO hymns VALUES('Z181','','','你尝死亡苦味，','哦主耶稣，借着饼杯，','Z','降E大调4/4','赞美主','8787双副','181','对祂的记念','','546553543243321','E227','','',NULL);
-INSERT INTO hymns VALUES('Z182','','','','在你首次要显你死之时，','Z','降E大调4/4','赞美主','10 10 10 10 10 10','182','对祂的记念','','11265333445','C182','','',NULL);
+INSERT INTO hymns VALUES('Z182','','','','在你首次要显你死之时，','Z','降E大调4/4','赞美主','10 10 10 10 10 10','182','对祂的记念','','3556561171','C182','','',NULL);
 INSERT INTO hymns VALUES('Z183','','','','咒诅祂受，祝福我享；','Z','G大调3/4','赞美主','8888','183','对祂的记念','','1712353232165121','C183','','',NULL);
 INSERT INTO hymns VALUES('Z184','','','','主耶稣，当那晚间，','Z','降E大调4/4','赞美主','7676双','184','对祂的记念','','12333331122771','E213','','',NULL);
 INSERT INTO hymns VALUES('Z185','','','','为着这饼我感谢你，','Z','G大调3/4','赞美主','8686','185','对祂的记念','','54351527543','E222','','',NULL);
@@ -8058,7 +8058,7 @@ INSERT INTO hymns VALUES('Z208','','','求你赐下焚烧灵，','我今举手�
 INSERT INTO hymns VALUES('Z209','','','','耶稣，你的全胜的爱，','Z','降B大调6/8','圣灵的丰满','8686重','209','火','','51122321566165','E264','','',NULL);
 INSERT INTO hymns VALUES('Z210','','','我是呼出我的愁苦，','主，求你向我吹圣灵，','Z','降B大调3/4','圣灵的丰满','8787副','210','气','','555316533342543','E255','','',NULL);
 INSERT INTO hymns VALUES('Z211','','','','生命之主，向我吹气，','Z','F大调3/4','圣灵的丰满','8888','211','气','','33333543117123212','E254','','',NULL);
-INSERT INTO hymns VALUES('Z212','','','吹到！吹到！','圣灵的大风，','Z','降B大调4/4','圣灵的丰满','特副','212','风','','55172133425231','C212','','',NULL);
+INSERT INTO hymns VALUES('Z212','','','吹到！吹到！','圣灵的大风，','Z','降B大调4/4','圣灵的丰满','特副','212','风','','5534564321','C212','','',NULL);
 INSERT INTO hymns VALUES('Z213','','','大能主阿，求你降临，','主阿，愿你属天之风，','Z','降E大调4/4','圣灵的丰满','8686副','213','风','','53455655323453','E257','','',NULL);
 INSERT INTO hymns VALUES('Z214','','','哦主，现在将我来吹！','哦主，向我吹风，','Z','E大调4/4','圣灵的丰满','12 12 12 8副','214','风','','561333321444','E256','','',NULL);
 INSERT INTO hymns VALUES('Z215','','','在我里面有一奇妙恩膏，','奇妙的恩膏住我里面，','Z','降A大调4/4','圣灵的丰满','97107副','215','膏油','','3556121332354671','E266','','',NULL);
@@ -8275,7 +8275,7 @@ INSERT INTO hymns VALUES('Z426','','','信而顺从！','当我同主行动，',
 INSERT INTO hymns VALUES('Z427','','','无论何处要我跟随，','我今听见救主招呼，','Z','G大调4/4','经历基督','8889副','427','跟随祂','','5133433257213221','E586','','',NULL);
 INSERT INTO hymns VALUES('Z428','','','步步追，步步随，','跟主行走，心中甜美，','Z','F大调4/4','经历基督','8787副','428','跟随祂','','5671321611353232','E587','','',NULL);
 INSERT INTO hymns VALUES('Z429','','','','『出到营外』就耶稣，','Z','G大调4/4','经历基督','7777','429','跟随祂','','35234233523421','E583','','',NULL);
-INSERT INTO hymns VALUES('Z430','','','模成，模成神子形像！','神照祂所豫知豫定，','Z','D大调4/4','经历基督','886副','430','模成祂的形像','','54565424347653','C430','','',NULL);
+INSERT INTO hymns VALUES('Z430','','','模成，模成神子形像！','神照祂所豫知豫定，','Z','D大调4/4','经历基督','886副','430','模成祂的形像','','5321176554353212','C430','','',NULL);
 INSERT INTO hymns VALUES('Z431','','','','看！从那些卑贱瓦器，','Z','降E大调3/4','经历基督','8787','431','彰显祂','','53531765311235432','E590','','',NULL);
 INSERT INTO hymns VALUES('Z432','','','宝贝放在瓦器里面，','神的自己照在我心，','Z','G大调3/4','经历基督','8888副','432','彰显祂','','5135332234442171','C432','','',NULL);
 INSERT INTO hymns VALUES('Z433','','','哦，求主救我脱离自己！','非我惟主，','Z','降E大调2/2','经历基督','11 10 11 10副','433','彰显祂','','17123324352','E591','','',NULL);
@@ -8328,7 +8328,7 @@ INSERT INTO hymns VALUES('Z479','','','','要思想耶稣，','Z','降D大调4/4
 INSERT INTO hymns VALUES('Z480','','','','你们能否顺从','Z','E大调4/4','鼓励','6565双','480','顺从主','','35651543211','E657','','',NULL);
 INSERT INTO hymns VALUES('Z481','','','','应当一无罣虑，','Z','降A大调4/4','鼓励','11 11 11 11','481','相信主','','56711755655','E660','','',NULL);
 INSERT INTO hymns VALUES('Z482','','','天地虽能被焚烧，','神的应许不能废去，','Z','降A大调6/8','鼓励','8686副','482','相信主','','34323215666443','C482','','',NULL);
-INSERT INTO hymns VALUES('Z483','','','','前进！是我口号，','Z','G大调4/4','鼓励','656565双','483','努力向前','','33221555662','E663','','',NULL);
+INSERT INTO hymns VALUES('Z483','','','','前进！是我口号，','Z','G大调4/4','鼓励','656565双','483','努力向前','','33221555662443326','E663','','',NULL);
 INSERT INTO hymns VALUES('Z484','','','','当向标竿力前！','Z','降B大调6/8','鼓励','6686','484','努力向前','','53721655665653','E662','','',NULL);
 INSERT INTO hymns VALUES('Z485','','','','靠著恩主全能神，','Z','降D大调4/4','鼓励','第一辞76737773','485','努力向前','','565565515544655','E666','','',NULL);
 INSERT INTO hymns VALUES('Z487','','','','灵要操练运用，','Z','D大调4/4','鼓励','6565','487','运用灵','','11265333445','C487','','',NULL);
@@ -8541,7 +8541,7 @@ INSERT INTO hymns VALUES('Z693','','','荣耀！荣耀！阿利路亚！','基�
 INSERT INTO hymns VALUES('Z694','','','','主是生命，主是复活，','Z','D大调2/4','福音','8686重','694','生命','','17654321566771','E1015','','',NULL);
 INSERT INTO hymns VALUES('Z695','','','真福音，真福音，','救主为我死，','Z','G大调4/4','福音','10 10 10 6副','695','生命','','1121765123','E1014','','',NULL);
 INSERT INTO hymns VALUES('Z696','','','','听阿，有一隐藏奥秘，','Z','降E大调2/4','福音','8886双','696','奥秘','','333135553222123335','E1073','','',NULL);
-INSERT INTO hymns VALUES('Z697','','','大信息！真奥秘！','大喜信息！惊天动地！','Z','G大调3/2','福音','8888副','697','奥秘','','332117615','C697','','',NULL);
+INSERT INTO hymns VALUES('Z697','','','大信息！真奥秘！','大喜信息！惊天动地！','Z','G大调3/2','福音','8888副','697','奥秘','','5123512334321321','C697','','',NULL);
 INSERT INTO hymns VALUES('Z698','','','','我主耶稣是生命源，','Z','D大调4/4','福音','特','698','活水','','3455517666','E1069','','',NULL);
 INSERT INTO hymns VALUES('Z699','','','','你的罪虽像朱红，','Z','降A大调3/4','福音','特','699','罪','','555345655171765','E1037','','',NULL);
 INSERT INTO hymns VALUES('Z700','','','','若尽得世界，','Z','降E大调3/4','福音','10 9 10 9双','700','虚空与痛苦','','5565351217','E1079','','',NULL);
@@ -8605,8 +8605,8 @@ INSERT INTO hymns VALUES('Z757','','','来罢！亲爱主！','我能否忘快�
 INSERT INTO hymns VALUES('Z758','','','','自伯大尼','Z','D大调8/4','荣耀的盼望','11 10 11 10 11 11 11 11','758','渴望与祈求','','712323653216','E958','','',NULL);
 INSERT INTO hymns VALUES('Z759','','','','等到何日恩主才回来？','Z','降A大调4/4','荣耀的盼望','特','759','渴望与祈求','','51321716532122432','E962','','',NULL);
 INSERT INTO hymns VALUES('Z760','','','你来！就来！','自从当年','Z','降A大调6/8','荣耀的盼望','11 10 11 10副','760','渴望与祈求','','321171216651113211712','E959','','',NULL);
-INSERT INTO hymns VALUES('Z761','','','','主耶稣，主耶稣！','Z','C大调4/4','荣耀的盼望','特','761','渴望与祈求','','5123512334321321','C761','','',NULL);
-INSERT INTO hymns VALUES('Z762','','','是否须再等几年，','我主，我正等候你再临，','Z','D大调4/4','荣耀的盼望','9496双副','762','渴望与祈求','','3213211615312','C762','','',NULL);
+INSERT INTO hymns VALUES('Z761','','','','主耶稣，主耶稣！','Z','C大调4/4','荣耀的盼望','特','761','渴望与祈求','','35532123532','C761','','',NULL);
+INSERT INTO hymns VALUES('Z762','','','是否须再等几年，','我主，我正等候你再临，','Z','D大调4/4','荣耀的盼望','9496双副','762','渴望与祈求','','3213211615312321321','C762','','',NULL);
 INSERT INTO hymns VALUES('Z763','','','祂来，祂来，','荣耀盼望是基督，','Z','降B大调6/8','荣耀的盼望','特副','763','基督作荣耀','','5566116355663','E949','','',NULL);
 INSERT INTO hymns VALUES('Z764','','','荣耀！荣耀！','历代隐藏奥秘，','Z','降B大调4/4','荣耀的盼望','11 9 11 9副','764','基督在我里面','','55653121671','E948','','',NULL);
 INSERT INTO hymns VALUES('Z765','','','','当我恩主降临时候，','Z','降A大调4/4','荣耀的盼望','8884重','765','与主相见','','5333234322','E965','','',NULL);
@@ -8641,7 +8641,7 @@ INSERT INTO hymns VALUES('ZS13','Adapted','','','我要永远的歌唱','ZS','D�
 INSERT INTO hymns VALUES('ZS14','','','','你们要向主称颂，','ZS','C大调4/4','你们要向主称颂','','14','','4/4','34556351111765','CS14','','',NULL);
 INSERT INTO hymns VALUES('ZS15','Adapted','Down by the Riverside','今在灵里我能享受','我要不住赞美称颂神，','ZS','G大调4/4','我要不住赞美称颂神','','15','','4/4','332356113','NS131','','',NULL);
 INSERT INTO hymns VALUES('ZS16','Adapted','','','我们同声赞美','ZS','e小调4/4','召会的赞美','11.10.11.10. with chorus.','16','','4/4','671233343463','E1222','','',NULL);
-INSERT INTO hymns VALUES('ZS17','','','','乐，乐，乐，','ZS','G大调4/4','乐！乐！乐','','17','','4/4','321332172','CS17','','',NULL);
+INSERT INTO hymns VALUES('ZS17','','','','乐，乐，乐，','ZS','G大调4/4','乐！乐！乐','','17','','4/4','321332172432221231','CS17','','',NULL);
 INSERT INTO hymns VALUES('ZS18','Edwin Othello Excell','Edwin Othello Excell','自从我被赎回，','我有一诗歌我爱唱，','ZS','G大调4/4','自从我被赎回','8.6.8.6. with chorus.','18','','4/4','5123456543133215','E302','','',NULL);
 INSERT INTO hymns VALUES('ZS19','Charles Hutchinson Gabriel','Charles Hutchinson Gabriel','何等希奇！何等奇妙！','我在拿撒勒人耶稣面前','ZS','降A大调4/4','我在拿撒勒人耶稣面前','8.7.8.7. with chorus.','19','','4/4','553512311777121','E290','','',NULL);
 INSERT INTO hymns VALUES('ZS20','Edward Perronet','James Ellor','加冠祂，加冠，加冠，','何等权能！耶稣尊名！','ZS','降B大调3/4','加冠祂万有主','8.6.8.6. with repeat.','20','','3/4','51234512171','E139','','',NULL);
@@ -8678,7 +8678,7 @@ INSERT INTO hymns VALUES('ZS123','','','','阿利路亚！阿利路亚！','ZS',
 INSERT INTO hymns VALUES('ZS124','Adapted','','','是生命，生命','ZS','G大调4/4','是生命使我们高声喊','','124','','4/4','123333432311122123','CS124','','',NULL);
 INSERT INTO hymns VALUES('ZS125','Adapted','Charles Austin Miles','','主是生命种子，','ZS','降B大调4/4','主是生命种子','14.14.14.14. with chorus.','125','','4/4','53332117121615','E1242','','',NULL);
 INSERT INTO hymns VALUES('ZS126','','','','生命的种子撒我里，','ZS','D大调4/4','我要让祂长大','','126','','','55556531555531','CS126','','',NULL);
-INSERT INTO hymns VALUES('ZS127','Adapted','','','主，给我们看见你心意，','ZS','d小调4/4','国度原是主的自己','','127','','4/4','32163212612756','CS127','','',NULL);
+INSERT INTO hymns VALUES('ZS127','Adapted','','','主，给我们看见你心意，','ZS','d小调4/4','国度原是主的自己','','127','','4/4','3216321266712756','CS127','','',NULL);
 INSERT INTO hymns VALUES('ZS128','','','','国度就是基督作生命，','ZS','D大调2/4','国度就是基督作生命','','128','','','35555154257776543','CS128','','',NULL);
 INSERT INTO hymns VALUES('ZS129','','','','耶稣我太阳，','ZS','G大调4/4','耶稣我太阳','','129','','','5123332311','CS129','','',NULL);
 INSERT INTO hymns VALUES('ZS130','','','','主耶稣，作了我人位；','ZS','F大调4/4','主耶稣作了我人位','','130','','','5113321252244271','CS130','','',NULL);
@@ -8775,7 +8775,7 @@ INSERT INTO hymns VALUES('ZS407','','','','哦，让我们将','ZS','F大调4/4'
 INSERT INTO hymns VALUES('ZS408','Adapted','Herbert G. Tovey','','挖透我，挖透我，','ZS','降B大调4/4','挖透我','9.10.9.10. with chorus.','408','','4/4','345565123','E1214','','',NULL);
 INSERT INTO hymns VALUES('ZS409','Adapted','','哦主阿！更多来涌流！','有一生命比心思更深，','ZS','降E大调2/2','哦主阿，更多来涌流','','409','','4/4','53217167534555323465','NS217','','',NULL);
 INSERT INTO hymns VALUES('ZS410','Adapted','George Bennard','主，我宝贝这生命的流，','从我灵里深处，','ZS','降B大调6/8','主，我宝贝这生命的流','12.8.12.8. with chorus.','410','','3/4','345465556576','E1191','','',NULL);
-INSERT INTO hymns VALUES('ZS411','','','','我们可以立刻胜过仇敌，','ZS','G大调4/4','取用宝血','特','411','','4/4','1112332321','CS411','','',NULL);
+INSERT INTO hymns VALUES('ZS411','','','','我们可以立刻胜过仇敌，','ZS','G大调4/4','取用宝血','特','411','','4/4','1112332321221217','CS411','','',NULL);
 INSERT INTO hymns VALUES('ZS412','','','','吃喝主的话就不萎缩，','ZS','D大调4/4','在话的水里泡','特','412','','4/4','123216121','CS412','','',NULL);
 INSERT INTO hymns VALUES('ZS413','Adapted','Scotch Air','','『阿们』，主耶稣！','ZS','F大调4/4','阿们，主耶稣','8.6.8.6.D.','413','','4/4','511132123211356','CS413','','',NULL);
 INSERT INTO hymns VALUES('ZS414','Adapted','','','你若要脱离世界的辖制，','ZS','F大调4/4','阿们神的话语','10.6.10.6. with chorus.','414','','4/4','3343512345553132','E1218','','',NULL);
@@ -8791,11 +8791,11 @@ INSERT INTO hymns VALUES('ZS423','Adapted','Friedrich-Wilhelm Moller','向前跑
 INSERT INTO hymns VALUES('ZS424','Adapted','William Augustine Ogden','当望断以及于祂！','我们有当跑的路，','ZS','G大调4/4','一路跑尽','11.9.11.9. with chorus.','424','','4/4','55111176554221111721','E1206','','',NULL);
 INSERT INTO hymns VALUES('ZS425','','','','曙光初现，心清灵明，','ZS','E大调4/4','与主相见在清晨','特','425','','4/4','511123666332121217','CS425','','',NULL);
 INSERT INTO hymns VALUES('ZS426','','','','我们是一粒粒『麦子』，','ZS','e小调4/4','我们是一粒粒『麦子』','特','426','','4/4','312321177127121776','CS426','','',NULL);
-INSERT INTO hymns VALUES('ZS427','Adapted','','愿神这永远经纶异象，','主呼召我们在这里，','ZS','D大调4/4','为神永远的经纶','','427','','4/4','55555431','NS28','','',NULL);
+INSERT INTO hymns VALUES('ZS427','Adapted','','愿神这永远经纶异象，','主呼召我们在这里，','ZS','D大调4/4','为神永远的经纶','','427','','4/4','5555543144424275','NS28','','',NULL);
 INSERT INTO hymns VALUES('ZS428','','','','让我爱而不受感戴，','ZS','e小调4/4','让我爱','','428','','4/4','336617665671132117','CS428','','',NULL);
 INSERT INTO hymns VALUES('ZS429','','','','主阿，在那清晨， 你去海边等待彼得；','ZS','降E大调','追求与长进','特','429','','4/4','53345752123453','CS429','','',NULL);
 INSERT INTO hymns VALUES('ZS501','Adapted','Ira David Sankey','','今从律法转向基督，','ZS','E大调6/8','基督乃是殿，城，与地','8.8.8.6. with chorus.','501','','6/8','1333432135556523','E1224','','',NULL);
-INSERT INTO hymns VALUES('ZS502','Adapted','','','当神将那被掳的带回锡安，','ZS','F大调4/4','神将被掳的带回锡安','特','502','','2/4','12333444555543','CS502','','',NULL);
+INSERT INTO hymns VALUES('ZS502','Adapted','','','当神将那被掳的带回锡安，','ZS','F大调4/4','神将被掳的带回锡安','特','502','','2/4','51355654355','CS502','','',NULL);
 INSERT INTO hymns VALUES('ZS503','Adapted','Anthony Johnson Showalter','','落到巴比伦，','ZS','A大调4/4','回耶路撒冷','10.9.10.9. with chorus.','503','','4/4','3332122216','E1252','','',NULL);
 INSERT INTO hymns VALUES('ZS504','Adapted','','','我已拣选了锡安，','ZS','G大调6/4','我已拣选了锡安','特','504','','6/4','555321651232','E1338','','',NULL);
 INSERT INTO hymns VALUES('ZS505','Adapted','R. L.','','耶和华所救赎的民','ZS','降A大调4/4','歌唱到来锡安','特','505','','4/4','55635635635','E1341','','',NULL);
@@ -8809,7 +8809,7 @@ INSERT INTO hymns VALUES('ZS512','Adapted','Robert A. Schumann','','在启示录
 INSERT INTO hymns VALUES('ZS513','Adapted','','','看哪！','ZS','F大调4/4','救赎者的赞美','特','513','','4/4','511111111223','E1348','','',NULL);
 INSERT INTO hymns VALUES('ZS514','Adapted','','这是地方召会，','看哪！他们在各城里，','ZS','C大调4/4','这是地方召会','8.7.8.7. with chorus.','514','','4/4','556712156712165','E1257','','',NULL);
 INSERT INTO hymns VALUES('ZS515','Adapted','Welsh Air Luther O. Emerson','','这是地方召会宣告：','ZS','G大调4/4','这是地方召会宣告','8.4.8.4.8.8.8.4.','515','','4/4','176121756771','E1096','','',NULL);
-INSERT INTO hymns VALUES('ZS516','Adapted','','','在地方召会中─','ZS','C大调4/4','在地方召会中','特','516','','4/4','1356611251','E1260','','',NULL);
+INSERT INTO hymns VALUES('ZS516','Adapted','','','在地方召会中─','ZS','C大调4/4','在地方召会中','特','516','','4/4','1356361251','E1260','','',NULL);
 INSERT INTO hymns VALUES('ZS517','Adapted','','','基督是元首，','ZS','降A大调4/4','基督是元首，在地方召会','','517','','4/4','3323121615','CS517','','',NULL);
 INSERT INTO hymns VALUES('ZS518','','','','地方召会，可爱的召会，','ZS','F大调2/2','地方召会─可爱的召会','特','518','','2/2','51355631351325721','CS518','','',NULL);
 INSERT INTO hymns VALUES('ZS519','Adapted','','哦，地方召会，','看哪，万民流归这山，','ZS','C大调4/4','地方召会，主何等祝福你','8.7.8.7. with chorus.','519','','4/4','556712156712165','CS519','','',NULL);
@@ -8828,7 +8828,7 @@ INSERT INTO hymns VALUES('ZS531','','','','我们在流中，','ZS','G大调3/4'
 INSERT INTO hymns VALUES('ZS532','Adapted','Anon.','哦！我们竟成为','何等奇妙的事实，','ZS','F大调4/4','我竟成为你基业','8.7.8.7. with chorus.','532','','4/4','33355433235321','CS532','','',NULL);
 INSERT INTO hymns VALUES('ZS533','','','','我们在旷野流落，','ZS','C大调2/4','荣耀在望','特','533','','2/4','5556715553251','CS533','','',NULL);
 INSERT INTO hymns VALUES('ZS601','','Trench C. J.','建造我，主耶稣！','神的生命，是人需要；','ZS','G大调4/4','建造是神的目标','7.6.7.6.D.','601','','4/4','35656121223261121','CS601','','',NULL);
-INSERT INTO hymns VALUES('ZS602','','','','我们看见你荣耀计画，','ZS','降B大调4/4','为你计划我们献自己','特','602','','4/4','35656121223261121','CS602','','',NULL);
+INSERT INTO hymns VALUES('ZS602','','','','我们看见你荣耀计画，','ZS','降B大调4/4','为你计划我们献自己','特','602','','4/4','56121316556121316','CS602','','',NULL);
 INSERT INTO hymns VALUES('ZS603','Adapted','','','记得大卫起誓：','ZS','降E大调4/4','建造当趁今日','特','603','','4/4','56121316556121316','E1248','','',NULL);
 INSERT INTO hymns VALUES('ZS604','','','','全地平静安息，','ZS','降E大调2/4','我们手拿线铊','特','604','','2/4','51333355443322','CS604','','',NULL);
 INSERT INTO hymns VALUES('ZS605','Adapted','William James Kirkpatrick','为建造！为建造！','万世之前主选我，','ZS','降E大调4/4','为建造','7.7.7.3. with chorus.','605','','4/4','12333331355555','CS605','','',NULL);
@@ -8928,7 +8928,7 @@ INSERT INTO hymns VALUES('ZS828','Adapted','','','你若渴慕得著主，','ZS'
 INSERT INTO hymns VALUES('ZS829','','','','你若虚空，','ZS','G大调4/4','你的答案乃是耶稣','特','829','','4/4','55555556165727135','CS829','','',NULL);
 INSERT INTO hymns VALUES('ZS830','Adapted','William James Kirkpatrick','','呼喊主的名，','ZS','A大调4/4','呼喊主名必得救','特','830','','4/4','5512312165','CS830','','',NULL);
 INSERT INTO hymns VALUES('ZS831','','','','朋友，朋友，','ZS','a小调6/8','呼召','特','831','','6/8','3666671766771767','CS831','','',NULL);
-INSERT INTO hymns VALUES('ZS832','Horatius Bonar','John Bacchus Dykes','','我听见了主耶稣说：','ZS','d小调4/4','我听见了主耶稣说','8.6.8.6.D.','832','','4/4','33667117766665','CS832','','',NULL);
+INSERT INTO hymns VALUES('ZS832','Horatius Bonar','John Bacchus Dykes','','我听见了主耶稣说：','ZS','d小调4/4','我听见了主耶稣说','8.6.8.6.D.','832','','4/4','3216321266712756','CS832','','',NULL);
 INSERT INTO hymns VALUES('ZS833','','','','有一新生命，','ZS','F大调4/4','有一新生命','特','833','','4/4','55533332133','CS833','','',NULL);
 INSERT INTO hymns VALUES('ZS834','Adapted','William Augustine Ogden','听，主正在邀请，','『各样都齐备』，','ZS','降B大调4/4','各样都齐备','特','834','','4/4','55565322116711765','E1330','','',NULL);
 INSERT INTO hymns VALUES('ZS835','Adapted','','','何大怜悯，','ZS','降B大调2/4','全家得救','11.10.11.10','835','','2/4','35131215176','CS835','','',NULL);
@@ -9138,7 +9138,7 @@ INSERT INTO hymns VALUES('ZS929','','Heidi Johnsen','','当我们在生命、性
 INSERT INTO hymns VALUES('ZS930','Adapted','Heidi Johnsen','当祂来临,我们是否正等待?','日近一日,恩主耶稣快回来;','ZS','C大调','盼望与豫备','11.10.11.10.D.','930','','4/4','71233432165','E1307','','',NULL);
 INSERT INTO hymns VALUES('ZS916','John Newton','Franz Joseph Haydn','','神的圣城,居高华美,','ZS','降E大调','盼望与豫备','8.7.8.7.D.','916','','4/4','12324327165432315','E977','','',NULL);
 INSERT INTO hymns VALUES('Z1001','Anon.','Anonymous','','颂赞与尊贵与荣耀归你，','Z','F Major','赞美主','Peculiar Meter.','1001','一般','4/4','5556665531','E241','https://www.hymnal.net/Hymns/Chinese/svg/c1001_p.svg','',NULL);
-INSERT INTO hymns VALUES('Z1002','','','','阿利路、阿利路、','Z','Ab Major','赞美主','Peculiar Meter.','1002','一般','4/4','34555117666443211','C1002','','',NULL);
+INSERT INTO hymns VALUES('Z1002','','','','阿利路、阿利路、','Z','Ab Major','赞美主','Peculiar Meter.','1002','一般','4/4','34555111666443221','C1002','','',NULL);
 INSERT INTO hymns VALUES('Z1003','','Charles Austin Miles','','诸天述说神的荣耀；','Z','G Major','福音','8.8.8.8. with chorus.','1003','宇宙的奥秘','6/8','55345123211121615','E1403','','',NULL);
 INSERT INTO hymns VALUES('Z1004','','Anonymous','','人是神造的容器，','Z','F Major','福音','7.7.7.7.','1004','人生的意义','4/4','32143212176543','E1404','','',NULL);
 INSERT INTO hymns VALUES('Z1005','Witness Lee','Thomas Campbell','','何大神迹！何深奥秘！','Z','G Major','经历神','8.8.8.8.8.8. with repeat.','1005','神人联调','4/4','1123546721','NS151','','',NULL);
@@ -10618,7 +10618,7 @@ INSERT INTO hymns VALUES('NS758','T. T.','T. T.','“I WILL HAVE MERCY ON WHOMEV
 INSERT INTO hymns VALUES('NS759','T. T.','T. T.',NULL,'AND A MAN WILL BE LIKE A REFUGE FROM THE WIND,','NS','C Major','Experience of Christ',NULL,'759','Resting on Him','3/4','3455175321123',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0759_p.svg','Isaiah 32:2,','');
 INSERT INTO hymns VALUES('NS760','R. B.','R. B.','HE’S OLIVE OIL, HE’S MYRRH,','When we call Lord Jesus,','NS','F Major','Fulness of the Spirit',NULL,'760','As the Compound Spirit','4/4','333127111767',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0760_p.svg','Exodus 30:23-25,','');
 INSERT INTO hymns VALUES('NS761','P. L.','P. L.','SO THAT’S WHY WE CALL, “O LORD JESUS!”','In these times of restlessness,','NS','D Major','Comfort in Trials',NULL,'761','By Trusting the Lord','3/4','123161112311355',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0761_p.svg',NULL,'');
-INSERT INTO hymns VALUES('NS762',NULL,'Tune (MIDI)',NULL,'He stepped out of glory','NS','Bb Major','Praise of the Lord',NULL,'762','His Increase','6/8','117617667153',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0762_p.svg',NULL,',SY82,GY17,SK3001,');
+INSERT INTO hymns VALUES('NS762',NULL,'Tune (MIDI)',NULL,'He stepped out of glory','NS','Bb Major','Praise of the Lord',NULL,'762','His Increase','6/8','1176176667153',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0762_p.svg',NULL,',SY82,GY17,SK3001,');
 INSERT INTO hymns VALUES('NS763',NULL,'Anonymous',NULL,'I tell you truly, by no means this generation shall','NS','F Major','Scriptures for Singing',NULL,'763',NULL,'4/4','51112321177717',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0763_p.svg','Matthew 24:34-35,28:19,20b,','');
 INSERT INTO hymns VALUES('NS764','S. F.','S. F.','LOOKING AT YOU LORD, YOU’RE ALL I NEED.','Where I am, there You are.','NS','G Major','Comfort in Trials',NULL,'764','By Grace for Suffering','4/4','34551471225433',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0764_p.svg',NULL,'');
 INSERT INTO hymns VALUES('NS765','M. R.','M. R.','WATCH, BE READY,','Lord, I open wide to You,','NS','Db Major','Hope of Glory',NULL,'765','Preparing for Christ’s Return','4/4','11353566653',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0765_p.svg',NULL,'SY188,GK99,');
@@ -10771,7 +10771,7 @@ INSERT INTO hymns VALUES('NS911','P. W.','P. W.','HOW LONG! HOW VERY LONG YOU’
 INSERT INTO hymns VALUES('NS912','R. H. A. H.','R. H. A. H.','REKINDLE, YES FAN INTO FLAME,','This age of lawlessness','NS','E Major','Encouragement',NULL,'912','For Exercising the Spirit','4/4','321232321231',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0912_p.svg','2 Timothy 1:6-7,','');
 INSERT INTO hymns VALUES('NS913','C. V.','C. V.',NULL,'FOR THE FIG TREE WILL NOT SPROUT,','NS','F Major','Scriptures for Singing',NULL,'913',NULL,'6/8','5516632555116632',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0913_p.svg','Habakkuk 3:17-18,','');
 INSERT INTO hymns VALUES('NS914',NULL,'M. D. F.',NULL,'If we look to Him as such a wonderful','NS','C Major','Encouragement',NULL,'914','For Running the Race','12/8','123333333444543511',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0914_p.svg','Hebrews 12:2,','');
-INSERT INTO hymns VALUES('NS915','R. H.','R. H.','LORD, WE RECEIVE THE LOVE OF THE TRUTH,','I will not call the bitter sweet,','NS','F Major','The Word of God',NULL,'915','Loving the Word','4/4','11235554321235543231',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0915_p.svg','2 Thessalonians 2:10,','SY305,');
+INSERT INTO hymns VALUES('NS915','R. H.','R. H.','LORD, WE RECEIVE THE LOVE OF THE TRUTH,','I will not call the bitter sweet,','NS','F Major','The Word of God',NULL,'915','Loving the Word','4/4','1235554321235543231',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0915_p.svg','2 Thessalonians 2:10,','SY305,');
 INSERT INTO hymns VALUES('NS916','S. A. W.','S. A. W.',NULL,'God is pleased… to reveal His Son in me,','NS','G Major','Experience of Christ',NULL,'916','As the Indwelling One','4/4','1711117655171',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0916_p.svg','Galatians 1:15-16,4,','');
 INSERT INTO hymns VALUES('NS917',NULL,'T. H.',NULL,'THIS IS THE GENERATION OF THOSE,','NS','E Major','Scriptures for Singing',NULL,'917',NULL,'2/4','331444325333143271',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0917_p.svg','Psalms 24:6-10,','');
 INSERT INTO hymns VALUES('NS918','FTTMa 68th-71st Batch','FTTMa 68th-71st Batch','IN THE SPLENDOR OF OUR CONSECRATION','Hear the cry—the call for overcomers!','NS','D Major','Spiritual Warfare',NULL,'918','The Overcomer','4/4','5555567115333345642',NULL,'https://www.hymnal.net/Hymns/NewSongs/svg/ns0918_p.svg',NULL,'');
@@ -11796,7 +11796,7 @@ INSERT INTO hymns VALUES('S241',NULL,NULL,'ME REDIMIÓ CON SANGRE_EL CORDERO DE 
 INSERT INTO hymns VALUES('S242',NULL,NULL,'YA QUE ME REDIMIÓ,','Yo tengo_un himno de loor,','S',NULL,'LA CERTEZA Y EL GOZO DE LA SALVACIÓN - REDIMIDOS POR LA SANGRE',NULL,'242',NULL,NULL,'5123456543133215','E302',NULL,NULL,'E302');
 INSERT INTO hymns VALUES('S243',NULL,NULL,'ME REDIMIÓ, MAS NO CON PLATA,','El oro_y la plata no me_han redimido;','S',NULL,'LA CERTEZA Y EL GOZO DE LA SALVACIÓN - REDIMIDOS POR LA SANGRE',NULL,'243',NULL,NULL,'553515354542','E303',NULL,NULL,'E303');
 INSERT INTO hymns VALUES('S244',NULL,NULL,'CANTARÉ DE JESUCRISTO,','A mi Redentor yo canto','S',NULL,'LA CERTEZA Y EL GOZO DE LA SALVACIÓN - REDIMIDOS POR LA SANGRE',NULL,'244',NULL,NULL,'5123332122572444323','E305',NULL,NULL,'E305');
-INSERT INTO hymns VALUES('S245',NULL,NULL,NULL,'Pertenezco_a Cristo,','S',NULL,'LA CERTEZA Y EL GOZO DE LA SALVACIÓN - REDIMIDOS POR LA SANGRE',NULL,'245',NULL,NULL,'53216151253','E306',NULL,NULL,'E306');
+INSERT INTO hymns VALUES('S245',NULL,NULL,NULL,'Pertenezco_a Cristo,','S',NULL,'LA CERTEZA Y EL GOZO DE LA SALVACIÓN - REDIMIDOS POR LA SANGRE',NULL,'245',NULL,NULL,'53216171253','E306',NULL,NULL,'E306');
 INSERT INTO hymns VALUES('S246',NULL,NULL,NULL,'¿Cómo no_hemos de cantar','S',NULL,'LA CERTEZA Y EL GOZO DE LA SALVACIÓN - REDIMIDOS POR LA SANGRE',NULL,'246',NULL,NULL,'32143212176543','E1124',NULL,NULL,'E1124');
 INSERT INTO hymns VALUES('S247',NULL,NULL,'¡A SU NOMBRE GLORIA!','Cuando_en la cruz el Señor murió,','S',NULL,'LA CERTEZA Y EL GOZO DE LA SALVACIÓN - REDIMIDOS POR LA SANGRE',NULL,'247',NULL,NULL,'332117615','E1125',NULL,NULL,'E1125');
 INSERT INTO hymns VALUES('S248',NULL,NULL,NULL,'De Tu presencia, oh Señor,','S',NULL,'LA CERTEZA Y EL GOZO DE LA SALVACIÓN - REDIMIDOS POR LA SANGRE',NULL,'248',NULL,NULL,'55112177442543','E1126',NULL,NULL,'E1126');
@@ -12224,7 +12224,7 @@ INSERT INTO hymns VALUES('S669',NULL,NULL,NULL,'Bendito es el cordón','S',NULL,
 INSERT INTO hymns VALUES('S670',NULL,NULL,'LO QUE QUIERE DIOS: IGLESIAS LOCALES,','¿Los has visto_en las ciudades,','S',NULL,'LA IGLESIA - SU EXPRESIÓN LOCAL',NULL,'670',NULL,NULL,'556712156712165','E1257',NULL,NULL,'E1257');
 INSERT INTO hymns VALUES('S671',NULL,NULL,NULL,'¡Cuán hermosas y preciosas','S',NULL,'LA IGLESIA - SU EXPRESIÓN LOCAL',NULL,'671',NULL,NULL,'121234321254332121','E1258',NULL,NULL,'E1258');
 INSERT INTO hymns VALUES('S672',NULL,NULL,'VED HOY LAS IGLESIAS','Brillan las iglesias','S',NULL,'LA IGLESIA - SU EXPRESIÓN LOCAL',NULL,'672',NULL,NULL,'555556522123','E1259',NULL,NULL,'E1259');
-INSERT INTO hymns VALUES('S673',NULL,NULL,NULL,'En la_iglesia local','S',NULL,'LA IGLESIA - SU EXPRESIÓN LOCAL',NULL,'673',NULL,NULL,'1356611251','E1260',NULL,NULL,'E1260');
+INSERT INTO hymns VALUES('S673',NULL,NULL,NULL,'En la_iglesia local','S',NULL,'LA IGLESIA - SU EXPRESIÓN LOCAL',NULL,'673',NULL,NULL,'1356361251','E1260',NULL,NULL,'E1260');
 INSERT INTO hymns VALUES('S674',NULL,NULL,'¡IGLESIAS, IGLESIAS!','Son todas las iglesias','S',NULL,'LA IGLESIA - SU EXPRESIÓN LOCAL',NULL,'674',NULL,NULL,'5333333331714','E1265',NULL,NULL,'E1265');
 INSERT INTO hymns VALUES('S675',NULL,NULL,'¡CRISTO_Y LA_IGLESIA EN','¡Qué fervientes hoy estamos!','S',NULL,'LA IGLESIA - SU EXPRESIÓN LOCAL',NULL,'675',NULL,NULL,'1111113511111531','E1266',NULL,NULL,'E1266');
 INSERT INTO hymns VALUES('S676',NULL,NULL,NULL,'Remueve de mi corazón.','S',NULL,'LA IGLESIA - SU VISIÓN',NULL,'676',NULL,NULL,'511123166653','E1220',NULL,NULL,'E1220');
@@ -12550,7 +12550,7 @@ INSERT INTO hymns VALUES('GY13',NULL,NULL,NULL,'Seinen Namen lieben wir,','GY',N
 INSERT INTO hymns VALUES('GY14',NULL,NULL,'WIE ICH IHN LIEBE! WIE ICH IHN SCHÄTZE!','Nieder zu Erden,','GY',NULL,'Nieder zu Erden',NULL,'14',NULL,NULL,'54321123176','E82',NULL,NULL,'E82');
 INSERT INTO hymns VALUES('GY15',NULL,NULL,NULL,'Hört! Es singt das Engelsheer:','GY',NULL,'Hört! Es singt das Engelsheer',NULL,'15',NULL,NULL,'511713325554323','E84',NULL,NULL,'E84');
 INSERT INTO hymns VALUES('GY16',NULL,NULL,'JETZT ESSEN WIR MIT UNSEREM GEIST,','Ich möchte Gott preisen ewiglich,','GY',NULL,'Ich möchte Gott preisen ewiglich',NULL,'16',NULL,NULL,'332356113','NS131',NULL,NULL,'NS131');
-INSERT INTO hymns VALUES('GY17',NULL,NULL,NULL,'Er trat aus der Herrlichkeit','GY',NULL,'Er trat aus der Herrlichkeit',NULL,'17',NULL,NULL,'117617667153','NS762',NULL,NULL,'NS762');
+INSERT INTO hymns VALUES('GY17',NULL,NULL,NULL,'Er trat aus der Herrlichkeit','GY',NULL,'Er trat aus der Herrlichkeit',NULL,'17',NULL,NULL,'1176176667153','NS762',NULL,NULL,'NS762');
 INSERT INTO hymns VALUES('GY18',NULL,NULL,NULL,'Wie wunderbar Erlösung ist,','GY',NULL,'Wie wunderbar Erlösung ist',NULL,'18',NULL,NULL,'55112177442543','E116',NULL,NULL,'E116');
 INSERT INTO hymns VALUES('GY19',NULL,NULL,'INDEM WIR RUFEN: „JESUS, JESUS, JESUS!"','Gefallen -- so fangen wir alle an.','GY',NULL,'Gefallen -- so fangen wir alle an',NULL,'19',NULL,NULL,'234321231','NS105',NULL,NULL,'NS105');
 INSERT INTO hymns VALUES('GY20',NULL,NULL,NULL,'Preist den Sieger, Jesus Christus!','GY',NULL,'Preist den Sieger, Jesus Christus',NULL,'20',NULL,NULL,'531532156651543','E124',NULL,NULL,'E124');
@@ -12618,7 +12618,7 @@ INSERT INTO hymns VALUES('GY81',NULL,NULL,NULL,'Wenn wir genau wie Christus werd
 INSERT INTO hymns VALUES('GY82',NULL,NULL,NULL,'Herr, Deine Rückkehr ...','GY',NULL,'Herr, Deine Rückkehr',NULL,'82',NULL,NULL,'3456512313532','NS10031',NULL,NULL,'NS10031');
 INSERT INTO hymns VALUES('GY83',NULL,NULL,NULL,'Ich bin des Herrn! O Freude unaussprechlich!','GY',NULL,'Ich bin des Herrn! O Freude unaussprechlich',NULL,'83',NULL,NULL,'13555551776','E433',NULL,NULL,'E433');
 INSERT INTO hymns VALUES('GY84',NULL,NULL,'GEDRÄNGT VON LIEBE GEB ICH MEIN ALLES DIR.','Herr, lass mein Herz immer treu Dir sein!','GY',NULL,'Herr, lass mein Herz immer treu Dir sein',NULL,'84',NULL,NULL,'123321235','NS10052',NULL,NULL,'NS10052');
-INSERT INTO hymns VALUES('GY85',NULL,NULL,NULL,'Herr, Du liebst mich unermesslich','GY',NULL,'Herr, Du liebst mich unermesslich',NULL,'85',NULL,NULL,'33332252','NS46',NULL,NULL,'NS46');
+INSERT INTO hymns VALUES('GY85',NULL,NULL,NULL,'Herr, Du liebst mich unermesslich','GY',NULL,'Herr, Du liebst mich unermesslich',NULL,'85',NULL,NULL,'3333225211117737','NS46',NULL,NULL,'NS46');
 INSERT INTO hymns VALUES('GY86',NULL,NULL,NULL,'Die Liebe Christi nimmt mich so sehr ein,','GY',NULL,'Die Liebe Christi nimmt mich völlig ein',NULL,'86',NULL,NULL,'3345123232','NS10067',NULL,NULL,'NS10067');
 INSERT INTO hymns VALUES('GY87',NULL,NULL,'AM MORGEN, WENN WIR AUFSTEHN, NEU SAGEN WIR ZU IHM:','Lieb den Herrn, gib dich Ihm hin!','GY',NULL,'Lieb den Herrn, gib dich Ihm hin',NULL,'87',NULL,NULL,'16551235516551231','NS160',NULL,NULL,'NS160');
 INSERT INTO hymns VALUES('GY88',NULL,NULL,NULL,'Das Ziel des Evangeliums ist,','GY',NULL,'Das Ziel des Evangeliums ist',NULL,'88',NULL,NULL,'133322134555443','NS361',NULL,NULL,'NS361');
@@ -12749,7 +12749,7 @@ INSERT INTO hymns VALUES('GY212',NULL,NULL,'O HERR! AMEN! HALLELUJA!','Voller Ö
 INSERT INTO hymns VALUES('GY213',NULL,NULL,NULL,'Bald, Herr, erscheinst Du hier,','GY',NULL,'Bald, Herr, erscheinst Du hier',NULL,'213',NULL,NULL,'1112713333423','E1314',NULL,NULL,'E1314');
 INSERT INTO hymns VALUES('GY214',NULL,NULL,'WUNDERBARER TAG! OH, HELLER MORGEN,','Freut euch! Denn unser Bräutigam kommt','GY',NULL,'Freut euch! Denn unser Bräutigam kommt',NULL,'214',NULL,NULL,'55321766176551712','E1315',NULL,NULL,'E1315');
 INSERT INTO hymns VALUES('GY215',NULL,NULL,NULL,'Gott hat ewig einen Vorsatz','GY',NULL,'Gott hat ewig einen Vorsatz',NULL,'215',NULL,NULL,'565354432613543','E1325',NULL,NULL,'E1325');
-INSERT INTO hymns VALUES('GY216',NULL,NULL,'HERR, GIB UNS EINE LEITENDE VISION','Gott rief uns für Seinen Vorsatz,','GY',NULL,'Gott rief uns für Seinen Vorsatz',NULL,'216',NULL,NULL,'55555431','NS28',NULL,NULL,'NS28');
+INSERT INTO hymns VALUES('GY216',NULL,NULL,'HERR, GIB UNS EINE LEITENDE VISION','Gott rief uns für Seinen Vorsatz,','GY',NULL,'Gott rief uns für Seinen Vorsatz',NULL,'216',NULL,NULL,'5555543144424275','NS28',NULL,NULL,'NS28');
 INSERT INTO hymns VALUES('GY217',NULL,NULL,NULL,'Gott''s Ökonomie ist Sein Plan, Sich Selbst auszuteiln','GY',NULL,'Gott''s Ökonomie ist Sein Plan, Sich Selbst auszuteiln',NULL,'217',NULL,NULL,'3332112333327','NS319',NULL,NULL,'NS319');
 INSERT INTO hymns VALUES('GY218',NULL,NULL,'JERUSALEM, JERUSALEM.','Denn der Herr hat Zion erwählt,','GY',NULL,'Denn der Herr hat Zion erwählt',NULL,'218',NULL,NULL,NULL,NULL,NULL,NULL,'');
 INSERT INTO hymns VALUES('GY219',NULL,NULL,'O HERR! AMEN!','Ja, der Herr ist der Geist -- und so','GY',NULL,'Ja, der Herr ist der Geist -- und so',NULL,'219',NULL,NULL,'1117777666777666653','NS186',NULL,NULL,'NS186');
@@ -12827,7 +12827,7 @@ INSERT INTO hymns VALUES('SY19',NULL,NULL,'CON MI CORAZÓN','Mi corazón tiene',
 INSERT INTO hymns VALUES('SY20',NULL,NULL,'SEÑOR, HOY TE AMO,','Cada día es un nuevo inicio,','SY',NULL,'CADA DÍA ES UN NUEVO INICIO (Inglés: Every day''s a new beginning)',NULL,'20',NULL,NULL,NULL,NULL,NULL,NULL,'');
 INSERT INTO hymns VALUES('SY21',NULL,NULL,'NAZAREOS POR TU PLAN','Necesita Dios,','SY',NULL,'NECESITA DIOS JÓVENES COMO SAMUEL - NAZAREOS LEVANTA HOY',NULL,'21',NULL,NULL,'561234321315','NS315',NULL,NULL,'NS315,GY92');
 INSERT INTO hymns VALUES('SY22',NULL,NULL,'TOMÓ LA OPORTUNIDAD','Dio María su ofrenda de amor,','SY',NULL,'DIO MARÍA SU OFRENDA DE AMOR (Mat.26:6-13)',NULL,'22',NULL,NULL,'1171232111117125','NS99',NULL,NULL,'NS99,GY138');
-INSERT INTO hymns VALUES('SY23',NULL,NULL,'¡SÍ, ATRÁEME!','Oh Tu amor, Señor,','SY',NULL,'OH TU AMOR SEÑOR QUÉ INMENSO',NULL,'23',NULL,NULL,'33332252','NS46',NULL,NULL,'NS46,GY85');
+INSERT INTO hymns VALUES('SY23',NULL,NULL,'¡SÍ, ATRÁEME!','Oh Tu amor, Señor,','SY',NULL,'OH TU AMOR SEÑOR QUÉ INMENSO',NULL,'23',NULL,NULL,'3333225211117737','NS46',NULL,NULL,'NS46,GY85');
 INSERT INTO hymns VALUES('SY24',NULL,NULL,'TEMPRANO CADA DÍA','Da tu ser para amar al Señor,','SY',NULL,'DA TU SER PARA AMAR AL SEÑOR',NULL,'24',NULL,NULL,'16551235516551231','NS160',NULL,NULL,'NS160,GY87');
 INSERT INTO hymns VALUES('SY25',NULL,NULL,'POR ESO UN DÍA','En esta era de hoy,','SY',NULL,'EN ESTA ERA DE HOY DE REBELDÍA E IDOLATRÍA',NULL,'25',NULL,NULL,NULL,NULL,NULL,NULL,'');
 INSERT INTO hymns VALUES('SY26',NULL,NULL,NULL,'Te amo, Señor Jesús.','SY',NULL,'TE AMO SEÑOR JESÚS TE AMO PRECIOSO SEÑOR TU NO TIENES COMPARACIÓN',NULL,'26',NULL,NULL,'33556543355654','NS10016',NULL,NULL,'NS10016,GY142');
@@ -12886,7 +12886,7 @@ INSERT INTO hymns VALUES('SY78',NULL,NULL,'¡DE JUBILEO ESTE AÑO ES!','Jesús h
 INSERT INTO hymns VALUES('SY79',NULL,NULL,'DIOS, LEJOS ESTABAS TÚ,','¿Qué de mi pasado atroz?','SY',NULL,'QUE DE MI PASADO ATROZ? (Living Stream Ministry - 2001)',NULL,'79',NULL,NULL,'51352165135216','NS10076',NULL,NULL,'NS10076,GY221');
 INSERT INTO hymns VALUES('SY80',NULL,NULL,NULL,'Hay un evangelio hoy','SY',NULL,'HAY UN EVANGELIO HOY QUE DICE CREE Y SALVO TU SERÁS (Lc. 15)',NULL,'80',NULL,NULL,'33354446555344432','NS111',NULL,NULL,'NS111,GY239');
 INSERT INTO hymns VALUES('SY81',NULL,NULL,'CANAL DE VIDA SOY,','Si hablas la palabra,','SY',NULL,'SI HABLAS LA PALABRA EL TE LLENARÁ POR DENTRO Y POR FUERA - CANALES DE VIDA',NULL,'81',NULL,NULL,'3345666545554325','NS399',NULL,NULL,'NS399');
-INSERT INTO hymns VALUES('SY82',NULL,NULL,NULL,'Dejó Él Su gloria,','SY',NULL,'DEJÓ ÉL SU GLORIA FUE MANSO Y HUMILDE',NULL,'82',NULL,NULL,'117617667153','NS762',NULL,NULL,'NS762,GY17');
+INSERT INTO hymns VALUES('SY82',NULL,NULL,NULL,'Dejó Él Su gloria,','SY',NULL,'DEJÓ ÉL SU GLORIA FUE MANSO Y HUMILDE',NULL,'82',NULL,NULL,'1176176667153','NS762',NULL,NULL,'NS762,GY17');
 INSERT INTO hymns VALUES('SY83',NULL,NULL,NULL,'Si Dios te lleva_a_andar','SY',NULL,'SI DIOS TE LLEVA A ANDAR POR UN CAMINO QUE TU NO CONOCES',NULL,'83',NULL,NULL,'123343211121','NS291',NULL,NULL,'NS291');
 INSERT INTO hymns VALUES('SY84',NULL,NULL,'Y LA VIDA NO TIENE','Las flores se caen','SY',NULL,'LAS FLORES SE CAEN Y LA HIERBA SE SECA (1 Pe. 1:24-25)',NULL,'84',NULL,NULL,NULL,NULL,NULL,NULL,'');
 INSERT INTO hymns VALUES('SY85',NULL,NULL,'CADA DÍA TE AMO, AÚN MÁS SEÑOR;','Cada día te amo más Señor,','SY',NULL,'CADA DIA TE AMO MAS Y MAS - ESTE DIA TE AMO MUCHO MÁS (traducción provisional)',NULL,'85',NULL,NULL,'533221236','NS10065',NULL,NULL,'NS10065,CS340');
@@ -13109,7 +13109,7 @@ INSERT INTO hymns VALUES('SY301',NULL,NULL,NULL,'¿Dónde_está, pues,','SY',NUL
 INSERT INTO hymns VALUES('SY302',NULL,NULL,NULL,'Todo-inclusivo nuestro Cristo es;','SY',NULL,'TODO INCLUSIVO NUESTRO CRISTO ES; ASIGNADA ESTRA PORCIÓN EN LA LUZ',NULL,'302',NULL,NULL,'12311561165','NS438',NULL,NULL,'NS438');
 INSERT INTO hymns VALUES('SY303',NULL,NULL,NULL,'Jehova es mi luz y mi Salvación,','SY',NULL,'JEHOVA ES MI LUZ Y MI SALVACION, ¿A QUIEN HE DE TEMER? (Salmo 27:1,4, 7-8)',NULL,'303',NULL,NULL,'53432321643232','NS282',NULL,NULL,'NS282');
 INSERT INTO hymns VALUES('SY304',NULL,NULL,NULL,'Nadie tenga nunca en poco tu fresca juventud,','SY',NULL,'NADIE TENGA NUNCA EN POCO TU FRESCA JUVENTUD',NULL,'304',NULL,NULL,NULL,NULL,NULL,NULL,'');
-INSERT INTO hymns VALUES('SY305',NULL,NULL,'HOY, MI SEÑOR, RECIBO EL AMOR','Tinieblas, luz, distintos son;','SY',NULL,'TINIEBLAS LUZ DISTINTOS SON (RECIBO EL AMOR DE LA VERDAD; Suplemento de cánticos MSPI)',NULL,'305',NULL,NULL,'11235554321235543231','NS915',NULL,NULL,'NS915');
+INSERT INTO hymns VALUES('SY305',NULL,NULL,'HOY, MI SEÑOR, RECIBO EL AMOR','Tinieblas, luz, distintos son;','SY',NULL,'TINIEBLAS LUZ DISTINTOS SON (RECIBO EL AMOR DE LA VERDAD; Suplemento de cánticos MSPI)',NULL,'305',NULL,NULL,'1235554321235543231','NS915',NULL,NULL,'NS915');
 INSERT INTO hymns VALUES('SY306',NULL,NULL,NULL,'Favor halló Noé ante los ojos de Jehová.','SY',NULL,'FAVOR HALLO NOE ANTE LOS OJOS DE JEHOVA (English: Noah found favor in the sight of Jehovah; Traducción provisional)',NULL,'306',NULL,NULL,NULL,NULL,NULL,NULL,'');
 INSERT INTO hymns VALUES('SY307',NULL,NULL,'COME','Maná del cielo bajó;','SY',NULL,'MANÁ DEL CIELO BAJÓ (traducción provisional)',NULL,'307',NULL,NULL,'11165614445112','NS638',NULL,NULL,'NS638');
 INSERT INTO hymns VALUES('SY308',NULL,NULL,'NO DEBO CREER EN MIS "CONFLICTOS",','Pecador, más salvo soy;','SY',NULL,'PECADOR, MÁS SALVO SOY (traducción provisional)',NULL,'308',NULL,NULL,'11127773333211','NS902',NULL,NULL,'NS902');
@@ -13591,7 +13591,7 @@ INSERT INTO hymns VALUES('G357',NULL,NULL,NULL,'Dort in Babylon, in Gefangenscha
 INSERT INTO hymns VALUES('G358',NULL,NULL,'SEID STARK, SEID STARK, DIE WOHNUNG BAUT FÜR IHN!','Es ist die Zeit den Tempel des Herrn nun aufzubaun,','G',NULL,'DIE GEMEINDE','Freies Versmaß','358','DIE WIEDERERLANGUNG DES HERRN',NULL,'5566116355663','E1254',NULL,'Haggai 1','E1254');
 INSERT INTO hymns VALUES('G359',NULL,NULL,'WIR SIND FÜR DES HERRN,','Wir sind für die Wied''rerlangung','G',NULL,'DIE GEMEINDE','Freies Versmaß','359','DIE WIEDERERLANGUNG DES HERRN',NULL,'1515123144123','E1255',NULL,NULL,'E1255');
 INSERT INTO hymns VALUES('G360',NULL,NULL,'DIE GEMEIND AM ORT IST GOTTES WAHL HEUTE,','Siehst du sie in allen Städten,','G',NULL,'DIE GEMEINDE','8.7.8.7. mit Refrain','360','IHR ÖRTLICHER AUSDRUCK',NULL,'556712156712165','E1257',NULL,NULL,'E1257');
-INSERT INTO hymns VALUES('G361',NULL,NULL,NULL,'Ja, die Gemeind am Ort','G',NULL,'DIE GEMEINDE','Freies Versmaß','361','IHR ÖRTLICHER AUSDRUCK',NULL,'1356611251','E1260',NULL,NULL,'E1260');
+INSERT INTO hymns VALUES('G361',NULL,NULL,NULL,'Ja, die Gemeind am Ort','G',NULL,'DIE GEMEINDE','Freies Versmaß','361','IHR ÖRTLICHER AUSDRUCK',NULL,'1356361251','E1260',NULL,NULL,'E1260');
 INSERT INTO hymns VALUES('G362',NULL,NULL,'CHRISTUS UND DIE GEMEIND,','Brennen, brennen, ja, wir brennen,','G',NULL,'DIE GEMEINDE','Freies Versmaß','362','IHR ÖRTLICHER AUSDRUCK',NULL,'1111113511111531','E1266',NULL,NULL,'E1266');
 INSERT INTO hymns VALUES('G363',NULL,NULL,'ÜBERWIND! ÜBERWIND!','Christus rief uns einst zu Sich,','G',NULL,'DIE GEMEINDE','7.7.7.3.D. mit Refrain','363','DIE ÜBERWINDER',NULL,'12333331355555','E1273',NULL,NULL,'E1273');
 INSERT INTO hymns VALUES('G364',NULL,NULL,NULL,'Die Gemeinde Jesu Liebe hat für dich,','G',NULL,'DIE GEMEINDE','11.11.11.11.','364','ALLGEMEIN',NULL,'123354323217','E1278',NULL,NULL,'E1278');
