@@ -87,7 +87,12 @@ spans a different number of notes than its digit (NS445), `add9` and diminished-
 long notes beyond beat-snapping (estimated from layout, version-dependent).
 Anything unmodelled that prints must end up `REVIEW` — the coverage check exists for that. Never report a REVIEW file as converted.
 
-## 8. Latest results (2026-10-06)
+## 8. Guitar sheets are derived (2026-10-08)
+Only piano `.ly` files are stored in `ly/`. Guitar sheets come from `python3 tools/guitar_from_piano.py` (`--all`, `--compile`),
+which picks the capo from the key, transposes the chords and removes slash basses; see DESIGN.md section 10. Don't convert
+`guitarSvg` into stored `.ly` files, and don't simplify chords to match hymnal.net: the fuller chords are preferred.
+
+## 9. Latest results (2026-10-06)
 Piano 3,166/3,179 accepted (3,089 clean), guitar 3,164/3,179 (3,084 clean). The 13+15 left each have a reason in
 `svg-to-lilypond/DESIGN.md` section 18 ("Review tail"). The accepted `.ly` files are committed in `svg-to-lilypond/ly/` (never hand-edit;
 refresh after a significant converter change). A full run is ~3 h per variant on this host (`-j 8`, nice); while fixing,

@@ -352,8 +352,10 @@ and small typographic differences such as "Trinity — His Plan" with spaces.
 
 - **Decided (2026-10-08, Lemuel): one source per hymn, the piano `.ly`.** The guitar sheet is derived from it by a
   conservative conversion step (§10.2). Guitar charts for E may be a little busier than hymnal.net's guitar sheets;
-  that is accepted. This replaces the 2026-10-04 decision of two independent `.ly` files per hymn. `ly/guitar/`
-  stays as the test reference until the derived sheets are checked, then it can go.
+  that is accepted. This replaces the 2026-10-04 decision of two independent `.ly` files per hymn. Lemuel
+  reviewed side-by-sides (E1, C103, NS160, NS576, E118) and found the derived chords *better* than hymnal.net's
+  (E1 matches how he plays it): the fuller piano harmony is wanted, so the conversion is not made more aggressive.
+  `ly/guitar/` was removed from the working tree the same day (history before this commit has it, e.g. for `--check`).
 
 ### 10.1 What the two variants share (measured 2026-10-08 on all 3,179 `ly/` pairs)
 
@@ -417,7 +419,7 @@ Not done (for now): weak-beat and passing-chord rules, dropping 7ths and other e
 drop chords of 1/8 or less (`--drop-short`).
 
 Tool: `tools/guitar_from_piano.py` (`--all` derive into `build/guitar_derived/`, `--compile` render with the page-fit
-fallback into `build/guitar_derived_svg/`, `--check` compare with `ly/guitar/`).
+fallback into `build/guitar_derived_svg/`, `--check` compare with `ly/guitar/`, which is no longer in the tree: restore it with `git checkout 1fcdba84 -- ly/guitar`).
 
 **First full run (2026-10-08, local, LilyPond 2.24.3, 12 processes, ~40 min):**
 - All 3,179 derived sheets compile; 3,174 on one page as derived, 5 needed the page-fit fallback (NS10025, NS1058,
@@ -1035,3 +1037,7 @@ Python 3.12 with fontTools/numpy/Pillow.
 - **2026-10-08:** Piano vs guitar measured on all 3,179 `ly/` pairs (§10.1). Lemuel decided: piano `.ly` only, guitar
   derived by a conservative conversion (§10.2), slightly busier E charts accepted. `tools/guitar_from_piano.py` written;
   first full run: all 3,179 derived sheets compile on one page (5 with the page-fit fallback); results in §10.2.
+  Side-by-sides: Lemuel prefers the derived chords to hymnal.net's guitar sheets. Capo text for C/CS moved from the
+  first note to its own line under the title (as in hymnal.net's sheets; the first-note markup collided with the first
+  chord); all 415 C/CS sheets still fit one page. `ly/guitar/` and its `status.csv` rows removed; the guitar `.ly` is
+  now derived on demand and not stored.

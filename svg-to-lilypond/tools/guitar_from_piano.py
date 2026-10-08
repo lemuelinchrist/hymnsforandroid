@@ -10,7 +10,7 @@ Conservative on purpose: only steps that never drop a chord the hymnal.net guita
 usage:
   python3 tools/guitar_from_piano.py ly/piano/E5.ly [-o out.ly]       one file (stdout without -o)
   python3 tools/guitar_from_piano.py --all [--out build/guitar_derived] [--drop-short]
-  python3 tools/guitar_from_piano.py --check [--out build/guitar_derived]   compare with ly/guitar/
+  python3 tools/guitar_from_piano.py --check [--out build/guitar_derived]   compare with ly/guitar/ (removed 2026-10-08; restore from git: 1fcdba84)
   python3 tools/guitar_from_piano.py --compile [-j 12] [HYMN ...]   render to SVG; a sheet that spills onto a second
       page is derived again with the gap above the verse block 2.5 staff spaces smaller (like hymnal.net's own guitar
       sheets do) and rendered again
@@ -194,15 +194,11 @@ def derive(text, hymn, drop_short=False, tight=False):
         mb = block(out, 'melody')
         body, n_in, n_out = convert_chords(out[hb[0]:hb[1]], capo, drop_short, system_starts(out[mb[0]:mb[1]]))
         out = out[:hb[0]] + body + out[hb[1]:]
-    if chinese:
-        mb = block(out, 'melody')
-        out = out[:mb[0]] + add_note_markup(out[mb[0]:mb[1]], label) + out[mb[1]:]
-    else:
-        # first line under the title block, before any instruction lines and the \vspace
-        m = re.search(r'(\\raise #-?[\d.]+ \\fontsize #[\d.]+ \\fromproperty #\'header:opus\n    \}\n    )', out)
-        if not m:
-            raise ValueError('title block not found')
-        out = out[:m.end()] + '\\fill-line { \\bold \\italic "%s" \\null }\n    ' % label + out[m.end():]
+    # own line under the title block, before any instruction lines and the \vspace
+    m = re.search(r'(\\raise #-?[\d.]+ \\fontsize #[\d.]+ \\fromproperty #\'header:opus\n    \}\n    )', out)
+    if not m:
+        raise ValueError('title block not found')
+    out = out[:m.end()] + '\\fill-line { \\bold \\italic "%s" \\null }\n    ' % label + out[m.end():]
     if tight:
         out = re.sub(r"score-markup-spacing = #'\(\(basic-distance \. ([\d.]+)\) \(minimum-distance \. [\d.]+\)",
                      lambda m: "score-markup-spacing = #'((basic-distance . %.2f) (minimum-distance . %.2f)"

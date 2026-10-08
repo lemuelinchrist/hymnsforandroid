@@ -1,7 +1,9 @@
 # Generated LilyPond sources (accepted sheets only)
 
-One `.ly` per hymn and variant (`piano/`, `guitar/`), written by `tools/convert.py` from the shipped
-`app/src/main/assets/{piano,guitar}Svg/*.svg`, with LilyPond 2.24.4. Only sheets whose re-render read back identical
+One piano `.ly` per hymn (`piano/`), written by `tools/convert.py` from the shipped
+`app/src/main/assets/pianoSvg/*.svg`, with LilyPond 2.24.3. There is no stored guitar variant: since 2026-10-08 it is
+derived from the piano file on demand by `tools/guitar_from_piano.py` (capo, transposed chords, light simplification;
+DESIGN.md section 10). Only sheets whose re-render read back identical
 to the original (`ACCEPT`, `ACCEPT_DB_MISMATCH`) are here; sheets still in `REVIEW` stay in the git-ignored `build/`.
 
 - **Generated: never hand-edit.** Fix `tools/recognize.py` / `emit_ly.py` / `verify.py` and re-run
