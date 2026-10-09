@@ -1,6 +1,6 @@
 ---
 name: svg-to-lilypond
-description: Use when new or changed lead-sheet SVGs (app/src/main/assets/pianoSvg, guitarSvg) have arrived — e.g. after a hymnal.net / New Songs sync — and need converting to LilyPond (.ly) sources, or when investigating why a sheet fails conversion or verification. Covers running the converter, reading the report, rebuilding the glyph catalog, the review workflow, and the traps already found.
+description: Use when new or changed lead-sheet SVGs (app/src/main/assets/pianoSvg, guitarSvg) have arrived — e.g. after a hymnal.net / New Songs sync — and need converting to LilyPond (.ly) sources, or when investigating why a sheet fails conversion or verification, or when `.ly` files changed and the in-app viewer's MEI files (app/src/main/assets/sheetMei) need regenerating. Covers running the converter, reading the report, rebuilding the glyph catalog, the review workflow, and the traps already found.
 ---
 
 # SVG -> LilyPond conversion
@@ -92,7 +92,23 @@ Only piano `.ly` files are stored in `ly/`. Guitar sheets come from `python3 too
 which picks the capo from the key, transposes the chords and removes slash basses; see DESIGN.md section 10. Don't convert
 `guitarSvg` into stored `.ly` files, and don't simplify chords to match hymnal.net: the fuller chords are preferred.
 
-## 9. Latest results (2026-10-06)
+## 9. The in-app viewer's MEI files must follow the `.ly` files (2026-10-09)
+The app's "New Sheet Music Viewer" (DESIGN.md section 19) does not read `.ly`: it renders
+`app/src/main/assets/sheetMei/<id>.mei`, made from the piano `.ly` by `tools/ly_to_mei.py`. **Whenever a `.ly` file is
+added or changed, regenerate the MEI before building a release**, or the viewer keeps showing the old sheet:
+```bash
+python3 svg-to-lilypond/tools/ly_to_mei.py --all --out app/src/main/assets/sheetMei   # every line should end OK
+python3 -c "import glob,xml.etree.ElementTree as E;[E.parse(f) for f in glob.glob('app/src/main/assets/sheetMei/*.mei')];print('well-formed')"
+git status --short app/src/main/assets/sheetMei      # only the hymns whose .ly changed should show up
+```
+- There is no guitar MEI: the viewer derives the guitar version itself (same rules as `guitar_from_piano.py`).
+- A hymn with no `.ly` (still REVIEW, or new) has no MEI, and the app shows its SVG instead, so new hymns need a
+  `.ly` first.
+- If a changed `.ly` uses something new (a markup, a `\set`, a bar type), `ly_to_mei.py` reports FAIL for it; extend
+  the converter (and DESIGN.md section 19) rather than hand-editing MEI. To look at one: `ly_to_mei.py --render <ids>`
+  (needs the `verovio` Python package in a venv).
+
+## 10. Latest results (2026-10-06)
 Piano 3,166/3,179 accepted (3,089 clean), guitar 3,164/3,179 (3,084 clean). The 13+15 left each have a reason in
 `svg-to-lilypond/DESIGN.md` section 18 ("Review tail"). The accepted `.ly` files are committed in `svg-to-lilypond/ly/` (never hand-edit;
 refresh after a significant converter change). A full run is ~3 h per variant on this host (`-j 8`, nice); while fixing,
