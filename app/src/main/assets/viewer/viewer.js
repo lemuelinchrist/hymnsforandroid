@@ -170,7 +170,7 @@
 
   function render() {
     if (!state.staff) { renderChart(); return; }
-    var width = document.documentElement.clientWidth - 20;
+    var width = $('music').clientWidth;   // the page width less the margins and any camera cutout
     tk.setOptions({
       pageWidth: Math.round(width * 100 / scale),
       pageHeight: 60000,
@@ -376,6 +376,15 @@
   $('bDown').addEventListener('click', function () { change(function () { state.shift = Math.max(-MAX_SHIFT, state.shift - 1); }); });
   $('bUp').addEventListener('click', function () { change(function () { state.shift = Math.min(MAX_SHIFT, state.shift + 1); }); });
   $('bStaff').addEventListener('click', function () { change(function () { state.staff = !state.staff; }); });
+
+  // the app passes the camera cutout's safe insets (CSS px) so the bar and the music stay clear of the camera
+  window.setInsets = function (top, right, bottom, left) {
+    var root = document.documentElement.style, before = $('music').clientWidth;
+    root.setProperty('--it', top + 'px');
+    root.setProperty('--ir', right + 'px');
+    root.setProperty('--il', left + 'px');
+    if (tk && $('music').clientWidth !== before) render();
+  };
 
   // a tap anywhere else shows or hides the bar (scrolling and pinching do not fire click)
   document.addEventListener('click', function (e) {

@@ -1,7 +1,9 @@
+:root { --it: 0px; --ir: 0px; --il: 0px; }   /* camera cutout insets, set by the app (setInsets) */
 :root { --ink: #000; --paper: #fff; --muted: #555; --accent: #c80000; --bar: rgba(255,255,255,0.96); --line: #ccc; }
 html.dark { --ink: #e8e8e8; --paper: #121212; --muted: #aaa; --accent: #ff8a80; --bar: rgba(30,30,30,0.96); --line: #444; }
 html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); }
-body { font-family: "Times New Roman", "Noto Serif", serif; padding: 60px 10px 24px; }
+body { font-family: "Times New Roman", "Noto Serif", serif;
+       padding: calc(60px + var(--it)) calc(10px + var(--ir)) 24px calc(10px + var(--il)); }
 header { margin-bottom: 6px; }
 #titlerow { display: flex; align-items: flex-start; gap: 0.5em; text-align: center; }
 #titlerow > div:nth-child(2) { flex: 1; }
@@ -24,7 +26,8 @@ footer { text-align: center; color: var(--muted); font-size: 0.75em; margin-top:
 
 /* the bar: a tap outside it shows or hides it; the page keeps room for it so nothing jumps */
 #bar { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center;
-       justify-content: space-between; gap: 8px; padding: 8px 10px; background: var(--bar);
+       justify-content: space-between; gap: 8px; background: var(--bar);
+       padding: calc(8px + var(--it)) calc(10px + var(--ir)) 8px calc(10px + var(--il));
        border-bottom: 1px solid var(--line); font-family: sans-serif; font-size: 14px;
        transition: transform 0.2s ease; }
 body.barHidden #bar { transform: translateY(-100%); }
@@ -41,7 +44,7 @@ body.barHidden #bar { transform: translateY(-100%); }
 #bBack { width: 36px; padding: 0; display: flex; align-items: center; justify-content: center; flex: none; }
 /* narrow phones (360 px): tighter buttons; "Staff" is a toggle that is lit while the staff shows */
 @media (max-width: 399px) {
-  #bar { gap: 4px; padding: 8px 6px; font-size: 13px; }
+  #bar { gap: 4px; padding: calc(8px + var(--it)) calc(6px + var(--ir)) 8px calc(6px + var(--il)); font-size: 13px; }
   #bar button { padding: 6px 8px; }
   #bar .transpose button { width: 30px; }
   #bBack { width: 32px; }

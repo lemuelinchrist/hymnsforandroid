@@ -1033,6 +1033,12 @@ opened again (the user's group only transposes when a song is too high or too lo
   bar). The page navigates to `hymnsviewer://close` and `SheetMusicActivity` finishes on that address
   (`shouldOverrideUrlLoading`, both the API 24+ and the older form, since minSdk is 21). Below 400 px wide the bar
   is compact and "Hide staff" becomes a lit "Staff" toggle; checked at 448 and 384 px.
+- *Camera cutout*: the activity is full screen and draws into the cutout (SHORT_EDGES), so the − button sat under a
+  centre punch-hole camera. The activity reads the cutout's safe insets (`WindowInsetsCompat.Type.displayCutout()`)
+  and passes them to the page (`setInsets(top, right, bottom, left)` in CSS px, sent on every insets change and on
+  `onPageFinished`); the bar is padded below the camera, its background filling the strip behind it, and the page
+  margins add the side insets in landscape. CSS `env(safe-area-inset-*)` is not used: WebView has long reported 0 for
+  it. Checked on the Pixel 9 Pro XL emulator (cutout 159 px top in portrait, left in landscape).
 
 - *Transpose* changes the key everyone sings in, on piano and on guitar. Verovio's `transpose` option moves the notes,
   key signature and chord symbols (it reads our ♭/♯ chord text) and spells the new key itself (E1 +3 = B, NS576 +3 = A♭);

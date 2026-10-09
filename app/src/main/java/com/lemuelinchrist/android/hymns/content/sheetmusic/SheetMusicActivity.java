@@ -28,6 +28,7 @@ import com.lemuelinchrist.android.hymns.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
 
 /**
  * Created by lemuel on 30/4/2017.
@@ -40,6 +41,8 @@ public class SheetMusicActivity extends AppCompatActivity {
     private ShareActionProvider shareActionProvider;
     private LegacySheetMusic legacySheetMusic;
     private SharedPreferences sharedPreferences;
+    private boolean newViewer;
+    private Insets cutout = Insets.NONE;   // the camera cutout's safe insets, in pixels
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +51,10 @@ public class SheetMusicActivity extends AppCompatActivity {
 
         // Apply window insets to handle edge-to-edge but hide system bars for true immersive mode
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.sheet_music_layout), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            // No padding needed because we are going full screen!
+            // No padding needed because we are going full screen! The new viewer keeps its bar clear of the camera
+            // cutout itself, so it is told where the cutout is.
+            cutout = insets.getInsets(WindowInsetsCompat.Type.displayCutout());
+            sendCutoutToViewer();
             return insets;
         });
 
@@ -74,7 +79,8 @@ public class SheetMusicActivity extends AppCompatActivity {
         webview = findViewById(R.id.sheet_music_image);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (sharedPreferences.getBoolean("newSheetMusicViewer", false) && hasMei(selectedHymnId)) {
+        newViewer = sharedPreferences.getBoolean("newSheetMusicViewer", false) && hasMei(selectedHymnId);
+        if (newViewer) {
             loadNewViewer(selectedHymnId);
         } else {
             webview.getSettings().setBuiltInZoomControls(true);
@@ -132,6 +138,11 @@ public class SheetMusicActivity extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {   // before API 24
                 return closeIfRequested(Uri.parse(url));
             }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                sendCutoutToViewer();   // the insets usually arrive before the page can take them
+            }
         });
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setAllowFileAccess(false);
@@ -139,6 +150,14 @@ public class SheetMusicActivity extends AppCompatActivity {
         boolean dark = sharedPreferences.getBoolean("nightMode", false);
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
                 + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0"));
+    }
+
+    /** Tells the viewer page where the camera cutout is (CSS pixels), so the bar and music stay clear of it. */
+    private void sendCutoutToViewer() {
+        if (!newViewer || webview == null) return;
+        float density = getResources().getDisplayMetrics().density;
+        webview.evaluateJavascript(String.format(Locale.ROOT, "window.setInsets && setInsets(%.1f, %.1f, %.1f, %.1f)",
+                cutout.top / density, cutout.right / density, cutout.bottom / density, cutout.left / density), null);
     }
 
     private boolean closeIfRequested(Uri url) {
