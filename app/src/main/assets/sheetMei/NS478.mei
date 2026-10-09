@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Christ in Isaiah</title>
+<title type="subordinate">Experience of Christ—As Everything</title>
+</titleStmt><pubStmt><identifier type="hymn">NS478</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="d" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>Our</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="f" oct="4" dur="2">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4"/>
+<note xml:id="n7" pname="d" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="e" oct="4" dur="2">
+<verse n="1"><syl>fruit</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E/B</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="e" oct="4" dur="2">
+<verse n="1"><syl>earth,</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="e" oct="4" dur="8">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">Em/G</harm>
+<harm staff="1" tstamp="3.5000" place="above">B/F♯</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">ex</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">cel</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">Em/G</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">lence</syl></verse></note>
+<note xml:id="n16" pname="f" oct="4" dur="4"/>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">plete;</syl></verse></note>
+<beam>
+<note xml:id="n19" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3.5000" place="above">A/E</harm>
+<fermata startid="#n18" place="above"/>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">ho</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">vah’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="d" oct="5" dur="2">
+<verse n="1"><syl>shoot,</syl></verse></note>
+<note xml:id="n24" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="m" con="d">vin</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ty;</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Where</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="e" oct="4" dur="2">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em/G</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="2">
+<verse n="1"><syl>man</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="4">
+<verse n="1"><syl>does</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>meet.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<tie startid="#n33" endid="#n34"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="d" oct="4" dur="2"/>
+<rest xml:id="r35" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Our Christ He is the canopy</l><l>To shelter God’s elect,</l><l>A hiding place, a shade from heat,</l><l>God’s work He does protect.</l></lg>
+<lg label="3."><l>As virgin’s Son, to us He came—</l><l>The universal sign;</l><l>Immanuel, God dwells with us;</l><l>O what a joy divine.</l></lg>
+<lg label="4."><l>Now unto us this child is born,</l><l>As firstborn Son He came;</l><l>As counselor, He’s wonderful,</l><l>The mighty God His name.</l></lg>
+<lg label="5."><l>The shadow of a massive rock</l><l>Upon a wasted soil,</l><l>A refuge He from storm and wind,</l><l>A rest from earthly toil.</l></lg>
+<lg label="6."><l>A twig and branch and Jesse’s root,</l><l>The fruit of all the earth;</l><l>He grew up as a tender plant,</l><l>O what a Christ of worth.</l></lg>
+<lg label="7."><l>Our Christ, He is the cornerstone;</l><l>He’s tested and secure,</l><l>The glory of the Father’s house,</l><l>Upon Him resting sure.</l></lg>
+<lg label="8."><l>Although He was despised by man,</l><l>Acquainted He with grief;</l><l>He paid the greatest sacrifice</l><l>That we should find release.</l></lg>
+<lg label="9."><l>A peg that’s driven in the wall</l><l>On which all glory rests,</l><l>The faithful household steward He,</l><l>God’s wisdom manifest.</l></lg>
+<lg label="10."><l>Eternal covenant He makes</l><l>With David’s mercies sure;</l><l>The thirsty He does satisfy</l><l>With living waters pure.</l></lg>
+<lg label="11."><l>To properly portray this One,</l><l>The Bible uses three:</l><l>Isaiah, Cyrus, Israel;</l><l>A threefold Servant He.</l></lg>
+<lg label="12."><l>The Prince of Peace and Mighty God,</l><l>The Savior and the King,</l><l>The light in the Millennium,</l><l>’Tis of this One we sing.</l></lg>
+<lg label="13."><l>Since unto us this light has shined,</l><l>Who dwell in Galilee,</l><l>We evermore declare His praise,</l><l>O what a Christ is He.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">There were ninety and nine that safely lay</title>
+<title type="subordinate">Gospel—General</title>
+</titleStmt><pubStmt><identifier type="hymn">E1077</identifier><identifier type="number">1077</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="6" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="c" oct="4" dur="16">
+<verse n="1"><label>1.</label><syl>There</syl></verse></note>
+<note xml:id="n2" pname="c" oct="4" dur="16">
+<verse n="1"><syl>were</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">nine</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>nine</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="8">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">safe</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>lay</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="f" oct="4" dur="16">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="16">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">shel</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ter</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n16" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>flock,</syl></verse></note>
+<rest xml:id="r18" dur="4"/>
+<note xml:id="n19" pname="c" oct="4" dur="8">
+<verse n="1"><syl>But</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl>one</syl></verse></note>
+<note xml:id="n21" pname="f" oct="4" dur="8">
+<verse n="1"><syl>was</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>out</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="f" oct="4" dur="16">
+<verse n="1"><syl>on</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="16">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>hills</syl></verse></note>
+<note xml:id="n26" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">way,</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Far</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="4" place="above">F/C</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl>off</syl></verse></note>
+<beam>
+<note xml:id="n30" pname="g" oct="4" dur="16">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="16">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n32" pname="e" oct="4" dur="4">
+<verse n="1"><syl>cold</syl></verse></note>
+<note xml:id="n33" pname="e" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
+<harm staff="1" tstamp="4" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>dark;</syl></verse></note>
+<rest xml:id="r35" dur="4"/>
+<note xml:id="n36" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">F/C</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n37" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">way</syl></verse></note>
+<note xml:id="n38" pname="a" oct="4" dur="16">
+<verse n="1"><syl>on</syl></verse></note>
+<note xml:id="n39" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n40" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">moun</syl></verse></note>
+<note xml:id="n41" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tains</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+<fermata startid="#n37" place="above"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="a" oct="4" dur="4">
+<verse n="1"><syl>wild</syl></verse></note>
+<note xml:id="n43" pname="a" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n44" pname="f" oct="4" dur="4">
+<verse n="1"><syl>bare,</syl></verse></note>
+<note xml:id="n45" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+<harm staff="1" tstamp="6" place="above">C/E</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n46" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">way</syl></verse></note>
+<note xml:id="n47" pname="c" oct="5" dur="16">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n48" pname="c" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n49" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ten</syl></verse></note>
+<note xml:id="n50" pname="a" oct="4" dur="8"/>
+<note xml:id="n51" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">der</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+<slur startid="#n49" endid="#n50"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n52" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Sheph</syl></verse></note>
+<note xml:id="n53" pname="f" oct="4" dur="8"/>
+<note xml:id="n54" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">erd’s</syl></verse></note>
+</beam>
+<note xml:id="n55" pname="a" oct="4" dur="4">
+<verse n="1"><syl>care.</syl></verse></note>
+<note xml:id="n56" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+<harm staff="1" tstamp="6" place="above">C7/G</harm>
+<slur startid="#n52" endid="#n53"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n57" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">way</syl></verse></note>
+<note xml:id="n58" pname="c" oct="5" dur="16">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n59" pname="d" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n60" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ten</syl></verse></note>
+<note xml:id="n61" pname="a" oct="4" dur="8"/>
+<note xml:id="n62" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">der</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">F/A</harm>
+<harm staff="1" tstamp="6" place="above">F</harm>
+<fermata startid="#n57" place="above"/>
+<slur startid="#n60" endid="#n61"/>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n63" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Sheph</syl></verse></note>
+<note xml:id="n64" pname="a" oct="4" dur="8"/>
+<note xml:id="n65" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">erd’s</syl></verse></note>
+</beam>
+<note xml:id="n66" pname="f" oct="4" dur="4">
+<verse n="1"><syl>care.</syl></verse></note>
+<rest xml:id="r67" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+<slur startid="#n63" endid="#n64"/>
+<fermata startid="#n64" place="above"/>
+<fermata startid="#n66" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>“Lord, Thou hast here Thy ninety and nine;</l><l>Are they not enough for Thee?”</l><l>But the Shepherd made answer: “This of Mine</l><l>Has wandered away from Me;</l><l>And although the road be rough and steep,</l><l>I go to the desert to find My sheep.”</l></lg>
+<lg label="3."><l>But none of the ransomed ever knew</l><l>How deep were the waters crossed;</l><l>Nor how dark was the night which the Lord passed through</l><l>Ere He found His sheep that was lost.</l><l>Out in the bleak desert He heard its cry—</l><l>All bleeding and helpless, and ready to die.</l></lg>
+<lg label="4."><l>“Lord, whence are those blood-drops all the way</l><l>That mark out the mountain’s track?”</l><l>“They were shed for one who had gone astray</l><l>Ere the Shepherd could bring him back.”</l><l>“Lord, whence are Thy hands so rent and torn?”</l><l>“They’re pierced tonight by many a thorn.”</l></lg>
+</div>
+</back>
+</music></mei>

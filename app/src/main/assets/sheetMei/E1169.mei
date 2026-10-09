@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Our worship in reality</title>
+<title type="subordinate">Experience of Christ—As the Good Land</title>
+</titleStmt><pubStmt><identifier type="hymn">E1169</identifier><identifier type="number">1169</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">wor</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ship</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">al</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+<note xml:id="n11" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ty</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">pi</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fied</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">D7/A</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<harm staff="1" tstamp="4" place="above">Am/C</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Mos</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">es’</syl></verse></note>
+<note xml:id="n18" pname="d" oct="4" dur="4">
+<verse n="1"><syl>law:</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="2" place="above">A7</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Ca</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">naan’s</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pro</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="c" oct="5" dur="8"/>
+<note xml:id="n24" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">duce,</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>rich</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="g" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>sweet,</syl></verse></note>
+<note xml:id="n29" pname="d" oct="4" dur="4">
+<verse n="1"><syl>All</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Is</syl></verse></note>
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">rael</syl></verse></note>
+<note xml:id="n32" pname="g" oct="4" dur="4">
+<verse n="1"><syl>came</syl></verse></note>
+<beam>
+<note xml:id="n33" pname="b" oct="4" dur="8"/>
+<note xml:id="n34" pname="a" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">wor</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">shipped</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="4">
+<verse n="1"><syl>God.</syl></verse></note>
+<rest xml:id="r38" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<fermata startid="#n37" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>’Tis thus that we must come today</l><l>To worship in reality:</l><l>When we bring Christ as produce sweet</l><l>God fully satisfied will be.</l></lg>
+<lg label="3."><l>The worship that God so desired</l><l>Was not with manna sent from heav’n,</l><l>But from their labor on the land</l><l>The people’s gifts to God were giv’n.</l></lg>
+<lg label="4."><l>Thus, what God so desires today.</l><l>Are not the miracles so grand,</l><l>But daily, normal life in Christ,</l><l>As worship, produce of the land.</l></lg>
+<lg label="5."><l>The manna came from God alone;</l><l>The produce, from man’s work on Him.</l><l>So all our worship now must come</l><l>From mingling with the Lord within.</l></lg>
+<lg label="6."><l>As day by day we live in Christ,</l><l>And take Him as our everything,</l><l>The produce of the land comes forth</l><l>And worship true to God we’ll bring.</l></lg>
+<lg label="7."><l>The manna, Lord, no more we’ll seek,</l><l>But Christ in all we will apply;</l><l>Then we will have some produce sweet,</l><l>Thine own dear heart to satisfy.</l></lg>
+</div>
+</back>
+</music></mei>

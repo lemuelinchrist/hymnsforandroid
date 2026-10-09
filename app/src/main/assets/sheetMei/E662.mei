@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">On toward the goal! Press on</title>
+<title type="subordinate">Encouragement—For Pressing On</title>
+</titleStmt><pubStmt><identifier type="hymn">E662</identifier><identifier type="number">662</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="6" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>“On</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="c" oct="5" dur="4">
+<verse n="1"><syl>toward</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="b" oct="4" dur="8">
+<verse n="1"><syl>goal!”</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8"/>
+<note xml:id="n6" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Press</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="4" place="above">D♭</harm>
+<slur startid="#n4" endid="#n5"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>on!</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4"/>
+<note xml:id="n9" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<tie startid="#n7" endid="#n8"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">lone,</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="8">
+<verse n="1"><syl>yet</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="8"/>
+<note xml:id="n14" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
+<slur startid="#n12" endid="#n13"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">fraid;</syl></verse></note>
+<note xml:id="n16" pname="c" oct="4" dur="4"/>
+<note xml:id="n17" pname="e" oct="4" dur="8">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<tie startid="#n15" endid="#n16"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="c" oct="5" dur="4">
+<verse n="1"><syl>cut</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="b" oct="4" dur="8">
+<verse n="1"><syl>path,</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8"/>
+<note xml:id="n22" pname="f" oct="4" dur="8">
+<verse n="1"><syl>who</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="4" place="above">D♭</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">bec</syl></verse></note>
+<note xml:id="n24" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">kons</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl>thee,</syl></verse></note>
+<note xml:id="n26" pname="e" oct="4" dur="8">
+<verse n="1"><syl>On</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="4" place="above">Fm</harm>
+<harm staff="1" tstamp="6" place="above">A♭/E♭</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n27" pname="f" oct="4" dur="8">
+<verse n="1"><syl>then,</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="8"/>
+<note xml:id="n29" pname="a" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+<note xml:id="n30" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">dis</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
+<slur startid="#n27" endid="#n28"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">mayed.</syl></verse></note>
+<note xml:id="n33" pname="a" oct="4" dur="4"/>
+<rest xml:id="r34" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭/A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+<tie startid="#n32" endid="#n33"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>“On toward the goal!” Press on!</l><l>The eyes that are a flame</l><l>Are watching thee, what then are men?</l><l>What matter praise, or blame?</l></lg>
+<lg label="3."><l>“On toward the goal!” Press on!</l><l>Look not behind thee now,</l><l>When just ahead lies His “Well done,”</l><l>And crowns await thy brow.</l></lg>
+<lg label="4."><l>“On toward the goal!” Press on!</l><l>Blind, deaf and sometimes dumb</l><l>Along the blood-marked, uphill way,</l><l>Hard after Christ, press on!</l></lg>
+</div>
+</back>
+</music></mei>

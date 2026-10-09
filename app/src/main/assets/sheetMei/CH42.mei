@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Remember your Creator</title>
+<title type="subordinate">Encouragement—For Remembering the Creator</title>
+</titleStmt><pubStmt><identifier type="hymn">CH42</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Re</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="16"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">mem</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ber</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>your</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">Cre</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tor</syl></verse></note>
+<beam>
+<note xml:id="n9" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>While</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="16"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A/C♯</harm>
+<slur startid="#n9" endid="#n10"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl>you</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="4"/>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="e" oct="4" dur="2">
+<verse n="1"><syl>young,</syl></verse></note>
+<beam>
+<note xml:id="n15" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>As</syl></verse></note>
+<note xml:id="n16" pname="e" oct="4" dur="16">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl>child,</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>know</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E/G♯</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Scrip</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tures</syl></verse></note>
+<note xml:id="n22" pname="c" oct="5" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="c" oct="5" dur="4">
+<verse n="1"><syl>seek</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl>out</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="b" oct="4" dur="2">
+<verse n="1"><syl>truth.</syl></verse></note>
+<beam>
+<note xml:id="n27" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><label>(C)</label><syl>Oh,</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E7</harm>
+<dir startid="#n27" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">mem</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ber</syl></verse></note>
+<beam>
+<note xml:id="n31" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>your</syl></verse></note>
+<note xml:id="n32" pname="g" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">Cre</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
+<note xml:id="n34" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tor</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="4">
+<verse n="1"><syl>While</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="b" oct="4" dur="2">
+<verse n="1"><syl>you</syl></verse></note>
+<note xml:id="n37" pname="c" oct="5" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="b" oct="4" dur="2">
+<verse n="1"><syl>young,</syl></verse></note>
+<beam>
+<note xml:id="n39" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n40" pname="b" oct="4" dur="16">
+<verse n="1"><syl>let</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Him</syl></verse></note>
+<note xml:id="n42" pname="b" oct="4" dur="4">
+<verse n="1"><syl>have</syl></verse></note>
+<note xml:id="n43" pname="c" oct="5" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="d" oct="5" dur="4">
+<verse n="1"><syl>way</syl></verse></note>
+<note xml:id="n45" pname="c" oct="5" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n46" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="a" oct="4" dur="4">
+<verse n="1"><syl>days</syl></verse></note>
+<note xml:id="n48" pname="g" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n49" pname="b" oct="4" dur="4">
+<verse n="1"><syl>your</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n50" pname="a" oct="4" dur="2">
+<verse n="1"><syl>youth.</syl></verse></note>
+<rest xml:id="r51" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Remember your Creator</l><l>While you are young.</l><l>To remember our Creator</l><l>Means to love Him.</l><l>The Lord is the Creator,</l><l>Our source of life.</l><l>In the days of our youth</l><l>We would love only Him.</l></lg>
+<lg label="3."><l>We treasure the Word of God</l><l>While we are young,</l><l>As a child, we may read it</l><l>And read it again.</l><l>Yes, the Scriptures are able</l><l>To make us wise,</l><l>Wise unto salvation</l><l>In Jesus the Lord.</l></lg>
+<lg label="4."><l>We come to the light</l><l>When we come to God’s Word,</l><l>How the light brightly shines</l><l>When we really love God!</l><l>As we love Him and seek Him,</l><l>God opens His Word,</l><l>So that God’s light shines brightly</l><l>In His holy Word.</l></lg>
+<lg label="5."><l>We like to spend time</l><l>In the Word of our God,</l><l>To be faithful to read it</l><l>With diligent care.</l><l>Yes, we read and we pray,</l><l>And we pray what we read—</l><l>In the days of our youth,</l><l>We would open God’s Word.</l></lg>
+<lg label="6."><l>Remember your Creator</l><l>While you are young,</l><l>From a child, know the Scriptures</l><l>And seek out God’s truth.</l><l>Oh, remember your Creator</l><l>All your life long.</l><l>And let HIm have a way</l><l>All your days on the earth.</l></lg>
+</div>
+</back>
+</music></mei>

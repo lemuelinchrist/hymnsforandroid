@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Break Thou the Bread of Life</title>
+<title type="subordinate">Study of the Word—Seeking for the Word</title>
+</titleStmt><pubStmt><identifier type="hymn">E806</identifier><identifier type="number">806</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="2" meter.unit="2" meter.sym="cut"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>Break</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Bread</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Life,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="2">
+<verse n="1"><syl>Dear</syl></verse></note>
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">Bm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="e" oct="4" dur="1">
+<verse n="1"><syl>me,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em/G</harm>
+<harm staff="1" tstamp="2" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="f" oct="4" dur="2">
+<verse n="1"><syl>As</syl></verse></note>
+<note xml:id="n12" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>didst</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>break</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl>loaves</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">side</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="2">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="2" place="above">E7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="1">
+<verse n="1"><syl>sea;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">yond</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7/C♯</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sa</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cred</syl></verse></note>
+<note xml:id="n26" pname="f" oct="4" dur="2">
+<verse n="1"><syl>page</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="a" oct="4" dur="2">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>seek</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Thee,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="2" place="above">E7</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="c" oct="5" dur="1">
+<verse n="1"><syl>Lord;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="d" oct="5" dur="2">
+<verse n="1"><syl>My</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
+<note xml:id="n33" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="e" oct="4" dur="4">
+<verse n="1"><syl>pants</syl></verse></note>
+<note xml:id="n35" pname="g" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n36" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Thee,</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="4">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em/G</harm>
+<harm staff="1" tstamp="2" place="above">Em</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Liv</syl></verse></note>
+<note xml:id="n39" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="2" place="above">A7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="d" oct="4" dur="1">
+<verse n="1"><syl>Word.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Thou art the Bread of Life,</l><l>O Lord, to me,</l><l>Thy holy Word the truth</l><l>That saveth me;</l><l>Give me to eat and live</l><l>With Thee above;</l><l>Teach me to love Thy truth,</l><l>For Thou art Love.</l></lg>
+<lg label="3."><l>Oh, send Thy Spirit, Lord,</l><l>Now unto me,</l><l>That He may touch my eyes,</l><l>And make me see;</l><l>Show me the truth concealed</l><l>Within Thy Word,</l><l>And in Thy Book revealed</l><l>I see the Lord.</l></lg>
+<lg label="4."><l>Bless Thou the truth, dear Lord,</l><l>To me, to me,</l><l>As Thou didst bless the bread</l><l>By Galilee;</l><l>Then shall all bondage cease,</l><l>All fetters fall,</l><l>And I shall find my peace,</l><l>My All in all.</l></lg>
+</div>
+</back>
+</music></mei>

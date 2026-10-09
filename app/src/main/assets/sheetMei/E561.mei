@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Thou hast said Thou art the Vine, Lord</title>
+<title type="subordinate">Experience of Christ—Abiding in Him</title>
+</titleStmt><pubStmt><identifier type="hymn">E561</identifier><identifier type="number">561</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="2" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Thou</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>hast</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="2" place="above">Dm/F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>said</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">Dm</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="e" oct="4" dur="4">
+<verse n="1"><syl>art</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="d" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Vine,</syl></verse></note>
+<note xml:id="n9" pname="c" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>Lord,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="2" place="above">Dm</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="b" oct="4" dur="4">
+<verse n="1"><syl>I’m</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="2" place="above">Dm/A</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>branch</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Thee,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="d" oct="4" dur="4">
+<verse n="1"><syl>But</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="2" place="above">Dm/F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>do</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl>not</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">Dm</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="d" oct="5" dur="4">
+<verse n="1"><syl>know</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="c" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n23" pname="d" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<slur startid="#n22" endid="#n23"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">rea</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">son</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Why</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>should</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="d" oct="4" dur="8">
+<verse n="1"><syl>so</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<slur startid="#n29" endid="#n30"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">bar</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ren</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="2" place="above">A</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="d" oct="4" dur="2">
+<verse n="1"><syl>be.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Bearing fruit is my deep longing,</l><l>More Thy life to manifest,</l><l>To Thy throne to bring more glory,</l><l>That Thy will may be expressed.</l></lg>
+<lg label="3."><l>But I fail to understand, Lord,</l><l>What it means—“abide in me</l><l>For the more I seek “abiding,”</l><l>More I feel I’m not in Thee.</l></lg>
+<lg label="4."><l>How I feel I’m not abiding;</l><l>Though I pray and strongly will,</l><l>Yet from me Thou seemest distant</l><l>And my life is barren still.</l></lg>
+<lg label="5."><l>Yet Thou art the Vine, Thou saidst it.</l><l>And I am a branch in Thee;</l><l>When I take Thee as my Savior.</l><l>Then this fact is wrought in me.</l></lg>
+<lg label="6."><l>Now I’m in Thee and I need not</l><l>Seek into Thyself to come,</l><l>For I’m joined to Thee already,</l><l>With Thy flesh and bones I’m one.</l></lg>
+<lg label="7."><l>Not to “go in” is the secret.</l><l>But that I’m “already in“!</l><l>That I ne’er may leave I’d ask Thee.</l><l>Not how I may get within.</l></lg>
+<lg label="8."><l>I am in, already in Thee!</l><l>What a place to which I’m brought!</l><l>There’s no need for prayer or struggling,</l><l>God Himself the work has wrought.</l></lg>
+<lg label="9."><l>Since I’m in, why ask to enter;</l><l>O how ignorant I’ve been!</l><l>Now with praise and much rejoicing</l><l>For Thy Word, I dwell therein.</l></lg>
+<lg label="10."><l>Now in Thee I rest completely,</l><l>With myself I gladly part;</l><l>Thou art life and Thou art power,</l><l>All in all to me Thou art.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">我的代替未見歸回</title>
+<title type="subordinate">讚美主－祂的復活</title>
+</titleStmt><pubStmt><identifier type="hymn">C103</identifier><identifier type="number">C103</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>我</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="b" oct="4" dur="4">
+<verse n="1"><syl>的</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4"/>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>代</syl></verse></note>
+</layer></staff>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="d" oct="4" dur="2">
+<verse n="1"><syl>替</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl>未</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="d" oct="4" dur="2">
+<verse n="1"><syl>見</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl>歸</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="f" oct="4" dur="2">
+<verse n="1"><syl>回，</syl></verse></note>
+<note xml:id="n10" pname="d" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="c" oct="5" dur="4">
+<verse n="1"><syl>怎</syl></verse></note>
+<note xml:id="n12" pname="b" oct="4" dur="4"/>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>能</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="e" oct="4" dur="2">
+<verse n="1"><syl>彀</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl>放</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am/C</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="4" dur="2">
+<verse n="1"><syl>心</syl></verse></note>
+<note xml:id="n17" pname="d" oct="4" dur="4">
+<verse n="1"><syl>無</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="2">
+<verse n="1"><syl>慮；</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="4">
+<verse n="1"><syl>會</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>否</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4"/>
+<note xml:id="n22" pname="g" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+</layer></staff>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="d" oct="4" dur="2">
+<verse n="1"><syl>罪</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4">
+<verse n="1"><syl>將</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="d" oct="4" dur="2">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>連</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="e" oct="4" dur="2">
+<verse n="1"><syl>累，</syl></verse></note>
+<note xml:id="n28" pname="c" oct="5" dur="4">
+<verse n="1"><syl>未</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="c" oct="5" dur="4">
+<verse n="1"><syl>能</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="4"/>
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl>救</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<slur startid="#n29" endid="#n30"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="b" oct="4" dur="2">
+<verse n="1"><syl>我，</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="4">
+<verse n="1"><syl>祂</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="f" oct="4" dur="4">
+<verse n="1"><syl>倒</syl></verse></note>
+<note xml:id="n35" pname="e" oct="4" dur="4"/>
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl>被</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<slur startid="#n34" endid="#n35"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="g" oct="4" dur="2">
+<verse n="1"><syl>拘？</syl></verse></note>
+<rest xml:id="r38" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>能否是因我的罪孽，</l><l>太大、過多、無法赦免？</l><l>能否是因祂的寶血，</l><l>能力有限、包括不全？</l></lg>
+<lg label="3."><l>歡呼！耶穌已經復活，</l><l>未損毫髮，只增榮耀；</l><l>祂雖進入黑暗處所，</l><l>黑暗未曾留下功效。</l></lg>
+<lg label="4."><l>主得歸回，就是憑據，</l><l>神的公義已得滿足，</l><l>神的大愛仍施憐恤，</l><l>主是已經完成救贖。</l></lg>
+<lg label="5."><l>神用復回答覆流血，</l><l>承認流血所成救贖；</l><l>阿利路亞，我已清潔！</l><l>阿利路亞，我得饒恕！</l></lg>
+</div>
+</back>
+</music></mei>

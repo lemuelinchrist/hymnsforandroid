@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Fade, fade each earthly joy</title>
+<title type="subordinate">Experience of Christ—As Everything</title>
+</titleStmt><pubStmt><identifier type="hymn">E531</identifier><identifier type="number">531</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="6" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>Fade,</syl></verse></note>
+<note xml:id="n2" pname="c" oct="5" dur="4">
+<verse n="1"><syl>fade</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="8">
+<verse n="1"><syl>each</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">earth</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>joy;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>mine.</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Break</syl></verse></note>
+<note xml:id="n13" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<note xml:id="n14" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ery</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭/D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ten</syl></verse></note>
+<note xml:id="n16" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">der</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl>tie;</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
+<slur startid="#n17" endid="#n18"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n20" pname="e" oct="4" dur="8"/>
+<note xml:id="n21" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>mine.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Dark</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n26" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">wil</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ness,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭/G</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>Earth</syl></verse></note>
+<note xml:id="n31" pname="e" oct="5" dur="4">
+<verse n="1"><syl>has</syl></verse></note>
+<note xml:id="n32" pname="c" oct="5" dur="8">
+<verse n="1"><syl>no</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">rest</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>place,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n37" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n38" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭/D</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">lone</syl></verse></note>
+<note xml:id="n40" pname="f" oct="4" dur="8">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n41" pname="e" oct="4" dur="4">
+<verse n="1"><syl>bless;</syl></verse></note>
+<note xml:id="n42" pname="f" oct="4" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
+<slur startid="#n41" endid="#n42"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n44" pname="b" oct="4" dur="8"/>
+<note xml:id="n45" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n46" pname="g" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭7</harm>
+<slur startid="#n43" endid="#n44"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>mine.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="5" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Tempt not my soul away;</l><l>Jesus is mine.</l><l>Here would I ever stay;</l><l>Jesus is mine.</l><l>Perishing things of clay,</l><l>Born but for one brief day,</l><l>Pass from my heart away;</l><l>Jesus is mine.</l></lg>
+<lg label="3."><l>Farewell, ye dreams of night;</l><l>Jesus is mine.</l><l>Lost in this dawning bright;</l><l>Jesus is mine.</l><l>All that my soul has tried</l><l>Left but a dismal void;</l><l>Jesus has satisfied;</l><l>Jesus is mine.</l></lg>
+<lg label="4."><l>Farewell, mortality;</l><l>Jesus is mine.</l><l>Welcome, eternity;</l><l>Jesus is mine.</l><l>Welcome, O Loved and Blest,</l><l>Welcome, sweet scenes of rest,</l><l>Welcome, my Savior’s breast;</l><l>Jesus is mine.</l></lg>
+</div>
+</back>
+</music></mei>

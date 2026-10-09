@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Speak, Lord, in the stillness</title>
+<title type="subordinate">Study of the Word—Seeking for the Word</title>
+</titleStmt><pubStmt><identifier type="hymn">E809</identifier><identifier type="number">809</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>Speak,</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">still</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ness,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>While</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>wait</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4" accid.ges="s">
+<verse n="1"><syl>on</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="1">
+<verse n="1"><syl>Thee;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl>Hushed</syl></verse></note>
+<note xml:id="n13" pname="d" oct="5" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">lis</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ten,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ex</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">pect</syl></verse></note>
+<note xml:id="n21" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">an</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="d" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">cy.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Speak, O blessed Master,</l><l>In this quiet hour;</l><l>Let me see Thy face, Lord,</l><l>Feel Thy touch of power.</l></lg>
+<lg label="3."><l>For the words Thou speakest,</l><l>They are life indeed;</l><l>Living bread from heaven,</l><l>Now my spirit feed!</l></lg>
+<lg label="4."><l>All to Thee is yielded,</l><l>I am not my own;</l><l>Blissful, glad surrender,</l><l>I am Thine alone.</l></lg>
+<lg label="5."><l>Speak, Thy servant heareth,</l><l>Be not silent, Lord;</l><l>Waits my soul upon Thee</l><l>For the quickening word.</l></lg>
+<lg label="6."><l>Fill me with the knowledge</l><l>Of Thy glorious will;</l><l>All Thine own good pleasure</l><l>In Thy child fulfill.</l></lg>
+<lg label="7."><l>Like a watered garden,</l><l>Full of fragrance rare,</l><l>Lingering in Thy presence,</l><l>Let my life appear.</l></lg>
+</div>
+</back>
+</music></mei>

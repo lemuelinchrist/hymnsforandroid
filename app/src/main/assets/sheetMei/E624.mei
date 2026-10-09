@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The heavier the cross, the nearer God</title>
+<title type="subordinate">The Way of the Cross—Gain by Loss</title>
+</titleStmt><pubStmt><identifier type="hymn">E624</identifier><identifier type="number">624</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">heav</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ier</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl>cross,</syl></verse></note>
+<note xml:id="n6" pname="d" oct="5" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">near</syl></verse></note>
+<note xml:id="n8" pname="c" oct="5" dur="4"/>
+<note xml:id="n9" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="2">
+<verse n="1"><syl>God;</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>No</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl>cross</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="4"/>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n12" endid="#n13"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">out,</syl></verse></note>
+<note xml:id="n16" pname="f" oct="4" dur="4"/>
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl>no</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em/G</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4"/>
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">in!</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="4"/>
+<note xml:id="n24" pname="f" oct="4" dur="4">
+<verse n="1"><syl>prince</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">dark</syl></verse></note>
+<note xml:id="n27" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="d" oct="5" dur="4">
+<verse n="1"><syl>thus</syl></verse></note>
+<note xml:id="n29" pname="c" oct="5" dur="4"/>
+<note xml:id="n30" pname="b" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="2">
+<verse n="1"><syl>trod,</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">mid</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="4"/>
+<note xml:id="n35" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="e" oct="4" dur="4">
+<verse n="1"><syl>world’s</syl></verse></note>
+<note xml:id="n37" pname="f" oct="4" dur="4"/>
+<note xml:id="n38" pname="g" oct="4" dur="4">
+<verse n="1"><syl>false</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em/G</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="f" oct="4" dur="2">
+<verse n="1"><syl>glare</syl></verse></note>
+<note xml:id="n40" pname="e" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="d" oct="4" dur="2">
+<verse n="1"><syl>din.</syl></verse></note>
+<note xml:id="n42" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Oh,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">hap</syl></verse></note>
+<note xml:id="n44" pname="f" oct="4" dur="8"/>
+<note xml:id="n45" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">py</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+<slur startid="#n43" endid="#n44"/>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="f" oct="4" dur="2">
+<verse n="1"><syl>he,</syl></verse></note>
+<note xml:id="n47" pname="a" oct="4" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="a" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n49" pname="f" oct="4" dur="4"/>
+<note xml:id="n50" pname="b" oct="4" dur="4">
+<verse n="1"><syl>his</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n48" endid="#n49"/>
+</measure>
+<measure n="21"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="a" oct="4" dur="2">
+<verse n="1"><syl>loss,</syl></verse></note>
+<note xml:id="n52" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Whom</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="22"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="d" oct="5" dur="2">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n54" pname="b" oct="4" dur="4">
+<verse n="1"><syl>hath</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="23"><staff n="1"><layer n="1">
+<note xml:id="n55" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>set</syl></verse></note>
+<note xml:id="n56" pname="g" oct="4" dur="8"/>
+<note xml:id="n57" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+<slur startid="#n55" endid="#n56"/>
+</measure>
+<measure n="24"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">neath</syl></verse></note>
+<note xml:id="n59" pname="e" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="25" right="end"><staff n="1"><layer n="1">
+<note xml:id="n60" pname="d" oct="4" dur="2">
+<verse n="1"><syl>cross.</syl></verse></note>
+<rest xml:id="r61" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>The heavier the cross, the better saint;</l><l>This is the touchstone God applies.</l><l>The gardens many would be faint,</l><l>Unwet by showers from weeping eyes!</l><l>The gold by fire is purified;</l><l>The saint is by much trouble tried.</l></lg>
+<lg label="3."><l>The heavier the cross, the stronger faith:</l><l>The loaded palm strikes deeper root;</l><l>The vine juice sweetly issueth</l><l>When men have pressed the clustered fruit;</l><l>And courage grows where dangers come,</l><l>Like pearls beneath the salty foam.</l></lg>
+<lg label="4."><l>The heavier the cross, the deeper prayer;</l><l>The bruised herbs most fragrant are.</l><l>If sky and wind were always fair,</l><l>The sailor would not watch the star;</l><l>And David’s Psalms had ne’er been sung</l><l>If grief his heart had never wrung.</l></lg>
+<lg label="5."><l>The heavier the cross, the more inspired;</l><l>From vales to climb to mountain crest;</l><l>The pilgrim, of the desert tired,</l><l>Longs for the Canaan of his rest.</l><l>The dove has here no rest in sight,</l><l>And to the ark she wings her flight.</l></lg>
+<lg label="6."><l>The heavier the cross, the easier to die;</l><l>Death is a kinder face to see;</l><l>Our life’s decay we dare defy,</l><l>From life’s distress we then are free.</l><l>The cross sublimely lifts our faith</l><l>To Him who triumphed over death.</l></lg>
+<lg label="7."><l>Thou Crucified! the cross I bear.</l><l>The longer, may it dearer be;</l><l>And lest I faint while ling’ring here,</l><l>Implant Thou such a heart in me</l><l>That faith and love may flourish e’er</l><l>Till for the cross the crown I wear.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Strong are the walls around me</title>
+<title type="subordinate">Comfort in Trials—By Enjoyment in Suffering</title>
+</titleStmt><pubStmt><identifier type="hymn">E725</identifier><identifier type="number">725</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="6" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Strong</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="2">
+<verse n="1"><syl>are</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="2">
+<verse n="1"><syl>walls</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">round</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4"/>
+<note xml:id="n8" pname="g" oct="4" dur="2">
+<verse n="1"><syl>me,</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">B♭7/F</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+<harm staff="1" tstamp="6" place="above">E♭/G</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="4">
+<verse n="1"><syl>hold</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="4"/>
+<note xml:id="n12" pname="c" oct="4" dur="4">
+<verse n="1"><syl>me</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="2">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+<harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="6" place="above">B♭/D</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>day;</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="2"/>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl>But</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+<tie startid="#n15" endid="#n16"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="g" oct="4" dur="2">
+<verse n="1"><syl>they</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>who</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="2">
+<verse n="1"><syl>thus</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl>have</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭/D</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="b" oct="4" dur="2">
+<verse n="1"><syl>bound</syl></verse></note>
+<note xml:id="n23" pname="a" oct="4" dur="4"/>
+<note xml:id="n24" pname="g" oct="4" dur="2">
+<verse n="1"><syl>me,</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Can</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="6" place="above">E♭/G</harm>
+<slur startid="#n22" endid="#n23"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">not</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="4"/>
+<note xml:id="n28" pname="c" oct="5" dur="4">
+<verse n="1"><syl>keep</syl></verse></note>
+<note xml:id="n29" pname="d" oct="5" dur="2">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n30" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F7</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">way:</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="2"/>
+<note xml:id="n33" pname="b" oct="4" dur="4">
+<verse n="1"><syl>My</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">ve</syl></verse></note>
+<note xml:id="n35" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">dun</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="4"/>
+<note xml:id="n38" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">geon</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭7</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="b" oct="4" dur="2">
+<verse n="1"><syl>walls</syl></verse></note>
+<note xml:id="n40" pname="b" oct="4" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+<note xml:id="n41" pname="g" oct="4" dur="2">
+<verse n="1"><syl>dear,</syl></verse></note>
+<note xml:id="n42" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">Cm</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">cause</syl></verse></note>
+<note xml:id="n44" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n45" pname="a" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n46" pname="b" oct="4" dur="4"/>
+<note xml:id="n47" pname="c" oct="5" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm/A♭</harm>
+<harm staff="1" tstamp="4" place="above">Fm</harm>
+<slur startid="#n45" endid="#n46"/>
+</measure>
+<measure n="13" right="end"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="g" oct="4" dur="2">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n49" pname="f" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n50" pname="e" oct="4" dur="2">
+<verse n="1"><syl>here.</syl></verse></note>
+<rest xml:id="r51" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+<fermata startid="#n50" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>They know, who thus oppress me,</l><l>’Tis hard to be alone;</l><l>But know not One can bless me,</l><l>Who comes through bars and stone;</l><l>He makes my dungeon’s darkness bright,</l><l>And fills my bosom with delight.</l></lg>
+<lg label="3."><l>Thy love, O God, restores me</l><l>From sighs and tears to praise;</l><l>And deep my soul adores Thee,</l><l>Nor thinks of time or place:</l><l>I ask no more, in good or ill,</l><l>But union with Thy holy will.</l></lg>
+<lg label="4."><l>’Tis that which makes my treasure,</l><l>’Tis that which brings my gain;</l><l>Converting woe to pleasure,</l><l>And reaping joy from pain.</l><l>Oh, ’tis enough, whate’er befall,</l><l>To know that God is All in all.</l></lg>
+</div>
+</back>
+</music></mei>

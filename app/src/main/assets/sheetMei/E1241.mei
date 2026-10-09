@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">God’s life and building can be seen</title>
+<title type="subordinate">The Church—Building by the Growth in Life</title>
+</titleStmt><pubStmt><identifier type="hymn">E1241</identifier><identifier type="number">1241</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="6" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>God’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">build</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="b" oct="4" dur="4">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="8">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl>seen</syl></verse></note>
+<note xml:id="n9" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">in</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Song</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C/E</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="d" oct="4" dur="4" dots="1"/>
+<note xml:id="n15" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Songs;</syl></verse></note>
+<note xml:id="n16" pname="d" oct="4" dur="8">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">D7</harm>
+<tie startid="#n14" endid="#n15"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl>shows</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="8">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>types</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">seek</syl></verse></note>
+<note xml:id="n22" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n23" pname="d" oct="5" dur="4">
+<verse n="1"><syl>ones,</syl></verse></note>
+<beam>
+<note xml:id="n24" pname="b" oct="4" dur="16"/>
+<note xml:id="n25" pname="a" oct="4" dur="16">
+<verse n="1"><syl>The</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+<harm staff="1" tstamp="6" place="above">C</harm>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Bride</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="8">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>whom</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Christ</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="4" place="above">D7</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="g" oct="4" dur="4" dots="1"/>
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl>longs!</syl></verse></note>
+<note xml:id="n32" pname="g" oct="4" dur="8">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<tie startid="#n30" endid="#n31"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Bride</syl></verse></note>
+<note xml:id="n34" pname="b" oct="4" dur="8">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n35" pname="a" oct="4" dur="4">
+<verse n="1"><syl>whom</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Christ</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="4" place="above">D7</harm>
+</measure>
+<measure n="11" right="end"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="g" oct="4" dur="4" dots="1"/>
+<note xml:id="n38" pname="g" oct="4" dur="4">
+<verse n="1"><syl>longs!</syl></verse></note>
+<rest xml:id="r39" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+<tie startid="#n37" endid="#n38"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>She, as a team of horses shows</l><l>A love, so swift and strong!</l><l>But this is love that’s natural—</l><l>It pulls the world along!</l></lg>
+<lg label="3."><l>As time goes by, her concepts change,</l><l>With dove’s eyes she can see</l><l>That naught can with her love compare—</l><l>There’s none so dear as He!</l></lg>
+<lg label="4."><l>A lily she is now to Him</l><l>(For still the Lord draws on),</l><l>Her faith is not in earthly toil,</l><l>But in the wondrous Son.</l></lg>
+<lg label="5."><l>She’s next a dove who hides herself</l><l>Within the cloven rock;</l><l>Now in her Lord’s ascended life</l><l>Is love which knows no shock!</l></lg>
+<lg label="6."><l>Of smoke, a pillar she’s become,</l><l>And now, as wand’ring ends,</l><l>Her wills to His will are subdued,</l><l>What fragrance sweet ascends!</l></lg>
+<lg label="7."><l>Behold His couch . . . (O, can this be?)</l><l>E’en midst the fearsome night . . .</l><l>She now affords her Lord such rest,</l><l>The foe is put to flight!</l></lg>
+<lg label="8."><l>A vessel to contain the King!</l><l>(This type is full of worth.)</l><l>A palanquin He’s made Himself</l><l>For His move on the earth!</l></lg>
+<lg label="9."><l>Of wood this vessel is composed:</l><l>Christ’s ris’n humanity.</l><l>Its silver pillars for support</l><l>And floor of gold we see!</l></lg>
+<lg label="10."><l>The seat of purple signifies</l><l>Christ is of kings the King.</l><l>To Him, as fittings for within,</l><l>Their love His dear ones bring!</l></lg>
+<lg label="11."><l>The day will come—(’tis surely soon)</l><l>And glad will be Thy heart—</l><l>What boast and glory to Thyself;</l><l>Thy crown, Thy counterpart!</l></lg>
+<lg label="12."><l>A garden fair, enclosed is she</l><l>With spices, fragrant, sweet.</l><l>She now brings forth materials</l><l>The building to complete!</l></lg>
+<lg label="13."><l>A city pleasant, comely, too;</l><l>No greater building, this!</l><l>So beautiful, yet to the foe</l><l>A conq’ring army ’tis!</l></lg>
+<lg label="14."><l>As we eat Jesus, praise the Lord,</l><l>The transformation’s done,</l><l>Until at last, the work’s complete—</l><l>Christ and His Bride are one!</l></lg>
+</div>
+</back>
+</music></mei>

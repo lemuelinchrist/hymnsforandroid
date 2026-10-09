@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">God’s love: long, broad, high, and deep</title>
+<title type="subordinate">Experience of Christ—As Life</title>
+</titleStmt><pubStmt><identifier type="hymn">NS154</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>God’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>love:</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl>long,</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>broad,</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="a" oct="4" dur="8">
+<verse n="1"><syl>high,</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+<slur startid="#n3" endid="#n4"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>deep,</syl></verse></note>
+<beam>
+<note xml:id="n9" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7/D♭</harm>
+<slur startid="#n9" endid="#n10"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">deed</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n14" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">yond</syl></verse></note>
+<beam>
+<note xml:id="n15" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">mea</syl></verse></note>
+<note xml:id="n16" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
+<slur startid="#n12" endid="#n13"/>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">sure;</syl></verse></note>
+<note xml:id="n18" pname="e" oct="5" dur="4">
+<verse n="1"><syl>Else</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="c" oct="5" dur="4">
+<verse n="1"><syl>how</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="b" oct="4" dur="8">
+<verse n="1"><syl>could</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>such</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="a" oct="4" dur="8">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n24" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">D♭</harm>
+<slur startid="#n20" endid="#n21"/>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sin</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ner</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="8">
+<verse n="1"><syl>as</syl></verse></note>
+</beam>
+<note xml:id="n28" pname="e" oct="4" dur="4">
+<verse n="1"><syl>me,</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Be</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="8">
+<verse n="1"><syl>with</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">boun</syl></verse></note>
+<beam>
+<note xml:id="n32" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ti</syl></verse></note>
+<note xml:id="n33" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ful</syl></verse></note>
+</beam>
+<note xml:id="n34" pname="b" oct="4" dur="4">
+<verse n="1"><syl>grace</syl></verse></note>
+<beam>
+<note xml:id="n35" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">fa</syl></verse></note>
+<note xml:id="n36" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
+<slur startid="#n35" endid="#n36"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">vored.</syl></verse></note>
+<rest xml:id="r38" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>My Lord paid a price so great,</l><l>To buy me back to Him;</l><l>Now willing I’m the cross to bear,</l><l>And follow Him to the end.</l></lg>
+<lg label="3."><l>I now have forsaken all,</l><l>In order Christ to gain;</l><l>Or life, or death, unworthy a thought,</l><l>Not even one backward glance!</l></lg>
+<lg label="4."><l>Loved ones, desires, wealth and fame,</l><l>To me what good are they?</l><l>My Lord for me poor and woe became,</l><l>For Him I’d be poor today.</l></lg>
+<lg label="5."><l>I love my Savior Lord,</l><l>I only long for His “Yes“;</l><l>For Him no ease can comfort hold,</l><l>All gains a loss became.</l></lg>
+<lg label="6."><l>You are my true comfort,</l><l>My gracious Lord Jesus;</l><l>Whom but You have I in heaven?</l><l>What else I love on earth?</l></lg>
+<lg label="7."><l>Suffer, opposed, tossed around,</l><l>Hence I will all disregard;</l><l>Only I’d ask my Lord with Your love,</l><l>Spirit, soul, and body surround.</l></lg>
+<lg label="8."><l>O Lord, I now beseech You,</l><l>Guide me in grace onward;</l><l>Stand by and strengthen me all way through,</l><l>To pass this dark, evil world.</l></lg>
+<lg label="9."><l>Satan, the world, and the flesh,</l><l>Oft’n tempt and humiliate;</l><l>If You don’t add me with more strength</l><l>I may Your name disgrace!</l></lg>
+<lg label="10."><l>Now time is running short,</l><l>Set me free, O Lord, I pray;</l><l>Once You return, I’ll sing with joy,</l><l>Hallelujah! Amen!</l></lg>
+</div>
+</back>
+</music></mei>

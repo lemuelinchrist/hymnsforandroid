@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Four living creatures are</title>
+<title type="subordinate">The Church — Her Coordination</title>
+</titleStmt><pubStmt><identifier type="hymn">NS558</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Four</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">liv</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="8"/>
+</beam>
+<beam>
+<note xml:id="n5" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">crea</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="8"/>
+<note xml:id="n7" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tures</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+<tie startid="#n3" endid="#n4"/>
+<slur startid="#n5" endid="#n6"/>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>are</syl></verse></note>
+<beam>
+<note xml:id="n10" pname="e" oct="4" dur="8">
+<verse n="1"><syl>God’s</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl>move</syl></verse></note>
+<beam>
+<note xml:id="n13" pname="g" oct="4" dur="8">
+<verse n="1"><syl>on</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="8"/>
+</beam>
+<beam>
+<note xml:id="n15" pname="g" oct="4" dur="8">
+<verse n="1"><syl>earth</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="8"/>
+<note xml:id="n17" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+<tie startid="#n13" endid="#n14"/>
+<slur startid="#n15" endid="#n16"/>
+<slur startid="#n17" endid="#n18"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">day;</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭/F</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">vived</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="c" oct="5" dur="8">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n24" pname="d" oct="5" dur="8"/>
+</beam>
+<note xml:id="n25" pname="c" oct="5" dur="4">
+<verse n="1"><syl>wind,</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="b" oct="4" dur="8"/>
+<note xml:id="n27" pname="a" oct="4" dur="8">
+<verse n="1"><syl>cloud,</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<slur startid="#n23" endid="#n24"/>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>fire,</syl></verse></note>
+<note xml:id="n29" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">lec</syl></verse></note>
+<beam>
+<note xml:id="n31" pname="b" oct="4" dur="8"/>
+<note xml:id="n32" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">trum</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n33" pname="a" oct="4" dur="8"/>
+<note xml:id="n34" pname="g" oct="4" dur="8">
+<verse n="1"><syl>they</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">dis</syl></verse></note>
+<note xml:id="n36" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+<tie startid="#n31" endid="#n32"/>
+<slur startid="#n33" endid="#n34"/>
+<slur startid="#n35" endid="#n36"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">play.</syl></verse></note>
+<rest xml:id="r38" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Throughout our Christian life</l><l>A storm wind starts to blow,</l><l>Makes us dissatisfied,</l><l>Disturbs our status quo.</l></lg>
+<lg label="3."><l>The wind is God Himself</l><l>Who causes us to turn,</l><l>To seek more of the Lord</l><l>And make our spirit burn.</l></lg>
+<lg label="4."><l>This issues in the cloud—</l><l>Abundant grace He brings,</l><l>His overshadowing love,</l><l>The safety of His wings.</l></lg>
+<lg label="5."><l>The fire then consumes</l><l>All that is not from Him;</l><l>It burns and sanctifies</l><l>And makes us pure within.</l></lg>
+<lg label="6."><l>God’s precious essence thus</l><l>Into our being poured,</l><l>Electrum shines from us</l><l>The glory of the Lord.</l></lg>
+<lg label="7."><l>The living creatures joined,</l><l>Connected by their wings,</l><l>In four directions fly,</l><l>And God’s expression bring.</l></lg>
+<lg label="8."><l>Lord as Your move today</l><l>As living creatures, we</l><l>Your radiance would express,</l><l>And Your authority.</l></lg>
+</div>
+</back>
+</music></mei>

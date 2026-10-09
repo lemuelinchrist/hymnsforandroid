@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Lord, Thou art God’s anointed</title>
+<title type="subordinate">Praise of the Lord—His Kingdom</title>
+</titleStmt><pubStmt><identifier type="hymn">E147</identifier><identifier type="number">147</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="6" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="e" oct="4" dur="8"/>
+<note xml:id="n2" pname="f" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>Lord,</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="g" oct="4" dur="2">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="4">
+<verse n="1"><syl>art</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="2">
+<verse n="1"><syl>God’s</syl></verse></note>
+<note xml:id="n6" pname="b" oct="3" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="4" place="above">G/D</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="c" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">noint</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4"/>
+<note xml:id="n9" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ed,</syl></verse></note>
+<note xml:id="n10" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="g" oct="4" dur="2">
+<verse n="1"><syl>art</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>kings</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4"/>
+<note xml:id="n15" pname="d" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+<slur startid="#n13" endid="#n14"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl>King!</syl></verse></note>
+<note xml:id="n17" pname="b" oct="3" dur="2"/>
+<note xml:id="n18" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Here</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="e" oct="4" dur="2">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n20" pname="e" oct="4" dur="4">
+<verse n="1"><syl>full</syl></verse></note>
+<note xml:id="n21" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n22" pname="e" oct="4" dur="4"/>
+<note xml:id="n23" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">do</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">G/D</harm>
+<slur startid="#n21" endid="#n22"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="m" con="d">ra</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Our</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="c" oct="5" dur="2">
+<verse n="1"><syl>song</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n31" pname="f" oct="4" dur="4"/>
+<note xml:id="n32" pname="d" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl>bring!</syl></verse></note>
+<note xml:id="n34" pname="c" oct="4" dur="2"/>
+<beam>
+<note xml:id="n35" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n33" endid="#n34"/>
+<slur startid="#n35" endid="#n36"/>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">king</syl></verse></note>
+<note xml:id="n38" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">dom</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="2">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n40" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">F/C</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
+<note xml:id="n42" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<beam>
+<note xml:id="n43" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Es</syl></verse></note>
+<note xml:id="n44" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C/G</harm>
+<slur startid="#n43" endid="#n44"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">ta</syl></verse></note>
+<note xml:id="n46" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">blished</syl></verse></note>
+<note xml:id="n47" pname="d" oct="5" dur="2">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n48" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>throne!</syl></verse></note>
+<note xml:id="n50" pname="d" oct="4" dur="2"/>
+<note xml:id="n51" pname="c" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+<slur startid="#n49" endid="#n50"/>
+</measure>
+<sb/>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n52" pname="e" oct="4" dur="2">
+<verse n="1"><syl>reign</syl></verse></note>
+<note xml:id="n53" pname="e" oct="4" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+<note xml:id="n54" pname="f" oct="4" dur="4">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n55" pname="e" oct="4" dur="4"/>
+<note xml:id="n56" pname="f" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">G/D</harm>
+<slur startid="#n54" endid="#n55"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">jus</syl></verse></note>
+<note xml:id="n58" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tice</syl></verse></note>
+<beam>
+<note xml:id="n59" pname="a" oct="4" dur="8">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n60" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+<slur startid="#n59" endid="#n60"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n61" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n62" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<note xml:id="n63" pname="g" oct="4" dur="4">
+<verse n="1"><syl>stands</syl></verse></note>
+<note xml:id="n64" pname="f" oct="4" dur="4"/>
+<note xml:id="n65" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+<harm staff="1" tstamp="6" place="above">G</harm>
+<slur startid="#n63" endid="#n64"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n66" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">lone!</syl></verse></note>
+<note xml:id="n67" pname="c" oct="4" dur="2"/>
+<rest xml:id="r68" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n66" endid="#n67"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Upon the hill of Zion</l><l>Hath God established Thee</l><l>And all the nations given</l><l>Thy heritage to be.</l><l>To Thee hath God committed</l><l>His full authority</l><l>To rule with might the nations</l><l>Unto eternity.</l></lg>
+<lg label="3."><l>Before the time of fulness,</l><l>While darkness still prevails,</l><l>Ten thousands daily render</l><l>To Thee their loyal hails!</l><l>From shore to shore Thy people</l><l>To Thee their praises sing;</l><l>They worship, love, and serve Thee</l><l>As their dear Savior-King!</l></lg>
+<lg label="4."><l>When in the time appointed</l><l>With glory Thou wilt come,</l><l>The earth with all its nations</l><l>Thy kingdom will become.</l><l>In majesty and splendor</l><l>Wilt Thou be served as King,</l><l>All kindreds and all peoples</l><l>To Thee their praise shall ring!</l></lg>
+</div>
+</back>
+</music></mei>

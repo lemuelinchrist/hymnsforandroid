@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Rise, my soul, thy God directs thee</title>
+<title type="subordinate">Encouragement—For Pressing On</title>
+</titleStmt><pubStmt><identifier type="hymn">E664</identifier><identifier type="number">664</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>Rise,</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">E7/B</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="e" oct="4" dur="2">
+<verse n="1"><syl>soul,</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl>thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="4"/>
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">rects</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="4">
+<verse n="1"><syl>thee;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="3" place="above">E7/B</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Strang</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="e" oct="4" dur="2">
+<verse n="1"><syl>hands</syl></verse></note>
+<note xml:id="n13" pname="c" oct="5" dur="4">
+<verse n="1"><syl>no</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="4">
+<verse n="1"><syl>more</syl></verse></note>
+<note xml:id="n15" pname="c" oct="5" dur="4"/>
+<note xml:id="n16" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">im</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E7</harm>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">pede;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="c" oct="5" dur="2">
+<verse n="1"><syl>Pass</syl></verse></note>
+<note xml:id="n19" pname="c" oct="5" dur="4">
+<verse n="1"><syl>thou</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="c" oct="5" dur="4">
+<verse n="1"><syl>on,</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4"/>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E/G♯</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="b" oct="4" dur="4"/>
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl>strength</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pro</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E7</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tects</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="4">
+<verse n="1"><syl>thee,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A/C♯</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="a" oct="4" dur="4"/>
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Strength</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="e" oct="4" dur="2">
+<verse n="1"><syl>has</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="3" place="above">F♯m</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">cap</syl></verse></note>
+<note xml:id="n34" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tive</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>freed.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Is the wilderness before thee,</l><l>Desert lands where drought abides?</l><l>Heavenly springs shall there restore thee,</l><l>Fresh from God’s exhaustless tides.</l></lg>
+<lg label="3."><l>Light divine surrounds thy going,</l><l>God Himself shall mark thy way;</l><l>Secret blessings, richly flowing,</l><l>Lead to everlasting day.</l></lg>
+<lg label="4."><l>God, thine everlasting portion,</l><l>Feeds thee with the Mighty’s meat;</l><l>Saved from Egypt’s hard extortion,</l><l>Egypt’s food no more to eat.</l></lg>
+<lg label="5."><l>Art thou weaned from Egypt’s pleasures?</l><l>God in secret shall thee keep;</l><l>There unfold His hidden treasures,</l><l>There His love’s exhaustless deep.</l></lg>
+<lg label="6."><l>In the desert God will teach thee</l><l>What the God that thou hast found—</l><l>Patient, gracious, powerful, holy;</l><l>All His grace shall there abound.</l></lg>
+<lg label="7."><l>On to Canaan’s rest still wending,</l><l>E’en thy wants and woes shall bring</l><l>Suited grace from high descending;</l><l>Thou shalt taste of mercy’s spring.</l></lg>
+<lg label="8."><l>Though thy way be long and dreary,</l><l>Eagle strength He’ll still renew;</l><l>Garments fresh, and feet unweary,</l><l>Tell how God hath brought thee through.</l></lg>
+<lg label="9."><l>When to Canaan’s long-loved dwelling</l><l>Love divine thy feet shall bring,</l><l>Thou, with shouts of triumph swelling,</l><l>Zion’s songs in rest shall sing.</l></lg>
+</div>
+</back>
+</music></mei>

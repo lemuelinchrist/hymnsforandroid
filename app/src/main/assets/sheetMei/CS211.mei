@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">人活著不是單靠食物</title>
+<title type="subordinate">享受基督</title>
+</titleStmt><pubStmt><identifier type="hymn">CS211</identifier><identifier type="number">Cs211</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>經</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl>上</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="b" oct="4" dur="2">
+<verse n="1"><syl>記</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>著：</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="e" oct="4" dur="4">
+<verse n="1"><syl>人</syl></verse></note>
+<note xml:id="n8" pname="c" oct="4" dur="4"/>
+<note xml:id="n9" pname="e" oct="4" dur="4">
+<verse n="1"><syl>活</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>著</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="g" oct="4" dur="1">
+<verse n="1"><syl>不</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="a" oct="4" dur="2">
+<verse n="1"><syl>是</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="4">
+<verse n="1"><syl>單</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n13" endid="#n14"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2">
+<verse n="1"><syl>靠</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl>食</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="f" oct="4" dur="1">
+<verse n="1"><syl>物，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="f" oct="4" dur="1">
+<verse n="1"><syl>乃</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="g" oct="4" dur="2">
+<verse n="1"><syl>是</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl>靠</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>著</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="b" oct="4" dur="2">
+<verse n="1"><syl>神</syl></verse></note>
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl>口</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl>裡</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="e" oct="4" dur="4">
+<verse n="1"><syl>所</syl></verse><verse n="2"><syl>（太四</syl></verse></note>
+<note xml:id="n27" pname="c" oct="4" dur="4">
+<verse n="2"><syl>）</syl></verse></note>
+<note xml:id="n28" pname="e" oct="4" dur="4">
+<verse n="1"><syl>出</syl></verse></note>
+<note xml:id="n29" pname="f" oct="4" dur="4">
+<verse n="1"><syl>的</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="g" oct="4" dur="1">
+<verse n="1"><syl>一</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="2">
+<verse n="1"><syl>切</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="4">
+<verse n="1"><syl>話。</syl></verse></note>
+<note xml:id="n33" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<slur startid="#n32" endid="#n33"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="g" oct="4" dur="2">
+<verse n="1"><syl>阿</syl></verse></note>
+<note xml:id="n35" pname="a" oct="4" dur="4">
+<verse n="1"><syl>利</syl></verse></note>
+<note xml:id="n36" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<slur startid="#n35" endid="#n36"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="f" oct="4" dur="1">
+<verse n="1"><syl>路</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭sus4</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>亞！</syl></verse></note>
+<rest xml:id="r39" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>叫人活著的是靈，</l><l>肉體是無益的；</l><l>我對你們說的話，</l><l>就是靈、是生命。</l><l>（約六63）</l></lg>
+<lg label="3."><l>我得著你的言語，</l><l>就當食物喫了。</l><l>你的話在我心中，</l><l>是我歡喜快樂。</l><l>（耶十五16）</l></lg>
+<lg label="4."><l>要拿著靈的寶劍，</l><l>這靈是神的話─</l><l>藉著多方的禱告，</l><l>每次都在靈裡。</l><l>（弗六17～18）</l></lg>
+<lg label="5."><l>要藉著話裡的水，</l><l>來把召會洗淨，</l><l>成為聖潔，獻給主，</l><l>作榮耀的召會。</l><l>（弗五26～27）</l></lg>
+</div>
+</back>
+</music></mei>

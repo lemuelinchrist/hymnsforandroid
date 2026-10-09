@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">I hunger and I thirst</title>
+<title type="subordinate">Longings—For Feeding on Christ</title>
+</titleStmt><pubStmt><identifier type="hymn">E379</identifier><identifier type="number">379</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="5f" meter.count="2" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">hun</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ger</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/F</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl>thirst;</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭m</harm>
+<harm staff="1" tstamp="2" place="above">E♭m/G♭</harm>
+<fermata startid="#n6" place="above"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">man</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">na</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7/C</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl>be;</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Ye</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭/A♭</harm>
+<fermata startid="#n12" place="above"/>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">liv</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">wa</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ters,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭7/F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="4">
+<verse n="1"><syl>burst</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Out</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♭</harm>
+<harm staff="1" tstamp="2" place="above">E♭m</harm>
+<fermata startid="#n18" place="above"/>
+</measure>
+<scoreDef meter.count="3" meter.unit="4"/>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4"/>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/A♭</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>rock</syl></verse></note>
+<note xml:id="n24" pname="g" oct="4" dur="4"/>
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>me.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♭/D♭</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="14" right="end"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="d" oct="4" dur="2"/>
+<rest xml:id="r28" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Thou bruised and broken Bread,</l><l>My lifelong wants supply;</l><l>As living souls are fed,</l><l>O feed me, or I die.</l></lg>
+<lg label="3."><l>Thou true life-giving Vine,</l><l>Let me Thy sweetness prove;</l><l>Renew my life with Thine,</l><l>Refresh my soul with love.</l></lg>
+<lg label="4."><l>For still the desert lies</l><l>My thirsting soul before;</l><l>O living waters, rise</l><l>Within me evermore.</l></lg>
+</div>
+</back>
+</music></mei>

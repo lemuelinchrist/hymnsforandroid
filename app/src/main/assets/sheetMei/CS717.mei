@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">豫嘗那日</title>
+<title type="subordinate">教會的生活</title>
+</titleStmt><pubStmt><identifier type="hymn">CS717</identifier><identifier type="number">Cs717</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="3" dur="4">
+<verse n="1"><label>1.</label><syl>自</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl>從</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="e" oct="4" dur="8">
+<verse n="1"><syl>『過</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="8">
+<verse n="1"><syl>召</syl></verse></note>
+</beam>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>會』，</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl>生</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl>活</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="g" oct="4" dur="8">
+<verse n="1"><syl>何</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="8">
+<verse n="1"><syl>美</syl></verse></note>
+</beam>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>麗，</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl>豫</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="e" oct="5" dur="2" dots="1">
+<verse n="1"><syl>嘗</syl></verse></note>
+<note xml:id="n13" pname="d" oct="5" dur="4">
+<verse n="1"><syl>那</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>日；</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl>新</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="5" dur="4">
+<verse n="1"><syl>耶</syl></verse></note>
+<beam>
+<note xml:id="n17" pname="b" oct="4" dur="8">
+<verse n="1"><syl>路</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="8">
+<verse n="1"><syl>撒</syl></verse></note>
+</beam>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>冷，</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl>新</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>耶</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="g" oct="4" dur="8">
+<verse n="1"><syl>路</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="8">
+<verse n="1"><syl>撒</syl></verse></note>
+</beam>
+<note xml:id="n24" pname="e" oct="4" dur="4">
+<verse n="1"><syl>冷，</syl></verse></note>
+<note xml:id="n25" pname="b" oct="3" dur="4">
+<verse n="1"><syl>安</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>息</syl></verse></note>
+<beam>
+<note xml:id="n27" pname="f" oct="4" dur="8">
+<verse n="1"><syl>的</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="8">
+<verse n="1"><syl>滿</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">B7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>足。</syl></verse></note>
+<rest xml:id="r30" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>今日的召會就是那美地</l><l>─流奶與蜜。</l><l>盡情的享受，</l><l>盡情的享受，</l><l>豐盛的生命。</l></lg>
+<lg label="3."><l>建造的召會就是神居所，</l><l>讓祂安息；為祂掌王權，</l><l>為祂掌王權，</l><l>完成神旨意。</l></lg>
+</div>
+</back>
+</music></mei>

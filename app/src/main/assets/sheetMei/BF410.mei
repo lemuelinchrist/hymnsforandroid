@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">A little bird I am (New Tune)</title>
+<title type="subordinate">Comfort in Trials—By Enjoyment in Suffering</title>
+</titleStmt><pubStmt><identifier type="hymn">BF410</identifier><identifier type="number">724</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<rest xml:id="r1" dur="4"/>
+<beam>
+<note xml:id="n2" pname="a" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>A</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">lit</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n4" pname="a" oct="4" dur="8"/>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tle</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="8"/>
+<note xml:id="n7" pname="b" oct="4" dur="8">
+<verse n="1"><syl>bird</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<tie startid="#n3" endid="#n4"/>
+<tie startid="#n5" endid="#n6"/>
+<tie startid="#n7" endid="#n8"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n8" pname="b" oct="4" dur="8"/>
+<note xml:id="n9" pname="g" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="8"/>
+<note xml:id="n11" pname="g" oct="4" dur="8">
+<verse n="1"><syl>am,</syl></verse></note>
+</beam>
+<note xml:id="n12" pname="g" oct="4" dur="4"/>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Shut</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+<tie startid="#n9" endid="#n10"/>
+<tie startid="#n11" endid="#n12"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n15" pname="d" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="d" oct="4" dur="8">
+<verse n="1"><syl>fields</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="8"/>
+<note xml:id="n18" pname="f" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n19" pname="e" oct="4" dur="8">
+<verse n="1"><syl>air,</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+<slur startid="#n16" endid="#n17"/>
+<tie startid="#n19" endid="#n20"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="e" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em7</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<rest xml:id="r21" dur="4"/>
+<beam>
+<note xml:id="n22" pname="a" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n23" pname="a" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n24" pname="a" oct="4" dur="8"/>
+<note xml:id="n25" pname="a" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n26" pname="a" oct="4" dur="8"/>
+<note xml:id="n27" pname="b" oct="4" dur="8">
+<verse n="1"><syl>cage</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<tie startid="#n23" endid="#n24"/>
+<tie startid="#n25" endid="#n26"/>
+<tie startid="#n27" endid="#n28"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n28" pname="b" oct="4" dur="8"/>
+<note xml:id="n29" pname="g" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="8"/>
+<note xml:id="n31" pname="g" oct="4" dur="8">
+<verse n="1"><syl>sit</syl></verse></note>
+</beam>
+<note xml:id="n32" pname="g" oct="4" dur="4"/>
+<note xml:id="n33" pname="g" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<tie startid="#n29" endid="#n30"/>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n34" pname="f" oct="4" dur="8">
+<verse n="1"><syl>sing</syl></verse></note>
+<note xml:id="n35" pname="d" oct="4" dur="8">
+<verse n="1"><syl>To</syl></verse></note>
+<note xml:id="n36" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Him</syl></verse></note>
+<note xml:id="n37" pname="d" oct="4" dur="8">
+<verse n="1"><syl>who</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n38" pname="d" oct="4" dur="8"/>
+<note xml:id="n39" pname="e" oct="4" dur="8">
+<verse n="1"><syl>placed</syl></verse></note>
+<note xml:id="n40" pname="f" oct="4" dur="8">
+<verse n="1"><syl>me</syl></verse></note>
+<note xml:id="n41" pname="e" oct="4" dur="8">
+<verse n="1"><syl>there;</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+<slur startid="#n38" endid="#n39"/>
+<tie startid="#n41" endid="#n42"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="e" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<rest xml:id="r43" dur="4"/>
+<beam>
+<note xml:id="n44" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Well</syl></verse></note>
+<note xml:id="n45" pname="g" oct="4" dur="8"/>
+</beam>
+<beam>
+<note xml:id="n46" pname="g" oct="4" dur="8">
+<verse n="1"><syl>pleased</syl></verse></note>
+<note xml:id="n47" pname="f" oct="4" dur="8">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n48" pname="f" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<tie startid="#n45" endid="#n46"/>
+<tie startid="#n47" endid="#n48"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pri</syl></verse></note>
+<beam>
+<note xml:id="n50" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">son</syl></verse></note>
+<note xml:id="n51" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</beam>
+<note xml:id="n52" pname="c" oct="5" dur="4"/>
+<note xml:id="n53" pname="b" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A7/G</harm>
+<tie startid="#n51" endid="#n52"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n54" pname="a" oct="4" dur="2">
+<verse n="1"><syl>be,</syl></verse></note>
+<beam>
+<note xml:id="n55" pname="f" oct="4" dur="8"/>
+<note xml:id="n56" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n57" pname="e" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="3" place="above">F♯7/A♯</harm>
+<tie startid="#n56" endid="#n57"/>
+<slur startid="#n54" endid="#n58"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="d" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<rest xml:id="r59" dur="4"/>
+<beam>
+<note xml:id="n60" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
+<note xml:id="n61" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">cause,</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n62" pname="g" oct="4" dur="8"/>
+<note xml:id="n63" pname="f" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+</beam>
+<note xml:id="n64" pname="f" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<tie startid="#n61" endid="#n62"/>
+<tie startid="#n63" endid="#n64"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n65" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n66" pname="e" oct="4" dur="8">
+<verse n="1"><syl>it</syl></verse></note>
+<note xml:id="n67" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pleas</syl></verse></note>
+<note xml:id="n68" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">eth</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n69" pname="d" oct="4" dur="1">
+<verse n="1"><syl>Thee.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<tie startid="#n69" endid="#n70"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n70" pname="d" oct="4" dur="2" dots="1"/>
+<rest xml:id="r71" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Nought have I else to do,</l><l>I sing the whole day long;</l><l>And He whom most I love to please</l><l>Doth listen to my song;</l><l>He caught and bound my wandering wing;</l><l>But still He bends to hear me sing.</l></lg>
+<lg label="3."><l>Thou hast an ear to hear</l><l>A heart to love and bless;</l><l>And though my notes were e’er so rude,</l><l>Thou wouldst not hear the less;</l><l>Because Thou knowest as they fall,</l><l>That love, sweet love, inspires them all.</l></lg>
+<lg label="4."><l>My cage confines me round;</l><l>Abroad I cannot fly;</l><l>But though my wing is closely bound,</l><l>My heart’s at liberty;</l><l>For prison walls cannot control</l><l>The flight, the freedom of the soul.</l></lg>
+<lg label="5."><l>O it is good to soar</l><l>These bolts and bars above!</l><l>To Him whose purpose I adore,</l><l>Whose providence I love;</l><l>And in Thy mighty will to find</l><l>The joy, the freedom of the mind.</l></lg>
+</div>
+</back>
+</music></mei>

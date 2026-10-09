@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Lord Jesus, draw me</title>
+<title type="subordinate">Longings—For a Closer Walk with Christ</title>
+</titleStmt><pubStmt><identifier type="hymn">NS40</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Lord</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="e" oct="4" dur="4">
+<verse n="1"><syl>draw</syl></verse></note>
+<note xml:id="n5" pname="d" oct="4" dur="2">
+<verse n="1"><syl>me</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="e" oct="4" dur="2">
+<verse n="1"><syl>one</syl></verse></note>
+<note xml:id="n7" pname="d" oct="4" dur="4">
+<verse n="1"><syl>step</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="b" oct="3" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fur</syl></verse></note>
+<note xml:id="n9" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ther;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Draw</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="4">
+<verse n="1"><syl>me,</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl>where</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>am.</syl></verse></note>
+<note xml:id="n17" pname="c" oct="5" dur="8"/>
+<note xml:id="n18" pname="b" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n16" endid="#n19"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="a" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="d" oct="5" dur="4">
+<verse n="1"><syl>I’ve</syl></verse></note>
+<note xml:id="n21" pname="c" oct="5" dur="4">
+<verse n="1"><syl>been</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl>here</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="4">
+<verse n="1"><syl>too</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl>long</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">al</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B7</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">read</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="4"/>
+<note xml:id="n28" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<slur startid="#n26" endid="#n28"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">y.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Move</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl>me,</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Lord,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="4">
+<verse n="1"><syl>know</syl></verse></note>
+<note xml:id="n35" pname="a" oct="4" dur="4">
+<verse n="1"><syl>You</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>can.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<tie startid="#n36" endid="#n37"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="g" oct="4" dur="2"/>
+<rest xml:id="r38" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Your whisper, Lord, so softly sounding,</l><l>Deep within my heart does burn.</l><l>Let Your stillness now subdue me</l><l>That Your feeling I discern.</l></lg>
+<lg label="3."><l>All idle thoughts and impure feelings,</l><l>Lord, remove from mind and heart.</l><l>Wash me in the crystal water</l><l>And more life to me impart.</l></lg>
+<lg label="4."><l>All hidden things that block my vision,</l><l>Rocks of self-ambition, pride;</l><l>Now expose and burn away, Lord</l><l>By Your look intensified.</l></lg>
+<lg label="5."><l>Increase the weight of glory in me,</l><l>Let Your Spirit now transform,</l><l>That all things would not be wasted</l><l>But would work to save me more.</l></lg>
+<lg label="6."><l>Lord Jesus, oh how much I need You!</l><l>Thank You, Lord, that You are here,</l><l>Ever present as the Body.</l><l>I would always seek You there.</l></lg>
+</div>
+</back>
+</music></mei>

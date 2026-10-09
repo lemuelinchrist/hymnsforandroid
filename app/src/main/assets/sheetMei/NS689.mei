@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Lord, Remove My Veil</title>
+<title type="subordinate">Longings — For Light</title>
+</titleStmt><pubStmt><identifier type="hymn">NS689</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Lord,</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">move</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="e" oct="4" dur="1">
+<verse n="1"><syl>veil;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Let</syl></verse></note>
+<note xml:id="n7" pname="b" oct="4" dur="4">
+<verse n="1"><syl>me</syl></verse></note>
+<note xml:id="n8" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">clear</syl></verse></note>
+<beam>
+<note xml:id="n9" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n10" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm7</harm>
+<slur startid="#n9" endid="#n10"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>see</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8"/>
+<note xml:id="n13" pname="f" oct="4" dur="2">
+<verse n="1"><syl>You.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Cast</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n16" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">way</syl></verse></note>
+<beam>
+<note xml:id="n17" pname="g" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n18" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n17" endid="#n18"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="c" oct="5" dur="4">
+<verse n="1"><syl>pride</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="b" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ger,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="c" oct="4" dur="4">
+<verse n="1"><syl>Keep</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="e" oct="4" dur="8">
+<verse n="1"><syl>me</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n27" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>soft</syl></verse></note>
+<note xml:id="n28" pname="e" oct="4" dur="8">
+<verse n="1"><syl>tow’rd</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="e" oct="4" dur="1">
+<verse n="1"><syl>You.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Lord, remove my veil;</l><l>Let my mind be renewed.</l><l>Cast away evil thoughts in my head, Lord.</l><l>Fill me with Spirit full.</l></lg>
+<lg label="3."><l>Lord, remove my veil;</l><l>Let me dearly behold You.</l><l>Burn away any thorn in my heart, Lord,</l><l>With Your love sweet and true.</l></lg>
+<lg label="4."><l>Lord, remove my veil;</l><l>Make me deeply in love with You.</l><l>Nothing else I desire but Your presence;</l><l>Let me remain here with You.</l></lg>
+</div>
+</back>
+</music></mei>

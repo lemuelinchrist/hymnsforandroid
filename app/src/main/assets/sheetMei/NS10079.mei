@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Life is God the Father</title>
+<title type="subordinate">Various Aspects of the Inner Life—The Inner Knowledge</title>
+</titleStmt><pubStmt><identifier type="hymn">NS10079</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Life</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<tie startid="#n5" endid="#n6"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4"/>
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ther</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Christ</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n12" pname="b" oct="4" dur="4">
+<verse n="1"><syl>as</syl></verse></note>
+<beam>
+<note xml:id="n13" pname="b" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n14" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<tie startid="#n14" endid="#n15"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Flow</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>out</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="g" oct="4" dur="1">
+<verse n="1"><syl>us.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<tie startid="#n25" endid="#n26"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="2" dots="1"/>
+<rest xml:id="r27" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>He’s</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl>not</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>just</syl></verse></note>
+<beam>
+<note xml:id="n31" pname="a" oct="4" dur="8">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<tie startid="#n32" endid="#n33"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">teach</syl></verse></note>
+<note xml:id="n34" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<note xml:id="n35" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Or</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="b" oct="4" dur="4">
+<verse n="1"><syl>creed</syl></verse></note>
+<note xml:id="n38" pname="b" oct="4" dur="4">
+<verse n="1"><syl>or</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+<beam>
+<note xml:id="n40" pname="b" oct="4" dur="8">
+<verse n="1"><syl>dead</syl></verse></note>
+<note xml:id="n41" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">doc</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<tie startid="#n41" endid="#n42"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="b" oct="4" dur="4"/>
+<note xml:id="n43" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">trine,</syl></verse></note>
+<note xml:id="n44" pname="f" oct="4" dur="4">
+<verse n="1"><syl>But</syl></verse></note>
+<note xml:id="n45" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pro</syl></verse></note>
+<note xml:id="n47" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cessed</syl></verse></note>
+<note xml:id="n48" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Tri</syl></verse></note>
+<note xml:id="n49" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">une</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n50" pname="g" oct="4" dur="2">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n51" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n52" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ri</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="f" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">ous!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭/F</harm>
+<tie startid="#n53" endid="#n54"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n54" pname="f" oct="4" dur="2" dots="1"/>
+<rest xml:id="r55" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Life is not created</l><l>As man’s body, soul, and spirit—</l><l>That’s man’s life that’s weak and temporal.</l><l>Life is uncreated.</l><l>It’s divine and it’s eternal.</l><l>And this is the life that’s indestructible.</l></lg>
+<lg label="3."><l>And this life came in us</l><l>In our spirit through the Spirit;</l><l>This is where we were made alive!</l><l>Now this life is spreading.</l><l>Lord, don’t stop—just keep invading.</l><l>For this, Lord, we must be daily revived.</l></lg>
+<lg label="4."><l>Life needs our maintaining,</l><l>Otherwise we’re suffocating.</l><l>Calling on His name we breathe Him in.</l><l>Everywhere we breathe Him,</l><l>Makes us fresh and makes us living.</l><l>O, this life is full of hope and meaning.</l></lg>
+<lg label="5."><l>In our daily living</l><l>It’s this life that we are sensing.</l><l>Are we in the flesh or in the Lord?</l><l>If you’re dead and empty</l><l>And the troubles you have plenty,</l><l>Saints, get out of there and flee back to the Lord!</l></lg>
+<lg label="6."><l>Then you’ll sense life flowing</l><l>It’s this life that’s overcoming</l><l>Satan, flesh, and the world, and sin.</l><l>What a life we’re having.</l><l>Lord, Your virtues manifesting,</l><l>Thus, we’re branches bearing fruit in John 15.</l></lg>
+</div>
+</back>
+</music></mei>

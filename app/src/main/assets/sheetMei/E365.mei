@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Jesus, Thy life is mine</title>
+<title type="subordinate">Longings—For Christ as Life</title>
+</titleStmt><pubStmt><identifier type="hymn">E365</identifier><identifier type="number">365</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="4"/>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D/C</harm>
+<slur startid="#n4" endid="#n5"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>mine,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Dwell</syl></verse></note>
+<note xml:id="n9" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">more</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="4"/>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>me;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl>let</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl>me</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/C</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>see</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4"/>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">noth</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4"/>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">unt</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">wine</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="4"/>
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>life</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am/C</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>from</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>mine.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">C/G</harm>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="g" oct="4" dur="2"/>
+<rest xml:id="r33" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Thy life in me be shown,</l><l>Lord, I would henceforth seek</l><l>To think and speak</l><l>Thy thoughts, Thy words alone,</l><l>No more my own.</l></lg>
+<lg label="3."><l>Thy love, Thy joy, Thy peace,</l><l>Continuously impart</l><l>Unto my heart,</l><l>Fresh springs that never cease,</l><l>But still increase.</l></lg>
+<lg label="4."><l>The blest reality</l><l>Of resurrection power,</l><l>Thy Church’s dower,</l><l>Life more abundantly,</l><l>Lord, give to me.</l></lg>
+<lg label="5."><l>Thy fullest gift, O Lord,</l><l>Now at Thy word I claim,</l><l>Through Thy dear Name,</l><l>And touch the rapturous chord</l><l>Of praise forth-poured.</l></lg>
+<lg label="6."><l>Jesus, my life is Thine,</l><l>And evermore shall be</l><l>Hidden in Thee,</l><l>For nothing can untwine</l><l>Thy life from mine.</l></lg>
+</div>
+</back>
+</music></mei>

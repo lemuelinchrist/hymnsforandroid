@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Come and rejoice with me (New Tune)</title>
+<title type="subordinate">Assurance and Joy of Salvation—Loved by the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">BF170</identifier><identifier type="number">285</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<rest xml:id="r1" dur="8"/>
+<beam>
+<note xml:id="n2" pname="a" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>Come</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">joice</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="8">
+<verse n="1"><syl>with</syl></verse></note>
+<note xml:id="n7" pname="b" oct="4" dur="8"/>
+<note xml:id="n8" pname="g" oct="4" dur="8">
+<verse n="1"><syl>me!</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<tie startid="#n6" endid="#n7"/>
+<tie startid="#n8" endid="#n9"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<rest xml:id="r10" dur="8"/>
+<beam>
+<note xml:id="n11" pname="a" oct="4" dur="8">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="8">
+<verse n="1"><syl>once</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n14" pname="a" oct="4" dur="8">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="8">
+<verse n="1"><syl>was</syl></verse></note>
+<note xml:id="n16" pname="b" oct="4" dur="8"/>
+<note xml:id="n17" pname="g" oct="4" dur="8">
+<verse n="1"><syl>poor,</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<tie startid="#n15" endid="#n16"/>
+<tie startid="#n17" endid="#n18"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="g" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<rest xml:id="r19" dur="8"/>
+<beam>
+<note xml:id="n20" pname="a" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="8">
+<verse n="1"><syl>have</syl></verse></note>
+</beam>
+<note xml:id="n23" pname="a" oct="4" dur="8">
+<verse n="1"><syl>found</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">trea</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">su</syl></verse></note>
+<note xml:id="n27" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<note xml:id="n28" pname="c" oct="4" dur="8">
+<verse n="1"><syl>Of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>love,</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="8">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n31" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">bound</syl></verse></note>
+<note xml:id="n32" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">less</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="c" oct="4" dur="1">
+<verse n="1"><syl>store.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Come and rejoice with me!</l><l>I, once so sick at heart,</l><l>Have met with One who knows my case,</l><l>And knows the healing art.</l></lg>
+<lg label="3."><l>Come and rejoice with me!</l><l>For I was wearied sore,</l><l>And I have found a mighty arm</l><l>Which holds me evermore.</l></lg>
+<lg label="4."><l>Come and rejoice with me!</l><l>My feet so wide did roam,</l><l>And One has brought me from afar,</l><l>To find in Him my home.</l></lg>
+<lg label="5."><l>Come and rejoice with me!</l><l>For I have found a Friend</l><l>Who knows my heart’s most secret depths,</l><l>Yet loves me without end.</l></lg>
+<lg label="6."><l>I knew not of His love;</l><l>And He had loved so long,</l><l>With love so faithful and so deep,</l><l>So tender and so strong.</l></lg>
+<lg label="7."><l>And now I know it all,</l><l>Have heard and known His voice,</l><l>And hear it still from day to day.</l><l>Can I enough rejoice?</l></lg>
+</div>
+</back>
+</music></mei>

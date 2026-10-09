@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">引我歸愛</title>
+<title type="subordinate">愛慕耶穌</title>
+</titleStmt><pubStmt><identifier type="hymn">CS348</identifier><identifier type="number">Cs348</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="b" oct="3" dur="8">
+<verse n="1"><label>1.</label><syl>我</syl></verse></note>
+<note xml:id="n2" pname="c" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl>是</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>時</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>常</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="f" oct="4" dur="8">
+<verse n="1"><syl>輭</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n8" pname="c" oct="4" dur="8">
+<verse n="1"><syl>弱，</syl></verse></note>
+<note xml:id="n9" pname="c" oct="4" dur="8">
+<verse n="1"><syl>輭</syl></verse></note>
+<note xml:id="n10" pname="e" oct="4" dur="8">
+<verse n="1"><syl>弱</syl></verse></note>
+<note xml:id="n11" pname="d" oct="4" dur="8">
+<verse n="1"><syl>至</syl></verse></note>
+</beam>
+<note xml:id="n12" pname="e" oct="4" dur="4">
+<verse n="1"><syl>極，</syl></verse></note>
+<beam>
+<note xml:id="n13" pname="d" oct="4" dur="8">
+<verse n="1"><syl>所</syl></verse></note>
+<note xml:id="n14" pname="c" oct="4" dur="8">
+<verse n="1"><syl>有</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="b" oct="3" dur="4">
+<verse n="1"><syl>信</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="g" oct="4" dur="8">
+<verse n="1"><syl>心</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="8">
+<verse n="1"><syl>消</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n18" pname="e" oct="4" dur="8">
+<verse n="1"><syl>沒，</syl></verse></note>
+<note xml:id="n19" pname="e" oct="4" dur="8">
+<verse n="1"><syl>力</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="8">
+<verse n="1"><syl>量</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="8">
+<verse n="1"><syl>都</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>疲；</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="g" oct="4" dur="8">
+<verse n="1"><syl>但</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="8">
+<verse n="1"><syl>你</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl>長</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="g" oct="4" dur="8">
+<verse n="1"><syl>久</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="8">
+<verse n="1"><syl>忍</syl></verse></note>
+</beam>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>耐，</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="g" oct="4" dur="8">
+<verse n="1"><syl>從</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n29" endid="#n30"/>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="e" oct="4" dur="4">
+<verse n="1"><syl>不</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>放</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="4">
+<verse n="1"><syl>棄，</syl></verse></note>
+<beam>
+<note xml:id="n34" pname="d" oct="5" dur="8">
+<verse n="1"><syl>仍</syl></verse></note>
+<note xml:id="n35" pname="c" oct="5" dur="8">
+<verse n="1"><syl>要</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<fermata startid="#n33" place="above"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n36" pname="b" oct="4" dur="8">
+<verse n="1"><syl>引</syl></verse></note>
+<note xml:id="n37" pname="b" oct="4" dur="8">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n38" pname="g" oct="4" dur="8">
+<verse n="1"><syl>歸</syl></verse></note>
+<note xml:id="n39" pname="e" oct="4" dur="8">
+<verse n="1"><syl>愛，</syl></verse></note>
+</beam>
+<note xml:id="n40" pname="f" oct="4" dur="4">
+<verse n="1"><syl>傍</syl></verse></note>
+<beam>
+<note xml:id="n41" pname="g" oct="4" dur="8">
+<verse n="1"><syl>你</syl></verse></note>
+<note xml:id="n42" pname="f" oct="4" dur="8">
+<verse n="1"><syl>胸</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="e" oct="4" dur="1">
+<verse n="1"><syl>臆。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>我是時常起伏，憂懼不停，</l><l>所有亮光衰微，盼望搖動；</l><l>但你應許恩言，不改堅定，</l><l>仍來開我心眼，向你忠誠。</l></lg>
+<lg label="3."><l>我是時常保留，損失都畏，</l><l>所有籌畫為己，祭壇傾廢；</l><l>但你柔愛憐憫，竟不收回，</l><l>仍來將我吸引，向你全歸。</l></lg>
+<lg label="4."><l>我是時常單獨，自己追求，</l><l>所有歡樂愁苦，寂寞承受；</l><l>但你細細部署，不肯鬆手，</l><l>仍來領我腳步，向你倚投。</l></lg>
+<lg label="5."><l>我是時常無知，錯識你心，</l><l>所有思念體貼都在己身；</l><l>但你光照不止，啟示心意，</l><l>仍來轉我想願，與你成一。</l></lg>
+<lg label="6."><l>當我想到你的一切對待，</l><l>我是不知如何回報你愛；</l><l>在我每一今日尚有微力，</l><l>仍然我要盡力，一生愛你。</l></lg>
+<lg label="7."><l>不問我的前途光明黑暗，</l><l>不理我的道路平順艱難；</l><l>如果是你許可，寧願等候，</l><l>只要是你揀選，歡然行走。</l></lg>
+</div>
+</back>
+</music></mei>

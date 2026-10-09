@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Gracious Lord, Thy name I AM is</title>
+<title type="subordinate">Praise of the Lord—His Name</title>
+</titleStmt><pubStmt><identifier type="hymn">E78</identifier><identifier type="number">78</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="d" oct="4" dur="8" dots="1">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Gra</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">cious</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>name</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="16">
+<verse n="1"><syl>“I</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl>AM”</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl>is,</syl></verse></note>
+<beam>
+<note xml:id="n9" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Pre</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">cious</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl>name,</syl></verse></note>
+<note xml:id="n12" pname="b" oct="4" dur="4">
+<verse n="1"><syl>how</syl></verse></note>
+<beam>
+<note xml:id="n13" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>rich</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="16">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl>full</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl>’tis,</syl></verse></note>
+<beam>
+<note xml:id="n17" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">All-</syl></verse></note>
+<note xml:id="n18" pname="c" oct="5" dur="16">
+<verse n="1"><syl wordpos="m" con="d">in</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">clu</syl></verse></note>
+<note xml:id="n20" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">sive,</syl></verse></note>
+<beam>
+<note xml:id="n21" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">faith</syl></verse></note>
+<note xml:id="n22" pname="g" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">ful</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>too</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4">
+<verse n="1"><syl>’tis—</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>All</syl></verse></note>
+<note xml:id="n26" pname="c" oct="5" dur="16">
+<verse n="1"><syl>we</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="d" oct="4" dur="2">
+<verse n="1"><syl>need,</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="g" oct="4" dur="2">
+<verse n="1"><syl>art!</syl></verse></note>
+<rest xml:id="r30" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Thou the Son, the Father in Thee,</l><l>As the Spirit now indwell me,</l><l>That the riches of Thyself we</l><l>May experience.</l></lg>
+<lg label="3."><l>Thou the Temple for God’s dwelling,</l><l>Thou the Father’s life e’er telling;</l><l>We in Thee with joy excelling</l><l>Face to face see Him.</l></lg>
+<lg label="4."><l>Thou the Lamb and Thou the Bridegroom,</l><l>For the bride Thou sufferedst sin’s doom,</l><l>Wounded, crucified in our room;</l><l>Thus we find our rest.</l></lg>
+<lg label="5."><l>Thou art wisdom and the way, Lord,</l><l>Thou our lives dost plan each day, Lord,</l><l>Grace to us Thou dost convey, Lord,</l><l>In Thy path to walk.</l></lg>
+<lg label="6."><l>Pure and holy, righteous Thou art,</l><l>One with God, well-pleasing His heart,</l><l>Thou within to us dost impart</l><l>Harmony with God.</l></lg>
+<lg label="7."><l>Thou art life and Thou art light, Lord,</l><l>Death hast swallowed, banished night, Lord,</l><l>Thou hast quickened, given sight, Lord;</l><l>We are now set free.</l></lg>
+<lg label="8."><l>Thou art resurrection power,</l><l>Thou the conqu’ror in hell’s hour;</l><l>Thou dost us with might empower</l><l>Over all to reign.</l></lg>
+<lg label="9."><l>Living water, food supply, Lord,</l><l>Thou Thyself art, and didst die, Lord,</l><l>All our want to satisfy, Lord;</l><l>Now we feast on Thee.</l></lg>
+<lg label="10."><l>Thou the Shepherd and Physician,</l><l>Thou hast healed our sick condition;</l><l>Comfort, guide, protect—Thy mission;</l><l>Thou dost care for us.</l></lg>
+<lg label="11."><l>Priest and King Thou art fore’er, Lord;</l><l>Into God we’re brought, and there, Lord,</l><l>Thine authority we share, Lord;</l><l>What an honored place!</l></lg>
+<lg label="12."><l>Thou our Hope and our Redemption,</l><l>Thou wilt change our old creation,</l><l>Make of Thee a duplication,</l><l>Thus Thyself express.</l></lg>
+<lg label="13."><l>Thou our Joy, our Peace, our Glory;</l><l>Truth, and Grace, the Rock, the Life-tree,</l><l>Building, Mountain, Sun, and Shield—we</l><l>Ne’er can tell it all.</l></lg>
+<lg label="14."><l>What Thou art—eternal, boundless,</l><l>Full and perfect, rich, exhaustless—</l><l>Meets our need to utter fullness</l><l>And from us o’erflows.</l></lg>
+</div>
+</back>
+</music></mei>

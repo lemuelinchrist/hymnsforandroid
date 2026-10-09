@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">When I survey life’s varied scene</title>
+<title type="subordinate">Comfort in Trials—By the Lord’s Hands</title>
+</titleStmt><pubStmt><identifier type="hymn">E682</identifier><identifier type="number">682</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>When</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sur</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">vey</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="f" oct="4" dur="8">
+<verse n="1"><syl>life’s</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">var</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ied</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl>scene,</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">mid</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4" dots="1" accid="n" accid.ges="n">
+<verse n="1"><syl wordpos="i" con="d">dark</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="8" accid.ges="n">
+<verse n="1"><syl wordpos="t">est</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>hours</syl></verse></note>
+<note xml:id="n16" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Sweet</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="e" oct="5" dur="4">
+<verse n="1"><syl>rays</syl></verse></note>
+<note xml:id="n18" pname="c" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n20" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">fort</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>shine</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">bet</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ween</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>thorns</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl>mixed</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>flowers.</syl></verse></note>
+<rest xml:id="r30" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Lord, teach me to adore Thy hand,</l><l>From whence my comforts flow,</l><l>And let me in this desert land</l><l>A glimpse of glory know.</l></lg>
+<lg label="3."><l>Father, whate’er of earthly bliss</l><l>Thy sovereign hand denies,</l><l>Accepted at Thy throne of grace,</l><l>Let this petition rise:</l></lg>
+<lg label="4."><l>Give me a calm, a thankful heart,</l><l>From every murmur free;</l><l>The blessings of Thy grace impart,</l><l>And let me live to Thee.</l></lg>
+<lg label="5."><l>Let the sweet hope that Thou art mine</l><l>My life and death attend,</l><l>Thy presence through my journey shine,</l><l>And crown my journey’s end.</l></lg>
+</div>
+</back>
+</music></mei>

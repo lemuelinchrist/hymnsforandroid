@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">For the bread and for the wine</title>
+<title type="subordinate">Praise of the Lord—Remembrance of Him</title>
+</titleStmt><pubStmt><identifier type="hymn">E226</identifier><identifier type="number">226</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>For</syl></verse></note>
+<note xml:id="n2" pname="b" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl>bread</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="d" oct="5" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n6" pname="c" oct="5" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n7" pname="b" oct="4" dur="2">
+<verse n="1"><syl>wine,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="2" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>pledge</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">Am/G</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="c" oct="5" dur="4">
+<verse n="1"><syl>seals</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Him</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="2">
+<verse n="1"><syl>mine,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl>words</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">vine,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="2">
+<verse n="1"><syl>We</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>give</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thee</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">Am/C</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>thanks,</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="8">
+<verse n="1"><syl>O</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="2">
+<verse n="1"><syl>Lord.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Only bread and only wine,</l><l>Yet to faith, the solemn sign</l><l>Of the heav’nly and divine!</l><l>We give Thee thanks, O Lord.</l></lg>
+<lg label="3."><l>For the words that turn our eye</l><l>To the cross of Calvary,</l><l>Bidding us in faith draw nigh,</l><l>We give Thee thanks, O Lord.</l></lg>
+<lg label="4."><l>For the words that fragrance breathe</l><l>These plain symbols underneath,</l><l>Words that His own peace bequeath,</l><l>We give Thee thanks, O Lord.</l></lg>
+<lg label="5."><l>For Thy words in Spirit, shown,</l><l>For Thy will to us made known,</l><l>“Do ye this until I come,”</l><l>We give Thee thanks, O Lord.</l></lg>
+<lg label="6."><l>Till He come we take the bread,</l><l>Type of Him on whom we feed,</l><l>Him who liveth and was dead!</l><l>We give Thee thanks, O Lord.</l></lg>
+<lg label="7."><l>Till He come we take the cup;</l><l>As we at His table sup,</l><l>Eye and heart are lifted up!</l><l>We give Thee thanks, O Lord.</l></lg>
+<lg label="8."><l>For that coming, here foreshown,</l><l>For that day to man unknown,</l><l>For the glory and the throne,</l><l>We give Thee thanks, O Lord.</l></lg>
+</div>
+</back>
+</music></mei>

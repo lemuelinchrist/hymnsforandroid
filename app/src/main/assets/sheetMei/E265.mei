@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Where the sprinkling of the blood is</title>
+<title type="subordinate">Fulness of the Spirit—As the Ointment</title>
+</titleStmt><pubStmt><identifier type="hymn">E265</identifier><identifier type="number">265</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Where</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n3" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sprin</syl></verse></note>
+<note xml:id="n4" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">kling</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="c" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl>blood</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4">
+<verse n="1"><syl>is,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl>There</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">oint</syl></verse></note>
+<note xml:id="n12" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ment</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="4">
+<verse n="1"><syl>doth</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">main;</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Man</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>touch</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="g" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n23" pname="d" oct="5" dur="4">
+<verse n="1"><syl>thus</syl></verse></note>
+<note xml:id="n24" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">bring</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="c" oct="5" dur="4">
+<verse n="1"><syl>These</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n28" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">fel</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n30" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">low</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ship</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">main</syl></verse></note>
+<note xml:id="n33" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tain.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Blood, the emblem of redemption,</l><l>Cleansing all the sins away;</l><l>Ointment, symbol of the Spirit,</l><l>Bringing God to man for aye.</l></lg>
+<lg label="3."><l>Blood doth speak of what God worketh,</l><l>Ointment, what He is for us;</l><l>By His work and by His person</l><l>God Himself is blent with us.</l></lg>
+<lg label="4."><l>By the blood of Christ’s redemption</l><l>We are cleansed from all alloy;</l><l>By th’ anointing of the Spirit</l><l>God Himself we may enjoy.</l></lg>
+<lg label="5."><l>By the cleansing and anointing</l><l>We with God are kept in one;</l><l>By the blood and by the ointment</l><l>God, our portion full, is won.</l></lg>
+<lg label="6."><l>We in faith must claim the cleansing</l><l>When we need the precious blood,</l><l>Ever to obey th’ anointing,</l><l>Thus to live and walk with God.</l></lg>
+<lg label="7."><l>God as light we’ll then be knowing,</l><l>God experience as love,</l><l>And in God as life e’er growing,</l><l>God as power we will prove.</l></lg>
+</div>
+</back>
+</music></mei>

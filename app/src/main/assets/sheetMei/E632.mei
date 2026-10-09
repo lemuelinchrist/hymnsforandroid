@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Never further than Thy Cross</title>
+<title type="subordinate">The Way of the Cross—The Way of Deliverance</title>
+</titleStmt><pubStmt><identifier type="hymn">E632</identifier><identifier type="number">632</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Nev</syl></verse></note>
+<note xml:id="n2" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7/G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">fur</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ther</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>than</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="8"/>
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Cross,</syl></verse></note>
+<rest xml:id="r9" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Nev</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">high</syl></verse></note>
+<note xml:id="n13" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="4" dots="1" accid="n" accid.ges="n">
+<verse n="1"><syl>than</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="8"/>
+<note xml:id="n16" pname="b" oct="4" dur="4" accid.ges="n">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="c" oct="5" dur="2">
+<verse n="1"><syl>feet,</syl></verse></note>
+<rest xml:id="r18" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="b" oct="4" dur="2">
+<verse n="1"><syl>Here</syl></verse></note>
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>earth’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7/E</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">pre</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cious</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>things</syl></verse></note>
+<note xml:id="n24" pname="d" oct="4" dur="8"/>
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl>seem</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/B♭</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>dross,</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="8"/>
+<note xml:id="n28" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<slur startid="#n26" endid="#n28"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="b" oct="4" dur="2">
+<verse n="1"><syl>Here</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>earth’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">bit</syl></verse></note>
+<beam>
+<note xml:id="n32" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ter</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">Gm/B♭</harm>
+<slur startid="#n32" endid="#n33"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="f" oct="4" dur="2">
+<verse n="1"><syl>things</syl></verse></note>
+<note xml:id="n35" pname="e" oct="4" dur="4">
+<verse n="1"><syl>grow</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>sweet.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Gazing thus our sin we see,</l><l>Learn Thy love while gazing thus;</l><l>Sin which laid the Cross on Thee;</l><l>Love which bore the Cross for us.</l></lg>
+<lg label="3."><l>Here we learn to serve and give,</l><l>And rejoicing, self deny;</l><l>Here we gather love to live;</l><l>Here we gather faith to die.</l></lg>
+<lg label="4."><l>Symbols of our liberty</l><l>And our service here unite;</l><l>Captives, by Thy Cross set free;</l><l>Soldiers of Thy Cross, we fight.</l></lg>
+<lg label="5."><l>Pressing onwards as we can,</l><l>Still to this our hearts must tend;</l><l>Where our earliest hopes began,</l><l>There our last aspirings end.</l></lg>
+<lg label="6."><l>Till amid the hosts of light</l><l>We in Thee redeemed, complete,</l><l>Through Thy Cross made pure and white,</l><l>Cast our crowns before Thy feet.</l></lg>
+</div>
+</back>
+</music></mei>

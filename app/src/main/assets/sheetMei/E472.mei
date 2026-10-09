@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Many crowd the Savior’s kingdom</title>
+<title type="subordinate">Consecration—Willing to Suffer for the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">E472</identifier><identifier type="number">472</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3s" meter.count="6" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Ma</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ny</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="e" oct="4" dur="8">
+<verse n="1"><syl>crowd</syl></verse></note>
+<note xml:id="n4" pname="c" oct="4" dur="8"/>
+<note xml:id="n5" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="6" place="above">E/B</harm>
+<slur startid="#n3" endid="#n4"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
+<note xml:id="n7" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ior’s</syl></verse></note>
+<note xml:id="n8" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">king</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">dom,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="4" place="above">A7</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Few</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ceive</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="4" place="above">B7</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>cross;</syl></verse></note>
+<note xml:id="n15" pname="e" oct="4" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<harm staff="1" tstamp="4" place="above">E7</harm>
+<tie startid="#n14" endid="#n15"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Ma</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ny</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="e" oct="4" dur="8">
+<verse n="1"><syl>seek</syl></verse></note>
+<note xml:id="n19" pname="c" oct="4" dur="8"/>
+<note xml:id="n20" pname="e" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="4" place="above">E/G♯</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">so</syl></verse></note>
+<note xml:id="n23" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">la</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tion,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="4" place="above">A/E</harm>
+<harm staff="1" tstamp="6" place="above">A/C♯</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Few</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="8">
+<verse n="1"><syl>will</syl></verse></note>
+<beam>
+<note xml:id="n27" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">suf</syl></verse></note>
+<note xml:id="n28" pname="c" oct="5" dur="8"/>
+<note xml:id="n29" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">fer</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E/B</harm>
+<harm staff="1" tstamp="4" place="above">B/D♯</harm>
+<slur startid="#n27" endid="#n28"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>loss.</syl></verse></note>
+<note xml:id="n31" pname="b" oct="4" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<tie startid="#n30" endid="#n31"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="d" oct="5" dur="4">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n33" pname="d" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n34" pname="d" oct="5" dur="8">
+<verse n="1"><syl>dear</syl></verse></note>
+<note xml:id="n35" pname="c" oct="5" dur="8"/>
+<note xml:id="n36" pname="b" oct="4" dur="8">
+<verse n="1"><syl>sake</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E7/G♯</harm>
+<harm staff="1" tstamp="4" place="above">E7</harm>
+<slur startid="#n34" endid="#n35"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="c" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n38" pname="c" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n39" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Mas</syl></verse></note>
+<note xml:id="n40" pname="b" oct="4" dur="8"/>
+<note xml:id="n41" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ter,</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="4" place="above">A/C♯</harm>
+<slur startid="#n39" endid="#n40"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Count</syl></verse></note>
+<note xml:id="n43" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n44" pname="g" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n45" pname="f" oct="4" dur="8">
+<verse n="1"><syl>but</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="4" place="above">B7/D♯</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>dross,</syl></verse></note>
+<note xml:id="n47" pname="e" oct="4" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<harm staff="1" tstamp="4" place="above">E7</harm>
+<tie startid="#n46" endid="#n47"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="e" oct="4" dur="4">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n49" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n50" pname="e" oct="4" dur="8">
+<verse n="1"><syl>dear</syl></verse></note>
+<note xml:id="n51" pname="c" oct="4" dur="8"/>
+<note xml:id="n52" pname="e" oct="4" dur="8">
+<verse n="1"><syl>sake</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="4" place="above">E/G♯</harm>
+<slur startid="#n50" endid="#n51"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n54" pname="b" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n55" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Mas</syl></verse></note>
+<note xml:id="n56" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ter,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="4" place="above">A/E</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Count</syl></verse></note>
+<note xml:id="n58" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n59" pname="a" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n60" pname="g" oct="4" dur="8">
+<verse n="1"><syl>but</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm/D</harm>
+<harm staff="1" tstamp="4" place="above">E7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n61" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>dross.</syl></verse></note>
+<note xml:id="n62" pname="a" oct="4" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="4" place="above">A</harm>
+<tie startid="#n61" endid="#n62"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Many sit at Jesus’ table,</l><l>Few will fast with Him,</l><l>When the sorrow-cup of anguish</l><l>Trembles to the brim.</l><l>Few watch with Him in the garden,</l><l>Who have sung the hymn,</l><l>Few watch with Him in the garden,</l><l>Who have sung the hymn.</l></lg>
+<lg label="3."><l>Many will confess His wisdom,</l><l>Few embrace His shame.</l><l>Many, should He smile upon them,</l><l>Will His praise proclaim;</l><l>Then, if for a while He leave them,</l><l>They desert His name,</l><l>Then, if for a while He leave them,</l><l>They desert His name.</l></lg>
+<lg label="4."><l>But the souls who love Him truly,</l><l>Let woe come or bliss,</l><l>These will count their dearest hearts’ blood</l><l>Not their own, but His.</l><l>Savior, Thou who thus hast loved me,</l><l>Give me love like this,</l><l>Savior, Thou who thus hast loved me,</l><l>Give me love like this.</l></lg>
+</div>
+</back>
+</music></mei>

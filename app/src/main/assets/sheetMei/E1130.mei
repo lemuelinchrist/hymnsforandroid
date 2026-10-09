@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Sing praise to Christ Who lives in us</title>
+<title type="subordinate">Assurance and Joy of Salvation—So Great a Salvation</title>
+</titleStmt><pubStmt><identifier type="hymn">E1130</identifier><identifier type="number">1130</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="5f" meter.count="3" meter.unit="2"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>Sing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n5" pname="d" oct="5" dur="2">
+<verse n="1"><syl>Who</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">D♭/F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="c" oct="5" dur="4">
+<verse n="1"><syl>lives</syl></verse></note>
+<note xml:id="n7" pname="b" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="2">
+<verse n="1"><syl>us,</syl></verse></note>
+<note xml:id="n9" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>The</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭m</harm>
+<slur startid="#n9" endid="#n10"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="2">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sal</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="2" place="above">E♭m/G♭</harm>
+<harm staff="1" tstamp="3" place="above">D♭/A♭</harm>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">va</syl></verse></note>
+<note xml:id="n17" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tion;</syl></verse></note>
+<note xml:id="n18" pname="d" oct="4" dur="2">
+<verse n="1"><syl>Who</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="f" oct="4" dur="4">
+<verse n="1"><syl>saves</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="2">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n22" pname="d" oct="5" dur="2">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">D♭/F</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="c" oct="5" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">vine,</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭m</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl>not</syl></verse></note>
+<note xml:id="n29" pname="f" oct="4" dur="4">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">gu</syl></verse></note>
+<note xml:id="n32" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="2" place="above">E♭m/G♭</harm>
+<harm staff="1" tstamp="3" place="above">D♭/A♭</harm>
+<slur startid="#n31" endid="#n32"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">la</syl></verse></note>
+<note xml:id="n34" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tion;</syl></verse></note>
+<note xml:id="n35" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Aft</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n37" pname="b" oct="4" dur="4">
+<verse n="1"><syl>we’ve</syl></verse></note>
+<note xml:id="n38" pname="a" oct="4" dur="2">
+<verse n="1"><syl>worked—</syl></verse></note>
+<note xml:id="n39" pname="d" oct="5" dur="2">
+<verse n="1"><syl>done</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="1.5000" place="above">G♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭/F</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="c" oct="5" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n41" pname="b" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n42" pname="a" oct="4" dur="2">
+<verse n="1"><syl>can,</syl></verse></note>
+<note xml:id="n43" pname="a" oct="4" dur="2">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="1.5000" place="above">E♭7/G</harm>
+<harm staff="1" tstamp="2" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭7/G♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="d" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="4">
+<verse n="1"><syl>has</syl></verse></note>
+<note xml:id="n46" pname="f" oct="4" dur="2">
+<verse n="1"><syl>power</syl></verse></note>
+<note xml:id="n47" pname="d" oct="4" dur="2">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/F</harm>
+<harm staff="1" tstamp="1.5000" place="above">A♭7/E♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="f" oct="4" dur="4">
+<verse n="1"><syl>change</syl></verse></note>
+<note xml:id="n49" pname="g" oct="4" dur="4" accid="n" accid.ges="n">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n50" pname="a" oct="4" dur="2">
+<verse n="1"><syl>man:</syl></verse></note>
+<note xml:id="n51" pname="a" oct="4" dur="2">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="1.5000" place="above">E♭7/G</harm>
+<harm staff="1" tstamp="2" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">D♭/F</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n52" pname="b" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n53" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+<note xml:id="n54" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">vine</syl></verse></note>
+<note xml:id="n55" pname="f" oct="4" dur="4">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n56" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♭</harm>
+<harm staff="1" tstamp="2" place="above">E♭m</harm>
+<harm staff="1" tstamp="3" place="above">D♭/A♭</harm>
+<slur startid="#n55" endid="#n56"/>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="e" oct="4" dur="2">
+<verse n="1"><syl>change</syl></verse></note>
+<note xml:id="n58" pname="d" oct="4" dur="2">
+<verse n="1"><syl>us.</syl></verse></note>
+<rest xml:id="r59" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>He saves us to the uttermost</l><l>By His life-giving power;</l><l>Transfusing Himself into us,</l><l>He saves us hour by hour.</l><l>He saved the lost by coming in,</l><l>He’s saving now from more than sin:</l><l>He’s saving us to glory!</l></lg>
+<lg label="3."><l>Our Lord was constituted priest</l><l>To be a real life-giver;</l><l>Life is the nature of this One</l><l>Who can from self deliver:</l><l>His life is indestructible,</l><l>By it He saves us to the full:</l><l>Praise God, He’s fully able!</l></lg>
+<lg label="4."><l>His life is fully qualified</l><l>To bring us through to glory;</l><l>Were it not for His tested life,</l><l>’Twould be another story</l><l>His life was fully tried on earth,</l><l>To crucifixion from His birth:</l><l>He passed through death and Hades.</l></lg>
+<lg label="5."><l>He’s pledged to save us to the full,</l><l>His life is operating;</l><l>He’s doing everything for us</l><l>’Tis all for our perfecting;</l><l>Our life’s a failure at its best,</l><l>Only His life can stand the test:</l><l>His life brings full salvation!</l></lg>
+<lg label="6."><l>He’s living now to intercede,</l><l>Continuing forever;</l><l>He undertakes into the age,</l><l>His priesthood changes never;</l><l>He always lives to intercede,</l><l>Such a High Priest is what we need:</l><l>He’s higher than the heavens.</l></lg>
+<lg label="7."><l>Come forward now to God through Him,</l><l>Ne’er shrink back to destruction;</l><l>Come forward now to get the life,</l><l>Which brings the proper function;</l><l>Come forward now the life to take,</l><l>By life His people us He’ll make,</l><l>And swallow death forever.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Hark! ten thousand voices crying</title>
+<title type="subordinate">Praise of the Lord—His Exaltation</title>
+</titleStmt><pubStmt><identifier type="hymn">E127</identifier><identifier type="number">127</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="9" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="d" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>Hark!</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="8"/>
+<note xml:id="n3" pname="d" oct="4" dur="8">
+<verse n="1"><syl>ten</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">thou</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">sand</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">voic</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="8"/>
+<note xml:id="n8" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">es</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="7" place="above">G/B</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">cry</syl></verse></note>
+<note xml:id="n10" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="d" oct="4" dur="8"/>
+<note xml:id="n12" pname="e" oct="4" dur="8">
+<verse n="1"><syl>“Lamb</syl></verse></note>
+<note xml:id="n13" pname="d" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="7" place="above">D/A</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>God!”</syl></verse></note>
+<note xml:id="n15" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>with</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="c" oct="5" dur="8">
+<verse n="1"><syl>one</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="8"/>
+<note xml:id="n18" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ac</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<harm staff="1" tstamp="7" place="above">D7/F♯</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">cord;</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Thou</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8"/>
+<note xml:id="n22" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">sand</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="7" place="above">D/A</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">thou</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">sand</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="b" oct="4" dur="8"/>
+<note xml:id="n26" pname="a" oct="4" dur="8">
+<verse n="1"><syl>saints</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="7" place="above">G7</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="m" con="d">ply</syl></verse></note>
+<note xml:id="n29" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<beam>
+<note xml:id="n30" pname="a" oct="4" dur="8"/>
+<note xml:id="n31" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Wake</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="8">
+<verse n="1"><syl>at</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="7" place="above">Am</harm>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>once</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n35" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ec</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ho’ng</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="7" place="above">D7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>chord.</syl></verse></note>
+<rest xml:id="r38" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>“Praise the Lamb!” the chorus waking,</l><l>All in heav’n together throng;</l><l>Loud and far each tongue partaking</l><l>Rolls around the endless song.</l></lg>
+<lg label="3."><l>Grateful incense this, ascending</l><l>Ever to the Father’s throne;</l><l>Every knee to Jesus bending,</l><l>All the mind in heav’n is one.</l></lg>
+<lg label="4."><l>All the Father’s counsels claiming</l><l>Equal honors to the Son,</l><l>All the Son’s effulgence beaming,</l><l>Makes the Father’s glory known.</l></lg>
+<lg label="5."><l>By the Spirit all pervading,</l><l>Hosts unnumbered round the Lamb,</l><l>Crowned with light and joy unfading,</l><l>Hail Him as the great “I AM.”</l></lg>
+<lg label="6."><l>Joyful now the new creation</l><l>Rests in undisturbed repose,</l><l>Blest in Jesus’ full salvation,</l><l>Sorrow now nor thraldom knows.</l></lg>
+<lg label="7."><l>Hark! the heavenly notes again!</l><l>Loudly swells the song of praise;</l><l>Through creation’s vault, Amen!</l><l>Amen! responsive joy doth raise.</l></lg>
+</div>
+</back>
+</music></mei>

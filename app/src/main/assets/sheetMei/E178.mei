@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Our hearts are full of Christ and long</title>
+<title type="subordinate">Praise of the Lord—His Beauty</title>
+</titleStmt><pubStmt><identifier type="hymn">E178</identifier><identifier type="number">178</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="a" oct="4" dur="4"/>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl>hearts</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl>full</syl></verse></note>
+<note xml:id="n6" pname="d" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="d" oct="5" dur="4">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n8" pname="c" oct="5" dur="4"/>
+<note xml:id="n9" pname="b" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="2">
+<verse n="1"><syl>long</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Their</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="4"/>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">rious</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n12" endid="#n13"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">mat</syl></verse></note>
+<note xml:id="n16" pname="f" oct="4" dur="4"/>
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ter</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em/G</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4"/>
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">clare!</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Him</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="4"/>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="a" oct="4" dur="2">
+<verse n="1"><syl>make</syl></verse></note>
+<note xml:id="n27" pname="d" oct="5" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">loft</syl></verse></note>
+<note xml:id="n29" pname="c" oct="5" dur="4"/>
+<note xml:id="n30" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ier</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="2">
+<verse n="1"><syl>song,</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>We</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">can</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="4"/>
+<note xml:id="n35" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">not</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="e" oct="4" dur="4">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n37" pname="f" oct="4" dur="4"/>
+<note xml:id="n38" pname="g" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em/G</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="f" oct="4" dur="2">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n40" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">bear:</syl></verse></note>
+<note xml:id="n42" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">rea</syl></verse></note>
+<note xml:id="n44" pname="f" oct="4" dur="8"/>
+<note xml:id="n45" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">dy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+<slur startid="#n43" endid="#n44"/>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="f" oct="4" dur="2">
+<verse n="1"><syl>tongues</syl></verse></note>
+<note xml:id="n47" pname="a" oct="4" dur="4">
+<verse n="1"><syl>make</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="a" oct="4" dur="4"/>
+<note xml:id="n49" pname="f" oct="4" dur="4">
+<verse n="1"><syl>haste</syl></verse></note>
+<note xml:id="n50" pname="b" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n48" endid="#n49"/>
+</measure>
+<measure n="21"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="a" oct="4" dur="2">
+<verse n="1"><syl>sing</syl></verse></note>
+<note xml:id="n52" pname="b" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="22"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n54" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ries</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="23"><staff n="1"><layer n="1">
+<note xml:id="n55" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n56" pname="g" oct="4" dur="8"/>
+<note xml:id="n57" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+<slur startid="#n55" endid="#n56"/>
+</measure>
+<measure n="24"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">heav’n</syl></verse></note>
+<note xml:id="n59" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="25" right="end"><staff n="1"><layer n="1">
+<note xml:id="n60" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">King.</syl></verse></note>
+<rest xml:id="r61" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Fairer than all the earthborn race,</l><l>Perfect in comeliness Thou art;</l><l>Replenished are Thy lips with grace,</l><l>And full of love Thy tender heart.</l><l>God ever-blest! we bow the knee,</l><l>And own all fulness dwells in Thee.</l></lg>
+</div>
+</back>
+</music></mei>

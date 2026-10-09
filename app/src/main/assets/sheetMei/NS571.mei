@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">And we know that all things work together for good</title>
+<title type="subordinate">Scriptures for Singing</title>
+</titleStmt><pubStmt><identifier type="hymn">NS571</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="a" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="8">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="8">
+<verse n="1"><syl>know</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="8">
+<verse n="1"><syl>that</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="4">
+<verse n="1"><syl>things</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>work</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">geth</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4"/>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<tie startid="#n10" endid="#n11"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="1">
+<verse n="1"><syl>good,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<rest xml:id="r14" dur="2"/>
+<beam>
+<note xml:id="n15" pname="a" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="8">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="8">
+<verse n="1"><syl>know</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="8">
+<verse n="1"><syl>that</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>things</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>work</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">geth</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4"/>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<tie startid="#n24" endid="#n25"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="f" oct="4" dur="1">
+<verse n="1"><syl>good</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<rest xml:id="r28" dur="2"/>
+<note xml:id="n29" pname="c" oct="5" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>those</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<tie startid="#n30" endid="#n31"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="4"/>
+<note xml:id="n32" pname="g" oct="4" dur="4">
+<verse n="1"><syl>who</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="4">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="4">
+<verse n="1"><syl>God,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="c" oct="5" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="4">
+<verse n="1"><syl>those</syl></verse></note>
+<note xml:id="n37" pname="a" oct="4" dur="4">
+<verse n="1"><syl>who</syl></verse></note>
+<note xml:id="n38" pname="f" oct="4" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="b" oct="4" dur="4">
+<verse n="1"><syl>called</syl></verse></note>
+<note xml:id="n40" pname="a" oct="4" dur="4"/>
+<note xml:id="n41" pname="f" oct="4" dur="4"/>
+<note xml:id="n42" pname="d" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n39" endid="#n43"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="c" oct="4" dur="4" dots="1"/>
+<note xml:id="n44" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ac</syl></verse></note>
+<note xml:id="n45" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">cord</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n47" pname="b" oct="4" dur="2">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="a" oct="4" dur="2">
+<verse n="1"><syl>His</syl></verse></note>
+<note xml:id="n49" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">pur</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm7</harm>
+</measure>
+<sb/>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n50" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">pose.</syl></verse></note>
+<beam>
+<note xml:id="n51" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Ro</syl></verse></note>
+<note xml:id="n52" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">mans</syl></verse></note>
+</beam>
+<note xml:id="n53" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Eight:</syl></verse></note>
+<beam>
+<note xml:id="n54" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Twen</syl></verse></note>
+<note xml:id="n55" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n56" pname="f" oct="4" dur="1">
+<verse n="1"><syl>Eight.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭/F</harm>
+<tie startid="#n56" endid="#n57"/>
+</measure>
+<measure n="18" right="end"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="f" oct="4" dur="2" dots="1"/>
+<rest xml:id="r58" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+</music></mei>

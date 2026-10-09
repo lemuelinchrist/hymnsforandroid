@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The law of letters God defines</title>
+<title type="subordinate">Various Aspects of the Inner Life—The Law of Letters</title>
+</titleStmt><pubStmt><identifier type="hymn">E735</identifier><identifier type="number">735</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>law</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4"/>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m</harm>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">let</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ters</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="b" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4"/>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">fines,</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl>It</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="c" oct="5" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="4"/>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n12" endid="#n13"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">tes</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="4"/>
+<note xml:id="n17" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ti</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">mon</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4"/>
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">y</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="e" oct="4" dur="2">
+<verse n="1"><syl>true;</syl></verse></note>
+<note xml:id="n22" pname="e" oct="4" dur="4">
+<verse n="1"><syl>It</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="f" oct="4" dur="4"/>
+<note xml:id="n24" pname="e" oct="4" dur="4">
+<verse n="1"><syl>shows</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="f" oct="4" dur="8"/>
+<note xml:id="n26" pname="g" oct="4" dur="8">
+<verse n="1"><syl>how</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<slur startid="#n23" endid="#n24"/>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">lov</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">ho</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="c" oct="5" dur="2">
+<verse n="1"><syl>just,</syl></verse></note>
+<beam>
+<note xml:id="n32" pname="b" oct="4" dur="8">
+<verse n="1"><syl>Is</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n32" endid="#n33"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="d" oct="5" dur="4">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n35" pname="c" oct="5" dur="4"/>
+<note xml:id="n36" pname="b" oct="4" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/F</harm>
+<slur startid="#n34" endid="#n35"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="a" oct="4" dur="4"/>
+<note xml:id="n38" pname="g" oct="4" dur="4">
+<verse n="1"><syl>whom</syl></verse></note>
+<note xml:id="n39" pname="a" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+<slur startid="#n37" endid="#n38"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="b" oct="4" dur="4">
+<verse n="1"><syl>have</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="4"/>
+<note xml:id="n42" pname="g" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<slur startid="#n40" endid="#n41"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>do.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>According to His nature shown</l><l>God’s law requires that we must live,</l><l>That He our souls may justify</l><l>And unto us His blessing give.</l></lg>
+<lg label="3."><l>The law can never give us life,</l><l>Nor any strength to us supply,</l><l>But doth its full demands exact</l><l>And all our weakness show thereby.</l></lg>
+<lg label="4."><l>It was not for God’s final plan,</l><l>But for man’s sin was introduced,</l><l>That man by breaking it might know</l><l>Himself, his sin to him adduced.</l></lg>
+<lg label="5."><l>’Tis by the law all mouths are stopped</l><l>And all are shut up under sin;</l><l>It brings us to the Christ of God</l><l>That God may bless us all in Him.</l></lg>
+<lg label="6."><l>The law is but a type of Christ,</l><l>Who God’s full testimony is,</l><l>Who fully has expressed His love,</l><l>His holiness and righteousness.</l></lg>
+<lg label="7."><l>’Tis Christ, God’s testimony real,</l><l>Who doth with life divine supply,</l><l>That with the law’s demands we may</l><l>Be more than able to comply.</l></lg>
+<lg label="8."><l>God’s living testimony, He;</l><l>By whom God’s potent life we share;</l><l>Thru Him we’re dead unto the law,</l><l>And in His Spirit fruit we bear.</l></lg>
+</div>
+</back>
+</music></mei>

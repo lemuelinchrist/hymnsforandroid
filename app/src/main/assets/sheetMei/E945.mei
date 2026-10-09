@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The Son of God has come to sow</title>
+<title type="subordinate">The Kingdom—Its Outward Appearance</title>
+</titleStmt><pubStmt><identifier type="hymn">E945</identifier><identifier type="number">945</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="b" oct="4" dur="2">
+<verse n="1"><syl>Son</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4"/>
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl>has</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+<slur startid="#n4" endid="#n5"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl>come</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4"/>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="2">
+<verse n="1"><syl>sow</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Him</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">self,</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="a" oct="4" dur="2">
+<verse n="1"><syl>seed</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am/C</harm>
+<harm staff="1" tstamp="3" place="above">A7/C♯</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="2">
+<verse n="1"><syl>life,</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="2">
+<verse n="1"><syl>man,</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="4">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="2">
+<verse n="1"><syl>thru</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Him</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">self</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">E/B</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">King</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">dom</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">A/C♯</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="f" oct="4" dur="2">
+<verse n="1"><syl>grow</syl></verse></note>
+<note xml:id="n27" pname="d" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D/C</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="d" oct="5" dur="4">
+<verse n="1"><syl>thus</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="4"/>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ful</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fill</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="4"/>
+<note xml:id="n33" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">th’e</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n31" endid="#n32"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
+<note xml:id="n35" pname="e" oct="4" dur="4"/>
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">nal</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+<slur startid="#n34" endid="#n35"/>
+</measure>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>plan.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">C/G</harm>
+<tie startid="#n37" endid="#n38"/>
+</measure>
+<measure n="18" right="end"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="g" oct="4" dur="2"/>
+<rest xml:id="r39" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>He was the only grain of wheat</l><l>Whence many grains have been produced</l><l>To be the Kingdom’s children meet,</l><l>Thru whom God’s reign is introduced.</l></lg>
+<lg label="3."><l>But Satan, enemy of God,</l><l>Sowed many tares among the wheat,</l><l>The Kingdom’s children to confuse,</l><l>And awful damage to create.</l></lg>
+<lg label="4."><l>’Tis by this subtle work of his,</l><l>The mixing of the tares with wheat,</l><l>The Kingdom in appearance is</l><l>Abnormal and grotesquely great.</l></lg>
+<lg label="5."><l>The Kingdom should as mustard be,</l><l>A little herb, yet good for food,</l><l>But it has changed into a “tree,”</l><l>A system of great magnitude.</l></lg>
+<lg label="6."><l>Instead of being good for food,</l><l>A lodge of “birds” it has become:</l><l>’Tis now a place where evil men</l><l>And evil spirits make their home.</l></lg>
+<lg label="7."><l>A great religion of the world</l><l>Its outward form to us reveals.</l><l>Including pagan, evil things,</l><l>As leaven mingled with the meal.</l></lg>
+<lg label="8."><l>A system of the world as such,</l><l>It thus has changed in outward form;</l><l>By evil things which it imbibes,</l><l>Corruption inwardly doth swarm.</l></lg>
+<lg label="9."><l>But something hidden God doth seek,</l><l>As “pearl” and “treasure in the field“;</l><l>As such the Lord would us transform</l><l>That pearl and treasure be revealed.</l></lg>
+<lg label="10."><l>’Tis hidden from vast Christendom</l><l>And from the Kingdom’s great facade,</l><l>Yet in its full reality</l><l>’Tis transformed like to Christ and God.</l></lg>
+<lg label="11."><l>Lord, separate us from the “tares,”</l><l>And save us from the monstrous “tree“;</l><l>From all the “leaven” purge us now</l><l>That we may purely be of Thee.</l></lg>
+<lg label="12."><l>May Thou in life transform our souls</l><l>That we as precious stones may be,</l><l>Meet for Thy house to build and in</l><l>Thy Kingdom’s full reality.</l></lg>
+</div>
+</back>
+</music></mei>

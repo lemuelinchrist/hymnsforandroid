@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Thou Magnet of my soul</title>
+<title type="subordinate">Longings—For Christ</title>
+</titleStmt><pubStmt><identifier type="hymn">E356</identifier><identifier type="number">356</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Thou</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Mag</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">net</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="b" oct="4" dur="2">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m/F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>soul!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Let</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="4">
+<verse n="1"><syl>me</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>come</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">near</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">G7/B</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>till</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+<note xml:id="n14" pname="b" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n15" pname="d" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="c" oct="5" dur="2">
+<verse n="1"><syl>self</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pul</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">sates</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>no</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="2">
+<verse n="1"><syl>more,</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl>But</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4"/>
+<note xml:id="n24" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<slur startid="#n22" endid="#n23"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>still.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/F</harm>
+<tie startid="#n27" endid="#n28"/>
+</measure>
+<measure n="14" right="end"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="f" oct="4" dur="2"/>
+<rest xml:id="r29" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Thou Sunshine of my heart!</l><l>Fill Thou each crevice there,</l><l>And let Thy garden yield to Thee</l><l>A fragrance sweet and rare.</l></lg>
+<lg label="3."><l>Thou Ransomer from death!</l><l>Possess Thy ransomed one:</l><l>Appropriate to Thine Own use</l><l>The spoil that Thou hast won.</l></lg>
+<lg label="4."><l>Thou Lord of Life and Light!</l><l>I bow beneath Thy sway,</l><l>And count it holy privilege</l><l>Thy precepts to obey.</l></lg>
+<lg label="5."><l>Thou Gift unspeakable!</l><l>Straight from God’s heart of love;</l><l>I break my heart to give Thee room</l><l>And thus Thy sweetness prove.</l></lg>
+</div>
+</back>
+</music></mei>

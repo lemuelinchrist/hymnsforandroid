@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Not by wrestling, but by clinging</title>
+<title type="subordinate">Consecration—Yielding to the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">E451</identifier><identifier type="number">451</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Not</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="4"/>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl>by</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">wrest</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ling,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="g" oct="4" dur="2">
+<verse n="1"><syl>but</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl>by</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">cling</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Shall</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4" accid="n" accid.ges="n"/>
+<note xml:id="n12" pname="c" oct="5" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="d" oct="5" dur="2">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n14" pname="c" oct="5" dur="4">
+<verse n="1"><syl>most</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>blest;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Wrest</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="4"/>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ling</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">on</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl>brings</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4"/>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n21" endid="#n22"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">sor</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">row;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Cling</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="4"/>
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="2">
+<verse n="1"><syl>brings</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>rest.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="f" oct="4" dur="2"/>
+<rest xml:id="r33" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>When we stay our feeble efforts,</l><l>And from struggling cease,</l><l>Unconditional surrender</l><l>Brings us God’s own peace.</l></lg>
+<lg label="3."><l>Lean we all our weight on Jesus,</l><l>Who alone can save;</l><l>He by might of love hath triumphed</l><l>O’er His willing slave.</l></lg>
+<lg label="4."><l>Yielding, we shall know true conquest;</l><l>Dying, we shall live;</l><l>“Not my will, but Thine” prevaileth,</l><l>Victory to give.</l></lg>
+</div>
+</back>
+</music></mei>

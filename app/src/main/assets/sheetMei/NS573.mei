@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Having a clear sky with the throne above it</title>
+<title type="subordinate">Worship of the Father — His Transcendence</title>
+</titleStmt><pubStmt><identifier type="hymn">NS573</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Fa</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl>dear</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n3" endid="#n4"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
+<note xml:id="n6" pname="b" oct="3" dur="4">
+<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<note xml:id="n7" pname="c" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">wor</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ship</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">new,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Borne</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">rap</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ture</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="2" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">prais</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="2" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>You.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Joy</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">ous,</syl></verse></note>
+<note xml:id="n24" pname="d" oct="5" dur="8"/>
+</beam>
+<beam>
+<note xml:id="n25" pname="e" oct="5" dur="8">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n26" pname="d" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n23" endid="#n24"/>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="c" oct="5" dur="4">
+<verse n="1"><syl>sing,</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">giv</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">trib</syl></verse></note>
+<note xml:id="n31" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ute</syl></verse></note>
+<note xml:id="n32" pname="d" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<sb/>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="c" oct="4" dur="2">
+<verse n="1"><syl>praise,</syl></verse></note>
+<note xml:id="n34" pname="b" oct="3" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Hon</syl></verse></note>
+<note xml:id="n36" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">or</syl></verse></note>
+<note xml:id="n37" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n38" pname="c" oct="5" dur="8">
+<verse n="1"><syl>Your</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n40" pname="g" oct="4" dur="4">
+<verse n="1"><syl>will,</syl></verse></note>
+<beam>
+<note xml:id="n41" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Your</syl></verse></note>
+<note xml:id="n42" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<slur startid="#n38" endid="#n39"/>
+<slur startid="#n41" endid="#n42"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pur</syl></verse></note>
+<note xml:id="n44" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">pose,</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Your</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm7</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>ways.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
+<tie startid="#n46" endid="#n47"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="e" oct="4" dur="2"/>
+<rest xml:id="r48" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Drawn nigh, we come in Your Son, full of cheer,</l><l>Nothing between us but fellowship dear.</l><l>Coordinated, before You we stand,</l><l>Hidden in Christ, under grace o’er us spanned.</l></lg>
+<lg label="3."><l>Are we not shielded and joined in Your Son,</l><l>Four living creatures whose wings meet as one,</l><l>Wings straight, and covering, wings paired on each side,</l><l>Pointing to Christ, worthy, pure, dignified.</l></lg>
+<lg label="4."><l>Covered, connected, beneath such expanse,</l><l>In Christ we speak, this Your oracle grants.</l><l>Heaven is open! Our skies are so clear,</l><l>Stretched forth like crystal, both awesome and sheer.</l></lg>
+<lg label="5."><l>Wings of an eagle, in us multiplied,</l><l>Sound like great waters, like thunderous tide.</l><l>Our voice like Yours roars in tumult and din,</l><l>Your throne above us, You ruling within!</l></lg>
+<lg label="6."><l>All hail the Father Who sits on the throne!</l><l>All hail His Son on His right hand alone!</l><l>All hail the Spirit that moves with the wheel!</l><l>Fervently praise the Almighty with zeal.</l></lg>
+</div>
+</back>
+</music></mei>

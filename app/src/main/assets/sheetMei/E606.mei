@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Oh, how the thought of God attracts</title>
+<title type="subordinate">Experience of God—As the Dwelling Place</title>
+</titleStmt><pubStmt><identifier type="hymn">E606</identifier><identifier type="number">606</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Oh,</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>how</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="a" oct="4" dur="4"/>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>thought</syl></verse></note>
+<note xml:id="n6" pname="c" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<slur startid="#n4" endid="#n5"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="c" oct="5" dur="2">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">at</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">tracts</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="4">
+<verse n="1"><syl>draws</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="d" oct="5" dur="2">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl>from</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>earth,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sick</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ens</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E/G♯</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>it</syl></verse></note>
+<note xml:id="n20" pname="b" oct="4" dur="4"/>
+<note xml:id="n21" pname="c" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">pass</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C♯</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>shows</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n26" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">dis</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">si</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">pat</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="4"/>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>mirth!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="2" place="above">D/A</harm>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="a" oct="4" dur="2"/>
+<rest xml:id="r33" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>’Tis not enough to save our souls,</l><l>To shun th’ eternal fires;</l><l>The thought of God will rouse the heart</l><l>To more sublime desires.</l></lg>
+<lg label="3."><l>God only is the creature’s home,</l><l>Though rough and straight the road;</l><l>Yet nothing less can satisfy</l><l>The love that longs for God.</l></lg>
+<lg label="4."><l>Oh, utter but the Name of God</l><l>Down in your heart of hearts,</l><l>And see how from the world at once</l><l>All tempting light departs.</l></lg>
+<lg label="5."><l>A trusting heart, a yearning eye,</l><l>Can win their way above;</l><l>If mountains can be moved by faith,</l><l>Is there less power in love?</l></lg>
+<lg label="6."><l>How little of that road, my soul!</l><l>How little hast thou gone!</l><l>Take heart, and let the thought of God</l><l>Allure thee further on.</l></lg>
+<lg label="7."><l>The freedom from all willful sin,</l><l>The Christian’s daily task;</l><l>Oh! these are graces far below</l><l>What longing love would ask!</l></lg>
+<lg label="8."><l>The perfect way is hard to flesh;</l><l>It is not hard to love;</l><l>If thou wert sick for want of God,</l><l>How swiftly wouldst thou move!</l></lg>
+<lg label="9."><l>Then keep thy conscience sensitive;</l><l>No inward token miss:</l><l>And go where grace entices thee—</l><l>Perfection lies in this.</l></lg>
+</div>
+</back>
+</music></mei>

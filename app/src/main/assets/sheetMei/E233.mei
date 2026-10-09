@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">O what a miracle, my Lord</title>
+<title type="subordinate">Praise of the Lord—Remembrance of Him</title>
+</titleStmt><pubStmt><identifier type="hymn">E233</identifier><identifier type="number">233</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>O</syl></verse></note>
+<beam>
+<note xml:id="n2" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>what</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="16">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n4" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">mi</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ra</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cle,</syl></verse></note>
+<note xml:id="n7" pname="b" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n8" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="8">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="4">
+<verse n="1"><syl>I’m</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="8"/>
+<note xml:id="n14" pname="d" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n15" pname="c" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<slur startid="#n12" endid="#n13"/>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n18" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>me,</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="8">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n23" pname="c" oct="5" dur="8">
+<verse n="1"><syl>are</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n24" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">real</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="8"/>
+<note xml:id="n26" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n28" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>one;</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="8">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+<slur startid="#n24" endid="#n25"/>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl>what</syl></verse></note>
+<note xml:id="n31" pname="c" oct="5" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n32" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">won</syl></verse></note>
+<note xml:id="n33" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">drous</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">Dm/F</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">mys</syl></verse></note>
+<note xml:id="n35" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">te</syl></verse></note>
+<note xml:id="n36" pname="c" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ry!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="2" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>For me Thy body Thou didst give,</l><l>That I may ever share in Thee;</l><l>For me Thy precious blood was shed,</l><l>That from my sins I might be free.</l></lg>
+<lg label="3."><l>By resurrection Thou didst change</l><l>Thy form and as the Spirit come;</l><l>Thou wouldst that I be filled with Thee</l><l>That all Thy riches mine become.</l></lg>
+<lg label="4."><l>Now as the symbols we behold,</l><l>Thy loving self we see anew;</l><l>We thank Thee for Thy heart’s desire</l><l>As all Thy travail we review.</l></lg>
+<lg label="5."><l>We eat the bread and drink the wine,</l><l>And to Thy sweetness we are led;</l><l>In spirit each receiving Thee,</l><l>Our spirits with Thyself are fed.</l></lg>
+<lg label="6."><l>We long to eat and drink e’en more,</l><l>To take Thyself in spirit thus,</l><l>Till Thou shalt all our being fill</l><l>And true remembrance have from us.</l></lg>
+</div>
+</back>
+</music></mei>

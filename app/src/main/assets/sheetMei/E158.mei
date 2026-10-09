@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Lord, Thy love has sought and found us</title>
+<title type="subordinate">Praise of the Lord—His Love</title>
+</titleStmt><pubStmt><identifier type="hymn">E158</identifier><identifier type="number">158</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>Lord,</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n4" pname="d" oct="4" dur="4">
+<verse n="1"><syl>has</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="e" oct="4" dur="4">
+<verse n="1"><syl>sought</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="d" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl>found</syl></verse></note>
+<note xml:id="n9" pname="b" oct="3" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Wan</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">d’ring</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n13" pname="d" oct="4" dur="4">
+<verse n="1"><syl>this</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sert</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="2">
+<verse n="1"><syl>wide;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="8">
+<verse n="1"><syl>hast</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>thrown</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thine</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl>arms</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">round</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4">
+<verse n="1"><syl>us,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="8">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">suf</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">fered,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl>bled,</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n31" pname="d" oct="4" dur="2">
+<verse n="1"><syl>died.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Sing,</syl></verse></note>
+<note xml:id="n33" pname="b" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>soul!</syl></verse></note>
+<note xml:id="n35" pname="a" oct="4" dur="8">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">lov</syl></verse></note>
+<beam>
+<note xml:id="n37" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<note xml:id="n38" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n39" pname="a" oct="4" dur="2">
+<verse n="1"><syl>thee,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+<slur startid="#n37" endid="#n38"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n41" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n42" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>gave</syl></verse></note>
+<note xml:id="n43" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Him</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="12" right="end"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">self</syl></verse></note>
+<note xml:id="n45" pname="a" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n46" pname="g" oct="4" dur="2">
+<verse n="1"><syl>me.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Hark! what sounds of bitter weeping</l><l>From yon lonesome garden sweep;</l><l>’Tis the Lord His vigil keeping,</l><l>While His followers sink in sleep.</l><l>Ah, my soul, He loved thee,</l><l>Yes, He gave Himself for me.</l></lg>
+<lg label="3."><l>He is speaking to His Father,</l><l>Tasting deep that bitter cup,</l><l>Yet He takes it, willing rather</l><l>For our sakes to drink it up.</l><l>Oh, what love! He loved me!</l><l>Gave Himself, my soul, for thee.</l></lg>
+<lg label="4."><l>Then that closing scene of anguish:</l><l>All God’s waves and billows roll</l><l>Over Him, there left to languish</l><l>On the cross, to save my soul.</l><l>Matchless love! how vast, how free,</l><l>Jesus gave Himself for me.</l></lg>
+<lg label="5."><l>Hark again! His cries are waking</l><l>Echoes on dark Calvary’s hill;</l><l>God, my God, art Thou forsaking</l><l>Him who always did Thy will?</l><l>Ah, my soul! it was for thee,</l><l>Yes! He gave Himself for me.</l></lg>
+<lg label="6."><l>Lord, we joy, Thy toils are ended,</l><l>Glad Thy suff’ring time is o’er;</l><l>To Thy Father’s throne ascended,</l><l>There Thou liv’st, to die no more.</l><l>Yes, my soul, He lives for thee,</l><l>He who gave Himself for me.</l></lg>
+<lg label="7."><l>Lord, we worship and adore Thee</l><l>For Thy rich, Thy matchless grace;</l><l>Perfect soon in joy before Thee,</l><l>We shall see Thee face to face.</l><l>Yet e’en now our song shall be,</l><l>Jesus gave Himself for me.</l></lg>
+</div>
+</back>
+</music></mei>

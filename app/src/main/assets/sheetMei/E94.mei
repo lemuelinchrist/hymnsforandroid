@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">O Christ, what burdens bow’d Thy head</title>
+<title type="subordinate">Praise of the Lord—His Suffering</title>
+</titleStmt><pubStmt><identifier type="hymn">E94</identifier><identifier type="number">94</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="e" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>O</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Christ,</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="8">
+<verse n="1"><syl>what</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">bur</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">dens</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl>bow’d</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>head!</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="8">
+<verse n="1"><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="c" oct="5" dur="4">
+<verse n="1"><syl>load</syl></verse></note>
+<note xml:id="n12" pname="b" oct="4" dur="4">
+<verse n="1"><syl>was</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>laid</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl>on</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Thee;</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">stood</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">est</syl></verse></note>
+<note xml:id="n20" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sin</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ner’s</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>stead,</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Didst</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl>bear</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n28" pname="c" oct="5" dur="4">
+<verse n="1"><syl>ill</syl></verse></note>
+<note xml:id="n29" pname="d" oct="5" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>me.</syl></verse></note>
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl>A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">vic</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tim</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>led;</syl></verse></note>
+<note xml:id="n35" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/F</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="b" oct="4" dur="4">
+<verse n="1"><syl>blood</syl></verse></note>
+<note xml:id="n37" pname="e" oct="5" dur="4">
+<verse n="1"><syl>was</syl></verse></note>
+<note xml:id="n38" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>shed;</syl></verse></note>
+<note xml:id="n39" pname="c" oct="5" dur="8">
+<verse n="1"><syl>Now</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>there’s</syl></verse></note>
+<note xml:id="n41" pname="e" oct="4" dur="8">
+<verse n="1"><syl>no</syl></verse></note>
+<note xml:id="n42" pname="g" oct="4" dur="4">
+<verse n="1"><syl>load</syl></verse></note>
+<note xml:id="n43" pname="f" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="13" right="end"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>me.</syl></verse></note>
+<rest xml:id="r45" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Death and the curse were in our cup,</l><l>O Christ, ’twas full for Thee!</l><l>But Thou hast drained the last dark drop—</l><l>’Tis empty now for me.</l><l>That bitter cup—love drank it up;</l><l>Now blessings’ draught for me.</l></lg>
+<lg label="3."><l>Jehovah lifted up His rod,</l><l>O Christ, it fell on Thee!</l><l>Thou wast sore stricken of Thy God;</l><l>There’s not one stroke for me.</l><l>Thy tears, Thy blood, beneath it flowed;</l><l>Thy bruising healeth me.</l></lg>
+<lg label="4."><l>The tempest’s awful voice was heard,</l><l>O Christ, it broke on Thee!</l><l>Thy open bosom was my ward,</l><l>It braved the storm for me.</l><l>Thy form was scarred, Thy visage marred;</l><l>Now cloudless peace for me.</l></lg>
+<lg label="5."><l>Jehovah bade His sword awake,</l><l>O Christ, it woke ’gainst Thee!</l><l>Thy blood the flaming blade must slake;</l><l>Thy heart its sheath must be—</l><l>All for my sake, my peace to make;</l><l>Now sleeps that sword for me.</l></lg>
+<lg label="6."><l>For me, Lord Jesus, Thou hast died,</l><l>And I have died in Thee;</l><l>Thou’rt ris’n: my bands are all untied,</l><l>And now Thou liv’st in me.</l><l>When purified, made white, and tried,</l><l>Thy glory then for me!</l></lg>
+</div>
+</back>
+</music></mei>

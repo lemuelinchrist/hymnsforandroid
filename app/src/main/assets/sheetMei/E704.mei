@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Though troubles assail</title>
+<title type="subordinate">Comfort in Trials—By the Lord’s Providing</title>
+</titleStmt><pubStmt><identifier type="hymn">E704</identifier><identifier type="number">704</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Though</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">trou</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">bles</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">as</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">sail,</syl></verse></note>
+<note xml:id="n6" pname="d" oct="5" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">dan</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">gers</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">af</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">fright;</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Though</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="b" oct="4" dur="4">
+<verse n="1"><syl>friends</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>should</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="f" oct="4" dur="2">
+<verse n="1"><syl>fail,</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A7/E</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl>foes</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="g" oct="4" dur="8">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n20" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">u</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">nite,</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Yet</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl>one</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4">
+<verse n="1"><syl>thing</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">se</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cures</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="4">
+<verse n="1"><syl>us,</syl></verse></note>
+<note xml:id="n28" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">What</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">tide:</syl></verse></note>
+<note xml:id="n33" pname="d" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Scrip</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ture</syl></verse></note>
+<note xml:id="n36" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">as</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">D7/A</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sures</syl></verse></note>
+<note xml:id="n38" pname="d" oct="4" dur="4">
+<verse n="1"><syl>us,</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="4">
+<verse n="1"><syl>“The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n42" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pro</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">vide.”</syl></verse></note>
+<rest xml:id="r44" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>The birds, without barn</l><l>Or storehouse, are fed;</l><l>From them let us learn</l><l>To trust for our bread;</l><l>His saints what is fitting</l><l>Shall ne’er be denied,</l><l>So long as ’tis written,</l><l>“The Lord will provide.”</l></lg>
+<lg label="3."><l>His call we obey,</l><l>Like Abram of old,</l><l>Not knowing our way,</l><l>But faith makes us bold;</l><l>For though we are strangers,</l><l>We have a good Guide;</l><l>And trust in all dangers:</l><l>“The Lord will provide.”</l></lg>
+<lg label="4."><l>When Satan appears</l><l>To stop up our path,</l><l>And fills us with fears,</l><l>We triumph by faith;</l><l>He cannot take from us,</l><l>Though oft he has tried,</l><l>The heart-cheering promise,</l><l>“The Lord will provide.”</l></lg>
+<lg label="5."><l>He tells us we’re weak,</l><l>Our hope is in vain;</l><l>The good that we seek</l><l>We ne’er shall obtain;</l><l>But when such suggestions</l><l>Our faith thus have tried,</l><l>This answers all questions,</l><l>“The Lord will provide.”</l></lg>
+<lg label="6."><l>No strength of our own,</l><l>Nor goodness we claim;</l><l>Our trust is all thrown</l><l>On Jesus’ dear name.</l><l>In this our strong tower</l><l>For safety we hide;</l><l>The Lord is our power,</l><l>“The Lord will provide.”</l></lg>
+<lg label="7."><l>When life sinks apace,</l><l>And death is in view,</l><l>The word of His grace</l><l>Shall comfort us through;</l><l>Not fearing or doubting,</l><l>With Christ on our side,</l><l>We hope to die shouting,</l><l>“The Lord will provide.”</l></lg>
+</div>
+</back>
+</music></mei>

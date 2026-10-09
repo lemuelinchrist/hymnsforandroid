@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Throughout the whole of Holy Writ</title>
+<title type="subordinate">Ultimate Manifestation—The Bride and the Tabernacle</title>
+</titleStmt><pubStmt><identifier type="hymn">E980</identifier><identifier type="number">980</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Through</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">out</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n4" pname="c" oct="5" dur="4">
+<verse n="1"><syl>whole</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Ho</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="f" oct="4" dur="2">
+<verse n="1"><syl>Writ</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="2">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<fermata startid="#n8" place="above"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>saints</syl></verse></note>
+<note xml:id="n11" pname="d" oct="5" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="4">
+<verse n="1"><syl>type</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="2" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">man</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">fest</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="g" oct="4" dur="2">
+<verse n="1"><syl>As</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="4">
+<verse n="1"><syl>like</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C7/E</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>bride,</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="4"/>
+<note xml:id="n23" pname="f" oct="4" dur="4">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n22" endid="#n23"/>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>please,</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C7/B♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="c" oct="5" dur="2">
+<verse n="1"><syl>as</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="2">
+<verse n="1"><syl>a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">C7/G</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">build</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="f" oct="4" dur="2">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n33" pname="e" oct="4" dur="2">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="f" oct="4" dur="2">
+<verse n="1"><syl>rest.</syl></verse></note>
+<rest xml:id="r35" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<fermata startid="#n34" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>The types and figures of the Church</l><l>In the Old Testament are these:</l><l>A building meet for life and rule,</l><l>A bride the man to match and please.</l></lg>
+<lg label="3."><l>God’s people in the ancient times</l><l>Were called by God His very spouse;</l><l>Among them and with them were built</l><l>God’s ruling city and God’s house.</l></lg>
+<lg label="4."><l>Incarnate God, the God-man, Christ,</l><l>As Bridegroom for the Bride has come;</l><l>With His own life He quickened her,</l><l>That she His counterpart become.</l></lg>
+<lg label="5."><l>In resurrection Christ doth now,</l><l>As David’s Son, God’s temple build,</l><l>That God may have a resting place</l><l>And there accomplish all He willed.</l></lg>
+<lg label="6."><l>The Church is thus the Bride of Christ,</l><l>In whom His full delight doth rest;</l><l>It is a dwelling place to God</l><l>Where He may live and be expressed.</l></lg>
+<lg label="7."><l>The new Jerusalem will be</l><l>The full perfection ultimate</l><l>Of all the types of house and bride,</l><l>Th’ eternal plan to consummate.</l></lg>
+<lg label="8."><l>It is the Bride which matches Christ,</l><l>Thru whom He may Himself express;</l><l>It is God’s tabernacle too</l><l>In which our God can rule and rest.</l></lg>
+<lg label="9."><l>The ultimate completion ’tis</l><l>Of God’s work in humanity,</l><l>His full expression glorious</l><l>Thru His redeemed eternally.</l></lg>
+</div>
+</back>
+</music></mei>

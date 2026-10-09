@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">What love Thou hast bestowed on us</title>
+<title type="subordinate">Worship of the Father—His Love</title>
+</titleStmt><pubStmt><identifier type="hymn">E30</identifier><identifier type="number">30</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>What</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n3" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="4">
+<verse n="1"><syl>hast</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">stowed</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="8">
+<verse n="1"><syl>on</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl>us,</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>We</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m</harm>
+<harm staff="1" tstamp="4" place="above">A♭/C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>thank</syl></verse></note>
+<note xml:id="n11" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n12" pname="d" oct="5" dur="4">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n13" pname="c" oct="5" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">D♭/F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>heart;</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>would</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">wor</syl></verse></note>
+<note xml:id="n21" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ship</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="e" oct="4" dur="4">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Thou</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>art.</syl></verse></note>
+<rest xml:id="r29" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Thy heart Thou hast revealed to us,</l><l>Made known th’ eternal will;</l><l>Within the Son Thou hast come forth,</l><l>Thy purpose to fulfill.</l></lg>
+<lg label="3."><l>Thou gavest Thy beloved Son</l><l>In love to come and die,</l><l>That we may be Thy many sons,</l><l>As heirs with Him, made nigh.</l></lg>
+<lg label="4."><l>Through Him we have Thy very life</l><l>And Thou our Father art;</l><l>Thy very nature, all Thyself,</l><l>Thou dost to us impart.</l></lg>
+<lg label="5."><l>Thy Spirit into ours has come</l><l>That we may “Abba” cry;</l><l>Of Spirit born, with Spirit sealed,</l><l>To be transformed thereby.</l></lg>
+<lg label="6."><l>The many sons to glory brought</l><l>Is Thine eternal goal,</l><l>And to Thy Son’s own image wrought,</l><l>Thou wilt conform the whole.</l></lg>
+<lg label="7."><l>Throughout Thy transformation work</l><l>Thou dost direct each one,</l><l>From glory unto glory bring</l><l>Until the work is done.</l></lg>
+<lg label="8."><l>What love Thou, Father, hast bestowed;</l><l>We’ll ever grateful be;</l><l>We’ll worship Thee forevermore</l><l>And praise unceasingly.</l></lg>
+</div>
+</back>
+</music></mei>

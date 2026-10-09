@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Holy priests are living stones</title>
+<title type="subordinate">The Church—Her Building</title>
+</titleStmt><pubStmt><identifier type="hymn">E849</identifier><identifier type="number">849</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Ho</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl>priests</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">liv</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="2">
+<verse n="1"><syl>stones</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">build</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>work</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">day;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7/F</harm>
+<harm staff="1" tstamp="2.5000" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="4">
+<verse n="1"><syl>If</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl>these</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl>stones</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>would</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">Fm/A♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">build</syl></verse></note>
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="c" oct="5" dur="8">
+<verse n="1"><syl>All</syl></verse></note>
+<note xml:id="n23" pname="d" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="2" place="above">B♭7/F</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭/D</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="e" oct="5" dur="4">
+<verse n="1"><syl>priests</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl>must</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>learn</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="f" oct="4" dur="2">
+<verse n="1"><syl>pray.</syl></verse></note>
+<note xml:id="n29" pname="e" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="b" oct="4" dur="4">
+<verse n="1"><label>(C)</label><syl>To</syl></verse></note>
+<note xml:id="n31" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ho</syl></verse></note>
+<note xml:id="n33" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">liest</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+<dir startid="#n30" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">of</syl></verse></note>
+<note xml:id="n35" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">ten</syl></verse></note>
+<note xml:id="n36" pname="b" oct="4" dur="2">
+<verse n="1"><syl>come,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="f" oct="4" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n38" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
+<note xml:id="n40" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>touch</syl></verse></note>
+<note xml:id="n42" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n43" pname="f" oct="4" dur="2">
+<verse n="1"><syl>throne,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7/F</harm>
+<harm staff="1" tstamp="2.5000" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Let</syl></verse></note>
+<note xml:id="n45" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n46" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n47" pname="f" oct="4" dur="4">
+<verse n="1"><syl>flow</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭7/F</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="b" oct="4" dur="4">
+<verse n="1"><syl>thru</syl></verse></note>
+<note xml:id="n49" pname="b" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n50" pname="b" oct="4" dur="4">
+<verse n="1"><syl>prayer,</syl></verse></note>
+<beam>
+<note xml:id="n51" pname="c" oct="5" dur="8">
+<verse n="1"><syl>Thus</syl></verse></note>
+<note xml:id="n52" pname="d" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+<harm staff="1" tstamp="4.5000" place="above">B♭</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="e" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">build</syl></verse></note>
+<note xml:id="n54" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n55" pname="g" oct="4" dur="4">
+<verse n="1"><syl>work</syl></verse></note>
+<note xml:id="n56" pname="a" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="f" oct="4" dur="2">
+<verse n="1"><syl>done.</syl></verse></note>
+<note xml:id="n58" pname="e" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<slur startid="#n57" endid="#n58"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>All the saints must serve as priests,</l><l>That the living stones they be;</l><l>Each must priestly work perform,</l><l>Then their functions we will see.</l></lg>
+<lg label="3."><l>Tent and priests of olden times</l><l>Always did together go;</l><l>When the priests served in the tent,</l><l>Into one the two did flow.</l></lg>
+<lg label="4."><l>Now the building spiritual</l><l>And the priesthood all are one;</l><l>Now the building of the house</l><l>By the priestly work is done.</l></lg>
+<lg label="5."><l>In the priests the substance is</l><l>Of the building work replete;</l><l>When the priests their work discharge,</l><l>Then God’s house will be complete.</l></lg>
+<lg label="6."><l>Building God and man in one</l><l>Is their work before the Lord;</l><l>In this fellowship divine</l><l>Saints are built in one accord.</l></lg>
+<lg label="7."><l>When in prayer our spirits blend,</l><l>Then together built are we,</l><l>Then a priesthood we become,</l><l>Off’ring sacrifice to Thee.</l></lg>
+<lg label="8."><l>Grant us grace, O Lord, that we</l><l>Treasure dear the priestly call;</l><l>In the spirit serve and pray,</l><l>That Thy church be built withal.</l></lg>
+</div>
+</back>
+</music></mei>

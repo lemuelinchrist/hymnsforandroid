@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The Spirit of the triune God</title>
+<title type="subordinate">Various Aspects of the Inner Life—Breaking and Releasing</title>
+</titleStmt><pubStmt><identifier type="hymn">E749</identifier><identifier type="number">749</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4"/>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+</layer></staff>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">tri</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="4"/>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">une</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="2">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">in</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="8"/>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<slur startid="#n12" endid="#n13"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
+<note xml:id="n16" pname="f" oct="4" dur="4"/>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>now</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="8"/>
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl>doth</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="g" oct="4" dur="2">
+<verse n="1"><syl>rest;</syl></verse></note>
+<note xml:id="n22" pname="c" oct="4" dur="4">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="4"/>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="a" oct="4" dur="2">
+<verse n="1"><syl>seeks</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl>thru</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n29" pname="c" oct="4" dur="4"/>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="2">
+<verse n="1"><syl>flow,</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="4"/>
+<note xml:id="n35" pname="b" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="4">
+<verse n="1"><syl>may</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="f" oct="4" dur="2">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n39" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ex</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">pressed.</syl></verse></note>
+<rest xml:id="r41" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>But by the outward, natural man</l><l>The Spirit is confined within;</l><l>Instead of giving Him a home,</l><l>A prison we’ve become to Him.</l></lg>
+<lg label="3."><l>He’s like a treasure of great worth</l><l>Contained in vessels earthen-made;</l><l>The vessel must be broken through</l><l>And thus the treasure be displayed.</l></lg>
+<lg label="4."><l>Oh, how the Lord our self must break,</l><l>Our outward man does so impede!</l><l>It must be broken thoroughly,</l><l>And thus the Spirit will be freed.</l></lg>
+<lg label="5."><l>This is the reason why the Lord</l><l>For us a certain measure makes</l><l>Of circumstantial suffering;</l><l>’Tis thus our outward man He breaks.</l></lg>
+<lg label="6."><l>The outward man, the self, the soul,</l><l>Must be consumed, must be decreased;</l><l>The inner man, our spirit, then</l><l>Shall with the Spirit be released.</l></lg>
+<lg label="7."><l>Lord, grant Thy holy brokenness,</l><l>Deliver me from being whole;</l><l>And make me willing to receive</l><l>The wounds that Thou wouldst give my soul.</l></lg>
+<lg label="8."><l>Oh, cause me to appreciate</l><l>Thy breaking, never to complain;</l><l>And grant that I may value more</l><l>All kinds of loss instead of gain.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Why should I fear the darkest hour</title>
+<title type="subordinate">Comfort in Trials—General</title>
+</titleStmt><pubStmt><identifier type="hymn">E731</identifier><identifier type="number">731</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Why</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="e" oct="4" dur="2">
+<verse n="1"><syl>should</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="f" oct="4" dur="2">
+<verse n="1"><syl>fear</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm7</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">dark</syl></verse></note>
+<note xml:id="n7" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">est</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7/B</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="c" oct="5" dur="2">
+<verse n="1"><syl>hour,</syl></verse></note>
+<note xml:id="n9" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Or</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">trem</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4"/>
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ble</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="g" oct="4" dur="2">
+<verse n="1"><syl>at</syl></verse></note>
+<note xml:id="n14" pname="e" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">tempt</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="g" oct="4" dur="2">
+<verse n="1"><syl>power?</syl></verse></note>
+<note xml:id="n18" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="4"/>
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">vouch</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+<harm staff="1" tstamp="3" place="above">C7/E</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">safes</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="e" oct="4" dur="2">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n25" pname="d" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="13" right="end"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="c" oct="4" dur="2">
+<verse n="1"><syl>tower.</syl></verse></note>
+<rest xml:id="r27" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Though hot the fight, why quit the field?</l><l>Why must I either fly or yield,</l><l>Since Jesus is my mighty shield?</l></lg>
+<lg label="3."><l>When creature comforts fade and die,</l><l>Worldlings may weep, but why should I?</l><l>Jesus still lives, and still is nigh.</l></lg>
+<lg label="4."><l>Though all the flocks and herds were dead,</l><l>My soul a famine need not dread,</l><l>For Jesus is my living bread.</l></lg>
+<lg label="5."><l>I know not what may soon betide,</l><l>Or how my wants shall be supplied;</l><l>But Jesus knows, and will provide.</l></lg>
+<lg label="6."><l>Though sin would fill me with distress,</l><l>The throne of grace I dare address,</l><l>For Jesus is my righteousness.</l></lg>
+<lg label="7."><l>Though faint my prayers and cold my love,</l><l>My steadfast hope shall not remove,</l><l>While Jesus intercedes above.</l></lg>
+<lg label="8."><l>Against me earth and hell combine;</l><l>But on my side is power divine;</l><l>Jesus is all, and He is mine!</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">All Scripture is the very breath of God</title>
+<title type="subordinate">Study of the Word—The Function of the Word</title>
+</titleStmt><pubStmt><identifier type="hymn">E799</identifier><identifier type="number">799</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3s" meter.count="2" meter.unit="2" meter.sym="cut"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>All</syl></verse></note>
+<note xml:id="n2" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Scrip</syl></verse></note>
+<note xml:id="n3" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ture</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="2.5000" place="above">E7/B</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="e" oct="4" dur="2">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="2" place="above">A</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ve</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl>breath</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="2" place="above">E7</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="1">
+<verse n="1"><syl>God,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="f" oct="4" dur="2">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="2" place="above">A</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>words</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl>was</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E/B</harm>
+<harm staff="1" tstamp="2" place="above">B7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="e" oct="4" dur="1">
+<verse n="1"><syl>breathed;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<harm staff="1" tstamp="2" place="above">E7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="e" oct="4" dur="2">
+<verse n="1"><syl>By</syl></verse></note>
+<note xml:id="n23" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">god</syl></verse></note>
+<note xml:id="n24" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="2.5000" place="above">E7/B</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="e" oct="4" dur="2">
+<verse n="1"><syl>men</syl></verse></note>
+<note xml:id="n26" pname="a" oct="4" dur="2">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="2" place="above">A</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl>words</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl>were</syl></verse></note>
+<note xml:id="n29" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">writ</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ten</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="2" place="above">E7</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="1">
+<verse n="1"><syl>down,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="f" oct="4" dur="2">
+<verse n="1"><syl>With</syl></verse></note>
+<note xml:id="n33" pname="f" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n34" pname="f" oct="4" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">ful</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<note xml:id="n37" pname="c" oct="5" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+<note xml:id="n40" pname="a" oct="4" dur="4">
+<verse n="1"><syl>man</syl></verse></note>
+<note xml:id="n41" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="2" place="above">E7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="a" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">queathed.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>It is the breath of God as light to man,</l><l>With rays divine man to illuminate;</l><l>It shines in darkness and to man reveals</l><l>What is his truest need and actual state.</l></lg>
+<lg label="3."><l>It is the breath of God as life to man,</l><l>Nature divine to man it doth impart;</l><l>The dead it quickens and regenerates,</l><l>Transforms the soul-life and renews the heart.</l></lg>
+<lg label="4."><l>It is the breath of God as wisdom too,</l><l>Knowledge divine to man it has to teach;</l><l>Th’ eternal purpose of the Lord it shows,</l><l>And leadeth man God’s final goal to reach.</l></lg>
+<lg label="5."><l>It is the breath of God as strength to man,</l><l>Power divine to man it doth transmit,</l><l>Strength’ning the weak, empowering the faint,</l><l>Enabling man God’s purpose full to fit.</l></lg>
+<lg label="6."><l>It is the breath of God for us to breathe,</l><l>That as our portion God we may enjoy;</l><l>Receiving it by spirits exercised,</l><l>Our need is met, His wealth we may employ.</l></lg>
+</div>
+</back>
+</music></mei>

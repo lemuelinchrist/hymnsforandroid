@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">I come before Thy throne of grace</title>
+<title type="subordinate">Study of the Word—Feeding on the Word</title>
+</titleStmt><pubStmt><identifier type="hymn">E813</identifier><identifier type="number">813</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>come</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4" accid="s" accid.ges="s"/>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</layer></staff>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="2">
+<verse n="1"><syl>throne</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="d" oct="4" dur="2">
+<verse n="1"><syl>grace</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">hung</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="4" accid="s" accid.ges="s"/>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="d" oct="5" dur="2">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl>on</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4"/>
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="f" oct="4" dur="4">
+<verse n="1"><syl>feed,</syl></verse></note>
+<note xml:id="n20" pname="e" oct="4" dur="4"/>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="4"/>
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>grace</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">B/D♯</harm>
+<slur startid="#n22" endid="#n23"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">mer</syl></verse></note>
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4"/>
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">D7/F♯</harm>
+<slur startid="#n27" endid="#n28"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ceive</syl></verse></note>
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl>To</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>help</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="4"/>
+<note xml:id="n34" pname="b" oct="4" dur="4">
+<verse n="1"><syl>me</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+<slur startid="#n32" endid="#n33"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="a" oct="4" dur="2">
+<verse n="1"><syl>in</syl></verse></note>
+<beam>
+<note xml:id="n36" pname="d" oct="4" dur="8"/>
+<note xml:id="n37" pname="e" oct="4" dur="8">
+<verse n="1"><syl>this</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="f" oct="4" dur="2">
+<verse n="1"><syl>hour</syl></verse></note>
+<note xml:id="n39" pname="e" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="d" oct="4" dur="2">
+<verse n="1"><syl>need.</syl></verse></note>
+<rest xml:id="r41" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Here I behold Thy radiant face,</l><l>Its light upon my heart doth shine</l><l>With healing rays consuming all</l><l>The weaknesses and faults of mine.</l></lg>
+<lg label="3."><l>’Tis here Thy light illuminates</l><l>My true condition unto me;</l><l>’Tis here Thy blood’s effectiveness</l><l>To cleanse from sin I gladly see.</l></lg>
+<lg label="4."><l>Thy Spirit too anoints me here</l><l>And makes Thy very substance mine;</l><l>Thy very self I thus enjoy</l><l>And know Thy very heart’s design.</l></lg>
+<lg label="5."><l>Thy Word I read before Thee here</l><l>E’en as the priests the lamp did light;</l><l>Thy Spirit is as oil to me</l><l>To light Thy Word and give me sight.</l></lg>
+<lg label="6."><l>E’en as the priests the incense burned,</l><l>In prayer to Thee I persevere;</l><l>As incense Thou the Spirit art</l><l>Mixed with the prayer I offer here.</l></lg>
+<lg label="7."><l>Thy Word is light, Thy Word is food;</l><l>Which doth enlighten and supply;</l><l>I long to read and feed much more,</l><l>For light and food to satisfy.</l></lg>
+<lg label="8."><l>Thou art the living water too</l><l>Which full revival doth bestow;</l><l>I wish to pray and drink e’en more</l><l>That through me living rivers flow.</l></lg>
+<lg label="9."><l>Thou art the incense unto God,</l><l>In Thee acceptance is complete;</l><l>I want to pray yet more and more,</l><l>To offer up this fragrance sweet.</l></lg>
+<lg label="10."><l>By reading I’m enlightened, filled,</l><l>By prayer my thirst is quenched indeed;</l><l>Thus Thou to me may be supplied,</l><l>And Thou through me may meet the need.</l></lg>
+<lg label="11."><l>I long to have such fellowship</l><l>To read and pray and blend with Thee;</l><l>I long that Thou wouldst saturate</l><l>Till Thou may overflow from me.</l></lg>
+</div>
+</back>
+</music></mei>

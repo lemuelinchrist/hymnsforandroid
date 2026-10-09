@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Wrecked outright on Jesus’ breast</title>
+<title type="subordinate">The Way of the Cross—The Way of Rest</title>
+</titleStmt><pubStmt><identifier type="hymn">E637</identifier><identifier type="number">637</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="5s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4"/>
+<note xml:id="n2" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>“Wrecked</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">out</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="3" place="above">F♯7/C♯</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">right</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>on</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B/D♯</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n7" pname="b" oct="4" dur="4"/>
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus’</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯</harm>
+<harm staff="1" tstamp="3" place="above">F♯7</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>breast“:</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">On</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4"/>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="2">
+<verse n="1"><syl>“wrecked”</syl></verse></note>
+<note xml:id="n14" pname="d" oct="4" dur="4">
+<verse n="1"><syl>souls</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B/D♯</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl>thus</syl></verse></note>
+<note xml:id="n16" pname="e" oct="4" dur="4"/>
+<note xml:id="n17" pname="d" oct="4" dur="4">
+<verse n="1"><syl>can</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯7/A♯</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl>sing;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Lit</syl></verse></note>
+<note xml:id="n20" pname="d" oct="4" dur="4"/>
+<note xml:id="n21" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tle</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="3" place="above">F♯7/C♯</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="f" oct="4" dur="2">
+<verse n="1"><syl>boats</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B/D♯</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="c" oct="5" dur="4">
+<verse n="1"><syl>hug</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="4"/>
+<note xml:id="n26" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯</harm>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>shore,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♯m</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Fear</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="4"/>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="2">
+<verse n="1"><syl>what</syl></verse></note>
+<note xml:id="n32" pname="d" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B/D♯</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="g" oct="4" dur="4">
+<verse n="1"><syl>storm</syl></verse></note>
+<note xml:id="n34" pname="d" oct="4" dur="4"/>
+<note xml:id="n35" pname="e" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>may</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C♯</harm>
+<harm staff="1" tstamp="3" place="above">C♯7</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>bring,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯</harm>
+</measure>
+<sb/>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Nev</syl></verse></note>
+<note xml:id="n38" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯7</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="b" oct="4" dur="2">
+<verse n="1"><syl>find</syl></verse></note>
+<note xml:id="n40" pname="f" oct="4" dur="4">
+<verse n="1"><syl>on</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n42" pname="c" oct="5" dur="4"/>
+<note xml:id="n43" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus’</syl></verse></note>
+</layer></staff>
+<slur startid="#n41" endid="#n42"/>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="b" oct="4" dur="4"/>
+<note xml:id="n45" pname="a" oct="4" dur="2">
+<verse n="1"><syl>breast,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯</harm>
+<slur startid="#n44" endid="#n45"/>
+</measure>
+<measure n="21"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="b" oct="4" dur="4">
+<verse n="1"><syl>All</syl></verse></note>
+<note xml:id="n47" pname="a" oct="4" dur="4"/>
+<note xml:id="n48" pname="g" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♯m</harm>
+<harm staff="1" tstamp="2" place="above">F♯</harm>
+<harm staff="1" tstamp="3" place="above">E</harm>
+<slur startid="#n46" endid="#n47"/>
+</measure>
+<measure n="22"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="f" oct="4" dur="2">
+<verse n="1"><syl>“wrecked”</syl></verse></note>
+<note xml:id="n50" pname="d" oct="4" dur="4">
+<verse n="1"><syl>souls</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B/D♯</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+</measure>
+<measure n="23"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="e" oct="4" dur="2">
+<verse n="1"><syl>mean</syl></verse></note>
+<note xml:id="n52" pname="c" oct="4" dur="4">
+<verse n="1"><syl>by</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯7</harm>
+</measure>
+<measure n="24" right="end"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="b" oct="3" dur="2" dots="1">
+<verse n="1"><syl>rest.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>“Wrecked outright!” So we lament;</l><l>But when storms have done their worst,</l><l>Then the soul, surviving all,</l><l>In Eternal arms is nursed;</l><l>There to find that nought can move</l><l>One, embosomed in such love.</l></lg>
+<lg label="3."><l>“Wrecked outright!” No more to own</l><l>E’en a craft to sail the sea;</l><l>Still a voyager, yet now</l><l>Anchored to Infinity;</l><l>Nothing left to do but fling</l><l>Care aside, and simply cling.</l></lg>
+<lg label="4."><l>“Wrecked outright!” ’Twas purest gain,</l><l>Henceforth other craft can see</l><l>That the storm may be a boon,</l><l>That, however rough the sea,</l><l>God Himself doth watchful stand,</l><l>For the “wreck” is in His hand.</l></lg>
+</div>
+</back>
+</music></mei>

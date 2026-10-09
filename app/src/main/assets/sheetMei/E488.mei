@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Lord, Thou hast shown the mystery</title>
+<title type="subordinate">Union with Christ—Identified with His Death and Resurrection</title>
+</titleStmt><pubStmt><identifier type="hymn">E488</identifier><identifier type="number">488</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="2" meter.unit="2" meter.sym="cut"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>Lord,</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>hast</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="a" oct="4" dur="2">
+<verse n="1"><syl>shown</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">mys</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">te</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="2">
+<verse n="1"><syl>How</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl>on</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="2">
+<verse n="1"><syl>Cross</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="f" oct="4" dur="2">
+<verse n="1"><syl>died</syl></verse></note>
+<note xml:id="n18" pname="e" oct="4" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="2" place="above">G7</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="g" oct="4" dur="1">
+<verse n="1"><syl>Thee;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="f" oct="4" dur="2">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>need</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl>no</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="2.5000" place="above">C/E</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">oth</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n26" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="b" oct="4" dur="2">
+<verse n="1"><syl>pow’r</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>or</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="a" oct="4" dur="1">
+<verse n="1"><syl>way</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="2">
+<verse n="1"><syl>That</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n33" pname="a" oct="4" dur="4">
+<verse n="1"><syl>may</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">F/A</harm>
+<harm staff="1" tstamp="2.5000" place="above">B♭</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">tri</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">umph</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">Dm</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="g" oct="4" dur="2">
+<verse n="1"><syl>day</syl></verse></note>
+<note xml:id="n37" pname="a" oct="4" dur="4">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n38" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<slur startid="#n37" endid="#n38"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="f" oct="4" dur="1">
+<verse n="1"><syl>day.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>That cross of Thine is also mine,</l><l>Into my life its light doth shine;</l><l>When I believe I’m dead with Thee,</l><l>The world has lost its pow’r o’er me.</l></lg>
+<lg label="3."><l>Since I am crucified with Thee,</l><l>From sin and self I am set free;</l><l>How can I still enjoy the world</l><l>Or seek its vanities unfurled?</l></lg>
+<lg label="4."><l>I take my place, dear Lord, with Thee</l><l>Upon the cross of Calvary.</l><l>Thy life and power then are mine,</l><l>Since Thou and I in oneness twine.</l></lg>
+<lg label="5."><l>Since Thou didst come to slay the foe,</l><l>His work and power to overthrow,</l><l>I too can overcome in Thee</l><l>And prove Thy mighty pow’r in me.</l></lg>
+<lg label="6."><l>Yet, for the vict’ry we rely</l><l>Upon the death which Thou didst die;</l><l>We tread the path which Thou hast trod</l><l>Until we reach the goal in God.</l></lg>
+<lg label="7."><l>My death with Thee I now believe</l><l>And all its meaning would receive.</l><l>Thy death more deeply show to me,</l><l>That from my flesh I may be free.</l></lg>
+<lg label="8."><l>I long to win as Thou hast won,</l><l>To reign with Thee when Thou dost come.</l><l>If we the cross will gladly bear,</l><l>Then in Thy glory we will share.</l></lg>
+</div>
+</back>
+</music></mei>

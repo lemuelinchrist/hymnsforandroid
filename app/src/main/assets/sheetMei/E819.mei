@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">As the body is the fulness</title>
+<title type="subordinate">The Church—The Increase of Christ</title>
+</titleStmt><pubStmt><identifier type="hymn">E819</identifier><identifier type="number">819</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>As</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="4"/>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">bo</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">dy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="g" oct="4" dur="2">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">ful</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="4">
+<verse n="1"><syl>To</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4" accid="n" accid.ges="n"/>
+<note xml:id="n12" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ex</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">press</syl></verse></note>
+<note xml:id="n14" pname="c" oct="5" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>life,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl>So</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="4"/>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="g" oct="4" dur="2">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="g" oct="4" dur="4"/>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Church,</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n21" endid="#n22"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Bo</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">dy,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Doth</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="4"/>
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ex</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">press</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>life.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="f" oct="4" dur="2"/>
+<rest xml:id="r33" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>E’en as Eve is part of Adam</l><l>Taken out of him,</l><l>So the Church is Christ’s own increase</l><l>With Himself within.</l></lg>
+<lg label="3."><l>As from out the buried kernel</l><l>Many grains are formed,</l><l>As the grains together blended</l><l>To a loaf are formed;</l></lg>
+<lg label="4."><l>So the Church, of many Christians,</l><l>Christ doth multiply,</l><l>Him expressing as one Body,</l><l>God to glorify.</l></lg>
+<lg label="5."><l>As the branches of the grapevine</l><l>Are its outward spread,</l><l>With it one, abiding, bearing</l><l>Clusters in its stead;</l></lg>
+<lg label="6."><l>So the Church’s many members</l><l>Christ’s enlargement are,</l><l>One with Him in life and living,</l><l>Spreading Him afar.</l></lg>
+<lg label="7."><l>Fulness, increase, duplication,</l><l>His expression full,</l><l>Growth and spread, continuation,</l><l>Surplus plentiful,</l></lg>
+<lg label="8."><l>Is the Church to Christ, and thereby</l><l>God in Christ may be</l><l>Glorified thru His redeemed ones</l><l>To eternity.</l></lg>
+<lg label="9."><l>Thus the Church and Christ together,</l><l>God’s great mystery,</l><l>Is the mingling of the Godhead</l><l>With humanity.</l></lg>
+</div>
+</back>
+</music></mei>

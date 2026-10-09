@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Do you know that you were chosen</title>
+<title type="subordinate">Gospel—General</title>
+</titleStmt><pubStmt><identifier type="hymn">E1332</identifier><identifier type="number">1332</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>Do</syl></verse></note>
+<note xml:id="n2" pname="c" oct="5" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="d" oct="5" dur="8">
+<verse n="1"><syl>know</syl></verse></note>
+<note xml:id="n4" pname="c" oct="5" dur="8">
+<verse n="1"><syl>that</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="8">
+<verse n="1"><syl>were</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">F7/A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">chos</syl></verse></note>
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">en</syl></verse></note>
+<rest xml:id="r9" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Long</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n14" pname="c" oct="5" dur="8">
+<verse n="1"><syl>world</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">gan</syl></verse></note>
+<rest xml:id="r17" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>That</syl></verse></note>
+<note xml:id="n19" pname="c" oct="5" dur="8">
+<verse n="1"><syl>by</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="d" oct="5" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n21" pname="c" oct="5" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="8">
+<verse n="1"><syl>were</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">se</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">F7/A</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">lect</syl></verse></note>
+<note xml:id="n25" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<rest xml:id="r26" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ap</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">point</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<note xml:id="n31" pname="f" oct="4" dur="8">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>plan?</syl></verse></note>
+<rest xml:id="r34" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Some</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="8" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="t">thing</syl></verse></note>
+<beam>
+<note xml:id="n37" pname="g" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n38" pname="a" oct="4" dur="8">
+<verse n="1"><syl>your</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n40" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">most</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">A7/C♯</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n42" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<rest xml:id="r43" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl>Tells</syl></verse></note>
+<note xml:id="n45" pname="d" oct="5" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+<beam>
+<note xml:id="n46" pname="c" oct="5" dur="8">
+<verse n="1"><syl>this</syl></verse></note>
+<note xml:id="n47" pname="a" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n48" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">sure</syl></verse></note>
+<note xml:id="n49" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n50" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>true;</syl></verse></note>
+<rest xml:id="r51" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n52" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>That’s</syl></verse></note>
+<note xml:id="n53" pname="c" oct="5" dur="8">
+<verse n="1"><syl>why</syl></verse></note>
+<beam>
+<note xml:id="n54" pname="d" oct="5" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+<note xml:id="n55" pname="c" oct="5" dur="8">
+<verse n="1"><syl>are</syl></verse></note>
+<note xml:id="n56" pname="a" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n57" pname="f" oct="4" dur="8">
+<verse n="1"><syl>this</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7/G</harm>
+<harm staff="1" tstamp="4" place="above">F/A</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">meet</syl></verse></note>
+<note xml:id="n59" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<rest xml:id="r60" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n61" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n62" pname="f" oct="4" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+<beam>
+<note xml:id="n63" pname="a" oct="4" dur="8">
+<verse n="1"><syl>feel</syl></verse></note>
+<note xml:id="n64" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n65" pname="f" oct="4" dur="8">
+<verse n="1"><syl>way</syl></verse></note>
+<note xml:id="n66" pname="e" oct="4" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n67" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>do.</syl></verse></note>
+<rest xml:id="r68" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>All the sins you’ve e’er committed,</l><l>Everything you’ve ever done,</l><l>All by God has been forgiven</l><l>Taken care of by God’s Son.</l><l>Struggle not, no; just believe this,</l><l>For His word assures it’s true;</l><l>All you need to do is thank Him</l><l>For all that He’s done for you.</l></lg>
+<lg label="3."><l>Did you know that all the Bible</l><l>Is a will, a testament?</l><l>Everything that Christ accomplished</l><l>Is for all God’s children meant.</l><l>As His child you are included,</l><l>For His word stands fast and true;</l><l>So by faith you now inherit</l><l>All that He has done for you.</l></lg>
+<lg label="4."><l>Did you know God has a family?</l><l>Yes, He does, in fact, it’s us.</l><l>That’s why we are here enjoying</l><l>All He is, so marvelous.</l><l>He’s our God and we’re His people,</l><l>Day by day we love Him more;</l><l>We’re so happy and so thankful,</l><l>We just praise Him o’er and o’er.</l></lg>
+<lg label="5."><l>All we know is that we love Him,</l><l>We’re so glad for what He’s done;</l><l>We are brought to Him, and we all</l><l>Know the joy of being one.</l><l>We’re so glad that we’re included,</l><l>What a fellowship have we!</l><l>So we’d like to welcome you, friend,</l><l>Into God’s own family.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">隨主前行</title>
+<title type="subordinate">追求與長進</title>
+</titleStmt><pubStmt><identifier type="hymn">CS464</identifier><identifier type="number">Cs464</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>當</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="4">
+<verse n="1"><syl>遇</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl>難</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="a" oct="4" dur="8">
+<verse n="1"><syl>處</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="8">
+<verse n="1"><syl>使</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+<beam>
+<note xml:id="n7" pname="g" oct="4" dur="8">
+<verse n="1"><syl>躊</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n9" pname="d" oct="4" dur="2">
+<verse n="1"><syl>躇，</syl></verse></note>
+</layer></staff>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>屬</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="f" oct="4" dur="8">
+<verse n="1"><syl>天</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl>異</syl></verse></note>
+</beam>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl>象</syl></verse></note>
+<beam>
+<note xml:id="n14" pname="f" oct="4" dur="8">
+<verse n="1"><syl>漸</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="8">
+<verse n="1"><syl>糢</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="a" oct="4" dur="1">
+<verse n="1"><syl>糊，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="d" oct="4" dur="4">
+<verse n="1"><syl>四</syl></verse></note>
+<note xml:id="n18" pname="d" oct="4" dur="4">
+<verse n="1"><syl>圍</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>充</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="a" oct="4" dur="8">
+<verse n="1"><syl>滿</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="8">
+<verse n="1"><syl>艱</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>辛</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="g" oct="4" dur="8">
+<verse n="1"><syl>攔</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n25" pname="d" oct="4" dur="2">
+<verse n="1"><syl>阻，</syl></verse></note>
+</layer></staff>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="e" oct="4" dur="4">
+<verse n="1"><syl>似</syl></verse></note>
+<beam>
+<note xml:id="n27" pname="e" oct="4" dur="8">
+<verse n="1"><syl>乎</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="8">
+<verse n="1"><syl>無</syl></verse></note>
+</beam>
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl>力</syl></verse></note>
+<beam>
+<note xml:id="n30" pname="f" oct="4" dur="8">
+<verse n="1"><syl>再</syl></verse></note>
+<note xml:id="n31" pname="e" oct="4" dur="8">
+<verse n="1"><syl>隨</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>主；</syl></verse></note>
+<beam>
+<note xml:id="n33" pname="d" oct="4" dur="8"/>
+<note xml:id="n34" pname="d" oct="4" dur="8">
+<verse n="1"><syl>但</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<tie startid="#n32" endid="#n33"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="d" oct="5" dur="4">
+<verse n="1"><syl>主</syl></verse></note>
+<note xml:id="n36" pname="d" oct="5" dur="4">
+<verse n="1"><syl>告</syl></verse></note>
+<note xml:id="n37" pname="c" oct="5" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+<beam>
+<note xml:id="n38" pname="g" oct="4" dur="8">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="8">
+<verse n="1"><syl>曾</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="a" oct="4" dur="4">
+<verse n="1"><syl>歷</syl></verse></note>
+<note xml:id="n41" pname="g" oct="4" dur="4">
+<verse n="1"><syl>世</syl></verse></note>
+<note xml:id="n42" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>途，</syl></verse></note>
+<note xml:id="n43" pname="d" oct="4" dur="8">
+<verse n="1"><syl>經</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="d" oct="5" dur="4">
+<verse n="1"><syl>憂</syl></verse></note>
+<note xml:id="n45" pname="d" oct="5" dur="4">
+<verse n="1"><syl>患</syl></verse></note>
+<note xml:id="n46" pname="c" oct="5" dur="4">
+<verse n="1"><syl>無</syl></verse></note>
+<beam>
+<note xml:id="n47" pname="g" oct="4" dur="8">
+<verse n="1"><syl>枕</syl></verse></note>
+<note xml:id="n48" pname="b" oct="4" dur="8">
+<verse n="1"><syl>首</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>處，</syl></verse></note>
+<beam>
+<note xml:id="n50" pname="d" oct="4" dur="8"/>
+<note xml:id="n51" pname="d" oct="4" dur="8">
+<verse n="1"><syl>被</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n49" endid="#n50"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n52" pname="d" oct="5" dur="4">
+<verse n="1"><syl>掛</syl></verse></note>
+<note xml:id="n53" pname="d" oct="5" dur="4">
+<verse n="1"><syl>木</syl></verse></note>
+<note xml:id="n54" pname="c" oct="5" dur="4">
+<verse n="1"><syl>上</syl></verse></note>
+<beam>
+<note xml:id="n55" pname="g" oct="4" dur="8">
+<verse n="1"><syl>嘗</syl></verse></note>
+<note xml:id="n56" pname="b" oct="4" dur="8">
+<verse n="1"><syl>苦</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="a" oct="4" dur="4">
+<verse n="1"><syl>膽</syl></verse></note>
+<note xml:id="n58" pname="g" oct="4" dur="4">
+<verse n="1"><syl>酸</syl></verse></note>
+<note xml:id="n59" pname="f" oct="4" dur="2">
+<verse n="1"><syl>醋，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n60" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>憂</syl></verse></note>
+<note xml:id="n61" pname="f" oct="4" dur="8">
+<verse n="1"><syl>苦</syl></verse></note>
+<note xml:id="n62" pname="g" oct="4" dur="4">
+<verse n="1"><syl>祂</syl></verse></note>
+<beam>
+<note xml:id="n63" pname="f" oct="4" dur="8">
+<verse n="1"><syl>已</syl></verse></note>
+<note xml:id="n64" pname="e" oct="4" dur="8">
+<verse n="1"><syl>擔</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n65" pname="d" oct="4" dur="1">
+<verse n="1"><syl>負。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>靈中聽主題醒囑咐，</l><l>需要憑信走窄路；</l><l>祂的患難要我補足，</l><l>經歷十架學順服。</l><l>祂話內住，時將我鼓舞，</l><l>使我得力再舉步，</l><l>歡然隨主歷短暫苦楚，</l><l>永遠榮耀在目。</l></lg>
+<lg label="3."><l>看見建造異象藍圖，</l><l>放膽前行無旁騖；</l><l>所有境遇是為幫助，</l><l>信徒生命早成熟。</l><l>何等榮耀，有分神建築，</l><l>金、銀、寶石非草、木，</l><l>讓神安居，且成主新婦，</l><l>主的再臨催促。</l></lg>
+<lg label="4."><l>等我行完此生路途，</l><l>我要迎見親愛主，</l><l>且與眾聖同聲歡呼，</l><l>此路原來不孤獨。</l><l>“好！你這良善忠信奴僕”─</l><l>公義的主要宣佈；</l><l>主人快樂得歡然進入，</l><l>纔識你恩豐足。</l></lg>
+</div>
+</back>
+</music></mei>

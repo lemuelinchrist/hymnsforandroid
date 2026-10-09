@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">My Jesus, as Thou wilt</title>
+<title type="subordinate">Longings—For Obedience to Christ</title>
+</titleStmt><pubStmt><identifier type="hymn">E384</identifier><identifier type="number">384</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>My</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<slur startid="#n3" endid="#n4"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>as</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="a" oct="4" dur="16">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="16"/>
+</beam>
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl>wilt!</syl></verse></note>
+<rest xml:id="r9" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm/A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="2">
+<verse n="1"><syl>Oh,</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="4">
+<verse n="1"><syl>may</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+<slur startid="#n12" endid="#n13"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="8">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl>mine!</syl></verse></note>
+<rest xml:id="r17" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="2" place="above">B♭7</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="e" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
+<note xml:id="n19" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n21" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>hand</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl>love</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="e" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n27" pname="b" oct="4" dur="8">
+<verse n="1"><syl>would</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n29" pname="f" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+<beam>
+<note xml:id="n30" pname="a" oct="4" dur="8">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n32" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+<slur startid="#n27" endid="#n28"/>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">sign;</syl></verse></note>
+<note xml:id="n34" pname="b" oct="4" dur="4"/>
+<rest xml:id="r35" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="b" oct="4" dur="2">
+<verse n="1"><syl>Through</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sor</syl></verse></note>
+<beam>
+<note xml:id="n38" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">row,</syl></verse></note>
+<note xml:id="n39" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<slur startid="#n38" endid="#n39"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>or</syl></verse></note>
+<beam>
+<note xml:id="n41" pname="a" oct="4" dur="16"/>
+<note xml:id="n42" pname="g" oct="4" dur="16">
+<verse n="1"><syl>through</syl></verse></note>
+</beam>
+<note xml:id="n43" pname="f" oct="4" dur="4">
+<verse n="1"><syl>joy,</syl></verse></note>
+<rest xml:id="r44" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<slur startid="#n41" endid="#n42"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Con</syl></verse></note>
+<note xml:id="n46" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">duct</syl></verse></note>
+<beam>
+<note xml:id="n47" pname="g" oct="4" dur="8">
+<verse n="1"><syl>me</syl></verse></note>
+<note xml:id="n48" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n47" endid="#n48"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>as</syl></verse></note>
+<note xml:id="n50" pname="b" oct="4" dur="8" accid="n" accid.ges="n">
+<verse n="1"><syl>Thine</syl></verse></note>
+<note xml:id="n51" pname="c" oct="5" dur="4">
+<verse n="1"><syl>own,</syl></verse></note>
+<rest xml:id="r52" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="e" oct="5" dur="2">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n54" pname="c" oct="5" dur="4">
+<verse n="1"><syl>help</syl></verse></note>
+<beam>
+<note xml:id="n55" pname="a" oct="4" dur="8">
+<verse n="1"><syl>me</syl></verse></note>
+<note xml:id="n56" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<slur startid="#n55" endid="#n56"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>still</syl></verse></note>
+<note xml:id="n58" pname="b" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n59" pname="g" oct="4" dur="4">
+<verse n="1"><syl>say,</syl></verse></note>
+<beam>
+<note xml:id="n60" pname="e" oct="4" dur="8">
+<verse n="1"><syl>My</syl></verse></note>
+<note xml:id="n61" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<slur startid="#n60" endid="#n61"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n62" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n63" pname="e" oct="4" dur="16">
+<verse n="1"><syl>Thy</syl></verse></note>
+</beam>
+<note xml:id="n64" pname="g" oct="4" dur="2">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n65" pname="f" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="2" place="above">B♭7</harm>
+<fermata startid="#n62" place="above"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n66" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>done!</syl></verse></note>
+<rest xml:id="r67" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>My Jesus, as Thou wilt!</l><l>Though seen through many a tear,</l><l>Let not my star of hope</l><l>Grow dim or disappear;</l><l>Since Thou on earth hast wept,</l><l>And sorrowed oft alone,</l><l>If I must weep with Thee,</l><l>My Lord, Thy will be done!</l></lg>
+<lg label="3."><l>My Jesus, as Thou wilt!</l><l>All shall be well for me;</l><l>Each changing future scene</l><l>I gladly trust with Thee.</l><l>Straight to Thy rest above</l><l>I travel calmly on,</l><l>And sing, in life or death,</l><l>My Lord, Thy will be done!</l></lg>
+</div>
+</back>
+</music></mei>

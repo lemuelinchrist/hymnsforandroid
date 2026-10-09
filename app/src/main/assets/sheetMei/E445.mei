@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Take my life, and let it be</title>
+<title type="subordinate">Consecration—Surrendering All to the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">E445</identifier><identifier type="number">445</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="2" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Take</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl>life,</syl></verse></note>
+<note xml:id="n4" pname="c" oct="4" dur="8"/>
+<note xml:id="n5" pname="f" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="2" place="above">C/G</harm>
+<slur startid="#n3" endid="#n4"/>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="c" oct="5" dur="4">
+<verse n="1"><syl>let</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="4">
+<verse n="1"><syl>it</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">C7/G</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="a" oct="4" dur="2">
+<verse n="1"><syl>be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Con</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">se</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n12" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">cra</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="8"/>
+<note xml:id="n14" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ted,</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="2" place="above">Gm</harm>
+<slur startid="#n12" endid="#n13"/>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<beam>
+<note xml:id="n17" pname="e" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<slur startid="#n17" endid="#n18"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="f" oct="4" dur="2">
+<verse n="1"><syl>Thee;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Take</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">mo</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="g" oct="4" dur="8"/>
+<note xml:id="n24" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ments</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n26" pname="c" oct="5" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="2" place="above">C/E</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="b" oct="4" dur="4"/>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>days,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n27" endid="#n28"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Let</syl></verse></note>
+<note xml:id="n30" pname="c" oct="5" dur="4">
+<verse n="1"><syl>them</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="d" oct="5" dur="4">
+<verse n="1"><syl>flow</syl></verse></note>
+<note xml:id="n32" pname="c" oct="5" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="2" place="above">F/A</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n33" pname="c" oct="5" dur="8"/>
+<note xml:id="n34" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">cease</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n35" pname="b" oct="4" dur="8"/>
+<note xml:id="n36" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">less</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
+<slur startid="#n33" endid="#n34"/>
+<slur startid="#n35" endid="#n36"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="a" oct="4" dur="4"/>
+<note xml:id="n38" pname="g" oct="4" dur="4">
+<verse n="1"><syl>praise,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n37" endid="#n38"/>
+</measure>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Let</syl></verse></note>
+<note xml:id="n40" pname="g" oct="4" dur="4">
+<verse n="1"><syl>them</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="2" place="above">C/E</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl>flow</syl></verse></note>
+<beam>
+<note xml:id="n42" pname="b" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n43" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭</harm>
+<slur startid="#n42" endid="#n43"/>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">cease</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">less</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+</measure>
+<measure n="20" right="end"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="f" oct="4" dur="2">
+<verse n="1"><syl>praise.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Take my hands, and let them move</l><l>At the impulse of Thy love;</l><l>Take my feet and let them be</l><l>Swift and beautiful for Thee,</l><l>Swift and beautiful for Thee.</l></lg>
+<lg label="3."><l>Take my voice, and let me sing</l><l>Always, only, for my King;</l><l>Take my lips, and let them be</l><l>Filled with messages from Thee,</l><l>Filled with messages from Thee.</l></lg>
+<lg label="4."><l>Take my silver and my gold;</l><l>Not a mite would I withhold;</l><l>Take my intellect, and use</l><l>Every power as Thou shalt choose,</l><l>Every power as Thou shalt choose.</l></lg>
+<lg label="5."><l>Take my will, and make it Thine;</l><l>It shall be no longer mine.</l><l>Take my heart; it is Thine own;</l><l>It shall be Thy royal throne,</l><l>It shall be Thy royal throne.</l></lg>
+<lg label="6."><l>Take my love; my Lord, I pour</l><l>At Thy feet its treasure-store.</l><l>Take myself, and I will be</l><l>Ever, only, all for Thee,</l><l>Ever, only, all for Thee.</l></lg>
+</div>
+</back>
+</music></mei>

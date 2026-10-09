@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">My song is love unknown (New Tune)</title>
+<title type="subordinate">Praise of the Lord—His Suffering</title>
+</titleStmt><pubStmt><identifier type="hymn">BF66</identifier><identifier type="number">96</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>My</syl></verse></note>
+<beam>
+<note xml:id="n2" pname="g" oct="4" dur="8">
+<verse n="1"><syl>song</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+</beam>
+<note xml:id="n4" pname="e" oct="4" dur="4">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n5" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">known,</syl></verse></note>
+<note xml:id="n7" pname="d" oct="4" dur="8">
+<verse n="1"><syl>My</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ior’s</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="8">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n11" pname="c" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">C7/G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>me;</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Love</syl></verse></note>
+<beam>
+<note xml:id="n14" pname="b" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">love</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">less</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n18" pname="c" oct="5" dur="8">
+<verse n="1"><syl>shown,</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="8">
+<verse n="1"><syl>That</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="8">
+<verse n="1"><syl>they</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="8">
+<verse n="1"><syl>might</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n22" pname="g" oct="4" dur="8"/>
+<note xml:id="n23" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">love</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="8"/>
+<note xml:id="n25" pname="f" oct="4" dur="8" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+<tie startid="#n23" endid="#n24"/>
+<slur startid="#n22" endid="#n24"/>
+</measure>
+<sb/>
+<scoreDef meter.count="2" meter.unit="4"/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>be.</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="8">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<scoreDef meter.count="4" meter.unit="4" meter.sym="common"/>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n28" pname="b" oct="4" dur="8" accid="f" accid.ges="f">
+<verse n="1"><syl>who</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="8">
+<verse n="1"><syl>am</syl></verse></note>
+</beam>
+<note xml:id="n30" pname="f" oct="4" dur="2">
+<verse n="1"><syl>I,</syl></verse></note>
+<rest xml:id="r31" dur="8"/>
+<note xml:id="n32" pname="f" oct="4" dur="8">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
+<note xml:id="n33" pname="a" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n35" pname="c" oct="4" dur="4">
+<verse n="1"><syl>sake</syl></verse></note>
+</tuplet>
+<note xml:id="n36" pname="c" oct="4" dur="4" dots="1"/>
+<note xml:id="n37" pname="d" oct="4" dur="8">
+<verse n="1"><syl>My</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+<tie startid="#n35" endid="#n36"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n38" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="8">
+<verse n="1"><syl>should</syl></verse></note>
+<note xml:id="n40" pname="g" oct="4" dur="8">
+<verse n="1"><syl>take</syl></verse></note>
+<note xml:id="n41" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Frail</syl></verse></note>
+</beam>
+<note xml:id="n42" pname="e" oct="4" dur="4">
+<verse n="1"><syl>flesh,</syl></verse></note>
+<note xml:id="n43" pname="d" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl>die?</syl></verse></note>
+<rest xml:id="r45" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>He came from His blest throne</l><l>Salvation to bestow;</l><l>But men made strange, and none</l><l>The longed-for Christ would know:</l><l>But oh, my Friend,</l><l>My Friend indeed,</l><l>Who at my need</l><l>His life did spend.</l></lg>
+<lg label="3."><l>Sometimes they strew His way,</l><l>And His sweet praises sing;</l><l>Resounding all the day</l><l>Hosannas to their King:</l><l>Then “Crucify!”</l><l>Is all their breath,</l><l>And for His death</l><l>They thirst and cry.</l></lg>
+<lg label="4."><l>They rise and needs will have</l><l>My dear Lord made away;</l><l>A murderer they save,</l><l>The Prince of life they slay.</l><l>Yet cheerful He</l><l>To suffering goes,</l><l>That He His foes</l><l>From thence might free.</l></lg>
+<lg label="5."><l>In life, no house, no home</l><l>My Lord on earth might have;</l><l>In death, no friendly tomb,</l><l>But what a stranger gave.</l><l>What may I say?</l><l>Heav’n was His home;</l><l>But mine the tomb</l><l>Wherein He lay.</l></lg>
+<lg label="6."><l>Here might I stay and sing,</l><l>No story so divine;</l><l>Never was love, dear King,</l><l>Never was grief like Thine.</l><l>This is my Friend,</l><l>In whose sweet praise</l><l>I all my days</l><l>Could gladly spend.</l></lg>
+</div>
+</back>
+</music></mei>

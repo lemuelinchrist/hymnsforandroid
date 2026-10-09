@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Not to ourselves again</title>
+<title type="subordinate">Consecration—Living for the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">E459</identifier><identifier type="number">459</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Not</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">our</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">selves</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">gain,</syl></verse></note>
+<note xml:id="n7" pname="d" oct="5" dur="4">
+<verse n="1"><syl>Not</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="c" oct="5" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n9" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>flesh</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>live;</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Not</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n16" pname="d" oct="4" dur="4">
+<verse n="1"><syl>world</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">hence</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<harm staff="1" tstamp="4" place="above">Em</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">forth</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>shall</syl></verse></note>
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+<fermata startid="#n20" place="above"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>strength,</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+<harm staff="1" tstamp="4" place="above">D7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>give.</syl></verse></note>
+<rest xml:id="r27" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>The time past of our lives</l><l>Sufficeth to have wrought</l><l>The fleshly will, which only ill</l><l>Hath to us ever brought.</l></lg>
+<lg label="3."><l>No longer is our life</l><l>A thing unused or vain;</l><l>To us e’en here to live is Christ,</l><l>To us to die is gain.</l></lg>
+<lg label="4."><l>Our life is hid with Christ,</l><l>With Christ in God above,</l><l>Upward our heart would go to Him,</l><l>Whom, seeing not, we love.</l></lg>
+<lg label="5."><l>He liveth, and we live!</l><l>His life for us prevails;</l><l>His fulness fills our mighty void,</l><l>His strength for us avails.</l></lg>
+</div>
+</back>
+</music></mei>

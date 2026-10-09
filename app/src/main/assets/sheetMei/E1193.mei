@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Life is God the Father in Christ Jesus</title>
+<title type="subordinate">Experience of God—As Life</title>
+</titleStmt><pubStmt><identifier type="hymn">E1193</identifier><identifier type="number">1193</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="2" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="f" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>Life</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Fath</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n7" pname="a" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="8">
+<verse n="1"><syl>Christ</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n9" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n10" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n11" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n9" endid="#n10"/>
+<tie startid="#n11" endid="#n12"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="d" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n13" pname="g" oct="4" dur="8">
+<verse n="1"><syl>As</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n15" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n17" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">flow</syl></verse></note>
+<note xml:id="n18" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n19" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+</beam>
+</layer></staff>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="a" oct="4" dur="2">
+<verse n="1"><syl>us.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<tie startid="#n21" endid="#n22"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="2"/>
+</layer></staff>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n23" pname="c" oct="5" dur="8">
+<verse n="1"><syl>How</syl></verse></note>
+<note xml:id="n24" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">en</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n25" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">joy</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ble,</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="8">
+<verse n="1"><syl>this</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7/C♯</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n29" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Per</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">son</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n31" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">won</syl></verse></note>
+<note xml:id="n32" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">F♯m</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ful!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n34" pname="g" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+<note xml:id="n35" pname="g" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n36" pname="a" oct="4" dur="8">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n37" pname="b" oct="4" dur="8">
+<verse n="1"><syl>so</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n38" pname="a" oct="4" dur="8">
+<verse n="1"><syl>rich</syl></verse></note>
+<note xml:id="n39" pname="a" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n40" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">boun</syl></verse></note>
+<note xml:id="n41" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ti</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ful.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/D</harm>
+<tie startid="#n42" endid="#n43"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="d" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>We experienced regeneration</l><l>When we opened to this living One.</l><l>We were born again; another life came in.</l><l>Now it floods us till we’re full of Him.</l></lg>
+<lg label="3."><l>He within us is the living Spirit</l><l>In our spirit, flowing out of it</l><l>Into all our heart, transforming every part</l><l>By the life which He Himself imparts.</l></lg>
+<lg label="4."><l>Now He must have our cooperation.</l><l>We must set our mind upon the Son.</l><l>We must turn away from all that leads astray,</l><l>Till our mind is set on Him each day.</l></lg>
+<lg label="5."><l>Lord, our human spirit now contains You.</l><l>Still Your purpose in us You would do;</l><l>If our wandering mind would leave old thoughts behind,</l><l>Then Your life and peace in it we’ll find.</l></lg>
+<lg label="6."><l>Lord, we would our every thought be captured</l><l>By the rich enjoyment in Your Word.</l><l>In it we’re supplied, our mind there will abide,</l><l>Till our thoughts are wholly sanctified.</l></lg>
+<lg label="7."><l>Let’s keep practicing the application</l><l>Of this life by minding just the Son.</l><l>Praise Him for the way to live by Him today!</l><l>Lord, on You our minds will ever stay.</l></lg>
+</div>
+</back>
+</music></mei>

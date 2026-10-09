@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Say to this mountain, Go</title>
+<title type="subordinate">Prayer—In Faith</title>
+</titleStmt><pubStmt><identifier type="hymn">E777</identifier><identifier type="number">777</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Say</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="8">
+<verse n="1"><syl>this</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">moun</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tain,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl>“Go,</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="4"/>
+<rest xml:id="r8" dur="4"/>
+<note xml:id="n9" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="e" oct="4" dur="4">
+<verse n="1"><syl>cast</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n12" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+<note xml:id="n13" pname="c" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="c" oct="5" dur="4">
+<verse n="1"><syl>sea!”</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="4"/>
+<rest xml:id="r16" dur="4"/>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>doubt</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="8">
+<verse n="1"><syl>not</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4" accid="f" accid.ges="f">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="4" accid.ges="f">
+<verse n="1"><syl>thine</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">A♭7</harm>
+<harm staff="1" tstamp="4" place="above">A♭7/C</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="g" oct="4" dur="4" accid="f" accid.ges="f">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="4"/>
+<rest xml:id="r24" dur="4"/>
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<slur startid="#n22" endid="#n23"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>it</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="8">
+<verse n="1"><syl>shall</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<harm staff="1" tstamp="4" place="above">B♭7/D</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>thee.</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="4"/>
+<rest xml:id="r32" dur="4"/>
+<note xml:id="n33" pname="e" oct="4" dur="4">
+<verse n="1"><syl>It</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<sb/>
+<scoreDef meter.count="3" meter.unit="4"/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="e" oct="4" dur="2">
+<verse n="1"><syl>shall</syl></verse></note>
+<note xml:id="n35" pname="a" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="c" oct="5" dur="2">
+<verse n="1"><syl>done,</syl></verse></note>
+<note xml:id="n37" pname="a" oct="4" dur="4">
+<verse n="1"><syl>doubt</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="a" oct="4" dur="2">
+<verse n="1"><syl>not</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="e" oct="4" dur="2">
+<verse n="1"><syl>Word,</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Com</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">mand</syl></verse></note>
+<note xml:id="n43" pname="c" oct="5" dur="4">
+<verse n="1"><syl>thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">moun</syl></verse></note>
+<note xml:id="n45" pname="b" oct="4" dur="4"/>
+<note xml:id="n46" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tain</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m/D♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+<slur startid="#n44" endid="#n45"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="a" oct="4" dur="2">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n48" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Lord!</syl></verse></note>
+<rest xml:id="r50" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Claim thy redemption right,</l><l>Purchased by precious blood;</l><l>The Trinity unite</l><l>To make it true and good.</l><l>It shall be done, obey the Word,</l><l>Command thy mountain in the Lord!</l></lg>
+<lg label="3."><l>Self, sickness, sorrow, sin,</l><l>The Lord did meet that day</l><l>On His beloved One,</l><l>And thou art “loosed away.”</l><l>It shall be done, rest on His Word!</l><l>Command thy mountain in the Lord!</l></lg>
+<lg label="4."><l>Compass the frowning wall</l><l>With silent prayer, then raise—</l><l>Before its ramparts fall—</l><l>The victor’s shout of praise.</l><l>It shall be done, faith rests assured,</l><l>Command thy mountain in the Lord!</l></lg>
+<lg label="5."><l>The two-leaved gates of brass,</l><l>The bars of iron yield,</l><l>To let the faithful pass,</l><l>Conquerors in every field.</l><l>It shall be done, the foe ignored,</l><l>Command thy mountain in the Lord!</l></lg>
+<lg label="6."><l>Take then the faith of God,</l><l>Free from the taint of doubt;</l><l>The wonder-working rod</l><l>That casts all reasoning out.</l><l>It shall be done, stand on the Word.</l><l>Command thy mountain in the Lord!</l></lg>
+</div>
+</back>
+</music></mei>

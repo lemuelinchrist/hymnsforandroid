@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Fill Thou my life, O Lord my God</title>
+<title type="subordinate">Longings—For Fellowship with Christ</title>
+</titleStmt><pubStmt><identifier type="hymn">E376</identifier><identifier type="number">376</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Fill</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="c" oct="5" dur="2">
+<verse n="1"><syl>life,</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n7" pname="b" oct="4" dur="4"/>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="f" oct="4" dur="2">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="4"/>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ery</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="e" oct="4" dur="4">
+<verse n="1"><syl>part</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="4"/>
+<note xml:id="n16" pname="d" oct="4" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="c" oct="4" dur="2">
+<verse n="1"><syl>praise,</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="4">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4"/>
+<note xml:id="n21" pname="f" oct="4" dur="4">
+<verse n="1"><syl>whole</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n23" pname="a" oct="4" dur="4"/>
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7/G</harm>
+<slur startid="#n22" endid="#n23"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="c" oct="5" dur="4">
+<verse n="1"><syl>may</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="4"/>
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pro</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">claim</syl></verse></note>
+<note xml:id="n29" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n31" pname="b" oct="4" dur="4"/>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">Gm/B♭</harm>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n33" pname="a" oct="4" dur="8"/>
+<note xml:id="n34" pname="g" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+<note xml:id="n35" pname="f" oct="4" dur="4"/>
+<note xml:id="n36" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+<slur startid="#n33" endid="#n35"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>ways.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<tie startid="#n37" endid="#n38"/>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="f" oct="4" dur="2"/>
+<rest xml:id="r39" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Not for the lip of praise alone,</l><l>Nor e’en the praising heart,</l><l>I ask, but for a life made up</l><l>Of praise in every part:</l></lg>
+<lg label="3."><l>Praise in the common things of life,</l><l>Its goings out and in;</l><l>Praise in each duty and each deed,</l><l>However small and mean.</l></lg>
+<lg label="4."><l>Fill every part of me with praise;</l><l>Let all my being speak</l><l>Of Thee and of Thy love, O Lord,</l><l>Poor though I be and weak.</l></lg>
+<lg label="5."><l>So shall no part of day or night</l><l>From sacredness be free,</l><l>But all my life, in every step,</l><l>Be fellowship with Thee.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Jesus, Savior, Son of God</title>
+<title type="subordinate">Gospel—Redemption</title>
+</titleStmt><pubStmt><identifier type="hymn">E996</identifier><identifier type="number">996</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n2" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ior,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Son</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="2">
+<verse n="1"><syl>God,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Bear</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sin</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ner’s</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="2">
+<verse n="1"><syl>load,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Break</syl></verse></note>
+<note xml:id="n17" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">D7/F♯</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">cap</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tive’s</syl></verse></note>
+<note xml:id="n22" pname="g" oct="4" dur="2">
+<verse n="1"><syl>chain,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">C7/E</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Cleans</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/D</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">guilt</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">y’s</syl></verse></note>
+<note xml:id="n29" pname="f" oct="4" dur="2">
+<verse n="1"><syl>stain.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Thou the sinner’s death hast died,</l><l>Thou for us wast crucified;</l><l>For our sins Thy flesh was torn,</l><l>Thou our penalty hast borne.</l></lg>
+<lg label="3."><l>Savior, Surety, Lamb of God,</l><l>Thou hast bought us with Thy blood;</l><l>Thou hast wiped the debt away,</l><l>Nothing left for us to pay;</l></lg>
+<lg label="4."><l>Nothing left for us to bear,</l><l>Nothing left for us to share</l><l>But the pardon and the bliss,</l><l>But the love, the light, the peace.</l></lg>
+<lg label="5."><l>I to Thee will look and live,</l><l>And, in looking, praises give;</l><l>Looking lightens, looking heals,</l><l>Looking all the gladness seals.</l></lg>
+<lg label="6."><l>Jesus, Savior, Son of God,</l><l>Bearer of the sinner’s load,</l><l>I would rise to Thee above,</l><l>I would look, and praise, and love.</l></lg>
+</div>
+</back>
+</music></mei>

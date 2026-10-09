@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">In Revelation two and three</title>
+<title type="subordinate">The Church—Her Course</title>
+</titleStmt><pubStmt><identifier type="hymn">E1274</identifier><identifier type="number">1274</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>In</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Rev</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">e</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">la</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl>two</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="g" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>three,</syl></verse></note>
+<note xml:id="n11" pname="d" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sev</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">en</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">lo</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cal</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">D7/A</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<harm staff="1" tstamp="4" place="above">Am/C</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">church</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">es</syl></verse></note>
+<note xml:id="n18" pname="d" oct="4" dur="4">
+<verse n="1"><syl>see:</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="2" place="above">A7</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">les</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sons</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl>there</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="c" oct="5" dur="8">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>you</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="g" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>me</syl></verse></note>
+<note xml:id="n29" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Are</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="e" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n32" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Lord’s</syl></verse></note>
+<beam>
+<note xml:id="n33" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">cov</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">y.</syl></verse></note>
+<rest xml:id="r38" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<fermata startid="#n37" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>The words to them are words to us,</l><l>So that the church be glorious,</l><l>And all their warnings we must heed</l><l>So that the Lord can meet His need.</l></lg>
+<lg label="3."><l>To Ephesus, the word is clear:</l><l>“To your first love you’re not so near;</l><l>You’ve left to work so far away;</l><l>Repent, return to Him today.”</l></lg>
+<lg label="4."><l>Thus, we must all turn back to Him,</l><l>Leave other loves, for these are sin.</l><l>Oh, let us hearken to His call—</l><l>If we miss this, we’ve missed it all!</l></lg>
+<lg label="5."><l>Then unto Smyrna, suffering, sore—</l><l>“You have been tried, but something more—</l><l>Be faithful unto death,” we’re told</l><l>(Not just of body but of soul).</l></lg>
+<lg label="6."><l>Be faithful ’til what’s natural dies;</l><l>Your circumstances don’t despise;</l><l>The Lord has sent them all to you</l><l>To prove that your first love is true.</l></lg>
+<lg label="7."><l>From Pergamos we clearly see</l><l>The world has wed Christianity!</l><l>And faithful Antipas did fall—</l><l>He dared to stand against it all.</l></lg>
+<lg label="8."><l>To wed the world we all must fear:</l><l>His spoken word will save us here—</l><l>If to His speaking we give heed,</l><l>We’ll separated be indeed.</l></lg>
+<lg label="9."><l>Then Thyatira comes at length:</l><l>Her mixture with the world her strength.</l><l>Fine flour leavened by the yeast,</l><l>A harlot riding on a beast.</l></lg>
+<lg label="10."><l>Lord, we are mixed but hardly know;</l><l>To us this mixture fully show.</l><l>Each added thing we will refute</l><l>Until we’re wholly absolute.</l></lg>
+<lg label="11."><l>And then from Sardis, we can know</l><l>Life is the way that we must go!</l><l>She says she’s living, but she’s dead;</l><l>She needs to touch the Lord instead.</l></lg>
+<lg label="12."><l>Lord, take us all the way to life</l><l>To overcome the deadness rife.</l><l>Away from deadness we would flee</l><l>That full of life we’ll always be.</l></lg>
+<lg label="13."><l>Now Philadelphia comes at last;</l><l>That which she has she should hold fast</l><l>The brothers’ love, the name, the word;</l><l>This church has satisfied the Lord.</l></lg>
+<lg label="14."><l>We as the brothers all are one;</l><l>We’re one by life, and life alone.</l><l>If we His word and name do keep</l><l>A glorious building God will reap.</l></lg>
+<lg label="15."><l>Laodicea warns us all:</l><l>From Philadelphia some will fall.</l><l>By saying, “I am rich,” it’s then</l><l>The Lord is outside wanting in.</l></lg>
+<lg label="16."><l>Lukewarmness we must ever spurn</l><l>And in the spirit always burn,</l><l>The inward life experience gain,</l><l>And pay the price with Him to reign.</l></lg>
+<lg label="17."><l>Lord, shine Your light on us today</l><l>That we may fully go Your way;</l><l>Anoint our eyes and let us see</l><l>So You can have recovery.</l></lg>
+</div>
+</back>
+</music></mei>

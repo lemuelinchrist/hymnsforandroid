@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">God said, God saw</title>
+<title type="subordinate">Gospel—God’s Creation</title>
+</titleStmt><pubStmt><identifier type="hymn">CH34</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n2" pname="c" oct="4" dur="4">
+<verse n="1"><syl>said,</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n4" pname="c" oct="4" dur="4">
+<verse n="1"><syl>saw,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>called,</syl></verse></note>
+<beam>
+<note xml:id="n7" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="16">
+<verse n="1"><syl>God</syl></verse></note>
+</beam>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>made.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n10" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">cre</syl></verse></note>
+<note xml:id="n12" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="m" con="d">at</syl></verse></note>
+<note xml:id="n13" pname="c" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">ed,</syl></verse></note>
+</beam>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n15" pname="c" oct="4" dur="4">
+<verse n="1"><syl>blessed,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="4" right="end"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<beam>
+<note xml:id="n17" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">rest</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">ed.</syl></verse></note>
+</beam>
+<tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
+<beam>
+<note xml:id="n19" pname="c" oct="4" dur="8">
+<verse n="1"><syl>It</syl></verse></note>
+<note xml:id="n20" pname="d" oct="4" dur="8"/>
+<note xml:id="n21" pname="e" oct="4" dur="8">
+<verse n="1"><syl>was</syl></verse></note>
+</beam>
+</tuplet>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>good.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+</section></score></mdiv></body>
+</music></mei>

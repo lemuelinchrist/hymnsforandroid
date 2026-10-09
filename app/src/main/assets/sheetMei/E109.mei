@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The veil is rent! Lo! Jesus stands</title>
+<title type="subordinate">Praise of the Lord—His Redemption</title>
+</titleStmt><pubStmt><identifier type="hymn">E109</identifier><identifier type="number">109</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="c" oct="5" dur="2">
+<verse n="1"><syl>veil</syl></verse></note>
+<note xml:id="n3" pname="c" oct="5" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="d" oct="5" dur="2">
+<verse n="1"><syl>rent!</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Lo!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7/B♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl>stands</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4"/>
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<note xml:id="n12" pname="d" oct="4" dur="4" accid="n" accid.ges="n"/>
+<note xml:id="n13" pname="e" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="2">
+<verse n="1"><syl>throne</syl></verse></note>
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>grace;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="c" oct="4" dur="2"/>
+<note xml:id="n18" pname="e" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="c" oct="5" dur="2">
+<verse n="1"><syl>clouds</syl></verse></note>
+<note xml:id="n20" pname="c" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n22" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cense</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7/B♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="b" oct="4" dur="2">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="4"/>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>hands</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Fill</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="e" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="4"/>
+<note xml:id="n30" pname="c" oct="5" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">rious</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>place.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/A♭</harm>
+<tie startid="#n33" endid="#n34"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="a" oct="4" dur="2"/>
+<rest xml:id="r35" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>His precious blood is sprinkled there,</l><l>Before and on the throne;</l><l>And His own wounds in heav’n declare</l><l>His work on earth is done.</l></lg>
+<lg label="3."><l>’Tis finished!” on the cross He said,</l><l>In agonies and blood;</l><l>’Tis finished: now He lives to plead</l><l>Before the face of God.</l></lg>
+<lg label="4."><l>’Tis finished!” Here our souls can rest,</l><l>His work can never fail;</l><l>By Him, our Sacrifice and Priest</l><l>We enter through the veil.</l></lg>
+</div>
+</back>
+</music></mei>

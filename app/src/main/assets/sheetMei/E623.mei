@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">There is no gain but by a loss</title>
+<title type="subordinate">The Way of the Cross—Gain by Loss</title>
+</titleStmt><pubStmt><identifier type="hymn">E623</identifier><identifier type="number">623</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="5f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="5" dur="4">
+<verse n="1"><label>1.</label><syl>There</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n2" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="16">
+<verse n="1"><syl>no</syl></verse></note>
+</beam>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>gain</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>but</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n6" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="16" accid="n" accid.ges="n">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n8" pname="g" oct="4" dur="4" accid="f">
+<verse n="1"><syl>loss;</syl></verse></note>
+<note xml:id="n9" pname="e" oct="5" dur="4">
+<verse n="1"><syl>We</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭m</harm>
+<fermata startid="#n8" place="above"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n10" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">can</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">not</syl></verse></note>
+</beam>
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl>save</syl></verse></note>
+<note xml:id="n13" pname="c" oct="5" dur="4">
+<verse n="1"><syl>but</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n14" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="16">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl>cross,</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<fermata startid="#n16" place="above"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n18" pname="a" oct="4" dur="8" dots="1" accid="n" accid.ges="n">
+<verse n="1"><syl>corn</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="16" accid="f">
+<verse n="1"><syl>of</syl></verse></note>
+</beam>
+<note xml:id="n20" pname="a" oct="4" dur="4" accid="n" accid.ges="n">
+<verse n="1"><syl>wheat</syl></verse></note>
+<note xml:id="n21" pname="f" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n22" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">mul</syl></verse></note>
+<note xml:id="n23" pname="a" oct="4" dur="16" accid="n" accid.ges="n">
+<verse n="1"><syl wordpos="m" con="d">ti</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n24" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ply</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="8">
+<verse n="1"><syl>Must</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n26" pname="c" oct="5" dur="8">
+<verse n="1"><syl>fall</syl></verse></note>
+<note xml:id="n27" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m</harm>
+<fermata startid="#n24" place="above"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n28" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n30" pname="e" oct="5" dur="4" dots="1">
+<verse n="1"><syl>ground</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="8" accid="n" accid.ges="n">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+<fermata startid="#n30" place="above"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="a" oct="4" dur="2">
+<verse n="1"><syl>die;</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="4">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n34" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl>should</syl></verse></note>
+<note xml:id="n35" pname="b" oct="4" dur="16">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n36" pname="c" oct="5" dur="4">
+<verse n="1"><syl>soul</syl></verse></note>
+<note xml:id="n37" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n38" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">lone</syl></verse></note>
+<note xml:id="n39" pname="a" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</beam>
+<note xml:id="n40" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">main</syl></verse></note>
+<note xml:id="n41" pname="f" oct="4" dur="4">
+<verse n="1"><syl>When</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n42" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>it</syl></verse></note>
+<note xml:id="n43" pname="g" oct="4" dur="16" accid="n" accid.ges="n">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n44" pname="g" oct="4" dur="4" accid="f">
+<verse n="1"><syl wordpos="i" con="d">hun</syl></verse></note>
+<note xml:id="n45" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">dred</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n46" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">fold</syl></verse></note>
+<note xml:id="n47" pname="c" oct="5" dur="16">
+<verse n="1"><syl>can</syl></verse></note>
+</beam>
+<note xml:id="n48" pname="a" oct="4" dur="4">
+<verse n="1"><syl>gain?</syl></verse></note>
+<note xml:id="n49" pname="d" oct="5" dur="4">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n50" pname="d" oct="5" dur="8" dots="1">
+<verse n="1"><syl>should</syl></verse></note>
+<note xml:id="n51" pname="c" oct="5" dur="16">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n52" pname="e" oct="5" dur="4">
+<verse n="1"><syl>soul</syl></verse></note>
+<note xml:id="n53" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n54" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">lone</syl></verse></note>
+<note xml:id="n55" pname="a" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</beam>
+<note xml:id="n56" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">main</syl></verse></note>
+<note xml:id="n57" pname="d" oct="4" dur="4">
+<verse n="1"><syl>When</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<fermata startid="#n56" place="above"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n58" pname="d" oct="4" dur="8" dots="1">
+<verse n="1"><syl>it</syl></verse></note>
+<note xml:id="n59" pname="e" oct="4" dur="16">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n60" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">hun</syl></verse></note>
+<note xml:id="n61" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">dred</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/A♭</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n62" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">fold</syl></verse></note>
+<note xml:id="n63" pname="e" oct="4" dur="16">
+<verse n="1"><syl>can</syl></verse></note>
+</beam>
+<note xml:id="n64" pname="d" oct="4" dur="4">
+<verse n="1"><syl>gain?</syl></verse></note>
+<rest xml:id="r65" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+<fermata startid="#n64" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Our souls are held by all they hold;</l><l>Slaves still are slaves in chains of gold;</l><l>To whatsoever we may cling,</l><l>We make it a soul-chaining thing.</l><l>Whether it be a life or land,</l><l>And dear as our right eye or hand.</l><l>Whether it be a life or land,</l><l>And dear as our right eye or hand.</l></lg>
+<lg label="3."><l>Wherever you ripe fields behold,</l><l>Waving to God their sheaves of gold,</l><l>Be sure some com of wheat has died,</l><l>Some saintly soul been crucified;</l><l>Someone has suffered, wept and prayed,</l><l>And fought hell’s legions undismayed.</l><l>Someone has suffered, wept and prayed,</l><l>And fought hell’s legions undismayed.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">盡情喫喝</title>
+<title type="subordinate">享受基督</title>
+</titleStmt><pubStmt><identifier type="hymn">CS213</identifier><identifier type="number">Cs213</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>勝</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl>哉、</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>勝</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>哉、</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="b" oct="4" dur="2">
+<verse n="1"><syl>勝</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="2">
+<verse n="1"><syl>哉，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="c" oct="5" dur="2">
+<verse n="1"><syl>完</syl></verse></note>
+<note xml:id="n8" pname="c" oct="5" dur="4">
+<verse n="1"><syl>全</syl></verse></note>
+<note xml:id="n9" pname="c" oct="5" dur="4">
+<verse n="1"><syl>回</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="b" oct="4" dur="2">
+<verse n="1"><syl>到</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="2">
+<verse n="1"><syl>起</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>初！</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="8">
+<verse n="1"><syl>神</syl></verse></note>
+<note xml:id="n14" pname="b" oct="4" dur="4">
+<verse n="1"><syl>今</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl>在</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="5" dur="4">
+<verse n="1"><syl>基</syl></verse></note>
+<note xml:id="n17" pname="e" oct="5" dur="4">
+<verse n="1"><syl>督</syl></verse></note>
+<note xml:id="n18" pname="d" oct="5" dur="4">
+<verse n="1"><syl>裡，</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl>成</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl>為</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n22" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>們</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="8">
+<verse n="1"><syl>食</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="b" oct="4" dur="1">
+<verse n="1"><syl>物。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl>喫</syl></verse></note>
+<note xml:id="n26" pname="e" oct="4" dur="4">
+<verse n="1"><syl>喝、</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl>喫</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl>喝、</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="b" oct="4" dur="2">
+<verse n="1"><syl>喫</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="2">
+<verse n="1"><syl>喝，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n32" pname="c" oct="5" dur="8">
+<verse n="1"><syl>們</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="4">
+<verse n="1"><syl>盡</syl></verse></note>
+<note xml:id="n34" pname="c" oct="5" dur="4">
+<verse n="1"><syl>情</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="b" oct="4" dur="2">
+<verse n="1"><syl>喫</syl></verse></note>
+<note xml:id="n36" pname="b" oct="4" dur="2">
+<verse n="1"><syl>喝；</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="e" oct="5" dur="2">
+<verse n="1"><syl>在</syl></verse></note>
+<note xml:id="n38" pname="b" oct="4" dur="4">
+<verse n="1"><syl>神</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="4">
+<verse n="1"><syl>恢</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="c" oct="5" dur="2">
+<verse n="1"><syl>復</syl></verse></note>
+<note xml:id="n41" pname="g" oct="4" dur="2">
+<verse n="1"><syl>裡，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="a" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n43" pname="f" oct="4" dur="4">
+<verse n="1"><syl>不</syl></verse></note>
+<note xml:id="n44" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>知</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="8">
+<verse n="1"><syl>太</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm7</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="e" oct="4" dur="1">
+<verse n="1"><syl>多。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>大聲呼喊耶穌，</l><l>哦，我們真飽足！</l><l>主在我們口中，</l><l>只等我們來喫。</l><l>用靈大聲呼喊，</l><l>遠勝默默點頭；</l><l>在神恢復裡，</l><l>我不知太多。</l></lg>
+<lg label="3."><l>細嚼、細嚼、細嚼，</l><l>不是外面工作；</l><l>放下你的重擔，</l><l>再來坐下喫喝。</l><l>坐席、坐席、坐席，</l><l>教訓束之高閣！</l><l>在神恢復裡，</l><l>我只知喫喝。</l></lg>
+</div>
+</back>
+</music></mei>

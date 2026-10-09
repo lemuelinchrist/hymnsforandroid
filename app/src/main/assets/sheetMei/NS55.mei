@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Call, call, won’t you call Jesus’ name</title>
+<title type="subordinate">Encouragement—For Experiencing Christ as Life</title>
+</titleStmt><pubStmt><identifier type="hymn">NS55</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="5" dur="2">
+<verse n="1"><label>1.</label><syl>Call,</syl></verse></note>
+<note xml:id="n2" pname="b" oct="4" dur="4">
+<verse n="1"><syl>call,</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="b" oct="4" dur="8">
+<verse n="1"><syl>won’t</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl>call</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">sus’</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n9" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>name;</syl></verse></note>
+<note xml:id="n10" pname="c" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<tie startid="#n8" endid="#n9"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n11" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ery</syl></verse></note>
+<note xml:id="n13" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">thing</syl></verse></note>
+<note xml:id="n14" pname="c" oct="5" dur="8">
+<verse n="1"><syl>that’s</syl></verse></note>
+</beam>
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl>real,</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="b" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7/G</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n18" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">al</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ways</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n22" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>same.</syl></verse></note>
+<note xml:id="n23" pname="c" oct="4" dur="8">
+<verse n="1"><syl>Get</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<tie startid="#n21" endid="#n22"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n24" pname="c" oct="5" dur="8">
+<verse n="1"><syl>out</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n26" pname="c" oct="5" dur="8">
+<verse n="1"><syl>your</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>mind,</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="b" oct="4" dur="8">
+<verse n="1"><syl>get</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="8">
+<verse n="1"><syl>your</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">C7/G</harm>
+<tie startid="#n27" endid="#n28"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n31" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
+<note xml:id="n32" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<note xml:id="n33" pname="f" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="8">
+<verse n="1"><syl>gear,</syl></verse></note>
+</beam>
+<note xml:id="n35" pname="g" oct="4" dur="4"/>
+<beam>
+<note xml:id="n36" pname="a" oct="4" dur="8">
+<verse n="1"><syl>That’s</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<tie startid="#n34" endid="#n35"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n38" pname="f" oct="4" dur="8">
+<verse n="1"><syl>way</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n40" pname="f" oct="4" dur="8">
+<verse n="1"><syl>get</syl></verse></note>
+<note xml:id="n41" pname="f" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n42" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n43" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n44" pname="d" oct="4" dur="8">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n45" pname="g" oct="4" dur="8">
+<verse n="1"><syl>here.</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<tie startid="#n45" endid="#n46"/>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="g" oct="4" dur="2" dots="1"/>
+<beam>
+<note xml:id="n47" pname="g" oct="4" dur="8">
+<verse n="1"><syl>That’s</syl></verse></note>
+<note xml:id="n48" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n49" pname="b" oct="4" dur="8">
+<verse n="1"><syl>way</syl></verse></note>
+<note xml:id="n50" pname="b" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n51" pname="b" oct="4" dur="8">
+<verse n="1"><syl>get</syl></verse></note>
+<note xml:id="n52" pname="b" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n53" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n54" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n55" pname="g" oct="4" dur="8">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n56" pname="f" oct="4" dur="8">
+<verse n="1"><syl>here.</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm7</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+<tie startid="#n56" endid="#n57"/>
+</measure>
+<measure n="10" right="end"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="f" oct="4" dur="2" dots="1"/>
+<rest xml:id="r58" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Life, Life, O the issue is Life.</l><l>Living isn’t worth it if you haven’t got Life.</l><l>So drop all your concepts, they’re killing you dead,</l><l>And touch the living Jesus instead.</l><l>And touch the living Jesus instead.</l></lg>
+<lg label="3."><l>God, God, O you gave us your Son,</l><l>He died for us and rose again; the victory He won!</l><l>And now He lives within us, new life has begun.</l><l>O we praise You, Lord, it all has been done.</l><l>O we praise You, Lord, it all has been done.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The King of love my Shepherd is</title>
+<title type="subordinate">Experience of Christ—As Everything</title>
+</titleStmt><pubStmt><identifier type="hymn">E528</identifier><identifier type="number">528</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="d" oct="5" dur="4">
+<verse n="1"><syl>King</syl></verse></note>
+<note xml:id="n3" pname="c" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">She</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">pherd</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl>is,</syl></verse></note>
+<note xml:id="n9" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Whose</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">good</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fail</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">eth</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">nev</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er;</syl></verse></note>
+<note xml:id="n16" pname="d" oct="5" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">noth</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>lack</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>if</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="g" oct="4" dur="8">
+<verse n="1"><syl>am</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl>His,</syl></verse></note>
+<note xml:id="n26" pname="e" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>He</syl></verse></note>
+<note xml:id="n28" pname="e" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n29" pname="f" oct="4" dur="4">
+<verse n="1"><syl>mine</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="2.5000" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4"/>
+<note xml:id="n33" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er.</syl></verse></note>
+<rest xml:id="r34" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n31" endid="#n32"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Where streams of living water flow</l><l>My ransomed soul He leadeth,</l><l>And, where the verdant pastures grow,</l><l>With food celestial feedeth.</l></lg>
+<lg label="3."><l>Perverse and foolish oft I strayed,</l><l>But yet in love He sought me,</l><l>And on His shoulder gently laid,</l><l>And home rejoicing brought me.</l></lg>
+<lg label="4."><l>In death’s dark vale I fear no ill</l><l>With Thee, dear Lord, beside me;</l><l>Thy rod and staff my comfort still,</l><l>Thy Cross before to guide me.</l></lg>
+<lg label="5."><l>Thou spread’st a table in my sight;</l><l>Thy unction grace bestoweth;</l><l>And oh, what transport of delight</l><l>From Thy pure chalice floweth!</l></lg>
+<lg label="6."><l>And so through all the length of days</l><l>Thy goodness faileth never;</l><l>Good Shepherd, may I sing Thy praise</l><l>Within Thy house forever.</l></lg>
+</div>
+</back>
+</music></mei>

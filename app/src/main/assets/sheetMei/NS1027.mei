@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Philemon</title>
+<title type="subordinate">Scriptures for Singing</title>
+</titleStmt><pubStmt><identifier type="hymn">NS1027</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Paul,</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pri</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">son</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="f" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="d" oct="4" dur="2">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<rest xml:id="r11" dur="4"/>
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Tim</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">o</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">thy</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">broth</syl></verse></note>
+<note xml:id="n19" pname="e" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="f" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<rest xml:id="r21" dur="4"/>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>To</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Phi</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">le</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">mon</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">loved</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="g" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+</beam>
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fel</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">low</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">work</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<rest xml:id="r35" dur="4"/>
+<beam>
+<note xml:id="n36" pname="a" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n38" pname="f" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n39" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Ap</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">phi</syl></verse></note>
+<note xml:id="n41" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">a</syl></verse></note>
+<note xml:id="n42" pname="d" oct="4" dur="4"/>
+<note xml:id="n43" pname="d" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<tie startid="#n41" endid="#n42"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">sis</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n44" endid="#n45"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="f" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">ter,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="17"><staff n="1"><layer n="1">
+<rest xml:id="r47" dur="4"/>
+<note xml:id="n48" pname="f" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n49" pname="g" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n50" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Ar</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="m" con="d">chip</syl></verse></note>
+<note xml:id="n52" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">pus,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="f" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n54" pname="g" oct="4" dur="4"/>
+<note xml:id="n55" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fel</syl></verse></note>
+<note xml:id="n56" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">low</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n53" endid="#n54"/>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">sol</syl></verse></note>
+<note xml:id="n58" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">dier,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<sb/>
+<measure n="21"><staff n="1"><layer n="1">
+<rest xml:id="r59" dur="4"/>
+<beam>
+<note xml:id="n60" pname="a" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n61" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n62" pname="f" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n63" pname="e" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n60" endid="#n61"/>
+</measure>
+<measure n="22"><staff n="1"><layer n="1">
+<note xml:id="n64" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>church</syl></verse></note>
+<note xml:id="n65" pname="e" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="23"><staff n="1"><layer n="1">
+<note xml:id="n66" pname="d" oct="4" dur="2">
+<verse n="1"><syl>your</syl></verse></note>
+<note xml:id="n67" pname="c" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n66" endid="#n67"/>
+</measure>
+<measure n="24" right="end"><staff n="1"><layer n="1">
+<note xml:id="n68" pname="d" oct="4" dur="1">
+<verse n="1"><syl>house.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Grace to you and peace from God our Father</l><l>And from the Lord, the Lord Jesus Christ.</l><l>I thank my God always, making mention of you</l><l>In my prayers, hearing of your love</l><l>And of the faith which you have toward the Lord,</l><l>The Lord Jesus and to all the saints,</l></lg>
+<lg label="3."><l>That the fellowship of your faith may become</l><l>Operative in the full knowledge</l><l>Of every good thing which is in us for Christ,</l><l>For I had much joy and encouragement over your love,</l><l>Because the inward parts of the saints</l><l>Have been refreshed through you, brother.</l></lg>
+<lg label="4."><l>Wherefore, having much boldness in Christ</l><l>To charge you what is fitting,</l><l>Because of love I rather entreat,</l><l>Being such a one as Paul, the aged,</l><l>And now also a prisoner of Christ,</l><l>A prisoner of Christ Jesus.</l></lg>
+<lg label="5."><l>I entreat you concerning my child</l><l>Whom I’ve begotten in my bonds,</l><l>Onesimus, who formerly was useless to you,</l><l>But now is useful both to you and to me;</l><l>Onesimus, whom I have sent back to you—</l><l>Him, that is, my heart, my very heart;</l></lg>
+<lg label="6."><l>Whom I resolved to keep with myself,</l><l>That on your behalf he might minister,</l><l>Might minister to me in the bonds of the gospel,</l><l>But without your mind I did not want to do anything,</l><l>That your goodness should not be of necessity,</l><l>But your goodness be voluntary.</l></lg>
+<lg label="7."><l>For perhaps therefore he was separated from you</l><l>For an hour that you might fully have him forever,</l><l>No longer as a slave, but above a slave,</l><l>A beloved brother, especially to me,</l><l>And how much more to you, both in the flesh,</l><l>Both in the flesh and in the Lord.</l></lg>
+<lg label="8."><l>If then you hold me as a partner,</l><l>Receive him as myself,</l><l>And if he has wronged, has wronged you in anything,</l><l>Or owes anything, charge that to my account;</l><l>If you hold me a partner, receive him as myself,</l><l>And if he has wronged you, charge that to my account.</l></lg>
+<lg label="9."><l>I Paul have written with my own hand,</l><l>I will repay; I will repay;</l><l>Not to say to you that you owe me even your own self,</l><l>Your own self besides.</l><l>Yes, brother, may I have profit from you in the Lord;</l><l>Refresh my inward parts in Christ.</l></lg>
+<lg label="10."><l>Having confidence in your obedience,</l><l>I wrote to you, knowing that you’ll do beyond what I say,</l><l>And at the same time also prepare me a lodging;</l><l>For I hope that through your prayers I shall be,</l><l>Through your prayers I shall be graciously,</l><l>I shall be graciously given to you.</l></lg>
+<lg label="11."><l>Epaphras, my fellow-prisoner</l><l>In Christ Jesus, greets you;</l><l>As do Mark, and Aristarchus,</l><l>Demas, and Luke, my fellow-workers.</l><l>The grace of the Lord, of the Lord Jesus Christ</l><l>Be with your spirit, with your spirit.</l></lg>
+</div>
+</back>
+</music></mei>

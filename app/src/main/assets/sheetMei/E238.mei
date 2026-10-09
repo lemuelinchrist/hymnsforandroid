@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">When morning gilds the skies</title>
+<title type="subordinate">Praise of the Lord—General</title>
+</titleStmt><pubStmt><identifier type="hymn">E238</identifier><identifier type="number">238</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>When</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">morn</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>gilds</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="2">
+<verse n="1"><syl>skies,</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="4"/>
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl>My</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">wak</syl></verse></note>
+<note xml:id="n12" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl>cries:</syl></verse></note>
+<note xml:id="n14" pname="b" oct="4" dur="4">
+<verse n="1"><syl>May</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n16" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="8">
+<verse n="1"><syl>be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>praised!</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">like</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl>at</syl></verse></note>
+<note xml:id="n23" pname="a" oct="4" dur="4">
+<verse n="1"><syl>work</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>prayer</syl></verse></note>
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl>To</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">pair:</syl></verse></note>
+<note xml:id="n32" pname="f" oct="4" dur="4">
+<verse n="1"><syl>May</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n34" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="b" oct="4" dur="2">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n36" pname="c" oct="5" dur="2">
+<verse n="1"><syl>be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="b" oct="4" dur="1">
+<verse n="1"><syl>praised!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<tie startid="#n37" endid="#n38"/>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="b" oct="4" dur="2" dots="1"/>
+<rest xml:id="r39" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>To Thee, my God above,</l><l>I cry with glowing love,</l><l>May Jesus Christ be praised!</l><l>The fairest graces spring</l><l>In hearts that ever sing,</l><l>May Jesus Christ be praised!</l></lg>
+<lg label="3."><l>Does sadness fill my mind?</l><l>A solace here I find,</l><l>May Jesus Christ be praised!</l><l>Or fades my earthly bliss?</l><l>My comfort still is this,</l><l>May Jesus Christ be praised!</l></lg>
+<lg label="4."><l>When evil thoughts molest,</l><l>With this I shield my breast,</l><l>May Jesus Christ be praised!</l><l>The powers of darkness fear,</l><l>When this sweet chant they hear,</l><l>May Jesus Christ be praised!</l></lg>
+<lg label="5."><l>When sleep her balm denies,</l><l>My silent spirit sighs,</l><l>May Jesus Christ be praised!</l><l>The night becomes as day,</l><l>When from the heart we say,</l><l>May Jesus Christ be praised!</l></lg>
+<lg label="6."><l>Be this, while life is mine,</l><l>My canticle divine,</l><l>May Jesus Christ be praised!</l><l>Be this th’ eternal song</l><l>Through all the ages long,</l><l>May Jesus Christ be praised!</l></lg>
+</div>
+</back>
+</music></mei>

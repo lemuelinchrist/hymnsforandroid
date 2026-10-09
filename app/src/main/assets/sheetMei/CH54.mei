@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Hold out your hands! Aren’t they wonderful</title>
+<title type="subordinate">Gospel—God’s Creation</title>
+</titleStmt><pubStmt><identifier type="hymn">CH54</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Hold</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="8">
+<verse n="1"><syl>out</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="8"/>
+<note xml:id="n4" pname="g" oct="4" dur="8">
+<verse n="1"><syl>your</syl></verse></note>
+</beam>
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl>hands!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<tie startid="#n2" endid="#n3"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Aren’t</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="4">
+<verse n="1"><syl>they</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">won</syl></verse></note>
+<note xml:id="n9" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
+</beam>
+<note xml:id="n10" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ful,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n11" pname="f" oct="4" dur="8">
+<verse n="1"><syl>So</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">man</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="8"/>
+<note xml:id="n14" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">y</syl></verse></note>
+</beam>
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl>things</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="d" oct="4" dur="8">
+<verse n="1"><syl>that</syl></verse></note>
+<note xml:id="n17" pname="c" oct="4" dur="8">
+<verse n="1"><syl>your</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<tie startid="#n12" endid="#n13"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="3" dur="4">
+<verse n="1"><syl>hands</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="4">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n20" pname="e" oct="4" dur="2">
+<verse n="1"><syl>do—</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n21" pname="c" oct="4" dur="8">
+<verse n="1"><syl>Catch</syl></verse></note>
+<note xml:id="n22" pname="b" oct="3" dur="8">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n23" pname="c" oct="4" dur="4">
+<verse n="1"><syl>ball,</syl></verse></note>
+<beam>
+<note xml:id="n24" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">o</syl></verse></note>
+<note xml:id="n25" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">pen</syl></verse></note>
+<note xml:id="n26" pname="c" oct="4" dur="16">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n27" pname="d" oct="4" dur="4">
+<verse n="1"><syl>can,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n28" pname="e" oct="4" dur="8">
+<verse n="1"><syl>peel</syl></verse></note>
+<note xml:id="n29" pname="e" oct="4" dur="8">
+<verse n="1"><syl>an</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">or</syl></verse></note>
+<note xml:id="n31" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ange</syl></verse></note>
+</beam>
+<note xml:id="n32" pname="f" oct="4" dur="2">
+<verse n="1"><syl>too—</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n33" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Throw</syl></verse></note>
+<note xml:id="n34" pname="e" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+<note xml:id="n35" pname="e" oct="4" dur="4">
+<verse n="1"><syl>clap,</syl></verse></note>
+<beam>
+<note xml:id="n36" pname="d" oct="4" dur="8">
+<verse n="1"><syl>zip</syl></verse></note>
+<note xml:id="n37" pname="d" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n38" pname="e" oct="4" dur="8">
+<verse n="1"><syl>snap,</syl></verse></note>
+<note xml:id="n39" pname="d" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="e" oct="4" dur="4">
+<verse n="1"><syl>wave</syl></verse></note>
+<note xml:id="n41" pname="g" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n42" pname="a" oct="4" dur="2">
+<verse n="1"><syl>you.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E7</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+</section></score></mdiv></body>
+</music></mei>

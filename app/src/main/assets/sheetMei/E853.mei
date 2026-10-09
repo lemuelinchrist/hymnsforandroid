@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">I love Thy kingdom, Lord</title>
+<title type="subordinate">The Church—Her Attraction</title>
+</titleStmt><pubStmt><identifier type="hymn">E853</identifier><identifier type="number">853</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">king</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">dom,</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">C/E</harm>
+<harm staff="1" tstamp="4.5000" place="above">G7/D</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="a" oct="4" dur="8">
+<verse n="1"><syl>The</syl></verse></note>
+<note xml:id="n9" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+<harm staff="1" tstamp="4.5000" place="above">C7/G</harm>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="4">
+<verse n="1"><syl>house</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="b" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n13" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Thine</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">C7/G</harm>
+<harm staff="1" tstamp="2.5000" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">bode,</syl></verse></note>
+<note xml:id="n16" pname="c" oct="5" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C7/E</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Church</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>blest</syl></verse></note>
+<note xml:id="n20" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C7/B♭</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">deem</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n23" pname="c" oct="5" dur="4">
+<verse n="1"><syl>bought</syl></verse></note>
+<note xml:id="n24" pname="c" oct="5" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">F/A</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="d" oct="5" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="c" oct="5" dur="8">
+<verse n="1"><syl>own</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pre</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cious</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="2" place="above">F/A</harm>
+<harm staff="1" tstamp="2.5000" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<harm staff="1" tstamp="4" place="above">C7</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>blood.</syl></verse></note>
+<rest xml:id="r31" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>I love the Church, O God!</l><l>Her walls before Thee stand,</l><l>Dear as the apple of Thine eye</l><l>And graven on Thy hand.</l></lg>
+<lg label="3."><l>For her my tears shall fall,</l><l>For her my prayers ascend;</l><l>To her my cares and toils be given</l><l>Till toils and cares shall end.</l></lg>
+<lg label="4."><l>Beyond my highest joy</l><l>I prize her heavenly ways,</l><l>Her sweet communion, solemn vows,</l><l>Her hymns of love and praise.</l></lg>
+<lg label="5."><l>Sure as Thy truth shall last,</l><l>To Zion shall be given</l><l>The brightest glories earth can yield,</l><l>And brighter bliss of heaven.</l></lg>
+</div>
+</back>
+</music></mei>

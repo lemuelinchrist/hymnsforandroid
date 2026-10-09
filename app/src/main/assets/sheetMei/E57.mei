@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The image of the Father God</title>
+<title type="subordinate">Praise of the Lord—His Divinity</title>
+</titleStmt><pubStmt><identifier type="hymn">E57</identifier><identifier type="number">57</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="c" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">im</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">age</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n6" pname="c" oct="5" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ther</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4"/>
+<note xml:id="n11" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Lord,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m7</harm>
+<slur startid="#n9" endid="#n10"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="e" oct="4" dur="2">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">hold</syl></verse></note>
+<note xml:id="n15" pname="c" oct="5" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Thee;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♭</harm>
+<tie startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="b" oct="4" dur="2"/>
+<beam>
+<note xml:id="n18" pname="c" oct="5" dur="8"/>
+<note xml:id="n19" pname="d" oct="5" dur="8">
+<verse n="1"><syl>The</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="e" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">ful</syl></verse></note>
+<note xml:id="n21" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="2">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n23" pname="c" oct="5" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">God</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">head</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl>true</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4"/>
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="e" oct="4" dur="2">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>dwells</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">bod</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/A♭</harm>
+<tie startid="#n33" endid="#n34"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="a" oct="4" dur="2"/>
+<rest xml:id="r35" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Lord, Thou art God’s eternal Word</l><l>With life divine in Thee;</l><l>In Thee His grace we all receive</l><l>With His reality.</l></lg>
+<lg label="3."><l>Effulgence of God’s glory true,</l><l>The Son of God art Thou;</l><l>The very substance of Himself</l><l>In Thee we all avow.</l></lg>
+<lg label="4."><l>Embodiment of God Thou art,</l><l>And with Him ever one;</l><l>In Thee is God expressed to us</l><l>Beyond comparison.</l></lg>
+<lg label="5."><l>God we enjoy in Thee, dear Lord,</l><l>As life and everything;</l><l>To Thee and God our heartfelt thanks</l><l>And praise we’ll ever bring.</l></lg>
+</div>
+</back>
+</music></mei>

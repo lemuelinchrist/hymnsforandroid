@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Glorious, mighty Name of Jesus</title>
+<title type="subordinate">Praise of the Lord—His Name</title>
+</titleStmt><pubStmt><identifier type="hymn">E73</identifier><identifier type="number">73</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="9" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Glor</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ious,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">might</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4"/>
+<note xml:id="n5" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">y</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Name</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="8"/>
+<note xml:id="n8" pname="f" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="7" place="above">D/F♯</harm>
+<tie startid="#n3" endid="#n4"/>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="7" place="above">Em/G</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n14" pname="e" oct="4" dur="4"/>
+<note xml:id="n15" pname="a" oct="4" dur="8">
+<verse n="1"><syl>dear</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="b" oct="4" dur="8"/>
+<note xml:id="n17" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Name</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="7" place="above">A7/C♯</harm>
+<tie startid="#n13" endid="#n14"/>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>flee;</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="4" dots="1"/>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>“Set</syl></verse></note>
+<note xml:id="n22" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="7" place="above">G/D</harm>
+<tie startid="#n19" endid="#n20"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">loft,”</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="4"/>
+<note xml:id="n25" pname="a" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="b" oct="4" dur="8"/>
+<note xml:id="n27" pname="d" oct="5" dur="8">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="7" place="above">G</harm>
+<tie startid="#n23" endid="#n24"/>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">wor</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ship,</syl></verse></note>
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n32" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="7" place="above">Bm</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Name</syl></verse></note>
+<note xml:id="n34" pname="e" oct="4" dur="4"/>
+<note xml:id="n35" pname="f" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+<beam>
+<note xml:id="n36" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">vic</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="8"/>
+<note xml:id="n38" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">to</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em/G</harm>
+<harm staff="1" tstamp="7" place="above">A7</harm>
+<tie startid="#n33" endid="#n34"/>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ry!</syl></verse></note>
+<note xml:id="n40" pname="d" oct="4" dur="4" dots="1"/>
+<rest xml:id="r41" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
+<tie startid="#n39" endid="#n40"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Blessed Jesus! Mighty Savior!</l><l>In Thy Name is all I need;</l><l>Just to breathe the Name of Jesus,</l><l>Is to drink of Life indeed.</l></lg>
+<lg label="3."><l>Glorious, mighty Name of Jesus,</l><l>Heav’n and earth its pow’r proclaim;</l><l>But forgiven sinners only,</l><l>Know the balm of Jesus’ Name.</l></lg>
+<lg label="4."><l>Jesus! Jesus! Name most precious,</l><l>Balm in pain or mighty sword;</l><l>In Thy Name, we live and conquer,</l><l>Blessed, glorious, coming Lord.</l></lg>
+</div>
+</back>
+</music></mei>

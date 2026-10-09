@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Jesus, Fountain of my days (New Tune)</title>
+<title type="subordinate">Experience of Christ — As Everything</title>
+</titleStmt><pubStmt><identifier type="hymn">BF447</identifier><identifier type="number">525</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Foun</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">tain</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="16">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="8"/>
+<note xml:id="n7" pname="g" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<harm staff="1" tstamp="3" place="above">B/D♯</harm>
+<tie startid="#n5" endid="#n6"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="g" oct="4" dur="2">
+<verse n="1"><syl>days,</syl></verse></note>
+<beam>
+<note xml:id="n9" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Well</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">spring</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n12" pname="e" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C♯m</harm>
+<harm staff="1" tstamp="3" place="above">E/B</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="a" oct="4" dur="2">
+<verse n="1"><syl>heart’s</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">E</harm>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="f" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">light,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Bright</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="f" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n19" pname="e" oct="4" dur="16">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="16"/>
+<note xml:id="n21" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">morn</syl></verse></note>
+<note xml:id="n22" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<harm staff="1" tstamp="3" place="above">B/D♯</harm>
+<tie startid="#n20" endid="#n21"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="g" oct="4" dur="2">
+<verse n="1"><syl>rays,</syl></verse></note>
+<beam>
+<note xml:id="n24" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">So</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">lace</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C♯m</harm>
+<harm staff="1" tstamp="3" place="above">E/B</harm>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="a" oct="4" dur="2">
+<verse n="1"><syl>hours</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="2">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">E</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="f" oct="4" dur="2">
+<verse n="1"><syl>night;</syl></verse></note>
+<beam>
+<note xml:id="n31" pname="g" oct="4" dur="8">
+<verse n="1"><syl>When</syl></verse></note>
+<note xml:id="n32" pname="f" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n33" pname="e" oct="4" dur="8">
+<verse n="1"><syl>see</syl></verse></note>
+<note xml:id="n34" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Thee,</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="g" oct="4" dur="2">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n36" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C♯m</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">rise</syl></verse></note>
+<beam>
+<note xml:id="n38" pname="g" oct="4" dur="8">
+<verse n="1"><syl>To</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n40" pname="e" oct="4" dur="8">
+<verse n="1"><syl>hope</syl></verse></note>
+<note xml:id="n41" pname="f" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">cloud</syl></verse></note>
+<note xml:id="n43" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">less</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="3" place="above">B7</harm>
+</measure>
+<measure n="12" right="end"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>skies.</syl></verse></note>
+<rest xml:id="r45" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Oh, how weary were the years</l><l>Ere Thy form to me was known;</l><l>Oh, how gloomy were the fears</l><l>When I seemed to be alone;</l><l>I despaired the storm to brave</l><l>Till Thy footprints touched the wave.</l></lg>
+<lg label="3."><l>But Thy presence on the deep</l><l>Calmed the pulses of the sea,</l><l>And the waters sank to sleep</l><l>In the rest of seeing Thee;</l><l>And my once rebellious will</l><l>Heard the mandate, Peace, be still!</l></lg>
+<lg label="4."><l>Now Thy will and mine are one,</l><l>Heart in heart, and hand in hand;</l><l>All the clouds have touched the sun,</l><l>And the ships have reached the land;</l><l>For Thy love has said to me,</l><l>No more night! and No more sea!</l></lg>
+</div>
+</back>
+</music></mei>

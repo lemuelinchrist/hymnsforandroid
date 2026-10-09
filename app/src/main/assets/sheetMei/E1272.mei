@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The birthright God has giv’n to us</title>
+<title type="subordinate">The Church—The Overcomers</title>
+</titleStmt><pubStmt><identifier type="hymn">E1272</identifier><identifier type="number">1272</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">birth</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">right</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="c" oct="5" dur="8">
+<verse n="1"><syl>has</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl>giv’n</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="g" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n11" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Must</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="e" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl>goal,</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">D7/A</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<harm staff="1" tstamp="4" place="above">Am/C</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">high</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">est</syl></verse></note>
+<note xml:id="n18" pname="d" oct="4" dur="4">
+<verse n="1"><syl>prize,</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="4">
+<verse n="1"><syl>For</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="2" place="above">A7</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>we’re</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl>church</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="c" oct="5" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">first-</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">born—</syl></verse></note>
+<note xml:id="n29" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Let</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="e" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n32" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">por</syl></verse></note>
+<beam>
+<note xml:id="n33" pname="b" oct="4" dur="8"/>
+<note xml:id="n34" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">lize!</syl></verse></note>
+<rest xml:id="r38" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<fermata startid="#n37" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>A double portion of the land</l><l>Was Joseph’s birthright—and ’tis ours</l><l>If we our garments keep from sin,</l><l>And stay pure in temptation’s hour.</l></lg>
+<lg label="3."><l>The priesthood was to Levi giv’n</l><l>As his inheritance—for he</l><l>Did count his family ties but loss</l><l>And owned God’s things supreme to be.</l></lg>
+<lg label="4."><l>The kingship, Judah did receive</l><l>For tending to young Joseph’s need;</l><l>Through Benjamin’s adversity,</l><l>He was his comforter indeed.</l></lg>
+<lg label="5."><l>The double portion we would seek,</l><l>The priesthood and the kingship too;</l><l>Make us so desperate, Lord, for Thee</l><l>That Thee, our birthright, we’d pursue.</l></lg>
+<lg label="6."><l>We would be those who pay the price,</l><l>Deny the soul, reject the self;</l><l>Ambitious for the birthright thus</l><l>We’d gain Thee, Lord, above all else.</l></lg>
+<lg label="7."><l>The promise, Lord, ’twas giv’n to us,</l><l>Oh, let us ne’er this right despise;</l><l>Enflame us, Lord, to gain Thyself,</l><l>And Thee, our birthright realize.</l></lg>
+</div>
+</back>
+</music></mei>

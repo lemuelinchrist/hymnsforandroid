@@ -971,6 +971,64 @@ where checked by eye; see `ACCEPT_DB_MISMATCH`), and the REVIEW table above.
 
 ---
 
+## 19. In-app viewer (branch `ly-viewer`, started 2026-10-09)
+
+**Goal (Lemuel, 2026-10-09):** the app renders sheet music from our sources instead of shipping hymnal.net's SVGs.
+For now it is an *extra* viewer behind a setting ("New Sheet Music Viewer", off by default); the SVG viewer stays
+the default and the fallback. Work on branch `ly-viewer`, kept apart from v5.5.
+
+**Route chosen: `.ly` -> MEI at build time, Verovio in the existing WebView.**
+- Android cannot run LilyPond. Verovio (LGPL-3.0, C++ compiled to WebAssembly, `verovio-toolkit-wasm.js`, 7.3 MB,
+  ~2.3 MB compressed) engraves MEI/MusicXML to SVG in the browser, lays out to any width (`breaks: auto`), and can
+  transpose. The sheet activity is already a WebView, so no native code is needed.
+- MEI rather than MusicXML: Verovio's own format, so chord symbols (`<harm>`), verse labels, voltas (`<ending>`),
+  repeat bars, ties/slurs as control events and system breaks (`<sb/>`) map one to one. MusicXML export can be
+  added later from the same parser if wanted for sharing.
+- Conversion in Python at build time (`tools/ly_to_mei.py`), not in the app: it is checked on the whole corpus here,
+  and the app only ships the result. Only our `.ly` dialect is parsed (absolute pitches, one `|` per bar in melody and
+  harmonies, lyrics with `ignoreMelismata` = one token per note); any unknown construct raises instead of being dropped.
+- Rejected: OpenSheetMusicDisplay (MusicXML only, weaker lyrics layout, no chord-symbol transposition);
+  a custom Canvas renderer (most work; keep in mind if Verovio's look or size is a problem); pre-rendered LilyPond
+  SVGs per width/key (no reflow, many files).
+
+**What goes where.**
+- `app/src/main/assets/sheetMei/<id>.mei`: one file per hymn, generated from `ly/piano/` (3,179 files, 36 MB raw,
+  ~11 KB each, compresses well in the APK; the two SVG folders are 630 MB raw). Regenerate with
+  `python3 tools/ly_to_mei.py --all --out ../app/src/main/assets/sheetMei`.
+- The MEI holds the music: melody, chords, the lyric lines under the staff, the original system breaks.
+  Title, subtitle and number go in `meiHead`; the verse block under the music and any chords printed after the
+  last bar go in `<back>` as plain text, so the page lays them out as HTML (system fonts, so CJK renders properly,
+  §11.5).
+- `app/src/main/assets/viewer/`: `index.html`, `viewer.css`, `viewer.js`, `verovio-toolkit-wasm.js` (unmodified,
+  npm `verovio` 6.3.0, notice in `VEROVIO-NOTICE.txt`).
+- `SheetMusicActivity`: if the setting is on and `sheetMei/<id>.mei` exists, load
+  `https://appassets.androidplatform.net/assets/viewer/index.html?id=<id>&variant=piano|guitar&dark=0|1` through
+  `WebViewAssetLoader` (androidx.webkit; the page must `fetch` the MEI, which file:// URLs do not allow); otherwise
+  the SVG as before. Variant follows the existing "Sheet Music Type" setting; `dark` follows Night Mode.
+
+**Guitar is derived in the viewer (single source, §10):** capo from the key signature with the same table as
+`guitar_from_piano.py`, chords moved down by the capo as an interval, slash basses dropped, a chord equal to the one
+before it removed, "(Guitar: Capo N)" / "(吉他: Capo N)" under the title. The rule "keep a repeated chord at a system
+start" cannot apply because the viewer chooses the line breaks.
+
+**Layout.** Page width = screen width; `scale` 40 (pinch to zoom changes the scale and lays the music out again, so it
+reflows instead of running off the screen); `lyricWordSpace` 3 (the default 1.2 lets words touch: "Andto Christthe");
+night mode inverts the music SVG. `fontTextLiberation` on: Verovio spaces lyrics with Times widths, and Android has
+no Times, so the wider fallback serif made syllables touch ("throughout", "Spir-it"); Liberation Serif has Times widths
+and is embedded in the SVG. The number in the corner is the hymn ID (E1, NS576, C103), since NS and CH sheets have
+no printed number; a hidden copy on the left keeps the title centred. Stanzas below the music all get the width of
+the widest, so they share one left edge (one column on a phone, two when they fit).
+
+**Checks (2026-10-09).** `ly_to_mei.py --all`: 3,179/3,179 convert; syllable count = note count for every lyric line.
+All 3,179 MEI load and render in Verovio 6.3.0 (python package) with no errors; the only warnings left are systems
+compressed below 0.8 at 1000 units width in a few long-bar hymns. Headless Chrome screenshots of E1 (piano), NS576
+(guitar, capo 3, voltas, triplets) and C103 (guitar, Chinese) look right; the same three on the emulator (Pixel 9 Pro XL)
+look right after the three fixes above.
+
+**Open.** First-load time of the 7 MB toolkit on a phone; WebView without
+WebAssembly (very old System WebView) falls back to an error line - consider falling back to the SVG; a text-size setting; transposition UI; share button (still shares the SVG);
+melody playback is unchanged (MIDI).
+
 ## 16. Tools & data in this folder
 
 | Path | What |
@@ -987,6 +1045,7 @@ where checked by eye; see `ACCEPT_DB_MISMATCH`), and the REVIEW table above.
 | `ly/` | **Committed** generated `.ly` for the accepted sheets (3,179 piano, 3,179 guitar) + `status.csv` + README. Never hand-edit; refresh after significant converter changes. |
 | `tools/tune_mismatch_report.py` | Lists hymns whose DB tune code disagrees with the sheet (writes `build/db_tune_mismatches.txt`). |
 | `tools/svg_text_to_paths.py` | Outlines the `<text>` of a LilyPond SVG so it needs no installed fonts (section 15.1). |
+| `tools/ly_to_mei.py` | `.ly` -> MEI for the in-app Verovio viewer (§19); `--all`, `--render` |
 | `tools/guitar_from_piano.py` | Derives the guitar `.ly` from the piano `.ly` (section 10.2): `--all`, `--compile`, `--check`. |
 | `tools/transpose_check.py` | `\transpose` round-trip and semitone check for converted hymns (section 15.1). |
 | `build/` | Generated renders, contact sheets. Git-ignored and safe to delete. |
@@ -1041,3 +1100,5 @@ Python 3.12 with fontTools/numpy/Pillow.
   first note to its own line under the title (as in hymnal.net's sheets; the first-note markup collided with the first
   chord); all 415 C/CS sheets still fit one page. `ly/guitar/` and its `status.csv` rows removed; the guitar `.ly` is
   now derived on demand and not stored.
+- **2026-10-09:** In-app viewer started on branch `ly-viewer` (§19): `tools/ly_to_mei.py` (all 3,179 convert, all
+  render in Verovio), viewer page with Verovio in the WebView, guitar derived in JS, setting "New Sheet Music Viewer".

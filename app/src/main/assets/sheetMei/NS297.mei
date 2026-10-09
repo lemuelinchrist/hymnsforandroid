@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Buried? Yes, but it is seed</title>
+<title type="subordinate">Service—By being Buried</title>
+</titleStmt><pubStmt><identifier type="hymn">NS297</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Bur</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ied?</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="e" oct="4" dur="2">
+<verse n="1"><syl>Yes,</syl></verse></note>
+<note xml:id="n4" pname="c" oct="4" dur="4">
+<verse n="1"><syl>but</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="b" oct="4" dur="2">
+<verse n="1"><syl>it</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7/E</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>seed</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="c" oct="5" dur="2">
+<verse n="1"><syl>From</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>which</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Con</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4"/>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ti</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">nents</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>may</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>feed;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Mil</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">lions</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>yet</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="8"/>
+<note xml:id="n20" pname="c" oct="4" dur="4">
+<verse n="1"><syl>may</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="b" oct="4" dur="2">
+<verse n="1"><syl>bless</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7/E</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>day</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="c" oct="5" dur="2">
+<verse n="1"><syl>When</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>seed</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="4"/>
+<note xml:id="n28" pname="d" oct="5" dur="4">
+<verse n="1"><syl>was</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="f" oct="4" dur="2">
+<verse n="1"><syl>laid</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Buried! hidden! out of sight!</l><l>Dwelling in the deepest night;</l><l>Losing, underneath the sod,</l><l>Everything, except its God.</l></lg>
+<lg label="3."><l>Buried, unremember’d, lost</l><l>So thinks man: but all the cost</l><l>God has counted to display</l><l>Life abundant one glad day.</l></lg>
+<lg label="4."><l>Art thou buried? God’s pure seed</l><l>Doth thy heart in silence bleed?</l><l>Change thy sighing into song,</l><l>Thus alone can harvests come.</l></lg>
+</div>
+</back>
+</music></mei>

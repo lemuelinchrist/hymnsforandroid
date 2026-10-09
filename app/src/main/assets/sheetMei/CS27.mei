@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">在榮耀裡有一人</title>
+<title type="subordinate">讚美的話</title>
+</titleStmt><pubStmt><identifier type="hymn">CS27</identifier><identifier type="number">Cs27</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="a" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>在</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="8">
+<verse n="1"><syl>榮</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="a" oct="4" dur="2">
+<verse n="1"><syl>耀</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="4">
+<verse n="1"><syl>裡</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl>有</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="b" oct="4" dur="2">
+<verse n="1"><syl>一</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="4">
+<verse n="1"><syl>人，</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4">
+<verse n="1"><syl>祂</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="c" oct="5" dur="4">
+<verse n="1"><syl>的</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>生</syl></verse></note>
+<note xml:id="n11" pname="c" oct="5" dur="4">
+<verse n="1"><syl>命</syl></verse></note>
+<note xml:id="n12" pname="d" oct="5" dur="4">
+<verse n="1"><syl>是</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">D♭</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="c" oct="5" dur="2">
+<verse n="1"><syl>為</syl></verse></note>
+<note xml:id="n14" pname="b" oct="4" dur="4">
+<verse n="1"><syl>我。</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl>祂</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="a" oct="4" dur="2">
+<verse n="1"><syl>是</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl>完</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>全</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>聖</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="4"/>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>潔，</syl></verse></note>
+<note xml:id="n22" pname="c" oct="5" dur="4">
+<verse n="1"><syl>自</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="g" oct="4" dur="2">
+<verse n="1"><syl>由</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>且</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="8">
+<verse n="1"><syl>超</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>脫，</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="4">
+<verse n="1"><syl>祂</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="e" oct="5" dur="2">
+<verse n="1"><syl>是</syl></verse></note>
+<note xml:id="n29" pname="d" oct="5" dur="4">
+<verse n="1"><syl>全</syl></verse></note>
+<note xml:id="n30" pname="c" oct="5" dur="4">
+<verse n="1"><syl>智、</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="d" oct="5" dur="2">
+<verse n="1"><syl>仁</syl></verse></note>
+<note xml:id="n32" pname="c" oct="5" dur="4">
+<verse n="1"><syl>慈，</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="4">
+<verse n="1"><syl>祂</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7/G</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="b" oct="4" dur="4">
+<verse n="1"><syl>是</syl></verse></note>
+<note xml:id="n35" pname="c" oct="5" dur="4"/>
+<note xml:id="n36" pname="a" oct="4" dur="4">
+<verse n="1"><syl>何</syl></verse></note>
+<note xml:id="n37" pname="b" oct="4" dur="4">
+<verse n="1"><syl>溫</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<slur startid="#n34" endid="#n35"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>柔！</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="8"/>
+<note xml:id="n40" pname="e" oct="4" dur="4"/>
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl>祂</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+<slur startid="#n38" endid="#n40"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="a" oct="4" dur="4">
+<verse n="1"><syl>榮</syl></verse></note>
+<note xml:id="n43" pname="g" oct="4" dur="4">
+<verse n="1"><syl>耀</syl></verse></note>
+<note xml:id="n44" pname="a" oct="4" dur="4">
+<verse n="1"><syl>裡</syl></verse></note>
+<note xml:id="n45" pname="b" oct="4" dur="4">
+<verse n="1"><syl>的</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="a" oct="4" dur="2">
+<verse n="1"><syl>生</syl></verse></note>
+<note xml:id="n47" pname="e" oct="4" dur="4">
+<verse n="1"><syl>命</syl></verse></note>
+<note xml:id="n48" pname="c" oct="5" dur="4">
+<verse n="1"><syl>乃</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="c" oct="5" dur="4">
+<verse n="1"><syl>是</syl></verse></note>
+<note xml:id="n50" pname="b" oct="4" dur="4"/>
+<note xml:id="n51" pname="c" oct="5" dur="4">
+<verse n="1"><syl>為</syl></verse></note>
+<note xml:id="n52" pname="d" oct="5" dur="4">
+<verse n="1"><syl>著</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">D♭</harm>
+<slur startid="#n49" endid="#n50"/>
+</measure>
+<sb/>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="c" oct="5" dur="2">
+<verse n="1"><syl>我。</syl></verse></note>
+<note xml:id="n54" pname="b" oct="4" dur="4"/>
+<note xml:id="n55" pname="c" oct="5" dur="4">
+<verse n="1"><syl>祂</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+<slur startid="#n53" endid="#n54"/>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n56" pname="d" oct="5" dur="4">
+<verse n="1"><syl>榮</syl></verse></note>
+<note xml:id="n57" pname="c" oct="5" dur="4">
+<verse n="1"><syl>耀</syl></verse></note>
+<note xml:id="n58" pname="b" oct="4" dur="4">
+<verse n="1"><syl>裡</syl></verse></note>
+<note xml:id="n59" pname="a" oct="4" dur="4">
+<verse n="1"><syl>的</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n60" pname="g" oct="4" dur="2">
+<verse n="1"><syl>生</syl></verse></note>
+<note xml:id="n61" pname="a" oct="4" dur="4">
+<verse n="1"><syl>命</syl></verse></note>
+<note xml:id="n62" pname="d" oct="5" dur="4">
+<verse n="1"><syl>乃</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">D♭</harm>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n63" pname="c" oct="5" dur="2">
+<verse n="1"><syl>是</syl></verse></note>
+<note xml:id="n64" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>為</syl></verse></note>
+<note xml:id="n65" pname="a" oct="4" dur="8">
+<verse n="1"><syl>著</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<measure n="21" right="end"><staff n="1"><layer n="1">
+<note xml:id="n66" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>我。</syl></verse></note>
+<rest xml:id="r67" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭/A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>在榮耀裡有一人，</l><l>祂的生命是為我。</l><l>在祂全無疾病，</l><l>祂毫無軟弱，</l><l>祂是剛強、有力，</l><l>且能往上浮！</l><l>祂榮耀裡的生命</l><l>乃是為著我。</l><l>祂榮耀裡的生命</l><l>乃是為著我。</l></lg>
+<lg label="3."><l>在榮耀裡有一人，</l><l>祂的生命是為我。</l><l>祂勝過了死亡，</l><l>拘禁全脫落，</l><l>在復活裡作王，</l><l>權柄手中握！</l><l>祂榮耀裡的生命</l><l>乃是為著我。</l><l>祂榮耀裡的生命</l><l>乃是為著我。</l></lg>
+<lg label="4."><l>在榮耀裡有一人，</l><l>祂的生命是為我。</l><l>祂的平安長存，</l><l>不怕何風波，</l><l>祂喜樂，發光輝，</l><l>盼望而等著，</l><l>祂榮耀裡的生命</l><l>從我裡透過。</l><l>祂榮耀裡的生命</l><l>從我裡透過。</l></lg>
+</div>
+</back>
+</music></mei>

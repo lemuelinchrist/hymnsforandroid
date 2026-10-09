@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">世人看你不過仍是</title>
+<title type="subordinate">聖靈的豐滿－恩賜的靈</title>
+</titleStmt><pubStmt><identifier type="hymn">C198</identifier><identifier type="number">C198</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>世</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="8">
+<verse n="1"><syl>人</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>看</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="8">
+<verse n="1"><syl>你</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n5" pname="g" oct="4" dur="8">
+<verse n="1"><syl>不</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="8"/>
+<note xml:id="n7" pname="e" oct="4" dur="8">
+<verse n="1"><syl>過</syl></verse></note>
+<note xml:id="n8" pname="d" oct="4" dur="8"/>
+</beam>
+<beam>
+<note xml:id="n9" pname="d" oct="4" dur="8">
+<verse n="1"><syl>仍</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl>是</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n5" endid="#n6"/>
+<slur startid="#n7" endid="#n8"/>
+<slur startid="#n9" endid="#n10"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl>平</syl></verse></note>
+<beam>
+<note xml:id="n13" pname="b" oct="4" dur="8">
+<verse n="1"><syl>常</syl></verse></note>
+<note xml:id="n14" pname="c" oct="5" dur="8" accid="s" accid.ges="s"/>
+</beam>
+<note xml:id="n15" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl>的</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="8">
+<verse n="1"><syl>拿</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+<slur startid="#n13" endid="#n14"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="f" oct="4" dur="4">
+<verse n="1"><syl>撒</syl></verse></note>
+<note xml:id="n18" pname="e" oct="4" dur="4">
+<verse n="1"><syl>勒</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="2">
+<verse n="1"><syl>人，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>活</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8">
+<verse n="1"><syl>在</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="g" oct="4" dur="8">
+<verse n="1"><syl>地</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="8"/>
+<note xml:id="n24" pname="e" oct="4" dur="8">
+<verse n="1"><syl>上</syl></verse></note>
+<note xml:id="n25" pname="d" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+<slur startid="#n22" endid="#n23"/>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>常</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl>受</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>輕</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="4">
+<verse n="1"><syl>視，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>十</syl></verse></note>
+<note xml:id="n31" pname="b" oct="4" dur="8">
+<verse n="1"><syl>字</syl></verse></note>
+<beam>
+<note xml:id="n32" pname="a" oct="4" dur="8">
+<verse n="1"><syl>架</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="8"/>
+<note xml:id="n34" pname="f" oct="4" dur="8">
+<verse n="1"><syl>上</syl></verse></note>
+<note xml:id="n35" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<slur startid="#n32" endid="#n33"/>
+<slur startid="#n34" endid="#n35"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="d" oct="4" dur="4">
+<verse n="1"><syl>終</syl></verse></note>
+<note xml:id="n37" pname="c" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>捨</syl></verse></note>
+<note xml:id="n38" pname="d" oct="4" dur="2">
+<verse n="1"><syl>身。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="2" place="above">A7</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>從</syl></verse></note>
+<note xml:id="n40" pname="g" oct="4" dur="8">
+<verse n="1"><syl>人</syl></verse></note>
+<beam>
+<note xml:id="n41" pname="g" oct="4" dur="8">
+<verse n="1"><syl>眼</syl></verse></note>
+<note xml:id="n42" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n43" pname="f" oct="4" dur="4">
+<verse n="1"><syl>光</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+<slur startid="#n41" endid="#n42"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>你</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="8">
+<verse n="1"><syl>的</syl></verse></note>
+<beam>
+<note xml:id="n46" pname="e" oct="4" dur="8">
+<verse n="1"><syl>歷</syl></verse></note>
+<note xml:id="n47" pname="d" oct="4" dur="8"/>
+</beam>
+<note xml:id="n48" pname="d" oct="4" dur="4">
+<verse n="1"><syl>史</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<slur startid="#n46" endid="#n47"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>到</syl></verse></note>
+<note xml:id="n50" pname="b" oct="4" dur="8">
+<verse n="1"><syl>此</syl></verse></note>
+<note xml:id="n51" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>已</syl></verse></note>
+<note xml:id="n52" pname="c" oct="5" dur="8">
+<verse n="1"><syl>經</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="12" right="end"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="b" oct="4" dur="4">
+<verse n="1"><syl>無</syl></verse></note>
+<note xml:id="n54" pname="a" oct="4" dur="4">
+<verse n="1"><syl>下</syl></verse></note>
+<note xml:id="n55" pname="g" oct="4" dur="2">
+<verse n="1"><syl>文。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>天上情形何等不同！</l><l>當你升天的時候，</l><l>榮耀的神因你順從，</l><l>已命宇宙在等候，</l><l>準備迎接、準備歌頌</l><l>你作宇宙的元首。</l></lg>
+<lg label="3."><l>神已設立你為基督，</l><l>神已設立你為主，</l><l>天上地下已經無處</l><l>不知你今的特獨，</l><l>沒有一個能不俯伏，</l><l>沒有一個不順服。</l></lg>
+<lg label="4."><l>遠在天上發生的事，</l><l>我今如何能知情？</l><l>因神要證此事屬實，</l><l>祂就從天降聖靈，</l><l>在我身上成為恩賜，</l><l>來證耶穌得權柄。</l></lg>
+<lg label="5."><l>我身所顯聖靈停駐，</l><l>證明耶穌是基督，</l><l>神立基督若是耶穌，</l><l>我身必有聖靈注；</l><l>永遠真實、永遠堅固，</l><l>拿撒勒人已是主。</l></lg>
+<lg label="6."><l>耶穌是主！耶穌是主！</l><l>永不改變的事實！</l><l>我被聖靈已經灌注，</l><l>也是事實的恩賜；</l><l>我今只能讚美稱祝，</l><l>聖靈恩賜已開始。</l></lg>
+</div>
+</back>
+</music></mei>

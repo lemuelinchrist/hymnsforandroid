@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">O soul-inspiring story</title>
+<title type="subordinate">Praise of the Lord—His Humanity</title>
+</titleStmt><pubStmt><identifier type="hymn">E64</identifier><identifier type="number">64</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">soul-</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="d" oct="4" dur="8" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="m" con="d">in</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">spir</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+<slur startid="#n3" endid="#n4"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">sto</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ry—</syl></verse></note>
+<note xml:id="n9" pname="c" oct="4" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A/C♯</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ma</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">jest</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n13" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">y</syl></verse></note>
+<note xml:id="n14" pname="d" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm7</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl>grace</syl></verse></note>
+<note xml:id="n16" pname="e" oct="4" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">lust</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="d" oct="4" dur="8" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="t">rous</syl></verse></note>
+<note xml:id="n19" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl>strokes</syl></verse></note>
+<beam>
+<note xml:id="n21" pname="g" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">E/G♯</harm>
+<slur startid="#n18" endid="#n19"/>
+<slur startid="#n21" endid="#n22"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Deep-</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">carved</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">sus’</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+<slur startid="#n29" endid="#n30"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>face!</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Hearts</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>rapt</syl></verse></note>
+<note xml:id="n34" pname="c" oct="5" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n35" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
+<beam>
+<note xml:id="n36" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="m" con="d">tem</syl></verse></note>
+<note xml:id="n37" pname="b" oct="4" dur="8" accid="s" accid.ges="s"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E/G♯</harm>
+<harm staff="1" tstamp="3" place="above">E</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="m" con="d">pla</syl></verse></note>
+<note xml:id="n39" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<note xml:id="n40" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A/C♯</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">God</syl></verse></note>
+<note xml:id="n42" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">head’s</syl></verse></note>
+<note xml:id="n43" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Im</syl></verse></note>
+<note xml:id="n44" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">age</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="3" place="above">B7</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>bright,</syl></verse></note>
+<note xml:id="n46" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Break</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm7/D</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<sb/>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="e" oct="4" dur="4">
+<verse n="1"><syl>forth</syl></verse></note>
+<beam>
+<note xml:id="n48" pname="d" oct="4" dur="8" accid="s" accid.ges="s">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n49" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n50" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<beam>
+<note xml:id="n51" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">do</syl></verse></note>
+<note xml:id="n52" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">E/G♯</harm>
+<slur startid="#n48" endid="#n49"/>
+<slur startid="#n51" endid="#n52"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="m" con="d">ra</syl></verse></note>
+<note xml:id="n54" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tion,</syl></verse></note>
+<note xml:id="n55" pname="f" oct="4" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n56" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">won</syl></verse></note>
+<note xml:id="n57" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">der</syl></verse></note>
+<note xml:id="n58" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n59" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n60" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">light!</syl></verse></note>
+<rest xml:id="r61" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="2" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>There Manhood, all perfection,</l><l>And Godhead-fulness shine;</l><l>God’s love and Man’s affection,</l><l>The human, the divine;</l><l>A life, a death, transcendent,</l><l>Revealing God as love:</l><l>Here, lowly Man, dependent—</l><l>God over all, above!</l></lg>
+<lg label="3."><l>Unsullied blaze of glory!</l><l>O ever-radiant Face!</l><l>Thy rich, unfathomed story</l><l>Transfigures us in grace!</l><l>Made like Thee, soon, completely,</l><l>With love-lit eyes we’ll scan</l><l>God’s face unveiled so sweetly</l><l>In Thine, Thou Son of man!</l></lg>
+</div>
+</back>
+</music></mei>

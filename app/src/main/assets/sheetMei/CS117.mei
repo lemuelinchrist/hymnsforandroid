@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">在靈裡行事</title>
+<title type="subordinate">靈與生命</title>
+</titleStmt><pubStmt><identifier type="hymn">CS117</identifier><identifier type="number">Cs117</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="d" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>我</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl>們</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl>已</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl>定</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl>意</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="a" oct="4" dur="8"/>
+<note xml:id="n7" pname="a" oct="4" dur="8">
+<verse n="1"><syl>在</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="8">
+<verse n="1"><syl>靈</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="8">
+<verse n="1"><syl>裡</syl></verse></note>
+</beam>
+</layer></staff>
+<tie startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n10" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>行</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="16"/>
+</beam>
+<note xml:id="n12" pname="d" oct="4" dur="4">
+<verse n="1"><syl>事，</syl></verse></note>
+<beam>
+<note xml:id="n13" pname="d" oct="4" dur="8"/>
+<note xml:id="n14" pname="d" oct="5" dur="8">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n15" pname="d" oct="5" dur="8">
+<verse n="1"><syl>們</syl></verse></note>
+<note xml:id="n16" pname="d" oct="5" dur="8">
+<verse n="1"><syl>已</syl></verse></note>
+</beam>
+</layer></staff>
+<slur startid="#n10" endid="#n11"/>
+<tie startid="#n12" endid="#n13"/>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="d" oct="5" dur="4">
+<verse n="1"><syl>定</syl></verse></note>
+<note xml:id="n18" pname="d" oct="5" dur="4">
+<verse n="1"><syl>意</syl></verse></note>
+<beam>
+<note xml:id="n19" pname="d" oct="5" dur="8"/>
+<note xml:id="n20" pname="d" oct="5" dur="8">
+<verse n="1"><syl>在</syl></verse></note>
+<note xml:id="n21" pname="e" oct="5" dur="8">
+<verse n="1"><syl>靈</syl></verse></note>
+<note xml:id="n22" pname="d" oct="5" dur="8">
+<verse n="1"><syl>裡</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<tie startid="#n18" endid="#n19"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl>行</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4">
+<verse n="1"><syl>事，</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="a" oct="4" dur="8"/>
+<note xml:id="n26" pname="d" oct="4" dur="8">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n27" pname="d" oct="4" dur="8">
+<verse n="1"><syl>們</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="8">
+<verse n="1"><syl>已</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<tie startid="#n24" endid="#n25"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl>定</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>意</syl></verse></note>
+<beam>
+<note xml:id="n31" pname="a" oct="4" dur="8"/>
+<note xml:id="n32" pname="a" oct="4" dur="8">
+<verse n="1"><syl>在</syl></verse></note>
+<note xml:id="n33" pname="b" oct="4" dur="8">
+<verse n="1"><syl>靈</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="8">
+<verse n="1"><syl>裡</syl></verse></note>
+</beam>
+</layer></staff>
+<tie startid="#n30" endid="#n31"/>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n35" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>行</syl></verse></note>
+<note xml:id="n36" pname="e" oct="4" dur="16"/>
+</beam>
+<note xml:id="n37" pname="d" oct="4" dur="4">
+<verse n="1"><syl>事，</syl></verse></note>
+<beam>
+<note xml:id="n38" pname="d" oct="4" dur="8"/>
+<note xml:id="n39" pname="a" oct="4" dur="8">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n40" pname="b" oct="4" dur="8">
+<verse n="1"><syl>在</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="8">
+<verse n="1"><syl>靈</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n35" endid="#n36"/>
+<tie startid="#n37" endid="#n38"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="f" oct="4" dur="2">
+<verse n="1"><syl>裡，</syl></verse></note>
+<rest xml:id="r43" dur="8"/>
+<beam>
+<note xml:id="n44" pname="d" oct="4" dur="8">
+<verse n="1"><syl>阿</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="8">
+<verse n="1"><syl>利</syl></verse></note>
+<note xml:id="n46" pname="e" oct="4" dur="8">
+<verse n="1"><syl>路</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="d" oct="4" dur="2">
+<verse n="1"><syl>亞！</syl></verse></note>
+<rest xml:id="r48" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>在靈裡行事，喊『哦，主耶穌！』</l><l>在靈裡行事，喊『哦，主耶穌！』</l><l>在靈裡行事，喊『哦，主耶穌！』</l><l>祂何豐富，阿利路亞！</l></lg>
+<lg label="3."><l>要跟隨耶穌，就需要『身體，』</l><l>要跟隨耶穌，就需要『身體，』</l><l>要跟隨耶穌，就需要『身體，』</l><l>何等實際，阿利路亞！</l></lg>
+<lg label="4."><l>建造在一起，其樂真無比，</l><l>建造在一起，其樂真無比，</l><l>建造在一起，其樂真無比，</l><l>何等榮耀，地方召會！</l></lg>
+<lg label="5."><l>神正在恢復召會的生活，</l><l>神正在恢復召會的生活，</l><l>神正在恢復召會的生活，</l><l>我們在內，阿利路亞！</l></lg>
+</div>
+</back>
+</music></mei>

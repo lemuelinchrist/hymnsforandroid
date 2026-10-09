@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">According to Thy gracious word</title>
+<title type="subordinate">Praise of the Lord—Remembrance of Him</title>
+</titleStmt><pubStmt><identifier type="hymn">E214</identifier><identifier type="number">214</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="f" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Ac</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">cord</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="f" oct="4" dur="2">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">gra</syl></verse></note>
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cious</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="d" oct="4" dur="2">
+<verse n="1"><syl>word,</syl></verse></note>
+<beam>
+<note xml:id="n10" pname="g" oct="4" dur="8">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="b" oct="4" dur="2">
+<verse n="1"><syl>meek</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">hu</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">mi</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">li</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="e" oct="4" dur="2"/>
+<note xml:id="n18" pname="c" oct="4" dur="4">
+<verse n="1"><syl>This</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="a" oct="4" dur="2">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="b" oct="4" dur="2">
+<verse n="1"><syl>do,</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">dy</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="4"/>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="f" oct="4" dur="2">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n29" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">mem</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ber</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Thee.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<tie startid="#n32" endid="#n33"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="f" oct="4" dur="2"/>
+<rest xml:id="r34" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Thy body, broken for my sake,</l><l>My bread from heaven shall be;</l><l>Thy testamental cup I take,</l><l>And thus remember Thee.</l></lg>
+<lg label="3."><l>Gethsemane can I forget?</l><l>Or there Thy conflict see,</l><l>Thine agony and bloody sweat,</l><l>And not remember Thee?</l></lg>
+<lg label="4."><l>When to the cross I turn mine eyes</l><l>And rest on Calvary,</l><l>O Lamb of God, my sacrifice,</l><l>I must remember Thee-</l></lg>
+<lg label="5."><l>Remember Thee and all Thy pains</l><l>And all Thy love to me;</l><l>Yea, while a breath, a pulse remains,</l><l>I will remember Thee.</l></lg>
+<lg label="6."><l>And when these failing lips grow dumb</l><l>And mind and memory flee,</l><l>When Thou shalt in Thy kingdom come,</l><l>Jesus, remember me.</l></lg>
+</div>
+</back>
+</music></mei>

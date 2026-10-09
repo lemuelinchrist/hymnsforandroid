@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">以賽亞書中的靈</title>
+<title type="subordinate">靈與生命</title>
+</titleStmt><pubStmt><identifier type="hymn">CS103</identifier><identifier type="number">Cs103</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>哦</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>主，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="e" oct="4" dur="2">
+<verse n="1"><syl>以</syl></verse></note>
+<note xml:id="n4" pname="c" oct="4" dur="4">
+<verse n="1"><syl>審</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="b" oct="4" dur="2">
+<verse n="1"><syl>判</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="4">
+<verse n="1"><syl>的</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7/E</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>靈，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="c" oct="5" dur="2">
+<verse n="1"><syl>審</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>判</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4"/>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl>一</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="2">
+<verse n="1"><syl>切</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>惡</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>行！</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="2">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="4">
+<verse n="1"><syl>不</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>憑</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="8"/>
+<note xml:id="n20" pname="c" oct="4" dur="4">
+<verse n="1"><syl>自</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="b" oct="4" dur="2">
+<verse n="1"><syl>己</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl>搜</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7/E</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>尋，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="c" oct="5" dur="2">
+<verse n="1"><syl>只</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>等</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>你</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="4"/>
+<note xml:id="n28" pname="d" oct="5" dur="4">
+<verse n="1"><syl>靈</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="f" oct="4" dur="2">
+<verse n="1"><syl>來</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="4">
+<verse n="1"><syl>顯</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>明。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>哦主，以焚燒的靈，</l><l>燒去我所有污穢；</l><l>把世界一燒而空，</l><l>直到我爆炸發瘋。</l></lg>
+<lg label="3."><l>哦主，以智慧的靈，</l><l>啟示你一切奧祕；</l><l>你是根、枝子、果實，</l><l>你是內容和豐富。</l></lg>
+<lg label="4."><l>哦主，以謀略的靈，</l><l>顯出你奇妙帶領；</l><l>新舊辦法都無用，</l><l>有靈能力纔成功。</l></lg>
+<lg label="5."><l>哦主，以知識的靈，</l><l>非憑眼見或耳聞；</l><l>使我明白你心意，</l><l>戰兢活出你救恩。</l></lg>
+<lg label="6."><l>哦主，以公正的靈，</l><l>帶我學習走正路；</l><l>不因人情而退卻，</l><l>不因艱難而變節。</l></lg>
+<lg label="7."><l>主，去我沉睡的靈，</l><l>開我眼使我儆醒；</l><l>你來的日子近了，</l><l>讓我隨時準備好。</l></lg>
+</div>
+</back>
+</music></mei>

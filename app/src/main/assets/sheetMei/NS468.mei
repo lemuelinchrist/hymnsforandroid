@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Lord, in that coming day</title>
+<title type="subordinate">Consecration—Constrained by the Lord’s Love</title>
+</titleStmt><pubStmt><identifier type="hymn">NS468</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Lord,</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m/F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>day</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="c" oct="5" dur="4">
+<verse n="1"><syl>When</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="g" oct="4" dur="2">
+<verse n="1"><syl>bow</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">G7/B</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>knee,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>’Twill</syl></verse></note>
+<note xml:id="n14" pname="b" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n15" pname="d" oct="5" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">mon</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">place</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">dis</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">play</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl>To</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>waste</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4"/>
+<note xml:id="n24" pname="f" oct="4" dur="4">
+<verse n="1"><syl>one’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<slur startid="#n22" endid="#n23"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="2">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>on</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Thee.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/F</harm>
+<tie startid="#n27" endid="#n28"/>
+</measure>
+<measure n="14" right="end"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="f" oct="4" dur="2"/>
+<rest xml:id="r29" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>For Thee, Lord, on that day</l><l>Ten thousand hearts would break,</l><l>And if there were ten thousand worlds,</l><l>These all, men would forsake.</l></lg>
+<lg label="3."><l>But now, while yet ’tis rare,</l><l>My being won’t delay;</l><l>Inspired by Thy love, could I,</l><l>Thy noble tribute stay?</l></lg>
+<lg label="4."><l>My all I gladly give</l><l>In love’s response to Thee,</l><l>For how can I withhold my all</l><l>When Thou gav’st all for me?</l></lg>
+<lg label="5."><l>Time’s window soon shall close;</l><l>Now, while ’tis open still,</l><l>This golden moment I’d redeem,</l><l>Thy house with fragrance fill.</l></lg>
+<lg label="6."><l>The moments fly apace;</l><l>Lord, Thou art coming soon!</l><l>Can I delay, and fail to grasp</l><l>This moment opportune?</l></lg>
+<lg label="7."><l>While there is still today</l><l>(Beyond, no guarantee),</l><l>Seizing this opportunity,</l><l>I waste myself on Thee.</l></lg>
+<lg label="8."><l>That woman’s noble deed</l><l>Was for Thy going wrought;</l><l>In view of Thy return, I too</l><l>Would offer as I ought.</l></lg>
+<lg label="9."><l>Two resurrections tell</l><l>The foolish from the wise;</l><l>Some would “beforehand” pay the price</l><l>And lukewarmness despise.</l></lg>
+<lg label="10."><l>I dare not passive be</l><l>But fully consecrate</l><l>“Beforehand”, lest I miss my chance,</l><l>And risk arriving late.</l></lg>
+<lg label="11."><l>There is but one regret</l><l>Both hell and heaven hold—</l><l>The loss of opportunity</l><l>Eternity unfolds.</l></lg>
+<lg label="12."><l>Performing love’s sweet task,</l><l>While time doth still permit,</l><l>I break mine alabaster flask</l><l>And Thine own love requit.</l></lg>
+<lg label="13."><l>May this be, in that day</l><l>When I Thy coming hail</l><l>(E’en if I sleep and wait for Thee),</l><l>Our love’s memorial.</l></lg>
+</div>
+</back>
+</music></mei>

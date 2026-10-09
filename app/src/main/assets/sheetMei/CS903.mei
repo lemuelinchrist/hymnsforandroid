@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">主隨時隨刻都可能回來</title>
+<title type="subordinate">盼望與豫備</title>
+</titleStmt><pubStmt><identifier type="hymn">CS903</identifier><identifier type="number">Cs903</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="d" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>主</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl>隨</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl>時</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl>隨</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl>刻</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="a" oct="4" dur="8"/>
+<note xml:id="n7" pname="a" oct="4" dur="8">
+<verse n="1"><syl>都</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="8">
+<verse n="1"><syl>可</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="8">
+<verse n="1"><syl>能</syl></verse></note>
+</beam>
+</layer></staff>
+<tie startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n10" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>回</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="16"/>
+</beam>
+<note xml:id="n12" pname="d" oct="4" dur="4">
+<verse n="1"><syl>來，</syl></verse></note>
+<beam>
+<note xml:id="n13" pname="d" oct="4" dur="8"/>
+<note xml:id="n14" pname="d" oct="5" dur="8">
+<verse n="1"><syl>主</syl></verse></note>
+<note xml:id="n15" pname="d" oct="5" dur="8">
+<verse n="1"><syl>隨</syl></verse></note>
+<note xml:id="n16" pname="d" oct="5" dur="8">
+<verse n="1"><syl>時</syl></verse></note>
+</beam>
+</layer></staff>
+<slur startid="#n10" endid="#n11"/>
+<tie startid="#n12" endid="#n13"/>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="d" oct="5" dur="4">
+<verse n="1"><syl>隨</syl></verse></note>
+<note xml:id="n18" pname="d" oct="5" dur="4">
+<verse n="1"><syl>刻</syl></verse></note>
+<beam>
+<note xml:id="n19" pname="d" oct="5" dur="8"/>
+<note xml:id="n20" pname="d" oct="5" dur="8">
+<verse n="1"><syl>都</syl></verse></note>
+<note xml:id="n21" pname="e" oct="5" dur="8">
+<verse n="1"><syl>可</syl></verse></note>
+<note xml:id="n22" pname="d" oct="5" dur="8">
+<verse n="1"><syl>能</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<tie startid="#n18" endid="#n19"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl>回</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4">
+<verse n="1"><syl>來，</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="a" oct="4" dur="8"/>
+<note xml:id="n26" pname="d" oct="4" dur="8">
+<verse n="1"><syl>主</syl></verse></note>
+<note xml:id="n27" pname="d" oct="4" dur="8">
+<verse n="1"><syl>隨</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="8">
+<verse n="1"><syl>時</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<tie startid="#n24" endid="#n25"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl>隨</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>刻</syl></verse></note>
+<beam>
+<note xml:id="n31" pname="a" oct="4" dur="8"/>
+<note xml:id="n32" pname="a" oct="4" dur="8">
+<verse n="1"><syl>都</syl></verse></note>
+<note xml:id="n33" pname="b" oct="4" dur="8">
+<verse n="1"><syl>可</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="8">
+<verse n="1"><syl>能</syl></verse></note>
+</beam>
+</layer></staff>
+<tie startid="#n30" endid="#n31"/>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n35" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>回</syl></verse></note>
+<note xml:id="n36" pname="e" oct="4" dur="16"/>
+</beam>
+<note xml:id="n37" pname="d" oct="4" dur="4">
+<verse n="1"><syl>來，</syl></verse></note>
+<beam>
+<note xml:id="n38" pname="d" oct="4" dur="8"/>
+<note xml:id="n39" pname="a" oct="4" dur="8">
+<verse n="1"><syl>哦，</syl></verse></note>
+<note xml:id="n40" pname="b" oct="4" dur="8">
+<verse n="1"><syl>讓</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="8">
+<verse n="1"><syl>我</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n35" endid="#n36"/>
+<tie startid="#n37" endid="#n38"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="f" oct="4" dur="2">
+<verse n="1"><syl>們</syl></verse></note>
+<rest xml:id="r43" dur="8"/>
+<beam>
+<note xml:id="n44" pname="d" oct="4" dur="8">
+<verse n="1"><syl>儆</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="8">
+<verse n="1"><syl>醒</syl></verse></note>
+<note xml:id="n46" pname="e" oct="4" dur="8">
+<verse n="1"><syl>等</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="d" oct="4" dur="2">
+<verse n="1"><syl>待！</syl></verse></note>
+<rest xml:id="r48" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>基督是我們可愛的新郎，</l><l>（重複三次，下同）</l><l>我們乃是祂的新婦！</l></lg>
+<lg label="3."><l>我們已定意轉眼注視主，</l><l>永不回頭，永不回頭！</l></lg>
+<lg label="4."><l>路程在前頭，</l><l>纏累丟背後，</l><l>加速向前！加速向前！</l></lg>
+<lg label="5."><l>我們正快跑，</l><l>迎接主來到，</l><l>不久就要與主相遇！</l></lg>
+</div>
+</back>
+</music></mei>

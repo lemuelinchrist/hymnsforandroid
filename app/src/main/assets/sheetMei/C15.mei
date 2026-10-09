@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">若無流血就有赦罪</title>
+<title type="subordinate">敬拜父－祂的公義</title>
+</titleStmt><pubStmt><identifier type="hymn">C15</identifier><identifier type="number">C15</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>若</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="2">
+<verse n="1"><syl>無</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl>流</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="d" oct="4" dur="2">
+<verse n="1"><syl>血</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="g" oct="4" dur="8">
+<verse n="1"><syl>就</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="b" oct="4" dur="2">
+<verse n="1"><syl>有</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl>赦</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="2">
+<verse n="1"><syl>罪，</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>如</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="d" oct="5" dur="2">
+<verse n="1"><syl>何</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="b" oct="4" dur="8">
+<verse n="1"><syl>對</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<slur startid="#n12" endid="#n13"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="g" oct="4" dur="2">
+<verse n="1"><syl>付</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl>公</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="a" oct="4" dur="2">
+<verse n="1"><syl>義？</syl></verse></note>
+<note xml:id="n17" pname="d" oct="5" dur="4">
+<verse n="1"><syl>若</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="2">
+<verse n="1"><syl>已</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>流</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="g" oct="4" dur="2">
+<verse n="1"><syl>血</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>仍</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="c" oct="5" dur="2">
+<verse n="1"><syl>然</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl>責</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am7</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="a" oct="4" dur="2">
+<verse n="1"><syl>備，</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl>仍</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D/C</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="d" oct="4" dur="4">
+<verse n="1"><syl>然</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="4"/>
+<beam>
+<note xml:id="n28" pname="g" oct="4" dur="8">
+<verse n="1"><syl>不</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+<slur startid="#n26" endid="#n27"/>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="b" oct="4" dur="2">
+<verse n="1"><syl>能</syl></verse></note>
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl>合</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>理。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+<tie startid="#n32" endid="#n33"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="g" oct="4" dur="2"/>
+<rest xml:id="r34" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>神，你今已不能追究，</l><l>我主已經獻祭；</l><l>我已得著完全自由，</l><l>我罪像東離西。</l></lg>
+<lg label="3."><l>你義所有每一要求，</l><l>我主都付代價；</l><l>現今你只能加寬宥，</l><l>因無審判可加。</l></lg>
+<lg label="4."><l>前是愛叫祂來救贖，</l><l>滿足你義要求；</l><l>滿足你義，今叫我主</l><l>釋放所有罪囚。</l></lg>
+<lg label="5."><l>奇妙、奇妙，在十字架，</l><l>我遇愛和公義；</l><l>愛和公義如此交加，</l><l>使我歌唱不已。</l></lg>
+</div>
+</back>
+</music></mei>

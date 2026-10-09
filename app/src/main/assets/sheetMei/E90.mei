@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Lord, accept our feeble song</title>
+<title type="subordinate">Praise of the Lord—His Humiliation</title>
+</titleStmt><pubStmt><identifier type="hymn">E90</identifier><identifier type="number">90</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>Lord,</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ac</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cept</syl></verse></note>
+<note xml:id="n4" pname="c" oct="5" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fee</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ble</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl>song!</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="c" oct="4" dur="4">
+<verse n="1"><syl>Pow’r</syl></verse></note>
+<note xml:id="n10" pname="c" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n11" pname="d" oct="4" dur="4">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n12" pname="e" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">long;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>We</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="8">
+<verse n="1"><syl>would</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n19" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>grace</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n22" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cord,</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<tie startid="#n22" endid="#n23"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Ho</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+<note xml:id="n26" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">gra</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cious,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">lov</syl></verse></note>
+<note xml:id="n29" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n30" pname="c" oct="4" dur="2">
+<verse n="1"><syl>Lord!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Rich in glory, Thou didst stoop,</l><l>Thence is all Thy people’s hope;</l><l>Thou wast poor, that we might be</l><l>Rich in glory, Lord, with Thee.</l></lg>
+<lg label="3."><l>Wherefore Thou high heaven didst spurn?</l><l>Wherefore Thou to earth didst turn?</l><l>Why leave heav’n to come to earth</l><l>Lonely, scorned, e’en suffering death?</l></lg>
+<lg label="4."><l>Thou in heav’n—the glorious One!</l><l>Thou on earth—the outcast Man!</l><l>Though this suffering Thou didst know,</l><l>Love would come to bear our woe.</l></lg>
+<lg label="5."><l>When we think of love like this,</l><l>Joy and shame our hearts possess;</l><l>Joy, that Thou couldst pity thus;</l><l>Shame, for such returns from us.</l></lg>
+<lg label="6."><l>Yet we hope the day to see</l><l>When from every hindrance free,</l><l>When to Thee, in glory, brought,</l><l>We shall serve Thee as we ought.</l></lg>
+<lg label="7."><l>Now, O Lord, we wait for Thee,</l><l>Wait “the blessed hope” to see.</l><l>May we ever for Thee live,</l><l>Till Thy saints Thou dost receive.</l></lg>
+</div>
+</back>
+</music></mei>

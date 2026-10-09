@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The Humanity of Christ</title>
+<title type="subordinate">Praise of the Lord—His Humanity</title>
+</titleStmt><pubStmt><identifier type="hymn">NS5</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>This</syl></verse></note>
+<beam>
+<note xml:id="n2" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">u</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">nique</syl></verse></note>
+</beam>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>truth</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="8">
+<verse n="1"><syl>whole</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7/F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Bi</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ble</syl></verse></note>
+<note xml:id="n9" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+</beam>
+<note xml:id="n10" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">veils:</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Our</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="e" oct="4" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="8">
+<verse n="1"><syl>has</syl></verse></note>
+</beam>
+<note xml:id="n14" pname="e" oct="4" dur="4">
+<verse n="1"><syl>put</syl></verse></note>
+<beam>
+<note xml:id="n15" pname="e" oct="4" dur="8">
+<verse n="1"><syl>on</syl></verse></note>
+<note xml:id="n16" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">hu</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">man</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="g" oct="4" dur="8"/>
+<note xml:id="n19" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</beam>
+<note xml:id="n20" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ty;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭7/A♭</harm>
+<slur startid="#n18" endid="#n19" lform="dashed"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Both</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="b" oct="4" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl>man,</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="g" oct="4" dur="8">
+<verse n="1"><syl>as</syl></verse></note>
+<note xml:id="n26" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Scrip</syl></verse></note>
+<beam>
+<note xml:id="n28" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ture</syl></verse></note>
+<note xml:id="n29" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</beam>
+<note xml:id="n30" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">veals;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n31" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Hal</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">le</syl></verse></note>
+<note xml:id="n33" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
+<note xml:id="n34" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">jah</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n35" pname="e" oct="4" dur="8"/>
+<note xml:id="n36" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n37" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+<note xml:id="n38" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">e</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm7</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<tie startid="#n34" endid="#n35"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
+<beam>
+<note xml:id="n40" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ni</syl></verse></note>
+<note xml:id="n41" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+</beam>
+<note xml:id="n42" pname="e" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<tie startid="#n41" endid="#n42"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n43" pname="e" oct="5" dur="8">
+<verse n="1"><label>(C)</label><syl>Praise</syl></verse></note>
+<note xml:id="n44" pname="d" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n45" pname="e" oct="5" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n46" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n47" pname="b" oct="4" dur="8">
+<verse n="1"><syl>Christ’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+<dir startid="#n43" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n48" pname="e" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">hu</syl></verse></note>
+<note xml:id="n49" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="m" con="d">man</syl></verse></note>
+</beam>
+<note xml:id="n50" pname="e" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+<note xml:id="n51" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ty!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n52" pname="c" oct="5" dur="4">
+<verse n="1"><syl>It’s</syl></verse></note>
+<beam>
+<note xml:id="n53" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">cen</syl></verse></note>
+<note xml:id="n54" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">tral</syl></verse></note>
+</beam>
+<note xml:id="n55" pname="b" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n56" pname="e" oct="4" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+<harm staff="1" tstamp="4" place="above">Cm</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n57" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">e</syl></verse></note>
+<note xml:id="n58" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">co</syl></verse></note>
+</beam>
+<note xml:id="n59" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">no</syl></verse></note>
+<note xml:id="n60" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">my</syl></verse></note>
+<beam>
+<note xml:id="n61" pname="g" oct="4" dur="8">
+<verse n="1"><syl>To</syl></verse></note>
+<note xml:id="n62" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">pro</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm7</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n63" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">duce</syl></verse></note>
+<beam>
+<note xml:id="n64" pname="b" oct="4" dur="8">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n65" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+</beam>
+<note xml:id="n66" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">vine-</syl></verse></note>
+<beam>
+<note xml:id="n67" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">hu</syl></verse></note>
+<note xml:id="n68" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">man</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+<harm staff="1" tstamp="4" place="above">G7/B</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n69" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<beam>
+<note xml:id="n70" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">cor</syl></verse></note>
+<note xml:id="n71" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">p’ra</syl></verse></note>
+</beam>
+<note xml:id="n72" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n73" pname="c" oct="4" dur="8">
+<verse n="1"><syl>Which</syl></verse></note>
+<note xml:id="n74" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
+<note xml:id="n75" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">sum</syl></verse></note>
+<note xml:id="n76" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">mates</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n77" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n78" pname="g" oct="4" dur="8">
+<verse n="1"><syl>New</syl></verse></note>
+<note xml:id="n79" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n80" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ru</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm7</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<tie startid="#n80" endid="#n81"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n81" pname="f" oct="4" dur="8"/>
+<note xml:id="n82" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">sa</syl></verse></note>
+</beam>
+<note xml:id="n83" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">lem.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Old Testament portrays Christ as a Man,</l><l>With four types showing His humanity:</l><l>Seed of the woman, seed of Abraham,</l><l>The seed of David, branch of Jesse.</l></lg>
+<lg label="3."><l>Christ as a Man in His humanity</l><l>Visited Abraham, with Jacob fought,</l><l>Met Joshua as Captain of God’s army,</l><l>Foretold of Samson, Israel’s comfort.</l></lg>
+<lg label="4."><l>As Man of sorrows He lived, and was slain,</l><l>Suffered, despised, our redemption to win.</l><l>According to righteousness He will reign,</l><l>There’ll be enjoyment and protection.</l></lg>
+<lg label="5."><l>Above the firmament, Christ is enthroned,</l><l>Satan’s dominion is far, far below.</l><l>Each measurement of God’s building He knows,</l><l>In midst of Israel, His possession.</l></lg>
+<lg label="6."><l>Christ as a Man walked with Daniel’s three friends,</l><l>In fiery trial appearing with them;</l><l>Met Daniel’s need as a Man once again;</l><l>He’s everything in God’s move as a Man.</l></lg>
+<lg label="7."><l>Though they dispersed, Christ was with Israel,</l><l>Measured Jerus’lem to gain her in full;</l><l>As Shoot of David, God’s temple He’ll build,</l><l>He’ll be a Priest and o’er all nations rule.</l></lg>
+<lg label="8."><l>As Son of Man, He’s with Israel involved,</l><l>With us as well: we His oneness enjoy;</l><l>He’s stock of Israel exalted by God,</l><l>He’ll gain the Kingdom, enemies destroy.</l></lg>
+<lg label="9."><l>Christ as revealed in the New Testament</l><l>Came in the flesh; Son of Man now is He!</l><l>Fulfillment of God’s economy,</l><l>All carried out in Christ’s humanity.</l></lg>
+</div>
+</back>
+</music></mei>

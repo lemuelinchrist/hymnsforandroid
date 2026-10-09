@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Christ is the mystery of God</title>
+<title type="subordinate">The Church—The Mystery of Christ</title>
+</titleStmt><pubStmt><identifier type="hymn">E818</identifier><identifier type="number">818</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="2" meter.unit="2" meter.sym="cut"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>Christ</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">A/C♯</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">mys</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">y</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="4"/>
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">A7</harm>
+<slur startid="#n6" endid="#n7"/>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="1">
+<verse n="1"><syl>God;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="d" oct="5" dur="2">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n12" pname="d" oct="5" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">vis</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ble,</syl></verse></note>
+<note xml:id="n17" pname="c" oct="5" dur="4"/>
+<note xml:id="n18" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="2" place="above">E7</harm>
+<slur startid="#n16" endid="#n17"/>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">shown,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="a" oct="4" dur="2">
+<verse n="1"><syl>His</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">i</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">mage</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">B7/D♯</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="2">
+<verse n="1"><syl>man</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl>hath</syl></verse></note>
+<note xml:id="n26" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="2" place="above">A7/C♯</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">nev</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/B</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="e" oct="4" dur="1">
+<verse n="1"><syl>seen,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>But</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="8"/>
+<note xml:id="n33" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n34" pname="d" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
+<slur startid="#n31" endid="#n32"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="d" oct="4" dur="2">
+<verse n="1"><syl>Son</syl></verse></note>
+<note xml:id="n36" pname="d" oct="4" dur="2">
+<verse n="1"><syl>hath</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="c" oct="4" dur="4">
+<verse n="1"><syl>made</syl></verse></note>
+<note xml:id="n38" pname="g" oct="4" dur="4"/>
+<note xml:id="n39" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Him</syl></verse></note>
+<note xml:id="n40" pname="c" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="2" place="above">A7</harm>
+<slur startid="#n37" endid="#n38"/>
+<slur startid="#n39" endid="#n40"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="d" oct="4" dur="1">
+<verse n="1"><syl>known.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="1.5000" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Christ is the very Word of God,</l><l>He is God’s explanation true;</l><l>God’s full embodiment is He</l><l>And God’s own image brings to view.</l></lg>
+<lg label="3."><l>Image of God invisible,</l><l>Effulgence of God’s glory fair;</l><l>God’s fulness ever dwells in Him,</l><l>God’s testimony He doth bear.</l></lg>
+<lg label="4."><l>The Church the myst’ry is of Christ,</l><l>For He is now to man unshown;</l><l>No man on earth may see Him now,</l><l>But thru the Church He is made known.</l></lg>
+<lg label="5."><l>The Church is Christ’s expression full,</l><l>In her Christ dwelleth bodily;</l><l>She is His duplication true,</l><l>And man in her Himself may see.</l></lg>
+<lg label="6."><l>The Church the image has of Christ,</l><l>She is His increase and His spread;</l><l>Christ’s very self is found in her</l><l>The Body, she, to Christ the Head.</l></lg>
+<lg label="7."><l>Thus, in the Son the Father is,</l><l>And now the Spirit is the Son;</l><l>The Spirit of the triune God</l><l>Is in the Church and with her one.</l></lg>
+</div>
+</back>
+</music></mei>

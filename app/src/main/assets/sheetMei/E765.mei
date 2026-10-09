@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Christian, seek not yet repose</title>
+<title type="subordinate">Prayer—The Calling</title>
+</titleStmt><pubStmt><identifier type="hymn">E765</identifier><identifier type="number">765</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Christ</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ian,</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>seek</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>not</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>yet</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">pose,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Hear</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="8">
+<verse n="1"><syl>thy</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">gra</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cious</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ior</syl></verse></note>
+<note xml:id="n14" pname="e" oct="4" dur="2">
+<verse n="1"><syl>say;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n16" pname="f" oct="4" dur="8">
+<verse n="1"><syl>art</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl>midst</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n21" pname="d" oct="4" dur="2">
+<verse n="1"><syl>foes:</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Watch</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="d" oct="4" dur="1">
+<verse n="1"><syl>pray.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Principalities and powers,</l><l>Mustering their unseen array,</l><l>Wait for thy unguarded hours:</l><l>Watch and pray.</l></lg>
+<lg label="3."><l>Gird thy heavenly armor on,</l><l>Wear it ever night and day;</l><l>Ambushed lies the evil one:</l><l>Watch and pray.</l></lg>
+<lg label="4."><l>Hear the victors who o’ercame,</l><l>Still they mark each warrior’s way;</l><l>All with one sweet voice exclaim,</l><l>Watch and pray.</l></lg>
+<lg label="5."><l>Hear, above all, hear thy Lord,</l><l>Him thou lovest to obey;</l><l>Hide within thy heart His word:</l><l>Watch and pray.</l></lg>
+<lg label="6."><l>Watch, as if on that alone</l><l>Hung the issue of the day;</l><l>Pray, that help may be sent down:</l><l>Watch and pray.</l></lg>
+</div>
+</back>
+</music></mei>

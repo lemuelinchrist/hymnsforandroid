@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Now the Lord our souls has fed</title>
+<title type="subordinate">Preaching of the Gospel—The Nations’ Call</title>
+</titleStmt><pubStmt><identifier type="hymn">E916</identifier><identifier type="number">916</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>Now</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl>souls</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl>has</syl></verse></note>
+<note xml:id="n7" pname="d" oct="4" dur="2">
+<verse n="1"><syl>fed,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+<beam>
+<note xml:id="n9" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Him</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n11" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">self,</syl></verse></note>
+<note xml:id="n12" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+<slur startid="#n9" endid="#n10"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Liv</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Bread;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl>Fed</syl></verse></note>
+<note xml:id="n17" pname="c" oct="5" dur="8">
+<verse n="1"><syl>us,</syl></verse></note>
+<note xml:id="n18" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sit</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ting</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl>at</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+<note xml:id="n22" pname="c" oct="5" dur="2">
+<verse n="1"><syl>feet,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am/C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+<beam>
+<note xml:id="n24" pname="b" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="8"/>
+</beam>
+<note xml:id="n26" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fin</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">est</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7/F♯</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="2">
+<verse n="1"><syl>wheat.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>We have endless treasure found;</l><l>We have all things and abound;</l><l>Rich abundance and to spare;</l><l>Shall we not the blessing share?</l></lg>
+<lg label="3."><l>For, while we are feasting here,</l><l>Starving millions, far and near,</l><l>Call us with the bitter cry:</l><l>Come and help us, or we die.</l></lg>
+<lg label="4."><l>In this day of full increase,</l><l>Shall we, can we, hold our peace?</l><l>Staying here we do not well;</l><l>Now then, let us go and tell:</l></lg>
+<lg label="5."><l>Tell how He hath set us free,</l><l>How He leads triumphantly;</l><l>How He satisfies our need;</l><l>How His rest is rest indeed.</l></lg>
+<lg label="6."><l>Speak, for we, Thy servants, hear;</l><l>Thou hast taught us not to fear;</l><l>And whate’er Thy word shall be,</l><l>We can do it, Lord, in Thee.</l></lg>
+</div>
+</back>
+</music></mei>

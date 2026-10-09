@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The priest’s position holy is</title>
+<title type="subordinate">Prayer—Burning the Incense</title>
+</titleStmt><pubStmt><identifier type="hymn">E791</identifier><identifier type="number">791</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="6" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>priest’s</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">pos</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ho</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl>is;</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="8">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sa</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">cri</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">fic</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">es</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">Em/G</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>e’er</syl></verse></note>
+<note xml:id="n15" pname="e" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">holds</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">beau</syl></verse></note>
+<note xml:id="n21" pname="c" oct="5" dur="8"/>
+<note xml:id="n22" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">A7/G</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">cense</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl>burns</syl></verse></note>
+<note xml:id="n26" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="4" place="above">Bm</harm>
+<harm staff="1" tstamp="6" place="above">D/A</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl>prayer</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n29" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Lord.</syl></verse></note>
+<note xml:id="n32" pname="d" oct="4" dur="4"/>
+<note xml:id="n33" pname="d" oct="4" dur="8">
+<verse n="1"><label>(C)</label><syl>Let</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="f" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n37" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">cense</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="4" place="above">A</harm>
+<dir startid="#n34" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>burn</syl></verse></note>
+<note xml:id="n39" pname="d" oct="4" dur="4"/>
+<note xml:id="n40" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+<tie startid="#n38" endid="#n39"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl>prayer</syl></verse></note>
+<note xml:id="n42" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n43" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<note xml:id="n44" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Lord;</syl></verse></note>
+<note xml:id="n46" pname="f" oct="4" dur="4"/>
+<note xml:id="n47" pname="a" oct="4" dur="8">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="4" place="above">D7/F♯</harm>
+<tie startid="#n45" endid="#n46"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="b" oct="4" dur="4">
+<verse n="1"><syl>lamp</syl></verse></note>
+<note xml:id="n49" pname="b" oct="4" dur="8">
+<verse n="1"><syl>we’d</syl></verse></note>
+<beam>
+<note xml:id="n50" pname="b" oct="4" dur="8">
+<verse n="1"><syl>light,</syl></verse></note>
+<note xml:id="n51" pname="c" oct="5" dur="8"/>
+<note xml:id="n52" pname="d" oct="5" dur="8">
+<verse n="1"><syl>through</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">A7/G</harm>
+<slur startid="#n50" endid="#n51"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="a" oct="4" dur="4">
+<verse n="1"><syl>day</syl></verse></note>
+<note xml:id="n54" pname="a" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n55" pname="f" oct="4" dur="4">
+<verse n="1"><syl>night</syl></verse></note>
+<note xml:id="n56" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="4" place="above">Bm</harm>
+<harm staff="1" tstamp="6" place="above">D/A</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="f" oct="4" dur="4">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n58" pname="g" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n59" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Him</syl></verse></note>
+<note xml:id="n60" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">out</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">A7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n61" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">poured.</syl></verse></note>
+<note xml:id="n62" pname="d" oct="4" dur="4"/>
+<rest xml:id="r63" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/D</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
+<tie startid="#n61" endid="#n62"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>No natural light, but just the lamp</l><l>Within the holy place gives sight;</l><l>Whene’er the priest the incense burns,</l><l>The lamp he too must light.</l></lg>
+<lg label="3."><l>The grace of God let us extol</l><l>And stir our heart sweet praise to sing;</l><l>For priests not only light the lamp,</l><l>But constant praises bring.</l></lg>
+<lg label="4."><l>I’ll offer prayers as incense burns,</l><l>Christ’s resurrection bring therein,</l><l>God’s wish thus meet, His heart give joy,</l><l>And I’ll rejoice with Him.</l></lg>
+<lg label="5."><l>I’ll read His Word, His light receive,</l><l>E’en as the lamp before Him lit,</l><l>His holy light illum’ning me</l><l>To others I’ll transmit.</l></lg>
+<lg label="6."><l>Unto the Lord His praise I’ll sing</l><l>As holy priests their songs did raise;</l><l>O may my heart be filled with Him</l><l>His love and grace to praise.</l></lg>
+<lg label="7."><l>I’ll offer Christ to God in prayer,</l><l>I’ll read the Word, His light to know,</l><l>For all His grace I’ll sing His praise,</l><l>The Spirit then may flow.</l></lg>
+</div>
+</back>
+</music></mei>

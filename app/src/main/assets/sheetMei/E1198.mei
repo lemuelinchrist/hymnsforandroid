@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">A mighty flowing-out is God</title>
+<title type="subordinate">Experience of God—His Dispensation</title>
+</titleStmt><pubStmt><identifier type="hymn">E1198</identifier><identifier type="number">1198</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="5" dur="4">
+<verse n="1"><label>1.</label><syl>A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">might</syl></verse></note>
+<note xml:id="n3" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">y</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">flow</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n6" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ing-</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<slur startid="#n4" endid="#n5"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n7" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">out</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n11" pname="c" oct="5" dur="4">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n7" endid="#n8"/>
+<fermata startid="#n10" place="above"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="b" oct="4" dur="4">
+<verse n="1"><syl>flows</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">through</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">out</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n16" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ag</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n18" pname="d" oct="4" dur="4"/>
+<note xml:id="n19" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">es.</syl></verse></note>
+<note xml:id="n20" pname="c" oct="5" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n16" endid="#n18"/>
+<fermata startid="#n19" place="above"/>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="c" oct="5" dur="4">
+<verse n="1"><syl>so</syl></verse></note>
+<note xml:id="n22" pname="c" oct="5" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="g" oct="4" dur="8">
+<verse n="1"><syl>flow</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Him</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n26" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">self</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl>man</syl></verse></note>
+<note xml:id="n30" pname="c" oct="5" dur="4">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">Am</harm>
+<slur startid="#n26" endid="#n27"/>
+<fermata startid="#n29" place="above"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="b" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">man</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">y</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">Am</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n35" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">stag</syl></verse></note>
+<note xml:id="n36" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n37" pname="d" oct="4" dur="4"/>
+<note xml:id="n38" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">es;</syl></verse></note>
+<note xml:id="n39" pname="c" oct="4" dur="4">
+<verse n="1"><syl>Yet</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="2" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n35" endid="#n37"/>
+<fermata startid="#n38" place="above"/>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="g" oct="4" dur="4">
+<verse n="1"><syl>still</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl>one</syl></verse></note>
+<note xml:id="n42" pname="g" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n43" pname="f" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+<harm staff="1" tstamp="4" place="above">D7</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>He,</syl></verse></note>
+<note xml:id="n45" pname="c" oct="4" dur="4">
+<verse n="1"><syl>One</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">G7/F</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="g" oct="4" dur="4">
+<verse n="1"><syl>flow</syl></verse></note>
+<note xml:id="n47" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">e</syl></verse></note>
+<note xml:id="n48" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
+<note xml:id="n49" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">nal</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n50" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">ly;</syl></verse></note>
+<note xml:id="n51" pname="b" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="4" place="above">E/G♯</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n52" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">stag</syl></verse></note>
+<note xml:id="n53" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">es</syl></verse></note>
+<note xml:id="n54" pname="a" oct="4" dur="4">
+<verse n="1"><syl>pave</syl></verse></note>
+<note xml:id="n55" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n56" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>way</syl></verse></note>
+<note xml:id="n57" pname="a" oct="4" dur="4">
+<verse n="1"><syl>To</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="a" oct="4" dur="4">
+<verse n="1"><syl>flow</syl></verse></note>
+<note xml:id="n59" pname="g" oct="4" dur="4">
+<verse n="1"><syl>through</syl></verse></note>
+<note xml:id="n60" pname="a" oct="4" dur="4">
+<verse n="1"><syl>man</syl></verse></note>
+<note xml:id="n61" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+</measure>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n62" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">day,</syl></verse></note>
+<note xml:id="n63" pname="c" oct="5" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<harm staff="1" tstamp="4" place="above">Am</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n64" pname="b" oct="4" dur="4">
+<verse n="1"><syl>now</syl></verse></note>
+<note xml:id="n65" pname="a" oct="4" dur="4">
+<verse n="1"><syl>He</syl></verse></note>
+<note xml:id="n66" pname="g" oct="4" dur="4">
+<verse n="1"><syl>flows</syl></verse></note>
+<note xml:id="n67" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+<measure n="19" right="end"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n68" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">in</syl></verse></note>
+<note xml:id="n69" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n70" pname="d" oct="4" dur="4"/>
+<note xml:id="n71" pname="c" oct="4" dur="4">
+<verse n="1"><syl>us!</syl></verse></note>
+<rest xml:id="r72" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="2" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n68" endid="#n70"/>
+<fermata startid="#n71" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>In the beginning we can see,</l><l>God as a flowing river,</l><l>The river to convey the tree,</l><l>Himself as life deliver.</l><l>And at the end the same,</l><l>The river doth remain,</l><l>God in the Lamb doth flow,</l><l>The tree prevails to grow,</l><l>And God flows on forever.</l></lg>
+<lg label="3."><l>God flowed Himself into a man,</l><l>The man we call Christ Jesus.</l><l>He gave up His own life for man</l><l>And God’s own life releases.</l><l>Though Satan did his best</l><l>To put God’s flow to rest—</l><l>He had Him crucified</l><l>And cruelly pierced His side—</l><l>But out came blood and water!</l></lg>
+<lg label="4."><l>The blood and water flowed from Him,</l><l>In streams of pure salvation.</l><l>The blood brings cleansing from all sin;</l><l>Water, regeneration.</l><l>And now the Spirit flows,</l><l>Brings God where’er He goes.</l><l>All he could do, the foe,</l><l>Was just release the flow.</l><l>And God just keeps on flowing.</l></lg>
+</div>
+</back>
+</music></mei>

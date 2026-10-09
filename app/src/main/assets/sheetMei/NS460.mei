@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Thou, Triune God, eternally</title>
+<title type="subordinate">Experience of God—By His Incorporation</title>
+</titleStmt><pubStmt><identifier type="hymn">NS460</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Thou,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Tri</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4"/>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">une</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="f" oct="4" dur="2">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">e</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4"/>
+<note xml:id="n9" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">nal</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="4"/>
+<note xml:id="n12" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Dis</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">tinct</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="4" accid="s" accid.ges="s"/>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/C♯</harm>
+<slur startid="#n13" endid="#n14"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="d" oct="5" dur="2">
+<verse n="1"><syl>three,</syl></verse></note>
+<note xml:id="n17" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">Bm/D</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">sep</syl></verse></note>
+<note xml:id="n19" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">’ra</syl></verse></note>
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">bly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="a" oct="4" dur="2">
+<verse n="1"><syl>one;</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">B7</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl>realm</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4"/>
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">B/D♯</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">vine</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">mys</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="4"/>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ti</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<slur startid="#n28" endid="#n29"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">cal,</syl></verse></note>
+<note xml:id="n32" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Art</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A/G</harm>
+</measure>
+<sb/>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="d" oct="5" dur="4">
+<verse n="1"><syl>formed</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="4"/>
+<note xml:id="n35" pname="g" oct="4" dur="4">
+<verse n="1"><syl>as</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">A/C♯</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl>an</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="4"/>
+<note xml:id="n38" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">cor</syl></verse></note>
+<note xml:id="n40" pname="f" oct="4" dur="4"/>
+<note xml:id="n41" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">p’ra</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+<slur startid="#n39" endid="#n40"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tion.</syl></verse></note>
+<rest xml:id="r43" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>By Thine indwelling mutually</l><l>Thou doth exist essentially;</l><l>Thy will to bring humanity</l><l>Into this sphere economically.</l></lg>
+<lg label="3."><l>Through incarnation in the Son</l><l>This realm was first seen in the flesh;</l><l>Within Christ’s body physical</l><l>The Godhead’s fullness manifest.</l></lg>
+<lg label="4."><l>His human life did manifest</l><l>Coordination beauteous:</l><l>One acted, Three did operate</l><l>In harmony so marvelous.</l></lg>
+<lg label="5."><l>Through death and resurrection was</l><l>This life divine in full released</l><l>To form Thy Body mystical,</l><l>This realm divine to thus increase.</l></lg>
+<lg label="6."><l>This habitation’s Thine abode,</l><l>Thy Body mystical, divine,</l><l>Enlargement of our Father’s house,</l><l>The Spirit’s child, Son’s spreading vine.</l></lg>
+<lg label="7."><l>Thy final form the Spirit is,</l><l>The realization of the Son;</l><l>With Thee we’re blent, divine-human</l><l>Incorporation to become.</l></lg>
+<lg label="8."><l>Thy Spirit into ours has come,</l><l>One mingled spirit formed, become</l><l>The Body, Father, Spirit, Son—</l><l>An entity that’s Four yet One.</l></lg>
+<lg label="9."><l>By Thine own glory, life, and word</l><l>Here we are all thus one in Thee;</l><l>Such oneness doth reflect Thine own,</l><l>The oneness seen among the Three.</l></lg>
+<lg label="10."><l>God’s love, Christ’s grace, the fellowship</l><l>Of Holy Spirit, reaching man</l><l>As living water, issue from</l><l>The throne of God and of the Lamb.</l></lg>
+<lg label="11."><l>This fellowship of life divine</l><l>Our Father and His Son have shared;</l><l>We’re called into this fellowship,</l><l>Which the apostles have declared.</l></lg>
+<lg label="12."><l>The Spirit with our spirit is</l><l>The factor for us to be one,</l><l>The key to live the Christian life,</l><l>And secret of our salvation.</l></lg>
+<lg label="13."><l>The ministry of Christ in full</l><l>Within this realm is carried out,</l><l>And God’s complete salvation too</l><l>Within this sphere is brought about.</l></lg>
+<lg label="14."><l>In all their living and their work</l><l>This mingled life th’ apostles sought,</l><l>The Triune God to manifest</l><l>In character and service wrought.</l></lg>
+<lg label="15."><l>In all our living and our work</l><l>So we must also do the same,</l><l>In daily life, we would make this</l><l>Our top priority and aim.</l></lg>
+<lg label="16."><l>As therefore we have thus received,</l><l>So in all things we walk in Thee;</l><l>Thine all-inclusiveness to grasp,</l><l>We call and pray unceasingly.</l></lg>
+<lg label="17."><l>We live in Thee and Thou with us</l><l>In two-way traffic mutually:</l><l>In Thee we live, exist, and move,</l><l>Abide uninterruptedly.</l></lg>
+<lg label="18."><l>Thy name which Thou hast given us</l><l>Denotes Thy Person as our sphere,</l><l>Sum total of Thy Being, Lord,</l><l>Into which we’ve been gathered here.</l></lg>
+<lg label="19."><l>Thou art in us Thy kingdom too;</l><l>With joy and peace and righteousness.</l><l>Eternal life’s totality,</l><l>The church life, sphere in which we’re blessed.</l></lg>
+<lg label="20."><l>The New Jerusalem will be</l><l>This realm’s domain perpetually;</l><l>Thou in the Father, we in Thee,</l><l>And Thou in us eternally.</l></lg>
+<lg label="21."><l>O, may we see, experience</l><l>The realm of Thine economy</l><l>In all the details of our life</l><l>To practice living one with Thee.</l></lg>
+</div>
+</back>
+</music></mei>

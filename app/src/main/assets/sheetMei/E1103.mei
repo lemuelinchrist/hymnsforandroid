@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">What He is: He’s the Father</title>
+<title type="subordinate">Praise of the Lord—His All-Inclusiveness</title>
+</titleStmt><pubStmt><identifier type="hymn">E1103</identifier><identifier type="number">1103</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="f" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>What</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl>He</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl>is:</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="c" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+<note xml:id="n5" pname="c" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n6" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Fath</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">er.</syl></verse></note>
+</beam>
+<note xml:id="n8" pname="f" oct="4" dur="2"/>
+<beam>
+<note xml:id="n9" pname="a" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+<note xml:id="n10" pname="c" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<tie startid="#n7" endid="#n8"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
+<note xml:id="n13" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="m" con="d">last</syl></verse></note>
+<note xml:id="n14" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n15" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Fath</syl></verse></note>
+<note xml:id="n16" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">er.</syl></verse></note>
+</beam>
+<note xml:id="n17" pname="c" oct="5" dur="2"/>
+<beam>
+<note xml:id="n18" pname="a" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+<note xml:id="n19" pname="c" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<tie startid="#n16" endid="#n17"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">first</syl></verse></note>
+<note xml:id="n21" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">born</syl></verse></note>
+<note xml:id="n22" pname="c" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n23" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">cre</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="4"/>
+<note xml:id="n26" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">tion.</syl></verse></note>
+<beam>
+<note xml:id="n27" pname="a" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="b" oct="4" dur="4">
+<verse n="1"><syl>One</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>who</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl>lives</syl></verse></note>
+<note xml:id="n32" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">side</syl></verse></note>
+<note xml:id="n34" pname="f" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>me.</syl></verse></note>
+<beam>
+<note xml:id="n36" pname="f" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+<note xml:id="n37" pname="d" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n38" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Fath</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">er!</syl></verse></note>
+</beam>
+<note xml:id="n40" pname="f" oct="4" dur="4"/>
+<beam>
+<note xml:id="n41" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Won</syl></verse></note>
+<note xml:id="n42" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
+<note xml:id="n43" pname="g" oct="4" dur="8"/>
+<note xml:id="n44" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ful!</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+<tie startid="#n39" endid="#n40"/>
+<tie startid="#n42" endid="#n43"/>
+<tie startid="#n44" endid="#n45"/>
+</measure>
+<measure n="11" right="end"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="f" oct="4" dur="2" dots="1"/>
+<rest xml:id="r46" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>What He is: He’s the river.</l><l>He’s the mighty flowing river.</l><l>He waters me in a desert land.</l><l>He’s my hiding place; He is our man.</l><l>He’s the river! Wonderful!</l></lg>
+<lg label="3."><l>What He is: He’s the vine tree.</l><l>He’s the branch, the root of Jesse.</l><l>He’s the tree of life: we have the right</l><l>To eat of Him and have His life.</l><l>He’s the vine tree! Wonderful!</l></lg>
+<lg label="4."><l>What He is: He’s the Shepherd.</l><l>He’s the lamb of God, the he-goat.</l><l>We rest and feed in the pasture land.</l><l>We strike the blood and eat the lamb.</l><l>He’s the Shepherd! Wonderful!</l></lg>
+<lg label="5."><l>What He is: He’s the Spirit.</l><l>He’s the all-inclusive Spirit.</l><l>He’s our everything; He’s our all in all.</l><l>He gives life to us whene’er we call.</l><l>He’s the Spirit! Wonderful!</l></lg>
+<lg label="6."><l>What He is: He’s a Person.</l><l>He’s a real and living Person.</l><l>He is living now inside of us.</l><l>This Person is so glorious.</l><l>He’s a Person! Wonderful!</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">One Person and One Way</title>
+<title type="subordinate">Experience of Christ — As Our Person</title>
+</titleStmt><pubStmt><identifier type="hymn">NS671</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>In</syl></verse></note>
+<beam>
+<note xml:id="n2" pname="e" oct="4" dur="8">
+<verse n="1"><syl>God’s</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">e</syl></verse></note>
+</beam>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">con</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">o</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">my,</syl></verse></note>
+<note xml:id="n7" pname="c" oct="5" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl>there</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>is,</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>One</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Per</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">son</syl></verse></note>
+<note xml:id="n16" pname="c" oct="5" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="4">
+<verse n="1"><syl>one</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>way,</syl></verse></note>
+<beam>
+<note xml:id="n19" pname="g" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>all,</syl></verse></note>
+<note xml:id="n22" pname="e" oct="5" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F7</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">God</syl></verse></note>
+<note xml:id="n24" pname="e" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">man</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">liv</syl></verse></note>
+<note xml:id="n26" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>His.</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="b" oct="4" dur="4">
+<verse n="1"><syl>does</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl>not</syl></verse></note>
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl>give</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl>things—</syl></verse></note>
+<note xml:id="n34" pname="c" oct="5" dur="4">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">on</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="4" accid="n" accid.ges="n">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="4">
+<verse n="1"><syl>gives</syl></verse></note>
+<note xml:id="n38" pname="f" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F7</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="d" oct="5" dur="2" dots="1">
+<verse n="1"><syl>Christ.</syl></verse></note>
+<note xml:id="n40" pname="d" oct="5" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="e" oct="5" dur="4" dots="1">
+<verse n="1"><syl>gift,</syl></verse></note>
+<note xml:id="n42" pname="d" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n43" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n44" pname="b" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Head</syl></verse></note>
+<note xml:id="n46" pname="f" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n47" pname="g" oct="4" dur="4">
+<verse n="1"><syl>all,</syl></verse></note>
+<note xml:id="n48" pname="b" oct="4" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="a" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n50" pname="g" oct="4" dur="4">
+<verse n="1"><syl>things</syl></verse></note>
+<note xml:id="n51" pname="f" oct="4" dur="4">
+<verse n="1"><syl>does</syl></verse></note>
+<note xml:id="n52" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">suf</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="e" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">fice.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>There’s only room for Christ,</l><l>The One who’s all in all.</l><l>In Him, the natural man is null</l><l>And has no place at all.</l><l>In Christ, there is no Jew,</l><l>No Greek, no slave, no free,</l><l>Barbarians and Scythians—</l><l>Crossed out entirely.</l></lg>
+<lg label="3."><l>All differences we see</l><l>In culture, practice, creed</l><l>Are not in Christ, our Lord and Head—</l><l>From oldness these proceed.</l><l>Distinctions have no place</l><l>In Christ, nor in the saints.</l><l>Our nature is the very same,</l><l>As oneness demonstrates.</l></lg>
+<lg label="4."><l>God governs and He deals</l><l>With all things by the cross.</l><l>It’s God’s unique solution for</l><l>The substitutes in us.</l><l>The cross becomes our way</l><l>To put off all things old,</l><l>To live in resurrection till</l><l>Christ in us all behold.</l></lg>
+<lg label="5."><l>Put on the one new man,</l><l>The old man strip away.</l><l>Pass through the cross to take Christ as</l><l>Our Person now today.</l><l>The Spirit with the cross</l><l>Is our unique supply</l><l>That causes us to be renewed</l><l>As one new man thereby.</l></lg>
+<lg label="6."><l>The practicality</l><l>Of passing through the cross</l><l>Is in the mingling that blends</l><l>God’s essence into us.</l><l>The key is be renewed!</l><l>We have the mind of Christ!</l><l>The newness of God’s life, imbued,</l><l>Renews and rectifies.</l></lg>
+<lg label="7."><l>Put off the old today</l><l>And every day beyond.</l><l>But set your mind on spirit now</l><l>And to God’s life respond.</l><l>Enjoy the Lord and drink</l><l>The Spirit till you’re new,</l><l>To think the one thing with all saints,</l><l>With God soaked through and through.</l></lg>
+<lg label="8."><l>Christ is the One we love,</l><l>The One whom we pursue.</l><l>There’s nothing else that we desire</l><l>But Christ, who’s ever new.</l><l>God sees us all in Christ,</l><l>The status we convey;</l><l>Christ and His cross are all we have—</l><l>One Person and one way.</l></lg>
+</div>
+</back>
+</music></mei>

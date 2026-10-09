@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Day One, You came to me</title>
+<title type="subordinate">Various Aspects of the Inner Life—The Growth in Life</title>
+</titleStmt><pubStmt><identifier type="hymn">NS218</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<rest xml:id="r1" dur="4"/>
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Day</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl>One,</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>You</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>came</syl></verse></note>
+<note xml:id="n6" pname="d" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n7" pname="d" oct="4" dur="2">
+<verse n="1"><syl>me,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<rest xml:id="r8" dur="4"/>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Brood</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n11" pname="c" oct="5" dur="4">
+<verse n="1"><syl>so</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">ten</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<rest xml:id="r15" dur="4"/>
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl>You</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4">
+<verse n="1"><syl>spoke</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>word</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n21" pname="e" oct="4" dur="2">
+<verse n="1"><syl>me,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<rest xml:id="r22" dur="4"/>
+<note xml:id="n23" pname="f" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4">
+<verse n="1"><syl>light</syl></verse></note>
+<note xml:id="n25" pname="c" oct="4" dur="4">
+<verse n="1"><syl>did</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="d" oct="4" dur="1">
+<verse n="1"><syl>shine.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gsus4</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<rest xml:id="r27" dur="4"/>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>My</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">dark</syl></verse></note>
+<note xml:id="n30" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>You</syl></verse></note>
+<note xml:id="n32" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ef</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">faced,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<rest xml:id="r34" dur="4"/>
+<note xml:id="n35" pname="f" oct="4" dur="4">
+<verse n="1"><syl>My</syl></verse></note>
+<note xml:id="n36" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">emp</syl></verse></note>
+<note xml:id="n37" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ti</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n40" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">placed,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<rest xml:id="r41" dur="4"/>
+<note xml:id="n42" pname="f" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+<note xml:id="n43" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">gos</syl></verse></note>
+<note xml:id="n44" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">pel’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+<harm staff="1" tstamp="4" place="above">G7/F</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>light</syl></verse></note>
+<note xml:id="n46" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">e</syl></verse></note>
+<note xml:id="n47" pname="c" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">rased</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<rest xml:id="r48" dur="4"/>
+<note xml:id="n49" pname="f" oct="4" dur="4">
+<verse n="1"><syl>My</syl></verse></note>
+<note xml:id="n50" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">his</syl></verse></note>
+<note xml:id="n51" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tory</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm7</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n52" pname="c" oct="4" dur="1">
+<verse n="1"><syl>vain.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Day Two did come and go,</l><l>But one thing I did know,</l><l>Things earthly lost their glow,</l><l>They’re dead to me;</l><l>The atmosphere expanse,</l><l>Lifted my circumstance,</l><l>That life may thus advance,</l><l>For growth in me.</l></lg>
+<lg label="3."><l>Day Three, the land so dry,</l><l>Emerged from waters high,</l><l>Grass, herbs, and trees did rise,</l><l>Your life had sprung.</l><l>My death You now recede,</l><l>As life do rise in me;</l><l>Rise more ’till there’s no sea,</l><l>Within my being.</l></lg>
+<lg label="4."><l>Day Four, the sun did shine,</l><l>With rays of healing light,</l><l>The moon was shining too,</l><l>The church, my home.</l><l>The saints as stars with light,</l><l>Shine ’midst this darkening night,</l><l>Setting my feet aright,</l><l>To walk Your way.</l></lg>
+<lg label="5."><l>Day Five, the fish arrived,</l><l>Against the worldly tide,</l><l>Death waters they survived,</l><l>With life empowered;</l><l>From fish to bird I soar,</l><l>By waiting on You, Lord,</l><l>Your grace to me affords,</l><l>Strength o’er all things.</l></lg>
+<lg label="6."><l>Day Six, from air to ground,</l><l>Cattle and beasts around,</l><l>Then all creation crowned</l><l>With man—like You.</l><l>Through growth expressing Thee</l><l>With Your authority,</l><l>I’d reached maturity,</l><l>Your purpose gained.</l></lg>
+</div>
+</back>
+</music></mei>

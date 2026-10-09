@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">我要讓祂長大</title>
+<title type="subordinate">靈與生命</title>
+</titleStmt><pubStmt><identifier type="hymn">CS126</identifier><identifier type="number">Cs126</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="a" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>生</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="16">
+<verse n="1"><syl>命</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="16">
+<verse n="1"><syl>的</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="8">
+<verse n="1"><syl>種</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="8">
+<verse n="1"><syl>子</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n6" pname="a" oct="4" dur="8">
+<verse n="1"><syl>撒</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="8">
+<verse n="1"><syl>我</syl></verse></note>
+</beam>
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl>裡，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n9" pname="a" oct="4" dur="8">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="16">
+<verse n="1"><syl>要</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="16">
+<verse n="1"><syl>讓</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="8">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="8">
+<verse n="1"><syl>長</syl></verse></note>
+</beam>
+<note xml:id="n14" pname="d" oct="4" dur="2">
+<verse n="1"><syl>大；</syl></verse></note>
+</layer></staff>
+</measure>
+<sb/>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n15" pname="d" oct="5" dur="8">
+<verse n="1"><syl>生</syl></verse></note>
+<note xml:id="n16" pname="d" oct="5" dur="16">
+<verse n="1"><syl>命</syl></verse></note>
+<note xml:id="n17" pname="d" oct="5" dur="16">
+<verse n="1"><syl>的</syl></verse></note>
+<note xml:id="n18" pname="d" oct="5" dur="8">
+<verse n="1"><syl>種</syl></verse></note>
+<note xml:id="n19" pname="e" oct="5" dur="8">
+<verse n="1"><syl>子</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n20" pname="d" oct="5" dur="8">
+<verse n="1"><syl>撒</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="8">
+<verse n="1"><syl>我</syl></verse></note>
+</beam>
+<note xml:id="n22" pname="g" oct="4" dur="4">
+<verse n="1"><syl>裡，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n23" pname="d" oct="5" dur="8">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n24" pname="d" oct="5" dur="16">
+<verse n="1"><syl>要</syl></verse></note>
+<note xml:id="n25" pname="d" oct="5" dur="16">
+<verse n="1"><syl>讓</syl></verse></note>
+<note xml:id="n26" pname="c" oct="5" dur="8">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="8">
+<verse n="1"><syl>長</syl></verse></note>
+</beam>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>大，</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="a" oct="4" dur="8">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="8">
+<verse n="1"><syl>長</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl>大，</syl></verse></note>
+<beam>
+<note xml:id="n32" pname="a" oct="4" dur="8">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="8">
+<verse n="1"><syl>長</syl></verse></note>
+</beam>
+<note xml:id="n34" pname="f" oct="4" dur="4">
+<verse n="1"><syl>大，</syl></verse></note>
+<beam>
+<note xml:id="n35" pname="f" oct="4" dur="8">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n36" pname="e" oct="4" dur="8">
+<verse n="1"><syl>長</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<measure n="6" right="end"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="d" oct="4" dur="1">
+<verse n="1"><syl>大！</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>不讓魂生命擠住祂，</l><l>我要讓祂長大；…</l></lg>
+<lg label="3."><l>藉著禱讀來澆灌祂，…</l></lg>
+<lg label="4."><l>天天呼喊『哦，主耶穌，』…</l></lg>
+<lg label="5."><l>同眾聖徒一起交通，…</l></lg>
+<lg label="6."><l>要站起來為神說話，…</l></lg>
+<lg label="7."><l>當主說話我就阿們，…</l></lg>
+<lg label="8."><l>與眾聖徒一起長大，…</l></lg>
+<lg label="9."><l>直到長成基督身量，…</l></lg>
+<lg label="10."><l>直到國度完全實現，…</l></lg>
+</div>
+</back>
+</music></mei>

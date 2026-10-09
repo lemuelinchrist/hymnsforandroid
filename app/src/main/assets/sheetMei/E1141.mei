@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">We will sing to the Lord with our spirit</title>
+<title type="subordinate">Experience of Christ—In Spirit</title>
+</titleStmt><pubStmt><identifier type="hymn">E1141</identifier><identifier type="number">1141</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="c" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>We</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="8">
+<verse n="1"><syl>will</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl>sing</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="a" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<beam>
+<note xml:id="n7" pname="g" oct="4" dur="8">
+<verse n="1"><syl>with</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+<note xml:id="n11" pname="f" oct="4" dur="4"/>
+<beam>
+<note xml:id="n12" pname="c" oct="4" dur="8">
+<verse n="1"><syl>We</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="8">
+<verse n="1"><syl>will</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<tie startid="#n10" endid="#n11"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>sing</syl></verse></note>
+<beam>
+<note xml:id="n15" pname="f" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n17" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="b" oct="4" dur="8">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">in,</syl></verse></note>
+<beam>
+<note xml:id="n21" pname="c" oct="5" dur="8">
+<verse n="1"><syl>We</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="8">
+<verse n="1"><syl>will</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="4">
+<verse n="1"><syl>sing</syl></verse></note>
+<beam>
+<note xml:id="n24" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">hal</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">le</syl></verse></note>
+</beam>
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
+<beam>
+<note xml:id="n27" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">jah</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
+<harm staff="1" tstamp="4" place="above">F7/A</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n29" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n31" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">sus;</syl></verse></note>
+<beam>
+<note xml:id="n32" pname="d" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n33" pname="d" oct="4" dur="8">
+<verse n="1"><syl>be</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+<tie startid="#n30" endid="#n31"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="c" oct="4" dur="4">
+<verse n="1"><syl>blent</syl></verse></note>
+<beam>
+<note xml:id="n35" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+</beam>
+<note xml:id="n37" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">one</syl></verse></note>
+<beam>
+<note xml:id="n38" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<note xml:id="n39" pname="g" oct="4" dur="8">
+<verse n="1"><syl>with</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Him.</syl></verse></note>
+<rest xml:id="r41" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>We have been many years in religion,</l><l>We have been many years in our mind,</l><l>We have been many years in emotions,</l><l>Always seeking, but never to find.</l></lg>
+<lg label="3."><l>Now we’re learning to turn to our spirit,</l><l>Now we’re learning to take Christ as life;</l><l>Now we’re learning to feed upon Jesus</l><l>And be freed from all struggling and strife.</l></lg>
+<lg label="4."><l>Hallelujah for life in the Spirit,</l><l>Hallelujah for newness within.</l><l>When we turn from our mind to our spirit,</l><l>We enjoy all the riches of Him.</l></lg>
+</div>
+</back>
+</music></mei>

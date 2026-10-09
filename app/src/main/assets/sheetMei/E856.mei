@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">How pleasant and how good it is</title>
+<title type="subordinate">The Church—Her Fellowship</title>
+</titleStmt><pubStmt><identifier type="hymn">E856</identifier><identifier type="number">856</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="2" meter.unit="2" meter.sym="cut"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<rest xml:id="r1" dur="2" dots="1"/>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>How</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">plea</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">sant</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>how</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2.5000" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="2">
+<verse n="1"><syl>good</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="2">
+<verse n="1"><syl>it</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n10" pname="e" oct="4" dur="4">
+<verse n="1"><syl>When</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">breth</syl></verse></note>
+<note xml:id="n12" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ren</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="2">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="2">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2.5000" place="above">A7/E</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="a" oct="4" dur="2">
+<verse n="1"><syl>one</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="d" oct="5" dur="2" dots="1">
+<verse n="1"><syl wordpos="m" con="d">oth</syl></verse></note>
+<note xml:id="n20" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">er’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2.5000" place="above">D/F♯</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="c" oct="5" dur="2">
+<verse n="1"><syl>joy</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">light</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>dwell</syl></verse></note>
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="f" oct="4" dur="2">
+<verse n="1"><syl>sweet</syl></verse></note>
+<note xml:id="n28" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">ac</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="d" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">cord.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/D</harm>
+<tie startid="#n29" endid="#n30"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="d" oct="4" dur="2" dots="1"/>
+<rest xml:id="r31" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Such oneness, like anointing oil</l><l>On head to body poured;</l><l>Such oneness, like the morning dew,</l><l>With sweet refreshment stored.</l></lg>
+<lg label="3."><l>To those who dwell in brotherhood</l><l>The Lord His blessing sends,</l><l>He crowns them with the bliss of life,</l><l>Of life that never ends.</l></lg>
+</div>
+</back>
+</music></mei>

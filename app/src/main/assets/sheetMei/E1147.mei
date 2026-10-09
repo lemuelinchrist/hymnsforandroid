@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Christ is our manna true</title>
+<title type="subordinate">Experience of Christ—As Food and Drink</title>
+</titleStmt><pubStmt><identifier type="hymn">E1147</identifier><identifier type="number">1147</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Christ</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="b" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">man</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="8"/>
+<note xml:id="n6" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">na</syl></verse></note>
+<note xml:id="n7" pname="d" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n4" endid="#n5"/>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>true,</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>bread</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="b" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="8"/>
+</beam>
+<note xml:id="n13" pname="b" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<beam>
+<note xml:id="n14" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+<slur startid="#n11" endid="#n12"/>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">deed;</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="2"/>
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>He’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">sup</syl></verse></note>
+<note xml:id="n21" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ply</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="g" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/F</harm>
+<slur startid="#n20" endid="#n21"/>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">nou</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">rish</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n28" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ment,</syl></verse></note>
+<note xml:id="n29" pname="d" oct="5" dur="4">
+<verse n="1"><syl>As</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="e" oct="5" dur="4">
+<verse n="1"><syl>on</syl></verse></note>
+<beam>
+<note xml:id="n31" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Him</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n33" pname="g" oct="4" dur="4">
+<verse n="1"><syl>now</syl></verse></note>
+<note xml:id="n34" pname="f" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="2" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭7</harm>
+<slur startid="#n31" endid="#n32"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>feed.</syl></verse></note>
+<rest xml:id="r36" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>From Egypt Israel fled</l><l>Into a desert land;</l><l>Egyptian food they left behind,</l><l>And wandering began.</l></lg>
+<lg label="3."><l>One day, the manna fell,</l><l>Oh, what a wondrous feat;</l><l>This was the bread the Lord had giv’n</l><l>For Israel to eat.</l></lg>
+<lg label="4."><l>Unique this manna is,</l><l>It comes with morning dew;</l><l>The visit of God’s grace it is,</l><l>Forever fresh and new.</l></lg>
+<lg label="5."><l>God is majestic, high,</l><l>And greater than us all;</l><l>But that we may partake of Him,</l><l>In Christ, He’s fine and small.</l></lg>
+<lg label="6."><l>Though ground, or beat, or baked,</l><l>He’s so available;</l><l>As bread and cakes and wafers fresh,</l><l>We eat Him to the full.</l></lg>
+<lg label="7."><l>Manna shows Him to be</l><l>The germ of life, the seed;</l><l>’Tis God Himself sown into us,</l><l>The source of all we need.</l></lg>
+<lg label="8."><l>Between the morning dew</l><l>And cold of winter snow,</l><l>This manna too is frost which kills</l><l>Things negative below.</l></lg>
+<lg label="9."><l>How pure and white and clean;</l><l>In type our Christ we see;</l><l>As we digest His element,</l><l>He washes inwardly.</l></lg>
+<lg label="10."><l>Manna with honey is;</l><l>Two lives this type does show;</l><l>One for the Lord’s redemptive work,</l><l>And one His life to grow.</l></lg>
+<lg label="11."><l>By eating more of Christ</l><l>We’ll be the less opaque;</l><l>We’ll then appear as bdellium,</l><l>Transparent us to make.</l></lg>
+<lg label="12."><l>Lord, as we’re eating here</l><l>And in the manna see</l><l>The riches of this glorious Christ,</l><l>We’re filled with praise to Thee.</l></lg>
+</div>
+</back>
+</music></mei>

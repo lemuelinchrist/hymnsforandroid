@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">My will is weak, my strength is frail</title>
+<title type="subordinate">Experience of Christ—Trusting Him</title>
+</titleStmt><pubStmt><identifier type="hymn">E578</identifier><identifier type="number">578</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>My</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="a" oct="4" dur="2">
+<verse n="1"><syl>weak,</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="f" oct="4" dur="2">
+<verse n="1"><syl>strength</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>frail,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="b" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="g" oct="4" dur="2">
+<verse n="1"><syl>hope</syl></verse></note>
+<note xml:id="n13" pname="e" oct="5" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="e" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">near</syl></verse></note>
+<note xml:id="n15" pname="d" oct="5" dur="4"/>
+<note xml:id="n16" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F7</harm>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>gone;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/A♭</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n19" pname="c" oct="5" dur="4">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>but</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="e" oct="5" dur="2">
+<verse n="1"><syl>trust</syl></verse></note>
+<note xml:id="n22" pname="d" oct="5" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">work</syl></verse></note>
+<note xml:id="n24" pname="c" oct="5" dur="4"/>
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="a" oct="4" dur="2">
+<verse n="1"><syl>true</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl>To</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">gent</syl></verse></note>
+<note xml:id="n29" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm/A♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="a" oct="4" dur="2">
+<verse n="1"><syl>hold</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="f" oct="4" dur="4">
+<verse n="1"><syl>lead</syl></verse></note>
+<note xml:id="n33" pname="c" oct="4" dur="4"/>
+<note xml:id="n34" pname="d" oct="4" dur="4">
+<verse n="1"><syl>me</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm/A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<slur startid="#n32" endid="#n33"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>on.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>I’ve tried my best, but still have failed,</l><l>E’en as before I’ve failed and erred;</l><l>Thy patience is my only trust</l><l>To hold and keep me to Thy word.</l></lg>
+<lg label="3."><l>Whene’er my heart is lifted up,</l><l>How very near I am to fall;</l><l>I dare not do, I dare not think,</l><l>I need Thyself in great or small.</l></lg>
+<lg label="4."><l>Thou art my Savior, strength and stay,</l><l>O Lord, I come to seek Thy face;</l><l>Though I’m the weakest of the weak,</l><l>My strength is nothing but Thy grace.</l></lg>
+</div>
+</back>
+</music></mei>

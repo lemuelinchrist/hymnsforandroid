@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Lo, the nations all assemble</title>
+<title type="subordinate">Praise of the Lord—His Victory and Exaltation</title>
+</titleStmt><pubStmt><identifier type="hymn">E1094</identifier><identifier type="number">1094</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>Lo,</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">na</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4"/>
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tions</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<slur startid="#n3" endid="#n4"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="f" oct="4" dur="2">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">as</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">sem</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="4"/>
+<note xml:id="n10" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ble</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="c" oct="4" dur="2">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n12" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">ma</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">gine</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">van</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="8"/>
+<note xml:id="n17" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Kings</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">princ</syl></verse></note>
+<note xml:id="n22" pname="g" oct="4" dur="4"/>
+<note xml:id="n23" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">es</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F7</harm>
+<slur startid="#n21" endid="#n22"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="f" oct="4" dur="2">
+<verse n="1"><syl>plot</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">geth</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="4"/>
+<note xml:id="n28" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="c" oct="4" dur="2">
+<verse n="1"><syl>’Gainst</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n32" pname="c" oct="5" dur="4"/>
+<note xml:id="n33" pname="b" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n31" endid="#n32"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">u</syl></verse></note>
+<note xml:id="n35" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ni</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="c" oct="5" dur="2">
+<verse n="1"><syl>“Let</syl></verse></note>
+<note xml:id="n38" pname="a" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="c" oct="5" dur="2">
+<verse n="1"><syl>break</syl></verse></note>
+<note xml:id="n40" pname="a" oct="4" dur="4">
+<verse n="1"><syl>their</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="b" oct="4" dur="2">
+<verse n="1"><syl>bonds</syl></verse></note>
+<note xml:id="n42" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="m" con="d">sund</syl></verse></note>
+<note xml:id="n44" pname="a" oct="4" dur="8"/>
+<note xml:id="n45" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n43" endid="#n44"/>
+</measure>
+<measure n="21"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Cast</syl></verse></note>
+<beam>
+<note xml:id="n47" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n48" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<slur startid="#n47" endid="#n48"/>
+</measure>
+<measure n="22"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">way</syl></verse></note>
+<note xml:id="n50" pname="c" oct="5" dur="4">
+<verse n="1"><syl>their</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="23"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="d" oct="5" dur="4">
+<verse n="1"><syl>cords</syl></verse></note>
+<note xml:id="n52" pname="c" oct="5" dur="4"/>
+<note xml:id="n53" pname="a" oct="4" dur="4">
+<verse n="1"><syl>from</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="2" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">G7/B</harm>
+<slur startid="#n51" endid="#n52"/>
+</measure>
+<measure n="24"><staff n="1"><layer n="1">
+<note xml:id="n54" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>us.”</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="25"><staff n="1"><layer n="1">
+<note xml:id="n55" pname="a" oct="4" dur="2">
+<verse n="1"><syl>’Gainst</syl></verse></note>
+<note xml:id="n56" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="26"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n58" pname="g" oct="4" dur="4"/>
+<note xml:id="n59" pname="f" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F7</harm>
+<slur startid="#n57" endid="#n58"/>
+</measure>
+<measure n="27"><staff n="1"><layer n="1">
+<note xml:id="n60" pname="f" oct="4" dur="2">
+<verse n="1"><syl>His</syl></verse></note>
+<note xml:id="n61" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="28"><staff n="1"><layer n="1">
+<note xml:id="n62" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">noint</syl></verse></note>
+<note xml:id="n63" pname="f" oct="4" dur="4"/>
+<note xml:id="n64" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<slur startid="#n62" endid="#n63"/>
+</measure>
+<measure n="29"><staff n="1"><layer n="1">
+<note xml:id="n65" pname="c" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">World</syl></verse></note>
+<note xml:id="n66" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+</measure>
+<measure n="30"><staff n="1"><layer n="1">
+<note xml:id="n67" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">rul</syl></verse></note>
+<note xml:id="n68" pname="c" oct="5" dur="4"/>
+<note xml:id="n69" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ers</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="2" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n67" endid="#n68"/>
+</measure>
+<measure n="31"><staff n="1"><layer n="1">
+<note xml:id="n70" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">coun</syl></verse></note>
+<note xml:id="n71" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sel</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="32" right="end"><staff n="1"><layer n="1">
+<note xml:id="n72" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>thus.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>He who sitteth in the heavens</l><l>In contempt will laugh at them,</l><l>Vex them in His fierce displeasure,</l><l>Terrifying all such men.</l><l>Yet upon the hill of Zion</l><l>God has His anointed King—</l><l>This is God’s own declaration,</l><l>All the kings admonishing.</l></lg>
+<lg label="3."><l>Now ’tis Christ, ’tis God’s Anointed,</l><l>Who declares the Lord’s decree:</l><l>“Thou’rt my Son (in resurrection),</l><l>This day I’ve begotten Thee.</l><l>All the nations I will give Thee</l><l>For Thine own inheritance.</l><l>Thou shalt dash them into pieces</l><l>In Thy kingly excellence.”</l></lg>
+<lg label="4."><l>Now be wise, O be instructed,</l><l>All ye rulers of the earth,</l><l>Fear the Lord, rejoice with trembling,</l><l>Serve the only One of worth.</l><l>Kiss the Son, lest He be angry</l><l>And ye perish in the way.</l><l>“All who trust in Him are blessed,”</l><l>All who trust in Him will say.</l></lg>
+<lg label="5."><l>Lord, we praise Thee, we have seen Him—</l><l>Thy unique Anointed One—</l><l>And from vanity repenting,</l><l>We in love have kissed Thy Son.</l><l>“All who trust in Him are blessed”—</l><l>Not “all those who keep the law.”</l><l>In that risen One believing,</l><l>We are blest forevermore.</l></lg>
+</div>
+</back>
+</music></mei>

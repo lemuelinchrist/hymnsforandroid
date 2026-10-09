@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Come, let us to the Lord our God</title>
+<title type="subordinate">Encouragement—For Returning to the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">E665</identifier><identifier type="number">665</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Come,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>let</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n9" pname="d" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">trite</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>heart</syl></verse></note>
+<beam>
+<note xml:id="n15" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n16" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+<slur startid="#n12" endid="#n13"/>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">turn;</syl></verse></note>
+<note xml:id="n18" pname="e" oct="4" dur="2"/>
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+<slur startid="#n17" endid="#n18"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n22" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">gra</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="f" oct="4" dur="8"/>
+<note xml:id="n24" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">cious,</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+<harm staff="1" tstamp="4" place="above">A/C♯</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="d" oct="4" dur="4">
+<verse n="1"><syl>nor</syl></verse></note>
+<note xml:id="n26" pname="e" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl>leave</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+<beam>
+<note xml:id="n30" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">so</syl></verse></note>
+<note xml:id="n31" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n32" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">late</syl></verse></note>
+<note xml:id="n33" pname="e" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>mourn.</syl></verse></note>
+<rest xml:id="r35" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>His voice commands the tempest forth,</l><l>And stills the stormy wave;</l><l>And though His arm be strong to smite,</l><l>’Tis also strong to save.</l></lg>
+<lg label="3."><l>Long hath the night of sorrow reigned;</l><l>The dawn shall bring us light;</l><l>God shall appear, and we shall rise</l><l>With gladness in His sight.</l></lg>
+<lg label="4."><l>Our heart, if God we seek to know,</l><l>Shall know Him, and rejoice;</l><l>His coming like the morn shall be,</l><l>Like morning songs His voice.</l></lg>
+<lg label="5."><l>As dew upon the tender herb,</l><l>Diffusing fragrance round,</l><l>As showers that usher in the spring,</l><l>And cheer the thirsty ground;</l></lg>
+<lg label="6."><l>So shall His presence bless our souls,</l><l>And shed a joyful light;</l><l>That hallowed morn shall chase away</l><l>The sorrows of the night.</l></lg>
+</div>
+</back>
+</music></mei>

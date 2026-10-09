@@ -57,6 +57,12 @@
                 app:title="@string/sheetMusicType"
                 app:useSimpleSummaryProvider="true"
                 app:icon="@drawable/ic_sheet_music_type_black_32dp"/>
+        <SwitchPreferenceCompat
+                app:key="newSheetMusicViewer"
+                app:defaultValue="false"
+                app:title="@string/newSheetMusicViewer"
+                app:summary="Sheet music that fits the screen (beta)"
+                app:icon="@drawable/ic_sheet_music_type_black_32dp"/>
         <Preference
                 app:key="about"
                 app:title="About Hymns"

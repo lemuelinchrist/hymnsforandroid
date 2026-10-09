@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">By Christ redeemed, in Christ restored</title>
+<title type="subordinate">Praise of the Lord—Remembrance of Him</title>
+</titleStmt><pubStmt><identifier type="hymn">E232</identifier><identifier type="number">232</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>By</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n4" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">deemed,</syl></verse></note>
+<note xml:id="n5" pname="d" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">stored,</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>We</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>keep</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">me</syl></verse></note>
+<note xml:id="n13" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">mo</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<beam>
+<note xml:id="n15" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n16" pname="d" oct="4" dur="8"/>
+</beam>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">dored,</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E7</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>show</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n21" pname="c" oct="5" dur="4" accid="n" accid.ges="n">
+<verse n="1"><syl>death</syl></verse></note>
+<note xml:id="n22" pname="c" oct="5" dur="4" accid.ges="n">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D7/F♯</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl>dear</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="i" con="d">Un</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<harm staff="1" tstamp="4" place="above">E/F</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">til</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="2">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>come.</syl></verse></note>
+<rest xml:id="r30" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>His body broken in our stead</l><l>Is seen in this memorial bread,</l><l>And so our feeble love is fed</l><l>Until He come.</l></lg>
+<lg label="3."><l>The drops of His dread agony,</l><l>His life-blood shed for us, we see;</l><l>The wine shall tell the mystery</l><l>Until He come.</l></lg>
+<lg label="4."><l>And thus that dark betrayal-night</l><l>With the last advent we unite,</l><l>By one blest chain of loving rite,</l><l>Until He come.</l></lg>
+<lg label="5."><l>Until the trump of God be heard,</l><l>Until the ancient graves be stirred,</l><l>And with the great commanding word</l><l>The Lord shall come.</l></lg>
+<lg label="6."><l>O blessed hope! with this elate;</l><l>Let not our heart be desolate,</l><l>But, strong in faith, in patience wait</l><l>Until He come.</l></lg>
+</div>
+</back>
+</music></mei>

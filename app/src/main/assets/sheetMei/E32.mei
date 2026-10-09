@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">We bow and worship, Father, here</title>
+<title type="subordinate">Worship of the Father—His Intent</title>
+</titleStmt><pubStmt><identifier type="hymn">E32</identifier><identifier type="number">32</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>We</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>bow</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4"/>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m</harm>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">wor</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ship,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4"/>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="2">
+<verse n="1"><syl>here</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">mar</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="4"/>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">vel</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n12" endid="#n13"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="4">
+<verse n="1"><syl>at</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="4"/>
+<note xml:id="n17" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">won</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4"/>
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">drous</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="e" oct="4" dur="2">
+<verse n="1"><syl>love.</syl></verse></note>
+<note xml:id="n22" pname="e" oct="4" dur="4">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="f" oct="4" dur="4">
+<verse n="1"><syl>what</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4"/>
+<beam>
+<note xml:id="n25" pname="f" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<slur startid="#n23" endid="#n24"/>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="a" oct="4" dur="2">
+<verse n="1"><syl>man</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="4">
+<verse n="1"><syl>shouldst</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="c" oct="5" dur="2">
+<verse n="1"><syl>deign</syl></verse></note>
+<beam>
+<note xml:id="n32" pname="b" oct="4" dur="8">
+<verse n="1"><syl>To</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n32" endid="#n33"/>
+</measure>
+<sb/>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="d" oct="5" dur="4">
+<verse n="1"><syl>him</syl></verse></note>
+<note xml:id="n35" pname="c" oct="5" dur="4"/>
+<note xml:id="n36" pname="b" oct="4" dur="4">
+<verse n="1"><syl>such</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/F</harm>
+<slur startid="#n34" endid="#n35"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">bound</syl></verse></note>
+<note xml:id="n38" pname="g" oct="4" dur="4"/>
+<note xml:id="n39" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">less</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+<slur startid="#n37" endid="#n38"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="b" oct="4" dur="4">
+<verse n="1"><syl>grace</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="4"/>
+<note xml:id="n42" pname="g" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<slur startid="#n40" endid="#n41"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>prove!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>We praise Thee for Thy heart’s intent</l><l>That man Thy likeness should possess,</l><l>That with Thy life and nature filled</l><l>Thine image he should manifest.</l></lg>
+<lg label="3."><l>Man in Thine image Thou didst make,</l><l>To him authority didst give;</l><l>Thyself presenting as his life,</l><l>That by Thy riches he might live.</l></lg>
+<lg label="4."><l>To enter man Thou dost desire,</l><l>With him to mingle thru Thy grace,</l><l>That man may be transformed and built</l><l>To be Thy worthy dwelling place.</l></lg>
+<lg label="5."><l>Tho’ man did fall, Thou didst not leave</l><l>Thy heart’s intent, but Thou didst move;</l><l>Redeeming man to bring him back,</l><l>Thou didst Thy love and wisdom prove.</l></lg>
+<lg label="6."><l>In Christ Thou didst Thyself reveal,</l><l>Who died and rose, redemption wrought;</l><l>In Spirit Thou hast entered man</l><l>And to him life and grace hast brought.</l></lg>
+<lg label="7."><l>My spirit is Thy holiest place,</l><l>Thy throne of grace is founded there;</l><l>Thou wouldst that we in spirit come</l><l>To burn the incense thru our prayer.</l></lg>
+<lg label="8."><l>Such grace is like a river full</l><l>Which from the throne of grace doth come;</l><l>It floweth thru, transforming us,</l><l>And builds us up to be Thy home.</l></lg>
+<lg label="9."><l>Receiving of Thy matchless grace,</l><l>We marvel at Thy gift so free;</l><l>With grateful hearts for Thy great love,</l><l>In spirit now we worship Thee.</l></lg>
+</div>
+</back>
+</music></mei>

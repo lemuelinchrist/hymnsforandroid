@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The Lord shall get the glory</title>
+<title type="subordinate">Praise of the Lord—His Victory and Exaltation</title>
+</titleStmt><pubStmt><identifier type="hymn">E1095</identifier><identifier type="number">1095</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="8">
+<verse n="1"><syl>shall</syl></verse></note>
+<note xml:id="n4" pname="d" oct="4" dur="4">
+<verse n="1"><syl>get</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl>If</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="4" place="above">D/C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n11" pname="c" oct="5" dur="4">
+<verse n="1"><syl>sing</syl></verse></note>
+<note xml:id="n12" pname="b" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="a" oct="4" dur="2">
+<verse n="1"><syl>praise,</syl></verse></note>
+<rest xml:id="r14" dur="4"/>
+<beam>
+<note xml:id="n15" pname="b" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n16" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
+<note xml:id="n18" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">gel</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl>hosts</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G7/B</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">list</syl></verse></note>
+<note xml:id="n22" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">en</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>When</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="d" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">voic</syl></verse></note>
+<beam>
+<note xml:id="n27" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">es</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+<slur startid="#n27" endid="#n28"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="g" oct="4" dur="2">
+<verse n="1"><syl>raise;</syl></verse></note>
+<rest xml:id="r30" dur="4"/>
+<note xml:id="n31" pname="d" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl>world</syl></verse></note>
+<note xml:id="n33" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n34" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">round</syl></verse></note>
+<beam>
+<note xml:id="n35" pname="c" oct="5" dur="8">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n36" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<slur startid="#n35" endid="#n36"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="a" oct="4" dur="2">
+<verse n="1"><syl>hear</syl></verse></note>
+<note xml:id="n38" pname="d" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n39" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Give</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<note xml:id="n42" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<beam>
+<note xml:id="n43" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+<note xml:id="n44" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+<slur startid="#n43" endid="#n44"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="b" oct="4" dur="2">
+<verse n="1"><syl>God,</syl></verse></note>
+<rest xml:id="r46" dur="4"/>
+<beam>
+<note xml:id="n47" pname="b" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n48" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n47" endid="#n48"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Sa</syl></verse></note>
+<note xml:id="n50" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tan’s</syl></verse></note>
+<note xml:id="n51" pname="a" oct="4" dur="4">
+<verse n="1"><syl>hosts</syl></verse></note>
+<note xml:id="n52" pname="g" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">trem</syl></verse></note>
+<note xml:id="n54" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ble</syl></verse></note>
+<note xml:id="n55" pname="e" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n56" pname="d" oct="4" dur="4">
+<verse n="1"><syl>flee</syl></verse></note>
+<note xml:id="n57" pname="g" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n58" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
+<beam>
+<note xml:id="n59" pname="b" oct="4" dur="8"/>
+<note xml:id="n60" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">qu’ring</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+<fermata startid="#n59" place="above"/>
+<slur startid="#n59" endid="#n60"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n61" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>rod.</syl></verse></note>
+<rest xml:id="r62" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">C/G</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Our mouth shut up defeats us</l><l>And wins the Devil’s smile;</l><l>So why not open battle</l><l>And chase him all the while.</l><l>By “sacrifice of praises”</l><l>And shouts of victory—</l><l>’Twill cost us but our faces</l><l>God’s chosen fools to be!</l></lg>
+<lg label="3."><l>The world has never helped us</l><l>To shout our Savior’s praise,</l><l>Nor given Him the glory</l><l>Nor lent one thankful phrase;</l><l>So need we ask permission</l><l>To praise th’ ascended Lord?</l><l>Cry out! Release your spirit!</l><l>Much grace He does afford!</l></lg>
+<lg label="4."><l>O brothers, be not silent!</l><l>O sisters, cry aloud!</l><l>The sound shall tell God’s triumph</l><l>And blessings far abroad.</l><l>Now is the time to praise Him,</l><l>Yes now, at any cost!</l><l>O joy in your salvation,</l><l>And in His mercy boast.</l></lg>
+</div>
+</back>
+</music></mei>

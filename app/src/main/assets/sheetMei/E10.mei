@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">O God, th’ eternal Father, Thou</title>
+<title type="subordinate">Worship of the Father—As the Eternal One</title>
+</titleStmt><pubStmt><identifier type="hymn">E10</identifier><identifier type="number">10</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="b" oct="4" dur="4">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4"/>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">th’et</syl></verse></note>
+</layer></staff>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ern</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4"/>
+<note xml:id="n7" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">al</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
+<note xml:id="n9" pname="b" oct="4" dur="4"/>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="g" oct="4" dur="2">
+<verse n="1"><syl>Thou,</syl></verse></note>
+<note xml:id="n12" pname="d" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n14" pname="c" oct="5" dur="4"/>
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">cre</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<slur startid="#n13" endid="#n14"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">at</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="4"/>
+<note xml:id="n18" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ed,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="d" oct="5" dur="4">
+<verse n="1"><syl>great</syl></verse></note>
+<note xml:id="n20" pname="b" oct="4" dur="4"/>
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="2">
+<verse n="1"><syl>AM!</syl></verse></note>
+<note xml:id="n23" pname="d" oct="4" dur="4">
+<verse n="1"><syl>More</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="4"/>
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cient</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/C</harm>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="g" oct="4" dur="2">
+<verse n="1"><syl>than</syl></verse></note>
+<note xml:id="n28" pname="d" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
+<note xml:id="n30" pname="c" oct="5" dur="4"/>
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cients</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+<slur startid="#n29" endid="#n30"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="g" oct="4" dur="4">
+<verse n="1"><syl>are,</syl></verse></note>
+<note xml:id="n33" pname="f" oct="4" dur="4"/>
+<note xml:id="n34" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<slur startid="#n32" endid="#n33"/>
+</measure>
+<sb/>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">prim</syl></verse></note>
+<note xml:id="n38" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">al</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="g" oct="4" dur="4">
+<verse n="1"><syl>age</syl></verse></note>
+<note xml:id="n40" pname="f" oct="4" dur="4"/>
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+<slur startid="#n39" endid="#n40"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">gan!</syl></verse></note>
+<rest xml:id="r43" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>From everlasting Thou art God,</l><l>All time and space Thou dost transcend!</l><l>The fulness of eternity,</l><l>Without beginning, without end!</l></lg>
+<lg label="3."><l>Th’ eternal source of all Thou art,</l><l>Before the heavens were decreed!</l><l>Thou art the first of all the first,</l><l>And e’en the foremost dost precede!</l></lg>
+<lg label="4."><l>Thou art the life that ever lasts,</l><l>From age to age Thou endest not!</l><l>More lasting than all that which lasts,</l><l>Beyond the ultimate Thou art!</l></lg>
+<lg label="5."><l>Thou art the Alpha as the first,</l><l>Omega, as the last Thou art!</l><l>From start to end Thou hast no lack,</l><l>Complete and perfect, wanting not!</l></lg>
+<lg label="6."><l>We praise Thee for Thine endless years,</l><l>Extol Thee for Thy boundlessness!</l><l>We praise Thee for Thy fulness vast,</l><l>Extol Thee for Thy Perfectness!</l></lg>
+</div>
+</back>
+</music></mei>

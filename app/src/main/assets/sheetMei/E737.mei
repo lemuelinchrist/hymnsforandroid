@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Life eternal brings us</title>
+<title type="subordinate">Various Aspects of the Inner Life—The Fellowship of Life</title>
+</titleStmt><pubStmt><identifier type="hymn">E737</identifier><identifier type="number">737</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>Life</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">e</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">nal</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl>brings</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="2">
+<verse n="1"><syl>us</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Fel</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">low</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="t">ship</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4" accid.ges="s">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="1">
+<verse n="1"><syl>life,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Fel</syl></verse></note>
+<note xml:id="n13" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="m" con="d">low</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ship</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n21" pname="e" oct="4" dur="4">
+<verse n="1"><syl>from</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="d" oct="4" dur="1">
+<verse n="1"><syl>strife.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Life eternal gives us</l><l>Fellowship divine;</l><l>Thus the Lord as Spirit</l><l>May with us combine.</l></lg>
+<lg label="3."><l>It is life in Spirit</l><l>Brings this fellowship;</l><l>Fellowship in Spirit</l><l>Doth with grace equip.</l></lg>
+<lg label="4."><l>We, by life’s enabling,</l><l>Fellowship aright;</l><l>Fellowship in Spirit</l><l>Brings us into light.</l></lg>
+<lg label="5."><l>By the outward cleansing,</l><l>Fellowship we keep;</l><l>Inwardly anointed,</l><l>Fellowship we reap.</l></lg>
+<lg label="6."><l>Fellowship is deepened</l><l>Thru the cross of death;</l><l>Fellowship is lifted</l><l>By the Spirit’s breath.</l></lg>
+<lg label="7."><l>Fellowship will free us</l><l>From our sinful self;</l><l>Fellowship will bring us</l><l>Into God Himself.</l></lg>
+</div>
+</back>
+</music></mei>

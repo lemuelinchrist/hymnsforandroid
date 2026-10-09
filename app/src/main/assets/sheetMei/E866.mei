@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Exercise the spirit (Meetings)</title>
+<title type="subordinate">Meetings—Exercising the Spirit</title>
+</titleStmt><pubStmt><identifier type="hymn">E866</identifier><identifier type="number">866</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Ex</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cise</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">it!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Hu</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">man</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>thought</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4" accid.ges="s">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">ject;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl>Meet</syl></verse></note>
+<note xml:id="n13" pname="d" oct="5" dur="8">
+<verse n="1"><syl>with</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>one</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">oth</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Bo</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">dy</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n21" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">res</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="d" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">pect.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Exercise the spirit!</l><l>All the forms forsake;</l><l>Share with one another,</l><l>Each of Christ partake.</l></lg>
+<lg label="3."><l>Exercise the spirit!</l><l>Natural sense renounce;</l><l>Serve with one another,</l><l>Christ the Lord announce.</l></lg>
+<lg label="4."><l>Exercise the spirit!</l><l>Soulish life deny;</l><l>Helping one another,</l><l>On the Lord rely.</l></lg>
+<lg label="5."><l>Freed within the spirit</l><l>From self-righteousness,</l><l>From self-condemnation</l><l>And self-consciousness.</l></lg>
+<lg label="6."><l>Freed within the spirit</l><l>From self-will and pride,</l><l>From self-love and glory,</l><l>All to override.</l></lg>
+<lg label="7."><l>Exercise the spirit,</l><l>Victory to claim</l><l>By the blood which cleanses</l><l>And the mighty Name.</l></lg>
+<lg label="8."><l>Exercise the spirit</l><l>Thus to touch the Lord;</l><l>Ever by the spirit</l><l>Take Him thru His Word.</l></lg>
+<lg label="9."><l>It is by the spirit</l><l>Christ is testified;</l><l>It is by the spirit</l><l>Man is satisfied.</l></lg>
+<lg label="10."><l>Exercise the spirit!</l><l>This is what we need!</l><l>Exercise the spirit!</l><l>May the Lord so lead!</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">There is a healing branch that grows</title>
+<title type="subordinate">Divine Healing—Jehovah-Rapha</title>
+</titleStmt><pubStmt><identifier type="hymn">E753</identifier><identifier type="number">753</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="d" oct="4" dur="8"/>
+<note xml:id="n2" pname="e" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>There</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="f" oct="4" dur="2">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">heal</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4"/>
+<note xml:id="n7" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+<harm staff="1" tstamp="2" place="above">F7/C</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="g" oct="4" dur="2">
+<verse n="1"><syl>branch</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="2">
+<verse n="1"><syl>grows</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="a" oct="4" dur="8"/>
+<note xml:id="n12" pname="b" oct="4" dur="8">
+<verse n="1"><syl>Where</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<note xml:id="n14" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ery</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">bit</syl></verse></note>
+<note xml:id="n16" pname="b" oct="4" dur="4"/>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ter</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Ma</syl></verse></note>
+<note xml:id="n19" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">rah</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="c" oct="5" dur="2">
+<verse n="1"><syl>flows;</syl></verse></note>
+<note xml:id="n21" pname="c" oct="5" dur="4">
+<verse n="1"><syl>This</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="d" oct="5" dur="2">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n23" pname="c" oct="5" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">health-</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">new</syl></verse></note>
+<note xml:id="n27" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="c" oct="4" dur="2">
+<verse n="1"><syl>tree.</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="d" oct="4" dur="8">
+<verse n="1"><syl>“I</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n29" endid="#n30"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="2">
+<verse n="1"><syl>am</syl></verse></note>
+<note xml:id="n32" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n34" pname="e" oct="4" dur="4"/>
+<note xml:id="n35" pname="d" oct="4" dur="4">
+<verse n="1"><syl>that</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F7/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n33" endid="#n34"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">heal</syl></verse></note>
+<note xml:id="n37" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">eth</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="b" oct="4" dur="2">
+<verse n="1"><syl>thee.”</syl></verse></note>
+<rest xml:id="r39" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>There is an old appointed way</l><l>For those who hearken and obey;</l><l>Above the gate these words we see:</l><l>“I am the Lord that healeth thee.”</l></lg>
+<lg label="3."><l>There is an ordinance that has stood</l><l>Since Israel crossed the parted flood;</l><l>It stands today for you and me—</l><l>“I am the Lord that healeth thee.”</l></lg>
+<lg label="4."><l>There is a great Physician still</l><l>Whose hand has all its ancient skill;</l><l>At His command our pains will flee—</l><l>“I am the Lord that healeth thee.”</l></lg>
+</div>
+</back>
+</music></mei>

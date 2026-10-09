@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">一呼一吸我吸主</title>
+<title type="subordinate">享受基督</title>
+</titleStmt><pubStmt><identifier type="hymn">CS224</identifier><identifier type="number">Cs224</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><label>1.</label><syl>一</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="16">
+<verse n="1"><syl>呼</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>一</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="16">
+<verse n="1"><syl>吸</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n5" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="16">
+<verse n="1"><syl>吸</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>主，</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="16">
+<verse n="1"><syl>阿</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>們！</syl></verse></note>
+<note xml:id="n10" pname="c" oct="4" dur="8">
+<verse n="1"><syl>阿</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="2">
+<verse n="1"><syl>們！</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<sb/>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n12" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><syl>一</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="16">
+<verse n="1"><syl>呼</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>一</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="16">
+<verse n="1"><syl>吸</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n16" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="16">
+<verse n="1"><syl>就</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>活，</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="16">
+<verse n="1"><syl>阿</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>們！</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8">
+<verse n="1"><syl>阿</syl></verse></note>
+<note xml:id="n22" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>們！</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="a" oct="4" dur="16">
+<verse n="1"><syl>哦，</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="16"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n25" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n26" pname="c" oct="5" dur="16">
+<verse n="1"><syl>呼</syl></verse></note>
+</beam>
+<tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
+<beam>
+<note xml:id="n27" pname="c" oct="5" dur="8">
+<verse n="1"><syl>出</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="8"/>
+<note xml:id="n29" pname="a" oct="4" dur="8">
+<verse n="1"><syl>而</syl></verse></note>
+</beam>
+</tuplet>
+<beam>
+<note xml:id="n30" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n31" pname="b" oct="4" dur="16">
+<verse n="1"><syl>吸</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl>入，</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="16">
+<verse n="1"><syl>祂</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<slur startid="#n27" endid="#n28"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n34" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>生</syl></verse></note>
+<note xml:id="n35" pname="a" oct="4" dur="16">
+<verse n="1"><syl>命</syl></verse></note>
+</beam>
+<tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
+<beam>
+<note xml:id="n36" pname="a" oct="4" dur="8">
+<verse n="1"><syl>從</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="8"/>
+<note xml:id="n38" pname="f" oct="4" dur="8">
+<verse n="1"><syl>我</syl></verse></note>
+</beam>
+</tuplet>
+<beam>
+<note xml:id="n39" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>裡</syl></verse></note>
+<note xml:id="n40" pname="g" oct="4" dur="16">
+<verse n="1"><syl>流</syl></verse></note>
+<note xml:id="n41" pname="g" oct="4" dur="8">
+<verse n="1"><syl>出，</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n42" pname="a" oct="4" dur="16">
+<verse n="1"><syl>因</syl></verse></note>
+<note xml:id="n43" pname="b" oct="4" dur="16">
+<verse n="1"><syl>為</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="c" oct="5" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n45" pname="b" oct="4" dur="4">
+<verse n="1"><syl>已</syl></verse></note>
+<note xml:id="n46" pname="a" oct="4" dur="4">
+<verse n="1"><syl>學</syl></verse></note>
+<note xml:id="n47" pname="g" oct="4" dur="4">
+<verse n="1"><syl>會</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n48" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><syl>深</syl></verse></note>
+<note xml:id="n49" pname="f" oct="4" dur="16">
+<verse n="1"><syl>深</syl></verse></note>
+<note xml:id="n50" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>吸</syl></verse></note>
+<note xml:id="n51" pname="e" oct="4" dur="16" accid="n" accid.ges="n">
+<verse n="1"><syl>入</syl></verse></note>
+</beam>
+<note xml:id="n52" pname="f" oct="4" dur="2">
+<verse n="1"><syl>主。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>約翰第三章</l><l>是指外面空氣，</l><l>風在外面吹呀吹，</l><l>隨意而吹。</l><l>並不知牠來自何方，</l><l>並不知牠吹往何處，</l><l>凡從聖靈生的，</l><l>也都是如此。</l></lg>
+<lg label="3."><l>約翰二十章</l><l>是指裡面空氣，</l><l>主耶穌所呼出的</l><l>生命之氣，</l><l>只要我們接受這氣─</l><l>不必思慮，只要呼吸；</l><l>我們經歷生命</l><l>是藉著這氣。</l></lg>
+<lg label="4."><l>無論在那裡都有</l><l>空氣，空氣！</l><l>牠包圍籠罩我們，</l><l>隨時、隨地！</l><l>白白賜給，豐富便利，</l><l>我們生活豐盛無比；</l><l>所以弟兄姊妹，</l><l>同來吸這氣。</l></lg>
+<lg label="5."><l>只要來呼喊祂名，</l><l>哦主！哦主！</l><l>祂就成我們氣息，</l><l>哦主！哦主！</l><l>從最深處吸入祂名，</l><l>直到我們充滿生命，</l><l>這位耶穌是</l><l>何等生命供應！</l></lg>
+</div>
+</back>
+</music></mei>

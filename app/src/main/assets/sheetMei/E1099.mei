@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The queen in gold of Ophir</title>
+<title type="subordinate">Praise of the Lord—His Victory and Exaltation</title>
+</titleStmt><pubStmt><identifier type="hymn">E1099</identifier><identifier type="number">1099</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>queen</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4">
+<verse n="1"><syl>gold</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">O</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">phir</syl></verse></note>
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl>At</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="c" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n10" pname="d" oct="4" dur="4">
+<verse n="1"><syl>right</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl>hand</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl>doth</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="2">
+<verse n="1"><syl>stand;</syl></verse></note>
+<note xml:id="n14" pname="e" oct="4" dur="4"/>
+<note xml:id="n15" pname="d" oct="4" dur="4">
+<verse n="1"><syl>King’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n13" endid="#n14"/>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">daugh</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ters</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">wom</syl></verse></note>
+<note xml:id="n21" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">en</syl></verse></note>
+<note xml:id="n22" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Who</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="f" oct="4" dur="4">
+<verse n="1"><syl>fill</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">hon</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="t">ored</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>band.</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A/G</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="d" oct="5" dur="4">
+<verse n="1"><syl>church</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n32" pname="f" oct="4" dur="4">
+<verse n="1"><syl>her</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<note xml:id="n35" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Shall</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<harm staff="1" tstamp="4" place="above">A/E</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="d" oct="5" dur="4">
+<verse n="1"><syl>match</syl></verse></note>
+<note xml:id="n37" pname="a" oct="4" dur="4">
+<verse n="1"><syl>her</syl></verse></note>
+<beam>
+<note xml:id="n38" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n39" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n40" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">rious</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/C♯</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
+<slur startid="#n38" endid="#n39"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="f" oct="4" dur="2">
+<verse n="1"><syl>King,</syl></verse></note>
+<note xml:id="n42" pname="e" oct="4" dur="4"/>
+<note xml:id="n43" pname="d" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n41" endid="#n42"/>
+</measure>
+<sb/>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="f" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n45" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n46" pname="a" oct="4" dur="4">
+<verse n="1"><syl>saints,</syl></verse></note>
+<note xml:id="n47" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">wom</syl></verse></note>
+<note xml:id="n49" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">en,</syl></verse></note>
+<note xml:id="n50" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m7</harm>
+<harm staff="1" tstamp="3" place="above">Bm7</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">like</syl></verse></note>
+<note xml:id="n52" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<note xml:id="n53" pname="f" oct="4" dur="4">
+<verse n="1"><syl>there</syl></verse></note>
+<note xml:id="n54" pname="e" oct="4" dur="4">
+<verse n="1"><syl>shall</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em7/G</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n55" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>bring.</syl></verse></note>
+<rest xml:id="r56" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>O daughter, now consider,</l><l>E’en now incline thine ear:</l><l>Remember not thy people</l><l>And all thine own things here.</l><l>Thy beauty then shall blossom—</l><l>’Twill be the King’s desire;</l><l>For He thy worthy Lord is,</l><l>Thy worship to inspire.</l></lg>
+<lg label="3."><l>The daughter’s glorious garments</l><l>Are made of inwrought gold—</l><l>Within the inner palace,</l><l>How wondrous to behold!</l><l>The glory of God’s nature</l><l>Is given her to wear,</l><l>That all His holy being</l><l>She may in life declare.</l></lg>
+<lg label="4."><l>In clothing too embroidered</l><l>She’ll to the King be led,</l><l>In that fine linen garment</l><l>To be exhibited.</l><l>’Tis by the Spirit’s stitching</l><l>That Christ in us is wrought,</l><l>And with this glorious garment</l><l>We’ll to the King be brought.</l></lg>
+<lg label="5."><l>What gladness and rejoicing</l><l>When we the King shall see!</l><l>We’ll shout His worthy praises</l><l>Through all eternity.</l><l>And though the King we worship</l><l>Or glory in the Queen,</l><l>In all this blest enjoyment</l><l>The glory goes to Him.</l></lg>
+</div>
+</back>
+</music></mei>

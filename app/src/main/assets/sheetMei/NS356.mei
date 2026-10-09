@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The Heart of God</title>
+<title type="subordinate">Ultimate Manifestation—God’s Eternal Purpose</title>
+</titleStmt><pubStmt><identifier type="hymn">NS356</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="e" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>In</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="8">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="g" oct="4" dur="2">
+<verse n="1"><syl>time</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="g" oct="4" dur="8"/>
+<note xml:id="n5" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</beam>
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+</layer></staff>
+<tie startid="#n3" endid="#n4"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>time,</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="g" oct="4" dur="8">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="8">
+<verse n="1"><syl>an</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="e" oct="4" dur="2">
+<verse n="1"><syl>age</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="e" oct="4" dur="8"/>
+<note xml:id="n12" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n13" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<note xml:id="n14" pname="c" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<tie startid="#n10" endid="#n11"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="b" oct="3" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ag</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="e" oct="4" dur="8"/>
+<note xml:id="n17" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">es,</syl></verse></note>
+</beam>
+<note xml:id="n18" pname="e" oct="4" dur="4"/>
+<beam>
+<note xml:id="n19" pname="e" oct="4" dur="8">
+<verse n="1"><syl>There</syl></verse></note>
+<note xml:id="n20" pname="f" oct="4" dur="8">
+<verse n="1"><syl>was</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n15" endid="#n16"/>
+<tie startid="#n17" endid="#n18"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>God,</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="f" oct="4" dur="8">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</beam>
+</layer></staff>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">lone,</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="e" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n26" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">e</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n27" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
+<note xml:id="n28" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ni</syl></verse></note>
+</beam>
+<note xml:id="n29" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<tie startid="#n29" endid="#n30"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="c" oct="4" dur="2" dots="1"/>
+<beam>
+<note xml:id="n31" pname="c" oct="5" dur="8">
+<verse n="1"><syl>Yet</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="8">
+<verse n="1"><syl>He</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="4">
+<verse n="1"><syl>had</syl></verse></note>
+<note xml:id="n34" pname="b" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n35" pname="c" oct="5" dur="4">
+<verse n="1"><syl>heart’s</syl></verse></note>
+<beam>
+<note xml:id="n36" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+<note xml:id="n37" pname="e" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">sire.</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<slur startid="#n37" endid="#n40"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n38" pname="e" oct="5" dur="8"/>
+<note xml:id="n39" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n40" pname="b" oct="4" dur="2"/>
+<beam>
+<note xml:id="n41" pname="b" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n42" pname="b" oct="4" dur="8">
+<verse n="1"><syl>an</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<tie startid="#n39" endid="#n40"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">ob</syl></verse></note>
+<note xml:id="n44" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ject</syl></verse></note>
+<note xml:id="n45" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>He</syl></verse></note>
+<note xml:id="n46" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="g" oct="4" dur="4"/>
+<note xml:id="n48" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">quired;</syl></verse></note>
+<beam>
+<note xml:id="n49" pname="g" oct="4" dur="8">
+<verse n="1"><syl>A</syl></verse></note>
+<note xml:id="n50" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n47" endid="#n48"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">sir</syl></verse></note>
+<beam>
+<note xml:id="n52" pname="a" oct="4" dur="8"/>
+<note xml:id="n53" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">e</syl></verse></note>
+<note xml:id="n54" pname="f" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n55" pname="e" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<tie startid="#n51" endid="#n52"/>
+</measure>
+<sb/>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n56" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>heart</syl></verse></note>
+<beam>
+<note xml:id="n57" pname="g" oct="4" dur="8">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n58" pname="g" oct="4" dur="8">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n59" pname="a" oct="4" dur="4">
+<verse n="1"><syl>bride,</syl></verse></note>
+<note xml:id="n60" pname="g" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n61" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">coun</syl></verse></note>
+<note xml:id="n62" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n63" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">part</syl></verse></note>
+<beam>
+<note xml:id="n64" pname="e" oct="4" dur="8">
+<verse n="1"><syl>That</syl></verse></note>
+<note xml:id="n65" pname="d" oct="4" dur="8">
+<verse n="1"><syl>was</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n66" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl>deep</syl></verse></note>
+<note xml:id="n67" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n68" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">side</syl></verse></note>
+<note xml:id="n69" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n70" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">hid</syl></verse></note>
+<note xml:id="n71" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">den</syl></verse></note>
+<note xml:id="n72" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n73" pname="e" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n74" pname="e" oct="4" dur="1">
+<verse n="1"><syl>God.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
+<tie startid="#n74" endid="#n75"/>
+</measure>
+<measure n="21" right="end"><staff n="1"><layer n="1">
+<note xml:id="n75" pname="e" oct="4" dur="2" dots="1"/>
+<rest xml:id="r76" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>So the heavens He spread,</l><l>Earth was made, its foundations laid.</l><l>At His word were the birds and the animals.</l><l>Then He breathed the breath of life in</l><l>To a man created like Him.</l><l>As they walked along the way</l><l>In the coolness of the day</l><l>The intent was still within the heart of God.</l></lg>
+<lg label="3."><l>Man surveyed what God made</l><l>Giving names, but he never came</l><l>To a mate, and he ached for a counterpart.</l><l>He could taste the ’ternal yearning</l><l>That so long in God was burning!</l><l>Eve was built from Adam’s side</l><l>And his heart was satisfied;</l><l>Told the story of the hidden heart of God.</l></lg>
+<lg label="4."><l>But when Eve was deceived</l><l>What was pure fell beyond a cure.</l><l>Dead to God through the dreaded serpent’s subtlety.</l><l>Left creation in a quandary!</l><l>Generations lived in mystery!</l><l>Seeking Job could not perceive</l><l>But persisted to believe</l><l>There was purpose in the hidden heart of God.</l></lg>
+<lg label="5."><l>In the time He designed</l><l>He was born of a virgin’s womb</l><l>To reveal what was sealed from eternity.</l><l>He was born in human history</l><l>To reveal its greatest mystery.</l><l>That the answer for the earth</l><l>Was that Christ so loved the church.</l><l>He would die to satisfy the heart of God.</l></lg>
+<lg label="6."><l>As the throne had foreknown</l><l>Many men were deceived again</l><l>Through the lies they devised</l><l>He was crucified.</l><l>As the lonely grain was falling</l><l>Still the joy before was calling;</l><l>Blood and water from His side</l><l>Would redeem and build His bride.</l><l>She would satisfy the riven heart of God.</l></lg>
+<lg label="7."><l>Though His death’s final breath,</l><l>Finally fell, He could not be held</l><l>For His life was divine and unbreakable.</l><l>He arises, powers hear it!</l><l>He will court her as the Spirit!</l><l>As the Spirit giving life</l><l>He will find and form His wife.</l><l>She will satisfy the living heart of God.</l></lg>
+<lg label="8."><l>When He breathed, she received</l><l>His divine personality,</l><l>Moving in, washing sin, death and age away.</l><l>So that He might sanctify her</l><l>By the washing of the water!</l><l>Adding beauty, adding health</l><l>To present her to Himself</l><l>And to satisfy the holy heart of God.</l></lg>
+<lg label="9."><l>In a time beyond time,</l><l>In an age beyond the ages,</l><l>God and man will be one for eternity.</l><l>Hallelujah, what a story!</l><l>She was brought from gloom to glory!</l><l>And the longing from the start</l><l>For a bride, a counterpart</l><l>Is fulfilled inside the happy heart of God.</l></lg>
+</div>
+</back>
+</music></mei>

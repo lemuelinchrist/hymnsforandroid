@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Dear Lord, Thou art the Son of God</title>
+<title type="subordinate">Praise of the Lord—His All-Inclusiveness</title>
+</titleStmt><pubStmt><identifier type="hymn">E188</identifier><identifier type="number">188</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Dear</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="d" oct="5" dur="4">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n3" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>art</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Son</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n9" pname="d" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">ab</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">so</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">lute</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ex</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">pres</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sion;</syl></verse></note>
+<note xml:id="n16" pname="d" oct="5" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Thee</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="b" oct="4" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>speaks</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">day,</syl></verse></note>
+<note xml:id="n26" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>art</syl></verse></note>
+<note xml:id="n28" pname="e" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+<note xml:id="n29" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">fi</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ni</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4"/>
+<note xml:id="n33" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tion.</syl></verse></note>
+<rest xml:id="r34" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<slur startid="#n31" endid="#n32"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>The impress of God’s substance true,</l><l>Effulgence of His glory,</l><l>Thou even art our God Himself,</l><l>In Thee is His full story.</l></lg>
+<lg label="3."><l>By Thee was made the universe,</l><l>Subsisting by Thy merit;</l><l>The heir, God hath appointed Thee,</l><l>That all Thou may inherit.</l></lg>
+<lg label="4."><l>Since Thou hast purged our sins by death,</l><l>In heaven Thou art seated,</l><l>Till all Thy foes will be subdued</l><l>And all God’s will completed.</l></lg>
+<lg label="5."><l>A better name than angels have,</l><l>From God Thou didst inherit;</l><l>As Son of God to us as life,</l><l>Thou now art in the Spirit.</l></lg>
+<lg label="6."><l>Thy kingdom is of righteousness,</l><l>Thy throne will stand forever;</l><l>God hath in love anointed Thee,</l><l>And Thou shalt wax old never.</l></lg>
+<lg label="7."><l>Thou also art a man indeed,</l><l>With all our human nature;</l><l>By grace Thou tastedst death for us</l><l>That we may have Thy stature.</l></lg>
+<lg label="8."><l>With glory and with honor crowned,</l><l>All things to Thee are subject;</l><l>As Captain of salvation, full,</l><l>Thou art thru sufferings perfect.</l></lg>
+<lg label="9."><l>By death the devil Thou hast spoiled,</l><l>And from death’s bondage freed us;</l><l>Thou sanctifiest us in life</l><l>And dost to glory speed us.</l></lg>
+<lg label="10."><l>To us, Thy brethren, Thou art here,</l><l>The Father’s Name declaring;</l><l>Within the Church Thou singest hymns,</l><l>God’s praises with us sharing.</l></lg>
+<lg label="11."><l>Superior Thou to Moses, Lord,</l><l>As to the house the builder;</l><l>Thou, our Apostle sent from God,</l><l>Art worthy of more splendor.</l></lg>
+<lg label="12."><l>Thou art our real Joshua,</l><l>By Thee the rest we enter;</l><l>Our full salvation is of Thee,</l><l>Our faith on Thee doth center.</l></lg>
+<lg label="13."><l>Thou art the heav’nly rest to us,</l><l>Now dwelling in our spirit,</l><l>For us to enter as the land</l><l>And all Thy good inherit.</l></lg>
+<lg label="14."><l>Superior Thou to Aaron too—</l><l>Thyself, the offering given,</l><l>Thou enteredst, as our Great High Priest,</l><l>The holiest place in heaven.</l></lg>
+<lg label="15."><l>Thou art our true Melchisedec,</l><l>With endless life in power,</l><l>To minister the “bread and wine,”</l><l>In every needful hour.</l></lg>
+<lg label="16."><l>Thou art the better sacrifice,</l><l>Thru the eternal Spirit,</l><l>Once offered unto God for us,</l><l>That we may gain Thy merit.</l></lg>
+<lg label="17."><l>A better covenant was made</l><l>With Thy dear blood in heaven;</l><l>By Thee this sure new testament</l><l>To Thy redeemed was given.</l></lg>
+<lg label="18."><l>Thou art its Maker adequate,</l><l>For Thou dost have the merit;</l><l>Thou art its Giver competent</l><l>That we may all inherit;</l></lg>
+<lg label="19."><l>Its qualified Executor,</l><l>By life of resurrection;</l><l>Its potent Mediator too,</l><l>Fulfilling God’s election.</l></lg>
+<lg label="20."><l>Lord, Thou art now within the veil,</l><l>As our unique Forerunner,</l><l>That by Thy life, without the camp,</l><l>We’ll in the race be runners.</l></lg>
+<lg label="21."><l>Thou art the Finisher of faith,</l><l>As well its Author perfect;</l><l>By faith and love we follow Thee,</l><l>And e’er to Thee are subject.</l></lg>
+<lg label="22."><l>Unequaled is Thy worth, dear Lord,</l><l>And all Thou art we treasure;</l><l>Thou art so perfect and complete,</l><l>Beyond all human measure.</l></lg>
+</div>
+</back>
+</music></mei>

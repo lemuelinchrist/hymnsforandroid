@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">What! Not sing of blood divine</title>
+<title type="subordinate">Assurance and Joy of Salvation—Redeemed by the Blood</title>
+</titleStmt><pubStmt><identifier type="hymn">E1124</identifier><identifier type="number">1124</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>What!</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Not</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl>sing</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>blood</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">vine?</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>What!</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Not</syl></verse></note>
+<note xml:id="n10" pname="e" oct="4" dur="4">
+<verse n="1"><syl>tell</syl></verse></note>
+<note xml:id="n11" pname="d" oct="5" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">man</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">kind?</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>What!</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Not</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="4">
+<verse n="1"><syl>speak</syl></verse></note>
+<note xml:id="n18" pname="b" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2.5000" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>hearts</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n21" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">clean</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Of</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+<harm staff="1" tstamp="4" place="above">F/A</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pre</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cious</syl></verse></note>
+<note xml:id="n26" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">liv</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
+<harm staff="1" tstamp="2" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<harm staff="1" tstamp="4" place="above">C7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="f" oct="4" dur="1">
+<verse n="1"><syl>stream.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>By this blood, God’s life released,</l><l>Blood surpassing any beast’s;</l><l>Perfect, spotless Lamb of God,</l><l>Incorruptible His blood.</l></lg>
+<lg label="3."><l>Voice it has, this holy blood;</l><l>Pow’r possessed to speak with God;</l><l>Speaks it for us at the throne</l><l>With its glorious virtue shown.</l></lg>
+<lg label="4."><l>Failure on our conscience is—</l><l>Conscience means a “knowing this”—</l><l>Causing us much grief and pain,</l><l>Telling us of every stain.</l></lg>
+<lg label="5."><l>All the while we’re unaware</l><l>Of the blood’s effectual prayer.</l><l>Jesus’ blood speaks of our case,</l><l>That we might receive His grace!</l></lg>
+<lg label="6."><l>We need not dead works to bring,</l><l>Nor another offering.</l><l>Nothing else could please our God,</l><l>Heav’n is listening for His blood.</l></lg>
+<lg label="7."><l>In His blood forgiveness shines;</l><l>Oh, ’tis glorious to find!</l><l>Israel just atonement knew,</l><l>We have that and cleansing too.</l></lg>
+<lg label="8."><l>Heart and mind are now at peace</l><l>Rest! Our conscience has been reached.</l><l>Never more we blush in shame,</l><l>We are washed from every stain.</l></lg>
+<lg label="9."><l>Hallelujah! Fathomless!</l><l>All that’s in His blood for us!</l><l>Sing we will, and sing we must;</l><l>In His blood is all our trust!</l></lg>
+</div>
+</back>
+</music></mei>

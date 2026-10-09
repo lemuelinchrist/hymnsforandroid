@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">God shall rise, His foes be scattered</title>
+<title type="subordinate">Praise of the Lord—His Victory and Exaltation</title>
+</titleStmt><pubStmt><identifier type="hymn">E1100</identifier><identifier type="number">1100</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><label>1.</label><syl>God</syl></verse></note>
+<note xml:id="n2" pname="c" oct="4" dur="16">
+<verse n="1"><syl>shall</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>rise,</syl></verse></note>
+<note xml:id="n4" pname="c" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="f" oct="4" dur="8">
+<verse n="1"><syl>foes</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="8">
+<verse n="1"><syl>be</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">scat</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tered,</syl></verse></note>
+<beam>
+<note xml:id="n9" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl>All</syl></verse></note>
+<note xml:id="n10" pname="c" oct="5" dur="16">
+<verse n="1"><syl>that</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C7/B♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>hate</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Him</syl></verse></note>
+<beam>
+<note xml:id="n13" pname="a" oct="4" dur="8">
+<verse n="1"><syl>flee</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2.5000" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><syl>As</syl></verse></note>
+<note xml:id="n17" pname="c" oct="4" dur="16">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>wax</syl></verse></note>
+<note xml:id="n19" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fi</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">re,</syl></verse></note>
+<beam>
+<note xml:id="n24" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl>All</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="16">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C7/B♭</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">wick</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<beam>
+<note xml:id="n28" pname="a" oct="4" dur="8">
+<verse n="1"><syl>He</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="8">
+<verse n="1"><syl>shall</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2.5000" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>slay.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n31" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><label>(C)</label><syl>But</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="16">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n33" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">right</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">eous</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n35" pname="b" oct="4" dur="8">
+<verse n="1"><syl>shall</syl></verse></note>
+<note xml:id="n36" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">B♭/F</harm>
+<dir startid="#n31" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">joice</syl></verse></note>
+<note xml:id="n38" pname="g" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+<slur startid="#n37" endid="#n38"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n39" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl>With</syl></verse></note>
+<note xml:id="n40" pname="b" oct="4" dur="16">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n41" pname="a" oct="4" dur="8">
+<verse n="1"><syl>loud,</syl></verse></note>
+<note xml:id="n42" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">tri</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n43" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="m" con="d">um</syl></verse></note>
+<note xml:id="n44" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">phant</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">C7/G</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="c" oct="5" dur="4">
+<verse n="1"><syl>voice,</syl></verse></note>
+<note xml:id="n46" pname="a" oct="4" dur="4"/>
+<beam>
+<note xml:id="n47" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Sing</syl></verse></note>
+<note xml:id="n48" pname="c" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+<slur startid="#n45" endid="#n46"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">prais</syl></verse></note>
+<note xml:id="n50" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">es,</syl></verse></note>
+<beam>
+<note xml:id="n51" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">sing</syl></verse></note>
+<note xml:id="n52" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">prais</syl></verse></note>
+<note xml:id="n54" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">es,</syl></verse></note>
+<beam>
+<note xml:id="n55" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Sing</syl></verse></note>
+<note xml:id="n56" pname="c" oct="5" dur="16">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<harm staff="1" tstamp="3.5000" place="above">C7/B♭</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">prais</syl></verse></note>
+<note xml:id="n58" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">es</syl></verse></note>
+<beam>
+<note xml:id="n59" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n60" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2.5000" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n61" pname="f" oct="4" dur="2">
+<verse n="1"><syl>God!</syl></verse></note>
+<rest xml:id="r62" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>He is riding through the deserts,</l><l>Bringing in His saints in need.</l><l>He’s a Father to the orphans</l><l>And a refuge tried indeed</l><l>In His holy habitation—</l><l>What a wonderful salvation!</l><l>Hallelujah, hallelujah,</l><l>Hallelujah, Amen!</l></lg>
+<lg label="3."><l>Here the lone have found a family,</l><l>Here the desolate a home;</l><l>Prisoners are brought from bondage</l><l>To prosperity unknown.</l><l>For the flock—what wondrous grace—</l><l>God prepared this dwelling place:</l><l>Hallelujah, hallelujah,</l><l>Hallelujah, Amen!</l></lg>
+<lg label="4."><l>Now the Lord in mighty triumph</l><l>Sends the news of victory;</l><l>We the “women” spread the tidings—</l><l>“Kings of armies flee, they flee!”</l><l>No more sweat and dreary toil;</l><l>We at home divide the spoil!</l><l>Hallelujah, hallelujah,</l><l>Hallelujah, Amen!</l></lg>
+<lg label="5."><l>Lo, on high Christ hath ascended,</l><l>Leading captives in His train;</l><l>These as gifts He has perfected</l><l>That the Lord may dwell with them.</l><l>Brothers, sisters, we are those,</l><l>We’re those transformed, vanquished foes!</l><l>Hallelujah, hallelujah,</l><l>Hallelujah, Amen!</l></lg>
+<lg label="6."><l>Blessed be the Lord forever:</l><l>Day by day He loads with good,</l><l>E’en the God of our salvation—</l><l>Spread His worthy praise abroad.</l><l>His the goings forth from death,</l><l>Every foe He conquereth!</l><l>Hallelujah, hallelujah,</l><l>Hallelujah, Amen!</l></lg>
+<lg label="7."><l>They have seen, O God, Thy goings</l><l>In Thy holy dwelling place,</l><l>Thy triumphal, high processions</l><l>Midst a mighty voice of praise.</l><l>See the singers go before,</l><l>Praising, praising o’er and o’er:</l><l>Hallelujah, hallelujah,</l><l>Hallelujah, Amen!</l></lg>
+<lg label="8."><l>Little Benjamin is leading,</l><l>Then great Judah’s company:</l><l>Son of sorrow at God’s right hand,</l><l>Lion with the scepter see.</l><l>Zebulun and Naphtali</l><l>Make the joyful tidings fly:</l><l>Hallelujah, hallelujah,</l><l>Hallelujah, Amen!</l></lg>
+<lg label="9."><l>Saints, thy strength has been commanded</l><l>From the temple glorious;</l><l>Still we pray that God may strengthen</l><l>All that He has wrought for us.</l><l>Higher yet our praise shall rise</l><l>Till the utmost earth replies:</l><l>Hallelujah, hallelujah,</l><l>Hallelujah, Amen!</l></lg>
+</div>
+</back>
+</music></mei>

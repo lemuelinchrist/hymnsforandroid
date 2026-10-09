@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">When my blest Lord will come again</title>
+<title type="subordinate">Hope of Glory—Face to Face with the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">E965</identifier><identifier type="number">965</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>When</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="b" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl>blest</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="b" oct="4" dur="8"/>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="8">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n7" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<slur startid="#n4" endid="#n5"/>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="b" oct="4" dur="4">
+<verse n="1"><syl>come</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">gain,</syl></verse></note>
+<note xml:id="n11" pname="d" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="4" place="above">Am/G</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+<beam>
+<note xml:id="n14" pname="a" oct="4" dur="8"/>
+<note xml:id="n15" pname="g" oct="4" dur="8">
+<verse n="1"><syl>saved</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="8"/>
+<note xml:id="n17" pname="b" oct="4" dur="8">
+<verse n="1"><syl>from</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">B/D♯</harm>
+<slur startid="#n14" endid="#n15"/>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>pain,</syl></verse></note>
+<note xml:id="n21" pname="d" oct="4" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="e" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n24" pname="g" oct="4" dur="8"/>
+<note xml:id="n25" pname="f" oct="4" dur="8">
+<verse n="1"><syl>saints</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="8">
+<verse n="1"><syl>I’ll</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+<slur startid="#n24" endid="#n25"/>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fol</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">low</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="2">
+<verse n="1"><syl>Him,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+<harm staff="1" tstamp="4" place="above">G/D</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="2">
+<verse n="1"><syl>O</syl></verse></note>
+<note xml:id="n32" pname="g" oct="4" dur="4">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n33" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am/C</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Lord!</syl></verse></note>
+<rest xml:id="r35" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G7/B</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="e" oct="4" dur="2">
+<verse n="1"><syl>O</syl></verse></note>
+<note xml:id="n37" pname="e" oct="4" dur="4">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n38" pname="e" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="g" oct="4" dur="1">
+<verse n="1"><syl>Lord!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="b" oct="4" dur="2">
+<verse n="1"><syl>O</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n42" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Lord!</syl></verse></note>
+<note xml:id="n44" pname="d" oct="4" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D7/F♯</harm>
+</measure>
+<sb/>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="b" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n46" pname="d" oct="5" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<beam>
+<note xml:id="n47" pname="c" oct="5" dur="8"/>
+<note xml:id="n48" pname="b" oct="4" dur="8">
+<verse n="1"><syl>saints</syl></verse></note>
+<note xml:id="n49" pname="a" oct="4" dur="8">
+<verse n="1"><syl>I’ll</syl></verse></note>
+<note xml:id="n50" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G7/B</harm>
+<slur startid="#n47" endid="#n48"/>
+<slur startid="#n49" endid="#n50"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fol</syl></verse></note>
+<note xml:id="n52" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">low</syl></verse></note>
+<note xml:id="n53" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Him,</syl></verse></note>
+<note xml:id="n54" pname="e" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+<slur startid="#n53" endid="#n54"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n55" pname="d" oct="4" dur="2">
+<verse n="1"><syl>O</syl></verse></note>
+<note xml:id="n56" pname="d" oct="4" dur="4">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n57" pname="d" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Lord!</syl></verse></note>
+<rest xml:id="r59" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">C/G</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>When I shall see Him face to face,</l><l>And dwell with Him thru endless days,</l><l>I will rejoice and sing His grace,</l><l>O praise the Lord!</l><l>O praise the Lord! O praise the Lord!</l><l>I will rejoice and sing His grace,</l><l>O praise the Lord!</l></lg>
+<lg label="3."><l>When I meet Him before the Throne,</l><l>My suff’rings then will all be gone,</l><l>The joy of vict’ry will be won,</l><l>O praise the Lord!</l><l>O praise the Lord! O praise the Lord!</l><l>The joy of vict’ry will be won,</l><l>O praise the Lord!</l></lg>
+<lg label="4."><l>In that day I will testify</l><l>That nothing with Christ’s life can vie,</l><l>What glorious rapture to the sky,</l><l>O praise the Lord!</l><l>O praise the Lord! O praise the Lord!</l><l>What glorious rapture to the sky,</l><l>O praise the Lord!</l></lg>
+<lg label="5."><l>May we in our Lord’s side e’er hide,</l><l>Be always one and ne’er divide,</l><l>That His heart may be satisfied,</l><l>O praise the Lord!</l><l>O praise the Lord! O praise the Lord!</l><l>That His heart may be satisfied,</l><l>O praise the Lord!</l></lg>
+<lg label="6."><l>O come, our King, O come, dear Lord!</l><l>Receive us by Thy promised word,</l><l>And give the victors Thy reward,</l><l>O praise the Lord!</l><l>O praise the Lord! O praise the Lord!</l><l>And give the victors Thy reward,</l><l>O praise the Lord!</l></lg>
+</div>
+</back>
+</music></mei>

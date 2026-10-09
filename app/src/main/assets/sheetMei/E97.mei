@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Thy sorrows, Savior, we retrace</title>
+<title type="subordinate">Praise of the Lord—His Suffering</title>
+</titleStmt><pubStmt><identifier type="hymn">E97</identifier><identifier type="number">97</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Thy</syl></verse></note>
+<beam>
+<note xml:id="n2" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">sor</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">rows,</syl></verse></note>
+</beam>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ior,</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">trace,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>tears</syl></verse></note>
+<note xml:id="n12" pname="d" oct="4" dur="16">
+<verse n="1"><syl>of</syl></verse></note>
+</beam>
+<note xml:id="n13" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>praise</syl></verse></note>
+<note xml:id="n14" pname="c" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl>griefs</syl></verse></note>
+<note xml:id="n16" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n17" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">pel.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl>What</syl></verse></note>
+<beam>
+<note xml:id="n19" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="16">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+<note xml:id="n21" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>grace</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">il</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">lume</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n25" pname="g" oct="4" dur="2">
+<verse n="1"><syl>face</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="e" oct="5" dur="4">
+<verse n="1"><syl>As</syl></verse></note>
+<beam>
+<note xml:id="n27" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="16" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+</beam>
+<note xml:id="n29" pname="f" oct="4" dur="4" dots="1" accid="n">
+<verse n="1"><syl>as</syl></verse></note>
+<note xml:id="n30" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Im</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">B♭/F</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="m" con="d">man</syl></verse></note>
+<note xml:id="n32" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="m" con="d">u</syl></verse></note>
+<note xml:id="n33" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">el!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F7</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Amid Thy loneliness below,</l><l>What scorn and outrage Thee befell:</l><l>Deep shame and woe, rude blow on blow,</l><l>Endured for us, Immanuel!</l></lg>
+<lg label="3."><l>But oh, what grief, what agony,</l><l>When wrathful judgment’s awful spell</l><l>Burst over Thee on Calv’ry’s tree,</l><l>God’s Lamb for us, Immanuel!</l></lg>
+<lg label="4."><l>Arisen radiant from the dead,</l><l>Thy sorrow’s scars forever tell,</l><l>Creation’s Head is He who bled—</l><l>Still Jesus, still Immanuel!</l></lg>
+<lg label="5."><l>E’en now from saints, in concord sweet,</l><l>Celestial strains of worship well;</l><l>For, O, ’tis meet glad songs should greet</l><l>Thy heart of love, Immanuel!</l></lg>
+<lg label="6."><l>But when Thy glorious face we see,</l><l>How shall the bursting paean swell!</l><l>Our souls shall be outpoured for Thee—</l><l>Outpoured for Thee, Immanuel!</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Come, let us join our cheerful songs</title>
+<title type="subordinate">Praise of the Lord—His Worthiness</title>
+</titleStmt><pubStmt><identifier type="hymn">E183</identifier><identifier type="number">183</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Come,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>let</syl></verse></note>
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n4" pname="c" oct="5" dur="4">
+<verse n="1"><syl>join</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="2" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">cheer</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ful</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl>songs,</syl></verse></note>
+<note xml:id="n9" pname="c" oct="5" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>thus</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ap</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">proach</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>throne;</syl></verse></note>
+<note xml:id="n16" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Had</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n17" pname="a" oct="4" dur="8">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="8"/>
+<note xml:id="n19" pname="f" oct="4" dur="8">
+<verse n="1"><syl>ten</syl></verse></note>
+<note xml:id="n20" pname="e" oct="4" dur="8"/>
+</beam>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">thou</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">sand</syl></verse></note>
+<note xml:id="n23" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/D♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+<slur startid="#n17" endid="#n18"/>
+<slur startid="#n19" endid="#n20"/>
+<slur startid="#n22" endid="#n23"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">thou</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">sand</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="4">
+<verse n="1"><syl>tongues,</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="2" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="e" oct="4" dur="4">
+<verse n="1"><syl>theme</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="f" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n30" pname="d" oct="5" dur="8"/>
+</beam>
+<note xml:id="n31" pname="c" oct="5" dur="4">
+<verse n="1"><syl>joy’s</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="4">
+<verse n="1"><syl>but</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
+<slur startid="#n29" endid="#n30"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>one:</syl></verse></note>
+<rest xml:id="r34" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>“Worthy the Lamb that’s gone on high,</l><l>To be exalted thus!”</l><l>“Worthy the Lamb that died!” we cry,</l><l>“For He was slain for us.”</l></lg>
+<lg label="3."><l>Jesus is worthy to receive</l><l>Honor and pow’r divine;</l><l>And blessings more than we can give</l><l>Be, Lord, forever Thine.</l></lg>
+<lg label="4."><l>Soon shall the saints, exalted high,</l><l>A glorious anthem raise,</l><l>And all that dwell beneath the sky</l><l>Speak forth Thine endless praise.</l></lg>
+<lg label="5."><l>Redeemed creation join in one,</l><l>T’adore the sacred name</l><l>Of Him that sits upon the throne,</l><l>And to exalt the Lamb.</l></lg>
+</div>
+</back>
+</music></mei>

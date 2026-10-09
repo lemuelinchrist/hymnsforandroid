@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Draw near to God</title>
+<title type="subordinate">Encouragement — For Fellowship with the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">NS1096</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>“Draw</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl>near</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="b" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+</beam>
+<note xml:id="n5" pname="b" oct="4" dur="2"/>
+</layer></staff>
+<tie startid="#n4" endid="#n5"/>
+<tie startid="#n5" endid="#n6"/>
+<slur startid="#n4" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="b" oct="4" dur="2" dots="1"/>
+<beam>
+<note xml:id="n7" pname="g" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<slur startid="#n7" endid="#n8"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>He’ll</syl></verse></note>
+<note xml:id="n10" pname="c" oct="4" dur="8">
+<verse n="1"><syl>draw</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="4">
+<verse n="1"><syl>near</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="8">
+<verse n="1"><syl>you;”</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<tie startid="#n13" endid="#n14"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="g" oct="4" dur="2" dots="1"/>
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Come,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl>take</syl></verse></note>
+<beam>
+<note xml:id="n17" pname="b" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+<note xml:id="n18" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n19" pname="b" oct="4" dur="2">
+<verse n="1"><syl>blood—</syl></verse></note>
+</layer></staff>
+<tie startid="#n18" endid="#n19"/>
+<tie startid="#n19" endid="#n20"/>
+<slur startid="#n18" endid="#n20"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="2" dots="1"/>
+<beam>
+<note xml:id="n21" pname="g" oct="4" dur="8">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<slur startid="#n21" endid="#n22"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>cleansed</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl>washed</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">new;</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
+<tie startid="#n27" endid="#n28"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="f" oct="4" dur="2" dots="1"/>
+<beam>
+<note xml:id="n29" pname="g" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Lamb</syl></verse></note>
+<note xml:id="n32" pname="c" oct="4" dur="8">
+<verse n="1"><syl>who</syl></verse></note>
+<note xml:id="n33" pname="e" oct="4" dur="4">
+<verse n="1"><syl>shed</syl></verse></note>
+<beam>
+<note xml:id="n34" pname="f" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+<note xml:id="n35" pname="g" oct="4" dur="8">
+<verse n="1"><syl>blood;</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<tie startid="#n35" endid="#n36"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="g" oct="4" dur="2" dots="1"/>
+<beam>
+<note xml:id="n37" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Draw</syl></verse></note>
+<note xml:id="n38" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<slur startid="#n37" endid="#n38"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>near</syl></verse></note>
+<note xml:id="n40" pname="c" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n41" pname="e" oct="4" dur="4">
+<verse n="1"><syl>taste</syl></verse></note>
+<beam>
+<note xml:id="n42" pname="f" oct="4" dur="8">
+<verse n="1"><syl>His</syl></verse></note>
+<note xml:id="n43" pname="g" oct="4" dur="8">
+<verse n="1"><syl>love;</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<tie startid="#n43" endid="#n44"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="g" oct="4" dur="2" dots="1"/>
+<note xml:id="n45" pname="e" oct="4" dur="4">
+<verse n="1"><syl>“Draw</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="g" oct="4" dur="4">
+<verse n="1"><syl>near</syl></verse></note>
+<beam>
+<note xml:id="n47" pname="b" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n48" pname="b" oct="4" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+</beam>
+<note xml:id="n49" pname="b" oct="4" dur="2"/>
+</layer></staff>
+<tie startid="#n48" endid="#n49"/>
+<tie startid="#n49" endid="#n50"/>
+<slur startid="#n48" endid="#n50"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n50" pname="b" oct="4" dur="2" dots="1"/>
+<beam>
+<note xml:id="n51" pname="g" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n52" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<slur startid="#n51" endid="#n52"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>He’ll</syl></verse></note>
+<note xml:id="n54" pname="c" oct="4" dur="8">
+<verse n="1"><syl>draw</syl></verse></note>
+<note xml:id="n55" pname="e" oct="4" dur="4">
+<verse n="1"><syl>near</syl></verse></note>
+<beam>
+<note xml:id="n56" pname="c" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n57" pname="e" oct="4" dur="8">
+<verse n="1"><syl>you!”</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<tie startid="#n57" endid="#n58"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="e" oct="4" dur="2" dots="1"/>
+<rest xml:id="r59" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>“Draw near to God and He’ll draw near to you,”</l><l>Come, breathe Him in, and be filled through and through;</l><l>He’s the Spirit—like the air,</l><l>We can breathe Him anywhere;</l><l>“Draw near to God and He’ll draw near to you!”</l></lg>
+<lg label="3."><l>“Draw near to God and He’ll draw near to you.”</l><l>Behold His face, with glory be infused;</l><l>In His presence be renewed;</l><l>Be revived, enlivened too!</l><l>“Draw near to God and He’ll draw near to you!”</l></lg>
+<lg label="4."><l>“Draw near to God and He’ll draw near to you;”</l><l>Come eat and drink the feast that’s spread for you;</l><l>Boldly eat the tree of life!</l><l>Freely drink the living tide!</l><l>“Draw near to God and He’ll draw near to you!”</l></lg>
+<lg label="5."><l>“Draw near to God and He’ll draw near to you,”</l><l>And be unveiled and see a heav’nly view;</l><l>Eyes and hearts have never known</l><l>All the Spirit wants to show;</l><l>“Draw near to God and He’ll draw near to you!”</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The essence of the Kingdom is</title>
+<title type="subordinate">The Kingdom—Its Reality</title>
+</titleStmt><pubStmt><identifier type="hymn">E944</identifier><identifier type="number">944</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">es</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4" accid="s" accid.ges="s"/>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sence</syl></verse></note>
+</layer></staff>
+<slur startid="#n2" endid="#n3"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="2">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">King</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">dom</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="d" oct="4" dur="2">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A/E</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="4" accid="s" accid.ges="s"/>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>that’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">der</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">heav</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="4"/>
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">en’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="f" oct="4" dur="4"/>
+<note xml:id="n20" pname="e" oct="4" dur="4">
+<verse n="1"><syl>rule,</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+<slur startid="#n19" endid="#n20"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4"/>
+<note xml:id="n24" pname="f" oct="4" dur="4">
+<verse n="1"><syl>whose</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">B/D♯</harm>
+<slur startid="#n22" endid="#n23"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">na</syl></verse></note>
+<note xml:id="n26" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ture</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="f" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4"/>
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">D7/F♯</harm>
+<slur startid="#n27" endid="#n28"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">vine</syl></verse></note>
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">D/F♯</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="a" oct="4" dur="4"/>
+<note xml:id="n33" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n34" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ex</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+<slur startid="#n32" endid="#n33"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">pe</syl></verse></note>
+<beam>
+<note xml:id="n36" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ri</syl></verse></note>
+<note xml:id="n37" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A/C♯</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+<slur startid="#n36" endid="#n37"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">enced</syl></verse></note>
+<note xml:id="n39" pname="e" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="d" oct="4" dur="2">
+<verse n="1"><syl>full.</syl></verse></note>
+<rest xml:id="r41" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Such is this life: in spirit poor,</l><l>With heart repentant, mourning, meek,</l><l>Which is to others merciful</l><l>And purely God Himself doth seek;</l></lg>
+<lg label="3."><l>As sons of God the peace to make,</l><l>For righteousness e’en suffering pain;</l><l>Reviled and hurt for Jesus’ sake,</l><l>Exceeding joyfulness to gain;</l></lg>
+<lg label="4."><l>As salt to kill corruption rife,</l><l>In darkness shining as the light,</l><l>In heart and action right and true,</l><l>In perfect love to claim no right.</l></lg>
+<lg label="5."><l>This life self-glory doth renounce</l><l>And ever for God’s kingdom prays;</l><l>It trusts in God for every need</l><l>And seeks His kingdom first always.</l></lg>
+<lg label="6."><l>’Tis strict with self, with others kind,</l><l>And always dealing with the Lord;</l><l>It ever does the Father’s will</l><l>And acts according to His word.</l></lg>
+<lg label="7."><l>To Satan it does not give ground,</l><l>Nor to the world, or self, or sin,</l><l>But seeks beneath the heaven’s rule</l><l>God’s full authority to win.</l></lg>
+<lg label="8."><l>’Tis such a life which subjugates</l><l>All things with pow’r to God’s behest;</l><l>The time it hastens when the Lord</l><l>Will here His kingdom manifest.</l></lg>
+</div>
+</back>
+</music></mei>

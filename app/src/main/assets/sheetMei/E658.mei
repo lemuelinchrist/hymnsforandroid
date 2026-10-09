@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Walk in the light</title>
+<title type="subordinate">Encouragement—For Walking in the Light</title>
+</titleStmt><pubStmt><identifier type="hymn">E658</identifier><identifier type="number">658</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Walk</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="2">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="g" oct="4" dur="2">
+<verse n="1"><syl>light,</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="f" oct="4" dur="2">
+<verse n="1"><syl>thou</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="4">
+<verse n="1"><syl>shalt</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="e" oct="4" dur="2">
+<verse n="1"><syl>know</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>That</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">fel</syl></verse></note>
+<note xml:id="n11" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">low</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">ship</syl></verse></note>
+<note xml:id="n13" pname="d" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="b" oct="4" dur="2">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G/F</harm>
+<fermata startid="#n14" place="above"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
+<note xml:id="n17" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">on</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="g" oct="4" dur="2">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n21" pname="f" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="i" con="d">bes</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tow,</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Who</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="e" oct="4" dur="2">
+<verse n="1"><syl>reigns</syl></verse></note>
+<note xml:id="n25" pname="d" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="a" oct="4" dur="2">
+<verse n="1"><syl>light</syl></verse></note>
+<note xml:id="n27" pname="b" oct="3" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="c" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">bove.</syl></verse></note>
+<rest xml:id="r29" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<fermata startid="#n28" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Walk in the light, and thou shalt find</l><l>Thy heart made truly His;</l><l>Who dwells in cloudless light enshrined,</l><l>In whom no darkness is.</l></lg>
+<lg label="3."><l>Walk in the light, and sin abhorred</l><l>Shall ne’er defile again;</l><l>The blood of Jesus Christ the Lord</l><l>Shall cleanse from every stain.</l></lg>
+<lg label="4."><l>Walk in the light, and e’en the tomb</l><l>No fearful shade shall wear;</l><l>The glory shall dispel the gloom,</l><l>For Christ hath conquered there.</l></lg>
+<lg label="5."><l>Walk in the light, and thou shalt own</l><l>Thy darkness passed away,</l><l>Because that light hath on thee shone</l><l>In which is Perfect day.</l></lg>
+<lg label="6."><l>Walk in the light, thy path shall be</l><l>Serene and clear and bright;</l><l>For God, by grace, shall dwell in thee,</l><l>And God Himself is Light.</l></lg>
+</div>
+</back>
+</music></mei>

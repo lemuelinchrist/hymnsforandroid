@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">I’m a beggar ’cause... I’m blind</title>
+<title type="subordinate">Gospel—Light</title>
+</titleStmt><pubStmt><identifier type="hymn">NS171</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>I’m</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">beg</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">gar</syl></verse></note>
+</beam>
+<note xml:id="n5" pname="e" oct="4" dur="4">
+<verse n="1"><syl>’cause...</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+<tie startid="#n5" endid="#n6"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="e" oct="4" dur="4"/>
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I’m</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="2">
+<verse n="1"><syl>blind</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>So</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="g" oct="4" dur="8">
+<verse n="1"><syl>take</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl>what</syl></verse></note>
+</beam>
+<note xml:id="n13" pname="e" oct="4" dur="4">
+<verse n="1"><syl>I...</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+<tie startid="#n13" endid="#n14"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="e" oct="4" dur="4"/>
+<note xml:id="n15" pname="c" oct="4" dur="4">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n16" pname="d" oct="4" dur="2">
+<verse n="1"><syl>find</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl>I’m</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">grop</syl></verse></note>
+<note xml:id="n19" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n20" pname="f" oct="4" dur="8">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n21" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</beam>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">a...</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+<tie startid="#n22" endid="#n23"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="f" oct="4" dur="4"/>
+<note xml:id="n24" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">li</syl></verse></note>
+<note xml:id="n25" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">On</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<beam>
+<note xml:id="n28" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">wish</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</beam>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl>I...</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<tie startid="#n30" endid="#n31"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="g" oct="4" dur="4"/>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>could</syl></verse></note>
+<note xml:id="n33" pname="b" oct="4" dur="2">
+<verse n="1"><syl>see</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="b" oct="4" dur="2">
+<verse n="1"><syl>My</syl></verse></note>
+<note xml:id="n35" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">par</syl></verse></note>
+<note xml:id="n36" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ents,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="c" oct="5" dur="4">
+<verse n="1"><syl>they</syl></verse></note>
+<note xml:id="n38" pname="b" oct="4" dur="4">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="2">
+<verse n="1"><syl>see</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<rest xml:id="r40" dur="4"/>
+<note xml:id="n41" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Why</syl></verse></note>
+<note xml:id="n42" pname="b" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n43" pname="b" oct="4" dur="4">
+<verse n="1"><syl>this</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
+<note xml:id="n44" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">blind</syl></verse></note>
+<note xml:id="n45" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<note xml:id="n46" pname="g" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</tuplet>
+<note xml:id="n47" pname="f" oct="4" dur="2">
+<verse n="1"><syl>me?</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm7</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<rest xml:id="r48" dur="4"/>
+<beam>
+<note xml:id="n49" pname="g" oct="4" dur="8">
+<verse n="1"><syl>All</syl></verse></note>
+<note xml:id="n50" pname="g" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+</beam>
+<note xml:id="n51" pname="f" oct="4" dur="4">
+<verse n="1"><syl>know</syl></verse></note>
+<note xml:id="n52" pname="f" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="e" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<beam>
+<note xml:id="n54" pname="e" oct="4" dur="8">
+<verse n="1"><syl>want</syl></verse></note>
+<note xml:id="n55" pname="e" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n56" pname="f" oct="4" dur="8">
+<verse n="1"><syl>see</syl></verse></note>
+<note xml:id="n57" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n58" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">al</syl></verse></note>
+<note xml:id="n59" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n60" pname="e" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+<tie startid="#n60" endid="#n61"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n61" pname="e" oct="4" dur="2" dots="1"/>
+<rest xml:id="r62" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Lord, I am sitting by... the road</l><l>Begging outside of Je...richo</l><l>Now, Lord I hear that You... pass by</l><l>Lord, Son of David... I cry</l><l>Lord, Son of David, I cry</l><l>Please, Christ, don’t pass me by</l><l>I believe that you can open my eyes.</l></lg>
+<lg label="3."><l>You gave me life but where’s... my sight?</l><l>I am still blind and that’s... my plight</l><l>Blind lead the blind and then... both fall</l><l>So right now on You... I call</l><l>Jesus have mercy on me</l><l>Open my eyes that I might see</l><l>All I know is my only hope is in You.</l></lg>
+<lg label="4."><l>Lord I am rebuked by... the crowd</l><l>For You I cry out more... the loud</l><l>All the world wants to di...stract me</l><l>So I forget that I... can’t see</l><l>Jesus don’t leave me behind</l><l>You are the one I want to find</l><l>All I know is I just really need You.</l></lg>
+<lg label="5."><l>Still I’m afraid that You’ll... go on</l><l>But joyful ears hear You... respond</l><l>What would you like for me... to do</l><l>Oh Christ I just want to see You</l><l>Open my eyes to... see You</l><l>Let me find what my spirit can do</l><l>All I know is I just want to see You.</l></lg>
+<lg label="6."><l>In my spirit I... can see</l><l>Because that’s where You... touch me</l><l>By your touch dear Lord... I’m healed</l><l>All my sin and death... must yield</l><l>Now Lord, I am healed</l><l>In my spirit You are so real</l><l>All I know is I want to keep touching You.</l></lg>
+<lg label="7."><l>Lord my sight is for... one thing</l><l>So that I to You... can cling</l><l>I think I’m in love... with You</l><l>No one else for me... will do</l><l>Lord Christ let me follow You please</l><l>You’re so real and so special to me</l><l>All I know is Lord I never want to leave.</l></lg>
+</div>
+</back>
+</music></mei>

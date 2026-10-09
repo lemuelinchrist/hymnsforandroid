@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">All the signs point to the end</title>
+<title type="subordinate">Hope of Glory—Preparing for Christ’s Return</title>
+</titleStmt><pubStmt><identifier type="hymn">E1302</identifier><identifier type="number">1302</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2f" meter.count="6" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>All</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>signs</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="4">
+<verse n="1"><syl>point</syl></verse></note>
+<note xml:id="n5" pname="e" oct="4" dur="4" accid="n" accid.ges="n">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭/D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>end,</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">Cm/G</harm>
+<tie startid="#n7" endid="#n8"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>soon</syl></verse></note>
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>here</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">F/C</harm>
+<harm staff="1" tstamp="6" place="above">F</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">gain;</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭maj7</harm>
+<harm staff="1" tstamp="4" place="above">B♭maj7/F</harm>
+<tie startid="#n15" endid="#n16"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="d" oct="5" dur="4">
+<verse n="1"><syl>We</syl></verse></note>
+<note xml:id="n18" pname="c" oct="5" dur="4">
+<verse n="1"><syl>must</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">rea</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4" accid="f" accid.ges="f">
+<verse n="1"><syl wordpos="t">dy</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4" accid="n">
+<verse n="1"><syl>for</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭maj7</harm>
+<harm staff="1" tstamp="6" place="above">B♭maj7/D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Him—</syl></verse></note>
+<note xml:id="n24" pname="c" oct="5" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">C7/E</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n26" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n27" pname="d" oct="5" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n28" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n29" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n30" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">gain!</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭/F</harm>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><label>(C)</label><syl wordpos="i" con="d">Com</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n35" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭/D</harm>
+<dir startid="#n33" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">gain,</syl></verse></note>
+<note xml:id="n37" pname="g" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">Cm/G</harm>
+<tie startid="#n36" endid="#n37"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n39" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n40" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">F7</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">gain,</syl></verse></note>
+<note xml:id="n42" pname="a" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭maj7</harm>
+<harm staff="1" tstamp="4" place="above">B♭maj7/F</harm>
+<tie startid="#n41" endid="#n42"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="c" oct="5" dur="2">
+<verse n="1"><syl>Time</syl></verse></note>
+<note xml:id="n44" pname="b" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n45" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">swift</syl></verse></note>
+<note xml:id="n46" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/D</harm>
+<harm staff="1" tstamp="4" place="above">B♭m/D♭</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">pass</syl></verse></note>
+<note xml:id="n48" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n49" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>by,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">Cm/G</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n50" pname="b" oct="4" dur="2">
+<verse n="1"><syl>Soon</syl></verse></note>
+<note xml:id="n51" pname="a" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n52" pname="g" oct="4" dur="2">
+<verse n="1"><syl>may</syl></verse></note>
+<beam>
+<note xml:id="n53" pname="f" oct="4" dur="8">
+<verse n="1"><syl>hear</syl></verse></note>
+<note xml:id="n54" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">F7</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n55" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">mid</syl></verse></note>
+<note xml:id="n56" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">night</syl></verse></note>
+<note xml:id="n57" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>cry!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭maj7</harm>
+<harm staff="1" tstamp="4" place="above">B♭maj7/F</harm>
+</measure>
+<sb/>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Com</syl></verse></note>
+<note xml:id="n59" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n60" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭/D</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n61" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">gain,</syl></verse></note>
+<note xml:id="n62" pname="g" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">Cm/G</harm>
+<tie startid="#n61" endid="#n62"/>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n63" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n64" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n65" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">F7</harm>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n66" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">gain,</syl></verse></note>
+<note xml:id="n67" pname="a" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭maj7</harm>
+<harm staff="1" tstamp="4" place="above">B♭maj7/F</harm>
+<tie startid="#n66" endid="#n67"/>
+</measure>
+<sb/>
+<measure n="21"><staff n="1"><layer n="1">
+<note xml:id="n68" pname="b" oct="4" dur="4">
+<verse n="1"><syl>As</syl></verse></note>
+<note xml:id="n69" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n70" pname="b" oct="4" dur="4">
+<verse n="1"><syl>wise</syl></verse></note>
+<note xml:id="n71" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">vir</syl></verse></note>
+<note xml:id="n72" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">gins</syl></verse></note>
+<note xml:id="n73" pname="c" oct="5" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭7/D</harm>
+</measure>
+<measure n="22"><staff n="1"><layer n="1">
+<note xml:id="n74" pname="d" oct="5" dur="4">
+<verse n="1"><syl>must</syl></verse></note>
+<note xml:id="n75" pname="c" oct="5" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n76" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pre</syl></verse></note>
+<note xml:id="n77" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">pared!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">Cm</harm>
+</measure>
+<measure n="23"><staff n="1"><layer n="1">
+<note xml:id="n78" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n79" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<note xml:id="n80" pname="b" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n81" pname="e" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n82" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n83" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F7</harm>
+</measure>
+<measure n="24" right="end"><staff n="1"><layer n="1">
+<note xml:id="n84" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">gain!</syl></verse></note>
+<note xml:id="n85" pname="b" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="2" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+<tie startid="#n84" endid="#n85"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>From soul and self turn away,</l><l>Look unto Jesus today;</l><l>There is no time to delay—</l><l>Jesus is coming again!</l></lg>
+<lg label="3."><l>Foolish ones never will turn;</l><l>When the Lord comes they will learn</l><l>There is no oil left to burn—</l><l>Jesus is coming again!</l></lg>
+<lg label="4."><l>Wise virgins buy up the time;</l><l>Never drunk with the world’s wine,</l><l>Filled in the spirit they shine—</l><l>Jesus is coming again!</l></lg>
+<lg label="5."><l>Let us go forth unto Him,</l><l>Not only with our lamps trimmed,</l><l>Buy the oil now lest they dim—</l><l>Jesus is coming again!</l></lg>
+<lg label="6."><l>Jesus is now on His way,</l><l>Watch, for you know not the day;</l><l>Ever in His presence stay—</l><l>Jesus is coming again!</l></lg>
+</div>
+</back>
+</music></mei>

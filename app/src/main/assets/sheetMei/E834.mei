@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The chief Cornerstone Thou art, Lord</title>
+<title type="subordinate">The Church—Her Foundation</title>
+</titleStmt><pubStmt><identifier type="hymn">E834</identifier><identifier type="number">834</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="2"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="2">
+<verse n="1"><syl>chief</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Cor</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">ner</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">stone</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4"/>
+<note xml:id="n8" pname="g" oct="4" dur="2">
+<verse n="1"><syl>art,</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="2">
+<verse n="1"><syl>Lord,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Jew</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ish</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">build</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ers</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2.5000" place="above">C7/G</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+<slur startid="#n13" endid="#n14"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2">
+<verse n="1"><syl>did</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">des</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">pise;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="f" oct="4" dur="2">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="2">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">sur</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="m" con="d">rec</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<note xml:id="n24" pname="a" oct="4" dur="4"/>
+<note xml:id="n25" pname="g" oct="4" dur="2">
+<verse n="1"><syl>placed</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="2">
+<verse n="1"><syl>Thee,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>art</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">pre</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">cious</syl></verse></note>
+<note xml:id="n31" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2.5000" place="above">C7/G</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">Gm</harm>
+<harm staff="1" tstamp="4.5000" place="above">F/A</harm>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="g" oct="4" dur="2">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="2">
+<verse n="1"><syl>His</syl></verse></note>
+<note xml:id="n34" pname="f" oct="4" dur="1">
+<verse n="1"><syl>eyes.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Through</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="2">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n37" pname="c" oct="5" dur="2">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n38" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ceive</syl></verse></note>
+<note xml:id="n40" pname="c" oct="5" dur="4"/>
+<note xml:id="n41" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sal</syl></verse></note>
+<note xml:id="n42" pname="a" oct="4" dur="4"/>
+<note xml:id="n43" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">va</syl></verse></note>
+<note xml:id="n44" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tion,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n39" endid="#n40"/>
+<slur startid="#n41" endid="#n42"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>And,</syl></verse></note>
+<note xml:id="n46" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+<note xml:id="n47" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">geth</syl></verse></note>
+<note xml:id="n48" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2.5000" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="b" oct="4" dur="2" accid="n" accid.ges="n">
+<verse n="1"><syl>built</syl></verse></note>
+<note xml:id="n50" pname="b" oct="4" dur="2" accid.ges="n">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n51" pname="c" oct="5" dur="1">
+<verse n="1"><syl>Thee,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n52" pname="f" oct="4" dur="2">
+<verse n="1"><syl>Jews</syl></verse></note>
+<note xml:id="n53" pname="f" oct="4" dur="2">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n54" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Gen</syl></verse></note>
+<note xml:id="n55" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">tiles</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Dm</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n56" pname="c" oct="5" dur="2">
+<verse n="1"><syl>are</syl></verse></note>
+<note xml:id="n57" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n58" pname="a" oct="4" dur="4"/>
+<note xml:id="n59" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">dwell</syl></verse></note>
+<note xml:id="n60" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n57" endid="#n58"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n61" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl>One</syl></verse></note>
+<note xml:id="n62" pname="b" oct="4" dur="4">
+<verse n="1"><syl>new</syl></verse></note>
+<note xml:id="n63" pname="a" oct="4" dur="2">
+<verse n="1"><syl>man,</syl></verse></note>
+<note xml:id="n64" pname="b" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n65" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="2.5000" place="above">C7/G</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+<slur startid="#n64" endid="#n65"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n66" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">har</syl></verse></note>
+<note xml:id="n67" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">mon</syl></verse></note>
+<note xml:id="n68" pname="f" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">y.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Thou too art the smitten Rock, Lord,</l><l>That man’s thirst by Thee be filled,</l><l>That frail man may stand upon Thee,</l><l>But e’en more, God’s house to build.</l><l>The Foundation Stone in Zion,</l><l>Tested and secure, Thou art;</l><l>And the Rock, the Church supporting,</l><l>Her foundation to impart.</l></lg>
+<lg label="3."><l>On Thyself the Church is builded,</l><l>And though many storms assail,</l><l>Still it stands erect, for ’gainst it</l><l>Gates of hell cannot prevail.</l><l>Thine authority possessing,</l><l>It doth bind and loose in Thee,</l><l>Bringing men into Thy kingdom,</l><l>Satan’s captives setting free.</l></lg>
+<lg label="4."><l>Living Stone of life art Thou, Lord,</l><l>Precious, chosen thus to be;</l><l>Living stones Thou too hast made us,</l><l>One in character with Thee.</l><l>Built together as a temple</l><l>That our God may dwell therein,</l><l>Thus we are a holy priesthood,</l><l>Offering sacrifice to Him.</l></lg>
+<lg label="5."><l>Lord, Thou art the Son of David</l><l>That God’s temple Thou may build;</l><l>King and Priest Thou art together,</l><l>That Thy calling be fulfilled.</l><l>As the King, for God Thou rulest,</l><l>Making men submit to Him;</l><l>As the Priest before God’s presence,</l><l>Bringing men to enter in.</l></lg>
+<lg label="6."><l>Thine authority doth issue</l><l>From the throne to render peace;</l><l>Fellowship is in the river</l><l>To supply and give increase.</l><l>When these, balanced, go together,</l><l>Then God’s purpose is fulfilled;</l><l>King and Priest in Thee combining,</l><l>Thou God’s dwelling place dost build.</l></lg>
+<lg label="7."><l>Thou art God, yet flesh becamest,</l><l>God with man in Thee doth dwell;</l><l>Thou, the Temple for His glory,</l><l>God in Thee Himself doth tell.</l><l>Thus the Church too is the mingling</l><l>Into one of God and man;</l><l>So it is with every member</l><l>For the building of God’s plan.</l></lg>
+<lg label="8."><l>Thou, the everlasting Dwelling,</l><l>In all ages art our home;</l><l>We in Thee enjoy protection,</l><l>Living in Thyself alone.</l><l>Thou our Sanctuary art, Lord,</l><l>We and God abide in Thee;</l><l>Thou, God’s presence art within us,</l><l>Where we worship ceaselessly.</l></lg>
+<lg label="9."><l>Cornerstone, Foundation, Topstone,</l><l>Rock, and Church, and Living Stone,</l><l>Dwelling-place, and Sanctuary,</l><l>Builder too art Thou, we own.</l><l>Praise we give for what Thou art, Lord,</l><l>As Thy wondrousness we see!</l><l>Grant that we may be built up, Lord,</l><l>As the living stones in Thee.</l></lg>
+</div>
+</back>
+</music></mei>

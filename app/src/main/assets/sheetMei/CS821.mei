@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">豈能說透</title>
+<title type="subordinate">事奉與福音</title>
+</titleStmt><pubStmt><identifier type="hymn">CS821</identifier><identifier type="number">Cs821</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>問: 朋</syl></verse><verse n="2"><syl>答: 你</syl></verse><verse n="3"><syl>同啍: 啦</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl>友！</syl></verse><verse n="2"><syl>怎</syl></verse><verse n="3"><syl>…………</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="g" oct="4" dur="2">
+<verse n="1"><syl>朋</syl></verse><verse n="2"><syl>不</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>友！</syl></verse><verse n="2"><syl>知</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>告</syl></verse><verse n="2"><syl>耶</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>訴</syl></verse><verse n="2"><syl>穌</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse><verse n="2"><syl>我</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>說：</syl></verse><verse n="2"><syl>主，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="f" oct="4" dur="2">
+<verse n="1"><syl>甚</syl></verse><verse n="2"><syl>祂</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>麼</syl></verse><verse n="2"><syl>曾</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="f" oct="4" dur="2">
+<verse n="1"><syl>使</syl></verse><verse n="2"><syl>捨</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl>你</syl></verse><verse n="2"><syl>命</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>這</syl></verse><verse n="2"><syl>擔</syl></verse></note>
+<note xml:id="n14" pname="e" oct="4" dur="4">
+<verse n="1"><syl>樣</syl></verse><verse n="2"><syl>我</syl></verse></note>
+<note xml:id="n15" pname="d" oct="4" dur="4">
+<verse n="1"><syl>快</syl></verse><verse n="2"><syl>罪</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl>活？</syl></verse><verse n="2"><syl>辜，</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="c" oct="4" dur="4">
+<verse n="1"><syl>為</syl></verse><verse n="2"><syl>藉</syl></verse></note>
+<note xml:id="n18" pname="e" oct="4" dur="4"/>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>何</syl></verse><verse n="2"><syl>祂</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<slur startid="#n17" endid="#n18"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="c" oct="5" dur="2">
+<verse n="1"><syl>喜</syl></verse><verse n="2"><syl>十</syl></verse></note>
+<note xml:id="n21" pname="c" oct="5" dur="4">
+<verse n="1"><syl>樂</syl></verse><verse n="2"><syl>架，</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="e" oct="5" dur="4" dots="1">
+<verse n="1"><syl>常</syl></verse><verse n="2"><syl>我</syl></verse></note>
+<note xml:id="n23" pname="d" oct="5" dur="8">
+<verse n="1"><syl>顯</syl></verse><verse n="2"><syl>蒙</syl></verse></note>
+<note xml:id="n24" pname="c" oct="5" dur="4">
+<verse n="1"><syl>你</syl></verse><verse n="2"><syl>救</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>面，</syl></verse><verse n="2"><syl>贖；</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="b" oct="4" dur="4">
+<verse n="1"><syl>似</syl></verse><verse n="2"><syl>所</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4"/>
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl>有</syl></verse><verse n="2"><syl>有</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="d" oct="4" dur="2">
+<verse n="1"><syl>活</syl></verse><verse n="2"><syl>罪</syl></verse></note>
+<note xml:id="n30" pname="d" oct="4" dur="4">
+<verse n="1"><syl>泉</syl></verse><verse n="2"><syl>過</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>湧</syl></verse><verse n="2"><syl>祂</syl></verse></note>
+<note xml:id="n32" pname="e" oct="4" dur="8">
+<verse n="1"><syl>自</syl></verse><verse n="2"><syl>血</syl></verse></note>
+<note xml:id="n33" pname="d" oct="4" dur="4">
+<verse n="1"><syl>你</syl></verse><verse n="2"><syl>盡</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl>懷。</syl></verse><verse n="2"><syl>除。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>（問）</l><l>我的朋友，再告訴我，</l><l>是否你的就是這些？</l><l>即或我罪都洗清潔，</l><l>我的生活仍有所需。</l><l>（答）</l><l>哦，這恩主何其豐厚，</l><l>豈是數語就能說盡，</l><l>祂已復活作我生命，</l><l>成為我的能力，供應。</l><l>（同啍）</l><l>啦…………（一遍）</l></lg>
+<lg label="3."><l>（問）</l><l>我是希奇你所得著，</l><l>罪已赦免，生命裡活，</l><l>但我不知像我這樣，</l><l>祂的救恩能否得著？</l><l>（答）</l><l>哦，願你能知祂大愛，</l><l>祂需要你，祂手伸出，</l><l>祂巴不得賜你救贖，</l><l>作你生命，作你救主。</l><l>（同啍）</l><l>啦…………（一遍）</l></lg>
+<lg label="4."><l>（問）</l><l>朋友，朋友，</l><l>我今敞開我的心門</l><l>讓祂進來，</l><l>但願赦罪、生命、能力、</l><l>喜樂活水湧自我懷。</l><l>（答）</l><l>弟兄，弟兄，我們同來，</l><l>享受救主，就是現在，</l><l>我們同是蒙恩罪人，</l><l>讚祂恩惠，頌祂大愛。</l><l>（同啍）</l><l>啦…………（一遍）</l></lg>
+</div>
+</back>
+</music></mei>

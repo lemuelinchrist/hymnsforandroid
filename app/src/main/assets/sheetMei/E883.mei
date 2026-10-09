@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">In the Overcomer’s Name</title>
+<title type="subordinate">Spiritual Warfare—In the Lord’s Name</title>
+</titleStmt><pubStmt><identifier type="hymn">E883</identifier><identifier type="number">883</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="5s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="d" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>In</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="8"/>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="8"/>
+</beam>
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">O</syl></verse></note>
+<note xml:id="n6" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ver</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="3" place="above">B/D♯</harm>
+<slur startid="#n1" endid="#n2"/>
+<slur startid="#n3" endid="#n4"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">com</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er’s</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="2">
+<verse n="1"><syl>Name</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Be</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="g" oct="4" dur="8">
+<verse n="1"><syl>an</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n13" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">o</syl></verse></note>
+<note xml:id="n14" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ver</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B/D♯</harm>
+<harm staff="1" tstamp="3" place="above">G♯m</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">com</syl></verse></note>
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="2">
+<verse n="1"><syl>too!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C♯7</harm>
+<harm staff="1" tstamp="3" place="above">F♯</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n18" pname="e" oct="4" dur="8"/>
+<note xml:id="n19" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Stand</syl></verse></note>
+<note xml:id="n20" pname="e" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n21" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n22" pname="d" oct="4" dur="4">
+<verse n="1"><syl>put</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯7</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+<slur startid="#n18" endid="#n19"/>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl>foe</syl></verse></note>
+<beam>
+<note xml:id="n25" pname="c" oct="5" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n26" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n27" pname="a" oct="4" dur="2">
+<verse n="1"><syl>shame</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C♯7</harm>
+<harm staff="1" tstamp="3" place="above">F♯7</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>All</syl></verse></note>
+<note xml:id="n29" pname="d" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">live</syl></verse></note>
+<beam>
+<note xml:id="n31" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">long</syl></verse></note>
+<note xml:id="n32" pname="d" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B</harm>
+<harm staff="1" tstamp="4" place="above">E</harm>
+<slur startid="#n31" endid="#n32"/>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">bat</syl></verse></note>
+<note xml:id="n34" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tle</syl></verse></note>
+<note xml:id="n35" pname="b" oct="3" dur="2">
+<verse n="1"><syl>through!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯7</harm>
+<harm staff="1" tstamp="3" place="above">B</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Jesus is the Name to sound,</l><l>Name to rally fainting hearts!</l><l>To recapture “forfeit” ground,</l><l>Lost awhile through Satan’s arts.</l></lg>
+<lg label="3."><l>Backward drive the Evil One!</l><l>Force him out of every hold;</l><l>Smite until the sinking sun</l><l>Sets upon the warrior bold!</l></lg>
+<lg label="4."><l>In the Overcomer’s Name</l><l>Be an overcomer too!</l><l>Stand and put the foe to shame</l><l>All the livelong battle through!</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">On the table of Thy love (New Tune)</title>
+<title type="subordinate">Praise of the Lord—Remembrance of Him</title>
+</titleStmt><pubStmt><identifier type="hymn">BF428</identifier><identifier type="number">223</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>On</syl></verse></note>
+<beam>
+<note xml:id="n2" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ta</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n3" endid="#n4"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="g" oct="4" dur="4"/>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ble</syl></verse></note>
+<note xml:id="n6" pname="g" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="f" oct="4" dur="1">
+<verse n="1"><syl>love,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<tie startid="#n8" endid="#n9"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="f" oct="4" dur="1"/>
+</layer></staff>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<rest xml:id="r10" dur="2"/>
+<note xml:id="n11" pname="e" oct="4" dur="4">
+<verse n="1"><syl>With</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<tie startid="#n13" endid="#n14"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="e" oct="4" dur="4">
+<verse n="1"><syl>bread,</syl></verse></note>
+<note xml:id="n15" pname="d" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n16" pname="c" oct="4" dur="4">
+<verse n="1"><syl>cup</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="d" oct="4" dur="1">
+<verse n="1"><syl>spread.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<tie startid="#n18" endid="#n19"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="d" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<rest xml:id="r20" dur="2"/>
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl>By</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">par</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">tak</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n23" endid="#n24"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="4"/>
+<note xml:id="n25" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl>these</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="f" oct="4" dur="1">
+<verse n="1"><syl>signs,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<tie startid="#n28" endid="#n29"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="f" oct="4" dur="1"/>
+</layer></staff>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<rest xml:id="r30" dur="2"/>
+<note xml:id="n31" pname="e" oct="4" dur="4">
+<verse n="1"><syl>We</syl></verse></note>
+<beam>
+<note xml:id="n32" pname="e" oct="4" dur="8">
+<verse n="1"><syl>with</syl></verse></note>
+<note xml:id="n33" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Thee</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<tie startid="#n33" endid="#n34"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="e" oct="4" dur="4"/>
+<note xml:id="n35" pname="d" oct="4" dur="4">
+<verse n="1"><syl>are</syl></verse></note>
+<note xml:id="n36" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">rich</syl></verse></note>
+<note xml:id="n37" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="d" oct="4" dur="1">
+<verse n="1"><syl>fed.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<tie startid="#n38" endid="#n39"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="d" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="17"><staff n="1"><layer n="1">
+<rest xml:id="r40" dur="2"/>
+<note xml:id="n41" pname="e" oct="4" dur="4">
+<verse n="1"><syl>How</syl></verse></note>
+<beam>
+<note xml:id="n42" pname="e" oct="4" dur="8">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n43" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n43" endid="#n44"/>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="f" oct="4" dur="4">
+<verse n="1"><syl>thank</syl></verse></note>
+<note xml:id="n45" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n46" pname="g" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+<note xml:id="n47" pname="c" oct="4" dur="4">
+<verse n="1"><syl>this</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7/D</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="a" oct="4" dur="1">
+<verse n="1"><syl>cup,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<tie startid="#n48" endid="#n49"/>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="a" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="21"><staff n="1"><layer n="1">
+<rest xml:id="r50" dur="2"/>
+<note xml:id="n51" pname="c" oct="5" dur="4">
+<verse n="1"><syl>For</syl></verse></note>
+<beam>
+<note xml:id="n52" pname="b" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n53" pname="a" oct="4" dur="8">
+<verse n="1"><syl>cup</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<tie startid="#n53" endid="#n54"/>
+</measure>
+<measure n="22"><staff n="1"><layer n="1">
+<note xml:id="n54" pname="a" oct="4" dur="4"/>
+<note xml:id="n55" pname="g" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n56" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">bless</syl></verse></note>
+<note xml:id="n57" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="23"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="d" oct="4" dur="1">
+<verse n="1"><syl>Lord,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<tie startid="#n58" endid="#n59"/>
+</measure>
+<measure n="24"><staff n="1"><layer n="1">
+<note xml:id="n59" pname="d" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="25"><staff n="1"><layer n="1">
+<rest xml:id="r60" dur="2"/>
+<note xml:id="n61" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Cup</syl></verse></note>
+<beam>
+<note xml:id="n62" pname="g" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n63" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n63" endid="#n64"/>
+</measure>
+<measure n="26"><staff n="1"><layer n="1">
+<note xml:id="n64" pname="g" oct="4" dur="4"/>
+<note xml:id="n65" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Sal</syl></verse></note>
+<note xml:id="n66" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">va</syl></verse></note>
+<note xml:id="n67" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7/D</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="27"><staff n="1"><layer n="1">
+<note xml:id="n68" pname="a" oct="4" dur="1">
+<verse n="1"><syl>full,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n68" endid="#n69"/>
+</measure>
+<measure n="28"><staff n="1"><layer n="1">
+<note xml:id="n69" pname="g" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="29"><staff n="1"><layer n="1">
+<rest xml:id="r70" dur="2"/>
+<note xml:id="n71" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Cup</syl></verse></note>
+<note xml:id="n72" pname="b" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="30"><staff n="1"><layer n="1">
+<note xml:id="n73" pname="g" oct="4" dur="2">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n74" pname="c" oct="4" dur="2">
+<verse n="1"><syl>Thou</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+</measure>
+<measure n="31"><staff n="1"><layer n="1">
+<rest xml:id="r75" dur="2"/>
+<note xml:id="n76" pname="e" oct="4" dur="4">
+<verse n="1"><syl>dost</syl></verse></note>
+<note xml:id="n77" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">af</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="32"><staff n="1"><layer n="1">
+<note xml:id="n78" pname="c" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">ford.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<tie startid="#n78" endid="#n79"/>
+</measure>
+<measure n="33" right="end"><staff n="1"><layer n="1">
+<note xml:id="n79" pname="c" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>’Tis the blood Thou shedd’st for us,</l><l>That our sins may be forgiv’n;</l><l>’Tis the cov’nant made for us,</l><l>That Thy blessings may be giv’n.</l><l>Thou didst drink the cup of wrath,</l><l>Thou hast tasted death for us,</l><l>Thus the cup of blessing bought,</l><l>As the portion gained for us.</l></lg>
+<lg label="3."><l>In this portion we have God,</l><l>Whom we lost thru Adam’s fall;</l><l>By the shedding of Thy blood,</l><l>God becomes our all in all.</l><l>In this portion all we have—</l><l>Life and peace, redemption sure;</l><l>All that God has planned and willed,</l><l>In this portion we secure.</l></lg>
+<lg label="4."><l>An eternal portion, ’tis,</l><l>Overflowing cup divine;</l><l>Heav’nly taste do we enjoy</l><l>In this cup of God’s design.</l><l>Here in love we drink this cup</l><l>In remembrance, Lord, of Thee;</l><l>Thus in spirit we partake</l><l>All Thy work on Calvary.</l></lg>
+</div>
+</back>
+</music></mei>

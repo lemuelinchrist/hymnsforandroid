@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Whom have I in heaven but Thee</title>
+<title type="subordinate">Scriptures for Singing</title>
+</titleStmt><pubStmt><identifier type="hymn">NS10025</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="5" dur="2"/>
+<beam>
+<note xml:id="n2" pname="c" oct="5" dur="8"/>
+<note xml:id="n3" pname="a" oct="4" dur="8"/>
+<note xml:id="n4" pname="f" oct="4" dur="8"/>
+<note xml:id="n5" pname="c" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<tie startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="d" oct="4" dur="4" dots="1"/>
+<note xml:id="n7" pname="f" oct="4" dur="8"/>
+<note xml:id="n8" pname="f" oct="4" dur="4"/>
+<note xml:id="n9" pname="d" oct="4" dur="4"/>
+</layer></staff>
+<tie startid="#n7" endid="#n8"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="4" dur="1"/>
+</layer></staff>
+<tie startid="#n10" endid="#n11"/>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="c" oct="4" dur="2" dots="1"/>
+<beam>
+<note xml:id="n12" pname="f" oct="4" dur="8"/>
+<note xml:id="n13" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<dir startid="#n11" place="above" staff="1">1.</dir>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n14" pname="b" oct="4" dur="8"/>
+<note xml:id="n15" pname="b" oct="4" dur="8"/>
+<note xml:id="n16" pname="a" oct="4" dur="8"/>
+<note xml:id="n17" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n18" pname="f" oct="4" dur="2"/>
+</layer></staff>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<rest xml:id="r19" dur="8"/>
+<beam>
+<note xml:id="n20" pname="f" oct="4" dur="8"/>
+<note xml:id="n21" pname="f" oct="4" dur="8"/>
+<note xml:id="n22" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n23" pname="b" oct="4" dur="4"/>
+<note xml:id="n24" pname="b" oct="4" dur="4"/>
+</layer></staff>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="a" oct="4" dur="4" dots="1"/>
+<note xml:id="n26" pname="f" oct="4" dur="8"/>
+<note xml:id="n27" pname="g" oct="4" dur="2"/>
+</layer></staff>
+<slur startid="#n25" endid="#n26"/>
+<tie startid="#n27" endid="#n28"/>
+</measure>
+<measure n="8" right="rptend"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="g" oct="4" dur="1"/>
+</layer></staff>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<rest xml:id="r29" dur="4"/>
+<beam>
+<note xml:id="n30" pname="a" oct="4" dur="8"/>
+<note xml:id="n31" pname="a" oct="4" dur="8"/>
+</beam>
+<beam>
+<note xml:id="n32" pname="a" oct="4" dur="8"/>
+<note xml:id="n33" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n34" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="b" oct="4" dur="4" dots="1"/>
+<note xml:id="n36" pname="c" oct="5" dur="8"/>
+<beam>
+<note xml:id="n37" pname="b" oct="4" dur="8"/>
+<note xml:id="n38" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n39" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<slur startid="#n37" endid="#n38"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<rest xml:id="r40" dur="4"/>
+<beam>
+<note xml:id="n41" pname="a" oct="4" dur="8"/>
+<note xml:id="n42" pname="a" oct="4" dur="8"/>
+</beam>
+<beam>
+<note xml:id="n43" pname="a" oct="4" dur="8"/>
+<note xml:id="n44" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n45" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<tie startid="#n42" endid="#n43"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n46" pname="b" oct="4" dur="4"/>
+<beam>
+<note xml:id="n47" pname="b" oct="4" dur="8"/>
+<note xml:id="n48" pname="c" oct="5" dur="8"/>
+</beam>
+<beam>
+<note xml:id="n49" pname="b" oct="4" dur="8"/>
+<note xml:id="n50" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n51" pname="g" oct="4" dur="4"/>
+</layer></staff>
+<slur startid="#n49" endid="#n51"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<rest xml:id="r52" dur="4"/>
+<beam>
+<note xml:id="n53" pname="a" oct="4" dur="8"/>
+<note xml:id="n54" pname="a" oct="4" dur="8"/>
+</beam>
+<beam>
+<note xml:id="n55" pname="a" oct="4" dur="8"/>
+<note xml:id="n56" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n57" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<tie startid="#n54" endid="#n55"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n58" pname="b" oct="4" dur="8"/>
+<note xml:id="n59" pname="b" oct="4" dur="8"/>
+<note xml:id="n60" pname="b" oct="4" dur="8"/>
+<note xml:id="n61" pname="b" oct="4" dur="8"/>
+</beam>
+<note xml:id="n62" pname="c" oct="5" dur="4"/>
+<note xml:id="n63" pname="d" oct="5" dur="4"/>
+</layer></staff>
+<tie startid="#n59" endid="#n60"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n64" pname="c" oct="5" dur="1"/>
+</layer></staff>
+<tie startid="#n64" endid="#n65"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n65" pname="c" oct="5" dur="2" dots="1"/>
+<rest xml:id="r66" dur="4"/>
+</layer></staff>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>My flesh and my heart faileth.</l><l>But God is the strength of my heart</l><l>And my portion forever.</l><l>(Repeat 2)</l></lg>
+<lg label="3."><l>Nevertheless, I am continually with Thee;</l><l>Thou hast holden me by my right hand;</l><l>Thou shalt guide me with Thy counsel and</l><l>Afterwards receive me to glory.</l></lg>
+<lg label="4."><l>One thing have I desired of the Lord;</l><l>That will I seek after,</l><l>That I may dwell in the house of the Lord.</l><l>(Repeat 4)</l></lg>
+<lg label="5."><l>I may dwell in the house of the Lord,</l><l>All the days of my life,</l><l>To behold the beauty of the Lord</l><l>And to inquire in His temple.</l></lg>
+<lg label="1."><l>Sisters' part:</l><l>I am continually with Thee;</l><l>Thou hast beholden me by my right hand.</l><l>I am continually with Thee;</l><l>Thou hast holden me by my right hand.</l></lg>
+<lg label="2."><l>He is my refuge</l><l>And my fortress;</l><l>My God, in Him will I trust.</l><l>(Repeat 2)</l></lg>
+<lg label="3."><l>I have set the Lord</l><l>Always before me;</l><l>He is at my right hand;</l><l>I shall not be moved.</l></lg>
+<lg label="4."><l>Blessed are they</l><l>That dwell in the house;</l><l>They will be praising Thee all the day long.</l><l>(Repeat 4)</l></lg>
+<lg label="5."><l>There is a river</l><l>Whose streams make glad</l><l>The city of our God.</l><l>God is in the midst of her.</l></lg>
+</div>
+</back>
+</music></mei>

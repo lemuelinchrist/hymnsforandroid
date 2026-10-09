@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Be not dismayed whate’er betide</title>
+<title type="subordinate">Comfort in Trials—By the Lord’s Care</title>
+</titleStmt><pubStmt><identifier type="hymn">E694</identifier><identifier type="number">694</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="6" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="c" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>Be</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl>not</syl></verse></note>
+<note xml:id="n3" pname="d" oct="4" dur="8" accid="n" accid.ges="n">
+<verse n="1"><syl wordpos="i" con="d">dis</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n4" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">mayed</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8"/>
+<note xml:id="n6" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">what</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+<slur startid="#n4" endid="#n5"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">e’er</syl></verse></note>
+<note xml:id="n8" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">tide,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n10" pname="e" oct="4" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="8">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl>take</syl></verse></note>
+</beam>
+<note xml:id="n13" pname="d" oct="4" dur="4">
+<verse n="1"><syl>care</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭7/B♭</harm>
+<harm staff="1" tstamp="6" place="above">E♭7</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>you!</syl></verse></note>
+<note xml:id="n16" pname="c" oct="4" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n17" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
+<note xml:id="n18" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">neath</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="8" accid="n" accid.ges="n">
+<verse n="1"><syl>His</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n20" pname="e" oct="4" dur="8">
+<verse n="1"><syl>wings</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8"/>
+<note xml:id="n22" pname="b" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭/G</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="c" oct="5" dur="4">
+<verse n="1"><syl>love</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">bide,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="6" place="above">A♭/C</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n26" pname="e" oct="4" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="8">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="8">
+<verse n="1"><syl>take</syl></verse></note>
+</beam>
+<note xml:id="n29" pname="e" oct="4" dur="4">
+<verse n="1"><syl>care</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>you!</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭7</harm>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><label>(C)</label><syl>God</syl></verse></note>
+<note xml:id="n34" pname="g" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="8">
+<verse n="1"><syl>take</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="4" place="above">D♭/F</harm>
+<harm staff="1" tstamp="6" place="above">E♭/G</harm>
+<dir startid="#n33" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl>care</syl></verse></note>
+<note xml:id="n37" pname="e" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n38" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>you,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/C</harm>
+<harm staff="1" tstamp="6" place="above">D♭</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n39" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Through</syl></verse></note>
+<note xml:id="n40" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<note xml:id="n41" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ery</syl></verse></note>
+</beam>
+<note xml:id="n42" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>day</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭7/B♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n43" pname="d" oct="4" dur="8">
+<verse n="1"><syl>o’er</syl></verse></note>
+<note xml:id="n44" pname="f" oct="4" dur="8">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n46" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl>way;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>He</syl></verse></note>
+<note xml:id="n48" pname="a" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n49" pname="a" oct="4" dur="8">
+<verse n="1"><syl>take</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/C</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n50" pname="b" oct="4" dur="8">
+<verse n="1"><syl>care</syl></verse></note>
+<note xml:id="n51" pname="a" oct="4" dur="8"/>
+<note xml:id="n52" pname="b" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</beam>
+<note xml:id="n53" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>you;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<slur startid="#n50" endid="#n51"/>
+<fermata startid="#n53" place="above"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n54" pname="b" oct="4" dur="8">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n55" pname="a" oct="4" dur="8">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n56" pname="f" oct="4" dur="8">
+<verse n="1"><syl>take</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n57" pname="e" oct="4" dur="8">
+<verse n="1"><syl>care</syl></verse></note>
+<note xml:id="n58" pname="a" oct="4" dur="8"/>
+<note xml:id="n59" pname="g" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="6" place="above">E♭7</harm>
+<slur startid="#n57" endid="#n58"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n60" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>you!</syl></verse></note>
+<note xml:id="n61" pname="a" oct="4" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭/A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+<tie startid="#n60" endid="#n61"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Through days of toil when heart doth fail,</l><l>God will take care of you!</l><l>When dangers fierce your path assail,</l><l>God will take care of you!</l></lg>
+<lg label="3."><l>All you may need He will provide,</l><l>God will take care of you!</l><l>Trust Him, and you will be satisfied,</l><l>God will take care of you!</l></lg>
+<lg label="4."><l>Lonely and sad, from friends apart,</l><l>God will take care of you!</l><l>He will give peace to your aching heart,</l><l>God will take care of you!</l></lg>
+<lg label="5."><l>No matter what may be the test,</l><l>God will take care of you!</l><l>Lean, weary one, upon His breast,</l><l>God will take care of you!</l></lg>
+</div>
+</back>
+</music></mei>

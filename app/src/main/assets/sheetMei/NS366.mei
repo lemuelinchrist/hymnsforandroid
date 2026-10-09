@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">My heart longs for absolute surrender</title>
+<title type="subordinate">Consecration—Surrendering All to the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">NS366</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>My</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="4">
+<verse n="1"><syl>heart</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>longs</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>for</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ab</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">so</syl></verse></note>
+<note xml:id="n7" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">lute</syl></verse></note>
+<note xml:id="n8" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sur</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">ren</syl></verse></note>
+<note xml:id="n10" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">der</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<tie startid="#n10" endid="#n11"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="d" oct="4" dur="2"/>
+<note xml:id="n12" pname="d" oct="4" dur="4">
+<verse n="1"><syl>That</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="4">
+<verse n="1"><syl>I’d</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">whol</syl></verse></note>
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">se</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">crat</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7/B</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="e" oct="4" dur="1">
+<verse n="1"><syl>be,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n20" endid="#n21"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="e" oct="4" dur="2"/>
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Not</syl></verse></note>
+<note xml:id="n23" pname="b" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl>word</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">lone</syl></verse></note>
+<note xml:id="n27" pname="c" oct="5" dur="4">
+<verse n="1"><syl>but</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n31" pname="c" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n31" endid="#n32"/>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="c" oct="4" dur="2"/>
+<note xml:id="n33" pname="a" oct="3" dur="4">
+<verse n="1"><syl>Would</syl></verse></note>
+<note xml:id="n34" pname="b" oct="3" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">ful</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">giv</syl></verse></note>
+<note xml:id="n38" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">en</syl></verse></note>
+<note xml:id="n39" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n40" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="c" oct="4" dur="1">
+<verse n="1"><syl>Thee.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<tie startid="#n41" endid="#n42"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="c" oct="4" dur="2"/>
+<rest xml:id="r43" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>There is little willingness within me</l><l>To place all I am before Thy feet,</l><l>So I lay my hands on Thy dear head, Lord</l><l>As the burnt off’ring, perfect, complete.</l></lg>
+<lg label="3."><l>Lord, You are the only One who offered</l><l>Yourself without reluctance unto God;</l><l>Full obedience to the Father given,</l><l>Absolute, You sacrificed Your all.</l></lg>
+<lg label="4."><l>As this One, You’re dwelling in my spirit;</l><l>Moving, spreading outward day by day.</l><l>There’s a whisper of Amen within me</l><l>In response to all that You would say.</l></lg>
+<lg label="5."><l>I say Yes and give You full permission</l><l>To touch every corner of my heart;</l><l>Break through all the barriers in my being;</l><l>Do not let me withhold any part.</l></lg>
+<lg label="6."><l>’Tis my joy to give You all the ground, Lord;</l><l>Make my heart a dwelling place for You;</l><l>I want You to be at home within me;</l><l>Come and settle down in every room.</l></lg>
+<lg label="7."><l>Lord, do cleanse my heart from all self-seeking</l><l>That I’d truly want nothing but Thee;</l><l>Let my soul be occupied, possessed, Lord,</l><l>That You would be magnified in me.</l></lg>
+</div>
+</back>
+</music></mei>

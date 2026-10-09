@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Jesus Lord, I’m captured by Thy beauty</title>
+<title type="subordinate">Experience of Christ—Loving Him</title>
+</titleStmt><pubStmt><identifier type="hymn">E1159</identifier><identifier type="number">1159</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="g" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n4" pname="e" oct="4" dur="8">
+<verse n="1"><syl>I’m</syl></verse></note>
+<beam>
+<note xml:id="n5" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">cap</syl></verse></note>
+<note xml:id="n6" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">tured</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="8">
+<verse n="1"><syl>by</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">beau</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+<rest xml:id="r11" dur="4"/>
+<beam>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl>All</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n15" pname="d" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Thee</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">o</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">pen</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="e" oct="4" dur="2">
+<verse n="1"><syl>wide;</syl></verse></note>
+<rest xml:id="r21" dur="4"/>
+<beam>
+<note xml:id="n22" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Now</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="8">
+<verse n="1"><syl>set</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>free</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="8">
+<verse n="1"><syl>from</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="e" oct="4" dur="8">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n27" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">li</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">gious</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">du</syl></verse></note>
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+<rest xml:id="r32" dur="4"/>
+<beam>
+<note xml:id="n33" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">On</syl></verse></note>
+<note xml:id="n34" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>let</syl></verse></note>
+<note xml:id="n36" pname="d" oct="4" dur="8">
+<verse n="1"><syl>me</syl></verse></note>
+<beam>
+<note xml:id="n37" pname="d" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n38" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Thy</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">self</syl></verse></note>
+<note xml:id="n40" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7/D</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">bide.</syl></verse></note>
+<rest xml:id="r42" dur="4"/>
+<beam>
+<note xml:id="n43" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>As</syl></verse></note>
+<note xml:id="n44" pname="a" oct="4" dur="16">
+<verse n="1"><syl>I’m</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">gaz</syl></verse></note>
+<note xml:id="n46" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<beam>
+<note xml:id="n47" pname="b" oct="4" dur="8">
+<verse n="1"><syl>here</syl></verse></note>
+<note xml:id="n48" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">up</syl></verse></note>
+<note xml:id="n49" pname="e" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">on</syl></verse></note>
+<note xml:id="n50" pname="d" oct="5" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n52" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+<rest xml:id="r53" dur="4"/>
+<beam>
+<note xml:id="n54" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Fill</syl></verse></note>
+<note xml:id="n55" pname="g" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n56" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n57" pname="a" oct="4" dur="8">
+<verse n="1"><syl>with</syl></verse></note>
+<beam>
+<note xml:id="n58" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ra</syl></verse></note>
+<note xml:id="n59" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="m" con="d">dian</syl></verse></note>
+<note xml:id="n60" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">cy</syl></verse></note>
+<note xml:id="n61" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">B♭7/D</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n62" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">vine;</syl></verse></note>
+<rest xml:id="r63" dur="4"/>
+<beam>
+<note xml:id="n64" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Sat</syl></verse></note>
+<note xml:id="n65" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">u</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n66" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">rate</syl></verse></note>
+<note xml:id="n67" pname="e" oct="4" dur="8">
+<verse n="1"><syl>me,</syl></verse></note>
+<beam>
+<note xml:id="n68" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n69" pname="e" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n70" pname="f" oct="4" dur="8">
+<verse n="1"><syl>now</syl></verse></note>
+<note xml:id="n71" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">im</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n72" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">plore</syl></verse></note>
+<note xml:id="n73" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thee,</syl></verse></note>
+<rest xml:id="r74" dur="4"/>
+<beam>
+<note xml:id="n75" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Min</syl></verse></note>
+<note xml:id="n76" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">gle</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n77" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>now</syl></verse></note>
+<note xml:id="n78" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+<beam>
+<note xml:id="n79" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
+<note xml:id="n80" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+<note xml:id="n81" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n82" pname="d" oct="4" dur="8">
+<verse n="1"><syl>with</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n83" pname="e" oct="4" dur="2">
+<verse n="1"><syl>mine.</syl></verse></note>
+<rest xml:id="r84" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Shining One—how clear the sky above me!</l><l>Son of Man, I see Thee on the throne!</l><l>Holy One, the flames of God consume me,</l><l>Till my being glows with Thee alone.</l><l>Lord, when first I saw Thee in Thy splendor,</l><l>All self-love and glory sank in shame;</l><l>Now my heart its love and praises render,</l><l>Tasting all the sweetness of Thy name.</l></lg>
+<lg label="3."><l>Precious Lord, my flask of alabaster</l><l>Gladly now I break in love for Thee;</l><l>I anoint Thy head, Beloved Master;</l><l>Lord, behold, I’ve saved the best for Thee.</l><l>Dearest Lord, I waste myself upon Thee;</l><l>Loving Thee, I’m deeply satisfied.</l><l>Love outpoured from hidden depths within me,</l><l>Costly oil, dear Lord, I would provide.</l></lg>
+<lg label="4."><l>My Beloved, come on spices’ mountain;</l><l>How I yearn to see Thee face to face.</l><l>Drink, dear Lord, from my heart’s flowing fountain,</l><l>Till I rest fore’er in Thine embrace.</l><l>Not alone, O Lord, do I adore Thee,</l><l>But with all the saints as Thy dear Bride;</l><l>Quickly come, our love is waiting for Thee;</l><l>Jesus Lord, Thou wilt be satisfied.</l></lg>
+</div>
+</back>
+</music></mei>

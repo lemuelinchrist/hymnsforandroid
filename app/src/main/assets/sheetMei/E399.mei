@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Changed into His likeness</title>
+<title type="subordinate">Longings—For Likeness to Christ</title>
+</titleStmt><pubStmt><identifier type="hymn">E399</identifier><identifier type="number">399</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><label>1.</label><syl>Changed</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">to</syl></verse></note>
+<note xml:id="n4" pname="b" oct="4" dur="4">
+<verse n="1"><syl>His</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">like</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ness!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>This</syl></verse></note>
+<note xml:id="n8" pname="f" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl>heart’s</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4" accid.ges="s">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">E7</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">sire!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="d" oct="5" dur="4" dots="1">
+<verse n="1"><syl>May</syl></verse></note>
+<note xml:id="n13" pname="d" oct="5" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Lord</syl></verse></note>
+<note xml:id="n15" pname="a" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="i" con="d">ful</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">fill</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="2">
+<verse n="1"><syl>it,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">Em</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>All</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>soul</syl></verse></note>
+<note xml:id="n21" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="d" oct="4" dur="1">
+<verse n="1"><syl wordpos="t">spire.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Changed into His likeness!</l><l>He the Spirit is!</l><l>If the Spirit governs,</l><l>He’ll fulfill my wish.</l></lg>
+<lg label="3."><l>As a glass, beholding</l><l>With uncovered face,</l><l>I can see His glory</l><l>And reflect His grace.</l></lg>
+<lg label="4."><l>O that no more covering</l><l>May the Lord obscure,</l><l>That I may reflect Him</l><l>With a heart made pure.</l></lg>
+<lg label="5."><l>Gazing on His glory,</l><l>Face to face to see;</l><l>Constantly beholding,</l><l>Ever would I be.</l></lg>
+<lg label="6."><l>Changed into His likeness!</l><l>This my heart’s one quest!</l><l>From my heart reflected,</l><l>He will be expressed.</l></lg>
+<lg label="7."><l>Changed into His likeness</l><l>And reflecting more</l><l>Glory unto glory,</l><l>Boundless evermore.</l></lg>
+</div>
+</back>
+</music></mei>

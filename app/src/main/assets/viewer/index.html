@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Sheet music</title>
+<link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+<header id="head">
+  <div id="titlerow">
+    <div id="spacer" aria-hidden="true"></div>
+    <div>
+      <h1 id="title"></h1>
+      <div id="subtitle"></div>
+    </div>
+    <div id="number"></div>
+  </div>
+  <div id="capo"></div>
+</header>
+<div id="music"><div id="status">Loading…</div></div>
+<div id="tail"></div>
+<section id="verses"></section>
+<footer>www.hymnal.net</footer>
+<script src="verovio-toolkit-wasm.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>

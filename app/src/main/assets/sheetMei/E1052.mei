@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">I’ve wandered far away from God</title>
+<title type="subordinate">Gospel—Coming to the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">E1052</identifier><identifier type="number">1052</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>I’ve</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">wan</syl></verse></note>
+<note xml:id="n3" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">dered</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>far</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">way</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4"/>
+<note xml:id="n8" pname="f" oct="4" dur="8">
+<verse n="1"><syl>from</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>God,</syl></verse></note>
+<rest xml:id="r10" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Now</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I’m</syl></verse></note>
+<note xml:id="n13" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n14" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">D♭</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>home;</syl></verse></note>
+<note xml:id="n16" pname="e" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/G</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl>paths</syl></verse></note>
+<note xml:id="n18" pname="c" oct="5" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>sin</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="8">
+<verse n="1"><syl>too</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="f" oct="4" dur="8">
+<verse n="1"><syl>long</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="4"/>
+<note xml:id="n23" pname="f" oct="4" dur="8">
+<verse n="1"><syl>I’ve</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>trod,</syl></verse></note>
+<rest xml:id="r25" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+<slur startid="#n21" endid="#n22"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I’m</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>home.</syl></verse></note>
+<rest xml:id="r31" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭/A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="c" oct="5" dur="8">
+<verse n="1"><label>(C)</label><syl wordpos="i" con="d">Com</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n34" pname="a" oct="4" dur="2">
+<verse n="1"><syl>home,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+<dir startid="#n33" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n37" pname="f" oct="4" dur="2">
+<verse n="1"><syl>home,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Nev</syl></verse></note>
+<note xml:id="n39" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
+<note xml:id="n40" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">more</syl></verse></note>
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>roam;</syl></verse></note>
+<rest xml:id="r43" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m/D♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<sb/>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="c" oct="5" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">O</syl></verse></note>
+<note xml:id="n45" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">pen</syl></verse></note>
+<note xml:id="n46" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>wide</syl></verse></note>
+<note xml:id="n47" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Thine</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n48" pname="f" oct="4" dur="8"/>
+<note xml:id="n49" pname="a" oct="4" dur="4">
+<verse n="1"><syl>arms</syl></verse></note>
+<note xml:id="n50" pname="f" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n51" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>love;</syl></verse></note>
+<rest xml:id="r52" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+<slur startid="#n48" endid="#n49"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n54" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I’m</syl></verse></note>
+<note xml:id="n55" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n56" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭m7</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>home.</syl></verse></note>
+<rest xml:id="r58" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭/A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>I’ve wasted many precious years,</l><l>Now I’m coming home;</l><l>I now repent with bitter tears,</l><l>Lord, I’m coming home.</l></lg>
+<lg label="3."><l>I’m tired of sin and straying, Lord,</l><l>Now I’m coming home;</l><l>I’ll trust Thy love, believe Thy word;</l><l>Lord, I’m coming home.</l></lg>
+<lg label="4."><l>My soul is sick, my heart is sore,</l><l>Now I’m coming home;</l><l>My strength renew, my hope restore:</l><l>Lord, I’m coming home.</l></lg>
+<lg label="5."><l>My only hope, my only plea,</l><l>Now I’m coming home;</l><l>That Jesus died, and died for me;</l><l>Lord, I’m coming home.</l></lg>
+<lg label="6."><l>I need His cleansing blood, I know,</l><l>Now I’m coming home;</l><l>O wash me whiter than the snow;</l><l>Lord, I’m coming home.</l></lg>
+</div>
+</back>
+</music></mei>

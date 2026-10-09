@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">A Little More, Each Day</title>
+<title type="subordinate">Longings — For Growth in Christ</title>
+</titleStmt><pubStmt><identifier type="hymn">NS856</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="f" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>Lord,</syl></verse></note>
+<note xml:id="n2" pname="a" oct="4" dur="8">
+<verse n="1"><syl>it</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>seems</syl></verse></note>
+<beam>
+<note xml:id="n4" pname="f" oct="4" dur="8">
+<verse n="1"><syl>That</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n6" pname="g" oct="4" dur="8">
+<verse n="1"><syl>fail</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="8">
+<verse n="1"><syl>fail</syl></verse></note>
+<note xml:id="n9" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n10" pname="e" oct="4" dur="16"/>
+</beam>
+<beam>
+<note xml:id="n11" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">gain.</syl></verse></note>
+<note xml:id="n12" pname="d" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="8">
+<verse n="1"><syl>see</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Your</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<tie startid="#n10" endid="#n11"/>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="d" oct="4" dur="2">
+<verse n="1"><syl>face,</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="d" oct="4" dur="8"/>
+<note xml:id="n17" pname="d" oct="4" dur="8">
+<verse n="1"><syl>But</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="8">
+<verse n="1"><syl>then</syl></verse></note>
+<note xml:id="n19" pname="a" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+<tie startid="#n15" endid="#n16"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n20" pname="b" oct="4" dur="8">
+<verse n="1"><syl>veils</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">turn</syl></verse></note>
+<note xml:id="n23" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="16"/>
+</beam>
+<note xml:id="n25" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">gain.</syl></verse></note>
+<note xml:id="n26" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<tie startid="#n24" endid="#n25"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">mo</syl></verse></note>
+<note xml:id="n28" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tion’s</syl></verse></note>
+<note xml:id="n29" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>stirred,</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="8">
+<verse n="1"><syl>but</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯m</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n31" pname="e" oct="4" dur="8">
+<verse n="1"><syl>there’s</syl></verse></note>
+<note xml:id="n32" pname="f" oct="4" dur="8">
+<verse n="1"><syl>no</syl></verse></note>
+<note xml:id="n33" pname="g" oct="4" dur="8">
+<verse n="1"><syl>change</syl></verse></note>
+<note xml:id="n34" pname="f" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+</beam>
+<note xml:id="n35" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>me.</syl></verse></note>
+<note xml:id="n36" pname="d" oct="4" dur="8">
+<verse n="1"><syl>I’m</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F♯</harm>
+<harm staff="1" tstamp="3" place="above">Bm</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n37" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">liv</syl></verse></note>
+<note xml:id="n38" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n39" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n40" pname="d" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n41" pname="e" oct="4" dur="8">
+<verse n="1"><syl>soul;</syl></verse></note>
+<note xml:id="n42" pname="f" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n43" pname="e" oct="4" dur="8">
+<verse n="1"><syl>have</syl></verse></note>
+<note xml:id="n44" pname="d" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>learn</syl></verse></note>
+<beam>
+<note xml:id="n46" pname="e" oct="4" dur="8"/>
+<note xml:id="n47" pname="d" oct="4" dur="8">
+<verse n="1"><syl>A</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<tie startid="#n45" endid="#n46"/>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n48" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">lit</syl></verse></note>
+<note xml:id="n49" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">tle</syl></verse></note>
+<note xml:id="n50" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>more,</syl></verse></note>
+<note xml:id="n51" pname="d" oct="4" dur="8">
+<verse n="1"><syl>each</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n52" pname="e" oct="4" dur="8">
+<verse n="1"><syl>day,</syl></verse></note>
+<note xml:id="n53" pname="f" oct="4" dur="8">
+<verse n="1"><syl>O</syl></verse></note>
+<note xml:id="n54" pname="a" oct="4" dur="8">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n55" pname="e" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+</measure>
+<measure n="11" right="end"><staff n="1"><layer n="1">
+<note xml:id="n56" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>turn.</syl></verse></note>
+<rest xml:id="r57" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Lord, I know</l><l>That I’ve truly seen You, but</l><l>The vision fades;</l><l>I look away to other things.</l><l>Remind me, Lord, reveal Yourself to me,</l><l>That from my idols I would be set free.</l><l>A little more, each day, I want to see.</l></lg>
+<lg label="3."><l>Lord, my mind</l><l>Is occupied with many things—</l><l>This thorny age,</l><l>With all of its anxieties.</l><l>My faith is weak; I’m caught up in my cares.</l><l>I need to learn to tell it all to You!</l><l>A little more, each day, my mind renew.</l></lg>
+<lg label="4."><l>Lord, my will</l><l>Is resistant to Your touch.</l><l>Disarm me, Lord;</l><l>Don’t let me win against Your grace.</l><l>I turn my eyes and see Your patient love—</l><l>What can I do but stop and come to You?</l><l>A little more, each day, my will subdue.</l></lg>
+<lg label="5."><l>Lord, I pray,</l><l>Make me desperate for You.</l><l>Keep drawing me</l><l>And training me to hear Your voice.</l><l>Lord, even though my progress is so slow,</l><l>You’re by my side; You will not let me go.</l><l>A little more, each day, I’d love You so.</l><l>A little more, each day, and I will grow.</l></lg>
+</div>
+</back>
+</music></mei>

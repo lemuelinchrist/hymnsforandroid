@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Though Thou art God, most glorious, high</title>
+<title type="subordinate">Praise of the Lord—His Life</title>
+</titleStmt><pubStmt><identifier type="hymn">E86</identifier><identifier type="number">86</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2f" meter.count="6" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="f" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>Though</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="8">
+<verse n="1"><syl>art</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n4" pname="f" oct="4" dur="8">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="8"/>
+<note xml:id="n6" pname="b" oct="4" dur="8">
+<verse n="1"><syl>most</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭/D</harm>
+<slur startid="#n4" endid="#n5"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n7" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ri</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ous,</syl></verse></note>
+</beam>
+<note xml:id="n10" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>high,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n11" pname="e" oct="4" dur="8">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n12" pname="c" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n13" pname="d" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n14" pname="e" oct="4" dur="8">
+<verse n="1"><syl>flesh</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="8"/>
+<note xml:id="n16" pname="g" oct="4" dur="8">
+<verse n="1"><syl>to</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="4" place="above">Cm/B♭</harm>
+<slur startid="#n14" endid="#n15"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n17" pname="g" oct="4" dur="8">
+<verse n="1"><syl>us</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="8"/>
+<note xml:id="n19" pname="e" oct="4" dur="8">
+<verse n="1"><syl>came</syl></verse></note>
+</beam>
+<note xml:id="n20" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>nigh,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+<slur startid="#n17" endid="#n18"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n21" pname="f" oct="4" dur="8">
+<verse n="1"><syl>A</syl></verse></note>
+<note xml:id="n22" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">low</syl></verse></note>
+<note xml:id="n23" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n24" pname="f" oct="4" dur="8">
+<verse n="1"><syl>man</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="8"/>
+<note xml:id="n26" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">F/A</harm>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n27" pname="d" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">come</syl></verse></note>
+<note xml:id="n28" pname="c" oct="5" dur="8"/>
+<note xml:id="n29" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">there</syl></verse></note>
+</beam>
+<note xml:id="n30" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">by;</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Lord,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+<slur startid="#n27" endid="#n28"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="f" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n33" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
+<note xml:id="n34" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">mem</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ber</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="4" place="above">F7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Thee!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="5" place="above">B♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Glory divine was put away</l><l>Under the tent of flesh to stay,</l><l>No outward beauty to display;</l><l>Lord, I remember Thee!</l></lg>
+<lg label="3."><l>Thou art a root from out dry ground,</l><l>Thou wast the Man of sorrows found,</l><l>Hated, despised by man around;</l><l>Lord, I remember Thee!</l></lg>
+<lg label="4."><l>Gentle and lowly is Thy heart,</l><l>Willing to suffer all Thou art,</l><l>To God and man complaining not;</l><l>Lord, I remember Thee!</l></lg>
+<lg label="5."><l>Thou as a man art tender, sweet,</l><l>Balanced in every way, complete,</l><l>Meal-offering to the Father meet;</l><l>Lord, I remember Thee!</l></lg>
+<lg label="6."><l>Doing the Father’s will Thy prize,</l><l>Never accepting Satan’s lies,</l><l>None like Thyself, so faithful, wise;</l><l>Lord, I remember Thee!</l></lg>
+<lg label="7."><l>For Thine obedience to God’s will,</l><l>Willing to suffer deathly ill,</l><l>E’en on the Cross my place to fill,</l><l>Lord, I remember Thee!</l></lg>
+<lg label="8."><l>Therefore hath God exalted Thee,</l><l>Given Thee glory, majesty,</l><l>Heaven and earth will bow the knee;</l><l>O Lord, I worship Thee!</l></lg>
+</div>
+</back>
+</music></mei>

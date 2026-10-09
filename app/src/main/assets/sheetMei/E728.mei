@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">I have been through the valley of sorrow and weeping</title>
+<title type="subordinate">Comfort in Trials—By Gain from Suffering</title>
+</titleStmt><pubStmt><identifier type="hymn">E728</identifier><identifier type="number">728</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="d" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>I</syl></verse></note>
+<note xml:id="n2" pname="d" oct="4" dur="8">
+<verse n="1"><syl>have</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="b" oct="4" dur="4">
+<verse n="1"><syl>been</syl></verse></note>
+<note xml:id="n4" pname="c" oct="5" dur="4">
+<verse n="1"><syl>through</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">val</syl></verse></note>
+<note xml:id="n7" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ley</syl></verse></note>
+<note xml:id="n8" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sor</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">row</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">weep</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<note xml:id="n14" pname="e" oct="4" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">val</syl></verse></note>
+<note xml:id="n16" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ley</syl></verse></note>
+<beam>
+<note xml:id="n17" pname="g" oct="4" dur="8">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<slur startid="#n17" endid="#n18"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">trou</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ble</syl></verse></note>
+<note xml:id="n21" pname="g" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="f" oct="4" dur="2">
+<verse n="1"><syl>pain;</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="d" oct="4" dur="8">
+<verse n="1"><syl>But</syl></verse></note>
+<note xml:id="n24" pname="d" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl>“God</syl></verse></note>
+<note xml:id="n26" pname="c" oct="5" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fort,”</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl>“God</syl></verse></note>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n33" pname="e" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
+<note xml:id="n35" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fort,”</syl></verse></note>
+<note xml:id="n36" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Was</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="d" oct="4" dur="4">
+<verse n="1"><syl>with</syl></verse></note>
+<note xml:id="n38" pname="b" oct="4" dur="4">
+<verse n="1"><syl>me</syl></verse></note>
+<note xml:id="n39" pname="a" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n40" pname="e" oct="4" dur="8"/>
+<note xml:id="n41" pname="f" oct="4" dur="8">
+<verse n="1"><syl>hold</syl></verse></note>
+</beam>
+<note xml:id="n42" pname="g" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n43" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sus</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+<slur startid="#n40" endid="#n41"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">tain.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">C/G</harm>
+<tie startid="#n44" endid="#n45"/>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="g" oct="4" dur="2"/>
+<rest xml:id="r46" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>As the earth needs the clouds and the rain with the sunshine,</l><l>Our souls need both sorrow and joy,</l><l>So He places us oft in the fire of affliction</l><l>The dross from the gold to destroy.</l></lg>
+<lg label="3."><l>When He leads thru the valleys of trouble and sorrow,</l><l>His mercy and love there we trace;</l><l>For the trials and sorrows He sends us in wisdom</l><l>Are part of His lessons in grace.</l></lg>
+<lg label="4."><l>Yet how often we shrink from the purging and pruning,</l><l>Forgetting the Husbandman knows</l><l>That the deeper and closer the cutting and paring,</l><l>The richer the cluster that grows.</l></lg>
+<lg label="5."><l>O how well does He know that afflictions are needed;</l><l>He has a wise purpose in view,</l><l>And within the dark valley He whispers to comfort,</l><l>“Hereafter thou’lt know what I do.”</l></lg>
+<lg label="6."><l>As we travel the pathway thru life’s shadowed valleys,</l><l>Fresh springs of His love ever rise;</l><l>And we learn that our troubles, our sorrows and losses,</l><l>Are blessings just sent in disguise.</l></lg>
+<lg label="7."><l>So we’ll follow Him faithfully where’er He leadeth,</l><l>The pathway be dreary or bright;</l><l>For we’ve proved that our God is the “God of all comfort,</l><l>The God who gives songs in the night.</l></lg>
+</div>
+</back>
+</music></mei>

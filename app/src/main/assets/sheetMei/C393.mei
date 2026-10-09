@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">祂是樂中之樂</title>
+<title type="subordinate">經歷基督－作一切</title>
+</titleStmt><pubStmt><identifier type="hymn">C393</identifier><identifier type="number">C393</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="b" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>祂</syl></verse></note>
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl>是</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="e" oct="4" dur="8">
+<verse n="1"><syl>樂</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<slur startid="#n3" endid="#n4"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>中</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="a" oct="4" dur="16">
+<verse n="1"><syl>之</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="16">
+<verse n="1"><syl>樂，</syl></verse></note>
+</beam>
+<note xml:id="n8" pname="f" oct="4" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="g" oct="4" dur="2">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n10" pname="e" oct="4" dur="4">
+<verse n="1"><syl>已</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="g" oct="4" dur="8">
+<verse n="1"><syl>解</syl></verse></note>
+<note xml:id="n12" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="8">
+<verse n="1"><syl>乾</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="2">
+<verse n="1"><syl>渴；</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="e" oct="5" dur="2">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n17" pname="c" oct="5" dur="4">
+<verse n="1"><syl>是</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="a" oct="4" dur="8">
+<verse n="1"><syl>歌</syl></verse></note>
+<note xml:id="n19" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>中</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="8">
+<verse n="1"><syl>之</syl></verse></note>
+<note xml:id="n22" pname="g" oct="4" dur="4">
+<verse n="1"><syl>歌，</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="e" oct="4" dur="8">
+<verse n="1"><syl>祂</syl></verse></note>
+<note xml:id="n24" pname="g" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">Cm</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>今</syl></verse></note>
+<note xml:id="n26" pname="e" oct="4" dur="8">
+<verse n="1"><syl>消</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl>寂</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>寞。</syl></verse></note>
+<rest xml:id="r30" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>祂是美中之美，</l><l>合我人生口味；</l><l>祂是貴中之貴，</l><l>是我無上寶貝。</l></lg>
+<lg label="3."><l>祂是命中之命，</l><l>使我從死復生；</l><l>祂是聖中之聖，</l><l>使我與世不並。</l></lg>
+<lg label="3."><l>祂是義中之義，</l><l>使我神前站立；</l><l>祂是力中之力，</l><l>使我路中不疲。</l></lg>
+<lg label="3."><l>祂是能中之能，</l><l>使我如鷹上騰；</l><l>祂是勝中之勝，</l><l>使我得佔上風。</l></lg>
+<lg label="6."><l>祂是強中之強，</l><l>將我全人釋放；</l><l>祂是壯中之壯，</l><l>使我心靈堅剛。</l></lg>
+<lg label="3."><l>祂是王中之王，</l><l>祂今作我心皇；</l><l>祂是光中之光，</l><l>時時使我明亮。</l></lg>
+<lg label="8."><l>祂是主中之主，</l><l>祂今住我心府；</l><l>祂是路中之路，</l><l>處處引我腳步。</l></lg>
+<lg label="9."><l>祂是醫中之醫，</l><l>醫我靈、魂、身體；</l><l>祂是奇中之奇，</l><l>使我榮耀無比。</l></lg>
+<lg label="10."><l>祂是望中之望，</l><l>吸我心情向上；</l><l>祂是賞中之賞，</l><l>引我腳步前往。</l></lg>
+<lg label="11."><l>祂是愛中之愛，</l><l>配我全心感戴；</l><l>祂是耐中之耐，</l><l>配我永遠敬拜。</l></lg>
+<lg label="12."><l>祂是雄中之雄，</l><l>惟祂配我尊崇；</l><l>祂是榮中之榮，</l><l>惟祂配我稱頌。</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Lord, speak Thy Word, upon us breathe</title>
+<title type="subordinate">The Church—Her Building</title>
+</titleStmt><pubStmt><identifier type="hymn">E844</identifier><identifier type="number">844</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="5" dur="8">
+<verse n="1"><label>1.</label><syl>Lord,</syl></verse></note>
+<beam>
+<note xml:id="n2" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>speak</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="16">
+<verse n="1"><syl>Thy</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Word,</syl></verse></note>
+<note xml:id="n5" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="i" con="d">up</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">on</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="16">
+<verse n="1"><syl>us</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>breathe;</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
+<beam>
+<note xml:id="n10" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">hold,</syl></verse></note>
+<note xml:id="n11" pname="c" oct="5" dur="8">
+<verse n="1"><syl>dry</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>bones</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="8">
+<verse n="1"><syl>fill</syl></verse></note>
+<beam>
+<note xml:id="n14" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="16" accid="s" accid.ges="s">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">D7/F♯</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>earth</syl></verse></note>
+<note xml:id="n17" pname="c" oct="5" dur="8">
+<verse n="1"><syl>In</syl></verse></note>
+<beam>
+<note xml:id="n18" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>graves</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="16">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">scat</syl></verse></note>
+<note xml:id="n21" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">tered</syl></verse></note>
+<beam>
+<note xml:id="n22" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>’round</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="16" accid="s" accid.ges="s">
+<verse n="1"><syl>in</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C7/E</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl>death;</syl></verse></note>
+<note xml:id="n25" pname="c" oct="5" dur="8">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="b" oct="4" dur="8">
+<verse n="1"><syl>speak</syl></verse></note>
+<note xml:id="n27" pname="a" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>breathe</syl></verse></note>
+<note xml:id="n29" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">up</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">on</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>us!</syl></verse></note>
+<rest xml:id="r32" dur="4" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<fermata startid="#n31" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Lord, speak Thy Word, upon us breathe,</l><l>Revive the bones with quickening breath,</l><l>That we may leave our graves, our death;</l><l>Lord, speak and breathe upon us!</l></lg>
+<lg label="3."><l>Lord, speak Thy Word, upon us breathe,</l><l>Thy people all to make alive,</l><l>A mighty host, the foe to drive;</l><l>Lord, speak and breathe upon us!</l></lg>
+<lg label="4."><l>Lord, speak Thy Word, upon us breathe,</l><l>That all Thy people may be one,</l><l>Led by the headship of the Son;</l><l>Lord, speak and breathe upon us!</l></lg>
+<lg label="5."><l>Lord, speak Thy Word, upon us breathe,</l><l>Thy people fitly frame with grace</l><l>To be Thy rest, Thy dwelling-place;</l><l>Lord, speak and breathe upon us!</l></lg>
+<lg label="6."><l>Lord, speak to me, upon me breathe,</l><l>Revive me, in Thy Body build,</l><l>No more secluded and self-willed;</l><l>Breathe now, O Lord, upon me!</l></lg>
+<lg label="7."><l>Lord, speak to me, upon me breathe</l><l>That with Thy saints the foe I’ll fight,</l><l>That in Thy house Thou may delight,</l><l>Breathe now, O Lord, upon me!</l></lg>
+</div>
+</back>
+</music></mei>

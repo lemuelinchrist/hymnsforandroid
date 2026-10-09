@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Christ is our light, our food, our air</title>
+<title type="subordinate">Praise of the Lord—His All-Inclusiveness</title>
+</titleStmt><pubStmt><identifier type="hymn">NS182</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<rest xml:id="r1" dur="4"/>
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><label>(C)</label><syl>Christ</syl></verse></note>
+<note xml:id="n3" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n4" pname="d" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<dir startid="#n2" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n5" pname="e" oct="4" dur="8">
+<verse n="1"><syl>light,</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="8">
+<verse n="1"><syl>food,</syl></verse></note>
+<note xml:id="n8" pname="d" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+</beam>
+<note xml:id="n9" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl>air;</syl></verse></note>
+<note xml:id="n10" pname="d" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n11" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">ery</syl></verse></note>
+<note xml:id="n13" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">thing</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="8">
+<verse n="1"><syl>we’ll</syl></verse></note>
+</beam>
+<note xml:id="n15" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n17" pname="g" oct="4" dur="8">
+<verse n="1"><syl>need.</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<tie startid="#n17" endid="#n18"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="g" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<rest xml:id="r19" dur="4"/>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n21" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n22" pname="d" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n23" pname="e" oct="4" dur="8">
+<verse n="1"><syl>drink,</syl></verse></note>
+<note xml:id="n24" pname="f" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="8">
+<verse n="1"><syl>life,</syl></verse></note>
+<note xml:id="n26" pname="d" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+</beam>
+<note xml:id="n27" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl>way,</syl></verse></note>
+<note xml:id="n28" pname="d" oct="4" dur="8">
+<verse n="1"><syl>If</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n29" pname="e" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="8">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n31" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+<note xml:id="n32" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+</beam>
+<note xml:id="n33" pname="g" oct="4" dur="4">
+<verse n="1"><syl>He’d</syl></verse></note>
+<beam>
+<note xml:id="n34" pname="a" oct="4" dur="8">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n35" pname="g" oct="4" dur="8">
+<verse n="1"><syl>freed.</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<tie startid="#n35" endid="#n36"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="g" oct="4" dur="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C7/E</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<rest xml:id="r37" dur="4"/>
+<note xml:id="n38" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>You</syl></verse></note>
+<note xml:id="n39" pname="f" oct="4" dur="4">
+<verse n="1"><syl>say</syl></verse></note>
+<note xml:id="n40" pname="g" oct="4" dur="4">
+<verse n="1"><syl>He’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<dir startid="#n38" place="above" staff="1"><rend rend="box" fontweight="bold">Sisters:</rend></dir>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n41" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">migh</syl></verse></note>
+<beam>
+<note xml:id="n42" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+<note xml:id="n43" pname="f" oct="4" dur="8">
+<verse n="1"><syl>God.</syl></verse></note>
+</beam>
+<note xml:id="n44" pname="f" oct="4" dur="2"/>
+</layer></staff>
+<tie startid="#n43" endid="#n44"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<rest xml:id="r45" dur="4"/>
+<note xml:id="n46" pname="e" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n47" pname="e" oct="4" dur="4">
+<verse n="1"><syl>say</syl></verse></note>
+<note xml:id="n48" pname="a" oct="4" dur="4">
+<verse n="1"><syl>He’s</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<dir startid="#n47" place="above" staff="1"><rend rend="box" fontweight="bold">Brothers:</rend></dir>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="g" oct="4" dur="1">
+<verse n="1"><syl>man.</syl></verse></note>
+</layer></staff>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<rest xml:id="r50" dur="4"/>
+<note xml:id="n51" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Son,</syl></verse></note>
+<note xml:id="n52" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
+<note xml:id="n53" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<dir startid="#n51" place="above" staff="1"><rend rend="box" fontweight="bold">Sisters:</rend></dir>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n54" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
+<beam>
+<note xml:id="n55" pname="g" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ther</syl></verse></note>
+<note xml:id="n56" pname="f" oct="4" dur="8">
+<verse n="1"><syl>all,</syl></verse></note>
+</beam>
+<note xml:id="n57" pname="f" oct="4" dur="4"/>
+<note xml:id="n58" pname="a" oct="4" dur="4">
+<verse n="1"><syl>He’s</syl></verse></note>
+</layer></staff>
+<tie startid="#n56" endid="#n57"/>
+<dir startid="#n58" place="above" staff="1"><rend rend="box" fontweight="bold">All:</rend></dir>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n59" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>rich,</syl></verse></note>
+<note xml:id="n60" pname="a" oct="4" dur="8">
+<verse n="1"><syl>O</syl></verse></note>
+<note xml:id="n61" pname="a" oct="4" dur="4"/>
+<note xml:id="n62" pname="g" oct="4" dur="4">
+<verse n="1"><syl>so</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<tie startid="#n60" endid="#n61"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n63" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl>rich,</syl></verse></note>
+<note xml:id="n64" pname="e" oct="4" dur="8"/>
+<note xml:id="n65" pname="e" oct="4" dur="4">
+<verse n="1"><syl>when</syl></verse></note>
+<note xml:id="n66" pname="d" oct="4" dur="4">
+<verse n="1"><syl>we</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<tie startid="#n64" endid="#n65"/>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n67" pname="c" oct="4" dur="1">
+<verse n="1"><syl>call.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Brothers: He’s Son of righteousness,</l><l>Sisters: Hope, peace, and faith,</l><l>Brothers: The Lamb of God is He,</l><l>All: So call on Him now, don’t you wait.</l></lg>
+<lg label="3."><l>Sisters: You say He’s Son of God,</l><l>Brothers: And Son of Man,</l><l>Sisters: Firstborn among the dead,</l><l>All: Firstborn of creation, AMEN!</l></lg>
+<lg label="4."><l>Brothers: Our Lord’s the great I AM,</l><l>Sisters: The start, the end.</l><l>Brothers: Alpha, Omega,</l><l>All: Lord Jesus, come quickly, AMEN!</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">O walk about, walk about Zion</title>
+<title type="subordinate">The Church—As God’s City</title>
+</titleStmt><pubStmt><identifier type="hymn">E1223</identifier><identifier type="number">1223</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="6" meter.unit="8"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n2" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>walk</syl></verse></note>
+<note xml:id="n3" pname="a" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">bout,</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n5" pname="c" oct="5" dur="8">
+<verse n="1"><syl>walk</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">bout</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Zi</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">on,</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4"/>
+<note xml:id="n11" pname="g" oct="4" dur="8">
+<verse n="1"><syl>Go</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n9" endid="#n10"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="a" oct="4" dur="4">
+<verse n="1"><syl>round</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<beam>
+<note xml:id="n14" pname="c" oct="5" dur="8">
+<verse n="1"><syl wordpos="t">bout</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="8">
+<verse n="1"><syl>her</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="g" oct="4" dur="4" dots="1">
+<verse n="1"><syl>love.</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="4"/>
+<note xml:id="n19" pname="g" oct="4" dur="8">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<tie startid="#n17" endid="#n18"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n20" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>walk</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n22" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">bout,</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n23" pname="c" oct="5" dur="8">
+<verse n="1"><syl>walk</syl></verse></note>
+<note xml:id="n24" pname="b" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">bout</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="a" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">Zi</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">on</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4"/>
+<note xml:id="n29" pname="g" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C/E</harm>
+<tie startid="#n27" endid="#n28"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n30" pname="g" oct="4" dur="8">
+<verse n="1"><syl>count</syl></verse></note>
+<note xml:id="n31" pname="d" oct="4" dur="8"/>
+<note xml:id="n32" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n33" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">tow</syl></verse></note>
+<note xml:id="n34" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ers</syl></verse></note>
+<note xml:id="n35" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">there</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">G7/B</harm>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n36" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">of.</syl></verse></note>
+<note xml:id="n37" pname="c" oct="4" dur="4"/>
+<note xml:id="n38" pname="g" oct="4" dur="8">
+<verse n="1"><syl>And</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">Am</harm>
+<tie startid="#n36" endid="#n37"/>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n39" pname="g" oct="4" dur="8">
+<verse n="1"><syl>count</syl></verse></note>
+<note xml:id="n40" pname="d" oct="4" dur="8"/>
+<note xml:id="n41" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n42" pname="f" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">tow</syl></verse></note>
+<note xml:id="n43" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ers</syl></verse></note>
+<note xml:id="n44" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">there</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="4" place="above">G7</harm>
+<slur startid="#n39" endid="#n40"/>
+</measure>
+<measure n="11" right="end"><staff n="1"><layer n="1">
+<note xml:id="n45" pname="c" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="t">of.</syl></verse></note>
+<note xml:id="n46" pname="c" oct="4" dur="4"/>
+<rest xml:id="r47" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
+<tie startid="#n45" endid="#n46"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>O set your heart on her bulwarks,</l><l>O set your heart on her walls,</l><l>O set your heart on her bulwarks,</l><l>Consider her palaces.</l></lg>
+<lg label="3."><l>In elevation how beauteous,</l><l>The joy of all the earth!</l><l>In elevation how beauteous</l><l>Is Zion, that city of worth!</l></lg>
+<lg label="4."><l>O there is a river in Zion</l><l>That flows so deep and so broad.</l><l>O how the streams of that river</l><l>Make glad the city of God!</l></lg>
+<lg label="5."><l>Praise waiteth for Thee, Lord, in Zion,</l><l>Praise waiteth, O God, for Thee,</l><l>Praise waiteth for Thee, Lord, in Zion,</l><l>For Zion is filled with Thee.</l></lg>
+<lg label="6."><l>How great the Lord is in Zion,</l><l>How greatly to be praised,</l><l>How great He is in that city</l><l>Which over the earth is raised.</l></lg>
+<lg label="7."><l>O bless the Lord out of Zion,</l><l>O let His praises swell,</l><l>O bless the Lord out of Zion,</l><l>Ye who in Jerusalem dwell.</l></lg>
+<lg label="8."><l>The Lord bless thee out of Zion,</l><l>The Lord bless thee o’er and o’er!</l><l>The Lord bless thee out of Zion</l><l>With life for evermore!</l></lg>
+<lg label="9."><l>Behold how good and how pleasant</l><l>With all the brethren to be!</l><l>Behold how good and how pleasant</l><l>To dwell in unity!</l></lg>
+<lg label="10."><l>O tell it to all generations,</l><l>O tell it to all who will come,</l><l>O tell it to all generations,</l><l>The Spirit and Bride say, “Come!”</l></lg>
+</div>
+</back>
+</music></mei>

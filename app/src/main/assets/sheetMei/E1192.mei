@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Chapter one of Genesis</title>
+<title type="subordinate">Experience of God—As Life</title>
+</titleStmt><pubStmt><identifier type="hymn">E1192</identifier><identifier type="number">1192</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Chap</syl></verse></note>
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ter</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="e" oct="4" dur="2">
+<verse n="1"><syl>one</syl></verse></note>
+<note xml:id="n4" pname="c" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Gen</syl></verse></note>
+<note xml:id="n6" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">e</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7/E</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n7" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">sis:</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="c" oct="5" dur="2">
+<verse n="1"><syl>Life</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="c" oct="5" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4"/>
+<note xml:id="n12" pname="g" oct="4" dur="4">
+<verse n="1"><syl>one</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n10" endid="#n11"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">em</syl></verse></note>
+<note xml:id="n14" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">pha</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">sis,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Show</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="e" oct="4" dur="4" dots="1">
+<verse n="1"><syl>Christ</syl></verse></note>
+<note xml:id="n19" pname="d" oct="4" dur="8"/>
+<note xml:id="n20" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">sub</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<slur startid="#n18" endid="#n19"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="b" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">jec</syl></verse></note>
+<note xml:id="n22" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">tive</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C7/E</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="c" oct="5" dur="2">
+<verse n="1"><syl>Step</syl></verse></note>
+<note xml:id="n25" pname="a" oct="4" dur="4">
+<verse n="1"><syl>by</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>step</syl></verse></note>
+<note xml:id="n27" pname="b" oct="4" dur="4"/>
+<note xml:id="n28" pname="d" oct="5" dur="4">
+<verse n="1"><syl>He</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="f" oct="4" dur="2">
+<verse n="1"><syl>grows</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl>me.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Just as earth became a waste,</l><l>Death and darkness once I faced.</l><l>God had judged, no light did shine;</l><l>Hollowness and void were mine.</l></lg>
+<lg label="3."><l>Satan’s fall had filled the seas</l><l>With corruption, sin, disease.</l><l>Yet the Spirit brooded o’er</l><l>The abyss: chaos no more!</l></lg>
+<lg label="4."><l>God then spoke: the air was cleared!</l><l>Darkness which I once had feared</l><l>Was dispelled by God’s own light.</l><l>A new day! No longer night!</l></lg>
+<lg label="5."><l>As the light began to shine</l><l>His discernment became mine.</l><l>I began to see aright;</l><l>God divided dark from light.</l></lg>
+<lg label="6."><l>Then the waters He did split;</l><l>An expanse between them fit,</l><l>Earthly things from heavenly,</l><l>Separated hence they’d be.</l></lg>
+<lg label="7."><l>On the third day God designed</l><l>That the waters be confined.</l><l>In our lives dry land must be;</l><l>No more death and no more sea!</l></lg>
+<lg label="8."><l>God commands: death’s water halt!</l><l>Christ, the good land, we exalt!</l><l>Separated from all strife</l><l>We enjoy Christ as our life.</l></lg>
+<lg label="9."><l>Growing in us inwardly;</l><l>Grass, then herb, then fruitful tree.</l><l>We begin as but a blade;</l><l>Soon our being He’ll pervade.</l></lg>
+<lg label="10."><l>Then the fourth day lights He set;</l><l>Bearers these, more definite.</l><l>Richer light to radiate,</l><l>Higher life to generate.</l></lg>
+<lg label="11."><l>Sun, the greater light we see</l><l>Ruling day triumphantly;</l><l>Yet when darkness fills the skies,</l><l>Waxing moon is on the rise!</l></lg>
+<lg label="12."><l>’Tis the Church she typifies;</l><l>For her light on Christ relies.</l><l>In His image meant to be,</l><l>She reflects Christ perfectly.</l></lg>
+<lg label="13."><l>Lastly, precious stars He placed,</l><l>Strong in spirit, full of grace;</l><l>Shining when the moon seems faint,</l><l>These are overcoming saints.</l></lg>
+<lg label="14."><l>What a glorious picture here:</l><l>Sun and moon and stars appear!</l><l>Lord, our prayer is that we’d be</l><l>Full of light and life in Thee.</l></lg>
+</div>
+</back>
+</music></mei>

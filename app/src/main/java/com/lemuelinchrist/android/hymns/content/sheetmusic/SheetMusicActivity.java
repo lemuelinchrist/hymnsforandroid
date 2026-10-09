@@ -1,6 +1,7 @@
 package com.lemuelinchrist.android.hymns.content.sheetmusic;
 
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,13 +21,19 @@ import androidx.core.view.MenuItemCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
+import androidx.webkit.WebViewAssetLoader;
+import androidx.webkit.WebViewClientCompat;
 import com.lemuelinchrist.android.hymns.R;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by lemuel on 30/4/2017.
  */
 
 public class SheetMusicActivity extends AppCompatActivity {
+    private static final String MEI_FOLDER = "sheetMei";
     private WebView webview;
     private ShareActionProvider shareActionProvider;
     private LegacySheetMusic legacySheetMusic;
@@ -61,17 +70,22 @@ public class SheetMusicActivity extends AppCompatActivity {
         legacySheetMusic = new LegacySheetMusic(this,selectedHymnId);
 
         webview = findViewById(R.id.sheet_music_image);
-        webview.getSettings().setBuiltInZoomControls(true);
-        // disable zoom buttons
-        webview.getSettings().setDisplayZoomControls(false);
-        webview.loadUrl("file:///android_asset/"+legacySheetMusic.getSvgFolder()+"/" + selectedHymnId + ".svg");
-        // zoom out by default
-        webview.getSettings().setUseWideViewPort(true);
-        webview.getSettings().setLoadWithOverviewMode(true);
-        webview.setInitialScale(1);
-
-
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (sharedPreferences.getBoolean("newSheetMusicViewer", false) && hasMei(selectedHymnId)) {
+            loadNewViewer(selectedHymnId);
+        } else {
+            webview.getSettings().setBuiltInZoomControls(true);
+            // disable zoom buttons
+            webview.getSettings().setDisplayZoomControls(false);
+            webview.loadUrl("file:///android_asset/"+legacySheetMusic.getSvgFolder()+"/" + selectedHymnId + ".svg");
+            // zoom out by default
+            webview.getSettings().setUseWideViewPort(true);
+            webview.getSettings().setLoadWithOverviewMode(true);
+            webview.setInitialScale(1);
+        }
+
+
         if(sharedPreferences.getBoolean("keepDisplayOn",false)) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         } else {
@@ -81,6 +95,36 @@ public class SheetMusicActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             getWindow().getAttributes().layoutInDisplayCutoutMode=WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
+    }
+
+    private boolean hasMei(String hymnId) {
+        try (InputStream ignored = getAssets().open(MEI_FOLDER + "/" + hymnId + ".mei")) {
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    /**
+     * The new viewer (assets/viewer) renders assets/sheetMei/<id>.mei with Verovio to fit the screen width.
+     * Assets are served over https by WebViewAssetLoader, since the page fetches the MEI file.
+     */
+    private void loadNewViewer(String hymnId) {
+        final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
+                .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
+                .build();
+        webview.setWebViewClient(new WebViewClientCompat() {
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+                return assetLoader.shouldInterceptRequest(request.getUrl());
+            }
+        });
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.getSettings().setAllowFileAccess(false);
+        String variant = "guitarSvg".equals(legacySheetMusic.getSvgFolder()) ? "guitar" : "piano";
+        boolean dark = sharedPreferences.getBoolean("nightMode", false);
+        webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
+                + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0"));
     }
 
     @Override

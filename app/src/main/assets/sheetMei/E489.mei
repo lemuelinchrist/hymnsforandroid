@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Oh, Jesus, Lord, when Thou on earth</title>
+<title type="subordinate">Experience of Christ—In the Spirit</title>
+</titleStmt><pubStmt><identifier type="hymn">E489</identifier><identifier type="number">489</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Oh,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="c" oct="5" dur="2">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n5" pname="g" oct="4" dur="4">
+<verse n="1"><syl>when</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="f" oct="4" dur="4">
+<verse n="1"><syl>Thou</syl></verse></note>
+<note xml:id="n7" pname="e" oct="4" dur="4"/>
+<note xml:id="n8" pname="d" oct="4" dur="4">
+<verse n="1"><syl>on</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="c" oct="4" dur="2">
+<verse n="1"><syl>earth</syl></verse></note>
+<note xml:id="n10" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Ac</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="e" oct="5" dur="2">
+<verse n="1"><syl wordpos="m" con="d">com</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">pa</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">nied</syl></verse></note>
+<note xml:id="n14" pname="b" oct="4" dur="4"/>
+<note xml:id="n15" pname="c" oct="5" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/F♯</harm>
+<slur startid="#n13" endid="#n14"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">faith</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="4" accid="s" accid.ges="s">
+<verse n="1"><syl wordpos="t">ful</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="g" oct="4" dur="2">
+<verse n="1"><syl>band,</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>It</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<sb/>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="2">
+<verse n="1"><syl>seemed</syl></verse></note>
+<note xml:id="n21" pname="b" oct="4" dur="4">
+<verse n="1"><syl>they</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">G7/F</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="c" oct="5" dur="2">
+<verse n="1"><syl>knew,</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl>but</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="f" oct="4" dur="4">
+<verse n="1"><syl>knew</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="4"/>
+<note xml:id="n26" pname="d" oct="4" dur="4">
+<verse n="1"><syl>Thee</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="e" oct="4" dur="2">
+<verse n="1"><syl>not,</syl></verse></note>
+<note xml:id="n28" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<sb/>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">self</syl></verse></note>
+<note xml:id="n30" pname="b" oct="4" dur="4"/>
+<note xml:id="n31" pname="c" oct="5" dur="4">
+<verse n="1"><syl>they</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">G7/F</harm>
+<slur startid="#n29" endid="#n30"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="g" oct="4" dur="4">
+<verse n="1"><syl>did</syl></verse></note>
+<note xml:id="n33" pname="f" oct="4" dur="4"/>
+<note xml:id="n34" pname="e" oct="4" dur="4">
+<verse n="1"><syl>not</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+<slur startid="#n32" endid="#n33"/>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n36" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm/F</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="17" right="end"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="c" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">stand.</syl></verse></note>
+<rest xml:id="r38" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>They heard Thy voice, beheld Thy form,</l><l>Thy beauteous stature unforgot;</l><l>They crowded ’round Thee, met Thy gaze,</l><l>But who Thou art, they knew it not.</l></lg>
+<lg label="3."><l>As they of old we too are veiled;</l><l>We’ve known Thee long apparently;</l><l>Yet if we say we know, at best</l><l>We know Thee not transparently.</l></lg>
+<lg label="4."><l>But as the Spirit now Thou art,</l><l>Another Comforter become;</l><l>Reveal Thyself within my heart,</l><l>Since to Thy temple Thou hast come.</l></lg>
+<lg label="5."><l>With Thy blest Spirit, Lord, fill me,</l><l>Fill every corner of my soul;</l><l>May Thou inspire my every part,</l><l>Oh may Thou touch, renew the whole.</l></lg>
+<lg label="6."><l>The Spirit then revealing make</l><l>Thyself more real within my heart,</l><l>That ear not hear, nor eye may see</l><l>How very real to me Thou art.</l></lg>
+<lg label="7."><l>When Thou in mercy dost reveal</l><l>And give Thyself as Spirit thus,</l><l>What in the world can be more real,</l><l>More true than what Thou art to us?</l></lg>
+<lg label="8."><l>Thy Spirit, Lord, in mine, I pray,</l><l>O’erflow my being as a flood,</l><l>That every part with glory shine</l><l>And everywhere be Thee and God.</l></lg>
+<lg label="9."><l>How close we are in such a life,</l><l>In one is blended earth with heav’n;</l><l>Thy presence sweetly fills our souls;</l><l>Our hearts are to Thy praises giv’n.</l></lg>
+</div>
+</back>
+</music></mei>

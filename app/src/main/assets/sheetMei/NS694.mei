@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Eternal Blessing</title>
+<title type="subordinate">Experience of God — As Blessing</title>
+</titleStmt><pubStmt><identifier type="hymn">NS694</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>From</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Tri</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">une</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n5" pname="d" oct="5" dur="2" dots="1">
+<verse n="1"><syl>comes</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">bless</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">e</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="a" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="8"/>
+<note xml:id="n11" pname="a" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n9" endid="#n11"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">nal;</syl></verse></note>
+<rest xml:id="r13" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
+<note xml:id="n15" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<note xml:id="n16" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Son,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Em</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="e" oct="4" dur="4">
+<verse n="1"><syl>our</syl></verse></note>
+<note xml:id="n20" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">por</syl></verse></note>
+<note xml:id="n21" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl>free;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Gsus4</harm>
+<tie startid="#n22" endid="#n23"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="d" oct="4" dur="2" dots="1"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl>What</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl>gift</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="c" oct="5" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">fa</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">vor,</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl>what</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">stay</syl></verse></note>
+<note xml:id="n31" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="i" con="d">pow</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="d" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">er;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+</measure>
+<sb/>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="e" oct="4" dur="4">
+<verse n="1"><syl>What</syl></verse></note>
+<note xml:id="n35" pname="d" oct="4" dur="4">
+<verse n="1"><syl>wealth</syl></verse></note>
+<note xml:id="n36" pname="e" oct="4" dur="4">
+<verse n="1"><syl>of</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G7/F</harm>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>grace,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<measure n="21"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="22"><staff n="1"><layer n="1">
+<note xml:id="n39" pname="d" oct="4" dur="4">
+<verse n="1"><syl>what</syl></verse></note>
+<note xml:id="n40" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">per</syl></verse></note>
+<note xml:id="n41" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fect</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+</measure>
+<measure n="23"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="c" oct="4" dur="2" dots="1">
+<verse n="1"><syl>peace!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<tie startid="#n42" endid="#n43"/>
+</measure>
+<measure n="24" right="end"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="c" oct="4" dur="2"/>
+<rest xml:id="r44" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Eternal Father, source of each blessing,</l><l>Bestowed in Christ from heaven above;</l><l>In Your name keep us, with Your hand hold us;</l><l>From evil shield us, safe in Your love!</l></lg>
+<lg label="3."><l>Eternal Son, rose as the morning sun;</l><l>God in the flesh brought glory and grace;</l><l>Be gracious to us, do shine upon us;</l><l>Grant us Your presence, show us Your face!</l></lg>
+<lg label="4."><l>Eternal Spirit, countenance lifting,</l><l>Dispensed into us as joy and peace;</l><l>Your eyes assure us, Your gaze approves us;</l><l>Your smiling visage, our guarantee!</l></lg>
+<lg label="5."><l>Praise to You, Father, for Your mighty care;</l><l>Praise to You, Son, for Your wondrous grace;</l><l>Praise to You, Spirit, for measureless peace;</l><l>Blessing eternal, ours to embrace!</l></lg>
+<lg label="6."><l>The love of God, the grace of Christ Jesus,</l><l>Fellowship of the Spirit divine;</l><l>Be with us all, and be with us ever;</l><l>Blessing and praise shall now intertwine!</l></lg>
+</div>
+</back>
+</music></mei>

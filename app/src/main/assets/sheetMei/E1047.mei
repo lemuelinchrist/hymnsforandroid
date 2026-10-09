@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Eternity! Eternity</title>
+<title type="subordinate">Gospel—Persuasion</title>
+</titleStmt><pubStmt><identifier type="hymn">E1047</identifier><identifier type="number">1047</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="g" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">E</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">tern</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G7/D</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ty!</syl></verse></note>
+<note xml:id="n5" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">tern</syl></verse></note>
+<note xml:id="n7" pname="c" oct="5" dur="4"/>
+<note xml:id="n8" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">ty!</syl></verse></note>
+<note xml:id="n10" pname="g" oct="4" dur="4">
+<verse n="1"><syl>How</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="4"/>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>you</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n11" endid="#n12"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="g" oct="4" dur="2">
+<verse n="1"><syl>spend</syl></verse></note>
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">tern</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="4"/>
+<note xml:id="n18" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7/B</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n16" endid="#n17"/>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ty?</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl>This</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n21" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">ques</syl></verse></note>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G7/D</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="g" oct="4" dur="2">
+<verse n="1"><syl>comes</syl></verse></note>
+<note xml:id="n24" pname="c" oct="5" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="d" oct="5" dur="4">
+<verse n="1"><syl>you</syl></verse></note>
+<note xml:id="n26" pname="c" oct="5" dur="4"/>
+<note xml:id="n27" pname="b" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="c" oct="5" dur="2">
+<verse n="1"><syl>me!</syl></verse></note>
+<note xml:id="n29" pname="g" oct="4" dur="4">
+<verse n="1"><syl>How</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="a" oct="4" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n31" pname="c" oct="5" dur="4"/>
+<note xml:id="n32" pname="a" oct="4" dur="4">
+<verse n="1"><syl>you</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="g" oct="4" dur="2">
+<verse n="1"><syl>spend</syl></verse></note>
+<note xml:id="n34" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="16"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">tern</syl></verse></note>
+<note xml:id="n36" pname="f" oct="4" dur="4"/>
+<note xml:id="n37" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7/B</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+<slur startid="#n35" endid="#n36"/>
+</measure>
+<sb/>
+<measure n="17"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ty?</syl></verse></note>
+<note xml:id="n39" pname="g" oct="4" dur="4">
+<verse n="1"><syl>Tell</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+</measure>
+<measure n="18"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="b" oct="4" dur="2">
+<verse n="1"><syl>me,</syl></verse></note>
+<note xml:id="n41" pname="g" oct="4" dur="4">
+<verse n="1"><syl>what</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+</measure>
+<measure n="19"><staff n="1"><layer n="1">
+<note xml:id="n42" pname="c" oct="5" dur="2">
+<verse n="1"><syl>shall</syl></verse></note>
+<note xml:id="n43" pname="g" oct="4" dur="4">
+<verse n="1"><syl>your</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="20"><staff n="1"><layer n="1">
+<note xml:id="n44" pname="e" oct="5" dur="4">
+<verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
+<note xml:id="n45" pname="d" oct="5" dur="4"/>
+<note xml:id="n46" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">swer</syl></verse></note>
+</layer></staff>
+<slur startid="#n44" endid="#n45"/>
+</measure>
+<measure n="21"><staff n="1"><layer n="1">
+<note xml:id="n47" pname="c" oct="5" dur="4">
+<verse n="1"><syl>be—</syl></verse></note>
+<note xml:id="n48" pname="b" oct="4" dur="4"/>
+<note xml:id="n49" pname="b" oct="4" dur="4">
+<verse n="1"><syl>How</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G7/F</harm>
+<slur startid="#n47" endid="#n48"/>
+</measure>
+<measure n="22"><staff n="1"><layer n="1">
+<note xml:id="n50" pname="c" oct="5" dur="4">
+<verse n="1"><syl>will</syl></verse></note>
+<note xml:id="n51" pname="b" oct="4" dur="4"/>
+<note xml:id="n52" pname="a" oct="4" dur="4">
+<verse n="1"><syl>you</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<slur startid="#n50" endid="#n51"/>
+</measure>
+<measure n="23"><staff n="1"><layer n="1">
+<note xml:id="n53" pname="g" oct="4" dur="2">
+<verse n="1"><syl>spend</syl></verse></note>
+<note xml:id="n54" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="24"><staff n="1"><layer n="1">
+<note xml:id="n55" pname="e" oct="4" dur="2">
+<verse n="1"><syl wordpos="m" con="d">tern</syl></verse></note>
+<note xml:id="n56" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+</measure>
+<measure n="25" right="end"><staff n="1"><layer n="1">
+<note xml:id="n57" pname="c" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ty?</syl></verse></note>
+<rest xml:id="r58" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Eternity! Eternity!</l><l>How will you spend Eternity?</l><l>Many are choosing Christ today,</l><l>Turning from all their sins away;</l><l>Christ shall their blessed portion be:</l><l>How will you spend Eternity?</l></lg>
+<lg label="3."><l>Eternity! Eternity!</l><l>How will you spend Eternity?</l><l>Leaving the strait and narrow way,</l><l>Going the downward road today,</l><l>What shall the final ending be—</l><l>How will you spend Eternity?</l></lg>
+<lg label="4."><l>Eternity! Eternity!</l><l>How will you spend Eternity?</l><l>Turn, and believe this very hour,</l><l>Trust in the Savior’s grace and power:</l><l>Then shall your joyous answer be,</l><l>Saved through a long Eternity!</l></lg>
+</div>
+</back>
+</music></mei>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">With broken heart and contrite sigh</title>
+<title type="subordinate">Gospel—Crying to the Lord</title>
+</titleStmt><pubStmt><identifier type="hymn">E1053</identifier><identifier type="number">1053</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="6" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="e" oct="4" dur="8"/>
+<note xml:id="n2" pname="f" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>With</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<slur startid="#n1" endid="#n2"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n3" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">brok</syl></verse></note>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">en</syl></verse></note>
+<note xml:id="n5" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n6" pname="a" oct="4" dur="8"/>
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭/G</harm>
+<harm staff="1" tstamp="5.5000" place="above">B♭7/F</harm>
+<harm staff="1" tstamp="6" place="above">E♭</harm>
+<slur startid="#n5" endid="#n6"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="f" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="8"/>
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">trite</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="2">
+<verse n="1"><syl>sigh,</syl></verse></note>
+<note xml:id="n12" pname="b" oct="4" dur="4">
+<verse n="1"><syl>A</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm/A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+<slur startid="#n8" endid="#n9"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">trem</syl></verse></note>
+<note xml:id="n14" pname="f" oct="4" dur="4"/>
+<note xml:id="n15" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">bling</syl></verse></note>
+<note xml:id="n16" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">sin</syl></verse></note>
+<note xml:id="n17" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">ner,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm</harm>
+<harm staff="1" tstamp="4" place="above">B♭7/D</harm>
+<slur startid="#n13" endid="#n14"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="c" oct="5" dur="2">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n20" pname="g" oct="4" dur="2">
+<verse n="1"><syl>cry;</syl></verse></note>
+<beam>
+<note xml:id="n21" pname="e" oct="4" dur="8"/>
+<note xml:id="n22" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Thy</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭7</harm>
+<slur startid="#n21" endid="#n22"/>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">par</syl></verse></note>
+<note xml:id="n24" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">d’ning</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl>grace</syl></verse></note>
+<note xml:id="n26" pname="a" oct="4" dur="8"/>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭7/G</harm>
+<harm staff="1" tstamp="5.5000" place="above">B♭7/F</harm>
+<harm staff="1" tstamp="6" place="above">E♭</harm>
+<slur startid="#n25" endid="#n26"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="c" oct="5" dur="2">
+<verse n="1"><syl>rich</syl></verse></note>
+<note xml:id="n29" pname="c" oct="5" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n30" pname="e" oct="5" dur="4" dots="1">
+<verse n="1"><syl>free:</syl></verse></note>
+<note xml:id="n31" pname="d" oct="5" dur="8"/>
+<note xml:id="n32" pname="c" oct="5" dur="4">
+<verse n="1"><syl>O</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/C</harm>
+<harm staff="1" tstamp="5.5000" place="above">B♭</harm>
+<harm staff="1" tstamp="6" place="above">A♭</harm>
+<slur startid="#n30" endid="#n31"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n33" pname="b" oct="4" dur="2">
+<verse n="1"><syl>God,</syl></verse></note>
+<note xml:id="n34" pname="b" oct="4" dur="4">
+<verse n="1"><syl>be</syl></verse></note>
+<note xml:id="n35" pname="b" oct="4" dur="4" dots="1">
+<verse n="1"><syl wordpos="i" con="d">mer</syl></verse></note>
+<note xml:id="n36" pname="a" oct="4" dur="8"/>
+<note xml:id="n37" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">ci</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭/G</harm>
+<harm staff="1" tstamp="4" place="above">Cm</harm>
+<harm staff="1" tstamp="6" place="above">E♭/B♭</harm>
+<slur startid="#n35" endid="#n36"/>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="f" oct="4" dur="2" dots="1">
+<verse n="1"><syl wordpos="t">ful</syl></verse></note>
+<note xml:id="n39" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Fm/A♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭7</harm>
+</measure>
+<measure n="10" right="end"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>me!</syl></verse></note>
+<note xml:id="n41" pname="g" oct="4" dur="2"/>
+<rest xml:id="r42" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+<tie startid="#n40" endid="#n41"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>I smite upon my troubled breast,</l><l>With deep and conscious guilt oppressed;</l><l>Christ and His cross my only plea:</l><l>O God, be merciful to me!</l></lg>
+<lg label="3."><l>Far off I stand with tearful eyes,</l><l>Nor dare uplift them to the skies;</l><l>But Thou dost all my anguish see,</l><l>O God, be merciful to me!</l></lg>
+<lg label="4."><l>With alms, or deeds that I have done,</l><l>Not one sin’s pardon can be won;</l><l>To Calvary alone I flee;</l><l>O God, be merciful to me!</l></lg>
+<lg label="5."><l>And when redeemed from sin and hell,</l><l>With all the ransomed throng I dwell,</l><l>My raptured song shall ever be,</l><l>God has been merciful to me!</l></lg>
+</div>
+</back>
+</music></mei>

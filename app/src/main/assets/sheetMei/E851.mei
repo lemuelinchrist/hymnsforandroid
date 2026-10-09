@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">How lovely is Thy dwelling place</title>
+<title type="subordinate">The Church—Her Attraction</title>
+</titleStmt><pubStmt><identifier type="hymn">E851</identifier><identifier type="number">851</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl>How</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">love</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n4" pname="c" oct="5" dur="4">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">dwell</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="f" oct="4" dur="2">
+<verse n="1"><syl>place!</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">With</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<fermata startid="#n8" place="above"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">in</syl></verse></note>
+<note xml:id="n11" pname="d" oct="5" dur="4">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="4">
+<verse n="1"><syl>courts</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="2" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="2">
+<verse n="1"><syl>long</syl></verse></note>
+<note xml:id="n15" pname="b" oct="4" dur="2">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="1">
+<verse n="1"><syl>be;</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="g" oct="4" dur="2">
+<verse n="1"><syl>Thy</syl></verse></note>
+<note xml:id="n18" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">pre</syl></verse></note>
+<note xml:id="n19" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sence,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C7/E</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>Lord,</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
+<note xml:id="n23" pname="f" oct="4" dur="4"/>
+<note xml:id="n24" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<note xml:id="n25" pname="b" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+<slur startid="#n22" endid="#n23"/>
+<slur startid="#n24" endid="#n25"/>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="g" oct="4" dur="2" dots="1">
+<verse n="1"><syl>craves,</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="4">
+<verse n="1"><syl>For</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C7/B♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n28" pname="c" oct="5" dur="2">
+<verse n="1"><syl>this</syl></verse></note>
+<note xml:id="n29" pname="b" oct="4" dur="2">
+<verse n="1"><syl>my</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/A</harm>
+<harm staff="1" tstamp="3" place="above">C7/G</harm>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n30" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>heart</syl></verse></note>
+<note xml:id="n31" pname="g" oct="4" dur="4">
+<verse n="1"><syl>cries</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">B♭</harm>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n32" pname="f" oct="4" dur="2">
+<verse n="1"><syl>out</syl></verse></note>
+<note xml:id="n33" pname="e" oct="4" dur="2">
+<verse n="1"><syl>to</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
+</measure>
+<measure n="15" right="end"><staff n="1"><layer n="1">
+<note xml:id="n34" pname="f" oct="4" dur="2">
+<verse n="1"><syl>Thee.</syl></verse></note>
+<rest xml:id="r35" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<fermata startid="#n34" place="above"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>At Thy burnt-offering altar, Lord,</l><l>And at Thine incense altar blest,</l><l>Even the sparrow finds a home,</l><l>And swallow there prepares her nest.</l></lg>
+<lg label="3."><l>Men, as the sparrow, frail and small,</l><l>When living in Thy house find rest,</l><l>Relying on the altar’s blood,</l><l>Enjoying there the incense blest.</l></lg>
+<lg label="4."><l>How blessed are those men indeed!</l><l>Trusting in Thee they are made strong;</l><l>Highways to Zion in their hearts,</l><l>The way they care not, rough or long.</l></lg>
+<lg label="5."><l>Passing the weeping valley they</l><l>Make it a place of springing wells;</l><l>The rain with blessings covers it</l><l>And in the way God’s mercy tells.</l></lg>
+<lg label="6."><l>From strength to strength they go, and all</l><l>Before the Lord in Zion meet;</l><l>Thus ever seeking Thine own self,</l><l>They need Thy care and grace replete.</l></lg>
+<lg label="7."><l>Better a day within Thy courts</l><l>Than days a thousand I would tell;</l><l>I’d rather at Thy threshold stand</l><l>Than in the wicked’s tents to dwell.</l></lg>
+<lg label="8."><l>Thou art a sun, Thou art a shield,</l><l>Thou grace and glory wilt supply;</l><l>Thy presence and Thy very self</l><l>My need in fulness satisfy.</l></lg>
+<lg label="9."><l>Not one good thing wilt Thou withhold</l><l>From those who walk in uprightness;</l><l>Bless’d is the man that trusts in Thee</l><l>With grace and glory measureless.</l></lg>
+</div>
+</back>
+</music></mei>

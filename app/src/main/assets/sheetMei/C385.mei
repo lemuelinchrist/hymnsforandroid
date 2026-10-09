@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">主阿你是嗎哪</title>
+<title type="subordinate">經歷基督－作食物</title>
+</titleStmt><pubStmt><identifier type="hymn">C385</identifier><identifier type="number">C385</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="5f" meter.count="2" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>主</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="f" oct="4" dur="4">
+<verse n="1"><syl>阿，</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="4">
+<verse n="1"><syl>你</syl></verse></note>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>是</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="4">
+<verse n="1"><syl>嗎</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/F</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl>哪，</syl></verse></note>
+<note xml:id="n7" pname="g" oct="4" dur="4">
+<verse n="1"><syl>已</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭m</harm>
+<harm staff="1" tstamp="2" place="above">E♭m/G♭</harm>
+<fermata startid="#n6" place="above"/>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="g" oct="4" dur="4">
+<verse n="1"><syl>經</syl></verse></note>
+<note xml:id="n9" pname="g" oct="4" dur="4">
+<verse n="1"><syl>從</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="a" oct="4" dur="4">
+<verse n="1"><syl>天</syl></verse></note>
+<note xml:id="n11" pname="g" oct="4" dur="4">
+<verse n="1"><syl>降</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7/C</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="f" oct="4" dur="4">
+<verse n="1"><syl>下；</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>來</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭/A♭</harm>
+<fermata startid="#n12" place="above"/>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="f" oct="4" dur="4">
+<verse n="1"><syl>作</syl></verse></note>
+<note xml:id="n15" pname="f" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="g" oct="4" dur="4">
+<verse n="1"><syl>的</syl></verse></note>
+<note xml:id="n17" pname="a" oct="4" dur="4">
+<verse n="1"><syl>食</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭7/F</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="b" oct="4" dur="4">
+<verse n="1"><syl>物，</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="4">
+<verse n="1"><syl>使</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♭</harm>
+<harm staff="1" tstamp="2" place="above">E♭m</harm>
+<fermata startid="#n18" place="above"/>
+</measure>
+<scoreDef meter.count="3" meter.unit="4"/>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="f" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="4"/>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>得</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭/A♭</harm>
+<slur startid="#n20" endid="#n21"/>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="e" oct="4" dur="4">
+<verse n="1"><syl>著</syl></verse></note>
+<note xml:id="n24" pname="g" oct="4" dur="4"/>
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl>飽</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭7</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="13"><staff n="1"><layer n="1">
+<note xml:id="n26" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>足。</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G♭/D♭</harm>
+<slur startid="#n26" endid="#n27"/>
+</measure>
+<measure n="14" right="end"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="d" oct="4" dur="2"/>
+<rest xml:id="r28" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>你是磐石裂破，</l><l>流出活水為我；</l><l>隨時我都可喝，</l><l>使我免去乾渴。</l></lg>
+<lg label="3."><l>現在我來就你，</l><l>因我又渴又飢；</l><l>用你自己餧我，</l><l>給我活水解渴。</l></lg>
+<lg label="4."><l>我願喫你、喝你，</l><l>吸取你的自己；</l><l>飽嘗你的生命，</l><l>暢飲你的聖靈。</l></lg>
+<lg label="5."><l>若非如此吸取，</l><l>就難免去空虛；</l><l>如此喫你、喝你，</l><l>纔能生活有力。</l></lg>
+</div>
+</back>
+</music></mei>

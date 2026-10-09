@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Jesus, the name high over all</title>
+<title type="subordinate">Praise of the Lord—His Name</title>
+</titleStmt><pubStmt><identifier type="hymn">E72</identifier><identifier type="number">72</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="3" meter.unit="2"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="d" oct="4" dur="2">
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Je</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<note xml:id="n3" pname="g" oct="4" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="2">
+<verse n="1"><syl>name</syl></verse></note>
+<note xml:id="n5" pname="a" oct="4" dur="2">
+<verse n="1"><syl>high</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/B</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">ov</syl></verse></note>
+<note xml:id="n7" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="2">
+<verse n="1"><syl>all,</syl></verse></note>
+<note xml:id="n9" pname="a" oct="4" dur="2">
+<verse n="1"><syl>In</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="1.5000" place="above">D</harm>
+<harm staff="1" tstamp="2" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="b" oct="4" dur="4">
+<verse n="1"><syl>hell,</syl></verse></note>
+<note xml:id="n11" pname="b" oct="4" dur="4">
+<verse n="1"><syl>or</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="2">
+<verse n="1"><syl>earth,</syl></verse></note>
+<note xml:id="n13" pname="b" oct="4" dur="2">
+<verse n="1"><syl>or</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n14" pname="a" oct="4" dur="1">
+<verse n="1"><syl>sky:</syl></verse></note>
+<note xml:id="n15" pname="d" oct="5" dur="2">
+<verse n="1"><syl wordpos="i" con="d">An</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">D7/F♯</harm>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="d" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">gels</syl></verse></note>
+<note xml:id="n17" pname="b" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n18" pname="b" oct="4" dur="2">
+<verse n="1"><syl>men</syl></verse></note>
+<note xml:id="n19" pname="g" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">G/B</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<note xml:id="n21" pname="e" oct="4" dur="4">
+<verse n="1"><syl>it</syl></verse></note>
+<note xml:id="n22" pname="e" oct="4" dur="2">
+<verse n="1"><syl>fall,</syl></verse></note>
+<note xml:id="n23" pname="g" oct="4" dur="4">
+<verse n="1"><syl>And</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am/C</harm>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
+<note xml:id="n26" pname="g" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">vils</syl></verse></note>
+<note xml:id="n27" pname="g" oct="4" dur="2">
+<verse n="1"><syl>fear</syl></verse></note>
+<note xml:id="n28" pname="a" oct="4" dur="2">
+<verse n="1"><syl>and</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="g" oct="4" dur="1">
+<verse n="1"><syl>fly.</syl></verse></note>
+<rest xml:id="r30" dur="2"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="2" place="above">G</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Jesus, the name to sinners dear,</l><l>The name to sinners giv’n;</l><l>It scatters all their guilty fear,</l><l>It brings them peace of heav’n.</l></lg>
+<lg label="3."><l>Jesus the prisoner’s fetters breaks,</l><l>And bruises Satan’s head;</l><l>Pow’r into strengthless souls He speaks,</l><l>And life into the dead.</l></lg>
+<lg label="4."><l>Oh, that the world might taste and see,</l><l>The riches of His grace!</l><l>The arms of love that compass me,</l><l>Would all mankind embrace.</l></lg>
+<lg label="5."><l>Him as my righteousness I show,</l><l>His saving truth proclaim:</l><l>’Tis all my business here below,</l><l>To cry, Behold the Lamb!</l></lg>
+<lg label="6."><l>Happy, if with my latest breath</l><l>I may but gasp His name:</l><l>Preach Him to all, and cry in death,</l><l>“Behold, behold the Lamb!”</l></lg>
+</div>
+</back>
+</music></mei>
