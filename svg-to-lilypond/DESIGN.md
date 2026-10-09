@@ -1025,8 +1025,35 @@ compressed below 0.8 at 1000 units width in a few long-bar hymns. Headless Chrom
 (guitar, capo 3, voltas, triplets) and C103 (guitar, Chinese) look right; the same three on the emulator (Pixel 9 Pro XL)
 look right after the three fixes above.
 
+**The bar (2026-10-09).** A tap on the page shows or hides a bar at the top (scrolling and pinching do not). It has
+Piano | Guitar, transpose − / + (up to 6 semitones each way) and Hide staff. Everything resets when the sheet is
+opened again (the user's group only transposes when a song is too high or too low).
+
+- *Transpose* changes the key everyone sings in, on piano and on guitar. Verovio's `transpose` option moves the notes,
+  key signature and chord symbols (it reads our ♭/♯ chord text) and spells the new key itself (E1 +3 = B, NS576 +3 = A♭);
+  the page loads the MEI with it, takes `getMEI()` back, and works from that. Verovio's export writes `keysig`, not
+  `key.sig`, and leaves it out for C major. Tail chords are plain text, so the page moves them itself.
+- *Guitar after transposing*: the capo is worked out again from the new key with the same table, so the guitarist keeps
+  easy shapes (E1 in A♭ = capo 1, G shapes; +1 = A, no capo; +2 = B♭, capo 3, G shapes). A "keep the key, change the
+  capo" control is a separate idea, not built.
+- *Hide staff* shows chords over the lyrics, built by the page from the MEI: each note and rest gets a start beat
+  (meter.unit, dots, tuplets), a chord goes over the last note starting at or before its tstamp, a chord on a held note
+  or rest gets its own place with no syllable. The sheet's system breaks are ignored (made for a letter page; following
+  them left fragments like "work-ing to" on their own lines); the lyrics flow to the screen width, a new line starts
+  after a sentence ends in verse 1 (. ; ? ! and 。；！？, but not before 6 syllables, so "Life! life! eternal life!" stays
+  one line) and before an ending or a section label (Chorus, 副, Bridge, Part n, Verse). Other labels (Sisters,
+  Brothers, D.C. al Fine) go in the chord row as a small italic tag so they do not split a word. Lines wrap only between
+  words (verse 1 decides); Chinese characters get no word gap. Only the verse rows a line uses are drawn. Repeats show
+  as ‖: and :‖, endings as a boxed 1. / 2.
+- Night mode inverts only the outer SVG: Verovio nests an `<svg>` inside, and inverting both cancelled out (the
+  music was nearly invisible).
+- Check: the chord-chart code run over all 3,179 MEI files in Node (xmldom): no crashes, every chord and syllable placed.
+  That found NS383's MEI was not well-formed (a triplet starting inside an open beam: `<beam><tuplet></beam></tuplet>`);
+  `ly_to_mei.py` now splits the beam at a tuplet's start as well as its end, and only NS383 changed. Emulator: E1,
+  NS576, C103, E1016, BF185 in piano/guitar, transposed, staff on/off, night mode.
+
 **Open.** First-load time of the 7 MB toolkit on a phone; WebView without
-WebAssembly (very old System WebView) falls back to an error line - consider falling back to the SVG; a text-size setting; transposition UI; share button (still shares the SVG);
+WebAssembly (very old System WebView) falls back to an error line - consider falling back to the SVG; a text-size setting; share button (still shares the SVG);
 melody playback is unchanged (MIDI).
 
 ## 16. Tools & data in this folder

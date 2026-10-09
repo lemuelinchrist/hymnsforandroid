@@ -558,8 +558,12 @@ def build_mei(doc, hymn):
         for ev in m['events']:
             k = ev['kind']
             if k == 'tuplet_start':
+                if open_beam:                              # nor its start (NS383): split the beam there
+                    w('</beam>')
                 w('<tuplet num="%d" numbase="%d" num.visible="true" bracket.visible="%s">'
                   % (ev['num'], ev['den'], 'false' if False else 'true'))
+                if open_beam:
+                    w('<beam>')
                 continue
             if k == 'tuplet_end':
                 if open_beam:                              # a beam may not cross the tuplet's end
