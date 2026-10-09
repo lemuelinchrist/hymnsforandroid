@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
@@ -34,6 +35,7 @@ import java.io.InputStream;
 
 public class SheetMusicActivity extends AppCompatActivity {
     private static final String MEI_FOLDER = "sheetMei";
+    private static final String VIEWER_CLOSE_SCHEME = "hymnsviewer";
     private WebView webview;
     private ShareActionProvider shareActionProvider;
     private LegacySheetMusic legacySheetMusic;
@@ -118,6 +120,18 @@ public class SheetMusicActivity extends AppCompatActivity {
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 return assetLoader.shouldInterceptRequest(request.getUrl());
             }
+
+            // the viewer's back button navigates to hymnsviewer://close
+            @Override
+            public boolean shouldOverrideUrlLoading(@NonNull WebView view, @NonNull WebResourceRequest request) {
+                return closeIfRequested(request.getUrl());
+            }
+
+            @Override
+            @SuppressWarnings("deprecation")
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {   // before API 24
+                return closeIfRequested(Uri.parse(url));
+            }
         });
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setAllowFileAccess(false);
@@ -125,6 +139,12 @@ public class SheetMusicActivity extends AppCompatActivity {
         boolean dark = sharedPreferences.getBoolean("nightMode", false);
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
                 + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0"));
+    }
+
+    private boolean closeIfRequested(Uri url) {
+        if (!VIEWER_CLOSE_SCHEME.equals(url.getScheme())) return false;
+        finish();
+        return true;
     }
 
     @Override

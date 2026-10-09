@@ -349,7 +349,10 @@
   function updateBar() {
     $('bPiano').classList.toggle('on', !state.guitar);
     $('bGuitar').classList.toggle('on', state.guitar);
-    $('bStaff').textContent = state.staff ? 'Hide staff' : 'Show staff';
+    // narrow phones get the short label (the bar has no room for "Hide staff" next to the back button)
+    var narrow = document.documentElement.clientWidth < 400;
+    $('bStaff').textContent = narrow ? 'Staff' : state.staff ? 'Hide staff' : 'Show staff';
+    $('bStaff').classList.toggle('on', narrow && state.staff);
     $('bDown').disabled = state.shift <= -MAX_SHIFT;
     $('bUp').disabled = state.shift >= MAX_SHIFT;
   }
@@ -366,6 +369,8 @@
     }
   }
 
+  // back to the hymn: the activity closes itself on this address (SheetMusicActivity.closeIfRequested)
+  $('bBack').addEventListener('click', function () { location.href = 'hymnsviewer://close'; });
   $('bPiano').addEventListener('click', function () { change(function () { state.guitar = false; }); });
   $('bGuitar').addEventListener('click', function () { change(function () { state.guitar = true; }); });
   $('bDown').addEventListener('click', function () { change(function () { state.shift = Math.max(-MAX_SHIFT, state.shift - 1); }); });
@@ -405,7 +410,7 @@
   var resizeTimer = null;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () { if (tk) render(); }, 150);
+    resizeTimer = setTimeout(function () { updateBar(); if (tk) render(); }, 150);
   });
 
   // the toolkit and the MEI load in parallel; render when both are there

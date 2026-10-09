@@ -34,10 +34,19 @@ body.barHidden #bar { transform: translateY(-100%); }
 #bar button.on { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 #bar .group { display: flex; align-items: center; }
 #bar .group button + button { margin-left: -1px; }
-#bar .group:first-child button:first-child { border-radius: 16px 0 0 16px; }
-#bar .group:first-child button:last-child { border-radius: 0 16px 16px 0; }
+#bar .group:not(.transpose) button:first-child { border-radius: 16px 0 0 16px; }
+#bar .group:not(.transpose) button:last-child { border-radius: 0 16px 16px 0; }
 #bar .transpose button { width: 36px; padding: 6px 0; font-size: 18px; line-height: 1; }
 #key { min-width: 4.2em; text-align: center; white-space: nowrap; }
+#bBack { width: 36px; padding: 0; display: flex; align-items: center; justify-content: center; flex: none; }
+/* narrow phones (360 px): tighter buttons; "Staff" is a toggle that is lit while the staff shows */
+@media (max-width: 399px) {
+  #bar { gap: 4px; padding: 8px 6px; font-size: 13px; }
+  #bar button { padding: 6px 8px; }
+  #bar .transpose button { width: 30px; }
+  #bBack { width: 32px; }
+  #key { min-width: 3.6em; }
+}
 
 /* staff hidden: chords over the lyrics */
 #chart { margin-top: 0.6em; }

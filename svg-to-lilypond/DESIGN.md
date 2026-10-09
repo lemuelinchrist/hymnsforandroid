@@ -1029,6 +1029,11 @@ look right after the three fixes above.
 Piano | Guitar, transpose − / + (up to 6 semitones each way) and Hide staff. Everything resets when the sheet is
 opened again (the user's group only transposes when a song is too high or too low).
 
+- *Back* (← at the left): users kept asking how to leave the sheet (the activity is full screen with no action
+  bar). The page navigates to `hymnsviewer://close` and `SheetMusicActivity` finishes on that address
+  (`shouldOverrideUrlLoading`, both the API 24+ and the older form, since minSdk is 21). Below 400 px wide the bar
+  is compact and "Hide staff" becomes a lit "Staff" toggle; checked at 448 and 384 px.
+
 - *Transpose* changes the key everyone sings in, on piano and on guitar. Verovio's `transpose` option moves the notes,
   key signature and chord symbols (it reads our ♭/♯ chord text) and spells the new key itself (E1 +3 = B, NS576 +3 = A♭);
   the page loads the MEI with it, takes `getMEI()` back, and works from that. Verovio's export writes `keysig`, not
