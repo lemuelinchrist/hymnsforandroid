@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">God is So Good to Me!</title>
+<title type="subordinate">Gospel — God’s Creation</title>
+</titleStmt><pubStmt><identifier type="hymn">CH78</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="3" dur="8">
+<verse n="1"><label>1.</label><syl>Our</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="d" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="d" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="8">
+<verse n="1"><syl>so</syl></verse></note>
+</beam>
+<note xml:id="n5" pname="e" oct="4" dur="2">
+<verse n="1"><syl>good!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">A7</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="e" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<beam>
+<note xml:id="n7" pname="e" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="8">
+<verse n="1"><syl>so</syl></verse></note>
+</beam>
+<note xml:id="n9" pname="f" oct="4" dur="2">
+<verse n="1"><syl>good!</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="f" oct="4" dur="8">
+<verse n="1"><syl>is</syl></verse></note>
+<note xml:id="n12" pname="a" oct="4" dur="8">
+<verse n="1"><syl>so</syl></verse></note>
+</beam>
+<note xml:id="n13" pname="g" oct="4" dur="4">
+<verse n="1"><syl>good,</syl></verse></note>
+<beam>
+<note xml:id="n14" pname="e" oct="4" dur="8">
+<verse n="1"><syl>He’s</syl></verse></note>
+<note xml:id="n15" pname="g" oct="4" dur="8">
+<verse n="1"><syl>so</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D7</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+</measure>
+<measure n="5" right="end"><staff n="1"><layer n="1">
+<note xml:id="n16" pname="f" oct="4" dur="4">
+<verse n="1"><syl>good</syl></verse></note>
+<note xml:id="n17" pname="e" oct="4" dur="4">
+<verse n="1"><syl>to</syl></verse></note>
+<note xml:id="n18" pname="d" oct="4" dur="4" dots="1">
+<verse n="1"><syl>me!</syl></verse></note>
+<rest xml:id="r19" dur="8"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="2" place="above">A7</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>The sun gives us light, warms us just right.</l></lg>
+<lg label="3."><l>The moon shining bright lights up the night.</l></lg>
+<lg label="4."><l>The stars stay right where God put them there.</l></lg>
+<lg label="5."><l>The earth turns and tips on yearly trips</l></lg>
+<lg label="6."><l>God planned it this way: night and then day!</l></lg>
+</div>
+</back>
+</music></mei>

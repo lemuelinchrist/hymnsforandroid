@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">In All We Speak</title>
+<title type="subordinate">Principles on How to Be a Proper Human Being — Our Speech</title>
+</titleStmt><pubStmt><identifier type="hymn">CH213</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="c" oct="4" dur="4">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n2" pname="c" oct="4" dur="4">
+<verse n="1"><syl>all</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><syl>that</syl></verse></note>
+<note xml:id="n4" pname="d" oct="4" dur="16">
+<verse n="1"><syl>we</syl></verse></note>
+</beam>
+<note xml:id="n5" pname="e" oct="4" dur="4">
+<verse n="1"><syl>speak,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n6" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>Facts</syl></verse></note>
+<note xml:id="n7" pname="d" oct="4" dur="16">
+<verse n="1"><syl>we</syl></verse></note>
+<note xml:id="n8" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>should</syl></verse></note>
+<note xml:id="n9" pname="f" oct="4" dur="16">
+<verse n="1"><syl>not</syl></verse></note>
+</beam>
+<note xml:id="n10" pname="g" oct="4" dur="2">
+<verse n="1"><syl>miss,</syl></verse></note>
+</layer></staff>
+</measure>
+<sb/>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n11" pname="c" oct="5" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Noth</syl></verse></note>
+<note xml:id="n12" pname="c" oct="5" dur="16">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<note xml:id="n13" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>more</syl></verse></note>
+<note xml:id="n14" pname="g" oct="4" dur="16">
+<verse n="1"><syl>or</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n15" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">noth</syl></verse></note>
+<note xml:id="n16" pname="e" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</beam>
+<note xml:id="n17" pname="c" oct="4" dur="4">
+<verse n="1"><syl>less,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+</measure>
+<measure n="4" right="end"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n18" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>Tell</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="16">
+<verse n="1"><syl>it</syl></verse></note>
+<note xml:id="n20" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>as</syl></verse></note>
+<note xml:id="n21" pname="d" oct="4" dur="16">
+<verse n="1"><syl>it</syl></verse></note>
+</beam>
+<note xml:id="n22" pname="c" oct="4" dur="2">
+<verse n="1"><syl>is.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+</section></score></mdiv></body>
+</music></mei>

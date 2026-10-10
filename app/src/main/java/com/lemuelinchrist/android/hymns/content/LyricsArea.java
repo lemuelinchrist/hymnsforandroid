@@ -221,8 +221,10 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // #################### Build Footer
             text = new StringBuilder();
             if(isNotEmpty(hymn.getAuthor()) || isNotEmpty(hymn.getComposer())) {
-                text.append("Author: " + hymn.getAuthor() + "<br/>");
-                text.append("Composer: " + hymn.getComposer());
+                // only the lines we have, so a missing author doesn't show as "Author: null"
+                if (isNotEmpty(hymn.getAuthor())) text.append("Author: " + hymn.getAuthor());
+                if (isNotEmpty(hymn.getAuthor()) && isNotEmpty(hymn.getComposer())) text.append("<br/>");
+                if (isNotEmpty(hymn.getComposer())) text.append("Composer: " + hymn.getComposer());
                 composerView.setText(Html.fromHtml(text.toString()));
             } else {
                 ((ViewGroup)composerView.getParent()).removeView(composerView);

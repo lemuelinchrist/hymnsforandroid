@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #2.73
+    \vspace #1.22
   }
-  system-system-spacing = #'((basic-distance . 18.56) (minimum-distance . 18.56) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.00) (minimum-distance . 12.00) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -35,7 +35,7 @@
 
 \header {
   title = "God, our God, our God, our God"
-  subtitle = "Gospel—God’s Creation"
+  subtitle = "Gospel — God’s Creation"
   opus = ""
 }
 
@@ -49,24 +49,16 @@ global = {
 melody = {
   \clef treble
   \global
-  c'4. g'8 e'4 g'4 | c'4. g'8 e'4 g'4 | c'4. g'8 f'4 e'4 | d'1 \break | d'4. g'8 f'4 e'4 | d'1 | d'4. g'8 e'4 d'4 | \set Score.repeatCommands = #'((volta "1.")) c'1 \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "2.")) c'4. g'8 e'4 g'4 | c'4. g'8 e'4 g'4 | c'2 c'4 c'4 | c'2. r4 | \set Score.repeatCommands = #'((volta #f))
+  c'4. g'8 e'4 g'4 | c'4. g'8 e'4 g'4 | c'4. g'8 f'4 e'4 | d'1 \break | d'4. g'8 f'4 e'4 | d'1 | d'4. g'8 e'4 d'4 | c'1 \break | c'4. g'8 e'4 g'4 | c'4. g'8 e'4 g'4 | c'4. g'8 f'4 e'4 | d'1 \break | d'4. g'8 f'4 e'4 | d'1 | d'4. g'8 e'4 d'4 | c'1 \break | c'4. g'8 e'4 g'4 | c'4. g'8 e'4 g'4 | c'4. g'8 f'4 e'4 | d'1 \break | d'4. g'8 f'4 e'4 | d'1 | d'4. g'8 e'4 d'4 \break | c'4. g'8 e'4 g'4 | c'4. g'8 e'4 g'4 | c'2 c'4 c'4 | c'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  c4. s8 s4 s4 | s4. s8 s4 s4 | s4. s8 f4 s4 | g1 | g4.:7 s8 s4 s4 | s1 | s4. s8 s4 s4 | c1 | c4. s8 s4 s4 | s4. s8 s4 s4 | s2 c4/g s4 | c2. s4 |
+  c4. s8 s4 s4 | s4. s8 s4 s4 | s4. s8 f4 s4 | g1 | g4. s8 s4 s4 | s1 | g4.:7 s8 s4 s4 | c1 | c4. s8 s4 s4 | s4. s8 s4 s4 | s4. s8 f4 s4 | g1 | g4. s8 s4 s4 | s1 | g4.:7 s8 s4 s4 | c1 | c4. s8 s4 s4 | s4. s8 s4 s4 | s4. s8 f4 s4 | g1 | g4. s8 s4 s4 | s1 | g4.:7 s8 s4 s4 | c4. s8 s4 s4 | s4. s8 s4 s4 | s2 g4:7 s4 | c2. s4 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "God," "our" "God," "our" "God," "our" "God," "Our" "God," "our" "God" "is" "good." "He" "cre" -- "at" -- "ed" "me." "He" "cre" -- "at" -- "ed" "me." "good." "He’s" "God," "He’s" "good," "He’s" "God," "He’s" "G-" "O-" "O-" "D!"
-}
-
-verseTwo = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "2." "God," "our" "God," "our" "God," "our" "God," "Our" "God," "our" "God" "is" "good." "He" "cre" -- "at" -- "ed" "you." "He" "cre" -- "at" -- "ed" "you." _ _ _ _ _ _ _ _ _ _ _ _
-}
-
-verseThree = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "3." "God," "our" "God," "our" "God," "our" "God," "Our" "God," "our" "God" "is" "good." "He" "cre" -- "at" -- "ed" "us." "Yes," "our" "God" "is" _ _ _ _ _ _ _ _ _ _ _ _ _
+  \set ignoreMelismata = ##t "God," "our" "God," "our" "God," "our" "God," "Our" "God," "our" "God" "is" "good." "He" "cre" -- "at" -- "ed" "me." "He" "cre" -- "at" -- "ed" "me." "God," "our" "God," "our" "God," "our" "God," "Our" "God," "our" "God" "is" "good." "He" "cre" -- "at" -- "ed" "you." "He" "cre" -- "at" -- "ed" "you." "God," "our" "God," "our" "God," "our" "God," "Our" "God," "our" "God" "is" "good." "He" "cre" -- "at" -- "ed" "us." "Yes," "our" "God" "is" "good." "He’s" "God," "He’s" "good," "He’s" "God," "He’s" "G-" "O-" "O-" "D!"
 }
 
 \score {
@@ -77,8 +69,6 @@ verseThree = \lyricmode {
     } \harmonies
     \new Staff { \melody }
     \addlyrics { \verseOne }
-    \addlyrics { \verseTwo }
-    \addlyrics { \verseThree }
   >>
   \layout {
     \context {

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Can You Look ’em in the Eye</title>
+<title type="subordinate">Principles on How to Be a Proper Human Being — Forgiving Others</title>
+</titleStmt><pubStmt><identifier type="hymn">CH175</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="d" oct="4" dur="8">
+<verse n="1"><label>1.</label><syl>Can</syl></verse></note>
+<note xml:id="n2" pname="e" oct="4" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl>look</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="8">
+<verse n="1"><syl>’em</syl></verse></note>
+<note xml:id="n5" pname="f" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n6" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n7" pname="b" oct="4" dur="4">
+<verse n="1"><syl>eye?</syl></verse></note>
+<beam>
+<note xml:id="n8" pname="d" oct="4" dur="8">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">B♭/F</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n10" pname="f" oct="4" dur="4">
+<verse n="1"><syl>eye,</syl></verse></note>
+<beam>
+<note xml:id="n11" pname="f" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n12" pname="g" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n13" pname="f" oct="4" dur="4">
+<verse n="1"><syl>eye?</syl></verse></note>
+<beam>
+<note xml:id="n14" pname="d" oct="4" dur="8">
+<verse n="1"><syl>Can</syl></verse></note>
+<note xml:id="n15" pname="e" oct="4" dur="8">
+<verse n="1"><syl>you</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n16" pname="f" oct="4" dur="8">
+<verse n="1"><syl>look</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="8">
+<verse n="1"><syl>’em</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n19" pname="f" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n20" pname="b" oct="4" dur="4">
+<verse n="1"><syl>eye</syl></verse></note>
+<beam>
+<note xml:id="n21" pname="e" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n22" pname="d" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+</measure>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="d" oct="4" dur="8">
+<verse n="1"><syl>eye?</syl></verse></note>
+<note xml:id="n24" pname="c" oct="4" dur="4" dots="1"/>
+<note xml:id="n25" pname="c" oct="4" dur="4"/>
+<beam>
+<note xml:id="n26" pname="c" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n27" pname="d" oct="4" dur="8">
+<verse n="1"><syl>can</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<tie startid="#n24" endid="#n25"/>
+<slur startid="#n23" endid="#n25"/>
+</measure>
+<sb/>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n28" pname="e" oct="4" dur="8">
+<verse n="1"><syl>look</syl></verse></note>
+<note xml:id="n29" pname="e" oct="4" dur="8">
+<verse n="1"><syl>’em</syl></verse></note>
+<note xml:id="n30" pname="e" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n31" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n32" pname="e" oct="4" dur="4">
+<verse n="1"><syl>eye,</syl></verse></note>
+<beam>
+<note xml:id="n33" pname="f" oct="4" dur="8">
+<verse n="1"><syl>Not</syl></verse></note>
+<note xml:id="n34" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm7</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n35" pname="d" oct="4" dur="8">
+<verse n="1"><syl>floor</syl></verse></note>
+<note xml:id="n36" pname="c" oct="4" dur="8">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n37" pname="d" oct="4" dur="8">
+<verse n="1"><syl>not</syl></verse></note>
+<note xml:id="n38" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n39" pname="f" oct="4" dur="4">
+<verse n="1"><syl>sky.</syl></verse></note>
+<beam>
+<note xml:id="n40" pname="b" oct="4" dur="8">
+<verse n="1"><syl>We</syl></verse></note>
+<note xml:id="n41" pname="g" oct="4" dur="8">
+<verse n="1"><syl>can</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
+</measure>
+<sb/>
+<measure n="8"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n42" pname="f" oct="4" dur="8">
+<verse n="1"><syl>look</syl></verse></note>
+<note xml:id="n43" pname="e" oct="4" dur="8">
+<verse n="1"><syl>’em</syl></verse></note>
+<note xml:id="n44" pname="d" oct="4" dur="8">
+<verse n="1"><syl>in</syl></verse></note>
+<note xml:id="n45" pname="e" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<note xml:id="n46" pname="f" oct="4" dur="4">
+<verse n="1"><syl>eye,</syl></verse></note>
+<beam>
+<note xml:id="n47" pname="c" oct="4" dur="8">
+<verse n="1"><syl>In</syl></verse></note>
+<note xml:id="n48" pname="d" oct="4" dur="8">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="2" place="above">Gm</harm>
+<harm staff="1" tstamp="3" place="above">Cm7</harm>
+<harm staff="1" tstamp="4" place="above">F7</harm>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n49" pname="b" oct="3" dur="2" dots="1">
+<verse n="1"><syl>eye.</syl></verse></note>
+<rest xml:id="r50" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="2" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Can you give a hand a shake?</l><l>Hand a shake, hand a shake?</l><l>Can you give a hand a shake?</l><l>Hand a shake? (blink, blink, shake, shake)</l><l>You can smile and give a shake</l><l>And a new friend we will make.</l><l>Can you give a hand a shake?</l><l>Hand a shake? (blink, blink, shake, shake)</l></lg>
+<lg label="3."><l>Can you speak “how do you do?</l><l>Do you do? Do you do?”</l><l>Can you speak “How do you do?</l><l>Do you do?” (blink, blink, shake, shake, how do you do)</l><l>We can speak “How do you do?</l><l>I’m just fine and how are you?”</l><l>We can speak “How do you do?</l><l>Do you do? (blink, blink, shake, shake, how do you do)</l></lg>
+<lg label="4."><l>Can you bow and say “Nee how“?</l><l>Say “Nee how”, say “Nee how“?</l><l>Can you bow and say “Nee how“?</l><l>Say “Nee how“? (blink, blink, shake, shake, how do you do, nee how)</l><l>If you bow and say “Nee how”,</l><l>They’ll say “You know Chinese — WOW!”</l><l>Can you bow and say “Nee how“?</l><l>Say “Nee how“? (blink, blink, shake, shake, how do you do, nee how)</l></lg>
+<lg label="5."><l>Can you (Kiss, kiss sound) “Buenos dios“?</l><l>“Buenos dias,” “Buenos dias“?</l><l>Can you (Kiss, kiss sound) “Buenos dios“?</l><l>“Buenos dias“? (blink, blink, shake, shake, how do you do, nee how, Buenos dias)</l><l>Can you (Kiss, kiss sound) “Buenos dios,</l><l>We’re so glad you came to see us.“?</l><l>Can you (Kiss, kiss sound) “Buenos dios“?</l><l>“Buenos dias“? (blink, blink, shake, shake, how do you do, nee how, Buenos dias)</l></lg>
+</div>
+</back>
+</music></mei>

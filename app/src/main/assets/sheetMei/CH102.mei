@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Why was a cup made?</title>
+<title type="subordinate">Gospel — The Meaning of Human Life</title>
+</titleStmt><pubStmt><identifier type="hymn">CH102</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Why</syl></verse></note>
+<beam>
+<note xml:id="n2" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>was</syl></verse></note>
+<note xml:id="n3" pname="f" oct="4" dur="16">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n4" pname="g" oct="4" dur="4">
+<verse n="1"><syl>cup</syl></verse></note>
+<note xml:id="n5" pname="e" oct="4" dur="4">
+<verse n="1"><syl>made?</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+<tie startid="#n5" endid="#n6"/>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n6" pname="e" oct="4" dur="2" dots="1"/>
+<rest xml:id="r7" dur="8"/>
+<note xml:id="n8" pname="b" oct="3" dur="8">
+<verse n="1"><syl>To</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭/G</harm>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n9" pname="c" oct="4" dur="4">
+<verse n="1"><syl>have</syl></verse></note>
+<note xml:id="n10" pname="e" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="4">
+<verse n="1"><syl>drink</syl></verse></note>
+<note xml:id="n12" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n13" pname="c" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">side</syl></verse></note>
+<note xml:id="n14" pname="b" oct="3" dur="2" dots="1">
+<verse n="1"><syl>it.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n15" pname="e" oct="4" dur="4">
+<verse n="1"><syl>Why</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>was</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="16">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+<note xml:id="n18" pname="g" oct="4" dur="4">
+<verse n="1"><syl>shoe</syl></verse></note>
+<note xml:id="n19" pname="e" oct="4" dur="4">
+<verse n="1"><syl>made?</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+<tie startid="#n19" endid="#n20"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n20" pname="e" oct="4" dur="2" dots="1"/>
+<rest xml:id="r21" dur="8"/>
+<note xml:id="n22" pname="b" oct="3" dur="8">
+<verse n="1"><syl>To</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭/G</harm>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n23" pname="c" oct="4" dur="4">
+<verse n="1"><syl>have</syl></verse></note>
+<note xml:id="n24" pname="e" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+<note xml:id="n25" pname="e" oct="4" dur="4">
+<verse n="1"><syl>foot</syl></verse></note>
+<note xml:id="n26" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n27" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="t">side</syl></verse></note>
+<note xml:id="n28" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>it.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<sb/>
+<measure n="9"><staff n="1"><layer n="1">
+<note xml:id="n29" pname="b" oct="4" dur="4">
+<verse n="1"><syl>Why</syl></verse></note>
+<beam>
+<note xml:id="n30" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl>was</syl></verse></note>
+<note xml:id="n31" pname="b" oct="4" dur="16">
+<verse n="1"><syl>an</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n32" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">en</syl></verse></note>
+<note xml:id="n33" pname="c" oct="5" dur="16">
+<verse n="1"><syl wordpos="m" con="d">ve</syl></verse></note>
+</beam>
+<note xml:id="n34" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">lope</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="10"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="b" oct="4" dur="2" dots="1">
+<verse n="1"><syl>made?</syl></verse></note>
+<rest xml:id="r36" dur="8"/>
+<note xml:id="n37" pname="c" oct="5" dur="8">
+<verse n="1"><syl>To</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭7</harm>
+</measure>
+<measure n="11"><staff n="1"><layer n="1">
+<note xml:id="n38" pname="b" oct="4" dur="4">
+<verse n="1"><syl>have</syl></verse></note>
+<note xml:id="n39" pname="a" oct="4" dur="4">
+<verse n="1"><syl>a</syl></verse></note>
+<beam>
+<note xml:id="n40" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">let</syl></verse></note>
+<note xml:id="n41" pname="b" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">ter</syl></verse></note>
+</beam>
+<note xml:id="n42" pname="a" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="12"><staff n="1"><layer n="1">
+<note xml:id="n43" pname="b" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">side</syl></verse></note>
+<note xml:id="n44" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>it.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭m</harm>
+</measure>
+<sb/>
+<measure n="13"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n45" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>Why</syl></verse></note>
+<note xml:id="n46" pname="e" oct="4" dur="16">
+<verse n="1"><syl>were</syl></verse></note>
+<note xml:id="n47" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl>you</syl></verse></note>
+<note xml:id="n48" pname="f" oct="4" dur="16">
+<verse n="1"><syl>and</syl></verse></note>
+</beam>
+<note xml:id="n49" pname="g" oct="4" dur="4">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n50" pname="e" oct="4" dur="4">
+<verse n="1"><syl>made?</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
+<tie startid="#n50" endid="#n51"/>
+</measure>
+<measure n="14"><staff n="1"><layer n="1">
+<note xml:id="n51" pname="e" oct="4" dur="2" dots="1"/>
+<rest xml:id="r52" dur="8"/>
+<note xml:id="n53" pname="b" oct="3" dur="8">
+<verse n="1"><syl>To</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Cm</harm>
+<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭/G</harm>
+</measure>
+<measure n="15"><staff n="1"><layer n="1">
+<note xml:id="n54" pname="c" oct="4" dur="4">
+<verse n="1"><syl>have</syl></verse></note>
+<note xml:id="n55" pname="e" oct="4" dur="4">
+<verse n="1"><syl>God’s</syl></verse></note>
+<note xml:id="n56" pname="e" oct="4" dur="4">
+<verse n="1"><syl>life</syl></verse></note>
+<note xml:id="n57" pname="d" oct="4" dur="4">
+<verse n="1"><syl>in</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
+</measure>
+<measure n="16" right="end"><staff n="1"><layer n="1">
+<note xml:id="n58" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>us.</syl></verse></note>
+<rest xml:id="r59" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Why was a glove made?</l><l>To have a hand inside it.</l><l>Why was a purse made?</l><l>To have some coins inside it.</l><l>Why was a flower vase made?</l><l>To have some flowers inside it.</l><l>Why were you and I made?</l><l>To have God’s life in us.</l></lg>
+</div>
+</back>
+</music></mei>

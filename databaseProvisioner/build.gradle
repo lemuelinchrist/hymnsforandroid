@@ -91,3 +91,11 @@ task runExtractNSFakePageReplacements(type: JavaExec) {
     mainClass = 'com.lemuelinchrist.hymns.ExtractNSFakePageReplacements'
     classpath = sourceSets.main.runtimeClasspath
 }
+
+// Children sync from hymnal.net, reusable: -Pfrom=1 -Pto=243 (see SyncChildrenFromHymnalNet.groovy).
+// Runs on top of the current DB state (no importSql).
+task runSyncChildren(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.SyncChildrenFromHymnalNet'
+    classpath = sourceSets.main.runtimeClasspath
+    args = [project.findProperty('from') ?: '1', project.findProperty('to') ?: '1']
+}

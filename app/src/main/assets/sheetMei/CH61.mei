@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">God is light, and in Him there is no darkness at all</title>
-<title type="subordinate">Experience of God—As Light</title>
+<title type="subordinate">Experience of God — As Light</title>
 </titleStmt><pubStmt><identifier type="hymn">CH61</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -14,7 +14,7 @@
 <verse n="1"><syl>is</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n3" pname="g" oct="4" dur="4">
@@ -36,9 +36,6 @@
 <verse n="1"><syl>no</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">E♭</harm>
-<harm staff="1" tstamp="3" place="above">E♭/G</harm>
-<harm staff="1" tstamp="4" place="above">A♭</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="4">
@@ -163,8 +160,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
-<harm staff="1" tstamp="3" place="above">E♭</harm>
-<harm staff="1" tstamp="4" place="above">E♭7/G</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
 <dir startid="#n43" place="above" staff="1"><rend rend="box" fontweight="bold">Sis:</rend></dir>
 </measure>
 <sb/>
@@ -347,7 +343,6 @@
 <verse n="1"><syl>is</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
-<harm staff="1" tstamp="4" place="above">B♭7</harm>
 </measure>
 <sb/>
 <measure n="18"><staff n="1"><layer n="1">
@@ -371,8 +366,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
-<harm staff="1" tstamp="3" place="above">E♭/G</harm>
-<harm staff="1" tstamp="4" place="above">A♭</harm>
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n102" pname="f" oct="4" dur="4">

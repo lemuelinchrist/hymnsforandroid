@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">I’m spending time now</title>
-<title type="subordinate">Encouragement—For Fellowship with the Lord</title>
+<title type="subordinate">Encouragement — For Fellowship with the Lord</title>
 </titleStmt><pubStmt><identifier type="hymn">CH18</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -166,9 +166,9 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="a" oct="3" dur="2" accid="n" accid.ges="n">
-<verse n="1"><syl wordpos="i" con="d">harp</syl></verse></note>
+<verse n="1"><syl>harp</syl></verse></note>
 <note xml:id="n47" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sing</syl></verse></note>
+<verse n="1"><syl>sing</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n47" endid="#n48"/>

@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.88
+    \vspace #1.23
   }
-  system-system-spacing = #'((basic-distance . 14.38) (minimum-distance . 14.38) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 13.52) (minimum-distance . 13.52) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2005 Bible StorySongs, Inc. Used by permission." }
@@ -49,16 +49,16 @@ global = {
 melody = {
   \clef treble
   \global
-  a8[ a8] | a4 d'4 d'4 e'4 | fis'2. a4 | a4 d'4 d'4 e'4 \break | fis'2. fis'8[ fis'8] | g'4 fis'4 e'4( a'4) | fis'4 e'4 d'4 d'4 | a4( d'2 cis'4) \break | d'2. d'4 | a4 d'4 d'4 e'4 | fis'1 | a8[ d'8] d'4 d'4 e'4 | fis'1 \break | g'4 fis'4 e'4 a'4 | fis'4 e'4 d'4 d'4 | a4( d'2) cis'4 | \set Score.repeatCommands = #'((volta "1.")) d'2. a8[ a8] \break \bar ":|." | \set Score.repeatCommands = #'((volta #f) (volta "2.")) d'2. r4 | \set Score.repeatCommands = #'((volta #f)) g'4 fis'4 e'4( a'4) | fis'4 e'4 d'2 | a8[ d'8] d'4 d'4 cis'4 \break | d'2. fis'4 | g'4 fis'4 e'4( a'4) | fis'4 e'4 d'4 d'4 | a4( d'2 cis'4) \break | d'2. fis'8[ fis'8] | g'4 fis'4 e'4 a'4 | fis'4 e'4 d'4 d'4 | a4 d'4~ d'4 cis'4 | d'2. r4 \bar "|."
+  a8[ a8] | a4 d'4 d'4 e'4 | fis'2. a4 | a4 d'4 d'4 e'4 | fis'2. fis'8[ fis'8] | g'4 fis'4 e'4( a'4) \break | fis'4 e'4 d'4 d'4 | a4( d'2 cis'4) | d'2. d'4 | a4 d'4 d'4 e'4 | fis'1 \break | a8[ d'8] d'4 d'4 e'4 | fis'1 | g'4 fis'4 e'4 a'4 | fis'4 e'4 d'4 d'4 | a4( d'2) cis'4 \break | d'2. a8[ a8]^\markup { \box \bold "Repeat" } | a4 d'4 d'4 e'4 | fis'2. a4 | a4 d'4 d'4 e'4 | fis'2. fis'8[ fis'8] | g'4 fis'4 e'4( a'4) \break | fis'4 e'4 d'4 d'4 | a4( d'2 cis'4) | d'2. d'4 | a4 d'4 d'4 e'4 | fis'1 \break | a8[ d'8] d'4 d'4 e'4 | fis'1 | g'4 fis'4 e'4 a'4 | fis'4 e'4 d'4 d'4 | a4( d'2) cis'4 | d'2. r4 \break | g'4 fis'4 e'4( a'4) | fis'4 e'4 d'2 | a8[ d'8] d'4 d'4 cis'4 | d'2. fis'4 | g'4 fis'4 e'4( a'4) | fis'4 e'4 d'4 d'4 \break | a4( d'2 cis'4) | d'2. fis'8[ fis'8] | g'4 fis'4 e'4 a'4 | fis'4 e'4 d'4 d'4 | a4 d'4~ d'4 cis'4 | d'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  d8 s8 | s4 s4 d4/a s4 | d2 d4/a s4 | d4 s4 d4/a s4 | d2 d4/fis s8 s8 | e4:m s4 a4 s4 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d2. s4 | s4 s4 d4/a s4 | d2 d2/a | d8 s8 s4 d4/a s4 | d2 d2/fis | e4:m s4 a4 s4 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d2. s8 s8 | d4 g2/d d4 | e4:m s4 a4 s4 | d4 s4 b2:m | d8/a s8 s4 a4:7 s4 | d4 g2/d d4 | e4:m s4 a4 s4 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d4 g2/d d8 s8 | e4:m s4 a4 s4 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d4 g2/d d4 |
+  d8 s8 | s4 s4 s4 s4 | s2. s4 | s4 s4 s4 s4 | s2. s8 s8 | e4:m s4 a4 s4 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d2. s4 | s4 s4 s4 s4 | s1 | d8 s8 s4 s4 s4 | e2:m a2 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d4 s2 s4 | d2. s8 s8 | s4 s4 s4 s4 | s2. s4 | s4 s4 s4 s4 | s2. s8 s8 | e4:m s4 a4 s4 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d2. s4 | s4 s4 s4 s4 | s1 | d8 s8 s4 s4 s4 | s1 | e4:m s4 a4 s4 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d2. s4 | e4:m s4 a4 s4 | d4 s4 b2:m | d8/a s8 s4 a4:7 s4 | d4 g2/d d4 | e4:m s4 a4 s4 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d4 g2/d d8 s8 | e4:m s4 a4 s4 | d4 s4 b4:m s4 | d4/a s4 a4:7 s4 | d4 g2/d d4 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "For" "a" "Child" "is" "born" "to" "us;" "a" "Son" "is" "giv’n" "to" "us;" "and" "the" "gov" -- "ern" -- "ment" _ "is" "up" -- "on" "His" "shoul" -- _ _ "der." "And" "His" "Name" "will" "be" "called:" "Won" -- "der" -- "ful" "Coun" -- "se" -- "lor," "Migh" -- "ty" "God," "E" -- "ter" -- "nal" "Fa" -- "ther," "Prince" _ "of" "Peace." "For" "a" "Peace." "And" "His" "Name" _ "will" "be" "called:" "Won" -- "der" -- "ful" "Coun" -- "se" -- "lor." "The" "gov" -- "ern" -- "ment" _ "is" "up" -- "on" "His" "shoul" -- _ _ "der" "For" "a" "Child" "is" "born," "a" "Son" "is" "giv’n," "I" -- "sai" -- "ah" _ "nine" "six."
+  \set ignoreMelismata = ##t "For" "a" "Child" "is" "born" "to" "us;" "a" "Son" "is" "giv’n" "to" "us;" "and" "the" "gov" -- "ern" -- "ment" _ "is" "up" -- "on" "His" "shoul" -- _ _ "der." "And" "His" "Name" "will" "be" "called:" "Won" -- "der" -- "ful" "Coun" -- "se" -- "lor," "Migh" -- "ty" "God," "E" -- "ter" -- "nal" "Fa" -- "ther," "Prince" _ "of" "Peace." "For" "a" "Child" "is" "born" "to" "us;" "a" "Son" "is" "giv’n" "to" "us;" "and" "the" "gov" -- "ern" -- "ment" _ "is" "up" -- "on" "His" "shoul" -- _ _ "der." "And" "His" "Name" "will" "be" "called:" "Won" -- "der" -- "ful" "Coun" -- "se" -- "lor," "Migh" -- "ty" "God," "E" -- "ter" -- "nal" "Fa" -- "ther," _ "Prince" "of" "Peace." "And" "His" _ "Name" "will" "be" "called:" "Won" -- "der" -- "ful" "Coun" -- "se" -- "lor." "The" "gov" -- "ern" -- "ment" _ "is" "up" -- "on" "His" "shoul" -- _ _ "der" "For" "a" "Child" "is" "born," "a" "Son" "is" "giv’n," "I" -- "sai" -- "ah" _ "nine" "six."
 }
 
 \score {

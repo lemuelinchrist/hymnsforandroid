@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
-<meiHead><fileDesc><titleStmt><title type="main">A dog has a welcome bark</title>
-<title type="subordinate">Gospel—God’s Creation</title>
+<meiHead><fileDesc><titleStmt><title type="main">A cat has a silky fur</title>
+<title type="subordinate">Gospel — God’s Creation</title>
 </titleStmt><pubStmt><identifier type="hymn">CH55</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="2f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -14,7 +14,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n2" pname="f" oct="4" dur="4">
-<verse n="1"><syl>dog</syl></verse></note>
+<verse n="1"><syl>cat</syl></verse></note>
 <beam>
 <note xml:id="n3" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl>has</syl></verse></note>
@@ -22,13 +22,13 @@
 <verse n="1"><syl>a</syl></verse></note>
 </beam>
 <note xml:id="n5" pname="f" oct="4" dur="16">
-<verse n="1"><syl wordpos="i" con="d">wel</syl></verse></note>
+<verse n="1"><syl wordpos="i" con="d">silk</syl></verse></note>
 <note xml:id="n6" pname="b" oct="4" dur="8" dots="1">
-<verse n="1"><syl wordpos="t">come</syl></verse></note>
+<verse n="1"><syl wordpos="t">y</syl></verse></note>
 <beam>
 <note xml:id="n7" pname="b" oct="4" dur="8" dots="1"/>
 <note xml:id="n8" pname="g" oct="4" dur="16">
-<verse n="1"><syl>bark,</syl></verse></note>
+<verse n="1"><syl>fur,</syl></verse></note>
 </beam>
 </layer></staff>
 <tie startid="#n6" endid="#n7"/>
@@ -39,26 +39,26 @@
 <note xml:id="n9" pname="g" oct="4" dur="2" dots="1"/>
 <beam>
 <note xml:id="n10" pname="e" oct="4" dur="8" dots="1">
-<verse n="1"><syl>likes</syl></verse></note>
+<verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n11" pname="e" oct="4" dur="16">
-<verse n="1"><syl>to</syl></verse></note>
+<verse n="1"><syl>a</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="e" oct="4" dur="4">
-<verse n="1"><syl>race</syl></verse></note>
+<verse n="1"><syl>deep</syl></verse></note>
 <note xml:id="n13" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
+<verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n14" pname="e" oct="4" dur="16">
-<verse n="1"><syl wordpos="t">round</syl></verse></note>
+<verse n="1"><syl wordpos="i" con="d">friend</syl></verse></note>
 <note xml:id="n15" pname="a" oct="4" dur="8" dots="1">
-<verse n="1"><syl>the</syl></verse></note>
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="a" oct="4" dur="8" dots="1"/>
 <note xml:id="n17" pname="f" oct="4" dur="16">
-<verse n="1"><syl>park,</syl></verse></note>
+<verse n="1"><syl>purr,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
@@ -99,7 +99,7 @@
 <note xml:id="n28" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl>your</syl></verse></note>
 <note xml:id="n29" pname="b" oct="4" dur="16">
-<verse n="1"><syl>toe;</syl></verse></note>
+<verse n="1"><syl>toe,</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n30" pname="b" oct="4" dur="8" dots="1"/>

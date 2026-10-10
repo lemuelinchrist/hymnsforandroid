@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">We are so happy we’re here today</title>
-<title type="subordinate">Encouragement—General</title>
+<title type="subordinate">Encouragement — General</title>
 </titleStmt><pubStmt><identifier type="hymn">CH71</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -25,7 +25,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="3" place="above">G/B</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="e" oct="4" dur="4">
@@ -56,7 +55,6 @@
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="3" place="above">Em</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="g" oct="4" dur="4">
@@ -89,7 +87,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="3" place="above">G/B</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="e" oct="4" dur="4">
@@ -112,7 +109,6 @@
 <note xml:id="n31" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">dren’s</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G/D</harm>
 <harm staff="1" tstamp="3" place="above">D7</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
@@ -121,7 +117,7 @@
 <rest xml:id="r33" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="2" place="above">C/G</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">G</harm>
 </measure>
 <sb/>
@@ -135,8 +131,7 @@
 <note xml:id="n37" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">dren’s</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="3" place="above">C/G</harm>
+<harm staff="1" tstamp="1" place="above">C</harm>
 <dir startid="#n34" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -159,7 +154,6 @@
 <note xml:id="n45" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">dren’s</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="3" place="above">Em</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="a" oct="4" dur="4" dots="1">
@@ -168,7 +162,7 @@
 <note xml:id="n48" pname="a" oct="4" dur="4"/>
 <rest xml:id="r49" dur="4"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">D7</harm>
 <slur startid="#n46" endid="#n48"/>
 </measure>
@@ -192,7 +186,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="3" place="above">G/B</harm>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="e" oct="4" dur="4">
@@ -203,8 +196,7 @@
 <verse n="1"><syl>ways,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="3" place="above">G/B</harm>
-<harm staff="1" tstamp="4" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="b" oct="4" dur="4" dots="1">
@@ -216,7 +208,6 @@
 <note xml:id="n62" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">dren’s</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G/D</harm>
 <harm staff="1" tstamp="3" place="above">D7</harm>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
@@ -225,7 +216,7 @@
 <rest xml:id="r64" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="2" place="above">C/G</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">G</harm>
 </measure>
 </section></score></mdiv></body>

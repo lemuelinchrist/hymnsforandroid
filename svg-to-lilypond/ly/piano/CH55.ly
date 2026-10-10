@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,17 +25,17 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.74
+    \vspace #1.23
   }
-  system-system-spacing = #'((basic-distance . 13.13) (minimum-distance . 13.13) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.02) (minimum-distance . 15.02) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.72) (minimum-distance . 12.72) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.98) (minimum-distance . 14.98) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
 
 \header {
-  title = "A dog has a welcome bark"
-  subtitle = "Gospel—God’s Creation"
+  title = "A cat has a silky fur"
+  subtitle = "Gospel — God’s Creation"
   opus = ""
 }
 
@@ -58,7 +58,7 @@ harmonies = \chordmode {
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t "A" "dog" "has" "a" "wel" -- "come" _ "bark," _ "likes" "to" "race" "a" -- "round" "the" _ "park," _ "But" "let" "me" "know," "if" "it" "steps" "on" "your" "toe;" _ "Will" "it" "be" "sor" -- "ry?" _ "I" "don’t" "think" "so."
+  \set ignoreMelismata = ##t "A" "cat" "has" "a" "silk" -- "y" _ "fur," _ "and" "a" "deep" "and" "friend" -- "ly" _ "purr," _ "But" "let" "me" "know," "if" "it" "steps" "on" "your" "toe," _ "Will" "it" "be" "sor" -- "ry?" _ "I" "don’t" "think" "so."
 }
 
 \score {
@@ -98,7 +98,7 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \column { "A cat has a silky fur, and a deep and friendly purr," "But let me know, if it steps on your toe," "Will it be sorry? I don’t think so." \translate #'(0.00 . -1.50) "It’s easy now to see, they’re not like you and me." \translate #'(0.00 . -1.50) "I let you know if I step on your toe;" \translate #'(0.00 . -1.50) "And I’ll be sorry! And I’ll say so." }
+      \column { "A dog has a welcome bark, likes to race around the park," "But let me know, if it steps on your toe;" "Will it be sorry? I don’t think so." \translate #'(0.00 . -2.00) "It’s easy now to see, they’re not like you and me." \translate #'(0.00 . -2.00) "I let you know if I step on your toe;" \translate #'(0.00 . -2.00) "And I’ll be sorry! And I’ll say so." }
     } \hspace #1.1 }
     \null
   }

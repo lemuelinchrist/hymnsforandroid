@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.72
+    \vspace #1.05
   }
-  system-system-spacing = #'((basic-distance . 13.75) (minimum-distance . 13.75) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.87) (minimum-distance . 12.87) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -54,11 +54,11 @@ melody = {
 
 harmonies = \chordmode {
   \global
-  f4 | s4 s8 c8/e s8 s8 | d4:m s8 f4/c s8 | g4:m/bes s8 c8:7 s8 s8 | f4. bes4/f s8 | f4 s8 c8/e s8 s8 | d4:m s8 f4/c s8 | g8:m7 s8 s8 c4:7 s8 | f4. bes4./f | f4. bes8/f s8 s8 | f4. d4.:m | g4.:m7 c8:7 s8 s8 | f4. bes4/f s8 | f4. c8/e s8 s8 | d4.:m f4/c s8 | g8:m/bes s8 s8 c4:7 s8 | f2 s4 |
+  f4 | s4 s8 s8 s8 s8 | s4 s8 s4 s8 | c4 s8 c8:7 s8 s8 | f4. s4 s8 | f4 s8 s8 s8 s8 | s4 s8 s4 s8 | c8 s8 s8 c4:7 s8 | f2. | f4. s8 s8 s8 | s4. s4. | c4. c8:7 s8 s8 | f4. s4 s8 | f4. s8 s8 s8 | s4. s4 s8 | c8 s8 s8 c4:7 s8 | f2 s4 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "There" "is" "a" "name" _ "I" "love" "to" "hear," "I" "love" "to" "sing" _ "its" "worth;" _ "It" "sounds" "like" "mu" -- _ "sic" "in" "mine" "ear," "The" "sweet" -- _ "est" "name" "on" "earth." \set stanza = "(C)" "Oh," "how" "I" "love" "Je" -- "sus," "Oh," "how" "I" "love" "Je" -- "sus," _ "Oh," "how" "I" "love" "Je" -- "sus," "Be" -- "cause" _ "He" "first" "loved" "me!"
+  \set ignoreMelismata = ##t \set stanza = "1." "There" "is" "a" _ "name" "I" "love" "to" "hear," "I" "love" "to" "sing" _ "its" "worth;" _ "It" "sounds" "like" "mu" -- _ "sic" "in" "mine" "ear," "The" "sweet" -- _ "est" "name" "on" "earth." \set stanza = "(C)" "Oh," "how" "I" "love" "Je" -- "sus," "Oh," "how" "I" "love" "Je" -- "sus," _ "Oh," "how" "I" "love" "Je" -- "sus," "Be" -- "cause" _ "He" "first" "loved" "me!"
 }
 
 \score {

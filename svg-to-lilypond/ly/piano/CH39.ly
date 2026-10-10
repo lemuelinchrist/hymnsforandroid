@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #1.13
+    \vspace #1.07
   }
-  system-system-spacing = #'((basic-distance . 14.80) (minimum-distance . 14.80) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 13.20) (minimum-distance . 13.20) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -35,7 +35,7 @@
 
 \header {
   title = "Never forget! That it’s God who created you"
-  subtitle = "Gospel—God’s Creation"
+  subtitle = "Gospel — God’s Creation"
   opus = ""
 }
 
@@ -49,16 +49,16 @@ global = {
 melody = {
   \clef treble
   \global
-  \mark \markup { \musicglyph "scripts.segno" } fis'8[ a'8~ a'8 fis'8] a'4 fis'8[ e'8] | d'4 d'8.[ e'16] d'8[ b8] a4 | b8[ d'8~ d'8 b8] a4 a8[ a8] | \tuplet 3/2 { b'4 a'4 fis'4 } a'2 \break | fis'8[ a'8~ a'8 fis'8] a'4 fis'8[ e'8] | d'4 d'8.[ e'16] d'8[ b8] a4 | b8[ d'8~ d'8 b8] a8[ d'8~ d'8 e'8] | fis'8[ fis'8~ fis'8 e'8] d'2^\markup { "Fine" } \break \bar "||" | \defaultTimeSignature \time 2/4 cis'4^\fermata d'4^\fermata | \defaultTimeSignature \time 4/4 e'8[ cis'8] a4 fis'8[ d'8 d'8 d'16 d'16] | e'8[ e'8 cis'8 a8] fis'4 d'4 \break | e'8[ e'8 cis'16 cis'16 a8] fis'8[ fis'8 d'16 d'16 d'16 d'16] | e'8[ e'8 fis'8 gis'8]^\fermata a'8[ a'8] \mark \markup { \column { \line { "D.S. al Fine" } \line { "D.S. al Fine" } } } a'4^\fermata \bar "|."
+  fis'8[ a'8~ a'8 fis'8] a'4 fis'8[ e'8] | d'4 d'8.[ e'16] d'8[ b8] a4 | b8[ d'8~ d'8 b8] a4 a8[ a8] | \tuplet 3/2 { b'4 a'4 fis'4 } a'2 \break | fis'8[ a'8~ a'8 fis'8] a'4 fis'8[ e'8] | d'4 d'8.[ e'16] d'8[ b8] a4 | b8[ d'8~ d'8 b8] a8[ d'8~ d'8 e'8] | fis'8[ fis'8~ fis'8 e'8] d'2 \break | \defaultTimeSignature \time 2/4 cis'4^\fermata d'4^\fermata | \defaultTimeSignature \time 4/4 e'8[ cis'8] a4 fis'8[ d'8 d'8 d'16 d'16] | e'8[ e'8 cis'8 a8] fis'4 d'4 \break | e'8[ e'8 cis'16 cis'16 a8] fis'8[ fis'8 d'16 d'16 d'16 d'16] | e'8[ e'8 fis'8 gis'8]^\fermata a'8[ a'8] a'4^\fermata \break | fis'8[ a'8~ a'8 fis'8] a'4 fis'8[ e'8] | d'4 d'8.[ e'16] d'8[ b8] a4 | b8[ d'8~ d'8 b8] a4 a8[ a8] | \tuplet 3/2 { b'4 a'4 fis'4 } a'2 \break | fis'8[ a'8~ a'8 fis'8] a'4 fis'8[ e'8] | d'4 d'8.[ e'16] d'8[ b8] a4 | b8[ d'8~ d'8 b8] a8[ d'8~ d'8 e'8] | fis'8[ fis'8~ fis'8 e'8] d'2 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  d8 s8 s8 s8 s4 s8 s8 | g4 s8. s16 d8 s8 s4 | g8 s8 s8 s8 d4 s8 s8 | \tuplet 3/2 { a4 s4 s4 } a2:7 | d8 s8 s8 s8 s4 s8 s8 | g4 s8. s16 d8 s8 s4 | g8 s8 s8 s8 d8 s8 s8 s8 | a8:7 s8 s8 s8 d2 | \defaultTimeSignature \time 2/4 a4 s4 | \defaultTimeSignature \time 4/4 s8 s8 s4 d8 s8 s8 s16 s16 | a8 s8 s8 s8 d4 s4 | a8 s8 s16 s16 s8 d8 s8 s16 s16 s16 s16 | e8:7 s8 s8 s8 a8 s8 s4 |
+  d8 s8 s8 s8 s4 s8 s8 | g4 s8. s16 d8 s8 s4 | g8 s8 s8 s8 d4 s8 s8 | \tuplet 3/2 { a4 s4 s4 } a2:7 | d8 s8 s8 s8 s4 s8 s8 | g4 s8. s16 d8 s8 s4 | g8 s8 s8 s8 d8 s8 s8 s8 | a8:7 s8 s8 s8 d2 | \defaultTimeSignature \time 2/4 a4 s4 | \defaultTimeSignature \time 4/4 s8 s8 s4 d8 s8 s8 s16 s16 | a8 s8 s8 s8 d4 s4 | a8 s8 s16 s16 s8 d8 s8 s16 s16 s16 s16 | e8:7 s8 s8 s8 a8 s8 s4 | d8 s8 s8 s8 s4 s8 s8 | g4 s8. s16 d8 s8 s4 | g8 s8 s8 s8 d4 s8 s8 | \tuplet 3/2 { a4 s4 s4 } a2:7 | d8 s8 s8 s8 s4 s8 s8 | g4 s8. s16 d8 s8 s4 | g8 s8 s8 s8 d8 s8 s8 s8 | a8:7 s8 s8 s8 d2 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t "Nev" -- "er" _ "for" -- "get!" "That" "it’s" "God" "who" "cre" -- "at" -- "ed" "you," "Nev" -- "er" _ "for" -- "get" "He’s" "a" "won" -- "der" -- "ful" "God." "Nev" -- "er" _ "for" -- "get!" "That" "it’s" "God" "who" "cre" -- "at" -- "ed" "you," "Won" -- "der" -- _ "ful," "won" -- "der" -- _ "ful" "Cre" -- "a" -- _ "tor" "God." "You" "have..." "Arms" "that" "bend," "knees" "that" "bend" "and" "a" "back" "that" "bends" "right" "o" -- "ver," "Toes" "that" "wig" -- "gle" "and" "hands" "that" "tick" -- "le," "and" "a" "mouth" "that" "gig" -- "gles—" "’hee" "hee" "hee.’"
+  \set ignoreMelismata = ##t "Nev" -- "er" _ "for" -- "get!" "That" "it’s" "God" "who" "cre" -- "at" -- "ed" "you," "Nev" -- "er" _ "for" -- "get" "He’s" "a" "won" -- "der" -- "ful" "God." "Nev" -- "er" _ "for" -- "get!" "That" "it’s" "God" "who" "cre" -- "at" -- "ed" "you," "Won" -- "der" -- _ "ful," "won" -- "der" -- _ "ful" "Cre" -- "a" -- _ "tor" "God." "You" "have..." "Arms" "that" "bend," "knees" "that" "bend" "and" "a" "back" "that" "bends" "right" "o" -- "ver," "Toes" "that" "wig" -- "gle" "and" "hands" "that" "tick" -- "le," "and" "a" "mouth" "that" "gig" -- "gles—" "’hee" "hee" "hee.’" "Nev" -- "er" _ "for" -- "get!" "That" "it’s" "God" "who" "cre" -- "at" -- "ed" "you," "Nev" -- "er" _ "for" -- "get" "He’s" "a" "won" -- "der" -- "ful" "God." "Nev" -- "er" _ "for" -- "get!" "That" "it’s" "God" "who" "cre" -- "at" -- "ed" "you," "Won" -- "der" -- _ "ful," "won" -- "der" -- _ "ful" "Cre" -- "a" -- _ "tor" "God."
 }
 
 \score {

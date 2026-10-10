@@ -156,6 +156,16 @@ A hymn's `tune` field (parsed from a `Hymn code Hymnalnet:`/`Hymn code:` line �
 - Full download pipeline for one hymn: `HymnalNetExtractor.convertWebPageToHymn()` scrapes the hymn page, sets `sheetMusicLink` from the page's `.leadsheet span.svg` element (see selector note below), then calls `downloadSheetMusicAndMidi()`, which saves piano/guitar SVGs to `Constants.SHEET_PIANO_DIR`/`SHEET_GUITAR_DIR` (`databaseProvisioner/data/pianoSvg`/`guitarSvg` — a **local staging directory**, not the app) and the MIDI to `Constants.MIDI_PIANO_DIR` (`databaseProvisioner/data/midi`, also staging). **None of this lands in the app automatically** — after extraction, manually `cp` the new files from `databaseProvisioner/data/{pianoSvg,guitarSvg,midi}/` into `app/src/main/assets/{pianoSvg,guitarSvg}/` and `app/src/main/res/raw/` respectively (after the MIDI dedup check above). `Constants.MIDI_DIR` (from the `midi.dir` property) is a *different*, unused-by-download constant that happens to point at `app/src/main/res/raw` — don't confuse it with `MIDI_PIANO_DIR`.
 - **Known site-markup bug (fixed 2026-09-05):** hymnal.net changed its HTML at some point — the old selector `.leadsheet.piano span` no longer matches anything (should be `.leadsheet span.svg`). If a sync run logs `"warning no sheet Music link"` for hymns that visibly have sheet music on the live site, check `HymnalNetExtractor.java`'s two `.select(...)` calls for this selector before assuming the hymn genuinely lacks sheet music — the site can change markup again in the future.
 
+## Syncing the Children (`CH`) collection from hymnal.net (reusable)
+
+`SyncChildrenFromHymnalNet.groovy`, run from WSL: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runSyncChildren -Pfrom=1 -Pto=243`.
+Replaces or adds each `CH<n>` with hymnal.net's `c/<n>` on the current DB (no importSql), checks every page's sheet number
+(`child0082_p.svg` on `c/82`; a fake page is retried, never saved), keeps links other hymns made to it, and fetches the
+MIDI itself (children MIDIs are `c0082.mid`, not `child0082.mid`). Find the current size from the index
+(`/en/song-index/c/<letter>`; `c/57` is real but not indexed). Afterwards, as for NS: copy staged SVGs, copy only MIDI
+files for tune codes the app doesn't have yet, `exportSql`, then the `svg-to-lilypond` skill for `.ly`/`.mei`.
+First full run: 2026-10-10, 74 → 243 songs (see `docs/v5.5/v5.5-report.md`).
+
 ## Downloading new hymnal.net songs (syncing the `NS`/"New Songs" collection)
 
 `NS` (English New Songs) isn't sourced from a resource `.txt` (see the ID-range table above) — it was built up over time by one-off `Extract*.groovy` scripts (`ExtractNS523To543.groovy`, `ExtractNS1001To1091.groovy`, etc.), each just a `for` loop over a numeric range calling `HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, "<n>", 'NS', "<n>")` then `dao.save(hymn)`. New hymns get added to hymnal.net's New Songs collection over time, so our copy drifts out of sync — a missing hymn (like NS1128) is often a symptom of a whole unsynced range, not an isolated gap.

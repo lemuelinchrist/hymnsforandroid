@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">I Wanna Be Good Ground</title>
-<title type="subordinate">Various Aspects of the Inner Life—Dealing with the Heart</title>
+<title type="subordinate">Various Aspects of the Inner Life — Dealing with the Heart</title>
 </titleStmt><pubStmt><identifier type="hymn">CH20</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -182,9 +182,9 @@
 <harm staff="1" tstamp="1" place="above">Em</harm>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
-<note xml:id="n54" pname="e" oct="4" dur="4"/>
-<note xml:id="n55" pname="d" oct="4" dur="4">
+<note xml:id="n54" pname="e" oct="4" dur="4">
 <verse n="1"><syl>thorns</syl></verse></note>
+<note xml:id="n55" pname="d" oct="4" dur="4"/>
 <note xml:id="n56" pname="b" oct="3" dur="4">
 <verse n="1"><syl>so</syl></verse></note>
 <note xml:id="n57" pname="a" oct="3" dur="4"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">No Man Ever</title>
-<title type="subordinate">Praise of the Lord—His Divinity</title>
+<title type="subordinate">Praise of the Lord — His Divinity</title>
 </titleStmt><pubStmt><identifier type="hymn">CH74</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -70,7 +70,6 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
-<sb/>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
@@ -83,7 +82,6 @@
 <verse n="1"><syl>like</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="f" oct="4" dur="4">
@@ -91,9 +89,9 @@
 <note xml:id="n24" pname="c" oct="4" dur="2">
 <verse n="1"><syl wordpos="t">sus,</syl></verse></note>
 <beam>
-<note xml:id="n25" pname="d" oct="4" dur="8" dots="1">
+<note xml:id="n25" pname="d" oct="4" dur="8" dots="1"/>
+<note xml:id="n26" pname="c" oct="4" dur="16">
 <verse n="1"><syl>John</syl></verse></note>
-<note xml:id="n26" pname="c" oct="4" dur="16"/>
 </beam>
 </layer></staff>
 <slur startid="#n25" endid="#n26"/>

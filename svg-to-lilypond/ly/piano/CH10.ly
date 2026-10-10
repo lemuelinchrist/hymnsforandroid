@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,17 +25,17 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.78
+    \vspace #1.23
   }
-  system-system-spacing = #'((basic-distance . 13.11) (minimum-distance . 13.11) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 14.99) (minimum-distance . 14.99) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.47) (minimum-distance . 12.47) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.96) (minimum-distance . 14.96) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2008 Bible StorySongs, Inc. Used by permission." }
 }
 
 \header {
   title = "Can you say, How do you do?"
-  subtitle = "Principles on How to Be a Proper Human Being—Greeting Others"
+  subtitle = "Principles on How to Be a Proper Human Being — Greeting Others"
   opus = ""
 }
 

@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.74
+    \vspace #1.09
   }
-  system-system-spacing = #'((basic-distance . 13.53) (minimum-distance . 13.53) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.97) (minimum-distance . 12.97) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -35,12 +35,12 @@
 
 \header {
   title = "Trust in the Lord with all your heart"
-  subtitle = "Encouragement—For Trusting the Lord"
+  subtitle = "Encouragement — For Trusting the Lord"
   opus = ""
 }
 
 global = {
-  \key ees \major
+  \key d \major
   \time 4/4
   \autoBeamOff
   
@@ -49,12 +49,12 @@ global = {
 melody = {
   \clef treble
   \global
-  g'2 g'4 aes'4 | bes'2 g'4( f'4) | ees'4( c'4) ees'4( f'4) | g'1 \break | aes'4 aes'4 bes'4 aes'4 | g'2 aes'4 g'4 | f'1 | bes'2. r4 \break | g'2 g'4 aes'4 | bes'2 g'4( f'4) | ees'4( c'4) ees'4( f'4) | g'1 \break | aes'2 bes'4 aes'4 | g'2 aes'4 g'4 | f'1( | ees'2.) r4 \bar "|."
+  fis'2 fis'4 g'4 | a'2 fis'4( e'4) | d'4( b4) d'4( e'4) | fis'1 \break | g'4 g'4 a'4 g'4 | fis'2 g'4 fis'4 | e'1 | a'2. r4 \break | fis'2 fis'4 g'4 | a'2 fis'4( e'4) | d'4( b4) d'4( e'4) | fis'1 \break | g'2 a'4 g'4 | fis'2 g'4 fis'4 | e'1( | d'2.) r4 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  ees2 s4 s4 | bes2/d s4 s4 | c4:m s4 s4 s4 | ees1/bes | aes4 s4 s4 s4 | ees2/g s4 s4 | f1:m | bes2.:7 s4 | ees2 s4 s4 | bes2/d s4 s4 | c4:m s4 s4 s4 | ees2/bes ees2/g | f2:m s4 s4 | ees2/g aes4 s4 | bes2:sus4 bes2:7 | ees2. s4 |
+  d2 s4 s4 | a2/cis s4 s4 | b4:m s4 s4 s4 | d1/a | g4 s4 s4 s4 | d2/fis s4 s4 | e1:m | a2.:7 s4 | d2 s4 s4 | a2/cis s4 s4 | b4:m s4 s4 s4 | d1/a | g2 s4 s4 | d2/fis g4 s4 | a1 | d2. s4 | fis4:m g4 d4 g4 d4 a4 b4:m fis4:m g4 d4 g4 d4 a4:7 d4
 }
 
 verseOne = \lyricmode {

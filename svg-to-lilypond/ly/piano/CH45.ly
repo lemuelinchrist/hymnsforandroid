@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.85
+    \vspace #1.23
   }
-  system-system-spacing = #'((basic-distance . 13.30) (minimum-distance . 13.30) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 13.53) (minimum-distance . 13.53) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -35,7 +35,7 @@
 
 \header {
   title = "Who made the world so big and round?"
-  subtitle = "Gospel—God’s Creation"
+  subtitle = "Gospel — God’s Creation"
   opus = ""
 }
 
@@ -54,15 +54,15 @@ melody = {
 
 harmonies = \chordmode {
   \global
-  c8 s8 s8 s8 s4 s4 | f4 s4 c2 | s4 s4 s4 s4 | g2 c2 | c8 s8 s8 s8 s4 s4 | f4 s4 c2 | s4 s4 s4 s4 | g2 c2 | c8 s8 s8 s8 s4 s4 | f4 s4 c2 | s8 s8 s8 s8 s4 s4 | f4 s4 c2 | s1 | f2 s2 | s1 | c4 s4 s4 s4 | g2 c2 |
+  c8 s8 s8 s8 s4 s4 | f4 s4 c2 | s4 s4 s4 s4 | g2 c2 | c8 s8 s8 s8 s4 s4 | f4 s4 c2 | s4 s4 s4 s4 | g2 c2 | c8 s8 s8 s8 s4 s4 | f4 s4 c2 | s8 s8 s8 s8 s4 s4 | f4 s4 g2 | g1:7 | c2 c2/e | f1 | c4 s4 s4 s4 | g2 c2 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t "Who" "made" _ "the" "world" "so" "big" "and" "round?" "God," "our" "great" "Cre" -- "a" -- "tor." "Who" "put" _ "the" "flow" -- "ers" "in" "the" "ground?" "God," "our" "great" "Cre" -- "a" -- "tor." "Who" "put" _ "the" "stars" "up" "in" "the" "sky?" "Who" _ "made" "the" "lit" -- "tle" "birds" "to" "fly?" "No," "not" "I!" "God," "our" "great" "Cre" -- "a" -- "tor."
+  \set ignoreMelismata = ##t "Who" _ "made" "the" "world" "so" "big" "and" "round?" "God," "our" "great" "Cre" -- "a" -- "tor." "Who" "put" _ "the" "flow" -- "ers" "in" "the" "ground?" "God," "our" "great" "Cre" -- "a" -- "tor." "Who" "put" _ "the" "stars" "up" "in" "the" "sky?" "Who" _ "made" "the" "lit" -- "tle" "birds" "to" "fly?" "No," "not" "I!" "God," "our" "great" "Cre" -- "a" -- "tor."
 }
 
 verseTwo = \lyricmode {
-  \set ignoreMelismata = ##t _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ "Did you do it?" _ _ _ _ _ _ _ _ _ _ _
+  \set ignoreMelismata = ##t _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ "Did you do it?" _ _ _ _ _ _ _ _ _
 }
 
 \score {

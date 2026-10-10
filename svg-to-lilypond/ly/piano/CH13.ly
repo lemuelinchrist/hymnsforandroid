@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.70
+    \vspace #1.10
   }
-  system-system-spacing = #'((basic-distance . 16.29) (minimum-distance . 16.29) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.24) (minimum-distance . 12.24) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2008 Bible StorySongs, Inc. Used by permission." }
@@ -35,7 +35,7 @@
 
 \header {
   title = "Let’s honor with manners"
-  subtitle = "Principles on How to Be a Proper Human Being—Honor"
+  subtitle = "Principles on How to Be a Proper Human Being — Honor"
   opus = ""
 }
 
@@ -49,20 +49,16 @@ global = {
 melody = {
   \clef treble
   \global
-  g'8 r4. | e'8[ d'8~] d'8[ c'8] | b8 d'4.~ | d'4. dis'8 | e'8[ a'8~] a'8[ g'8] | fis'8[ e'8~] e'8[ fis'8] | g'2~ \break | g'4. d'8^\markup { "Fine" } \bar "||" | e'8[ a'8~] a'8[ g'8] | ees'8[ a'8~] a'8[ g'8] | d'8[ a'8~] a'8[ g'8] \break | d'8[ a'8~] a'8[ g'8] | r8 cis'8[ d'8 e'8] | \once \tieDashed a'8~[ a'8] a'4 | a'2~ \break | a'8[ b8] c'8[ cis'8] | \once \tieDashed d'4~ d'4 | e'8[ e'8~] e'8[ d'8] | d'8 g'4.~ | g'2 \break | e'8[ e'8~] e'8[ e'8] | a'8[ \once \tieDashed a'8~] a'8[ g'8] | g'8 e'4.~ | e'4 d'4^\markup { \column { \line { "D.C. al Fine" } \line { "D.C. al Fine" } } } \bar "|."
+  g'8 r4. | e'8[ d'8~] d'8[ c'8] | b8 d'4.~ | d'4. dis'8 | e'8[ a'8~] a'8[ g'8] | fis'8[ e'8~] e'8[ fis'8] | g'2~ \break | g'4. d'8 | e'8[ a'8~] a'8[ g'8] | ees'8[ a'8~] a'8[ g'8] | d'8[ a'8~] a'8[ g'8] \break | d'8[ a'8~] a'8[ g'8] | r8 cis'8[ d'8 e'8] | a'4 a'4 | a'2~ \break | a'8[ b8] c'8[ cis'8] | d'4 d'4 | e'8[ e'8~] e'8[ d'8] | d'8 g'4.~ | g'2 \break | e'8[ e'8~] e'8[ e'8] | a'8[ a'8~] a'8[ g'8] | g'8 e'4.~ | e'4 d'4 \break | g'8 r4. | e'8[ d'8~] d'8[ c'8] | b8 d'4.~ | d'4. dis'8 | e'8[ a'8~] a'8[ g'8] | fis'8[ e'8~] e'8[ fis'8] | g'2~ \break | g'4. d'8 | e'8[ a'8~] a'8[ g'8] | ees'8[ a'8~] a'8[ g'8] | d'8[ a'8~] a'8[ g'8] \break | d'8[ a'8~] a'8[ g'8] | r8 cis'8[ d'8 e'8] | a'8[ a'8] a'4 | a'2~ \break | a'8[ b8] c'8[ cis'8] | d'2 | e'8[ e'8~] e'8[ d'8] | d'8 g'4.~ | g'2 \break | e'8[ e'8~] e'8[ e'8] | a'8[ a'8] a'8[ g'8] | g'8 e'4.~ | e'4 d'4 \break | g'8 r4.^\markup { \box \bold "Ending" } | e'8[ d'8~] d'8[ c'8] | b8 d'4.~ | d'4. dis'8 | e'8[ a'8~] a'8[ g'8] | fis'8[ e'8~] e'8[ fis'8] | g'2~ | g'4 r4 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  g8 s4. | c8 s8 s8 s8 | g8 s4. | g4./b s8 | a8:m s8 s8 s8 | d8:7 s8 s8 s8 | g2 | d4.:7 s8 | c8 s8 s8 s8 | c8:m s8 s8 s8 | g8/d s8 s8 s8 | e8:m s8 s8 s8 | a8:7 s8 s8 s8 | a8:7/cis s8 s4 | d2:sus4 | d8:7 s8 s8 s8 | g4 s4 | c8 s8 s8 s8 | g8 s4. | g2:7 | c8 s8 s8 s8 | a8:7 s8 s8 s8 | c8 s4. | d4:7 s4 |
+  g8 s4. | c8 s8 s8 s8 | g8 s4. | g4./b s8 | a8:m s8 s8 s8 | d8:7 s8 s8 s8 | g2 | d4.:7 s8 | c8 s8 s8 s8 | c8:m s8 s8 s8 | g8/d s8 s8 s8 | e8:m s8 s8 s8 | a8:7 s8 s8 s8 | a4:7/cis s4 | d2:sus4 | d8:7 s8 s8 s8 | g4 s4 | c8 s8 s8 s8 | g8 s4. | g2:7 | c8 s8 s8 s8 | a8:7 s8 s8 s8 | c8 s4. | d4:7 s4 | s8 s4. | s8 s8 s8 s8 | s8 s4. | s4. s8 | s8 s8 s8 s8 | s8 s8 s8 s8 | s2 | s4. s8 | s8 s8 s8 s8 | s8 s8 s8 s8 | s8 s8 s8 s8 | s8 s8 s8 s8 | s8 s8 s8 s8 | s8 s8 s4 | s2 | s8 s8 s8 s8 | s2 | s8 s8 s8 s8 | s8 s4. | s2 | s8 s8 s8 s8 | s8 s8 s8 s8 | s8 s4. | s4 s4 | s8 s4. | s8 s8 s8 s8 | s8 s4. | s4. s8 | s8 s8 s8 s8 | s8 s8 s8 s8 | s2 | s4 s4 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "Let’s" "hon" -- "or" _ "with" "man" -- "ners!" _ "Let’s" "hon" -- "or" _ "each" "oth" -- "er" _ "to" -- "day!" _ "It’s" "“Yes," "sir!”" _ "and" "“no," "sir!”" _ "and" "“Yes," "ma’am!”" _ "and" "“No," "ma’am!”" _ "and" "Be" -- "fore" "we" "eat," _ "let’s" "pray!" _ "“How" "do" "you" "do," "sir?”" "“So" "glad" _ "to" "meet" "you!”" _ "Op" -- "en" _ "the" "door" "and" _ "let" "her" "through." _ "Oh,"
-}
-
-verseTwo = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "2." "Let’s" "hon" -- "or" _ "with" "man" -- "ners!" _ "Let’s" "hon" -- "or" _ "each" "oth" -- "er" _ "to" -- "day!" _ "We’re" "vy" -- "ing" _ "in" "show" -- "ing" _ "po" -- "lite" -- "ness" _ "and" "kind" -- "ness," _ "Pre" -- "fer" -- "ring" "each" "oth" -- "er" "this" "way!" _ "So" "we" "say," "“Please" _ "pass" "the" _ "po" -- "ta" -- "toes.”" _ "Let’s" "keep" _ "our" "el" -- "bows" "off" "the" "ta" -- "ble." _ "Oh,"
+  \set ignoreMelismata = ##t \set stanza = "1." "Let’s" "hon" -- "or" _ "with" "man" -- "ners!" _ "Let’s" "hon" -- "or" _ "each" "oth" -- "er" _ "to" -- "day!" _ "It’s" "“Yes," "sir!”" _ "and" "“no," "sir!”" _ "and" "“Yes," _ "ma’am!”" "and" "“No," "ma’am!”" _ "and" "Be" -- "fore" "we" "eat," "let’s" "pray!" _ "“How" "do" "you" "do," "sir?”" "“So" "glad" _ "to" "meet" "you!”" _ "Op" -- "en" _ "the" "door" "and" _ "let" "her" "through." _ "Oh," \set stanza = "2." "Let’s" "hon" -- "or" _ "with" "man" -- "ners!" _ "Let’s" "hon" -- "or" _ "each" "oth" -- "er" _ "to" -- "day!" _ "We’re" "vy" -- "ing" _ "in" "show" -- "ing" _ "po" -- "lite" -- "ness" _ "and" "kind" -- "ness," _ "Pre" -- "fer" -- "ring" "each" "oth" -- "er" "this" "way!" _ "So" "we" "say," "“Please" "pass" "the" _ "po" -- "ta" -- "toes.”" _ "Let’s" "keep" _ "our" "el" -- "bows" "off" "the" "ta" -- "ble." _ "Oh," "Let’s" "hon" -- "or" _ "with" "man" -- "ners!" _ "Let’s" "hon" -- "or" _ "each" "oth" -- "er" _ "to" -- "day!" _
 }
 
 \score {
@@ -73,7 +69,6 @@ verseTwo = \lyricmode {
     } \harmonies
     \new Staff { \melody }
     \addlyrics { \verseOne }
-    \addlyrics { \verseTwo }
   >>
   \layout {
     \context {

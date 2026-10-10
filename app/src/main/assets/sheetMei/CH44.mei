@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">Our God is so big</title>
-<title type="subordinate">Gospel—God’s Creation</title>
+<title type="subordinate">Gospel — God’s Creation</title>
 </titleStmt><pubStmt><identifier type="hymn">CH44</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="2s" meter.count="3" meter.unit="4"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
 <measure n="1" metcon="false"><staff n="1"><layer n="1">
 <note xml:id="n1" pname="a" oct="3" dur="4">
-<verse n="1"><syl>Our</syl></verse></note>
+<verse n="1"><label>1.</label><syl>Our</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -281,7 +281,7 @@
 <verse n="1"><syl>do.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="2" place="above">G/D</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
 <tie startid="#n80" endid="#n81"/>
 </measure>
 <measure n="33" right="end"><staff n="1"><layer n="1">
@@ -292,4 +292,9 @@
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
 </section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>The mountains are His;</l><l>The valleys are His;</l><l>The stars are His handiwork, too.</l></lg>
+<lg label="3."><l>Our God is so big,</l><l>So strong, and so mighty—</l><l>There’s nothing our God cannot do.</l><l>That’s right!</l></lg>
+</div>
+</back>
 </music></mei>

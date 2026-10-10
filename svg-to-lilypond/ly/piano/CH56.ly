@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,40 +25,40 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.70
+    \vspace #1.25
   }
-  system-system-spacing = #'((basic-distance . 12.26) (minimum-distance . 12.26) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.01) (minimum-distance . 15.01) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.27) (minimum-distance . 12.27) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
-  tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2013 Bible StorySongs, Inc. Used by permission." }
+  tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2014 Bible StorySongs, Inc. Used by permission." }
 }
 
 \header {
-  title = "God’s design"
-  subtitle = "Gospel—God’s Creation"
+  title = "Vessel, I Am a Vessel"
+  subtitle = "Principles on How to Be a Proper Human Being — General"
   opus = ""
 }
 
 global = {
   \key c \major
-  \time 3/4
+  \time 4/4
   \autoBeamOff
-  
+  \partial 4
 }
 
 melody = {
   \clef treble
   \global
-  c'2 e'4 | g'2. | a'4( g'4) f'4 | g'2. \break | f'4 e'4 d'4 | e'4 d'4 c'4 | d'4 c'4 b4 | c'2. \break | c'2 e'4 | g'2. | a'4( g'4) f'4 | g'2. \break | f'4 e'4 d'4 | e'4 d'4 c'4 | d'4 c'4 b4 | c'2. \bar "|."
+  \tuplet 3/2 { g'8[ a'8 b'8] } | c''4 g'4~ g'4 \tuplet 3/2 { g'8[ f'8 e'8] } | d'4 a'4~ a'4 b'8.[ a'16] \break | \tuplet 3/2 { g'8[ g'8 a'8] } b'8.[ a'16] \tuplet 3/2 { g'8[ g'8 f'8] } e'8.[ d'16] | g'2~ \tuplet 3/2 { g'8[ g'8 g'8] } \tuplet 3/2 { g'8 a'8[ b'8] } \break | c''4 g'4~ \tuplet 3/2 { g'8[ g'8 g'8] } \tuplet 3/2 { g'8 f'8[ e'8] } | d'4 a'4~ a'4 b'8.[ a'16] \break | g'8.[ a'16 b'8. a'16] g'8.[ f'16 e'8. d'16] | c'2. r4 \break | e'2 cis'2 | a2 d'2 | b2 b2 | c'4( cis'4 d'2) \break | e'2 cis'2 | a2 d'2 | b2 b2 | c'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  c2 s4 | c2.:7 | f4 s4 s4 | c2. | f4 s4 s4 | c4 s4 s4 | g4:7 s4 s4 | c2. | c2 s4 | c2.:7 | f4 s4 s4 | c2. | f4 s4 s4 | c4 s4 s4 | g4:7 s4 s4 | c2. |
+  \tuplet 3/2 { g8:7 s8 s8 } | c4 s4 a4:7 \tuplet 3/2 { s8 s8 s8 } | d4:7 s4 s4 s8. s16 | \tuplet 3/2 { g8:7 s8 s8 } s8. s16 \tuplet 3/2 { s8 s8 s8 } s8. s16 | c4 cis4:dim \tuplet 3/2 { g8:7/d s8 s8 } \tuplet 3/2 { g8:7 s8 s8 } | c4 s4 \tuplet 3/2 { a8:7 s8 s8 } \tuplet 3/2 { s8 s8 s8 } | d4:7 s4 s4 s8. s16 | g8.:7 s16 s8. s16 s8. s16 s8. s16 | c4 f4/c c4 g4:7 | c2 a2:7 | d2:7 s2 | g2:7 s2 | c4 cis4:dim g4:7/d g4:7 | c2 a2:7 | d2:7 s2 | g2:7 s2 | c4 f4/c c4 s4 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t "God’s" "de" -- "sign," "God’s" _ "de" -- "sign," "Look" "all" "a" -- "round" "you," "it’s" "eas" -- "y" "to" "find." "God’s" "de" -- "sign," "God’s" _ "de" -- "sign" "Fills" "us" "with" "won" -- "der," "a" -- "mazed" "ev" -- "ery" "time."
+  \set ignoreMelismata = ##t \set stanza = "1." "V-" "v-" "v-" "ves" -- "sel!" _ "I" "am" "a" "ves" -- "sel!" _ "I’m" "a" "v-" "v-" "v-" "ves" -- "sel" "ma-" "ma-" "ma-" "made" "by" "God!" _ "V-" "V-" "Ves" -- "sel" "of" "mer" -- "cy," _ "Ch-" "ch-" "ch-" "ch-" "ch-" "cho" -- "sen," _ "Use" -- "ful" "to" "the" "Mas" -- "ter," "for" "good" "work" "pre" -- "pared." \set stanza = "2." "Ves" -- "sel," "ves" -- "sel," "made" "by" "God!" _ _ "Mer" -- "cy!" "Cho" -- "sen!" "Work" "pre" -- "pared!"
 }
 
 \score {
@@ -94,12 +94,3 @@ verseOne = \lyricmode {
   }
 }
 
-\markup {
-  \fill-line {
-    \null
-    \line { \left-column {
-      \column { "From mountains to-o the seas," "Flowers, bugs, rocks, webs, grass, shells, stars and trees." "God’s design we-e can see" "In things great and small, created for me." }
-    } \hspace #1.1 }
-    \null
-  }
-}

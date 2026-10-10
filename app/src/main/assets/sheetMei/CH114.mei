@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Plants, fish, birds, and animals and man</title>
+<title type="subordinate">Gospel — God’s Creation</title>
+</titleStmt><pubStmt><identifier type="hymn">CH114</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="f" oct="4" dur="4">
+<verse n="1"><label>1.</label><syl>Plants,</syl></verse></note>
+<note xml:id="n2" pname="c" oct="4" dur="4">
+<verse n="1"><syl>fish,</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>birds,</syl></verse></note>
+<note xml:id="n4" pname="f" oct="4" dur="16">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n5" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
+<note xml:id="n6" pname="c" oct="4" dur="16">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n7" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">mals</syl></verse></note>
+<note xml:id="n8" pname="g" oct="4" dur="16"/>
+<note xml:id="n9" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n10" pname="b" oct="4" dur="16"/>
+</beam>
+<note xml:id="n11" pname="c" oct="5" dur="2">
+<verse n="1"><syl>man,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<slur startid="#n7" endid="#n8"/>
+<slur startid="#n9" endid="#n10"/>
+</measure>
+<sb/>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n12" pname="d" oct="5" dur="4">
+<verse n="1"><syl>All</syl></verse></note>
+<beam>
+<note xml:id="n13" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl>things</syl></verse></note>
+<note xml:id="n14" pname="d" oct="5" dur="16">
+<verse n="1"><syl wordpos="i" con="d">cre</syl></verse></note>
+</beam>
+<note xml:id="n15" pname="c" oct="5" dur="4">
+<verse n="1"><syl wordpos="m" con="d">at</syl></verse></note>
+<beam>
+<note xml:id="n16" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="16">
+<verse n="1"><syl>by</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n18" pname="g" oct="4" dur="4">
+<verse n="1"><syl>God</syl></verse></note>
+<beam>
+<note xml:id="n19" pname="g" oct="4" dur="8" dots="1">
+<verse n="1"><syl>through</syl></verse></note>
+<note xml:id="n20" pname="a" oct="4" dur="16">
+<verse n="1"><syl>His</syl></verse></note>
+</beam>
+<note xml:id="n21" pname="g" oct="4" dur="2">
+<verse n="1"><syl>Word.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">mong</syl></verse></note>
+<note xml:id="n24" pname="c" oct="4" dur="16">
+<verse n="1"><syl>all</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n25" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl>these</syl></verse></note>
+<note xml:id="n26" pname="f" oct="4" dur="16">
+<verse n="1"><syl>He</syl></verse></note>
+<note xml:id="n27" pname="c" oct="4" dur="8" dots="1">
+<verse n="1"><syl>made</syl></verse></note>
+<note xml:id="n28" pname="c" oct="4" dur="16">
+<verse n="1"><syl>one</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n29" pname="f" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">spe</syl></verse></note>
+<note xml:id="n30" pname="g" oct="4" dur="16"/>
+<note xml:id="n31" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="m" con="d">cial</syl></verse></note>
+<note xml:id="n32" pname="b" oct="4" dur="16"/>
+</beam>
+<note xml:id="n33" pname="c" oct="5" dur="2">
+<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">Dm</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<slur startid="#n29" endid="#n30"/>
+<slur startid="#n31" endid="#n32"/>
+</measure>
+<sb/>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n34" pname="d" oct="5" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Spe</syl></verse></note>
+<note xml:id="n35" pname="d" oct="5" dur="16">
+<verse n="1"><syl wordpos="m" con="d">cial</syl></verse></note>
+<note xml:id="n36" pname="b" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<note xml:id="n37" pname="d" oct="5" dur="16">
+<verse n="1"><syl>to</syl></verse></note>
+</beam>
+<note xml:id="n38" pname="c" oct="5" dur="4">
+<verse n="1"><syl>love</syl></verse></note>
+<beam>
+<note xml:id="n39" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>Him.</syl></verse></note>
+<note xml:id="n40" pname="f" oct="4" dur="16">
+<verse n="1"><syl>Now</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">Dm</harm>
+</measure>
+<measure n="8" right="end"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n41" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>which</syl></verse></note>
+<note xml:id="n42" pname="a" oct="4" dur="16">
+<verse n="1"><syl>one</syl></verse></note>
+<note xml:id="n43" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl>could</syl></verse></note>
+<note xml:id="n44" pname="g" oct="4" dur="16">
+<verse n="1"><syl>it</syl></verse></note>
+</beam>
+<note xml:id="n45" pname="f" oct="4" dur="2">
+<verse n="1"><syl>be?</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Plants, fish, birds, and animals and man,</l><l>All things created God through His Word.</l><l>If you look upon the face of all the land,</l><l>Only one can love the Lord.</l><l>The only one is man!</l></lg>
+</div>
+</back>
+</music></mei>

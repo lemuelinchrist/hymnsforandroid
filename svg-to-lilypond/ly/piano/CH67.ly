@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,17 +25,17 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.69
+    \vspace #1.10
   }
-  system-system-spacing = #'((basic-distance . 13.01) (minimum-distance . 13.01) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 14.99) (minimum-distance . 14.99) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.00) (minimum-distance . 12.00) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
 
 \header {
   title = "Remember your Creator while you are young"
-  subtitle = "Encouragement—For Remembering the Creator"
+  subtitle = "Encouragement — For Remembering the Creator"
   opus = ""
 }
 
@@ -54,11 +54,11 @@ melody = {
 
 harmonies = \chordmode {
   \global
-  d4 | g4 s4 d4/fis | g4 s4 c4 | g4/d s4 d4:7 | g2 s8 s8 | c4 s4 s4 | g4 s4 d4/fis | e4:m s4 a4:7 | d2 s4 | g4 s4 d4/fis | e4:m s4 g8/b s8 | a4:m s4 g4 | d2 d4/c | g4/b s8 s8 d8/a s8 | g4 s4 e4:m | c4 g4/d d4:7 | g2 c4/g | g2 s4 |
+  g4 | s4 s4 s4 | s4 s4 s4 | d4 s4 d4:7 | g2 s8 s8 | c4 s4 s4 | g4 s4 s4 | a4 s4 a4:7 | d2 s4 | g4 s4 s4 | s4 s4 s8 s8 | c4 s4 s4 | d2 s4 | g4 s8 s8 s8 s8 | s4 s4 s4 | d4 s4 d4:7 | g2 c4 | g2 s4 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "Re" -- "mem" -- "ber" "your" "Cre" -- "a" -- "tor" "While" "you" "are" "young," "As" "a" "child," "know" "the" "Scrip" -- "tures" "And" "seek" "out" "God’s" "truth." "Re" -- "mem" -- "ber" "your" "Cre" -- "a" -- "tor" _ "While" "you" "are" "young," "Let" "Him" "have" _ "a" _ "way" "In" "the" "days" "of" "your" "youth." _
+  \set ignoreMelismata = ##t \set stanza = "1." "Re" -- "mem" -- "ber" "your" "Cre" -- "a" -- "tor" "While" "you" "are" "young," "As" "a" "child," "know" "the" "Scrip" -- "tures" "And" "seek" "out" "God’s" "truth." "Re" -- "mem" -- "ber" "your" "Cre" -- "a" -- "tor" _ "While" "you" "are" "young," "Let" "Him" _ "have" "a" _ "way" "In" "the" "days" "of" "your" "youth." _
 }
 
 \score {

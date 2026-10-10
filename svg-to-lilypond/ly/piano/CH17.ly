@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.88
+    \vspace #1.26
   }
-  system-system-spacing = #'((basic-distance . 12.79) (minimum-distance . 12.79) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.30) (minimum-distance . 12.30) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2006 Bible StorySongs, Inc. Used by permission." }
@@ -35,7 +35,7 @@
 
 \header {
   title = "Matthew, the Gospel"
-  subtitle = "Praise of the Lord—His Kingdom"
+  subtitle = "Praise of the Lord — His Kingdom"
   opus = ""
 }
 
@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  g'8[ d'8 r8 g'8] a'8[ g'8 r8 fis'8] | g'8[ g'8 r8 g'8] e'4 fis'4 \break | g'8[ g'8 r8 g'8] a'8[ g'8 r8 fis'8] | g'8[ g'8 r8 g'8] b'4 d''4 | c''8[ c''8 b'8 b'8] a'8[ a'8 g'8 g'8] \break | fis'8[ g'8 a'8 g'8] fis'8[ e'8 fis'8 d'8] | e'2 g'4 r4 | fis'4 g'4 a'8[ d''8~ d''8 d'8] \break | g'8[ d'8 r8 g'8] a'8[ g'8 r8 fis'8] | g'8[ g'8 r8 g'8] e'4 fis'4 | g'8[ g'8 r8 g'8] a'8[ g'8 r8 fis'8] \break | g'8[ g'8 r8 g'8] b'4 d''4 | b'8[ b'8 g'8 a'8] b'8[ a'8 g'8 a'8] \break | b'8[ b'8 g'8 b'8] d''8[ c''8 b'8 d''8] | r4 c''8[ b'8] a'8 d''4. | g'2. r4 \bar "|."
+  g'8[ d'8] r8 g'8 a'8[ g'8] r8 fis'8 | g'8[ g'8] r8 g'8 e'4 fis'4 \break | g'8[ g'8] r8 g'8 a'8[ g'8] r8 fis'8 | g'8[ g'8] r8 g'8 b'4 d''4 | c''8[ c''8 b'8 b'8] a'8[ a'8 g'8 g'8] \break | fis'8[ g'8 a'8 g'8] fis'8[ e'8 fis'8 d'8] | e'2 g'4 r4 | fis'4 g'4 a'8[ d''8~ d''8 d'8] \break | g'8[ d'8] r8 g'8 a'8[ g'8] r8 fis'8 | g'8[ g'8] r8 g'8 e'4 fis'4 | g'8[ g'8] r8 g'8 a'8[ g'8] r8 fis'8 \break | g'8[ g'8] r8 g'8 b'4 d''4 | b'8[ b'8 g'8 a'8] b'8[ a'8 g'8 a'8] \break | b'8[ b'8 g'8 b'8] d''8[ c''8 b'8 d''8] | r4 c''8[ b'8] a'8 d''4. | g'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {

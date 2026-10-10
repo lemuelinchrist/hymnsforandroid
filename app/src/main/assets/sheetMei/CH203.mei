@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">I Can be Diligent Each Day</title>
+<title type="subordinate">Principles on How to Be a Proper Human Being — Being Diligent</title>
+</titleStmt><pubStmt><identifier type="hymn">CH203</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n1" pname="b" oct="3" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n2" pname="c" oct="4" dur="8">
+<verse n="1"><syl>can</syl></verse></note>
+<note xml:id="n3" pname="d" oct="4" dur="8">
+<verse n="1"><syl>be</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n4" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">dil</syl></verse></note>
+<note xml:id="n5" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
+<note xml:id="n6" pname="b" oct="3" dur="8">
+<verse n="1"><syl wordpos="t">gent</syl></verse></note>
+<note xml:id="n7" pname="b" oct="3" dur="8">
+<verse n="1"><syl>each</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n8" pname="e" oct="4" dur="8">
+<verse n="1"><syl>day</syl></verse></note>
+<note xml:id="n9" pname="e" oct="4" dur="8">
+<verse n="1"><syl>By</syl></verse></note>
+<note xml:id="n10" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">do</syl></verse></note>
+<note xml:id="n11" pname="e" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+</beam>
+</layer></staff>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl>all</syl></verse></note>
+<note xml:id="n13" pname="f" oct="4" dur="8">
+<verse n="1"><syl>my</syl></verse></note>
+<note xml:id="n14" pname="b" oct="3" dur="8">
+<verse n="1"><syl wordpos="i" con="d">par</syl></verse></note>
+<note xml:id="n15" pname="b" oct="3" dur="8">
+<verse n="1"><syl wordpos="t">ents</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n16" pname="f" oct="4" dur="8">
+<verse n="1"><syl>say.</syl></verse></note>
+<note xml:id="n17" pname="f" oct="4" dur="8">
+<verse n="1"><syl>For</syl></verse></note>
+<note xml:id="n18" pname="f" oct="4" dur="8">
+<verse n="1"><syl>once</syl></verse></note>
+<note xml:id="n19" pname="e" oct="4" dur="8">
+<verse n="1"><syl>a</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<sb/>
+<measure n="4"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n20" pname="d" oct="4" dur="8">
+<verse n="1"><syl>job</syl></verse></note>
+<note xml:id="n21" pname="d" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n22" pname="d" oct="4" dur="8">
+<verse n="1"><syl>have</syl></verse></note>
+<note xml:id="n23" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n24" pname="d" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">gun</syl></verse></note>
+<note xml:id="n25" pname="d" oct="4" dur="8">
+<verse n="1"><syl>I</syl></verse></note>
+<note xml:id="n26" pname="d" oct="4" dur="8">
+<verse n="1"><syl>just</syl></verse></note>
+<note xml:id="n27" pname="c" oct="4" dur="8">
+<verse n="1"><syl>won’t</syl></verse></note>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+</measure>
+<measure n="5" right="end"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n28" pname="b" oct="3" dur="8">
+<verse n="1"><syl>stop</syl></verse></note>
+<note xml:id="n29" pname="b" oct="3" dur="8">
+<verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
+<note xml:id="n30" pname="c" oct="4" dur="8">
+<verse n="1"><syl wordpos="t">til</syl></verse></note>
+<note xml:id="n31" pname="d" oct="4" dur="8">
+<verse n="1"><syl>I’m</syl></verse></note>
+</beam>
+<note xml:id="n32" pname="e" oct="4" dur="2">
+<verse n="1"><syl>done.</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="3" place="above">E♭</harm>
+<fermata startid="#n32" place="above"/>
+</measure>
+</section></score></mdiv></body>
+</music></mei>

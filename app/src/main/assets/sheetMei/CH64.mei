@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">Everything we do and say</title>
-<title type="subordinate">Principles on How to Be a Proper Human Being—General</title>
+<title type="subordinate">Principles on How to Be a Proper Human Being — General</title>
 </titleStmt><pubStmt><identifier type="hymn">CH64</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
 <measure n="1"><staff n="1"><layer n="1">
 <note xml:id="n1" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="i" con="d">Ev</syl></verse></note>
+<verse n="1"><label>1.</label><syl wordpos="i" con="d">Ev</syl></verse></note>
 <note xml:id="n2" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ery</syl></verse></note>
 <note xml:id="n3" pname="g" oct="4" dur="4">
@@ -88,7 +88,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>reap.</syl></verse></note>
+<verse n="1"><syl>grow.</syl></verse></note>
 <rest xml:id="r26" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -100,18 +100,18 @@
 <note xml:id="n28" pname="g" oct="4" dur="4">
 <verse n="1"><syl>we</syl></verse></note>
 <note xml:id="n29" pname="g" oct="4" dur="2">
-<verse n="1"><syl>act,</syl></verse></note>
+<verse n="1"><syl>play—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">D7/A</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="g" oct="4" dur="4">
-<verse n="1"><syl>how</syl></verse></note>
+<verse n="1"><syl>what</syl></verse></note>
 <note xml:id="n31" pname="g" oct="4" dur="4">
 <verse n="1"><syl>we</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="2">
-<verse n="1"><syl>play,</syl></verse></note>
+<verse n="1"><syl>say—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="3" place="above">D7/A</harm>
@@ -121,18 +121,18 @@
 <note xml:id="n33" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Ev</syl></verse></note>
 <note xml:id="n34" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="m" con="d">ery</syl></verse></note>
+<verse n="1"><syl wordpos="t">ery</syl></verse></note>
 </beam>
 <note xml:id="n35" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">thing,</syl></verse></note>
+<verse n="1"><syl>deed,</syl></verse></note>
 <beam>
 <note xml:id="n36" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
 <note xml:id="n37" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="m" con="d">ery</syl></verse></note>
+<verse n="1"><syl wordpos="t">ery</syl></verse></note>
 </beam>
 <note xml:id="n38" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">thing,</syl></verse></note>
+<verse n="1"><syl>word,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">D7/A</harm>
@@ -149,7 +149,7 @@
 <verse n="1"><syl wordpos="t">ery</syl></verse></note>
 </beam>
 <note xml:id="n43" pname="g" oct="4" dur="2">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl>day—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="3" place="above">D7/A</harm>
@@ -159,21 +159,21 @@
 <note xml:id="n44" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Ev</syl></verse></note>
 <note xml:id="n45" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="m" con="d">ery</syl></verse></note>
+<verse n="1"><syl wordpos="t">ery</syl></verse></note>
 <note xml:id="n46" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">thing</syl></verse></note>
+<verse n="1"><syl>day</syl></verse></note>
 <note xml:id="n47" pname="d" oct="4" dur="4">
-<verse n="1"><syl>we</syl></verse></note>
+<verse n="1"><syl>in</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="e" oct="4" dur="4">
-<verse n="1"><syl>do</syl></verse></note>
+<verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
 <note xml:id="n49" pname="e" oct="4" dur="4">
-<verse n="1"><syl>and</syl></verse></note>
+<verse n="1"><syl wordpos="t">ery</syl></verse></note>
 <note xml:id="n50" pname="d" oct="4" dur="2">
-<verse n="1"><syl>say,</syl></verse></note>
+<verse n="1"><syl>way,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -199,4 +199,8 @@
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 </section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>If I whine or tell a lie—</l><l>That is sowing WEEDS!</l><l>I would rather use good words</l><l>And sow healthy SEEDS.</l><l>When I’m grown what I’ve sown</l><l>All will see—look at me!</l><l>I have planted carefully!</l><l>Every day in every way,</l><l>We are sowing seeds!</l></lg>
+</div>
+</back>
 </music></mei>

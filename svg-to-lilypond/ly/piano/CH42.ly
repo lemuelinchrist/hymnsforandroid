@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,22 +25,22 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.74
+    \vspace #1.23
   }
-  system-system-spacing = #'((basic-distance . 13.78) (minimum-distance . 13.78) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.60) (minimum-distance . 12.60) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.94) (minimum-distance . 14.94) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
 
 \header {
   title = "Remember your Creator"
-  subtitle = "Encouragement—For Remembering the Creator"
+  subtitle = "Encouragement — For Remembering the Creator"
   opus = ""
 }
 
 global = {
-  \key a \major
+  \key aes \major
   \time 3/4
   \autoBeamOff
   \partial 4
@@ -49,12 +49,12 @@ global = {
 melody = {
   \clef treble
   \global
-  cis'8.([ d'16)] | e'4 e'4 fis'8.[ gis'16] | a'4 a'4 gis'8.([ a'16)] | b'4( a'4) fis'4 \break | e'2 e'8.[ e'16] | e'4 fis'4 gis'4 | a'4 b'4 cis''4 | cis''4 b'4 a'4 \break | b'2 cis''8.[^\markup { \box \bold "Chorus" } b'16] | a'4 a'4 a'8.[ gis'16] | fis'4 fis'4 fis'4 | b'2 cis''4 \break | b'2 b'8.[ b'16] | cis''4 b'4 cis''4 | d''4 cis''4 b'4 | a'4 gis'4 b'4 | a'2 r4 \bar "|."
+  c'8.([ des'16)] | ees'4 ees'4 f'8.[ g'16] | aes'4 aes'4 g'8.([ aes'16)] | bes'4( aes'4) f'4 \break | ees'2 ees'8.[ ees'16] | ees'4 f'4 g'4 | aes'4 bes'4 c''4 | c''4 bes'4 aes'4 \break | bes'2 c''8.[^\markup { \box \bold "Chorus" } bes'16] | aes'4 aes'4 aes'8.[ g'16] | f'4 f'4 f'4 | bes'2 c''4 \break | bes'2 bes'8.[ bes'16] | c''4 bes'4 c''4 | des''4 c''4 bes'4 | aes'4 g'4 bes'4 | aes'2 r4 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  a8. s16 | s4 s4 d8./a s16 | a4 s4 a8./cis s16 | d4 s4 s4 | a2 s8. s16 | e4/gis s4 s4 | fis4:m s4 s4 | b4:7 s4 s4 | e2:7 s8. s16 | a4 s4 s8. s16 | d4 s4 s4 | b2 s4 | e2 s8. s16 | a4:7 s4 s4 | d4 s4 s4 | a4/e s4 e4:7 | a2 s4 |
+  aes8. s16 | s4 s4 des8. s16 | aes4 s4 s8. s16 | des4 s4 s4 | aes2 s8. s16 | ees4 s4 s4 | aes4 s4 s4 | bes4:7 s4 s4 | ees2:7 s8. s16 | aes4 s4 s8. s16 | des4 s4 s4 | bes2:7 s4 | ees2 s8. s16 | aes4:7 s4 s4 | des4 s4 s4 | ees4 s4 ees4:7 | aes2 s4 |
 }
 
 verseOne = \lyricmode {

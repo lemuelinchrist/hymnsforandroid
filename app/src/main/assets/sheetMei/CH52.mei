@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">In God’s green pastures feeding</title>
-<title type="subordinate">Experience of God—As the Shepherd</title>
+<title type="subordinate">Experience of God — As the Shepherd</title>
 </titleStmt><pubStmt><identifier type="hymn">CH52</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="3f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -14,7 +14,7 @@
 <verse n="1"><syl>God’s</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n3" pname="g" oct="4" dur="4">
@@ -36,9 +36,6 @@
 <verse n="1"><syl>His</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">E♭</harm>
-<harm staff="1" tstamp="3" place="above">E♭/G</harm>
-<harm staff="1" tstamp="4" place="above">A♭</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="4">
@@ -159,8 +156,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
-<harm staff="1" tstamp="3" place="above">E♭</harm>
-<harm staff="1" tstamp="4" place="above">E♭7/G</harm>
+<harm staff="1" tstamp="4" place="above">E♭</harm>
 <dir startid="#n42" place="above" staff="1"><rend rend="box" fontweight="bold">Sis:</rend></dir>
 </measure>
 <sb/>
@@ -347,10 +343,9 @@
 <rest xml:id="r94" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
-<harm staff="1" tstamp="4" place="above">B♭7</harm>
 </measure>
 </section></score></mdiv></body>
-<back><div type="tailChords"><p>E♭ E♭/G A♭ B♭ Fm B♭7 E♭ A♭/E♭ E♭ E♭/G Fm/A♭ Fm E♭/B♭ B♭7 E♭ A♭/E♭ E♭</p></div>
+<back><div type="tailChords"><p>B♭ Fm B♭7 E♭ A♭/E♭ E♭ E♭/G Fm/A♭ Fm E♭/B♭ B♭7 E♭ A♭/E♭ E♭</p></div>
 <div type="verses">
 <lg label="2."><l>Through the streets of the city in the darkness of the night,</l><l>Far from the fold, He heard my lonely cry.</l><l>Now I sit at His table in the palace of light;</l><l>His sheep am I.</l></lg>
 </div>

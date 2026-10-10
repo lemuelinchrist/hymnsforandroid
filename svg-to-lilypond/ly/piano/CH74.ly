@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,17 +25,17 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.71
+    \vspace #1.02
   }
-  system-system-spacing = #'((basic-distance . 13.23) (minimum-distance . 13.23) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.87) (minimum-distance . 12.87) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.95) (minimum-distance . 14.95) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2007 Bible StorySongs, Inc. Used by permission." }
 }
 
 \header {
   title = "No Man Ever"
-  subtitle = "Praise of the Lord—His Divinity"
+  subtitle = "Praise of the Lord — His Divinity"
   opus = ""
 }
 
@@ -49,16 +49,16 @@ global = {
 melody = {
   \clef treble
   \global
-  a8.[ bes16] | c'4 a'2 g'8.[ a'16] | f'4 c'2 d'8.[ c'16] | c'4 e'2 d'8.[ c'16] | c'4 f'2 a8.[ bes16] \break | c'4 a'2 g'8.[ a'16] | f'4 c'2 d'8.([ c'16)] | c'4 e'2 d'8.[ e'16] | f'2. r4 \bar "|."
+  a8.[ bes16] | c'4 a'2 g'8.[ a'16] | f'4 c'2 d'8.[ c'16] | c'4 e'2 d'8.[ c'16] | c'4 f'2 a8.[ bes16] | c'4 a'2 g'8.[ a'16] | f'4 c'2 d'8.([ c'16)] | c'4 e'2 d'8.[ e'16] | f'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  f8. s16 | s4 s2 s8. s16 | s4 s2 s8. s16 | c4:7 s2 s8. s16 | f4 s2 s8. s16 | f4 s2 s8. s16 | s4 s2 s8. s16 | c4:7 s2 s8. s16 | f4 bes2/f f4 |
+  f8. s16 | s4 s2 s8. s16 | s4 s2 s8. s16 | c4:7 s2 s8. s16 | f4 s2 s8. s16 | s4 s2 s8. s16 | s4 s2 s8. s16 | c4:7 s2 s8. s16 | f4 bes2/f f4 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "No" "man" "ev" -- "er," "spoke" "like" "Je" -- "sus;" "No" "man" "ev" -- "er," "no" "man" "ev" -- "er;" "No" "man" "ev" -- "er," "spoke" "like" "Je" -- "sus," "John" _ "se" -- "ven," "for" -- "ty-" "six."
+  \set ignoreMelismata = ##t \set stanza = "1." "No" "man" "ev" -- "er," "spoke" "like" "Je" -- "sus;" "No" "man" "ev" -- "er," "no" "man" "ev" -- "er;" "No" "man" "ev" -- "er," "spoke" "like" "Je" -- "sus," _ "John" "se" -- "ven," "for" -- "ty-" "six."
 }
 
 \score {
@@ -84,7 +84,7 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
-      \override LyricSpace.minimum-distance = #2.5
+      \override LyricSpace.minimum-distance = #0.3
     }
     \context {
       \Score

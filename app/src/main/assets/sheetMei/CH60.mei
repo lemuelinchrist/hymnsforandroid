@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">I’ve got the joy, joy, joy, joy</title>
-<title type="subordinate">Assurance and Joy of Salvation—General</title>
+<title type="subordinate">Assurance and Joy of Salvation — General</title>
 </titleStmt><pubStmt><identifier type="hymn">CH60</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="3s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -200,6 +200,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 </measure>
+<sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="e" oct="4" dur="2">
 <verse n="1"><syl>heart.</syl></verse></note>
@@ -216,7 +217,6 @@
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="3" place="above">A7</harm>
 </measure>
-<sb/>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">hap</syl></verse></note>

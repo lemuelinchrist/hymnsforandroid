@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.78
+    \vspace #1.23
   }
-  system-system-spacing = #'((basic-distance . 13.49) (minimum-distance . 13.49) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.33) (minimum-distance . 12.33) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -35,7 +35,7 @@
 
 \header {
   title = "I love to sing a joyful song"
-  subtitle = "Experience of God—As Love"
+  subtitle = "Experience of God — As Love"
   opus = ""
 }
 
@@ -49,12 +49,12 @@ global = {
 melody = {
   \clef treble
   \global
-  f'2 | f'2 f'2 | f'2. ees'4 | ees'2 d'2 | d'2. d'4 | d'2 d'2 | f'2 d'2 | ees'1~ \break | ees'2 f'2 | f'2 a'2 | a'2. a'4 | bes'2 f'2 | f'2. f'4 | g'2 ees'2 | d'2 c'2 \break | bes1~ | bes4 r4 f'4. f'8^\markup { \box \bold "Chorus" } | a'1~ | a'2 f'4. f'8 | bes'1~ | bes'2 f'4. f'8 | c''1~ \break | c''2 f'4. f'8 | d''4 c''4 bes'4 a'4 | bes'4 a'4 g'4. f'8 | a'1~ \break | a'2 f'4. f'8 | bes'1~ | bes'2 f'4 f'4 | g'2 ees'2 | d'2 c'2 | bes1~ | bes4 r2. \bar "|."
+  f'2 | f'2 f'2 | f'2. ees'4 | ees'2 d'2 | d'2. d'4 | d'2 d'2 | f'2 d'2 | ees'1~ \break | ees'2 f'2 | f'2 a'2 | a'2. a'4 | bes'2 f'2 | f'2. f'4 | g'2 ees'2 | d'2 c'2 \break | bes1~ | bes4 r4 f'4.^\markup { \box \bold "Chorus" } f'8 | a'1~ | a'2 f'4. f'8 | bes'1~ | bes'2 f'4. f'8 | c''1~ \break | c''2 f'4. f'8 | d''4 c''4 bes'4 a'4 | bes'4 a'4 g'4. f'8 | a'1~ \break | a'2 f'4. f'8 | bes'1~ | bes'2 f'4 f'4 | g'2 ees'2 | d'2 c'2 | bes1~ | bes4 r2. \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  bes2 | s2 s2 | bes2./f s4 | bes2 s2 | bes2./f s4 | bes2 s2 | bes2/d s2 | c1:m | c2:m/g s2 | f2 s2 | f2.:7/ees s4 | bes2/d s2 | g2:m bes4/f s4 | ees2 s2 | f2:7 s2 | bes2 ees2/bes | bes4 s4 s4. s8 | f1 | f2:7 s4. s8 | bes1 | g2:m s4. s8 | c1:m | f2:7 s4. s8 | bes4 s4 s4 s4 | bes4/d s4 ees4. s8 | f1 | f2:7 s4. s8 | g1:m | bes2/f bes4/d s4 | ees2 ees2/g | bes2/f f2:7 | bes2 ees2/bes | bes4 s2. |
+  bes2 | s2 s2 | s2. s4 | s2 s2 | s2. s4 | s2 s2 | s2 s2 | f1 | f2 s2 | s2 s2 | f2.:7 s4 | bes2 s2 | s2. s4 | ees2 s2 | f2:7 s2 | bes1 | s4 s4 s4. s8 | f1 | f2:7 s4. s8 | bes1 | s2 s4. s8 | f1 | f2:7 s4. s8 | bes4 s4 s4 s4 | s4 s4 s4. s8 | f1 | f2:7 s4. s8 | bes1 | s2 s4 s4 | ees2 s2 | f2 f2:7 | bes2 ees2 | bes4 s2. |
 }
 
 verseOne = \lyricmode {

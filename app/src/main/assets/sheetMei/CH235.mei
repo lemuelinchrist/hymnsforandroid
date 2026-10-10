@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">The Eyes of the Lord Run</title>
+<title type="subordinate">Scriptures for Singing</title>
+</titleStmt><pubStmt><identifier type="hymn">CH235</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="a" oct="3" dur="4">
+<verse n="1"><label>1.</label><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n2" pname="d" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">eyes</syl></verse></note>
+<note xml:id="n3" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+<note xml:id="n4" pname="d" oct="4" dur="8" dots="1">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n5" pname="d" oct="4" dur="16">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n6" pname="d" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Lord</syl></verse></note>
+<note xml:id="n7" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+</beam>
+<note xml:id="n8" pname="f" oct="4" dur="4">
+<verse n="1"><syl>run</syl></verse></note>
+</layer></staff>
+<tie startid="#n2" endid="#n3" lform="dashed"/>
+<tie startid="#n4" endid="#n5" lform="dashed"/>
+<tie startid="#n6" endid="#n7" lform="dashed"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n9" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+<note xml:id="n10" pname="a" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+</beam>
+<note xml:id="n11" pname="f" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n12" pname="d" oct="4" dur="2">
+<verse n="1"><syl>fro,</syl></verse></note>
+</layer></staff>
+<tie startid="#n9" endid="#n10" lform="dashed"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n13" pname="e" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">To</syl></verse></note>
+<note xml:id="n14" pname="e" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+</beam>
+<note xml:id="n15" pname="c" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n16" pname="a" oct="3" dur="2">
+<verse n="1"><syl>fro,</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<tie startid="#n13" endid="#n14" lform="dashed"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n17" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+<note xml:id="n18" pname="a" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+</beam>
+<note xml:id="n19" pname="f" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n20" pname="d" oct="4" dur="4">
+<verse n="1"><syl>fro;</syl></verse></note>
+<note xml:id="n21" pname="a" oct="3" dur="4">
+<verse n="1"><syl>The</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="4" place="above">A7</harm>
+<tie startid="#n17" endid="#n18" lform="dashed"/>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n22" pname="d" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">eyes</syl></verse></note>
+<note xml:id="n23" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+<note xml:id="n24" pname="d" oct="4" dur="8" dots="1">
+<verse n="1"><syl>of</syl></verse></note>
+<note xml:id="n25" pname="d" oct="4" dur="16">
+<verse n="1"><syl>the</syl></verse></note>
+</beam>
+<beam>
+<note xml:id="n26" pname="d" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">Lord</syl></verse></note>
+<note xml:id="n27" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+</beam>
+<note xml:id="n28" pname="f" oct="4" dur="4">
+<verse n="1"><syl>run</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<tie startid="#n22" endid="#n23" lform="dashed"/>
+<tie startid="#n24" endid="#n25" lform="dashed"/>
+<tie startid="#n26" endid="#n27" lform="dashed"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<beam>
+<note xml:id="n29" pname="a" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
+<note xml:id="n30" pname="a" oct="4" dur="16">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+</beam>
+<note xml:id="n31" pname="f" oct="4" dur="4">
+<verse n="1"><syl>and</syl></verse></note>
+<note xml:id="n32" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="i" con="d">fro</syl></verse></note>
+<beam>
+<note xml:id="n33" pname="d" oct="4" dur="8" dots="1">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+<note xml:id="n34" pname="d" oct="4" dur="16">
+<verse n="1"><syl wordpos="i" con="d">⠀</syl></verse></note>
+</beam>
+</layer></staff>
+<tie startid="#n29" endid="#n30" lform="dashed"/>
+<slur startid="#n32" endid="#n34" lform="dashed"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n35" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="m" con="d">O</syl></verse></note>
+<note xml:id="n36" pname="e" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">ver</syl></verse></note>
+<beam>
+<note xml:id="n37" pname="a" oct="3" dur="8" dots="1">
+<verse n="1"><syl wordpos="i" con="d">all</syl></verse></note>
+<note xml:id="n38" pname="a" oct="3" dur="16">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+</beam>
+<note xml:id="n39" pname="a" oct="3" dur="4">
+<verse n="1"><syl>the</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<tie startid="#n37" endid="#n38" lform="dashed"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n40" pname="d" oct="4" dur="2">
+<verse n="1"><syl wordpos="i" con="d">earth.</syl></verse></note>
+<note xml:id="n41" pname="d" oct="4" dur="4">
+<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+<rest xml:id="r42" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<tie startid="#n40" endid="#n41" lform="dashed"/>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>Running to and fro to strengthen them,</l><l>Strengthen them, strengthen them;</l><l>Running to and fro to strengthen them</l><l>Whose heart is perfect toward Him.</l></lg>
+<lg label="3."><l>He’s watching over those who fear Him and hope,</l><l>fear Him and hope, fear Him and hope;</l><l>He’s watching over those who fear Him and hope</l><l>In His lovingkindness.</l></lg>
+<lg label="4."><l>He’s looking on the righteous—hearing their prayer,</l><l>Hearing their prayer, hearing their prayer;</l><l>He’s looking on the righteous—hearing their prayer</l><l>He’s looking and He hearing.</l></lg>
+<lg label="5."><l>His eyes and His heart are always there,</l><l>Always there, always there;</l><l>His eyes and His heart are always there,</l><l>In the place that He has chosen.</l></lg>
+<lg label="6."><l>The eyes of the Lord run to and fro,</l><l>To-to-to, fro-fro-fro;</l><l>The eyes of the Lord run to and fro</l><l>Over all the earth.</l></lg>
+</div>
+</back>
+</music></mei>

@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.78
+    \vspace #1.15
   }
-  system-system-spacing = #'((basic-distance . 12.98) (minimum-distance . 12.98) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.30) (minimum-distance . 12.30) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2013 Bible StorySongs, Inc. Used by permission." }
@@ -35,7 +35,7 @@
 
 \header {
   title = "I Love God! He Put the Fish in the Sea"
-  subtitle = "Gospel—God’s Creation"
+  subtitle = "Gospel — God’s Creation"
   opus = ""
 }
 
@@ -98,7 +98,7 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \column { "I love God! He put the color in my eyes;" "And ten toes on my feet, I spy!" "And ten fingers on my hands, waving bye-bye!" \translate #'(0.00 . -1.50) "I love God! And I think you’ll agree:" \translate #'(0.00 . -1.50) "That He perfectly placed me" \translate #'(0.00 . -1.50) "In my family!" }
+      \column { "I love God! He put the color in my eyes;" "And ten toes on my feet, I spy!" "And ten fingers on my hands, waving bye-bye!" \translate #'(0.00 . -2.00) "I love God! And I think you’ll agree:" \translate #'(0.00 . -2.00) "That He perfectly placed me" \translate #'(0.00 . -2.00) "In my family!" }
     } \hspace #1.1 }
     \null
   }

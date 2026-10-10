@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.67
+    \vspace #1.23
   }
-  system-system-spacing = #'((basic-distance . 13.22) (minimum-distance . 13.22) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.60) (minimum-distance . 12.60) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2008 Bible StorySongs, Inc. Used by permission." }
@@ -35,7 +35,7 @@
 
 \header {
   title = "I’m spending time now"
-  subtitle = "Encouragement—For Fellowship with the Lord"
+  subtitle = "Encouragement — For Fellowship with the Lord"
   opus = ""
 }
 
@@ -58,7 +58,7 @@ harmonies = \chordmode {
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t "I’m" "spend" -- "ing" "time" "now," _ "Just" "me" _ "and" "my" "God!" _ "I’m" "ling’r" -- "ing" "long" -- "er;" _ "Just" "me" _ "and" "my" "God!" _ "The" "sheep" "are" "a’" "snor" -- "ing!" _ "I’m" "sing" -- "ing" "and" "psalm" -- "ing!" _ "My" "heart" "is" "a" "harp" -- "sing" _ "Un" -- _ "to" _ "my" "God!" _ "I’m" "spend" -- "ing" "time" "now," _ "Just" "me" _ "and" "my" "God!" _ "I’m" "ling’r" -- "ing" "long" -- "er;" _ "Just" "me" _ "and" "my" "God!" "Your" "words" "are" "sweet" "as" "Hon" -- "ey" "un" -- "to" "my" _ _ "taste," "And" "a" "light" "un" -- "to" "my" "path;" "I’m" "ling’r" -- "ing," _ "Just" "me" _ "and" "my" "God!" _
+  \set ignoreMelismata = ##t "I’m" "spend" -- "ing" "time" "now," _ "Just" "me" _ "and" "my" "God!" _ "I’m" "ling’r" -- "ing" "long" -- "er;" _ "Just" "me" _ "and" "my" "God!" _ "The" "sheep" "are" "a’" "snor" -- "ing!" _ "I’m" "sing" -- "ing" "and" "psalm" -- "ing!" _ "My" "heart" "is" "a" "harp" "sing" _ "Un" -- _ "to" _ "my" "God!" _ "I’m" "spend" -- "ing" "time" "now," _ "Just" "me" _ "and" "my" "God!" _ "I’m" "ling’r" -- "ing" "long" -- "er;" _ "Just" "me" _ "and" "my" "God!" "Your" "words" "are" "sweet" "as" "Hon" -- "ey" "un" -- "to" "my" _ _ "taste," "And" "a" "light" "un" -- "to" "my" "path;" "I’m" "ling’r" -- "ing," _ "Just" "me" _ "and" "my" "God!" _
 }
 
 \score {

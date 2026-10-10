@@ -127,16 +127,14 @@ public class HymnalNetExtractor {
             } catch (Exception e) {
                 System.out.println("Warning no subcategory");
             }
-            try {
-                hymn.setAuthor(details.select("label:matches(^Lyrics)").parents().get(0).select("a").text().trim());
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Warning no author.");
-            }
-            try {
-                hymn.setComposer(details.select("label:matches(^Music)").parents().get(0).select("a").text().trim());
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Warning no composer.");
-            }
+            // only the author/composer search links: the page has a second "Music:" label for its mp3/MIDI links,
+            // which used to end up as the composer of a song without one
+            String author = details.select("a[href*=/search/all/author/]").text().trim();
+            if (author.isEmpty()) System.out.println("Warning no author.");
+            else hymn.setAuthor(author);
+            String composer = details.select("a[href*=/search/all/composer/]").text().trim();
+            if (composer.isEmpty()) System.out.println("Warning no composer.");
+            else hymn.setComposer(composer);
 
             // re-read everything from here
             try {
@@ -280,6 +278,11 @@ public class HymnalNetExtractor {
                     stanzaEntity.setText("");
                 }
 
+                // Skip empty sections (hymnal.net pages have an empty "copyright" one, sometimes an empty note)
+                if (text.replaceAll("<[^>]*>", "").trim().isEmpty()) {
+                    continue;
+                }
+
                 // Skip duplicate consecutive choruses
                 if ("chorus".equals(stanzaNo)) {
                     if (lastChorusText != null && lastChorusText.equals(text)) {
@@ -337,6 +340,12 @@ public class HymnalNetExtractor {
         // get guitar and piano sheet
         FileUtils.saveUrl(Constants.SHEET_PIANO_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_g", "_p").replace(".svg", ".svg?"));
         FileUtils.saveUrl(Constants.SHEET_GUITAR_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_p", "_g").replace(".svg", ".svg?"));
+
+        // MIDI files are named after the tune code, so a hymn without one gets no MIDI
+        if (hymn.getTune() == null || hymn.getTune().trim().isEmpty()) {
+            System.out.println("skipping MIDI. no tune code...");
+            return;
+        }
 
         // get midi
         try {

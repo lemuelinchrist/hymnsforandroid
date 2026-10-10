@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">Who made the world so big and round?</title>
-<title type="subordinate">Gospel—God’s Creation</title>
+<title type="subordinate">Gospel — God’s Creation</title>
 </titleStmt><pubStmt><identifier type="hymn">CH45</identifier><identifier type="number"></identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -10,9 +10,9 @@
 <beam>
 <note xml:id="n1" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Who</syl></verse></note>
-<note xml:id="n2" pname="g" oct="4" dur="8">
+<note xml:id="n2" pname="g" oct="4" dur="8"/>
+<note xml:id="n3" pname="g" oct="4" dur="8">
 <verse n="1"><syl>made</syl></verse></note>
-<note xml:id="n3" pname="g" oct="4" dur="8"/>
 <note xml:id="n4" pname="g" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
@@ -154,19 +154,20 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="a" oct="4" dur="4">
-<verse n="1"><syl>birds</syl></verse><verse n="2"><syl>Did you do it?</syl></verse></note>
+<verse n="1"><syl>birds</syl></verse></note>
 <note xml:id="n47" pname="a" oct="4" dur="4">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n48" pname="g" oct="4" dur="2">
-<verse n="1"><syl>fly?</syl></verse></note>
+<verse n="1"><syl>fly?</syl></verse><verse n="2"><syl>Did you do it?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="3" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
 <fermata startid="#n48" place="above"/>
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <rest xml:id="r49" dur="1"/>
 </layer></staff>
+<harm staff="1" tstamp="1" place="above">G7</harm>
 </measure>
 <sb/>
 <measure n="14"><staff n="1"><layer n="1">
@@ -175,7 +176,8 @@
 <note xml:id="n51" pname="b" oct="4" dur="2">
 <verse n="1"><syl>not</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
 <fermata startid="#n50" place="above"/>
 <fermata startid="#n51" place="above"/>
 </measure>
@@ -183,6 +185,7 @@
 <note xml:id="n52" pname="a" oct="4" dur="1">
 <verse n="1"><syl>I!</syl></verse></note>
 </layer></staff>
+<harm staff="1" tstamp="1" place="above">F</harm>
 <fermata startid="#n52" place="above"/>
 </measure>
 <measure n="16"><staff n="1"><layer n="1">

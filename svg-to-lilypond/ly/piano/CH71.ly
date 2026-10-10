@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.69
+    \vspace #1.08
   }
-  system-system-spacing = #'((basic-distance . 13.68) (minimum-distance . 13.68) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.46) (minimum-distance . 12.46) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -35,7 +35,7 @@
 
 \header {
   title = "We are so happy we’re here today"
-  subtitle = "Encouragement—General"
+  subtitle = "Encouragement — General"
   opus = ""
 }
 
@@ -54,7 +54,7 @@ melody = {
 
 harmonies = \chordmode {
   \global
-  g4 s8. s16 g4/b s8. s16 | c4 s4 g2 | s4 s8. s16 e4:m s8. s16 | a4:7 s4 d2 | g4 s8. s16 g4/b s8. s16 | c4 s4 g2 | g4./d s8 d4:7 s4 | g4 c2/g g4 | g4. s8 c4/g s4 | g4. s8 s4 s4 | s4. s8 e4:m s4 | a4.:m s8 d4:7 s4 | g4 s8. s16 g4/b s8. s16 | c4 s4 g4/b c4 | g4./d s8 d4:7 s4 | g4 c2/g g4 |
+  g4 s8. s16 s4 s8. s16 | c4 s4 g2 | s4 s8. s16 s4 s8. s16 | a4:7 s4 d2 | g4 s8. s16 s4 s8. s16 | c4 s4 g2 | s4. s8 d4:7 s4 | g4 c2 g4 | c4. s8 s4 s4 | g4. s8 s4 s4 | s4. s8 s4 s4 | d4. s8 d4:7 s4 | g4 s8. s16 s4 s8. s16 | c4 s4 g2 | s4. s8 d4:7 s4 | g4 c2 g4 |
 }
 
 verseOne = \lyricmode {

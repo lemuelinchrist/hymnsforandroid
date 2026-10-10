@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,17 +25,17 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.73
+    \vspace #1.10
   }
-  system-system-spacing = #'((basic-distance . 13.13) (minimum-distance . 13.13) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.89) (minimum-distance . 12.89) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 14.90) (minimum-distance . 14.90) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
 
 \header {
   title = "Our God is so big"
-  subtitle = "Gospel—God’s Creation"
+  subtitle = "Gospel — God’s Creation"
   opus = ""
 }
 
@@ -54,11 +54,11 @@ melody = {
 
 harmonies = \chordmode {
   \global
-  d4 | s4 s4 s4 | s2 s4 | s4 s4 s4 | s4 s4 s4 | a4 s4 s4 | a4:7 s4 s4 | d2 g4/d | d4 s4 s4 | s4 s4 s4 | s2 s4 | s4 s4 s4 | s4 s4 s4 | a4 s4 s4 | a4:7 s4 s4 | d2 g4/d | d4 s4 s4 | g4 s4 s4 | s2 s4 | d4 s4 s4 | s2 s4 | a4 s4 s4 | s4 s4 s4 | d2. | d2 s4 | s4 s4 s4 | s2 s4 | s4 s4 s4 | s4 s4 s4 | a4 s4 s4 | a4:7 s4 s4 | d4 g2/d | d4 s2 |
+  d4 | s4 s4 s4 | s2 s4 | s4 s4 s4 | s4 s4 s4 | a4 s4 s4 | a4:7 s4 s4 | d2 g4/d | d4 s4 s4 | s4 s4 s4 | s2 s4 | s4 s4 s4 | s4 s4 s4 | a4 s4 s4 | a4:7 s4 s4 | d2 g4/d | d4 s4 s4 | g4 s4 s4 | s2 s4 | d4 s4 s4 | s2 s4 | a4 s4 s4 | s4 s4 s4 | d2. | d2 s4 | s4 s4 s4 | s2 s4 | s4 s4 s4 | s4 s4 s4 | a4 s4 s4 | a4:7 s4 s4 | d2 g4/d | d4 s2 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t "Our" "God" "is" "so" "big," "So" "strong," "and" "so" "migh" -- "ty—" "There’s" "noth" -- "ing" "our" "God" "can" -- "not" "do." _ "Our" "God" "is" "so" "big," "So" "strong," "and" "so" "migh" -- "ty—" "There’s" "noth" -- "ing" "our" "God" "can" -- "not" "do." _ "The" "moun" -- "tains" "are" "His;" "The" "val" -- "leys" "are" "His;" "The" "stars" "are" "His" "hand" -- "i" -- "work," "too." _ "Our" "God" "is" "so" "big," "So" "strong," "and" "so" "migh" -- "ty—" "There’s" "noth" -- "ing" "our" "God" "can" -- "not" "do." _
+  \set ignoreMelismata = ##t \set stanza = "1." "Our" "God" "is" "so" "big," "So" "strong," "and" "so" "migh" -- "ty—" "There’s" "noth" -- "ing" "our" "God" "can" -- "not" "do." _ "Our" "God" "is" "so" "big," "So" "strong," "and" "so" "migh" -- "ty—" "There’s" "noth" -- "ing" "our" "God" "can" -- "not" "do." _ "The" "moun" -- "tains" "are" "His;" "The" "val" -- "leys" "are" "His;" "The" "stars" "are" "His" "hand" -- "i" -- "work," "too." _ "Our" "God" "is" "so" "big," "So" "strong," "and" "so" "migh" -- "ty—" "There’s" "noth" -- "ing" "our" "God" "can" -- "not" "do." _
 }
 
 verseTwo = \lyricmode {
@@ -98,3 +98,14 @@ verseTwo = \lyricmode {
   }
 }
 
+\markup {
+  \fill-line {
+    \null
+    \line { \left-column {
+      \line { \bold "2." \column { "The mountains are His;" "The valleys are His;" "The stars are His handiwork, too." } }
+      \vspace #0.88
+      \line { \bold "3." \column { "Our God is so big," "So strong, and so mighty—" "There’s nothing our God cannot do." "That’s right!" } }
+    } \hspace #1.1 }
+    \null
+  }
+}

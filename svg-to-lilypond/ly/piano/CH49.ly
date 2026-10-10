@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.84
+    \vspace #1.22
   }
-  system-system-spacing = #'((basic-distance . 13.29) (minimum-distance . 13.29) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.17) (minimum-distance . 12.17) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.01) (minimum-distance . 15.01) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2013 Bible StorySongs, Inc. Used by permission." }
@@ -35,7 +35,7 @@
 
 \header {
   title = "People like to know"
-  subtitle = "Gospel—God’s Creation"
+  subtitle = "Gospel — God’s Creation"
   opus = ""
 }
 
@@ -98,7 +98,7 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \line { \bold "2." \column { "If you want to know" "Who made all things so," "Go right to the Source," "Which is God, of course!" \translate #'(3.25 . -1.50) "Who, who, who was there?" \translate #'(3.25 . -1.50) "Who, who, who was there?" \translate #'(3.25 . -1.50) "Who, who, who was there?" \translate #'(3.25 . -1.50) "Only God was there?" } }
+      \line { \bold "2." \column { "If you want to know" "Who made all things so," "Go right to the Source," "Which is God, of course!" \translate #'(2.77 . -2.00) "Who, who, who was there?" \translate #'(2.77 . -2.00) "Who, who, who was there?" \translate #'(2.77 . -2.00) "Who, who, who was there?" \translate #'(2.77 . -2.00) "Only God was there!" } }
     } \hspace #1.1 }
     \null
   }

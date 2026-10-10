@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.69
+    \vspace #1.08
   }
-  system-system-spacing = #'((basic-distance . 12.38) (minimum-distance . 12.38) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.00) (minimum-distance . 12.00) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2014 Bible StorySongs, Inc. Used by permission." }
@@ -35,7 +35,7 @@
 
 \header {
   title = "Everything we do and say"
-  subtitle = "Principles on How to Be a Proper Human Being—General"
+  subtitle = "Principles on How to Be a Proper Human Being — General"
   opus = ""
 }
 
@@ -58,7 +58,7 @@ harmonies = \chordmode {
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t "Ev" -- "ery" -- "thing" "we" "do" "and" "say," "We" "are" "sow" -- "ing" "seeds." "And" "the" "kind" "of" "seeds" "we" "sow" "Will" "be" "what" "we" "reap." "How" "we" "act," "how" "we" "play," "Ev" -- "ery" -- "thing," "ev" -- "ery" -- "thing," "each" "and" "ev" -- "ery" "day." "Ev" -- "ery" -- "thing" "we" "do" "and" "say," "We" "are" "sow" -- "ing" "seeds."
+  \set ignoreMelismata = ##t \set stanza = "1." "Ev" -- "ery" -- "thing" "we" "do" "and" "say," "We" "are" "sow" -- "ing" "seeds." "And" "the" "kind" "of" "seeds" "we" "sow" "Will" "be" "what" "we" "grow." "How" "we" "play—" "what" "we" "say—" "Ev" -- "ery" "deed," "ev" -- "ery" "word," "each" "and" "ev" -- "ery" "day—" "Ev" -- "ery" "day" "in" "ev" -- "ery" "way," "We" "are" "sow" -- "ing" "seeds."
 }
 
 \score {
@@ -94,3 +94,12 @@ verseOne = \lyricmode {
   }
 }
 
+\markup {
+  \fill-line {
+    \null
+    \line { \left-column {
+      \line { \bold "2." \column { "If I whine or tell a lie—" "That is sowing WEEDS!" "I would rather use good words" "And sow healthy SEEDS." "When I’m grown what I’ve sown" "All will see—look at me!" "I have planted carefully!" "Every day in every way," "We are sowing seeds!" } }
+    } \hspace #1.1 }
+    \null
+  }
+}

@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.73
+    \vspace #1.11
   }
-  system-system-spacing = #'((basic-distance . 13.07) (minimum-distance . 13.07) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.17) (minimum-distance . 12.17) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -35,7 +35,7 @@
 
 \header {
   title = "I’m a vessel this I know"
-  subtitle = "Gospel—God’s Creation"
+  subtitle = "Gospel — God’s Creation"
   opus = ""
 }
 
@@ -54,7 +54,7 @@ melody = {
 
 harmonies = \chordmode {
   \global
-  c4 s4 g4/b s4 | a4:m s4 c2/g | f4 s4 g4:7/f s4 | c4/e s4 g2 | c4 s4 g4/b s4 | a4:m s4 c2/g | f4 s4 c4/e d4:7/fis | c4/g g4:7 c2 | c2 c4:7/e s4 | f4 s4 g2:7/f | e2:m a4:m s4 | d4:m7 s4 g2:7 | c2 c4:7/e s4 | f4 s4 d4:7/fis s4 | c4/g s4 g4:7 s4 | c4 f2/c c4 |
+  c4 s4 g4/b s4 | a4:m s4 c2/g | f4 s4 g4:7/f s4 | c4/e s4 g2 | c4 s4 g4/b s4 | a4:m s4 c2/g | f4 s4 c4/e d4:7/fis | c4/g g4:7 c2 | c2 c4:7/e s4 | f4 s4 g2:7/f | e2:m a4:m s4 | d4:m7 s4 g2:7 | c2 c4:7/e s4 | f4 s4 d4:7/fis s4 | c4/g s4 g4:7 s4 | c4 f4/c c4 s4 |
 }
 
 verseOne = \lyricmode {

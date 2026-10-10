@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,17 +25,17 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.78
+    \vspace #1.23
   }
-  system-system-spacing = #'((basic-distance . 12.30) (minimum-distance . 12.30) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.09) (minimum-distance . 12.09) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.01) (minimum-distance . 15.01) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
 
 \header {
-  title = "Listen, listen your conscience speaks to you"
-  subtitle = "Principles on How to Be a Proper Human Being—General"
+  title = "Listen, listen, your conscience speaks to you"
+  subtitle = "Principles on How to Be a Proper Human Being — General"
   opus = ""
 }
 

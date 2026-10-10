@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.85\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.71
+    \vspace #1.07
   }
-  system-system-spacing = #'((basic-distance . 13.41) (minimum-distance . 13.41) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.68) (minimum-distance . 12.68) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net; © 2006 Bible StorySongs, Inc. Used by permission." }
@@ -35,7 +35,7 @@
 
 \header {
   title = "In Matthew’s House"
-  subtitle = "Gospel—Testimony"
+  subtitle = "Gospel — Testimony"
   opus = ""
 }
 
