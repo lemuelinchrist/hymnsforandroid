@@ -1,6 +1,7 @@
 package com.lemuelinchrist.android.hymns.content;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -69,10 +70,10 @@ public class YoutubeButton extends ContentComponent<ImageButton> {
                 switch (youtubePreference) {
                     case "piano":
                         if(links.size()>1) {
-                            DialogFragment tuneDialog = new ChooseTuneDialogFragment(comments, YoutubeButton.this);
+                            DialogFragment tuneDialog = ChooseTuneDialogFragment.newInstance(comments, links);
                             tuneDialog.show(((FragmentActivity)context).getSupportFragmentManager(),"YouTube");
                         } else if (links.size()==1) {
-                            launchYouTube(0);
+                            launchYouTube(context, links.get(0));
                         }
                         break;
                     case "search":
@@ -86,27 +87,36 @@ public class YoutubeButton extends ContentComponent<ImageButton> {
         });
     }
 
-    public void launchYouTube(int whichTune) {
+    private static void launchYouTube(Context context, String link) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(links.get(whichTune)));
+        intent.setData(Uri.parse(link));
         context.startActivity(intent);
     }
 
+    // Android recreates a shown dialog with the empty constructor (e.g. on a dark mode switch), so its data
+    // must be in the arguments, not in constructor parameters.
     public static class ChooseTuneDialogFragment extends DialogFragment {
-        private ArrayList<String> comments;
-        private YoutubeButton listener;
+        private static final String COMMENTS = "comments";
+        private static final String LINKS = "links";
 
-        public ChooseTuneDialogFragment(ArrayList comments, YoutubeButton listener) {
-            this.comments=comments;
-            this.listener=listener;
+        public static ChooseTuneDialogFragment newInstance(ArrayList<String> comments, ArrayList<String> links) {
+            ChooseTuneDialogFragment dialog = new ChooseTuneDialogFragment();
+            Bundle args = new Bundle();
+            args.putStringArrayList(COMMENTS, comments);
+            args.putStringArrayList(LINKS, links);
+            dialog.setArguments(args);
+            return dialog;
         }
+
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final ArrayList<String> comments = requireArguments().getStringArrayList(COMMENTS);
+            final ArrayList<String> links = requireArguments().getStringArrayList(LINKS);
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("Choose tune to play");
             builder.setItems(comments.toArray(new String[comments.size()]),new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    listener.launchYouTube(which);
+                    launchYouTube(requireContext(), links.get(which));
                 }
             });
 

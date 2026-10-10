@@ -21,9 +21,6 @@ import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by lemuelcantos on 1/11/15.
  */
@@ -34,12 +31,7 @@ public abstract class TabFragment extends Fragment {
     protected RecyclerView mRecyclerView;
     protected ViewGroup container;
     protected static HymnGroup selectedHymnGroup;
-    public static final Map<Integer, TabFragment> COLLECTION = new HashMap();
     protected String savedQuery="";
-
-    public TabFragment() {
-        COLLECTION.put(this.getSearchTabIndex(), this);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,16 +106,8 @@ public abstract class TabFragment extends Fragment {
     }
 
     public void cleanUp() {
-        dao.close();
-    }
-
-    public static TabFragment getInstance(Class tabFragmentClass) {
-        for (TabFragment tab : COLLECTION.values()) {
-            if (tab.getClass().equals(tabFragmentClass)) return tab;
-
-        }
-        Log.w(TabFragment.class.getName(), "Could not find specified class - " + tabFragmentClass);
-        return null;
+        // dao is only opened once the tab's view has been created
+        if (dao != null) dao.close();
     }
 
     public int getInputType() {
