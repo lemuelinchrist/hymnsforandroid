@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 8.61\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,40 +25,40 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.76
+    \vspace #0.86
   }
-  system-system-spacing = #'((basic-distance . 12.77) (minimum-distance . 12.77) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.01) (minimum-distance . 15.01) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.09) (minimum-distance . 12.09) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 15.03) (minimum-distance . 15.03) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
 
 \header {
-  title = "There are three kinds of life in our existence today"
-  subtitle = "Various Aspects of the Inner Life—The Three Lives"
+  title = "The Consummation of Grace"
+  subtitle = "Experience of Christ — As Grace"
   opus = ""
 }
 
 global = {
-  \key d \major
+  \key f \major
   \time 4/4
   \autoBeamOff
-  \partial 4
+  
 }
 
 melody = {
   \clef treble
   \global
-  a'8[ a'8] | fis'8 fis'4 fis'8 e'8[ d'8 d'8 fis'8] | a'8 a'4 fis'8 a'4 a'8[ a'8] | b'8 d''4 b'8 a'8[ fis'8 e'8 d'8] | fis'8 e'4 fis'8 e'4 a'8[ a'8] \break | fis'8 fis'4 fis'8 e'8[ d'8 d'8 fis'8] | a'4 a'4 b'4 b'8[ cis''8] | d''8 d''4 b'8 a'8[ fis'8 e'8 d'8] \break | fis'8 fis'4 e'8 d'4^\fermata a'8[ a'8]^\markup { \box \bold "Chorus" } | d''8 d''4 d''8 b'8[ a'8 fis'8 g'8] | a'8 a'4 b'8 a'4 a'8[ a'8] \break | d''8 d''4 d''8 b'8[ a'8 fis'8 d'8] | fis'8 e'4 fis'8 e'4 a'8[ a'8] \break | fis'8 fis'4 fis'8 e'8[ d'8 d'8 fis'8] | a'4 a'4 b'4 b'8[ cis''8] | d''8 d''4 b'8 a'8[ fis'8 e'8 d'8] | fis'8 fis'4 e'8 d'4 r4 \bar "|."
+  a'4. gis'8 a'4 f'4 | c''4. b'8 c''4 a'4 \break | g'4. fis'8 g'8[ bes'8 a'8 g'8] | f'1 \break | a'4. gis'8 a'4 f'4 | c''4. b'8 c''4 a'4 \break | g'4. fis'8 g'8[ bes'8 a'8 g'8] | f'1 \break | d''4. cis''8 d''4 bes'4 | c''4. b'8 c''4 a'4 \break | d''4. c''8 bes'8[ a'8 g'8 f'8] | e'2( c''4 bes'4) \break | a'2 c''2 | bes'2 d'2 | e'2 g'2 | f'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  d8 s8 | s8 s4 s8 a8/cis s8 s8 s8 | b8:m s4 s8 d4/a s8 s8 | g8 s4 s8 fis8:m s8 s8 s8 | e8:m s4 s8 a4 s8 s8 | d8 s4 s8 a8 s8 s8 s8 | d4 s4 g4 s8 s8 | g8/b s4 s8 d8 s8 s8 s8 | a8:7 s4 s8 d4 s8 s8 | s8 s4 s8 g8/d s8 s8 s8 | d8 s4 s8 s4 s8 s8 | d8 s4 s8 b8:m s8 s8 s8 | e8:m s4 s8 a4 s8 s8 | d8 s4 s8 a8 s8 s8 s8 | d4 s4 g4 s8 s8 | g8/b s4 s8 d8 s8 s8 s8 | a8:7 s4 s8 d4 s4 |
+  f4. s8 s4 s4 | s4. s8 s4 s4 | g4.:m s8 c8 s8 s8 s8 | f1 | f4. s8 s4 s4 | s4. s8 s4 s4 | g4.:m s8 c8 s8 s8 s8 | f2 f2:7 | bes4. s8 s4 s4 | f4. s8 s4 s4 | bes4. s8 s8 s8 s8 s8 | c2 c4:7 s4 | f2 f2:7 | bes2 g2:m | c2 c2:7 | f2. s4 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "There" "are" "three" "kinds" "of" "life" "in" "our" "ex" -- "is" -- "tence" "to" -- "day:" "There" "is" "Bi" -- "os," "the" "phy" -- "si" -- "cal," "and" "soul-" "life," "Psu" -- "che;" "Now" "the" "third" "life" "is" "God’s" "life" "and" "its" "called" "Zo" -- "e;" "And" "we" "all" "have" "to" "choose" "what" "life" "we’ll" "live" "by" "to" -- "day." \set stanza = "(C)" "Oh," "it’s" "God" "in" "Christ" "Je" -- "sus," "through" "the" "Spir" -- "it" "to" -- "day," "Who" "is" "flow" -- "ing" "with" -- "in" "us," "flow" -- "ing" "through" "us" "this" "way." "We" "don’t" "care" "for" "the" "Bi" -- "os;" "we" "don’t" "want" "Psu" -- "che;" "All" "we" "want" "is" "God’s" "Zo" -- "e" "life" "to" "fill" "us" "to" -- "day."
+  \set ignoreMelismata = ##t \set stanza = "1." "I’ve" "been" "saved," "made" "just" "by" "faith;" "God’s" "gra" -- "cious" "Spir" -- "it" "dwells" "in" "mine;" "Day" "by" "day" "I" "stand" "in" "grace," "en" -- "joy" "His" "boun" -- "ti" -- "ful" "sup" -- "ply." "Grace" "un" -- "ceas" -- "ing," "rich," "ex" -- "haust" -- "less," "grace" "un" -- "lim" -- "it" -- "ed," "di" -- "vine," _ _ "Grace" "I" "free" -- "ly" "may" "ap" -- "ply!"
 }
 
 \score {
@@ -84,6 +84,7 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
+      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score
@@ -97,11 +98,11 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \line { \bold "2." \column { "We don’t care for the Bios, we don’t care for the soul." "We don’t care for the cares of life, world’s pleasure and show." "We don’t care for the pride of life, the flesh and sin—" "We say, “No!” to the soul life, we’ll take God’s life within." } }
+      \line { \bold "2." \column { "Grace has come as Christ Himself, my life and everything to be;" "No more I, but Christ the Lord as grace is reigning now in me," "Grace divine infused, transmitted, Satisfies continually!" "Life with Him is rich, indeed!" } }
       \vspace #0.88
-      \line { \bold "3." \column { "Do you know what God’s life is? Well, just listen to this:" "It is God in Christ Jesus through the Spirit—no less!" "He is flowing within us, He is flowing through—" "Hallelujah! He’s moving to make everything new." } }
+      \line { \bold "3." \column { "All-sufficient Burden-bearer, grace through weakness is increased;" "Pow’r of Christ, through suff’rings, trials, tabernacles over me." "Multiplying grace, o’erflowing, from the throne of grace proceeds," "Timely grace for all my needs!" } }
       \vspace #0.88
-      \line { \bold "4." \column { "We have this Life within us, in our spirit today;" "To our spirit we turn, O Lord, and take You this way." "We can overcome Bios and the Psuche too;" "Hallelujah, the Spirit of the Lord takes us through." } }
+      \line { \bold "4." \column { "Universal masterpiece, the holy New Jerusalem," "Grace’s consummate expression—Righteousness, new earth and hea’vn." "Propagated! Celebrated! Consummated! Manifest!" "Grace be praised and ever blessed!" \translate #'(2.77 . -2.00) "(2022 ICSC)" } }
     } \hspace #1.1 }
     \null
   }

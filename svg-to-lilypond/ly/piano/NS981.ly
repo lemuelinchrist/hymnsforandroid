@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 8.61\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,23 +25,23 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.73
+    \vspace #0.79
   }
-  system-system-spacing = #'((basic-distance . 12.81) (minimum-distance . 12.81) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.83) (minimum-distance . 12.83) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 15.02) (minimum-distance . 15.02) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
 
 \header {
-  title = "A higher view"
-  subtitle = "Consecration—Separated unto the Lord"
+  title = "Oh, lift your heads! The race is set"
+  subtitle = "Encouragement — For Running the Race"
   opus = ""
 }
 
 global = {
-  \key a \major
-  \time 4/4
+  \key aes \major
+  \time 3/4
   \autoBeamOff
   
 }
@@ -49,16 +49,16 @@ global = {
 melody = {
   \clef treble
   \global
-  e'8[ e'8 e'8 e'8] e'4 cis'4 | fis'1 | a'8[ a'8 a'8 a'8] a'4 fis'4 | e'2. r8 e'8 \break | e'8[ e'8 e'8 e'8] a'4 e'4 | fis'2. r8 fis'8 | a'8[ a'8 a'8 a'8] a'4 fis'4 | b'2. a'4 \break | cis''8[ cis''8 cis''8 cis''8] cis''4 b'4 | a'2. a'4 | d''8[ d''8 d''8 d''8] d''4 a'4 | cis''4.( d''16[ cis''16] b'4) gis'8[ fis'8] \break | e'8[ e'8~ e'8 e'8] e'4 cis''4 | a'2. e'8[ e'8] | fis'4 fis'4~ fis'4 fis'8[ fis'8] | b'2 a'4 gis'4 | a'1~ | a'2. r4 \break | d''4 d''8[ d''8~] d''4 d''8[ d''8] | cis''4 b'8[ b'8~] b'4 gis'4 | e'8[ e'8 e'8 e'8] e'4 cis'4 | fis'2. fis'4 \break | d'2. fis'8[ fis'8] | gis'4 fis'8[ e'8~] e'4 d'8[ d'8] | cis'4. b8 cis'4 d'4 | e'2. e'8[ e'8] \break | fis'4 fis'4 fis'4 fis'4 | gis'2 b'4 gis'4 | e'4. cis''8 \tuplet 3/2 { cis''4 cis''4 b'4 } | a'4. gis'8 fis'4 e'4 | fis'2. fis'4 | cis''4 b'4 a'4 gis'4 | a'1~ | a'2. r4 \bar "|."
+  ees'4 aes'4 g'4 | aes'2 bes'4 | ees'4( f'4) g'4 | aes'2. \break | aes'4 g'4 f'4 | bes'2 g'4 | g'8([ f'8] ees'4) d'4 | ees'2 ees'4 \break | ees'2 aes'4 | aes'4( g'4) f'4 | ees'2 c''4 | c''4( bes'4) aes'4 \break | g'2 des''4 | des''4( c''4) bes'4 | aes'4( bes'4) g'4 | aes'2 r4 \bar "|."
 }
 
 harmonies = \chordmode {
   \global
-  a8 s8 s8 s8 s4 s4 | fis1:m | d8 s8 s8 s8 s4 s4 | e2. s8 s8 | a8 s8 s8 s8 s4 s4 | fis2.:m s8 s8 | d8 s8 s8 s8 s4 s4 | e2. s4 | a8 s8 s8 s8 s4 s4 | fis2.:m s4 | d8 s8 s8 s8 s4 s4 | e4. s16 s16 s4 s8 s8 | cis8:m s8 s8 s8 s4 s4 | fis2.:m s8 s8 | d4 s4 s4 s8 s8 | e2 s4 s4 | a1 | a2.:7 s4 | d4 s8 s8 s4 s8 s8 | e4 s8 s8 s4 s4 | cis8:m s8 s8 s8 s4 s4 | fis2.:m s4 | d2. s8 s8 | e4 s8 s8 s4 s8 s8 | a4. s8 s4 s4 | a2.:7 s8 s8 | d4 s4 s4 s4 | e2 s4 s4 | cis4.:m s8 \tuplet 3/2 { s4 s4 s4 } | fis4.:m s8 s4 s4 | d2. s4 | e4:7 s4 s4 s4 | a2 d2/a | a2. s4 |
+  aes4 s4 ees4/bes | aes2/c des4 | ees4 s4 s4 | f2.:m | bes4 s4 bes4/aes | ees2/g c4:m | aes8 s8 s4 bes4:7 | ees2 s4 | aes2 s4 | ees4:7/bes s4 s4 | aes2/c s4 | des4 s4 s4 | ees2 s4 | des4/f s4 s4 | aes4/ees s4 ees4:7 | aes2 s4 |
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "Prod" "me" "with" "Your" "lov" -- "ing" "hands," "Stir" "me" "from" "my" "deep" "im" -- "passe." "I" "long" "to" "flee" "this" "stag" -- "nant" "rut;" "My" "soul," "my" "pri" -- "son," "dead" -- "ened" "lot," "Which" "end" "is" "just" "to" "taste" "Your" "wrath;" "So" "set" "me" "on" "the" "nar" -- "row" "path." _ _ _ "Thorns" "and" "this" -- "tles" _ "may" "line" "this" "road" "But" "it" "leads" "me" _ "to" "the" "mu" -- "tual" "a" -- "bode." _ "Lift" "me" "up" _ "with" "Your" "migh" -- "ty" _ "hand" "A" -- "bove" "this" "fren" -- "zied" "earth" -- "ly" "land." "Set" "me" "on" "the" "mount" "to" "see" _ "What" "the" "world" "can" "of" -- "fer" "me;" "Till" "I" "see" "the" "van" -- "i" -- "ty" "from" "on" "high" "And" "earth" -- "ly" "de" -- "sires" "I" "bid" "good" -- "bye" "And" "set" "my" "eyes" "on" "You." _
+  \set ignoreMelismata = ##t \set stanza = "1." "Oh," "lift" "your" "heads!" "The" "race" _ "is" "set," "De" -- "mand" -- "ing" "that" "all" _ "weight" _ "and" "sin" "Be" "put" "a" -- "way," _ "and," "tire" -- "less" "yet," _ "We" "with" "en" -- "du" -- _ "rance" "run" _ "to" "win!"
 }
 
 \score {
@@ -84,6 +84,7 @@ verseOne = \lyricmode {
     \context {
       \Lyrics
       \override LyricHyphen.minimum-distance = #0.6
+      \override LyricSpace.minimum-distance = #2.5
     }
     \context {
       \Score
@@ -93,3 +94,23 @@ verseOne = \lyricmode {
   }
 }
 
+\markup {
+  \fill-line {
+    \left-column {
+      \line { \bold "2." \column { "And yet this race is set in grace," "The very Christ whom we enjoy." "For mortal strength there is no place;" "We must the Spirit’s power employ." } }
+      \vspace #0.88
+      \line { \bold "3." \column { "The prize to gain, ahead it lies:" "How precious! ’Tis, the very Christ!" "Laid hold by Him, we e’er would rise" "And run by His supporting might." } }
+      \vspace #0.88
+      \line { \bold "4." \column { "Our running’s not for selfish pride," "Nor for our boast in crown or throne." "’Tis duty ours, self-choice aside." "We run for Christ and Christ alone!" } }
+      \vspace #0.88
+      \line { \bold "5." \column { "For this we give our life and all," "Our might, our strength, our days withal." "To Him we live—the upward call." "To Him we die—the gain of all!" } }
+    }
+    \left-column {
+      \line { \bold "6." \column { "And when we fall, we quickly rise!" "An all-sufficient grace outpoured," "And varied still, with stores untried," "Exhaustless grace He doth afford." } }
+      \vspace #0.88
+      \line { \bold "7." \column { "His partners dear, His brethren true," "No time is there for looking back!" "One thing remains: to e’er pursue" "The One who doth our hearts attract." } }
+      \vspace #0.88
+      \line { \bold "8." \column { "No more we hope in things of old;" "No more we dream of vanity!" "The peerless Christ is now our goal," "Our prize for all eternity!" } }
+    }
+  }
+}

@@ -84,3 +84,10 @@ task runExtractNS613To614(type: JavaExec) {
     mainClass = 'com.lemuelinchrist.hymns.ExtractNS613To614'
     classpath = sourceSets.main.runtimeClasspath
 }
+
+// Group C cleanup (v5.5): re-fetch NS hymns that were saved from hymnal.net's fake pages. Runs on top of the
+// current DB state (no importSql); delete the old rows first.
+task runExtractNSFakePageReplacements(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.ExtractNSFakePageReplacements'
+    classpath = sourceSets.main.runtimeClasspath
+}
