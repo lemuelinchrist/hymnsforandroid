@@ -22,6 +22,7 @@ import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.content.sheetmusic.SheetMusicButton;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
+import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
@@ -101,11 +102,19 @@ public class ContentArea extends Fragment {
 
         //Sometimes hymnId can be null when app wakes up from a sleep several hours long. need to retrieve it from history
         if(hymnId==null) {
-            hymnId = historyLogBook.getOrderedRecordList()[0].getHymnId();
+            HymnRecord[] records = historyLogBook.getOrderedRecordList();
+            hymnId = records.length>0 ? records[0].getHymnId() : HymnGroup.DEFAULT_HYMN_NUMBER;
         }
 
         hymnsDao.open();
         hymn = hymnsDao.get(hymnId);
+        if (hymn == null) {
+            // the hymn was removed from the database: forget it and show the default hymn
+            Log.w(this.getClass().getSimpleName(), "hymn " + hymnId + " not found. showing the default hymn");
+            LogBook.removeFromHistoryAndFavorites(context, hymnId);
+            hymnId = HymnGroup.DEFAULT_HYMN_NUMBER;
+            hymn = hymnsDao.get(hymnId);
+        }
         hymnsDao.close();
 
         LyricsArea lyricsArea = new LyricsArea(hymn,this,scrollView);

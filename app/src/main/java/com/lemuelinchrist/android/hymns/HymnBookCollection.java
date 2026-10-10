@@ -135,6 +135,13 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         }
 
+        // the hymn was removed from the database (e.g. an old history or favourites entry):
+        // forget it and go to the first hymn of its group
+        if (currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber) < 0) {
+            Log.w(getClass().getName(), "hymn " + hymnId + " not found. going to the first hymn of its group");
+            LogBook.removeFromHistoryAndFavorites(context, hymnId);
+        }
+
 
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
@@ -142,7 +149,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
                 Log.i(getClass().getName(), "Hymn group switch should have been completed by now. \n" +
                         "position of hymn no: " + currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber) +
                         "\n attempting to switch to hymn number: " + selectedHymnNumber);
-                lyricPager.setCurrentItem(currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber));
+                lyricPager.setCurrentItem(Math.max(0, currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber)));
                 try {
                     context.onLyricVisible(getCurrentHymnId());
                 } catch (Exception e) {

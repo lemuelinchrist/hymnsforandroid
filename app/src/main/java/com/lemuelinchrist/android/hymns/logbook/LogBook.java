@@ -2,6 +2,8 @@ package com.lemuelinchrist.android.hymns.logbook;
 
 import android.content.Context;
 import android.util.Log;
+import com.lemuelinchrist.android.hymns.content.ContentArea;
+import com.lemuelinchrist.android.hymns.content.FaveButton;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
 import java.io.FileNotFoundException;
@@ -25,8 +27,12 @@ public class LogBook {
     public LogBook(Context context, String filename) {
         this.context = context;
         this.filename = filename;
+        load();
+    }
 
-        // get logbook from saved file
+    // get logbook from saved file. Called again before every change, since other LogBook instances
+    // of the same file (e.g. on other hymn pages) may have saved since this one was loaded.
+    private void load() {
         try {
             logBook = (Set<HymnRecord>)InternalStorage.readObject(this.context, filename);
         } catch (FileNotFoundException e) {
@@ -42,6 +48,7 @@ public class LogBook {
     }
 
     public void log(Hymn hymn) {
+        load();
 
         // Remove existing record in the log if any (exiting record means record with the same hymnId)
         HymnRecord record = remove(hymn);
@@ -84,6 +91,7 @@ public class LogBook {
     }
 
     public void removeAndSave(Hymn hymn) {
+        load();
         HymnRecord record = remove(hymn);
         // persist logBook
         try {
@@ -92,6 +100,23 @@ public class LogBook {
             e.printStackTrace();
         }
         Log.d(this.getClass().getName(),"hymn removed: " +hymn.getHymnId());
+    }
+
+    public void removeAndSave(String hymnId) {
+        load();
+        logBook.remove(new HymnRecord(hymnId,null,null,null));
+        try {
+            InternalStorage.writeObject(context,filename,logBook);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d(this.getClass().getName(),"hymn removed: " +hymnId);
+    }
+
+    // for a hymn that no longer exists in the database
+    public static void removeFromHistoryAndFavorites(Context context, String hymnId) {
+        new LogBook(context, ContentArea.HISTORY_LOGBOOK_FILE).removeAndSave(hymnId);
+        new LogBook(context, FaveButton.FAVE_LOG_BOOK_FILE).removeAndSave(hymnId);
     }
 
     private HymnRecord remove(Hymn hymn) {
