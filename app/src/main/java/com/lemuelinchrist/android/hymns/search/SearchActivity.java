@@ -90,8 +90,8 @@ public class SearchActivity extends AppCompatActivity  {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         // Set Icons
-        for(TabFragment tab:TabFragment.COLLECTION.values()) {
-            tabLayout.getTabAt(tab.getSearchTabIndex()).setIcon(tab.getIcon());
+        for(int position = 0; position < mSearchTabsPagerAdapter.getCount(); position++) {
+            tabLayout.getTabAt(position).setIcon(mSearchTabsPagerAdapter.getTab(position).getIcon());
 
         }
 
@@ -103,7 +103,10 @@ public class SearchActivity extends AppCompatActivity  {
                 Log.d(this.getClass().getName(), "Page position changed. new position is: " + position);
 
                 // clear focus when history tab is selected because history has no search
-                TabFragment currentTabFragment = TabFragment.COLLECTION.get(position);
+                // the options menu (with the search bar) may not have been created yet
+                if (searchBar == null) return;
+
+                TabFragment currentTabFragment = mSearchTabsPagerAdapter.getTab(position);
                 if ((currentTabFragment instanceof HistoryTabFragment)) {
                     Log.d(this.getClass().getName(), "position is HistoryTabFragment. clear focus of search bar");
                     // it's the only way to defocus the search bar
@@ -156,7 +159,8 @@ public class SearchActivity extends AppCompatActivity  {
         /** Get the edit text from the action view */
         searchBar = (SearchView) MenuItemCompat.getActionView(item);
         searchBar.setQueryHint(ENTER_LYRIC);
-        searchBar.setInputType(InputType.TYPE_CLASS_PHONE);
+        // the restored tab may not be Hymn Numbers, so ask it for its keyboard
+        searchBar.setInputType(getCurrentTab().getInputType());
         searchBar.onActionViewExpanded();
 
         /** Setting an action listener */
@@ -188,10 +192,10 @@ public class SearchActivity extends AppCompatActivity  {
         searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus && !TabFragment.COLLECTION.get(mViewPager.getCurrentItem()).canBeSearched()) {
+                if (hasFocus && !getCurrentTab().canBeSearched()) {
                     // switch to FirstLine Tab
                     try {
-                        mViewPager.setCurrentItem(TabFragment.getInstance(FirstLineTabFragment.class).getSearchTabIndex());
+                        mViewPager.setCurrentItem(mSearchTabsPagerAdapter.getPositionOf(FirstLineTabFragment.class));
                     }catch(Exception e) {
                         Log.d(this.getClass().getName(),"Exception caught!");
                     }
@@ -242,16 +246,21 @@ public class SearchActivity extends AppCompatActivity  {
 
     }
 
+    private TabFragment getCurrentTab() {
+        return mSearchTabsPagerAdapter.getTab(mViewPager.getCurrentItem());
+    }
+
     private void filterListAndSaveQuery(String query) {
-        TabFragment currentTabFragment = TabFragment.COLLECTION.get(mViewPager.getCurrentItem());
+        TabFragment currentTabFragment = getCurrentTab();
         currentTabFragment.setSavedQuery(query);
-        currentTabFragment.setSearchFilter(query);
+        // the list only exists once the tab's view has been created
+        if (currentTabFragment.getView() != null) currentTabFragment.setSearchFilter(query);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        TabFragment.COLLECTION.get(mViewPager.getCurrentItem()).cleanUp();
+        getCurrentTab().cleanUp();
     }
 
 
@@ -261,39 +270,54 @@ public class SearchActivity extends AppCompatActivity  {
      * sections of the app.
      */
     public static class SearchTabsPagerAdapter extends FragmentPagerAdapter {
-
+        // indexed by position (getSearchTabIndex)
+        private final TabFragment[] tabs = new TabFragment[8];
 
         public SearchTabsPagerAdapter(FragmentManager fm) {
             super(fm);
 
-            // Instantiate all tabs. note that there's no need to keep the references to these instances because
-            // TabFragment class will automatically store them in its own map (COLLECTIONS variable)
-            new HymnNumberTabFragment();
-            new FirstLineTabFragment();
-            new FavoritesTabFragment();
-            new CategoryTabFragment();
-            new AuthorTabFragment();
-            new LyricsTabFragment();
-            new HistoryTabFragment();
-            new MusicKeyTabFragment();
-
+            for (TabFragment tab : new TabFragment[]{new HymnNumberTabFragment(), new FirstLineTabFragment(),
+                    new FavoritesTabFragment(), new CategoryTabFragment(), new AuthorTabFragment(),
+                    new LyricsTabFragment(), new HistoryTabFragment(), new MusicKeyTabFragment()}) {
+                tabs[tab.getSearchTabIndex()] = tab;
+            }
         }
 
+        // When Android recreates the activity (dark mode switch, font size change, app restored after being
+        // killed...), it restores the tabs that were shown before and doesn't call getItem() for them. Keep the
+        // tab actually shown, otherwise searching would go to a tab that has no view.
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            TabFragment tab = (TabFragment) super.instantiateItem(container, position);
+            tabs[position] = tab;
+            return tab;
+        }
+
+        public TabFragment getTab(int position) {
+            return tabs[position];
+        }
+
+        public int getPositionOf(Class<? extends TabFragment> tabClass) {
+            for (int position = 0; position < tabs.length; position++) {
+                if (tabClass.isInstance(tabs[position])) return position;
+            }
+            return 0;
+        }
 
         @Override
         public Fragment getItem(int position) {
-            return TabFragment.COLLECTION.get(position);
+            return tabs[position];
         }
 
         @Override
         public int getCount() {
 
-            return TabFragment.COLLECTION.size();
+            return tabs.length;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return TabFragment.COLLECTION.get(position).getTabName();
+            return tabs[position].getTabName();
         }
 
 
