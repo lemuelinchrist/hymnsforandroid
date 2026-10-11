@@ -1,0 +1,223 @@
+# Hymns for Web: Spec & Plan
+
+A small side project: a browser app that reads our `hymns.sqlite` and shows hymns, with the LilyPond-derived
+sheet viewer (piano/guitar, transpose, show/hide staff). It is not part of v5.5 and does not change the Android app.
+
+- Started: 2026-10-11
+- Status: **built (M1–M4)**, branch `hymnsforweb`. How to run it: [README.md](README.md). Decisions: §7.
+- Folder: `svg-to-lilypond/hymnsforweb/`
+
+---
+
+## 1. Goals
+
+1. Look up any hymn in any hymnal in the database (22 groups, ~15,000 hymns) by number, first line or words.
+2. Read the lyrics comfortably on a phone, tablet or desktop.
+3. Show the sheet music from `sheetMei/*.mei` (the output of the SVG → LilyPond → MEI pipeline) with:
+   - **Piano / Guitar** toggle
+   - **Transpose** up/down, showing the new key
+   - **Show / hide staff** (hidden = chords over lyrics, the guitarist's view)
+4. Move between translations of the same hymn in one tap (the `related` / `parent_hymn` links).
+5. Run with no server code: static files only, served by any web server.
+
+Non-goals (for now): editing hymns, accounts or sync, copying the Android UI.
+
+---
+
+## 2. What we reuse
+
+| Piece | Where it is | How the web app uses it |
+|---|---|---|
+| Hymn database | `app/src/main/assets/hymns.sqlite` (18 MB; 6.7 MB gzipped) | Loaded as-is in the browser with **sql.js** (SQLite compiled to WebAssembly). Same tables, same SQL. |
+| Sheet files | `app/src/main/assets/sheetMei/*.mei` (3,342 files, 44 MB, ~13 KB each) | Fetched one at a time when a sheet is opened. |
+| Renderer | `app/src/main/assets/viewer/verovio-toolkit-wasm.js` (7.3 MB, LGPL, see `VEROVIO-NOTICE.txt`) | Same Verovio build the app uses. Loaded only when the first sheet is opened. |
+| Sheet logic | `app/src/main/assets/viewer/viewer.js` (444 lines) | Ported into a module: MEI loading, transposition through Verovio, the guitar version derived from the piano MEI (capo from the key, chords moved down, slash basses dropped, repeated chords removed; DESIGN.md §10, §19), staff hiding. The rules stay the same so web and app sheets match. |
+| Data rules | `HymnsDao.java`, `SheetMusicButton.java`, `HymnGroup.java` | Re-implemented in JS (§5). |
+
+The web app keeps **no copy** of the database or the MEI files in git. A build script copies them from the app's
+assets into a git-ignored `dist/` folder, so the web app always shows the same data as the latest app build.
+
+---
+
+## 3. UI design
+
+The Android app is built around a drawer, a hymnal switcher and a separate search screen. On the web the most
+natural entry point is **one search box that understands everything**, and wide screens can show lyrics and
+sheet side by side.
+
+### 3.1 Screens
+
+**Home / search** (`#/`)
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  Hymns                                         ☾  A A   │
+│                                                          │
+│   ┌────────────────────────────────────────────────┐     │
+│   │ 🔍  Number, first line or any words…            │     │
+│   └────────────────────────────────────────────────┘     │
+│   [English ▾]  E · NS · BF · CH · 中文 · CS · …           │
+│                                                          │
+│   Recent      E8 Praise God, from whom all blessings…    │
+│               NS151 Christ is the mystery of God…        │
+│   Favorites   ★ E1225  ★ C206                            │
+│   Browse      by number · by category                     │
+└──────────────────────────────────────────────────────────┘
+```
+
+- The query is read as:
+  - `8` → hymn 8 in the current hymnal (opens straight away on Enter).
+  - `E8`, `ns151`, `C 206` → that hymn in that hymnal.
+  - Anything else → a search of first lines, chorus lines and stanza text. Results update as you type. Each
+    result shows the hymnal chip in the group colour, the number, the first line and the matching snippet.
+- The hymnal picker remembers the last choice. Group names and colours come from `HymnGroup.java`.
+- **Browse**: a number grid (1…max, with gaps greyed out) and a category tree (`main_category` →
+  `sub_category`) for the selected hymnal.
+
+**Hymn** (`#/h/E8`, wide screen)
+
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ‹ 7   E8 · English                                           ☆   🔍   8 ›    │
+│ Blessing of the Trinity — His Praise                                          │
+│ In other languages:  中文 C5 · 简 Z5 · Español S5 · Tagalog T8 · 한국어 K5 …   │
+├───────────────────────────────────┬──────────────────────────────────────────┤
+│  1  Praise God, from whom all     │ [Piano|Guitar]  − G Major +  [Staff ◐]   │
+│     blessings flow;               │                                          │
+│     Praise Him, all creatures…    │      ♩ rendered sheet (Verovio SVG)       │
+│                                   │                                          │
+│  2  Praise God the Father who's…  │                                          │
+│                                   │                                          │
+│  Thomas Ken · Genevan Psalter     │                                          │
+│  8.8.8.8. · G Major · 4/4         │                                          │
+└───────────────────────────────────┴──────────────────────────────────────────┘
+```
+
+- **Phone**: one column with a `Lyrics | Sheet` switch under the header. The sheet toolbar sticks to the
+  top while scrolling.
+- Lyrics: large serif text, stanza numbers in the margin, chorus indented and in italics. A font-size control
+  in the header.
+- "In other languages" lists every related hymn by language name, so a translation is one tap away.
+  Switching keeps the current tab (lyrics or sheet).
+- Footer: author, composer, meter, key, time, plus a link to the hymn on hymnal.net when there is one.
+- If there is no sheet (no MEI for the hymn or its parent), the Sheet tab is hidden and the footer says
+  there is no sheet music.
+
+**Sheet only** (`#/sheet/E8`): the sheet full-width, for a music stand or a projector. Toolbar settings are in
+the URL (`?v=guitar&t=2&staff=0`), so a link opens the same view.
+
+### 3.2 Sheet toolbar
+
+| Control | Behaviour |
+|---|---|
+| Piano / Guitar | Guitar derives the capo from the key (capo shown above the music), moves chords down by the capo and drops slash basses. This is the same rule as the app. |
+| − Key + | Transposes by a semitone, from −6 to +6. Verovio moves notes, key signature and chord symbols, and the label shows the new key. |
+| Hide / Show staff | Hides the staff and shows chords over the lyrics, reflowed to the width. |
+| Zoom − / + | The sheet's size (Verovio scale 20–90), remembered. |
+| Reset | Appears after a change and returns to the original key and size. Clicking the key label also returns to the original key. |
+| ⤢ | The sheet-only view (`#/sheet/E8`). |
+
+Piano/guitar, the staff and the zoom are remembered between hymns. Transposition is per hymn and is kept only
+in the URL. (The app opens guitar sheets with the staff hidden. Here the last choice wins, since the web app
+has no separate default-sheet setting.)
+
+### 3.3 Other things
+
+- **Keyboard**: `/` focuses search, `←` / `→` go to the previous or next hymn, `L` / `S` switch lyrics and
+  sheet, `G` / `P` choose guitar or piano, `+` / `−` transpose, `H` hides the staff.
+- **Dark mode**: follows the system, with a manual toggle. The sheet SVG is recoloured as the app does
+  (`dark=1`).
+- **Print**: a print stylesheet prints lyrics only, or the sheet only, without toolbars.
+- **Recent & favorites**: kept in `localStorage`, on this browser only.
+
+---
+
+## 4. Architecture
+
+```
+svg-to-lilypond/hymnsforweb/
+  SPEC.md, README.md
+  build.py           dist/ from the app's assets: the DB (gzipped, with a search table), the MEI files, Verovio
+  serve.py           the web server (Python standard library): sends the .gz files as they are, ETags
+  src/
+    index.html       the single page
+    app.css
+    app.js           routing (hash URLs), screens, keyboard, localStorage
+    db.js            sql.js wrapper: open the DB, get a hymn (with the parent merge), search, browse
+    groups.js        hymnal names, colours and order (from HymnGroup.java)
+    sheet.js         viewer.js ported into a class: new SheetView(box).show(id, {guitar, shift, staff, scale})
+  vendor/            sql.js 1.13.0
+  tests/e2e.cjs      Playwright tests
+  dist/              (git-ignored) what gets served
+```
+
+- **No framework and no bundler.** Plain ES modules, like the app's `viewer.js`.
+- **No service worker.** On the home network the page is served over plain http from a LAN address, which
+  is not a "secure context", so service workers and the Cache API are not available. Instead:
+  - The database is stored in **IndexedDB** under its version (`data/version.json`), so it downloads once per
+    database change. Measured on this PC: the first load is under a second, and later loads take about
+    250 ms. A simulated mid-range phone (4× slower CPU, 30 Mbit/s Wi-Fi) takes 4.1 s the first time and
+    0.65 s after that. On that phone a search takes about 90 ms, and transposing or switching to guitar
+    about 0.3 s.
+  - Verovio is prefetched in the background 1.5 s after the start, so the first sheet doesn't wait for it.
+  - Everything else is revalidated with ETags (`304 Not Modified`).
+- **Download size:** 10 MB of database (gzipped) once, and the 2.3 MB Verovio renderer when the first
+  sheet is opened. Each sheet is 2–5 KB.
+  - The shipped DB keeps only the index the web app uses (stanzas by hymn).
+  - The `search` table (normalised text, see §5) costs about 3 MB of the download. In exchange, accents
+    and case are ignored in every language.
+- `sheets.json`: the IDs that have an `.mei`, so the app knows which hymns have a sheet without fetching.
+- The hymn page loads the sheet only when it is shown: on a phone, only after "Sheet music" is tapped.
+
+## 5. Data rules (ported from the app)
+
+1. **Parent merge** (`HymnsDao.get`): a hymn with `parent_hymn` takes any empty field (author, composer, time,
+   tune, key, categories, meter, verse, sheet link) from its parent. It takes the parent's stanzas when it has
+   none of its own, and adds the parent's `related` to its own.
+2. **Sheet lookup** (`SheetMusicButton.getRootMusicSheet`): use `<id>.mei` if it exists, otherwise the
+   parent's `.mei`. So `SW10` shows `E1206`'s sheet, and `C8` shows `E11`'s. The header says
+   "Sheet from E1206" when the sheet belongs to the parent.
+3. **Related**: `related` is a comma-separated list of IDs (with a trailing comma). It is merged with the
+   parent's list and the parent itself. Missing IDs are left out, the same way the app now handles missing
+   hymn IDs.
+4. **Stanza text** uses `<br/>` line breaks and `n_order` for order. Stanza `no` is a number or `chorus`.
+5. **Search** runs `LIKE` over a `search` table that `build.py` fills with each hymn's first lines and
+   stanzas in a normal form: no tags, no accents, lower case, punctuation as spaces. `norm()` in `build.py`
+   and `db.js` must stay identical.
+   - "senor" finds "Señor", and Greek final sigma matches.
+   - Chinese and Japanese match by substring, since there are no spaces.
+   - All words must appear. Sorting: the phrase at the start of the first line, the phrase in the first
+     line, the phrase in the chorus line, all words in the first line, all words in the chorus line, then
+     the phrase or whole words in the text, then parts of words.
+   - It takes about 20 ms (no FTS5 in sql.js, and it isn't needed).
+
+---
+
+## 6. Milestones
+
+| # | Deliverable | Status |
+|---|---|---|
+| M1 | `build.py`, DB loading, hymn page with lyrics and parent merge, hymnal picker, prev/next | done |
+| M2 | Search box (number, ID, words) and results; browse by number and category | done |
+| M3 | Sheet module ported from `viewer.js`; toolbar; side by side on wide screens, tabs on phones | done |
+| M4 | Related languages, recent and favorites, dark mode, keyboard shortcuts, print | done |
+| M5 | Offline | replaced by the IndexedDB cache (§4): the hymns open without the network, the server is still needed |
+
+**Tested** with Playwright (`tests/e2e.cjs`), desktop and phone sizes, plus a run of every sheet in four modes
+(piano, transposed, guitar, chord chart).
+
+Later ideas (not planned):
+- Play the tune: Verovio can make MIDI from the MEI, but it would need a small SoundFont player.
+- A projector mode with one stanza per screen.
+
+## 7. Decisions (Lemuel, 2026-10-11)
+
+1. **Local only, private on the home network.** Not published. `serve.py` listens on all addresses by default
+   so phones on the Wi-Fi can use it.
+2. **Speed.** Lemuel wasn't sure about loading the whole SQLite file and didn't want it slow. So the app keeps
+   the real SQLite file, but makes it fast: gzip, no indexes in the download, cached in IndexedDB, and
+   measured (§4).
+3. **Branch** `hymnsforweb`.
+4. **Name:** Hymns for Web.
+5. **Kept apart from the main project:** nothing in the main documentation or the app's code refers to this
+   folder. The `dist/` ignore rule lives in this folder's own `.gitignore`.
