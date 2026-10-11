@@ -1027,7 +1027,8 @@ look right after the three fixes above.
 
 **The bar (2026-10-09).** A tap on the page shows or hides a bar at the top (scrolling and pinching do not). It has
 Piano | Guitar, transpose − / + (up to 6 semitones each way) and Hide staff. Everything resets when the sheet is
-opened again (the user's group only transposes when a song is too high or too low).
+opened again (the user's group only transposes when a song is too high or too low). It opens on the Sheet Music Type
+chosen in Settings; guitar opens with the staff hidden (chords over lyrics, 2026-10-11, Lemuel's request).
 
 - *Back* (← at the left): users kept asking how to leave the sheet (the activity is full screen with no action
   bar). The page navigates to `hymnsviewer://close` and `SheetMusicActivity` finishes on that address

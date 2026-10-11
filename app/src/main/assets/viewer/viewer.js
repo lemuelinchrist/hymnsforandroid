@@ -24,8 +24,9 @@
   var SECTION = /^(chorus|final chorus|refrain|bridge|verse|part \d|ending|副)/i;   // labels that start a new line
   var SENTENCE_END = /[.;!?。；！？][”’"')）]*$/;
 
-  // what the bar controls; reset every time the sheet is opened
-  var state = {guitar: params.get('variant') === 'guitar', shift: 0, staff: true};
+  // what the bar controls; reset every time the sheet is opened. Guitar opens with the staff hidden (chords over lyrics)
+  var guitarDefault = params.get('variant') === 'guitar';
+  var state = {guitar: guitarDefault, shift: 0, staff: !guitarDefault};
 
   var tk = null, scale = 40;
   var baseXml = null, baseFifths = 0, baseTail = null;   // the MEI as loaded (no <back>), its key, its tail chords
