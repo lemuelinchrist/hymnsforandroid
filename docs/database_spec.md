@@ -43,6 +43,7 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | F    | Farsi       | Farsi hymns.                      |
 | SK   | Slovak      | Slovak hymns.                     |
 | GK   | Greek       | Greek hymns.                      |
+| SW   | Kiswahili   | Kiswahili hymns (Kenya); numbers are the printed page numbers, so they have gaps. |
 
 ## Database Lifecycle & Source of Truth
 

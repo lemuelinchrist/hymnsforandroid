@@ -93,6 +93,10 @@ public enum HymnGroup {
     //Light Blue
     GK("Greek", Color.rgb(0x03, 0xA9, 0xF4),
             Color.rgb(0x4F, 0xC3, 0xF7),
+            Gravity.LEFT),
+    //Cyan
+    SW("Kiswahili", Color.rgb(0x00, 0x83, 0x8F),
+            Color.rgb(0x4D, 0xD0, 0xE1),
             Gravity.LEFT);
 
     private final String simpleName;
