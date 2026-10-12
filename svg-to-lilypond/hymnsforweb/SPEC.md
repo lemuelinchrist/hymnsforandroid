@@ -20,7 +20,7 @@ sheet viewer (piano/guitar, transpose, show/hide staff). It is not part of v5.5 
 4. Move between translations of the same hymn in one tap (the `related` / `parent_hymn` links).
 5. Run with no server code: static files only, served by any web server.
 
-Non-goals (for now): editing hymns, accounts or sync, copying the Android UI.
+Non-goals (for now): editing the melody or lyrics, accounts, copying the Android UI. (Chord editing was added later: §8.)
 
 ---
 
@@ -221,3 +221,23 @@ Later ideas (not planned):
 4. **Name:** Hymns for Web.
 5. **Kept apart from the main project:** nothing in the main documentation or the app's code refers to this
    folder. The `dist/` ignore rule lives in this folder's own `.gitignore`.
+
+## 8. Chord editing (Lemuel, 2026-10-12)
+
+Use case: a tablet on the piano. The melody and words stay as they are; the chords get passing chords and
+embellishments, saved on the server so every device sees them.
+
+- **Model.** Per sheet, a list of chords for each edited bar: `{"bars": {"<bar>": {"was": [[beat, chord]], "chords": [[beat, chord]]}}}`.
+  A bar is the nth `<measure>` of the sheet's MEI; a beat is the MEI `tstamp` (1 = first beat; half beats allowed).
+  The list *replaces* the bar's chords (so moving and deleting are simple). `was` is the bar's original chords,
+  used to warn when the sheet changes under an edit. Stored in the original key.
+- **Where applied.** `SheetView.prepare()` replaces the harms in the parsed MEI before anything else, so transposing
+  (Verovio), the guitar derivation and the chords-over-lyrics view work unchanged. Changed chords carry
+  `type="edit"` (red in the SVG). Bars and chords get `xml:id`s in edit mode so a tap can be traced to a bar.
+- **Editing only on the piano sheet with the staff shown**; guitar and chart views show the edits but leave edit mode.
+- **Server.** `serve.py`: `GET /api/edits[/<sheet>]`, `PUT /api/edits/<sheet>` with the `rev` it was based on (409 when
+  it moved on), atomic write, 30 versions of history, `X-Hymns: 1` required on writes (blocks cross-site writes).
+  Data in `~/hymnsforweb-data/` (outside the repo and the build).
+- **Hymns sharing a sheet** (SW10 -> E1206) share its edits: they belong to the sheet.
+- **Deployment.** `deploy.sh` + user unit `hymnsforweb.service`, port 8765, on the `media` host.
+- **Later (when going multi-user):** a PIN or accounts; per-user edit sets; export the edits back into the `.ly` sources.

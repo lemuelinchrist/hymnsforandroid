@@ -8,6 +8,7 @@ const path = require('path');
 
 function loadPlaywright() {
   try { return require('playwright'); } catch (e) { /* not installed here */ }
+  if (process.env.PW) return require(process.env.PW);
   return require(path.join(execSync('npm root -g').toString().trim(), 'playwright'));
 }
 const {chromium} = loadPlaywright();
@@ -69,9 +70,9 @@ async function search(page, text) {
 }
 
 (async () => {
-  const server = spawn('python3', [path.join(__dirname, '..', 'serve.py'), '--port', String(PORT), '--bind', '127.0.0.1'],
+  const server = spawn('python3', [path.join(__dirname, '..', 'serve.py'), '--port', String(PORT), '--bind', '127.0.0.1', '--data', require('os').tmpdir() + '/hymnsforweb-e2e-' + process.pid],
     {stdio: 'ignore'});
-  const browser = await chromium.launch();
+  const browser = await chromium.launch(process.env.CHROME ? {executablePath: process.env.CHROME} : {});
   try {
     await waitForServer();
     const {ctx, page} = await newPage(browser);

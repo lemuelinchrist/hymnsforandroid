@@ -90,6 +90,12 @@ function keyFifths(doc) {
   return 0;
 }
 
+// "B♭m7/E" -> {root: 'B', acc: '♭', quality: 'm7', bass: 'E', bassAcc: ''}; null when it is not a chord
+export function splitChord(text) {
+  const m = CHORD.exec(text || '');
+  return m ? {root: m[1], acc: m[2] || '', quality: m[3], bass: m[4] || '', bassAcc: m[5] || ''} : null;
+}
+
 function fifthsPc(f) { return ((f * 7) % 12 + 12) % 12; }
 function parseXml(xml) { return new DOMParser().parseFromString(xml, 'application/xml'); }
 function mei(el, name) { return el.getElementsByTagNameNS(MEI_NS, name); }
@@ -101,6 +107,76 @@ function el(tag, cls, text) {
   if (cls) e.className = cls;
   if (text != null) e.textContent = text;
   return e;
+}
+
+// ---- bars, chords and beats (for editing) ----
+// A bar is a <measure>, counted from 1 in file order. Beats are the MEI tstamps: 1 is the first beat, in units of the
+// meter's unit (quarters in 4/4, eighths in 6/8).
+
+function scanBars(doc) {
+  const bars = [];
+  let unit = 4, count = 4;
+  const scanBar = (m) => {
+    const bar = {el: m, unit, count, events: [], len: 0};
+    const walk = (e, start, factor) => {
+      let onset = start;
+      kids(e).forEach((c) => {
+        const name = c.localName;
+        if (name === 'note' || name === 'rest' || name === 'space') {
+          const dur = parseInt(c.getAttribute('dur') || '4', 10), dots = parseInt(c.getAttribute('dots') || '0', 10);
+          bar.events.push({id: xmlId(c), onset});
+          onset += unit / dur * (2 - Math.pow(0.5, dots)) * factor;
+        } else if (name === 'tuplet') {
+          onset = walk(c, onset, factor * parseInt(c.getAttribute('numbase') || '2', 10) / parseInt(c.getAttribute('num') || '3', 10));
+        } else if (name === 'beam') {
+          onset = walk(c, onset, factor);
+        } else if (name === 'staff' || name === 'layer') {
+          const end = walk(c, 1, factor);
+          if (name === 'layer') bar.len = Math.max(bar.len, end - 1);
+        }
+      });
+      return onset;
+    };
+    walk(m, 1, 1);
+    bar.chords = kids(m).filter((c) => c.localName === 'harm')
+      .map((c) => [Math.round(parseFloat(c.getAttribute('tstamp') || '1') * 1000) / 1000, c.textContent])
+      .sort((a, b) => a[0] - b[0]);
+    return bar;
+  };
+  (function walk(e) {
+    kids(e).forEach((c) => {
+      const name = c.localName;
+      if (name === 'measure') bars.push(scanBar(c));
+      else if (name === 'scoreDef' || name === 'staffDef') {
+        if (c.getAttribute('meter.unit')) unit = parseInt(c.getAttribute('meter.unit'), 10);
+        if (c.getAttribute('meter.count')) count = parseInt(c.getAttribute('meter.count'), 10) || count;
+        walk(c);
+      } else if (name === 'section' || name === 'staffGrp' || name === 'ending') walk(c);
+    });
+  })(mei(doc, 'score')[0]);
+  return bars;
+}
+
+const sameChords = (a, b) => a.length === b.length && a.every((c, i) => c[0] === b[i][0] && c[1] === b[i][1]);
+
+// replace the chords of the edited bars; the harms that are not in the original get type="edit"
+function applyEdits(doc, bars, edits) {
+  for (const [key, e] of Object.entries(edits)) {
+    const bar = bars[parseInt(key, 10) - 1];
+    if (!bar) continue;
+    const staff = (mei(bar.el, 'staff')[0] || {getAttribute: () => '1'}).getAttribute('n') || '1';
+    kids(bar.el).forEach((c) => { if (c.localName === 'harm') bar.el.removeChild(c); });
+    const had = new Set(bar.chords.map((c) => c[0] + ' ' + c[1]));
+    e.chords.forEach(([t, text]) => {
+      const h = doc.createElementNS(MEI_NS, 'harm');
+      h.setAttribute('staff', staff);
+      h.setAttribute('tstamp', String(t));
+      h.setAttribute('place', 'above');
+      if (!had.has(t + ' ' + text)) h.setAttribute('type', 'edit');
+      h.textContent = text;
+      bar.el.appendChild(h);
+    });
+  }
 }
 
 // ---- the view ----
@@ -126,7 +202,15 @@ export class SheetView {
     this.verses = el('section', 'sheet-verses');
     root.append(this.head, this.music, this.tail, this.verses);
 
-    this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE};
+    this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE, original: false};
+    this.editing = false;
+    this.selected = null;          // the bar being edited
+    this.bars = [];                // the bars of the sheet as the file has them (no edits)
+    this.edits = {rev: 0, bars: {}};
+    this.history = [];
+    this.save = {status: 'idle', timer: null, busy: false, again: false};
+    this.onedited = null;
+    this.onpick = null;
     this.info = {tonic: '', capo: 0};
     this.onchange = null;
     this.tk = null;
@@ -142,11 +226,13 @@ export class SheetView {
       this.resizeTimer = setTimeout(() => this.render(), 120);
     });
     this.resizeObserver.observe(this.music);
+    this.music.addEventListener('click', (e) => this.click(e));
   }
 
   destroy() {
     this.resizeObserver.disconnect();
     this.token++;
+    this.flush();
   }
 
   status(msg, cls = '') {
@@ -170,13 +256,28 @@ export class SheetView {
       return;
     }
     if (token !== this.token) return;
+    await this.flush();
+    this.editsId = sheetId;
+    this.edits = {rev: 0, bars: {}};
+    this.history = [];
+    this.selected = null;
+    this.save.status = 'idle';
+    try {
+      const r = await fetch('api/edits/' + encodeURIComponent(sheetId), {cache: 'no-store'});
+      if (r.ok) this.edits = await r.json();
+      else if (r.status !== 404) this.save.status = 'offline';
+    } catch (e) { this.save.status = 'offline'; }
+    if (token !== this.token) return;
     this.load(xml);
     this.update();
   }
 
   set(changes) {
     Object.assign(this.state, changes);
-    if (this.baseXml) this.update();
+    if (this.baseXml) {
+      if ('original' in changes) this.prepare();
+      this.update();
+    }
   }
 
   update() {
@@ -187,11 +288,24 @@ export class SheetView {
       this.status('Could not render this sheet: ' + e, 'error');
     }
     if (this.onchange) this.onchange(this.state, this.info);
+    if (this.onedited) this.onedited('view');
   }
 
   // header, verses and tail chords come from the file once; the music is rebuilt for each state
   load(xml) {
-    const doc = parseXml(xml);
+    this.pristine = xml;
+    this.prepare();
+  }
+
+  prepare() {
+    const doc = parseXml(this.pristine);
+    this.bars = scanBars(doc);
+    const showEdits = !this.state.original && Object.keys(this.edits.bars).length > 0;
+    this.stale = Object.entries(this.edits.bars).filter(([k, e]) => {
+      const bar = this.bars[parseInt(k, 10) - 1];
+      return !bar || (e.was && !sameChords(e.was, bar.chords));
+    }).map(([k]) => parseInt(k, 10));
+    if (showEdits) applyEdits(doc, this.bars, this.edits.bars);
     this.title.textContent = '';
     this.subtitle.textContent = '';
     for (const t of mei(doc, 'title')) {
@@ -236,6 +350,7 @@ export class SheetView {
     const doc = parseXml(xml);
     const fifths = state.shift ? keyFifths(doc) : this.baseFifths;
     const tonic = TONIC[fifths + 7];
+    this.steps = LETTERS.indexOf(tonic[0]) - LETTERS.indexOf(TONIC[this.baseFifths + 7][0]);
 
     // tail chords are plain text, so they are moved here: by the same interval as the key
     let tail = this.baseTail;
@@ -263,6 +378,15 @@ export class SheetView {
     this.tail.textContent = tail ? tail.join('   ') : '';
     this.info = {tonic, minor: MINOR[fifths + 7], capo, fifths};
 
+    // ids the clicks can be traced back with: bar-<n> for the bars, chord-<n>-<beat> for the chords
+    if (this.editing) {
+      Array.from(mei(doc, 'measure')).forEach((m, i) => {
+        m.setAttributeNS(XML_NS, 'xml:id', 'bar-' + (i + 1));
+        kids(m).forEach((c) => {
+          if (c.localName === 'harm') c.setAttributeNS(XML_NS, 'xml:id', 'chord-' + (i + 1) + '-' + parseFloat(c.getAttribute('tstamp') || '1'));
+        });
+      });
+    }
     this.meiDoc = doc;
     this.meiText = new XMLSerializer().serializeToString(doc);
   }
@@ -293,7 +417,183 @@ export class SheetView {
     this.tk.loadData(this.meiText);
     let html = '';
     for (let p = 1; p <= this.tk.getPageCount(); p++) html += this.tk.renderToSVG(p);
+    this.music.style.minHeight = this.music.offsetHeight + 'px';   // the page does not jump while it is redrawn
     this.music.innerHTML = html;
+    this.music.style.minHeight = '';
+    this.music.classList.toggle('editing', this.editing);
+    this.mark();
+  }
+
+  // ---- editing the chords ----
+  // The edits are kept per sheet as {rev, bars: {<bar>: {was: [[beat, chord]], chords: [[beat, chord]]}}} in the
+  // original key, and saved on the server (serve.py). A bar's list replaces all the chords of that bar.
+
+  setEditing(on, changes = {}) {
+    if (on === this.editing && !Object.keys(changes).length) return;
+    Object.assign(this.state, changes);
+    this.editing = on;
+    if (!on) this.selected = null;
+    if (this.baseXml) {
+      if ('original' in changes) this.prepare();
+      this.update();
+    }
+    if (this.onedited) this.onedited('mode');
+  }
+
+  hasEdits() { return Object.keys(this.edits.bars).length > 0; }
+
+  // the chords of a bar as they are now, in the key being shown
+  chordsOf(bar) {
+    const e = this.edits.bars[bar];
+    const list = e ? e.chords : (this.bars[bar - 1] ? this.bars[bar - 1].chords : []);
+    return list.map(([t, c]) => [t, this.toShown(c)]);
+  }
+
+  // what a bar looks like, for the editor: its beats and which of them have a note starting
+  barInfo(bar) {
+    const b = this.bars[bar - 1];
+    if (!b) return null;
+    const len = Math.max(b.len, 1);
+    const beats = [];
+    const step = b.unit >= 4 ? 0.5 : 1;
+    for (let t = 1; t < len + 1 - 1e-6; t += step) beats.push(t);
+    b.events.forEach((ev) => { if (ev.onset < len + 1 - 1e-6 && !beats.some((t) => Math.abs(t - ev.onset) < 1e-3)) beats.push(ev.onset); });
+    this.chordsOf(bar).forEach(([t]) => { if (!beats.some((x) => Math.abs(x - t) < 1e-3)) beats.push(t); });
+    beats.sort((a, b2) => a - b2);
+    return {count: this.bars.length, beats: beats.map((t) => Math.round(t * 1000) / 1000),
+      notes: b.events.map((ev) => ev.onset), edited: !!this.edits.bars[bar]};
+  }
+
+  toShown(chord) { return this.state.shift ? moveChord(chord, this.steps, this.state.shift, true) : chord; }
+  toOriginal(chord) { return this.state.shift ? moveChord(chord, -this.steps, -this.state.shift, true) : chord; }
+
+  // replace the chords of a bar; `chords` are in the key being shown
+  setBar(bar, chords) {
+    const b = this.bars[bar - 1];
+    if (!b) return;
+    this.history.push(JSON.stringify(this.edits.bars));
+    const list = chords.filter(([, c]) => c).map(([t, c]) => [Math.round(t * 1000) / 1000, this.toOriginal(c)])
+      .sort((x, y) => x[0] - y[0]);
+    if (sameChords(list, b.chords)) delete this.edits.bars[bar];
+    else this.edits.bars[bar] = {was: b.chords, chords: list};
+    this.changed();
+  }
+
+  undo() {
+    if (!this.history.length) return false;
+    this.edits.bars = JSON.parse(this.history.pop());
+    this.changed();
+    return true;
+  }
+
+  changed() {
+    this.prepare();
+    this.update();
+    this.queueSave();
+    if (this.onedited) this.onedited('edit');
+  }
+
+  select(bar) {
+    this.selected = bar;
+    this.mark();
+    const g = this.music.querySelector('#bar-' + bar);
+    if (g) {
+      const r = g.getBoundingClientRect(), room = this.panelHeight || 0;
+      if (r.top < 60 || r.bottom > window.innerHeight - room) g.scrollIntoView({block: 'center', behavior: 'smooth'});
+    }
+  }
+
+  mark() {
+    this.music.querySelectorAll('.bar-selected').forEach((g) => g.classList.remove('bar-selected'));
+    if (this.editing && this.selected) {
+      const g = this.music.querySelector('#bar-' + this.selected);
+      if (g) g.classList.add('bar-selected');
+    }
+  }
+
+  click(e) {
+    if (!this.editing || !this.onpick) return;
+    const t = e.target.closest ? e.target : e.target.parentNode;
+    const harm = t.closest('g.harm'), note = t.closest('g.note, g.rest');
+    let measure = t.closest('g.measure');
+    if (!measure) {
+      // the empty space inside a bar does not take clicks in SVG: find the bar whose box holds the point
+      measure = Array.from(this.music.querySelectorAll('g.measure')).find((g) => {
+        const r = g.getBoundingClientRect();
+        return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      });
+    }
+    if (!measure) return;
+    const bar = parseInt(measure.id.replace('bar-', ''), 10);
+    let beat = null;
+    if (harm) {
+      const m = /^chord-\d+-(.+)$/.exec(harm.id);
+      if (m) beat = parseFloat(m[1]);
+    } else if (note) {
+      const ev = this.bars[bar - 1] && this.bars[bar - 1].events.find((x) => x.id === note.id);
+      if (ev) beat = ev.onset;
+    }
+    this.onpick({bar, beat});
+  }
+
+  // ---- saving ----
+
+  queueSave() {
+    this.save.status = 'pending';
+    clearTimeout(this.save.timer);
+    this.save.timer = setTimeout(() => this.send(), 600);
+    if (this.onedited) this.onedited('save');
+  }
+
+  flush() {
+    if (this.save.status !== 'pending' && this.save.status !== 'error') return Promise.resolve();
+    clearTimeout(this.save.timer);
+    return this.send();
+  }
+
+  async send() {
+    if (this.save.busy) { this.save.again = true; return; }
+    this.save.busy = true;
+    this.save.status = 'saving';
+    if (this.onedited) this.onedited('save');
+    const id = this.editsId;
+    try {
+      const r = await fetch('api/edits/' + encodeURIComponent(id), {
+        method: 'PUT', keepalive: true,
+        headers: {'Content-Type': 'application/json', 'X-Hymns': '1'},
+        body: JSON.stringify({rev: this.edits.rev, bars: this.edits.bars}),
+      });
+      if (r.ok) {
+        this.edits.rev = (await r.json()).rev;
+        this.save.status = 'saved';
+      } else if (r.status === 409) {
+        this.save.status = 'conflict';
+        this.theirs = (await r.json()).current;
+      } else if (!r.ok) {
+        this.save.status = 'error';
+      }
+    } catch (e) {
+      this.save.status = 'error';
+    }
+    this.save.busy = false;
+    if (this.save.status === 'error') {
+      clearTimeout(this.save.timer);
+      this.save.timer = setTimeout(() => this.send(), 5000);
+    } else if (this.save.again) {
+      this.save.again = false;
+      await this.send();
+    }
+    if (this.onedited) this.onedited('save');
+  }
+
+  // take the server's version after a conflict (another device saved first)
+  useServerVersion() {
+    this.edits = this.theirs || {rev: 0, bars: {}};
+    this.history = [];
+    this.save.status = 'saved';
+    this.prepare();
+    this.update();
+    if (this.onedited) this.onedited('edit');
   }
 
   // ---- staff hidden: chords over the lyrics ----

@@ -1,0 +1,14 @@
+[Unit]
+Description=Hymns for Web (hymns, sheet music and saved chord edits)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/hymnsforweb-app/serve.py --port 8765 --data %h/hymnsforweb-data/edits
+Restart=always
+RestartSec=3
+Nice=5
+
+[Install]
+WantedBy=default.target

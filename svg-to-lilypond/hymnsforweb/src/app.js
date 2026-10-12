@@ -8,6 +8,7 @@
 import * as DB from './db.js';
 import {GROUPS, BY_CODE, splitId} from './groups.js';
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE} from './sheet.js';
+import {createEditor} from './editor.js';
 
 // ---- small helpers ----
 
@@ -636,6 +637,9 @@ function sheetPanel(pane, hymn, {full}) {
   const bStaff = btn('Staff', 'Show or hide the staff (H)', () => set({staff: !state.staff}), 'toggle');
   const bZoomOut = btn(icon('zoomOut'), 'Smaller (Z)', () => set({scale: state.scale - 5}), 'icon');
   const bZoomIn = btn(icon('zoomIn'), 'Bigger (Shift+Z)', () => set({scale: state.scale + 5}), 'icon');
+  const bEdit = btn('Edit chords', 'Edit the chords of the piano sheet (E)', () => setEdit(!view.editing), 'edit');
+  const bOrig = btn('Original chords', 'Show the sheet without your chord edits (O)', () => set({original: !state.original}), 'orig');
+  bOrig.hidden = true;
   const bReset = btn(icon('reset'), 'Original key and size', () => set({shift: 0, scale: DEFAULT_SCALE}), 'icon');
   const other = full
     ? h('a', {class: 'tb icon', href: href('/h/' + hymn.id), title: 'Back to the lyrics (Esc)', 'aria-label': 'Back to the lyrics'}, icon('close'))
@@ -646,6 +650,7 @@ function sheetPanel(pane, hymn, {full}) {
     h('div', {class: 'seg'}, bPiano, bGuitar),
     h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
     bStaff,
+    bEdit, bOrig,
     h('div', {class: 'zoom'}, bZoomOut, bZoomIn),
     bReset,
     h('span', {class: 'grow'}),
@@ -670,7 +675,24 @@ function sheetPanel(pane, hymn, {full}) {
     return out;
   }
 
+  // chord editing: only on the piano sheet with the staff shown and the edits in place
+  let editor = null;
+  function setEdit(on) {
+    if (on) {
+      Object.assign(state, {guitar: false, staff: true, original: false});
+      editor = editor || createEditor(view, {onclose: () => setEdit(false)});
+      view.setEditing(true, {guitar: false, staff: true, original: false});
+      editor.open();
+    } else {
+      if (editor) editor.close();
+      view.setEditing(false);
+    }
+    store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale});
+    updateBar();
+  }
+
   function set(changes) {
+    if (view.editing && (changes.guitar || changes.staff === false || changes.original)) setEdit(false);
     Object.assign(state, changes);
     state.shift = Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, state.shift));
     state.scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, state.scale));
@@ -686,6 +708,10 @@ function sheetPanel(pane, hymn, {full}) {
     bGuitar.setAttribute('aria-pressed', String(state.guitar));
     bStaff.setAttribute('aria-pressed', String(state.staff));
     bStaff.textContent = state.staff ? 'Hide staff' : 'Show staff';
+    bEdit.setAttribute('aria-pressed', String(view.editing));
+    bEdit.textContent = view.editing ? 'Editing chords' : 'Edit chords';
+    bOrig.hidden = !view.hasEdits();
+    bOrig.setAttribute('aria-pressed', String(!!state.original));
     bDown.disabled = state.shift <= -MAX_SHIFT;
     bUp.disabled = state.shift >= MAX_SHIFT;
     bZoomOut.disabled = state.scale <= MIN_SCALE;
@@ -697,6 +723,7 @@ function sheetPanel(pane, hymn, {full}) {
     keyLabel.disabled = !state.shift;
   }
   view.onchange = (st, info) => updateBar(info);
+  view.onedited = (kind) => { updateBar(); if (editor) editor.refresh(); };
   updateBar();
   view.show(hymn.sheetId, state);
 
@@ -704,7 +731,8 @@ function sheetPanel(pane, hymn, {full}) {
   themeListeners.add(onTheme);
   return {
     set, state,
-    destroy() { view.destroy(); themeListeners.delete(onTheme); },
+    setEdit,
+    destroy() { if (editor) editor.destroy(); view.destroy(); themeListeners.delete(onTheme); },
   };
 }
 
@@ -714,6 +742,8 @@ function sheetKeys(getSheet) {
     p: with_((s) => s.set({guitar: false})),
     g: with_((s) => s.set({guitar: true})),
     h: with_((s) => s.set({staff: !s.state.staff})),
+    e: with_((s) => s.setEdit(!document.body.classList.contains('editing-chords'))),
+    o: with_((s) => s.set({original: !s.state.original})),
     '+': with_((s) => s.set({shift: s.state.shift + 1})),
     '=': with_((s) => s.set({shift: s.state.shift + 1})),
     '-': with_((s) => s.set({shift: s.state.shift - 1})),

@@ -439,3 +439,66 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
   .sheet.dark .sheet-music > svg { filter: none; }
   .stanza { break-inside: avoid; }
 }
+
+/* ---- chord editing ---- */
+
+.sheet-bar .tb.edit[aria-pressed="true"], .sheet-bar .tb.orig[aria-pressed="true"] { background: var(--g); border-color: var(--g); color: var(--surface); }
+.sheet-music.editing g.measure { cursor: pointer; }
+.sheet-music.editing g.harm, .sheet-music.editing g.note, .sheet-music.editing g.rest { cursor: pointer; }
+.sheet-music g.harm.edit text, .sheet-music g.harm.edit tspan { fill: #b3261e; }
+.sheet-music g.bar-selected > g.staff > path { stroke: var(--g); stroke-width: 22px; }
+.sheet-music g.bar-selected g.harm text { font-weight: 700; }
+body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px); }
+
+.chord-editor {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; max-width: 920px; margin: 0 auto;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: var(--raised); color: var(--ink);
+  border: 1px solid var(--line-strong); border-bottom: 0; border-radius: 16px 16px 0 0;
+  box-shadow: 0 -6px 24px rgba(40, 30, 10, .18); font-family: var(--ui);
+}
+.chord-editor[hidden] { display: none; }
+.ce-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.ce-top .grow { flex: 1; }
+.ce-title { min-width: 5.5em; text-align: center; font-size: 15px; }
+.ce-status { font-size: 13px; color: var(--muted); }
+.ce-status.saved { color: #2e7d32; }
+.ce-status.error, .ce-status.offline, .ce-status.conflict { color: #b3261e; font-weight: 600; }
+.ce-stale { margin: 0 0 8px; padding: 6px 10px; border-radius: 8px; background: #fff3cd; color: #5b4300; font-size: 13px; }
+.ce-btn {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 42px; padding: 0 12px;
+  border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); color: var(--ink);
+  font: 500 16px var(--ui); cursor: pointer; touch-action: manipulation;
+}
+.ce-btn:disabled { opacity: .35; cursor: default; }
+.ce-btn[aria-pressed="true"] { background: var(--g); border-color: var(--g); color: var(--surface); }
+.ce-btn.primary { background: var(--g); border-color: var(--g); color: var(--surface); font-weight: 600; }
+.ce-btn.icon { font-size: 22px; padding: 0; }
+.ce-btn.link { border: 0; background: none; text-decoration: underline; color: var(--g); min-width: 0; height: 36px; }
+.ce-btn.note { min-width: 42px; padding: 0; font-weight: 600; }
+.ce-beats { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 6px; }
+.ce-beat {
+  flex: 0 0 auto; min-width: 54px; height: 50px; padding: 4px 6px; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 1px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface);
+  color: var(--ink); cursor: pointer; touch-action: manipulation;
+}
+.ce-beat .bt { font-size: 12px; color: var(--muted); }
+.ce-beat .bc { font: 700 16px var(--ui); min-height: 1.2em; }
+.ce-beat.note .bt { color: var(--ink); font-weight: 600; }
+.ce-beat.has { background: var(--g-soft); }
+.ce-beat.on { border: 2px solid var(--g); }
+.ce-build { display: flex; flex-direction: column; gap: 6px; }
+.ce-row { display: flex; align-items: center; gap: 4px; }
+.ce-row.scroll { overflow-x: auto; padding-left: 3.2em; scrollbar-width: thin; }
+.ce-row.scroll .ce-btn { flex: none; }
+.ce-row { flex-wrap: wrap; }
+.ce-row.scroll { flex-wrap: nowrap; }
+.ce-text { flex: 1 1 220px; min-width: 200px; margin-left: 8px; }
+.ce-label { width: 3.2em; flex: none; font-size: 12px; color: var(--muted); }
+.ce-input { flex: 1; min-width: 0; height: 42px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); color: var(--ink); font: 600 18px var(--ui); }
+.chord-editor.no-bar .ce-build, .chord-editor.no-bar .ce-beats { display: none; }
+@media (max-width: 600px) {
+  .ce-btn { min-width: 38px; height: 40px; padding: 0 8px; font-size: 15px; }
+  .ce-btn.note { min-width: 34px; }
+  .ce-label { width: 2.6em; }
+}
+@media print { .chord-editor { display: none !important; } }
