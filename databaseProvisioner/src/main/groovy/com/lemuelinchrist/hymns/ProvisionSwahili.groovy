@@ -35,6 +35,11 @@ class ProvisionSwahili {
     void removeSwahiliHymns() {
         println "Cleaning up existing Swahili hymns..."
         for (int x = 1; x <= 300; x++) {
+            HymnsEntity old = dao.find("SW" + x)
+            if (old != null) {
+                // links added to hymns that are not the parent (e.g. a Tagalog hymn) are not undone by dao.delete
+                (old.related - [old.parentHymn]).findAll { it?.trim() }.each { dao.removeRelatedHymn(it, old.id) }
+            }
             dao.delete("SW" + x)
         }
     }
@@ -81,6 +86,9 @@ class ProvisionSwahili {
 
         println hymn
         dao.save(hymn)
+        // dao.save() links the hymn back from its parent only; a Related: that is not the parent (T10240, ...) needs the
+        // reverse link too, so the language switch works from that hymn as well
+        (hymn.related - [hymn.parentHymn]).findAll { it?.trim() && dao.find(it) != null }.each { dao.addRelatedHymn(it, hymn.id) }
         hymn = null
         stanza = null
     }

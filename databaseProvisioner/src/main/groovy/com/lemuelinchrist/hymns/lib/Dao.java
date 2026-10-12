@@ -109,6 +109,15 @@ public class Dao {
 
     }
 
+    public void removeRelatedHymn(String hymnId, String relatedToRemove) {
+        em.getTransaction().begin();
+        HymnsEntity entity = em.find(HymnsEntity.class, hymnId);
+        if (entity != null) {
+            entity.removeRelated(relatedToRemove);
+        }
+        em.getTransaction().commit();
+    }
+
     public void fixParentHymnOfChildren(String parentHymn) {
         HymnsEntity parentEntity = em.find(HymnsEntity.class, parentHymn);
         Set<String> relatedSet = parentEntity.getRelated();
