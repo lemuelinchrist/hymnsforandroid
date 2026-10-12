@@ -2,7 +2,7 @@ PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(50) NOT NULL, SEQ_COUNT NUMBER(19), PRIMARY KEY (SEQ_NAME));
 INSERT INTO SEQUENCE VALUES('SEQ_GEN',X'3530');
-INSERT INTO SEQUENCE VALUES('stanza',235497);
+INSERT INTO SEQUENCE VALUES('stanza',235504);
 INSERT INTO SEQUENCE VALUES('related',X'36323439');
 CREATE TABLE IF NOT EXISTS "hymns" (
 	 "_id" VARCHAR NOT NULL,
@@ -689,7 +689,7 @@ INSERT INTO hymns VALUES('E662','Margaret E. Barber (1869-1930)','Anon.',NULL,'"
 INSERT INTO hymns VALUES('E663','Henry Alford (1810-1871)','From Franz Joseph Haydn (1732-1809)',NULL,'"Forward!" be our watchword,','E','F Major','Encouragement','6.5.6.5.D. with chorus.','663','For Pressing On','4/4','33221555662443326',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0663_g.svg',NULL,'C483,S534,K483,J483,I483,T663,CB663,Z483,');
 INSERT INTO hymns VALUES('E664','John Nelson Darby (1800-1882)','Geistliche Lieder, German',NULL,'Rise, my soul, thy God directs thee;','E','A Major','Encouragement','8.7.8.7.','664','For Pressing On','3/4','355117665',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0664_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E665','John Morison','Neil Dougall (1776-1862)',NULL,'Come, let us to the Lord our God','E','D Major','Encouragement','8.6.8.6.','665','For Returning to the Lord','4/4','135653321651651232',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0665_g.svg',NULL,'');
-INSERT INTO hymns VALUES('E666','*','Lowell Mason (1792-1872)',NULL,'Watch, for the night is ending!','E','F Major','Encouragement','7.6.7.5.D.','666','For Watching','4/4','5345565111123',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0666_g.svg',NULL,'C486,C485,Z486,S536,K486,T666,I486,CB666,I485,J486,Z485,');
+INSERT INTO hymns VALUES('E666','*','Lowell Mason (1792-1872)',NULL,'Watch, for the night is ending!','E','F Major','Encouragement','7.6.7.5.D.','666','For Watching','4/4','5345565111123',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0666_g.svg',NULL,'C486,Z486,S536,K486,T666,I486,CB666,J486,');
 INSERT INTO hymns VALUES('E667','G. M. Taylor','T. Cairns',NULL,'Seek ye first, not earthly pleasure,','E','C Major','Encouragement','8.8.8.3. with repeat.','667','General','6/4','33334443',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0667_g.svg',NULL,'');
 INSERT INTO hymns VALUES('E668','Philip Paul Bliss (1838-1876)','Philip Paul Bliss (1838-1876)','MORE AND MORE, MORE AND MORE,','Have you felt the Father''s love?','E','D Major','Encouragement','7.6.7.6.D. with chorus.','668','General','6/4','1234565535332',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0668_g.svg',NULL,'Z489,K489,J489,C489,I489,');
 INSERT INTO hymns VALUES('E669','A. Pugh','C. H. Forrest',NULL,'In the heart of Jesus','E','F Major','Encouragement','6.5.6.5.D.','669','General','4/4','33261711765',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0669_g.svg',NULL,'');
@@ -1855,7 +1855,7 @@ INSERT INTO hymns VALUES('C481','','',NULL,'應當一無罣慮，','C','降A大�
 INSERT INTO hymns VALUES('C482','','','天地雖能被焚燒，','神的應許不能廢去，','C','降A大調6/8','鼓勵','8686副','482','相信主',NULL,' 34323215666443',NULL,NULL,NULL,'I482,Z482,');
 INSERT INTO hymns VALUES('C483','','',NULL,'前進！是我口號，','C','G大調4/4','鼓勵','656565雙','483','努力向前',NULL,'33221555662443326','E663',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C484','','',NULL,'當向標竿力前！','C','降B大調6/8','鼓勵','6686','484','努力向前',NULL,' 53721655665653','E662',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('C485','','',NULL,'靠著恩主全能神，','C','降D大調4/4','鼓勵','第一辭76737773','485','努力向前',NULL,' 565565515544655','E666',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('C485','','',NULL,'靠著恩主全能神，','C','降D大調4/4','鼓勵','第一辭76737773','485','努力向前',NULL,' 565565515544655',NULL,NULL,NULL,'Z485,I485,J485,K485,');
 INSERT INTO hymns VALUES('C487','','',NULL,'靈要操練運用，','C','D大調4/4','鼓勵','6565','487','運用靈',NULL,' 11265333445',NULL,NULL,NULL,'I487,Z487,');
 INSERT INTO hymns VALUES('C488','','','仍然當愛，仍然當給，','何必擔心一握不釋？','C','降E大調4/4','鼓勵','8787雙副','488','憑信而給',NULL,' 33323215332254333321235',NULL,NULL,NULL,'I488,Z488,');
 INSERT INTO hymns VALUES('C489','','','多又多，多又多，','你曾覺得父愛心？','C','D大調6/4','鼓勵','7676雙副','489','更多追求',NULL,' 1234565535332','E668',NULL,NULL,NULL);
@@ -4986,7 +4986,7 @@ INSERT INTO hymns VALUES('K481',NULL,NULL,NULL,'주님 가까우니 염려 말�
 INSERT INTO hymns VALUES('K482',NULL,NULL,'천지는 없어져도 산들 다 무너져도','하나님 견고한 말씀 폐해지지 않네','K',NULL,'하나님 견고한 말씀',NULL,'482',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('K483',NULL,NULL,NULL,'전진하라 계속 곧게 달리라','K',NULL,'전진하라 계속',NULL,'483',NULL,NULL,NULL,'E663',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('K484',NULL,NULL,NULL,'푯대 향해- 가라 외로울지-라도','K',NULL,'푯대 향해 가라',NULL,'484',NULL,NULL,NULL,'E662',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('K485',NULL,NULL,NULL,'은혜-의 주- 의지해 앞으로 전진해','K',NULL,'은혜의 주 의지해',NULL,'485',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('K485',NULL,NULL,NULL,'은혜-의 주- 의지해 앞으로 전진해','K',NULL,'은혜의 주 의지해',NULL,'485',NULL,NULL,NULL,NULL,NULL,NULL,'C485,Z485,I485,J485,');
 INSERT INTO hymns VALUES('K486',NULL,NULL,NULL,'어둔 밤 깊었으니 늘 깨어 있으라 세상을 사랑말고','K',NULL,'어둔 밤 깊었으니',NULL,'486',NULL,NULL,NULL,'E666',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('K487',NULL,NULL,NULL,'영을 훈련하고 혼을 거절해','K',NULL,'영을 훈련하고',NULL,'487',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('K488',NULL,NULL,'사랑으로 드릴 때에 더욱 풍성해지니','성도들 왜 염려하나 주께 모두 맡기라','K',NULL,'성도들 왜 염려하나',NULL,'488',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -7323,7 +7323,7 @@ INSERT INTO hymns VALUES('J481',NULL,NULL,NULL,'主ちかければ, 心ぱいな
 INSERT INTO hymns VALUES('J482',NULL,NULL,'てん地,焼け失せ, やまくずれても,','やくそくすたれず, 一句ごと堅固;','J',NULL,'励まし',NULL,'482','主を信じる',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('J483',NULL,NULL,NULL,'すすめ,すすめ！ 主とともに；','J',NULL,'励まし',NULL,'483','真剣に前進する',NULL,NULL,'E663',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('J484',NULL,NULL,NULL,'もくひょう目ざせ, ただ前しんせよ！','J',NULL,'励まし',NULL,'484','真剣に前進する',NULL,NULL,'E662',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('J485',NULL,NULL,NULL,'全のうの主にたより, 　すすめ！すすめ！','J',NULL,'励まし',NULL,'485','真剣に前進する',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('J485',NULL,NULL,NULL,'全のうの主にたより, 　すすめ！すすめ！','J',NULL,'励まし',NULL,'485','真剣に前進する',NULL,NULL,NULL,NULL,NULL,'C485,Z485,I485,K485,');
 INSERT INTO hymns VALUES('J486',NULL,NULL,NULL,'この世の未練を いま,断ち切り,','J',NULL,'励まし',NULL,'486','目を覚ます',NULL,NULL,'E666',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('J487',NULL,NULL,NULL,'霊をかつ用し, 自己いなむ;','J',NULL,'励まし',NULL,'487','霊を活用する',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('J488',NULL,NULL,'あいして,あたえよ, ひとにぎりある;','なぜ心ぱいするか？ まずはあたえよ;','J',NULL,'励まし',NULL,'488','信仰によって与える',NULL,NULL,NULL,NULL,NULL,NULL);
@@ -8253,7 +8253,7 @@ INSERT INTO hymns VALUES('Z481','','','','应当一无罣虑，','Z','降A大调
 INSERT INTO hymns VALUES('Z482','','','天地虽能被焚烧，','神的应许不能废去，','Z','降A大调6/8','鼓励','8686副','482','相信主','','34323215666443','C482','','',NULL);
 INSERT INTO hymns VALUES('Z483','','','','前进！是我口号，','Z','G大调4/4','鼓励','656565双','483','努力向前','','33221555662443326','E663','','',NULL);
 INSERT INTO hymns VALUES('Z484','','','','当向标竿力前！','Z','降B大调6/8','鼓励','6686','484','努力向前','','53721655665653','E662','','',NULL);
-INSERT INTO hymns VALUES('Z485','','','','靠著恩主全能神，','Z','降D大调4/4','鼓励','第一辞76737773','485','努力向前','','565565515544655','E666','','',NULL);
+INSERT INTO hymns VALUES('Z485','','','','靠著恩主全能神，','Z','降D大调4/4','鼓励','第一辞76737773','485','努力向前','','565565515544655',NULL,'','','C485,I485,J485,K485,');
 INSERT INTO hymns VALUES('Z487','','','','灵要操练运用，','Z','D大调4/4','鼓励','6565','487','运用灵','','11265333445','C487','','',NULL);
 INSERT INTO hymns VALUES('Z488','','','仍然当爱，仍然当给，','何必担心一握不释？','Z','降E大调4/4','鼓励','8787双副','488','凭信而给','','33323215332254333321235','C488','','',NULL);
 INSERT INTO hymns VALUES('Z489','','','多又多，多又多，','你曾觉得父爱心？','Z','D大调6/4','鼓励','7676双副','489','更多追求','','1234565535332','E668','','',NULL);
@@ -9555,7 +9555,7 @@ INSERT INTO hymns VALUES('I481',NULL,NULL,NULL,'Tuhan sudah dekat,','I',NULL,'Do
 INSERT INTO hymns VALUES('I482',NULL,NULL,'Langit, bumi terbakar;','Langit, bumi terbakar;','I',NULL,'Dorongan',NULL,'482','Percaya Kepada Tuhan',NULL,NULL,'C482',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('I483',NULL,NULL,NULL,'Maju! Semboyanku,','I',NULL,'Dorongan',NULL,'483','Giat Maju',NULL,NULL,'E663',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('I484',NULL,NULL,NULL,'Maju ke sasaran!','I',NULL,'Dorongan',NULL,'484','Giat Maju',NULL,NULL,'E662',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('I485',NULL,NULL,NULL,'Sandar kurnia Sang Kuasa, majulah!','I',NULL,'Dorongan',NULL,'485','Giat Maju',NULL,NULL,'E666',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('I485',NULL,NULL,NULL,'Sandar kurnia Sang Kuasa, majulah!','I',NULL,'Dorongan',NULL,'485','Giat Maju',NULL,NULL,NULL,NULL,NULL,'C485,Z485,J485,K485,');
 INSERT INTO hymns VALUES('I486',NULL,NULL,NULL,'Siaga, malam t''lah larut! Jangan cinta dunia;','I',NULL,'Dorongan',NULL,'486','Berjaga-jaga',NULL,NULL,'E666',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('I487',NULL,NULL,NULL,'Latih gunakan roh,','I',NULL,'Dorongan',NULL,'487','Menggunakan Roh',NULL,NULL,'C487',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('I488',NULL,NULL,'Tetap kasih, tetap beri,','Tetap kasih, tetap beri,','I',NULL,'Dorongan',NULL,'488','Memberi Berdasarkan Iman',NULL,NULL,'C488',NULL,NULL,NULL);
@@ -56143,9 +56143,6 @@ INSERT INTO stanza VALUES('Z485','1','靠着恩主全能神，<br/>往前走！�
 INSERT INTO stanza VALUES('Z485','2','虽然后面仇敌追，<br/>往前走！往前走！<br/>虽然前面是深水，<br/>往前走！<br/>深水为你必分开，<br/>仇敌全都必淹埋，<br/>救恩使你必奏凯，<br/>往前走！<br/>','',56236,9771);
 INSERT INTO stanza VALUES('Z485','3','白昼云柱来引导，<br/>往前走！往前走！<br/>黑夜火柱来光照，<br/>往前走！<br/>饥饿，吗哪必降来，<br/>干渴，磐石必裂开，<br/>遇敌，尼西必击败，<br/>往前走！<br/>','',56237,9772);
 INSERT INTO stanza VALUES('Z485','4','旷野道路虽艰险，<br/>往前走！往前走！<br/>跟随约柜直往前，<br/>往前走！<br/>往前！直到过约但，<br/>往前！直到进迦南！<br/>往前！n直到在锡安，<br/>往前走！<br/>','',56238,9773);
-INSERT INTO stanza VALUES('Z485','1','儆醒阿，黑夜已深！<br/>儆醒，莫恋红尘；<br/>儆醒阿，白昼将近！<br/>儆醒，莫睡沉。<br/>儆醒阿，主就要来！<br/>儆醒，莫松腰带；<br/>儆醒阿，主在等待！<br/>儆醒，莫懈怠。<br/>','',56239,9774);
-INSERT INTO stanza VALUES('Z485','2','儆醒阿，起来事奉！<br/>时间已到末点；<br/>儆醒阿，前来作工！<br/>年日已将残。<br/>儆醒阿，穿上军装！<br/>儆醒，灵要刚强；<br/>儆醒阿，将魔抵挡！<br/>儆醒，心要壮。<br/>','',56240,9775);
-INSERT INTO stanza VALUES('Z485','3','儆醒阿，等候救主！<br/>晨星就要出现；<br/>儆醒阿，追求国度！<br/>荣耀在眼前。<br/>儆醒阿，务要儆醒！<br/>儆醒，等待主来！<br/>儆醒阿，儆醒莫停！<br/>儆醒到主来！<br/>','',56241,9776);
 INSERT INTO stanza VALUES('Z487','1','灵要操练运用，<br/>魂却要拒绝；<br/>无论生活行动，<br/>以此为秘诀。<br/>','',56242,9777);
 INSERT INTO stanza VALUES('Z487','2','灵要操练运用，<br/>规条要弃绝；<br/>恩膏涂抹顺从，<br/>时刻无间歇。<br/>','',56243,9778);
 INSERT INTO stanza VALUES('Z487','3','灵要操练运用，<br/>己意要拒绝；<br/>活在生命光中，<br/>让主作一切。<br/>','',56244,9779);
@@ -57417,12 +57414,12 @@ INSERT INTO stanza VALUES('Z716','chorus','欢迎你来，你来，<br/>无论�
 INSERT INTO stanza VALUES('Z716','2','你虽然不羁，<br/>流荡已经远，<br/>沉溺罪中已经深，<br/>祂仍然等候，<br/>忍耐着申劝，<br/>要得你这疲倦人。<br/>','',57510,11045);
 INSERT INTO stanza VALUES('Z716','3','你虽已多次拒祂的恩召，<br/>多次使祂空眷顾，<br/>祂的爱不因你冷落生恼，<br/>今又向你来催促。<br/>','',57511,11046);
 INSERT INTO stanza VALUES('Z716','4','你应当服降，<br/>服降这个爱，<br/>耶稣现在等候你；<br/>祂既仍招呼：<br/>『请你就我来！』<br/>你当回应：『我愿意。』<br/>','',57512,11047);
-INSERT INTO stanza VALUES('Z717','1','被罪压害人人请来，<br/>被罪压害人人要来，<br/>救主在此等待；<br/>祂要救你，安你心怀，<br/>只要你肯信祂。<br/>','',57513,11048);
-INSERT INTO stanza VALUES('Z717','chorus','只要信祂！只要信祂！<br/>现在要信祂！<br/>祂要救你！祂要救你！<br/>现在要救你！<br/>','',57514,11049);
-INSERT INTO stanza VALUES('Z717','2','耶稣替你钉死十架，<br/>流血作你赎价；<br/>救赎已成不用代价，<br/>只要你肯信祂。<br/>','',57515,11050);
-INSERT INTO stanza VALUES('Z717','3','耶稣对你满有慈爱，<br/>恩门为你大开；<br/>机会一过未必再来，<br/>请你快来信祂。<br/>','',57516,11051);
-INSERT INTO stanza VALUES('Z717','chorus','快来信祂！快来信祂！<br/>现在快信祂！<br/>祂能救你！祂能救你！<br/>现在能救你！<br/>','',57517,11052);
-INSERT INTO stanza VALUES('Z717','4','不久离世，结局怎样，<br/>得救或是灭亡？<br/>永生何乐！永死难当！<br/>请你快来信祂。<br/>','',57518,11053);
+INSERT INTO stanza VALUES('Z717','1','被罪压害人人请来，<br/>被罪压害人人要来，<br/>救主在此等待；<br/>祂要救你，安你心怀，<br/>只要你肯信祂。<br/>','',57513,8);
+INSERT INTO stanza VALUES('Z717','chorus','只要信祂！只要信祂！<br/>现在要信祂！<br/>祂要救你！祂要救你！<br/>现在要救你！<br/>','',57514,9);
+INSERT INTO stanza VALUES('Z717','2','耶稣替你钉死十架，<br/>流血作你赎价；<br/>救赎已成不用代价，<br/>只要你肯信祂。<br/>','',57515,10);
+INSERT INTO stanza VALUES('Z717','3','耶稣对你满有慈爱，<br/>恩门为你大开；<br/>机会一过未必再来，<br/>请你快来信祂。<br/>','',57516,11);
+INSERT INTO stanza VALUES('Z717','chorus','快来信祂！快来信祂！<br/>现在快信祂！<br/>祂能救你！祂能救你！<br/>现在能救你！<br/>','',57517,12);
+INSERT INTO stanza VALUES('Z717','4','不久离世，结局怎样，<br/>得救或是灭亡？<br/>永生何乐！永死难当！<br/>请你快来信祂。<br/>','',57518,13);
 INSERT INTO stanza VALUES('Z718','1','哦，不要弃绝主恩道，<br/>也不要闭目拒光照；<br/>亲爱的，切莫心硬着！<br/>得救当趁早！<br/>','',57519,11054);
 INSERT INTO stanza VALUES('Z718','chorus','何必再迟延？<br/>何必再迟延？<br/>你要得救援，<br/>何必再迟延？<br/>','',57520,11055);
 INSERT INTO stanza VALUES('Z718','2','明天的太阳不一定<br/>还照你受欺的眼睛；<br/>今夜是时机！该聪明！<br/>要信，何必等！<br/>','',57521,11056);
@@ -84519,6 +84516,13 @@ INSERT INTO stanza VALUES('SW98','3','Sasa twajua mpango wa Mungu<br/>Na kufunul
 INSERT INTO stanza VALUES('SW98','4','Sababu hiyo twaomba Mungu<br/>Tupe nguvu mtu wa ndani<br/>Fanya makao ndani yetu<br/>Tuwe imara kwa mpango wake<br/>',NULL,235495,5);
 INSERT INTO stanza VALUES('SW98','5','Mwili wa Kristo twajengwa pamoja<br/>Viungo vyote vyapata uzima<br/>Kila kiungo kifanye kazi<br/>Kwa upendo mwili wakamilika<br/>',NULL,235496,6);
 INSERT INTO stanza VALUES('SW98','6','Sasa tu moja kwa mpango wake<br/>Mtu mmoja mpango wa Mungu<br/>Asifiwe ndani ya Kanisa<br/>Ndani ya Yesu milele Amina<br/>',NULL,235497,7);
+INSERT INTO stanza VALUES('Z717','beginning-note','第一辞<br/>',NULL,235498,1);
+INSERT INTO stanza VALUES('Z717','1','被罪压害人人请来，<br/>救主充满爱怜；<br/>祂要救你，安你心怀，<br/>只要信祂恩言。<br/>',NULL,235499,2);
+INSERT INTO stanza VALUES('Z717','chorus','只要信祂！只要信祂！<br/>现在要信祂！<br/>祂要救你！祂要救你！<br/>现在要救你！<br/>',NULL,235500,3);
+INSERT INTO stanza VALUES('Z717','2','耶稣为赐丰富恩典，<br/>已经流出宝血；<br/>你若投此朱红泉源，<br/>必得洁如白雪。<br/>',NULL,235501,4);
+INSERT INTO stanza VALUES('Z717','3','是的，主是道路、真理，<br/>引人进入安息；<br/>立即相信，勿再迟疑，<br/>必得永生福气。<br/>',NULL,235502,5);
+INSERT INTO stanza VALUES('Z717','4','来阿！加入这个圣队，<br/>同向荣耀直往；<br/>美丽天城无忧无泪，<br/>不息之乐永享。<br/>',NULL,235503,6);
+INSERT INTO stanza VALUES('Z717','beginning-note','第二辞<br/>',NULL,235504,7);
 CREATE TABLE IF NOT EXISTS "tune"
 (
 	_id VARCHAR,
