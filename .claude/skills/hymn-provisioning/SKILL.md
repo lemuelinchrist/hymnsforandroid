@@ -60,6 +60,31 @@ Some collections were historically appended onto the end of a parent group's ID 
 5. Grep **every** resource file (not just the one being split) for cross-references to the old ID range in `Related:` lines, and remap them — a split commonly breaks reciprocal links from a sibling collection (e.g. German Youth hymns referencing old Spanish-Supplement IDs).
 6. Document the new group in `docs/database_spec.md`'s hymn group table and this skill's ID-range table.
 
+### Making the group icon (`<code>.png`)
+
+The icons are 364×364 RGBA PNGs: a rounded square with a darker border, a lighter fill and off-white serif letters. The two colors are the group's own two colors from `HymnGroup.java` (the first is the day color, the second the night color): **darker = border, lighter = fill**. Check against an existing icon (e.g. `gk.png`, read with `convert gk.png -format "%[pixel:p{4,182}] %[pixel:p{60,60}]" info:`: border then fill) so the new one matches. Pick a color pair no other group uses. ImageMagick and the C059 font (a free Century Schoolbook clone, which the other icons' letters look like) are available in WSL:
+
+```bash
+convert -size 364x364 xc:none \
+  -fill "rgb(0,131,143)"  -draw "roundrectangle 0,0 363,363 64,64" \
+  -fill "rgb(77,208,225)" -draw "roundrectangle 12,12 351,351 54,54" \
+  -font /usr/share/fonts/opentype/urw-base35/C059-Roman.otf -pointsize 170 \
+  -fill "rgb(242,242,242)" -gravity center -annotate -4+22 "SW" -depth 8 \
+  app/src/main/res/drawable-xhdpi/sw.png
+```
+
+- **Center by measurement, not by `-gravity center` alone.** ImageMagick centers the font's whole line box, which has room below the baseline for letters like g/y, so capital-only text such as "SW" lands too high. Measure the visible letters and shift with the `-annotate +x+y` offset until their bounding box is centered at (182, 182):
+  ```python
+  from PIL import Image
+  im = Image.open('sw.png').convert('RGB'); px = im.load(); w, h = im.size
+  pts = [(x, y) for y in range(h) for x in range(w) if min(px[x, y]) > 225]
+  xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
+  print((min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2)
+  ```
+  (`-annotate -4+22` was right for "SW" at size 170; other letters need their own offset. Shrink `-pointsize` for 3-letter codes.)
+- `-depth 8` keeps it 8 bits per channel like the other icons (ImageMagick otherwise writes 16-bit).
+- Look at the result with the image Read tool next to a neighbour icon before committing. These are stand-ins; a designed icon from `docs/HymnIcons.pptx` can replace the file at any time (same name).
+
 ## Renaming an existing `HymnGroup`'s ID prefix (not a split — the group already has its own section)
 
 Different from the split above: here the group already has its own `HymnGroup` enum entry and section, but the *ID prefix itself* needs to change (e.g. `SS` → `SY`, done in v5.4.5 so Spanish Youth's IDs would match German Youth's `GY` pattern, at Victor's suggestion). The hard part isn't the owning script — it's that `Dao.save()`'s reciprocal-linking (see the `Related:` gotcha elsewhere in this doc) will have auto-populated the *old* prefix into the `related` field of hymns in **completely unrelated groups** (English, Be Filled, New Songs, German Youth, etc.) that have no owning `Provision*.groovy` script to rerun. A resource-file-and-rerun approach alone cannot reach those.
