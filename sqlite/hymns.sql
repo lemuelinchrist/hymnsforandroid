@@ -2,7 +2,7 @@ PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(50) NOT NULL, SEQ_COUNT NUMBER(19), PRIMARY KEY (SEQ_NAME));
 INSERT INTO SEQUENCE VALUES('SEQ_GEN',X'3530');
-INSERT INTO SEQUENCE VALUES('stanza',235504);
+INSERT INTO SEQUENCE VALUES('stanza',235518);
 INSERT INTO SEQUENCE VALUES('related',X'36323439');
 CREATE TABLE IF NOT EXISTS "hymns" (
 	 "_id" VARCHAR NOT NULL,
@@ -321,7 +321,7 @@ INSERT INTO hymns VALUES('E294','From London Hymn Book','Stephen Collins Foster 
 INSERT INTO hymns VALUES('E295','Nicolaus L. Zinzendorf (1700-1760)','Ludwig van Beethoven (1770-1827)',NULL,'God''s Christ, who is my righteousness,','E','Ab Major','Assurance and Joy of Salvation','8.8.8.8.','295','Justified in Christ','3/4','517125671',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0295_g.svg',NULL,'CB295,Z237,G141,S235,K237,T295,C237,I237,J237,');
 INSERT INTO hymns VALUES('E296','Charles Wesley (1707-1788)','Thomas Campbell (1777-1844)',NULL,'And can it be that I should gain','E','G Major','Assurance and Joy of Salvation','8.8.8.8.8.8. with repeat.','296','Justified in Christ','4/4','1123546721',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0296_g.svg',NULL,'SW77,S236,F296,G142,FR54,K234,J234,I234,GY50,C234,Z234,T296,CB296,');
 INSERT INTO hymns VALUES('E297','R. C. Chapman','Neil Dougall (1776-1862)',NULL,'"No condemnation!" precious word!','E','D Major','Assurance and Joy of Salvation','8.6.8.6.','297','Justified in Christ','4/4','135653321651651232',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0297_g.svg',NULL,'Z236,K236,J236,T297,C236,I236,');
-INSERT INTO hymns VALUES('E298','Edward Mote (1797-1874)','William Batchelder Bradbury (1816-1868)','ON CHRIST, THE SOLID ROCK, I STAND;','My hope is built on nothing less','E','F Major','Assurance and Joy of Salvation','8.8.8.8. with chorus.','298','Justified in Christ','3/4','5135332234442171',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0298_g.svg',NULL,'Z238,S237,G143,SW94,C238,T298,F298,CB298,K238,J238,I238,');
+INSERT INTO hymns VALUES('E298','Edward Mote (1797-1874)','William Batchelder Bradbury (1816-1868)','ON CHRIST, THE SOLID ROCK, I STAND;','My hope is built on nothing less','E','F Major','Assurance and Joy of Salvation','8.8.8.8. with chorus.','298','Justified in Christ','3/4','5135332234442171',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0298_g.svg',NULL,'Z238,S237,G143,SW88,C238,T298,F298,CB298,K238,J238,I238,');
 INSERT INTO hymns VALUES('E299','C. Paget','Hugh Wilson (1766-1824)',NULL,'A mind at perfect peace with God;','E','G Major','Assurance and Joy of Salvation','8.6.8.6.','299','Reconciled to God','3/4','5165123213532132',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0299_g.svg',NULL,'K240,S238,C240,I240,J240,T299,FR55,Z240,G146,');
 INSERT INTO hymns VALUES('E300','Charles Wesley (1707-1788)','Traditional American melody',NULL,'Arise, my soul, arise!','E','G Major','Assurance and Joy of Salvation','6.6.6.6.8.8.','300','Reconciled to God','3/4','51712323443',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0300_g.svg',NULL,'CS248,S239,BF439,ZS248,T300,CB300,');
 INSERT INTO hymns VALUES('E301','Fanny Jane Crosby (1820-1915)','William James Kirkpatrick (1838-1921)','REDEEMED, REDEEMED,','Redeemed — how I love to proclaim it!','E','G Major','Assurance and Joy of Salvation','9.8.9.8. with chorus.','301','Redeemed by the Blood','6/8','55555671512222123',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e0301_g.svg',NULL,'GY53,G1008,S241,CB301,');
@@ -1365,7 +1365,7 @@ INSERT INTO hymns VALUES('E1338','','',NULL,'This is My rest forever;','E','G Ma
 INSERT INTO hymns VALUES('E1339','','','IT IS LIKE THE PRECIOUS OINTMENT UPON THE HEAD,','Behold how good and how pleasant it is,','E','Eb Major','Scriptures for Singing','Peculiar Meter.','1339','Scriptures For Singing','3/4','55434543212',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1339_g.svg','Psalms 133,','BF284,K798,ZS628,CS628,T1339,SK1339,S906,F1339,');
 INSERT INTO hymns VALUES('E1340','','',NULL,'Therefore with joy shall ye draw water','E','Bb Major','Scriptures for Singing','Peculiar Meter.','1340','Scriptures For Singing','12/8','55555543511233216',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1340_g.svg','Isaiah 12:3-4,Isaiah 12:6,','CB1340,I1025,G459,K790,T10017,F1340,ZS25,FR247,S907,CS25,SK1340,BF111,');
 INSERT INTO hymns VALUES('E1341','','Ruth Lake (1972)',NULL,'Therefore the redeemed of the Lord shall return,','E','Bb Major','Scriptures for Singing','Peculiar Meter.','1341','Scriptures For Singing','4/4','55635635635',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1341_g.svg','Isaiah 51:11,','CB1341,BF159,F1341,G460,SW41,T10505,S908,I1505,FR248,ZS505,CS505,');
-INSERT INTO hymns VALUES('E1342','','',NULL,'Therefore, they shall come and sing in the height of Zion,','E','F Major','Scriptures for Singing','Peculiar Meter.','1342','Scriptures For Singing','3/4','513543112432175',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1342_g.svg','Jeremiah 31:12,',',K930,T10254,');
+INSERT INTO hymns VALUES('E1342','','',NULL,'Therefore, they shall come and sing in the height of Zion,','E','F Major','Scriptures for Singing','Peculiar Meter.','1342','Scriptures For Singing','3/4','513543112432175',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1342_g.svg','Jeremiah 31:12,',',K930,T10254,SW99,');
 INSERT INTO hymns VALUES('E1343','','',NULL,'A new commandment','E','D Major','Scriptures for Singing','Peculiar Meter.','1343','Scriptures For Singing','4/4','5332114432',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1343_g.svg','John 13:34-35,','BF82,S909,');
 INSERT INTO hymns VALUES('E1344','','',NULL,'Oh, the depth of the riches and the','E','C Major','Scriptures for Singing','Peculiar Meter.','1344','Scriptures For Singing','3/4','1125431556165312',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1344_g.svg','Romans 11:33-36,',',K791,');
 INSERT INTO hymns VALUES('E1345','','',NULL,'Whenever the heart shall turn to the Lord,','E','F Major','Scriptures for Singing','Peculiar Meter.','1345','Scriptures For Singing','3/4','51113332123',NULL,'http://www.hymnal.net/Hymns/Hymnal/svg/e1345_g.svg','2 Corinthians 3:16-17,','BF138,S910,T10404,F1345,ZS405,I1405,CB1345,CS405,');
@@ -13965,11 +13965,13 @@ INSERT INTO hymns VALUES('SW90',NULL,NULL,NULL,'Tumeamua kufuata Roho x3','SW',N
 INSERT INTO hymns VALUES('SW91',NULL,NULL,'SIKU NJEMA YA FURAHA','Siku njema niliamua,','SW',NULL,'SIKU NJEMA',NULL,'91',NULL,NULL,'5123512334321321','E347',NULL,NULL,'E347');
 INSERT INTO hymns VALUES('SW92',NULL,NULL,NULL,'Jina lake tamu ni mafuta','SW',NULL,'JINA TAMU',NULL,'92',NULL,NULL,'3445653453','E556',NULL,NULL,'E556');
 INSERT INTO hymns VALUES('SW93',NULL,NULL,NULL,'Nimetekwa na urembo wako','SW',NULL,'NIMETEKWA NA UREMBO WAKO',NULL,'93',NULL,NULL,'3211112332','E1159',NULL,NULL,'E1159');
-INSERT INTO hymns VALUES('SW94',NULL,NULL,'KWAKE YESU NASIMAMA,','Chakutumaini sina','SW',NULL,'CHAKUTUMAINI SINA',NULL,'94',NULL,NULL,'5135332234442171','E298',NULL,NULL,'E298');
-INSERT INTO hymns VALUES('SW95',NULL,NULL,NULL,'Yohana, Yakobo na Petro','SW',NULL,'YOHANA, YAKOBO NA PETRO',NULL,'95',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('SW96',NULL,NULL,'NJOO ROHO NA BI-ARUSI WANASEMA','Unywe mto kutoka kwa kiti cha enzi','SW',NULL,'NJOO ROHO NA BI-ARUSI',NULL,'96',NULL,NULL,'5556111233321','E1151',NULL,NULL,'E1151');
 INSERT INTO hymns VALUES('SW97',NULL,NULL,NULL,'Viumbe wa Mungu wetu','SW',NULL,'VIUMBE',NULL,'97',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('SW98',NULL,NULL,'YESU ATULETA PAMOJA','Tulikuwa wafu ndani ya dhambi','SW',NULL,'TULIKUWA WAFU NDANI YA DHAMBI',NULL,'98',NULL,NULL,'11311216511123212','E1232',NULL,NULL,'E1232');
+INSERT INTO hymns VALUES('SW88',NULL,NULL,'KWAKE YESU NASIMAMA,','Chakutumaini sina','SW',NULL,'CHAKUTUMAINI SINA',NULL,'88',NULL,NULL,'5135332234442171','E298',NULL,NULL,'E298');
+INSERT INTO hymns VALUES('SW89',NULL,NULL,NULL,'Yohana, Yakobo na Petro','SW',NULL,'YOHANA, YAKOBO NA PETRO',NULL,'89',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('SW99',NULL,NULL,NULL,'Watakuja wakiimba juu ya mlima wa Sayuni,','SW',NULL,'WATAKUJA WAKIIMBA',NULL,'99',NULL,NULL,'513543112432175','E1342',NULL,NULL,'E1342');
+INSERT INTO hymns VALUES('SW100',NULL,NULL,NULL,'Nafsi yangu furahia na usifu Bwana,','SW',NULL,'NAFSI YANGU FURAHIA',NULL,'100',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 CREATE TABLE IF NOT EXISTS "stanza" (
 	 "parent_hymn" TEXT NOT NULL,
 	 "no" TEXT NOT NULL,
@@ -84485,18 +84487,6 @@ INSERT INTO stanza VALUES('SW93','1','Nimetekwa na urembo wako<br/>Nakupa moyo w
 INSERT INTO stanza VALUES('SW93','2','Mwangaza wako u juu yangu<br/>Nakuona kwa kiti cha enzi<br/>Moto wako pia ukanichoma<br/>Nawaka utukufu wako<br/>Mara ya kwanza kukutazama<br/>Uzuri wangu ukaisha<br/>Moyo wangu sasa wakusifu<br/>Jina lako li tamu sana<br/>',NULL,235464,2);
 INSERT INTO stanza VALUES('SW93','3','Nakupa mafuta ya dhamana<br/>Nakupa pendo langu lote<br/>Nakupaka mafuta kichwani<br/>Mafuta haya ya dhamana<br/>Nimejipeana kwako Bwana<br/>Nikikupenda naridhika<br/>Nakupa pendo langu la ndani<br/>Pia mafuta ya dhamana<br/>',NULL,235465,3);
 INSERT INTO stanza VALUES('SW93','4','Mpendwa kujia milimani<br/>Ninatamani uso wako<br/>Unywe kisima cha moyo wangu<br/>Nipumzike ndani yako<br/>Sikuabudu pekee yangu Bwana<br/>Tu mmoja Bi-arusi wako<br/>Njoo pendo letu lakungoja<br/>Njoo Bwana utaridhika<br/>',NULL,235466,4);
-INSERT INTO stanza VALUES('SW94','1','Chakutumaini sina<br/>Ila damu yake Bwana<br/>Sina wema wa kutosha<br/>Dhambi zangu kuziosha<br/>',NULL,235467,1);
-INSERT INTO stanza VALUES('SW94','chorus','Kwake Yesu nasimama,<br/>Ndiye mwamba ni salama<br/>Ndiye mwamba ni salama<br/>Ndiye mwamba ni salama<br/>',NULL,235468,2);
-INSERT INTO stanza VALUES('SW94','2','Njia yangu iwe ndefu<br/>Yeye hunipa wokovu<br/>Mawimbi yakinipiga<br/>Nguvu zake ndizo nanga<br/>',NULL,235469,3);
-INSERT INTO stanza VALUES('SW94','3','Damu yake na sadaka<br/>Nategemea daima<br/>Yote chini yakiisha<br/>Mwokozi atanitosha<br/>',NULL,235470,4);
-INSERT INTO stanza VALUES('SW94','4','Nikiitwa hukumuni<br/>Rohoni nina amani<br/>Nikivikwa haki yake<br/>Sina hofu mbele zake<br/>',NULL,235471,5);
-INSERT INTO stanza VALUES('SW95','1','Yohana, Yakobo na Petro<br/>Wakapanda mlimani<br/>Mungu Baba kawafunulia<br/>Ya kuwa Yesu ni Bwana<br/>Uso wa Yesu ukabadilika<br/>Ukang''aa kama jua<br/>Nalo vazi lake likang''aa<br/>Likang''aa kama nuru<br/>',NULL,235472,1);
-INSERT INTO stanza VALUES('SW95','2','Petro akastaajabu sana<br/>Na akamwambia Bwana<br/>Ni vyema tujenge hema tatu<br/>Yako, Eliya na Musa<br/>',NULL,235473,2);
-INSERT INTO stanza VALUES('SW95','3','Alipozungumza Petro<br/>Wingu likawafunika<br/>Sauti ikatoka kwa wingu<br/>Sauti ya ajabu<br/>',NULL,235474,3);
-INSERT INTO stanza VALUES('SW95','4','Huyu ndiye mwana wangu mpendwa<br/>Furaha ya moyo wangu<br/>Mtii pia msikie<br/>Sauti toka kwa Mungu<br/>',NULL,235475,4);
-INSERT INTO stanza VALUES('SW95','5','Watamani miujiza yake<br/>Mwandame kila aendako<br/>Wanafunzi walishuhudia<br/>Akituliza habari.<br/>',NULL,235476,5);
-INSERT INTO stanza VALUES('SW95','6','Walipokuwa juu ya mlima<br/>Kupita dhehebu zote<br/>Mungu Baba kawafunulia<br/>Kuwa Yesu ndiye Bwana<br/>',NULL,235477,6);
-INSERT INTO stanza VALUES('SW95','7','Musa anasimamia sheria<br/>Naye Eliya unabii<br/>Sheria, unabii ni kivuli<br/>Yesu ukweli wa yote<br/>',NULL,235478,7);
 INSERT INTO stanza VALUES('SW96','1','Unywe mto kutoka kwa kiti cha enzi<br/>Ule mti wa uzima matunda matamu<br/>Hakuna haja ya taa jua na mwezi<br/>Hakuna usiku<br/>',NULL,235479,1);
 INSERT INTO stanza VALUES('SW96','chorus','Njoo Roho na Bi-arusi wanasema<br/>Njoo nawe wasikia paza sauti<br/>Njoo wale wanapenda na wana kiu<br/>Wanywe maji bure.<br/>',NULL,235480,2);
 INSERT INTO stanza VALUES('SW96','2','Kristo mto Kristo maji yu ndani yetu<br/>Kristo mti na matunda tumfurahie<br/>Kristo siku Kristo nuru na nyota yetu<br/>Ni yote yetu<br/>',NULL,235481,3);
@@ -84523,6 +84513,20 @@ INSERT INTO stanza VALUES('Z717','2','耶稣为赐丰富恩典，<br/>已经流�
 INSERT INTO stanza VALUES('Z717','3','是的，主是道路、真理，<br/>引人进入安息；<br/>立即相信，勿再迟疑，<br/>必得永生福气。<br/>',NULL,235502,5);
 INSERT INTO stanza VALUES('Z717','4','来阿！加入这个圣队，<br/>同向荣耀直往；<br/>美丽天城无忧无泪，<br/>不息之乐永享。<br/>',NULL,235503,6);
 INSERT INTO stanza VALUES('Z717','beginning-note','第二辞<br/>',NULL,235504,7);
+INSERT INTO stanza VALUES('SW88','1','Chakutumaini sina<br/>Ila damu yake Bwana<br/>Sina wema wa kutosha<br/>Dhambi zangu kuziosha<br/>',NULL,235505,1);
+INSERT INTO stanza VALUES('SW88','chorus','Kwake Yesu nasimama,<br/>Ndiye mwamba ni salama<br/>Ndiye mwamba ni salama<br/>Ndiye mwamba ni salama<br/>',NULL,235506,2);
+INSERT INTO stanza VALUES('SW88','2','Njia yangu iwe ndefu<br/>Yeye hunipa wokovu<br/>Mawimbi yakinipiga<br/>Nguvu zake ndizo nanga<br/>',NULL,235507,3);
+INSERT INTO stanza VALUES('SW88','3','Damu yake na sadaka<br/>Nategemea daima<br/>Yote chini yakiisha<br/>Mwokozi atanitosha<br/>',NULL,235508,4);
+INSERT INTO stanza VALUES('SW88','4','Nikiitwa hukumuni<br/>Rohoni nina amani<br/>Nikivikwa haki yake<br/>Sina hofu mbele zake<br/>',NULL,235509,5);
+INSERT INTO stanza VALUES('SW89','1','Yohana, Yakobo na Petro<br/>Wakapanda mlimani<br/>Mungu Baba kawafunulia<br/>Ya kuwa Yesu ni Bwana<br/>Uso wa Yesu ukabadilika<br/>Ukang''aa kama jua<br/>Nalo vazi lake likang''aa<br/>Likaangaza kama nuru<br/>',NULL,235510,1);
+INSERT INTO stanza VALUES('SW89','2','Petro akastaajabu sana<br/>Na akamwambia Bwana<br/>Ni vyema tujenge hema tatu<br/>Yako, Eliya na Musa<br/>',NULL,235511,2);
+INSERT INTO stanza VALUES('SW89','3','Alipozungumza Petro<br/>Wingu likawafunika<br/>Sauti ikatoka kwa wingu<br/>Sauti ya ajabu<br/>',NULL,235512,3);
+INSERT INTO stanza VALUES('SW89','4','Huyu ndiye mwana wangu mpendwa<br/>Furaha ya moyo wangu<br/>Mtii pia mumsikie<br/>Sauti toka kwa Mungu<br/>',NULL,235513,4);
+INSERT INTO stanza VALUES('SW89','5','Watamani miujiza yake<br/>Mwandame kila aendako<br/>Wanafunzi walishuhudia<br/>Akituliza bahari.<br/>',NULL,235514,5);
+INSERT INTO stanza VALUES('SW89','6','Walipokuwa juu ya mlima<br/>Kupita dhehebu zote<br/>Mungu Baba kawafunulia<br/>Kuwa Yesu ndiye Bwana<br/>',NULL,235515,6);
+INSERT INTO stanza VALUES('SW89','7','Musa anasimamia sheria<br/>Naye Eliya unabii<br/>Sheria, unabii ni kivuli<br/>Yesu ukweli wa yote<br/>',NULL,235516,7);
+INSERT INTO stanza VALUES('SW99','1','Watakuja wakiimba juu ya mlima wa Sayuni,<br/>Wataukimbilia wema wa Bwana,<br/>Kwa nafaka na divai na mafuta na wachanga,<br/>Na wachanga wa kondoo na wa ng''ombe,<br/>Na mioyo yao itakua bustani ya nyunyuziwa<br/>Hawatahuzunika milele daima.<br/>',NULL,235517,1);
+INSERT INTO stanza VALUES('SW100','1','Nafsi yangu furahia na usifu Bwana,<br/>Nafsi yangu furahia na usifu Bwana<br/>Furahi sifu Bwana,<br/>Furahi sifu Bwana,<br/>Nafsi yangu furahia na usifu Bwana<br/>',NULL,235518,1);
 CREATE TABLE IF NOT EXISTS "tune"
 (
 	_id VARCHAR,
