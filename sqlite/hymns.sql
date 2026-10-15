@@ -13891,7 +13891,7 @@ INSERT INTO hymns VALUES('SW11',NULL,NULL,NULL,'Yesu ndiye msingi wetu','SW',NUL
 INSERT INTO hymns VALUES('SW12',NULL,NULL,'TANGU YESU AINGIE KWANGU','Kuna mabadiliko maishani mwangu','SW',NULL,'TANGU YESU AINGIE',NULL,'12',NULL,NULL,'345671123343','E309',NULL,NULL,'E309');
 INSERT INTO hymns VALUES('SW13',NULL,NULL,'OMBA SHIRIKI NA BWANA','Omba shiriki na Bwana','SW',NULL,'OMBA USHIRIKI NA BWANA',NULL,'13',NULL,NULL,'556531165131532','E784',NULL,NULL,'E784');
 INSERT INTO hymns VALUES('SW14',NULL,NULL,NULL,'Nimepata wa kipekee','SW',NULL,'NIMEPATA WA KIPEKEE',NULL,'14',NULL,NULL,'1233321222','E510',NULL,NULL,'E510');
-INSERT INTO hymns VALUES('SW15',NULL,NULL,'HAMNA GIZA HAMNA USIKU','Nilizurura sana jangwani','SW',NULL,'NAANGAZIWA',NULL,'15',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('SW15',NULL,NULL,'NAANGAZIWA, NANGAZIWA','Nilizurura Sana jangwani,','SW',NULL,'NA-ANGAZIWA',NULL,'15',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('SW16',NULL,NULL,'UUDI, SAFARANI NA HENA','Kwa Bwana sisi ni shamba','SW',NULL,'KWA BWANA SISI NI SHAMBA',NULL,'16',NULL,NULL,'334321444254323','E1156',NULL,NULL,'E1156');
 INSERT INTO hymns VALUES('SW17',NULL,NULL,'MPENDWA WAKE ANAMPENDA','Kristo afanya mpendwa wake','SW',NULL,'KRISTO AFANYA MPENDWA WAKE',NULL,'17',NULL,NULL,'513161655171232','E1161',NULL,NULL,'E1161');
 INSERT INTO hymns VALUES('SW18',NULL,NULL,NULL,'Ni wa ndani, ni mpana','SW',NULL,'NI WA NDANI, NI MPANA',NULL,'18',NULL,NULL,'6671767712176','E152',NULL,NULL,'E152');
@@ -84081,10 +84081,10 @@ INSERT INTO stanza VALUES('SW14','12','Kristo ni sabato yangu<br/>Siku na asubuh
 INSERT INTO stanza VALUES('SW14','13','Kristo ndiye tamaa yangu<br/>Neema na urembo<br/>Toshelezi na uzuri<br/>Ananipa yote<br/>',NULL,235055,13);
 INSERT INTO stanza VALUES('SW14','14','Kristo wangu ndiye yote<br/>Nitafute nini?<br/>Mwanzo wangu pia mwisho<br/>Kristo yangu yote<br/>',NULL,235056,14);
 INSERT INTO stanza VALUES('SW14','15','Nina utajiri mwingi<br/>Naimba kwa shangwe<br/>Lazima niimbe tena<br/>Kristo wa ajabu<br/>',NULL,235057,15);
-INSERT INTO stanza VALUES('SW15','chorus','Hamna giza hamna usiku<br/>Sifu Bwana naangaziwa<br/>Naangaziwa naangaziwa<br/>Furaha nyingi bila huzuni<br/>',NULL,235058,1);
-INSERT INTO stanza VALUES('SW15','1','Nilizurura sana jangwani<br/>Nikakataa Yesu anipe nuru<br/>Yesu akanivamia usiku<br/>Sifu Bwana naangaziwa<br/>',NULL,235059,2);
-INSERT INTO stanza VALUES('SW15','2','Kama kipofu kazurura<br/>Uoga hofu na kujipenda<br/>Kama kipofu Yesu kanifungua<br/>Sifu Bwana naangaziwa<br/>',NULL,235060,3);
-INSERT INTO stanza VALUES('SW15','3','Nikazunguka kama mjinga<br/>''Ngawa mlango ulikua wazi<br/>''Kawacha dini kapata kanisa<br/>Sifu Bwana naangaziwa<br/>',NULL,235061,4);
+INSERT INTO stanza VALUES('SW15','1','Nilizurura Sana jangwani,<br/>Nikakataa Yesu anipe nuru,<br/>Yesu akanivamia usiku,<br/>Sifu Bwana naangaziwa.<br/>',NULL,235058,1);
+INSERT INTO stanza VALUES('SW15','chorus','Naangaziwa, nangaziwa<br/>Hamna giza, hamna usiku,<br/>Furaha nyingi bila huzuni,<br/>Sifu Bwana, naangaziwa.<br/>',NULL,235059,2);
+INSERT INTO stanza VALUES('SW15','2','Kama kipofu kazurura,<br/>Uoga, hofu na kujipenda,<br/>Kama kipofu, Yesu akanifungua,<br/>Sifu Bwana naangaziwa.<br/>',NULL,235060,3);
+INSERT INTO stanza VALUES('SW15','3','Nikazunguka kama mjinga,<br/>Ngawa mlango ulikuwa wazi,<br/>Kawacha dini kapata Kanisa,<br/>Sifu Bwana naangaziwa.<br/>',NULL,235061,4);
 INSERT INTO stanza VALUES('SW16','1','Kwa Bwana sisi ni shamba<br/>Kuna ufumba mwingi<br/>Ni matunda ya dhamana<br/>Yajikuza vyema shambani<br/>',NULL,235062,1);
 INSERT INTO stanza VALUES('SW16','chorus','Uudi, safarani na hena<br/>Darasini na kalamasi<br/>Ufumba na manemane<br/>Bwana tukuze kabisa<br/>',NULL,235063,2);
 INSERT INTO stanza VALUES('SW16','2','O Bwana kuja kwa shamba<br/>Kuja mpendwa ule<br/>Ndio wee utosheleke<br/>Ni matunda matamu kweli<br/>',NULL,235064,3);
