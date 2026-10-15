@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hymns">
+<title>Hymns</title>
+<style>
+:root{--bg:#fff;--fg:#1c1c1e;--mut:#6b7280;--line:#e5e7eb;--acc:#3d577a;--card:#f4f5f7}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--fg:#ececec;--mut:#9aa0a8;--line:#2a2a2d;--acc:#8fb0dc;--card:#161618}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.4 -apple-system,system-ui,"PingFang TC","Hiragino Sans",sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:calc(8px + env(safe-area-inset-top)) 12px 8px}
+.row{display:flex;gap:8px;align-items:center}
+select,input,button{font:inherit;color:inherit}
+select,input{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 10px;min-width:0}
+#book{flex:0 0 auto;max-width:48%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#picker{display:none;position:fixed;inset:0;z-index:20;background:var(--bg)}
+#picker .sheet{position:absolute;inset:0;overflow:auto;background:var(--bg);padding-bottom:env(safe-area-inset-bottom)}
+#picker .top{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top)) 12px 8px;background:var(--bg);border-bottom:1px solid var(--line);font-weight:600}
+#picker .top span{flex:1}
+#picker .opt{display:flex;align-items:center;border-bottom:1px solid var(--line);padding-left:16px;cursor:pointer}
+#picker .opt.cur{color:var(--acc);font-weight:600}
+#picker .opt .nm{flex:1;padding:13px 0}
+#picker .opt .pin{border:0;background:none;font-size:22px;padding:10px 16px}
+#picker .hd{padding:10px 16px;color:var(--mut);font-size:13px;background:var(--card)}
+#q{flex:1}
+button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer}
+button.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.tabs{display:flex;gap:6px;margin-top:8px;overflow-x:auto}
+.tabs button{padding:5px 12px;font-size:14px;white-space:nowrap}
+#list{padding-bottom:env(safe-area-inset-bottom)}
+.item{display:flex;gap:12px;padding:11px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+.item:active{background:var(--card)}
+.item .no{flex:0 0 3.4em;color:var(--acc);font-weight:600;font-variant-numeric:tabular-nums}
+.item .tt{flex:1;min-width:0}
+.item small{display:block;color:var(--mut);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.empty{padding:30px 16px;color:var(--mut);text-align:center}
+#view{display:none;padding:0 0 calc(30px + env(safe-area-inset-bottom))}
+.bar{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:calc(8px + env(safe-area-inset-top)) 12px 8px;display:flex;gap:8px;align-items:center;z-index:5}
+.bar .sp{flex:1}
+.content{padding:14px 18px;max-width:42em;margin:0 auto}
+h1{font-size:1.2em;margin:.2em 0 .1em}
+.meta{color:var(--mut);font-size:.82em;margin-bottom:12px}
+.st{margin:0 0 1.1em;white-space:pre-wrap;overflow-wrap:anywhere;position:relative;padding-left:1.8em}
+.st .n{position:absolute;left:0;color:var(--acc);font-weight:700}
+.st.ch{font-style:italic;padding-left:2.4em}
+.st.note{color:var(--mut);font-size:.9em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px}
+.chips button{padding:5px 10px;font-size:14px}
+a{color:var(--acc)}
+.web{display:block;margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;text-align:center;text-decoration:none;background:var(--card)}
+.err{padding:30px;color:#c00}
+</style>
+</head>
+<body>
+<div id="home">
+  <header>
+    <div class="row">
+      <button id="book" aria-label="Hymn book"></button>
+      <input id="q" type="search" placeholder="Number or words…" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="tabs">
+      <button data-m="num" class="on">By number</button>
+      <button data-m="abc">A–Z</button>
+      <button data-m="fav">★ Favorites</button>
+      <button data-m="rec">Recent</button>
+      <button id="all">Search all books</button>
+    </div>
+  </header>
+  <div id="list"><div class="empty">Loading…</div></div>
+</div>
+<div id="picker"><div class="sheet" id="sheet"></div></div>
+<div id="view">
+  <div class="bar">
+    <button id="back">‹ Back</button><span class="sp"></span>
+    <button id="fm" aria-label="Smaller">A−</button><button id="fp" aria-label="Larger">A+</button>
+    <button id="star" aria-label="Favorite">☆</button>
+  </div>
+  <div class="content" id="body"></div>
+</div>
+<script>
+"use strict";
+const DATA="/*DATA*/";
+const BOOKS=/*BOOKS*/{};
+const ORDER=/*ORDER*/[];
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+ set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let H=[],byId={},mode="num",allBooks=false,book=store.get("book","E"),fs=store.get("fs",19),
+ favs=store.get("favs",[]),pins=store.get("pins",[]),recent=store.get("recent",[]),cur=null;
+
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^\p{L}\p{N}\s]/gu," ").replace(/\s+/g," ");
+const strip=s=>s.replace(/<\/?[iu]>/g,"");
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const stanzas=h=>h[4]||(byId[h[5]]&&byId[h[5]][4])||[];
+
+async function load(){
+  if(typeof DecompressionStream==="undefined")throw new Error("This browser is too old (needs iOS 16.4 or later).");
+  const bin=Uint8Array.from(atob(DATA),c=>c.charCodeAt(0));
+  const stream=new Blob([bin]).stream().pipeThrough(new DecompressionStream("gzip"));
+  H=JSON.parse(await new Response(stream).text());
+  for(const h of H){byId[h[0]]=h}
+  setTimeout(()=>{ // search index, built after first paint
+    for(const h of H){let t=h[3]+" ";for(const s of stanzas(h))t+=s[1]+" ";h.idx=norm(t)}
+    h_ready=true;if($("#q").value)render();
+  },30);
+}
+let h_ready=false;
+
+function numKey(h){const n=parseInt(h[2],10);return isNaN(n)?1e9:n}
+function row(h,sub){
+  return `<div class="item" data-id="${h[0]}"><span class="no">${allBooks||mode==="fav"||mode==="rec"?h[0]:h[2]}</span><span class="tt">${esc(strip(h[3]))}${sub?`<small>${esc(sub)}</small>`:""}</span></div>`;
+}
+function render(){
+  const q=$("#q").value.trim();let list=[],note="";
+  const pool=allBooks||mode==="fav"||mode==="rec"?H:H.filter(h=>h[1]===book);
+  if(mode==="fav"&&!q)list=favs.map(i=>byId[i]).filter(Boolean);
+  else if(mode==="rec"&&!q)list=recent.map(i=>byId[i]).filter(Boolean);
+  else if(!q){list=pool.filter(h=>allBooks?true:h[1]===book);
+    list=list.slice().sort(mode==="abc"?(a,b)=>norm(a[3]).localeCompare(norm(b[3])):(a,b)=>numKey(a)-numKey(b)||a[2].localeCompare(b[2]));
+    if(allBooks)list=list.slice(0,300)}
+  else if(/^\d+$/.test(q)&&!allBooks){
+    list=H.filter(h=>h[1]===book&&h[2]===String(parseInt(q,10)));
+    const pre=H.filter(h=>h[1]===book&&h[2].startsWith(q)&&!list.includes(h)).sort((a,b)=>numKey(a)-numKey(b));
+    list=list.concat(pre.slice(0,60));
+  }else{
+    if(!h_ready){$("#list").innerHTML='<div class="empty">Preparing search…</div>';return}
+    const words=norm(q).split(" ").filter(Boolean);const res=[];
+    for(const h of H){if(!allBooks&&h[1]!==book)continue;
+      if(words.every(w=>h.idx.includes(w))){
+        const inTitle=words.every(w=>norm(h[3]).includes(w));res.push([inTitle?0:1,h])}
+      if(res.length>1500)break}
+    res.sort((a,b)=>a[0]-b[0]||numKey(a[1])-numKey(b[1]));
+    list=res.map(r=>r[1]);
+    if(list.length>200){note=`Showing 200 of ${list.length}. Add more words to narrow down.`;list=list.slice(0,200)}
+  }
+  const el=$("#list");
+  if(!list.length){el.innerHTML=`<div class="empty">${mode==="fav"?"No favorites yet — tap ☆ on a hymn.":mode==="rec"?"Nothing viewed yet.":"No hymns found."}</div>`;return}
+  el.innerHTML=list.map(h=>row(h,(allBooks||mode==="fav"||mode==="rec")?BOOKS[h[1]]:"")).join("")+(note?`<div class="empty">${note}</div>`:"");
+}
+
+function show(id,push){
+  const h=byId[id];if(!h)return;cur=h;
+  recent=[id].concat(recent.filter(x=>x!==id)).slice(0,40);store.set("recent",recent);
+  const m=h[6],bits=[];
+  if(m.k)bits.push(m.k);if(m.t)bits.push(m.t);if(m.r)bits.push(m.r);
+  const credit=[m.a&&"Words: "+m.a,m.m&&"Music: "+m.m,m.n&&!/^[\d\s]+$/.test(m.n)&&"Tune: "+m.n].filter(Boolean);
+  let html=`<h1>${esc(h[1]==="E"||true?h[0]:h[0])} · ${esc(strip(h[3]))}</h1><div class="meta">${esc(BOOKS[h[1]]||h[1])}${m.c?" · "+esc(m.c)+(m.s?" › "+esc(m.s):""):""}${bits.length?"<br>"+esc(bits.join(" · ")):""}${credit.length?"<br>"+esc(credit.join(" · ")):""}${m.v?"<br>"+esc(m.v):""}</div>`;
+  for(const s of stanzas(h)){
+    const no=s[0],t=s[1];if(!t)continue;
+    if(/^https?:/.test(t)){html+=`<div class="st note"><a href="${esc(t)}" target="_blank" rel="noopener">${esc(no)}</a></div>`;continue}
+    const body=esc(t).replace(/&lt;(\/?[iu])&gt;/g,"<$1>");
+    if(no==="chorus"||no==="chorusverse")html+=`<div class="st ch">${body}</div>`;
+    else if(/^\d+$/.test(no))html+=`<div class="st"><span class="n">${no}</span>${body}</div>`;
+    else if(no==="copyright")html+=`<div class="st note">${body}</div>`;
+    else html+=`<div class="st note">${body}</div>`;
+  }
+  if(h[7].length)html+=`<div class="meta">Same hymn in other books</div><div class="chips">`+
+    h[7].map(r=>`<button data-id="${r}">${esc(r)} · ${esc((BOOKS[byId[r][1]]||"").replace(/ –.*/,""))}</button>`).join("")+`</div>`;
+  if(h[8])html+=`<a class="web" href="https://www.hymnal.net/en/hymn/${h[8]}" target="_blank" rel="noopener">♪ Sheet music &amp; MIDI on hymnal.net ↗</a>`;
+  $("#body").innerHTML=html;$("#body").style.fontSize=fs+"px";
+  $("#star").textContent=favs.includes(id)?"★":"☆";
+  $("#home").style.display="none";$("#view").style.display="block";window.scrollTo(0,0);
+  if(push!==false)history.pushState({id},"","#"+id);
+}
+function home(){$("#view").style.display="none";$("#home").style.display="block";cur=null;if(mode==="rec")render()}
+
+function init(){
+  if(!BOOKS[book])book="E";
+  const avail=ORDER.filter(g=>H.some(h=>h[1]===g));
+  const cnt={};for(const h of H)cnt[h[1]]=(cnt[h[1]]||0)+1;
+  const label=()=>{$("#book").textContent=BOOKS[book]+" ▾"};
+  function pick(g){book=g;store.set("book",g);allBooks=false;$("#all").classList.remove("on");
+    $("#picker").style.display="none";label();if(mode==="fav"||mode==="rec")setMode("num");render()}
+  function drawPicker(){
+    const pinned=pins.filter(g=>avail.includes(g)),rest=avail.filter(g=>!pinned.includes(g));
+    const opt=g=>`<div class="opt${g===book?" cur":""}" data-g="${g}"><span class="nm">${BOOKS[g]} (${cnt[g]})</span><button class="pin" data-pin="${g}" aria-label="Pin">${pins.includes(g)?"★":"☆"}</button></div>`;
+    $("#sheet").innerHTML='<div class="top"><span>Choose a book</span><button data-close>Close</button></div>'+(pinned.length?'<div class="hd">Pinned</div>'+pinned.map(opt).join("")+'<div class="hd">All books</div>':"")+rest.map(opt).join("");
+  }
+  $("#book").onclick=()=>{drawPicker();$("#picker").style.display="block"};
+  $("#picker").onclick=e=>{
+    const pb=e.target.closest("[data-pin]");
+    if(pb){const g=pb.dataset.pin;pins=pins.includes(g)?pins.filter(x=>x!==g):pins.concat(g);store.set("pins",pins);const y=$("#sheet").scrollTop;drawPicker();$("#sheet").scrollTop=y;return}
+    const o=e.target.closest("[data-g]");if(o)pick(o.dataset.g);else if(e.target.closest("[data-close]"))$("#picker").style.display="none"};
+  label();
+  let t;$("#q").oninput=()=>{clearTimeout(t);t=setTimeout(render,120)};
+  document.querySelectorAll(".tabs button[data-m]").forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+  $("#all").onclick=()=>{allBooks=!allBooks;$("#all").classList.toggle("on",allBooks);render()};
+  $("#list").onclick=e=>{const it=e.target.closest(".item");if(it)show(it.dataset.id)};
+  $("#body").onclick=e=>{const b=e.target.closest("button[data-id]");if(b)show(b.dataset.id)};
+  $("#back").onclick=()=>history.length>1&&history.state?history.back():home();
+  $("#star").onclick=()=>{if(!cur)return;const i=cur[0];favs=favs.includes(i)?favs.filter(x=>x!==i):[i].concat(favs);store.set("favs",favs);$("#star").textContent=favs.includes(i)?"★":"☆"};
+  const size=d=>{fs=Math.max(14,Math.min(40,fs+d));store.set("fs",fs);$("#body").style.fontSize=fs+"px"};
+  $("#fm").onclick=()=>size(-2);$("#fp").onclick=()=>size(2);
+  window.onpopstate=()=>{const id=location.hash.slice(1);id&&byId[id]?show(id,false):home()};
+  const id=location.hash.slice(1);
+  render();if(id&&byId[id])show(id,false);
+}
+function setMode(m){mode=m;document.querySelectorAll(".tabs button[data-m]").forEach(b=>b.classList.toggle("on",b.dataset.m===m));render()}
+load().then(init).catch(e=>{$("#list").innerHTML='<div class="err">'+esc(String(e.message||e))+'</div>'});
+</script>
+</body>
+</html>

@@ -21,6 +21,7 @@ The project is divided into three main parts:
     -   `src/main/groovy/`: The Groovy source code for the data provisioning process.
     -   `data/`: Contains raw data files (e.g., MIDI, SVG) used to generate the database.
 -   `sqlite/`: Contains the `hymns.sql` schema file and the `sqlite3.exe` command-line tool for inspecting the database.
+-   `ios/`: Builds `hymnal.html`, a single-file offline lyrics-only web version for iPhone users (`python3 ios/build.py`). Book names/order come from `HymnGroup.java`; see `ios/README.md`.
 -   `docs/`: Contains all supplementary documentation, including the architecture deep-dive, diagrams, database specification, and other notes.
 -   `AGENTS.md`: This file.
 -   `README.md`: The original, human-focused README file.
@@ -102,10 +103,12 @@ There is no CI/CD workflow for this (no `.github/workflows`) — releases are cr
 2. Build the release artifacts: `./gradlew clean assembleRelease bundleRelease`. This produces:
    - `app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk`
    - `app/build/outputs/bundle/release/HymnsForAndroidvX.Y-PianoAndGuitar.aab` (for Google Play)
-3. Create the GitHub release with the APK attached, using the `gh` CLI. Tag and title follow the `vX.Y` convention (title is `vX.Y - <short description>`):
+   - `app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html` (single-file offline lyrics-only app for iPhone users; built automatically by the `buildIosHymnal` task, which needs Python 3 — `py -3` on Windows)
+3. Create the GitHub release with the APK and the iOS html attached, using the `gh` CLI. Tag and title follow the `vX.Y` convention (title is `vX.Y - <short description>`):
    ```shell
    gh release create vX.Y \
      "app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk" \
+     "app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html" \
      --draft \
      --title "vX.Y - <short description>" \
      --notes "<release notes>"
