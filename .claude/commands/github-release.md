@@ -19,6 +19,7 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
 3. **Draft the release notes** in this repo's established style — see `gh release view v5.2` or `gh release view v5.1` for tone/format reference:
    - Emoji section headers (`### 🎉 New`, `### 🐛 Bug Fixes`, `### ✨ Other Improvements`), bullet points, bold lead-ins on each bullet.
    - A `⚠️ IMPORTANT` callout near the top ONLY if there's a real compatibility break the user must act on (e.g. a signing-key change requiring uninstall-before-install) — don't invent one if there isn't.
+   - Add a short line for iPhone users pointing to the attached `...-iOS.html`: it's an offline, lyrics-only hymnal (no sheet music or MIDI; each hymn links to hymnal.net for those) that they open from the Files app or Safari after AirDrop/iCloud Drive (iOS 16.4+).
    - Close with the Google Play link: `📱 The app is also available on Google Play: https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns` (add a "should be live within about a week" note if the Play Console submission is still pending review — ask the user if unsure).
    - Do not add any "Co-authored-by" line to the release notes body itself — that convention belongs in git commit messages/PR descriptions per the current session's attribution instructions, not release notes.
 
@@ -28,7 +29,7 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
    ```
    ./gradlew clean assembleRelease bundleRelease
    ```
-   This produces `app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk` and the `.aab` bundle (the `.aab` is for Play Console, not attached to the GitHub release).
+   This produces `app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk` and the `.aab` bundle (the `.aab` is for Play Console, not attached to the GitHub release). The build also runs the `buildIosHymnal` task, which produces `app/build/outputs/ios/HymnsForAndroidv<version>-iOS.html` (single-file offline lyrics-only hymnal for iPhone users). It needs Python 3; if the build logs `buildIosHymnal skipped`, fix that (or run `./gradlew :app:buildIosHymnal`) before continuing, and confirm the file exists.
 
 6. **Tag and push**:
    ```
@@ -36,10 +37,11 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
    git push origin v<version>
    ```
 
-7. **Create the draft release** with the APK attached:
+7. **Create the draft release** with the APK and the iOS html attached:
    ```
    gh release create v<version> \
      "app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk" \
+     "app/build/outputs/ios/HymnsForAndroidv<version>-iOS.html" \
      --draft \
      --title "v<version> - <short description>" \
      --notes-file <path to the drafted notes>
