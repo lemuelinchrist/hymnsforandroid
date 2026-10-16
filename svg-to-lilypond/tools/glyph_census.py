@@ -19,7 +19,7 @@ OUT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 census = {}
 # corpus SVGs plus our own LilyPond 2.24 renders (build/svg), which use that version's glyph shapes
-SOURCES = [(folder, os.path.join(ROOT, 'app/src/main/assets', folder)) for folder in ('pianoSvg', 'guitarSvg')] + \
+SOURCES = [(folder, os.path.join(ROOT, 'svg-to-lilypond/svg', folder)) for folder in ('pianoSvg', 'guitarSvg')] + \
           [('build/' + v, os.path.join(OUT, 'build/svg', v)) for v in ('piano', 'guitar') if os.path.isdir(os.path.join(OUT, 'build/svg', v))]
 for folder, folder_path in SOURCES:
     for f in sorted(glob.glob(os.path.join(folder_path, '*.svg'))):

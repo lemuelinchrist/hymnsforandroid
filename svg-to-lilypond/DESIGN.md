@@ -13,7 +13,7 @@ converter is designed**. Update it whenever something new is learned, so nothing
 
 ## 1. Goal
 
-Turn every sheet-music SVG shipped in the app (`app/src/main/assets/pianoSvg/*.svg`, `guitarSvg/*.svg`)
+Turn every sheet-music SVG shipped in the app (`svg-to-lilypond/svg/pianoSvg/*.svg`, `guitarSvg/*.svg`)
 into a **LilyPond source file (`.ly`)**. Requirements:
 
 1. **No musical data is lost.** This covers notes, rhythm, chords, lyrics (all verses), and repeats and
@@ -665,7 +665,7 @@ over the IR with the music font shipped once. This supersedes the font-route dec
 > **Continuing on another machine.** `git switch media/work` (branch on GitHub, not merged to master). Needs
 > LilyPond 2.24.x, rsvg-convert, ImageMagick, sqlite3 and Python 3 with numpy, Pillow, fontTools (see the skill file
 > `.claude/skills/svg-to-lilypond/SKILL.md`). `build/` is not in git: to look at a sheet run
-> `cd svg-to-lilypond && python3 tools/convert.py --variant piano ../app/src/main/assets/pianoSvg/NS349.svg`
+> `cd svg-to-lilypond && python3 tools/convert.py --variant piano ../svg-to-lilypond/svg/pianoSvg/NS349.svg`
 > then `python3 tools/compare_png.py NS349` and open `build/compare/piano_NS349.png` (left = original, right = ours).
 > `python3 tools/regress.py -j 4` (69 sheets, ~3 min) must print `69/69 as expected` after any change to the tools.
 > Glyph shapes can differ with the LilyPond version: if a new version reports `unknown glyph ids`, follow the skill file
@@ -1141,3 +1141,5 @@ Python 3.12 with fontTools/numpy/Pillow.
   now derived on demand and not stored.
 - **2026-10-09:** In-app viewer started on branch `ly-viewer` (§19): `tools/ly_to_mei.py` (all 3,179 convert, all
   render in Verovio), viewer page with Verovio in the WebView, guitar derived in JS, setting "New Sheet Music Viewer".
+
+> **Since v5.6** the SVGs live in `svg-to-lilypond/svg/{pianoSvg,guitarSvg}` and are no longer bundled in the app: the app ships only `app/src/main/assets/sheetMei/*.mei` (rendered by the viewer). Paths above that say `app/src/main/assets/pianoSvg` mean this folder.

@@ -23,6 +23,7 @@ from recognize import recognize, RecognitionError  # noqa: E402
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 ASSETS = os.path.join(HERE, '..', 'app/src/main/assets')
+SVGS = os.path.join(HERE, 'svg')
 BUILD = os.path.join(HERE, 'build')
 
 
@@ -228,6 +229,11 @@ def process(path, variant=None):
                 if res3.get('status') != 'REVIEW':
                     res3['lyric_space'] = 'tight %.1f' % tight
                     return res3
+            for size in (-1,):                      # still too wide (the original overlaps its words): smaller lyrics
+                res4 = process_once(path, variant, (0.3, size))
+                if res4.get('status') != 'REVIEW':
+                    res4['lyric_space'] = 'tight 0.3, lyric size %d' % size
+                    return res4
         process_once(path, variant, LYRIC_SPACE)       # leave the .ly/.svg of the preferred version in build/
     return res
 
@@ -291,7 +297,8 @@ def process_once(path, variant, lyric_space):
         if svg_path is None:
             return dict(err=('render_error', '; '.join(msgs[:2])[:200]))
         try:
-            ir2 = recognize(svg_path)
+            ir2 = recognize(svg_path, **({'lyric_size': 2.2 * 2 ** (params['lyric_space'][1] / 6)}
+                                         if isinstance(params.get('lyric_space'), tuple) else {}))
         except Exception as e:  # noqa: BLE001
             return dict(err=('roundtrip_recognition_error', repr(e)[:200]))
         return dict(ewarn=ewarn, svg_path=svg_path, msgs=msgs, pages=pages, ir2=ir2, d=layout_deltas(ir, ir2))
@@ -398,7 +405,7 @@ if __name__ == '__main__':
     if a.files:
         paths = a.files
     else:
-        paths = sorted(glob.glob(os.path.join(ASSETS, a.variant + 'Svg', a.group + '[0-9]*.svg')),
+        paths = sorted(glob.glob(os.path.join(SVGS, a.variant + 'Svg', a.group + '[0-9]*.svg')),
                        key=lambda p: int(re.search(r'(\d+)\.svg', p).group(1)))
     if a.limit:
         paths = paths[:a.limit]

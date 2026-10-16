@@ -18,6 +18,7 @@ import verify  # noqa: E402
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 ASSETS = os.path.join(HERE, '..', 'app/src/main/assets')
+SVGS = os.path.join(HERE, 'svg')
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--group', default='E')
@@ -30,7 +31,7 @@ a = ap.parse_args()
 if a.files:
     paths = a.files
 else:
-    paths = sorted(glob.glob(os.path.join(ASSETS, a.variant + 'Svg', a.group + '[0-9]*.svg')),
+    paths = sorted(glob.glob(os.path.join(SVGS, a.variant + 'Svg', a.group + '[0-9]*.svg')),
                    key=lambda p: int(re.search(r'(\d+)\.svg', p).group(1)))
 if a.limit:
     paths = paths[:a.limit]

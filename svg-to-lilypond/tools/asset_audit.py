@@ -17,6 +17,7 @@ from svgscan import parse, staves, is_sans  # noqa: E402
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 ASSETS = os.path.join(ROOT, 'app/src/main/assets')
+SVGS = os.path.join(ROOT, 'svg-to-lilypond/svg')
 FRESH = os.path.join(HERE, 'build/fresh')
 db = sqlite3.connect(os.path.join(ASSETS, 'hymns.sqlite'))
 
@@ -60,7 +61,7 @@ def same(a, b):
 
 
 def dups():
-    gdir = os.path.join(ASSETS, 'guitarSvg')
+    gdir = os.path.join(ROOT, 'svg-to-lilypond/svg', 'guitarSvg')
     for f in sorted(os.listdir(gdir)):
         if not f.endswith(' (1).svg'):
             continue
@@ -82,7 +83,7 @@ def dups():
 
 def pairs(ids):
     for hid in ids:
-        P, G = os.path.join(ASSETS, 'pianoSvg', hid + '.svg'), os.path.join(ASSETS, 'guitarSvg', hid + '.svg')
+        P, G = os.path.join(SVGS, 'pianoSvg', hid + '.svg'), os.path.join(SVGS, 'guitarSvg', hid + '.svg')
         lp, lg = live(hid, 'piano'), live(hid, 'guitar')
         out = []
         for name, path in (('piano', P), ('guitar', G), ('live_piano', lp), ('live_guitar', lg)):

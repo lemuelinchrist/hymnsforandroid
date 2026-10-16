@@ -1,6 +1,6 @@
 ---
 name: svg-to-lilypond
-description: Use when new or changed lead-sheet SVGs (app/src/main/assets/pianoSvg, guitarSvg) have arrived — e.g. after a hymnal.net / New Songs sync — and need converting to LilyPond (.ly) sources, or when investigating why a sheet fails conversion or verification, or when `.ly` files changed and the in-app viewer's MEI files (app/src/main/assets/sheetMei) need regenerating. Covers running the converter, reading the report, rebuilding the glyph catalog, the review workflow, and the traps already found.
+description: Use when new or changed lead-sheet SVGs (svg-to-lilypond/svg/pianoSvg, guitarSvg) have arrived — e.g. after a hymnal.net / New Songs sync — and need converting to LilyPond (.ly) sources, or when investigating why a sheet fails conversion or verification, or when `.ly` files changed and the in-app viewer's MEI files (app/src/main/assets/sheetMei) need regenerating. Covers running the converter, reading the report, rebuilding the glyph catalog, the review workflow, and the traps already found.
 ---
 
 # SVG -> LilyPond conversion
@@ -21,10 +21,10 @@ re-reads the render and compares. Nothing is judged by eye except failures.
   were added to the DB, make sure `sqlite/hymns.sql` has them (`./gradlew :sqlite:exportSql`, see `hymn-provisioning`).
 
 ## 1. Check the incoming files first
-- Not an HTML error page: `grep -l "<html" app/src/main/assets/pianoSvg/<ids>.svg` (hymnal.net returns HTTP 200 with a
+- Not an HTML error page: `grep -l "<html" svg-to-lilypond/svg/pianoSvg/<ids>.svg` (hymnal.net returns HTTP 200 with a
   "page not found" page for some hymns; those were once shipped as .svg).
 - Exact `<GROUP><number>.svg` names, right case (the app's asset lookup is case-sensitive), and both a piano and a guitar file.
-- New files from `databaseProvisioner/data/{pianoSvg,guitarSvg}` must be copied into `app/src/main/assets/` first.
+- New files from `databaseProvisioner/data/{pianoSvg,guitarSvg}` must be copied into `svg-to-lilypond/svg/` first (they are no longer shipped in the app).
 
 ## 2. Convert
 ```bash

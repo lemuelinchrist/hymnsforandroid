@@ -11,14 +11,14 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
-from convert import process, ASSETS  # noqa: E402
+from convert import process, SVGS  # noqa: E402
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 
 def work(item):
     variant, hid, expected = item
-    path = os.path.join(ASSETS, variant + 'Svg', hid + '.svg')
+    path = os.path.join(SVGS, variant + 'Svg', hid + '.svg')
     r = process(path)
     why = r.get('detail') or (r.get('v1') or [None])[0] or (r.get('v2') or [None])[0] or ''
     return variant, hid, expected, r['status'], str(why)[:110]

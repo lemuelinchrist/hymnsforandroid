@@ -318,8 +318,12 @@ def stanza_body(st):
     """Lines of one stanza. A sub-paragraph inside a stanza (refrain: a blank gap and an indent in the original) keeps
     its extra vertical gap and its indent."""
     pos = st.get('pos')
+    ital = st.get('italic') or []
+    if len(ital) != len(st['lines']):
+        ital = [False] * len(st['lines'])
+    qi = lambda i, l: ('\\italic ' + q(l)) if ital[i] else q(l)
     if not pos or len(pos) != len(st['lines']):
-        return ' '.join(q(l) for l in st['lines'])
+        return ' '.join(qi(i, l) for i, l in enumerate(st['lines']))
     dys = sorted(b[1] - a[1] for a, b in zip(pos, pos[1:]) if b[1] > a[1])
     pitch = dys[len(dys) // 2] if dys else 0
     x0 = min(p[0] for p in pos)
@@ -329,7 +333,7 @@ def stanza_body(st):
         if i and pitch and y - pos[i - 1][1] - pitch > 0.4:
             cum += y - pos[i - 1][1] - pitch       # a \\vspace inside a \\column costs a whole extra line: shift instead
         dx = x - x0 if x - x0 > 0.4 else 0.0
-        out.append('\\translate #\'(%.2f . %.2f) %s' % (dx, -cum, q(l)) if (dx or cum) else q(l))
+        out.append('\\translate #\'(%.2f . %.2f) %s' % (dx, -cum, qi(i, l)) if (dx or cum) else qi(i, l))
     return ' '.join(out)
 
 
@@ -456,8 +460,14 @@ def emit(ir, variant='piano', params=None):
     # 2.24 packs syllables tighter than the originals: keep words apart and hyphens drawn (the wider word gap is
     # dropped by convert.py when a dense system overflows with it and ends in REVIEW)
     lyr_ctx = '    \\context {\n      \\Lyrics\n      \\override LyricHyphen.minimum-distance = #0.6\n'
-    if P.get('lyric_space'):
-        lyr_ctx += '      \\override LyricSpace.minimum-distance = #%.1f\n' % P['lyric_space']
+    ls = P.get('lyric_space')
+    lsize = None
+    if isinstance(ls, (tuple, list)):                      # (word gap, lyric font-size step) for the densest sheets
+        ls, lsize = ls
+    if ls:
+        lyr_ctx += '      \\override LyricSpace.minimum-distance = #%.1f\n' % ls
+    if lsize:
+        lyr_ctx += '      \\override LyricText.font-size = #%d\n' % lsize
     lyr_ctx += '    }\n'
     ly.append('''\\score {
   <<

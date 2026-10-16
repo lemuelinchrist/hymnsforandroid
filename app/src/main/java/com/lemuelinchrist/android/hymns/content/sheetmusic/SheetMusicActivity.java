@@ -4,21 +4,16 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ShareActionProvider;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
-import androidx.core.view.MenuItemCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
@@ -38,10 +33,7 @@ public class SheetMusicActivity extends AppCompatActivity {
     private static final String MEI_FOLDER = "sheetMei";
     private static final String VIEWER_CLOSE_SCHEME = "hymnsviewer";
     private WebView webview;
-    private ShareActionProvider shareActionProvider;
-    private LegacySheetMusic legacySheetMusic;
     private SharedPreferences sharedPreferences;
-    private boolean newViewer;
     private Insets cutout = Insets.NONE;   // the camera cutout's safe insets, in pixels
 
     @Override
@@ -74,25 +66,16 @@ public class SheetMusicActivity extends AppCompatActivity {
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
         String selectedHymnId = (String) extras.get("selectedHymnId");
-        legacySheetMusic = new LegacySheetMusic(this,selectedHymnId);
 
         webview = findViewById(R.id.sheet_music_image);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        newViewer = sharedPreferences.getBoolean("newSheetMusicViewer", false) && hasMei(selectedHymnId);
-        if (newViewer) {
-            loadNewViewer(selectedHymnId);
-        } else {
-            webview.getSettings().setBuiltInZoomControls(true);
-            // disable zoom buttons
-            webview.getSettings().setDisplayZoomControls(false);
-            webview.loadUrl("file:///android_asset/"+legacySheetMusic.getSvgFolder()+"/" + selectedHymnId + ".svg");
-            // zoom out by default
-            webview.getSettings().setUseWideViewPort(true);
-            webview.getSettings().setLoadWithOverviewMode(true);
-            webview.setInitialScale(1);
+        if (!hasMei(selectedHymnId)) {
+            Toast.makeText(this, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
-
+        loadNewViewer(selectedHymnId);
 
         if(sharedPreferences.getBoolean("keepDisplayOn",false)) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -146,7 +129,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         });
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setAllowFileAccess(false);
-        String variant = "guitarSvg".equals(legacySheetMusic.getSvgFolder()) ? "guitar" : "piano";
+        String variant = "guitarSvg".equals(sharedPreferences.getString("sheetMusicType", "pianoSvg")) ? "guitar" : "piano";
         boolean dark = sharedPreferences.getBoolean("nightMode", false);
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
                 + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0"));
@@ -154,7 +137,7 @@ public class SheetMusicActivity extends AppCompatActivity {
 
     /** Tells the viewer page where the camera cutout is (CSS pixels), so the bar and music stay clear of it. */
     private void sendCutoutToViewer() {
-        if (!newViewer || webview == null) return;
+        if (webview == null) return;
         float density = getResources().getDisplayMetrics().density;
         webview.evaluateJavascript(String.format(Locale.ROOT, "window.setInsets && setInsets(%.1f, %.1f, %.1f, %.1f)",
                 cutout.top / density, cutout.right / density, cutout.bottom / density, cutout.left / density), null);
@@ -172,20 +155,6 @@ public class SheetMusicActivity extends AppCompatActivity {
         if (hasFocus) {
             hideSystemUI();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.sheet_music_menu, menu);
-        MenuItem item = menu.findItem(R.id.sheet_music_share);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
-
-        try {
-            shareActionProvider.setShareIntent(legacySheetMusic.shareSvgAsIntent());
-        } catch (Exception e) {
-            Log.e(getClass().getName(),"something went wrong! ",e);
-        }
-        return true;
     }
 
     @Override

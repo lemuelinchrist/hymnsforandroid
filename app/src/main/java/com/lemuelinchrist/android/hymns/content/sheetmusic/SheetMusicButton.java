@@ -1,7 +1,6 @@
 package com.lemuelinchrist.android.hymns.content.sheetmusic;
 
 import android.content.Intent;
-import android.os.Build;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -30,12 +29,6 @@ public class SheetMusicButton extends ContentComponent<ImageButton> {
 
     public void launchSheetMusic() {
         String sheetMusicId = getRootMusicSheet();
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            LegacySheetMusic legacySheetMusic = new LegacySheetMusic(context,sheetMusicId);
-            legacySheetMusic.shareToBrowser();
-            return;
-        }
 
         if (sheetMusicId != null) {
             Intent intent = new Intent(context, SheetMusicActivity.class);

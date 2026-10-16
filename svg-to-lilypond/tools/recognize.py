@@ -86,7 +86,7 @@ def key_alters(kind, n):
 STD_PAGE_W = 153.5737          # viewBox width (staff spaces) of a Letter page at staff size 16; some sheets use a smaller size
 
 
-def recognize(path):
+def recognize(path, lyric_size=2.47):
     sc = parse(path)
     sts = staves(sc)
     if not sts:
@@ -115,7 +115,7 @@ def recognize(path):
     for name, x, y, s in glyphs:
         kind, _, sub = name.partition('.')
         if kind == 'noteheads':
-            i = system_of(y)
+            i = system_of(y, -4.5, 8.75)     # C3 (four ledger lines) sits exactly on 8.5; rounding must not drop it
             if i is not None:
                 systems[i]['heads'].append({'x': x, 'y': y, 'type': sub})
         elif kind == 'rests':
@@ -132,7 +132,7 @@ def recognize(path):
                 if i is not None:
                     systems[i]['acc'].append({'x': x, 'y': y, 'type': sub})
         elif kind == 'dots':
-            i = system_of(y, -3, 8)
+            i = system_of(y, -3, 9)
             if i is not None:
                 systems[i]['dots'].append({'x': x, 'y': y})
         elif kind == 'flags':
@@ -231,9 +231,10 @@ def recognize(path):
             if i is not None:
                 systems[i]['chords'].append({'x': x, 'y': y, 'text': 'o' if text == '\u00b0' else text, 'size': size})
                 continue
-        if not is_sans(fam) and fam != 'Trebuchet MS' and abs(size - 2.47) < 0.05:
+        if not is_sans(fam) and fam != 'Trebuchet MS' and abs(size - lyric_size) < 0.05:
             cand = [i for i, t in enumerate(tops) if y > t + 3.0]
-            if cand:
+            # a shrunken lyric size (our densest renders) can equal the verse-block size: lyrics hug their staff
+            if cand and (lyric_size == 2.47 or y - tops[cand[-1]] < 14.0):
                 systems[cand[-1]]['lyrics'].append({'x': x, 'y': y, 'text': text, 'bold': 'bold' in weight,
                                                      'italic': 'italic' in style})
                 continue
@@ -841,6 +842,9 @@ def extract_text(systems, other, ir, rects):
         elif 'italic' in o['style'] and abs(size - 1.96) < 0.05 and y > tops[-1] + 10 and text_width(t, 1.96, False) < 40 and \
                 any(abs(y - vt['y']) < 40 for vt in verse_texts):
             verse_texts.append(o)                             # footnote under the last stanza of a column (C316)
+        elif 'italic' in o['style'] and abs(size - 2.2) < 0.05 and y > tops[-1] + 10 and \
+                any(0 < y - vt['y'] < 4.5 and abs(x - vt['x']) < 0.5 for vt in verse_texts):
+            verse_texts.append(o)                             # an italic line inside a stanza ("repeat", CH85)
         elif 'italic' in o['style'] and not (abs(size - 2.2) < 0.05 and any(tp - 11 < y < tp - 0.3 for tp in tops)
                                               and y > tops[0] - 8):
             out['instructions'].append(o)
@@ -883,6 +887,7 @@ def extract_text(systems, other, ir, rects):
             continue
         st = max(cands, key=lambda st: (round(st['x']), st['y']))
         st['lines'].append(o['text'])
+        st.setdefault('italic', []).append('italic' in o['style'] and abs(o['size'] - 2.2) < 0.05)
         st['pos'].append([round(o['x'], 2), round(o['y'], 2)])
     # unnumbered blocks: lines with one left edge, top to bottom, form one block (a column of its own)
     blocks = []
@@ -890,6 +895,7 @@ def extract_text(systems, other, ir, rects):
         for b in blocks:
             if abs(b['x'] - o['x']) < 1.0 and o['y'] >= b['pos'][-1][1]:
                 b['lines'].append(o['text'])
+                b.setdefault('italic', []).append('italic' in o['style'] and abs(o['size'] - 2.2) < 0.05)
                 b['pos'].append([round(o['x'], 2), round(o['y'], 2)])
                 break
         else:
@@ -899,7 +905,8 @@ def extract_text(systems, other, ir, rects):
     for st in stanzas + blocks:
         columns.setdefault(round(st['x']), []).append(st)
     out['verses'] = [{'x': cx, 'y': min(st['y'] for st in sts),
-                      'stanzas': [{'number': st['number'], 'lines': st['lines'], 'pos': st['pos']} for st in sts]}
+                      'stanzas': [{'number': st['number'], 'lines': st['lines'], 'pos': st['pos'],
+                                  'italic': st.get('italic', [])} for st in sts]}
                      for cx, sts in sorted(columns.items())]
     for k in ('title', 'subtitle', 'number'):
         if out[k]:

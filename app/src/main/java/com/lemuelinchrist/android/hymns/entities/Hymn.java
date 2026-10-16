@@ -12,6 +12,7 @@ import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
 import com.lemuelinchrist.android.hymns.R;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -315,20 +316,12 @@ public class Hymn {
     }
 
     public boolean hasOwnSheetMusic() {
-        AssetManager assets = context.getAssets();
-        Log.e(getClass().getName(), "Looking for svg file: " + hymnId+".svg");
-        try {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-            String svgFolder = sharedPreferences.getString("sheetMusicType", "pianoSvg");
-            for (String fileName : assets.list(svgFolder)) {
-                if(fileName.equals(hymnId+".svg")) return true;
-            }
-
+        // sheet music ships as one MEI file per hymn (assets/sheetMei/<hymnId>.mei)
+        try (InputStream ignored = context.getAssets().open("sheetMei/" + hymnId + ".mei")) {
+            return true;
         } catch (IOException e) {
-            Log.e(getClass().getName(),"something went wrong while listing files in svg folder",e);
-
+            return false;
         }
-        return false;
     }
 
     public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {

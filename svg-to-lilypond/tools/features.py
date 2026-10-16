@@ -95,7 +95,7 @@ COLS = ['file', 'format', 'pages', 'staves', 'heads', 'stacked_heads', 'staff_ac
 if __name__ == '__main__':
     rows = []
     for folder in ('pianoSvg', 'guitarSvg'):
-        for p in sorted(glob.glob(os.path.join(ROOT, 'app/src/main/assets', folder, '*.svg'))):
+        for p in sorted(glob.glob(os.path.join(ROOT, 'svg-to-lilypond/svg', folder, '*.svg'))):
             name = folder + '/' + os.path.basename(p)
             try:
                 f = features(p)

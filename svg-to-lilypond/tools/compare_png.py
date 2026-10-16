@@ -11,6 +11,7 @@ import subprocess
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 ASSETS = os.path.join(HERE, '..', 'app/src/main/assets')
+SVGS = os.path.join(HERE, 'svg')
 
 ap = argparse.ArgumentParser()
 ap.add_argument('ids', nargs='+')
@@ -21,7 +22,7 @@ a = ap.parse_args()
 out_dir = os.path.join(HERE, 'build', 'compare')
 os.makedirs(out_dir, exist_ok=True)
 for hid in a.ids:
-    orig = os.path.join(ASSETS, a.variant + 'Svg', hid + '.svg')
+    orig = os.path.join(SVGS, a.variant + 'Svg', hid + '.svg')
     base = os.path.join(HERE, 'build', 'svg', a.variant, hid)
     new = base + '.svg' if os.path.exists(base + '.svg') else (sorted(glob.glob(base + '-*.svg')) or [None])[0]
     if not os.path.exists(orig) or not new:

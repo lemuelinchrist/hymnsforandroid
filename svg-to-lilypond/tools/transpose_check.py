@@ -70,7 +70,7 @@ def check(variant, hid, to):
     if not os.path.exists(src):
         src = os.path.join(BUILD, 'ly', variant, hid + '.ly')
     ly = open(src, encoding='utf8').read()
-    orig = recognize(os.path.join(HERE, '..', 'app/src/main/assets', variant + 'Svg', hid + '.svg'))
+    orig = recognize(os.path.join(HERE, 'svg', variant + 'Svg', hid + '.svg'))
     up_ly = wrap(ly, ('c', to))
     up, pages, msgs = render_ir(up_ly, '%s_%s_to_%s' % (variant, hid, to))
     problems = []
