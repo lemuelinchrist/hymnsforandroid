@@ -1,0 +1,25 @@
+# ZS313  (sheet of CS313)  前我曾多次呼求主耶稣，
+# What is wrong:
+#   1.: French has 42-42 syllables for 120 note slots (French: 前我曾多次呼求主耶稣， / 但是从未这样 / 实际的摸着我主， / 不知为何故忽见祂丰采， / 哦我的主耶稣，我爱你！)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS313.txt and run:  python3 sheet-lyrics/align.py ZS313
+
+== 1.
+# French text: 前我曾多次呼求主耶稣， / 但是从未这样 / 实际的摸着我主， / 不知为何故忽见祂丰采， / 哦我的主耶稣，我爱你！
+# 120 notes in all; this suggestion has 42 syllables
+# 10 notes  | 前我曾多次呼求主耶穌，
+前 我 曾 多 次 呼 求 主 耶 稣，
+# 6 notes  | 但是從未這樣
+但 是 从 未 这 样
+# 7 notes  | 實際的摸著我主，
+实 际 的 摸 着 我 主，
+# 10 notes  | 不知為何故忽見祂丰采，
+不 知 为 何 故 忽 见 祂 丰 采，
+# 9 notes  | 哦我的主耶穌，我愛你！
+哦 我 的 主 耶 稣， 我 爱 你！
+# 78 notes
+
+# ??? only 0 syllables for 78 notes

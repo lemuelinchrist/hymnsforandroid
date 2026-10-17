@@ -1,0 +1,46 @@
+# C335  (sheet of E438)  我已轉身背向俗世，
+# What is wrong:
+#   1.: French has 60-60 syllables for 85 note slots (French: 我已轉身背向俗世， / 和它一切的歡娛； / 我已心向更美的事， / 就是天上的儲蓄； / 一切虛榮、一切揚顯， / 不能使我再逗遛； / 我已越過分別界線， / 世界已丟在背後。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C335.txt and run:  python3 sheet-lyrics/align.py C335
+
+== 1.
+# French text: 我已轉身背向俗世， / 和它一切的歡娛； / 我已心向更美的事， / 就是天上的儲蓄； / 一切虛榮、一切揚顯， / 不能使我再逗遛； / 我已越過分別界線， / 世界已丟在背後。
+# 85 notes in all; this suggestion has 60 syllables
+# 15 notes  | I've turned my back upon the world
+我 已 轉 身 背 向 俗 世， 和 它 一 切 的 歡 娛；
+# 8 notes  | With all its idle pleasures,
+我 已 心 向 更 美 的 事，
+# 3 notes  | And set my heart on better things,
+就 是 天
+# 4 notes  | On higher, holier treasures;
+上 的 儲 蓄；
+# 8 notes  | No more its glitter and its glare,
+一 切 虛 榮、 一 切 揚 顯，
+# 7 notes  | And vanity shall bind me;
+不 能 使 我 再 逗 遛；
+# 8 notes  | I've crossed the separating line,
+我 已 越 過 分 別 界 線，
+# 7 notes  | And left the world behind me.
+世 界 已 丟 在 背 後。
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes

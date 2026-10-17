@@ -1,0 +1,28 @@
+# C632  (sheet of E870)  興起，興起，為基督，
+# What is wrong:
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C632.txt and run:  python3 sheet-lyrics/align.py C632
+
+== 1.
+# French text: 興起，興起，為基督， / 興起，十架精兵； / 舉起主旗揚威武， / 永遠將它高撐。 / 主必率領祂大軍， / 得勝而又得勝， / 直到仇敵全滅盡， / 人尊主名為聖。
+# 52 notes in all; this suggestion has 52 syllables
+# 7 notes  | Stand up! Stand up for Jesus!
+興 起， 興 起， 為 基 督，
+# 6 notes  | Ye soldiers of the cross;
+興 起， 十 架 精 兵；
+# 7 notes  | Lift high His royal banner,
+舉 起 主 旗 揚 威 武，
+# 6 notes  | It must not suffer loss:
+永 遠 將 它 高 撐。
+# 7 notes  | From vict'ry unto vict'ry
+主 必 率 領 祂 大 軍，
+# 6 notes  | His army shall He lead,
+得 勝 而 又 得 勝，
+# 7 notes  | Till every foe is vanquished
+直 到 仇 敵 全 滅 盡，
+# 6 notes  | And Christ is Lord indeed.
+人 尊 主 名 為 聖。

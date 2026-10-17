@@ -1,0 +1,26 @@
+# ZS815  (sheet of E1293)  瞧！我是人，
+# What is wrong:
+#   adapting would change 8 of 47 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS815.txt and run:  python3 sheet-lyrics/align.py ZS815
+
+== 1.
+# French text: 瞧！我是人， / 我是这个宇宙的意义， / 对，我是人， / 我是这个宇宙的意义！ / 神造了我，神造了我， / 身分崇高，身分崇高， / 使我成为 / 这个宇宙中心和意义。
+# 47 notes in all; this suggestion has 55 syllables
+# 4 notes  | O I'm a man —
+瞧！ 我 是 人，
+# 9 notes  | I'm the meaning of the universe;
+我 是 这 个 宇 宙 的 意 义，
+# 4 notes  | Yes, I'm a man —
+对， 我 是 人，
+# 9 notes  | I'm the meaning of the universe.
+我 是 这 个 宇 宙 的 意 义！
+# 4 notes  | God made me such,
+神 造 了 我，
+# 4 notes  | I am so much;
+神 造 了 我，
+# 13 notes  | I'm the center and the meaning of the universe.
+身 分 崇 高， 身 分 崇 高， 使 我 成 为 这 个  #EXTRA 宇  #EXTRA 宙  #EXTRA 中  #EXTRA 心  #EXTRA 和  #EXTRA 意  #EXTRA 义。  #EXTRA

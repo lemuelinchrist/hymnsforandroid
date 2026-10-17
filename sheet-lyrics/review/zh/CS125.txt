@@ -1,0 +1,21 @@
+# CS125  (sheet of E1242)  主是生命種子，
+# What is wrong:
+#   1.: French has 83-83 syllables for 56 note slots (French: 主是生命種子， / 已經撒在我們心裡， / 祂要發苗漸漸長大， / 長成祂的身量。 / 祂不需要規條，儀文， / 只需活水澆灌； / 藉此，包羅萬有生命 / 就要逐漸成長。 / 何等奇妙的種子， / 就是耶穌我主， / 祂撒在我的裡面， / 長大並達到成熟。)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS125.txt and run:  python3 sheet-lyrics/align.py CS125
+
+== 1.
+# French text: 主是生命種子， / 已經撒在我們心裡， / 祂要發苗漸漸長大， / 長成祂的身量。 / 祂不需要規條，儀文， / 只需活水澆灌； / 藉此，包羅萬有生命 / 就要逐漸成長。 / 何等奇妙的種子， / 就是耶穌我主， / 祂撒在我的裡面， / 長大並達到成熟。
+# 56 notes in all; this suggestion has 83 syllables
+# 14 notes  | The Lord, the seed of life, has sown Himself into our heart
+主 是 生 命 種 子， 已 經 撒 在 我 們 心 裡，
+# 14 notes  | To grow up into fullness and become His counterpart.
+祂 要 發 苗 漸 漸 長 大， 長 成 祂 的 身 量。
+# 14 notes  | The seed requires no rules or forms, for water is its need —
+祂 不 需 要 規 條， 儀 文， 只 需 活 水 澆 灌；
+# 14 notes  | By this the all-inclusive seed will grow in us indeed!
+藉 此， 包 羅 萬 有 生 命 就 要 逐 漸 成 長。 何  #EXTRA 等  #EXTRA 奇  #EXTRA 妙  #EXTRA 的  #EXTRA 種  #EXTRA 子，  #EXTRA 就  #EXTRA 是  #EXTRA 耶  #EXTRA 穌  #EXTRA 我  #EXTRA 主，  #EXTRA 祂  #EXTRA 撒  #EXTRA 在  #EXTRA 我  #EXTRA 的  #EXTRA 裡  #EXTRA 面，  #EXTRA 長  #EXTRA 大  #EXTRA 並  #EXTRA 達  #EXTRA 到  #EXTRA 成  #EXTRA 熟。  #EXTRA

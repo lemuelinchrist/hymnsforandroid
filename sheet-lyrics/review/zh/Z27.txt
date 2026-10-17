@@ -1,0 +1,27 @@
+# Z27  (sheet of E29)  神阿，你为何故
+# What is wrong:
+#   adapting would change 8 of 48 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z27.txt and run:  python3 sheet-lyrics/align.py Z27
+
+== 1.
+# French text: 神阿，你为何故 / 赐下耶稣基督， / 你的亲爱儿子， / 来为罪人受死？ / 无他，乃是你的大爱， / 叫你这样舍去心爱。
+# 48 notes in all; this suggestion has 40 syllables
+# 6 notes  | What was it, blessed God,
+神 阿， 你 为 何 故
+# 6 notes  | Led Thee to give Thy Son,
+赐 下 耶 稣 基 督，
+# 6 notes  | To yield Thy Well-beloved
+你 的 亲 爱 儿 子，
+# 6 notes  | For us by sin undone?
+来 为 罪 人 受 死？
+# 8 notes  | 'Twas love unbounded led Thee thus,
+无 他， 乃 是 你 的 大 爱，
+# 8 notes  | 'Twas love unbounded led Thee thus,
+叫 你 这 样 舍 去 心 爱。
+# 8 notes  | To give Thy Well-beloved for us.
+
+# ??? only 0 syllables for 8 notes

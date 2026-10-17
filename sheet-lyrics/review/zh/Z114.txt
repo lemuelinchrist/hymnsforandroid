@@ -1,0 +1,20 @@
+# Z114  (sheet of E129)  看哪，冠冕已给羊羔！
+# What is wrong:
+#   1.: French has 37-37 syllables for 28 note slots (French: 看哪，冠冕已给羊羔！ / 荣耀、尊贵已归祂！ / 为祂无处算是太高， / 天上无处是太大。 / 天上无处是太大。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z114.txt and run:  python3 sheet-lyrics/align.py Z114
+
+== 1.
+# French text: 看哪，冠冕已给羊羔！ / 荣耀、尊贵已归祂！ / 为祂无处算是太高， / 天上无处是太大。 / 天上无处是太大。
+# 28 notes in all; this suggestion has 37 syllables
+# 8 notes  | Behold the Lamb with glory crowned,
+看 哪， 冠 冕 已 给 羊 羔！
+# 6 notes  | To Him all pow'r is giv'n:
+荣 耀、 尊 贵 已 归
+# 8 notes  | No place too high for Him is found,
+祂！ 为 祂 无 处 算 是 太
+# 6 notes  | No place too high in heav'n.
+高， 天 上 无 处 是 太  #EXTRA 大。  #EXTRA 天  #EXTRA 上  #EXTRA 无  #EXTRA 处  #EXTRA 是  #EXTRA 太  #EXTRA 大。  #EXTRA

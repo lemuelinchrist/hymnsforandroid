@@ -1,0 +1,37 @@
+# ZS237  (sheet of CS237)  在早晨我们呼喊：
+# What is wrong:
+#   1.: French has 63-63 syllables for 162 note slots (French: 在早晨我们呼喊： / 『哦，主耶稣！』 / 午间我们呼喊： / 『哦，主耶稣！』 / 在晚上我们呼喊： / 『哦，主耶稣！』 / 终日我们呼喊： / 『哦，主耶稣！』 / 祂就住在灵里面； / 勿别处浪费时间。 / 赞美主！赞美主！哦…)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS237.txt and run:  python3 sheet-lyrics/align.py ZS237
+
+== 1.
+# French text: 在早晨我们呼喊： / 『哦，主耶稣！』 / 午间我们呼喊： / 『哦，主耶稣！』 / 在晚上我们呼喊： / 『哦，主耶稣！』 / 终日我们呼喊： / 『哦，主耶稣！』 / 祂就住在灵里面； / 勿别处浪费时间。 / 赞美主！赞美主！哦…
+# 162 notes in all; this suggestion has 63 syllables
+# 7 notes  | 在早晨我們呼喊：
+在 早 晨 我 们 呼 喊：
+# 4 notes  | 『哦，主耶穌！』
+『哦， 主 耶 稣！』
+# 6 notes  | 午間我們呼喊：
+午 间 我 们 呼 喊：
+# 4 notes  | 『哦，主耶穌！』
+『哦， 主 耶 稣！』
+# 7 notes  | 在晚上我們呼喊：
+在 晚 上 我 们 呼 喊：
+# 4 notes  | 『哦，主耶穌！』
+『哦， 主 耶 稣！』
+# 6 notes  | 終日我們呼喊：
+终 日 我 们 呼 喊：
+# 4 notes  | 『哦，主耶穌！』
+『哦， 主 耶 稣！』
+# 7 notes  | 祂就住在靈裡面；
+祂 就 住 在 灵 里 面；
+# 7 notes  | 勿別處浪費時間。
+勿 别 处 浪 费 时 间。
+# 7 notes  | 讚美主！讚美主！哦…
+赞 美 主！ 赞 美 主！ 哦…
+# 99 notes
+
+# ??? only 0 syllables for 99 notes

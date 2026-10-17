@@ -1,0 +1,42 @@
+# CS534  (sheet of E1220)  哦,主將我帕子去除,
+# What is wrong:
+#   1.: French has 28-28 syllables for 56 note slots (French: 哦,主將我帕子去除, / 賜下真實啟示; / 哦,主使我異象清楚, / 知你恢復所是。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS534.txt and run:  python3 sheet-lyrics/align.py CS534
+
+== 1.
+# French text: 哦,主將我帕子去除, / 賜下真實啟示; / 哦,主使我異象清楚, / 知你恢復所是。
+# 56 notes in all; this suggestion has 28 syllables
+# 4 notes  | Remove the veils, Lord, from my heart;
+哦, 主 將 我
+# 1 notes  | True revelation grant to me;
+帕
+# 3 notes  | A vision clear, O Lord, impart
+子 去 除,
+# 8 notes  | Of Thy recovery.
+賜 下 真 實 啟 示; 哦, 主
+# 4 notes  | A vision clear, O Lord, impart
+使 我 異 象
+# 2 notes  | Of Thy recovery.
+清 楚,
+# 8 notes
+知 你 恢 復 所 是。
+# ??? only 6 syllables for 8 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes

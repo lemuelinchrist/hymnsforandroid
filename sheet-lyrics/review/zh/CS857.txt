@@ -1,0 +1,22 @@
+# CS857  (sheet of E1294)  應當宣揚,宣揚主話使國度來臨;
+# What is wrong:
+#   adapting would change 8 of 47 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS857.txt and run:  python3 sheet-lyrics/align.py CS857
+
+== 1.
+# French text: 應當宣揚,宣揚主話使國度來臨; / 盡力宣揚,宣揚主話直到國度臨。 / 和平福音,和平福音 / 不該藏隱;不該藏隱; / 應當宣揚,宣揚主話直到國度臨。
+# 47 notes in all; this suggestion has 55 syllables
+# 13 notes  | Come let us speak till the kingdom of the Lord comes down.
+應 當 宣 揚, 宣 揚 主 話 使 國 度 來 臨;
+# 13 notes  | Yes, let us speak till the kingdom of the Lord comes down.
+盡 力 宣 揚, 宣 揚 主 話 直 到 國 度 臨。
+# 4 notes  | Why hold your peace?
+和 平 福 音,
+# 4 notes  | The Word release.
+和 平 福 音
+# 13 notes  | Let us speak until the kingdom of the Lord comes down.
+不 該 藏 隱; 不 該 藏 隱; 應 當 宣 揚, 宣 揚  #EXTRA 主  #EXTRA 話  #EXTRA 直  #EXTRA 到  #EXTRA 國  #EXTRA 度  #EXTRA 臨。  #EXTRA

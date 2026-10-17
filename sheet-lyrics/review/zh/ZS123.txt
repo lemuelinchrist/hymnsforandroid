@@ -1,0 +1,14 @@
+# ZS123  (sheet of CS123)  阿利路亚！阿利路亚！
+# What is wrong:
+#   1.: French has 55-55 syllables for 33 note slots (French: 阿利路亚！阿利路亚！ / 耶稣如今活在我的里面。 / 阿利路亚！阿利路亚！ / 耶稣活在我里面。 / ? / 附注：『活在』可改唱为 / 『运行、』『成长、』 / 『成形、』『涂抹、』 / 『启示、』『安家』 / 等等。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS123.txt and run:  python3 sheet-lyrics/align.py ZS123
+
+== 1.
+# French text: 阿利路亚！阿利路亚！ / 耶稣如今活在我的里面。 / 阿利路亚！阿利路亚！ / 耶稣活在我里面。 / ? / 附注：『活在』可改唱为 / 『运行、』『成长、』 / 『成形、』『涂抹、』 / 『启示、』『安家』 / 等等。
+# 33 notes in all; this suggestion has 55 syllables
+# 33 notes  | 阿利路亞！阿利路亞！
+阿 利 路 亚！ 阿 利 路 亚！ 耶 稣 如 今 活 在 我 的 里 面。 阿 利 路 亚！ 阿 利 路 亚！ 耶 稣 活 在 我 里 面。 附  #EXTRA 注：『  #EXTRA 活  #EXTRA 在』  #EXTRA 可  #EXTRA 改  #EXTRA 唱  #EXTRA 为  #EXTRA 『运  #EXTRA 行、』『  #EXTRA 成  #EXTRA 长、』  #EXTRA 『成  #EXTRA 形、』『  #EXTRA 涂  #EXTRA 抹、』  #EXTRA 『启  #EXTRA 示、』『  #EXTRA 安  #EXTRA 家』  #EXTRA 等  #EXTRA 等。  #EXTRA

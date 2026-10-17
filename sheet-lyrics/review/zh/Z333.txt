@@ -1,0 +1,32 @@
+# Z333  (sheet of E437)  你的灵岂非已见祂过？
+# What is wrong:
+#   (C): French has 40-40 syllables for 30 note slots (French: 你是千万人中之第一人！ / 哦，求你开我眼， / 并夺我心， / 摔碎众偶像， / 并欢然加冠 / 你为千万人中之第一人！)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z333.txt and run:  python3 sheet-lyrics/align.py Z333
+
+== 1.
+# French text: 你的灵岂非已见祂过？ / 你的心曾否被祂所夺？ / 你当认祂为人中第一人， / 欢喜选那上好的福分。
+# 30 notes in all; this suggestion has 37 syllables
+# 8 notes  | Hast thou heard Him, seen Him, known Him?
+你 的 灵 岂 非 已 见 祂
+# 7 notes  | Is not thine a captured heart?
+过？ 你 的 心 曾 否 被
+# 8 notes  | Chief among ten thousand own Him;
+祂 所 夺？ 你 当 认 祂 为
+# 7 notes  | Joyful choose the better part.
+人 中 第 一 人， 欢 喜 选  #EXTRA 那  #EXTRA 上  #EXTRA 好  #EXTRA 的  #EXTRA 福  #EXTRA 分。  #EXTRA
+
+== (C)
+# French text: 你是千万人中之第一人！ / 哦，求你开我眼， / 并夺我心， / 摔碎众偶像， / 并欢然加冠 / 你为千万人中之第一人！
+# 30 notes in all; this suggestion has 40 syllables
+# 8 notes  | Captivated by His beauty,
+你 是 千 万 人 中 之 第
+# 7 notes  | Worthy tribute haste to bring;
+一 人！ 哦， 求 你 开 我
+# 8 notes  | Let His peerless worth constrain thee,
+眼， 并 夺 我 心， 摔 碎 众
+# 7 notes  | Crown Him now unrivaled King.
+偶 像， 并 欢 然 加 冠 你  #EXTRA 为  #EXTRA 千  #EXTRA 万  #EXTRA 人  #EXTRA 中  #EXTRA 之  #EXTRA 第  #EXTRA 一  #EXTRA 人！  #EXTRA

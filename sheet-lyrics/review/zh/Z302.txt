@@ -1,0 +1,21 @@
+# Z302  (sheet of E782)  主阿，何等奥秘，
+# What is wrong:
+#   adapting would change 6 of 28 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z302.txt and run:  python3 sheet-lyrics/align.py Z302
+
+== 1.
+# French text: 主阿，何等奥秘， / 你灵在我灵！ / 也是何等实际， / 二灵成一灵！
+# 28 notes in all; this suggestion has 22 syllables
+# 7 notes  | How mysterious, O Lord,
+主 阿， 何 等 奥 秘， 你
+# 7 notes  | That Thy Spirit dwells in mine;
+灵 在 我 灵！ 也 是 何
+# 7 notes  | O how marvelous it is,
+等 实 际， 二 灵 成 一
+# 7 notes  | Into one, two spirits twine.
+灵！
+# ??? only 1 syllables for 7 notes

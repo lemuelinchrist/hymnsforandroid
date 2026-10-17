@@ -1,0 +1,21 @@
+# CS508  (sheet of E1226)  哦，基督有一榮耀召會，
+# What is wrong:
+#   1.: French has 87-87 syllables for 52 note slots (French: 哦，基督有一榮耀召會， / 我們有分於她─ / 何等喜樂， / 主使我們合為一！ / 看哪， / 在宇宙中有一身體， / 我們屬於她─阿利路亞， / 主使我們合為一！ / 阿利路亞，榮耀身體！ / 我們是身體的肢體！ / 一切完全為這身體！ / 阿利路亞， / 主使我們合為一！)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS508.txt and run:  python3 sheet-lyrics/align.py CS508
+
+== 1.
+# French text: 哦，基督有一榮耀召會， / 我們有分於她─ / 何等喜樂， / 主使我們合為一！ / 看哪， / 在宇宙中有一身體， / 我們屬於她─阿利路亞， / 主使我們合為一！ / 阿利路亞，榮耀身體！ / 我們是身體的肢體！ / 一切完全為這身體！ / 阿利路亞， / 主使我們合為一！
+# 52 notes in all; this suggestion has 87 syllables
+# 15 notes  | Oh, the church of Christ is glorious, and we are part of it —
+哦， 基 督 有 一 榮 耀 召 會， 我 們 有 分 於 她─
+# 11 notes  | We're so happy that the Lord has made us one!
+何 等 喜 樂， 主 使 我 們 合 為 一！
+# 15 notes  | There's a Body in the universe and we belong to it —
+看 哪， 在 宇 宙 中 有 一 身 體， 我 們 屬 於 她─
+# 11 notes  | Hallelujah, for the Lord has made us one!
+阿 利 路 亞， 主 使 我 們 合 為 一！ 阿  #EXTRA 利  #EXTRA 路  #EXTRA 亞，  #EXTRA 榮  #EXTRA 耀  #EXTRA 身  #EXTRA 體！  #EXTRA 我  #EXTRA 們  #EXTRA 是  #EXTRA 身  #EXTRA 體  #EXTRA 的  #EXTRA 肢  #EXTRA 體！  #EXTRA 一  #EXTRA 切  #EXTRA 完  #EXTRA 全  #EXTRA 為  #EXTRA 這  #EXTRA 身  #EXTRA 體！  #EXTRA 阿  #EXTRA 利  #EXTRA 路  #EXTRA 亞，  #EXTRA 主  #EXTRA 使  #EXTRA 我  #EXTRA 們  #EXTRA 合  #EXTRA 為  #EXTRA 一！  #EXTRA

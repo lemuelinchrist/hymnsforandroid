@@ -1,0 +1,28 @@
+# Z604  (sheet of E839)  主，你不仅是陶人，
+# What is wrong:
+#   adapting would change 14 of 56 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z604.txt and run:  python3 sheet-lyrics/align.py Z604
+
+== 1.
+# French text: 主，你不仅是陶人， / 更是荣耀建造主； / 不仅要把我陶甄， / 更是要把我建筑。 / 我也不仅是土人， / 更是新造的活石； / 不仅为作你器皿， / 更是为作你宫室。 / 不仅为作你器皿， / 更是为作你宫室。
+# 56 notes in all; this suggestion has 70 syllables
+# 7 notes  | Lord, Thou art a potter skilled
+主， 你 不 仅 是 陶 人，
+# 7 notes  | And a glorious builder too,
+更 是 荣 耀 建 造 主；
+# 7 notes  | Molding for Thy vessel great,
+不 仅 要 把 我 陶 甄，
+# 7 notes  | Building with Thy house in view.
+更 是 要 把 我 建 筑。
+# 7 notes  | I am both a man of clay
+我 也 不 仅 是 土 人，
+# 7 notes  | And a new-made living stone,
+更 是 新 造 的 活 石；
+# 7 notes  | That Thy vessel I may be
+不 仅 为 作 你 器 皿，
+# 7 notes  | And the temple Thou wouldst own.
+更 是 为 作 你 宫 室。 不  #EXTRA 仅  #EXTRA 为  #EXTRA 作  #EXTRA 你  #EXTRA 器  #EXTRA 皿，  #EXTRA 更  #EXTRA 是  #EXTRA 为  #EXTRA 作  #EXTRA 你  #EXTRA 宫  #EXTRA 室。  #EXTRA

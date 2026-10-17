@@ -1,0 +1,14 @@
+# ZS314  (sheet of CS314)  我们与爱的耶稣
+# What is wrong:
+#   1.: French has 106-106 syllables for 98 note slots (French: 我们与爱的耶稣 / 彼此享受何快乐， / 我们涌起爱意 / 向着爱主唱歌， / 向着爱主唱新歌。 / 从祂我们得平安， / 因祂我们享自由； / 祂是我们救主， / 又是我们生命， / 与我们永远合一！ / （一至三行重复一次） / 耶稣，耶稣， / 你名何富有！ / 我们捆绑全脱落， / 灵里释放唱新歌， / 阿利路)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS314.txt and run:  python3 sheet-lyrics/align.py ZS314
+
+== 1.
+# French text: 我们与爱的耶稣 / 彼此享受何快乐， / 我们涌起爱意 / 向着爱主唱歌， / 向着爱主唱新歌。 / 从祂我们得平安， / 因祂我们享自由； / 祂是我们救主， / 又是我们生命， / 与我们永远合一！ / （一至三行重复一次） / 耶稣，耶稣， / 你名何富有！ / 我们捆绑全脱落， / 灵里释放唱新歌， / 阿利路亚向你唱新歌。
+# 98 notes in all; this suggestion has 106 syllables
+# 98 notes  | 我們與愛的耶穌
+我 们 与 爱 的 耶 稣 彼 此 享 受 何 快 乐， 我 们 涌 起 爱 意 向 着 爱 主 唱 歌， 向 着 爱 主 唱 新 歌。 从 祂 我 们 得 平 安， 因 祂 我 们 享 自 由； 祂 是 我 们 救 主， 又 是 我 们 生 命， 与 我 们 永 远 合 一！ （一 至 三 行 重 复 一 次） 耶 稣， 耶 稣， 你 名 何 富 有！ 我 们 捆 绑 全 脱 落， 灵 里 释 放 唱 新 歌， 阿 利  #EXTRA 路  #EXTRA 亚  #EXTRA 向  #EXTRA 你  #EXTRA 唱  #EXTRA 新  #EXTRA 歌。  #EXTRA

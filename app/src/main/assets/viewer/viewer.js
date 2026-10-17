@@ -442,7 +442,9 @@
         }
         var syl = verses[v].getElementsByTagNameNS(MEI_NS, 'syl')[0];
         if (!syl) continue;
-        syl.textContent = s[0];
+        if (typeof s === 'string') s = [s, null];       // a whole word on one note
+        // two Chinese characters on one note simply sit side by side (the tie sign is for syllables)
+        syl.textContent = CJK.test(s[0]) ? s[0].replace(/\u203f/g, '') : s[0];
         if (s[1]) { syl.setAttribute('wordpos', s[1]); } else { syl.removeAttribute('wordpos'); }
         if (s[2] === 'u') {
           syl.setAttribute('con', 'u');                 // held over the next note: an extender line
@@ -456,7 +458,7 @@
     var titles = doc.getElementsByTagNameNS(MEI_NS, 'title');
     for (i = 0; i < titles.length; i++) {
       if (titles[i].getAttribute('type') === 'main' && o.title) titles[i].textContent = o.title;
-      if (titles[i].getAttribute('type') === 'subordinate') titles[i].textContent = '';
+      if (titles[i].getAttribute('type') === 'subordinate') titles[i].textContent = o.subtitle || '';
     }
     var back = doc.getElementsByTagNameNS(MEI_NS, 'back')[0];
     if (back) back.parentNode.removeChild(back);

@@ -1,0 +1,36 @@
+# C456  (sheet of E1059)  求主使我近十架！
+# What is wrong:
+#   (C): French has 37-37 syllables for 25 note slots (French: 十字架！十字架！ / 永是我的誇耀！ / 在此主付的贖價， / 是我永遠倚靠！ / 第二節的『明亮晨星』指主基督。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C456.txt and run:  python3 sheet-lyrics/align.py C456
+
+== 1.
+# French text: 求主使我近十架！ / 在此有一寶泉， / 醫治活水，無代價， / 流自加略山巔。
+# 26 notes in all; this suggestion has 26 syllables
+# 2 notes  | Jesus, keep me near the cross,
+求 主
+# 5 notes  | There a precious fountain,
+使 我 近 十 架！
+# 6 notes  | Free to all-a healing stream,
+在 此 有 一 寶 泉，
+# 3 notes  | Flows from Calv'ry mountain.
+醫 治 活
+# 4 notes
+水， 無 代 價，
+# 6 notes
+流 自 加 略 山 巔。
+
+== (C)
+# French text: 十字架！十字架！ / 永是我的誇耀！ / 在此主付的贖價， / 是我永遠倚靠！ / 第二節的『明亮晨星』指主基督。
+# 25 notes in all; this suggestion has 37 syllables
+# 6 notes  | In the cross, in the cross,
+十 字 架！ 十 字 架！
+# 6 notes  | Be my glory ever;
+永 是 我 的 誇 耀！
+# 7 notes  | From the cross my ransomed soul
+在 此 主 付 的 贖 價，
+# 6 notes  | Nothing then shall sever.
+是 我 永 遠 倚 靠！ 第  #EXTRA 二  #EXTRA 節  #EXTRA 的『  #EXTRA 明  #EXTRA 亮  #EXTRA 晨  #EXTRA 星』  #EXTRA 指  #EXTRA 主  #EXTRA 基  #EXTRA 督。  #EXTRA

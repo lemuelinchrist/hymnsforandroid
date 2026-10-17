@@ -31,6 +31,7 @@ OVERRIDES = os.path.join(HERE, 'overrides')
 REVIEW_DIR = os.path.join(HERE, 'review')
 sys.path.insert(0, HERE)
 from french import word_readings  # noqa: E402
+import chinese  # noqa: E402
 
 NS = {'m': 'http://www.music-encoding.org/ns/mei'}
 XMLID = '{http://www.w3.org/XML/1998/namespace}id'
@@ -43,8 +44,9 @@ WEAK = {'e', 'es', 'le', 'la', 'de', 'je', 'me', 'te', 'se', 'ne', 'ce', 'que', 
 
 # ------------------------------------------------------------------ reading the data
 def letters(s):
+    """The letters of a text in any script (accents dropped), for comparing a database line with the syllables of a sheet."""
     s = unicodedata.normalize('NFD', s.lower())
-    return re.sub(r'[^a-z0-9]', '', ''.join(c for c in s if unicodedata.category(c) != 'Mn'))
+    return ''.join(c for c in s if unicodedata.category(c)[0] in 'LN' and unicodedata.category(c) != 'Mn')
 
 
 def db_stanzas(c, hid):
@@ -133,6 +135,72 @@ def punctuation_groups(slots):
     return groups
 
 
+def phrase_sequence(slots, en, key):
+    """Follow the music: which stanza line does each phrase sing? The syllables of the English sheet are matched, letter by
+    letter, against the lines of its stanza (and chorus); a repeat shows up as a line used again.
+    Returns [(stanza, line index, number of notes)] or None when the text does not explain the notes."""
+    cands = []
+    for k in (key, 'chorus'):
+        if k and k in en:
+            for i, line in enumerate(en[k]):
+                cands.append((k, i, letters(line)))
+    if not cands:
+        return None
+    words = english_words(slots)
+    wl = [letters(''.join(s['text'] for s in w)) for w in words]
+    seq, wi, last = [], 0, None
+    while wi < len(words):
+        found = None
+        acc = ''
+        for m in range(1, min(len(words) - wi, 14) + 1):
+            acc += wl[wi + m - 1]
+            if not acc:
+                continue
+            hits = [cd for cd in cands if cd[2] == acc]
+            if hits:
+                nxt = (last[0], last[1] + 1) if last else (cands[0][0], 0)
+                pick = next((h for h in hits if (h[0], h[1]) == nxt), None)
+                if pick is None:
+                    pick = hits[0]
+                found = (m, pick)
+                break
+        if not found:
+            return None
+        m, pick = found
+        seq.append((pick[0], pick[1], sum(len(w) for w in words[wi:wi + m])))
+        last = (pick[0], pick[1])
+        wi += m
+    return seq
+
+
+def repeated_lines(slots, en, fr, key):
+    """Target-language lines in the order the music sings them, with the notes of each, when the music repeats lines the
+    target stanza prints once, or the target stanza has fewer lines than the English one (a Chinese line often covers two
+    English lines). Needs the line counts to be a whole multiple. Returns (notes per line, lines) or None."""
+    seq = phrase_sequence(slots, en, key)
+    if not seq:
+        return None
+    ratio = {}
+    for k in {k for k, _, _ in seq}:
+        e, f = len(en.get(k, [])), len(fr.get(k, []))
+        if not f or e % f:
+            return None
+        ratio[k] = e // f
+    repeats = len({(k, i) for k, i, _ in seq}) != len(seq)
+    if not repeats and all(r == 1 for r in ratio.values()):
+        return None                                    # the usual way works
+    groups, lines, prev = [], [], None
+    for k, i, n in seq:
+        ti = i // ratio[k]
+        if prev == (k, ti) and ratio[k] > 1 and groups:
+            groups[-1] += n                            # the second half of a line that covers two English lines
+        else:
+            groups.append(n)
+            lines.append(fr[k][ti])
+        prev = (k, ti)
+    return groups, lines
+
+
 def english_groups(slots, en, key):
     """Slot counts per English phrase: the stanza's lines, then the chorus' lines when notes are left, then the rest by punctuation."""
     lines = list(en.get(key, []))
@@ -181,7 +249,7 @@ def tokens(line):
     return out
 
 
-def word_options(lines):
+def french_options(lines):
     flat = []
     for line in lines:
         toks = tokens(line)
@@ -195,6 +263,14 @@ def word_options(lines):
         reads = [(s, c, t) for s, c, t in word_readings(core, nxt, line_end=last) if s]
         options.append((pre, core, suf, reads, last))
     return options
+
+
+LANG = {'name': 'fr'}
+
+
+def word_options(lines):
+    """The words of the lines with their possible sung readings, for the language being processed."""
+    return chinese.options(lines) if LANG['name'] == 'zh' else french_options(lines)
 
 
 # ------------------------------------------------------------------ fitting
@@ -435,11 +511,23 @@ def place(tokens_, group_slots):
     return out, (0, k)
 
 
-def write_notes(placed, syl_out):
+def etext(v):
+    return v if isinstance(v, str) else v[0]
+
+
+def ewordpos(v):
+    return None if isinstance(v, str) else v[1]
+
+
+def eheld(v):
+    return not isinstance(v, str) and len(v) > 2
+
+
+def write_notes(placed, syl_out, compound=True):
     """placed: [(token, [slots])] over a whole block; writes the overlay entries with word positions."""
     toks = [dict(tok) for tok, _ in placed]
     for i, tok in enumerate(toks):                # a compound (grand-route, Jésus-Christ) is one word
-        if tok['we'] and tok['t'].endswith('-') and i + 1 < len(toks):
+        if compound and tok['we'] and tok['t'].endswith('-') and i + 1 < len(toks):
             tok['t'] = tok['t'][:-1]
             tok['we'] = False
             toks[i + 1]['ws'] = False
@@ -453,7 +541,7 @@ def write_notes(placed, syl_out):
         else:
             pw = 'm'
         held = len(slots) > 1
-        entry = [tok['t'], pw]
+        entry = tok['t'] if (pw is None and not held) else [tok['t'], pw]     # a bare string: a whole word on one note
         if held:
             entry.append('u')                      # an extender line over the next note
         syl_out[slots[0]['id']] = entry
@@ -523,11 +611,15 @@ def build(c, hid):
             else:
                 merged.append(s)
         segs = merged
-    if en.get('chorus') and not fr.get('chorus') and fr.get('1') and len(fr['1']) == len(en['1']) + len(en['chorus']):
+    if en.get('chorus') and not fr.get('chorus') and fr.get('1') and len(fr['1']) == len(en.get('1', [])) + len(en['chorus']):
         fr = dict(fr)                               # the French put the chorus inside stanza 1
-        cut = len(en['1'])
+        cut = len(en.get('1', []))
         fr['chorus'] = fr['1'][cut:]
         fr['1'] = fr['1'][:cut]
+    if not en.get('chorus') and fr.get('chorus') and fr.get('1') and len(en.get('1', [])) == len(fr['1']) + len(fr['chorus']):
+        fr = dict(fr)                               # the English print the chorus inside stanza 1, the target apart from it
+        fr['1'] = fr['1'] + fr['chorus']
+        del fr['chorus']
     ov = override_lines(hid)
     syl_out, problems, review = {}, [], {}
     adjust = {'hold': 0, 'merge': 0}
@@ -541,6 +633,9 @@ def build(c, hid):
         if used_chorus:
             fr_lines += fr.get('chorus', [])
         placed = []
+        repeated = repeated_lines(seg['slots'], en, fr, key) if seg['label'] not in ov else None
+        if repeated:
+            groups, fr_lines = repeated
         if seg['label'] in ov:                                   # a hand-made block
             lines = ov[seg['label']]
             if len(lines) != len(groups):
@@ -560,7 +655,7 @@ def build(c, hid):
             if not ok:
                 continue
             quality = 'check' if quality == 'exact' else quality
-            write_notes(placed, syl_out)
+            write_notes(placed, syl_out, LANG['name'] == 'fr')
             continue
         if not fr_lines:
             problems.append('%s: the French hymn has no stanza %s' % (seg['label'], key))
@@ -581,7 +676,7 @@ def build(c, hid):
                     placed.append((tok, [seg['slots'][pos]]))
                     pos += 1
                 quality = 'check' if quality == 'exact' else quality
-                write_notes(placed, syl_out)
+                write_notes(placed, syl_out, LANG['name'] == 'fr')
                 continue
             problems.append('%s: %s (French: %s)' % (seg['label'], why, ' / '.join(fr_lines)[:160]))
             review[seg['label']] = (groups, fr_lines, seg, en.get(key, []))
@@ -602,7 +697,7 @@ def build(c, hid):
             review.setdefault(seg['label'], review_seg)
             if tier == 'adapted' and (adjust['hold'] or adjust['merge']):
                 quality = 'adapted'
-            write_notes(placed, syl_out)
+            write_notes(placed, syl_out, LANG['name'] == 'fr')
             continue
     total_notes = sum(len(s['slots']) for s in segs)
     if adjust['hold'] + adjust['merge'] > max(3, 0.15 * total_notes):
@@ -613,12 +708,17 @@ def build(c, hid):
         return None, problems, review
     under = {label_to_stanza(s['label']) for s in segs}
     verses = [{'label': no + '.', 'lines': lines} for no, lines in fr.items() if no.isdigit() and no not in under]
-    title = (row[1] or '').replace('\xa0', ' ').strip().rstrip(' ,;:.!?»')
-    # a syllable with a non-syllable character is a sign of a bad split
-    for v in syl_out.values():
-        if v and not re.search('[%s]' % VOWEL_LETTERS, v[0].lower()):
-            return None, ['suspicious syllable "%s"' % v[0]], review
-    return {'parent': parent, 'quality': quality, 'adjust': adjust, 'title': title, 'syl': syl_out, 'verses': verses}, [], review
+    title = (row[1] or '').replace('\xa0', ' ').strip().rstrip(' ,;:.!?»\u3001\u3002\uff0c\uff1b\uff1a\uff01\uff1f')
+    subtitle = ''
+    if LANG['name'] == 'zh':                       # the Chinese categories are fine to show (the French ones are not accented)
+        cats = c.execute("select main_category,sub_category from hymns where _id=?", (hid,)).fetchone()
+        subtitle = '\uff0d'.join(x for x in cats if x)
+    if LANG['name'] == 'fr':                       # a syllable with no vowel is a sign of a bad split
+        for v in syl_out.values():
+            if v and not re.search('[%s]' % VOWEL_LETTERS, etext(v).lower()):
+                return None, ['suspicious syllable "%s"' % etext(v)], review
+    return {'parent': parent, 'quality': quality, 'adjust': adjust, 'title': title, 'subtitle': subtitle,
+            'syl': syl_out, 'verses': verses}, [], review
 
 
 # ------------------------------------------------------------------ review files
@@ -704,8 +804,8 @@ def describe_adapted(c, hid, result):
             v = syl.get(s['id'])
             if v == 0:
                 continue
-            piece = v[0] + ('_' if len(v) > 2 else '')
-            if v[1] in ('i', 'm'):
+            piece = etext(v) + ('_' if eheld(v) else '')
+            if ewordpos(v) in ('i', 'm'):
                 piece += '-'
             else:
                 piece += ' '
@@ -749,14 +849,28 @@ def write_index(rows):
     open(os.path.join(REVIEW_DIR, 'INDEX.md'), 'w', encoding='utf8').write('\n'.join(out))
 
 
+LANGUAGES = {'fr': ['FR'], 'zh': ['C', 'Z', 'CS', 'ZS']}
+
+
 def main():
+    global REVIEW_DIR
     ap = argparse.ArgumentParser()
     ap.add_argument('ids', nargs='*')
-    ap.add_argument('--report', default=os.path.join(HERE, 'build', 'report.csv'))
+    ap.add_argument('--lang', choices=sorted(LANGUAGES), default='fr')
+    ap.add_argument('--report')
     a = ap.parse_args()
+    LANG['name'] = a.lang
+    if a.lang != 'fr':
+        REVIEW_DIR = os.path.join(HERE, 'review', a.lang)
+    report = a.report or os.path.join(HERE, 'build', 'report_%s.csv' % a.lang)
     c = sqlite3.connect(DB)
-    ids = a.ids or [r[0] for r in c.execute("select _id from hymns where hymn_group='FR' order by cast(no as int)")]
-    os.makedirs(os.path.dirname(a.report), exist_ok=True)
+    if a.ids:
+        ids = a.ids
+    else:
+        marks = ','.join("'%s'" % g for g in LANGUAGES[a.lang])
+        ids = [r[0] for r in c.execute("select _id from hymns where hymn_group in (%s) order by hymn_group, cast(no as int)" % marks)
+               if not os.path.exists(os.path.join(MEI, r[0] + '.mei'))]       # a hymn with a sheet of its own keeps it
+    os.makedirs(os.path.dirname(report), exist_ok=True)
     os.makedirs(OUT, exist_ok=True)
     os.makedirs(REVIEW_DIR, exist_ok=True)
     rows = []
@@ -780,7 +894,7 @@ def main():
         rows.append((hid, result['quality'] if result['quality'] != 'exact' else 'ok', result['parent'], ''))
         if result['quality'] == 'adapted':
             describe_adapted(c, hid, result)
-    with open(a.report, 'w', newline='', encoding='utf8') as f:
+    with open(report, 'w', newline='', encoding='utf8') as f:
         w = csv.writer(f)
         w.writerow(['hymn', 'status', 'parent', 'details'])
         w.writerows(rows)

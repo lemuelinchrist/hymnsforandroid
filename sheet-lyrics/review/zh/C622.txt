@@ -1,0 +1,31 @@
+# C622  (sheet of E855)  弟兄和睦同居，
+# What is wrong:
+#   adapting would change 16 of 56 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C622.txt and run:  python3 sheet-lyrics/align.py C622
+
+== 1.
+# French text: 弟兄和睦同居， / 何等美善： / 像油從亞倫頭， / 流到衣衫； / 又像露從黑門， / 降在錫安； / 在此有生命福， / 直到永遠！
+# 56 notes in all; this suggestion has 40 syllables
+# 8 notes  | Behold, how good, how pleasant 'tis
+弟 兄 和 睦 同 居， 何 等
+# 6 notes  | When brethren dwell in one!
+美 善： 像 油 從 亞
+# 8 notes  | 'Tis like the oil on Aaron's head,
+倫 頭， 流 到 衣 衫； 又 像
+# 6 notes  | Which to his skirts did run;
+露 從 黑 門， 降 在
+# 8 notes  | As dew of Hermon that descends
+錫 安； 在 此 有 生 命 福，
+# 6 notes  | On Zion's mountains o'er;
+直 到 永 遠！
+# ??? only 4 syllables for 6 notes
+# 8 notes  | The Lord His blessing there commands,
+
+# ??? only 0 syllables for 8 notes
+# 6 notes  | E'en life forevermore.
+
+# ??? only 0 syllables for 6 notes

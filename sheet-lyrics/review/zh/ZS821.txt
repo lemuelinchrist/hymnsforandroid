@@ -1,0 +1,14 @@
+# ZS821  (sheet of CS821)  （问）
+# What is wrong:
+#   1.: French has 71-71 syllables for 32 note slots (French: （问） / 朋友！朋友！告诉我说： / 甚么使你这样快活？ / 为何喜乐常显你面， / 似有活泉涌自你怀。 / （答） / 你怎不知耶稣我主， / 祂曾舍命担我罪辜， / 借祂十架，我蒙救赎； / 所有罪过祂血尽除。 / （同啍） / 啦…………（一遍）)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS821.txt and run:  python3 sheet-lyrics/align.py ZS821
+
+== 1.
+# French text: （问） / 朋友！朋友！告诉我说： / 甚么使你这样快活？ / 为何喜乐常显你面， / 似有活泉涌自你怀。 / （答） / 你怎不知耶稣我主， / 祂曾舍命担我罪辜， / 借祂十架，我蒙救赎； / 所有罪过祂血尽除。 / （同啍） / 啦…………（一遍）
+# 32 notes in all; this suggestion has 71 syllables
+# 32 notes  | （問）
+（问） 朋 友！ 朋 友！ 告 诉 我 说： 甚 么 使 你 这 样 快 活？ 为 何 喜 乐 常 显 你 面， 似 有 活 泉 涌 自 你 怀。  #EXTRA （答）  #EXTRA 你  #EXTRA 怎  #EXTRA 不  #EXTRA 知  #EXTRA 耶  #EXTRA 稣  #EXTRA 我  #EXTRA 主，  #EXTRA 祂  #EXTRA 曾  #EXTRA 舍  #EXTRA 命  #EXTRA 担  #EXTRA 我  #EXTRA 罪  #EXTRA 辜，  #EXTRA 借  #EXTRA 祂  #EXTRA 十  #EXTRA 架，  #EXTRA 我  #EXTRA 蒙  #EXTRA 救  #EXTRA 赎；  #EXTRA 所  #EXTRA 有  #EXTRA 罪  #EXTRA 过  #EXTRA 祂  #EXTRA 血  #EXTRA 尽  #EXTRA 除。  #EXTRA （同  #EXTRA 啍）  #EXTRA 啦…………（  #EXTRA 一  #EXTRA 遍）  #EXTRA

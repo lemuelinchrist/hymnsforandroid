@@ -1,0 +1,66 @@
+# ZS818  (sheet of E1326)  人生意义是何在？
+# What is wrong:
+#   1.: French has 80-80 syllables for 130 note slots (French: 人生意义是何在？ / 答案今已找出来！ / 喊主耶稣尝尝看！ / 祂是实际真无限！ / 祂赐丰盛的生命─ / 活水江河流不停， / 新的生命今开始， / 喜乐涌出永无止； / 爱在里面时增加。 / 这全都是因着祂！ / 阿利路亚！ / （重复二至五行）)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS818.txt and run:  python3 sheet-lyrics/align.py ZS818
+
+== 1.
+# French text: 人生意义是何在？ / 答案今已找出来！ / 喊主耶稣尝尝看！ / 祂是实际真无限！ / 祂赐丰盛的生命─ / 活水江河流不停， / 新的生命今开始， / 喜乐涌出永无止； / 爱在里面时增加。 / 这全都是因着祂！ / 阿利路亚！ / （重复二至五行）
+# 130 notes in all; this suggestion has 80 syllables
+# 7 notes  | What is living all about,
+人 生 意 义 是 何 在？
+# 7 notes  | Where's the answer? Let's find out!
+答 案 今 已 找 出 来！
+# 1 notes
+喊
+# 3 notes
+主 耶 稣
+# 3 notes
+尝 尝 看！
+# 7 notes
+祂 是 实 际 真 无 限！
+# 14 notes
+祂 赐 丰 盛 的 生 命─ 活 水 江 河 流 不 停，
+# 7 notes
+新 的 生 命 今 开 始，
+# 7 notes
+喜 乐 涌 出 永 无 止；
+# 1 notes
+爱
+# 6 notes
+在 里 面 时 增 加。
+# 7 notes
+这 全 都 是 因 着 祂！
+# 4 notes
+阿 利 路 亚！
+# 1 notes
+（重
+# 3 notes
+复 二 至
+# 3 notes
+五 行）
+# ??? only 2 syllables for 3 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 14 notes
+
+# ??? only 0 syllables for 14 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes

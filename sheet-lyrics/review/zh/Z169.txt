@@ -1,0 +1,32 @@
+# Z169  (sheet of E208)  耶稣，耶稣，我的性命，
+# What is wrong:
+#   (C): French has 40-40 syllables for 30 note slots (French: 耶稣，耶稣，最爱救主， / 无人无物与你比拟， / 你的笑容是我欢喜， / 我爱，…爱你， / …你，…主。 / 第三节的『羡慕』作名词用。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z169.txt and run:  python3 sheet-lyrics/align.py Z169
+
+== 1.
+# French text: 耶稣，耶稣，我的性命， / 因为爱的缘故， / 求原谅我，将你圣名， / 日念千遍不住。
+# 28 notes in all; this suggestion has 28 syllables
+# 8 notes  | O Jesus, Jesus, dearest Lord!
+耶 稣， 耶 稣， 我 的 性 命，
+# 6 notes  | Forgive me if I say,
+因 为 爱 的 缘 故，
+# 8 notes  | For very love, Thy sacred name
+求 原 谅 我， 将 你 圣 名，
+# 6 notes  | A thousand times a day.
+日 念 千 遍 不 住。
+
+== (C)
+# French text: 耶稣，耶稣，最爱救主， / 无人无物与你比拟， / 你的笑容是我欢喜， / 我爱，…爱你， / …你，…主。 / 第三节的『羡慕』作名词用。
+# 30 notes in all; this suggestion has 40 syllables
+# 8 notes  | O Jesus, Lord, with me abide;
+耶 稣， 耶 稣， 最 爱 救 主，
+# 8 notes  | I rest in Thee, whate'er betide;
+无 人 无 物 与 你 比 拟，
+# 8 notes  | Thy gracious smile is my reward;
+你 的 笑 容 是 我 欢 喜，
+# 6 notes  | I love, I love Thee, Lord!
+我 爱，… 爱 你， …你，… 主。 第  #EXTRA 三  #EXTRA 节  #EXTRA 的『  #EXTRA 羡  #EXTRA 慕』  #EXTRA 作  #EXTRA 名  #EXTRA 词  #EXTRA 用。  #EXTRA

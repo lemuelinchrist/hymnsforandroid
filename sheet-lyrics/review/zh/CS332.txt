@@ -1,0 +1,46 @@
+# CS332  (sheet of NS10014)  僅僅一摸,親愛主,
+# What is wrong:
+#   1.: French has 50-50 syllables for 82 note slots (French: 僅僅一摸,親愛主, / 僅僅一望便知足, / 你與我親嘴,我心別無所歸。 / 讓我再聽你慈聲, / 最後選擇不變更, / 向我愛語陳,我就枉費你身。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS332.txt and run:  python3 sheet-lyrics/align.py CS332
+
+== 1.
+# French text: 僅僅一摸,親愛主, / 僅僅一望便知足, / 你與我親嘴,我心別無所歸。 / 讓我再聽你慈聲, / 最後選擇不變更, / 向我愛語陳,我就枉費你身。
+# 82 notes in all; this suggestion has 50 syllables
+# 7 notes  | Just one touch of You, dear Lord,
+僅 僅 一 摸, 親 愛 主,
+# 7 notes  | Just one look into Your eyes,
+僅 僅 一 望 便 知 足,
+# 5 notes  | Just one kiss from You,
+你 與 我 親 嘴,
+# 6 notes  | You’re all I need, my Love.
+我 心 別 無 所 歸。
+# 7 notes  | Let me hear again Your voice.
+讓 我 再 聽 你 慈 聲,
+# 7 notes  | You are now my final choice.
+最 後 選 擇 不 變 更,
+# 5 notes  | Speak in love to me.
+向 我 愛 語 陳,
+# 6 notes  | I’ll waste myself on Thee.
+我 就 枉 費 你 身。
+# 15 notes
+
+# ??? only 0 syllables for 15 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes

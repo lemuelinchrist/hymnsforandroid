@@ -1,0 +1,30 @@
+# ZS601  (sheet of CS601)  神的生命，是人需要；
+# What is wrong:
+#   1.: French has 34-34 syllables for 66 note slots (French: 神的生命，是人需要； / 神的建造是神的目标。 / 基督得胜，魔鬼蒙羞； / 神的计划不久要成就！)
+#   4.: French has 51-51 syllables for 44 note slots (French: 有一条路 / 是通到主丰盛的生命， / 借这生命长进， / 建造自然产生； / 只要全人敞开， / 心转向主，在灵里 / 天天都来祷读，来祷读。 / （接到副歌）)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS601.txt and run:  python3 sheet-lyrics/align.py ZS601
+
+== 1.
+# French text: 神的生命，是人需要； / 神的建造是神的目标。 / 基督得胜，魔鬼蒙羞； / 神的计划不久要成就！
+# 66 notes in all; this suggestion has 34 syllables
+# 8 notes  | 神的生命，是人需要；
+神 的 生 命， 是 人 需 要；
+# 9 notes  | 神的建造是神的目標。
+神 的 建 造 是 神 的 目 标。
+# 8 notes  | 基督得勝，魔鬼蒙羞；
+基 督 得 胜， 魔 鬼 蒙 羞；
+# 9 notes  | 神的計畫不久要成就！
+神 的 计 划 不 久 要 成 就！
+# 32 notes
+
+# ??? only 0 syllables for 32 notes
+
+== 4.
+# French text: 有一条路 / 是通到主丰盛的生命， / 借这生命长进， / 建造自然产生； / 只要全人敞开， / 心转向主，在灵里 / 天天都来祷读，来祷读。 / （接到副歌）
+# 44 notes in all; this suggestion has 51 syllables
+# 44 notes  | 有一條路
+有 一 条 路 是 通 到 主 丰 盛 的 生 命， 借 这 生 命 长 进， 建 造 自 然 产 生； 只 要 全 人 敞 开， 心 转 向 主， 在 灵 里 天 天 都 来 祷 读， 来  #EXTRA 祷  #EXTRA 读。  #EXTRA （接  #EXTRA 到  #EXTRA 副  #EXTRA 歌）  #EXTRA

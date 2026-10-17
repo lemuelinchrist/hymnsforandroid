@@ -1,0 +1,38 @@
+# CS755  (sheet of E1245)  活基督者佳美蹤迹,
+# What is wrong:
+#   1.: French has 30-30 syllables for 60 note slots (French: 活基督者佳美蹤迹, / 應當效法且追隨; / 己意、己力不再憑倚, / 跟隨榜樣不羞愧。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS755.txt and run:  python3 sheet-lyrics/align.py CS755
+
+== 1.
+# French text: 活基督者佳美蹤迹, / 應當效法且追隨; / 己意、己力不再憑倚, / 跟隨榜樣不羞愧。
+# 60 notes in all; this suggestion has 30 syllables
+# 8 notes  | Thessalonians 1:6; Philippians 3:17
+活 基 督 者 佳 美 蹤 迹,
+# 7 notes  | 1. When the brothers are in order,
+應 當 效 法 且 追 隨;
+# 8 notes  | And you sense Christ is their life,
+己 意、 己 力 不 再 憑 倚,
+# 7 notes  | Follow them and watch for Jesus,
+跟 隨 榜 樣 不 羞 愧。
+# 4 notes  | Ending thus your thought and strife.
+
+# ??? only 0 syllables for 4 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes

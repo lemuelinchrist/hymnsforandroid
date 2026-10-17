@@ -1,0 +1,14 @@
+# ZS327  (sheet of CS327)  主阿！我爱你，
+# What is wrong:
+#   1.: French has 106-106 syllables for 81 note slots (French: 主阿！我爱你， / 我实在深爱你， / 无你活着枉然、失意。 / 你是富有吸引， / 极其引人着迷， / 你的丰富追测不尽。 / 我主名何甜蜜， / 呼求叫人满意， / 主，你属我； / 主，我也属你。 / 联结调和于你， / 神人合并为一， / 豫尝新耶路撒冷实际。 / 注：此首诗辞采自李常受弟兄一九九七年离世前不久)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS327.txt and run:  python3 sheet-lyrics/align.py ZS327
+
+== 1.
+# French text: 主阿！我爱你， / 我实在深爱你， / 无你活着枉然、失意。 / 你是富有吸引， / 极其引人着迷， / 你的丰富追测不尽。 / 我主名何甜蜜， / 呼求叫人满意， / 主，你属我； / 主，我也属你。 / 联结调和于你， / 神人合并为一， / 豫尝新耶路撒冷实际。 / 注：此首诗辞采自李常受弟兄一九九七年离世前不久的祷告。
+# 81 notes in all; this suggestion has 106 syllables
+# 81 notes  | 主阿！我愛你，
+主 阿！ 我 爱 你， 我 实 在 深 爱 你， 无 你 活 着 枉 然、 失 意。 你 是 富 有 吸 引， 极 其 引 人 着 迷， 你 的 丰 富 追 测 不 尽。 我 主 名 何 甜 蜜， 呼 求 叫 人 满 意， 主， 你 属 我； 主， 我 也 属 你。 联 结 调 和 于 你， 神 人 合 并 为 一， 豫 尝 新 耶 路 撒 冷 实 际。 注：  #EXTRA 此  #EXTRA 首  #EXTRA 诗  #EXTRA 辞  #EXTRA 采  #EXTRA 自  #EXTRA 李  #EXTRA 常  #EXTRA 受  #EXTRA 弟  #EXTRA 兄  #EXTRA 一  #EXTRA 九  #EXTRA 九  #EXTRA 七  #EXTRA 年  #EXTRA 离  #EXTRA 世  #EXTRA 前  #EXTRA 不  #EXTRA 久  #EXTRA 的  #EXTRA 祷  #EXTRA 告。  #EXTRA

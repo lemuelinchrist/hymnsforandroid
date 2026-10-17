@@ -1,0 +1,50 @@
+# CS243  (sheet of E1287)  來得這地，
+# What is wrong:
+#   1.: French has 44-44 syllables for 114 note slots (French: 來得這地， / 神已將這地賜我們； / 平日生活， / 可滿基督豐富。 / 來得這地，所需裝備， / 一樣不缺─寶血、 / 見證的話、靈與召會。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS243.txt and run:  python3 sheet-lyrics/align.py CS243
+
+== 1.
+# French text: 來得這地， / 神已將這地賜我們； / 平日生活， / 可滿基督豐富。 / 來得這地，所需裝備， / 一樣不缺─寶血、 / 見證的話、靈與召會。
+# 114 notes in all; this suggestion has 44 syllables
+# 12 notes  | Let's take the land! The land that God has given us;
+來 得 這 地， 神 已 將 這 地 賜 我 們；
+# 10 notes  | In all our living, Christ can be so much;
+平 日 生 活， 可 滿 基 督 豐 富。
+# 12 notes  | To take this land, we have th' equipment that we need —
+來 得 這 地， 所 需 裝 備， 一 樣 不 缺─
+# 10 notes  | The blood, the Word, the Spirit, and the church.
+寶 血、 見 證 的 話、 靈 與 召 會。
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 13 notes
+
+# ??? only 0 syllables for 13 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 13 notes
+
+# ??? only 0 syllables for 13 notes

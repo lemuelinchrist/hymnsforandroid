@@ -1,0 +1,22 @@
+# C467  (sheet of E629)  你怎沒有傷痕？
+# What is wrong:
+#   adapting would change 6 of 36 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C467.txt and run:  python3 sheet-lyrics/align.py C467
+
+== 1.
+# French text: 你怎沒有傷痕？ / 沒有傷痕 / 在你身上、肋旁？ / 你的名聲反而遠播四方， / 他們反而讚美你的光芒？ / 你怎沒有傷痕？
+# 36 notes in all; this suggestion has 42 syllables
+# 4 notes  | Hast thou no scar?
+你 怎 沒 有
+# 10 notes  | No hidden scar on foot, or side, or hand?
+傷 痕？ 沒 有 傷 痕 在 你 身 上、
+# 8 notes  | I hear thee sung throughout the land,
+肋 旁？ 你 的 名 聲 反 而
+# 8 notes  | I hear them hail thy shining star,
+遠 播 四 方， 他 們 反 而
+# 6 notes  | Hast thou no scar? No scar?
+讚 美 你 的 光 芒？ 你  #EXTRA 怎  #EXTRA 沒  #EXTRA 有  #EXTRA 傷  #EXTRA 痕？  #EXTRA

@@ -1,0 +1,32 @@
+# Z138  (sheet of E169)  主阿，你是神所宝，
+# What is wrong:
+#   (C): French has 47-47 syllables for 26 note slots (French: 我们心中在珍赏， / 珍赏你的美善， / 珍赏你是何馨香， / 珍赏你的甘甜。 / 第六节的『柑树』是雅歌二章三节『苹果树』的另一译法。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z138.txt and run:  python3 sheet-lyrics/align.py Z138
+
+== 1.
+# French text: 主阿，你是神所宝， / 是神所悦、所选！ / 神用乐油将你膏， / 胜过膏你同伴。
+# 26 notes in all; this suggestion has 26 syllables
+# 7 notes  | Thou, Lord, to God art precious,
+主 阿， 你 是 神 所 宝，
+# 6 notes  | His chosen, His delight;
+是 神 所 悦、 所 选！
+# 7 notes  | With oil of joy, anointed,
+神 用 乐 油 将 你 膏，
+# 6 notes  | How comely in His sight.
+胜 过 膏 你 同 伴。
+
+== (C)
+# French text: 我们心中在珍赏， / 珍赏你的美善， / 珍赏你是何馨香， / 珍赏你的甘甜。 / 第六节的『柑树』是雅歌二章三节『苹果树』的另一译法。
+# 26 notes in all; this suggestion has 47 syllables
+# 7 notes  | We treasure with affection
+我 们 心 中 在 珍 赏，
+# 6 notes  | Thy perfect comeliness,
+珍 赏 你 的 美 善，
+# 7 notes  | Thy sweetness and Thy fragrance,
+珍 赏 你 是 何 馨 香，
+# 6 notes  | And all Thy loveliness.
+珍 赏 你 的 甘 甜。 第  #EXTRA 六  #EXTRA 节  #EXTRA 的『  #EXTRA 柑  #EXTRA 树』  #EXTRA 是  #EXTRA 雅  #EXTRA 歌  #EXTRA 二  #EXTRA 章  #EXTRA 三  #EXTRA 节『  #EXTRA 苹  #EXTRA 果  #EXTRA 树』  #EXTRA 的  #EXTRA 另  #EXTRA 一  #EXTRA 译  #EXTRA 法。  #EXTRA

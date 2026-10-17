@@ -1,0 +1,24 @@
+# ZS926  (sheet of CS926)  神永远经纶，今向我开启，神来成为人，使我们成神；
+# What is wrong:
+#   1.: French has 80-80 syllables for 54 note slots (French: 神永远经纶，今向我开启，神来成为人，使我们成神； / 产生并建造主生机身体，活出并作出新耶路撒冷。 / 深入地探究经历中享受，妆饰并豫备祂荣美新妇， / 这属天异象，召我跟从主，同灵同魂，与职事同步武。)
+#   1.: French has 80-80 syllables for 161 note slots (French: 神永远经纶，今向我开启，神来成为人，使我们成神； / 产生并建造主生机身体，活出并作出新耶路撒冷。 / 深入地探究经历中享受，妆饰并豫备祂荣美新妇， / 这属天异象，召我跟从主，同灵同魂，与职事同步武。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS926.txt and run:  python3 sheet-lyrics/align.py ZS926
+
+== 1.
+# French text: 神永远经纶，今向我开启，神来成为人，使我们成神； / 产生并建造主生机身体，活出并作出新耶路撒冷。 / 深入地探究经历中享受，妆饰并豫备祂荣美新妇， / 这属天异象，召我跟从主，同灵同魂，与职事同步武。
+# 161 notes in all; this suggestion has 80 syllables
+# 20 notes  | 神永遠經綸，今向我開啟，神來成為人，使我們成神；
+神 永 远 经 纶， 今 向 我 开 启， 神 来 成 为 人， 使 我 们 成 神；
+# 20 notes  | 產生並建造主生機身體，活出並作出新耶路撒冷。
+产 生 并 建 造 主 生 机 身 体， 活 出 并 作 出 新 耶 路 撒 冷。
+# 20 notes  | 深入地探究經歷中享受，妝飾並豫備祂榮美新婦，
+深 入 地 探 究 经 历 中 享 受， 妆 饰 并 豫 备 祂 荣 美 新 妇，
+# 20 notes  | 這屬天異象，召我跟從主，同靈同魂，與職事同步武。
+这 属 天 异 象， 召 我 跟 从 主， 同 灵 同 魂， 与 职 事 同 步 武。
+# 81 notes
+
+# ??? only 0 syllables for 81 notes

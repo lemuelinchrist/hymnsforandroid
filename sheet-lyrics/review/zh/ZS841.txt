@@ -1,0 +1,14 @@
+# ZS841  (sheet of CS841)  生命如此好，
+# What is wrong:
+#   1.: French has 75-75 syllables for 61 note slots (French: 生命如此好， / 生存价值如此高， / 我热爱生命， / 举手叩求真理之门； / 第一声呼求， / 冲出我心灵， / 哦，主耶稣！ / 亮光之名，自由之名， / 我生命终于破晓， / 哦，主耶稣！ / 亮光之名，自由之名， / 我生命开始有了日出。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS841.txt and run:  python3 sheet-lyrics/align.py ZS841
+
+== 1.
+# French text: 生命如此好， / 生存价值如此高， / 我热爱生命， / 举手叩求真理之门； / 第一声呼求， / 冲出我心灵， / 哦，主耶稣！ / 亮光之名，自由之名， / 我生命终于破晓， / 哦，主耶稣！ / 亮光之名，自由之名， / 我生命开始有了日出。
+# 61 notes in all; this suggestion has 75 syllables
+# 61 notes  | 生命如此好，
+生 命 如 此 好， 生 存 价 值 如 此 高， 我 热 爱 生 命， 举 手 叩 求 真 理 之 门； 第 一 声 呼 求， 冲 出 我 心 灵， 哦， 主 耶 稣！ 亮 光 之 名， 自 由 之 名， 我 生 命 终 于 破 晓， 哦， 主 耶 稣！ 亮 光 之 名，  #EXTRA 自  #EXTRA 由  #EXTRA 之  #EXTRA 名，  #EXTRA 我  #EXTRA 生  #EXTRA 命  #EXTRA 开  #EXTRA 始  #EXTRA 有  #EXTRA 了  #EXTRA 日  #EXTRA 出。  #EXTRA

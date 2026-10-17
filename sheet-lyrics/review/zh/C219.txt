@@ -1,0 +1,30 @@
+# C219  (sheet of E283)  主，你知道所有乾渴，
+# What is wrong:
+#   (C): French has 27-27 syllables for 13 note slots (French: 就讚美，就讚美， / 因你已聽我禱告。 / 第三節的『隱慝，』意思是隱藏的惡念。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C219.txt and run:  python3 sheet-lyrics/align.py C219
+
+== 1.
+# French text: 主，你知道所有乾渴， / 在這不足尋求心； / 我心羨慕何等深刻， / 惟你能使不饑饉。
+# 30 notes in all; this suggestion has 30 syllables
+# 8 notes  | Lord, Thou knowest all the hunger
+主， 你 知 道 所 有 乾 渴，
+# 7 notes  | Of the heart that seeks Thee now;
+在 這 不 足 尋 求 心；
+# 8 notes  | How my soul hath long been craving
+我 心 羨 慕 何 等 深 刻，
+# 7 notes  | What Thou only canst bestow.
+惟 你 能 使 不 饑 饉。
+
+== (C)
+# French text: 就讚美，就讚美， / 因你已聽我禱告。 / 第三節的『隱慝，』意思是隱藏的惡念。
+# 13 notes in all; this suggestion has 27 syllables
+# 3 notes  | Praising now, praising now,
+就 讚 美，
+# 3 notes  | Thou hast answered, Lord, I know.
+就 讚 美，
+# 7 notes
+因 你 已 聽 我 禱 告。 第  #EXTRA 三  #EXTRA 節  #EXTRA 的『  #EXTRA 隱  #EXTRA 慝，』  #EXTRA 意  #EXTRA 思  #EXTRA 是  #EXTRA 隱  #EXTRA 藏  #EXTRA 的  #EXTRA 惡  #EXTRA 念。  #EXTRA

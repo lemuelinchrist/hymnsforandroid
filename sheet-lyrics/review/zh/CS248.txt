@@ -1,0 +1,24 @@
+# CS248  (sheet of E300)  興起!我魂,興起!
+# What is wrong:
+#   adapting would change 8 of 40 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS248.txt and run:  python3 sheet-lyrics/align.py CS248
+
+== 1.
+# French text: 興起!我魂,興起! / 擺脫懼怕蒙蔽; / 救主流血作祭, / 神前我蒙稱義。 / 寶座之前擔保確立, / 我得安穩在神手裏, / 我得安穩在神手裏。
+# 40 notes in all; this suggestion has 48 syllables
+# 6 notes  | Arise, my soul, arise!
+興 起! 我 魂, 興 起!
+# 6 notes  | Shake off thy guilty fears;
+擺 脫 懼 怕 蒙 蔽;
+# 6 notes  | The bleeding Sacrifice
+救 主 流 血 作 祭,
+# 6 notes  | In my behalf appears.
+神 前 我 蒙 稱 義。
+# 8 notes  | Before the throne my Surety stands;
+寶 座 之 前 擔 保 確 立,
+# 8 notes  | My name is written on His hands.
+我 得 安 穩 在 神 手 裏, 我  #EXTRA 得  #EXTRA 安  #EXTRA 穩  #EXTRA 在  #EXTRA 神  #EXTRA 手  #EXTRA 裏。  #EXTRA

@@ -1,0 +1,30 @@
+# Z643  (sheet of E1017)  得胜、得胜，阿利路亚！
+# What is wrong:
+#   1.: French has 30-30 syllables for 51 note slots (French: 得胜、得胜，阿利路亚！ / 得胜、得胜，阿利路亚！ / 得胜、得胜，阿利路亚！ / 基督已经得胜！)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z643.txt and run:  python3 sheet-lyrics/align.py Z643
+
+== 1.
+# French text: 得胜、得胜，阿利路亚！ / 得胜、得胜，阿利路亚！ / 得胜、得胜，阿利路亚！ / 基督已经得胜！
+# 51 notes in all; this suggestion has 30 syllables
+# 8 notes  | Christ has put on human nature
+得 胜、 得 胜， 阿 利 路 亚！
+# 7 notes  | and become a man like me,
+得 胜、 得 胜， 阿 利 路
+# 9 notes  | He has died upon the cross that I
+亚！ 得 胜、 得 胜， 阿 利 路 亚！
+# 6 notes  | from Adam might be free,
+基 督 已 经 得 胜！
+# 8 notes  | He has risen and as Spirit
+
+# ??? only 0 syllables for 8 notes
+# 7 notes  | He has come to live in me
+
+# ??? only 0 syllables for 7 notes
+# 6 notes  | That He might be my life.
+
+# ??? only 0 syllables for 6 notes

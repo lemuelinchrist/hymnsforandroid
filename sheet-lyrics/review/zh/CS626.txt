@@ -1,0 +1,41 @@
+# CS626  (sheet of E1243)  我們在靈裏是一,
+# What is wrong:
+#   1.: French has 40-40 syllables for 79 note slots (French: 我們在靈裏是一, / 憑神生命是一; / 我們過身體生活, / 一切分裂遠離; / 救贖已成,隔閡全去, / 主裏我們是一。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS626.txt and run:  python3 sheet-lyrics/align.py CS626
+
+== 1.
+# French text: 我們在靈裏是一, / 憑神生命是一; / 我們過身體生活, / 一切分裂遠離; / 救贖已成,隔閡全去, / 主裏我們是一。
+# 79 notes in all; this suggestion has 40 syllables
+# 13 notes  | We are one in the spirit, by His life we are one,
+我 們 在 靈 裏 是 一, 憑 神 生 命 是 一;
+# 13 notes  | We have left all divisions, Body-life has begun,
+我 們 過 身 體 生 活, 一 切 分 裂 遠 離;
+# 10 notes  | For the Lord broke all barriers, proclaiming,
+救 贖 已 成, 隔 閡 全 去, 主 裏
+# 3 notes  | "It is done."
+我 們 是
+# 7 notes
+一。
+# ??? only 1 syllables for 7 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 14 notes
+
+# ??? only 0 syllables for 14 notes

@@ -1,0 +1,31 @@
+# ZS228  (sheet of CS228)  我们今活著
+# What is wrong:
+#   1.: French has 48-48 syllables for 72 note slots (French: 我们今活着 / 是靠着吸入主， / 并非靠思想活着， / 惟呼吸才是路。 / 我们从里面最深处喊 / 『哦主！』 / 满心喜乐作见证， / 我们在吸入主。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS228.txt and run:  python3 sheet-lyrics/align.py ZS228
+
+== 1.
+# French text: 我们今活着 / 是靠着吸入主， / 并非靠思想活着， / 惟呼吸才是路。 / 我们从里面最深处喊 / 『哦主！』 / 满心喜乐作见证， / 我们在吸入主。
+# 72 notes in all; this suggestion has 48 syllables
+# 5 notes  | 我們今活著
+我 们 今 活 着
+# 6 notes  | 是靠著吸入主，
+是 靠 着 吸 入 主，
+# 7 notes  | 並非靠思想活著，
+并 非 靠 思 想 活 着，
+# 6 notes  | 惟呼吸纔是路。
+惟 呼 吸 才 是 路。
+# 9 notes  | 我們從裡面最深處喊
+我 们 从 里 面 最 深 处 喊
+# 2 notes  | 『哦主！』
+『哦 主！』
+# 7 notes  | 滿心喜樂作見證，
+满 心 喜 乐 作 见 证，
+# 6 notes  | 我們在吸入主。
+我 们 在 吸 入 主。
+# 24 notes
+
+# ??? only 0 syllables for 24 notes

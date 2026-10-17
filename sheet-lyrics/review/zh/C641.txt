@@ -1,0 +1,30 @@
+# C641  (sheet of E893)  今日戰爭兇猛，
+# What is wrong:
+#   adapting would change 12 of 52 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C641.txt and run:  python3 sheet-lyrics/align.py C641
+
+== 1.
+# French text: 今日戰爭兇猛， / 仇敵更強； / 戰場呼喊之聲 / 比前響亮！ / 陰府反抗之聲 / 比前厲害！ / 卻有半夜呼聲： / 『我必快來！』
+# 52 notes in all; this suggestion has 40 syllables
+# 6 notes  | Conflict today is fierce,
+今 日 戰 爭 兇 猛，
+# 6 notes  | The strength of Satan more;
+仇 敵 更 強； 戰 場
+# 8 notes  | The cry of battle calling now
+呼 喊 之 聲 比 前 響 亮！
+# 6 notes  | Is louder than before.
+陰 府 反 抗 之 聲
+# 6 notes  | The rebel voice of hell
+比 前 厲 害！ 卻 有
+# 6 notes  | E'en stronger now becomes;
+半 夜 呼 聲： 『我 必
+# 8 notes  | But list, the midnight cry resounds,
+快 來！』
+# ??? only 2 syllables for 8 notes
+# 6 notes  | Behold, I quickly come!
+
+# ??? only 0 syllables for 6 notes

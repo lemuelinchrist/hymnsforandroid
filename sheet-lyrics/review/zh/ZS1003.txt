@@ -1,0 +1,14 @@
+# ZS1003  (sheet of CS1003)  经过过程
+# What is wrong:
+#   1.: French has 150-150 syllables for 133 note slots (French: 经过过程 / 终极完成的三一神， / 照着祂的心爱美意， / 为着祂经纶最高的目的， / 正将祂自己 / 和祂所拣选的人， / 相互建造到彼此里面， / 好使祂在基督里 / 得着神性调和 / 人性的一个构成， / 作祂的生机体， / 就是基督的身体， / 成为祂永远的彰显， / 并救赎之神与蒙救赎之人 / 相互的居所。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS1003.txt and run:  python3 sheet-lyrics/align.py ZS1003
+
+== 1.
+# French text: 经过过程 / 终极完成的三一神， / 照着祂的心爱美意， / 为着祂经纶最高的目的， / 正将祂自己 / 和祂所拣选的人， / 相互建造到彼此里面， / 好使祂在基督里 / 得着神性调和 / 人性的一个构成， / 作祂的生机体， / 就是基督的身体， / 成为祂永远的彰显， / 并救赎之神与蒙救赎之人 / 相互的居所。 / 这个奇妙珍宝构成的 / 终极完成， / 乃是新耶路撒冷， / 直存到永远。 / 注：此首诗辞编译自李常受弟兄墓前碑文。
+# 133 notes in all; this suggestion has 150 syllables
+# 133 notes  | 經過過程
+经 过 过 程 终 极 完 成 的 三 一 神， 照 着 祂 的 心 爱 美 意， 为 着 祂 经 纶 最 高 的 目 的， 正 将 祂 自 己 和 祂 所 拣 选 的 人， 相 互 建 造 到 彼 此 里 面， 好 使 祂 在 基 督 里 得 着 神 性 调 和 人 性 的 一 个 构 成， 作 祂 的 生 机 体， 就 是 基 督 的 身 体， 成 为 祂 永 远 的 彰 显， 并 救 赎 之 神 与 蒙 救 赎 之 人 相 互 的 居 所。 这 个 奇 妙 珍 宝 构 成 的 终 极 完 成， 乃 是 新 耶 路 撒 冷， 直 存 到 永 远。 注：  #EXTRA 此  #EXTRA 首  #EXTRA 诗  #EXTRA 辞  #EXTRA 编  #EXTRA 译  #EXTRA 自  #EXTRA 李  #EXTRA 常  #EXTRA 受  #EXTRA 弟  #EXTRA 兄  #EXTRA 墓  #EXTRA 前  #EXTRA 碑  #EXTRA 文。  #EXTRA

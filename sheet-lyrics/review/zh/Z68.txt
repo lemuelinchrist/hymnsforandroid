@@ -1,0 +1,36 @@
+# Z68  (sheet of E79)  被杀羔羊，耶稣基督，
+# What is wrong:
+#   (C): French has 50-50 syllables for 36 note slots (French: 颂赞主尊名， / 颂赞主尊名， / 颂赞、荣耀，归主尊名。 / 阿利路亚！阿利路亚！ / 颂赞、荣耀，归主尊名。 / 阿利路亚！阿利路亚！ / 颂赞、荣耀，归主尊名。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z68.txt and run:  python3 sheet-lyrics/align.py Z68
+
+== 1.
+# French text: 被杀羔羊，耶稣基督， / 被神高举天上； / 罪人朋友，荣耀救主， / 配得永远颂扬。
+# 28 notes in all; this suggestion has 28 syllables
+# 8 notes  | All praise to Him who reigns on high,
+被 杀 羔 羊， 耶 稣 基 督，
+# 6 notes  | In majesty supreme,
+被 神 高 举 天 上；
+# 10 notes  | Who gave His life for man to die, That He
+罪 人 朋 友， 荣 耀 救 主， 配 得
+# 4 notes  | might man redeem.
+永 远 颂 扬。
+
+== (C)
+# French text: 颂赞主尊名， / 颂赞主尊名， / 颂赞、荣耀，归主尊名。 / 阿利路亚！阿利路亚！ / 颂赞、荣耀，归主尊名。 / 阿利路亚！阿利路亚！ / 颂赞、荣耀，归主尊名。
+# 36 notes in all; this suggestion has 50 syllables
+# 5 notes  | Blessed be the name,
+颂 赞 主 尊 名，
+# 5 notes  | Blessed be the name,
+颂 赞 主 尊 名，
+# 8 notes  | Blessed be the name of the Lord.
+颂 赞、 荣 耀， 归 主 尊 名。
+# 5 notes  | Blessed be the name,
+阿 利 路 亚！ 阿
+# 5 notes  | Blessed be the name,
+利 路 亚！ 颂 赞、
+# 8 notes  | Blessed be the name of the Lord.
+荣 耀， 归 主 尊 名。 阿 利 路  #EXTRA 亚！  #EXTRA 阿  #EXTRA 利  #EXTRA 路  #EXTRA 亚！  #EXTRA 颂  #EXTRA 赞、  #EXTRA 荣  #EXTRA 耀，  #EXTRA 归  #EXTRA 主  #EXTRA 尊  #EXTRA 名。  #EXTRA

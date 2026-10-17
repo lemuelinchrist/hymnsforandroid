@@ -1,0 +1,63 @@
+# ZS810  (sheet of E1283)  为主打美好胜仗，
+# What is wrong:
+#   1.: French has 69-69 syllables for 132 note slots (French: 为主打美好胜仗， / 凭主而活着， / 站住立场！ / 不怕仇敌的攻击， / 靠主践踏在它的头上！ / 为强的召会生活祷告， / 圣徒个个在灵里焚烧， / 在新人里面争战， / 达到神的目标！ / （荣耀，阿利路亚！）)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS810.txt and run:  python3 sheet-lyrics/align.py ZS810
+
+== 1.
+# French text: 为主打美好胜仗， / 凭主而活着， / 站住立场！ / 不怕仇敌的攻击， / 靠主践踏在它的头上！ / 为强的召会生活祷告， / 圣徒个个在灵里焚烧， / 在新人里面争战， / 达到神的目标！ / （荣耀，阿利路亚！）
+# 132 notes in all; this suggestion has 69 syllables
+# 7 notes  | Fight, saints, for Jesus our Lord!
+为 主 打 美 好 胜 仗，
+# 9 notes  | Take in His life, stand in one accord!
+凭 主 而 活 着， 站 住 立 场！
+# 7 notes  | Never fear God's enemy;
+不 怕 仇 敌 的 攻 击，
+# 8 notes  | Tread on his head triumphantly!
+靠 主 践 踏 在 它 的 头
+# 9 notes  | Pray that the daily church life be strong,
+上！ 为 强 的 召 会 生 活 祷
+# 9 notes  | That all the saints in spirit press on,
+告， 圣 徒 个 个 在 灵 里 焚
+# 7 notes  | Fighting as the one new man,
+烧， 在 新 人 里 面 争
+# 7 notes  | Fulfilling our Lord's great plan!
+战， 达 到 神 的 目 标！
+# 6 notes  | (Glory! Hallelujah!)
+（荣 耀， 阿 利 路 亚！）
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes

@@ -1,0 +1,61 @@
+# CS341  (sheet of NS10076)  從前沉溺罪惡地,
+# What is wrong:
+#   (C): French has 44-44 syllables for 27 note slots (French: 願一生愛你, / 願與你更親密, / 願將生命和一切全獻給你。 / 願一生愛你, / 願與你更親密, / 願將生命和一切全獻給你。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS341.txt and run:  python3 sheet-lyrics/align.py CS341
+
+== 1.
+# French text: 從前沉溺罪惡地, / 良心終日無安息, / 深感痛苦、無能力我知罪, / 我自責,因罪污不義。
+# 30 notes in all; this suggestion has 32 syllables
+# 7 notes  | What about my sinful past?
+從 前 沉 溺 罪 惡 地,
+# 7 notes  | And my conscience has no rest.
+良 心 終 日 無 安 息,
+# 7 notes  | Deep within I feel the pain.
+深 感 痛 苦、 無 能 力
+# 9 notes  | I’m condemned from all my guilty stains.
+我 知 罪, 我 自 責, 因 罪 污 不  #EXTRA 義。  #EXTRA
+
+== 2.
+# French text: 悲慘人生無所期, / 虛空世界無意義, / 追求快樂和刺激如補風, / 如捉影,既虛空又無益。
+# 31 notes in all; this suggestion has 33 syllables
+# 7 notes  | O my life of misery,
+悲 慘 人 生 無 所 期,
+# 7 notes  | In this world of vanity,
+虛 空 世 界 無 意 義,
+# 7 notes  | As I searched for happiness,
+追 求 快 樂 和 刺 激
+# 10 notes  | My reward I received just emptiness.
+如 補 風, 如 捉 影, 既 虛 空 又 無  #EXTRA 益。  #EXTRA
+
+== 3.
+# French text: 神!我曾遠離你, / 你至高、至大、獨一; / 哦!你竟然成為肉體, / 親來尋覓,血將我洗, / 釘死作我代替。
+# 36 notes in all; this suggestion has 35 syllables
+# 7 notes  | God was far away from me,
+神! 我 曾 遠 離 你, 你
+# 7 notes  | Great and highest One is He.
+至 高、 至 大、 獨 一; 哦!
+# 8 notes  | Yet You took on humanity.
+你 竟 然 成 為 肉 體, 親
+# 4 notes  | You came for me,
+來 尋 覓, 血
+# 4 notes  | Hung on a tree,
+將 我 洗, 釘
+# 6 notes  | Bled there to die for me.
+死 作 我 代 替。
+# ??? only 5 syllables for 6 notes
+
+== (C)
+# French text: 願一生愛你, / 願與你更親密, / 願將生命和一切全獻給你。 / 願一生愛你, / 願與你更親密, / 願將生命和一切全獻給你。
+# 27 notes in all; this suggestion has 44 syllables
+# 5 notes  | That’s why I love Him.
+願 一 生 愛 你,
+# 6 notes  | That’s why I treasure Him.
+願 與 你 更 親 密,
+# 10 notes  | That’s why I give my life and all to Him.
+願 將 生 命 和 一 切 全 獻 給
+# 6 notes  | That’s why I love Him.
+你。 願 一 生 愛 你, 願  #EXTRA 與  #EXTRA 你  #EXTRA 更  #EXTRA 親  #EXTRA 密,  #EXTRA 願  #EXTRA 將  #EXTRA 生  #EXTRA 命  #EXTRA 和  #EXTRA 一  #EXTRA 切  #EXTRA 全  #EXTRA 獻  #EXTRA 給  #EXTRA 你。  #EXTRA

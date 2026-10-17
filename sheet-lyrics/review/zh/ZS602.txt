@@ -1,0 +1,14 @@
+# ZS602  (sheet of CS602)  我们看见你荣耀计画，
+# What is wrong:
+#   1.: French has 68-68 syllables for 34 note slots (French: 我们看见你荣耀计画， / 要在地上建造你家； / 不禁祷告：『主， / 得着我们，建造我们─ / 照你办法！』 / 你的回答迅速又肯定： / 『为建我家，你当知道： / 你魂生命必须要了了， / 你必须在坛上仆倒。』)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS602.txt and run:  python3 sheet-lyrics/align.py ZS602
+
+== 1.
+# French text: 我们看见你荣耀计画， / 要在地上建造你家； / 不禁祷告：『主， / 得着我们，建造我们─ / 照你办法！』 / 你的回答迅速又肯定： / 『为建我家，你当知道： / 你魂生命必须要了了， / 你必须在坛上仆倒。』
+# 34 notes in all; this suggestion has 68 syllables
+# 34 notes  | 我們看見你榮耀計畫，
+我 们 看 见 你 荣 耀 计 画， 要 在 地 上 建 造 你 家； 不 禁 祷 告：『 主， 得 着 我 们， 建 造 我 们─ 照 你 办 法！』 你  #EXTRA 的  #EXTRA 回  #EXTRA 答  #EXTRA 迅  #EXTRA 速  #EXTRA 又  #EXTRA 肯  #EXTRA 定：  #EXTRA 『为  #EXTRA 建  #EXTRA 我  #EXTRA 家，  #EXTRA 你  #EXTRA 当  #EXTRA 知  #EXTRA 道：  #EXTRA 你  #EXTRA 魂  #EXTRA 生  #EXTRA 命  #EXTRA 必  #EXTRA 须  #EXTRA 要  #EXTRA 了  #EXTRA 了，  #EXTRA 你  #EXTRA 必  #EXTRA 须  #EXTRA 在  #EXTRA 坛  #EXTRA 上  #EXTRA 仆  #EXTRA 倒。』  #EXTRA

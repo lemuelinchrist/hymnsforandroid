@@ -1,0 +1,35 @@
+# ZS317  (sheet of CS317)  你实在把他们
+# What is wrong:
+#   (C): French has 20-20 syllables for 40 note slots (French: 你搀着我右手， / 以你训言引导， / 以后必接我到荣耀。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS317.txt and run:  python3 sheet-lyrics/align.py ZS317
+
+== (C)
+# French text: 你搀着我右手， / 以你训言引导， / 以后必接我到荣耀。
+# 40 notes in all; this suggestion has 20 syllables
+# 6 notes  | 你攙著我右手，
+你 搀 着 我 右 手，
+# 6 notes  | 以你訓言引導，
+以 你 训 言 引 导，
+# 8 notes  | 以後必接我到榮耀。
+以 后 必 接 我 到 荣 耀。
+# 20 notes
+
+# ??? only 0 syllables for 20 notes
+
+== 1.
+# French text: 你实在把他们 / 安置在滑地， / 使他们掉在沉沦之中， / 他们所夸口的 / 转眼便成空。
+# 31 notes in all; this suggestion has 31 syllables
+# 6 notes  | 你實在把他們
+你 实 在 把 他 们
+# 5 notes  | 安置在滑地，
+安 置 在 滑 地，
+# 9 notes  | 使他們掉在沉淪之中，
+使 他 们 掉 在 沉 沦 之 中，
+# 6 notes  | 他們所誇口的
+他 们 所 夸 口 的
+# 5 notes  | 轉眼便成空。
+转 眼 便 成 空。

@@ -1,0 +1,32 @@
+# Z308  (sheet of E405)  世上景色我已一阅，
+# What is wrong:
+#   (C): French has 92-92 syllables for 30 note slots (French: 世上景色我已一阅， / 愿你使我目复盲； / 不然，我怕祂的喜悦， / 不如从前的显彰。 / 这首诗歌是一位姊妹写的。 / 她原来双目失明，当另一位姊妹为 / 她按手祷告之后，她的眼睛得了医治， / 她就写了这首诗歌。 / 第一节『你』就是指为她按手的姊妹。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z308.txt and run:  python3 sheet-lyrics/align.py Z308
+
+== 1.
+# French text: 世上景色我已一阅， / 愿你使我目复盲； / 不然，我怕祂的喜悦， / 不如从前的显彰。
+# 30 notes in all; this suggestion has 30 syllables
+# 8 notes  | Having seen the world's fair beauty,
+世 上 景 色 我 已 一 阅，
+# 7 notes  | Lord, I would be blind once more,
+愿 你 使 我 目 复 盲；
+# 8 notes  | Lest I lose the loving Presence
+不 然， 我 怕 祂 的 喜 悦，
+# 7 notes  | And Delight I knew before.
+不 如 从 前 的 显 彰。
+
+== (C)
+# French text: 世上景色我已一阅， / 愿你使我目复盲； / 不然，我怕祂的喜悦， / 不如从前的显彰。 / 这首诗歌是一位姊妹写的。 / 她原来双目失明，当另一位姊妹为 / 她按手祷告之后，她的眼睛得了医治， / 她就写了这首诗歌。 / 第一节『你』就是指为她按手的姊妹。
+# 30 notes in all; this suggestion has 92 syllables
+# 8 notes  | Having seen the world's fair beauty,
+世 上 景 色 我 已 一 阅，
+# 7 notes  | Lord, I would be blind once more,
+愿 你 使 我 目 复 盲；
+# 8 notes  | Lest I lose the loving Presence
+不 然， 我 怕 祂 的 喜 悦，
+# 7 notes  | And Delight I knew before.
+不 如 从 前 的 显 彰。 这  #EXTRA 首  #EXTRA 诗  #EXTRA 歌  #EXTRA 是  #EXTRA 一  #EXTRA 位  #EXTRA 姊  #EXTRA 妹  #EXTRA 写  #EXTRA 的。  #EXTRA 她  #EXTRA 原  #EXTRA 来  #EXTRA 双  #EXTRA 目  #EXTRA 失  #EXTRA 明，  #EXTRA 当  #EXTRA 另  #EXTRA 一  #EXTRA 位  #EXTRA 姊  #EXTRA 妹  #EXTRA 为  #EXTRA 她  #EXTRA 按  #EXTRA 手  #EXTRA 祷  #EXTRA 告  #EXTRA 之  #EXTRA 后，  #EXTRA 她  #EXTRA 的  #EXTRA 眼  #EXTRA 睛  #EXTRA 得  #EXTRA 了  #EXTRA 医  #EXTRA 治，  #EXTRA 她  #EXTRA 就  #EXTRA 写  #EXTRA 了  #EXTRA 这  #EXTRA 首  #EXTRA 诗  #EXTRA 歌。  #EXTRA 第  #EXTRA 一  #EXTRA 节『  #EXTRA 你』  #EXTRA 就  #EXTRA 是  #EXTRA 指  #EXTRA 为  #EXTRA 她  #EXTRA 按  #EXTRA 手  #EXTRA 的  #EXTRA 姊  #EXTRA 妹。  #EXTRA
