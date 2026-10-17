@@ -35,6 +35,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private final HymnsActivity context;
     private HymnBookGroup currentHymnBookGroup;
     private HymnStack hymnStack = new HymnStack(HymnGroup.DEFAULT_HYMN_NUMBER);
+    private boolean hymnStackSeeded = false;
 
     private Theme theme=Theme.LIGHT;
 
@@ -60,6 +61,11 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             currentHymnId = records.length>0 ? records[0].getHymnId() : HymnGroup.DEFAULT_HYMN_NUMBER;
         } else {
             currentHymnId =  getCurrentHymnId();
+        }
+        // the hymn we start on is where Back ends up (not always hymn E1)
+        if (!hymnStackSeeded) {
+            hymnStack.reset(currentHymnId);
+            hymnStackSeeded = true;
         }
         hymnBooks = new HashMap<>();
         try {
@@ -104,7 +110,10 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     }
 
     public void switchToHymnAndRememberChoice(String hymnNo) {
-        hymnStack.push(hymnNo);  // log the hymn first before logging the translated one.
+        // remember where we came from first, then the new hymn, so Back returns to where we came from
+        String from = getCurrentHymnId();
+        if (from != null) hymnStack.push(from);
+        hymnStack.push(hymnNo);
         switchToHymn(hymnNo);
     }
 
@@ -190,13 +199,12 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         }
     }
 
-    public void goToPreviousHymn() {
-
-        if (!hymnStack.isEmpty()) {
-            String poppedHymn = hymnStack.pop();
-            if (poppedHymn != null) switchToHymn(poppedHymn);
-
-        }
+    /** Back button: returns false when there is nothing to go back to. */
+    public boolean goToPreviousHymn() {
+        if (!hymnStack.hasPrevious()) return false;
+        String poppedHymn = hymnStack.pop();
+        if (poppedHymn != null) switchToHymn(poppedHymn);
+        return true;
     }
 
     private class HymnBookGroup extends FragmentStatePagerAdapter {

@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.activity.OnBackPressedCallback;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
@@ -100,6 +101,19 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager),theme);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
+
+        // Back: close the drawer, else return to the previous hymn, else leave the app
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
+                    mDrawerLayout.closeDrawer(mDrawerList);
+                } else if (!hymnBookCollection.goToPreviousHymn()) {
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
+                }
+            }
+        });
         mDrawerList = findViewById(R.id.left_drawer);
 
         // Apply window insets to the Navigation Drawer to handle status bar and nav bar overlap
@@ -230,13 +244,6 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
                 }
                 break;
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        Log.d(HymnsActivity.class.getSimpleName(), "onBackPressed Called");
-        hymnBookCollection.goToPreviousHymn();
-
     }
 
     @Override
