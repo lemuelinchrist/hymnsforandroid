@@ -19,6 +19,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.activity.OnBackPressedCallback;
+import com.google.android.material.appbar.AppBarLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
@@ -308,6 +309,17 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     public void switchToHymn(String hymnId) {
         hymnBookCollection.switchToHymn(hymnId);
+    }
+
+    /** Slides the toolbar back into view (it hides while scrolling down). */
+    public void showToolbar() {
+        AppBarLayout appBar = findViewById(R.id.appbar);
+        if (appBar != null) appBar.setExpanded(true, true);
+    }
+
+    @Override
+    public void switchToRelatedHymn(String hymnId) {
+        hymnBookCollection.switchToHymnAndRememberChoice(hymnId);
     }
 
     public static HymnSwitcher getHymnSwitcher() {

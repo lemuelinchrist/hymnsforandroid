@@ -48,6 +48,7 @@ public class ContentArea extends Fragment {
     private HashSet<OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
     private Theme theme;
     private HymnStack hymnStack;
+    private NestedScrollView scrollView;
 
     private CardView buttonContainer;
     private PlayButton playButton;
@@ -86,7 +87,7 @@ public class ContentArea extends Fragment {
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
 
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
-        NestedScrollView scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
+        scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
         scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
         scrollView.setFocusable(true);
         scrollView.setFocusableInTouchMode(true);
@@ -215,6 +216,11 @@ public class ContentArea extends Fragment {
 
     public void setTheme(Theme theme) {
         this.theme = theme;
+    }
+
+    /** A page that was scrolled earlier (or kept its position) opens at its top again. */
+    public void scrollToTop() {
+        if (scrollView != null) scrollView.scrollTo(0, 0);
     }
 
     public void setHymnStack(HymnStack hymnStack) {

@@ -159,6 +159,19 @@ public class HymnBookCollection implements OnLyricVisibleListener {
                         "position of hymn no: " + currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber) +
                         "\n attempting to switch to hymn number: " + selectedHymnNumber);
                 lyricPager.setCurrentItem(Math.max(0, currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber)));
+                // the new hymn opens at its top, with the toolbar showing the hymn number
+                lyricPager.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            ContentArea shown = getCurrentHymnLyric();
+                            if (shown != null) shown.scrollToTop();
+                            context.showToolbar();
+                        } catch (Exception e) {
+                            Log.e(getClass().getName(), "Error trying to scroll to the top of the hymn");
+                        }
+                    }
+                });
                 try {
                     context.onLyricVisible(getCurrentHymnId());
                 } catch (Exception e) {

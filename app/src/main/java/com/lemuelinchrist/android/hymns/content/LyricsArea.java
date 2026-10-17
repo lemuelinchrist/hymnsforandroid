@@ -36,7 +36,7 @@ import java.util.*;
 public class LyricsArea extends ContentComponent<NestedScrollView> {
     private final TextView subjectHeader;
     private final ViewGroup stanzaView;
-    private final TextView composerView;
+    private final RelatedHymnsCard relatedHymnsCard;
     private final TextView lyricHeader;
     private final SharedPreferences sharedPreferences;
     private final Theme theme;
@@ -65,8 +65,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         lyricHeader = view.findViewById(getRid("lyricHeader"));
         lyricHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
-        composerView = view.findViewById(getRid("composer"));
-        composerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+        relatedHymnsCard = new RelatedHymnsCard(hymn, parentFragment, (ViewGroup) view.findViewById(getRid("relatedContainer")));
 
     }
 
@@ -208,29 +207,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             }
 
             // #################### Build Footer: related hymns
-            String relatedText = "";
-            List<String> related = hymn.getRelated();
-            if (related != null) {
-                StringBuilder relatedConcat = new StringBuilder();
-                for (String r : related) {
-                    // remove languages that are disabled or not supported
-                    try {
-                        if (disabledLanguages.contains(HymnGroup.getHymnGroupFromID(r).name())) {
-                            continue;
-                        }
-                    } catch (NoSuchHymnGroupException e) {
-                        continue;
-                    }
-                    relatedConcat.append(", ");
-                    relatedConcat.append(r);
-                }
-                if (relatedConcat.length() > 2) relatedText = "Related: " + relatedConcat.substring(2);
-            }
-            if (!relatedText.isEmpty()) {
-                composerView.setText(Html.fromHtml(relatedText));
-            } else {
-                ((ViewGroup)composerView.getParent()).removeView(composerView);
-            }
+            relatedHymnsCard.display();
 
         } catch (Exception e) {
             e.printStackTrace();

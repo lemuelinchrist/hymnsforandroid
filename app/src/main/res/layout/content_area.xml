@@ -161,18 +161,13 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
         >
-            <TextView
-                    android:id="@+id/composer"
-                    android:layout_width="wrap_content"
+            <LinearLayout
+                    android:id="@+id/relatedContainer"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="10dp"
+                    android:orientation="vertical"
                     style="@style/dayMode"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/composerFiller"
-                    android:textIsSelectable="true"/>
+                    android:paddingLeft="16dp" android:paddingRight="16dp" android:paddingTop="4dp" android:paddingBottom="16dp" android:layout_marginTop="10dp"/>
 
         </androidx.cardview.widget.CardView>
 

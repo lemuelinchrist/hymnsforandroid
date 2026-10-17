@@ -127,17 +127,13 @@
                     android:textIsSelectable="true"/>
         </LinearLayout>
 
-        <TextView
-                android:id="@+id/composer"
-                android:layout_width="wrap_content"
+        <LinearLayout
+                android:id="@+id/relatedContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="10dp"
+                android:orientation="vertical"
                 style="@style/NightMode"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:textIsSelectable="true"/>
+                android:paddingLeft="30dp" android:paddingRight="30dp" android:paddingBottom="10dp" android:layout_marginTop="10dp"/>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
 
