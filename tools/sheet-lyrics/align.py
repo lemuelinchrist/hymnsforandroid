@@ -23,7 +23,7 @@ import xml.etree.ElementTree as ET
 from functools import lru_cache
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
+ROOT = os.path.dirname(os.path.dirname(HERE))
 DB = os.path.join(ROOT, 'app/src/main/assets/hymns.sqlite')
 MEI = os.path.join(ROOT, 'app/src/main/assets/sheetMei')
 OUT = os.path.join(ROOT, 'app/src/main/assets/sheetLyrics')

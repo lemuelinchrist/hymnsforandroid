@@ -8,7 +8,7 @@ import sqlite3
 from fractions import Fraction
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-SQL_DUMP = os.path.join(HERE, '..', 'sqlite/hymns.sql')
+SQL_DUMP = os.path.join(HERE, '..', '..', 'sqlite/hymns.sql')
 DB = os.path.join(HERE, 'build', 'hymns_snapshot.sqlite')     # private copy: the shared hymns.sqlite is rewritten by Gradle builds
 
 
@@ -212,7 +212,7 @@ def repair_hyphens(ir, hymn_id):
 # ---------------------------------------------------------------- V4: MIDI melody (top voice)
 import struct
 
-RAW = os.path.join(HERE, '..', 'app/src/main/res/raw')
+RAW = os.path.join(HERE, '..', '..', 'app/src/main/res/raw')
 PC = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11}
 
 

@@ -4,7 +4,7 @@ Book names and order are read from HymnGroup.java, so a new language needs no ed
 (add it to HymnGroup.java; add it to OWN below only if hymnal.net has its own collection)."""
 import sqlite3, json, gzip, base64, re, sys, os
 here = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.join(here, '..')
+ROOT = os.path.join(here, '..', '..')
 DB = os.path.join(ROOT, 'app/src/main/assets/hymns.sqlite')
 ENUM = os.path.join(ROOT, 'app/src/main/java/com/lemuelinchrist/android/hymns/HymnGroup.java')
 books = re.findall(r'^\s+([A-Z]{1,3})\(\s*"([^"]+)"', open(ENUM, encoding='utf-8').read(), re.M)

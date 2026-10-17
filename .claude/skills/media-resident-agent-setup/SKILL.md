@@ -30,7 +30,7 @@ systemd unit, own Remote Control name.
 - This project has no `CLAUDE.md`; project rules live in `AGENTS.md` (read automatically) plus the skills in
   `.claude/skills/` (notably `svg-to-lilypond`, `hymn-provisioning`).
 - The Android build, emulator and Gradle flows (`android-emulator-control`, `github-release`) are **Windows-only**
-  on the operator's PC. The media agent does the converter work (`svg-to-lilypond/`), not Android builds.
+  on the operator's PC. The media agent does the converter work (`tools/svg-to-lilypond/`), not Android builds.
 
 ## Step 0 - confirm reachability
 ```
@@ -57,7 +57,7 @@ Notes:
 - The converter was developed on LilyPond **2.24.3**; Ubuntu 26.04 ships 2.24.4. Patch versions can change glyph
   outline shapes: run the regression list (Step 6); if it reports `unknown glyph ids`, follow the "Unknown glyph
   ids" section of the `svg-to-lilypond` skill to rebuild the glyph catalog, and record the version in
-  `svg-to-lilypond/DESIGN.md`.
+  `tools/svg-to-lilypond/DESIGN.md`.
 - `media` has 8 cores / ~14 GB shared with other services: use `-j 6` (not the 15 used on the 16-core dev PC).
 - Python here is 3.14; the tools only use the standard library plus the three packages above.
 
@@ -106,7 +106,7 @@ persona file:
 ```
 ssh media 'cd ~/hymnsforandroid && git config user.name "Lemuel" && git config user.email "lemuelinchrist@gmail.com" && grep -qx CLAUDE.local.md .git/info/exclude || echo CLAUDE.local.md >> .git/info/exclude'
 ```
-Generated output (`svg-to-lilypond/build/`) is git-ignored; `build/hymns_snapshot.sqlite` is rebuilt automatically from
+Generated output (`tools/svg-to-lilypond/build/`) is git-ignored; `build/hymns_snapshot.sqlite` is rebuilt automatically from
 `sqlite/hymns.sql` on first use.
 
 ## Step 4 - persona file (machine-local, never committed)
@@ -125,22 +125,22 @@ Rules for this unattended context (the user relaxed these on 2026-10-05: more fr
   `git switch -c media/work`; push only `origin media/work`). Never commit or push `master`, never push any other branch,
   never force-push, never rewrite pushed history. Commit in small logical steps with clear messages and the attribution
   lines the harness gives you. If master moves, merge `origin/master` into `media/work`. The user merges to master.
-- Files: main area is `svg-to-lilypond/`. You may also edit `app/` and `sqlite/` (shipped SVGs, `sqlite/hymns.sql`) when
+- Files: main area is `tools/svg-to-lilypond/`. You may also edit `app/` and `sqlite/` (shipped SVGs, `sqlite/hymns.sql`) when
   a task needs it, but ONLY on `media/work`, documented in DESIGN.md. A hymn's tune code names its MIDI file
   (`res/raw/m<tune>.mid`), so changing a tune code can break playback.
 - Never build or sign release artifacts here (the keystore belongs to the PC), never touch Play Store or GitHub
   releases, never commit `local.properties` (skip-worktree).
 - Do not read or write `app/src/main/assets/hymns.sqlite` (Gradle rewrites it); the checks use
-  `svg-to-lilypond/build/hymns_snapshot.sqlite`.
+  `tools/svg-to-lilypond/build/hymns_snapshot.sqlite`.
 - Compute: shared machine. At most `-j 8`, batches under `nice -n 10`, ONE batch at a time (they share `build/`), long
-  jobs in the background with output to a file under `svg-to-lilypond/build/`.
+  jobs in the background with output to a file under `tools/svg-to-lilypond/build/`.
 - Autonomy: decide small ambiguities and record them in DESIGN.md. Stop and wait for the user before anything
   irreversible or outside this repo: deleting branches/history, merging to master, releases, credentials/keys,
   installing/removing system packages, touching other services or projects on this host.
 - Reporting: short plain-language status after each major task; summarize commits and pushes at the end.
 
 ## Where the knowledge lives
-- `AGENTS.md`: project overview. `svg-to-lilypond/DESIGN.md` (especially section 18 and the log in section 17): the
+- `AGENTS.md`: project overview. `tools/svg-to-lilypond/DESIGN.md` (especially section 18 and the log in section 17): the
   full technical record of the SVG -> LilyPond converter. `.claude/skills/svg-to-lilypond/SKILL.md`: how to run it,
   read results, and the traps already found. Keep DESIGN.md updated with anything new you learn.
 - Current numbers (2026-10-05): piano 3,077/3,179 and guitar 3,068/3,179 sheets accepted; the rest are `REVIEW`

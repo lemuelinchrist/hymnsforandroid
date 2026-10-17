@@ -22,7 +22,7 @@ from emit_ly import emit  # noqa: E402
 from recognize import recognize, RecognitionError  # noqa: E402
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-ASSETS = os.path.join(HERE, '..', 'app/src/main/assets')
+ASSETS = os.path.join(HERE, '..', '..', 'app/src/main/assets')
 SVGS = os.path.join(HERE, 'svg')
 BUILD = os.path.join(HERE, 'build')
 

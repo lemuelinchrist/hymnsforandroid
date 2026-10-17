@@ -12,7 +12,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from svgscan import parse, staves  # noqa: E402
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 NAMES = {k: v['name'] for k, v in json.load(open(os.path.join(HERE, 'data/glyph_names.json'))).items()}
 DIGITS = {'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'}
@@ -95,7 +95,7 @@ COLS = ['file', 'format', 'pages', 'staves', 'heads', 'stacked_heads', 'staff_ac
 if __name__ == '__main__':
     rows = []
     for folder in ('pianoSvg', 'guitarSvg'):
-        for p in sorted(glob.glob(os.path.join(ROOT, 'svg-to-lilypond/svg', folder, '*.svg'))):
+        for p in sorted(glob.glob(os.path.join(ROOT, 'tools/svg-to-lilypond/svg', folder, '*.svg'))):
             name = folder + '/' + os.path.basename(p)
             try:
                 f = features(p)

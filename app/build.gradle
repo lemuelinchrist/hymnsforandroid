@@ -106,7 +106,7 @@ tasks.configureEach { task ->
 }
 
 // iOS users can't install the APK, so every release also ships a single-file offline lyrics-only web app
-// (see ios/README.md). Runs after importSql so it reads the same hymns.sqlite the APK ships with.
+// (see tools/ios/README.md). Runs after importSql so it reads the same hymns.sqlite the APK ships with.
 def iosPython = System.getProperty('os.name').toLowerCase().contains('windows') ? ['py', '-3'] : ['python3']
 def iosPythonOk = {
     try { return new ProcessBuilder(iosPython + ['--version']).redirectErrorStream(true).start().waitFor() == 0 }
@@ -117,7 +117,7 @@ tasks.register('buildIosHymnal', Exec) {
     description = 'Builds the single-file iOS/web hymnal (HymnsForAndroid<version>-iOS.html)'
     dependsOn ':sqlite:importSql'
     def out = "${buildDir}/outputs/ios/HymnsForAndroid${hymnAppVersion}-iOS.html"
-    inputs.files("${rootDir}/ios/build.py", "${rootDir}/ios/template.html",
+    inputs.files("${rootDir}/tools/ios/build.py", "${rootDir}/tools/ios/template.html",
             "${rootDir}/app/src/main/assets/hymns.sqlite",
             "${rootDir}/app/src/main/java/com/lemuelinchrist/android/hymns/HymnGroup.java")
     outputs.file(out)
@@ -126,7 +126,7 @@ tasks.register('buildIosHymnal', Exec) {
         if (!ok) logger.warn("buildIosHymnal skipped: ${iosPython.join(' ')} not found, so no iOS html was built")
         return ok
     }
-    commandLine iosPython + ["${rootDir}/ios/build.py", out]
+    commandLine iosPython + ["${rootDir}/tools/ios/build.py", out]
 }
 tasks.matching { it.name == 'assembleRelease' || it.name == 'bundleRelease' }.configureEach {
     finalizedBy 'buildIosHymnal'

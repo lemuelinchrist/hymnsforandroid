@@ -17,7 +17,7 @@ from recognize import recognize, RecognitionError  # noqa: E402
 import verify  # noqa: E402
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-ASSETS = os.path.join(HERE, '..', 'app/src/main/assets')
+ASSETS = os.path.join(HERE, '..', '..', 'app/src/main/assets')
 SVGS = os.path.join(HERE, 'svg')
 
 ap = argparse.ArgumentParser()

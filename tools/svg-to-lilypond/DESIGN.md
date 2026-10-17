@@ -665,7 +665,7 @@ over the IR with the music font shipped once. This supersedes the font-route dec
 > **Continuing on another machine.** `git switch media/work` (branch on GitHub, not merged to master). Needs
 > LilyPond 2.24.x, rsvg-convert, ImageMagick, sqlite3 and Python 3 with numpy, Pillow, fontTools (see the skill file
 > `.claude/skills/svg-to-lilypond/SKILL.md`). `build/` is not in git: to look at a sheet run
-> `cd svg-to-lilypond && python3 tools/convert.py --variant piano ../svg-to-lilypond/svg/pianoSvg/NS349.svg`
+> `cd svg-to-lilypond && python3 tools/convert.py --variant piano svg/pianoSvg/NS349.svg`
 > then `python3 tools/compare_png.py NS349` and open `build/compare/piano_NS349.png` (left = original, right = ours).
 > `python3 tools/regress.py -j 4` (69 sheets, ~3 min) must print `69/69 as expected` after any change to the tools.
 > Glyph shapes can differ with the LilyPond version: if a new version reports `unknown glyph ids`, follow the skill file
@@ -994,7 +994,7 @@ the default and the fallback. Work on branch `ly-viewer`, kept apart from v5.5.
 **What goes where.**
 - `app/src/main/assets/sheetMei/<id>.mei`: one file per hymn, generated from `ly/piano/` (3,179 files, 36 MB raw,
   ~11 KB each, compresses well in the APK; the two SVG folders are 630 MB raw). Regenerate with
-  `python3 tools/ly_to_mei.py --all --out ../app/src/main/assets/sheetMei`.
+  `python3 tools/ly_to_mei.py --all --out ../../app/src/main/assets/sheetMei`.
 - The MEI holds the music: melody, chords, the lyric lines under the staff, the original system breaks.
   Title, subtitle and number go in `meiHead`; the verse block under the music and any chords printed after the
   last bar go in `<back>` as plain text, so the page lays them out as HTML (system fonts, so CJK renders properly,

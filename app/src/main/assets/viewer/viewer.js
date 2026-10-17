@@ -1,6 +1,6 @@
 // Sheet music viewer: renders sheetMei/<id>.mei with Verovio, laid out to the screen width.
 // Guitar sheets are derived here from the piano MEI: capo from the key, chords moved down by the capo,
-// slash basses dropped, a chord equal to the one before it removed (svg-to-lilypond/DESIGN.md §10, §19).
+// slash basses dropped, a chord equal to the one before it removed (tools/svg-to-lilypond/DESIGN.md §10, §19).
 // A bar (shown and hidden by a tap) switches piano/guitar, transposes, and hides the staff (chords over lyrics).
 (function () {
   'use strict';
@@ -424,7 +424,7 @@
     resizeTimer = setTimeout(function () { updateBar(); if (tk) render(); }, 150);
   });
 
-  // the same sheet with the lyrics of another language (sheetLyrics/<hymn>.json, made by sheet-lyrics/align.py):
+  // the same sheet with the lyrics of another language (sheetLyrics/<hymn>.json, made by tools/sheet-lyrics/align.py):
   // syllables under the notes, the verses below the staff and the title are swapped in before anything is drawn
   function applyLyrics(xml, o) {
     var doc = parseXml(xml);
