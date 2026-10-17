@@ -1,0 +1,46 @@
+# FR160  (sheet of E1255)  Le recouvrement du Seigneur,
+# What is wrong:
+#   1.: French has 48-57 syllables for 91 note slots (French: Le recouvrement du Seigneur, / Brule dans nos cœurs ! / Dieu recouvre Son église, / Sur le terrain de la ville. / L'unité de Dieu nous rend un, / Nous la conser)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR160.txt and run:  python3 sheet-lyrics/align.py FR160
+
+== 1.
+# French text: Le recouvrement du Seigneur, / Brule dans nos cœurs ! / Dieu recouvre Son église, / Sur le terrain de la ville. / L'unité de Dieu nous rend un, / Nous la conservons, / Pour ainsi bâtir le temple / De notre Seigneur.
+# 91 notes in all; this suggestion has 57 syllables
+# 8 notes  | We are for the Lord's recovery
+Le re-cou-vre-ment du Sei-gneur,
+# 5 notes  | Of the local church;
+Bru-le dans nos cœurs!
+# 8 notes  | We are for the Lord's recovery
+Di-eu re-cou-vre Son é-gli-
+# 7 notes  | Of the city and the earth.
+se, Sur le ter-rain de la
+# 8 notes  | Standing on the ground of oneness,
+vil-le. L'u-ni-té de Di-eu
+# 5 notes  | Oneness in the Lord,
+nous rend un, Nous la
+# 8 notes  | We are building up the temple
+con-ser-vons, Pour ain-si bâ-tir
+# 5 notes  | Of our glorious Lord.
+le tem-ple De no-
+# 5 notes
+tre Sei-gneur.
+# ??? only 3 syllables for 5 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes

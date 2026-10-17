@@ -7,6 +7,7 @@
 
   var params = new URLSearchParams(location.search);
   var hymnId = params.get('id');
+  var shownId = hymnId;                       // the number printed at the top right (the translation's own when lyrics are swapped)
   if (params.get('dark') === '1') document.documentElement.classList.add('dark');
 
   var MEI_NS = 'http://www.music-encoding.org/ns/mei';
@@ -85,8 +86,8 @@
     }
     // the hymn ID as the app shows it everywhere else (the printed number is missing on NS and CH sheets);
     // the hidden copy on the left keeps the title centred
-    $('number').textContent = hymnId;
-    $('spacer').textContent = hymnId;
+    $('number').textContent = shownId;
+    $('spacer').textContent = shownId;
 
     var verses = $('verses');
     verses.innerHTML = '';
@@ -423,6 +424,63 @@
     resizeTimer = setTimeout(function () { updateBar(); if (tk) render(); }, 150);
   });
 
+  // the same sheet with the lyrics of another language (sheetLyrics/<hymn>.json, made by sheet-lyrics/align.py):
+  // syllables under the notes, the verses below the staff and the title are swapped in before anything is drawn
+  function applyLyrics(xml, o) {
+    var doc = parseXml(xml);
+    var notes = doc.getElementsByTagNameNS(MEI_NS, 'note');
+    for (var i = 0; i < notes.length; i++) {
+      var id = notes[i].getAttributeNS(XML_NS, 'id');
+      var s = o.syl && o.syl[id];
+      if (s === undefined) continue;
+      var verses = notes[i].getElementsByTagNameNS(MEI_NS, 'verse');
+      for (var v = verses.length - 1; v >= 0; v--) {
+        if (verses[v].getAttribute('n') !== '1') continue;
+        if (s === 0) {                                  // a note the French syllable before it is held over: no syllable of its own
+          verses[v].parentNode.removeChild(verses[v]);
+          continue;
+        }
+        var syl = verses[v].getElementsByTagNameNS(MEI_NS, 'syl')[0];
+        if (!syl) continue;
+        syl.textContent = s[0];
+        if (s[1]) { syl.setAttribute('wordpos', s[1]); } else { syl.removeAttribute('wordpos'); }
+        if (s[2] === 'u') {
+          syl.setAttribute('con', 'u');                 // held over the next note: an extender line
+        } else if (s[1] === 'i' || s[1] === 'm') {
+          syl.setAttribute('con', 'd');
+        } else {
+          syl.removeAttribute('con');
+        }
+      }
+    }
+    var titles = doc.getElementsByTagNameNS(MEI_NS, 'title');
+    for (i = 0; i < titles.length; i++) {
+      if (titles[i].getAttribute('type') === 'main' && o.title) titles[i].textContent = o.title;
+      if (titles[i].getAttribute('type') === 'subordinate') titles[i].textContent = '';
+    }
+    var back = doc.getElementsByTagNameNS(MEI_NS, 'back')[0];
+    if (back) back.parentNode.removeChild(back);
+    if (o.verses && o.verses.length) {
+      var music = doc.getElementsByTagNameNS(MEI_NS, 'music')[0];
+      back = doc.createElementNS(MEI_NS, 'back');
+      var div = doc.createElementNS(MEI_NS, 'div');
+      div.setAttribute('type', 'verses');
+      for (i = 0; i < o.verses.length; i++) {
+        var lg = doc.createElementNS(MEI_NS, 'lg');
+        lg.setAttribute('label', o.verses[i].label);
+        for (var k = 0; k < o.verses[i].lines.length; k++) {
+          var l = doc.createElementNS(MEI_NS, 'l');
+          l.textContent = o.verses[i].lines[k];
+          lg.appendChild(l);
+        }
+        div.appendChild(lg);
+      }
+      back.appendChild(div);
+      music.appendChild(back);
+    }
+    return new XMLSerializer().serializeToString(doc);
+  }
+
   // the toolkit and the MEI load in parallel; render when both are there
   var runtimeReady = false;
   function start() {
@@ -437,8 +495,21 @@
   }
   verovio.module.onRuntimeInitialized = function () { runtimeReady = true; start(); };
 
-  fetch('../sheetMei/' + encodeURIComponent(hymnId) + '.mei')
-    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-    .then(function (xml) { load(xml); start(); })
+  // ?lyrics=FR1: the hymn being read has its own lyrics for this sheet (a translation); used when the file exists
+  var lyricsId = params.get('lyrics');
+  function loadLyrics() {
+    if (!lyricsId || lyricsId === hymnId) return Promise.resolve(null);
+    return fetch('../sheetLyrics/' + encodeURIComponent(lyricsId) + '.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; });
+  }
+  Promise.all([fetch('../sheetMei/' + encodeURIComponent(hymnId) + '.mei')
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); }), loadLyrics()])
+    .then(function (res) {
+      var xml = res[0], overlay = res[1];
+      if (overlay) { xml = applyLyrics(xml, overlay); shownId = overlay.hymn || hymnId; }
+      load(xml);
+      start();
+    })
     .catch(function (e) { status('Sheet music not found (' + e.message + ')'); });
 })();

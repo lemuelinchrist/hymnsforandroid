@@ -1,0 +1,38 @@
+# FR248  (sheet of E1341)  Ainsi les rachetés du Seigneur retourneront,
+# What is wrong:
+#   1.: French has 64-78 syllables for 114 note slots (French: Ainsi les rachetés du Seigneur retourneront, / Avec des chants de triomphe à Sion ; / Une joie éternelle couronnera leur tête. / Ainsi les rachetés du Seigneur )
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR248.txt and run:  python3 sheet-lyrics/align.py FR248
+
+== 1.
+# French text: Ainsi les rachetés du Seigneur retourneront, / Avec des chants de triomphe à Sion ; / Une joie éternelle couronnera leur tête. / Ainsi les rachetés du Seigneur retourneront, / Avec des chants de triomphe à Sion ; / Une joie éternelle couronnera leur tête.
+# 114 notes in all; this suggestion has 78 syllables
+# 11 notes  | Therefore the redeemed of the Lord shall return,
+Ain-si les ra-che-tés du Sei-gneur re-tour-
+# 9 notes  | And come with singing unto Zion;
+ne-ront, A-vec des chants de tri-om-
+# 12 notes  | And everlasting joy shall be upon their head.
+phe à Si-on; U-ne joi-e é-ter-nel-le
+# 11 notes  | Therefore the redeemed of the Lord shall return,
+cou-ron-ne-ra leur tê-te. Ain-si les ra-
+# 9 notes  | And come with singing unto Zion;
+che-tés du Sei-gneur re-tour-ne-ront,
+# 12 notes  | And everlasting joy shall be upon their head.
+A-vec des chants de tri-om-phe à Si-on; U-
+# 8 notes
+ne joi-e é-ter-nel-le cou-
+# 10 notes
+ron-ne-ra leur tê-te.
+# ??? only 6 syllables for 10 notes
+# 11 notes
+
+# ??? only 0 syllables for 11 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes
+# 12 notes
+
+# ??? only 0 syllables for 12 notes

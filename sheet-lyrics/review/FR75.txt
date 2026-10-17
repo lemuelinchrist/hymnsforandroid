@@ -1,0 +1,33 @@
+# FR75  (sheet of E436)  Ta vie Tu as livré,
+# What is wrong:
+#   adapting would change 12 of 52 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR75.txt and run:  python3 sheet-lyrics/align.py FR75
+
+== 1.
+# French text: Ta vie Tu as livré, / Tu as versé Ton Sang / Et Tu m'as racheté, / Tu m'as rendu vivant. / Ta vie pour moi Tu as livré, / Que T'ai-je présenté ?
+# 52 notes in all; this suggestion has 40 syllables
+# 6 notes  | Thy Life was giv'n for me,
+Ta vi-e Tu as li-
+# 6 notes  | Thy blood, O Lord, was shed,
+vré, Tu as ver-sé Ton
+# 6 notes  | That I might ransomed be,
+Sang Et Tu m'as ra-che-
+# 6 notes  | And quickened from the dead;
+té, Tu m'as ren-du vi-
+# 8 notes  | Thy Life was giv'n for me, for me;
+vant. Ta vi-e pour moi Tu as
+# 6 notes  | What have I giv'n for Thee?
+li-vré, Que T'ai| je pré-
+# 6 notes
+sen-té?
+# ??? only 2 syllables for 6 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes

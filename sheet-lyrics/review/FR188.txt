@@ -1,0 +1,50 @@
+# FR188  (sheet of E1308)  Dans nos lampes, de l'huile nous avons,
+# What is wrong:
+#   1.: French has 34-38 syllables for 69 note slots (French: Dans nos lampes, de l'huile nous avons, / Afin d'être toujours brulants ! / Vers Toi dans notre esprit, nous nous tournons, / Nous nous tournons, tournons, tout)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR188.txt and run:  python3 sheet-lyrics/align.py FR188
+
+== 1.
+# French text: Dans nos lampes, de l'huile nous avons, / Afin d'être toujours brulants ! / Vers Toi dans notre esprit, nous nous tournons, / Nous nous tournons, tournons, tout le temps !
+# 69 notes in all; this suggestion has 38 syllables
+# 10 notes  | We have oil in our lamps — we are burning!
+Dans nos lam-pes, de l'hui-le nous a-vons,
+# 8 notes  | We have oil in our lamps today!
+A-fin d'ê-tre tou-jours bru-lants!
+# 10 notes  | To the spirit, O Lord, keep us turning,
+Vers Toi dans no-tre es-prit, nous nous tour-
+# 9 notes  | Keep us turning, turning all the way!
+nons, Nous nous tour-nons, tour-nons, tout le
+# 2 notes
+temps!
+# ??? only 1 syllables for 2 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes

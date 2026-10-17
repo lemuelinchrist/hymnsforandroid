@@ -1,0 +1,47 @@
+# FR76  (sheet of E438)  Au monde entier j'ai renoncé,
+# What is wrong:
+#   1.: French has 51-58 syllables for 85 note slots (French: Au monde entier j'ai renoncé, / Ses illusions sont vaines. / Je veux ailleurs donner mon cœur, / Le grand Sauveur m'entraine. / Je ne veux plus être aveuglé, / )
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR76.txt and run:  python3 sheet-lyrics/align.py FR76
+
+== 1.
+# French text: Au monde entier j'ai renoncé, / Ses illusions sont vaines. / Je veux ailleurs donner mon cœur, / Le grand Sauveur m'entraine. / Je ne veux plus être aveuglé, / J'ai tout quitté, j'ai tout laissé ! / De moi, le monde est très loin !
+# 85 notes in all; this suggestion has 58 syllables
+# 15 notes  | I've turned my back upon the world
+Au mon-de en-ti-er j'ai re-non-cé, Ses il-lu-si-ons
+# 8 notes  | With all its idle pleasures,
+sont vai-nes. Je veux ail-leurs don-
+# 3 notes  | And set my heart on better things,
+ner mon cœur,
+# 4 notes  | On higher, holier treasures;
+Le grand Sau-veur
+# 8 notes  | No more its glitter and its glare,
+m'en-trai-ne. Je ne veux plus ê-
+# 7 notes  | And vanity shall bind me;
+tre a-veu-glé, J'ai tout quit-
+# 8 notes  | I've crossed the separating line,
+té, j'ai tout lais-sé! De moi, le
+# 7 notes  | And left the world behind me.
+mon-de est très loin!
+# ??? only 5 syllables for 7 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes

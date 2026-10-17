@@ -1,0 +1,51 @@
+# FR41  (sheet of E241)  Gloire et louange, puissance et honneur
+# What is wrong:
+#   1.: French has 33-40 syllables for 96 note slots (French: Gloire et louange, puissance et honneur / À Christ le Seigneur, / L' Agneau rédempteur ! / Force et richesse, sagesse et honneur / À Christ, l'Agneau sauveur !)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR41.txt and run:  python3 sheet-lyrics/align.py FR41
+
+== 1.
+# French text: Gloire et louange, puissance et honneur / À Christ le Seigneur, / L' Agneau rédempteur ! / Force et richesse, sagesse et honneur / À Christ, l'Agneau sauveur !
+# 96 notes in all; this suggestion has 40 syllables
+# 10 notes  | Blessing and honor and glory be Thine,
+Gloi-re et lou-an-ge, puis-san-ce et
+# 5 notes  | And glory be Thine,
+hon-neur À Christ le
+# 5 notes  | And glory be Thine.
+Sei-gneur, L'A-gneau ré-
+# 10 notes  | Blessing and honor and glory be Thine,
+demp-teur! For-ce et ri-ches-se, sa-ges-
+# 6 notes  | Both now and evermore.
+se et hon-neur À Christ,
+# 4 notes  | Praise Him! Praise Him!
+l'A-gneau sau-veur!
+# 6 notes  | All ye saints adore Him.
+
+# ??? only 0 syllables for 6 notes
+# 4 notes  | Praise Him! Praise Him!
+
+# ??? only 0 syllables for 4 notes
+# 6 notes  | Both now and evermore.
+
+# ??? only 0 syllables for 6 notes
+# 4 notes  | Hallelujah!
+
+# ??? only 0 syllables for 4 notes
+# 10 notes  | Blessing and honor and glory be Thine,
+
+# ??? only 0 syllables for 10 notes
+# 5 notes  | And glory be Thine,
+
+# ??? only 0 syllables for 5 notes
+# 5 notes  | And glory be Thine.
+
+# ??? only 0 syllables for 5 notes
+# 10 notes  | Blessing and honor and glory be Thine,
+
+# ??? only 0 syllables for 10 notes
+# 6 notes  | Both now and evermore.
+
+# ??? only 0 syllables for 6 notes

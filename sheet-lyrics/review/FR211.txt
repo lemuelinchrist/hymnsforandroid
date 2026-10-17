@@ -1,0 +1,42 @@
+# FR211  (sheet of E1327)  J'ai tant cherché une source,
+# What is wrong:
+#   1.: no way to spread 59-66 syllables over the phrases [8, 8, 8, 8, 6, 6, 8, 6, 4, 8, 7, 7, 7] (French: J'ai tant cherché une source, / Qui toujours me satisferait. / Mais le monde et sa fontaine, / À chaque instant me décevaient. / Mais un jour, je Le trouvai ! /)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR211.txt and run:  python3 sheet-lyrics/align.py FR211
+
+== 1.
+# French text: J'ai tant cherché une source, / Qui toujours me satisferait. / Mais le monde et sa fontaine, / À chaque instant me décevaient. / Mais un jour, je Le trouvai ! / Je fus désaltéré. / Je découvris en moi la source, / Qui toujours jaillit, / Que je L'aime !
+# 91 notes in all; this suggestion has 66 syllables
+# 8 notes  | Once I thirsted for a fountain,
+J'ai tant cher-ché u-ne sour-ce,
+# 8 notes  | Something deep that would satisfy,
+Qui tou-jours me sa-tis-fe-rait.
+# 8 notes  | But the fountain that I'd drink from,
+Mais le mon-de et sa fon-tai-
+# 8 notes  | Left me searching and still so dry.
+ne, À cha-que ins-tant me dé-
+# 6 notes  | Then one day I found Him,
+ce-vai-ent. Mais un jour,
+# 6 notes  | He satisfied my thirst,
+je Le trou-vai! Je fus
+# 8 notes  | Became in me a deeper source
+dé-sal-té-ré. Je dé-cou-vris
+# 6 notes  | Whence living waters burst.
+en moi la sour-ce, Qui
+# 4 notes  | Now I drink Him!
+tou-jours jail-lit,
+# 8 notes  | Jesus, Jesus is my life now,
+Que je L'ai-me!
+# ??? only 4 syllables for 8 notes
+# 7 notes  | Jesus, Jesus is my life;
+
+# ??? only 0 syllables for 7 notes
+# 7 notes  | I'm fully satisfied now,
+
+# ??? only 0 syllables for 7 notes
+# 7 notes  | Jesus, Jesus is my life.
+
+# ??? only 0 syllables for 7 notes

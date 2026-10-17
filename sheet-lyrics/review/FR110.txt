@@ -1,0 +1,34 @@
+# FR110  (sheet of E1146)  En mangeant tous les jours Jésus,
+# What is wrong:
+#   (C): no way to spread 30-32 syllables over the phrases [1, 5, 1, 5, 16] (French: Mangeons plus de Jésus ! / Mangeons plus de Jésus ! / Pourquoi encore être affamés ? / Nous avons Son humanité !)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR110.txt and run:  python3 sheet-lyrics/align.py FR110
+
+== 1.
+# French text: En mangeant tous les jours Jésus, / De Sa vie nous serons remplis, / Rien ne pourra nous opprimer, / Cet homme a déjà tout gagné !
+# 32 notes in all; this suggestion has 33 syllables
+# 8 notes  | Let us eat Jesus every day,
+En man-ge-ant tous les jours Jé-
+# 8 notes  | Eating His flesh in such a way
+sus, De Sa vie nous se-rons rem-
+# 8 notes  | That in the trials great or small
+plis, Rien ne pour-ra nous op-pri-
+# 8 notes  | He as a Man will be our all.
+mer, Cet homme a dé-jà tout ga- gné!  #EXTRA
+
+== (C)
+# French text: Mangeons plus de Jésus ! / Mangeons plus de Jésus ! / Pourquoi encore être affamés ? / Nous avons Son humanité !
+# 28 notes in all; this suggestion has 30 syllables
+# 1 notes  | We'll masticate Jesus!
+Man-
+# 5 notes  | We'll masticate Jesus!
+ge-ons plus de Jé-
+# 1 notes  | Then to the tent of meeting bring
+sus!
+# 5 notes  | Jesus, our real meal offering.
+Man-ge-ons plus de
+# 16 notes
+Jé-sus! Pour-quoi en-core être af-fa-més? Nous a-vons Son hu-ma- ni-té!  #EXTRA

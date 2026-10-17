@@ -66,6 +66,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
         String selectedHymnId = (String) extras.get("selectedHymnId");
+        String lyricsHymnId = (String) extras.get("lyricsHymnId");
 
         webview = findViewById(R.id.sheet_music_image);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -75,7 +76,7 @@ public class SheetMusicActivity extends AppCompatActivity {
             finish();
             return;
         }
-        loadNewViewer(selectedHymnId);
+        loadNewViewer(selectedHymnId, lyricsHymnId);
 
         if(sharedPreferences.getBoolean("keepDisplayOn",false)) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -100,7 +101,7 @@ public class SheetMusicActivity extends AppCompatActivity {
      * The new viewer (assets/viewer) renders assets/sheetMei/<id>.mei with Verovio to fit the screen width.
      * Assets are served over https by WebViewAssetLoader, since the page fetches the MEI file.
      */
-    private void loadNewViewer(String hymnId) {
+    private void loadNewViewer(String hymnId, String lyricsHymnId) {
         final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
                 .build();
@@ -132,7 +133,8 @@ public class SheetMusicActivity extends AppCompatActivity {
         String variant = "guitarSvg".equals(sharedPreferences.getString("sheetMusicType", "pianoSvg")) ? "guitar" : "piano";
         boolean dark = sharedPreferences.getBoolean("nightMode", false);
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
-                + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0"));
+                + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0")
+                + (lyricsHymnId != null ? "&lyrics=" + Uri.encode(lyricsHymnId) : ""));
     }
 
     /** Tells the viewer page where the camera cutout is (CSS pixels), so the bar and music stay clear of it. */

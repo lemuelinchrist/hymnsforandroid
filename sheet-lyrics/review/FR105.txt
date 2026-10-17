@@ -1,0 +1,37 @@
+# FR105  (sheet of E569)  Confiant en Lui chaque jour,
+# What is wrong:
+#   1.: French has 26-35 syllables for 56 note slots (French: Confiant en Lui chaque jour, / Confiant quand la route est dure, / Même quand ma foi est frêle, / Ma confiance est en Jésus.)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR105.txt and run:  python3 sheet-lyrics/align.py FR105
+
+== 1.
+# French text: Confiant en Lui chaque jour, / Confiant quand la route est dure, / Même quand ma foi est frêle, / Ma confiance est en Jésus.
+# 56 notes in all; this suggestion has 35 syllables
+# 7 notes  | Simply trusting every day;
+Con-fi-ant en Lui cha-que
+# 7 notes  | Trusting through a stormy way;
+jour, Con-fi-ant quand la rou-
+# 7 notes  | Even when my faith is small,
+te est du-re, Mê-me quand
+# 7 notes  | Trusting Jesus, that is all.
+ma foi est frê-le, Ma con-
+# 7 notes
+fi-an-ce est en Jé-sus.
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes

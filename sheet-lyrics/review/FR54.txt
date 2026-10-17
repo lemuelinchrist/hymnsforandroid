@@ -1,0 +1,30 @@
+# FR54  (sheet of E296)  Et se peut-il que du Sauveur,
+# What is wrong:
+#   1.: no way to spread 48-51 syllables over the phrases [8, 8, 8, 8, 8, 8, 8, 8] (French: Et se peut-il que du Sauveur, / Le sang me prodigue un tel gain ? / Moi qui engendrai Sa douleur, / Moi qui Le perçai dans Son sein... / Suprême amour que sur l)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR54.txt and run:  python3 sheet-lyrics/align.py FR54
+
+== 1.
+# French text: Et se peut-il que du Sauveur, / Le sang me prodigue un tel gain ? / Moi qui engendrai Sa douleur, / Moi qui Le perçai dans Son sein... / Suprême amour que sur la croix / Mon Dieu, souffrant, soit mort pour moi !
+# 64 notes in all; this suggestion has 51 syllables
+# 8 notes  | And can it be that I should gain
+Et se peut| il que du Sau-veur,
+# 8 notes  | An int'rest in the Savior's blood?
+Le sang me pro-di-gue un tel
+# 8 notes  | Died He for me, who caused His pain?
+gain? Moi qui en-gen-drai Sa dou-
+# 8 notes  | For me, who Him to death pursued?
+leur, Moi qui Le per-çai dans Son
+# 8 notes  | Amazing love! How can it be
+sein... Su-prê-me a-mour que sur
+# 8 notes  | That Thou, my God, shouldst die for me?
+la croix Mon Di-eu, souf-frant, soit
+# 8 notes  | Amazing love! How can it be
+mort pour moi!
+# ??? only 3 syllables for 8 notes
+# 8 notes  | That Thou, my God, shouldst die for me?
+
+# ??? only 0 syllables for 8 notes

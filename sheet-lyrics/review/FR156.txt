@@ -1,0 +1,25 @@
+# FR156  (sheet of E1233)  Il nous a trouvés, à l'église amenés,
+# What is wrong:
+#   1.: French has 71-82 syllables for 40 note slots (French: Il nous a trouvés, à l'église amenés, / Où les frères sont à la maison. / Ici, Christ est vie, / Les tensions sont bannies. / Alléluia ! Pour Christ et l'église)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR156.txt and run:  python3 sheet-lyrics/align.py FR156
+
+== 1.
+# French text: Il nous a trouvés, à l'église amenés, / Où les frères sont à la maison. / Ici, Christ est vie, / Les tensions sont bannies. / Alléluia ! Pour Christ et l'église ! / Ici, dans l'église, / Notre recherche s'est terminée. / Or, de jour en jour, / Chantons dans Son amour : / Alléluia ! Pour Christ et l'église !
+# 40 notes in all; this suggestion has 71 syllables
+# 5 notes  | O home in the church,
+Il nous a trou-vés,
+# 6 notes  | Where we've ended our search
+à l'é-glise a-me-nés,
+# 9 notes  | With the brothers rejoicing all day;
+Où les frères sont à la mai-son. I-
+# 5 notes  | Where Christ is our life,
+ci, Christ est vie, Les
+# 6 notes  | And we're through with all strife,
+ten-sions sont ban-nies. Al-
+# 9 notes  | Now we're home, hallelujah, to stay!
+lé-lui-a! Pour Christ et l'é-glise! I- ci,  #EXTRA dans  #EXTRA l'é-glise,  #EXTRA Notre  #EXTRA re-cherche  #EXTRA s'est  #EXTRA ter-mi-née.  #EXTRA Or,  #EXTRA de  #EXTRA jour  #EXTRA en  #EXTRA jour,  #EXTRA Chan-tons  #EXTRA dans  #EXTRA Son  #EXTRA a-mour:  #EXTRA Al-lé-lui-a!  #EXTRA Pour  #EXTRA Christ  #EXTRA et  #EXTRA l'é-glise!  #EXTRA
