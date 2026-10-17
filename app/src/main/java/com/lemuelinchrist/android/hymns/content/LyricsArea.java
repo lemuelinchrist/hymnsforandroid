@@ -128,27 +128,16 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 text.append(hymn.getVerse());
             }
 
-            // ** build related
-            List<String> related = hymn.getRelated();
-            if (related != null && related.size() != 0) {
+            // ** author and composer (only the lines we have, so a missing author doesn't show as "Author: null")
+            if (isNotEmpty(hymn.getAuthor())) {
                 headerContentPresent=true;
-                text.append("<br/>Related: ");
-                StringBuilder relatedConcat = new StringBuilder();
-                for (String r : related) {
-                    // remove languages that are disabled or not supported
-                    try {
-                        if (disabledLanguages.contains(HymnGroup.getHymnGroupFromID(r).name())) {
-                            continue;
-                        }
-                    } catch (NoSuchHymnGroupException e) {
-                        continue;
-                    }
-                    relatedConcat.append(", ");
-                    relatedConcat.append(r);
-                }
-
-                if (relatedConcat.length() > 2)
-                    text.append(relatedConcat.substring(2));
+                text.append("<br/>Author: ");
+                text.append(hymn.getAuthor());
+            }
+            if (isNotEmpty(hymn.getComposer())) {
+                headerContentPresent=true;
+                text.append("<br/>Composer: ");
+                text.append(hymn.getComposer());
             }
 
             if(!headerContentPresent) {
@@ -218,14 +207,27 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 currentTextLinearLayout.removeViewAt(1);
             }
 
-            // #################### Build Footer
-            text = new StringBuilder();
-            if(isNotEmpty(hymn.getAuthor()) || isNotEmpty(hymn.getComposer())) {
-                // only the lines we have, so a missing author doesn't show as "Author: null"
-                if (isNotEmpty(hymn.getAuthor())) text.append("Author: " + hymn.getAuthor());
-                if (isNotEmpty(hymn.getAuthor()) && isNotEmpty(hymn.getComposer())) text.append("<br/>");
-                if (isNotEmpty(hymn.getComposer())) text.append("Composer: " + hymn.getComposer());
-                composerView.setText(Html.fromHtml(text.toString()));
+            // #################### Build Footer: related hymns
+            String relatedText = "";
+            List<String> related = hymn.getRelated();
+            if (related != null) {
+                StringBuilder relatedConcat = new StringBuilder();
+                for (String r : related) {
+                    // remove languages that are disabled or not supported
+                    try {
+                        if (disabledLanguages.contains(HymnGroup.getHymnGroupFromID(r).name())) {
+                            continue;
+                        }
+                    } catch (NoSuchHymnGroupException e) {
+                        continue;
+                    }
+                    relatedConcat.append(", ");
+                    relatedConcat.append(r);
+                }
+                if (relatedConcat.length() > 2) relatedText = "Related: " + relatedConcat.substring(2);
+            }
+            if (!relatedText.isEmpty()) {
+                composerView.setText(Html.fromHtml(relatedText));
             } else {
                 ((ViewGroup)composerView.getParent()).removeView(composerView);
             }
