@@ -1,0 +1,21 @@
+# FY146  (sheet of NS517)  Tu m’as choisi et m’as appelé
+# What is wrong:
+#   1.: French has 104-118 syllables for 73 note slots (French: Tu m’as choisi et m’as appelé / La valeur de ma vie Tu m’as donné ; / Même je suis jeune j’ai envie / D’être empli par Tes richesses infinies. / Consacré mais j)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY146.txt and run:  python3 sheet-lyrics/align.py FY146
+
+== 1.
+# French text: Tu m’as choisi et m’as appelé / La valeur de ma vie Tu m’as donné ; / Même je suis jeune j’ai envie / D’être empli par Tes richesses infinies. / Consacré mais je me disais : / Le but glorieux est-il à ma portée ? / Tout à coup Tu m’as éclairé : / Pas moi mais Toi – quelle merci hors pair. / Absolument nous nous consacrons, / Comptant nos jours, Te poursuivant, / Vécue par nous Ta vie transcendante, / Le trésor dont nous témoignons !
+# 73 notes in all; this suggestion has 104 syllables
+# 18 notes  | Chosen, called, responding to You, Meeting You has given my life value.
+Tu m’as choi-si et m’as ap-pe-lé La va-leur de ma vie Tu m’as don-
+# 19 notes  | Though I’m young, I haste to pursue You, To be a vessel Your riches shine through.
+né; Même je suis jeune j’ai en-vie D’être em-pli par Tes ri-chesses in-fi-nies. Con-
+# 18 notes  | Consecrating, I hesitate: Can I that blest goal of glory attain?
+sa-cré mais je me di-sais: Le but glo-rieux est| il à ma por-tée? Tout
+# 18 notes  | In Your light I suddenly see: Not my might, but Your unrivaled mercy!
+à coup Tu m’as é-clai-ré: Pas moi mais Toi– quelle mer-ci hors pair. Ab-so- lument  #EXTRA nous  #EXTRA nous  #EXTRA con-sa-crons,  #EXTRA Comp-tant  #EXTRA nos  #EXTRA jours,  #EXTRA Te  #EXTRA pour-sui-vant,  #EXTRA Vé-cue  #EXTRA par  #EXTRA nous  #EXTRA Ta  #EXTRA vie  #EXTRA trans-cen-dante,  #EXTRA Le  #EXTRA tré-sor  #EXTRA dont  #EXTRA nous  #EXTRA té-moi-gnons!  #EXTRA

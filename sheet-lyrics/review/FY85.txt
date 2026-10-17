@@ -1,0 +1,27 @@
+# FY85  (sheet of NS709)  Ne vous souciez de rien,
+# What is wrong:
+#   1.: French has 109-132 syllables for 57 note slots (French: Ne vous souciez de rien, / Mais toujours priant, / Et suppliant avec actions de grâce, / Faites connaître à Dieu vos requêtes. / Et la paix de Dieu / Qui surpas)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY85.txt and run:  python3 sheet-lyrics/align.py FY85
+
+== 1.
+# French text: Ne vous souciez de rien, / Mais toujours priant, / Et suppliant avec actions de grâce, / Faites connaître à Dieu vos requêtes. / Et la paix de Dieu / Qui surpasse tout’ pensée humain’ gardera, / Vos cœurs et vos pensées en Christ Jésus. / Et la paix de Dieu est Dieu Lui-même, / Transmis en nous à travers / La communion avec Lui / En priant. / Comm’ le contrepoids des afflictions, / Et l’antidote de tous nos soucis, / Montant la gard’ sur nous, / Nous sauvant de tout’es nos peines.
+# 57 notes in all; this suggestion has 109 syllables
+# 6 notes  | In nothing be anxious, but in everything,
+Ne vous sou-ciez de rien,
+# 5 notes  | By prayer and petition with thanksgiving,
+Mais tou-jours priant, Et
+# 10 notes  | Let your requests be made known to God;
+sup-pliant a-vec ac-tions de grâce, Faites con-
+# 9 notes  | And the peace of God,
+naître à Dieu vos re-quêtes. Et la paix
+# 5 notes  | Which surpasses every man’s understanding,
+de Dieu Qui sur-passe
+# 11 notes  | Will guard your hearts and your thoughts in Christ Jesus.
+tout’-pen-sée hu-main’-gar-de-ra, Vos cœurs et
+# 11 notes
+vos pen-sé-es en Christ Jé-sus. Et la paix de  #EXTRA Dieu  #EXTRA est  #EXTRA Dieu  #EXTRA Lui-  #EXTRA même,  #EXTRA Trans-mis  #EXTRA en  #EXTRA nous  #EXTRA à  #EXTRA tra-vers  #EXTRA La  #EXTRA com-mu-nion  #EXTRA a-vec  #EXTRA Lui  #EXTRA En  #EXTRA priant.  #EXTRA Comm’le  #EXTRA con-tre-poids  #EXTRA des  #EXTRA af-flic-tions,  #EXTRA Et  #EXTRA l’an-ti-dote  #EXTRA de  #EXTRA tous  #EXTRA nos  #EXTRA sou-cis,  #EXTRA Mon-tant  #EXTRA la  #EXTRA gard’-sur  #EXTRA nous,  #EXTRA Nous  #EXTRA sau-vant  #EXTRA de  #EXTRA tout’es  #EXTRA nos  #EXTRA peines.  #EXTRA

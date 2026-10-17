@@ -1,0 +1,20 @@
+# FY161  (sheet of E543)  Je Te donne mon cœur,
+# What is wrong:
+#   1.: French has 50-53 syllables for 26 note slots (French: Je Te donne mon cœur, / Jésus, tant recherché ; / Car Tu m’as présenté Ton cœur / Pour mon cœur rallumer. / Dans nos cœurs Tu avances, / De nos cœurs Tu T’épren)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY161.txt and run:  python3 sheet-lyrics/align.py FY161
+
+== 1.
+# French text: Je Te donne mon cœur, / Jésus, tant recherché ; / Car Tu m’as présenté Ton cœur / Pour mon cœur rallumer. / Dans nos cœurs Tu avances, / De nos cœurs Tu T’éprends. / Je T’aimerais comm’ Tu m’aimes, / Jésus, tant recherché.
+# 26 notes in all; this suggestion has 50 syllables
+# 6 notes  | I give my heart to Thee,
+Je Te donne mon cœur, Jé-
+# 6 notes  | O Jesus most desired;
+sus, tant re-cher-ché; Car
+# 8 notes  | And heart for heart the gift shall be,
+Tu m’as pré-sen-té Ton cœur Pour
+# 6 notes  | For Thou my heart hast fired.
+mon cœur ral-lu-mer. Dans nos  #EXTRA cœurs  #EXTRA Tu  #EXTRA a-vances,  #EXTRA De  #EXTRA nos  #EXTRA cœurs  #EXTRA Tu  #EXTRA T’é-prends.  #EXTRA Je  #EXTRA T’ai-me-rais  #EXTRA comm’-Tu  #EXTRA m’aimes,  #EXTRA Jé-sus,  #EXTRA tant  #EXTRA re-cher-ché.  #EXTRA

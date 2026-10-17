@@ -1,0 +1,44 @@
+# FY64  (sheet of NS211)  Cher Jésus, Je T’aime vraiment d’un amour pur ;
+# What is wrong:
+#   1.: French has 184-216 syllables for 108 note slots (French: Cher Jésus, Je T’aime vraiment d’un amour pur ; / Jouissant de l’amour divin en tout instant. / Et voici, maintenant je peux tout consacrer ; / C’est Tes soins )
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY64.txt and run:  python3 sheet-lyrics/align.py FY64
+
+== 1.
+# French text: Cher Jésus, Je T’aime vraiment d’un amour pur ; / Jouissant de l’amour divin en tout instant. / Et voici, maintenant je peux tout consacrer ; / C’est Tes soins infinis qui me perfectionnent. / Perce mon oreille, / Sur la port’ de Ta maison. / Lorsque Tu m’appelles, / Je réponds : « Je suis toujours à Toi. » / Scelle-moi sur Ton cœur, / Par l’amour et la jalousie ; / T’aimant à la folie toute ma vie ! / Dieu de gloir’, je me prosterne, et Tu me donnes, / Un esprit de révélation et de sagesse. / Que je vois Ton économie, quel mystère ; / Et sois entièrement en Lui : le Corps de Christ. / Dans l’esprit melangé, / J’entre dans Sa réalité. / Le salut intensif / Nous fait le témoignag’ de Jésus. / Seigneur, reviens bientôt ! / N’oublies pas Tu nous as promis. / Notre seul désir est que Tu reviennes !
+# 108 notes in all; this suggestion has 184 syllables
+# 8 notes  | Jesus Lord, truly I love Thee;
+Cher Jé-sus, Je T’aime vraiment d’un a-
+# 4 notes  | My heart refine!
+mour pur; Jouis-sant
+# 8 notes  | I’d redeem each precious moment,
+de l’a-mour di-vin en tout ins-
+# 7 notes  | To enjoy Thy love divine.
+tant. Et voi-ci, main-te-nant
+# 8 notes  | Lord, behold, all to Thee I yield,
+je peux tout con-sa-crer; C’est Tes
+# 4 notes  | Constrained this day
+soins in-fi-nis
+# 8 notes  | By compassions never failing,
+qui me per-fec-tionnent. Perce mon o-
+# 5 notes  | Thy perfecting care,
+reille, Sur la port’de Ta
+# 6 notes  | Dear Lord, open mine ear,
+mai-son. Lorsque Tu m’ap-pelles,
+# 7 notes  | At the doorpost of God’s house,
+Je ré-ponds:« Je suis tou-jours
+# 6 notes  | Responding to Thy voice,
+à Toi.» Scelle| moi sur Ton
+# 9 notes  | I would be Thine and Thine forever,
+cœur, Par l’a-mour et la ja-lou-sie;
+# 7 notes  | Set me a seal on Thine heart,
+T’ai-mant à la fo-lie toute
+# 9 notes  | With Thy love, even Thy jealousy,
+ma vie! Dieu de gloir’, je me pros-terne,
+# 8 notes  | Let me be Thy crazy lover
+et Tu me donnes, Un es-prit de
+# 4 notes  | Through all my days.
+ré-vé-la-tion et  #EXTRA de  #EXTRA sa-gesse.  #EXTRA Que  #EXTRA je  #EXTRA vois  #EXTRA Ton  #EXTRA é-co-no-mie,  #EXTRA quel  #EXTRA mys-tère;  #EXTRA Et  #EXTRA sois  #EXTRA en-tiè-rement  #EXTRA en  #EXTRA Lui:  #EXTRA le  #EXTRA Corps  #EXTRA de  #EXTRA Christ.  #EXTRA Dans  #EXTRA l’es-prit  #EXTRA me-lan-gé,  #EXTRA J’entre  #EXTRA dans  #EXTRA Sa  #EXTRA ré-a-li-té.  #EXTRA Le  #EXTRA sa-lut  #EXTRA in-ten-sif  #EXTRA Nous  #EXTRA fait  #EXTRA le  #EXTRA té-moi-gnag’de  #EXTRA Jé-sus.  #EXTRA Sei-gneur,  #EXTRA re-viens  #EXTRA bien-tôt!  #EXTRA N’ou-blies  #EXTRA pas  #EXTRA Tu  #EXTRA nous  #EXTRA as  #EXTRA pro-mis.  #EXTRA Notre  #EXTRA seul  #EXTRA dé-sir  #EXTRA est  #EXTRA que  #EXTRA Tu  #EXTRA re-viennes!  #EXTRA

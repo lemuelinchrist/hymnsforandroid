@@ -1,0 +1,43 @@
+# FY24  (sheet of NS10075)  // Là où tu iras, là j’irai
+# What is wrong:
+#   adapting would change 22 of 117 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY24.txt and run:  python3 sheet-lyrics/align.py FY24
+
+== 1.
+# French text: // Là où tu iras, là j’irai / Et où tu vivras, je vivrai. / Ton peuple sera mon peuple / Et ton Dieu sera mon Dieu. // / Là où tu mourras, je mourrai / Et j'y serai enterrée. / Que Jéhovah me traite avec rigueur / Si la mort seule ne me sépare de Toi. / Que Jéhovah me traite avec rigueur / Si la mort seule ne me sépare de Toi.
+# 117 notes in all; this suggestion has 95 syllables
+# 8 notes  | Wherever you go, I will go,
+Là où tu i-ras, là j’i-rai
+# 8 notes  | Wherever you dwell, I will dwell;
+Et où tu vi-vras, je vi-vrai.
+# 8 notes  | Your people will be my people,
+Ton peu-ple se-ra mon peu-ple
+# 7 notes  | And your God will be my God.
+Et ton Di-eu se-ra mon
+# 8 notes  | Wherever you go, I will go,
+Di-eu.// Là où tu mour-ras, je
+# 8 notes  | Wherever you dwell, I will dwell;
+mour-rai Et j'y se-rai en-ter-
+# 8 notes  | Your people will be my people,
+ré-e. Que Jé-ho-vah me trai-
+# 7 notes  | And your God will be my God.
+te a-vec ri-gueur Si la
+# 8 notes  | Wherever you die, I will die;
+mort seu-le ne me sé-pa-re
+# 7 notes  | And there will I be buried.
+de Toi. Que Jé-ho-vah me
+# 10 notes  | Jehovah do to me, and more as well,
+trai-te a-vec ri-gueur Si la mort seu-
+# 10 notes  | If anything but death parts me from you.
+le ne me sé-pa-re de Toi.
+# ??? only 8 syllables for 10 notes
+# 10 notes  | Jehovah do to me, and more as well,
+
+# ??? only 0 syllables for 10 notes
+# 10 notes  | If anything but death parts me from you.
+
+# ??? only 0 syllables for 10 notes

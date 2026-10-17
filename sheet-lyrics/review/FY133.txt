@@ -1,0 +1,45 @@
+# FY133  (sheet of NS612)  Je suis du monde détaché ;
+# What is wrong:
+#   1.: no way to spread 57-65 syllables over the phrases [8, 7, 7, 9, 7, 7, 7, 9, 1, 4, 3, 2, 5, 5] (French: Je suis du monde détaché ; / À Toi je suis restauré. / Quand je Te vois dans Tes yeux, / Tout mon être est comblé et joyeux. / Avec espoir mis en Toi, / Rien n’)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY133.txt and run:  python3 sheet-lyrics/align.py FY133
+
+== 1.
+# French text: Je suis du monde détaché ; / À Toi je suis restauré. / Quand je Te vois dans Tes yeux, / Tout mon être est comblé et joyeux. / Avec espoir mis en Toi, / Rien n’est nécessair’ de moi. / Une existenc’ de T’aimer / Dans mon cœur Seigneur je prierai.
+# 81 notes in all; this suggestion has 65 syllables
+# 8 notes  | I’m not of this world anymore;
+Je suis du mon-de dé-ta-ché;
+# 7 notes  | To You, Lord, I am restored.
+À Toi je suis res-tau-ré.
+# 7 notes  | When I look into Your eyes,
+Quand je Te vois dans Tes y-
+# 9 notes  | My whole being’s fully satisfied.
+eux, Tout mon ê-tre est com-blé et
+# 7 notes  | With my hope now set on You,
+joy-eux. A-vec es-poir mis
+# 7 notes  | There is nothing more to do.
+en Toi, Ri-en n’est né-ces-
+# 7 notes  | Loving, living You this way,
+sair’-de moi. U-ne e-xis-
+# 9 notes  | Deep within my heart, O Lord, I’ll pray.
+tenc’-de T’ai-mer Dans mon cœur Sei-gneur
+# 1 notes
+je
+# 4 notes
+pri-e-rai.
+# ??? only 3 syllables for 4 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes

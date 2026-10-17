@@ -1,0 +1,21 @@
+# FY3  (sheet of NS322)  Nous avons trouvé la clé
+# What is wrong:
+#   1.: French has 67-75 syllables for 52 note slots (French: Nous avons trouvé la clé / Pour vraiment toucher le Seigneur : / « Seigneur, Amen, Alléluia ! » / Quand nous touchons notre esprit / La grâce abonde, la vie jai)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY3.txt and run:  python3 sheet-lyrics/align.py FY3
+
+== 1.
+# French text: Nous avons trouvé la clé / Pour vraiment toucher le Seigneur : / « Seigneur, Amen, Alléluia ! » / Quand nous touchons notre esprit / La grâce abonde, la vie jaillit. / Le Seigneur est si riche ! / Qu'il est simple de Le toucher ! / Seigneur, Amen, Alléluia ! (x 3) / Qu'il est simple de Le toucher !
+# 52 notes in all; this suggestion has 67 syllables
+# 15 notes  | We have found a simple way for us to really touch the Lord:
+Nous a-vons trou-vé la clé Pour vraiment tou-cher le Sei-gneur: Sei-
+# 15 notes  | All we do is pray four words, and O what grace He does afford!
+gneur, A-men, Al-lé-lui-a!» Quand nous tou-chons notre es-prit La
+# 15 notes  | From our spirit now we say them, and we spread the news abroad,
+grâce a-bonde, la vie jail-lit. Le Sei-gneur est si riche! Qu'il est
+# 7 notes  | It’s easy to touch the Lord!
+simple de Le tou-cher! Sei-gneur, A-men,  #EXTRA Al-lé-lui-a!  #EXTRA (x  #EXTRA 3)  #EXTRA Qu'il  #EXTRA est  #EXTRA simple  #EXTRA de  #EXTRA Le  #EXTRA tou-cher!  #EXTRA

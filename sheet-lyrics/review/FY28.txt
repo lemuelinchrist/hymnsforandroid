@@ -1,0 +1,43 @@
+# FY28  (sheet of NS379)  // Garde-moi, ô Dieu ! Car je me confie en toi.
+# What is wrong:
+#   1.: French has 56-65 syllables for 96 note slots (French: // Garde-moi, ô Dieu ! Car je me confie en toi. / Je dis : « Jéhovah, Tu es mon Seigneur ». // / // Tu es Seigneur, oui mon Seigneur / Tu es mon bien suprême ! )
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY28.txt and run:  python3 sheet-lyrics/align.py FY28
+
+== 1.
+# French text: // Garde-moi, ô Dieu ! Car je me confie en toi. / Je dis : « Jéhovah, Tu es mon Seigneur ». // / // Tu es Seigneur, oui mon Seigneur / Tu es mon bien suprême ! // / Tu as dit aux saints qui sont sur terre : / « Vous êtes excellents » / En eux sont tous mes délices
+# 96 notes in all; this suggestion has 65 syllables
+# 12 notes  | Preserve me, O God, for I take refuge in You.
+Gar-de| moi, ô Di-eu! Car je me con-fi-e
+# 10 notes  | I say to Jehovah, You are my Lord;
+en toi. Je dis:« Jé-ho-vah, Tu es mon
+# 12 notes  | Preserve me, O God, for I take refuge in You.
+Sei-gneur».// Tu es Sei-gneur, ou-i mon Sei-gneur Tu
+# 10 notes  | I say to Jehovah, You are my Lord.
+es mon bi-en su-prê-me!// Tu as dit
+# 4 notes
+aux saints qui sont
+# 4 notes
+sur ter-re: Vous
+# 7 notes
+ê-tes ex-cel-lents» En eux
+# 4 notes
+sont tous mes dé-
+# 4 notes
+li-ces
+# ??? only 2 syllables for 4 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes

@@ -1,0 +1,21 @@
+# FY75  (sheet of E383)  Enfin cédait ma volonté têtue
+# What is wrong:
+#   1.: French has 169-195 syllables for 34 note slots (French: Enfin cédait ma volonté têtue / Je serais Tien, à Toi tout seul, / Voilà ce que mes lèvres apportent : / « Seigneur, en moi fais Ta volonté. » / Ta volonté Ô Di)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY75.txt and run:  python3 sheet-lyrics/align.py FY75
+
+== 1.
+# French text: Enfin cédait ma volonté têtue / Je serais Tien, à Toi tout seul, / Voilà ce que mes lèvres apportent : / « Seigneur, en moi fais Ta volonté. » / Ta volonté Ô Dieu est si bonne, / Me rapprochant de Ton côté. / Ta volonté Ô Dieu est si bonne, / Jusqu’à être perdu en Toi. / Mes mains pendantes, mes pieds épuisés, / Le chemin noir m’a déprimé. / Pour me cherir, la lumièr’ s’est levée, / Toi, mon étoile et mon soleil. / Ta volonté parfaite et conquérante, / Sauveur m’entoure, m’étreint maint’nant ; / Non plus de lutte, ma paix en flot coule, / Tel un oiseau, mon âm’ libre. / Éternell’ment avec Toi enfermé, / Mes pieds rebelles n’errent jamais. / Qui peux mon âm’ de Toi séparer ? / Je demeure dans Ta volonté.
+# 34 notes in all; this suggestion has 169 syllables
+# 9 notes  | My stubborn will at last hath yielded;
+En-fin cé-dait ma vo-lon-té tê-
+# 8 notes  | I would be Thine, and Thine alone,
+tue Je se-rais Tien, à Toi tout
+# 9 notes  | And this the prayer my lips are bringing,
+seul, Voi-là ce que mes lèvres ap-portent:
+# 8 notes  | "Lord, let in me Thy will be done."
+Sei-gneur, en moi fais Ta vo-lon- té.»  #EXTRA Ta  #EXTRA vo-lon-té  #EXTRA Ô  #EXTRA Dieu  #EXTRA est  #EXTRA si  #EXTRA bonne,  #EXTRA Me  #EXTRA rap-pro-chant  #EXTRA de  #EXTRA Ton  #EXTRA cô-té.  #EXTRA Ta  #EXTRA vo-lon-té  #EXTRA Ô  #EXTRA Dieu  #EXTRA est  #EXTRA si  #EXTRA bonne,  #EXTRA Jusqu-’à  #EXTRA être  #EXTRA per-du  #EXTRA en  #EXTRA Toi.  #EXTRA Mes  #EXTRA mains  #EXTRA pen-dantes,  #EXTRA mes  #EXTRA pieds  #EXTRA é-pui-sés,  #EXTRA Le  #EXTRA che-min  #EXTRA noir  #EXTRA m’a  #EXTRA dé-pri-mé.  #EXTRA Pour  #EXTRA me  #EXTRA che-rir,  #EXTRA la  #EXTRA lu-mièr’s-’est  #EXTRA le-vée,  #EXTRA Toi,  #EXTRA mon  #EXTRA é-toile  #EXTRA et  #EXTRA mon  #EXTRA so-leil.  #EXTRA Ta  #EXTRA vo-lon-té  #EXTRA par-faite  #EXTRA et  #EXTRA con-qué-rante,  #EXTRA Sau-veur  #EXTRA m’en-toure,  #EXTRA m’é-treint  #EXTRA maint’-nant;  #EXTRA Non  #EXTRA plus  #EXTRA de  #EXTRA lutte,  #EXTRA ma  #EXTRA paix  #EXTRA en  #EXTRA flot  #EXTRA coule,  #EXTRA Tel  #EXTRA un  #EXTRA oi-seau,  #EXTRA mon  #EXTRA âm’-libre.  #EXTRA É-ter-nell’ment  #EXTRA a-vec  #EXTRA Toi  #EXTRA en-fer-mé,  #EXTRA Mes  #EXTRA pieds  #EXTRA re-belles  #EXTRA n’errent  #EXTRA ja-mais.  #EXTRA Qui  #EXTRA peux  #EXTRA mon  #EXTRA âm’de  #EXTRA Toi  #EXTRA sé-pa-rer?  #EXTRA Je  #EXTRA de-meure  #EXTRA dans  #EXTRA Ta  #EXTRA vo-lon-té.  #EXTRA

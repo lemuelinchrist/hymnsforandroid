@@ -1,0 +1,22 @@
+# FY127  (sheet of NS285)  En devenant les mêm’s que Christ,
+# What is wrong:
+#   1.: French has 93-114 syllables for 31 note slots (French: En devenant les mêm’s que Christ, / En vie, nature, expression et fonction, / Nous sommes aptes à œuvrer à Ses côtés / Pour Son Corps. / En Lui nous mettons tou)
+#   2.: the French hymn has no stanza 2
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY127.txt and run:  python3 sheet-lyrics/align.py FY127
+
+== 1.
+# French text: En devenant les mêm’s que Christ, / En vie, nature, expression et fonction, / Nous sommes aptes à œuvrer à Ses côtés / Pour Son Corps. / En Lui nous mettons toute espérance / Il est notre amour et notre force. / Écoutant ce qu’Il nous dit / Nous souhaitons qu’Il nous enlève / Par la rédemption de notre Corps. / Et nous prions : « Viens, ô Seigneur ! » / Oui, prions : « Viens, Seigneur Jésus ! » / « Viens, ô Jésus ! » / « Ô, Seigneur, viens ! »
+# 31 notes in all; this suggestion has 93 syllables
+# 8 notes  | As we become the same as Christ
+En de-ve-nant les mêm’s que Christ,
+# 10 notes  | In life, nature, expression, and function,
+En vie, na-ture, ex-pres-sion et fonc-tion,
+# 9 notes  | We are qualified to work with Him
+Nous sommes aptes à œu-vrer à Ses cô-
+# 4 notes  | For His Body.
+tés Pour Son Corps. En  #EXTRA Lui  #EXTRA nous  #EXTRA met-tons  #EXTRA toute  #EXTRA es-pé-rance  #EXTRA Il  #EXTRA est  #EXTRA notre  #EXTRA a-mour  #EXTRA et  #EXTRA notre  #EXTRA force.  #EXTRA É-cou-tant  #EXTRA ce  #EXTRA qu’Il  #EXTRA nous  #EXTRA dit  #EXTRA Nous  #EXTRA sou-hai-tons  #EXTRA qu’Il  #EXTRA nous  #EXTRA en-lève  #EXTRA Par  #EXTRA la  #EXTRA ré-demp-tion  #EXTRA de  #EXTRA notre  #EXTRA Corps.  #EXTRA Et  #EXTRA nous  #EXTRA prions:«  #EXTRA Viens,  #EXTRA ô  #EXTRA Sei-gneur!»  #EXTRA Oui,  #EXTRA prions:«  #EXTRA Viens,  #EXTRA Sei-gneur  #EXTRA Jé-sus!»  #EXTRA Viens,  #EXTRA ô  #EXTRA Jé-sus!»  #EXTRA Ô,  #EXTRA Sei-gneur,  #EXTRA viens!»  #EXTRA

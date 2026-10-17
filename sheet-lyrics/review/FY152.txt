@@ -1,0 +1,22 @@
+# FY152  (sheet of NS723)  Dans ces derniers jours
+# What is wrong:
+#   1.: French has 162-192 syllables for 35 note slots (French: Dans ces derniers jours / Avant le retour de notre Seigneur Jésus, / Nous sommes ceux qui ont des grandes résolutions, / Nous devons avoir / Des grandes résolut)
+#   (C): the French hymn has no stanza chorus
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY152.txt and run:  python3 sheet-lyrics/align.py FY152
+
+== 1.
+# French text: Dans ces derniers jours / Avant le retour de notre Seigneur Jésus, / Nous sommes ceux qui ont des grandes résolutions, / Nous devons avoir / Des grandes résolutions et des grandes délibérations, / Avoir des grandes résolutions et des grandes délibérations, / Des résolutions dans nos cœurs. / [Pont] / Nous devons être absolument consacré à Dieu, / Avoir un cœur pour L'aimer, pour Le chercher, / Être constitués par Lui pour devenir Son expression. / Nous devons avoir / Des grandes résolutions et des grandes délibérations, / Avoir des grandes résolutions et des grandes délibérations, / Des résolutions dans nos cœurs, / Des résolutions dans nos cœurs, / Dans nos cœurs.
+# 35 notes in all; this suggestion has 162 syllables
+# 10 notes  | In these last days before the Lord’s coming,
+Dans ces der-niers jours A-vant le re-tour
+# 6 notes  | before the Lord’s coming,
+de notre Sei-gneur Jé-sus,
+# 13 notes  | We must be those who have great resolutions in heart,
+Nous sommes ceux qui ont des grandes ré-so-lu-tions, Nous de-
+# 6 notes  | We must be those who have
+vons a-voir Des grandes ré- so-lu-tions  #EXTRA et  #EXTRA des  #EXTRA grandes  #EXTRA dé-li-bé-ra-tions,  #EXTRA A-voir  #EXTRA des  #EXTRA grandes  #EXTRA ré-so-lu-tions  #EXTRA et  #EXTRA des  #EXTRA grandes  #EXTRA dé-li-bé-ra-tions,  #EXTRA Des  #EXTRA ré-so-lu-tions  #EXTRA dans  #EXTRA nos  #EXTRA cœurs.  #EXTRA [Pont]  #EXTRA Nous  #EXTRA de-vons  #EXTRA être  #EXTRA ab-so-lument  #EXTRA con-sa-cré  #EXTRA à  #EXTRA Dieu,  #EXTRA A-voir  #EXTRA un  #EXTRA cœur  #EXTRA pour  #EXTRA L'ai-mer,  #EXTRA pour  #EXTRA Le  #EXTRA cher-cher,  #EXTRA Être  #EXTRA cons-ti-tués  #EXTRA par  #EXTRA Lui  #EXTRA pour  #EXTRA de-ve-nir  #EXTRA Son  #EXTRA ex-pres-sion.  #EXTRA Nous  #EXTRA de-vons  #EXTRA a-voir  #EXTRA Des  #EXTRA grandes  #EXTRA ré-so-lu-tions  #EXTRA et  #EXTRA des  #EXTRA grandes  #EXTRA dé-li-bé-ra-tions,  #EXTRA A-voir  #EXTRA des  #EXTRA grandes  #EXTRA ré-so-lu-tions  #EXTRA et  #EXTRA des  #EXTRA grandes  #EXTRA dé-li-bé-ra-tions,  #EXTRA Des  #EXTRA ré-so-lu-tions  #EXTRA dans  #EXTRA nos  #EXTRA cœurs,  #EXTRA Des  #EXTRA ré-so-lu-tions  #EXTRA dans  #EXTRA nos  #EXTRA cœurs,  #EXTRA Dans  #EXTRA nos  #EXTRA cœurs.  #EXTRA

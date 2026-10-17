@@ -1,0 +1,63 @@
+# FY98  (sheet of NS328)  S : Et je vis, F : Et Voici
+# What is wrong:
+#   suspicious syllable "S:"
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY98.txt and run:  python3 sheet-lyrics/align.py FY98
+
+== 1.
+# French text: S : Et je vis, F : Et Voici / S : L’Agneau debout F : Au mont Zion / Tous : Avec cent quarante-quatre mille vainqueurs / S : Portant Son nom F : Et le nom / S : De Son Père F : De Son Père / Tous : Inscrits sur leur front. / S : Ce sont eux F : Jamais souillés, / S : Ce sont eux F : Jamais menteurs, / Tous : Ce sont qui suivent l’Agneau. / S : Ce sont eux F : Les rachetés / S : D’entre les hommes, F : Prémices pour Dieu. / Tous : Ce sont eux qui suivent l’Agneau, / qui suivent l’Agneau. / Ceux qui suivent, suivent l’Agneau, / Vivent et marchent dans l’esprit mélangé / Ainsi conduits, par l’Esprit conduits / À chaque instant, continuellement, / Chaque jour de leur vie.
+# 172 notes in all; this suggestion has 165 syllables
+# 3 notes  | S: And I saw,
+S: Et je
+# 4 notes  | B:&nbsp;&nbsp;&nbsp;&nbsp; And behold,
+vis, F: Et Voi-
+# 10 notes  | S: The Lamb standing
+ci S: L’A-gneau de-bout F: Au mont Zi-
+# 14 notes  | B:&nbsp;&nbsp;&nbsp;&nbsp; On Mount Zion,
+on Tous: A-vec cent qua-ran-te| qua-tre mil-le vain-queurs
+# 3 notes  | All: With a hundred and forty-four thousand,
+S: Por-tant
+# 3 notes  | S: Having His name
+Son nom F:
+# 8 notes  | B:&nbsp;&nbsp;&nbsp;&nbsp; And the name
+Et le nom S: De Son Pè-re
+# 7 notes  | S: Of His Father
+F: De Son Pè-re Tous: Ins-
+# 8 notes  | B:&nbsp;&nbsp;&nbsp;&nbsp; Of His Father
+crits sur leur front. S: Ce sont eux
+# 5 notes  | All: Written on their foreheads.
+F: Ja-mais sou-il-
+# 3 notes
+lés, S: Ce
+# 4 notes
+sont eux F: Ja-
+# 10 notes
+mais men-teurs, Tous: Ce sont qui sui-vent l’A-
+# 13 notes
+gneau. S: Ce sont eux F: Les ra-che-tés S: D’en-tre
+# 5 notes
+les hom-mes, F: Pré-
+# 3 notes
+mi-ces pour
+# 8 notes
+Di-eu. Tous: Ce sont eux qui sui-
+# 8 notes
+vent l’A-gneau, qui sui-vent l’A-gneau.
+# 8 notes
+Ceux qui sui-vent, sui-vent l’A-gneau,
+# 5 notes
+Vi-vent et mar-chent
+# 4 notes
+dans l’es-prit mé-
+# 4 notes
+lan-gé Ain-si
+# 13 notes
+con-duits, par l’Es-prit con-duits À cha-que ins-tant, con-
+# 9 notes
+ti-nu-el-le-ment, Cha-que jour de
+# 10 notes
+leur vi-e.
+# ??? only 3 syllables for 10 notes

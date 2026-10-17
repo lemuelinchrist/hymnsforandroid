@@ -1,0 +1,36 @@
+# FY22  (sheet of E1341)  // Donc les rachetés du Seigneur reviendront,
+# What is wrong:
+#   adapting would change 20 of 114 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY22.txt and run:  python3 sheet-lyrics/align.py FY22
+
+== 1.
+# French text: // Donc les rachetés du Seigneur reviendront, / Avec des chants de triomphe à Sion ; / Une joie éternelle couronnera leur tête. // / Ils obtiendront, joie et allégresse ; / Le chagrin, les gémissements s’enfuiront / Donc les rachetés du Seigneur reviendront, / Avec des chants de triomphe à Sion ; / Une joie éternelle couronnera leur tête.
+# 114 notes in all; this suggestion has 99 syllables
+# 11 notes  | Therefore the redeemed of the Lord shall return,
+Donc les ra-che-tés du Sei-gneur re-vi-en-
+# 9 notes  | And come with singing unto Zion;
+dront, A-vec des chants de tri-om-phe
+# 12 notes  | And everlasting joy shall be upon their head.
+à Si-on; U-ne joi-e é-ter-nel-le cou-
+# 11 notes  | Therefore the redeemed of the Lord shall return,
+ron-ne-ra leur tê-te.// Ils ob-ti-en-dront,
+# 9 notes  | And come with singing unto Zion;
+joi-e et al-lé-gres-se; Le cha-
+# 12 notes  | And everlasting joy shall be upon their head.
+grin, les gé-mis-se-ments s’en-fui-ront Donc les ra-
+# 8 notes
+che-tés du Sei-gneur re-vi-en-
+# 10 notes
+dront, A-vec des chants de tri-om-phe à
+# 11 notes
+Si-on; U-ne joi-e é-ter-nel-le cou-
+# 9 notes
+ron-ne-ra leur tê-te.
+# ??? only 6 syllables for 9 notes
+# 12 notes
+
+# ??? only 0 syllables for 12 notes

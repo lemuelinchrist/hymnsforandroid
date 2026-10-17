@@ -1,0 +1,40 @@
+# FY111  (sheet of NS246)  Je T’aime ô Seigneur
+# What is wrong:
+#   suspicious syllable "(2"
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY111.txt and run:  python3 sheet-lyrics/align.py FY111
+
+== 1.
+# French text: Je T’aime ô Seigneur / Mais me sens détourné. / Je Te donne ma vie / Puis je dévie / Seigneur, attire-moi à nouveau à Toi, / Et fais-moi courir après Toi.
+# 41 notes in all; this suggestion has 41 syllables
+# 5 notes  | Though I love You, Lord,
+Je T’aime ô Sei-gneur
+# 6 notes  | My life seems all deformed.
+Mais me sens dé-tour-né.
+# 6 notes  | I give my life to You—
+Je Te don-ne ma vi-
+# 4 notes  | Then drift away.
+e Puis je dé-
+# 12 notes  | Lord, may I ask You that You’d draw me yet again,
+vi-e Sei-gneur, at-tire| moi à nou-veau à Toi,
+# 8 notes  | And keep me running after You.
+Et fais| moi cou-rir a-près Toi.
+
+== (C)
+# French text: J’ai vu Ton plan, Seigneur, / Ton cœur m’est dévoilé, / J’aimerais que Tu me gagne complètement. / Et si je Te limite, / Je fais des compromis, / Garde-moi dans l’indice de Tes yeux. (2 Co 2.10)
+# 45 notes in all; this suggestion has 45 syllables
+# 6 notes  | Lord, I’ve seen Your purpose.
+J’ai vu Ton plan, Sei-gneur,
+# 6 notes  | Your heart’s unveiled to me.
+Ton cœur m’est dé-voi-lé,
+# 11 notes  | Now I’d just like to see You gain me fully.
+J’ai-me-rais que Tu me gagne com-plè-tement. Et
+# 7 notes  | Though You I often limit
+si je Te li-mite, Je fais
+# 6 notes  | And fail by compromise,
+des com-pro-mis, Garde| moi
+# 9 notes  | Keep me in the index of Your eyes.
+dans l’in-dice de Tes yeux. (2 Co 2.10)

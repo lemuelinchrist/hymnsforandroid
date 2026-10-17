@@ -1,0 +1,38 @@
+# FY123  (sheet of NS534)  En rout’ pour Emmaüs,
+# What is wrong:
+#   1.: French has 38-41 syllables for 77 note slots (French: En rout’ pour Emmaüs, / Deux disciples marchaient seuls, / Leur maître était parti. / Un homm’ les approcha, / Leur parla et les calma, / Ils Lui racontaient to)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY123.txt and run:  python3 sheet-lyrics/align.py FY123
+
+== 1.
+# French text: En rout’ pour Emmaüs, / Deux disciples marchaient seuls, / Leur maître était parti. / Un homm’ les approcha, / Leur parla et les calma, / Ils Lui racontaient tout.
+# 77 notes in all; this suggestion has 41 syllables
+# 6 notes  | They walked along the road:
+En rout’-pour Em-ma-üs,
+# 7 notes  | Two disciples, all alone,
+Deux dis-ci-ples mar-chai-ent
+# 6 notes  | Their Master dead and gone.
+seuls, Leur maî-tre é-tait
+# 6 notes  | A man to them drew near,
+par-ti. Un homm’-les ap-
+# 7 notes  | Spoke to them and calmed their fears,
+pro-cha, Leur par-la et les
+# 6 notes  | They told Him everything.
+cal-ma, Ils Lui ra-con-
+# 2 notes
+tai-ent
+# 5 notes
+tout.
+# ??? only 1 syllables for 5 notes
+# 22 notes
+
+# ??? only 0 syllables for 22 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes

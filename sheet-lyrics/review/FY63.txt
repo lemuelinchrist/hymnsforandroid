@@ -1,0 +1,21 @@
+# FY63  (sheet of E1214)  // Excaver, Excaver, Excaver,
+# What is wrong:
+#   1.: French has 54-60 syllables for 38 note slots (French: // Excaver, Excaver, Excaver, / La condamnation dans mon cœur on creuse !// / Tout péché doit partir / Que Sa vie puisse couler... Alléluia ! / Excaver, excaver)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY63.txt and run:  python3 sheet-lyrics/align.py FY63
+
+== 1.
+# French text: // Excaver, Excaver, Excaver, / La condamnation dans mon cœur on creuse !// / Tout péché doit partir / Que Sa vie puisse couler... Alléluia ! / Excaver, excaver, excaver, / La condamnation dans mon cœur on creuse !
+# 38 notes in all; this suggestion has 54 syllables
+# 9 notes  | Dig away, dig away, dig away,
+Ex-ca-ver, Ex-ca-ver, Ex-ca-ver,
+# 10 notes  | Condemnation in my heart dig away!
+La con-dam-na-tion dans mon cœur on creuse!//
+# 9 notes  | Dig away, dig away, dig away,
+Tout pé-ché doit par-tir Que Sa vie
+# 10 notes  | Condemnation in my heart dig away!
+puisse cou-ler... Al-lé-lui-a! Ex-ca-ver, ex-ca-ver,  #EXTRA ex-ca-ver,  #EXTRA La  #EXTRA con-dam-na-tion  #EXTRA dans  #EXTRA mon  #EXTRA cœur  #EXTRA on  #EXTRA creuse!  #EXTRA

@@ -1,0 +1,22 @@
+# FY13  (sheet of E600)  Mon Dieu, mon tout et mon amour,
+# What is wrong:
+#   1.: French has 55-68 syllables for 34 note slots (French: Mon Dieu, mon tout et mon amour, / Ma portion pour toujours, / Je n’ai personne que Toi seul / Sur terre et dans les cieux. / Que valent l’horizon, la terre ? /)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY13.txt and run:  python3 sheet-lyrics/align.py FY13
+
+== 1.
+# French text: Mon Dieu, mon tout et mon amour, / Ma portion pour toujours, / Je n’ai personne que Toi seul / Sur terre et dans les cieux. / Que valent l’horizon, la terre ? / Poussière et vanité ! / Rien ne mérite ici mes joies, / Rien n’est semblable à Toi.
+# 34 notes in all; this suggestion has 55 syllables
+# 8 notes  | My God, my Portion, and my Love,
+Mon Dieu, mon tout et mon a-mour,
+# 6 notes  | My everlasting All,
+Ma por-tion pour tou-jours,
+# 8 notes  | I've none but Thee in heav'n above,
+Je n’ai per-sonne que Toi seul Sur
+# 6 notes  | Or on this earthly ball,
+terre et dans les cieux. Que
+# 6 notes  | Or on this earthly ball.
+valent l’ho-ri-zon, la terre? Pous-sière  #EXTRA et  #EXTRA va-ni-té!  #EXTRA Rien  #EXTRA ne  #EXTRA mé-rite  #EXTRA i-ci  #EXTRA mes  #EXTRA joi-es,  #EXTRA Rien  #EXTRA n’est  #EXTRA sem-blable  #EXTRA à  #EXTRA Toi.  #EXTRA

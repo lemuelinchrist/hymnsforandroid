@@ -44,6 +44,7 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | SK   | Slovak      | Slovak hymns.                     |
 | GK   | Greek       | Greek hymns.                      |
 | SW   | Kiswahili   | Kiswahili hymns (Kenya); numbers are the printed page numbers, so they have gaps. |
+| FY   | French Youth | French young people's songbook (Lyon, 2024); numbered in book order (the book has no song numbers). Most have an English parent for the sheet music. |
 
 ## Database Lifecycle & Source of Truth
 

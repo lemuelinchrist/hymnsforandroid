@@ -97,6 +97,10 @@ public enum HymnGroup {
     //Cyan
     SW("Kiswahili", Color.rgb(0x00, 0x83, 0x8F),
             Color.rgb(0x4D, 0xD0, 0xE1),
+            Gravity.LEFT),
+    //Pink, like French (youth books share their language's colours: SY, GY)
+    FY("French Youth", Color.rgb(0xE9, 0x1E, 0x63),
+            Color.rgb(0xF4, 0x8F, 0xB1),
             Gravity.LEFT);
 
     private final String simpleName;

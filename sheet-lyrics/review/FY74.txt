@@ -1,0 +1,27 @@
+# FY74  (sheet of NS435)  Je suis si heureux,
+# What is wrong:
+#   1.: French has 109-120 syllables for 34 note slots (French: Je suis si heureux, / Avec mon cher Père, / Perdu, près de Lui maint’nant ! / D’abord Son sourire, / Puis Son étreinte, / Sa grâc’ m’étonne à nouveau ! / J’étai)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY74.txt and run:  python3 sheet-lyrics/align.py FY74
+
+== 1.
+# French text: Je suis si heureux, / Avec mon cher Père, / Perdu, près de Lui maint’nant ! / D’abord Son sourire, / Puis Son étreinte, / Sa grâc’ m’étonne à nouveau ! / J’étais perdu, je suis retrouvé ! / J'étais mort, maint’nant je vis ! / Viens et sois joyeux, réjouissons-nous, / Retourné chez Père à nouveau ! / Rob’, anneau, souliers, / Ma faim s’en alla, / À ma position à nouveau ! / (Cars Il m'a) Vêtu total’ment, / (Puis Il m'a) Rétabli à fond ! / (Maint’nant) Et dans la famille à nouveau !
+# 34 notes in all; this suggestion has 109 syllables
+# 5 notes  | I’m so happy here,
+Je suis si heu-reux,
+# 5 notes  | With my Father dear,
+A-vec mon cher Père,
+# 2 notes  | Once lost, now I’m near again!
+Per-du,
+# 5 notes  | (It was) First His smiling face,
+près de Lui maint’-nant!
+# 5 notes  | Then His warm embrace,
+D’a-bord Son sou-rire,
+# 5 notes  | I’m surprised by grace again!
+Puis Son é-treinte, Sa
+# 7 notes
+grâc’m-’é-tonne à nou-veau! J’é- tais  #EXTRA per-du,  #EXTRA je  #EXTRA suis  #EXTRA re-trou-vé!  #EXTRA J'é-tais  #EXTRA mort,  #EXTRA maint’-nant  #EXTRA je  #EXTRA vis!  #EXTRA Viens  #EXTRA et  #EXTRA sois  #EXTRA joy-eux,  #EXTRA ré-jouis-sons-  #EXTRA nous,  #EXTRA Re-tour-né  #EXTRA chez  #EXTRA Père  #EXTRA à  #EXTRA nou-veau!  #EXTRA Rob’,  #EXTRA an-neau,  #EXTRA sou-liers,  #EXTRA Ma  #EXTRA faim  #EXTRA s’en  #EXTRA al-la,  #EXTRA À  #EXTRA ma  #EXTRA po-si-tion  #EXTRA à  #EXTRA nou-veau!  #EXTRA (Cars  #EXTRA Il  #EXTRA m'a)  #EXTRA Vê-tu  #EXTRA to-tal’ment,  #EXTRA (Puis  #EXTRA Il  #EXTRA m'a)  #EXTRA Ré-ta-bli  #EXTRA à  #EXTRA fond!  #EXTRA (Maint’-nant)  #EXTRA Et  #EXTRA dans  #EXTRA la  #EXTRA fa-mille  #EXTRA à  #EXTRA nou-veau!  #EXTRA

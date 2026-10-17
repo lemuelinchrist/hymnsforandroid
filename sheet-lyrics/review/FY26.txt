@@ -1,0 +1,34 @@
+# FY26  (sheet of NS118)  Jésus, mon premier amour,
+# What is wrong:
+#   1.: French has 87-101 syllables for 28 note slots (French: Jésus, mon premier amour, / Tu es le plus cher au monde. / Quand nos cœurs vers Toi se tournent, / La joie et la paix abondent. / Nous T’aimons pour Ta Personne)
+#   2.: French has 55-63 syllables for 28 note slots (French: Rien ne peut Te remplacer, / Toi, l’objet de nos désirs. / Nous voulons pour Toi brûler, / Être remplis de Ta vie. / Jésus, mon premier amour, / Tu es le plus c)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY26.txt and run:  python3 sheet-lyrics/align.py FY26
+
+== 1.
+# French text: Jésus, mon premier amour, / Tu es le plus cher au monde. / Quand nos cœurs vers Toi se tournent, / La joie et la paix abondent. / Nous T’aimons pour Ta Personne, / Non pour ce que Tu nous donnes. / Rien n’est semblable à la joie, / De T’aimer, de Te goûter. / Beaucoup de choses m’ont dérouté, / Et de Toi, elles m’ont éloigné, / Mais mon cœur se repent pour chanter : / Tu es mon premier amour.
+# 28 notes in all; this suggestion has 87 syllables
+# 7 notes  | Jesus Lord, You’re our first love;
+Jé-sus, mon pre-mier a-mour,
+# 7 notes  | You’re the One we love the best.
+Tu es le plus cher au monde.
+# 7 notes  | When our heart is loving You,
+Quand nos cœurs vers Toi se tournent,
+# 7 notes  | How we’re filled with Your sweet rest!
+La joie et la paix a-bondent. Nous  #EXTRA T’ai-mons  #EXTRA pour  #EXTRA Ta  #EXTRA Per-sonne,  #EXTRA Non  #EXTRA pour  #EXTRA ce  #EXTRA que  #EXTRA Tu  #EXTRA nous  #EXTRA donnes.  #EXTRA Rien  #EXTRA n’est  #EXTRA sem-blable  #EXTRA à  #EXTRA la  #EXTRA joie,  #EXTRA De  #EXTRA T’ai-mer,  #EXTRA de  #EXTRA Te  #EXTRA goû-ter.  #EXTRA Beau-coup  #EXTRA de  #EXTRA choses  #EXTRA m’ont  #EXTRA dé-rou-té,  #EXTRA Et  #EXTRA de  #EXTRA Toi,  #EXTRA elles  #EXTRA m’ont  #EXTRA é-loi-gné,  #EXTRA Mais  #EXTRA mon  #EXTRA cœur  #EXTRA se  #EXTRA repent  #EXTRA pour  #EXTRA chan-ter:  #EXTRA Tu  #EXTRA es  #EXTRA mon  #EXTRA pre-mier  #EXTRA a-mour.  #EXTRA
+
+== 2.
+# French text: Rien ne peut Te remplacer, / Toi, l’objet de nos désirs. / Nous voulons pour Toi brûler, / Être remplis de Ta vie. / Jésus, mon premier amour, / Tu es le plus cher au monde. / Quand nos cœurs vers Toi se tournent, / La joie et la paix abondent.
+# 28 notes in all; this suggestion has 55 syllables
+# 7 notes  | Lord, we love You for Yourself,
+Rien ne peut Te rem-pla-cer,
+# 7 notes  | Not for what You give or do.
+Toi, l’ob-jet de nos dé-sirs.
+# 7 notes  | Nothing else could e’er compare
+Nous vou-lons pour Toi brû-ler,
+# 7 notes  | With the joy of loving You.
+Être rem-plis de Ta vie. Jé- sus,  #EXTRA mon  #EXTRA pre-mier  #EXTRA a-mour,  #EXTRA Tu  #EXTRA es  #EXTRA le  #EXTRA plus  #EXTRA cher  #EXTRA au  #EXTRA monde.  #EXTRA Quand  #EXTRA nos  #EXTRA cœurs  #EXTRA vers  #EXTRA Toi  #EXTRA se  #EXTRA tournent,  #EXTRA La  #EXTRA joie  #EXTRA et  #EXTRA la  #EXTRA paix  #EXTRA a-bondent.  #EXTRA

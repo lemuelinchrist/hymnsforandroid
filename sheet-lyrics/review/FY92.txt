@@ -1,0 +1,41 @@
+# FY92  (sheet of NS10065)  Seigneur, mon amour pour Toi grandit
+# What is wrong:
+#   1.: French has 71-74 syllables for 36 note slots (French: Seigneur, mon amour pour Toi grandit / Ce jour-là plus que tous les autres. / Plus jamais je ne vivrai ainsi, / J’étais fort mais ne peux plus l’être. / Ces ann)
+#   2.: French has 72-79 syllables for 36 note slots (French: J’étais assoiffé à l’intérieur, / Je n’avais pas de satisfaction ; / Je ne pouvais rien trouver ailleurs, / Aucun’ réponse à tout’s mes questions. / Je courais )
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY92.txt and run:  python3 sheet-lyrics/align.py FY92
+
+== 1.
+# French text: Seigneur, mon amour pour Toi grandit / Ce jour-là plus que tous les autres. / Plus jamais je ne vivrai ainsi, / J’étais fort mais ne peux plus l’être. / Ces années où je vivais tout seul, / J’étais perdu quand tu me sauvas. / J’avais sûrement atteint le seuil, / J’étais descendu jusqu’au plus bas.
+# 36 notes in all; this suggestion has 71 syllables
+# 9 notes  | Lord, I love You more and more each day.
+Sei-gneur, mon a-mour pour Toi gran-dit
+# 9 notes  | Lord, I love You more this very day.
+Ce jour| là plus que tous les autres. Plus
+# 9 notes  | I can’t live without You anymore.
+ja-mais je ne vi-vrai ain-si, J’é-
+# 9 notes  | I can’t make it like I did before.
+tais fort mais ne peux plus l’être. Ces an- né-es  #EXTRA où  #EXTRA je  #EXTRA vi-vais  #EXTRA tout  #EXTRA seul,  #EXTRA J’é-tais  #EXTRA per-du  #EXTRA quand  #EXTRA tu  #EXTRA me  #EXTRA sau-vas.  #EXTRA J’a-vais  #EXTRA sû-rement  #EXTRA at-teint  #EXTRA le  #EXTRA seu-il,  #EXTRA J’é-tais  #EXTRA des-cen-du  #EXTRA jusqu-’au  #EXTRA plus  #EXTRA bas.  #EXTRA
+
+== 2.
+# French text: J’étais assoiffé à l’intérieur, / Je n’avais pas de satisfaction ; / Je ne pouvais rien trouver ailleurs, / Aucun’ réponse à tout’s mes questions. / Je courais après beaucoup de choses, / Ne sachant pas où Tu demeurais. / Aveugl’, j’essayai beaucoup de choses, / Mais Tu es le seul qui m’a sauvé.
+# 36 notes in all; this suggestion has 72 syllables
+# 9 notes  | Oh, those years when I was void of You.
+J’é-tais as-soif-fé à l’in-té-rieur,
+# 9 notes  | Lord, You rescued me when I was through.
+Je n’a-vais pas de sa-tis-fac-tion;
+# 9 notes  | When I reminisce those other years,
+Je ne pou-vais rien trou-ver ail-leurs,
+# 9 notes  | Emptiness, heartaches, and many tears.
+Au-cun’-ré-ponse à tout’s mes ques-tions. Je  #EXTRA cou-rais  #EXTRA a-près  #EXTRA beau-coup  #EXTRA de  #EXTRA choses,  #EXTRA Ne  #EXTRA sa-chant  #EXTRA pas  #EXTRA où  #EXTRA Tu  #EXTRA de-meu-rais.  #EXTRA A-veugl’,  #EXTRA j’es-say-ai  #EXTRA beau-coup  #EXTRA de  #EXTRA choses,  #EXTRA Mais  #EXTRA Tu  #EXTRA es  #EXTRA le  #EXTRA seul  #EXTRA qui  #EXTRA m’a  #EXTRA sau-vé.  #EXTRA
+
+== (C)
+# French text: Je T’aime, ô Seigneur, de plus en plus ; / Aujourd’hui, Seigneur, je T’aime encore plus.
+# 20 notes in all; this suggestion has 20 syllables
+# 9 notes  | Lord, I do love You more everyday.
+Je T’aime, ô Sei-gneur, de plus en plus;
+# 11 notes  | Lord, I do love You much more this very day.
+Au-jourd’-hui, Sei-gneur, je T’aime en-co-re plus.

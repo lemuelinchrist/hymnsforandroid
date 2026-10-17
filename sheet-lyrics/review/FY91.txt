@@ -1,0 +1,55 @@
+# FY91  (sheet of NS505)  Dieu prit Jean le Baptiste,
+# What is wrong:
+#   (C): French has 21-24 syllables for 69 note slots (French: Fais de nous ceux qui vainquent, / L’Épouse de Christ Jésus. / Fais de nous ceux qui consomment l’âge !)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY91.txt and run:  python3 sheet-lyrics/align.py FY91
+
+== 1.
+# French text: Dieu prit Jean le Baptiste, / Qui partit loin de chez lui, / De la religion de son âge. / Se détournant du passé, / « Repentez-vous ! » il cria, / « Fuyez cet âge corrompu ! »
+# 42 notes in all; this suggestion has 42 syllables
+# 6 notes  | God used John, the Baptist,
+Dieu prit Je-an le Bap-
+# 7 notes  | Who left his home and good past;
+tiste, Qui par-tit loin de chez
+# 8 notes  | Left the religion of his age.
+lui, De la re-li-gion de son
+# 6 notes  | He turned from the oldness,
+âge. Se dé-tour-nant du
+# 7 notes  | And spoke the Word with boldness,
+pas-sé, Re-pen-tez| vous!» il
+# 8 notes  | Repent and leave this crooked age.
+cria, Fuy-ez cet âge cor-rom-pu!»
+
+== (C)
+# French text: Fais de nous ceux qui vainquent, / L’Épouse de Christ Jésus. / Fais de nous ceux qui consomment l’âge !
+# 69 notes in all; this suggestion has 24 syllables
+# 7 notes  | Make us the overcomers,
+Fais de nous ceux qui vain-quent,
+# 7 notes  | Christ’s bride, and God’s age-turners.
+L’É-pou-se de Christ Jé-sus.
+# 9 notes  | Make us those who consummate the age!
+Fais de nous ceux qui con-som-ment l’â-
+# 7 notes
+ge!
+# ??? only 1 syllables for 7 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes

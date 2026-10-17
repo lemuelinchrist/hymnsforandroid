@@ -1,0 +1,55 @@
+# FY21  (sheet of NS302)  Attire-moi !
+# What is wrong:
+#   (C): the French hymn has no stanza chorus
+#   1.: French has 15-20 syllables for 86 note slots (French: Attire-moi ! / À Toi Seigneur. / De toutes les autres choses, / Détourne-moi.)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY21.txt and run:  python3 sheet-lyrics/align.py FY21
+
+== 1.
+# French text: Attire-moi ! / À Toi Seigneur. / De toutes les autres choses, / Détourne-moi.
+# 86 notes in all; this suggestion has 20 syllables
+# 5 notes  | O Lord, this whole world
+At-ti-re| moi! À
+# 5 notes  | Seems to weigh me down.
+Toi Sei-gneur. De tou-
+# 7 notes  | All the cares, the strife the sin,
+tes les au-tres cho-ses, Dé-
+# 7 notes  | Within me and all around.
+tour-ne| moi.
+# ??? only 3 syllables for 7 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 14 notes
+
+# ??? only 0 syllables for 14 notes
+# 16 notes
+
+# ??? only 0 syllables for 16 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes

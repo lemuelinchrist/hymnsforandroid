@@ -849,7 +849,7 @@ def write_index(rows):
     open(os.path.join(REVIEW_DIR, 'INDEX.md'), 'w', encoding='utf8').write('\n'.join(out))
 
 
-LANGUAGES = {'fr': ['FR'], 'zh': ['C', 'Z', 'CS', 'ZS']}
+LANGUAGES = {'fr': ['FR', 'FY'], 'zh': ['C', 'Z', 'CS', 'ZS']}
 
 
 def main():

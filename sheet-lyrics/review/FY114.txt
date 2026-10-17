@@ -1,0 +1,29 @@
+# FY114  (sheet of NS567)  Nous savons que (nous savons que)
+# What is wrong:
+#   1.: French has 106-119 syllables for 63 note slots (French: Nous savons que (nous savons que) / Nous somm’s passés (nous somm’s passés) / De la mort (de la mort) / Et à la vie (et à la vie) / Car nous aimons (car nous ai)
+#   2.: the French hymn has no stanza 2
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY114.txt and run:  python3 sheet-lyrics/align.py FY114
+
+== 1.
+# French text: Nous savons que (nous savons que) / Nous somm’s passés (nous somm’s passés) / De la mort (de la mort) / Et à la vie (et à la vie) / Car nous aimons (car nous aimons) / Nous aimons les frères (nous aimons les frères) / Nous savons que nous avons Sa vie / Puisque nous aimons les frères. / Le résultat spontané de la vie de Dieu / Est un amour pour les fils de Dieu. / Par la foi nous comprenons / Et recevons Sa vie, / Et c’est l’amour qui est la vraie preuve.
+# 63 notes in all; this suggestion has 106 syllables
+# 8 notes  | We know, we know (We know, we know)
+Nous sa-vons que (nous sa-vons que)
+# 8 notes  | That we have passed (That we have passed)
+Nous somm’s pas-sés (nous somm’s pas-sés)
+# 6 notes  | Out of death (Out of death)
+De la mort (de la mort)
+# 8 notes  | And into life (And into life)
+Et à la vie (et à la vie)
+# 8 notes  | Because we love (Because we love),
+Car nous ai-mons (car nous ai-mons)
+# 10 notes  | We love the brothers (We love the brothers).
+Nous ai-mons les frères (nous ai-mons les frères)
+# 8 notes  | We know we’ve passed from death to life
+Nous sa-vons que nous a-vons Sa
+# 7 notes  | Because we love the brothers.
+vie Puisque nous ai-mons les frères. Le  #EXTRA ré-sul-tat  #EXTRA spon-ta-né  #EXTRA de  #EXTRA la  #EXTRA vie  #EXTRA de  #EXTRA Dieu  #EXTRA Est  #EXTRA un  #EXTRA a-mour  #EXTRA pour  #EXTRA les  #EXTRA fils  #EXTRA de  #EXTRA Dieu.  #EXTRA Par  #EXTRA la  #EXTRA foi  #EXTRA nous  #EXTRA com-pre-nons  #EXTRA Et  #EXTRA re-ce-vons  #EXTRA Sa  #EXTRA vie,  #EXTRA Et  #EXTRA c’est  #EXTRA l’a-mour  #EXTRA qui  #EXTRA est  #EXTRA la  #EXTRA vraie  #EXTRA preuve.  #EXTRA

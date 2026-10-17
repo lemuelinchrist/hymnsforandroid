@@ -1,0 +1,65 @@
+# FY39  (sheet of E1326)  À quoi sert donc l’existence ?
+# What is wrong:
+#   1.: French has 74-82 syllables for 130 note slots (French: À quoi sert donc l’existence ? / Recherchons tous la réponse : / Invoquons : « Seigneur Jésus ! » / Goûtons-Le ! Nous Le verrons, / Christ devient la réalité, /)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY39.txt and run:  python3 sheet-lyrics/align.py FY39
+
+== 1.
+# French text: À quoi sert donc l’existence ? / Recherchons tous la réponse : / Invoquons : « Seigneur Jésus ! » / Goûtons-Le ! Nous Le verrons, / Christ devient la réalité, / Nous marchons en nouveauté, / Il coule en nous comme vie, / Et la joie en nous jaillit, / Son grand amour nous remplit — / Tout cela, c’est grâce à Lui ! / (Alléluia !)
+# 130 notes in all; this suggestion has 82 syllables
+# 7 notes  | What is living all about,
+À quoi sert donc l’e-xis-ten-
+# 7 notes  | Where's the answer? Let's find out!
+ce? Re-cher-chons tous la ré-
+# 1 notes
+pon-
+# 3 notes
+se: In-vo-
+# 3 notes
+quons:« Sei-gneur
+# 7 notes
+Jé-sus!» Goû-tons| Le! Nous Le
+# 14 notes
+ver-rons, Christ de-vi-ent la ré-a-li-té, Nous mar-chons
+# 7 notes
+en nou-veau-té, Il cou-le
+# 7 notes
+en nous com-me vi-e, Et
+# 1 notes
+la
+# 6 notes
+joi-e en nous jail-lit,
+# 7 notes
+Son grand a-mour nous rem-plit—
+# 4 notes
+Tout ce-la, c’est
+# 1 notes
+grâ-
+# 3 notes
+ce à Lui!
+# 3 notes
+(Al-lé-lui-
+# 7 notes
+a!)
+# ??? only 1 syllables for 7 notes
+# 14 notes
+
+# ??? only 0 syllables for 14 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes

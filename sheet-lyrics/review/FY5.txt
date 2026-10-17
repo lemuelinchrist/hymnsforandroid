@@ -1,0 +1,21 @@
+# FY5  (sheet of NS57)  As-tu trouvé l’esprit humain ?
+# What is wrong:
+#   1.: French has 64-72 syllables for 30 note slots (French: As-tu trouvé l’esprit humain ? / Il est lié à ta bouche ! / Alléluia, Seigneur, Jésus ! / Voilà comment le libérer ! / Ce qui est né de Dieu, / C’est l’esprit d)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY5.txt and run:  python3 sheet-lyrics/align.py FY5
+
+== 1.
+# French text: As-tu trouvé l’esprit humain ? / Il est lié à ta bouche ! / Alléluia, Seigneur, Jésus ! / Voilà comment le libérer ! / Ce qui est né de Dieu, / C’est l’esprit de l’homme! / Louons Dieu, c’est accompli ! / Ce qui est né de l’Esprit : / C’est notre esprit ! / Les deux esprits sont un seul !
+# 30 notes in all; this suggestion has 64 syllables
+# 8 notes  | Have you found your human spirit?
+As| tu trou-vé l’es-prit hu-main?
+# 7 notes  | It’s connected to your mouth!
+Il est lié à ta bouche! Al-
+# 8 notes  | “Hallelujah, O Lord Jesus!“
+lé-lui-a, Sei-gneur, Jé-sus! Voi-
+# 7 notes  | That’s the way to let it out.
+là comment le li-bé-rer! Ce qui  #EXTRA est  #EXTRA né  #EXTRA de  #EXTRA Dieu,  #EXTRA C’est  #EXTRA l’es-prit  #EXTRA de  #EXTRA l’homme!  #EXTRA Louons  #EXTRA Dieu,  #EXTRA c’est  #EXTRA ac-com-pli!  #EXTRA Ce  #EXTRA qui  #EXTRA est  #EXTRA né  #EXTRA de  #EXTRA l’Es-prit:  #EXTRA C’est  #EXTRA notre  #EXTRA es-prit!  #EXTRA Les  #EXTRA deux  #EXTRA es-prits  #EXTRA sont  #EXTRA un  #EXTRA seul!  #EXTRA

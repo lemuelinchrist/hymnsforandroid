@@ -1,0 +1,21 @@
+# FY137  (sheet of NS777)  Nous voyons en Genèse
+# What is wrong:
+#   1.: French has 78-99 syllables for 43 note slots (French: Nous voyons en Genèse / Que Dieu voulut que l’homme / mange de l’arbre de la vie. / Après qu’Adam fut créé, / Dieu désirait tout d’abord / Qu’il mange, mais quo)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY137.txt and run:  python3 sheet-lyrics/align.py FY137
+
+== 1.
+# French text: Nous voyons en Genèse / Que Dieu voulut que l’homme / mange de l’arbre de la vie. / Après qu’Adam fut créé, / Dieu désirait tout d’abord / Qu’il mange, mais quoi manger ? / Mange Dieu, mange Christ, / Mange la parole sainte. / L’Agneau qui s’est diminué / L’arbre de la vie. / Laisse tomber tes concepts / Trouve celui de Dieu : / Tout ce qu'Il veut, c'est que tu Le manges.
+# 43 notes in all; this suggestion has 78 syllables
+# 11 notes  | In Genesis we see, God’s desire being
+Nous voy-ons en Ge-nèse Que Dieu vou-lut que
+# 8 notes  | For man to eat the tree of life.
+l’homme mange de l’arbre de la vie. A-
+# 15 notes  | After Adam was created, the first thing that God wanted
+près qu’A-dam fut cré-é, Dieu dé-si-rait tout d’a-bord Qu’il mange,
+# 9 notes  | Was for him to eat but to eat what?
+mais quoi man-ger? Mange Dieu, mange Christ, Mange la  #EXTRA pa-role  #EXTRA sainte.  #EXTRA L’A-gneau  #EXTRA qui  #EXTRA s’est  #EXTRA di-mi-nué  #EXTRA L’arbre  #EXTRA de  #EXTRA la  #EXTRA vie.  #EXTRA Laisse  #EXTRA tom-ber  #EXTRA tes  #EXTRA con-cepts  #EXTRA Trouve  #EXTRA ce-lui  #EXTRA de  #EXTRA Dieu:  #EXTRA Tout  #EXTRA ce  #EXTRA qu'Il  #EXTRA veut,  #EXTRA c'est  #EXTRA que  #EXTRA tu  #EXTRA Le  #EXTRA manges.  #EXTRA

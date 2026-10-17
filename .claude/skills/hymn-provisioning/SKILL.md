@@ -25,6 +25,7 @@ This skill is the condensed playbook for the common case: **correcting or updati
 | Script | Resource file | ID range owned |
 |---|---|---|
 | `ProvisionSpanish2026.groovy` | `Spanish2026.txt` | S1–S1000 |
+| `ProvisionFrenchYouth.groovy` (Gradle `runFrenchYouth`) | `FrenchYouth.txt` (made from the PDF `docs/v5.6/Cantique des jeunes (Recueil lyonnais 19-07-2024).pdf`, see `docs/v5.6/v5.6-report.md`) | FY1–FY400 (book order; the book has no song numbers) |
 | `ProvisionSwahili.groovy` (Gradle `runSwahili`) | `Swahili.txt` (hand-made from Kimathi's scanned `.docx`, see `docs/v5.5/v5.5-report.md`; send edits back to him) | SW1–SW300 (numbers = printed page numbers, with gaps) |
 | `ProvisionSpanishSupplement.groovy` | `HImnosCanticosEspirituales.txt` (name doesn't match "supplement" — verify by reading the script's `spanishFile =` line, not just the filename) | SY1–SY506 (own `SY` hymn group; was `S2000`–`S2506` before the v5.4 split, then `SS1`–`SS506` until the v5.4.5 rename to `SY` for naming consistency with German Youth's `GY`) |
 | `ProvisionGermanYouth.groovy` | `german/GermanYPsongs_v2.txt` | GY1–GY271 (own `GY` hymn group as of the v5.4 split; was `G2001`–`G2271` before that) |

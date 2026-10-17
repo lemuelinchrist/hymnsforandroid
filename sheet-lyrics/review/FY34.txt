@@ -1,0 +1,46 @@
+# FY34  (sheet of NS414)  L’unité n’est pas l’union,
+# What is wrong:
+#   1.: French has 39-45 syllables for 68 note slots (French: L’unité n’est pas l’union, / Ni l’accord passé, / Mais la vie cachée, / La vie de Dieu ! / La Trinité ….nous a inclus… / Dans Sa divine… / Unité…………..unité)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY34.txt and run:  python3 sheet-lyrics/align.py FY34
+
+== 1.
+# French text: L’unité n’est pas l’union, / Ni l’accord passé, / Mais la vie cachée, / La vie de Dieu ! / La Trinité ….nous a inclus… / Dans Sa divine… / Unité…………..unité
+# 68 notes in all; this suggestion has 45 syllables
+# 7 notes  | Oneness is not unity,
+L’u-ni-té n’est pas l’u-ni-
+# 5 notes  | Outward agreement
+on, Ni l’ac-cord pas-
+# 5 notes  | But a life within—
+sé, Mais la vi-e
+# 4 notes  | God’s very life!
+ca-ché-e, La
+# 8 notes  | The Triune God—included us
+vi-e de Di-eu! La Tri-ni-
+# 4 notes  | In His divine—
+té ….nous a in-
+# 4 notes  | Oneness—Oneness.
+clus… Dans Sa di-
+# 6 notes
+vi-ne… U-ni-té………….-.u-
+# 6 notes
+ni-té
+# ??? only 2 syllables for 6 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes

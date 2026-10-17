@@ -1,0 +1,28 @@
+# FY73  (sheet of E1299)  Le créateur a un dessein
+# What is wrong:
+#   1.: French has 129-145 syllables for 60 note slots (French: Le créateur a un dessein / Pour les hommes sur la terre / À Son image, Il les créa / Pour s’exprimer sur la terre / Mais l’homm’ succomba à Satan / Et le but fu)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY73.txt and run:  python3 sheet-lyrics/align.py FY73
+
+== 1.
+# French text: Le créateur a un dessein / Pour les hommes sur la terre / À Son image, Il les créa / Pour s’exprimer sur la terre / Mais l’homm’ succomba à Satan / Et le but fut hors de vue. / Pourtant, Dieu aura Son royaume / Car Son Fils l’a révélé ! / Jésus-Christ obtiendra Son royaume / Malgré Satan et tous ses plans ! / Le Seigneur aura Sa demeur’ visible / En croissant dans les cœurs des saints. / Ne crois pas ce que dit la religion : / « Après la mort, tout ira très bien » / Car le Seigneur bâtit Son royaume / Sur cette terre et sous nos yeux !
+# 60 notes in all; this suggestion has 129 syllables
+# 8 notes  | Man's Creator has a purpose
+Le cré-a-teur a un des-sein
+# 7 notes  | For our being here on earth.
+Pour les hommes sur la terre À
+# 8 notes  | In His image we're created,
+Son i-mage, Il les cré-a Pour
+# 7 notes  | To express His rule on earth.
+s’ex-pri-mer sur la terre Mais
+# 8 notes  | But man fell to Satan's tempting;
+l’homm’-suc-com-ba à Sa-tan Et
+# 7 notes  | Thus God's goal was hid from view.
+le but fut hors de vue. Pour-
+# 8 notes  | Still our God will have His Kingdom,
+tant, Dieu au-ra Son roy-aume Car
+# 7 notes  | For His Son will see it through.
+Son Fils l’a ré-vé-lé! Jé- sus-  #EXTRA Christ  #EXTRA ob-tien-dra  #EXTRA Son  #EXTRA roy-aume  #EXTRA Mal-gré  #EXTRA Sa-tan  #EXTRA et  #EXTRA tous  #EXTRA ses  #EXTRA plans!  #EXTRA Le  #EXTRA Sei-gneur  #EXTRA au-ra  #EXTRA Sa  #EXTRA de-meur’-vi-sible  #EXTRA En  #EXTRA crois-sant  #EXTRA dans  #EXTRA les  #EXTRA cœurs  #EXTRA des  #EXTRA saints.  #EXTRA Ne  #EXTRA crois  #EXTRA pas  #EXTRA ce  #EXTRA que  #EXTRA dit  #EXTRA la  #EXTRA re-li-gion:  #EXTRA A-près  #EXTRA la  #EXTRA mort,  #EXTRA tout  #EXTRA i-ra  #EXTRA très  #EXTRA bien»  #EXTRA Car  #EXTRA le  #EXTRA Sei-gneur  #EXTRA bâ-tit  #EXTRA Son  #EXTRA roy-aume  #EXTRA Sur  #EXTRA cette  #EXTRA terre  #EXTRA et  #EXTRA sous  #EXTRA nos  #EXTRA yeux!  #EXTRA

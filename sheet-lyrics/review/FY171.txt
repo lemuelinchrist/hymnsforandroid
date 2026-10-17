@@ -1,0 +1,77 @@
+# FY171  (sheet of NS791)  Je suis amoureux fou du Seigneur !
+# What is wrong:
+#   (C): French has 28-32 syllables for 91 note slots (French: Que je T’ai-ai-ai-aime ! / Seigneur, je T’ai-ai-ai aime. / Oui, c’est vrai-ai-ai-ai-ai, / C’est Toi que j’ai-ai-ai-ai-aime.)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY171.txt and run:  python3 sheet-lyrics/align.py FY171
+
+== 1.
+# French text: Je suis amoureux fou du Seigneur ! / Je T’aime plus chaque jour, / Car Ta beauté m’a attirée. / Je me languis de Ta tendre étreinte, / D’être ensemble en tête à tête. / Chaqu’ jour, mon cœur se tourn’ mille fois vers Toi pour dire :
+# 51 notes in all; this suggestion has 51 syllables
+# 9 notes  | I’m a crazy lover of the Lord!
+Je suis a-mou-reux fou du Sei-gneur!
+# 7 notes  | Every day I love You more.
+Je T’ai-me plus chaque jour, Car
+# 8 notes  | Your beauty has attracted me.
+Ta beau-té m’a at-ti-rée. Je
+# 8 notes  | I’m longing for Your sweet embrace
+me lan-guis de Ta tendre é-treinte,
+# 7 notes  | Just to see You face to face.
+D’être en-semble en tête à tête.
+# 12 notes  | I turn my heart a thousand times a day to say:
+Chaqu’-jour, mon cœur se tourn’-mille fois vers Toi pour dire:
+
+== (C)
+# French text: Que je T’ai-ai-ai-aime ! / Seigneur, je T’ai-ai-ai aime. / Oui, c’est vrai-ai-ai-ai-ai, / C’est Toi que j’ai-ai-ai-ai-aime.
+# 91 notes in all; this suggestion has 32 syllables
+# 3 notes  | I love You!
+Que je T’ai|
+# 1 notes
+ai|
+# 3 notes
+ai| ai-me!
+# 1 notes
+Sei-
+# 2 notes
+gneur, je
+# 5 notes
+T’ai| ai| ai ai-me.
+# 7 notes
+Ou-i, c’est vrai| ai| ai| ai|
+# 7 notes
+ai, C’est Toi que j’ai| ai| ai|
+# 11 notes
+ai| ai-me.
+# ??? only 3 syllables for 11 notes
+# 14 notes
+
+# ??? only 0 syllables for 14 notes
+# 16 notes
+
+# ??? only 0 syllables for 16 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes

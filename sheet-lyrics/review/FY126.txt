@@ -1,0 +1,29 @@
+# FY126  (sheet of NS97)  Tu nous appelas, Seigneur
+# What is wrong:
+#   1.: French has 90-100 syllables for 54 note slots (French: Tu nous appelas, Seigneur / Et nous ouvris Ton cœur. / Quel bonheur de Te répondre / Et d’entrer dans Ton Arche. / De jour en jour Tu nous sauves, / Telle est T)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY126.txt and run:  python3 sheet-lyrics/align.py FY126
+
+== 1.
+# French text: Tu nous appelas, Seigneur / Et nous ouvris Ton cœur. / Quel bonheur de Te répondre / Et d’entrer dans Ton Arche. / De jour en jour Tu nous sauves, / Telle est Ta voie, Seigneur. / En Toi nous restons à flot, / Au-dessus de cet âge mauvais. / Nous avons trouvé grâce à Tes yeux / Et venons à Toi le cœur ouvert. / Qu’importe ce que nos amis / nous disent ou font, / Seigneur Jésus ! Nous T’aimons.
+# 54 notes in all; this suggestion has 90 syllables
+# 7 notes  | Dearest Lord, You’ve called us here,
+Tu nous ap-pe-las, Sei-gneur
+# 6 notes  | And opened up Your heart.
+Et nous ou-vris Ton cœur.
+# 7 notes  | O the joy to hear Your call
+Quel bon-heur de Te ré-pondre
+# 6 notes  | And enter in the Ark.
+Et d’en-trer dans Ton Arche.
+# 7 notes  | Saving us from day to day
+De jour en jour Tu nous sauves,
+# 6 notes  | O Lord, this is Your way.
+Telle est Ta voie, Sei-gneur.
+# 7 notes  | In Yourself we stay afloat,
+En Toi nous res-tons à flot,
+# 8 notes  | Above this wicked age today.
+Au| des-sus de cet âge mau-vais. Nous  #EXTRA a-vons  #EXTRA trou-vé  #EXTRA grâce  #EXTRA à  #EXTRA Tes  #EXTRA yeux  #EXTRA Et  #EXTRA ve-nons  #EXTRA à  #EXTRA Toi  #EXTRA le  #EXTRA cœur  #EXTRA ou-vert.  #EXTRA Qu’im-porte  #EXTRA ce  #EXTRA que  #EXTRA nos  #EXTRA a-mis  #EXTRA nous  #EXTRA disent  #EXTRA ou  #EXTRA font,  #EXTRA Sei-gneur  #EXTRA Jé-sus!  #EXTRA Nous  #EXTRA T’ai-mons.  #EXTRA
