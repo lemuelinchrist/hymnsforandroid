@@ -34,8 +34,8 @@ the device and works without internet. The home page shows this hint until it is
 ## Not for search engines
 
 Every page has `<meta name="robots" content="noindex, nofollow">`, so search engines that respect it leave it out
-of their results. The site is not linked from anywhere public; it is shared by link. (A `robots.txt` would only count
-at the root of the domain, which a GitHub Pages project site does not control.)
+of their results; people find it through the link in the main README (since 2026-10-20) or by being sent the link.
+(A `robots.txt` would only count at the root of the domain, which a GitHub Pages project site does not control.)
 
 ## Chord edits
 

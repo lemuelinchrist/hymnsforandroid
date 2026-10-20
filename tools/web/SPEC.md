@@ -265,7 +265,8 @@ iPhone and iPad users install it from Safari. Decisions:
    export/import of a JSON file. Exported files are sent in and put into the `.ly`/MEI sources so every app gets
    the chords (tooling for that is a later step). The media host's `hymnsforweb` service and its data were removed.
 3. **GitHub Pages** on this repository, built by `.github/workflows/web-app.yml` on each published release or by hand.
-4. **Hidden from search engines** as far as possible: `noindex` on the page; not linked publicly.
+4. **Hidden from search engines** as far as possible: `noindex` on the page. (Linked from the main README since
+   2026-10-20, so iPhone users find it; `noindex` still keeps it out of search results.)
 5. **The single-file HTML stays** in releases as a fallback.
 
 How it works now:
