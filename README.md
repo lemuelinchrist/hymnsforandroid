@@ -3,6 +3,7 @@
 [![Latest Version](https://img.shields.io/badge/version-v5.6.0-blue.svg)](https://github.com/lemuelinchrist/hymnsforandroid/releases)
 [![Android Version](https://img.shields.io/badge/android-7.0%2B-green.svg)](https://developer.android.com/about/versions/nougat)
 [![Get it on Google Play](https://img.shields.io/badge/Google%20Play-Get%20it%20on-green?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns)
+[![Web app for iPhone, iPad and computers](https://img.shields.io/badge/Web%20app-iPhone%20%C2%B7%20iPad%20%C2%B7%20Computer-404040?logo=pwa&logoColor=white)](https://lemuelinchrist.github.io/hymnsforandroid/)
 
 <p align="center">
   <img src="docs/playStore/1024x500-Banner.png" alt="Hymns For Android Banner" width="100%">
@@ -24,6 +25,8 @@ Alternatively, you can download the APKs directly from the [GitHub Releases](htt
 ## iPhone, iPad and Computers (Web Version)
 
 The same hymns are also available as a web app for iPhone, iPad and computers:
+
+[<img src="docs/web-app-badge.svg" alt="Hymns Web App for iPhone, iPad and computers" height="60">](https://lemuelinchrist.github.io/hymnsforandroid/)
 
 **https://lemuelinchrist.github.io/hymnsforandroid/**
 
