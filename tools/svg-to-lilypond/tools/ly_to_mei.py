@@ -33,7 +33,9 @@ ACC = {-2: 'ff', -1: 'f', 0: 'n', 1: 's', 2: 'x'}
 ACC_GES = {-2: 'ff', -1: 'f', 0: 'n', 1: 's', 2: 'ss'}
 SIGN = {-2: '\U0001D12B', -1: '\u266D', 0: '', 1: '\u266F', 2: '\U0001D12A'}
 QUALITY = {None: '', 'm': 'm', '7': '7', 'm7': 'm7', 'maj7': 'maj7', 'sus4': 'sus4', 'sus2': 'sus2', 'dim': '\u00B0',
-           'dim7': '\u00B07', 'aug': '+', '6': '6', 'm6': 'm6', 'm9': 'm9', '9': '9'}
+           'dim7': '\u00B07', 'aug': '+', '6': '6', 'm6': 'm6', 'm9': 'm9', '9': '9',
+           # chords pianists add in the web app (tools/chord_edits.py); not in the hymnal.net sheets
+           '5.9': 'add9', '7sus4': '7sus4', 'm7.5-': 'm7\u266D5', 'maj9': 'maj9', '11': '11', 'm11': 'm11', '13': '13'}
 VERSE_NAMES = ['verseOne', 'verseTwo', 'verseThree', 'verseFour', 'verseFive', 'verseSix']
 
 

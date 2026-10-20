@@ -113,3 +113,16 @@ Piano 3,166/3,179 accepted (3,089 clean), guitar 3,164/3,179 (3,084 clean). The 
 `tools/svg-to-lilypond/DESIGN.md` section 18 ("Review tail"). The accepted `.ly` files are committed in `tools/svg-to-lilypond/ly/` (never hand-edit;
 refresh after a significant converter change). A full run is ~3 h per variant on this host (`-j 8`, nice); while fixing,
 re-run only the previous REVIEW list (~15 min) and finish with a full run, diffing against the saved reports.
+
+## 10. Chord edits from the web app (2026-10-20)
+Pianists change chords in the web app (`tools/web`, Edit chords) and send in an exported `hymns-chord-edits-<date>.json`.
+`python3 tools/svg-to-lilypond/tools/chord_edits.py import <file> [--dry-run]` puts them into `ly/piano/<id>.ly` (the
+`harmonies` block), writes the MEI again, checks that only the edited bars' chords changed (note ids included, so the
+sheet-lyrics overlays keep working), and keeps the edits in `tools/svg-to-lilypond/chord_edits/<id>.json`.
+- **After refreshing `ly/` from the converter, run `chord_edits.py apply`** (`check` first to see what is missing):
+  the refresh rewrites the `.ly` files and would lose the edits. A bar whose chords changed under an edit is reported,
+  not overwritten.
+- New chord types (add9, 7sus4, m7♭5, maj9, 11, m11, 13) get their name written out in the `.ly`
+  (`\once \override ChordName.text`), since LilyPond's own names for them are unclear; `ly_to_mei.QUALITY` knows them.
+- A chord on a triplet beat is refused (not supported yet). Tests: `python3 tools/svg-to-lilypond/tools/test_chord_edits.py --corpus`.
+- Then rebuild the web app (it drops the device copies of edits that are now in the sheet) and release the APK.

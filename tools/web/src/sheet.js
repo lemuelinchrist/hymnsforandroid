@@ -228,7 +228,9 @@ function scanBars(doc) {
   return bars;
 }
 
-const sameChords = (a, b) => a.length === b.length && a.every((c, i) => c[0] === b[i][0] && c[1] === b[i][1]);
+// the same chord however it is spelled: the sheets print dim as °, aug as + (tools/svg-to-lilypond/tools/chord_edits.py)
+const normChord = (c) => (c || '').replace(/\s+/g, '').replace(/dim/g, '°').replace(/aug/g, '+').replace(/b5/g, '♭5');
+const sameChords = (a, b) => a.length === b.length && a.every((c, i) => Math.abs(c[0] - b[i][0]) < 1e-3 && normChord(c[1]) === normChord(b[i][1]));
 
 // replace the chords of the edited bars; the harms that are not in the original get type="edit"
 function applyEdits(doc, bars, edits) {
@@ -375,6 +377,15 @@ export class SheetView {
   prepare() {
     const doc = parseXml(this.pristine);
     this.bars = scanBars(doc);
+    // edits that are now in the sheet itself (sent in and put into the sheets): forget them on this device
+    const baked = Object.entries(this.edits.bars).filter(([k, e]) => {
+      const bar = this.bars[parseInt(k, 10) - 1];
+      return bar && sameChords(e.chords, bar.chords);
+    }).map(([k]) => k);
+    if (baked.length) {
+      for (const k of baked) delete this.edits.bars[k];
+      Edits.put(this.editsId, JSON.parse(JSON.stringify(this.edits.bars))).catch(() => {});
+    }
     const showEdits = !this.state.original && Object.keys(this.edits.bars).length > 0;
     this.stale = Object.entries(this.edits.bars).filter(([k, e]) => {
       const bar = this.bars[parseInt(k, 10) - 1];

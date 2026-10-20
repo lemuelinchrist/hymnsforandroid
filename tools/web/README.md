@@ -45,8 +45,16 @@ the guitar sheet and the chords-over-lyrics view use them.
 
 They are kept **on the device** (IndexedDB), per sheet. Settings → Chord edits exports them as a file
 (`hymns-chord-edits-<date>.json`) and imports such a file on another device (a sheet edited later on this device is
-kept). The same file is what gets sent in so the chords can go into the sheets for everyone (into the `.ly` sources,
-then the MEI files the Android app ships too).
+kept). The same file is what gets sent in so the chords can go into the sheets for everyone:
+
+```bash
+python3 tools/svg-to-lilypond/tools/chord_edits.py import hymns-chord-edits-<date>.json --dry-run   # what would change
+python3 tools/svg-to-lilypond/tools/chord_edits.py import hymns-chord-edits-<date>.json             # .ly + MEI + chord_edits/
+```
+
+It changes the `.ly` sources and the MEI files the Android app ships, and keeps the edits in
+`tools/svg-to-lilypond/chord_edits/` (README there). Then publish the web app and release the APK. A device that made
+the edits drops its own copy once the sheet has those chords.
 
 File format:
 

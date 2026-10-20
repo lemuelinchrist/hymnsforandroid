@@ -1072,6 +1072,16 @@ chosen in Settings; guitar opens with the staff hidden (chords over lyrics, 2026
 WebAssembly (very old System WebView) shows an error line (there is no SVG to fall back to any more); a text-size setting; a share button;
 melody playback is unchanged (MIDI).
 
+## 20. Chord edits from the web app (2026-10-20)
+
+The web app (`tools/web`) lets a pianist change a piano sheet's chords and export them. `tools/chord_edits.py` puts an
+exported file into the sheets: per edited bar it checks the bar still has the chords the edit was made on, rewrites that
+bar of the `.ly` `harmonies` block (commands kept, chords at their beats as chordmode tokens with `s` spacers, triplet
+brackets dropped since chord positions are absolute; new chord types get a written-out name), writes the MEI with
+`ly_to_mei.py` and checks that only those bars' `<harm>`s changed. The edits are kept in `chord_edits/<id>.json`, the
+source to re-apply after a converter refresh rewrites `ly/` (`chord_edits.py apply`). Tests (`tools/test_chord_edits.py
+--corpus`): every bar of all 3,345 sheets rewritten with its own chords gives back the same MEI.
+
 ## 16. Tools & data in this folder
 
 | Path | What |

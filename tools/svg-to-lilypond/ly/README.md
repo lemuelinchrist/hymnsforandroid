@@ -12,3 +12,6 @@ to the original (`ACCEPT`, `ACCEPT_DB_MISMATCH`) are here; sheets still in `REVI
   and the converter commit that produced it.
 - Commit a refresh only after a significant converter change (a full regeneration rewrites most files).
 - Results and known gaps: `../DESIGN.md` section 18.
+- **Chord edits** sent in from the web app are put into these files by `tools/chord_edits.py` and kept in
+  `../chord_edits/` (their source). After a refresh of this folder, run `python3 tools/chord_edits.py apply` so they are
+  in again (`check` lists what is missing). Those bars differ from the hymnal.net SVGs on purpose.

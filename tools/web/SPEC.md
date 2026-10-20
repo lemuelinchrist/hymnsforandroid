@@ -293,4 +293,6 @@ How it works now:
   translations), shown in the hymnal being read when the family has a version there, else in its own hymnal; switched-off
   hymnals are skipped. The tune code must match exactly (the app took any tune starting with it, so a longer tune counted)
   and no key is needed (the app skipped hymns without a key, which hid most translations). 480 tunes are shared, up to 13 hymns.
-- **Not done yet:** the tool that bakes exported chord edits into the `.ly` sources.
+- **Chord edits into the sheets** (2026-10-20): `tools/svg-to-lilypond/tools/chord_edits.py` (see
+  `tools/svg-to-lilypond/DESIGN.md` §20). The app drops a device's edits once the sheet itself has those chords
+  (`prepare()` in `sheet.js`; dim/°, aug/+ count as the same).

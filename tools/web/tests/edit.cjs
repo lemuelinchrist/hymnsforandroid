@@ -165,6 +165,21 @@ const chordsOf = (page) => page.$$eval('.sheet-music g.harm', (gs) => gs.map((g)
       assert(await saved(page, 'E8') === null, 'record left: ' + JSON.stringify(await saved(page, 'E8')));
     });
 
+    await test('edits that are now in the sheet itself are dropped from the device (after they were sent in)', async () => {
+      const other = await browser.newContext({viewport: {width: 1280, height: 900}});
+      const p2 = await other.newPage();
+      await open(p2, '#/sheet/E8?v=piano');
+      // as if bar 2 (Em on beat 3) and bar 5 (Am, C; written "dim"/"°" alike) had been put into the sheet already
+      await p2.evaluate(async () => (await import('./edits.js')).put('E8', {
+        '2': {was: [[1, 'X']], chords: [[3, 'Em']]}, '4': {was: [[1, 'G']], chords: [[1, 'G'], [3, 'D7']]}}));
+      await p2.reload();
+      await p2.waitForSelector('.sheet-music svg', {timeout: 60000});
+      await p2.waitForTimeout(300);
+      const left = await p2.evaluate(async () => (await import('./edits.js')).get('E8'));
+      assert(left && !left.bars['2'] && left.bars['4'], 'left on the device: ' + JSON.stringify(left));
+      await other.close();
+    });
+
     await test('no console errors', async () => { assert(!errors.length, errors.join('\n')); });
     await page.screenshot({path: path.join(DATA, 'editor.png')});
   } finally {
