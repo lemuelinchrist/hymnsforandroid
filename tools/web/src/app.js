@@ -12,6 +12,7 @@ import {GROUPS, BY_CODE, splitId, langOf} from './groups.js';
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE, prefetchAll} from './sheet.js';
 import {createEditor} from './editor.js';
 import * as Edits from './edits.js';
+import * as Player from './player.js';
 
 // ---- small helpers ----
 
@@ -62,6 +63,7 @@ const ICONS = {
   copy: '<rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/>',
   share: '<path d="M12 3.5v11M8 7.5l4-4 4 4M5.5 12v6.5a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5V12"/>',
   play: '<path d="M8 5.5v13l10.5-6.5z"/>',
+  pause: '<path d="M8.5 5.5v13M15.5 5.5v13"/>',
 };
 
 function icon(name, label) {
@@ -631,6 +633,24 @@ function hymnScreen(view, hymn) {
   let tab = route.params.get('tab') === 'sheet' && hasSheet ? 'sheet' : 'lyrics';
   const fav = favorites().includes(hymn.id);
 
+  // the tune, looped, as in the Android app; it stops when another hymn is opened
+  const tune = DB.tuneFile(hymn);
+  const playBtn = h('button', {class: 'icon-btn play', title: tune ? 'Play the tune (Space)' : 'No tune for this hymn',
+    'aria-label': 'Play the tune', 'aria-pressed': 'false', disabled: tune ? null : true, onclick: () => togglePlay()});
+  const showPlay = (on) => {
+    playBtn.innerHTML = '';
+    playBtn.appendChild(icon(on ? 'pause' : 'play'));
+    playBtn.setAttribute('aria-pressed', String(on));
+    playBtn.title = on ? 'Stop (Space)' : tune ? 'Play the tune (Space)' : 'No tune for this hymn';
+  };
+  function togglePlay() {
+    if (!tune) { toast('Sorry, no tune for this hymn'); return; }
+    if (Player.playing() === hymn.id) { Player.stop(); showPlay(false); return; }
+    showPlay(true);
+    Player.play(tune, hymn.id).catch(() => { showPlay(false); toast('Could not play the tune'); });
+  }
+  showPlay(Player.playing() === hymn.id);
+
   const favBtn = h('button', {class: 'icon-btn' + (fav ? ' on' : ''), title: 'Favorite (F)', 'aria-pressed': String(fav),
     onclick: () => { const on = toggleFavorite(hymn.id); favBtn.classList.toggle('on', on); favBtn.setAttribute('aria-pressed', String(on)); }},
   icon('star'));
@@ -644,8 +664,9 @@ function hymnScreen(view, hymn) {
       h('a', {class: 'icon-btn' + (nb.next ? '' : ' disabled'), href: nb.next ? href('/h/' + nb.next, keepSheetParams()) : null,
         title: nb.next ? 'Next: ' + nb.next + ' (→)' : null, 'aria-label': 'Next hymn'}, icon('next')),
       h('span', {class: 'grow'}),
-      h('button', {class: 'icon-btn', title: 'Smaller text', onclick: () => setLyricSize(lyricSize - 1)}, icon('textSmaller')),
-      h('button', {class: 'icon-btn', title: 'Bigger text', onclick: () => setLyricSize(lyricSize + 1)}, icon('textBigger')),
+      h('button', {class: 'icon-btn size', title: 'Smaller text', onclick: () => setLyricSize(lyricSize - 1)}, icon('textSmaller')),
+      h('button', {class: 'icon-btn size', title: 'Bigger text', onclick: () => setLyricSize(lyricSize + 1)}, icon('textBigger')),
+      playBtn,
       h('button', {class: 'icon-btn', title: 'Copy the lyrics (C)', 'aria-label': 'Copy the lyrics', onclick: () => copyLyrics(hymn)}, icon('copy')),
       h('button', {class: 'icon-btn print', title: 'Print', onclick: () => window.print()}, icon('print')),
       favBtn),
@@ -703,11 +724,13 @@ function hymnScreen(view, hymn) {
     s: () => hasSheet && showTab('sheet'),
     f: () => favBtn.click(),
     c: () => copyLyrics(hymn),
+    ' ': () => togglePlay(),
     ...sheetKeys(() => { ensureSheet(); if (!wide.matches && tab !== 'sheet') showTab('sheet'); return sheet; }),
   };
   cleanup = () => {
     wide.removeEventListener('change', onWide);
     if (sheet) sheet.destroy();
+    Player.stop();
     keys = {};
   };
 }
@@ -1143,16 +1166,19 @@ function settingsScreen(view) {
     try {
       if (navigator.storage && navigator.storage.persist) await navigator.storage.persist();
       await prefetchAll();
-      offlineStatus.textContent = 'All sheet music is on this device.';
+      const tunes = DB.allTuneFiles();
+      await Player.prefetch(tunes, (f) => { offlineStatus.textContent = 'Downloading the tunes… ' + Math.round(f * 100) + '%'; });
+      offlineStatus.textContent = 'All sheet music and tunes are on this device.';
       store.set('offlineAll', DB.version.build);
     } catch (e) {
       offlineStatus.textContent = 'Download stopped: ' + e.message;
     }
     offlineBtn.disabled = false;
-  }}, 'Download all sheet music');
+  }}, 'Download all sheet music and tunes');
   const sw = 'serviceWorker' in navigator && window.isSecureContext;
   offlineStatus.textContent = !sw ? 'Offline use needs the app’s https address.'
-    : store.get('offlineAll', null) ? 'Sheet music was downloaded for offline use.' : 'The hymns work offline. Sheets you have opened do too; download all of them here.';
+    : store.get('offlineAll', null) ? 'Sheet music and tunes were downloaded for offline use.'
+      : 'The hymns work offline. Sheets and tunes you have opened do too; download all of them here (about 20 MB).';
   box.appendChild(h('section', {class: 'card settings-card'},
     h('h2', null, 'Offline'), offlineStatus, sw ? h('div', {class: 'row'}, offlineBtn) : null));
 

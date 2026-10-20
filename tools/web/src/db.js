@@ -6,6 +6,7 @@ import {fetchBytes, gunzip} from './files.js';
 let db = null;
 let sheetIds = new Set();
 let lyricIds = new Set();   // hymns with their own words for a borrowed sheet (sheetLyrics)
+let tunes = {};             // tune code (lower case) -> midi/<hash>.mid, the app's res/raw files
 export let version = null;
 const cache = new Map();   // hymn ID -> merged hymn
 
@@ -65,6 +66,7 @@ export async function open(onProgress = () => {}) {
   const ix = await index;
   sheetIds = new Set(ix.sheets);
   lyricIds = new Set(ix.lyrics);
+  tunes = ix.tunes || {};
   return version;
 }
 
@@ -130,6 +132,14 @@ export function hymn(id) {
   cache.set(id, h);
   return h;
 }
+
+// the file of a hymn's tune (its own tune code, else its parent's), as the app's Play button finds it; null if none
+export function tuneFile(h) {
+  const t = (h && h.tune || '').trim().toLowerCase();
+  return t && t !== '0' ? tunes[t] || null : null;
+}
+
+export function allTuneFiles() { return [...new Set(Object.values(tunes))]; }
 
 // the same hymn in another hymnal, if there is one (the app's "translate" when a hymnal is picked)
 export function relatedIn(id, group) {

@@ -347,6 +347,38 @@ async function search(page, text) {
       assert(text.startsWith('E8 · Praise God') && text.includes('\n1\n'), JSON.stringify(text.slice(0, 80)));
     });
 
+    await test('Play loops the tune and stops on the next hymn (E1)', async () => {
+      await open(page, '#/h/E1');
+      await page.click('.hymn-nav .play');
+      await page.waitForFunction(async () => (await import('./player.js')).playing() === 'E1');
+      assert(await page.getAttribute('.hymn-nav .play', 'aria-pressed') === 'true', 'button not pressed');
+      await page.keyboard.press('ArrowRight');
+      await onHymn(page, 'E2');
+      assert(await page.evaluate(async () => (await import('./player.js')).playing()) === null, 'still playing');
+    });
+    await test('every tune file reads as notes, and sounds (not silent, not clipping)', async () => {
+      const r = await page.evaluate(async () => {
+        const P = await import('./player.js');
+        const v = await (await fetch('data/version.json')).json();
+        const ix = await (await fetch(v.indexFile)).json();
+        const bad = [];
+        for (const [t, f] of Object.entries(ix.tunes)) {
+          if (f.endsWith('.mp3')) continue;
+          try { if (!P.parseMidi(await (await fetch(f)).arrayBuffer()).notes.length) bad.push(t + ': no notes'); }
+          catch (e) { bad.push(t + ': ' + e.message); }
+        }
+        const level = await P.renderForTest(ix.tunes['5553216153222'], 6);
+        return {count: Object.keys(ix.tunes).length, bad, level};
+      });
+      assert(r.count > 2400, r.count + ' tunes');
+      assert(!r.bad.length, r.bad.slice(0, 10).join('\n'));
+      assert(r.level.peak > 0.1 && r.level.peak < 0.95, 'E1 peak ' + r.level.peak);
+    });
+    await test('a hymn with no tune has Play greyed out (C206)', async () => {
+      await open(page, '#/h/C206');
+      assert(await page.isDisabled('.hymn-nav .play') === (await page.evaluate(async () => { const DB = await import('./db.js'); return !DB.tuneFile(DB.hymn('C206')); })), 'state');
+    });
+
     console.log('Installable and offline');
     await test('manifest, home-screen icon and not for search engines', async () => {
       await open(page, '');

@@ -1,11 +1,11 @@
 # Hymns web app (PWA)
 
 The hymns of the Android app as a web app that installs on a phone or tablet and works offline: lyrics in every
-hymnal, search, favorites, and the sheet music viewer (piano / guitar, transpose, chords over lyrics, chord editing).
+hymnal, search, favorites, each hymn's tune (Play), and the sheet music viewer (piano / guitar, transpose, chords over lyrics, chord editing).
 It is the app for iPhone and iPad users, published on GitHub Pages. Design notes: [SPEC.md](SPEC.md).
 
 Everything comes from the Android app's files (`sqlite/hymns.sql` via `hymns.sqlite`, `app/src/main/assets/sheetMei`,
-`sheetLyrics`, the viewer's Verovio, `HymnGroup.java`), so the web app always shows the same data as the APK.
+`sheetLyrics`, the viewer's Verovio, the tunes in `res/raw`, `HymnGroup.java`), so the web app always shows the same data as the APK.
 
 ## Build and try it
 
@@ -63,7 +63,7 @@ under an edit.
 ## Tests
 
 ```bash
-node tools/web/tests/e2e.cjs                 # 50 checks in Chromium: search, hymns, sheets, Android behaviour, offline, phone
+node tools/web/tests/e2e.cjs                 # 53 checks in Chromium: search, hymns, sheets, tunes, Android behaviour, offline, phone
 node tools/web/tests/e2e.cjs --sheets 300    # also renders 300 random sheets in four modes each (--sheets all: every one)
 node tools/web/tests/edit.cjs                # 12 checks of the chord editor, saving, export and import
 ```
@@ -78,6 +78,7 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/app.js` | screens and routing (hash URLs), settings, favorites, the hymnal picker |
 | `src/db.js` | the database (sql.js): a hymn with its parent's fields, related hymns, search |
 | `src/sheet.js` | the sheet viewer (ported from the app's `assets/viewer/viewer.js`), translated words, chord edits |
+| `src/player.js` | Play: reads the app's MIDI files (`res/raw/m<tune>.mid`) and plays them looped with a small Web Audio piano |
 | `src/editor.js`, `src/edits.js` | the chord editor panel; edits on the device, export and import |
 | `src/files.js` | fetching and unpacking the gzipped data files |
 | `src/groups.js` | the hymnals; `build.py` fills them in from `HymnGroup.java` |

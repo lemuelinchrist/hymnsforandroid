@@ -3,6 +3,7 @@
 //   - the app itself (SHELL) is stored on install, under the build id, and served from there;
 //   - data files with a hash in their name (DATA: sheets, sheet lyrics, the music renderer) are kept once fetched;
 //     they never change, so they are served from the store without asking the network;
+//   - tunes (midi/<hash>.mid) are kept once played, the same way; there are too many to list, so they are matched by name
 //   - data/version.json is asked from the network first, so a new build is noticed, and from the store offline;
 //   - the database itself is not stored here: the app keeps it unpacked in IndexedDB.
 const BUILD = '/*BUILD*/';
@@ -10,6 +11,7 @@ const SHELL = /*SHELL*/[];
 const DATA = /*DATA*/[];
 const SHELL_CACHE = 'hymns-shell-' + BUILD;
 const DATA_CACHE = 'hymns-data';
+const TUNE = /^midi\/[0-9a-f]{10}\.(mid|mp3)$/;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(SHELL_CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -24,7 +26,7 @@ self.addEventListener('activate', (event) => {
     const data = await caches.open(DATA_CACHE);
     const keep = new Set(DATA.map((f) => new URL(f, self.registration.scope).href));
     keep.add(new URL('data/version.json', self.registration.scope).href);
-    for (const req of await data.keys()) if (!keep.has(req.url)) await data.delete(req);
+    for (const req of await data.keys()) if (!keep.has(req.url) && !TUNE.test(rel(new URL(req.url)) || '')) await data.delete(req);
     await self.clients.claim();
   })());
 });
@@ -48,7 +50,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(networkFirst(req, url.origin + url.pathname));
     return;
   }
-  if (DATA.includes(path) && !/^data\/hymns-/.test(path)) {
+  if ((DATA.includes(path) && !/^data\/hymns-/.test(path)) || TUNE.test(path)) {
     event.respondWith(cacheFirst(req));
     return;
   }

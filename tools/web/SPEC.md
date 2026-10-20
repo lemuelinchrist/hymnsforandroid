@@ -283,5 +283,9 @@ How it works now:
   colours from `DISPLAY` in `build.py`. A new language needs no change here.
 - **Translated words under a borrowed sheet** (`sheetLyrics`, ported from the app's `viewer.js`): FR, FY, C, CS, Z, ZS.
 - **Icons** from the Android app's icon (the serif H on dark grey), full tile, so iOS rounds it like any app.
-- **Not done yet:** playing the melody (needs a small MIDI synthesizer), the similar-tune list, the tool that
-  bakes exported chord edits into the `.ly` sources.
+- **Play** (`player.js`, 2026-10-20): the app's tune files (`res/raw/m<tune>.mid`, published as `midi/<hash>.mid`,
+  the hymn's tune or its parent's) read in JS and played looped with Web Audio: a synthesized piano (a harmonic
+  wave, a lowpass that closes as the note decays, longer decay for low notes), no samples. Stops when another hymn is
+  opened. iPhone: `navigator.audioSession.type = 'playback'` so the silent switch does not mute it. 3 of the app's
+  tune files are empty or not MIDI (m51113211615, m51355654355, m612343275); they do not play in the app either.
+- **Not done yet:** the similar-tune list, the tool that bakes exported chord edits into the `.ly` sources.

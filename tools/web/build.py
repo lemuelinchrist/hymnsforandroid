@@ -34,6 +34,7 @@ ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
 DEFAULT_ASSETS = os.path.join(ROOT, 'app', 'src', 'main', 'assets')
 ENUM = os.path.join(ROOT, 'app', 'src', 'main', 'java', 'com', 'lemuelinchrist', 'android', 'hymns', 'HymnGroup.java')
 APP_GRADLE = os.path.join(ROOT, 'app', 'build.gradle')
+RAW = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'raw')
 APP_ICON = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'drawable-xhdpi', 'icon.png')
 DIST = os.path.join(HERE, 'dist')
 
@@ -189,6 +190,28 @@ def build_packs(folder, ext, out_dir, parse):
     return files, sorted(ids)
 
 
+def build_tunes():
+    """The app's tunes (res/raw/m<tune>.mid, one .mp3), for the Play button: midi/<hash>.<ext>, and
+    {tune code (lower case): file} for the index. A file that is not a MIDI file or an MP3 is left out."""
+    tunes, bad = {}, []
+    for name in sorted(os.listdir(RAW)):
+        m = re.match(r'^m([0-9a-z]+)\.(mid|mp3)$', name)
+        if not m:
+            continue
+        with open(os.path.join(RAW, name), 'rb') as f:
+            data = f.read()
+        if not (data[:4] == b'MThd' or (m.group(2) == 'mp3' and (data[:3] == b'ID3' or data[:2] == b'\xff\xfb'))):
+            bad.append(name)
+            continue
+        rel = 'midi/%s.%s' % (short_hash(data), m.group(2))
+        write(os.path.join(DIST, rel), data)
+        tunes[m.group(1)] = rel
+    if bad:
+        print('WARNING: %d tune files are not MIDI files (they do not play in the app either): %s' % (len(bad), ', '.join(bad)),
+              file=sys.stderr)
+    return tunes
+
+
 def build_verovio(assets):
     src = os.path.join(assets, 'viewer')
     with open(os.path.join(src, 'verovio-toolkit-wasm.js'), 'rb') as f:
@@ -247,10 +270,12 @@ def main():
     lyrics, lyric_ids = build_packs(os.path.join(args.assets, 'sheetLyrics'), '.json', 'lyrics', json.loads)
     print('sheets: %d in %d packs; sheet lyrics: %d in %d packs' % (len(sheet_ids), len(sheets), len(lyric_ids), len(lyrics)))
     version['verovio'] = build_verovio(args.assets)
+    tunes = build_tunes()
+    print('tunes: %d' % len(tunes))
     build_icons()
 
     version.update({'sheets': sheets, 'lyrics': lyrics, 'app': app_version(), 'built': time.strftime('%Y-%m-%d %H:%M')})
-    index = json.dumps({'sheets': sheet_ids, 'lyrics': lyric_ids}, separators=(',', ':')).encode('utf-8')
+    index = json.dumps({'sheets': sheet_ids, 'lyrics': lyric_ids, 'tunes': tunes}, separators=(',', ':')).encode('utf-8')
     version['indexFile'] = 'data/index-%s.json' % short_hash(index)
     write(os.path.join(DIST, version['indexFile']), index)
     build_id = short_hash(json.dumps(version, sort_keys=True).encode() + b''.join(
@@ -264,7 +289,7 @@ def main():
     write(gpath, src.replace('/*GROUPS*/[]', json.dumps(groups, ensure_ascii=False, indent=1)).encode('utf-8'))
     shell = sorted(os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/')
                    for r, _, ns in os.walk(DIST) for n in ns
-                   if not re.match(r'(data|sheets|lyrics|verovio)/', os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/'))
+                   if not re.match(r'(data|sheets|lyrics|verovio|midi)/', os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/'))
                    and n != 'sw.js')
     data_files = [version['dbFile'], version['indexFile']] + sorted(sheets.values()) + sorted(lyrics.values()) + [
         'verovio/verovio-toolkit-wasm.js?v=' + version['verovio']]

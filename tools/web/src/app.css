@@ -598,3 +598,12 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
   .lyrics { column-width: 21em; column-gap: 2.5em; }
 }
 @media (min-width: 1080px) { .panes:not(.two) .lyrics { column-width: 21em; column-gap: 3em; } }
+
+/* ---- the Play button ---- */
+.hymn-nav .icon-btn.play { color: var(--g); }
+.hymn-nav .icon-btn.play[aria-pressed="true"] { background: var(--g); color: var(--surface); }
+.hymn-nav .icon-btn.play:disabled { opacity: .3; cursor: default; }
+.hymn-nav .icon-btn.play svg { fill: currentColor; }
+.hymn-nav .icon-btn.play[aria-pressed="true"] svg { fill: none; stroke-width: 2.6; }
+/* small phones: text size is in Settings, so the row keeps room for Play */
+@media (max-width: 420px) { .hymn-nav .icon-btn.size { display: none; } }
