@@ -35,10 +35,8 @@ public class Hymn {
     private String tune="";
     private String no;
     private String parentHymn;
-    private String sheetMusicLink;
 
     private boolean isNewTune = false;
-    private boolean hasOwnSheetMusic = true;
 
     public String getVerse() {
         return verse;
@@ -53,14 +51,6 @@ public class Hymn {
 
     public Hymn(Context context) {
         this.context = context;
-    }
-
-    public String getSheetMusicLink() {
-        return sheetMusicLink;
-    }
-
-    public void setSheetMusicLink(String sheetMusicLink) {
-        this.sheetMusicLink = sheetMusicLink;
     }
 
     public String getParentHymn() {
@@ -253,7 +243,6 @@ public class Hymn {
                 ", tune='" + tune + '\'' +
                 ", no='" + no + '\'' +
                 ", parentHymn='" + parentHymn + '\'' +
-                ", sheetMusicLink='" + sheetMusicLink + '\'' +
                 ", verse='" + verse + '\'' +
                 '}';
     }
@@ -309,10 +298,6 @@ public class Hymn {
             return false;
         }
         return true;
-    }
-
-    public void setHasOwnSheetMusic(boolean hasOwnSheetMusic) {
-        this.hasOwnSheetMusic = hasOwnSheetMusic;
     }
 
     public boolean hasOwnSheetMusic() {

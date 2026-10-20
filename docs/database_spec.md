@@ -106,7 +106,6 @@ The database contains the following tables:
 | `time`              | VARCHAR | The time signature of the hymn.                   |
 | `tune`              | TEXT    | The tune of the hymn.                             |
 | `parent_hymn`       | TEXT    | The parent hymn, if any.                          |
-| `sheet_music_link`  | TEXT    | Legacy hymnal.net SVG URL. Not used by the app any more: sheet music comes from `assets/sheetMei/<id>.mei`. |
 | `verse`             | TEXT    | The scripture verse associated with the hymn.     |
 | `related`           | TEXT    | A comma-separated list of related hymn IDs.       |
 

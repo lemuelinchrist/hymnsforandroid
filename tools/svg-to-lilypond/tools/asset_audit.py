@@ -22,11 +22,15 @@ FRESH = os.path.join(HERE, 'build/fresh')
 db = sqlite3.connect(os.path.join(ASSETS, 'hymns.sqlite'))
 
 
+# hymnal.net's sheet address per hymn (the database column sheet_music_link was dropped in v5.6)
+with open(os.path.join(SVGS, 'hymnalnet_links.tsv'), encoding='utf-8') as f:
+    LINKS = dict(l.rstrip('\n').split('\t', 1) for l in f.readlines()[1:] if '\t' in l)
+
+
 def link(hid, variant):
-    row = db.execute('select sheet_music_link from hymns where _id=?', (hid,)).fetchone()
-    if not row or not row[0]:
+    if not LINKS.get(hid):
         return None
-    u = row[0].replace('http:', 'https:')
+    u = LINKS[hid].replace('http:', 'https:')
     return u.replace('_g.svg', '_p.svg').replace('_p.svg', '_g.svg' if variant == 'guitar' else '_p.svg')
 
 

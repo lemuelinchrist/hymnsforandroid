@@ -9,6 +9,11 @@ import org.jsoup.select.Elements;
 
 import javax.net.ssl.*;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -338,6 +343,7 @@ public class HymnalNetExtractor {
             return;
         }
         // get guitar and piano sheet
+        recordSheetMusicLink(hymn);
         FileUtils.saveUrl(Constants.SHEET_PIANO_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_g", "_p").replace(".svg", ".svg?"));
         FileUtils.saveUrl(Constants.SHEET_GUITAR_DIR + "/" + hymn.getId() + ".svg", hymn.getSheetMusicLink().replace("_p", "_g").replace(".svg", ".svg?"));
 
@@ -360,6 +366,16 @@ public class HymnalNetExtractor {
         }
 
         System.out.println("Hymn resuources downloaded successfully...");
+    }
+
+    /**
+     * Adds "hymnId TAB link" to DATA_DIR/hymnalnet_links.tsv. When the downloaded SVGs are copied into
+     * tools/svg-to-lilypond/svg/, merge these rows into tools/svg-to-lilypond/svg/hymnalnet_links.tsv too.
+     */
+    private static void recordSheetMusicLink(HymnsEntity hymn) throws IOException {
+        Path links = Paths.get(Constants.DATA_DIR, "hymnalnet_links.tsv");
+        String row = hymn.getId() + "\t" + hymn.getSheetMusicLink() + "\n";
+        Files.write(links, row.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
     }
 
     public static void downloadMidi(String hymnalAddress, HymnsEntity hymn, String hymnIdInUrl) throws IOException {

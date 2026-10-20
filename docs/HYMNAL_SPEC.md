@@ -152,7 +152,6 @@ CREATE TABLE "hymns" (
   "sub_category" VARCHAR, "time" VARCHAR,
   "tune" TEXT,                          -- melody code, also the MIDI file name
   "parent_hymn" TEXT,                   -- Hymn ID this one inherits from (translation -> original)
-  "sheet_music_link" TEXT,              -- legacy hymnal.net SVG URL; no longer used by the app
   "verse" TEXT,                         -- Bible references, comma separated
   "related" TEXT                        -- comma-separated Hymn IDs (same hymn in other books)
 );

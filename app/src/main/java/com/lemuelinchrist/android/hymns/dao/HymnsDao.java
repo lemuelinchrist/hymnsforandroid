@@ -25,7 +25,7 @@ public class HymnsDao {
 
     public static enum HymnFields {
         _id, hymn_group, first_stanza_line, first_chorus_line, main_category, sub_category, meter, author,
-        composer, time, key, tune, no, parent_hymn, sheet_music_link, verse, related
+        composer, time, key, tune, no, parent_hymn, verse, related
     }
 
     public static enum StanzaFields {
@@ -256,10 +256,6 @@ public class HymnsDao {
                     hymn.setTime(parentHymn.getTime());
                 if (isEmpty(hymn.getTune()))
                     hymn.setTune(parentHymn.getTune());
-                if (isEmpty(hymn.getSheetMusicLink())) {
-                    hymn.setSheetMusicLink(parentHymn.getSheetMusicLink());
-                    hymn.setHasOwnSheetMusic(false);
-                }
                 if (isEmpty(hymn.getKey()))
                     hymn.setKey(parentHymn.getKey());
                 if (isEmpty(hymn.getMainCategory())) {
@@ -309,7 +305,6 @@ public class HymnsDao {
         hymn.setTune(cursor.getString(cursor.getColumnIndex(HymnFields.tune.toString())));
         hymn.setNo(cursor.getString(cursor.getColumnIndex(HymnFields.no.toString())));
         hymn.setParentHymn(cursor.getString(cursor.getColumnIndex(HymnFields.parent_hymn.toString())));
-        hymn.setSheetMusicLink(cursor.getString(cursor.getColumnIndex(HymnFields.sheet_music_link.toString())));
         hymn.setVerse(cursor.getString(cursor.getColumnIndex(HymnFields.verse.toString())));
         hymn.addRelated(cursor.getString(cursor.getColumnIndex(HymnFields.related.toString())));
 

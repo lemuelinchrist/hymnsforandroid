@@ -29,7 +29,8 @@ class ExtractMissingFiles {
                 try {
                     String tune = HymnalNetExtractor.getTune(Constants.getHymnalNetUrl(hymn) + hymn.no)
                     String sheetMusicLink = HymnalNetExtractor.getSheetMusicLink(Constants.getHymnalNetUrl(hymn) + hymn.no)
-                    dao.saveTuneAndSheetMusicLink(hymn, tune, sheetMusicLink);
+                    dao.saveTune(hymn, tune);
+                    hymn.sheetMusicLink = sheetMusicLink
                     HymnalNetExtractor.downloadSheetMusicAndMidi(Constants.getHymnalNetUrl(hymn) + hymn.no, hymn)
                     updatedHymns += hymn.id;
                 } catch (Exception e) {

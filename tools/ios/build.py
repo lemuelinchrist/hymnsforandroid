@@ -37,8 +37,11 @@ for pid, no, text, note in c.execute("select parent_hymn,no,text,note from stanz
     if no == 'copyright' and not t: continue
     st.setdefault(pid, []).append([no, t] + ([clean(note)] if note else []))
 
-rows = list(c.execute("""select _id,hymn_group,no,first_stanza_line,first_chorus_line,author,composer,key,time,
-  tune,meter,main_category,sub_category,verse,related,parent_hymn,sheet_music_link from hymns"""))
+# hymnal.net's sheet addresses (for the link's hymnal.net number), kept next to the SVGs
+LINKS = os.path.join(ROOT, 'tools/svg-to-lilypond/svg/hymnalnet_links.tsv')
+links = dict(l.rstrip('\n').split('\t', 1) for l in open(LINKS, encoding='utf-8').readlines()[1:] if '\t' in l)
+rows = [r + (links.get(r[0]),) for r in c.execute("""select _id,hymn_group,no,first_stanza_line,first_chorus_line,author,
+  composer,key,time,tune,meter,main_category,sub_category,verse,related,parent_hymn from hymns""")]
 byid = {r[0]: r for r in rows}
 hymns = []
 for (i,g,no,fs,fc,au,co,key,tm,tune,meter,mc,sc,verse,rel,par,sheet) in rows:

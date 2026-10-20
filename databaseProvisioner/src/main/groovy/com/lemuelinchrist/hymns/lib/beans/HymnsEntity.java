@@ -62,8 +62,9 @@ public class HymnsEntity {
     @Basic
     @jakarta.persistence.Column(name = "parent_hymn")
     private String parentHymn;
-    @Basic
-    @jakarta.persistence.Column(name = "sheet_music_link")
+    // hymnal.net's SVG address, only kept in memory to download the sheets and MIDI (no database column any more;
+    // the addresses of the downloaded sheets are kept in hymnalnet_links.tsv, see HymnalNetExtractor)
+    @jakarta.persistence.Transient
     private String sheetMusicLink;
 //    @OneToMany(mappedBy="hymn",fetch = FetchType.EAGER,cascade=CascadeType.ALL,orphanRemoval=true)
 //    private List<RelatedEntity> relatedHymns;
