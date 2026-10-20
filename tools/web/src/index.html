@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hymns</title>
+<meta name="description" content="Hymns with lyrics and sheet music">
+<!-- not for search engines: the site is shared by link only -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hymns">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="app.css">
+<script>
+  // the theme before the first paint, so a dark-mode visit does not flash white
+  try { var t = JSON.parse(localStorage.getItem('hfw.theme')); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<script src="vendor/sql-wasm.js" defer></script>
+<script src="app.js" type="module"></script>
+</head>
+<body>
+<header class="topbar">
+  <button id="backBtn" class="icon-btn back-btn" type="button" aria-label="Back" hidden>
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <a class="brand" href="#/" aria-label="Hymns, home">
+    <img src="icons/icon-64.png" alt="" width="28" height="28"><span>Hymns</span>
+  </a>
+  <form class="searchbox" role="search" onsubmit="return false">
+    <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+    <input id="q" type="search" placeholder="Number or words" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-label="Search hymns">
+    <kbd aria-hidden="true">/</kbd>
+  </form>
+  <button id="hymnalBtn" class="hymnal-btn" type="button" title="Choose a hymnal" aria-haspopup="dialog">
+    <span class="dot"></span><span id="hymnalName">English</span>
+  </button>
+  <a id="settingsTop" class="icon-btn settings-top" href="#/settings" title="Settings" aria-label="Settings"></a>
+</header>
+
+<main id="view"></main>
+
+<nav class="tabbar" aria-label="Main">
+  <a href="#/" data-tab="home"><span class="ti" data-icon="home"></span><span>Hymns</span></a>
+  <a href="#/browse" data-tab="browse"><span class="ti" data-icon="book"></span><span>Hymnal</span></a>
+  <a href="#/favorites" data-tab="favorites"><span class="ti" data-icon="star"></span><span>Favorites</span></a>
+  <a href="#/settings" data-tab="settings"><span class="ti" data-icon="settings"></span><span>Settings</span></a>
+</nav>
+
+<div id="loading" hidden>
+  <div class="loading-box">
+    <img src="icons/icon-64.png" alt="" width="48" height="48">
+    <p id="loadingText">Loading hymns…</p>
+    <div class="progress"><div id="progress"></div></div>
+    <p class="muted small">Only the first visit downloads the hymns; after that they open straight from this device, also offline.</p>
+  </div>
+</div>
+
+<dialog id="hymnalDialog" aria-label="Choose a hymnal">
+  <header><h2>Hymnals</h2><button class="icon-btn" type="button" data-close aria-label="Close">✕</button></header>
+  <p id="hymnalHint" class="dialog-hint muted small" hidden></p>
+  <div id="hymnalChoices" class="hymnal-grid"></div>
+</dialog>
+
+<dialog id="helpDialog" aria-label="Keyboard shortcuts">
+  <header><h2>Keyboard shortcuts</h2><button class="icon-btn" type="button" data-close aria-label="Close">✕</button></header>
+  <dl class="keys">
+    <dt><kbd>/</kbd></dt><dd>Search (a number, a hymn like <code>NS151</code>, or words)</dd>
+    <dt><kbd>↓</kbd> <kbd>↑</kbd> <kbd>Enter</kbd></dt><dd>Move through the results and open one</dd>
+    <dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Previous or next hymn</dd>
+    <dt><kbd>L</kbd> <kbd>S</kbd></dt><dd>Lyrics or sheet music (narrow screens)</dd>
+    <dt><kbd>P</kbd> <kbd>G</kbd></dt><dd>Piano or guitar sheet</dd>
+    <dt><kbd>+</kbd> <kbd>−</kbd> <kbd>0</kbd></dt><dd>Transpose up, down, back to the original key</dd>
+    <dt><kbd>H</kbd></dt><dd>Hide or show the staff (chords over lyrics)</dd>
+    <dt><kbd>E</kbd> <kbd>O</kbd></dt><dd>Edit the chords of the piano sheet; show the original chords</dd>
+    <dt><kbd>Z</kbd> <kbd>Shift Z</kbd></dt><dd>Sheet smaller or bigger</dd>
+    <dt><kbd>F</kbd></dt><dd>Add to or remove from favorites</dd>
+    <dt><kbd>C</kbd></dt><dd>Copy the lyrics</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Leave the sheet-only view, clear the search</dd>
+    <dt><kbd>?</kbd></dt><dd>This list</dd>
+  </dl>
+</dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

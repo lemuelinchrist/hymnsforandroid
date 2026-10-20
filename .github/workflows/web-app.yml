@@ -1,0 +1,49 @@
+# Builds the Hymns web app (tools/web) and publishes it on GitHub Pages.
+# Runs when a GitHub release is published, so the web app follows the Android releases, and by hand
+# (Actions -> Web app -> Run workflow) at any time. The build uses only files in the repository:
+# sqlite/hymns.sql, the app's assets and HymnGroup.java.
+name: Web app
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq sqlite3
+          pip install --quiet pillow
+      - name: Database (as ./gradlew :sqlite:importSql makes it)
+        run: sqlite3 app/src/main/assets/hymns.sqlite < sqlite/hymns.sql
+      - name: Build
+        run: python3 tools/web/build.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: tools/web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

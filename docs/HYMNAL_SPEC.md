@@ -697,7 +697,13 @@ MIDI per tune (from hymnal.net) ──► res/raw/m<tune>.mid
 Routes: `#/E1` (hymn), `#/search/<book>/<tab>?q=…`, `#/settings`, `#/sheet/<sheetId>?lyrics=<id>` (or link straight
 to `viewer/index.html?...`). Browser history = back stack (§8.2).
 
-### 14.2 Start from the iOS build
+### 14.2 Existing web builds
+
+The repository already has a PWA built this way: **`tools/web/`** (sql.js over the shipped database, the sheet viewer
+as a module, chord editing, service worker, GitHub Pages). Start there; its `README.md` and `SPEC.md` describe it.
+The older single-file lyrics-only build below is kept as a fallback.
+
+### 14.2.1 The single-file iOS build
 
 `tools/ios/build.py` already turns the DB into a compact JSON array, resolving parent inheritance and related sets.
 Its record format (one array per hymn) is:
