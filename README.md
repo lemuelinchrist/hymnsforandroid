@@ -89,6 +89,14 @@ This produces the APK in `app/build/outputs/apk/release/`, the Google Play bundl
 `app/build/outputs/bundle/release/`, and the iOS web version in `app/build/outputs/ios/`. Release signing needs
 `keystore.properties`. See `AGENTS.md` §7 for publishing a GitHub release.
 
+## Rebuilding or Customizing the App
+
+Want to build your own version, such as a website, a PWA, an iOS app or a customized Android app? The
+[Functional & Data Specification](docs/HYMNAL_SPEC.md) is available for anyone who wants to rebuild and customize
+the app. It describes the data, the rules for displaying hymns, search, navigation, settings and the sheet music
+viewer in enough detail to build an equivalent app without reading the Android code, and includes a guide for
+building a PWA and a set of acceptance tests.
+
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to Hymns For Android, please:
