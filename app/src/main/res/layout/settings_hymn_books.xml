@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Content of the "Show these hymn books" dialog: what hiding does, then one row per book -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingBottom="8dp"
+            android:text="Hidden books don't appear in the menu, in search or under &quot;Also in&quot;."
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <ListView
+            android:id="@+id/hymnBookList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"/>
+
+</LinearLayout>

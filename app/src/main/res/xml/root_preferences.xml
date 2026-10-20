@@ -28,10 +28,10 @@
                 app:icon="@drawable/ic_settings_favorite_black_32dp"
                 app:summary="Make sure to regularly backup your faves"
         />
-        <MultiSelectListPreference
+        <!-- saves the hidden books; the key keeps its old name so existing settings carry over -->
+        <com.lemuelinchrist.android.hymns.settings.HymnBooksPreference
                 app:key="disableLanguages"
-                app:title="Disable Languages"
-                app:summary="Disable Languages you do not use"
+                app:title="Hymn Books"
                 app:icon="@drawable/ic_library_books_black_32dp"
                 app:defaultValue="@array/disabled_languages_default"
         />
