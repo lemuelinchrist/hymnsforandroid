@@ -106,7 +106,7 @@ The database contains the following tables:
 | `time`              | VARCHAR | The time signature of the hymn.                   |
 | `tune`              | TEXT    | The tune of the hymn.                             |
 | `parent_hymn`       | TEXT    | The parent hymn, if any.                          |
-| `sheet_music_link`  | TEXT    | A URL to the sheet music.                         |
+| `sheet_music_link`  | TEXT    | Legacy hymnal.net SVG URL. Not used by the app any more: sheet music comes from `assets/sheetMei/<id>.mei`. |
 | `verse`             | TEXT    | The scripture verse associated with the hymn.     |
 | `related`           | TEXT    | A comma-separated list of related hymn IDs.       |
 
@@ -123,13 +123,13 @@ The database contains the following tables:
 
 ### `tune`
 
-Stores external media links (like YouTube) for specific tunes.
+Stores curated YouTube videos per hymn (the table name is historical). Used by the YouTube button in "piano" mode; when a hymn has no rows, its parent hymn's rows are used.
 
 | Column          | Type    | Description                                |
 | --------------- | ------- | ------------------------------------------ |
-| `_id`           | VARCHAR | The tune identifier (links to `hymns.tune`).|
+| `_id`           | VARCHAR | A **hymn ID** (e.g. "E8"), not a tune code. |
 | `comment`       | VARCHAR | Description of the link (e.g., "Piano").    |
-| `youtube_link`  | TEXT    | The URL to the YouTube video.              |
+| `youtube_link`  | TEXT    | The YouTube video ID (e.g. "DL6lgn78DcU"); the app opens `https://www.youtube.com/embed/<id>`. |
 
 ### `SEQUENCE`
 
@@ -142,18 +142,20 @@ Stores external media links (like YouTube) for specific tunes.
 
 **Important Note on Character Encoding:** The database contains text with special characters (e.g., accented letters, curly apostrophes). When querying the database and exporting data to files (like CSV), it is crucial to use **UTF-8 encoding** to prevent character corruption. Failure to do so will result in characters being replaced by placeholders like `?`.
 
-The database can be queried using the `sqlite3.exe` command-line tool located in the `sqlite` directory of this workspace.
+The database can be queried with the `sqlite3` command-line tool (install it and put it on the `PATH`; the build needs it too). Run these from the repository root.
 
 ### Example Queries
 
 **Get a hymn by its ID:**
 
 ```shell
-c:\dev\hymnsforandroid\sqlite\sqlite3.exe c:\dev\hymnsforandroid\app\src\main\assets\hymns.sqlite "SELECT * FROM hymns WHERE _id='E1'"
+sqlite3 app/src/main/assets/hymns.sqlite "SELECT * FROM hymns WHERE _id='E1'"
 ```
 
 **Get the stanzas for a hymn:**
 
 ```shell
-c:\dev\hymnsforandroid\sqlite\sqlite3.exe c:\dev\hymnsforandroid\app\src\main\assets\hymns.sqlite "SELECT * FROM stanza WHERE parent_hymn='E1' ORDER BY n_order"
+sqlite3 app/src/main/assets/hymns.sqlite "SELECT * FROM stanza WHERE parent_hymn='E1' ORDER BY n_order"
 ```
+
+For stanza `no` conventions, field quirks and how the app assembles a hymn at runtime, see [`HYMNAL_SPEC.md`](./HYMNAL_SPEC.md) §4–§5.

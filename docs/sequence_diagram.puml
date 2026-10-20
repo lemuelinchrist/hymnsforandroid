@@ -19,8 +19,9 @@ activate HymnsActivity
 HymnsActivity -> HymnBookCollection: switchToHymnAndRememberChoice(hymnId)
 activate HymnBookCollection
 
+HymnBookCollection -> HymnBookCollection: hymnStack.push(currentHymnId)
 HymnBookCollection -> HymnBookCollection: hymnStack.push(hymnId)
-HymnBookCollection -> HymnBookCollection: switchToHymn(hymnId)
+HymnBookCollection -> HymnBookCollection: switchToHymn(hymnId)\n(switches book/adapter if needed)
 
 HymnBookCollection -> ViewPager: setCurrentItem(position)
 activate ViewPager
@@ -29,9 +30,16 @@ ViewPager -> ContentArea: Create/Show Fragment
 deactivate ViewPager
 activate ContentArea
 
+HymnBookCollection -> ContentArea: scrollToTop()
+HymnBookCollection -> HymnsActivity: showToolbar()
+
 ContentArea -> HymnsActivity: onLyricVisible(hymnId)
+ContentArea -> HymnBookCollection: onLyricVisible(hymnId)
 deactivate ContentArea
 
-HymnsActivity -> HymnsActivity: actionBar.setTitle(hymnId)
+HymnBookCollection -> HymnBookCollection: stop playing melody,\nlog hymn to history
+deactivate HymnBookCollection
+
+HymnsActivity -> HymnsActivity: actionBar.setTitle(hymnId),\napply book colours
 deactivate HymnsActivity
 @enduml

@@ -13,7 +13,7 @@ converter is designed**. Update it whenever something new is learned, so nothing
 
 ## 1. Goal
 
-Turn every sheet-music SVG shipped in the app (`svg-to-lilypond/svg/pianoSvg/*.svg`, `guitarSvg/*.svg`)
+Turn every sheet-music SVG the app used to ship (now kept in `tools/svg-to-lilypond/svg/pianoSvg/*.svg`, `guitarSvg/*.svg`)
 into a **LilyPond source file (`.ly`)**. Requirements:
 
 1. **No musical data is lost.** This covers notes, rhythm, chords, lyrics (all verses), and repeats and
@@ -487,7 +487,7 @@ New SVGs arrive via the hymnal.net sync (`HymnalNetExtractor` → `databaseProvi
   skill.
 - **Trigger:** "convert new sheet music", "make .ly for NS1162", or after a New Songs sync.
 - **Steps** (the skill only orchestrates; all logic lives in `tools/`):
-  1. `python3 svg-to-lilypond/tools/convert.py <svg files or hymn ids>`. Runs A→E and writes
+  1. `python3 tools/svg-to-lilypond/tools/convert.py <svg files or hymn ids>`. Runs A→E and writes
      `.ly` + IR + a verification report.
   2. Read the report. For each failure, show the user the original and re-rendered side by side
      (render via `rsvg-convert`) and explain the failing check.
@@ -503,7 +503,7 @@ New SVGs arrive via the hymnal.net sync (`HymnalNetExtractor` → `databaseProvi
 
 ## 13. Decisions (user, 2026-10-04)
 
-1. **Outputs are build artifacts for now:** generated into `svg-to-lilypond/build/` (git-ignored),
+1. **Outputs are build artifacts for now:** generated into `tools/svg-to-lilypond/build/` (git-ignored),
    cheap to regenerate. They'll be committed later, once they're integrated into the app.
 2. **Fidelity target confirmed:** semantic + visual equivalence with the same fixed layout (§8), not
    pixel identity. Screen-adaptive layout is a future goal (§15).
@@ -974,8 +974,12 @@ where checked by eye; see `ACCEPT_DB_MISMATCH`), and the REVIEW table above.
 ## 19. In-app viewer (branch `ly-viewer`, started 2026-10-09)
 
 **Goal (Lemuel, 2026-10-09):** the app renders sheet music from our sources instead of shipping hymnal.net's SVGs.
-For now it is an *extra* viewer behind a setting ("New Sheet Music Viewer", off by default); the SVG viewer stays
-the default and the fallback. Work on branch `ly-viewer`, kept apart from v5.5.
+It started as an *extra* viewer behind a setting ("New Sheet Music Viewer", off by default) on branch `ly-viewer`.
+
+> **Current state:** the MEI viewer is now the **only** sheet viewer. Commit `5eb22f95` dropped the SVGs from the app
+> (they live in `tools/svg-to-lilypond/svg/`) and removed the old SVG viewer and the "New Sheet Music Viewer" setting.
+> `SheetMusicActivity` loads the viewer whenever `sheetMei/<id>.mei` exists (for the hymn, or else its parent) and
+> otherwise shows "Sheet music not available". The notes below about the setting and the SVG fallback are history.
 
 **Route chosen: `.ly` -> MEI at build time, Verovio in the existing WebView.**
 - Android cannot run LilyPond. Verovio (LGPL-3.0, C++ compiled to WebAssembly, `verovio-toolkit-wasm.js`, 7.3 MB,
@@ -1065,7 +1069,7 @@ chosen in Settings; guitar opens with the staff hidden (chords over lyrics, 2026
   NS576, C103, E1016, BF185 in piano/guitar, transposed, staff on/off, night mode.
 
 **Open.** First-load time of the 7 MB toolkit on a phone; WebView without
-WebAssembly (very old System WebView) falls back to an error line - consider falling back to the SVG; a text-size setting; share button (still shares the SVG);
+WebAssembly (very old System WebView) shows an error line (there is no SVG to fall back to any more); a text-size setting; a share button;
 melody playback is unchanged (MIDI).
 
 ## 16. Tools & data in this folder

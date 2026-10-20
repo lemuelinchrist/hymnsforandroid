@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds ios/hymnal.html, or the path given as argv[1] (single offline file) from app/src/main/assets/hymns.sqlite.
+"""Builds tools/ios/hymnal.html, or the path given as argv[1] (single offline file) from app/src/main/assets/hymns.sqlite.
 Book names and order are read from HymnGroup.java, so a new language needs no edit here
 (add it to HymnGroup.java; add it to OWN below only if hymnal.net has its own collection)."""
 import sqlite3, json, gzip, base64, re, sys, os

@@ -4,9 +4,9 @@ A French hymn (FR<n>) borrows the sheet of its English hymn, so its sheet used t
 This folder puts the French words under the notes, without making a second copy of every sheet.
 
 ```
-python3 sheet-lyrics/align.py            # all French hymns: writes app/src/main/assets/sheetLyrics/FR<n>.json + review/
-python3 sheet-lyrics/align.py FR10 FR16  # just these
-python3 sheet-lyrics/test_french.py      # checks of the syllable splitter
+python3 tools/sheet-lyrics/align.py            # all French hymns: writes app/src/main/assets/sheetLyrics/FR<n>.json + review/
+python3 tools/sheet-lyrics/align.py FR10 FR16  # just these
+python3 tools/sheet-lyrics/test_french.py      # checks of the syllable splitter
 ```
 
 ## How it works
@@ -39,7 +39,7 @@ repeats words the stanza text does not spell out. Those hymns get **no overlay**
 `review/FR<n>.txt` with each English phrase, its number of notes, and a French suggestion. See `review/INDEX.md` for the list.
 
 To fix one: open the file, edit the French under each phrase so that it has exactly as many syllables as there are notes,
-and run `python3 sheet-lyrics/align.py FR<n>`. Edit **a copy in `overrides/`** (same name): `overrides/FR<n>.txt` wins over the
+and run `python3 tools/sheet-lyrics/align.py FR<n>`. Edit **a copy in `overrides/`** (same name): `overrides/FR<n>.txt` wins over the
 database. Syllables are joined by `-`, a hyphen that really belongs to the word is written `|`, a syllable held over two notes
 ends with `_`, two syllables sung on one note are joined with `‿`, and a word that goes on in the next line ends with `-`.
 Every phrase line must use exactly as many notes as the English phrase above it has.

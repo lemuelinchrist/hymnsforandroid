@@ -1,7 +1,7 @@
 # Hymns For Android
 
-[![Latest Version](https://img.shields.io/badge/version-v4.19-blue.svg)](https://github.com/lemuelinchrist/hymnsforandroid/releases)
-[![Android Version](https://img.shields.io/badge/android-4.0.3%2B-green.svg)](https://developer.android.com/about/versions/android-4.0.3)
+[![Latest Version](https://img.shields.io/badge/version-v5.6.0-blue.svg)](https://github.com/lemuelinchrist/hymnsforandroid/releases)
+[![Android Version](https://img.shields.io/badge/android-7.0%2B-green.svg)](https://developer.android.com/about/versions/nougat)
 [![Get it on Google Play](https://img.shields.io/badge/Google%20Play-Get%20it%20on-green?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns)
 
 <p align="center">
@@ -28,42 +28,44 @@ Hymns For Android is a comprehensive digital hymnal application that provides ac
 
 ## Features
 
-- **Complete Hymnal**: Access to a comprehensive collection of hymns in the Lord's Recover
-- **Sheet Music**: View sheet music for piano and guitar
+- **Complete Hymnal**: Access to a comprehensive collection of hymns in the Lord's Recovery, in 23 books (languages and collections)
+- **Sheet Music**: View sheet music for piano and guitar, laid out to fit the screen, with transposing and a chords-over-lyrics mode
 - **Search Functionality**: Easily find hymns by title, lyrics, or number
 - **Favorites**: Save your favorite hymns for quick access
 - **Material Design UI**: Modern, intuitive user interface
 - **Offline Access**: All hymns available without internet connection
-- **Compatibility**: Works on Android 4.0.3 (Ice Cream Sandwich) and above
+- **Compatibility**: Works on Android 7.0 (Nougat) and above
+- **iPhone**: Each release also includes a single-file offline lyrics-only web version for iPhone users (`tools/ios/`)
 
-## Build Variants
+## Sheet Music
 
-The app can be built with different sheet music variants:
-- Piano sheet music
-- Guitar sheet music
-- Combined piano and guitar sheet music
+There is a single build. Piano or guitar is a setting in the app (Settings → Sheet Music Type) and can also be
+switched inside the sheet music viewer.
 
 ## Project Structure
 
 - **app**: Main application module
 - **sqlite**: SQLite database module for hymn data storage
 - **databaseProvisioner**: Module for generating and provisioning the hymn database
+- **tools**: The iOS web build, the sheet-music converter (SVG → LilyPond → MEI) and the translated sheet-lyrics aligner
 
-For more details on the database, please see the [Database Specification](docs/database_spec.md).
+For more details, see the [Functional & Data Specification](docs/HYMNAL_SPEC.md), the [Database Specification](docs/database_spec.md) and the [App Architecture](docs/APP_ARCHITECTURE.md).
 
 ## Development Setup
 
 ### Prerequisites
 
-- Android Studio Arctic Fox (2020.3.1) or newer
-- JDK 11 or newer
-- Android SDK 34
+- Android Studio with support for Android Gradle Plugin 8.13
+- JDK 17
+- Android SDK 36
+- `sqlite3` on the `PATH` (the build imports the database from `sqlite/hymns.sql`)
+- Python 3 (for the iOS web build that runs with release builds)
 
 ### Building the Project
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/hymnsforandroid.git
+   git clone https://github.com/lemuelinchrist/hymnsforandroid.git
    ```
 
 2. Open the project in Android Studio
@@ -80,10 +82,12 @@ For more details on the database, please see the [Database Specification](docs/d
 To create a release build:
 
 ```
-./gradlew assembleRelease
+./gradlew clean assembleRelease bundleRelease
 ```
 
-The APK will be generated in `app/build/outputs/apk/release/`
+This produces the APK in `app/build/outputs/apk/release/`, the Google Play bundle (`.aab`) in
+`app/build/outputs/bundle/release/`, and the iOS web version in `app/build/outputs/ios/`. Release signing needs
+`keystore.properties`. See `AGENTS.md` §7 for publishing a GitHub release.
 
 ## Contributing
 

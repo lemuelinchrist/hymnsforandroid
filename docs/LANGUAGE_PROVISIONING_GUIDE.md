@@ -8,11 +8,11 @@ Before working on any provisioning scripts, it is highly recommended to read the
 
 - **[`docs/database_spec.md`](./database_spec.md)**: Essential for understanding the SQLite schema (`hymns` and `stanza` tables) and the "Parent Hymn" inheritance mechanism.
 - **[`docs/APP_ARCHITECTURE.md`](./APP_ARCHITECTURE.md)**: Provides a high-level view of how the `HymnsDao` and data entities fit into the overall application.
-- **[`databaseProvisioner/src/main/groovy/com/lemuelinchrist/hymns/ProvisionGreek.groovy`](../src/main/groovy/com/lemuelinchrist/hymns/ProvisionGreek.groovy)**: The current gold-standard reference implementation for language imports.
+- **[`databaseProvisioner/src/main/groovy/com/lemuelinchrist/hymns/ProvisionGreek.groovy`](../databaseProvisioner/src/main/groovy/com/lemuelinchrist/hymns/ProvisionGreek.groovy)**: The current gold-standard reference implementation for language imports.
 
 ---
 
-## 🏗️ The 3-Stage Pipeline
+## 🏗️ The Pipeline
 
 Importing a new language is not just a single script; it is a pipeline designed for data integrity and repository health.
 
@@ -43,9 +43,9 @@ The standardized text is shoved into the SQLite database.
   - **Inheritance**: Ensure the `parentHymn` field is set correctly so the app automatically inherits tunes, authors, and composers from English parents.
 - **Task**: Add a specific Gradle task in `databaseProvisioner/build.gradle` (e.g., `runGreek`) for easy execution.
 
-### 3. Synchronization & Export
+### 4. Synchronization & Export
 Keep the codebase and database in perfect harmony.
-- **Logic Sync**: Add the new language to the `HymnGroup.java` enum with appropriate Material Design colors.
+- **Logic Sync**: Add the new language to the `HymnGroup.java` enum with appropriate Material Design colors. Its position in the enum is its position in the book list (drawer, settings, and the iOS web build, which reads the enum).
 - **Asset Sync**: Place a **364x364 PNG** icon in `app/src/main/res/drawable-xhdpi/` named with the lowercase language code (e.g., `gk.png`).
 - **SQL Export**: Always run `./gradlew :sqlite:exportSql` after an import. The `hymns.sql` file is the **only** source of truth tracked by Git.
 
@@ -80,10 +80,13 @@ To ensure users' phones automatically refresh their local database cache when an
 
 Once the data is matched and the database is exported, follow these steps to share the update with the world.
 
-### 1. Build the Signed APK
-Always use a "Clean Slate" build to ensure no stale assets are included.
-- **Action**: `./gradlew clean assembleRelease`
-- **Output**: `app/build/outputs/apk/release/HymnsForAndroidvX.XX-PianoAndGuitar.apk`.
+### 1. Build the Signed Release
+Always use a "Clean Slate" build to ensure no stale assets are included. Bump `hymnAppVersion` in `app/build.gradle` first.
+- **Action**: `./gradlew clean assembleRelease bundleRelease`
+- **Output**:
+  - `app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk`
+  - `app/build/outputs/bundle/release/HymnsForAndroidvX.Y-PianoAndGuitar.aab` (for Google Play, not attached to the GitHub release)
+  - `app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html` (iPhone web version; needs Python 3)
 
 ### 2. Commit and Sync
 - **Staging**: Never use `git add .` or `git add -A`. Stage specific files by name (e.g. `git add sqlite/hymns.sql databaseProvisioner/src/main/resources/Spanish2026.txt`). This repo commonly has untracked build artifacts, IDE files, and even stray secrets (e.g. `upload_certificate.pem`) sitting in the working tree — a blanket `add` will happily commit them.
@@ -95,9 +98,12 @@ Always use a "Clean Slate" build to ensure no stale assets are included.
 Per the `ANTIGRAVITY.md` mandates, always create a **Draft** release first.
 - **Action**: 
   1. Create a markdown file (e.g., `temp/release_notes.md`) with rich formatting (bullet points, emojis, clear headers).
-  2. Run the `gh` CLI command, attaching the signed APK built in step 1:
+  2. Run the `gh` CLI command, attaching the APK and the iOS html built in step 1 (see `AGENTS.md` §7, the current reference):
      ```bash
-     gh release create v4.XX app/build/outputs/apk/release/HymnsForAndroidvX.XX-PianoAndGuitar.apk --title "v4.XX - Release Title" --notes-file temp/release_notes.md --draft
+     gh release create vX.Y \
+       app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk \
+       app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html \
+       --title "vX.Y - Release Title" --notes-file temp/release_notes.md --draft
      ```
 - **Review**: Verify the draft on GitHub. Once satisfied, publish it to make it live for the saints.
 

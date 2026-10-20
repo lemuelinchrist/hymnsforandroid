@@ -20,9 +20,9 @@ The project is divided into three main parts:
 -   `databaseProvisioner/`: A Groovy project responsible for parsing raw hymn data and building the `hymns.sqlite` database.
     -   `src/main/groovy/`: The Groovy source code for the data provisioning process.
     -   `data/`: Contains raw data files (e.g., MIDI, SVG) used to generate the database.
--   `sqlite/`: Contains the `hymns.sql` schema file and the `sqlite3.exe` command-line tool for inspecting the database.
+-   `sqlite/`: Contains `hymns.sql`, the text dump of the database that git tracks (see `docs/database_spec.md`). Inspect the database with the `sqlite3` command-line tool, which the build also needs on the `PATH`.
 -   `tools/ios/`: Builds `hymnal.html`, a single-file offline lyrics-only web version for iPhone users (`python3 tools/ios/build.py`). Book names/order come from `HymnGroup.java`; see `tools/ios/README.md`.
--   `docs/`: Contains all supplementary documentation, including the architecture deep-dive, diagrams, database specification, and other notes.
+-   `docs/`: Contains all supplementary documentation, including the architecture deep-dive, diagrams, database specification, and other notes. `docs/HYMNAL_SPEC.md` is the full functional and data specification (enough to rebuild the app on another platform, e.g. a PWA).
 -   `AGENTS.md`: This file.
 -   `README.md`: The original, human-focused README file.
 
@@ -73,7 +73,7 @@ The Android app's source code is located in `app/src/main/java/com/lemuelinchris
 
 -   **`dao` (Data Access Objects)**: Contains classes responsible for all database interactions. `HymnsDao` is a key class here, providing methods to query the `hymns` and `stanza` tables. It also implements the "Parent Hymn" logic.
 -   **`entities`**: Contains the Java objects that map to database tables, such as `Hymn` and `Stanza`. These are the data models for the application.
--   **`content`**: Manages the display of hymn content. This package includes the view pagers and fragments that render the hymn lyrics and sheet music. `HymnTextContent` and `SheetMusicContent` are important classes.
+-   **`content`**: Displays one hymn. `ContentArea` is the fragment for a hymn page; `LyricsArea` renders the header and stanzas; `RelatedHymnsCard` shows the "ALSO IN" chips; `PlayButton`, `FaveButton`, `CopyButton`, `YoutubeButton`, `SimilarTuneButton` and `sheetmusic/SheetMusicButton` are the button bar. `sheetmusic/SheetMusicActivity` shows sheet music in a WebView running the Verovio viewer (`assets/viewer/`) on `assets/sheetMei/<id>.mei`.
 -   **`search`**: Implements the search functionality. It contains the logic for building search queries and displaying results.
 -   **`logbook`**: Handles user-specific data, such as history and favorites.
 -   **`settings`**: Manages the application's settings and preferences.
@@ -83,14 +83,14 @@ The Android app's source code is located in `app/src/main/java/com/lemuelinchris
 ## 6. Development and Build
 
 ### Environment Setup
--   **Android Studio**: Arctic Fox (2020.3.1) or newer.
--   **Android SDK**: Version 34.
--   **JDK**: Version 11 or newer.
+-   **Android Studio**: a version that supports Android Gradle Plugin 8.13.
+-   **Android SDK**: compileSdk/targetSdk 36, minSdk 24.
+-   **JDK**: 17.
+-   **sqlite3** on the `PATH` (the build runs `:sqlite:importSql`), and **Python 3** for the iOS html (`buildIosHymnal`).
 
 ### Building the App
 1.  Open the project in Android Studio.
-2.  To select the sheet music variant (e.g., piano or guitar), you may need to edit `app/build.gradle`.
-3.  Build the app using the Gradle panel or by running `./gradlew assembleDebug`. The database is imported automatically during the build.
+2.  Build the app using the Gradle panel or by running `./gradlew assembleDebug`. The database is imported automatically during the build.
 
 ### Running the Database Provisioner
 The `databaseProvisioner` module is used to build the `hymns.sqlite` database from source files. To run it, execute its Gradle tasks from within Android Studio.
