@@ -379,6 +379,21 @@ async function search(page, text) {
       assert(await page.isDisabled('.hymn-nav .play') === (await page.evaluate(async () => { const DB = await import('./db.js'); return !DB.tuneFile(DB.hymn('C206')); })), 'state');
     });
 
+    await test('same tune: the other hymns on E135\'s tune, one per hymn family', async () => {
+      await open(page, '#/h/E135');
+      const ids = await page.$$eval('.same-tune .chip', (cs) => cs.map((c) => c.textContent));
+      assert(ids.length === 12 && ids.includes('E352') && ids.includes('NS664') && !ids.includes('E135'), ids.join(' '));
+    });
+    await test('same tune from a Chinese hymn lists the Chinese versions first (C272)', async () => {
+      await open(page, '#/h/C272');
+      const ids = await page.$$eval('.same-tune .chip', (cs) => cs.map((c) => c.textContent));
+      assert(ids.slice(0, 3).join(' ') === 'C311 C372 C650' && !ids.includes('E352'), ids.join(' '));
+    });
+    await test('no same-tune section when no other hymn has the tune (E1)', async () => {
+      await open(page, '#/h/E1');
+      assert(await page.locator('.same-tune').count() === 0, 'section shown');
+    });
+
     console.log('Installable and offline');
     await test('manifest, home-screen icon and not for search engines', async () => {
       await open(page, '');

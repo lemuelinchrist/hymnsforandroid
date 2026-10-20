@@ -288,4 +288,9 @@ How it works now:
   wave, a lowpass that closes as the note decays, longer decay for low notes), no samples. Stops when another hymn is
   opened. iPhone: `navigator.audioSession.type = 'playback'` so the silent switch does not mute it. 3 of the app's
   tune files are empty or not MIDI (m51113211615, m51355654355, m612343275); they do not play in the app either.
-- **Not done yet:** the similar-tune list, the tool that bakes exported chord edits into the `.ly` sources.
+- **Same tune** (`DB.sameTune`, 2026-10-20; the Android app's "similar tune" button): a section "Also sung to this tune" at the
+  end of the lyrics, always there when another hymn has the tune (no setting). One entry per hymn family (a hymn and its
+  translations), shown in the hymnal being read when the family has a version there, else in its own hymnal; switched-off
+  hymnals are skipped. The tune code must match exactly (the app took any tune starting with it, so a longer tune counted)
+  and no key is needed (the app skipped hymns without a key, which hid most translations). 480 tunes are shared, up to 13 hymns.
+- **Not done yet:** the tool that bakes exported chord edits into the `.ly` sources.

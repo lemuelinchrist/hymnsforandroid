@@ -607,3 +607,10 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 .hymn-nav .icon-btn.play[aria-pressed="true"] svg { fill: none; stroke-width: 2.6; }
 /* small phones: text size is in Settings, so the row keeps room for Play */
 @media (max-width: 420px) { .hymn-nav .icon-btn.size { display: none; } }
+
+/* ---- other hymns on the same tune ---- */
+.same-tune { margin-top: 24px; padding-top: 12px; border-top: 1px solid var(--line); }
+.same-tune h2 { font: 600 13px var(--ui); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 6px; }
+.same-tune .hymn-row { padding: 7px 8px; }
+.same-tune .hymn-row .first { font-size: 16px; }
+@media print { .same-tune { display: none; } }

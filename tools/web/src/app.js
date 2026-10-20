@@ -618,6 +618,15 @@ function familyNode(hymn) {
     }));
 }
 
+// other hymns sung to this tune (the Android app's "similar tune" button), at the end of the lyrics
+function sameTuneNode(hymn) {
+  const list = DB.sameTune(hymn.id, isShown);
+  if (!list.length) return null;
+  return h('section', {class: 'same-tune'},
+    h('h2', null, 'Also sung to this tune'),
+    h('ul', {class: 'hymn-list'}, list.map((x) => hymnRow(x))));
+}
+
 // the sheet and tab part of the URL, kept when moving to another hymn
 function keepSheetParams() {
   const p = route ? route.params : new URLSearchParams();
@@ -678,7 +687,7 @@ function hymnScreen(view, hymn) {
     h('button', {role: 'tab', 'data-tab': 'lyrics', onclick: () => showTab('lyrics')}, 'Lyrics'),
     h('button', {role: 'tab', 'data-tab': 'sheet', onclick: () => showTab('sheet')}, 'Sheet music')) : null;
 
-  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, lyricsNode(hymn), metaNode(hymn));
+  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, lyricsNode(hymn), sameTuneNode(hymn), metaNode(hymn));
   const sheetPane = hasSheet ? h('section', {class: 'pane sheet-pane'}) : null;
   const panes = h('div', {class: 'panes' + (hasSheet ? ' two' : '')}, lyricsPane, sheetPane);
   const page = h('article', {class: 'hymn', style: groupStyle(hymn.group)}, head, tabs, panes);

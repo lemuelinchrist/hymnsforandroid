@@ -141,6 +141,33 @@ export function tuneFile(h) {
 
 export function allTuneFiles() { return [...new Set(Object.values(tunes))]; }
 
+// Other hymns sung to the same tune (the Android app's "similar tune"): one per hymn family (a hymn and its
+// translations), shown in the hymnal being read when that family has a version there, else in its own hymnal.
+// The tune code must be the same (the app matched any tune starting with it). `shown(code)` says which hymnals are on.
+export function sameTune(id, shown = () => true) {
+  const h = hymn(id);
+  const tune = (h && h.tune || '').trim();
+  if (!tune || tune === '0') return [];
+  const mine = h.parentId || h.id;
+  const roots = new Set();
+  for (const r of rows("select _id, parent_hymn from hymns where trim(tune) = ?", [tune])) {
+    const root = r.parent_hymn || r._id;
+    if (root !== mine && exists(root)) roots.add(root);
+  }
+  const out = [];
+  for (const root of roots) {
+    let pick = splitId(root) && splitId(root).group === h.group ? root : relatedIn(root, h.group);
+    if (!pick) {
+      const fam = family(root).filter((f) => shown(f.group));
+      pick = fam.some((f) => f.id === root) ? root : fam.length ? fam[0].id : null;
+    }
+    if (pick && pick !== h.id) out.push(hymn(pick));
+  }
+  out.sort((a, b) => (a.group === h.group ? 0 : 1) - (b.group === h.group ? 0 : 1)
+    || BY_CODE[a.group].order - BY_CODE[b.group].order || a.no - b.no);
+  return out;
+}
+
 // the same hymn in another hymnal, if there is one (the app's "translate" when a hymnal is picked)
 export function relatedIn(id, group) {
   const f = family(id).find((x) => x.group === group && x.id !== id);
