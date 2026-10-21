@@ -20,7 +20,7 @@ The feature combines data denormalization at provisioning time with a fallback a
   `Dao.save()` in the `databaseProvisioner` module copies the parent's `tune` into the child's row.
 - **Limitation:** only the tune is copied, not the key. The search behind this feature (and the "Music" search tab)
   skips hymns whose `key` is empty, and many translated books have tunes but no key in the database (S, SY, G, GY, GK,
-  SW, FY at the time of writing). Those hymns are never matched directly; they are reached through the related-hymn
+  SW, FY, R, MY, TA at the time of writing). Those hymns are never matched directly; they are reached through the related-hymn
   step below.
 
 ### 2. Runtime Logic (The Android App)

@@ -101,6 +101,18 @@ public enum HymnGroup {
     //Cyan
     SW("Kiswahili", Color.rgb(0x00, 0x83, 0x8F),
             Color.rgb(0x4D, 0xD0, 0xE1),
+            Gravity.LEFT),
+    //Dark Blue
+    R("Russian", Color.rgb(0x15, 0x65, 0xC0),
+            Color.rgb(0x64, 0xB5, 0xF6),
+            Gravity.LEFT),
+    //Dark Green
+    MY("Burmese", Color.rgb(0x2E, 0x7D, 0x32),
+            Color.rgb(0x66, 0xBB, 0x6A),
+            Gravity.LEFT),
+    //Blue Grey
+    TA("Tamil", Color.rgb(0x54, 0x6E, 0x7A),
+            Color.rgb(0x90, 0xA4, 0xAE),
             Gravity.LEFT);
 
     private final String simpleName;

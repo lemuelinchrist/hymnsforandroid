@@ -44,6 +44,9 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | SK   | Slovak      | Slovak hymns.                     |
 | GK   | Greek       | Greek hymns.                      |
 | SW   | Kiswahili   | Kiswahili hymns (Kenya); numbers are the printed page numbers, so they have gaps. |
+| R    | Russian     | Russian hymnal (from Brother Victor, 2026-10); its own numbering, the "R" numbers in the German file's Related lines. |
+| MY   | Burmese     | Burmese (Myanmar) hymnal (from Brother Victor, 2026-10); its own numbering, extra songs from MY1001. |
+| TA   | Tamil       | Tamil hymns (from Brother Victor, 2026-10); numbered like the English hymnal (TA1 = E1), with gaps; TA1501 and up are other songs. |
 | FY   | French Youth | French young people's songbook (Lyon, 2024); numbered in book order (the book has no song numbers). Most have an English parent for the sheet music. |
 
 ## Database Lifecycle & Source of Truth

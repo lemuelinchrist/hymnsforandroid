@@ -91,7 +91,7 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.
 let H=[],byId={},mode="num",allBooks=false,book=store.get("book","E"),fs=store.get("fs",19),
  favs=store.get("favs",[]),pins=store.get("pins",[]),recent=store.get("recent",[]),cur=null;
 
-const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^\p{L}\p{N}\s]/gu," ").replace(/\s+/g," ");
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^\p{L}\p{M}\p{N}\s]/gu," ").replace(/\s+/g," ");
 const strip=s=>s.replace(/<\/?[iu]>/g,"");
 const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 const stanzas=h=>h[4]||(byId[h[5]]&&byId[h[5]][4])||[];

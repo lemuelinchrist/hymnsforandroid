@@ -39,7 +39,6 @@ APP_ICON = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'drawable-xhdpi', 'ic
 DIST = os.path.join(HERE, 'dist')
 
 ACCENTS = re.compile('[̀-ͯ]')
-NON_WORD = re.compile(r'[\W_]+')
 TAGS = re.compile(r'<!--.*?-->|<[^>]*>')
 
 # How the web app names a hymnal, where it differs from HymnGroup.java (the app's drawer names): the name in the
@@ -66,6 +65,9 @@ DISPLAY = {
     'SK': {'name': 'Slovenčina', 'long': 'Slovak', 'lang': 'sk'},
     'GK': {'name': 'Ελληνικά', 'long': 'Greek', 'lang': 'el', 'day': '#0288D1'},
     'SW': {'lang': 'sw'},
+    'R': {'name': 'Русский', 'long': 'Russian', 'lang': 'ru'},
+    'MY': {'name': 'မြန်မာ', 'long': 'Burmese', 'lang': 'my'},
+    'TA': {'name': 'தமிழ்', 'long': 'Tamil', 'lang': 'ta'},
 }
 
 
@@ -77,7 +79,8 @@ def norm(text):
     text = TAGS.sub(' ', text).replace('&nbsp;', ' ').replace('&amp;', '&')
     text = unicodedata.normalize('NFC', ACCENTS.sub('', unicodedata.normalize('NFD', text)))
     text = text.lower().replace('ς', 'σ')
-    return NON_WORD.sub(' ', text).strip()
+    # keep letters, digits and marks (the vowel signs of Tamil, Burmese...), like [^\p{L}\p{M}\p{N}] in src/db.js
+    return ' '.join(''.join(c if unicodedata.category(c)[0] in 'LMN' else ' ' for c in text).split())
 
 
 def short_hash(data):

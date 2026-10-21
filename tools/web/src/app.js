@@ -375,8 +375,8 @@ function highlight(text, words) {
   for (let i = 0; i < text.length;) {
     const cp = text.codePointAt(i);
     const ch = String.fromCodePoint(cp);
-    let c = ch.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/ς/g, 'σ');
-    if (!/^[\p{L}\p{N}]+$/u.test(c)) c = ' ';
+    let c = ch.normalize('NFD').replace(/[̀-ͯ]/g, '').normalize('NFC').toLowerCase().replace(/ς/g, 'σ');
+    if (!/^[\p{L}\p{M}\p{N}]+$/u.test(c)) c = ' ';
     if (!(c === ' ' && n.endsWith(' '))) for (const x of c) { n += x; map.push([i, i + ch.length]); }
     i += ch.length;
   }

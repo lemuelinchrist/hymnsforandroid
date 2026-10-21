@@ -80,7 +80,7 @@ async function search(page, text) {
     console.log('Loading');
     await test('first visit downloads the database and shows the hymnals', async () => {
       await open(page, '');
-      assert(await page.locator('.hymnals .hymnal-card').count() === 22, 'expected 22 hymnals');
+      assert(await page.locator('.hymnals .hymnal-card').count() === 25, 'expected 25 hymnals');
     });
     await test('a second visit opens the database from the browser, without downloading it', async () => {
       await page.waitForTimeout(500);   // the first visit stores it in IndexedDB
@@ -134,6 +134,14 @@ async function search(page, text) {
       await page.goto(BASE + '#/search?q=' + encodeURIComponent('神的愛') + '&all=1');
       await page.waitForSelector('.results');
       assert(await page.locator('.results .hymn-row').count() >= 5, 'too few results');
+    });
+    await test('Tamil and Burmese words keep their vowel signs: "மாட்சி" finds TA2', async () => {
+      await page.goto(BASE + '#/search?q=' + encodeURIComponent('மாட்சி') + '&all=1');
+      await page.waitForSelector('.results');
+      const chips = await page.locator('.results .chip').allTextContents();
+      assert(chips.includes('TA2'), 'no TA2: ' + chips.slice(0, 5).join(' '));
+      const marks = await page.locator('.results mark').allTextContents();
+      assert(marks.includes('மாட்சி'), 'word not highlighted whole: ' + marks.slice(0, 5).join(' | '));
     });
     await test('arrow keys move through the results, Enter opens one', async () => {
       await page.focus('#q');

@@ -259,7 +259,7 @@ export function norm(t) {
   if (!t) return '';
   t = t.replace(/<!--[\s\S]*?-->|<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&');
   t = t.normalize('NFD').replace(/[̀-ͯ]/g, '').normalize('NFC').toLowerCase().replace(/ς/g, 'σ');
-  return t.replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+  return t.replace(/[^\p{L}\p{M}\p{N}]+/gu, ' ').trim();
 }
 
 // stanza markup to plain text with \n line breaks
