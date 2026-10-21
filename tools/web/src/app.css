@@ -614,3 +614,22 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 .same-tune .hymn-row { padding: 7px 8px; }
 .same-tune .hymn-row .first { font-size: 16px; }
 @media print { .same-tune { display: none; } }
+
+/* ---- more room for the sheet on phones: the bars slide away while scrolling down (body.bars-away, app.js) ---- */
+.topbar, .tabs, .sheet-bar { transition: transform .2s ease; }
+body.bars-away .topbar { transform: translateY(-100%); }
+body.bars-away .tabs { transform: translateY(calc(-100% - var(--top) - env(safe-area-inset-top))); }
+body.bars-away .sheet-bar { transform: translateY(calc(-100% - var(--top) - 47px - env(safe-area-inset-top))); }
+body.bars-away.sheet-only .sheet-bar { transform: translateY(calc(-100% - var(--top) - env(safe-area-inset-top))); }
+@media print { body.bars-away .topbar, body.bars-away .sheet-bar { transform: none; } }
+/* phones on their side: slimmer bars */
+@media (orientation: landscape) and (max-height: 500px) {
+  :root { --top: 50px; }
+  .searchbox input { height: 38px; }
+  .hymnal-btn { height: 36px; }
+  .sheet-bar { gap: 6px; padding: 6px 10px; }
+  .sheet-bar .tb { height: 32px; }
+  .sheet-bar .seg .tb { height: 28px; }
+  .sheet-title-bar { padding-top: 8px; }
+  body.sheet-only #view { padding-top: 8px; }
+}

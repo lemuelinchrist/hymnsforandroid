@@ -700,6 +700,7 @@ function hymnScreen(view, hymn) {
   }
   function showTab(t) {
     tab = t;
+    document.body.classList.remove('bars-away');
     page.dataset.tab = t;
     if (tabs) for (const b of tabs.children) b.setAttribute('aria-selected', String(b.dataset.tab === t));
     if (t === 'sheet' || wide.matches) ensureSheet();
@@ -837,6 +838,7 @@ function sheetPanel(pane, hymn, {full}) {
   // chord editing: only on the piano sheet with the staff shown and the edits in place
   let editor = null;
   function setEdit(on) {
+    document.body.classList.remove('bars-away');
     if (on) {
       Object.assign(state, {guitar: false, staff: true, original: false});
       editor = editor || createEditor(view, {onclose: () => setEdit(false)});
@@ -888,11 +890,29 @@ function sheetPanel(pane, hymn, {full}) {
 
   const onTheme = () => view.root.classList.toggle('dark', isDark());
   themeListeners.add(onTheme);
+  const stopHiding = hideBarsOnScroll(pane);
   return {
     set, state,
     setEdit,
-    destroy() { if (editor) editor.destroy(); view.destroy(); themeListeners.delete(onTheme); },
+    destroy() { if (editor) editor.destroy(); view.destroy(); themeListeners.delete(onTheme); stopHiding(); },
   };
+}
+
+// phones and short screens: the bars slide away while scrolling down the sheet (more room for the music)
+// and come back on scrolling up. Not while editing chords.
+const smallScreen = window.matchMedia('(max-width: 1079px), (max-height: 600px)');
+function hideBarsOnScroll(pane) {
+  let lastY = window.scrollY;
+  const onScroll = () => {
+    const y = window.scrollY, dy = y - lastY;
+    if (Math.abs(dy) < 8 && y > 40) return;
+    lastY = y;
+    const away = dy > 0 && y > 80 && smallScreen.matches && pane.offsetParent !== null
+      && !document.body.classList.contains('editing-chords');
+    document.body.classList.toggle('bars-away', away);
+  };
+  window.addEventListener('scroll', onScroll, {passive: true});
+  return () => { window.removeEventListener('scroll', onScroll); document.body.classList.remove('bars-away'); };
 }
 
 function sheetKeys(getSheet) {
