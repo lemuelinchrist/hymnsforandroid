@@ -18,13 +18,17 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import com.lemuelinchrist.android.hymns.R;
+import com.lemuelinchrist.android.hymns.logbook.FavoritesBackup;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    private FavoritesBackup favoritesBackup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+        favoritesBackup = new FavoritesBackup(this, added -> {});
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,8 +74,7 @@ public class SettingsActivity extends AppCompatActivity {
             favePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    DialogFragment favoriteSettingsDialog = new FavoriteSettingsDialog();
-                    favoriteSettingsDialog.show(getParentFragmentManager(), "manageFaves");
+                    ((SettingsActivity) requireActivity()).favoritesBackup.showMenu();
                     return true;
                 }
             });

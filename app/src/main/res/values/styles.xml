@@ -27,6 +27,18 @@
         <item name="colorPrimary">@android:color/white</item>
     </style>
 
+    <!-- FavoritesBackup's dialogs: the search screen's theme makes text white, which hid the dialog titles -->
+    <style name="FavoritesDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:textColorPrimary">#de000000</item>
+    </style>
+
+    <!-- RestoreFavoritesActivity: only its dialogs show, over whatever app opened the file -->
+    <style name="Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
     <style name="NightMode" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name = "android:textColor">#cccccc</item>
         <item name = "android:background">#000000</item>
@@ -37,4 +49,4 @@
         <item name = "android:background">#FFFFFF</item>
     </style>
 
-</resources>
+</resources>

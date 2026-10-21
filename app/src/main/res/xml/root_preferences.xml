@@ -24,9 +24,9 @@
                 app:summary="Screen will never go to sleep"/>
         <Preference
                 app:key="manageFaves"
-                app:title="Import/Export Faves"
+                app:title="Back Up &amp; Restore Favorites"
                 app:icon="@drawable/ic_settings_favorite_black_32dp"
-                app:summary="Make sure to regularly backup your faves"
+                app:summary="Keep a copy, or move them to a new phone"
         />
         <!-- saves the hidden books; the key keeps its old name so existing settings carry over -->
         <com.lemuelinchrist.android.hymns.settings.HymnBooksPreference

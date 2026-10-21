@@ -95,7 +95,8 @@ The overall flow is as follows:
 -   **Role:** Preferences screen.
 -   **Responsibilities:**
     -   A `PreferenceFragmentCompat` built from `res/xml/root_preferences.xml` (font size, night mode, keep display on, disabled languages, YouTube button, similar tune button, sheet music type, about).
-    -   `FavoriteSettingsDialog` exports favorites as a comma-separated list of hymn IDs and imports them from the clipboard.
+    -   "Back Up & Restore Favorites" opens `logbook/FavoritesBackup`'s dialog (also used by the Favorites tab's Back up / Restore bar,
+        and by `logbook/RestoreFavoritesActivity`, which opens a backup file tapped in another app).
 
 ### 10. `SheetMusicActivity.java` (package `content.sheetmusic`)
 -   **Role:** Full-screen sheet music viewer.

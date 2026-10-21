@@ -338,6 +338,15 @@ async function search(page, text) {
       assert(['E1', 'C215', 'NS151'].every((x) => ids.includes(x)) && ids.length === 3, ids.join(' '));
       assert(await page.evaluate(() => JSON.parse(localStorage.getItem('hfw.favorites')).join(',') + ',') === 'E1,C215,NS151,', 'stored order');
     });
+    await test('favorites import the Android app\'s Back up text', async () => {
+      await page.evaluate(() => localStorage.removeItem('hfw.favorites'));
+      await open(page, '#/favorites');
+      await page.fill('textarea.paste', 'My favorite hymns (Hymns For Android): 3 hymns\n\nTo put them back: ...\n\n' +
+        '> E8 – Praise God, from whom all blessings flow;\n> C215 – x\nNS151 – y, E1 z\n\nSent from my iPhone\n');
+      await page.click('.btn.primary:text-is("Import")');
+      await page.waitForSelector('.list-card');
+      assert(await page.evaluate(() => JSON.parse(localStorage.getItem('hfw.favorites')).join(',')) === 'E8,C215,NS151', 'stored order');
+    });
     await test('copy puts the lyrics on the clipboard', async () => {
       await ctx.grantPermissions(['clipboard-read', 'clipboard-write'], {origin: BASE});
       await open(page, '#/h/E8');

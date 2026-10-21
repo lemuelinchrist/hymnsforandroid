@@ -26,6 +26,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
+import com.lemuelinchrist.android.hymns.logbook.FavoritesBackup;
 import com.lemuelinchrist.android.hymns.search.fragments.*;
 
 public class SearchActivity extends AppCompatActivity  {
@@ -37,6 +38,7 @@ public class SearchActivity extends AppCompatActivity  {
     private SearchTabsPagerAdapter mSearchTabsPagerAdapter;
     private ViewPager mViewPager;
     private SearchView searchBar;
+    private FavoritesBackup favoritesBackup;
 //    private MenuItem keyboardToggleButton;
 
 
@@ -47,6 +49,13 @@ public class SearchActivity extends AppCompatActivity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
+
+        // a restore refreshes the Favorites list. Coming back from the file picker brings the keyboard back up, so hide it.
+        favoritesBackup = new FavoritesBackup(this, added -> {
+            hideKeyboard();
+            TabFragment favoritesTab = mSearchTabsPagerAdapter.getTab(mSearchTabsPagerAdapter.getPositionOf(FavoritesTabFragment.class));
+            if (added && favoritesTab.getView() != null) favoritesTab.setSearchFilter("");
+        });
 
         Toolbar tabBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tabBar);
@@ -102,13 +111,13 @@ public class SearchActivity extends AppCompatActivity  {
 
                 Log.d(this.getClass().getName(), "Page position changed. new position is: " + position);
 
-                // clear focus when history tab is selected because history has no search
+                // clear focus when the history or favorites tab is selected because they have no search
                 // the options menu (with the search bar) may not have been created yet
                 if (searchBar == null) return;
 
                 TabFragment currentTabFragment = mSearchTabsPagerAdapter.getTab(position);
-                if ((currentTabFragment instanceof HistoryTabFragment)) {
-                    Log.d(this.getClass().getName(), "position is HistoryTabFragment. clear focus of search bar");
+                if (currentTabFragment instanceof HistoryTabFragment || currentTabFragment instanceof FavoritesTabFragment) {
+                    Log.d(this.getClass().getName(), "position is HistoryTabFragment or FavoritesTabFragment. clear focus of search bar");
                     // it's the only way to defocus the search bar
                     searchBar.setFocusable(false);
                     searchBar.setFocusable(true);
@@ -244,6 +253,10 @@ public class SearchActivity extends AppCompatActivity  {
         hideKeyboard();
         super.onPause();
 
+    }
+
+    public FavoritesBackup getFavoritesBackup() {
+        return favoritesBackup;
     }
 
     private TabFragment getCurrentTab() {

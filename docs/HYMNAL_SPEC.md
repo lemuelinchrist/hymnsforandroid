@@ -48,7 +48,7 @@ Features:
 | Books (languages) | 23 books, chosen from a side drawer. Switching book opens the **same hymn in the new language** when a translation is known, otherwise hymn 1 of that book. |
 | Related hymns | "ALSO IN" chips at the bottom of each hymn: the same hymn in other books. Tap to open. |
 | Search / Index | 8 tabs: Hymn Numbers, First Lines, Favorites, Subjects, Authors, All Lyrics, History, Music (key/tune). |
-| Favorites | Heart button; listed in the Favorites tab; import/export as a comma-separated list of hymn IDs. |
+| Favorites | Heart button; listed in the Favorites tab; back up / restore as a short text file (one "ID – first line" per hymn). |
 | History | Recently opened hymns (newest first, up to 100). The app reopens the last hymn on start. |
 | Play | Loops the hymn's melody (MIDI file looked up by tune code). |
 | Sheet music | Engraved from MEI with Verovio at screen width; piano or guitar (capo + chords derived), transpose ±6, "chords over lyrics" mode, pinch to zoom, night mode. Translations can show their own lyrics under the borrowed sheet. |
@@ -419,13 +419,31 @@ A web build SHOULD map this onto browser history (`#/E1` style URLs) so the brow
 
 ### 8.4 Favorites
 
-- Same record shape as History. Toggled by the heart button. Listed newest-first (by time favorited), max 100 shown.
-- **Export** (Settings → Import/Export Faves): share sheet with all favorite IDs joined by commas (trailing comma),
-  e.g. `E1,C215,NS10012,`.
-- **Import**: read the clipboard, split on commas, upper-case and trim each, add every ID that exists. Toast
-  "Import Successful!" if at least one was valid, else "Sorry! Text in clipboard not Valid. Please copy the list to
-  your clipboard first."
-- A rebuild SHOULD keep this exact text format so users can move favorites between the Android app and the new app.
+- Same record shape as History. Toggled by the heart button. Listed newest-first (by time favorited), all of them
+  (History stops at 100). The top of the Favorites tab shows "N favorites" (or "No favorites yet. Tap ♥ on a hymn to
+  add it.") with **Back up** and **Restore**; Settings → "Back Up & Restore Favorites" opens a dialog with both.
+- **Back up** text (also the file `hymns-favorites.txt`), newest first:
+  ```
+  My favorite hymns (Hymns For Android): 3 hymns
+
+  To put them back: open this file with the Hymns app,
+  or copy all of this text, then in the app tap Search,
+  then Favorites > Restore > Paste copied text.
+
+  E1 – Glory be to God the Father,
+  C215 – ...
+  ```
+  Back up offers "Send (email, chat, Drive…)" (system share sheet with the file attached and the text as the body) or
+  "Save as a file on this phone" (system file picker).
+- **Restore**: "Open a backup file" (file picker), "Paste copied text" (clipboard), or tapping the file in another app
+  (the app handles `VIEW` of `text/plain`). Reading the text: on each line, skip leading non-letters/digits (e.g. an
+  email's `> `) and take the first word; a line of only letters, digits, commas and spaces is the old export format
+  (`E1,C215,NS10012,`) and every item counts. Keep words that look like an ID (`[A-Za-z]{1,3}[0-9]{1,5}[A-Za-z]?`) and
+  exist (as written, else upper-cased). Then ask "Add N hymns to your favorites?" (with how many are already there and how
+  many are not in this version), and add them on top in the file's order. Nothing found: "No favorites found".
+- The web app reads and writes the same text, so favorites move between the two.
+- Android's own backup (Google backup, phone-to-phone transfer) carries the favorites; the hymn database is left out of
+  it (`backup_rules.xml`, `data_extraction_rules.xml`) because Google keeps at most 25 MB per app.
 
 ### 8.5 Book drawer
 
@@ -488,7 +506,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `FontSize` | string | `18f` | `14f` Small, `18f` Medium, `22f` Large, `26f` Extra Large, `32f` XXL (sp) |
 | `nightMode` | bool | false | dark theme for reader and sheet viewer |
 | `keepDisplayOn` | bool | false | keep the screen awake (web: Screen Wake Lock API) in reader and sheet viewer |
-| `manageFaves` | action | — | Import/Export favorites dialog (§8.4) |
+| `manageFaves` | action | — | Back up & restore favorites dialog (§8.4) |
 | `disableLanguages` | set of codes | `{I}` | hidden books: removed from drawer, related chips, and from search tabs 0,1,3,4,7 |
 | `youtubeButton` | string | `disabled` | `disabled` / `piano` / `search` (§7.4) |
 | `similarTune` | bool | false | show Similar Tune button (§7.5) |

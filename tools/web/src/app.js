@@ -1017,11 +1017,36 @@ function setupHymnalPicker() {
 
 // ---- favorites ----
 
-// the Android app's export format: hymn IDs separated by commas
-function favoritesText() { return favorites().join(',') + ','; }
+// the same text as the Android app's Back up: a short note, then one "E1 – first line" per hymn
+function favoritesText() {
+  const favs = favorites().filter((id) => DB.exists(id));
+  const lines = favs.map((id) => {
+    const hymn = DB.hymn(id);
+    const first = (hymn.first || hymn.chorus || '').trim();
+    return first ? id + ' – ' + first : id;
+  });
+  return 'My favorite hymns (Hymns For Android): ' + favs.length + (favs.length === 1 ? ' hymn' : ' hymns') + '\n\n' +
+    'To put them back: in the Android app, open this text as a file or tap Search, then Favorites > Restore;\n' +
+    'in the web app, paste it under Favorites.\n\n' + lines.join('\n') + '\n';
+}
+
+// the hymn numbers in a favorites text, as the Android app reads them: the first word of each line,
+// or every item of a comma-separated line (the old export format, e.g. "E1,C215,NS151,")
+function favoriteIds(text) {
+  const ids = [];
+  for (let line of (text || '').split(/\r?\n/)) {
+    line = line.replace(/^[^A-Za-z0-9]+/, '');
+    const words = /^[A-Za-z0-9,;\s]*,[A-Za-z0-9,;\s]*$/.test(line) ? line.split(/[,;\s]+/) : [line.split(/[^A-Za-z0-9]/)[0]];
+    for (const word of words) {
+      const id = word.toUpperCase();
+      if (/^[A-Z]{1,3}[0-9]{1,5}[A-Z]?$/.test(id) && DB.exists(id) && !ids.includes(id)) ids.push(id);
+    }
+  }
+  return ids;
+}
 
 function importFavorites(text) {
-  const ids = (text || '').split(/[,\s]+/).map((x) => x.trim().toUpperCase()).filter((x) => x && DB.exists(x));
+  const ids = favoriteIds(text);
   if (!ids.length) return 0;
   const favs = favorites();
   const added = ids.filter((id) => !favs.includes(id));
@@ -1056,10 +1081,10 @@ function favoritesScreen(view) {
       return row;
     }))));
   }
-  const area = h('textarea', {class: 'paste', rows: 3, placeholder: 'Paste a favorites list here, e.g. E1,C215,NS151,'});
+  const area = h('textarea', {class: 'paste', rows: 3, placeholder: 'Paste your favorites here (the text made by Export or by the Android app\'s Back up)'});
   box.appendChild(h('section', {class: 'card settings-card'},
     h('h2', null, 'Move favorites between devices'),
-    h('p', {class: 'muted small'}, 'Works with the Android app: there, Settings → Import/Export Faves.'),
+    h('p', {class: 'muted small'}, 'Works with the Android app: there, Search → Favorites → Back up / Restore.'),
     h('div', {class: 'row'},
       h('button', {class: 'btn', disabled: !favs.length || null, onclick: () => shareText(favoritesText(), 'Hymn favorites')}, icon('share'), 'Export'),
       h('button', {class: 'btn', onclick: async () => {
