@@ -898,21 +898,35 @@ function sheetPanel(pane, hymn, {full}) {
   };
 }
 
-// phones and short screens: the bars slide away while scrolling down the sheet (more room for the music)
-// and come back on scrolling up. Not while editing chords.
+// phones and short screens: the bars slide away while scrolling down the sheet (more room for the music).
+// Scrolling up does not bring them back (small moves to fit the music would keep uncovering them):
+// a tap on the sheet does, or reaching the top of the page. Not while editing chords.
 const smallScreen = window.matchMedia('(max-width: 1079px), (max-height: 600px)');
 function hideBarsOnScroll(pane) {
+  const body = document.body;
+  const usable = () => smallScreen.matches && pane.offsetParent !== null && !body.classList.contains('editing-chords');
+  const away = (on) => {
+    body.classList.toggle('bars-away', on);
+    if (on && !store.get('barsHintShown', false)) { store.set('barsHintShown', true); toast('Tap the sheet to show the toolbar'); }
+  };
   let lastY = window.scrollY;
   const onScroll = () => {
-    const y = window.scrollY, dy = y - lastY;
-    if (Math.abs(dy) < 8 && y > 40) return;
+    const y = window.scrollY;
+    if (y <= 40) { body.classList.remove('bars-away'); lastY = y; return; }
+    if (y < lastY) { lastY = y; return; }
+    if (y - lastY < 8) return;
     lastY = y;
-    const away = dy > 0 && y > 80 && smallScreen.matches && pane.offsetParent !== null
-      && !document.body.classList.contains('editing-chords');
-    document.body.classList.toggle('bars-away', away);
+    if (usable() && !body.classList.contains('bars-away')) away(true);
   };
+  const onTap = () => {
+    if (!usable()) return;
+    if (body.classList.contains('bars-away')) away(false);
+    else if (window.scrollY > 40) away(true);
+  };
+  const host = pane.querySelector('.sheet-host');
   window.addEventListener('scroll', onScroll, {passive: true});
-  return () => { window.removeEventListener('scroll', onScroll); document.body.classList.remove('bars-away'); };
+  host.addEventListener('click', onTap);
+  return () => { window.removeEventListener('scroll', onScroll); host.removeEventListener('click', onTap); body.classList.remove('bars-away'); };
 }
 
 function sheetKeys(getSheet) {
