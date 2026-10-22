@@ -898,10 +898,10 @@ function sheetPanel(pane, hymn, {full}) {
   };
 }
 
-// phones and short screens: the bars slide away while scrolling down the sheet (more room for the music).
-// Scrolling up does not bring them back (small moves to fit the music would keep uncovering them):
-// a tap on the sheet does, or reaching the top of the page. Not while editing chords.
-const smallScreen = window.matchMedia('(max-width: 1079px), (max-height: 600px)');
+// phones, tablets (any touch screen, however big) and short screens: the bars slide away while scrolling down the
+// sheet (more room for the music). Scrolling up does not bring them back (small moves to fit the music would keep
+// uncovering them): a tap on the sheet does, or reaching the top of the page. Not while editing chords.
+const smallScreen = window.matchMedia('(max-width: 1079px), (max-height: 600px), (pointer: coarse)');
 function hideBarsOnScroll(pane) {
   const body = document.body;
   const usable = () => smallScreen.matches && pane.offsetParent !== null && !body.classList.contains('editing-chords');
