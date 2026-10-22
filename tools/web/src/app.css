@@ -632,11 +632,13 @@ body.bars-away.sheet-only .sheet-bar { transform: translateY(calc(-100% - var(--
   .sheet-bar .seg .tb { height: 28px; }
   .sheet-title-bar { padding-top: 8px; }
 }
-/* phones: the sheet runs from edge to edge (no card, no side margins); only the words keep a small inset */
-@media (max-width: 720px), (orientation: landscape) and (max-height: 500px) {
+/* phones and tablets (any touch screen): the sheet runs from edge to edge (no card, no side margins);
+   only the words keep a small inset. Beside the lyrics (wide screens) it keeps the gap on the lyrics' side. */
+@media (max-width: 720px), (orientation: landscape) and (max-height: 500px), (pointer: coarse) {
+  body.sheet-only #view { max-width: none; padding-top: 0; }
   .sheet-pane { margin-inline: calc(-1 * var(--gutter)); border-radius: 0; border-inline: 0; box-shadow: none; }
   .sheet-pane.full { border-radius: 0; }
-  body.sheet-only #view { padding-top: 0; }
   .sheet-host { padding: 10px env(safe-area-inset-right) 20px env(safe-area-inset-left); }
   .sheet > :not(.sheet-music), .sheet-music > :not(svg) { padding-inline: 8px; }
 }
+@media (pointer: coarse) and (min-width: 1080px) { .panes.two .sheet-pane { margin-inline-start: 0; } }
