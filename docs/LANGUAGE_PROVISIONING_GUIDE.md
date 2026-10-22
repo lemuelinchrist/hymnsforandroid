@@ -86,7 +86,7 @@ Always use a "Clean Slate" build to ensure no stale assets are included. Bump `h
 - **Output**:
   - `app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk`
   - `app/build/outputs/bundle/release/HymnsForAndroidvX.Y-PianoAndGuitar.aab` (for Google Play, not attached to the GitHub release)
-  - `app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html` (iPhone web version; needs Python 3)
+  - `app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html` (iPhone lyrics-only html; not attached to releases since v5.6.1, iPhone users have the web app)
 
 ### 2. Commit and Sync
 - **Staging**: Never use `git add .` or `git add -A`. Stage specific files by name (e.g. `git add sqlite/hymns.sql databaseProvisioner/src/main/resources/Spanish2026.txt`). This repo commonly has untracked build artifacts, IDE files, and even stray secrets (e.g. `upload_certificate.pem`) sitting in the working tree — a blanket `add` will happily commit them.
@@ -98,11 +98,10 @@ Always use a "Clean Slate" build to ensure no stale assets are included. Bump `h
 Per the `ANTIGRAVITY.md` mandates, always create a **Draft** release first.
 - **Action**: 
   1. Create a markdown file (e.g., `temp/release_notes.md`) with rich formatting (bullet points, emojis, clear headers).
-  2. Run the `gh` CLI command, attaching the APK and the iOS html built in step 1 (see `AGENTS.md` §7, the current reference):
+  2. Run the `gh` CLI command, attaching the APK built in step 1 (see `AGENTS.md` §7, the current reference):
      ```bash
      gh release create vX.Y \
        app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk \
-       app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html \
        --title "vX.Y - Release Title" --notes-file temp/release_notes.md --draft
      ```
 - **Review**: Verify the draft on GitHub. Once satisfied, publish it to make it live for the saints.

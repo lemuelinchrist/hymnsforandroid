@@ -8,7 +8,7 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
 
 ## Steps
 
-1. **Read the current version.** Get `hymnAppVersion` from `app/build.gradle` (e.g. `"v5.4.6"`). This is both the git tag and the release title's version prefix. Confirm a release for this tag doesn't already exist (`gh release view <tag>` — if it does, stop and ask the user how to proceed rather than overwriting).
+1. **Read the current version.** Get `hymnAppVersion` from `app/build.gradle` (e.g. `"v5.7.6"`): that full number is `<version>`, used in the build's file names and in the app itself (for debugging). **The release uses only major.minor**, `<release>` (e.g. `5.7`): the git tag `v<release>`, the title and every mention in the notes (Lemuel 2026-10-22: keep it simple for the public; since v5.7). Confirm a release for `v<release>` doesn't already exist (`gh release view v<release>`) — if it does (an earlier 5.7.x was already released), stop and ask the user how to proceed rather than overwriting.
 
 2. **Survey what changed since the last release**, so the notes are accurate rather than guessed:
    - Find the most recent existing tag (`git tag --sort=-creatordate | head -1`).
@@ -19,7 +19,7 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
 3. **Draft the release notes** in this repo's established style — see `gh release view v5.2` or `gh release view v5.1` for tone/format reference:
    - Emoji section headers (`### 🎉 New`, `### 🐛 Bug Fixes`, `### ✨ Other Improvements`), bullet points, bold lead-ins on each bullet.
    - A `⚠️ IMPORTANT` callout near the top ONLY if there's a real compatibility break the user must act on (e.g. a signing-key change requiring uninstall-before-install) — don't invent one if there isn't.
-   - Add a short line for iPhone users pointing to the attached `...-iOS.html`: it's an offline, lyrics-only hymnal (no sheet music or MIDI; each hymn links to hymnal.net for those) that they open from the Files app or Safari after AirDrop/iCloud Drive (iOS 16.4+).
+   - In the footer, before the Google Play line, add the iPhone line **with the web app link written out** (like the Play link): `🍎 iPhone and iPad users: use the web app at https://lemuelinchrist.github.io/hymnsforandroid/ — open it in Safari, tap **Share**, then **Add to Home Screen**; after the first visit it works offline.` (Since v5.6.1 the `...-iOS.html` is no longer attached: Lemuel 2026-10-22, the web app replaces it; he wants the link in this footer every release.)
    - Close with the Google Play link: `📱 The app is also available on Google Play: https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns` (add a "should be live within about a week" note if the Play Console submission is still pending review — ask the user if unsure).
    - Do not add any "Co-authored-by" line to the release notes body itself — that convention belongs in git commit messages/PR descriptions per the current session's attribution instructions, not release notes.
 
@@ -29,23 +29,24 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
    ```
    ./gradlew clean assembleRelease bundleRelease
    ```
-   This produces `app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk` and the `.aab` bundle (the `.aab` is for Play Console, not attached to the GitHub release). The build also runs the `buildIosHymnal` task, which produces `app/build/outputs/ios/HymnsForAndroidv<version>-iOS.html` (single-file offline lyrics-only hymnal for iPhone users). It needs Python 3; if the build logs `buildIosHymnal skipped`, fix that (or run `./gradlew :app:buildIosHymnal`) before continuing, and confirm the file exists.
+   This produces `app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk` and the `.aab` bundle (the `.aab` is for Play Console, not attached to the GitHub release). The build also runs the `buildIosHymnal` task (`app/build/outputs/ios/HymnsForAndroidv<version>-iOS.html`); it is **not attached** to the release any more, so a `buildIosHymnal skipped` warning does not matter.
 
 6. **Tag and push**:
    ```
-   git tag v<version>
-   git push origin v<version>
+   git tag v<release>
+   git push origin v<release>
    ```
 
-7. **Create the draft release** with the APK and the iOS html attached:
+7. **Create the draft release** with the APK attached:
    ```
-   gh release create v<version> \
+   gh release create v<release> \
      "app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk" \
-     "app/build/outputs/ios/HymnsForAndroidv<version>-iOS.html" \
      --draft \
-     --title "v<version> - <short description>" \
+     --title "v<release> - <short description>" \
      --notes-file <path to the drafted notes>
    ```
    Note: `gh release view` on a still-draft release shows an `untagged-...` URL — this is normal GitHub behavior for unpublished drafts, not an error; it resolves to the real tag URL once published.
 
-8. **Report the draft URL back to the user** and ask whether to publish now (`gh release edit v<version> --draft=false`) or leave it as a draft for further review — don't auto-publish without asking, even though past releases were typically published shortly after drafting.
+8. **Report the draft URL back to the user** and ask whether to publish now (`gh release edit v<release> --draft=false`) or leave it as a draft for further review — don't auto-publish without asking, even though past releases were typically published shortly after drafting.
+
+9. **After publishing, redeploy the web app from master.** Publishing a release runs `.github/workflows/web-app.yml` on the release's tag, which rolls the web app back if master has newer web changes (or a tag made on an older commit). Run `gh workflow run web-app.yml --ref master` right away: the workflow's concurrency group cancels the tag's run. Check with `gh run list --workflow web-app.yml --limit 3`.

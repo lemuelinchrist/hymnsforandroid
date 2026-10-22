@@ -104,15 +104,15 @@ There is no CI/CD workflow for this (no `.github/workflows`) — releases are cr
 2. Build the release artifacts: `./gradlew clean assembleRelease bundleRelease`. This produces:
    - `app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk`
    - `app/build/outputs/bundle/release/HymnsForAndroidvX.Y-PianoAndGuitar.aab` (for Google Play)
-   - `app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html` (single-file offline lyrics-only app for iPhone users; built automatically by the `buildIosHymnal` task, which needs Python 3 — `py -3` on Windows)
-3. Create the GitHub release with the APK and the iOS html attached, using the `gh` CLI. Tag and title follow the `vX.Y` convention (title is `vX.Y - <short description>`):
+   - `app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html` (single-file offline lyrics-only hymnal, built by the `buildIosHymnal` task; no longer attached to releases since v5.6.1, as iPhone users have the web app)
+3. Create the GitHub release with the APK attached, using the `gh` CLI. Tag and title follow the `vX.Y` convention (title is `vX.Y - <short description>`), major.minor only even when `hymnAppVersion` has a patch number (`v5.7.6` → tag `v5.7`); the APK keeps its full-version file name:
    ```shell
    gh release create vX.Y \
      "app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk" \
-     "app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html" \
      --draft \
      --title "vX.Y - <short description>" \
      --notes "<release notes>"
    ```
    Use `--draft` first so it can be previewed on GitHub before publishing; drop the flag (or `gh release edit vX.Y --draft=false`) to publish. Check `gh release view vX.Y` or recent releases (`gh release list`) for tone/format examples.
 4. The `.aab` bundle is for Google Play Console upload, not attached to the GitHub release.
+5. Publishing the release redeploys the web app from the release's tag (`.github/workflows/web-app.yml`). If master is newer, run `gh workflow run web-app.yml --ref master` right after publishing; it cancels the tag's run.
