@@ -2,6 +2,7 @@ package com.lemuelinchrist.android.hymns.content;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.Html;
@@ -16,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
@@ -36,8 +39,8 @@ import java.util.*;
 public class LyricsArea extends ContentComponent<NestedScrollView> {
     private final TextView subjectHeader;
     private final ViewGroup stanzaView;
-    private final RelatedHymnsCard relatedHymnsCard;
-    private final TextView lyricHeader;
+    private final OtherLanguagesSection otherLanguages;
+    private final TableLayout detailsTable;
     private final SharedPreferences sharedPreferences;
     private final Theme theme;
     private int columnNo=0;
@@ -62,10 +65,15 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         subjectHeader = view.findViewById(getRid("subjectHeader"));
         subjectHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
-        lyricHeader = view.findViewById(getRid("lyricHeader"));
-        lyricHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+        // the details card at the bottom is for reference, so a little smaller than the lyrics
+        detailsTable = view.findViewById(getRid("detailsTable"));
+        TextView detailsLabel = view.findViewById(getRid("detailsLabel"));
+        detailsLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        detailsLabel.setLetterSpacing(0.08f);
+        detailsLabel.setTypeface(Typeface.DEFAULT_BOLD);
+        detailsLabel.setTextColor(OtherLanguagesSection.muted(theme.getTextColor()));
 
-        relatedHymnsCard = new RelatedHymnsCard(hymn, parentFragment, (ViewGroup) view.findViewById(getRid("relatedContainer")));
+        otherLanguages = new OtherLanguagesSection(hymn, parentFragment, (ViewGroup) view.findViewById(getRid("otherLanguagesContainer")));
 
     }
 
@@ -81,76 +89,37 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             //if hymn is still null, it means the user entered a hymn number that doesn't exist
             if (hymn == null) return;
 
-            // ########################### Build Header
-            boolean headerContentPresent=false;
+            // ########################### Build Header: subject, then the other languages' numbers
+            // (the header card always stays: the buttons are in it)
             StringBuilder text = new StringBuilder();
             if (isNotEmpty(hymn.getMainCategory())) {
-                headerContentPresent=true;
                 text.append("<b>" + hymn.getMainCategory() + "</b>");
             }
             if (isNotEmpty(hymn.getSubCategory())) {
-                headerContentPresent=true;
                 text.append("<br/>" + hymn.getSubCategory());
             }
             if (hymn.isNewTune()) text.append("<br/>(New Tune)");
-            subjectHeader.setText(Html.fromHtml(text.toString()));
-
-            text = new StringBuilder();
-            // **** tune header
-            if (isNotEmpty(hymn.getMeter())) {
-                headerContentPresent=true;
-                text.append("<br/>Meter: ");
-                text.append(hymn.getMeter());
-            }
-            if (isNotEmpty(hymn.getTime())) {
-                headerContentPresent=true;
-                text.append("<br/>Time: ");
-                text.append(hymn.getTime());
-            }
-            if (isNotEmpty(hymn.getKey())) {
-                headerContentPresent=true;
-                if(!text.toString().contains("Time: ")) {
-                    text.append("<br/>Key: ");
-                } else {
-                    text.append(" - ");
-                }
-                text.append(hymn.getKey());
-            }
-            if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0")) {
-                headerContentPresent=true;
-                text.append("<br/>Tune: ");
-                text.append(hymn.getTune());
-            }
-            if (isNotEmpty(hymn.getVerse())) {
-                headerContentPresent=true;
-                text.append("<br/>Verses: ");
-                text.append(hymn.getVerse());
-            }
-
-            // ** author and composer (only the lines we have, so a missing author doesn't show as "Author: null")
-            if (isNotEmpty(hymn.getAuthor())) {
-                headerContentPresent=true;
-                text.append("<br/>Author: ");
-                text.append(hymn.getAuthor());
-            }
-            if (isNotEmpty(hymn.getComposer())) {
-                headerContentPresent=true;
-                text.append("<br/>Composer: ");
-                text.append(hymn.getComposer());
-            }
-
-            if(!headerContentPresent) {
-                View mainHeaderContainer = view.findViewById(getRid("mainHeaderContainer"));
-                mainHeaderContainer.setVisibility(View.GONE);
+            if (text.length() > 0) {
+                subjectHeader.setText(Html.fromHtml(text.toString()));
             } else {
-                // Use text.substring to remove the leading <br/>
-                String header;
-                if(text.length()>5) {
-                    header = text.substring(5);
-                } else {
-                    header = "";
-                }
-                lyricHeader.setText(Html.fromHtml(header));
+                subjectHeader.setVisibility(View.GONE);
+            }
+            otherLanguages.display();
+
+            // ########################### Build Details (the card at the bottom): label | value rows, only the items we have
+            if (isNotEmpty(hymn.getMeter())) addDetail("Meter", hymn.getMeter());
+            if (isNotEmpty(hymn.getTime())) {
+                // time and key share a row: "4/4 · Ab Major"
+                addDetail("Time", hymn.getTime() + (isNotEmpty(hymn.getKey()) ? " · " + hymn.getKey() : ""));
+            } else if (isNotEmpty(hymn.getKey())) {
+                addDetail("Key", hymn.getKey());
+            }
+            if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0")) addDetail("Tune", hymn.getTune());
+            if (isNotEmpty(hymn.getVerse())) addDetail("Verses", hymn.getVerse());
+            if (isNotEmpty(hymn.getAuthor())) addDetail("Author", hymn.getAuthor());
+            if (isNotEmpty(hymn.getComposer())) addDetail("Composer", hymn.getComposer());
+            if (detailsTable.getChildCount() == 0) {
+                view.findViewById(getRid("detailsCard")).setVisibility(View.GONE);
             }
 
             // ######################## Build Lyric Text
@@ -205,9 +174,6 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             if (columnNo % 2 != 0) {
                 currentTextLinearLayout.removeViewAt(1);
             }
-
-            // #################### Build Footer: related hymns
-            relatedHymnsCard.display();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -272,6 +238,27 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         // notes have a row exclusively to themselves
         if(isFullWidthRow)
             currentTextLinearLayout.removeViewAt(1);
+    }
+
+    /** One row of the details card: the label muted, the value wrapping in its own column (and selectable). */
+    private void addDetail(String label, String value) {
+        float size = fontSize - 2;
+        TextView labelView = new TextView(context);
+        labelView.setText(label);
+        labelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        labelView.setTextColor(OtherLanguagesSection.muted(theme.getTextColor()));
+        labelView.setPadding(0, 0, Math.round(16 * context.getResources().getDisplayMetrics().density), 0);
+
+        TextView valueView = new TextView(context);
+        valueView.setText(value);
+        valueView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        valueView.setTextColor(theme.getTextColor());
+        valueView.setTextIsSelectable(true);
+
+        TableRow row = new TableRow(context);
+        row.addView(labelView);
+        row.addView(valueView);
+        detailsTable.addView(row);
     }
 
     private void openWebPage(String text) {

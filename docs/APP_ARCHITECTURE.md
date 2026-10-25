@@ -15,7 +15,7 @@ The overall flow is as follows:
 4.  The `HymnBookGroup` adapter fetches a list of hymn numbers for the current hymn book from `HymnsDao`.
 5.  For each page, the adapter creates a `ContentArea` fragment.
 6.  The `ContentArea` fragment is given a `hymnId`. It then uses `HymnsDao` to fetch the full `Hymn` object and its `Stanza` objects.
-7.  `ContentArea` renders the hymn's lyrics (using `LyricsArea`), the related hymns (using `RelatedHymnsCard`) and initializes the action buttons (`PlayButton`, `FaveButton`, `SheetMusicButton`, etc.).
+7.  `ContentArea` renders the hymn's lyrics (using `LyricsArea`), the other languages' numbers (using `OtherLanguagesSection`) and initializes the action buttons (`PlayButton`, `FaveButton`, `SheetMusicButton`, etc.).
 8.  When the user swipes to a new page, the `ContentArea` fragment for that page becomes visible and notifies its listeners: `HymnsActivity` updates the title bar and colours, and `HymnBookCollection` stops any playing melody and logs the hymn to history.
 
 ---
@@ -58,7 +58,7 @@ The overall flow is as follows:
     -   Takes a `hymnId` and uses `HymnsDao` to fetch the complete `Hymn` object. If the hymn no longer exists, removes it from history and favorites and shows `E1`.
     -   Delegates rendering to helper components, all subclasses of `ContentComponent`:
         -   `LyricsArea`: the header (category, meter, time, key, tune, verses, author, composer) and the stanzas, including chorus repetition and the two-column layout in landscape (`layout-land/` and `layout-w720dp/stanza_linear_layout.xml`). Colours come from `style/Theme` and `style/HymnTextFormatter`.
-        -   `RelatedHymnsCard`: the "ALSO IN" chips at the bottom.
+        -   `OtherLanguagesSection`: the "OTHER LANGUAGES" number grid under the subject (foldable; the setting `otherLanguagesFolded` is kept for every hymn).
         -   The button bar: `FaveButton`, `PlayButton` (loops `res/raw/m<tune>.mid`), `sheetmusic/SheetMusicButton`, `YoutubeButton` (with `YouTubeSearchLauncher`), `SimilarTuneButton`, `CopyButton`. Each button logs the hymn to history when tapped.
     -   Fires the `onLyricVisible` event when it becomes visible to the user, signaling a page change.
 

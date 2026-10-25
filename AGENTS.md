@@ -74,7 +74,7 @@ The Android app's source code is located in `app/src/main/java/com/lemuelinchris
 
 -   **`dao` (Data Access Objects)**: Contains classes responsible for all database interactions. `HymnsDao` is a key class here, providing methods to query the `hymns` and `stanza` tables. It also implements the "Parent Hymn" logic.
 -   **`entities`**: Contains the Java objects that map to database tables, such as `Hymn` and `Stanza`. These are the data models for the application.
--   **`content`**: Displays one hymn. `ContentArea` is the fragment for a hymn page; `LyricsArea` renders the header and stanzas; `RelatedHymnsCard` shows the "ALSO IN" chips; `PlayButton`, `FaveButton`, `CopyButton`, `YoutubeButton`, `SimilarTuneButton` and `sheetmusic/SheetMusicButton` are the button bar. `sheetmusic/SheetMusicActivity` shows sheet music in a WebView running the Verovio viewer (`assets/viewer/`) on `assets/sheetMei/<id>.mei`.
+-   **`content`**: Displays one hymn. `ContentArea` is the fragment for a hymn page; `LyricsArea` renders the header and stanzas; `OtherLanguagesSection` shows the foldable "OTHER LANGUAGES" number grid under the subject; `PlayButton`, `FaveButton`, `CopyButton`, `YoutubeButton`, `SimilarTuneButton` and `sheetmusic/SheetMusicButton` are the button bar. `sheetmusic/SheetMusicActivity` shows sheet music in a WebView running the Verovio viewer (`assets/viewer/`) on `assets/sheetMei/<id>.mei`.
 -   **`search`**: Implements the search functionality. It contains the logic for building search queries and displaying results.
 -   **`logbook`**: Handles user-specific data, such as history and favorites.
 -   **`settings`**: Manages the application's settings and preferences.

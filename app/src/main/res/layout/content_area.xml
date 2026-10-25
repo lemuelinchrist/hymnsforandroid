@@ -48,13 +48,14 @@
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="10dp"
                         style="@style/dayMode"/>
-                <TextView
-                        android:layout_width="fill_parent"
+                <!-- the other languages' numbers, filled by OtherLanguagesSection -->
+                <LinearLayout
+                        android:id="@+id/otherLanguagesContainer"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:id="@+id/lyricHeader"
-                        android:text="@string/headerFiller"
-                        style="@style/dayMode" android:layout_marginBottom="15dp"/>
+                        android:orientation="vertical"
+                        android:layout_marginBottom="12dp"
+                        style="@style/dayMode"/>
                 <androidx.cardview.widget.CardView android:layout_width="wrap_content"
                                                    android:layout_height="wrap_content"
                                                    style="@style/dayMode" app:cardCornerRadius="25dp"
@@ -155,19 +156,35 @@
 
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+                android:id="@+id/detailsCard"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 style="@style/dayMode" app:cardCornerRadius="5dp" app:cardElevation="5dp"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
         >
+            <!-- Meter, Time, Tune, Author, Composer -->
             <LinearLayout
-                    android:id="@+id/relatedContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     style="@style/dayMode"
-                    android:paddingLeft="16dp" android:paddingRight="16dp" android:paddingTop="4dp" android:paddingBottom="16dp" android:layout_marginTop="10dp"/>
+                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="14dp" android:paddingBottom="16dp">
+                <TextView
+                        android:id="@+id/detailsLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/details"
+                        android:layout_marginBottom="6dp"
+                        style="@style/dayMode"/>
+                <!-- one row per item: label | value (filled by LyricsArea); the value column wraps -->
+                <TableLayout
+                        android:id="@+id/detailsTable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:shrinkColumns="1"
+                        style="@style/dayMode"/>
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 

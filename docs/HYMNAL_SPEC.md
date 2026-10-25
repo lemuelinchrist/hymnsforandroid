@@ -46,7 +46,7 @@ Features:
 |---|---|
 | Lyrics reader | One hymn per page; swipe left/right to the previous/next hymn of the same book. Header with category, meter, time, key, tune code, Bible verses, author, composer. Stanza numbers and choruses in the book's colour. |
 | Books (languages) | 23 books, chosen from a side drawer. Switching book opens the **same hymn in the new language** when a translation is known, otherwise hymn 1 of that book. |
-| Related hymns | "ALSO IN" chips at the bottom of each hymn: the same hymn in other books. Tap to open. |
+| Related hymns | "OTHER LANGUAGES" grid under the subject: code and number of the same hymn in other books (`CS 305`), foldable. Tap to open. |
 | Search / Index | 8 tabs: Hymn Numbers, First Lines, Favorites, Subjects, Authors, All Lyrics, History, Music (key/tune). |
 | Favorites | Heart button; listed in the Favorites tab; back up / restore as a short text file (one "ID – first line" per hymn). |
 | History | Recently opened hymns (newest first, up to 100). The app reopens the last hymn on start. |
@@ -262,18 +262,28 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
 1. **Toolbar** (app bar): hamburger (opens book drawer), title = the **Hymn ID** (e.g. `E1`), Search icon, Settings icon.
    Background = the book's day colour (black in night mode). Hides when scrolling down, reappears when scrolling up
    and whenever a new hymn is opened.
-2. **Header card** (hidden entirely if no header field has a value):
-   - Subject line, centred: **main_category** (bold), newline, sub_category, newline `(New Tune)` if `isNewTune`.
-   - Details block (each item on its own line, omitted when empty, in this order):
-     `Meter: <meter>` · `Time: <time>` — and if both time and key exist they share a line: `Time: 4/4 - Ab Major`;
-     if only key: `Key: <key>` · `Tune: <tune>` (omit when `0`) · `Verses: <verse>` · `Author: <author>` · `Composer: <composer>`.
+2. **Header card** (always shown: it holds the buttons):
+   - Subject line, centred (omitted when empty): **main_category** (bold), newline, sub_category, newline `(New Tune)`
+     if `isNewTune`.
+   - **Other languages** (since v5.7; omitted when the hymn has no related hymn in an enabled book), so a brother can
+     call the hymn in several languages without scrolling:
+     - A row: `OTHER LANGUAGES` (12sp, bold, letter-spaced, muted), the count in a small rounded badge, and at the right
+       `Hide ▴` / `Show ▾` in the book's colour (night colour in night mode). Tapping the row folds or unfolds the grid.
+     - A grid of the related hymns: book **code** (muted, ~0.82× the number's size, one fixed width so the numbers line
+       up) and **number** (bold), e.g. `CS 305`. No border, no colour dot. Order: the books' drawer order (the
+       `HymnGroup` order), then the number. Columns: as many as fit (4 on most phones at the default size;
+       2 to 8). Number size = font size − 4sp (at least 12sp). Tap = open that hymn *and remember where we came from* (§8.2).
+     - Folded or not is **one setting for every hymn** (`otherLanguagesFolded`, default false = open), kept across
+       restarts; pages already built next to the current one follow it at once.
    - **Button bar**: a pill (corner radius 25dp) filled with the book's day colour holding white icons:
      Favorite ♡/♥, Play ▶/❚❚, Sheet music, YouTube (conditional), Similar tune (conditional), Copy. See §7.
 3. **Lyrics card** (§6.2).
-4. **Related card**: label `ALSO IN` (12sp, bold, letter-spaced, muted) and one pill per related hymn:
-   `● <Book display name>  <number>` — dot in the book's colour (night colour in night mode), name muted, number bold.
-   Pill: fill `#F3F5F8` / stroke `#C9D1DC` (day), `#1A1A1A` / `#3A3A3A` (night), fully rounded. Tap = open that hymn
-   *and remember where we came from* (§8.2). Card is removed when the list is empty.
+4. **Details card** (hidden when none of these has a value): label `DETAILS` (12sp, bold, letter-spaced, muted), then
+   a two-column table at font size − 2sp, one row per item, omitted when empty, in this order: label (muted) | value
+   (wraps in its own column, selectable): `Meter` · `Time` (with the key when both exist: `4/4 · Ab Major`), or `Key`
+   when there is only a key · `Tune` (omit when `0`) · `Verses` · `Author` · `Composer`.
+   (Until v5.6 these were in the header card and the related hymns were pills with book names at the bottom: the
+   numbers moved up because brothers call hymns in several languages during meetings.)
 
 Cards: 10dp side margins, 5dp radius, light elevation. Page background white (day) / black (night).
 
@@ -510,7 +520,8 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `nightMode` | bool | false | dark theme for reader and sheet viewer |
 | `keepDisplayOn` | bool | false | keep the screen awake (web: Screen Wake Lock API) in reader and sheet viewer |
 | `manageFaves` | action | — | Back up & restore favorites dialog (§8.4) |
-| `disableLanguages` | set of codes | `{I}` | hidden books: removed from drawer, related chips, and from search tabs 0,1,3,4,7 |
+| `disableLanguages` | set of codes | `{I}` | hidden books: removed from drawer, the other-languages grid, and from search tabs 0,1,3,4,7 |
+| `otherLanguagesFolded` | bool | false | the other-languages grid on the hymn page is folded (§6.1); set by its Hide/Show row, not in the Settings screen |
 | `youtubeButton` | string | `disabled` | `disabled` / `piano` / `search` (§7.4) |
 | `similarTune` | bool | false | show Similar Tune button (§7.5) |
 | `sheetMusicType` | string | `pianoSvg` | `pianoSvg` = Piano, `guitarSvg` = Guitar: the viewer's starting mode (§11) |

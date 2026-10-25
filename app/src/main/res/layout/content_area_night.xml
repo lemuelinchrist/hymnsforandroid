@@ -34,14 +34,13 @@
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
                     style="@style/NightMode" android:paddingBottom="10dp"/>
-            <TextView
-                    android:layout_width="fill_parent"
+            <!-- the other languages' numbers, filled by OtherLanguagesSection -->
+            <LinearLayout
+                    android:id="@+id/otherLanguagesContainer"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/lyricHeader"
+                    android:orientation="vertical"
                     style="@style/NightMode"
-                    android:minHeight="30dp"
-                    android:text="@string/enterHymnNo"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"/>
         </LinearLayout>
@@ -127,13 +126,29 @@
                     android:textIsSelectable="true"/>
         </LinearLayout>
 
+        <!-- Meter, Time, Tune, Author, Composer -->
         <LinearLayout
-                android:id="@+id/relatedContainer"
+                android:id="@+id/detailsCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 style="@style/NightMode"
-                android:paddingLeft="30dp" android:paddingRight="30dp" android:paddingBottom="10dp" android:layout_marginTop="10dp"/>
+                android:paddingLeft="30dp" android:paddingRight="30dp" android:paddingBottom="16dp" android:layout_marginTop="16dp">
+            <TextView
+                    android:id="@+id/detailsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/details"
+                    android:layout_marginBottom="6dp"
+                    style="@style/NightMode"/>
+            <!-- one row per item: label | value (filled by LyricsArea); the value column wraps -->
+            <TableLayout
+                    android:id="@+id/detailsTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:shrinkColumns="1"
+                    style="@style/NightMode"/>
+        </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
 
