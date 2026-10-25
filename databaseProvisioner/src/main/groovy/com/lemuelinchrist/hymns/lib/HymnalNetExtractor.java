@@ -120,6 +120,11 @@ public class HymnalNetExtractor {
         hymn.setHymnGroup(group);
         hymn.setNo(idNo);
 
+        // hymnal.net's page since 2026: "About this hymn" is a <dl class="hn-dl"> of <dt>/<dd> pairs
+        if (!doc.select("dl.hn-dl").isEmpty()) {
+            readDetails(doc, hymn);
+        } else {
+
         try {
             try {
                 hymn.setMainCategory(details.select("label:matches(^Category)").parents().get(0).select("a").text().trim());
@@ -185,6 +190,7 @@ public class HymnalNetExtractor {
 
             e.printStackTrace();
             throw new RuntimeException();
+        }
         }
 
         try {
@@ -337,6 +343,47 @@ public class HymnalNetExtractor {
         return hymn;
     }
 
+    /** The details of the new page layout: <dt>Category</dt><dd>…</dd>, Lyrics, Music, Key, Time, Meter, Hymn code. */
+    private static void readDetails(Document doc, HymnsEntity hymn) {
+        hymn.setMainCategory(detail(doc, "Category", false));
+        hymn.setSubCategory(detail(doc, "Subcategory", false));
+        // the whole line, as hymnal.net writes it: "Adapted from Fanny Jane Crosby (1820-1915)"
+        hymn.setAuthor(detail(doc, "Lyrics", true));
+        hymn.setComposer(detail(doc, "Music", true));
+        String key = detail(doc, "Key", false);
+        hymn.setKey(key == null ? null : key.replace("\u266D", "b").replace("\u266F", "#"));
+        hymn.setTime(detail(doc, "Time", false));
+        hymn.setMeter(detail(doc, "Meter", false));
+        hymn.setTune(detail(doc, "Hymn code", false));
+        Element scripture = dd(doc, "Scripture");
+        if (scripture != null) {
+            StringBuilder verse = new StringBuilder();
+            for (Element a : scripture.select("a")) verse.append(a.text()).append(",");
+            if (verse.length() > 0) hymn.setVerse(verse.toString());
+        }
+    }
+
+    private static Element dd(Document doc, String label) {
+        for (Element dt : doc.select("dl.hn-dl dt")) {
+            if (dt.text().trim().equalsIgnoreCase(label)) {
+                Element dd = dt.nextElementSibling();
+                return dd != null && dd.tagName().equals("dd") ? dd : null;
+            }
+        }
+        return null;
+    }
+
+    /** The text of a detail, or null when the page doesn't have it. wholeLine: all of it (minus the "bio" link). */
+    private static String detail(Document doc, String label, boolean wholeLine) {
+        Element dd = dd(doc, label);
+        if (dd == null) return null;
+        dd = dd.clone();
+        dd.select("a.hn-bio").remove();
+        String text = (wholeLine ? dd.text() : dd.select("a").text()).replace('\u00A0', ' ').trim();
+        if (!wholeLine && text.isEmpty()) text = dd.text().trim();
+        return text.isEmpty() ? null : text;
+    }
+
     public static void downloadSheetMusicAndMidi(String hymnalAddress, HymnsEntity hymn) throws IOException {
         if (hymn.getSheetMusicLink()==null || hymn.getSheetMusicLink().isEmpty()) {
             System.out.println("skipping saving of sheets. link is empty...");
@@ -360,9 +407,14 @@ public class HymnalNetExtractor {
                     .replace("_g.svg", ".mid"));
         } catch (Exception e) {
             // try downloading tune midi instead
-            FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymn.getSheetMusicLink().replace("/svg/", "/midi/tunes/")
-                    .replace("_p.svg", "_tune.midi")
-                    .replace("_g.svg", "_tune.midi"));
+            try {
+                FileUtils.saveUrl(Constants.MIDI_PIANO_DIR + "/m" + hymn.getTune().trim() + ".mid", hymn.getSheetMusicLink().replace("/svg/", "/midi/tunes/")
+                        .replace("_p.svg", "_tune.midi")
+                        .replace("_g.svg", "_tune.midi"));
+            } catch (Exception e2) {
+                // since 2026-10 hymnal.net serves no MIDI at all (403), only MP3 tunes: keep the hymn, without a MIDI
+                System.out.println("no MIDI for " + hymn.getId() + ": " + e2.getMessage());
+            }
         }
 
         System.out.println("Hymn resuources downloaded successfully...");

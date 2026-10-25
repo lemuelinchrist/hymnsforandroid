@@ -2,7 +2,7 @@ PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(50) NOT NULL, SEQ_COUNT NUMBER(19), PRIMARY KEY (SEQ_NAME));
 INSERT INTO SEQUENCE VALUES('SEQ_GEN',X'3530');
-INSERT INTO SEQUENCE VALUES('stanza',268501);
+INSERT INTO SEQUENCE VALUES('stanza',268516);
 INSERT INTO SEQUENCE VALUES('related',X'36323439');
 CREATE TABLE IF NOT EXISTS "hymns" (
 	 "_id" VARCHAR NOT NULL,
@@ -7752,7 +7752,6 @@ INSERT INTO hymns VALUES('NS748',NULL,'R. H.',NULL,'YOUR WORDS WERE FOUND,','NS'
 INSERT INTO hymns VALUES('NS749',NULL,'B. L. P. N.',NULL,'AND TO ENLIGHTEN ALL','NS','D Major','Scriptures for Singing',NULL,'749',NULL,'4/4','333431121133343111211',NULL,'Ephesians 3:9-11,','');
 INSERT INTO hymns VALUES('NS750','H. S. K. D. T.','H. S. K.','DAY BY DAY, UNCEASINGLY,','Jesus Lord, I truly love You.','NS','Bb Major','Longings',NULL,'750','For Growth in Life','4/4','345554354566656',NULL,NULL,'');
 INSERT INTO hymns VALUES('NS751',NULL,'R. H.',NULL,'HE HIMSELF IS OUR PEACE,','NS','G Major','Scriptures for Singing',NULL,'751',NULL,'4/4','7167157122171',NULL,'Ephesians 2:14-15,','');
-INSERT INTO hymns VALUES('NS752','T. T.','T. T.','DAY BY DAY AS WE PARTAKE OF SUCH A CHRIST,','Sitting in an ordinary home on the couch,','NS','D Minor','The Church',NULL,'752','As Our Home and Rest','4/4','',NULL,NULL,'');
 INSERT INTO hymns VALUES('NS753','FTTMa 63rd-66th Term','FTTMa 63rd-66th Term','O LORD, WE NOW LAY ALL ASIDE:','Once in the world we wandered all,','NS','F Major','Consecration',NULL,'753','Fighting with the Lord','4/4','333256125117661112',NULL,NULL,'');
 INSERT INTO hymns VALUES('BF440','G. R. H. Wood',NULL,'RIVERS OF LIVING WATER, (New Tune)','Rivers of living water, (New Tune)','BF','D Major','Fulness of the Spirit',NULL,'440','As the Living Water','4/4','3251217653254565','E251',NULL,NULL);
 INSERT INTO hymns VALUES('BF441',NULL,'R. H.',NULL,'Full salvation! Full salvation! (New Tune)','BF','Ab Major','Assurance and Joy of Salvation',NULL,'441','Saved by Grace','4/4','345176543451132','E321',NULL,NULL);
@@ -15961,6 +15960,7 @@ INSERT INTO hymns VALUES('TA1510',NULL,NULL,NULL,'அற்புதமே ! அ
 INSERT INTO hymns VALUES('TA1511',NULL,NULL,NULL,'நாம் ஆவியில் வாழும்போது','TA',NULL,'நாம் ஆவியில் வாழும்போது',NULL,'1511',NULL,NULL,NULL,'BF367',NULL,'BF367');
 INSERT INTO hymns VALUES('TA1512',NULL,NULL,NULL,'கடவுள் வழியைக் கண்டுபிடிப்பது இந்தத் தலைமுறையைப்','TA',NULL,'கடவுள் வழியைக் கண்டுபிடிப்பது',NULL,'1512',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('TA1513',NULL,NULL,NULL,'சென்ற இருபது நூற்றாண்டாய்','TA',NULL,'சென்ற இருபது நூற்றாண்டாய்',NULL,'1513',NULL,NULL,'5111235321223432122','NS309',NULL,'NS309');
+INSERT INTO hymns VALUES('NS752','T. T.','T. T.','KEEP ME LIVING BY THE GRACE OF GOD,','Lord, keep me living, through deep sorrows and steep joys,','NS','D Major','Longings',NULL,'752','For Grace','4/4','512231223353',NULL,NULL,NULL);
 CREATE TABLE IF NOT EXISTS "stanza" (
 	 "parent_hymn" TEXT NOT NULL,
 	 "no" TEXT NOT NULL,
@@ -55397,11 +55397,6 @@ INSERT INTO stanza VALUES('NS750','5','See the prize ahead, very near!<br/>Soon 
 INSERT INTO stanza VALUES('NS750','chorus','Full account the Master makes:<br/>“Well done! Well done! Faithful slave!”<br/>Wedding feast, the Kingdom, New Jerusalem—<br/>Eternal joy and praise<br/>',NULL,53498,10);
 INSERT INTO stanza VALUES('NS751','1','He Himself is our peace,<br/>He who made both into one.<br/>Peace with God, peace with man,<br/>All the enmity is gone.<br/>Peace within, peace without,<br/>Through Himself and for His plan.<br/>Peace is Christ, and He’s in us,<br/>We are now the one new man!<br/>',NULL,53499,1);
 INSERT INTO stanza VALUES('NS751','2','Abolishing in His flesh,<br/>Commandments in the ordinances.<br/>That He might make the two<br/>In Himself into one new man.<br/>Making peace!<br/>Making peace!<br/>In Himself and through the cross,<br/>Making peace!<br/>Making peace!<br/>We are now the one new man.<br/>',NULL,53500,2);
-INSERT INTO stanza VALUES('NS752','1','Sitting in an ordinary home on the couch,<br/>Feasting on the Christ that’s growing in all the saints;<br/>Here I touch the purpose of why I am living—<br/>Eating, drinking, building with the saints!<br/>',NULL,53501,1);
-INSERT INTO stanza VALUES('NS752','chorus','Day by day as we partake of such a Christ,<br/>We are built together as His house, so bright!<br/>Here the river’s flowing with the tree of life,<br/>In God’s light we’re headed up aright!<br/>',NULL,53502,2);
-INSERT INTO stanza VALUES('NS752','2','Drawn by Him each morning at His dear face we gaze,<br/>Sitting at His feet each day His speaking we heed,<br/>Then in Him we’re living, Him to others shining,<br/>Bearing fruit we’re filled with joy indeed!<br/>',NULL,53503,3);
-INSERT INTO stanza VALUES('NS752','3','Holding truth in love we’re growing up into Christ,<br/>Honouring each other that we’re members we prove;<br/>Through the cross, by Spirit, Christ we are dispensing,<br/>Blended as the one new man we move.<br/>',NULL,53504,4);
-INSERT INTO stanza VALUES('NS752','chorus','House to house we’re practising the Body life,<br/>We in life are reigning as His loving bride;<br/>Here we have the foretaste of our destiny—<br/>God and man completely satisfied!<br/>',NULL,53505,5);
 INSERT INTO stanza VALUES('NS753','1','Once in the world we wandered all,<br/>Enslaved by sin, under usurpation;<br/>But He chose, redeemed us<br/>From bondage, fall,<br/>Revealed to us His divine intention.<br/>Now that we see His heart’s desire,<br/>We willingly give our life entire.<br/>',NULL,53506,1);
 INSERT INTO stanza VALUES('NS753','chorus','O Lord, we now lay all aside:<br/>Self-choice, own cares, and all self-love;<br/>O Christ, the meaning of our life,<br/>Our goal and aim, there’s none beside;<br/>Toward the good land, we now are poised<br/>To take, possess, Your perfect choice.<br/>',NULL,53507,2);
 INSERT INTO stanza VALUES('NS753','2','As priestly army we are formed;<br/>To fight for Him, journey with Him, able;<br/>Whether trouble rise up or raging storm,<br/>He’ll care for us; we’re His numbered people.<br/>Waters of death we fain would pass;<br/>Defeat the foes: they are food for us!<br/>',NULL,53508,3);
@@ -97856,6 +97851,11 @@ INSERT INTO stanza VALUES('TA1512','1','கடவுள் வழியைக்
 INSERT INTO stanza VALUES('TA1512','2','கர்த்தா, சீர்பொருத்த அர்ப்பணம், உயிர்நாடிக் குழு ஆக,<br/>சேவிக்க, சரீரம் கட்டப்பட, ஆண்-பிள்ளை கொண்டுவர,<br/>இறுதி பொறுப்பைச் சுமக்க, நம் ஆண்டவரைக் கொணர.<br/>',NULL,268499,2);
 INSERT INTO stanza VALUES('TA1513','1','சென்ற இருபது நூற்றாண்டாய்<br/>பல்லாயிரம் அரும் வாழ்க்கைகள்,<br/>நெஞ்சின் வாஞ்சைகள், மேற் பதவிகள்,<br/>பொன் எதிர்காலங்கள் ‘’வீணாயின’’<br/>கர்த்தர் இயேசு மீது.<br/>இவ்வண்ணம் அவரை நேசிப்போர்க்கு<br/>அவர் முற்றும் அழகானோர், காணிக்கைக்கு நற்பாத்திரர்.<br/>கர்த்தர் மேல் அவர்கள் ஊற்றியது வீணல்ல<br/>அவரின் இனிமையின் நறுமண சாட்சி.<br/>கர்த்தர் மேல் அவர்கள் ஊற்றியது வீணல்ல<br/>அவரின் இனிமையின் நறுமண சாட்சி.<br/>',NULL,268500,1);
 INSERT INTO stanza VALUES('TA1513','note','(மத்தேயு 26:8 அடிகுறிப்பு 1, மீட்டுத்திருப்புதல் படிவம்)<br/>',NULL,268501,2);
+INSERT INTO stanza VALUES('NS752','1','Lord, keep me living, through deep sorrows and steep joys,<br/>My human life is filled with days of darkness, days of songs.<br/>What’s the purpose? What’s the reason for all this?<br/>Lord, it’s only by Your grace, by the grace of God I’ll live.<br/>',NULL,268512,1);
+INSERT INTO stanza VALUES('NS752','chorus','Keep me living by the grace of God,<br/>Make this a reality, Christ living in me.<br/>Keep me living by the grace of God,<br/>For the reality, of the Body of Christ.<br/>',NULL,268513,2);
+INSERT INTO stanza VALUES('NS752','2','Lord, Your grace, is flowing from the throne,<br/>Not material gifts, nor blessings, but the processed Triune God.<br/>God the Father’s boundless riches, God the Son an endless spring,<br/>God the Spirit’s ceaseless flowing thus the Triune God to bring.<br/>',NULL,268514,3);
+INSERT INTO stanza VALUES('NS752','3','Lord, Your Body, must become reality,<br/>Through every member functioning to build up Your Body.<br/>So defeat us, and subdue us, open vessels, Lord we pray,<br/>As stewards of the grace of God, Lord build us up today.<br/>',NULL,268515,4);
+INSERT INTO stanza VALUES('NS752','chorus','Keep us living by the grace of God,<br/>Make this a reality, Christ living in us.<br/>Keep us living by the grace of God,<br/>For the reality, of the Body of Christ.<br/>',NULL,268516,5);
 CREATE TABLE IF NOT EXISTS "tune"
 (
 	_id VARCHAR,
