@@ -25188,10 +25188,6 @@ INSERT INTO stanza VALUES('C388','6','是我救主、中保、大夫、<br/>牧�
 INSERT INTO stanza VALUES('C388','7','是我生命、能力、智慧：<br/>公義、聖潔、救贖；<br/>平安、喜樂、<br/>盼望、安慰、<br/>榮耀、亮光、道路。<br/>',NULL,9223,9223);
 INSERT INTO stanza VALUES('C388','8','我這基督充滿萬有，<br/>怎能述盡說竭？<br/>祂是首先、祂是末後、<br/>祂是一切一切！<br/>',NULL,9224,9224);
 INSERT INTO stanza VALUES('C388','9','我既得到這樣至寶，<br/>我心怎不歡呼！<br/>歡呼基督給我得到，<br/>何等一位基督！<br/>',NULL,9225,9225);
-INSERT INTO stanza VALUES('C389','1','今世福樂沒滅，<br/>基督屬我！<br/>地上愛情斷絕，<br/>基督屬我！<br/>在此幽暗野地，<br/>無處可以安息，<br/>惟有基督可倚，<br/>基督屬我！<br/>',NULL,9226,9226);
-INSERT INTO stanza VALUES('C389','2','莫誘我心離開，<br/>基督屬我！<br/>我願與主同在，<br/>基督屬我！<br/>你這今世歡娛，<br/>一時騙人之局，<br/>從我心中離去，<br/>基督屬我！<br/>',NULL,9227,9227);
-INSERT INTO stanza VALUES('C389','3','去罷，今世幻夢，<br/>基督屬我！<br/>我今已經清醒，<br/>基督屬我！<br/>凡我從前所慕，<br/>不過使我痛苦；<br/>惟主使我滿足，<br/>基督屬我！<br/>',NULL,9228,9228);
-INSERT INTO stanza VALUES('C389','4','去罷，短暫今時，<br/>基督屬我！<br/>來罷，長久永世，<br/>基督屬我！<br/>來罷，可愛福氣！<br/>來罷，甜美安息！<br/>來罷，恩主自己！<br/>基督屬我！<br/>',NULL,9229,9229);
 INSERT INTO stanza VALUES('C390','1','耶穌，我救主，<br/>祂是我一切！<br/>奇妙的救主，<br/>何等的可悅！<br/>引導和保護，<br/>所有安度過，<br/>大能的救主－耶穌為我。<br/>',NULL,9230,9230);
 INSERT INTO stanza VALUES('C390','chorus','耶穌為我！耶穌為我！<br/>每時候，每處所，<br/>耶穌為我！<br/>',NULL,9231,9231);
 INSERT INTO stanza VALUES('C390','2','耶穌於康健，<br/>耶穌於病痛，<br/>耶穌於富裕，<br/>或是於貧窮，<br/>無論是日光，<br/>無論是風波，<br/>祂是我平安－耶穌為我。<br/>',NULL,9232,9232);
@@ -36779,7 +36775,7 @@ INSERT INTO stanza VALUES('FR113','5','Nous avons trouvé que réunis,<br/>Nous 
 INSERT INTO stanza VALUES('FR114','1','Je T''aime, ô Jésus,<br/>Ton amour ardent<br/>Nous entraine à Te suivre,<br/>Vers Toi nous courons !<br/>Nous entraine à Te suivre,<br/>Vers Toi nous courons !<br/>Tu es, Bien-aimé,<br/>Si merveilleux et glorieux.<br/>Mon cœur de réjouit en Toi seul.<br/>',NULL,27577,2);
 INSERT INTO stanza VALUES('FR114','2','Jésus, Ton amour<br/>Vaut mieux que le vin,<br/>Et Ton nom est un parfum,<br/>D''un nard si précieux ;<br/>Et Ton nom est un parfum,<br/>D''un nard si précieux.<br/>Ta table, mon Roi,<br/>Est riche en mets succulents;<br/>Ton grand chef - d''œuvre en moi se forme.<br/>',NULL,27578,3);
 INSERT INTO stanza VALUES('FR114','3','Viens voir, Bien-aimé,<br/>Fleurir mon jardin.<br/>Viens sentir les arômes<br/>De précieux parfums.<br/>Viens sentir les arômes<br/>De précieux parfums.<br/>Descends, mon amour,<br/>Viens admirer Ton jardin,<br/>Réjouis-Toi du miel et du vin !<br/>',NULL,27579,4);
-INSERT INTO stanza VALUES('FR115','1','Cher Seigneur, Ta beauté me captive,<br/>À Toi, j''ouvre largement mon cœur.<br/>Enfin délivré des œuvres mortes,<br/>Laisse-moi en Toi seul demeurer.<br/>Ici je veux contempler Ta gloire !<br/>Remplis-moi de Ton éclat divin,<br/>œuvre-Toi en moi, oh ! je T''implore,<br/>Et mélange Ton Esprit au mien.<br/>',NULL,27580,5);
+INSERT INTO stanza VALUES('FR115','1','Cher Seigneur, Ta beauté me captive,<br/>À Toi, j''ouvre largement mon cœur.<br/>Enfin délivré des œuvres mortes,<br/>Laisse-moi en Toi seul demeurer.<br/>Ici je veux contempler Ta gloire !<br/>Remplis-moi de Ton éclat divin,<br/>œuvre-Toi en moi, oh ! je T''implore,<br/>Et mélange Ton Esprit au mien.<br/>',NULL,27580,1);
 INSERT INTO stanza VALUES('FR115','2','Tu resplendis dans le ciel azuré,<br/>Fils de l''homme, Tu es sur le trône.<br/>Par Toi, mon être entier est embrasé,<br/>Tout-Puissant, Ton feu m''a consumé.<br/>Quand pour la première fois, je Te vis,<br/>Ma fierté tomba dans le mépris.<br/>Maintenant, Seigneur, mon cœur Te chante !<br/>En goûtant la douceur de Ton nom.<br/>',NULL,27581,2);
 INSERT INTO stanza VALUES('FR115','3','Je T''apporte mon vase d''albâtre,<br/>Récipient d''un parfum de grand prix.<br/>Je le brise de bon cœur, cher Maitre !<br/>Je veux oindre Tes pieds, Bien-aimé.<br/>Ô Jésus, sur Toi je répands l''amour !<br/>Qui émane du fond de mon cœur.<br/>Ton amour me satisfait pour toujours,<br/>Pour Toi, je veux garder le meilleur.<br/>',NULL,27582,3);
 INSERT INTO stanza VALUES('FR115','4','Et sur les montagnes des aromates,<br/>Bien-aimé, je languis de Te voir.<br/>Viens boire à la fontaine de mon cœur,<br/>Viens Te reposer dans Ton jardin.<br/>Je T''adore, aux autres saints me joignant,<br/>Nous voici, l''épouse désirée.<br/>Reviens vite, car notre amour T''attend,<br/>Cher Seigneur, Tu seras satisfait.<br/>',NULL,27583,4);
@@ -37607,7 +37603,7 @@ INSERT INTO stanza VALUES('K1038','2','정욕과 죄악의 물든 맘을 성령�
 INSERT INTO stanza VALUES('K1038','3','희생의 제물로 돌아가신 우리 주 예수님이시여<br/>구속의 은혜를 내리시사 오늘도 구원해 줍소서<br/>',NULL,28948,4);
 INSERT INTO stanza VALUES('K1038','4','주님의 깊으신 은혜만을 세상에 널리 전하리라<br/>하늘의 능력과 권세로써 오늘도 입혀 주옵소서<br/>',NULL,28949,5);
 INSERT INTO stanza VALUES('K1039','1','예수 나를 오라 하네 예수 나를 오라 하네<br/>어디든지 주를 따라 주와 같이 같이 가려네<br/>',NULL,28950,1);
-INSERT INTO stanza VALUES('K1039','chorus','주의 인도하심 따라 주의 인도하심 따라<br/>어디든지 주를 따라 주와 같이 같이 가려네<br/>주께서 사랑하는<br/>',NULL,28951,2);
+INSERT INTO stanza VALUES('K1039','chorus','주의 인도하심 따라 주의 인도하심 따라<br/>어디든지 주를 따라 주와 같이 같이 가려네<br/>',NULL,28951,2);
 INSERT INTO stanza VALUES('K1039','2','겟세마네 동산까지 주와 함께 가려 하네<br/>피땀 흘린 동산까지 주와 함께 함께 가려네<br/>',NULL,28952,3);
 INSERT INTO stanza VALUES('K1039','3','심판하실 자리까지 주와 함께 가려 하네<br/>심판하실 자리까지 주와 함께 함께 가려네<br/>',NULL,28953,4);
 INSERT INTO stanza VALUES('K1039','4','주가 크신 은혜 내려 나를 항상 돌아보고<br/>많은 영광 보여 주며 나와 함께 함께 가시네<br/>',NULL,28954,5);
@@ -54918,7 +54914,7 @@ INSERT INTO stanza VALUES('NS643','1','Jesus Lord, I’m coming forward unto You
 INSERT INTO stanza VALUES('NS643','2','To be like Abraham,<br/>Intimate and sweet with You,<br/>Lingering in fellowship,<br/>Lord I want to know Your heart’s<br/>Longing and deep desire.<br/>This is my plea, reveal to me this mystery.<br/>What privilege, how glorious,<br/>To be one with Your great plan.<br/>',NULL,53015,2);
 INSERT INTO stanza VALUES('NS643','3','Receiving You, dear Lord,<br/>Letting this life saturate,<br/>Listening to Your sweet Word,<br/>Truly I want to express<br/>Nothing but only You.<br/>I consecrate and give You all my heart and mouth.<br/>This is, alone, the meaning and<br/>Purpose of my prayer, Lord.<br/>',NULL,53016,3);
 INSERT INTO stanza VALUES('NS643','4','Now on the earth, freely through us,<br/>Carry out Your will, my Lord.<br/>',NULL,53017,4);
-INSERT INTO stanza VALUES('NS644','5','Let us rejoice, let us rejoice,<br/>Let us rejoice in the Lord!<br/>Let us rejoice, let us rejoice,<br/>Let us rejoice in the Lord!<br/>',NULL,53018,1);
+INSERT INTO stanza VALUES('NS644','chorus','Let us rejoice, let us rejoice,<br/>Let us rejoice in the Lord!<br/>Let us rejoice, let us rejoice,<br/>Let us rejoice in the Lord!<br/>',NULL,53018,1);
 INSERT INTO stanza VALUES('NS644','1','Let us keep calling, pursuing our Lord.<br/>Let us keep singing, pray-reading His word.<br/>Let us keep meeting, receiving His grace.<br/>Let us keep running this race.<br/>',NULL,53019,2);
 INSERT INTO stanza VALUES('NS644','2','Let us keep praising and touching His life.<br/>Let us keep loving, denying all strife.<br/>Let us eat, drink Him and breath Him today.<br/>Let us enjoy Him this way.<br/>',NULL,53020,3);
 INSERT INTO stanza VALUES('NS644','3','Let us keep resting, abide and obey.<br/>Let us keep listening to all He will say.<br/>Let us keep speaking, expressing His light.<br/>Let us dispense Christ as life.<br/>',NULL,53021,4);
@@ -57586,10 +57582,6 @@ INSERT INTO stanza VALUES('Z388','6','是我救主、中保、大夫、<br/>牧�
 INSERT INTO stanza VALUES('Z388','7','是我生命、能力、智慧：<br/>公义、圣洁、救赎；<br/>平安、喜乐、<br/>盼望、安慰、<br/>荣耀、亮光、道路。<br/>','',55688,9223);
 INSERT INTO stanza VALUES('Z388','8','我这基督充满万有，<br/>怎能述尽说竭？<br/>祂是首先、祂是末后、<br/>祂是一切一切！<br/>','',55689,9224);
 INSERT INTO stanza VALUES('Z388','9','我既得到这样至宝，<br/>我心怎不欢呼！<br/>欢呼基督给我得到，<br/>何等一位基督！<br/>','',55690,9225);
-INSERT INTO stanza VALUES('Z389','1','今世福乐没灭，<br/>基督属我！<br/>地上爱情断绝，<br/>基督属我！<br/>在此幽暗野地，<br/>无处可以安息，<br/>惟有基督可倚，<br/>基督属我！<br/>','',55691,9226);
-INSERT INTO stanza VALUES('Z389','2','莫诱我心离开，<br/>基督属我！<br/>我愿与主同在，<br/>基督属我！<br/>你这今世欢娱，<br/>一时骗人之局，<br/>从我心中离去，<br/>基督属我！<br/>','',55692,9227);
-INSERT INTO stanza VALUES('Z389','3','去罢，今世幻梦，<br/>基督属我！<br/>我今已经清醒，<br/>基督属我！<br/>凡我从前所慕，<br/>不过使我痛苦；<br/>惟主使我满足，<br/>基督属我！<br/>','',55693,9228);
-INSERT INTO stanza VALUES('Z389','4','去罢，短暂今时，<br/>基督属我！<br/>来罢，长久永世，<br/>基督属我！<br/>来罢，可爱福气！<br/>来罢，甜美安息！<br/>来罢，恩主自己！<br/>基督属我！<br/>','',55694,9229);
 INSERT INTO stanza VALUES('Z390','1','耶稣，我救主，<br/>祂是我一切！<br/>奇妙的救主，<br/>何等的可悦！<br/>引导和保护，<br/>所有安度过，<br/>大能的救主-<br/>耶稣为我。<br/>','',55695,9230);
 INSERT INTO stanza VALUES('Z390','chorus','耶稣为我！耶稣为我！<br/>每时候，每处所，<br/>耶稣为我！<br/>','',55696,9231);
 INSERT INTO stanza VALUES('Z390','2','耶稣于康健，<br/>耶稣于病痛，<br/>耶稣于富裕，<br/>或是于贫穷，<br/>无论是日光，<br/>无论是风波，<br/>祂是我平安-<br/>耶稣为我。<br/>','',55697,9232);
