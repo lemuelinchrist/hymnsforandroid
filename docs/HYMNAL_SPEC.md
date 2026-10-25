@@ -188,7 +188,7 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
 | `time` | `4/4`. Chinese hymns often put key+time in `key` (`降A大調4/4`) and leave `time` empty. |
 | `key` | `Ab Major`, `F Minor` (English); localized in other books. |
 | `tune` | Melody code made of scale-degree digits, e.g. `5553216153222`. One code has a letter (`5543321666665b`). **May have leading/trailing spaces: trim it.** `0` or empty = no tune. |
-| `author`, `composer` | Free text. Special values: `*` = LSM (show as `* LSM`), `+` = translated (`+ Translated`), empty/NULL = unknown. |
+| `author`, `composer` | Free text, in hymnal.net's form where the hymn is on hymnal.net: full name and years, `Adapted from …`, `Translated by …`, several people separated by `; ` (e.g. `Gerhard Tersteegen (1697-1769); Translated by Emma Frances Shuttleworth Bevan (1827-1909)`). Empty/NULL = unknown. (Until v5.7 the printed hymnal's marks `*` = Witness Lee and `+` = Watchman Nee were stored as is.) |
 | `verse` | `Genesis 12-50,` (often with a trailing comma). 781 hymns have it. |
 | `related` | `SW36,GK89,K1,J1,...,` — **may have a trailing comma and empty entries; may contain IDs of hymns that don't exist** (filter them). Reciprocity is intended but not guaranteed. |
 | `parent_hymn` | Usually the English (or NS/BF) original of a translation. One-way pointer. |
@@ -481,7 +481,7 @@ the search box gets focus there, jump to First Lines.
 | 1 | **First Lines** | current book's first stanza **and** first chorus lines, merged, sorted alphabetically (case-insensitive, ignoring leading `"` and `'`, locale collation) | that merged list, all enabled books, same order | `<line> - <ID>` |
 | 2 | **Favorites** | favorites | (not searchable) | `<ID> - <first line>` |
 | 3 | **Subjects** | all hymns with a main category, all enabled books | `main_category` OR `sub_category` | **`<main> - <sub>`** / `<ID> - <first stanza line>` |
-| 4 | **Authors** | all hymns, enabled books | `author` OR `composer` | **`<author> - <composer>`** (empty→`Unknown`, `*`→`* LSM`, `+`→`+ Translated`) / `<ID> - <first line>` |
+| 4 | **Authors** | all hymns, enabled books | `author` OR `composer` | **`<author> - <composer>`** (empty→`Unknown`) / `<ID> - <first line>` |
 | 5 | **All Lyrics** | every stanza | stanza `text` (all books, including disabled ones — §12 #4) | **`<ID> - <stanza no>`** / stanza text |
 | 6 | **History** | history | (not searchable) | `<ID> - <first line>` |
 | 7 | **Music** | hymns with key and tune, enabled books, ordered by tune | first stanza line (word filter) OR `key LIKE '<q>%'` OR `tune LIKE '<q>%'` | `<key> - <ID>` / first stanza line / `Tune: <tune>` |

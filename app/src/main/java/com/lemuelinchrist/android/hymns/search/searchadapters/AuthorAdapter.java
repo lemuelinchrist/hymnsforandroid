@@ -43,12 +43,6 @@ public class AuthorAdapter extends HymnCursorAdapter {
         if(name==null || name.trim().isEmpty()) {
             return "Unknown";
         }
-        if (name.trim().equals("*")) {
-            return "* LSM";
-        }
-        if (name.trim().equals("+")) {
-            return "+ Translated";
-        }
         return name;
     }
 }
