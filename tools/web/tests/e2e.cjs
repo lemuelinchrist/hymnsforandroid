@@ -80,7 +80,7 @@ async function search(page, text) {
     console.log('Loading');
     await test('first visit downloads the database and shows the hymnals', async () => {
       await open(page, '');
-      assert(await page.locator('.hymnals .hymnal-card').count() === 25, 'expected 25 hymnals');
+      assert(await page.locator('.hymnals .hymnal-card').count() === 26, 'expected 26 hymnals');
     });
     await test('a second visit opens the database from the browser, without downloading it', async () => {
       await page.waitForTimeout(500);   // the first visit stores it in IndexedDB
@@ -456,6 +456,20 @@ async function search(page, text) {
         assert(over <= 0, 'page is ' + over + 'px too wide');
       });
     }
+    await test('the search box opens the number pad; ABC switches to letters, and it is remembered', async () => {
+      await open(phone.page, '');
+      const mode = () => phone.page.evaluate(() => document.querySelector('#q').inputMode);
+      assert(await mode() === 'numeric', 'first keyboard is ' + await mode());
+      assert(await phone.page.textContent('#kbToggle') === 'ABC', 'button should offer letters');
+      await phone.page.tap('#q');
+      await phone.page.tap('#kbToggle');
+      assert(await mode() === 'search', 'after ABC the keyboard is ' + await mode());
+      assert(await phone.page.evaluate(() => document.activeElement.id) === 'q', 'the box lost the focus');
+      await open(phone.page, '');
+      assert(await mode() === 'search' && await phone.page.textContent('#kbToggle') === '123', 'letters not remembered');
+      await phone.page.tap('#kbToggle');
+      assert(await mode() === 'numeric', 'back to numbers');
+    });
     await test('tabs switch between lyrics and sheet; the sheet loads only when asked', async () => {
       await open(phone.page, '#/h/E8');
       assert(await phone.page.locator('.sheet-music').count() === 0, 'sheet loaded before the tab was opened');

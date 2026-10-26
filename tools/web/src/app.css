@@ -118,6 +118,11 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .search-icon { position: absolute; left: 14px; color: var(--muted); pointer-events: none; }
 .searchbox kbd { position: absolute; right: 14px; pointer-events: none; }
 .searchbox input:focus ~ kbd, .searchbox input:not(:placeholder-shown) ~ kbd { display: none; }
+.kb-toggle {
+  position: absolute; right: 5px; height: 32px; min-width: 44px; padding: 0 8px; border-radius: 16px; cursor: pointer;
+  border: 1px solid var(--line-strong); background: var(--bg); color: var(--muted); font: 600 12px var(--ui); letter-spacing: .03em;
+}
+.searchbox:has(.kb-toggle:not([hidden])) input { padding-right: 56px; }
 .hymnal-btn {
   display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; flex: none; cursor: pointer;
   border: 1px solid var(--line-strong); border-radius: 20px; background: var(--surface); white-space: nowrap; max-width: 14em;
@@ -173,6 +178,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .hymn-row .first { font-family: var(--serif); font-size: 17px; overflow: hidden; text-overflow: ellipsis; }
 .hymn-row .snippet { grid-column: 2; font-family: var(--serif); color: var(--muted); font-size: 15px; }
 .hymn-row .enter { grid-column: 2; font-size: 13px; color: var(--muted); }
+@media (pointer: coarse) { .hymn-row .enter { display: none; } }   /* the number pad has no Enter key: tap the hymn */
 .hymn-list.big .hymn-row { padding: 16px; }
 .hymn-list.big .first { font-size: 20px; }
 

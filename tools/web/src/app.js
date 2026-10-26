@@ -970,6 +970,7 @@ function onKey(e) {
 function setupSearch() {
   const q = $('#q');
   let timer = null;
+  setupKeyboardToggle(q);
   q.addEventListener('input', () => {
     clearTimeout(timer);
     timer = setTimeout(() => {
@@ -1014,6 +1015,33 @@ function setupSearch() {
     if (e.key === 'ArrowUp' && i === 0) { q.focus(); return; }
     const to = rows[i + (e.key === 'ArrowDown' ? 1 : -1)];
     if (to) to.focus();
+  });
+}
+
+// On touch screens the box opens the number pad first, as hymns are called by number in meetings; the 123 / ABC
+// button switches to the letters (the iPhone number pad has no key for that), and the choice is remembered.
+function setupKeyboardToggle(q) {
+  if (!window.matchMedia('(pointer: coarse)').matches) return;
+  const btn = $('#kbToggle');
+  let wasFocused = false;
+  const show = () => {
+    const numbers = store.get('keyboard', 'numbers') === 'numbers';
+    q.inputMode = numbers ? 'numeric' : 'search';
+    btn.textContent = numbers ? 'ABC' : '123';   // like the iPhone's own key: what it switches to
+    btn.setAttribute('aria-label', numbers ? 'Type letters' : 'Type numbers');
+  };
+  show();
+  btn.hidden = false;
+  // the tap takes the focus from the box before the click; remember whether the keyboard was up
+  btn.addEventListener('pointerdown', () => { wasFocused = document.activeElement === q; });
+  btn.addEventListener('mousedown', (e) => e.preventDefault());
+  btn.addEventListener('click', () => {
+    store.set('keyboard', store.get('keyboard', 'numbers') === 'numbers' ? 'letters' : 'numbers');
+    show();
+    if (wasFocused || document.activeElement === q) {
+      q.blur();   // the keyboard changes only when the box is focused again
+      q.focus();
+    }
   });
 }
 
