@@ -406,7 +406,8 @@ function searchScreen(view, q) {
   const all = route.params.get('all') === '1';
   const box = h('div', {class: 'search'});
   view.appendChild(box);
-  $('#q').value = q;
+  // keep what is being typed (a space at the end); the URL has the text trimmed
+  if ($('#q').value.trim() !== q) $('#q').value = q;
   const pq = DB.parseQuery(q, currentGroup);
 
   if (pq.id) {

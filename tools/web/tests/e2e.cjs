@@ -117,6 +117,14 @@ async function search(page, text) {
       const first = await page.locator('.results .hymn-row .chip').first().textContent();
       assert(first === 'E8', 'first result was ' + first);
     });
+    await test('typing keeps a space between words (the results are drawn while typing)', async () => {
+      await open(page, '#/');
+      await page.fill('#q', '');
+      await page.locator('#q').pressSequentially('blessings flow', {delay: 300});
+      await page.waitForTimeout(400);
+      const typed = await page.inputValue('#q');
+      assert(typed === 'blessings flow', 'the box has "' + typed + '"');
+    });
     await test('whole words rank before parts of words ("flow" before "flowers")', async () => {
       const found = await page.evaluate(async () => (await import('./db.js')).search(['flow']).filter((r) => r.group === 'E'));
       const whole = found.findIndex((r) => r.score > 1 && r.score < 2), part = found.findIndex((r) => r.id === 'E343');
