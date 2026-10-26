@@ -82,6 +82,13 @@ task runTamil(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task runUrdu(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'UR'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 task runSpanish2026(type: JavaExec) {
     dependsOn ":sqlite:importSql"
     mainClass = 'com.lemuelinchrist.hymns.ProvisionSpanish2026'

@@ -6,14 +6,15 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 
 /**
  * Provisions a hymnal from a text file in Brother Victor's format (the format of Spanish2026.txt), one language per
- * argument: {@code R} (Russian), {@code MY} (Burmese), {@code TA} (Tamil). See LANGUAGES for each one's file.
+ * argument: {@code R} (Russian), {@code MY} (Burmese), {@code TA} (Tamil), {@code UR} (Urdu). See LANGUAGES for each
+ * one's file.
  *
- * Format per hymn: "<prefix>-<n>", then Subject: and Related: (the English hymn, which becomes the parent), then
+ * Format per hymn: "<prefix>-<n>", then Subject: and Related: (the English hymn, which becomes the parent; see parentOf), then
  * numbered stanzas ("1", "2", ...), "Coro:" / "Coro 1:" choruses and at most one "End-note:" at the end, separated by
  * blank lines. Source files and open questions: docs/v5.7.
  *
  * Every language's task depends on importSql, which resets the database, so run them in one Gradle call:
- * ./gradlew :databaseProvisioner:runRussian :databaseProvisioner:runBurmese :databaseProvisioner:runTamil
+ * ./gradlew :databaseProvisioner:runRussian :databaseProvisioner:runBurmese :databaseProvisioner:runTamil :databaseProvisioner:runUrdu
  *
  * @since 2026-10-21
  */
@@ -29,6 +30,9 @@ class ProvisionLanguageFile {
                               '245-alt1': 1004, '245-alt2': 1005, '365-alt': 1006]],
             // the Tamil hymns: numbered like the English hymnal (TA1 = E1), 1501 and up are other songs
             TA: [file: '/Tamil.txt', prefix: 'TA-', maxNo: 2000, splitSubject: false],
+            // the Urdu hymns of hymnal.net, numbered like the English hymnal (UR1 = E1), up to E8773; Urdu.txt is made
+            // from hymnal.net's pages (docs/v5.7, "Urdu Hymns")
+            UR: [file: '/Urdu.txt', prefix: 'UR-', maxNo: 9000, splitSubject: true],
     ]
 
     final String group
@@ -126,6 +130,16 @@ class ProvisionLanguageFile {
         stanza = null
     }
 
+    // the parent, in order of preference: English or New Songs, then Be Filled, then traditional Chinese (C, CS),
+    // never simplified Chinese (the hymn-provisioning skill, "Which hymn is the parent")
+    static String parentOf(Collection<String> related) {
+        for (String pattern : ['(E|NS)[0-9]+', 'BF[0-9]+', '(C|CS)[0-9]+']) {
+            String parent = related.find { it.matches(pattern) }
+            if (parent != null) return parent
+        }
+        return null
+    }
+
     static String firstLineOf(String text) {
         return text.contains("<br/>") ? text.substring(0, text.indexOf("<br/>")) : text
     }
@@ -158,7 +172,7 @@ class ProvisionLanguageFile {
                 String related = line.substring(line.indexOf(":") + 1).replace(" ", "").replace(";", ",")
                 if (!related.isEmpty()) {
                     hymn.setRelatedString(related)
-                    hymn.parentHymn = hymn.related.find { it.matches('(E|NS|BF)[0-9]+') }
+                    hymn.parentHymn = parentOf(hymn.related)
                 }
             } else if (line.startsWith("Verses:")) {
                 hymn.verse = line.substring(line.indexOf(":") + 1).trim()

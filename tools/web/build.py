@@ -68,6 +68,7 @@ DISPLAY = {
     'R': {'name': 'Русский', 'long': 'Russian', 'lang': 'ru'},
     'MY': {'name': 'မြန်မာ', 'long': 'Burmese', 'lang': 'my'},
     'TA': {'name': 'தமிழ்', 'long': 'Tamil', 'lang': 'ta'},
+    'UR': {'name': 'اردو', 'long': 'Urdu', 'lang': 'ur'},
 }
 
 

@@ -20,13 +20,36 @@ This skill is the condensed playbook for the common case: **correcting or updati
 - A `Provision*.groovy` script connects straight to `app/src/main/assets/hymns.sqlite` (path templated into `databaseProvisioner/src/main/resources/META-INF/persistence.xml` via `${sqliteFile}`). Each script deletes its own ID range first (e.g. `removeSpanishHymns()` wipes S1–S1000), then re-parses its `.txt` resource file and re-inserts via `Dao.save()`. This delete-then-reinsert pattern is what makes re-running a script safe/idempotent.
 - `./gradlew :sqlite:exportSql` — dumps the now-updated `hymns.sqlite` back into `sqlite/hymns.sql`. Run this **after** provisioning, and commit `hymns.sql` (never the `.sqlite` binaries — they're gitignored on purpose).
 
+## Extract from hymnal.net with Groovy, not Python
+
+Everything that downloads or parses hymnal.net pages lives in `databaseProvisioner` as Groovy/Java
+(`HymnalNetExtractor`, the `Extract*`/`Update*` scripts, Gradle tasks). Keep it that way: when a new hymnal.net book or
+sync is needed, write a Groovy script there that reuses `HymnalNetExtractor` (its `User-Agent`/`Referer` download,
+`dl.hn-dl` details, fake-page checks), **not a Python script** (Lemuel 2026-10-26, after the Urdu hymns were fetched
+with one-off Python scripts that were then removed). Python is fine for checking and analysing data, not for the
+extraction pipeline.
+
+## Which hymn is the parent
+
+A translated hymn's `parent_hymn` is the hymn it inherits key, time, meter, tune, author, composer and sheet music from
+(`HymnsDao` merges them at runtime), so pick the one those details really belong to:
+
+1. **English (`E`) or New Songs (`NS`)**: the default, whenever the hymn has one.
+2. Otherwise **Be Filled (`BF`)**.
+3. Otherwise **traditional Chinese: `C`, or `CS` for the supplement**. Never simplified Chinese (`Z`, `ZS`): those are
+   children of `C`/`CS` themselves (Z1 → C1), as are the Indonesian hymns translated from Chinese.
+
+All other links go into `related` only. `ProvisionLanguageFile.parentOf()` follows this order (Lemuel, 2026-10-26, for
+the Urdu hymns that hymnal.net translated from Chinese: UR8273 → C273). In the database (2026-10-26): about 9,800
+children of `E`, 814 of `NS`, 489 of `CS`, 253 of `C`, 23 of `BF`.
+
 ## Known script ↔ resource ↔ ID-range mapping
 
 | Script | Resource file | ID range owned |
 |---|---|---|
 | `ProvisionSpanish2026.groovy` | `Spanish2026.txt` | S1–S1000 |
 | `ProvisionFrenchYouth.groovy` (Gradle `runFrenchYouth`) | `FrenchYouth.txt` (made from the PDF `docs/v5.6/Cantique des jeunes (Recueil lyonnais 19-07-2024).pdf`, see `docs/v5.6/v5.6-report.md`) | FY1–FY400 (book order; the book has no song numbers) |
-| `ProvisionLanguageFile.groovy` (Gradle `runRussian`, `runBurmese`, `runTamil`; one script, a settings table per language; run the three in **one** Gradle call, since each task's `importSql` resets the database) | `Russian.txt`, `Burmese.txt`, `Tamil.txt` (Brother Victor's format; originals and fixes in `docs/v5.7/v5.7-report.md`) | R1–R1000, MY1–MY1100 (alt songs from MY1001), TA1–TA2000 |
+| `ProvisionLanguageFile.groovy` (Gradle `runRussian`, `runBurmese`, `runTamil`, `runUrdu`; one script, a settings table per language; run them in **one** Gradle call, since each task's `importSql` resets the database) | `Russian.txt`, `Burmese.txt`, `Tamil.txt` (Brother Victor's format; originals and fixes in `docs/v5.7/v5.7-report.md`); `Urdu.txt` (same format, made once from hymnal.net's Urdu pages, see the v5.7 report; a Groovy sync script is still to be written) | R1–R1000, MY1–MY1100 (alt songs from MY1001), TA1–TA2000, UR1–UR9000 |
 | `ProvisionSwahili.groovy` (Gradle `runSwahili`) | `Swahili.txt` (hand-made from Kimathi's scanned `.docx`, see `docs/v5.5/v5.5-report.md`; send edits back to him) | SW1–SW300 (numbers = printed page numbers, with gaps) |
 | `ProvisionSpanishSupplement.groovy` | `HImnosCanticosEspirituales.txt` (name doesn't match "supplement" — verify by reading the script's `spanishFile =` line, not just the filename) | SY1–SY506 (own `SY` hymn group; was `S2000`–`S2506` before the v5.4 split, then `SS1`–`SS506` until the v5.4.5 rename to `SY` for naming consistency with German Youth's `GY`) |
 | `ProvisionGermanYouth.groovy` | `german/GermanYPsongs_v2.txt` | GY1–GY271 (own `GY` hymn group as of the v5.4 split; was `G2001`–`G2271` before that) |

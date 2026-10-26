@@ -113,7 +113,11 @@ public enum HymnGroup {
     //Blue Grey
     TA("Tamil", Color.rgb(0x54, 0x6E, 0x7A),
             Color.rgb(0x90, 0xA4, 0xAE),
-            Gravity.LEFT);
+            Gravity.LEFT),
+    //Burgundy (Pink 900 / Pink 300), right to left like Farsi
+    UR("Urdu", Color.rgb(0x88, 0x0E, 0x4F),
+            Color.rgb(0xF0, 0x62, 0x92),
+            Gravity.RIGHT);
 
     private final String simpleName;
     // taken from Google Color Palette #500
