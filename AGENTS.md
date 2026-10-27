@@ -116,3 +116,21 @@ There is no CI/CD workflow for this (no `.github/workflows`) — releases are cr
    Use `--draft` first so it can be previewed on GitHub before publishing; drop the flag (or `gh release edit vX.Y --draft=false`) to publish. Check `gh release view vX.Y` or recent releases (`gh release list`) for tone/format examples.
 4. The `.aab` bundle is for Google Play Console upload, not attached to the GitHub release.
 5. Publishing the release redeploys the web app from the release's tag (`.github/workflows/web-app.yml`). If master is newer, run `gh workflow run web-app.yml --ref master` right after publishing; it cancels the tag's run.
+
+## 8. Keeping the Public Docs Current
+
+The per-version reports are private (see `docs/` in section 2), so **the files in `docs/`, this file, the tools'
+READMEs and the GitHub release notes are the only public record of how the app works and why**. Keep them true as part
+of every change, in the same commit, not later:
+
+-   Behaviour or a screen changes (search, the hymn page, buttons, settings, favorites, sheet music): `docs/HYMNAL_SPEC.md`
+    (it must stay enough to rebuild the app) and, for new or renamed classes, `docs/APP_ARCHITECTURE.md` and section 5 above.
+-   The data changes (a new book or group code, a column, how parents and related hymns are chosen, numbering):
+    `docs/database_spec.md`, the group table in `docs/HYMNAL_SPEC.md`, and section 3/4 above.
+-   A tool or pipeline changes (provisioning, the web app, the sheet music converter): its README, and the skill in
+    `.claude/skills/` that describes it.
+-   A release: the GitHub release notes say what changed for users (section 7).
+
+Write what the app does and why it was designed that way, not who asked or what was said: no names of the people who
+send feedback or contributions, no email addresses, no places where saints meet. Those stay in the private reports.
+
