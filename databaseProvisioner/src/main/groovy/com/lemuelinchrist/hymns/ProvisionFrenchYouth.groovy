@@ -7,7 +7,7 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 /**
  * Provisions the French youth songbook (FY) from FrenchYouth.txt.
  *
- * Source: "Cantique des jeunes (Recueil lyonnais 19-07-2024).pdf" (docs/v5.6). The book does not number its songs (its
+ * Source: "Cantique des jeunes (Recueil lyonnais 19-07-2024).pdf" (kept outside git in resources/originals). The book does not number its songs (its
  * index gives page numbers, often two songs to a page), so the songs are numbered in book order. Format per song:
  * "FY-<n>", then Related:/Parent:, then numbered stanzas ("1", "2", ...) and "Chorus:" blocks, separated by blank lines.
  *

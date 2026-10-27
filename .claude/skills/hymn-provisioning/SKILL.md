@@ -43,14 +43,23 @@ All other links go into `related` only. `ProvisionLanguageFile.parentOf()` follo
 the Urdu hymns that hymnal.net translated from Chinese: UR8273 → C273). In the database (2026-10-26): about 9,800
 children of `E`, 814 of `NS`, 489 of `CS`, 253 of `C`, 23 of `BF`.
 
+## Where reports and contributors' files live
+
+- **Version reports** ("Hymns For Android v5.7 Report" and so on) are Lemuel's private Claude Docs, not files in this
+  public repo (moved 2026-10-27; `docs/v[0-9]*/` is git-ignored). Read and update them with the Claude Docs tools; the
+  links are in Claude's memory. "The v5.7 report" below means that doc.
+- **Contributors' original files** (Word, PDF, the `.txt` versions they email) go in `databaseProvisioner/src/main/resources/originals/`, which is
+  git-ignored: they stay on Lemuel's PC. Only the resource files the scripts read are committed.
+- Never put people's email addresses, or where saints live, into committed files (the repo is public).
+
 ## Known script ↔ resource ↔ ID-range mapping
 
 | Script | Resource file | ID range owned |
 |---|---|---|
 | `ProvisionSpanish2026.groovy` | `Spanish2026.txt` | S1–S1000 |
-| `ProvisionFrenchYouth.groovy` (Gradle `runFrenchYouth`) | `FrenchYouth.txt` (made from the PDF `docs/v5.6/Cantique des jeunes (Recueil lyonnais 19-07-2024).pdf`, see `docs/v5.6/v5.6-report.md`) | FY1–FY400 (book order; the book has no song numbers) |
-| `ProvisionLanguageFile.groovy` (Gradle `runRussian`, `runBurmese`, `runTamil`, `runUrdu`; one script, a settings table per language; run them in **one** Gradle call, since each task's `importSql` resets the database) | `Russian.txt`, `Burmese.txt`, `Tamil.txt` (Brother Victor's format; originals and fixes in `docs/v5.7/v5.7-report.md`); `Urdu.txt` (same format, made once from hymnal.net's Urdu pages, see the v5.7 report; a Groovy sync script is still to be written) | R1–R1000, MY1–MY1100 (alt songs from MY1001), TA1–TA2000, UR1–UR9000 |
-| `ProvisionSwahili.groovy` (Gradle `runSwahili`) | `Swahili.txt` (hand-made from Kimathi's scanned `.docx`, see `docs/v5.5/v5.5-report.md`; send edits back to him) | SW1–SW300 (numbers = printed page numbers, with gaps) |
+| `ProvisionFrenchYouth.groovy` (Gradle `runFrenchYouth`) | `FrenchYouth.txt` (made from the PDF `Cantique des jeunes (Recueil lyonnais 19-07-2024).pdf`, kept in `databaseProvisioner/src/main/resources/originals/`, see the v5.6 report) | FY1–FY400 (book order; the book has no song numbers) |
+| `ProvisionLanguageFile.groovy` (Gradle `runRussian`, `runBurmese`, `runTamil`, `runUrdu`; one script, a settings table per language; run them in **one** Gradle call, since each task's `importSql` resets the database) | `Russian.txt`, `Burmese.txt`, `Tamil.txt` (Brother Victor's format; fixes listed in the v5.7 report); `Urdu.txt` (same format, made once from hymnal.net's Urdu pages, see the v5.7 report; a Groovy sync script is still to be written) | R1–R1000, MY1–MY1100 (alt songs from MY1001), TA1–TA2000, UR1–UR9000 |
+| `ProvisionSwahili.groovy` (Gradle `runSwahili`) | `Swahili.txt` (hand-made from Kimathi's scanned `.docx`, kept in `databaseProvisioner/src/main/resources/originals/`, see the v5.5 report; send edits back to him) | SW1–SW300 (numbers = printed page numbers, with gaps) |
 | `ProvisionSpanishSupplement.groovy` | `HImnosCanticosEspirituales.txt` (name doesn't match "supplement" — verify by reading the script's `spanishFile =` line, not just the filename) | SY1–SY506 (own `SY` hymn group; was `S2000`–`S2506` before the v5.4 split, then `SS1`–`SS506` until the v5.4.5 rename to `SY` for naming consistency with German Youth's `GY`) |
 | `ProvisionGermanYouth.groovy` | `german/GermanYPsongs_v2.txt` | GY1–GY271 (own `GY` hymn group as of the v5.4 split; was `G2001`–`G2271` before that) |
 | `ProvisionGermanV2.groovy` (Gradle `runGerman`) | `german/New_German_hymns.txt` (G1–G460, the main German hymnal, maintained by Isaiah's team) **and** `german/GermanNewHymn_2019Dec.txt` (G1001–G1020) | deletes G1–G1336, re-provisions both files. `G10001`/`G10002` (German "non-hymns", from the old one-off `UpdateV33.groovy`) are outside the range and untouched. Drops `R` (Russian) entries from `Related:`: German hymns reach the Russian ones through their English parent, and the `R` numbers in `GermanNewHymn_2019Dec.txt` follow another book (451 of 453 in `New_German_hymns.txt` do match the `R` group). |
@@ -66,10 +75,10 @@ When a new correction file arrives (e.g. via email) and you need to figure out w
 `Spanish2026.txt`, `HImnosCanticosEspirituales.txt` (Spanish Youth/Supplement), and `german/GermanYPsongs_v2.txt` (German Youth) are maintained by an external contributor, Victor, over email — **he is not a developer and has no git access**, so our repo copy and his own working copy are two independent files that only stay in sync because we manually pass changes back and forth. Whenever we make **any manual edit directly to one of these three files** (a disambiguation fix, a `Related:` link, anything beyond just applying a file Victor sent verbatim), his copy is now stale and **must be sent back to him**, or his next round of corrections will silently overwrite our fix.
 
 - Before editing, know that these are literally the same three files Victor edits and emails back — there is no separate "our version"/"his version" distinction in the pipeline; the resource `.txt` *is* his file.
-- After any direct edit (not just re-applying a file he sent), copy the current resource file(s) into `docs/v5.4/` (or the current version's docs folder) with a dated filename, following the existing naming pattern (e.g. `Supplemental_spanish_hymns_hymnsapp2026_renumbered_<date>.txt`), and flag to the user that these need to go back to Victor.
-- **When in doubt about whether a file has drifted from what Victor last sent**, don't guess — diff the live resource file against his last-received copy (archived in `docs/v5.4/`) directly:
+- After any direct edit (not just re-applying a file he sent), copy the current resource file(s) into `databaseProvisioner/src/main/resources/originals/` (git-ignored: contributors' files stay private) with a dated filename, following the existing naming pattern (e.g. `Supplemental_spanish_hymns_hymnsapp2026_renumbered_<date>.txt`), and flag to the user that these need to go back to Victor.
+- **When in doubt about whether a file has drifted from what Victor last sent**, don't guess — diff the live resource file against his last-received copy (kept in `databaseProvisioner/src/main/resources/originals/`; older ones are in the git history of `docs/v5.4/`, removed 2026-10-27) directly:
   ```bash
-  diff <(tr -d '\r' < docs/v5.4/<his_last_file>.txt) <(tr -d '\r' < databaseProvisioner/src/main/resources/<resource>.txt)
+  diff <(tr -d '\r' < databaseProvisioner/src/main/resources/originals/<his_last_file>.txt) <(tr -d '\r' < databaseProvisioner/src/main/resources/<resource>.txt)
   ```
   A clean diff means no send-back is needed for that file; don't assume based on memory of what you think you touched — verify all three files this way if there's any uncertainty, since it's cheap and it's exactly what settled this question on 2026-09-05 (only the Supplement file had drifted; the other two were byte-identical to what he'd sent).
 - If a fix diverges from what hymnal.net/Victor's own source literally shows (e.g. an invented disambiguation suffix on a tune code), explain *why* in the message back to him — he may otherwise "correct" it back to the literal value next time he touches that hymn.
@@ -221,7 +230,7 @@ Replaces or adds each `CH<n>` with hymnal.net's `c/<n>` on the current DB (no im
 MIDI itself (children MIDIs are `c0082.mid`, not `child0082.mid`). Find the current size from the index
 (`/en/song-index/c/<letter>`; `c/57` is real but not indexed). Afterwards, as for NS: copy staged SVGs, copy only MIDI
 files for tune codes the app doesn't have yet, `exportSql`, then the `svg-to-lilypond` skill for `.ly`/`.mei`.
-First full run: 2026-10-10, 74 → 243 songs (see `docs/v5.5/v5.5-report.md`).
+First full run: 2026-10-10, 74 → 243 songs (see the v5.5 report).
 
 ## Downloading new hymnal.net songs (syncing the `NS`/"New Songs" collection)
 

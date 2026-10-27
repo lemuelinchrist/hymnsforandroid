@@ -13,7 +13,7 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
 2. **Survey what changed since the last release**, so the notes are accurate rather than guessed:
    - Find the most recent existing tag (`git tag --sort=-creatordate | head -1`).
    - `git log <last-tag>..HEAD --oneline` to see every commit in scope.
-   - Read the current `docs/v5.4/v5.4-report.md`-style planning doc if one exists for this cycle (check `docs/` for a report matching the current version line) — it usually already has a curated, human-readable account of what shipped and why, which is better source material than raw commit subjects.
+   - Read the current version's report if one exists for this cycle (Lemuel's private Claude Doc "Hymns For Android vX.Y Report", read with the Claude Docs tools; not in the repo) — it usually already has a curated, human-readable account of what shipped and why, which is better source material than raw commit subjects.
    - Group the findings into themes a user would care about (new features, bug fixes, content/data corrections, technical/infra changes) — not a raw commit list. Skip purely internal changes (skill docs, this command, CI-irrelevant refactors) unless they affect what a user experiences.
 
 3. **Draft the release notes** in this repo's established style — see `gh release view v5.2` or `gh release view v5.1` for tone/format reference:

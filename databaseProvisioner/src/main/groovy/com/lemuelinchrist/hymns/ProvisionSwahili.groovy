@@ -7,7 +7,7 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 /**
  * Provisions the Kiswahili hymnal (SW) from Swahili.txt.
  *
- * Source: Brother Kimathi's "SWAHILI HYMN BOOK .docx" (docs/v5.5), a scan of a printed hymnal. Hymn numbers are the
+ * Source: Brother Kimathi's "SWAHILI HYMN BOOK .docx" (kept outside git in resources/originals), a scan of a printed hymnal. Hymn numbers are the
  * printed page numbers, as he asked, so the numbers have gaps. Format per hymn: "SW-<n>", then Subject:/Related:/Parent:,
  * then numbered stanzas ("1", "2", ...) and "Chorus:" blocks, separated by blank lines.
  *

@@ -23,7 +23,7 @@ The project is divided into three main parts:
 -   `sqlite/`: Contains `hymns.sql`, the text dump of the database that git tracks (see `docs/database_spec.md`). Inspect the database with the `sqlite3` command-line tool, which the build also needs on the `PATH`.
 -   `tools/web/`: The web app (PWA) for iPhone/iPad users: hymns, search, favorites, sheet music with chord editing, offline. Built from the app's assets by `python3 tools/web/build.py`, published on GitHub Pages by `.github/workflows/web-app.yml` (on each published release, or by hand). See `tools/web/README.md`.
 -   `tools/ios/`: Builds `hymnal.html`, a single-file offline lyrics-only web version for iPhone users (`python3 tools/ios/build.py`). Book names/order come from `HymnGroup.java`; see `tools/ios/README.md`.
--   `docs/`: Contains all supplementary documentation, including the architecture deep-dive, diagrams, database specification, and other notes. `docs/HYMNAL_SPEC.md` is the full functional and data specification (enough to rebuild the app on another platform, e.g. a PWA).
+-   `docs/`: Contains all supplementary documentation, including the architecture deep-dive, diagrams, database specification, and other notes. `docs/HYMNAL_SPEC.md` is the full functional and data specification (enough to rebuild the app on another platform, e.g. a PWA). Per-version reports (plans, contributor correspondence, decisions) are **not** in this public repo: they are Lemuel's private Claude Docs ("Hymns For Android vX.Y Report"), and `docs/v[0-9]*/` is git-ignored. Contributors' original files go in the git-ignored `databaseProvisioner/src/main/resources/originals/`.
 -   `AGENTS.md`: This file.
 -   `README.md`: The original, human-focused README file.
 

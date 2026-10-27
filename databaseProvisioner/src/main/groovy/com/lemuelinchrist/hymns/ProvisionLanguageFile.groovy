@@ -11,7 +11,7 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
  *
  * Format per hymn: "<prefix>-<n>", then Subject: and Related: (the English hymn, which becomes the parent; see parentOf), then
  * numbered stanzas ("1", "2", ...), "Coro:" / "Coro 1:" choruses and at most one "End-note:" at the end, separated by
- * blank lines. Source files and open questions: docs/v5.7.
+ * blank lines. Fixes and open questions: the v5.7 report.
  *
  * Every language's task depends on importSql, which resets the database, so run them in one Gradle call:
  * ./gradlew :databaseProvisioner:runRussian :databaseProvisioner:runBurmese :databaseProvisioner:runTamil :databaseProvisioner:runUrdu
@@ -31,7 +31,7 @@ class ProvisionLanguageFile {
             // the Tamil hymns: numbered like the English hymnal (TA1 = E1), 1501 and up are other songs
             TA: [file: '/Tamil.txt', prefix: 'TA-', maxNo: 2000, splitSubject: false],
             // the Urdu hymns of hymnal.net, numbered like the English hymnal (UR1 = E1), up to E8773; Urdu.txt is made
-            // from hymnal.net's pages (docs/v5.7, "Urdu Hymns")
+            // from hymnal.net's pages (the v5.7 report, "Urdu hymns")
             UR: [file: '/Urdu.txt', prefix: 'UR-', maxNo: 9000, splitSubject: true],
     ]
 
