@@ -21,14 +21,7 @@ public class YouTubeSearchLauncher {
 
 
     public void launch(Hymn hymn) {
-        StringBuilder search=new StringBuilder();
-        if(hymn.getFirstStanzaLine()!=null && !hymn.getFirstStanzaLine().isEmpty()) {
-            search.append(hymn.getFirstStanzaLine());
-            search.append(" ");
-        }
-        if(hymn.getFirstChorusLine()!=null && !hymn.getFirstChorusLine().isEmpty()) {
-            search.append(hymn.getFirstChorusLine());
-        }
+        String search = searchFor(hymn.getGroup(), hymn.getNo(), hymn.getFirstStanzaLine(), hymn.getFirstChorusLine());
 
         Log.i(this.getClass().getName(),"Searching YouTube for: " + search.toString());
 //        passDirectlyToYouTube(search);
@@ -38,6 +31,28 @@ public class YouTubeSearchLauncher {
         i.setData(Uri.parse(url));
         context.startActivity(i);
 
+    }
+
+    // The saints who post recordings put the number in the title ("Hymn 313", "NS 46") and other churches' hymnals
+    // number differently, so the number finds our recordings best for English hymns and New Songs. Other books keep
+    // the first line and first chorus line until their videos' titles are tested.
+    static String searchFor(String group, String no, String firstStanzaLine, String firstChorusLine) {
+        StringBuilder search=new StringBuilder();
+        String g = group == null ? "" : group.trim().toUpperCase();
+        String prefix = g.equals("E") ? "Hymn " : g.equals("NS") ? "NS " : null;
+        if(prefix!=null && no!=null && !no.isEmpty()) {
+            search.append(prefix).append(no).append(" ");
+            if(firstStanzaLine!=null) search.append(firstStanzaLine);
+            return search.toString();
+        }
+        if(firstStanzaLine!=null && !firstStanzaLine.isEmpty()) {
+            search.append(firstStanzaLine);
+            search.append(" ");
+        }
+        if(firstChorusLine!=null && !firstChorusLine.isEmpty()) {
+            search.append(firstChorusLine);
+        }
+        return search.toString();
     }
 
     private void passDirectlyToYouTube(StringBuilder search) {

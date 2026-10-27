@@ -364,7 +364,21 @@ Resolve the sheet (§11.1). If none → toast "Sorry! sheet music not available"
 |---|---|---|
 | `disabled` (default) | no | — |
 | `piano` | only if the hymn has videos | Videos = `tune` rows where `_id` = this hymn's ID, else rows of its parent's ID. URL `https://www.youtube.com/embed/<youtube_link>`. One video → open it; several → dialog "Choose tune to play" listing the `comment`s. |
-| `search` | yes | Open `https://www.youtube.com/results?search_query=` + (`first_stanza_line` + ` ` + `first_chorus_line`) with the characters `+ . ; ! " ' : ,` removed and spaces as `+`. |
+| `search` | yes | Open `https://www.youtube.com/results?search_query=` + the query below, with the characters `+ . ; ! " ' : ,` removed and spaces as `+`. |
+
+The search query:
+
+| Book | Query | Example |
+|---|---|---|
+| `E` | `Hymn <no> <first_stanza_line>` | `Hymn 313 Christ the Rock the Rock eternal` |
+| `NS` | `NS <no> <first_stanza_line>` | `NS 46 …` |
+| every other book | `<first_stanza_line> <first_chorus_line>` | |
+
+Why the number: recordings of English hymns and New Songs are usually titled with it ("Hymn 313", "NS 46"), and
+other churches' hymnals number their hymns differently, so the number finds this hymnal's recordings first. With the
+lines alone, a hymn with a common first line often brought up other churches' songs first. Adding a group name to the
+query was tried and dropped: when a song has no recording it brings up unrelated videos instead. The other books keep
+the lines until their recordings' titles are checked.
 
 The button is also hidden when the hymn has no tune.
 
