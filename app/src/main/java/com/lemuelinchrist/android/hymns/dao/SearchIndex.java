@@ -9,7 +9,7 @@ import com.lemuelinchrist.android.hymns.search.SearchText;
 /**
  * Builds the {@code search} table: one row per hymn with its first lines, subject, people, music and all of its
  * stanzas in search form ({@link SearchText#norm}). Built on the phone after the database is copied from the app,
- * so the download stays small. See docs/v5.8/v5.8-report.md.
+ * so the download stays small. See the v5.8 report ("Search overhaul").
  *
  * @since 2026-10-23
  */
