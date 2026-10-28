@@ -127,8 +127,35 @@ async function search(page, text) {
     });
     await test('whole words rank before parts of words ("flow" before "flowers")', async () => {
       const found = await page.evaluate(async () => (await import('./db.js')).search(['flow']).filter((r) => r.group === 'E'));
-      const whole = found.findIndex((r) => r.score > 1 && r.score < 2), part = found.findIndex((r) => r.id === 'E343');
+      const whole = found.findIndex((r) => r.score === 26 || r.score === 23), part = found.findIndex((r) => r.id === 'E343');
       assert(whole >= 0 && part > whole, 'whole-word match at ' + whole + ', E343 (flowers) at ' + part);
+    });
+    await test('a phrase in quotes must be found together: "ancient of days"', async () => {
+      const r = await page.evaluate(async () => {
+        const DB = await import('./db.js');
+        const q = DB.parseQuery('"Ancient of Days" glory', 'E');
+        const words = DB.parseQuery('ancient days', 'E');
+        return {terms: q.words, phrase: DB.search(q.words.slice(0, 1)).length, words: DB.search(words.words).length};
+      });
+      assert(r.terms.join('|') === 'ancient of days|glory', 'terms ' + r.terms.join('|'));
+      assert(r.phrase > 0 && r.phrase <= r.words, 'phrase ' + r.phrase + ', words ' + r.words);
+    });
+    await test('authors, subjects and tunes are searched, with a line saying why: "watchman nee"', async () => {
+      await page.goto(BASE + '#/search?q=watchman%20nee');
+      await page.waitForSelector('.results');
+      const snippets = await page.locator('.results .snippet').allTextContents();
+      assert(snippets.some((x) => x.startsWith('Author: ')), 'no Author line: ' + snippets.slice(0, 3).join(' | '));
+      const fr = await page.evaluate(async () => (await import('./db.js')).search(['margaret', 'jenkins'])
+        .some((r) => r.id === 'FR1' && r.where === 'people'));
+      assert(fr, 'FR1 not found by the author of its parent E7');
+    });
+    await test('one or two letters only count as a whole word: "c major"', async () => {
+      const r = await page.evaluate(async () => {
+        const DB = await import('./db.js');
+        const found = DB.search(['c', 'major']).filter((x) => x.group === 'E');
+        return {n: found.length, first: found[0] && found[0].where};
+      });
+      assert(r.n > 100 && r.n < 300 && r.first === 'music', JSON.stringify(r));
     });
     await test('accents and case are ignored: "senor jesus" finds Spanish hymns', async () => {
       await search(page, 'senor jesus');

@@ -270,50 +270,88 @@ export function plain(html) {
 
 // ---- search ----
 
-// What a query means: a hymn ID ("E8", "ns 151"), a number in the current hymnal ("8"), or words.
+// What a query means: a hymn ID ("E8", "ns 151"), a number in the current hymnal ("8"), or words. Words are the
+// query in search form; text in quotes ("…", “…”, „…“, «…») is one word, an exact phrase. `phrase` is the whole
+// query, for ranking hymns that have the words together first. (HymnSearch.parse in the app.)
 export function parseQuery(q, group) {
   q = (q || '').trim();
   let m = /^([A-Za-z]{1,2})\s*-?\s*(\d+)$/.exec(q);
   if (m && BY_CODE[m[1].toUpperCase()]) return {id: m[1].toUpperCase() + parseInt(m[2], 10)};
   m = /^#?(\d+)$/.exec(q);
   if (m) return {id: group + parseInt(m[1], 10), number: true};
-  return {words: norm(q).split(' ').filter(Boolean)};
+  const words = [];
+  const add = (w) => { if (w && !words.includes(w)) words.push(w); };
+  const QUOTED = /["“”„«»]([^"“”„«»]*)["“”„«»]?/g;
+  for (const x of q.matchAll(QUOTED)) add(norm(x[1]));
+  for (const w of norm(q.replace(QUOTED, ' ')).split(' ')) add(w);
+  return {words, phrase: norm(q)};
 }
 
-// Hymns whose text has every word, best first: first line, then chorus line, then anywhere.
-// Returns [{id, group, no, first, score}] for all hymnals; the caller filters by hymnal.
-export function search(words, limit = 3000) {
-  if (!words.length) return [];
-  const where = words.map(() => 'body like ?').join(' and ');
-  const params = words.map((w) => '%' + w.replace(/[%_]/g, '') + '%');
-  const phrase = words.join(' ');
-  const found = rows(`select s.id, s.grp, s.first, s.chorus, s.body, h.no, h.first_stanza_line as line
-                      from search s join hymns h on h._id = s.id where ${where} limit ${limit}`, params);
-  for (const r of found) {
-    const first = r.first || '', chorus = r.chorus || '';
-    r.score = first.startsWith(phrase) ? 6 : first.includes(phrase) ? 5 : chorus.includes(phrase) ? 4
-      : words.every((w) => first.includes(w)) ? 3 : words.every((w) => chorus.includes(w)) ? 2 : 1;
-    // in the text: the words together, then as whole words, before parts of words ("flow" before "flowers")
-    if (r.score === 1) {
-      const body = ' ' + r.body.replace(/ \| /g, ' ') + ' ';
-      r.score = body.includes(' ' + phrase + ' ') ? 1.6 : words.every((w) => body.includes(' ' + w + ' ')) ? 1.3 : 1;
-    }
-    r.group = r.grp;
-    delete r.body;
+// A word of one or two Latin, Greek or Cyrillic letters or digits ("c", "o", "de") only counts as a whole word: as
+// part of a word it is in nearly every hymn. Chinese, Korean, Tamil… text has no spaces, so there it counts anywhere.
+export function isShortWord(w) {
+  return w.length <= 2 && /^[\p{Script=Latin}\p{Script=Greek}\p{Script=Cyrillic}\p{N}]+$/u.test(w);
+}
+
+// whether text in search form has the word: anywhere, or as a whole word if it is a short word
+export function found(text, w) {
+  if (!text) return false;
+  return isShortWord(w) ? (' ' + text.replace(/ \| /g, ' ') + ' ').includes(' ' + w + ' ') : text.includes(w);
+}
+
+const COLUMNS = ['first', 'chorus', 'subject', 'people', 'music', 'body'];
+
+// {score, where}: where = the column that shows why the hymn matched (first, chorus, subject, people, music, body)
+function score(words, phrase, r) {
+  if (phrase && !isShortWord(phrase)) {
+    if (r.first.startsWith(phrase)) return [100, 'first'];
+    if (r.first.includes(phrase)) return [90, 'first'];
+    if (r.chorus.includes(phrase)) return [80, 'chorus'];
   }
-  found.sort((a, b) => b.score - a.score || BY_CODE[a.group].order - BY_CODE[b.group].order || a.no - b.no);
-  return found;
+  const all = (text) => !!text && words.every((w) => found(text, w));
+  if (all(r.first)) return [70, 'first'];
+  if (all(r.chorus)) return [60, 'chorus'];
+  if (all(r.subject)) return [50, 'subject'];
+  if (all(r.people)) return [40, 'people'];
+  if (all(r.music)) return [30, 'music'];
+  const body = ' ' + r.body.replace(/ \| /g, ' ') + ' ';
+  if (phrase && body.includes(' ' + phrase + ' ')) return [26, 'body'];
+  return [words.every((w) => body.includes(' ' + w + ' ')) ? 23 : 20, 'body'];
 }
 
-// the stanza line that best shows why a hymn matched (for results that did not match on the first line)
+// Hymns that have every word somewhere (first line, chorus line, subject, author or composer, key or tune, stanzas),
+// one per hymn, best first, then the current hymnal, the drawer's hymnal order and the number; the same order as the app's Search tab
+// (HYMNAL_SPEC.md §9.3). Returns [{id, group, no, line, score, where}] for all hymnals; the caller filters by hymnal.
+export function search(words, phrase = words.join(' '), current = null, limit = 3000) {
+  if (!words.length) return [];
+  const where = words.map(() => '(' + COLUMNS.map((c) => 's.' + c + ' like ?').join(' or ') + ')').join(' and ');
+  const params = words.flatMap((w) => COLUMNS.map(() => '%' + w.replace(/[%_]/g, '') + '%'));
+  const found_ = rows(`select s.id, s.grp, s.first, s.chorus, s.subject, s.people, s.music, s.body, h.no,
+                       coalesce(nullif(h.first_stanza_line, ''), h.first_chorus_line) as line
+                       from search s join hymns h on h._id = s.id where ${where}`, params)
+    .filter((r) => words.every((w) => !isShortWord(w) || COLUMNS.some((c) => found(r[c], w))));
+  for (const r of found_) {
+    [r.score, r.where] = score(words, phrase, r);
+    r.group = r.grp;
+    for (const c of COLUMNS) delete r[c];
+  }
+  found_.sort((a, b) => b.score - a.score || (b.group === current) - (a.group === current)
+    || BY_CODE[a.group].order - BY_CODE[b.group].order || a.no - b.no);
+  return found_.slice(0, limit);
+}
+
+// the stanza line that best shows why a hymn matched: the one with the most of the words (the first one with all of
+// them), other than the first line, which the result already shows
 export function matchLine(id, words) {
   const h = hymn(id);
   if (!h) return null;
+  const skip = norm(h.first);
   let best = null;
   for (const s of h.stanzas) {
     for (const line of plain(s.text).split('\n')) {
       const n = norm(line);
-      const hits = words.filter((w) => n.includes(w)).length;
+      if (n === skip) continue;
+      const hits = words.filter((w) => found(n, w)).length;
       if (hits && (!best || hits > best.hits)) best = {line, hits};
       if (best && best.hits === words.length) return best.line;
     }

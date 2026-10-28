@@ -385,7 +385,9 @@ function highlight(text, words) {
   const parts = words.length > 1 && n.includes(phrase) ? [phrase] : words;
   const ranges = [];
   for (const w of parts) {
+    const whole = DB.isShortWord(w);
     for (let at = n.indexOf(w); at >= 0 && w; at = n.indexOf(w, at + w.length)) {
+      if (whole && ((at > 0 && n[at - 1] !== ' ') || (at + w.length < n.length && n[at + w.length] !== ' '))) continue;
       ranges.push([map[at][0], map[at + w.length - 1][1]]);
     }
   }
@@ -400,6 +402,25 @@ function highlight(text, words) {
   }
   frag.appendChild(document.createTextNode(text.slice(pos)));
   return frag;
+}
+
+// the second line of a result: why it matched, when it was not its first line (HYMNAL_SPEC.md §9.3)
+function whyLine(r, words) {
+  if (r.where === 'first') return null;
+  const x = DB.hymn(r.id);
+  if (!x) return null;
+  const join = (sep, ...parts) => parts.map((p) => (p || '').trim()).filter(Boolean).join(sep);
+  const label = (l, v) => (v || '').trim() ? l + v.trim() : '';
+  switch (r.where) {
+    case 'chorus': return {text: x.chorus || ''};
+    case 'subject': return {text: 'Subject: ' + join(' – ', x.category, x.subcategory)};
+    case 'people': return {text: join(' · ', label('Author: ', x.author), label('Composer: ', x.composer))};
+    case 'music': return {text: join(' · ', label('Key: ', x.key), label('Tune: ', x.tune))};
+    default: {
+      const line = DB.matchLine(r.id, words);
+      return line ? {text: line, lyrics: true} : null;
+    }
+  }
 }
 
 function searchScreen(view, q) {
@@ -430,7 +451,7 @@ function searchScreen(view, q) {
   }
 
   const t0 = performance.now();
-  const found = DB.search(pq.words).filter((r) => isShown(r.group) || r.group === currentGroup);
+  const found = DB.search(pq.words, pq.phrase, currentGroup).filter((r) => isShown(r.group) || r.group === currentGroup);
   const inGroup = found.filter((r) => r.group === currentGroup);
   const showAll = all || !inGroup.length;
   const results = showAll ? found : inGroup;
@@ -456,11 +477,13 @@ function searchScreen(view, q) {
     const next = results.slice(shown, shown + 60);
     for (const r of next) {
       const first = r.line || '';
-      const line = r.score >= 3 ? null : DB.matchLine(r.id, pq.words);
+      const why = whyLine(r, pq.words);
       ul.appendChild(h('li', null, h('a', {href: '#/h/' + r.id, class: 'hymn-row'},
         chip(r.group, r.id),
         h('span', {class: 'first'}, highlight(first, pq.words)),
-        line && line !== first ? h('span', {class: 'snippet'}, '… ', highlight(line, pq.words), ' …') : null)));
+        why && DB.norm(why.text) !== DB.norm(first)
+          ? h('span', {class: 'snippet'}, why.lyrics ? '… ' : '', highlight(why.text, pq.words), why.lyrics ? ' …' : '')
+          : null)));
     }
     shown += next.length;
     if (shown >= results.length) more.remove();

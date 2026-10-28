@@ -74,7 +74,7 @@ sheet side by side.
 - The query is read as:
   - `8` → hymn 8 in the current hymnal (opens straight away on Enter).
   - `E8`, `ns151`, `C 206` → that hymn in that hymnal.
-  - Anything else → a search of first lines, chorus lines and stanza text. Results update as you type. Each
+  - Anything else → a search of first lines, chorus lines, subjects, authors, tunes and stanza text. Results update as you type. Each
     result shows the hymnal chip in the group colour, the number, the first line and the matching snippet.
 - The hymnal picker remembers the last choice. Group names and colours come from `HymnGroup.java`.
 - **Browse**: a number grid (1…max, with gaps greyed out) and a category tree (`main_category` →
@@ -167,10 +167,11 @@ tools/web/                (was svg-to-lilypond/hymnsforweb/ until 2026-10-20)
     about 0.3 s.
   - Verovio is prefetched in the background 1.5 s after the start, so the first sheet doesn't wait for it.
   - Everything else is revalidated with ETags (`304 Not Modified`).
-- **Download size:** 10 MB of database (gzipped) once, and the 2.3 MB Verovio renderer when the first
+- **Download size:** 12.6 MB of database (gzipped) once, and the 2.3 MB Verovio renderer when the first
   sheet is opened. Each sheet is 2–5 KB.
   - The shipped DB keeps only the index the web app uses (stanzas by hymn).
-  - The `search` table (normalised text, see §5) costs about 3 MB of the download. In exchange, accents
+  - The `search` table (normalised text, see §5) costs about 3.5 MB of the download (0.65 MB of it for the
+    subject, people and music columns, added 2026-10-28). In exchange, accents
     and case are ignored in every language.
 - `sheets.json`: the IDs that have an `.mei`, so the app knows which hymns have a sheet without fetching.
 - The hymn page loads the sheet only when it is shown: on a phone, only after "Sheet music" is tapped.
@@ -187,14 +188,20 @@ tools/web/                (was svg-to-lilypond/hymnsforweb/ until 2026-10-20)
    parent's list and the parent itself. Missing IDs are left out, the same way the app now handles missing
    hymn IDs.
 4. **Stanza text** uses `<br/>` line breaks and `n_order` for order. Stanza `no` is a number or `chorus`.
-5. **Search** runs `LIKE` over a `search` table that `build.py` fills with each hymn's first lines and
-   stanzas in a normal form: no tags, no accents, lower case, punctuation as spaces. `norm()` in `build.py`
-   and `db.js` must stay identical.
+5. **Search** works like the app's Search tab (`docs/HYMNAL_SPEC.md` §9.3). It runs `LIKE` over a `search` table
+   that `build.py` fills with each hymn's first stanza line, first chorus line, subject, author and composer, key and
+   tune, and stanzas, in a normal form: no tags, no accents, lower case, punctuation as spaces. A hymn with a parent
+   takes the parent's author, composer, key, tune, subject and stanzas where it has none. `norm()` in `build.py`
+   and `db.js` must stay identical (and `SearchText.norm` in the app).
    - "senor" finds "Señor", and Greek final sigma matches.
    - Chinese and Japanese match by substring, since there are no spaces.
-   - All words must appear. Sorting: the phrase at the start of the first line, the phrase in the first
-     line, the phrase in the chorus line, all words in the first line, all words in the chorus line, then
-     the phrase or whole words in the text, then parts of words.
+   - Every word must appear somewhere in the hymn; text in quotes is an exact phrase. A word of one or two Latin,
+     Greek or Cyrillic letters only counts as a whole word ("c major").
+   - Sorting: the phrase at the start of the first line, in the first line, in the chorus line; all words in
+     the first line, the chorus line, the subject, the author/composer, the key/tune; then the phrase or whole
+     words in the stanzas, then parts of words. Ties: the current hymnal, the drawer's order, the number.
+   - A result that didn't match on its first line shows why: the chorus line, `Subject: …`, `Author: …`,
+     `Key: … · Tune: …`, or the best stanza line.
    - It takes about 20 ms (no FTS5 in sql.js, and it isn't needed).
 
 ---

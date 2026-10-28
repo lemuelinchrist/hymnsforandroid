@@ -590,9 +590,11 @@ so the same words find the same hymns everywhere. Known side effect: Russian `й
 
 ### 9.6 The web app
 
-The web app (§14.2) searches the same way for first lines, chorus lines and stanzas (same search form, the same order
-for those columns, "why" line from the stanzas, hymn ID / number jump) but does not yet search subjects, people or
-music, nor read quotes as a phrase.
+The web app (§14.2) searches the same way (since 2026-10-28): the same six columns with the parents' values, the same
+search form, quotes, short-word rule, scores, ties and "why" line, built by `tools/web/build.py` and searched by
+`search()` in `tools/web/src/db.js`. Differences: it has no browsing lists in the search (it browses hymnals by number
+and category on their own page), it shows hidden books when they are the current one, and a hymn ID that does not
+exist says "No hymn …" instead of searching the words.
 
 ---
 
