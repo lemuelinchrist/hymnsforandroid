@@ -159,6 +159,24 @@ public class HymnSearchTest {
     }
 
     @Test
+    public void shortWordsOnlyCountWhole() {
+        assertTrue(HymnSearch.isShortWord("c"));
+        assertTrue(HymnSearch.isShortWord("de"));
+        assertFalse(HymnSearch.isShortWord("god"));
+        assertFalse(HymnSearch.isShortWord("神"));
+        assertTrue(HymnSearch.found("o god our help", "o"));
+        assertFalse(HymnSearch.found("our god", "o"));
+        assertTrue(HymnSearch.found("our god", "god"));
+        List<HymnSearch.Result> r = search("c major", HymnGroup.E);
+        assertFalse(r.isEmpty());
+        int english = 0;
+        for (HymnSearch.Result x : r) if (x.group == HymnGroup.E) english++;
+        assertTrue("c major in English: " + english, english > 100 && english < 300);
+        assertEquals(HymnSearch.Where.MUSIC, r.get(0).where);
+        assertFalse(search("神", HymnGroup.C).isEmpty());
+    }
+
+    @Test
     public void searchIsQuick() {
         long start = System.currentTimeMillis();
         search("love lord", HymnGroup.E);

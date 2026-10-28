@@ -499,7 +499,10 @@ types the number. So Search always opens on Hymn Numbers (never "the last tab"),
 | 2 | **Favorites** | none | favorites, with Back up / Restore (§8.4) | not searchable |
 | 3 | **History** | none | history | not searchable |
 
-Every row shows the book icon of the hymn on the left.
+Every row shows the book icon of the hymn on the left. The title bar, search box and tabs stay at the top while a
+list scrolls.
+
+Tapping the box on Favorites or History (which show an empty box) goes to the Search tab with its words.
 
 Why one Search tab: the app used to have separate tabs for First Lines, Subjects, Authors, All Lyrics and Music, so
 the user had to guess where a word was before searching. All Lyrics listed stanzas, not hymns (a hymn showed once per
@@ -512,9 +515,9 @@ current book only, so nothing that could be browsed before is lost:
 
 | Choice | Lists | Row text |
 |---|---|---|
-| First Lines | first stanza **and** first chorus lines, merged, sorted alphabetically (case-insensitive, ignoring leading `"` and `'`, locale collation) | `<line> - <ID>` |
-| Subjects | hymns with a main category, in database order | **`<main> - <sub>`** / `<ID> - <first stanza line>` |
-| Authors | hymns with an author or composer, by author (else composer) | **`<author> - <composer>`** (empty→`Unknown`) / `<ID> - <first line>` |
+| First Lines | first stanza **and** first chorus lines, merged, sorted alphabetically (case-insensitive, ignoring leading spaces and quote marks `"'“”‘’«»„¿¡`, locale collation) | `<line> - <ID>` |
+| Subjects | hymns with a main category, in database order | **`<main> - <sub>`** (just `<main>` without a sub-category) / `<ID> - <first stanza line>` |
+| Authors | hymns with an author or composer, by the author shown (no author = `Unknown`), then composer, leading quote marks ignored | **`<author> - <composer>`** (empty→`Unknown`) / `<ID> - <first line>` |
 | Tunes | hymns with key and tune, by tune | `<key> - <ID>` / first stanza line / `Tune: <tune>` |
 
 Subjects, Authors and Tunes use each hymn's values as its page shows them: an empty author, composer, key, tune or
@@ -531,7 +534,10 @@ Live as you type, about 150 ms after the last key, run off the main thread.
   shown, else the chorus line). A hymn with a parent takes the parent's author, composer, key, tune, subject and
   stanzas where it has none (§5.1), so a translation is found by what its page shows.
 - **Terms:** the query in search form, split into words; text in quotes (`"…"`, `“…”`, `„…“`, `«…»`) is one term, an
-  exact phrase. Duplicate terms count once. No word is dropped for being short.
+  exact phrase. Duplicate terms count once. No word is dropped for being short, but a word of one or two Latin,
+  Greek or Cyrillic letters or digits (`c`, `o`, `de`) only counts as a **whole word**, in the search and in the bold:
+  as part of a word it is in nearly every hymn (`c major` found 9,055). Chinese, Japanese, Korean, Tamil… text has
+  no spaces between words, so there short terms count anywhere.
 - **A hymn matches** when every term is found, anywhere and in any order, in one of its six columns
   (`column LIKE '%term%'`, so parts of words count). Hidden books (`disableLanguages`) are always left out.
 - **One row per hymn**, best first. `phrase` = the whole query in search form (quotes removed):
@@ -553,7 +559,8 @@ Live as you type, about 150 ms after the last key, run off the main thread.
   emptied. This is how to search only one book (for example only New Songs): search from a hymn of that book.
 - **Row:** `**<ID>** - <line>`, the matched terms in bold. When the hymn did not match on its first line, a second,
   smaller grey line shows why: the first chorus line, `Subject: <main> – <sub>`, `Author: … · Composer: …`,
-  `Key: … · Tune: …`, or the stanza line with the most of the terms (the first one with all of them).
+  `Key: … · Tune: …`, or the stanza line with the most of the terms (the first one with all of them) other than the
+  first line. No second line when it would only repeat the first.
 - **A hymn number or ID typed** (`123`, `#123`, `NS 151`, `ns151`, `e8`; a 1–2 letter book code, optional space or
   `-`, digits): if that hymn exists the list is only a first row **Go to `<ID>`** (a bare number means the current
   book), and **Enter** opens it. Otherwise the words are searched as usual and Enter just hides the keyboard.

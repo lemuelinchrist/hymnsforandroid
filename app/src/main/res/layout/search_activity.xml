@@ -20,7 +20,6 @@
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
                 android:background="#000000"
-                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         <com.google.android.material.tabs.TabLayout
@@ -29,7 +28,6 @@
                 android:layout_height="match_parent"
                 android:background="#000000"
                 app:tabMode="scrollable"
-                app:layout_scrollFlags="scroll|enterAlways"
                 app:tabGravity="center"/>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.viewpager.widget.ViewPager

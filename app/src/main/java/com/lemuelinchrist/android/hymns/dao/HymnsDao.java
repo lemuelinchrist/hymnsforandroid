@@ -49,7 +49,7 @@ public class HymnsDao {
                 "union\n" +
                 "select first_chorus_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' ) ";
 
-        String orderBy = " lower(trim(trim(stanza_chorus,'\"'),\"'\")) ";
+        String orderBy = sortKey("stanza_chorus");
 
         String sql = QueryBuilder.newInstance(context, fromClause)
                 .showOnlyOneHymnGroup(hymnGroup.name())
@@ -78,6 +78,11 @@ public class HymnsDao {
             hymnArray.add(cursor.getString(cursor.getColumnIndex(HymnFields.no.toString())).trim());
         }
         return hymnArray;
+    }
+
+    // sorts a line or a name by its first letter: leading spaces and quote marks don't count
+    private static String sortKey(String column) {
+        return "lower(trim(" + column + ", ' \"''\u201c\u201d\u2018\u2019\u00ab\u00bb\u201e\u00bf\u00a1'))";
     }
 
     // the hymns as their pages show them: a column a hymn leaves empty comes from its parent, grandparent... (see get)
@@ -114,7 +119,9 @@ public class HymnsDao {
         String sql = QueryBuilder.newInstance(context, HYMNS_WITH_PARENTS)
                 .showOnlyOneHymnGroup(hymnGroup.name())
                 .addCondition("(ifnull(author, '') != '' OR ifnull(composer, '') != '')")
-                .orderBy("ifnull(nullif(author, ''), composer)")
+                // by the name shown: hymns with no author are listed as "Unknown", by composer
+                .orderBy("ifnull(nullif(" + sortKey("author") + ", ''), 'unknown') COLLATE LOCALIZED, "
+                        + sortKey("composer"))
                 .build();
         return database.rawQuery(sql, null);
     }

@@ -139,6 +139,7 @@ public final class HymnSearch {
                 + " WHERE " + where, args.toArray(new String[0]));
         try {
             while (c.moveToNext()) {
+                if (!shortWordsWhole(query.terms, c)) continue;
                 HymnGroup group;
                 try {
                     group = HymnGroup.valueOf(c.getString(1));
@@ -171,7 +172,7 @@ public final class HymnSearch {
     static int[] score(Query q, String first, String chorus, String subject, String people, String music,
                        String body) {
         String phrase = q.phrase;
-        if (!phrase.isEmpty()) {
+        if (!phrase.isEmpty() && !isShortWord(phrase)) {
             if (first.startsWith(phrase)) return new int[]{100, Where.FIRST.ordinal()};
             if (first.contains(phrase)) return new int[]{90, Where.FIRST.ordinal()};
             if (chorus.contains(phrase)) return new int[]{80, Where.CHORUS.ordinal()};
@@ -190,7 +191,42 @@ public final class HymnSearch {
 
     private static boolean hasAll(String text, List<String> terms) {
         if (text == null || text.isEmpty()) return false;
-        for (String t : terms) if (!text.contains(t)) return false;
+        for (String t : terms) if (!found(text, t)) return false;
+        return true;
+    }
+
+    /**
+     * A word of one or two letters in a script that puts spaces between words ("c", "o", "de") only counts as a
+     * whole word: as part of a word it is in nearly every hymn ("c major" found 9,055). Longer words, phrases and
+     * Chinese, Japanese, Korean or Tamil text count anywhere, as parts of words.
+     */
+    public static boolean isShortWord(String term) {
+        if (term.length() > 2 || term.indexOf(' ') >= 0) return false;
+        for (int i = 0; i < term.length(); i++) {
+            char ch = term.charAt(i);
+            if (Character.isDigit(ch)) continue;
+            Character.UnicodeScript script = Character.UnicodeScript.of(ch);
+            if (script != Character.UnicodeScript.LATIN && script != Character.UnicodeScript.GREEK
+                    && script != Character.UnicodeScript.CYRILLIC) return false;
+        }
+        return true;
+    }
+
+    /** Whether text in search form has the term: anywhere, or as a whole word if it is a short word. */
+    public static boolean found(String text, String term) {
+        if (text == null) return false;
+        if (!isShortWord(term)) return text.contains(term);
+        return (" " + text.replace(" | ", " ") + " ").contains(" " + term + " ");
+    }
+
+    // the SQL found the short words anywhere; keep the hymn only if each is a whole word in one of the columns
+    private static boolean shortWordsWhole(List<String> terms, Cursor c) {
+        for (String t : terms) {
+            if (!isShortWord(t)) continue;
+            boolean whole = false;
+            for (int col = 4; col <= 9 && !whole; col++) whole = found(c.getString(col), t);
+            if (!whole) return false;
+        }
         return true;
     }
 }

@@ -19,7 +19,7 @@ public class MusicKeyAdapter extends HymnCursorAdapter {
     protected void provisionHolderUsingCursor(IndexViewHolder indexViewHolder) {
         String text = cursor.getString(cursor.getColumnIndex("key")) + " - " + cursor.getString(cursor.getColumnIndex("_id")) + "\n";
         text += cursor.getString(cursor.getColumnIndex("first_stanza_line")) + "\n";
-        text += "Tune: " +  cursor.getString(cursor.getColumnIndex("tune"));
+        text += "Tune: " + cursor.getString(cursor.getColumnIndex("tune")).trim();
         indexViewHolder.list_item.setText(text);
 
         String hymnGroup = cursor.getString(cursor.getColumnIndex(HymnsDao.HymnFields.hymn_group.toString()));

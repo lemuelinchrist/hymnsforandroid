@@ -70,7 +70,8 @@ public class SearchResultAdapter extends SearchAdapter {
         text.append(" - ");
         appendHighlighted(text, r.line);
         String why = r.where == HymnSearch.Where.FIRST ? null : whyLine(r);
-        if (why != null && !why.isEmpty()) {
+        // a line that only repeats the first line adds nothing
+        if (why != null && !why.isEmpty() && !SearchText.norm(why).equals(SearchText.norm(r.line))) {
             text.append("\n");
             int start = text.length();
             appendHighlighted(text, why);
@@ -99,21 +100,24 @@ public class SearchResultAdapter extends SearchAdapter {
             case MUSIC:
                 return join(" · ", label("Key: ", hymn.getKey()), label("Tune: ", hymn.getTune()));
             default:
-                return bestLine(hymn);
+                return bestLine(hymn, r.line);
         }
     }
 
-    // the stanza line with the most of the words (the first one if several have all of them)
-    private String bestLine(Hymn hymn) {
+    // the stanza line with the most of the words (the first one if several have all of them), other than the first
+    // line, which the row already shows
+    private String bestLine(Hymn hymn, String shown) {
         String best = null;
         int bestHits = 0;
         if (hymn.getStanzas() == null) return null;
+        String skip = SearchText.norm(shown);
         for (Stanza stanza : hymn.getStanzas()) {
             if (stanza.getText() == null) continue;
             for (String line : stanza.getText().split("(?i)<br\\s*/?>|\n")) {
                 String n = SearchText.norm(line);
+                if (n.equals(skip)) continue;
                 int hits = 0;
-                for (String t : terms) if (n.contains(t)) hits++;
+                for (String t : terms) if (HymnSearch.found(n, t)) hits++;
                 if (hits > bestHits) {
                     bestHits = hits;
                     best = Html.fromHtml(line).toString().trim();
@@ -130,11 +134,19 @@ public class SearchResultAdapter extends SearchAdapter {
         out.append(text);
         String folded = SearchText.fold(text);
         for (String term : terms) {
+            boolean wholeOnly = HymnSearch.isShortWord(term);
             for (int i = folded.indexOf(term); i >= 0; i = folded.indexOf(term, i + term.length())) {
+                if (wholeOnly && !wholeWordAt(folded, i, term.length())) continue;
                 out.setSpan(new StyleSpan(Typeface.BOLD), base + i, base + i + term.length(),
                         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
+    }
+
+    private static boolean wholeWordAt(String text, int start, int length) {
+        int end = start + length;
+        return (start == 0 || !Character.isLetterOrDigit(text.charAt(start - 1)))
+                && (end == text.length() || !Character.isLetterOrDigit(text.charAt(end)));
     }
 
     private static String label(String label, String value) {

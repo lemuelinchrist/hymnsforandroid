@@ -122,6 +122,8 @@ public class SearchActivity extends AppCompatActivity  {
                     searchBar.setFocusable(false);
                     searchBar.setFocusable(true);
                     searchBar.setFocusableInTouchMode(true);
+                    // their lists can't be searched, so don't show the Search tab's words
+                    searchBar.setQuery("", false);
                     hideKeyboard();
                     return;
                 }
@@ -207,16 +209,14 @@ public class SearchActivity extends AppCompatActivity  {
         searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus && !getCurrentTab().canBeSearched()) {
-                    // switch to the Search tab
-                    try {
-                        mViewPager.setCurrentItem(mSearchTabsPagerAdapter.getPositionOf(SearchTabFragment.class));
-                    }catch(Exception e) {
-                        Log.d(this.getClass().getName(),"Exception caught!");
-                    }
-
-                }
+                if (hasFocus) goToSearchTabIfNotSearchable();
             }
+        });
+        // the box may still have focus on Favorites or History, and then a tap on it changes no focus
+        View searchText = searchBar.findViewById(androidx.appcompat.R.id.search_src_text);
+        if (searchText != null) searchText.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) goToSearchTabIfNotSearchable();
+            return false;
         });
 
 
@@ -228,6 +228,13 @@ public class SearchActivity extends AppCompatActivity  {
 
 
         return true;
+    }
+
+    private void goToSearchTabIfNotSearchable() {
+        if (getCurrentTab().canBeSearched()) return;
+        mViewPager.setCurrentItem(mSearchTabsPagerAdapter.getPositionOf(SearchTabFragment.class));
+        searchBar.setQuery(getCurrentTab().getSavedQuery(), false);
+        showKeyboard();
     }
 
     public void createIntentAndExit(String hymnId) {
