@@ -18,17 +18,20 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import com.lemuelinchrist.android.hymns.R;
+import com.lemuelinchrist.android.hymns.logbook.ChordEditsBackup;
 import com.lemuelinchrist.android.hymns.logbook.FavoritesBackup;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private FavoritesBackup favoritesBackup;
+    private ChordEditsBackup chordEditsBackup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
         favoritesBackup = new FavoritesBackup(this, added -> {});
+        chordEditsBackup = new ChordEditsBackup(this, this::updateChordEditsSummary);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,6 +60,12 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
+    private void updateChordEditsSummary() {
+        SettingsFragment fragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(R.id.settings);
+        Preference preference = fragment == null ? null : fragment.findPreference("chordEdits");
+        if (preference != null) preference.setSummary(chordEditsBackup.summary());
+    }
+
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -78,6 +87,17 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 }
             });
+            findPreference("chordEdits").setOnPreferenceClickListener(preference -> {
+                ((SettingsActivity) requireActivity()).chordEditsBackup.showMenu();
+                return true;
+            });
+        }
+
+        // the count changes when a sheet opened from the list is edited, or after an import
+        @Override
+        public void onResume() {
+            super.onResume();
+            ((SettingsActivity) requireActivity()).updateChordEditsSummary();
         }
     }
 

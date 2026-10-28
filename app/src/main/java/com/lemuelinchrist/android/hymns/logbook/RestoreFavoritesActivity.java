@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Opens a favorites backup file that was tapped in another app (email, chat, Drive, Files) and asks whether to add
- * its hymns to the favorites. It has no screen of its own, only FavoritesBackup's dialogs.
+ * its hymns to the favorites, or a chord edits file (ChordEditsBackup) and asks whether to import it. It has no screen
+ * of its own, only those classes' dialogs.
  */
 public class RestoreFavoritesActivity extends AppCompatActivity {
 
@@ -14,9 +15,10 @@ public class RestoreFavoritesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FavoritesBackup favoritesBackup = new FavoritesBackup(this, added -> finish());
+        ChordEditsBackup chordEditsBackup = new ChordEditsBackup(this, this::finish);
 
         Uri uri = getIntent().getData();
         if (uri == null) finish();
-        else favoritesBackup.restoreOpenedFile(uri);
+        else if (!chordEditsBackup.importOpenedFile(uri)) favoritesBackup.restoreOpenedFile(uri);
     }
 }

@@ -74,9 +74,9 @@ The Android app's source code is located in `app/src/main/java/com/lemuelinchris
 
 -   **`dao` (Data Access Objects)**: Contains classes responsible for all database interactions. `HymnsDao` is a key class here, providing methods to query the `hymns` and `stanza` tables. It also implements the "Parent Hymn" logic.
 -   **`entities`**: Contains the Java objects that map to database tables, such as `Hymn` and `Stanza`. These are the data models for the application.
--   **`content`**: Displays one hymn. `ContentArea` is the fragment for a hymn page; `LyricsArea` renders the header and stanzas; `OtherLanguagesSection` shows the foldable "OTHER LANGUAGES" number grid under the subject; `PlayButton`, `FaveButton`, `CopyButton`, `YoutubeButton`, `SimilarTuneButton` and `sheetmusic/SheetMusicButton` are the button bar. `sheetmusic/SheetMusicActivity` shows sheet music in a WebView running the Verovio viewer (`assets/viewer/`) on `assets/sheetMei/<id>.mei`.
+-   **`content`**: Displays one hymn. `ContentArea` is the fragment for a hymn page; `LyricsArea` renders the header and stanzas; `OtherLanguagesSection` shows the foldable "OTHER LANGUAGES" number grid under the subject; `PlayButton`, `FaveButton`, `CopyButton`, `YoutubeButton`, `SimilarTuneButton` and `sheetmusic/SheetMusicButton` are the button bar. `sheetmusic/SheetMusicActivity` shows sheet music in a WebView running the Verovio viewer (`assets/viewer/`) on `assets/sheetMei/<id>.mei`; on tablets and unfolded phones its chords can be edited (`assets/viewer/editor.js`, saved through `logbook/ChordEdits`).
 -   **`search`**: Implements the search functionality. It contains the logic for building search queries and displaying results.
--   **`logbook`**: Handles user-specific data, such as history and favorites.
+-   **`logbook`**: Handles user-specific data, such as history and favorites, and the chord edits (`ChordEdits`, exported and imported by `ChordEditsBackup` in Settings).
 -   **`settings`**: Manages the application's settings and preferences.
 -   **`HymnsActivity.java`**: The main entry point and primary activity for the app. It coordinates the various components.
 -   **`HymnGroup.java`**: An enum that defines the different hymn books available in the app.

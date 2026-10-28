@@ -2,6 +2,7 @@
 // Guitar sheets are derived here from the piano MEI: capo from the key, chords moved down by the capo,
 // slash basses dropped, a chord equal to the one before it removed (tools/svg-to-lilypond/DESIGN.md §10, §19).
 // A bar (shown and hidden by a tap) switches piano/guitar, transposes, and hides the staff (chords over lyrics).
+// Chord edits (made on big screens, ?edit=1; editor.js) are kept by the app and drawn in place of the sheet's chords.
 (function () {
   'use strict';
 
@@ -32,6 +33,13 @@
   var tk = null, scale = 40;
   var baseXml = null, baseFifths = 0, baseTail = null;   // the MEI as loaded (no <back>), its key, its tail chords
   var meiText = null, meiDoc = null;                      // the MEI for the current state
+  var pristineXml = null;                                 // the MEI as loaded, before the chord edits go in
+
+  // chord editing: the bars of the sheet as the file has them, this device's edits of them and the editor's state
+  // (editor.js uses this object; the web app's SheetView has the same members)
+  var editable = params.get('edit') === '1';
+  var editing = false, editor = null;
+  var view = {bars: [], edits: {}, history: [], stale: [], selected: null, steps: 0, panelHeight: 0, saveStatus: 'idle', onpick: null};
 
   function $(id) { return document.getElementById(id); }
 
@@ -122,7 +130,9 @@
     var back = q('back')[0];
     if (back) back.parentNode.removeChild(back);
     baseFifths = keyFifths(doc);
-    baseXml = new XMLSerializer().serializeToString(doc);
+    pristineXml = new XMLSerializer().serializeToString(doc);
+    view.edits = loadEdits();
+    prepare();
   }
 
   // the MEI for the current state: transposed by Verovio (notes, key signature and chord symbols), then made
@@ -138,12 +148,12 @@
     var doc = parseXml(xml);
     var fifths = state.shift ? keyFifths(doc) : baseFifths;
     var tonic = TONIC[fifths + 7];
+    view.steps = LETTERS.indexOf(tonic[0]) - LETTERS.indexOf(TONIC[baseFifths + 7][0]);
 
     // tail chords are plain text, so they are moved here: by the same interval as the key
     var tail = baseTail;
     if (tail && state.shift) {
-      var steps = LETTERS.indexOf(tonic[0]) - LETTERS.indexOf(TONIC[baseFifths + 7][0]);
-      tail = tail.map(function (c) { return moveChord(c, steps, state.shift, true); });
+      tail = tail.map(function (c) { return moveChord(c, view.steps, state.shift, true); });
     }
 
     var capoText = '';
@@ -165,6 +175,16 @@
     $('capo').textContent = capoText;
     $('tail').textContent = tail ? tail.join('   ') : '';
     $('key').textContent = tonic + (state.shift ? ' (' + (state.shift > 0 ? '+' : '') + state.shift + ')' : '');
+
+    // ids a tap can be traced back with: bar-<n> for the bars, chord-<n>-<beat> for the chords
+    if (editing) {
+      Array.prototype.forEach.call(mei(doc, 'measure'), function (m, i) {
+        m.setAttributeNS(XML_NS, 'xml:id', 'bar-' + (i + 1));
+        kids(m).forEach(function (c) {
+          if (c.localName === 'harm') c.setAttributeNS(XML_NS, 'xml:id', 'chord-' + (i + 1) + '-' + parseFloat(c.getAttribute('tstamp') || '1'));
+        });
+      });
+    }
 
     meiDoc = doc;
     meiText = new XMLSerializer().serializeToString(doc);
@@ -195,6 +215,8 @@
     var html = '';
     for (var p = 1; p <= tk.getPageCount(); p++) html += tk.renderToSVG(p);
     $('music').innerHTML = html;
+    $('music').classList.toggle('editing', editing);
+    mark();
   }
 
   // ---- staff hidden: chords over the lyrics ----
@@ -346,6 +368,250 @@
     $('music').appendChild(chart);
   }
 
+  // ---- chord edits ----
+  // Per sheet, {"<bar>": {was: [[beat, chord]], chords: [[beat, chord]]}}: a bar is the nth <measure> (from 1), a beat
+  // its tstamp, the chords are in the original key and replace all the chords of that bar; `was` is what the bar had,
+  // to notice when the sheet changes under an edit. The app keeps them (window.HymnsEdits, ChordEdits.java) in the web
+  // app's format, so the files move between the two and can be put into the sheets (tools/web/README.md).
+
+  // the bars of the sheet: their element, chords and the beat every note or rest starts on
+  function scanBars(doc) {
+    var bars = [], unit = 4;
+    function scanBar(m) {
+      var bar = {el: m, unit: unit, events: [], len: 0};
+      (function walk(e, start, factor) {
+        var onset = start;
+        kids(e).forEach(function (c) {
+          var name = c.localName;
+          if (name === 'note' || name === 'rest' || name === 'space') {
+            var dur = parseInt(c.getAttribute('dur') || '4', 10), dots = parseInt(c.getAttribute('dots') || '0', 10);
+            bar.events.push({id: xmlId(c), onset: onset});
+            onset += unit / dur * (2 - Math.pow(0.5, dots)) * factor;
+          } else if (name === 'tuplet') {
+            onset = walk(c, onset, factor * parseInt(c.getAttribute('numbase') || '2', 10) / parseInt(c.getAttribute('num') || '3', 10));
+          } else if (name === 'beam') {
+            onset = walk(c, onset, factor);
+          } else if (name === 'staff' || name === 'layer') {
+            var end = walk(c, 1, factor);
+            if (name === 'layer') bar.len = Math.max(bar.len, end - 1);
+          }
+        });
+        return onset;
+      })(m, 1, 1);
+      bar.chords = kids(m).filter(function (c) { return c.localName === 'harm'; })
+        .map(function (c) { return [Math.round(parseFloat(c.getAttribute('tstamp') || '1') * 1000) / 1000, c.textContent]; })
+        .sort(function (a, b) { return a[0] - b[0]; });
+      return bar;
+    }
+    (function walk(e) {
+      kids(e).forEach(function (c) {
+        var name = c.localName;
+        if (name === 'measure') bars.push(scanBar(c));
+        else if (name === 'scoreDef' || name === 'staffDef') {
+          if (c.getAttribute('meter.unit')) unit = parseInt(c.getAttribute('meter.unit'), 10);
+          walk(c);
+        } else if (name === 'section' || name === 'staffGrp' || name === 'ending') walk(c);
+      });
+    })(mei(doc, 'score')[0]);
+    return bars;
+  }
+
+  // the same chord however it is spelled: the sheets print dim as °, aug as + (tools/svg-to-lilypond/tools/chord_edits.py)
+  function normChord(c) { return (c || '').replace(/\s+/g, '').replace(/dim/g, '°').replace(/aug/g, '+').replace(/b5/g, '♭5'); }
+  function sameChords(a, b) {
+    return a.length === b.length && a.every(function (c, i) { return Math.abs(c[0] - b[i][0]) < 1e-3 && normChord(c[1]) === normChord(b[i][1]); });
+  }
+
+  // replace the chords of the edited bars; the harms that are not in the original get type="edit" (drawn red)
+  function applyEdits(doc, bars, edits) {
+    Object.keys(edits).forEach(function (key) {
+      var bar = bars[parseInt(key, 10) - 1];
+      if (!bar) return;
+      var staffEl = mei(bar.el, 'staff')[0];
+      var staff = (staffEl && staffEl.getAttribute('n')) || '1';
+      kids(bar.el).forEach(function (c) { if (c.localName === 'harm') bar.el.removeChild(c); });
+      var had = bar.chords.map(function (c) { return c[0] + ' ' + c[1]; });
+      edits[key].chords.forEach(function (c) {
+        var h = doc.createElementNS(MEI_NS, 'harm');
+        h.setAttribute('staff', staff);
+        h.setAttribute('tstamp', String(c[0]));
+        h.setAttribute('place', 'above');
+        if (had.indexOf(c[0] + ' ' + c[1]) < 0) h.setAttribute('type', 'edit');
+        h.textContent = c[1];
+        bar.el.appendChild(h);
+      });
+    });
+  }
+
+  // the app's store; a browser (trying the viewer out) keeps them in localStorage
+  var store = window.HymnsEdits || {
+    get: function (id) { try { return localStorage.getItem('edits-' + id); } catch (e) { return null; } },
+    put: function (id, json) {
+      try { if (json === '{}') localStorage.removeItem('edits-' + id); else localStorage.setItem('edits-' + id, json); return true; } catch (e) { return false; }
+    },
+    setEditing: function () {}
+  };
+
+  function loadEdits() {
+    try {
+      var saved = JSON.parse(store.get(hymnId) || '{}');
+      return saved && typeof saved === 'object' ? saved : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  var retry = null;
+  function saveEdits() {
+    clearTimeout(retry);
+    var ok = false;
+    try { ok = store.put(hymnId, JSON.stringify(view.edits)) === true; } catch (e) { /* not saved */ }
+    view.saveStatus = ok ? 'saved' : 'error';
+    if (!ok) retry = setTimeout(function () { saveEdits(); if (editor) editor.refresh(); }, 5000);
+  }
+
+  // the MEI the states are built from: the sheet with this device's chord edits in it (unless "Original" is on)
+  function prepare() {
+    var doc = parseXml(pristineXml);
+    view.bars = scanBars(doc);
+    // edits that are now in the sheet itself (sent in and put into the sheets): forget them on this device
+    var baked = Object.keys(view.edits).filter(function (k) {
+      var bar = view.bars[parseInt(k, 10) - 1];
+      return bar && sameChords(view.edits[k].chords, bar.chords);
+    });
+    if (baked.length) {
+      baked.forEach(function (k) { delete view.edits[k]; });
+      saveEdits();
+    }
+    view.stale = Object.keys(view.edits).filter(function (k) {
+      var bar = view.bars[parseInt(k, 10) - 1];
+      return !bar || (view.edits[k].was && !sameChords(view.edits[k].was, bar.chords));
+    }).map(Number);
+    if (!state.original && hasEdits()) applyEdits(doc, view.bars, view.edits);
+    baseXml = new XMLSerializer().serializeToString(doc);
+  }
+
+  function hasEdits() { return Object.keys(view.edits).length > 0; }
+
+  // the chords of a bar as they are now, in the key being shown
+  view.chordsOf = function (bar) {
+    var e = view.edits[bar];
+    var list = e ? e.chords : (view.bars[bar - 1] ? view.bars[bar - 1].chords : []);
+    return list.map(function (c) { return [c[0], view.toShown(c[1])]; });
+  };
+
+  // what a bar looks like, for the editor: its beats (half beats too) and which of them have a note starting
+  view.barInfo = function (bar) {
+    var b = view.bars[bar - 1];
+    if (!b) return null;
+    var len = Math.max(b.len, 1), beats = [];
+    function has(t) { return beats.some(function (x) { return Math.abs(x - t) < 1e-3; }); }
+    var step = b.unit >= 4 ? 0.5 : 1;
+    for (var t = 1; t < len + 1 - 1e-6; t += step) beats.push(t);
+    b.events.forEach(function (ev) { if (ev.onset < len + 1 - 1e-6 && !has(ev.onset)) beats.push(ev.onset); });
+    view.chordsOf(bar).forEach(function (c) { if (!has(c[0])) beats.push(c[0]); });
+    beats.sort(function (x, y) { return x - y; });
+    return {count: view.bars.length, beats: beats.map(function (x) { return Math.round(x * 1000) / 1000; }),
+      notes: b.events.map(function (ev) { return ev.onset; }), edited: !!view.edits[bar]};
+  };
+
+  view.toShown = function (chord) { return state.shift ? moveChord(chord, view.steps, state.shift, true) : chord; };
+  view.toOriginal = function (chord) { return state.shift ? moveChord(chord, -view.steps, -state.shift, true) : chord; };
+
+  // replace the chords of a bar; `chords` are in the key being shown
+  view.setBar = function (bar, chords) {
+    var b = view.bars[bar - 1];
+    if (!b) return;
+    view.history.push(JSON.stringify(view.edits));
+    var list = chords.filter(function (c) { return c[1]; })
+      .map(function (c) { return [Math.round(c[0] * 1000) / 1000, view.toOriginal(c[1])]; })
+      .sort(function (x, y) { return x[0] - y[0]; });
+    if (sameChords(list, b.chords)) delete view.edits[bar];
+    else view.edits[bar] = {was: b.chords, chords: list};
+    edited();
+  };
+
+  view.undo = function () {
+    if (!view.history.length) return;
+    view.edits = JSON.parse(view.history.pop());
+    edited();
+  };
+
+  function edited() {
+    saveEdits();
+    prepare();
+    redraw();
+    updateBar();
+    if (editor) editor.refresh();
+  }
+
+  view.select = function (bar) {
+    view.selected = bar;
+    mark();
+    var g = document.getElementById('bar-' + bar);
+    if (g) {
+      var r = g.getBoundingClientRect();
+      if (r.top < 60 || r.bottom > window.innerHeight - view.panelHeight) g.scrollIntoView({block: 'center', behavior: 'smooth'});
+    }
+  };
+
+  function mark() {
+    Array.prototype.forEach.call(document.querySelectorAll('.bar-selected'), function (g) { g.classList.remove('bar-selected'); });
+    var g = editing && view.selected && document.getElementById('bar-' + view.selected);
+    if (g) g.classList.add('bar-selected');
+  }
+
+  // a tap on the sheet while editing: the bar, and the beat of the chord or note tapped
+  function pick(e) {
+    var t = e.target.closest ? e.target : e.target.parentNode;
+    var harm = t.closest('g.harm'), note = t.closest('g.note, g.rest');
+    var measure = t.closest('g.measure');
+    if (!measure) {
+      // the empty space inside a bar does not take taps in SVG: find the bar whose box holds the point
+      measure = Array.prototype.filter.call(document.querySelectorAll('#music g.measure'), function (g) {
+        var r = g.getBoundingClientRect();
+        return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      })[0];
+    }
+    if (!measure || !view.onpick) return;
+    var bar = parseInt(measure.id.replace('bar-', ''), 10), beat = null;
+    if (harm) {
+      var m = /^chord-\d+-(.+)$/.exec(harm.id);
+      if (m) beat = parseFloat(m[1]);
+    } else if (note) {
+      var ev = view.bars[bar - 1] && view.bars[bar - 1].events.filter(function (x) { return x.id === note.id; })[0];
+      if (ev) beat = ev.onset;
+    }
+    view.onpick({bar: bar, beat: beat});
+  }
+
+  // editing is on the piano sheet with the staff shown and the edits in place
+  function setEditing(on) {
+    if (on === editing || !tk) return;
+    editing = on;
+    store.setEditing(on);   // the app's Back button closes the editor first
+    if (on) {
+      document.body.classList.remove('barHidden');
+      var reprepare = state.original;
+      state.guitar = false;
+      state.staff = true;
+      state.original = false;
+      if (reprepare) prepare();
+      editor = editor || window.createChordEditor(view, function () { setEditing(false); });
+      view.history = [];
+      redraw();
+      editor.open();
+    } else {
+      view.selected = null;
+      editor.close();
+      redraw();
+    }
+    updateBar();
+  }
+
+  // the app's Back button while editing
+  window.closeEditor = function () { setEditing(false); };
+
   // ---- the bar ----
 
   function updateBar() {
@@ -357,18 +623,35 @@
     $('bStaff').classList.toggle('on', narrow && state.staff);
     $('bDown').disabled = state.shift <= -MAX_SHIFT;
     $('bUp').disabled = state.shift >= MAX_SHIFT;
+    $('bEdit').hidden = !editable;
+    $('bEdit').textContent = editing ? 'Editing chords' : 'Edit chords';
+    $('bEdit').classList.toggle('on', editing);
+    $('bOriginal').hidden = !editable || !hasEdits();
+    $('bOriginal').classList.toggle('on', !!state.original);
   }
 
-  function change(fn) {
-    if (!tk) return;
-    fn();
-    updateBar();
+  function redraw() {
     try {
       build();
       render();
     } catch (e) {
       status('Could not render this sheet: ' + e);
     }
+  }
+
+  function change(fn) {
+    if (!tk) return;
+    var original = state.original;
+    fn();
+    if (editing && (state.guitar || !state.staff || state.original)) {
+      editing = false;
+      store.setEditing(false);
+      view.selected = null;
+      editor.close();
+    }
+    if (state.original !== original) prepare();
+    updateBar();
+    redraw();
   }
 
   // back to the hymn: the activity closes itself on this address (SheetMusicActivity.closeIfRequested)
@@ -378,6 +661,8 @@
   $('bDown').addEventListener('click', function () { change(function () { state.shift = Math.max(-MAX_SHIFT, state.shift - 1); }); });
   $('bUp').addEventListener('click', function () { change(function () { state.shift = Math.min(MAX_SHIFT, state.shift + 1); }); });
   $('bStaff').addEventListener('click', function () { change(function () { state.staff = !state.staff; }); });
+  $('bEdit').addEventListener('click', function () { setEditing(!editing); });
+  $('bOriginal').addEventListener('click', function () { change(function () { state.original = !state.original; }); });
 
   // the app passes the camera cutout's safe insets (CSS px) so the bar and the music stay clear of the camera
   window.setInsets = function (top, right, bottom, left) {
@@ -388,9 +673,20 @@
     if (tk && $('music').clientWidth !== before) render();
   };
 
-  // a tap anywhere else shows or hides the bar (scrolling and pinching do not fire click)
+  // the app passes the height of the on-screen keyboard (CSS px), so the chord editor stays above it
+  window.setKeyboard = function (height) {
+    document.documentElement.style.setProperty('--kb', height + 'px');
+  };
+
+  // a tap anywhere else shows or hides the bar (scrolling and pinching do not fire click); while editing chords,
+  // a tap on the sheet picks a bar and the bar stays
   document.addEventListener('click', function (e) {
-    if (!$('bar').contains(e.target)) document.body.classList.toggle('barHidden');
+    if (e.target.closest && e.target.closest('.chord-editor')) return;   // its Done has just left edit mode
+    if (editing) {
+      if ($('music').contains(e.target)) pick(e);
+    } else if (!$('bar').contains(e.target)) {
+      document.body.classList.toggle('barHidden');
+    }
   });
   updateBar();
 
@@ -494,6 +790,7 @@
     } catch (e) {
       status('Could not render this sheet: ' + e);
     }
+    updateBar();
   }
   verovio.module.onRuntimeInitialized = function () { runtimeReady = true; start(); };
 

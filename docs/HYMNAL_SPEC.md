@@ -51,7 +51,7 @@ Features:
 | Favorites | Heart button; listed in the Favorites tab; back up / restore as a short text file (one "ID – first line" per hymn). |
 | History | Recently opened hymns (newest first, up to 100). The app reopens the last hymn on start. |
 | Play | Loops the hymn's melody (MIDI file looked up by tune code). |
-| Sheet music | Engraved from MEI with Verovio at screen width; piano or guitar (capo + chords derived), transpose ±6, "chords over lyrics" mode, pinch to zoom, night mode. Translations can show their own lyrics under the borrowed sheet. |
+| Sheet music | Engraved from MEI with Verovio at screen width; piano or guitar (capo + chords derived), transpose ±6, "chords over lyrics" mode, pinch to zoom, night mode. Translations can show their own lyrics under the borrowed sheet. On big screens (tablets, unfolded phones) the chords of the piano sheet can be edited, kept on the device and exported/imported (§11.5). |
 | YouTube (optional) | Either opens curated piano videos for the hymn or a YouTube search. |
 | Similar tune (optional) | Lists other hymns sung to the same tune, preferring the current language. |
 | Copy | Copies the full lyrics as plain text. |
@@ -71,7 +71,7 @@ Everything the app needs at runtime is in the repository. A rebuild does **not**
 | Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,462 files; 19 MB | Play button |
 | Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,345 (E 1362, NS 1227, CS 291, CH 243, C 124, BF 98); 45 MB | sheet viewer |
 | Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,369 (Z 755, C 632, ZS 460, FR 224, CS 194, FY 104); 9.3 MB | sheet viewer overlay |
-| Sheet viewer (web) | `app/src/main/assets/viewer/` (`index.html`, `viewer.js`, `viewer.css`, `verovio-toolkit-wasm.js`) | HTML/JS; Verovio 6.3.0 (LGPL-3.0) | 7.3 MB | **reusable as-is in a web build** |
+| Sheet viewer (web) | `app/src/main/assets/viewer/` (`index.html`, `viewer.js`, `editor.js`, `viewer.css`, `verovio-toolkit-wasm.js`) | HTML/JS; Verovio 6.3.0 (LGPL-3.0) | 7.3 MB | **reusable as-is in a web build** |
 | Lyrics-only web app | `tools/ios/template.html` + `tools/ios/build.py` | single HTML file with gzipped JSON payload | ~6.5 MB | starting point for a PWA (§14.2) |
 | UI icons | `app/src/main/res/drawable*/` | Material icons (vector/PNG) | — | buttons |
 
@@ -535,6 +535,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `nightMode` | bool | false | dark theme for reader and sheet viewer |
 | `keepDisplayOn` | bool | false | keep the screen awake (web: Screen Wake Lock API) in reader and sheet viewer |
 | `manageFaves` | action | — | Back up & restore favorites dialog (§8.4) |
+| `chordEdits` | action | — | Chord edits dialog: the edited sheets, Export, Import (§11.5); the summary counts the edited sheets |
 | `disableLanguages` | set of codes | `{I}` | hidden books: removed from drawer, the other-languages grid, and from search tabs 0,1,3,4,7 |
 | `otherLanguagesFolded` | bool | false | the other-languages grid on the hymn page is folded (§6.1); set by its Hide/Show row, not in the Settings screen |
 | `youtubeButton` | string | `disabled` | `disabled` / `piano` / `search` (§7.4) |
@@ -544,7 +545,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 
 Changing any setting refreshes the reader (theme, font, drawer, current page) when returning to it.
 
-Hidden state (not user-visible settings): History, Favorites (§8), and the database version (§14.5).
+Hidden state (not user-visible settings): History, Favorites (§8), chord edits (§11.5), and the database version (§14.5).
 
 ---
 
@@ -564,8 +565,11 @@ lyricsId  = h._id             (passed so a translation can overlay its own words
 The viewer is a self-contained web page (`assets/viewer/`). Hosts open:
 
 ```
-viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
+viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>][&edit=1]
 ```
+
+- `edit=1` offers chord editing (§11.5). Android passes it when the screen's smallest width is at least 600 dp
+  (tablets, unfolded foldables); on phones the page only shows edits the device already has.
 
 - It fetches `../sheetMei/<id>.mei` and, if `lyrics` is given and differs from `id`, `../sheetLyrics/<lyrics>.json`
   (a 404 there is fine: no overlay). **Keep this relative folder layout** (`viewer/`, `sheetMei/`, `sheetLyrics/`
@@ -575,6 +579,11 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
 - The host MAY call `window.setInsets(top, right, bottom, left)` (CSS px) to keep the bar clear of a camera cutout.
   On the web, use CSS `env(safe-area-inset-*)` instead.
 - Android shows it full-screen (immersive) and keeps the screen on if `keepDisplayOn`.
+- Chord edits are stored by the host through `window.HymnsEdits`: `get(sheetId)` → the sheet's bars as JSON (`"{}"`
+  when none), `put(sheetId, barsJson)` → true when saved (`"{}"` removes the sheet), `setEditing(bool)` (Android: Back
+  then calls `window.closeEditor()` instead of closing the sheet). Without it (a plain browser) the page keeps them in
+  `localStorage`. The host MAY call `window.setKeyboard(px)` with how much of the page the on-screen keyboard covers,
+  so the editor stays above it. Android lets no other page load in the WebView, since they would see `HymnsEdits`.
 
 ### 11.3 Viewer behaviour
 
@@ -603,7 +612,41 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
   small italic tag in the chord row. Repeats show as `‖:` `:‖`; endings as a boxed `1.`/`2.`. Only verse rows used by
   a line are drawn. Chords in accent red `#C80000` (dark: `#FF8A80`).
 
-Full algorithm: `app/src/main/assets/viewer/viewer.js` (~500 lines, no dependencies besides Verovio).
+Full algorithm: `app/src/main/assets/viewer/viewer.js` (~800 lines, no dependencies besides Verovio; the chord
+editor's panel is `editor.js`).
+
+### 11.5 Chord edits
+
+For a tablet on the piano: the melody and words stay, the chords get passing chords and embellishments. The same
+feature, file format and rules as the web app (`tools/web/README.md`, "Chord edits"), so edits move between the two.
+
+- **Where:** only with `edit=1` (big screens), on the piano sheet with the staff shown. The bar gets **Edit chords**,
+  and **Original chords** (shows the sheet without this device's edits) once the sheet has edits. Choosing Guitar,
+  hiding the staff or Original leaves edit mode. Phones show the edits but cannot edit (no room for the panel).
+- **Editing:** a panel at the bottom. Tap a bar on the sheet (a note or chord also picks its beat); a strip shows the
+  bar's beats (half beats in 4/4-type meters, plus every note's start); build the chord with buttons (root, ♭/♯,
+  quality, bass) or type it (`bb7/d` is stored as `B♭7/D`); Remove chord, Undo, Original bar, Done, ‹ › for the
+  neighbouring bars. Changed chords are drawn red (inverted colour in night mode so they come out light red); the
+  selected bar is highlighted. While editing, taps pick bars instead of hiding the bar. Back closes the panel first.
+- **Model:** per sheet `{"<bar>": {"was": [[beat, chord]], "chords": [[beat, chord]]}}`. A bar is the nth `<measure>`
+  of the MEI (from 1), a beat its `tstamp`; `chords` replaces all of the bar's `<harm>`s; `was` is what the bar had,
+  so the editor can warn "The sheet has changed since you edited bar N" when a new release changes that bar. Chords
+  are stored in the original key (a chord typed while transposed is moved back), so transposing, the guitar sheet
+  and the chords-over-lyrics view all use them. A bar edited back to its original chords is dropped.
+- **Applied** before anything else: the edited bars' `<harm>`s are replaced in the parsed MEI; new ones get
+  `type="edit"` (drawn red). An edit the sheet itself now has (sent in and put into the sheets; `dim`/`°` and
+  `aug`/`+` count as the same) is forgotten on the device.
+- **Saved** at once, on every change, by the host. Android: `files/chord-edits.json` in the app's storage,
+  `{"format": "hymns-chord-edits", "v": 1, "sheets": {"E8": {"updated": <ms>, "bars": {…}}}}`, written to a new file
+  first and then swapped in; included in Android's own backup like the favorites.
+- **Settings → Chord Edits:** lists the edited sheets, newest first (`E8 – first line`, `N bars · date`; a tap opens
+  the sheet), with **Export** (Send through the share sheet, or Save as a file; `hymns-chord-edits-<date>.json`, the
+  stored file plus `"exported"`) and **Import** (a file picker; asks "Import chord edits?" listing the sheets, then
+  says how many were imported and kept). A sheet replaces this device's edits of it unless it was edited later here.
+  Bars and chords that are not well formed are left out. A chord edits file tapped in another app (email, Drive,
+  Files) opens the same import question (`RestoreFavoritesActivity`, which also takes favorites backups).
+- **Into the sheets:** an exported file sent in goes through `tools/svg-to-lilypond/tools/chord_edits.py import`
+  (`tools/web/README.md`), which changes the `.ly` and MEI files for everyone.
 
 ### 11.4 MEI files: what the viewer relies on
 

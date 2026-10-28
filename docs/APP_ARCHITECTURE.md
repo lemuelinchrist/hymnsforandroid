@@ -97,6 +97,10 @@ The overall flow is as follows:
     -   A `PreferenceFragmentCompat` built from `res/xml/root_preferences.xml` (font size, night mode, keep display on, disabled languages, YouTube button, similar tune button, sheet music type, about).
     -   "Back Up & Restore Favorites" opens `logbook/FavoritesBackup`'s dialog (also used by the Favorites tab's Back up / Restore bar,
         and by `logbook/RestoreFavoritesActivity`, which opens a backup file tapped in another app).
+    -   "Chord Edits" opens `logbook/ChordEditsBackup`'s dialog: the sheets whose chords were changed on this device, Export
+        (share or save a `hymns-chord-edits-<date>.json`) and Import. `RestoreFavoritesActivity` hands it a chord edits file
+        tapped in another app, and a favorites backup to `FavoritesBackup`.
+    -   The edits themselves are kept by `logbook/ChordEdits` in `files/chord-edits.json`, in the web app's export format.
 
 ### 10. `SheetMusicActivity.java` (package `content.sheetmusic`)
 -   **Role:** Full-screen sheet music viewer.
@@ -105,6 +109,10 @@ The overall flow is as follows:
     -   The viewer renders `assets/sheetMei/<id>.mei` to the screen width, derives guitar chords and capo, transposes, and can swap in translated lyrics from `assets/sheetLyrics/<id>.json`. All of that is in `assets/viewer/viewer.js`; see `tools/svg-to-lilypond/DESIGN.md` §19.
     -   `SheetMusicButton` picks the sheet: the hymn's own MEI, else its parent's.
     -   The page closes the activity by navigating to `hymnsviewer://close`; the activity passes camera-cutout insets to the page with `setInsets(...)`.
+    -   Chord editing (`docs/HYMNAL_SPEC.md` §11.5): on screens at least 600 dp wide (tablets, unfolded phones) the URL gets
+        `&edit=1` and the page shows Edit chords (the panel is `assets/viewer/editor.js`). The page reads and saves a sheet's
+        edits through `window.HymnsEdits`, the activity's `EditsBridge` over `ChordEdits`; while it edits, Back closes the panel,
+        and `setKeyboard(...)` keeps the panel above the on-screen keyboard. No page other than the viewer may load in the WebView.
 
 ---
 

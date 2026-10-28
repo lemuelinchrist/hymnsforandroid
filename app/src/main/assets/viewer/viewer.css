@@ -64,3 +64,60 @@ body.barHidden #bar { transform: translateY(-100%); }
 .cseg .tag { color: var(--ink); font-weight: normal; font-style: italic; font-family: serif; margin-right: 0.3em; }
 .mark { align-self: flex-end; margin-right: 0.35em; font-weight: bold; line-height: 1.3; }
 .mark.box { border: 1px solid var(--ink); padding: 0 0.25em; font-size: 0.8em; margin-bottom: 0.15em; }
+
+/* ---- chord editing (big screens; editor.js) ----
+   The music is inverted in dark mode, so its colours there are the inverse of the ones wanted. */
+:root { --edit: #c80000; --pick: #9ec5ff; --raised: #f7f7f7; --kb: 0px; --editor-h: 0px; }
+html.dark { --edit: #00737f; --pick: #e9c789; --raised: #1e1e1e; }
+#bar [hidden] { display: none; }
+#music g.harm.edit text, #music g.harm.edit tspan { fill: var(--edit); }
+#music g.bar-selected > g.staff > path { stroke: var(--pick); stroke-width: 22px; }
+#music g.bar-selected g.harm text { font-weight: 700; }
+body.editingChords { padding-bottom: calc(var(--editor-h) + var(--kb) + 16px); }
+
+.chord-editor {
+  position: fixed; left: 0; right: 0; bottom: var(--kb); z-index: 20; max-width: 920px; margin: 0 auto;
+  padding: 10px calc(12px + var(--ir)) 10px calc(12px + var(--il)); background: var(--raised); color: var(--ink);
+  border: 1px solid var(--line); border-bottom: 0; border-radius: 16px 16px 0 0;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, .18); font-family: sans-serif;
+}
+.chord-editor[hidden] { display: none; }
+.ce-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.ce-top .grow { flex: 1; }
+.ce-title { min-width: 5.5em; text-align: center; font-size: 15px; }
+.ce-status { font-size: 13px; color: var(--muted); }
+.ce-status.saved { color: #2e7d32; }
+html.dark .ce-status.saved { color: #81c784; }
+.ce-status.error { color: var(--accent); font-weight: 600; }
+.ce-stale { margin: 0 0 8px; padding: 6px 10px; border-radius: 8px; background: #fff3cd; color: #5b4300; font-size: 13px; }
+.ce-btn {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 42px; padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink);
+  font: 500 16px sans-serif; touch-action: manipulation;
+}
+.ce-btn:disabled { opacity: .35; }
+.ce-btn[aria-pressed="true"], .ce-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+.ce-btn.primary { font-weight: 600; }
+.ce-btn.icon { font-size: 22px; padding: 0; }
+.ce-btn.note { min-width: 42px; padding: 0; font-weight: 600; }
+.ce-beats { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 6px; }
+.ce-beat {
+  flex: 0 0 auto; min-width: 54px; height: 50px; padding: 4px 6px; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 1px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper);
+  color: var(--ink); touch-action: manipulation;
+}
+.ce-beat .bt { font-size: 12px; color: var(--muted); }
+.ce-beat .bc { font: 700 16px sans-serif; min-height: 1.2em; }
+.ce-beat.note .bt { color: var(--ink); font-weight: 600; }
+.ce-beat.has { background: rgba(200, 0, 0, .08); }
+html.dark .ce-beat.has { background: rgba(255, 138, 128, .14); }
+.ce-beat.on { border: 2px solid var(--accent); }
+.ce-build { display: flex; flex-direction: column; gap: 6px; }
+.ce-row { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.ce-row.scroll { overflow-x: auto; flex-wrap: nowrap; padding-left: 3.2em; }
+.ce-row.scroll .ce-btn { flex: none; }
+.ce-text { flex: 1 1 220px; min-width: 200px; margin-left: 8px; flex-wrap: nowrap; }
+.ce-label { width: 3.2em; flex: none; font-size: 12px; color: var(--muted); }
+.ce-input { flex: 1; min-width: 0; height: 42px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px;
+            background: var(--paper); color: var(--ink); font: 600 18px sans-serif; }
+.chord-editor.no-bar .ce-build, .chord-editor.no-bar .ce-beats { display: none; }

@@ -301,14 +301,14 @@ public class FavoritesBackup {
         }
     }
 
-    private static void writeText(OutputStream out, String text) throws IOException {
+    static void writeText(OutputStream out, String text) throws IOException {
         if (out == null) throw new IOException("no output stream");
         try (Writer writer = new OutputStreamWriter(out, StandardCharsets.UTF_8)) {
             writer.write(text);
         }
     }
 
-    private static String readText(InputStream in) throws IOException {
+    static String readText(InputStream in) throws IOException {
         if (in == null) throw new IOException("no input stream");
         try (Reader reader = new InputStreamReader(in, StandardCharsets.UTF_8)) {
             StringBuilder text = new StringBuilder();

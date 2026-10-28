@@ -63,7 +63,7 @@ export function createEditor(view, {onclose}) {
   const qualRow = el('div', 'ce-row scroll');
   const bassRow = el('div', 'ce-row');
   const textRow = el('div', 'ce-row ce-text');
-  const input = el('input', 'ce-input', null, {type: 'text', autocomplete: 'off', autocapitalize: 'characters', spellcheck: 'false',
+  const input = el('input', 'ce-input', null, {type: 'text', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false',
     placeholder: 'Chord', 'aria-label': 'Chord', enterkeyhint: 'done'});
   const bClear = el('button', 'ce-btn', 'Remove chord', {type: 'button'});
   textRow.append(input, bClear);

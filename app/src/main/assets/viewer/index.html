@@ -21,6 +21,9 @@
     <button id="bUp" type="button" aria-label="Transpose up">+</button>
   </div>
   <button id="bStaff" type="button"></button>
+  <!-- big screens only (?edit=1): editing the chords of the piano sheet, and the sheet without the edits -->
+  <button id="bEdit" type="button" hidden>Edit chords</button>
+  <button id="bOriginal" type="button" hidden>Original chords</button>
 </nav>
 <header id="head">
   <div id="titlerow">
@@ -38,6 +41,7 @@
 <section id="verses"></section>
 <footer>www.hymnal.net</footer>
 <script src="verovio-toolkit-wasm.js"></script>
+<script src="editor.js"></script>
 <script src="viewer.js"></script>
 </body>
 </html>

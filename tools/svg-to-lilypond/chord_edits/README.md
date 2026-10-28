@@ -1,6 +1,7 @@
 # Chord edits put into the sheets
 
-Chords changed by pianists in the web app (`tools/web`, Edit chords on a piano sheet) and sent in as an exported file
+Chords changed by pianists in the web app (`tools/web`, Edit chords on a piano sheet) or the Android app (on tablets;
+Settings → Chord Edits → Export) and sent in as an exported file
 (`hymns-chord-edits-<date>.json`). One file per sheet, `<id>.json`, made by `tools/chord_edits.py import`:
 
 ```json

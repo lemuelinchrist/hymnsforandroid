@@ -58,10 +58,10 @@
             </intent-filter>
         </activity>
 
-        <!-- opens a favorites backup file tapped in an email, chat or Drive -->
+        <!-- opens a favorites backup or chord edits file tapped in an email, chat or Drive -->
         <activity
             android:name=".logbook.RestoreFavoritesActivity"
-            android:label="Restore favorites"
+            android:label="Open in Hymns"
             android:theme="@style/Translucent"
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"
             android:excludeFromRecents="true"
@@ -74,6 +74,7 @@
                 <data android:scheme="content" />
                 <data android:scheme="file" />
                 <data android:mimeType="text/plain" />
+                <data android:mimeType="application/json" />
             </intent-filter>
         </activity>
 
@@ -88,4 +89,4 @@
         </provider>
     </application>
 
-</manifest>
+</manifest>

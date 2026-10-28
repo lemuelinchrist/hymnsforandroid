@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ChordEditsBackup: what chord edits are, then one row per edited sheet (tap to open its sheet music) -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+        <TextView
+                android:id="@+id/chordEditsIntro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="8dp"
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorSecondary"/>
+
+        <LinearLayout
+                android:id="@+id/chordEditsSheets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+    </LinearLayout>
+</ScrollView>

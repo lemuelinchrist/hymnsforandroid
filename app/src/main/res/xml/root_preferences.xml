@@ -28,6 +28,12 @@
                 app:icon="@drawable/ic_settings_favorite_black_32dp"
                 app:summary="Keep a copy, or move them to a new phone"
         />
+        <!-- the summary says how many sheets have changed chords (SettingsActivity) -->
+        <Preference
+                app:key="chordEdits"
+                app:title="Chord Edits"
+                app:icon="@drawable/ic_chord_edits_black_32dp"
+        />
         <!-- saves the hidden books; the key keeps its old name so existing settings carry over -->
         <com.lemuelinchrist.android.hymns.settings.HymnBooksPreference
                 app:key="disableLanguages"
