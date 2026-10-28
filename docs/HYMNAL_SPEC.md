@@ -47,7 +47,7 @@ Features:
 | Lyrics reader | One hymn per page; swipe left/right to the previous/next hymn of the same book. Header with category, meter, time, key, tune code, Bible verses, author, composer. Stanza numbers and choruses in the book's colour. |
 | Books (languages) | 23 books, chosen from a side drawer. Switching book opens the **same hymn in the new language** when a translation is known, otherwise hymn 1 of that book. |
 | Related hymns | "OTHER LANGUAGES" grid under the subject: code and number of the same hymn in other books (`CS 305`), foldable. Tap to open. |
-| Search / Index | 8 tabs: Hymn Numbers, First Lines, Favorites, Subjects, Authors, All Lyrics, History, Music (key/tune). |
+| Search / Index | 4 tabs: Hymn Numbers, Search (one list of hymns from first lines, subjects, authors, tunes and all lyrics; browse the current book when empty), Favorites, History. |
 | Favorites | Heart button; listed in the Favorites tab; back up / restore as a short text file (one "ID – first line" per hymn). |
 | History | Recently opened hymns (newest first, up to 100). The app reopens the last hymn on start. |
 | Play | Loops the hymn's melody (MIDI file looked up by tune code). |
@@ -483,45 +483,109 @@ A web build SHOULD map this onto browser history (`#/E1` style URLs) so the brow
 
 ## 9. Search / Index
 
-Opened from the toolbar search icon, scoped to the **current book**. Title "<Book name> Index". One search box shared
-by 8 tabs (with icons); each tab remembers its own query. Tapping a result returns to the reader and opens the hymn
-(open and remember). Scrolling the list hides the keyboard. Tabs that can't be searched (Favorites, History): when
-the search box gets focus there, jump to First Lines.
+Opened from the toolbar search icon. One search box shared by 4 tabs (with icons); each tab remembers its own query.
+Tapping a result returns to the reader and opens the hymn (open and remember). Scrolling the list hides the
+keyboard. Tabs that can't be searched (Favorites, History): when the search box gets focus there, jump to Search.
+
+**The rule that must not break: number lookup in the meetings.** A hymn is called out, the saint taps Search and
+types the number. So Search always opens on Hymn Numbers (never "the last tab"), with the number keypad up at once.
 
 ### 9.1 Tabs
 
-| # | Tab | Empty query shows | Query matches | Row text |
+| # | Tab | Keyboard | Empty box shows | Typing |
 |---|---|---|---|---|
-| 0 | **Hymn Numbers** (numeric keypad) | current book by number | `no` (word filter) in all enabled books; order `CAST(no AS int)`, then current book first, then by group code. **Submit** (Enter) jumps straight to `<book><typed number>`. | `<ID> - <first stanza line>` |
-| 1 | **First Lines** | current book's first stanza **and** first chorus lines, merged, sorted alphabetically (case-insensitive, ignoring leading `"` and `'`, locale collation) | that merged list, all enabled books, same order | `<line> - <ID>` |
-| 2 | **Favorites** | favorites | (not searchable) | `<ID> - <first line>` |
-| 3 | **Subjects** | all hymns with a main category, all enabled books | `main_category` OR `sub_category` | **`<main> - <sub>`** / `<ID> - <first stanza line>` |
-| 4 | **Authors** | all hymns, enabled books | `author` OR `composer` | **`<author> - <composer>`** (empty→`Unknown`) / `<ID> - <first line>` |
-| 5 | **All Lyrics** | every stanza | stanza `text` (all books, including disabled ones — §12 #4) | **`<ID> - <stanza no>`** / stanza text |
-| 6 | **History** | history | (not searchable) | `<ID> - <first line>` |
-| 7 | **Music** | hymns with key and tune, enabled books, ordered by tune | first stanza line (word filter) OR `key LIKE '<q>%'` OR `tune LIKE '<q>%'` | `<key> - <ID>` / first stanza line / `Tune: <tune>` |
+| 0 | **Hymn Numbers** (first, default) | number keypad | current book by number | `no` (word filter, §9.4) in all enabled books; order `CAST(no AS int)`, then current book first, then by group code. **Submit** (Enter) jumps straight to `<book><typed number>`. Rows `<ID> - <first stanza line>`. |
+| 1 | **Search** | text | the current book's lists (§9.2) | one list of hymns from everything (§9.3) |
+| 2 | **Favorites** | none | favorites, with Back up / Restore (§8.4) | not searchable |
+| 3 | **History** | none | history | not searchable |
 
 Every row shows the book icon of the hymn on the left.
 
-### 9.2 Word filter (MUST, for matching behaviour)
+Why one Search tab: the app used to have separate tabs for First Lines, Subjects, Authors, All Lyrics and Music, so
+the user had to guess where a word was before searching. All Lyrics listed stanzas, not hymns (a hymn showed once per
+matching stanza), had no exact phrase, ignored hidden books, and SQLite `LIKE` ignores case only for A–Z.
+
+### 9.2 Search tab, empty box: the current book's lists
+
+A row of choices above the list, **First Lines** (default) · **Subjects** · **Authors** · **Tunes**, each for the
+current book only, so nothing that could be browsed before is lost:
+
+| Choice | Lists | Row text |
+|---|---|---|
+| First Lines | first stanza **and** first chorus lines, merged, sorted alphabetically (case-insensitive, ignoring leading `"` and `'`, locale collation) | `<line> - <ID>` |
+| Subjects | hymns with a main category, in database order | **`<main> - <sub>`** / `<ID> - <first stanza line>` |
+| Authors | hymns with an author or composer, by author (else composer) | **`<author> - <composer>`** (empty→`Unknown`) / `<ID> - <first line>` |
+| Tunes | hymns with key and tune, by tune | `<key> - <ID>` / first stanza line / `Tune: <tune>` |
+
+Subjects, Authors and Tunes use each hymn's values as its page shows them: an empty author, composer, key, tune or
+subject (with its sub-category) comes from the parent, grandparent… (§5.1). Translated books mostly have none of their
+own, so without this their Authors list would be empty.
+
+### 9.3 Search tab, typing: one list of hymns
+
+Live as you type, about 150 ms after the last key, run off the main thread.
+
+- **What is searched:** a `search` table, one row per hymn, every column in **search form** (§9.5): `first` (first
+  stanza line), `chorus` (first chorus line), `subject` (main + sub category), `people` (author + composer), `music`
+  (key + tune), `body` (all its stanzas joined with ` | `), plus `id`, `grp`, `no` and `line` (the first stanza line as
+  shown, else the chorus line). A hymn with a parent takes the parent's author, composer, key, tune, subject and
+  stanzas where it has none (§5.1), so a translation is found by what its page shows.
+- **Terms:** the query in search form, split into words; text in quotes (`"…"`, `“…”`, `„…“`, `«…»`) is one term, an
+  exact phrase. Duplicate terms count once. No word is dropped for being short.
+- **A hymn matches** when every term is found, anywhere and in any order, in one of its six columns
+  (`column LIKE '%term%'`, so parts of words count). Hidden books (`disableLanguages`) are always left out.
+- **One row per hymn**, best first. `phrase` = the whole query in search form (quotes removed):
+
+  | Score | When |
+  |---|---|
+  | 100 | `first` starts with `phrase` |
+  | 90 | `first` contains `phrase` |
+  | 80 | `chorus` contains `phrase` |
+  | 70 / 60 | every term in `first` / in `chorus` |
+  | 50 / 40 / 30 | every term in `subject` / `people` / `music` |
+  | 26 | `phrase` in the stanzas as whole words |
+  | 23 | every term in the stanzas as a whole word |
+  | 20 | otherwise (terms as parts of words, or spread over several columns) |
+
+  Ties: the current book first, then the drawer's book order (§3.2), then the number.
+- **Books:** two choices above the list, `<current book> (n)` · `All books (n)`. It starts on the current book, or on
+  All books when the current book has no result; the user's choice is kept while typing and reset when the box is
+  emptied. This is how to search only one book (for example only New Songs): search from a hymn of that book.
+- **Row:** `**<ID>** - <line>`, the matched terms in bold. When the hymn did not match on its first line, a second,
+  smaller grey line shows why: the first chorus line, `Subject: <main> – <sub>`, `Author: … · Composer: …`,
+  `Key: … · Tune: …`, or the stanza line with the most of the terms (the first one with all of them).
+- **A hymn number or ID typed** (`123`, `#123`, `NS 151`, `ns151`, `e8`; a 1–2 letter book code, optional space or
+  `-`, digits): if that hymn exists the list is only a first row **Go to `<ID>`** (a bare number means the current
+  book), and **Enter** opens it. Otherwise the words are searched as usual and Enter just hides the keyboard.
+- **The table is built on the phone**, not shipped: in the background the first time the app runs after an install or
+  update (about 1.2 s in a release build on an emulator, a few seconds on a slow phone; it adds about 20 MB on the
+  phone and nothing to the download). It is its own database file, `search.sqlite`, whose `user_version` is the app's
+  `versionCode`, so building never locks the hymn database and an update rebuilds it. Typing before it is ready shows
+  "Preparing the search… (once after each update)" and searches as soon as it is ready.
+
+### 9.4 Word filter (Hymn Numbers tab)
 
 ```
 q = query with ' replaced by space, and ^ " & % $ @ . , ! removed, trimmed
 words = q.split(' ')
 keep words[0] always; keep later words only if length >= 3
 column matches  <=>  every kept word w:  column LIKE '%w%'   (SQLite LIKE: case-insensitive for ASCII only)
-several columns <=>  OR of the per-column matches
 ```
 
-### 9.3 Prefix filter (Music tab key/tune)
+### 9.5 Search form of a text (MUST be identical everywhere)
 
-Same character cleanup, then `column LIKE '<q>%'`.
+Markup and comments become spaces, `&nbsp;` and `&amp;` are word breaks; accents removed (`NFD`, drop U+0300–U+036F,
+`NFC`); lower case; final sigma `ς` → `σ`; every run of characters that are not letters, marks or digits
+(`[^\p{L}\p{M}\p{N}]`) becomes one space; trimmed. Marks are kept because they are the vowel signs of Tamil, Burmese
+and other scripts. The Android app (`SearchText.norm`), the web app's `build.py` and `db.js` must give the same result,
+so the same words find the same hymns everywhere. Known side effect: Russian `й` loses its breve and becomes `и`, so
+`и` also finds `й`.
 
-### 9.4 Notes for non-SQL rebuilds
+### 9.6 The web app
 
-Precompute per hymn: normalized first lines, categories, authors, key, tune, and per stanza normalized text. A
-substring match per word (as above) over ~71k stanzas is fast enough in JS. The iOS web build (§14.2) already
-does accent-folding (`NFD`, strip combining marks), which is a reasonable improvement over SQLite `LIKE`.
+The web app (§14.2) searches the same way for first lines, chorus lines and stanzas (same search form, the same order
+for those columns, "why" line from the stanzas, hymn ID / number jump) but does not yet search subjects, people or
+music, nor read quotes as a phrase.
 
 ---
 
@@ -536,7 +600,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `keepDisplayOn` | bool | false | keep the screen awake (web: Screen Wake Lock API) in reader and sheet viewer |
 | `manageFaves` | action | — | Back up & restore favorites dialog (§8.4) |
 | `chordEdits` | action | — | Chord edits dialog: the edited sheets, Export, Import (§11.5); the summary counts the edited sheets |
-| `disableLanguages` | set of codes | `{I}` | hidden books: removed from drawer, the other-languages grid, and from search tabs 0,1,3,4,7 |
+| `disableLanguages` | set of codes | `{I}` | hidden books: removed from drawer, the other-languages grid, and from search (§9) |
 | `otherLanguagesFolded` | bool | false | the other-languages grid on the hymn page is folded (§6.1); set by its Hide/Show row, not in the Settings screen |
 | `youtubeButton` | string | `disabled` | `disabled` / `piano` / `search` (§7.4) |
 | `similarTune` | bool | false | show Similar Tune button (§7.5) |
@@ -709,9 +773,9 @@ Listed so a rebuild chooses on purpose. "Keep" = users rely on it; "Fix" = proba
 |---|---|---|
 | 1 | `related` is an unordered set, so chip order is random-ish. | Fix: order by book order (§3.2). |
 | 2 | `related` may list IDs that don't exist. | Fix: filter to existing IDs (the iOS build does). |
-| 3 | Subjects/Authors with an empty query list *all* enabled books, not just the current one; no explicit sort. | Decide; current-book first is friendlier. |
-| 4 | All Lyrics ignores disabled books. | Fix: apply the same book filter. |
-| 5 | Word filter ignores 1–2 letter words after the first; `LIKE` is accent- and (non-ASCII) case-sensitive. | Improve with accent/case folding; keep the "short words ignored" rule or not. |
+| 3 | ~~Subjects/Authors with an empty query list *all* enabled books.~~ | Done in v5.7: the Search tab's lists show the current book (§9.2). |
+| 4 | ~~All Lyrics ignores disabled books.~~ | Done in v5.7: Search leaves hidden books out (§9.3). |
+| 5 | Hymn Numbers' word filter ignores 1–2 letter words after the first; `LIKE` is accent- and (non-ASCII) case-sensitive. | Done for the Search tab in v5.7 (search form, §9.5); Hymn Numbers only matches digits. |
 | 6 | Similar Tune needs **two** other hymns before it shows a list (one match → "No Hymn with similar tune"). | Fix: show the list for ≥1. |
 | 7 | Similar Tune uses a prefix match on the tune code, so a longer tune starting with the same digits counts as similar. | Decide (exact match is stricter). |
 | 8 | History only records swiped-to hymns if they were opened deliberately or a button was tapped. | Keep (avoids flooding history while browsing). |
@@ -867,8 +931,12 @@ Concrete checks against the shipped data. A rebuild that passes these behaves li
 | 9 | Drawer: on `E52` choose French | Opens `FR10` (E52's French translation); Back returns to `E52` |
 | 10 | Drawer: on a hymn with no Kiswahili translation, choose Kiswahili | Opens first hymn of `SW`; back stack unchanged |
 | 11 | Search Hymn Numbers, type `12`, submit | Opens `<current book>12` |
-| 12 | Search First Lines with empty query in English | English first stanza and chorus lines A→Z, quotes ignored for sorting |
-| 13 | Word filter `"the of grace"` on First Lines | `of` ignored (2 letters, not first); matches lines containing both `the` and `grace` |
+| 12 | Search tab, empty box, in English | First Lines: English first stanza and chorus lines A→Z, quotes ignored for sorting |
+| 13 | Search `glory be to god the father` in English | `E1` first, no second line; every hymn at most once |
+| 13a | Search `"ancient of days"` | Only hymns with the three words together (E3, E14, E946 in English), the stanza line shown under each |
+| 13b | Search `watchman nee` from a New Songs hymn | Starts on `New Songs (n)`; rows show `Author: …`; `All books` adds the English hymns |
+| 13c | Search `ns 151`, Enter | Only the row `Go to NS151`; Enter opens `NS151` |
+| 13d | Search `бог` (lower case) | Finds the Russian hymns with `Бог` |
 | 14 | Play on `E1` | Loops `m5553216153222.mid`; stops when swiping to `E2` |
 | 15 | Sheet music on `E1`, guitar | Shows `(Guitar: Capo 1)`, chord chart (staff hidden); key label `A♭` |
 | 16 | Sheet `NS576` guitar | `(Guitar: Capo 3)` (key F) |

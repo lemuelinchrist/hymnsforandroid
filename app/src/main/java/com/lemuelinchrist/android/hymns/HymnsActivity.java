@@ -24,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
+import com.lemuelinchrist.android.hymns.dao.SearchIndex;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.settings.SettingsActivity;
 import com.lemuelinchrist.android.hymns.style.Theme;
@@ -55,6 +56,8 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
 
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
         setContentView(R.layout.main_hymns_activity);
+        // the Search tab's table is built in the background once after each update (SearchIndex)
+        SearchIndex.prepare(this, null);
 
         // set up Toolbar and Action Bar first so they are available for other components
         Toolbar toolbar = findViewById(R.id.toolbar);

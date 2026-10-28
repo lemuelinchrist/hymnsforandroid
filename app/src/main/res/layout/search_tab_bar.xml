@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- top of the Search tab: the lists of the current book while the box is empty (First Lines, Subjects, Authors,
+     Tunes), the two-way book switch while typing, and a line for "Preparing the search…" / "No hymns found" -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#f2f2f2">
+
+    <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+        <LinearLayout
+                android:id="@+id/searchChoices"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"/>
+    </HorizontalScrollView>
+
+    <TextView
+            android:id="@+id/searchStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="8dp"
+            android:textColor="#4e4e4e"
+            android:visibility="gone"/>
+
+</LinearLayout>

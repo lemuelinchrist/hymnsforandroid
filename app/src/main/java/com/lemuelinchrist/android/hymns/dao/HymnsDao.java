@@ -1,6 +1,5 @@
 package com.lemuelinchrist.android.hymns.dao;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -18,10 +17,6 @@ import java.util.List;
  */
 public class HymnsDao {
     private final Context context;
-
-    public String getHymnNoFromCursor(Cursor cursor) {
-        return cursor.getString(cursor.getColumnIndex("_id"));
-    }
 
     public static enum HymnFields {
         _id, hymn_group, first_stanza_line, first_chorus_line, main_category, sub_category, meter, author,
@@ -48,66 +43,17 @@ public class HymnsDao {
         dbHelper.close();
     }
 
-    public void save(Hymn hymn) {
-        Log.i(HymnsDao.class.getSimpleName(), "Saving hymn to database: " + hymn.getHymnId());
-        ContentValues values = new ContentValues();
-        values.put(HymnFields._id.toString(), hymn.getHymnId());
-        values.put(HymnFields.hymn_group.toString(), hymn.getGroup());
-        values.put(HymnFields.first_stanza_line.toString(), hymn.getFirstStanzaLine());
-        values.put(HymnFields.first_chorus_line.toString(), hymn.getFirstChorusLine());
-        values.put(HymnFields.main_category.toString(), hymn.getMainCategory());
-        values.put(HymnFields.sub_category.toString(), hymn.getSubCategory());
-        values.put(HymnFields.meter.toString(), hymn.getMeter());
-        values.put(HymnFields.author.toString(), hymn.getAuthor());
-        values.put(HymnFields.composer.toString(), hymn.getComposer());
-        values.put(HymnFields.time.toString(), hymn.getTime());
-        values.put(HymnFields.key.toString(), hymn.getKey());
-        values.put(HymnFields.tune.toString(), hymn.getTune());
-        values.put(HymnFields.no.toString(), hymn.getNo());
-        database.insert("hymns", null, values);
-
-        for (Stanza stanza : hymn.getStanzas()) {
-            values = new ContentValues();
-            values.put(StanzaFields.parent_hymn.toString(), hymn.getHymnId());
-            values.put(StanzaFields.no.toString(), stanza.getNo());
-            values.put(StanzaFields.text.toString(), stanza.getText());
-            values.put(StanzaFields.note.toString(), stanza.getNote());
-            database.insert("stanza", null, values);
-        }
-
-        Log.d(HymnsDao.class.getSimpleName(), "Save Complete!");
-    }
-
-    public Cursor getAllHymnsOfSameLanguage(HymnGroup hymnGroup) {
-
-        Cursor result = getByFirstLine(hymnGroup, null);
-
-        Log.d(this.getClass().getName(), "Is cursor null? - " + result.toString());
-        return result;
-    }
-
-    public Cursor getByFirstLine(HymnGroup hymnGroup, String filter) {
+    // the first stanza and chorus lines of one book, alphabetically (the Search tab's First Lines list)
+    public Cursor getFirstLinesOf(HymnGroup hymnGroup) {
         String fromClause = "(select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' \n" +
                 "union\n" +
                 "select first_chorus_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' ) ";
 
         String orderBy = " lower(trim(trim(stanza_chorus,'\"'),\"'\")) ";
 
-        QueryBuilder builder = QueryBuilder.newInstance(context, fromClause)
-                .orderBy(orderBy);
-        if (filter == null || filter.trim().isEmpty()) {
-            builder.showOnlyOneHymnGroup(hymnGroup.name());
-        } else {
-            builder.excludeDisabledHymnGroups()
-                    .addFilter("stanza_chorus", filter);
-        }
-
-        return database.rawQuery(builder.build(), null);
-    }
-
-    public Cursor getByLyricText(String filter) {
-        String sql = QueryBuilder.newInstance(context, "stanza")
-                .addFilter("text", filter)
+        String sql = QueryBuilder.newInstance(context, fromClause)
+                .showOnlyOneHymnGroup(hymnGroup.name())
+                .orderBy(orderBy)
                 .build();
         return database.rawQuery(sql, null);
     }
@@ -134,16 +80,66 @@ public class HymnsDao {
         return hymnArray;
     }
 
-    public Cursor getByAuthorsOrComposers(String filter) {
-        String sql = QueryBuilder.newInstance(context, "hymns")
-                .excludeDisabledHymnGroups()
-                .addFilter("author", filter)
-                .addFilter("composer", filter)
+    // the hymns as their pages show them: a column a hymn leaves empty comes from its parent, grandparent... (see get)
+    static final String HYMNS_WITH_PARENTS = hymnsWithParents(4);
+
+    private static String hymnsWithParents(int generations) {
+        StringBuilder sql = new StringBuilder("(select h._id, h.hymn_group, h.no, h.first_stanza_line,"
+                + " h.first_chorus_line");
+        for (String column : new String[]{"author", "composer", "key", "tune", "main_category"}) {
+            sql.append(", coalesce(nullif(h.").append(column).append(", '')");
+            for (int g = 1; g <= generations; g++) {
+                sql.append(", nullif(p").append(g).append(".").append(column).append(", '')");
+            }
+            sql.append(") as ").append(column);
+        }
+        // the sub-category comes with the subject it belongs to
+        sql.append(", case when nullif(h.main_category, '') is not null then h.sub_category");
+        for (int g = 1; g <= generations; g++) {
+            String p = "p" + g;
+            sql.append(" when nullif(").append(p).append(".main_category, '') is not null then ").append(p)
+                    .append(".sub_category");
+        }
+        sql.append(" end as sub_category from hymns h");
+        for (int g = 1; g <= generations; g++) {
+            String child = g == 1 ? "h" : "p" + (g - 1);
+            sql.append(" left join hymns p").append(g).append(" on p").append(g).append("._id = ").append(child)
+                    .append(".parent_hymn");
+        }
+        return sql.append(") ").toString();
+    }
+
+    // the hymns of one book that have an author or composer, by name (the Search tab's Authors list)
+    public Cursor getAuthorsOf(HymnGroup hymnGroup) {
+        String sql = QueryBuilder.newInstance(context, HYMNS_WITH_PARENTS)
+                .showOnlyOneHymnGroup(hymnGroup.name())
+                .addCondition("(ifnull(author, '') != '' OR ifnull(composer, '') != '')")
+                .orderBy("ifnull(nullif(author, ''), composer)")
                 .build();
         return database.rawQuery(sql, null);
     }
 
-    public Cursor getByKeyOrTune(String filter) {
+    // the hymns of one book that have a key or tune, by tune (the Search tab's Tunes list)
+    public Cursor getTunesOf(HymnGroup hymnGroup) {
+        String sql = QueryBuilder.newInstance(context, HYMNS_WITH_PARENTS)
+                .excludeNullOnColumn("key")
+                .excludeNullOnColumn("tune")
+                .showOnlyOneHymnGroup(hymnGroup.name())
+                .orderBy("tune")
+                .build();
+        return database.rawQuery(sql, null);
+    }
+
+    // the hymns of one book that have a subject (the Search tab's Subjects list)
+    public Cursor getSubjectsOf(HymnGroup hymnGroup) {
+        String sql = QueryBuilder.newInstance(context, HYMNS_WITH_PARENTS)
+                .excludeNullOnColumn("main_category")
+                .showOnlyOneHymnGroup(hymnGroup.name())
+                .build();
+        return database.rawQuery(sql, null);
+    }
+
+    private Cursor getByKeyOrTune(String filter) {
         String sql = QueryBuilder.newInstance(context, "hymns")
                 .excludeNullOnColumn("key")
                 .excludeNullOnColumn("tune")
@@ -156,20 +152,10 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
-    public Cursor getByCategory(HymnGroup hymnGroup, String filter) {
-        String sql = QueryBuilder.newInstance(context, "hymns")
-                .excludeNullOnColumn("main_category")
-                .excludeDisabledHymnGroups()
-                .addFilter("main_category", filter)
-                .addFilter("sub_category", filter)
-                .build();
-        return database.rawQuery(sql, null);
-    }
-
     public ArrayList<String> getYoutubeLinksFromHymnNo(String tune) {
         ArrayList<String> links = new ArrayList<>();
         try {
-            Cursor cursor = database.rawQuery("select * from tune where _id='" + tune + "'", null);
+            Cursor cursor = database.rawQuery("select * from tune where _id = ?", new String[]{tune});
             while (cursor.moveToNext()) {
                 links.add(cursor.getString(cursor.getColumnIndex("youtube_link")) + "|" + cursor.getString(cursor.getColumnIndex("comment")));
             }
@@ -217,7 +203,7 @@ public class HymnsDao {
         try {
             Log.i(HymnsDao.class.getName(), "Querying Hymn:" + hymnId);
 
-            cursor = database.rawQuery("select * from hymns where _id='" + hymnId + "'", null);
+            cursor = database.rawQuery("select * from hymns where _id = ?", new String[]{hymnId});
 
             cursor.moveToNext();
             Hymn hymn = getHymn(cursor);
@@ -225,7 +211,8 @@ public class HymnsDao {
             cursor.close();
 
             // GET stanzas
-            cursor = database.rawQuery("select * from stanza where parent_hymn='" + hymnId + "' order by n_order", null);
+            cursor = database.rawQuery("select * from stanza where parent_hymn = ? order by n_order",
+                    new String[]{hymnId});
             Log.d(HymnsDao.class.getSimpleName(), "Stanza Retrieved from DB. No of stanzas: " + cursor.getCount());
             ArrayList<Stanza> stanzas = new ArrayList<Stanza>();
             while (cursor.moveToNext()) {
@@ -235,9 +222,6 @@ public class HymnsDao {
                 stanza.setText(cursor.getString(cursor.getColumnIndex(StanzaFields.text.toString())));
                 stanza.setNote(cursor.getString(cursor.getColumnIndex(StanzaFields.note.toString())));
                 stanza.setParentHymn(cursor.getString(cursor.getColumnIndex(StanzaFields.parent_hymn.toString())));
-
-
-                Log.i(HymnsDao.class.getSimpleName(), "Done building Stanza: \n" + stanza.toString());
                 stanzas.add(stanza);
 
             }

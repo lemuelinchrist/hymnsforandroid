@@ -181,6 +181,11 @@ public class SearchActivity extends AppCompatActivity  {
                 if (searchBar.getInputType()==InputType.TYPE_CLASS_PHONE) {
                     createIntentAndExit(selectedHymnGroup+query);
                 }
+                // a hymn number or ID typed in the Search tab opens that hymn
+                TabFragment currentTab = getCurrentTab();
+                if (currentTab instanceof SearchTabFragment && ((SearchTabFragment) currentTab).submit(query)) {
+                    return true;
+                }
 
                 filterListAndSaveQuery( query);
                 hideKeyboard();
@@ -190,7 +195,8 @@ public class SearchActivity extends AppCompatActivity  {
             @Override
             public boolean onQueryTextChange(String newText) {
                 // dont do anything if text is empty, otherwise android will throw weird exceptions.
-                if (newText.isEmpty()) return false;
+                // The Search tab is the exception: an empty box goes back to listing the current book.
+                if (newText.isEmpty() && !(getCurrentTab() instanceof SearchTabFragment)) return false;
 
                 filterListAndSaveQuery(newText);
                 return true;
@@ -202,9 +208,9 @@ public class SearchActivity extends AppCompatActivity  {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus && !getCurrentTab().canBeSearched()) {
-                    // switch to FirstLine Tab
+                    // switch to the Search tab
                     try {
-                        mViewPager.setCurrentItem(mSearchTabsPagerAdapter.getPositionOf(FirstLineTabFragment.class));
+                        mViewPager.setCurrentItem(mSearchTabsPagerAdapter.getPositionOf(SearchTabFragment.class));
                     }catch(Exception e) {
                         Log.d(this.getClass().getName(),"Exception caught!");
                     }
@@ -284,14 +290,13 @@ public class SearchActivity extends AppCompatActivity  {
      */
     public static class SearchTabsPagerAdapter extends FragmentPagerAdapter {
         // indexed by position (getSearchTabIndex)
-        private final TabFragment[] tabs = new TabFragment[8];
+        private final TabFragment[] tabs = new TabFragment[4];
 
         public SearchTabsPagerAdapter(FragmentManager fm) {
             super(fm);
 
-            for (TabFragment tab : new TabFragment[]{new HymnNumberTabFragment(), new FirstLineTabFragment(),
-                    new FavoritesTabFragment(), new CategoryTabFragment(), new AuthorTabFragment(),
-                    new LyricsTabFragment(), new HistoryTabFragment(), new MusicKeyTabFragment()}) {
+            for (TabFragment tab : new TabFragment[]{new HymnNumberTabFragment(), new SearchTabFragment(),
+                    new FavoritesTabFragment(), new HistoryTabFragment()}) {
                 tabs[tab.getSearchTabIndex()] = tab;
             }
         }

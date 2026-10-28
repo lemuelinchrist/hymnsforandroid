@@ -80,8 +80,10 @@ The overall flow is as follows:
 ### 7. `SearchActivity.java` (package `search`)
 -   **Role:** The Index / Search screen.
 -   **Responsibilities:**
-    -   A `ViewPager` with 8 tabs, each a `TabFragment` subclass in `search/fragments/`: Hymn Numbers, First Lines, Favorites, Subjects (category), Authors, All Lyrics, History, Music (key/tune). Each tab has a matching adapter in `search/searchadapters/` (most extend `HymnCursorAdapter`).
-    -   One shared `SearchView`; each tab remembers its own query. The Hymn Numbers tab uses a phone keypad and jumps straight to the typed number on submit.
+    -   A `ViewPager` with 4 tabs, each a `TabFragment` subclass in `search/fragments/`: Hymn Numbers, Search, Favorites, History. The adapters are in `search/searchadapters/` (most extend `HymnCursorAdapter`).
+    -   `SearchTabFragment` (the Search tab): with an empty box it lists the current book with the old adapters (`FirstLineChorusAdapter`, `CategoryAdapter`, `AuthorAdapter`, `MusicKeyAdapter`); while typing it runs `HymnSearch` on a background thread and shows `SearchResultAdapter` (one row per hymn, matched words in bold, a "why it matched" line, an optional "Go to <ID>" row).
+    -   `HymnSearch` reads the query (words, quoted phrases, a hymn ID or number), finds and ranks hymns in the `search` table; `SearchText.norm` is the search form shared with the web app. The table is built by `dao/SearchIndex` into its own `search.sqlite`, in the background, once per app version (started by `HymnsActivity`).
+    -   One shared `SearchView`; each tab remembers its own query. The Hymn Numbers tab uses a phone keypad and jumps straight to the typed number on submit; in the Search tab, submit opens a typed hymn ID or number.
     -   Returns the chosen hymn ID to `HymnsActivity` with `setResult`.
 
 ### 8. `LogBook.java` (package `logbook`)

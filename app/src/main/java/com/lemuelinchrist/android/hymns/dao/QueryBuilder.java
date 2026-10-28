@@ -76,7 +76,6 @@ public class QueryBuilder {
         likeBuilder.append("(");
         String[] words = filter.trim().split(" ");
         for(int x=0; x<words.length; x++) {
-            if(x!=0 && words[x].trim().length()<3) continue;
             likeBuilder.append(" ");
             likeBuilder.append(columnName);
             likeBuilder.append(" LIKE '%");
@@ -144,6 +143,12 @@ public class QueryBuilder {
         notNullClause += " " + column + " NOT NULL AND "
                 + column + "!= '' "
                 + "AND ";
+        return this;
+    }
+
+    public QueryBuilder addCondition(String condition) {
+        if(notNullClause==null) notNullClause="";
+        notNullClause += " " + condition + " AND ";
         return this;
     }
 
