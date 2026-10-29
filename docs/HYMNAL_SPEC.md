@@ -91,7 +91,7 @@ Parsing rule (MUST match `HymnGroup.getHymnGroupFromID` / `getHymnNoFromID`):
 - No group code is longer than two letters. An ID whose group is unknown is invalid (skip it silently in lists).
 
 The number part is a string. It is numeric for every hymn today, but compare and sort it as `CAST(no AS decimal)`.
-Numbers are **not** contiguous: `SW` uses printed page numbers (gaps), `TA` and `UR` use the English numbers (gaps), `NS` has a block from 10002 (Long Beach songs:
+Numbers are **not** contiguous: `SW` uses printed page numbers (gaps), `KI` and `FY` follow their book's page order, `TA` and `UR` use the English numbers (gaps), `NS` has a block from 10002 (Long Beach songs:
 LB12 = `NS10012`), `T` goes up to 30017, `G` to 10002, `SK` to 3049.
 
 The **default hymn** is `E1`.
@@ -131,6 +131,7 @@ night mode and for the related-hymn dots.
 | 25 | `MY` | Burmese | `#2E7D32` | `#66BB6A` | left | yes | 706 |
 | 26 | `TA` | Tamil | `#546E7A` | `#90A4AE` | left | yes | 305 |
 | 27 | `UR` | Urdu | `#880E4F` | `#F06292` | **right** (RTL) | yes | 446 |
+| 28 | `KI` | Kikuyu | `#FF6F00` | `#FFB300` | left | yes | 64 |
 
 ¹ "Big" = a language hymnal (as opposed to the BF/NS/CH song collections). Used only by Similar Tune (§7.5).
 
@@ -936,7 +937,7 @@ Concrete checks against the shipped data. A rebuild that passes these behaves li
 | 1 | Parse IDs | `E1`→(E,1); `CS330`→(CS,330); `NS10012`→(NS,10012); `C215`→(C,215) |
 | 2 | Open `E1` | Title `E1`; subject **Blessing of the Trinity** / His Plan; details: `Meter: 8.5.8.3.`, `Time: 4/4 - Ab Major`, `Tune: 5553216153222`, `Author: J. F. Garland`, `Composer: Ira David Sankey (1840-1908)`; 6 numbered stanzas; toolbar `#3D577A` |
 | 3 | Open `C1` | Inherits author/composer/time from `E1`; keeps its own key `降A大調4/4`, meter `8583`, categories; tune trimmed to `5553216153222`; related chips include `E1` and E1's translations (e.g. Tagalog 1, Korean 1) but not `C1` itself |
-| 4 | Related on `E1`, Indonesian disabled (default) | No `I1` chip; chips for SW 36, GK 89, MY 1, TA 1, UR 1, R 1, K 1, J 1, G 1, F 1, FR 216, C 1, CB 1, Z 1, SK 1, T 1, S 1 |
+| 4 | Related on `E1`, Indonesian disabled (default) | No `I1` chip; chips for SW 36, GK 89, MY 1, TA 1, UR 1, R 1, K 1, J 1, G 1, F 1, FR 216, C 1, CB 1, Z 1, SK 1, T 1, S 1, KI 25 |
 | 5 | Chorus repetition | A hymn with one chorus after stanza 1 shows: 1, chorus, 2, chorus, 3, chorus… |
 | 6 | Two choruses (`E1118`) | `1`, chorus with `(Sisters sing)`, chorus with `(Brothers sing)`, `2`, `3` — no repetition |
 | 7 | Note stanza (`E66` `end-note`) | Full-width italic red line "(Repeat the last two lines of each stanza)" |

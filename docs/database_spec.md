@@ -48,6 +48,7 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | MY   | Burmese     | Burmese (Myanmar) hymnal (from Brother Victor, 2026-10); its own numbering, extra songs from MY1001. |
 | TA   | Tamil       | Tamil hymns (from Brother Victor, 2026-10); numbered like the English hymnal (TA1 = E1), with gaps; TA1501 and up are other songs. |
 | UR   | Urdu        | Urdu hymns from hymnal.net (2026-10, asked for by a brother for the churches in Pakistan); numbered like the English hymnal (UR1 = E1), with gaps; UR8273 and similar follow hymnal.net's English translations of Chinese hymns (8000 + the Chinese number) and have the Chinese hymn as parent. Right to left. |
+| KI   | Kikuyu      | Kikuyu hymns (Kenya, 2026-10, from the brother who sent the Kiswahili book); one typed hymn per page with no hymn numbers, so they are numbered in page order (KI1-KI64), and pages that repeat a hymn keep their own numbers until he decides. Parents come from the page's English hymn number, or from the matching Kiswahili hymn. |
 | FY   | French Youth | French young people's songbook (Lyon, 2024); numbered in book order (the book has no song numbers). Most have an English parent for the sheet music. |
 
 ## Database Lifecycle & Source of Truth

@@ -14,6 +14,10 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
  * @since 2026-10-11
  */
 class ProvisionSwahili {
+    // ProvisionKikuyu reads a file in the same format with its own group code and number range
+    String group = 'SW'
+    String resource = '/Swahili.txt'
+    int maxNo = 300
     static File swahiliFile;
     Integer stanzaCounter = 0;
     Integer stanzaOrderCounter = 0;
@@ -22,7 +26,7 @@ class ProvisionSwahili {
     HymnsEntity hymn = null;
     StanzaEntity stanza = null;
     Set<String> anomalies = new HashSet<>();
-    private Dao dao = new Dao()
+    protected Dao dao = new Dao()
 
     public static void main(String[] args) {
         def swahili = new ProvisionSwahili();
@@ -33,19 +37,19 @@ class ProvisionSwahili {
     }
 
     void removeSwahiliHymns() {
-        println "Cleaning up existing Swahili hymns..."
-        for (int x = 1; x <= 300; x++) {
-            HymnsEntity old = dao.find("SW" + x)
+        println "Cleaning up existing ${group} hymns..."
+        for (int x = 1; x <= maxNo; x++) {
+            HymnsEntity old = dao.find(group + x)
             if (old != null) {
                 // links added to hymns that are not the parent (e.g. a Tagalog hymn) are not undone by dao.delete
                 (old.related - [old.parentHymn]).findAll { it?.trim() }.each { dao.removeRelatedHymn(it, old.id) }
             }
-            dao.delete("SW" + x)
+            dao.delete(group + x)
         }
     }
 
     void provision() throws Exception {
-        swahiliFile = new File(this.getClass().getResource("/Swahili.txt").getPath());
+        swahiliFile = new File(ProvisionSwahili.class.getResource(resource).getPath());
         println "Reading from: ${swahiliFile.path}"
 
         iterator = swahiliFile.iterator();
@@ -54,7 +58,7 @@ class ProvisionSwahili {
             line = iterator.next().trim();
             if (line.isNumber() || line.startsWith("Chorus:")) {
                 createNewStanza()
-            } else if (line.startsWith('SW-')) {
+            } else if (line.startsWith(group + '-')) {
                 wrapup()
                 createNewHymn()
             } else if (!line.isEmpty()) {
@@ -99,11 +103,11 @@ class ProvisionSwahili {
 
     def createNewHymn() {
         int swNo = Integer.parseInt(line.replaceAll('[^0-9]', ''))
-        println "******* Generating Swahili Hymn ${swNo}..."
+        println "******* Generating ${group} Hymn ${swNo}..."
         hymn = new HymnsEntity();
-        hymn.id = 'SW' + swNo
+        hymn.id = group + swNo
         hymn.no = swNo.toString()
-        hymn.hymnGroup = 'SW'
+        hymn.hymnGroup = group
         hymn.stanzas = new ArrayList<StanzaEntity>();
         stanza = null
         stanzaCounter = 0
