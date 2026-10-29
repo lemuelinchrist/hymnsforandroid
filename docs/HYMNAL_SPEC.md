@@ -327,7 +327,9 @@ Consequences worth testing:
 
 **Columns.** In portrait each emitted block is one row. In landscape or on screens ≥720dp wide, blocks fill a
 **two-column grid** left-to-right (stanza 1 | chorus, stanza 2 | chorus, …); full-width blocks (notes) close the
-current row and take a row of their own. A web build SHOULD use CSS grid/columns at a similar breakpoint.
+current row and take a row of their own. RTL books (`F`, `UR`) fill each row right-to-left instead (chorus | stanza 1),
+so the stanza is read before its chorus. A web build SHOULD use CSS grid/columns at a similar breakpoint (with
+`dir="rtl"` the grid runs right to left by itself).
 
 ### 6.3 Themes
 
