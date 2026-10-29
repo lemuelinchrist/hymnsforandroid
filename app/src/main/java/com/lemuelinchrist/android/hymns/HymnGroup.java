@@ -117,11 +117,7 @@ public enum HymnGroup {
     //Burgundy (Pink 900 / Pink 300), right to left like Farsi
     UR("Urdu", Color.rgb(0x88, 0x0E, 0x4F),
             Color.rgb(0xF0, 0x62, 0x92),
-            Gravity.RIGHT),
-    //Amber (Amber 900 / Amber 600)
-    KI("Kikuyu", Color.rgb(0xFF, 0x6F, 0x00),
-            Color.rgb(0xFF, 0xB3, 0x00),
-            Gravity.LEFT);
+            Gravity.RIGHT);
 
     private final String simpleName;
     // taken from Google Color Palette #500
