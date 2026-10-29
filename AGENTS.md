@@ -115,7 +115,7 @@ There is no CI/CD workflow for this (no `.github/workflows`) — releases are cr
    ```
    Use `--draft` first so it can be previewed on GitHub before publishing; drop the flag (or `gh release edit vX.Y --draft=false`) to publish. Check `gh release view vX.Y` or recent releases (`gh release list`) for tone/format examples.
 4. The `.aab` bundle is for Google Play Console upload, not attached to the GitHub release.
-5. Publishing the release redeploys the web app from the release's tag (`.github/workflows/web-app.yml`). If master is newer, run `gh workflow run web-app.yml --ref master` right after publishing; it cancels the tag's run.
+5. After publishing, deploy the web app from master: `gh workflow run web-app.yml --ref master` (`.github/workflows/web-app.yml`). Publishing does not deploy it: the github-pages environment only lets master deploy.
 
 ## 8. Keeping the Public Docs Current
 

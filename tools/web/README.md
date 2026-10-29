@@ -21,7 +21,8 @@ python3 tools/web/serve.py           # serves dist/ on http://localhost:8080/
 ## Publish
 
 The workflow `.github/workflows/web-app.yml` builds `dist/` from the repository and publishes it on GitHub Pages:
-automatically when a GitHub release is published, or by hand under **Actions → Web app → Run workflow**.
+by hand under **Actions → Web app → Run workflow** (or `gh workflow run web-app.yml --ref master`), after each release
+and whenever master has web changes. Only master can deploy to Pages (the github-pages environment's rule).
 Pages must be set to "GitHub Actions" as its source (repository Settings → Pages), once.
 
 Installed apps pick up a new version the next time they are opened with a network (they offer "Reload").

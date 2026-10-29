@@ -49,4 +49,4 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
 
 8. **Report the draft URL back to the user** and ask whether to publish now (`gh release edit v<release> --draft=false`) or leave it as a draft for further review — don't auto-publish without asking, even though past releases were typically published shortly after drafting.
 
-9. **After publishing, redeploy the web app from master.** Publishing a release runs `.github/workflows/web-app.yml` on the release's tag, which rolls the web app back if master has newer web changes (or a tag made on an older commit). Run `gh workflow run web-app.yml --ref master` right away: the workflow's concurrency group cancels the tag's run. Check with `gh run list --workflow web-app.yml --limit 3`.
+9. **After publishing, deploy the web app from master.** Publishing does not deploy it (the github-pages environment only lets master deploy; the workflow runs by hand only). Run `gh workflow run web-app.yml --ref master` right away and check with `gh run list --workflow web-app.yml --limit 3`.
