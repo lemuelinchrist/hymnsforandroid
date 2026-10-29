@@ -92,7 +92,7 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/files.js` | fetching and unpacking the gzipped data files |
 | `src/groups.js` | the hymnals; `build.py` fills them in from `HymnGroup.java` |
 | `src/sw.js`, `src/manifest.webmanifest` | service worker (offline) and install manifest; `build.py` writes the file lists in |
-| `vendor/` | sql.js 1.13.0 (SQLite in WebAssembly, MIT licence) |
+| `vendor/` | sql.js 1.13.0 (SQLite in WebAssembly, MIT licence); Noto Nastaliq Urdu 4.000 (SIL Open Font License), the font of Urdu text (`:lang(ur)` in `app.css`) |
 | `build.py`, `serve.py` | the build, and a local server that serves `dist/` the way GitHub Pages does |
 | `dist/` | build output, not in git |
 

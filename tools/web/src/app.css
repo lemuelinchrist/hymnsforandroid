@@ -286,6 +286,12 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 
 .lyrics { font-family: var(--serif); font-size: calc(clamp(16px, 4.4vw, 19px) * var(--lyric-scale)); line-height: 1.55; padding: 4px 0; }
 .lyrics.cjk { line-height: 1.8; letter-spacing: .02em; }
+/* Urdu is read in Nastaliq; phones and computers mostly show it in Naskh, the style of Arabic and Farsi. The font is
+   only downloaded where Urdu text is shown */
+@font-face { font-family: "Noto Nastaliq Urdu"; src: url("vendor/NotoNastaliqUrdu-Regular.ttf") format("truetype"); font-display: swap; }
+:lang(ur), .hymn-row .first:lang(ur), .hymn-row .snippet:lang(ur) { font-family: "Noto Nastaliq Urdu", var(--serif); }
+.lyrics:lang(ur) { line-height: 2.3; }
+.hymn-title:lang(ur), .hymn-row .first:lang(ur) { line-height: 1.9; }
 .stanza { display: grid; grid-template-columns: 2em 1fr; margin: 0 0 1.1em; }
 .stanza .no { color: var(--g); font: 600 .8em/1.95 var(--ui); font-variant-numeric: tabular-nums; }
 .lyrics.cjk .stanza .no { line-height: 2.25; }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Noto Nastaliq Urdu (SIL Open Font License 1.1, https://github.com/notofonts/nastaliq): Urdu is read in
+     Nastaliq, while Android's own Arabic-script font is Naskh, the style of Arabic and Farsi -->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font android:fontStyle="normal" android:fontWeight="400" android:font="@font/noto_nastaliq_urdu_regular"
+        app:fontStyle="normal" app:fontWeight="400" app:font="@font/noto_nastaliq_urdu_regular" />
+    <font android:fontStyle="normal" android:fontWeight="700" android:font="@font/noto_nastaliq_urdu_bold"
+        app:fontStyle="normal" app:fontWeight="700" app:font="@font/noto_nastaliq_urdu_bold" />
+</font-family>

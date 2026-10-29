@@ -317,7 +317,11 @@ Consequences worth testing:
 - With 2+ chorus stanzas (E1118: brothers/sisters), each is shown only where it sits; nothing is repeated.
 - "Coloured" = book day colour (light theme) or night colour (dark theme). Body text is `#4E4E4E` on white (day) or
   `#CCCCCC` on black (night).
-- Text alignment: left, except right for RTL books (`F`).
+- Text alignment: left, except right for RTL books (`F`, `UR`).
+- Font: the phone's own, except Urdu (`UR`), which is read in Nastaliq: the app bundles Noto Nastaliq Urdu (SIL Open
+  Font License) and uses it for the subject, the lyrics and the Urdu rows of every hymn list. Android's own
+  Arabic-script font is Naskh, the style of Arabic and Farsi, which Urdu readers find hard to read. The web app does
+  the same through `:lang(ur)`.
 - Font size = the setting (14/18/22/26/32 sp; default 18), applied to header and lyrics.
 - Lyrics text is selectable.
 

@@ -57,7 +57,7 @@ The overall flow is as follows:
     -   A `Fragment` that displays the entire content for one hymn (layout `content_area.xml`, or `content_area_night.xml` in night mode).
     -   Takes a `hymnId` and uses `HymnsDao` to fetch the complete `Hymn` object. If the hymn no longer exists, removes it from history and favorites and shows `E1`.
     -   Delegates rendering to helper components, all subclasses of `ContentComponent`:
-        -   `LyricsArea`: the header (category, meter, time, key, tune, verses, author, composer) and the stanzas, including chorus repetition and the two-column layout in landscape (`layout-land/` and `layout-w720dp/stanza_linear_layout.xml`). Colours come from `style/Theme` and `style/HymnTextFormatter`.
+        -   `LyricsArea`: the header (category, meter, time, key, tune, verses, author, composer) and the stanzas, including chorus repetition and the two-column layout in landscape (`layout-land/` and `layout-w720dp/stanza_linear_layout.xml`). Colours come from `style/Theme` and `style/HymnTextFormatter`; the font from `style/ScriptFont` (Noto Nastaliq Urdu, `res/font/`, for Urdu; the search lists use it too).
         -   `OtherLanguagesSection`: the "OTHER LANGUAGES" number grid under the subject (foldable; the setting `otherLanguagesFolded` is kept for every hymn).
         -   The button bar: `FaveButton`, `PlayButton` (loops `res/raw/m<tune>.mid`), `sheetmusic/SheetMusicButton`, `YoutubeButton` (with `YouTubeSearchLauncher`), `SimilarTuneButton`, `CopyButton`. Each button logs the hymn to history when tapped.
     -   Fires the `onLyricVisible` event when it becomes visible to the user, signaling a page change.

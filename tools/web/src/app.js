@@ -357,7 +357,7 @@ function homeScreen(view) {
 function hymnRow(hm, extra) {
   return h('li', null, h('a', {href: '#/h/' + hm.id, class: 'hymn-row'},
     chip(hm.group || splitId(hm.id).group, hm.id),
-    h('span', {class: 'first'}, hm.first || hm.line || ''),
+    h('span', {class: 'first', lang: langOf(hm.group || splitId(hm.id).group)}, hm.first || hm.line || ''),
     extra));
 }
 
@@ -480,9 +480,9 @@ function searchScreen(view, q) {
       const why = whyLine(r, pq.words);
       ul.appendChild(h('li', null, h('a', {href: '#/h/' + r.id, class: 'hymn-row'},
         chip(r.group, r.id),
-        h('span', {class: 'first'}, highlight(first, pq.words)),
+        h('span', {class: 'first', lang: langOf(r.group)}, highlight(first, pq.words)),
         why && DB.norm(why.text) !== DB.norm(first)
-          ? h('span', {class: 'snippet'}, why.lyrics ? '… ' : '', highlight(why.text, pq.words), why.lyrics ? ' …' : '')
+          ? h('span', {class: 'snippet', lang: langOf(r.group)}, why.lyrics ? '… ' : '', highlight(why.text, pq.words), why.lyrics ? ' …' : '')
           : null)));
     }
     shown += next.length;
@@ -514,7 +514,7 @@ function browseScreen(view, code) {
     return;
   }
   const cats = DB.categories(code);
-  page.appendChild(h('div', {class: 'cats', dir: g.rtl ? 'rtl' : null}, cats.map((c) =>
+  page.appendChild(h('div', {class: 'cats', dir: g.rtl ? 'rtl' : null, lang: langOf(code)}, cats.map((c) =>
     h('details', {class: 'card', open: cats.length <= 3 ? true : null},
       h('summary', null, c.name, h('span', {class: 'n'}, c.subs.reduce((n, s) => n + s.hymns.length, 0))),
       c.subs.map((s) => [
@@ -704,7 +704,7 @@ function hymnScreen(view, hymn) {
       h('button', {class: 'icon-btn print', title: 'Print', onclick: () => window.print()}, icon('print')),
       favBtn),
     h('h1', {class: 'hymn-title', dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)}, hymn.first || hymn.id),
-    hymn.category ? h('p', {class: 'category'}, hymn.category, hymn.subcategory ? ' · ' + hymn.subcategory : '') : null,
+    hymn.category ? h('p', {class: 'category', dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)}, hymn.category, hymn.subcategory ? ' · ' + hymn.subcategory : '') : null,
     familyNode(hymn));
 
   const tabs = hasSheet ? h('div', {class: 'tabs', role: 'tablist'},

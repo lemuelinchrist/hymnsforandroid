@@ -29,6 +29,7 @@ import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
+import com.lemuelinchrist.android.hymns.style.ScriptFont;
 import com.lemuelinchrist.android.hymns.style.Theme;
 import java.util.*;
 
@@ -100,6 +101,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             }
             if (hymn.isNewTune()) text.append("<br/>(New Tune)");
             if (text.length() > 0) {
+                ScriptFont.apply(subjectHeader, hymn.getHymnGroup());
                 subjectHeader.setText(Html.fromHtml(text.toString()));
             } else {
                 subjectHeader.setVisibility(View.GONE);
@@ -226,6 +228,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // add colors to text
             CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(selectedHymnGroup));
             view.setText(formattedLyrics);
+            ScriptFont.apply(view, selectedHymnGroup);
         }
 
         view.setGravity(hymn.getHymnGroup().getTextAlignment());
