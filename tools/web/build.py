@@ -69,6 +69,7 @@ DISPLAY = {
     'MY': {'name': 'မြန်မာ', 'long': 'Burmese', 'lang': 'my'},
     'TA': {'name': 'தமிழ்', 'long': 'Tamil', 'lang': 'ta'},
     'UR': {'name': 'اردو', 'long': 'Urdu', 'lang': 'ur'},
+    'KI': {'lang': 'ki', 'day': '#E65100'},
 }
 
 
