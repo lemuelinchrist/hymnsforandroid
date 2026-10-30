@@ -3,10 +3,10 @@ package com.lemuelinchrist.hymns
 /**
  * Provisions the Kikuyu hymns (KI) from Kikuyu.txt, in the same format as Swahili.txt (see ProvisionSwahili).
  *
- * Source: Brother Kimathi's "Updated and corrected Kikuyu hymnal.pdf" (kept outside git in resources/originals), one
- * typed hymn per page with no hymn numbers, so the hymns are numbered in page order (KI1-KI64). Pages that repeat a
- * hymn are kept as their own numbers for now. Parent: comes from the page's "HYMN NO" (the English hymn), or from the
- * matching Kiswahili hymn where the page has none.
+ * Source: Brother Kimathi's "Kikuyu hymnal .pdf" (2026-10-30, kept outside git in resources/originals), screenshots
+ * of his original typed pages with no hymn numbers, so the hymns are numbered in the order of the file (KI1-KI70).
+ * Lines cut off in the screenshots come from his earlier "Updated and corrected Kikuyu hymnal.pdf". Parent: comes from
+ * the page's "HYMN NO" (the English hymn), or from the matching Kiswahili hymn where the page has none.
  *
  * @since 2026-10-29
  */
