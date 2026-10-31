@@ -48,6 +48,7 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | MY   | Burmese     | Burmese (Myanmar) hymnal (from Brother Victor, 2026-10); its own numbering, extra songs from MY1001. |
 | TA   | Tamil       | Tamil hymns (from Brother Victor, 2026-10); numbered like the English hymnal (TA1 = E1), with gaps; TA1501 and up are other songs. |
 | UR   | Urdu        | Urdu hymns from hymnal.net (2026-10, asked for by a brother for the churches in Pakistan); numbered like the English hymnal (UR1 = E1), with gaps; UR8273 and similar follow hymnal.net's English translations of Chinese hymns (8000 + the Chinese number) and have the Chinese hymn as parent. Right to left. |
+| KI   | Kikuyu      | Kikuyu hymns (Kenya, 2026-10, from the brother who sent the Kiswahili book); typed from a scan of his original typed pages (no hymn numbers), so they are numbered in the order of his file (KI1-KI70), then two hymns from his earlier file (KI71, KI72). Holy names are capitalized as he asked: Jesu, Ngai, Baba, Mwathani and the like always; Roho, Muoyo and the possessives (Waku, Wake, Yaku, Riaku, ...) only where they mean God ("roho-ini witu" stays small; "Muti wa Muoyo", the Tree of Life, is capitalized). Parents come from the page's English hymn number, or from the matching Kiswahili hymn. |
 | FY   | French Youth | French young people's songbook (Lyon, 2024); numbered in book order (the book has no song numbers). Most have an English parent for the sheet music. |
 
 ## Database Lifecycle & Source of Truth

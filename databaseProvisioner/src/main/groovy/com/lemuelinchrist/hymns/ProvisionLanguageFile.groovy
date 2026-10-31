@@ -9,7 +9,8 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
  * argument: {@code R} (Russian), {@code MY} (Burmese), {@code TA} (Tamil), {@code UR} (Urdu). See LANGUAGES for each
  * one's file.
  *
- * Format per hymn: "<prefix>-<n>", then Subject: and Related: (the English hymn, which becomes the parent; see parentOf), then
+ * Format per hymn: "<prefix>-<n>", then Subject: and Related: (the English hymn, which becomes the parent; see parentOf),
+ * optionally "Hymn code: <tune>" (a hymn with no English one, sung to another's melody), then
  * numbered stanzas ("1", "2", ...), "Coro:" / "Coro 1:" choruses and at most one "End-note:" at the end, separated by
  * blank lines. Fixes and open questions: the v5.7 report.
  *
@@ -24,7 +25,7 @@ class ProvisionLanguageFile {
             // the Russian hymnal: its own numbering (the "R" numbers in the German file's Related lines)
             R : [file: '/Russian.txt', prefix: 'RUS-', maxNo: 1000, splitSubject: false],
             // the Burmese hymnal: its own numbering, Subject is "category – subcategory". The extra songs after 235, 245
-            // and 365 get numbers from 1001 until the brother tells us how his book numbers them.
+            // and 365 are numbered from 1001 (kept, 2026-10-30); their parents come from their end-notes (New Songs, Be Filled).
             MY: [file: '/Burmese.txt', prefix: 'BUR-', maxNo: 1100, splitSubject: true,
                  altNumbers: ['235-alt1': 1001, '235-alt2': 1002, '235-alt3': 1003,
                               '245-alt1': 1004, '245-alt2': 1005, '365-alt': 1006]],
@@ -176,6 +177,9 @@ class ProvisionLanguageFile {
                 }
             } else if (line.startsWith("Verses:")) {
                 hymn.verse = line.substring(line.indexOf(":") + 1).trim()
+            } else if (line.startsWith("Hymn code")) {
+                // the melody, for a hymn with no English one that is sung to another hymn's tune (R244 to E312's)
+                hymn.tune = line.substring(line.indexOf(":") + 1).trim()
             } else if (isStanzaStart(line)) {
                 createNewStanza()
                 break
