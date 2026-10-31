@@ -54,7 +54,7 @@ public class ContentArea extends Fragment {
     private PlayButton playButton;
     private SheetMusicButton sheetMusicButton;
     private FaveButton faveButton;
-    private CopyButton copyButton;
+    private ShareButton shareButton;
     private YoutubeButton youtubeButton;
     private SimilarTuneButton similarTuneButton;
 
@@ -135,8 +135,8 @@ public class ContentArea extends Fragment {
                 (ImageButton)rootView.findViewById(getRid("sheetMusicButton")));
         faveButton = new FaveButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("faveButton")));
-        copyButton = new CopyButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("copyButton")));
+        shareButton = new ShareButton(hymn,this,
+                (ImageButton)rootView.findViewById(getRid("shareButton")));
         youtubeButton = new YoutubeButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("youtubePianoButton")));
         similarTuneButton = new SimilarTuneButton(hymn,this,

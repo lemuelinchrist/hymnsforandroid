@@ -54,7 +54,7 @@ Features:
 | Sheet music | Engraved from MEI with Verovio at screen width; piano or guitar (capo + chords derived), transpose ±6, "chords over lyrics" mode, pinch to zoom, night mode. Translations can show their own lyrics under the borrowed sheet. On big screens (tablets, unfolded phones) the chords of the piano sheet can be edited, kept on the device and exported/imported (§11.5). |
 | YouTube (optional) | Either opens curated piano videos for the hymn or a YouTube search. |
 | Similar tune (optional) | Lists other hymns sung to the same tune, preferring the current language. |
-| Copy | Copies the full lyrics as plain text. |
+| Share | A menu: share the lyrics, share a link to the hymn in the web app, or copy the lyrics. |
 | Display settings | Font size (5 steps), night mode, keep screen on, hide books you don't use. |
 
 ---
@@ -278,7 +278,7 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
      - Folded or not is **one setting for every hymn** (`otherLanguagesFolded`, default false = open), kept across
        restarts; pages already built next to the current one follow it at once.
    - **Button bar**: a pill (corner radius 25dp) filled with the book's day colour holding white icons:
-     Favorite ♡/♥, Play ▶/❚❚, Sheet music, YouTube (conditional), Similar tune (conditional), Copy. See §7.
+     Favorite ♡/♥, Play ▶/❚❚, Sheet music, YouTube (conditional), Similar tune (conditional), Share. See §7.
 3. **Lyrics card** (§6.2).
 4. **Details card** (hidden when none of these has a value): label `DETAILS` (12sp, bold, letter-spaced, muted), then
    a two-column table at font size − 2sp, one row per item, omitted when empty, in this order: label (muted) | value
@@ -404,16 +404,27 @@ Hidden when the setting is off or the hymn has no tune. On tap:
 3. If the result has more than one entry → dialog "Go to hymn with similar tune" listing `<ID> - <first stanza line>`;
    tap opens it. Otherwise toast "Sorry! No Hymn with similar tune available". (See §12 #6 about the threshold.)
 
-### 7.6 Copy
+### 7.6 Share
 
-Copies plain text to the clipboard, then toast "Hymn text copied to Clipboard!":
+The share icon opens a small menu (Android `PopupMenu` under the button):
+
+- **Share lyrics**: the system share sheet (`ACTION_SEND`, `text/plain`) with the lyrics as plain text.
+- **Share link**: the share sheet with `<HymnID> · <first line>` and, on the next line, the hymn in the web app:
+  `https://lemuelinchrist.github.io/hymnsforandroid/#/h/<HymnID>`. It opens on any phone, Android or iPhone,
+  with sheet music and nothing to install; for a group about to sing together.
+- **Copy lyrics**: the same text to the clipboard, toast "Lyrics copied". Kept in the menu because people paste
+  lyrics into slides and notes, and Android 7–9's share sheet has no Copy entry.
+
+The subject (`EXTRA_SUBJECT`) is `<HymnID> · <first line>`. The lyrics text is the web app's (`lyricsText`):
 
 ```
-<HymnID>\n\n
-for each stanza: <no>\n<text with '<br/>' replaced by '\n'>\n
+<HymnID> · <first line>\n\n
+each stanza, all markup removed: <no>\n<text>\n\n   (a chorus: its note as "(<note>)\n" if any, no number;
+                                                     a note or copyright: the text alone; YouTube/SoundCloud: left out)
 ```
 
-(Other tags are left as-is; a rebuild SHOULD strip all tags.)
+Why a menu and not one action: lyrics with a link appended would make everyone who pastes lyrics delete the link,
+and a hidden long press for the link would go unnoticed.
 
 ---
 
@@ -796,7 +807,7 @@ Listed so a rebuild chooses on purpose. "Keep" = users rely on it; "Fix" = proba
 | 6 | Similar Tune needs **two** other hymns before it shows a list (one match → "No Hymn with similar tune"). | Fix: show the list for ≥1. |
 | 7 | Similar Tune uses a prefix match on the tune code, so a longer tune starting with the same digits counts as similar. | Decide (exact match is stricter). |
 | 8 | History only records swiped-to hymns if they were opened deliberately or a button was tapped. | Keep (avoids flooding history while browsing). |
-| 9 | Copy keeps `<i>`/`<u>` tags in the clipboard text. | Fix: strip all tags. |
+| 9 | ~~Copy keeps `<i>`/`<u>` tags in the clipboard text.~~ | Done in v5.8: Share/Copy strip all markup (§7.6). |
 | 10 | Stanza labels like `copyright`, `chorusverse`, `-` are shown verbatim as the stanza number. | Decide: hide `-`, style `copyright` as a note. |
 | 11 | `tune` table is keyed by **hymn ID**, not tune code (name is misleading). | Keep the semantics; rename in the new schema. |
 | 12 | Hymn number submit jumps to `<book><number>` even if absent (falls back to the book's first hymn). | Fix: show "not found". |

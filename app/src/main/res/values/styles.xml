@@ -32,6 +32,11 @@
         <item name="android:textColorPrimary">#de000000</item>
     </style>
 
+    <!-- ShareButton's menu: the hymn page's theme makes text white, which hid the menu items -->
+    <style name="ShareMenu" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColorPrimary">#de000000</item>
+    </style>
+
     <!-- RestoreFavoritesActivity: only its dialogs show, over whatever app opened the file -->
     <style name="Translucent" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
