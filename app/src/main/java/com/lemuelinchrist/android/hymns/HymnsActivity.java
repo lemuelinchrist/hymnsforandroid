@@ -24,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
+import com.lemuelinchrist.android.hymns.content.OtherLanguagesSection;
 import com.lemuelinchrist.android.hymns.dao.SearchIndex;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.settings.SettingsActivity;
@@ -270,6 +271,9 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        // folding the other languages updates the pages itself; reloading the book for it on the next resume could
+        // land on hymn 1 when that resume brings a hymn chosen in Search (the reload read the page before the switch)
+        if (OtherLanguagesSection.FOLDED.equals(key)) return;
         preferenceChanged=true;
     }
 
