@@ -4,7 +4,7 @@ import com.lemuelinchrist.android.hymns.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
@@ -28,6 +28,7 @@ import com.lemuelinchrist.android.hymns.content.OtherLanguagesSection;
 import com.lemuelinchrist.android.hymns.dao.SearchIndex;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.settings.SettingsActivity;
+import com.lemuelinchrist.android.hymns.style.BookColors;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
 
@@ -44,7 +45,9 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
 
     private ActionBar actionBar;
     private HymnBookCollection hymnBookCollection;
-    private Theme theme = Theme.LIGHT;
+    // Black was chosen when this screen was made: Dark and Black share the night mode, so a change between them
+    // needs the screen made again by hand
+    private boolean black;
     private SharedPreferences sharedPreferences;
     private boolean preferenceChanged = true;
     private HymnDrawer hymnDrawer;
@@ -53,6 +56,8 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        black = Theme.isBlack(this);
+        Theme.applyOverlay(this);
         Log.d(this.getClass().getName(), "start app");
 
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
@@ -103,8 +108,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         // Instantiate a ViewPager and a PagerAdapter.
-        theme = Theme.of(this);
-        hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager),theme);
+        hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager));
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
@@ -214,16 +218,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     }
 
     private void changeThemeColor() {
-        theme = Theme.of(this);
-        Log.i(getClass().getSimpleName(), "changeTheme: " + theme.name());
-        hymnBookCollection.setTheme(theme);
-        actionBar.setBackgroundDrawable(theme.getActionBarDrawable(selectedHymnGroup));
-        findViewById(R.id.hymn_fragment_viewpager).setBackgroundColor(theme.getPageColor());
-        
-        // Ensure the window draws behind the status bar and apply the dark tint
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.parseColor("#44000000"));
+        actionBar.setBackgroundDrawable(new ColorDrawable(BookColors.toolbar(this, selectedHymnGroup)));
     }
 
     private void toggleDrawer() {
@@ -282,6 +277,10 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     public void onResume() {
         super.onResume();
+        if (Theme.isBlack(this) != black) {
+            recreate();
+            return;
+        }
         if(preferenceChanged) {
             setDisplayConfig();
             changeThemeColor();

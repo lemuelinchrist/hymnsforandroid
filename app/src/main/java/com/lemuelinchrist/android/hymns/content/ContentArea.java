@@ -25,7 +25,7 @@ import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
-import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.style.BookColors;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 
 import java.util.HashSet;
@@ -47,7 +47,6 @@ public class ContentArea extends Fragment {
 
     private String hymnId;
     private HashSet<OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
-    private Theme theme;
     private HymnStack hymnStack;
     private NestedScrollView scrollView;
 
@@ -66,13 +65,8 @@ public class ContentArea extends Fragment {
         this.context = getContext();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        if (theme == null) {
-            theme = Theme.of(context);
-        }
-
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.content_area, container, false);
-        paint(rootView);
 
         // Apply window insets to handle bottom navigation bar overlap on Android 15+
         rootView.setClipToPadding(false);
@@ -131,7 +125,7 @@ public class ContentArea extends Fragment {
 
         buttonContainer = rootView.findViewById(getRid("buttonContainer"));
         if(buttonContainer !=null ){
-            buttonContainer.setCardBackgroundColor(theme.getButtonBarColor(hymn.getHymnGroup()));
+            buttonContainer.setCardBackgroundColor(BookColors.buttonBar(context, hymn.getHymnGroup()));
         }
 
         playButton = new PlayButton(hymn,this,
@@ -150,30 +144,15 @@ public class ContentArea extends Fragment {
         return rootView;
     }
 
-    /** The page and its cards in the theme's colours (the layout is the same by day and night). */
-    private void paint(ViewGroup rootView) {
-        rootView.setBackgroundColor(theme.getPageColor());
-        ViewGroup cards = (ViewGroup) rootView.getChildAt(0);
-        for (int i = 0; i < cards.getChildCount(); i++) {
-            View child = cards.getChildAt(i);
-            if (child instanceof CardView) {
-                ((CardView) child).setCardBackgroundColor(theme.getCardColor());
-                // no shadows on Black, where the cards are as black as the page
-                if (theme == Theme.BLACK) ((CardView) child).setCardElevation(0);
-            }
-        }
-    }
-
     private int getRid(String lyricHeader) {
         return context.getResources().getIdentifier(lyricHeader, "id", context
                 .getPackageName());
     }
 
-    public static ContentArea newInstance(Context context, Theme theme) {
+    public static ContentArea newInstance(Context context) {
         ContentArea lyric = new ContentArea();
 
         lyric.setContext(context);
-        lyric.setTheme(theme);
         return lyric;
     }
 
@@ -233,10 +212,6 @@ public class ContentArea extends Fragment {
     public void onPause() {
         super.onPause();
         playButton.stop();
-    }
-
-    public void setTheme(Theme theme) {
-        this.theme = theme;
     }
 
     /** A page that was scrolled earlier (or kept its position) opens at its top again. */

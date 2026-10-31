@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The hymn page's colour roles: set by the themes (values/themes.xml by day, values-night/themes.xml at night, the
+     Black overlay over Dark) and used by the layouts as ?attr/... . Book colours stay in HymnGroup; these attributes
+     say how a theme uses them (style/BookColors). -->
+<resources>
+    <attr name="hymnPageBackground" format="color"/>
+    <attr name="hymnCardBackground" format="color"/>
+    <attr name="hymnCardElevation" format="dimension"/>
+    <attr name="hymnText" format="color"/>
+    <!-- labels and book codes -->
+    <attr name="hymnTextMuted" format="color"/>
+    <!-- the count beside OTHER LANGUAGES -->
+    <attr name="hymnBadgeBackground" format="color"/>
+    <!-- the red of notes in the lyrics -->
+    <attr name="hymnHighlight" format="color"/>
+    <!-- stanza numbers, chorus and "Hide" in the book's night colour instead of its day colour -->
+    <attr name="hymnAccentNight" format="boolean"/>
+    <!-- the toolbar and the button pill: the book's day colour with this share of the card colour over it -->
+    <attr name="hymnToolbarDim" format="float"/>
+    <attr name="hymnButtonBarDim" format="float"/>
+    <!-- if not transparent, the toolbar and the button pill in this colour instead of the book's -->
+    <attr name="hymnBarColor" format="color"/>
+</resources>

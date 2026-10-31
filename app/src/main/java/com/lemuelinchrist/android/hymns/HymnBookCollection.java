@@ -14,7 +14,6 @@ import com.lemuelinchrist.android.hymns.content.PlayButton;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
-import com.lemuelinchrist.android.hymns.style.Theme;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 
 import java.util.ArrayList;
@@ -37,19 +36,12 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private HymnStack hymnStack = new HymnStack(HymnGroup.DEFAULT_HYMN_NUMBER);
     private boolean hymnStackSeeded = false;
 
-    private Theme theme=Theme.LIGHT;
-
-    public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager, Theme theme) {
+    public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
         dao = new HymnsDao(context);
         this.lyricPager = lyricPager;
-        this.theme=theme;
 
         switchHymnBook(HymnGroup.getDefaultHymnGroup());
-    }
-
-    public void setTheme(Theme theme) {
-        this.theme = theme;
     }
 
     public void refresh() {
@@ -243,7 +235,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         public Fragment getItem(int position) {
             Log.d(getClass().getSimpleName(), "getItem position: " + position);
 
-            ContentArea lyric = ContentArea.newInstance(context, theme);
+            ContentArea lyric = ContentArea.newInstance(context);
             lyric.setHymnStack(hymnStack);
             lyric.addLyricVisibleListener(context);
             lyric.addLyricVisibleListener(HymnBookCollection.this);

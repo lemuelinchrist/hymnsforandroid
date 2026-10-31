@@ -9,7 +9,7 @@
                 app:key="FontSize"
                 app:title="@string/choose_font_size"
                 app:useSimpleSummaryProvider="true"
-                app:icon="@drawable/fontsize_black"
+                app:icon="@drawable/settings_font_size"
         />
         <!-- System default, Light, Dark or Black (style/Theme); replaces the Night Mode switch (nightMode) -->
         <ListPreference
@@ -19,7 +19,7 @@
                 app:entryValues="@array/theme_preference_values"
                 app:title="Theme"
                 app:useSimpleSummaryProvider="true"
-                app:icon="@drawable/ic_brightness"/>
+                app:icon="@drawable/settings_theme"/>
         <SwitchPreferenceCompat
                 app:key="keepDisplayOn"
                 app:defaultValue="false"
@@ -71,7 +71,7 @@
                 app:key="about"
                 app:title="About Hymns"
                 app:summary="See version or send feedback"
-                app:icon="@drawable/ic_info"/>
+                app:icon="@drawable/settings_about"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

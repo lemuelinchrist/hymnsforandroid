@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- one number in the OTHER LANGUAGES grid: "FR 216" (OtherLanguagesSection sets the sizes from the font size) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:gravity="center_vertical"
+              android:paddingLeft="3dp"
+              android:paddingTop="5dp"
+              android:paddingRight="3dp"
+              android:paddingBottom="5dp"
+              android:background="@drawable/other_languages_cell_ripple"
+              android:clickable="true"
+             >
+
+    <TextView
+            android:id="@+id/otherLanguagesCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="?attr/hymnTextMuted"/>
+
+    <TextView
+            android:id="@+id/otherLanguagesNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="?attr/hymnText"
+            android:singleLine="true"/>
+</LinearLayout>

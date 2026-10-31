@@ -22,7 +22,7 @@ The overall flow is as follows:
 
 ## Key Class Descriptions
 
-Before any screen opens, `HymnsApplication` sets the night mode from the Theme setting (`style/Theme.apply`): the screens follow it through the day/night resources (`values-night/colors.xml`), the hymn page through `style/Theme` (Light, Dark, Black).
+Before any screen opens, `HymnsApplication` sets the night mode from the Theme setting (`style/Theme.apply`). The colours themselves are in XML, not code: `values/attrs.xml` names the hymn page's colour roles, `values/themes.xml` and `values-night/themes.xml` set them for Light and Dark, `ThemeOverlay.Hymns.Black` (applied by `HymnsActivity`) makes Black, and the layouts use them as `?attr/...`; the other screens use `values/colors.xml` and `values-night/colors.xml`. The book colours stay in `HymnGroup`; `style/BookColors` combines them with the theme (toolbar, button pill, stanza numbers, chorus, "Hide").
 
 ### 1. `HymnsActivity.java`
 -   **Role:** Main Controller / Entry Point.
@@ -56,10 +56,10 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
 ### 4. `ContentArea.java` (package `content`)
 -   **Role:** View for a Single Hymn.
 -   **Responsibilities:**
-    -   A `Fragment` that displays the entire content for one hymn (layout `content_area.xml` in every theme, coloured from `style/Theme`).
+    -   A `Fragment` that displays the entire content for one hymn (layout `content_area.xml` in every theme, coloured by the theme's attributes; the other-languages grid and the details rows are `other_languages_row.xml`, `other_languages_cell.xml` and `detail_row.xml`).
     -   Takes a `hymnId` and uses `HymnsDao` to fetch the complete `Hymn` object. If the hymn no longer exists, removes it from history and favorites and shows `E1`.
     -   Delegates rendering to helper components, all subclasses of `ContentComponent`:
-        -   `LyricsArea`: the header (category, meter, time, key, tune, verses, author, composer) and the stanzas, including chorus repetition and the two-column layout in landscape (`layout-land/` and `layout-w720dp/stanza_linear_layout.xml`). Colours come from `style/Theme` and `style/HymnTextFormatter`; the font from `style/ScriptFont` (Noto Nastaliq Urdu, `res/font/`, for Urdu; the search lists use it too).
+        -   `LyricsArea`: the header (category, meter, time, key, tune, verses, author, composer) and the stanzas, including chorus repetition and the two-column layout in landscape (`layout-land/` and `layout-w720dp/stanza_linear_layout.xml`). Colours come from the theme's attributes (the layouts), `style/BookColors` and `style/HymnTextFormatter`; the font from `style/ScriptFont` (Noto Nastaliq Urdu, `res/font/`, for Urdu; the search lists use it too).
         -   `OtherLanguagesSection`: the "OTHER LANGUAGES" number grid under the subject (foldable; the setting `otherLanguagesFolded` is kept for every hymn).
         -   The button bar: `FaveButton`, `PlayButton` (loops `res/raw/m<tune>.mid`), `sheetmusic/SheetMusicButton`, `YoutubeButton` (with `YouTubeSearchLauncher`), `SimilarTuneButton`, `ShareButton` (share the lyrics or a web app link, or copy the lyrics). Each button logs the hymn to history when tapped.
     -   Fires the `onLyricVisible` event when it becomes visible to the user, signaling a page change.

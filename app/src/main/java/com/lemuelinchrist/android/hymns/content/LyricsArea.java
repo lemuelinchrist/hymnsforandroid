@@ -2,7 +2,6 @@ package com.lemuelinchrist.android.hymns.content;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.Html;
@@ -30,7 +29,7 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
 import com.lemuelinchrist.android.hymns.style.ScriptFont;
-import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.style.BookColors;
 import java.util.*;
 
 /**
@@ -43,7 +42,6 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
     private final OtherLanguagesSection otherLanguages;
     private final TableLayout detailsTable;
     private final SharedPreferences sharedPreferences;
-    private final Theme theme;
     private int columnNo=0;
     private LinearLayout currentTextLinearLayout;
     private static float fontSize;
@@ -56,7 +54,6 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         // Load saved data
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
-        theme = Theme.of(context);
         disabledLanguages = sharedPreferences.getStringSet("disableLanguages",new HashSet<String>());
 
         // remove placeholder because it only contains dummy lyrics
@@ -65,15 +62,9 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
         subjectHeader = view.findViewById(getRid("subjectHeader"));
         subjectHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
-        subjectHeader.setTextColor(theme.getTextColor());
 
         // the details card at the bottom is for reference, so a little smaller than the lyrics
         detailsTable = view.findViewById(getRid("detailsTable"));
-        TextView detailsLabel = view.findViewById(getRid("detailsLabel"));
-        detailsLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-        detailsLabel.setLetterSpacing(0.08f);
-        detailsLabel.setTypeface(Typeface.DEFAULT_BOLD);
-        detailsLabel.setTextColor(OtherLanguagesSection.muted(theme.getTextColor()));
 
         otherLanguages = new OtherLanguagesSection(hymn, parentFragment, (ViewGroup) view.findViewById(getRid("otherLanguagesContainer")));
 
@@ -227,7 +218,8 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             view.setMovementMethod(LinkMovementMethod.getInstance());
         } else {
             // add colors to text
-            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(selectedHymnGroup));
+            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()),
+                    BookColors.accent(context, selectedHymnGroup), BookColors.color(context, R.attr.hymnHighlight));
             view.setText(formattedLyrics);
             ScriptFont.apply(view, selectedHymnGroup);
         }
@@ -236,8 +228,6 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
         // stylize...
         view.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
-        view.setTextColor(theme.getTextColor());
-        view.setBackgroundColor(theme.getTextBackgroundColor());
 
         // notes have a row exclusively to themselves
         if(isFullWidthRow)
@@ -265,24 +255,16 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 && hymn.getHymnGroup().getTextAlignment() == Gravity.RIGHT;
     }
 
-    /** One row of the details card: the label muted, the value wrapping in its own column (and selectable). */
+    /** One row of the details card (detail_row.xml), a little smaller than the lyrics. */
     private void addDetail(String label, String value) {
         float size = fontSize - 2;
-        TextView labelView = new TextView(context);
+        TableRow row = (TableRow) LayoutInflater.from(context).inflate(R.layout.detail_row, detailsTable, false);
+        TextView labelView = row.findViewById(R.id.detailLabel);
         labelView.setText(label);
         labelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
-        labelView.setTextColor(OtherLanguagesSection.muted(theme.getTextColor()));
-        labelView.setPadding(0, 0, Math.round(16 * context.getResources().getDisplayMetrics().density), 0);
-
-        TextView valueView = new TextView(context);
+        TextView valueView = row.findViewById(R.id.detailValue);
         valueView.setText(value);
         valueView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
-        valueView.setTextColor(theme.getTextColor());
-        valueView.setTextIsSelectable(true);
-
-        TableRow row = new TableRow(context);
-        row.addView(labelView);
-        row.addView(valueView);
         detailsTable.addView(row);
     }
 

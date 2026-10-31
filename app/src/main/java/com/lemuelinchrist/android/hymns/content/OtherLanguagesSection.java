@@ -1,19 +1,15 @@
 package com.lemuelinchrist.android.hymns.content;
 
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.RippleDrawable;
 import android.transition.TransitionManager;
 import android.util.TypedValue;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
@@ -23,7 +19,7 @@ import com.lemuelinchrist.android.hymns.HymnsActivity;
 import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
-import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.style.BookColors;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +40,6 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
     /** Preference: the numbers are folded away on every hymn. */
     public static final String FOLDED = "otherLanguagesFolded";
 
-    private final Theme theme;
     private final Set<String> disabledLanguages;
     private final SharedPreferences sharedPreferences;
     private final float fontSize;
@@ -59,7 +54,6 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
     public OtherLanguagesSection(Hymn hymn, Fragment parentFragment, ViewGroup container) {
         super(hymn, parentFragment, container);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        theme = Theme.of(context);
         disabledLanguages = sharedPreferences.getStringSet("disableLanguages", new HashSet<String>());
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
     }
@@ -70,22 +64,12 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
             view.setVisibility(View.GONE);
             return;
         }
-        int textColor = theme.getTextColor();
-        int mutedColor = muted(textColor);
-        // Hide/Show in the book's colour, like the buttons
-        int accent = theme.getTextColor(hymn.getHymnGroup());
-
         view.removeAllViews();
-        view.addView(createFoldRow(relatedIds.size(), mutedColor, accent));
-        grid = createGrid(relatedIds, textColor, mutedColor);
+        view.addView(createFoldRow(relatedIds.size()));
+        grid = createGrid(relatedIds);
         view.addView(grid);
         showFolded(sharedPreferences.getBoolean(FOLDED, false));
         sharedPreferences.registerOnSharedPreferenceChangeListener(foldListener);
-    }
-
-    /** The text colour, a little see-through: labels and codes. */
-    public static int muted(int textColor) {
-        return (textColor & 0x00FFFFFF) | 0xB3000000;
     }
 
     /** Related hymns whose language is known and not switched off in the settings, in the drawer's order. */
@@ -120,50 +104,23 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
         }
     }
 
-    private View createFoldRow(int count, int mutedColor, int accent) {
-        LinearLayout row = new LinearLayout(context);
-        row.setOrientation(LinearLayout.HORIZONTAL);
-        row.setGravity(Gravity.CENTER_VERTICAL);
-        row.setPadding(0, dp(4), 0, dp(4));
-        row.setMinimumHeight(dp(36));
-        row.setBackground(new RippleDrawable(ColorStateList.valueOf(0x33808080), null, roundRect(0xFFFFFFFF, 0)));
-        row.setClickable(true);
+    /** "OTHER LANGUAGES 18          Hide ▴" (other_languages_row.xml); Hide/Show in the book's colour, like the buttons. */
+    private View createFoldRow(int count) {
+        View row = LayoutInflater.from(context).inflate(R.layout.other_languages_row, view, false);
         row.setOnClickListener(v -> {
             boolean folded = !sharedPreferences.getBoolean(FOLDED, false);
             animateNextChange();
             // the listener folds this page and the ones next to it
             sharedPreferences.edit().putBoolean(FOLDED, folded).apply();
         });
-
-        TextView title = new TextView(context);
-        title.setText(R.string.otherLanguages);
-        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-        title.setLetterSpacing(0.08f);
-        title.setTypeface(Typeface.DEFAULT_BOLD);
-        title.setTextColor(mutedColor);
-        row.addView(title);
-
-        TextView badge = new TextView(context);
-        badge.setText(String.valueOf(count));
-        badge.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-        badge.setTextColor(mutedColor);
-        badge.setPadding(dp(7), 0, dp(7), 0);
-        badge.setBackground(roundRect(theme.getBadgeColor(), dp(10)));
-        LinearLayout.LayoutParams badgeParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        badgeParams.leftMargin = dp(8);
-        row.addView(badge, badgeParams);
-
-        action = new TextView(context);
-        action.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        action.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
-        action.setTextColor(accent);
-        action.setGravity(Gravity.END);
-        row.addView(action, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        ((TextView) row.findViewById(R.id.otherLanguagesCount)).setText(String.valueOf(count));
+        action = row.findViewById(R.id.otherLanguagesAction);
+        action.setTextColor(BookColors.accent(context, hymn.getHymnGroup()));
         return row;
     }
 
-    private GridLayout createGrid(List<String> ids, int textColor, int mutedColor) {
+    /** The numbers (other_languages_cell.xml), sized from the font size. */
+    private GridLayout createGrid(List<String> ids) {
         float numberSize = Math.max(12, fontSize - 4);
         float codeSize = numberSize * 0.82f;
         GridLayout grid = new GridLayout(context);
@@ -176,6 +133,7 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
         codePaint.setTextSize(sp(codeSize));
         int codeWidth = Math.round(codePaint.measureText("MW")) + dp(5);
 
+        LayoutInflater inflater = LayoutInflater.from(context);
         for (final String id : ids) {
             HymnGroup group;
             try {
@@ -183,33 +141,21 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
             } catch (NoSuchHymnGroupException e) {
                 throw new IllegalStateException(e);   // already filtered out in enabledRelatedIds()
             }
-            LinearLayout cell = new LinearLayout(context);
-            cell.setOrientation(LinearLayout.HORIZONTAL);
-            cell.setGravity(Gravity.CENTER_VERTICAL);
-            cell.setPadding(dp(3), dp(5), dp(3), dp(5));
-            cell.setBackground(new RippleDrawable(ColorStateList.valueOf(0x33808080), null, roundRect(0xFFFFFFFF, dp(4))));
-            cell.setClickable(true);
+            View cell = inflater.inflate(R.layout.other_languages_cell, grid, false);
             cell.setContentDescription(group.getSimpleName() + " " + HymnGroup.getHymnNoFromID(id));
             cell.setOnClickListener(v -> {
                 HymnSwitcher hymnSwitcher = HymnsActivity.getHymnSwitcher();
                 if (hymnSwitcher != null) hymnSwitcher.switchToRelatedHymn(id);
             });
 
-            TextView codeView = new TextView(context);
+            TextView codeView = cell.findViewById(R.id.otherLanguagesCode);
             codeView.setText(group.name());
             codeView.setTextSize(TypedValue.COMPLEX_UNIT_SP, codeSize);
-            codeView.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
-            codeView.setTextColor(mutedColor);
             codeView.setWidth(codeWidth);
-            cell.addView(codeView);
 
-            TextView numberView = new TextView(context);
+            TextView numberView = cell.findViewById(R.id.otherLanguagesNumber);
             numberView.setText(HymnGroup.getHymnNoFromID(id));
             numberView.setTextSize(TypedValue.COMPLEX_UNIT_SP, numberSize);
-            numberView.setTypeface(Typeface.DEFAULT_BOLD);
-            numberView.setTextColor(textColor);
-            numberView.setSingleLine(true);
-            cell.addView(numberView);
 
             GridLayout.LayoutParams params = new GridLayout.LayoutParams(
                     GridLayout.spec(GridLayout.UNDEFINED), GridLayout.spec(GridLayout.UNDEFINED, 1f));
@@ -242,13 +188,6 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
             }
             parent = parent.getParent();
         }
-    }
-
-    private GradientDrawable roundRect(int color, int radius) {
-        GradientDrawable shape = new GradientDrawable();
-        shape.setColor(color);
-        shape.setCornerRadius(radius);
-        return shape;
     }
 
     private int dp(float v) {

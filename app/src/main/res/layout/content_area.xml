@@ -7,6 +7,7 @@
         android:id="@+id/jellybeanContentScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/hymnPageBackground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -21,11 +22,10 @@
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/mainHeaderContainer"
-                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="5dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="0dp"
-                app:cardBackgroundColor="#FFFFFF">
+                android:layout_marginBottom="0dp">
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -39,6 +39,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/subjectHeader"
+                        android:textColor="?attr/hymnText"
                         android:text="@string/subjectFiller"
                         android:layout_gravity="center"
                         android:gravity="center"
@@ -119,7 +120,7 @@
 
         <androidx.cardview.widget.CardView
 
-                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="5dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="5dp"
@@ -149,7 +150,7 @@
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
                 android:id="@+id/detailsCard"
-                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="5dp"
+                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
@@ -162,6 +163,7 @@
                     android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="14dp" android:paddingBottom="16dp">
                 <TextView
                         android:id="@+id/detailsLabel"
+                        style="@style/HymnLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/details"

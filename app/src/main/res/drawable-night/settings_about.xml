@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Settings icon at night: the grey picture made light like the text, half see-through like the other
+     icons (by day: drawable/) -->
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+        android:src="@drawable/ic_info"
+        android:tint="@color/settings_text"
+        android:alpha="0.5"/>

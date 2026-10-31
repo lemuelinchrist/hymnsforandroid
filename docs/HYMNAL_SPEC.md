@@ -351,8 +351,13 @@ dark room on OLED phones.
 | Other screens (drawer, search, settings, dialogs, sheet viewer) | light | dark grey (`#121316` page, `#1D1F23` bars, `#26292E` drawer and choice bars) | as Dark |
 | Status bar | translucent black `#44000000` over content | same | same |
 
-On Android the other screens follow a day/night theme (`values/colors.xml`, `values-night/colors.xml`); the hymn page
-uses one layout coloured from `style/Theme`. Changing the theme recreates the open screens.
+On Android the colours are in XML, apart from the code, like CSS beside HTML: `res/values/attrs.xml` names the hymn
+page's colour roles (page, card, text, muted text, badge, highlight, and how the book colours are used: night tone or
+day tone, how much the bars are dimmed), `values/themes.xml` and `values-night/themes.xml` give them for Light and Dark,
+the overlay `ThemeOverlay.Hymns.Black` turns Dark into Black, and the layouts use them as `?attr/...`; the other
+screens use `values/colors.xml` and `values-night/colors.xml`. The book colours stay in `HymnGroup` (one place when
+adding a book); `style/BookColors` is the only code that combines them with the theme. Changing the theme recreates
+the open screens.
 
 ---
 

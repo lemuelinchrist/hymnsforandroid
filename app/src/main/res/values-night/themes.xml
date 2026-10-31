@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark, Material's dark theme: dark grey, the cards a little lighter, off-white text, the books' night colours,
+         the bars in a dimmed book colour -->
+    <style name="Hymns.Colors" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="hymnPageBackground">#121316</item>
+        <item name="hymnCardBackground">#1d1f23</item>
+        <item name="hymnCardElevation">5dp</item>
+        <item name="hymnText">#e3e4e7</item>
+        <item name="hymnTextMuted">#b3e3e4e7</item>
+        <item name="hymnBadgeBackground">#2e3137</item>
+        <item name="hymnHighlight">#d32f2f</item>
+        <item name="hymnAccentNight">true</item>
+        <item name="hymnToolbarDim">0.45</item>
+        <item name="hymnButtonBarDim">0.3</item>
+        <item name="hymnBarColor">@android:color/transparent</item>
+    </style>
+</resources>

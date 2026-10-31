@@ -153,7 +153,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         webview.addJavascriptInterface(new EditsBridge(hymnId), "HymnsEdits");
         boolean editable = getResources().getConfiguration().smallestScreenWidthDp >= EDITING_MIN_WIDTH_DP;
         String variant = "guitarSvg".equals(sharedPreferences.getString("sheetMusicType", "pianoSvg")) ? "guitar" : "piano";
-        boolean dark = Theme.of(this).isNight();
+        boolean dark = Theme.isNight(this);
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
                 + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0")
                 + (lyricsHymnId != null ? "&lyrics=" + Uri.encode(lyricsHymnId) : "")

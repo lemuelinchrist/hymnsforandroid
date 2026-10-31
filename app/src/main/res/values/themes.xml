@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light: the hymn page's colours by day (values-night/themes.xml has Dark under the same name) -->
+    <style name="Hymns.Colors" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="hymnPageBackground">#ffffff</item>
+        <item name="hymnCardBackground">#ffffff</item>
+        <item name="hymnCardElevation">5dp</item>
+        <item name="hymnText">#4e4e4e</item>
+        <item name="hymnTextMuted">#b34e4e4e</item>
+        <item name="hymnBadgeBackground">#eef1f4</item>
+        <item name="hymnHighlight">#d32f2f</item>
+        <item name="hymnAccentNight">false</item>
+        <item name="hymnToolbarDim">0</item>
+        <item name="hymnButtonBarDim">0</item>
+        <item name="hymnBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- Black: the pre-v5.8 night mode, over Dark (style/Theme applies it to the hymn screen) -->
+    <style name="ThemeOverlay.Hymns.Black" parent="">
+        <item name="hymnPageBackground">#000000</item>
+        <item name="hymnCardBackground">#000000</item>
+        <item name="hymnCardElevation">0dp</item>
+        <item name="hymnText">#cccccc</item>
+        <item name="hymnTextMuted">#b3cccccc</item>
+        <item name="hymnBadgeBackground">#2a2a2a</item>
+        <item name="hymnBarColor">#000000</item>
+    </style>
+</resources>
