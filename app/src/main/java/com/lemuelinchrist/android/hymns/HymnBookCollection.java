@@ -40,6 +40,26 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         this.context = context;
         dao = new HymnsDao(context);
         this.lyricPager = lyricPager;
+        // a swiped-to hymn opens at its top (ContentArea), so the toolbar comes back too: else its header would sit
+        // under the status bar when the toolbar was hidden by scrolling the last hymn. Once the pager is at rest, and
+        // after it has moved the focus to the new page: on Android 16 and up a page taking focus asks to be shown in
+        // full, and the app bar hides itself for that.
+        lyricPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            private boolean pageChanged;
+
+            @Override
+            public void onPageSelected(int position) {
+                pageChanged = true;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == ViewPager.SCROLL_STATE_IDLE && pageChanged) {
+                    pageChanged = false;
+                    lyricPager.post(context::showToolbar);
+                }
+            }
+        });
 
         switchHymnBook(HymnGroup.getDefaultHymnGroup());
     }

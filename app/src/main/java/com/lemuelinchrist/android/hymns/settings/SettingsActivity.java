@@ -90,7 +90,7 @@ public class SettingsActivity extends AppCompatActivity {
             });
             // a new choice changes the night mode at once; the open screens are made again in it
             findPreference(Theme.PREFERENCE).setOnPreferenceChangeListener((preference, choice) -> {
-                Theme.apply((String) choice);
+                Theme.apply(requireContext(), (String) choice);
                 return true;
             });
             findPreference("chordEdits").setOnPreferenceClickListener(preference -> {

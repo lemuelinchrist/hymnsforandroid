@@ -357,7 +357,9 @@ day tone, how much the bars are dimmed), `values/themes.xml` and `values-night/t
 the overlay `ThemeOverlay.Hymns.Black` turns Dark into Black, and the layouts use them as `?attr/...`; the other
 screens use `values/colors.xml` and `values-night/colors.xml`. The book colours stay in `HymnGroup` (one place when
 adding a book); `style/BookColors` is the only code that combines them with the theme. Changing the theme recreates
-the open screens.
+the open screens. On Android 12+ the app also tells the system its choice (`UiModeManager.setApplicationNightMode`):
+the splash at launch is drawn by the system before the app runs, and would otherwise follow the phone's light or dark
+mode.
 
 ---
 
@@ -451,7 +453,10 @@ and a hidden long press for the link would go unnoticed.
 
 - The main screen is a horizontal pager over the hymns of **one book** in the order of §5.3. Swiping moves within
   the book; the toolbar title and colours follow the visible hymn. A swiped-to hymn opens at its top, even if its page
-  was made (and scrolled) in advance.
+  was made (and scrolled) in advance, and with the toolbar showing, even if scrolling the last hymn had hidden it
+  (else the new hymn's header would sit under the status bar). Android: once the pager is at rest, after it has moved
+  the focus to the new page, because on Android 16 and up a page taking focus asks to be shown in full and the
+  scrolling app bar hides itself for that.
 - Opening a hymn from anywhere (search, related chip, drawer, back) switches the pager to that hymn's book if
   needed, jumps to it, scrolls it to the top and shows the toolbar.
 - If the target hymn does not exist (stale history/favorite, or a typed number not in the book): go to the first

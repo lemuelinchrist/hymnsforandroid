@@ -1,9 +1,11 @@
 package com.lemuelinchrist.android.hymns.style;
 
 import android.app.Activity;
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.lemuelinchrist.android.hymns.R;
@@ -45,15 +47,24 @@ public final class Theme {
         if (!preferences.contains(PREFERENCE)) {
             preferences.edit().putString(PREFERENCE, preferences.getBoolean("nightMode", false) ? DARK : SYSTEM).apply();
         }
-        apply(choice(context));
+        apply(context, choice(context));
     }
 
-    public static void apply(String choice) {
+    public static void apply(Context context, String choice) {
         int mode;
         if (LIGHT.equals(choice)) mode = AppCompatDelegate.MODE_NIGHT_NO;
         else if (DARK.equals(choice) || BLACK.equals(choice)) mode = AppCompatDelegate.MODE_NIGHT_YES;
         else mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
         if (AppCompatDelegate.getDefaultNightMode() != mode) AppCompatDelegate.setDefaultNightMode(mode);
+        // the splash at launch is drawn by the system before the app runs: tell it the app's choice (Android 12+), or
+        // it follows the phone's light or dark mode
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            UiModeManager uiModeManager = context.getSystemService(UiModeManager.class);
+            if (uiModeManager != null) uiModeManager.setApplicationNightMode(
+                    mode == AppCompatDelegate.MODE_NIGHT_NO ? UiModeManager.MODE_NIGHT_NO
+                            : mode == AppCompatDelegate.MODE_NIGHT_YES ? UiModeManager.MODE_NIGHT_YES
+                            : UiModeManager.MODE_NIGHT_AUTO);
+        }
     }
 
     /** Black over Dark, for the hymn screen: call before its views are made. */
