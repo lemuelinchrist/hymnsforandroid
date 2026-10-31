@@ -47,7 +47,7 @@
                 app:entries="@array/youtube_button_preference"
                 app:entryValues="@array/youtube_button_preference_values"
                 app:title="@string/youtube_button"
-                app:summary="Enable Button that plays YouTube videos"
+                app:useSimpleSummaryProvider="true"
                 app:icon="@drawable/ic_live_tv_black_32dp"/>
         <SwitchPreferenceCompat
                 app:key="similarTune"

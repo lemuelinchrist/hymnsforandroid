@@ -421,7 +421,8 @@ for each stanza: <no>\n<text with '<br/>' replaced by '\n'>\n
 ### 8.1 Reading flow
 
 - The main screen is a horizontal pager over the hymns of **one book** in the order of §5.3. Swiping moves within
-  the book; the toolbar title and colours follow the visible hymn.
+  the book; the toolbar title and colours follow the visible hymn. A swiped-to hymn opens at its top, even if its page
+  was made (and scrolled) in advance.
 - Opening a hymn from anywhere (search, related chip, drawer, back) switches the pager to that hymn's book if
   needed, jumps to it, scrolls it to the top and shows the toolbar.
 - If the target hymn does not exist (stale history/favorite, or a typed number not in the book): go to the first
@@ -617,7 +618,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `chordEdits` | action | — | Chord edits dialog: the edited sheets, Export, Import (§11.5); the summary counts the edited sheets |
 | `disableLanguages` | set of codes | `{I}` | hidden books: removed from drawer, the other-languages grid, and from search (§9) |
 | `otherLanguagesFolded` | bool | false | the other-languages grid on the hymn page is folded (§6.1); set by its Hide/Show row, not in the Settings screen |
-| `youtubeButton` | string | `disabled` | `disabled` / `piano` / `search` (§7.4) |
+| `youtubeButton` | string | `disabled` | `disabled` / `piano` / `search` (§7.4); the summary shows the current choice |
 | `similarTune` | bool | false | show Similar Tune button (§7.5) |
 | `sheetMusicType` | string | `pianoSvg` | `pianoSvg` = Piano, `guitarSvg` = Guitar: the viewer's starting mode (§11) |
 | `about` | action | — | dialog with app name, version, feedback address `lemuelinchrist@gmail.com` |

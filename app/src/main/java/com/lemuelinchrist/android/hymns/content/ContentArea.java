@@ -167,6 +167,8 @@ public class ContentArea extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
 
         if (isVisibleToUser && hymn != null) {
+            // a swiped-to page may have been made (and scrolled) in advance by the pager: open it at its top
+            scrollToTop();
             onLyricVisible();
         }
     }
