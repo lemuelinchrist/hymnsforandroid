@@ -1,12 +1,11 @@
 # Builds the Hymns web app (tools/web) and publishes it on GitHub Pages.
-# Runs when a GitHub release is published, so the web app follows the Android releases, and by hand
-# (Actions -> Web app -> Run workflow) at any time. The build uses only files in the repository:
-# sqlite/hymns.sql, the app's assets and HymnGroup.java.
+# Runs by hand (Actions -> Web app -> Run workflow, or `gh workflow run web-app.yml --ref master`), right after
+# each GitHub release and whenever master has web changes. Not on the release event: the github-pages environment
+# only lets master deploy, so a run on the release's tag is always rejected. The build uses only files in the
+# repository: sqlite/hymns.sql, the app's assets and HymnGroup.java.
 name: Web app
 
 on:
-  release:
-    types: [published]
   workflow_dispatch:
 
 permissions:

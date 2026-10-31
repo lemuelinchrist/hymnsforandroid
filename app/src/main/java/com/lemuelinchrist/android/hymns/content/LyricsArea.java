@@ -174,7 +174,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // remove unused textview if uneven
             // if column is odd
             if (columnNo % 2 != 0) {
-                currentTextLinearLayout.removeViewAt(1);
+                removeColumn(currentTextLinearLayout, 1);
             }
 
         } catch (Exception e) {
@@ -193,21 +193,21 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // close out any half-filled row left pending by the previous stanza, since its
             // right column would otherwise be orphaned once currentTextLinearLayout is replaced below
             if (columnNo % 2 != 0) {
-                currentTextLinearLayout.removeViewAt(1);
+                removeColumn(currentTextLinearLayout, 1);
             }
-            currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
+            currentTextLinearLayout = newRow();
             stanzaView.addView(currentTextLinearLayout);
-            view = (TextView) currentTextLinearLayout.getChildAt(0);
+            view = column(currentTextLinearLayout, 0);
             // next stanza must start a fresh row rather than trying to fill this row's (removed) right column
             columnNo = 0;
         } else if (++columnNo % 2 != 0) {
-            currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
+            currentTextLinearLayout = newRow();
             stanzaView.addView(currentTextLinearLayout);
             // left column on landscape mode
-            view = (TextView) currentTextLinearLayout.getChildAt(0);
+            view = column(currentTextLinearLayout, 0);
         } else {
             // right column on landscape mode
-            view = (TextView) currentTextLinearLayout.getChildAt(1);
+            view = column(currentTextLinearLayout, 1);
         }
 
         if(isLink) {
@@ -240,7 +240,28 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
         // notes have a row exclusively to themselves
         if(isFullWidthRow)
-            currentTextLinearLayout.removeViewAt(1);
+            removeColumn(currentTextLinearLayout, 1);
+    }
+
+    private LinearLayout newRow() {
+        return (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
+    }
+
+    /**
+     * A row's first (0) or second (1) block. Side by side (landscape, tablets), right to left books start on the right,
+     * so the stanza is read before its chorus; the app isn't laid out right to left (no supportsRtl), hence by hand.
+     */
+    private TextView column(LinearLayout row, int i) {
+        return (TextView) row.getChildAt(isRightToLeftRow(row) ? 1 - i : i);
+    }
+
+    private void removeColumn(LinearLayout row, int i) {
+        row.removeView(column(row, i));
+    }
+
+    private boolean isRightToLeftRow(LinearLayout row) {
+        return row.getChildCount() == 2 && row.getOrientation() == LinearLayout.HORIZONTAL
+                && hymn.getHymnGroup().getTextAlignment() == Gravity.RIGHT;
     }
 
     /** One row of the details card: the label muted, the value wrapping in its own column (and selectable). */
