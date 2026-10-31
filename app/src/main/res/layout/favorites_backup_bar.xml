@@ -8,7 +8,7 @@
               android:gravity="center_vertical"
               android:paddingLeft="12dp"
               android:paddingRight="4dp"
-              android:background="#f2f2f2">
+              android:background="@color/choices_bar">
 
     <TextView
             android:id="@+id/favoritesCount"
@@ -17,7 +17,7 @@
             android:layout_weight="1"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:textColor="#4e4e4e"/>
+            android:textColor="@color/list_text"/>
 
     <Button
             android:id="@+id/favoritesBackUp"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back up"
-            android:textColor="#00796b"/>
+            android:textColor="@color/choice_on"/>
 
     <Button
             android:id="@+id/favoritesRestore"
@@ -33,6 +33,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Restore"
-            android:textColor="#00796b"/>
+            android:textColor="@color/choice_on"/>
 
 </LinearLayout>

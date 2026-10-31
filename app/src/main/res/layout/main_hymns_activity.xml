@@ -29,7 +29,7 @@
                         android:minHeight="?attr/actionBarSize"
                         android:background="?attr/colorPrimary"
                         app:layout_scrollFlags="scroll|enterAlways"
-                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
 
                 />
             </com.google.android.material.appbar.AppBarLayout>
@@ -50,7 +50,7 @@
                 android:choiceMode="singleChoice"
                 android:dividerHeight="0dp"
                 style="@style/Theme.AppCompat.Light.DarkActionBar"
-                android:background="#e1e1e1"
+                android:background="@color/drawer_background"
         />
 
     </androidx.drawerlayout.widget.DrawerLayout>

@@ -3,6 +3,7 @@
     package="com.lemuelinchrist.android.hymns">
 
     <application
+        android:name=".HymnsApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
         android:dataExtractionRules="@xml/data_extraction_rules"

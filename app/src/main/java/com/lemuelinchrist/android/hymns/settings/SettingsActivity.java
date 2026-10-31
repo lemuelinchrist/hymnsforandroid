@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -17,9 +18,11 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceGroup;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.logbook.ChordEditsBackup;
 import com.lemuelinchrist.android.hymns.logbook.FavoritesBackup;
+import com.lemuelinchrist.android.hymns.style.Theme;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -87,10 +90,25 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 }
             });
+            // a new choice changes the night mode at once; the open screens are made again in it
+            findPreference(Theme.PREFERENCE).setOnPreferenceChangeListener((preference, choice) -> {
+                Theme.apply((String) choice);
+                return true;
+            });
+            // the icons are black pictures: at night, light like the text
+            if (Theme.of(requireContext()).isNight()) tintIcons(getPreferenceScreen(), ContextCompat.getColor(requireContext(), R.color.settings_text));
             findPreference("chordEdits").setOnPreferenceClickListener(preference -> {
                 ((SettingsActivity) requireActivity()).chordEditsBackup.showMenu();
                 return true;
             });
+        }
+
+        private static void tintIcons(PreferenceGroup group, int color) {
+            for (int i = 0; i < group.getPreferenceCount(); i++) {
+                Preference preference = group.getPreference(i);
+                if (preference.getIcon() != null) preference.getIcon().mutate().setTint(color);
+                if (preference instanceof PreferenceGroup) tintIcons((PreferenceGroup) preference, color);
+            }
         }
 
         // the count changes when a sheet opened from the list is edited, or after an import

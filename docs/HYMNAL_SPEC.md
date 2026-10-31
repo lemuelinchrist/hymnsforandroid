@@ -51,11 +51,11 @@ Features:
 | Favorites | Heart button; listed in the Favorites tab; back up / restore as a short text file (one "ID – first line" per hymn). |
 | History | Recently opened hymns (newest first, up to 100). The app reopens the last hymn on start. |
 | Play | Loops the hymn's melody (MIDI file looked up by tune code). |
-| Sheet music | Engraved from MEI with Verovio at screen width; piano or guitar (capo + chords derived), transpose ±6, "chords over lyrics" mode, pinch to zoom, night mode. Translations can show their own lyrics under the borrowed sheet. On big screens (tablets, unfolded phones) the chords of the piano sheet can be edited, kept on the device and exported/imported (§11.5). |
+| Sheet music | Engraved from MEI with Verovio at screen width; piano or guitar (capo + chords derived), transpose ±6, "chords over lyrics" mode, pinch to zoom, dark in the dark themes. Translations can show their own lyrics under the borrowed sheet. On big screens (tablets, unfolded phones) the chords of the piano sheet can be edited, kept on the device and exported/imported (§11.5). |
 | YouTube (optional) | Either opens curated piano videos for the hymn or a YouTube search. |
 | Similar tune (optional) | Lists other hymns sung to the same tune, preferring the current language. |
 | Share | A menu: share the lyrics, share a link to the hymn in the web app, or copy the lyrics. |
-| Display settings | Font size (5 steps), night mode, keep screen on, hide books you don't use. |
+| Display settings | Font size (5 steps), theme (System default / Light / Dark / Black), keep screen on, hide books you don't use. |
 
 ---
 
@@ -99,8 +99,8 @@ The **default hymn** is `E1`.
 ### 3.2 Hymn Groups (books)
 
 Order below is the **display order** (drawer, settings, iOS book picker). Colours: *day* = Material 500, used for the
-toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200, used for stanza numbers/chorus in
-night mode and for the related-hymn dots.
+toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200, used for stanza numbers/chorus and the
+"Hide" link in the dark themes (each at least 4.5:1 on the dark card; Farsi and Slovak were lightened for it in v5.8).
 
 | # | Code | Display name | Day colour | Night colour | Text align | "Big" book¹ | Hymns |
 |---|---|---|---|---|---|---|---|
@@ -123,8 +123,8 @@ night mode and for the related-hymn dots.
 | 17 | `BF` | Be Filled | `#0099CC` | `#90CAF9` | left | **no** | 438 |
 | 18 | `NS` | New Songs | `#CC0000` | `#EF9A9A` | left | **no** | 1245 |
 | 19 | `CH` | Children | `#AFB42B` | `#E6EE9C` | left | **no** | 243 |
-| 20 | `F` | Farsi | `#673AB7` | `#9575CD` | **right** (RTL) | yes | 329 |
-| 21 | `SK` | Slovak | `#9C27B0` | `#BA68C8` | left | yes | 360 |
+| 20 | `F` | Farsi | `#673AB7` | `#B39DDB` | **right** (RTL) | yes | 329 |
+| 21 | `SK` | Slovak | `#9C27B0` | `#CE93D8` | left | yes | 360 |
 | 22 | `GK` | Greek | `#03A9F4` | `#4FC3F7` | left | yes | 124 |
 | 23 | `SW` | Kiswahili | `#00838F` | `#4DD0E1` | left | yes | 98 |
 | 24 | `R` | Russian | `#1565C0` | `#64B5F6` | left | yes | 800 |
@@ -262,7 +262,7 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
 ### 6.1 Page structure (top to bottom)
 
 1. **Toolbar** (app bar): hamburger (opens book drawer), title = the **Hymn ID** (e.g. `E1`), Search icon, Settings icon.
-   Background = the book's day colour (black in night mode). Hides when scrolling down, reappears when scrolling up
+   Background = the book's colour in the theme (§6.3). Hides when scrolling down, reappears when scrolling up
    and whenever a new hymn is opened.
 2. **Header card** (always shown: it holds the buttons):
    - Subject line, centred (omitted when empty): **main_category** (bold), newline, sub_category, newline `(New Tune)`
@@ -270,7 +270,7 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    - **Other languages** (since v5.7; omitted when the hymn has no related hymn in an enabled book), so a brother can
      call the hymn in several languages without scrolling:
      - A row: `OTHER LANGUAGES` (12sp, bold, letter-spaced, muted), the count in a small rounded badge, and at the right
-       `Hide ▴` / `Show ▾` in the book's colour (night colour in night mode). Tapping the row folds or unfolds the grid.
+       `Hide ▴` / `Show ▾` in the book's colour (its night colour in the dark themes). Tapping the row folds or unfolds the grid.
      - A grid of the related hymns: book **code** (muted, ~0.82× the number's size, one fixed width so the numbers line
        up) and **number** (bold), e.g. `CS 305`. No border, no colour dot. Order: the books' drawer order (the
        `HymnGroup` order), then the number. Columns: as many as fit (4 on most phones at the default size;
@@ -287,7 +287,7 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    (Until v5.6 these were in the header card and the related hymns were pills with book names at the bottom: the
    numbers moved up because brothers call hymns in several languages during meetings.)
 
-Cards: 10dp side margins, 5dp radius, light elevation. Page background white (day) / black (night).
+Cards: 10dp side margins, 5dp radius, light elevation. Page and card colours: §6.3.
 
 ### 6.2 Lyrics rendering algorithm (MUST)
 
@@ -316,8 +316,7 @@ Consequences worth testing:
 - A single chorus is shown where it sits *and* repeated after every following stanza. Stanzas before the chorus's
   position don't get it (usually only stanza 1, which the chorus follows directly anyway).
 - With 2+ chorus stanzas (E1118: brothers/sisters), each is shown only where it sits; nothing is repeated.
-- "Coloured" = book day colour (light theme) or night colour (dark theme). Body text is `#4E4E4E` on white (day) or
-  `#CCCCCC` on black (night).
+- "Coloured" = book day colour (Light) or night colour (Dark, Black). Body text and backgrounds: §6.3.
 - Text alignment: left, except right for RTL books (`F`, `UR`).
 - Font: the phone's own, except Urdu (`UR`), which is read in Nastaliq: the app bundles Noto Nastaliq Urdu (SIL Open
   Font License) and uses it for the subject, the lyrics and the Urdu rows of every hymn list. Android's own
@@ -334,13 +333,26 @@ so the stanza is read before its chorus. A web build SHOULD use CSS grid/columns
 
 ### 6.3 Themes
 
-| | Light (default) | Dark ("Night mode") |
-|---|---|---|
-| Toolbar | book day colour | black |
-| Page / lyric background | white | black |
-| Lyric text | `#4E4E4E` | `#CCCCCC` |
-| Stanza numbers, chorus | book day colour | book night colour |
-| Status bar | translucent black `#44000000` over content | same |
+The setting `theme` (§10) is **System default** (the default: follows the phone's dark theme), **Light**, **Dark** or
+**Black**. Dark follows Material Design's dark theme: dark grey rather than black (black tires the eyes and smears on
+OLED screens when scrolling), raised things (cards, drawer, dialogs) a little lighter, off-white text, the books'
+lighter night colours, and the bars in a dimmed book colour. Black is the pre-v5.8 night mode, kept for reading in a
+dark room on OLED phones.
+
+| | Light | Dark | Black |
+|---|---|---|---|
+| Toolbar | book day colour | day colour 55 % over `#1D1F23` | black |
+| Button bar (pill) | book day colour | day colour 70 % over `#1D1F23` | black |
+| Page background | white | `#121316` | black |
+| Cards (header, lyrics, details) | white, elevated | `#1D1F23`, elevated | black, no shadow |
+| Lyric text | `#4E4E4E` | `#E3E4E7` | `#CCCCCC` |
+| Stanza numbers, chorus, "Hide" | book day colour | book night colour | book night colour |
+| Count beside OTHER LANGUAGES | `#EEF1F4` | `#2E3137` | `#2A2A2A` |
+| Other screens (drawer, search, settings, dialogs, sheet viewer) | light | dark grey (`#121316` page, `#1D1F23` bars, `#26292E` drawer and choice bars) | as Dark |
+| Status bar | translucent black `#44000000` over content | same | same |
+
+On Android the other screens follow a day/night theme (`values/colors.xml`, `values-night/colors.xml`); the hymn page
+uses one layout coloured from `style/Theme`. Changing the theme recreates the open screens.
 
 ---
 
@@ -624,7 +636,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | Key | Type | Default | Values / effect |
 |---|---|---|---|
 | `FontSize` | string | `18f` | `14f` Small, `18f` Medium, `22f` Large, `26f` Extra Large, `32f` XXL (sp) |
-| `nightMode` | bool | false | dark theme for reader and sheet viewer |
+| `theme` | string | `system` | `system` / `light` / `dark` / `black` (§6.3). Replaced `nightMode` (bool) in v5.8: on the first start after the update, `nightMode` on becomes `dark`, else `system` |
 | `keepDisplayOn` | bool | false | keep the screen awake (web: Screen Wake Lock API) in reader and sheet viewer |
 | `manageFaves` | action | — | Back up & restore favorites dialog (§8.4) |
 | `chordEdits` | action | — | Chord edits dialog: the edited sheets, Export, Import (§11.5); the summary counts the edited sheets |
@@ -919,7 +931,7 @@ first load small.
 | Clipboard copy / import | `navigator.clipboard.writeText` / `readText` (import: also offer a paste textarea) |
 | Export favorites (share sheet) | `navigator.share({text})`, fallback to copy |
 | WebView sheet viewer | iframe or direct navigation to `viewer/index.html?...` |
-| Night mode | toggle + default from `prefers-color-scheme` |
+| Theme | System default / Light / Dark from `prefers-color-scheme` and a setting |
 | Swipe between hymns | horizontal pointer/touch gestures + ←/→ keys; prefetch neighbours |
 | Toasts / dialogs | lightweight in-page equivalents |
 
@@ -974,5 +986,5 @@ Concrete checks against the shipped data. A rebuild that passes these behaves li
 | 20 | YouTube = piano on `E8` | Opens `https://www.youtube.com/embed/DL6lgn78DcU` |
 | 21 | Favorites export, then import on a fresh install | Same set of favorites |
 | 22 | History contains a removed ID | Opening it goes to the book's first hymn and the ID disappears from History and Favorites |
-| 23 | Night mode | Black toolbar/background, `#CCCCCC` text, stanza numbers in night colour; sheet viewer dark |
+| 23 | Theme Dark / Black / System default with the phone dark | Dark: dark grey page, lighter cards, dimmed book-colour bars, every screen dark; Black: black page and toolbar, `#CCCCCC` text; stanza numbers in night colour; sheet viewer dark |
 | 24 | Landscape / wide screen | Lyrics in two columns, notes full-width |

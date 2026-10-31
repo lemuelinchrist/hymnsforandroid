@@ -6,7 +6,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="#f2f2f2">
+              android:background="@color/choices_bar">
 
     <HorizontalScrollView
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:paddingBottom="8dp"
-            android:textColor="#4e4e4e"
+            android:textColor="@color/list_text"
             android:visibility="gone"/>
 
 </LinearLayout>

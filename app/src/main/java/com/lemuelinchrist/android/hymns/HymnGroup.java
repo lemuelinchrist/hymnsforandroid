@@ -88,11 +88,11 @@ public enum HymnGroup {
             Gravity.LEFT),
     //Deep Purple
     F("Farsi", Color.rgb(0x67, 0x3A, 0xB7),
-            Color.rgb(0x95, 0x75, 0xCD),
+            Color.rgb(0xB3, 0x9D, 0xDB),
             Gravity.RIGHT),
     // Purple
     SK("Slovak", Color.rgb(0x9C, 0x27, 0xB0),
-            Color.rgb(0xBA, 0x68, 0xC8),
+            Color.rgb(0xCE, 0x93, 0xD8),
             Gravity.LEFT),
     //Light Blue
     GK("Greek", Color.rgb(0x03, 0xA9, 0xF4),

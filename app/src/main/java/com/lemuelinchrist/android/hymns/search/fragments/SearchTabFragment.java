@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.lemuelinchrist.android.hymns.HymnGroup;
@@ -51,8 +52,6 @@ public class SearchTabFragment extends TabFragment {
         }
     }
 
-    private static final int COLOR_ON = 0xFF00796B;
-    private static final int COLOR_OFF = 0xFF757575;
     private static final long DELAY_MS = 150;
 
     private final ExecutorService searcher = Executors.newSingleThreadExecutor();
@@ -202,7 +201,7 @@ public class SearchTabFragment extends TabFragment {
         Button b = new Button(choices.getContext(), null, android.R.attr.borderlessButtonStyle);
         b.setAllCaps(false);
         b.setText(label);
-        b.setTextColor(on ? COLOR_ON : COLOR_OFF);
+        b.setTextColor(ContextCompat.getColor(b.getContext(), on ? R.color.choice_on : R.color.choice_off));
         b.setTypeface(null, on ? Typeface.BOLD : Typeface.NORMAL);
         b.setOnClickListener(onClick);
         choices.addView(b);

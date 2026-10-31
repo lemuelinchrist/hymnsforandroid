@@ -9,6 +9,8 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 
+import androidx.core.content.ContextCompat;
+import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
@@ -29,7 +31,6 @@ import java.util.List;
  */
 public class SearchResultAdapter extends SearchAdapter {
 
-    private static final int WHY_COLOR = 0xFF757575;
 
     private final List<HymnSearch.Result> results;
     private final List<String> terms;
@@ -75,7 +76,7 @@ public class SearchResultAdapter extends SearchAdapter {
             text.append("\n");
             int start = text.length();
             appendHighlighted(text, why);
-            text.setSpan(new ForegroundColorSpan(WHY_COLOR), start, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            text.setSpan(new ForegroundColorSpan(ContextCompat.getColor(context, R.color.choice_off)), start, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             text.setSpan(new RelativeSizeSpan(0.85f), start, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         holder.list_item.setText(text);

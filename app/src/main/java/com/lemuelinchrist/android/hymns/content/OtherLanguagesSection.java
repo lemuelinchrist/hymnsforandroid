@@ -59,7 +59,7 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
     public OtherLanguagesSection(Hymn hymn, Fragment parentFragment, ViewGroup container) {
         super(hymn, parentFragment, container);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
+        theme = Theme.of(context);
         disabledLanguages = sharedPreferences.getStringSet("disableLanguages", new HashSet<String>());
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
     }
@@ -70,14 +70,13 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
             view.setVisibility(View.GONE);
             return;
         }
-        boolean night = theme == Theme.DARK;
         int textColor = theme.getTextColor();
         int mutedColor = muted(textColor);
         // Hide/Show in the book's colour, like the buttons
-        int accent = night ? hymn.getHymnGroup().getNightColor() : hymn.getHymnGroup().getDayColor();
+        int accent = theme.getTextColor(hymn.getHymnGroup());
 
         view.removeAllViews();
-        view.addView(createFoldRow(relatedIds.size(), mutedColor, accent, night));
+        view.addView(createFoldRow(relatedIds.size(), mutedColor, accent));
         grid = createGrid(relatedIds, textColor, mutedColor);
         view.addView(grid);
         showFolded(sharedPreferences.getBoolean(FOLDED, false));
@@ -121,7 +120,7 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
         }
     }
 
-    private View createFoldRow(int count, int mutedColor, int accent, boolean night) {
+    private View createFoldRow(int count, int mutedColor, int accent) {
         LinearLayout row = new LinearLayout(context);
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER_VERTICAL);
@@ -149,7 +148,7 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
         badge.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
         badge.setTextColor(mutedColor);
         badge.setPadding(dp(7), 0, dp(7), 0);
-        badge.setBackground(roundRect(night ? 0xFF2A2A2A : 0xFFEEF1F4, dp(10)));
+        badge.setBackground(roundRect(theme.getBadgeColor(), dp(10)));
         LinearLayout.LayoutParams badgeParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         badgeParams.leftMargin = dp(8);

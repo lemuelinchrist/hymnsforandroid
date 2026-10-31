@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:background="#000000"
+            android:background="@color/search_bar"
     >
 
         <androidx.appcompat.widget.Toolbar
@@ -19,14 +19,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
-                android:background="#000000"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                android:background="@color/search_bar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"/>
 
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#000000"
+                android:background="@color/search_bar"
                 app:tabMode="scrollable"
                 app:tabGravity="center"/>
     </com.google.android.material.appbar.AppBarLayout>

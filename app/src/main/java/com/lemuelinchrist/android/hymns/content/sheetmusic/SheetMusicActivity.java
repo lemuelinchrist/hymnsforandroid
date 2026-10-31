@@ -23,6 +23,7 @@ import androidx.webkit.WebViewAssetLoader;
 import androidx.webkit.WebViewClientCompat;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.logbook.ChordEdits;
+import com.lemuelinchrist.android.hymns.style.Theme;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -152,7 +153,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         webview.addJavascriptInterface(new EditsBridge(hymnId), "HymnsEdits");
         boolean editable = getResources().getConfiguration().smallestScreenWidthDp >= EDITING_MIN_WIDTH_DP;
         String variant = "guitarSvg".equals(sharedPreferences.getString("sheetMusicType", "pianoSvg")) ? "guitar" : "piano";
-        boolean dark = sharedPreferences.getBoolean("nightMode", false);
+        boolean dark = Theme.of(this).isNight();
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
                 + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0")
                 + (lyricsHymnId != null ? "&lyrics=" + Uri.encode(lyricsHymnId) : "")

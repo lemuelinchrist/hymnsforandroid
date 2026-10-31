@@ -3,6 +3,7 @@ package com.lemuelinchrist.android.hymns.content;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -66,11 +67,12 @@ public class ContentArea extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (theme == null) {
-            theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
+            theme = Theme.of(context);
         }
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                theme.getStyle(), container, false);
+                R.layout.content_area, container, false);
+        paint(rootView);
 
         // Apply window insets to handle bottom navigation bar overlap on Android 15+
         rootView.setClipToPadding(false);
@@ -91,6 +93,9 @@ public class ContentArea extends Fragment {
         scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
         scrollView.setFocusable(true);
         scrollView.setFocusableInTouchMode(true);
+        // taking focus from a touch leaves touch mode, and a focused view then gets the system's focus highlight over
+        // it: a white veil over the whole page at night
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) scrollView.setDefaultFocusHighlightEnabled(false);
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -126,7 +131,7 @@ public class ContentArea extends Fragment {
 
         buttonContainer = rootView.findViewById(getRid("buttonContainer"));
         if(buttonContainer !=null ){
-            buttonContainer.setCardBackgroundColor(hymn.getHymnGroup().getDayColor());
+            buttonContainer.setCardBackgroundColor(theme.getButtonBarColor(hymn.getHymnGroup()));
         }
 
         playButton = new PlayButton(hymn,this,
@@ -143,6 +148,20 @@ public class ContentArea extends Fragment {
                 (ImageButton)rootView.findViewById(getRid("similarTuneButton")));
 
         return rootView;
+    }
+
+    /** The page and its cards in the theme's colours (the layout is the same by day and night). */
+    private void paint(ViewGroup rootView) {
+        rootView.setBackgroundColor(theme.getPageColor());
+        ViewGroup cards = (ViewGroup) rootView.getChildAt(0);
+        for (int i = 0; i < cards.getChildCount(); i++) {
+            View child = cards.getChildAt(i);
+            if (child instanceof CardView) {
+                ((CardView) child).setCardBackgroundColor(theme.getCardColor());
+                // no shadows on Black, where the cards are as black as the page
+                if (theme == Theme.BLACK) ((CardView) child).setCardElevation(0);
+            }
+        }
     }
 
     private int getRid(String lyricHeader) {

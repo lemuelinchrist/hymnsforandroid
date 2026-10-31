@@ -11,10 +11,14 @@
                 app:useSimpleSummaryProvider="true"
                 app:icon="@drawable/fontsize_black"
         />
-        <SwitchPreferenceCompat
-                app:key="nightMode"
-                app:defaultValue="false"
-                app:title="@string/nightMode"
+        <!-- System default, Light, Dark or Black (style/Theme); replaces the Night Mode switch (nightMode) -->
+        <ListPreference
+                app:key="theme"
+                app:defaultValue="system"
+                app:entries="@array/theme_preference"
+                app:entryValues="@array/theme_preference_values"
+                app:title="Theme"
+                app:useSimpleSummaryProvider="true"
                 app:icon="@drawable/ic_brightness"/>
         <SwitchPreferenceCompat
                 app:key="keepDisplayOn"

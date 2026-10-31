@@ -78,6 +78,7 @@ The Android app's source code is located in `app/src/main/java/com/lemuelinchris
 -   **`search`**: The search screen (`SearchActivity`): Hymn Numbers, Search, Favorites and History tabs. `HymnSearch` finds and ranks hymns in the `search` table that `dao/SearchIndex` builds on the phone (`search.sqlite`), using `SearchText.norm`, the search form shared with the web app.
 -   **`logbook`**: Handles user-specific data, such as history and favorites, and the chord edits (`ChordEdits`, exported and imported by `ChordEditsBackup` in Settings).
 -   **`settings`**: Manages the application's settings and preferences.
+-   **`style`**: `Theme` (the Theme setting, System default / Light / Dark / Black, and the hymn page's colours in each; `HymnsApplication` applies it at start, the other screens use `values-night/colors.xml`), `HymnTextFormatter`, `ScriptFont`.
 -   **`HymnsActivity.java`**: The main entry point and primary activity for the app. It coordinates the various components.
 -   **`HymnGroup.java`**: An enum that defines the different hymn books available in the app.
 

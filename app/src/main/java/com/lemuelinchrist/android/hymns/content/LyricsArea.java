@@ -56,7 +56,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         // Load saved data
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
-        theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
+        theme = Theme.of(context);
         disabledLanguages = sharedPreferences.getStringSet("disableLanguages",new HashSet<String>());
 
         // remove placeholder because it only contains dummy lyrics
@@ -65,6 +65,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
         subjectHeader = view.findViewById(getRid("subjectHeader"));
         subjectHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+        subjectHeader.setTextColor(theme.getTextColor());
 
         // the details card at the bottom is for reference, so a little smaller than the lyrics
         detailsTable = view.findViewById(getRid("detailsTable"));

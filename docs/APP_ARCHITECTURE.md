@@ -22,6 +22,8 @@ The overall flow is as follows:
 
 ## Key Class Descriptions
 
+Before any screen opens, `HymnsApplication` sets the night mode from the Theme setting (`style/Theme.apply`): the screens follow it through the day/night resources (`values-night/colors.xml`), the hymn page through `style/Theme` (Light, Dark, Black).
+
 ### 1. `HymnsActivity.java`
 -   **Role:** Main Controller / Entry Point.
 -   **Responsibilities:**
@@ -54,7 +56,7 @@ The overall flow is as follows:
 ### 4. `ContentArea.java` (package `content`)
 -   **Role:** View for a Single Hymn.
 -   **Responsibilities:**
-    -   A `Fragment` that displays the entire content for one hymn (layout `content_area.xml`, or `content_area_night.xml` in night mode).
+    -   A `Fragment` that displays the entire content for one hymn (layout `content_area.xml` in every theme, coloured from `style/Theme`).
     -   Takes a `hymnId` and uses `HymnsDao` to fetch the complete `Hymn` object. If the hymn no longer exists, removes it from history and favorites and shows `E1`.
     -   Delegates rendering to helper components, all subclasses of `ContentComponent`:
         -   `LyricsArea`: the header (category, meter, time, key, tune, verses, author, composer) and the stanzas, including chorus repetition and the two-column layout in landscape (`layout-land/` and `layout-w720dp/stanza_linear_layout.xml`). Colours come from `style/Theme` and `style/HymnTextFormatter`; the font from `style/ScriptFont` (Noto Nastaliq Urdu, `res/font/`, for Urdu; the search lists use it too).
@@ -96,7 +98,7 @@ The overall flow is as follows:
 ### 9. `SettingsActivity.java` (package `settings`)
 -   **Role:** Preferences screen.
 -   **Responsibilities:**
-    -   A `PreferenceFragmentCompat` built from `res/xml/root_preferences.xml` (font size, night mode, keep display on, disabled languages, YouTube button, similar tune button, sheet music type, about).
+    -   A `PreferenceFragmentCompat` built from `res/xml/root_preferences.xml` (font size, theme, keep display on, disabled languages, YouTube button, similar tune button, sheet music type, about).
     -   "Back Up & Restore Favorites" opens `logbook/FavoritesBackup`'s dialog (also used by the Favorites tab's Back up / Restore bar,
         and by `logbook/RestoreFavoritesActivity`, which opens a backup file tapped in another app).
     -   "Chord Edits" opens `logbook/ChordEditsBackup`'s dialog: the sheets whose chords were changed on this device, Export

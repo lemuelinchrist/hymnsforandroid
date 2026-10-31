@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the screens' colours by day; values-night/colors.xml has the dark ones (Material's dark theme: dark grey, raised
+     things lighter, off-white text). The hymn page takes its colours from style/Theme instead, which also has Black. -->
+<resources>
+    <color name="window_background">#fafafa</color>
+    <color name="drawer_background">#e1e1e1</color>
+    <color name="drawer_text">#ff464646</color>
+    <color name="search_bar">#000000</color>
+    <color name="list_text">#4e4e4e</color>
+    <color name="choices_bar">#f2f2f2</color>
+    <color name="choice_on">#00796b</color>
+    <color name="choice_off">#757575</color>
+    <color name="settings_bar">#ffffff</color>
+    <color name="settings_text">#000000</color>
+    <color name="dialog_text">#de000000</color>
+    <color name="sheet_background">#ffffff</color>
+</resources>
