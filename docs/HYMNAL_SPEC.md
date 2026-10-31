@@ -67,7 +67,7 @@ Everything the app needs at runtime is in the repository. A rebuild does **not**
 |---|---|---|---|---|
 | Hymn database | `app/src/main/assets/hymns.sqlite` (built from `sqlite/hymns.sql`, see §13) | SQLite 3 | 14,127 hymns, 71,090 stanzas, 674 video links; 18 MB | everything textual |
 | Book list, names, colours, order | `app/src/main/java/.../HymnGroup.java` | Java enum (also parsed by `tools/ios/build.py`) | 23 books | drawer, colours, ID parsing |
-| Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 23 | drawer, search list rows |
+| Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 23 | drawer, search list rows, the Hymn Books dialog |
 | Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,462 files; 19 MB | Play button |
 | Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,345 (E 1362, NS 1227, CS 291, CH 243, C 124, BF 98); 45 MB | sheet viewer |
 | Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,369 (Z 755, C 632, ZS 460, FR 224, CS 194, FY 104); 9.3 MB | sheet viewer overlay |
@@ -105,10 +105,10 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | # | Code | Display name | Day colour | Night colour | Text align | "Big" book¹ | Hymns |
 |---|---|---|---|---|---|---|---|
 | 1 | `E` | English | `#3D577A` | `#B0BEC5` | left | yes | 1362 |
-| 2 | `C` | 中文-繁 | `#669900` | `#A5D6A7` | left | yes | 786 |
-| 3 | `CS` | 補充本-繁 | `#9933CC` | `#CE93D8` | left | yes | 513 |
-| 4 | `Z` | 中文-简 | `#669900` | `#A5D6A7` | left | yes | 786 |
-| 5 | `ZS` | 補充本-简 | `#9933CC` | `#CE93D8` | left | yes | 513 |
+| 2 | `C` | Chinese (Traditional) | `#669900` | `#A5D6A7` | left | yes | 786 |
+| 3 | `CS` | Chinese Supplement (Traditional) | `#9933CC` | `#CE93D8` | left | yes | 513 |
+| 4 | `Z` | Chinese (Simplified) | `#669900` | `#A5D6A7` | left | yes | 786 |
+| 5 | `ZS` | Chinese Supplement (Simplified) | `#9933CC` | `#CE93D8` | left | yes | 513 |
 | 6 | `CB` | Cebuano | `#FF8800` | `#FFCC80` | left | yes | 584 |
 | 7 | `T` | Tagalog | `#009688` | `#80CBC4` | left | yes | 1176 |
 | 8 | `FR` | French | `#E91E63` | `#F48FB1` | left | yes | 248 |
@@ -119,7 +119,7 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | 13 | `G` | German | `#FF5722` | `#FFAB91` | left | yes | 482 |
 | 14 | `GY` | German Youth | `#FF5722` | `#FFAB91` | left | yes | 271 |
 | 15 | `J` | Japanese | `#8BC34A` | `#AED581` | left | yes | 780 |
-| 16 | `I` | B.Indonesia | `#F44336` | `#E57373` | left | yes | 1133 |
+| 16 | `I` | Indonesian | `#F44336` | `#E57373` | left | yes | 1133 |
 | 17 | `BF` | Be Filled | `#0099CC` | `#90CAF9` | left | **no** | 438 |
 | 18 | `NS` | New Songs | `#CC0000` | `#EF9A9A` | left | **no** | 1245 |
 | 19 | `CH` | Children | `#AFB42B` | `#E6EE9C` | left | **no** | 243 |
@@ -348,7 +348,7 @@ dark room on OLED phones.
 | Lyric text | `#4E4E4E` | `#E3E4E7` | `#CCCCCC` |
 | Stanza numbers, chorus, "Hide" | book day colour | book night colour | book night colour |
 | Count beside OTHER LANGUAGES | `#EEF1F4` | `#2E3137` | `#2A2A2A` |
-| Other screens (drawer, search, settings, dialogs, sheet viewer) | light | dark grey (`#121316` page, `#1D1F23` bars, `#26292E` drawer and choice bars) | as Dark |
+| Other screens (drawer, search, settings, dialogs, sheet viewer) | light (drawer white) | dark grey (`#121316` page, `#1D1F23` bars, `#1F2125` drawer, `#26292E` choice bars) | as Dark |
 | Status bar | translucent black `#44000000` over content | same | same |
 
 On Android the colours are in XML, apart from the code, like CSS beside HTML: `res/values/attrs.xml` names the hymn
@@ -516,7 +516,19 @@ A web build SHOULD map this onto browser history (`#/E1` style URLs) so the brow
 
 ### 8.5 Book drawer
 
-- Lists the **enabled** books (§10) in display order, each with its icon and display name.
+- Display names are in English for everyone (v5.8: the Chinese books were 中文-繁, 補充本-繁…, Indonesian was
+  B.Indonesia), since the drawer serves readers of every language.
+- A header (app icon, "Hymns"), then two sections, then a fixed link at the bottom:
+  - **RECENT**: the current book, then the books of the latest hymns in History, each once, up to **4**. Which books
+    matter depends on the person's languages, so the drawer learns them instead of fixing an order.
+  - **ALL BOOKS**: every **enabled** book (§10) in display order.
+  - **Hymn Books…**: opens Settings with the Hymn Books dialog (§10, `disableLanguages`), to hide books never used.
+- A row: the book's badge picture (36dp; the app's own pictures since its first versions, kept as they are even
+  where their letters differ from the code: H for English, B for Cebuano, Ch for Children), the display name (long
+  names wrap), and the number of hymns ("1,362 hymns"). The current book has a rounded highlight in a tint of its
+  colour, in both sections: by day 14 % of its day colour over white, its name darkened; at night 20 % of its night
+  colour over the drawer, its name in the night colour (§6.3).
+- The lists are made again each time the drawer starts to open.
 - Selecting a book while viewing hymn H: if H is already in that book, just close. Else if `relatedIn(H, book)`
   exists → open it and remember (§8.2). Else → open `<book>1` (first hymn of the book).
 
@@ -595,7 +607,7 @@ Live as you type, about 150 ms after the last key, run off the main thread.
   | 20 | otherwise (terms as parts of words, or spread over several columns) |
 
   Ties: the current book first, then the drawer's book order (§3.2), then the number.
-- **Books:** two choices above the list, `<current book> (n)` · `All books (n)`. It starts on the current book, or on
+- **Books:** two choices above the list, `<current book> · n` and `All books · n` (a dot, not brackets: names like "Chinese (Traditional)" have their own). It starts on the current book, or on
   All books when the current book has no result; the user's choice is kept while typing and reset when the box is
   emptied. This is how to search only one book (for example only New Songs): search from a hymn of that book.
 - **Row:** `**<ID>** - <line>`, the matched terms in bold. When the hymn did not match on its first line, a second,

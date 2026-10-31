@@ -1,31 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One book in the drawer (HymnDrawer): the book's badge picture (drawable-xhdpi/<code>.png), the name, the number of hymns.
+     The current book gets a rounded highlight in a tint of its colour. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/drawer_row">
 
+    <View
+            android:id="@+id/hymnGroupHighlight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/drawer_highlight"
+            android:visibility="gone"/>
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:minHeight="52dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="16dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp">
 
+        <ImageView
+                android:id="@+id/hymnGroupImage"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:importantForAccessibility="no"/>
 
-<LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="14dp"
+                android:orientation="vertical">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:id="@+id/hymnGroupImage"
-            android:adjustViewBounds="true"/>
+            <TextView
+                    android:id="@+id/hymnGroupName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="@color/drawer_text"/>
 
-    <TextView
-              android:id="@+id/hymnGroupName"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center_vertical"
-              android:paddingLeft="16dp"
-              android:paddingRight="16dp"
-              android:textColor="@color/drawer_text"
-
-              android:textSize="18dp"
-              android:paddingTop="10dp"
-              android:paddingBottom="10dp"
-              android:layout_gravity="top"/>
-
-</LinearLayout>
+            <TextView
+                    android:id="@+id/hymnGroupCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/drawer_muted"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

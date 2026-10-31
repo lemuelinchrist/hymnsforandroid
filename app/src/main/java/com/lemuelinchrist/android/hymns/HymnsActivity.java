@@ -39,6 +39,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         SharedPreferences.OnSharedPreferenceChangeListener {
     protected final int SEARCH_REQUEST = 1;
     protected HymnGroup selectedHymnGroup = HymnGroup.getDefaultHymnGroup();
+    private View mDrawer;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -116,18 +117,19 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
-                    mDrawerLayout.closeDrawer(mDrawerList);
+                if (mDrawerLayout.isDrawerOpen(mDrawer)) {
+                    mDrawerLayout.closeDrawer(mDrawer);
                 } else if (!hymnBookCollection.goToPreviousHymn()) {
                     setEnabled(false);
                     getOnBackPressedDispatcher().onBackPressed();
                 }
             }
         });
-        mDrawerList = findViewById(R.id.left_drawer);
+        mDrawer = findViewById(R.id.left_drawer);
+        mDrawerList = findViewById(R.id.drawer_list);
 
         // Apply window insets to the Navigation Drawer to handle status bar and nav bar overlap
-        ViewCompat.setOnApplyWindowInsetsListener(mDrawerList, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(mDrawer, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(0, systemBars.top, 0, systemBars.bottom);
             return insets;
@@ -139,6 +141,13 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 selectDrawerItem(position);
             }
+        });
+        // the Hymn Books setting, to hide books someone never uses
+        findViewById(R.id.drawer_hymn_books).setOnClickListener(v -> {
+            mDrawerLayout.closeDrawer(mDrawer);
+            Intent settings = new Intent(getBaseContext(), SettingsActivity.class);
+            settings.putExtra(SettingsActivity.OPEN_HYMN_BOOKS, true);
+            startActivity(settings);
         });
 
         refreshHymnDrawer();
@@ -155,6 +164,13 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
             }
+
+            // Recent and the highlight follow the hymn being read: made again whenever the drawer starts to open
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
+                if (newState != DrawerLayout.STATE_IDLE && !mDrawerLayout.isDrawerOpen(mDrawer)) refreshHymnDrawer();
+            }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setDisplayConfig();
@@ -162,8 +178,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     }
 
     private void refreshHymnDrawer() {
-        hymnDrawer = new HymnDrawer(this,
-                R.layout.drawer_hymngroup_list);
+        hymnDrawer = new HymnDrawer(this, selectedHymnGroup);
         mDrawerList.setAdapter(hymnDrawer);
     }
 
@@ -179,9 +194,11 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     private void selectDrawerItem(int position) {
         Log.i(HymnsActivity.class.getSimpleName(), "Drawer Item selected: " + position);
 
-        selectedHymnGroup = hymnDrawer.getSelectedHymnGroup(position);
+        HymnGroup chosen = hymnDrawer.getSelectedHymnGroup(position);
+        if (chosen == null) return;   // a heading
+        selectedHymnGroup = chosen;
         hymnBookCollection.translateTo(selectedHymnGroup);
-        mDrawerLayout.closeDrawer(mDrawerList);
+        mDrawerLayout.closeDrawer(mDrawer);
     }
 
 
@@ -222,10 +239,10 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     }
 
     private void toggleDrawer() {
-        if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
-            mDrawerLayout.closeDrawer(mDrawerList);
+        if (mDrawerLayout.isDrawerOpen(mDrawer)) {
+            mDrawerLayout.closeDrawer(mDrawer);
         } else {
-            mDrawerLayout.openDrawer(mDrawerList);
+            mDrawerLayout.openDrawer(mDrawer);
         }
     }
 

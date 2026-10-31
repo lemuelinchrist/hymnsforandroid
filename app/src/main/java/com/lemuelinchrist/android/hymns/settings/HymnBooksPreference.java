@@ -47,7 +47,7 @@ public class HymnBooksPreference extends MultiSelectListPreference {
         });
     }
 
-    /** "All 23 hymn books shown", "Hiding B.Indonesia" or "Hiding 5 hymn books". */
+    /** "All 23 hymn books shown", "Hiding Indonesian" or "Hiding 5 hymn books". */
     private static String summaryOf(List<HymnGroup> hidden) {
         if (hidden.isEmpty()) return "All " + HymnGroup.values().length + " hymn books shown";
         if (hidden.size() > NAMES_IN_SUMMARY) return "Hiding " + hidden.size() + " hymn books";
@@ -67,6 +67,11 @@ public class HymnBooksPreference extends MultiSelectListPreference {
             if (hidden.contains(group.name())) result.add(group);
         }
         return result;
+    }
+
+    /** Opens the dialog, as a tap on the setting does (the drawer's "Hymn Books…" link). */
+    public void showDialog() {
+        onClick();
     }
 
     @Override
@@ -105,7 +110,7 @@ public class HymnBooksPreference extends MultiSelectListPreference {
     }
 
     /** Number of hymns in each book, for the second line of each row. Empty if the database can't be read. */
-    private static Map<String, Integer> countHymns(Context context) {
+    public static Map<String, Integer> countHymns(Context context) {
         Map<String, Integer> counts = new HashMap<>();
         try (Cursor cursor = HymnsSqliteHelper.getInstance(context).getReadableDatabase()
                 .rawQuery("select hymn_group, count(*) from hymns group by hymn_group", null)) {

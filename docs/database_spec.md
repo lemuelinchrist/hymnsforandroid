@@ -23,10 +23,10 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | Code | Simple Name | Description                       |
 | ---- | ----------- | --------------------------------- |
 | E    | English     | English hymns.                    |
-| C    | 中文-繁     | Traditional Chinese hymns.        |
-| CS   | 補充本-繁   | Traditional Chinese supplement.   |
-| Z    | 中文-简     | Simplified Chinese hymns.         |
-| ZS   | 補充本-简   | Simplified Chinese supplement.    |
+| C    | Chinese (Traditional) | Traditional Chinese hymns.        |
+| CS   | Chinese Supplement (Traditional) | Traditional Chinese supplement.   |
+| Z    | Chinese (Simplified) | Simplified Chinese hymns.         |
+| ZS   | Chinese Supplement (Simplified) | Simplified Chinese supplement.    |
 | CB   | Cebuano     | Cebuano hymns.                    |
 | T    | Tagalog     | Tagalog hymns.                    |
 | FR   | French      | French hymns.                     |
@@ -36,7 +36,7 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | G    | German      | German hymns.                     |
 | GY   | German Youth | German youth hymns.              |
 | J    | Japanese    | Japanese hymns.                   |
-| I    | B.Indonesia | Indonesian hymns.                 |
+| I    | Indonesian  | Indonesian hymns.                 |
 | BF   | Be Filled   | "Be Filled" collection.           |
 | NS   | New Songs   | "New Songs" collection.           |
 | CH   | Children    | Children's hymns.                 |

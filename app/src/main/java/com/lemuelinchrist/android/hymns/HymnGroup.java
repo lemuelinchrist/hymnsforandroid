@@ -1,7 +1,6 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 
 import java.util.ArrayList;
@@ -15,19 +14,19 @@ public enum HymnGroup {
             Color.rgb(0xB0, 0xBE, 0xC5),
             Gravity.LEFT),
     // Green
-    C("中文-繁", Color.rgb(0x66, 0x99, 0x00),
+    C("Chinese (Traditional)", Color.rgb(0x66, 0x99, 0x00),
             Color.rgb(0xA5, 0xD6, 0xA7),
             Gravity.LEFT),
     //Purple
-    CS("補充本-繁", Color.rgb(0x99, 0x33, 0xCC),
+    CS("Chinese Supplement (Traditional)", Color.rgb(0x99, 0x33, 0xCC),
             Color.rgb(0xCE, 0x93, 0xD8),
             Gravity.LEFT),
     // Green
-    Z("中文-简", Color.rgb(0x66, 0x99, 0x00),
+    Z("Chinese (Simplified)", Color.rgb(0x66, 0x99, 0x00),
             Color.rgb(0xA5, 0xD6, 0xA7),
             Gravity.LEFT),
     //Purple
-    ZS("補充本-简", Color.rgb(0x99, 0x33, 0xCC),
+    ZS("Chinese Supplement (Simplified)", Color.rgb(0x99, 0x33, 0xCC),
             Color.rgb(0xCE, 0x93, 0xD8),
             Gravity.LEFT),
     //Orange
@@ -71,7 +70,7 @@ public enum HymnGroup {
             Color.rgb(0xAE,0xD5,0x81),
             Gravity.LEFT),
     // Red
-    I("B.Indonesia",Color.rgb(0xF4,0x43,0x36),
+    I("Indonesian",Color.rgb(0xF4,0x43,0x36),
             Color.rgb(0xE5,0x73,0x73),
             Gravity.LEFT),
     //Blue
@@ -195,13 +194,6 @@ public enum HymnGroup {
         return list.toArray(new String[list.size()]);
     }
 
-    public static HymnGroup getFromSimpleName(String simpleName) {
-        for (HymnGroup group: HymnGroup.values()) {
-            if(group.getSimpleName().equals(simpleName)) return group;
-        }
-        Log.e(HymnGroup.class.getSimpleName(), "warning: selected Hymn group not found. Switching to default group: E");
-        return getDefaultHymnGroup();
-    }
 
     public int getTextAlignment() {
         return textAlignment;

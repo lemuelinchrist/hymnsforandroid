@@ -175,11 +175,11 @@ public class SearchTabFragment extends TabFragment {
         boolean all = allBooks != null ? allBooks : inBook.isEmpty() && !results.isEmpty();
 
         choices.removeAllViews();
-        addChoice(selectedHymnGroup.getSimpleName() + " (" + inBook.size() + ")", !all, v -> {
+        addChoice(selectedHymnGroup.getSimpleName() + " · " + inBook.size(), !all, v -> {
             allBooks = false;
             showResults();
         });
-        addChoice("All books (" + results.size() + ")", all, v -> {
+        addChoice("All books · " + results.size(), all, v -> {
             allBooks = true;
             showResults();
         });

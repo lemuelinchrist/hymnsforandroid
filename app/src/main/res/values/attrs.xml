@@ -20,4 +20,8 @@
     <attr name="hymnButtonBarDim" format="float"/>
     <!-- if not transparent, the toolbar and the button pill in this colour instead of the book's -->
     <attr name="hymnBarColor" format="color"/>
+    <!-- the book drawer (HymnDrawer, style/BookColors): the current book's highlight is its accent with this share over
+         the drawer colour, its name the accent with this share of black over it -->
+    <attr name="drawerHighlightShare" format="float"/>
+    <attr name="drawerHighlightTextDarken" format="float"/>
 </resources>

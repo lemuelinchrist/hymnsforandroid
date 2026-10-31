@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- a book's row in the drawer: a ripple in the row's rounded shape when tapped -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="?attr/colorControlHighlight">
+    <item android:id="@android:id/mask">
+        <shape>
+            <solid android:color="#ffffff"/>
+            <corners android:radius="26dp"/>
+        </shape>
+    </item>
+</ripple>

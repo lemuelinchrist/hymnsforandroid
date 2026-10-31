@@ -23,6 +23,8 @@ import com.lemuelinchrist.android.hymns.logbook.FavoritesBackup;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
 public class SettingsActivity extends AppCompatActivity {
+    /** Intent extra: open the Hymn Books dialog at once (the drawer's "Hymn Books…" link). */
+    public static final String OPEN_HYMN_BOOKS = "openHymnBooks";
 
     private FavoritesBackup favoritesBackup;
     private ChordEditsBackup chordEditsBackup;
@@ -93,6 +95,10 @@ public class SettingsActivity extends AppCompatActivity {
                 Theme.apply(requireContext(), (String) choice);
                 return true;
             });
+            if (savedInstanceState == null && requireActivity().getIntent().getBooleanExtra(OPEN_HYMN_BOOKS, false)) {
+                HymnBooksPreference hymnBooks = findPreference("disableLanguages");
+                if (hymnBooks != null) hymnBooks.showDialog();
+            }
             findPreference("chordEdits").setOnPreferenceClickListener(preference -> {
                 ((SettingsActivity) requireActivity()).chordEditsBackup.showMenu();
                 return true;
