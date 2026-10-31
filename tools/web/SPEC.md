@@ -294,7 +294,9 @@ How it works now:
 - **Play** (`player.js`, 2026-10-20): the app's tune files (`res/raw/m<tune>.mid`, published as `midi/<hash>.mid`,
   the hymn's tune or its parent's) read in JS and played looped with Web Audio: a synthesized piano (a harmonic
   wave, a lowpass that closes as the note decays, longer decay for low notes), no samples. Stops when another hymn is
-  opened. iPhone: `navigator.audioSession.type = 'playback'` so the silent switch does not mute it. 3 of the app's
+  opened. iPhone: `navigator.audioSession.type = 'playback'` so the silent switch does not mute it.
+  The `AudioContext` uses `latencyHint: 'playback'` and notes are made 2.5 s ahead by a 400 ms timer (not the whole
+  tune at once), so tablets do not crackle (2026-10-31). 3 of the app's
   tune files are empty or not MIDI (m51113211615, m51355654355, m612343275); they do not play in the app either.
 - **Same tune** (`DB.sameTune`, 2026-10-20; the Android app's "similar tune" button): a section "Also sung to this tune" at the
   end of the lyrics, always there when another hymn has the tune (no setting). One entry per hymn family (a hymn and its

@@ -11,7 +11,8 @@ function audio() {
   if (!ctx) {
     // iPhone: play even with the ring/silent switch on, like a music app (Safari 17+)
     try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) { /* older Safari */ }
-    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    // 'playback': a larger audio buffer. The default (low latency) makes tablets and phones crackle when many notes sound
+    ctx = new (window.AudioContext || window.webkitAudioContext)({latencyHint: 'playback'});
     const comp = ctx.createDynamicsCompressor();
     comp.threshold.value = -18;
     comp.ratio.value = 4;
@@ -144,17 +145,22 @@ function loopMidi(song, key) {
   const oscs = new Set();
   let timer = null, stopped = false;
   const gap = 1.2;                                     // seconds between one time through and the next
-  const pass = (at) => {
+  const ahead = 2.5, every = 400;                      // notes are made 2.5 s ahead, not the whole tune at once
+  let at = c.currentTime + 0.15, i = 0;                // when this time through starts; the next note to make
+  const tick = () => {
     if (stopped) return;
-    for (const n of song.notes) {
-      const o = playNote(c, out, n, at + n.t);
+    const horizon = c.currentTime + ahead;
+    while (at + (i < song.notes.length ? song.notes[i].t : song.length + gap) < horizon) {
+      if (i >= song.notes.length) { at += song.length + gap; i = 0; continue; }
+      const n = song.notes[i++], when = at + n.t;
+      if (when < c.currentTime - 0.3) continue;        // the page was suspended: skip what is long past
+      const o = playNote(c, out, n, Math.max(when, c.currentTime));
       oscs.add(o);
       o.onended = () => oscs.delete(o);
     }
-    const next = at + song.length + gap;
-    timer = setTimeout(() => pass(next), Math.max(0, (next - c.currentTime - 1) * 1000));
+    timer = setTimeout(tick, every);
   };
-  pass(c.currentTime + 0.08);
+  tick();
   return {
     key,
     stop() {
