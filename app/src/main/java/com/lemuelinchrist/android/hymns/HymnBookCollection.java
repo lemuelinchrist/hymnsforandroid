@@ -89,6 +89,14 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     }
 
     private void switchHymnBook(HymnGroup hymnGroup) {
+        switchHymnBook(hymnGroup, null);
+    }
+
+    /**
+     * Shows the book. With a hymn number the pager is set to that hymn at once: a pager given an adapter starts on its
+     * first page, which would show hymn 1 (and put it in History, and in the title) before the move to the hymn.
+     */
+    private void switchHymnBook(HymnGroup hymnGroup, String hymnNo) {
 
         if (!hymnBooks.containsKey(hymnGroup)) {
             Log.d(this.getClass().getName(), "generating new instance of HymnBook for selected hymn group: " + hymnGroup);
@@ -104,9 +112,14 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
             hymnBooks.put(hymnGroup, hymnBookGroup);
         }
+        HymnBookGroup book = hymnBooks.get(hymnGroup);
+        int start = hymnNo == null ? -1 : Math.max(0, book.getPositionOfHymnNo(hymnNo));
+        book.startAt = start;
         lyricPager.setAdapter(null);
-        lyricPager.setAdapter(hymnBooks.get(hymnGroup));
-        this.currentHymnBookGroup = hymnBooks.get(hymnGroup);
+        lyricPager.setAdapter(book);
+        this.currentHymnBookGroup = book;
+        if (start > 0) lyricPager.setCurrentItem(start, false);
+        book.startAt = -1;
 
     }
 
@@ -148,11 +161,11 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         if(getCurrentHymnLyric()==null) {
             Log.e(this.getClass().getName(), "current hymn lyric missing! generating new hymn book");
             hymnBooks = new HashMap<>();
-            switchHymnBook(selectedHymnGroup);
+            switchHymnBook(selectedHymnGroup, selectedHymnNumber);
         }
 
         if (currentHymnBookGroup != null && selectedHymnGroup != currentHymnBookGroup.hymnGroup) {
-            switchHymnBook(selectedHymnGroup);
+            switchHymnBook(selectedHymnGroup, selectedHymnNumber);
 
         }
 
@@ -170,7 +183,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
                 Log.i(getClass().getName(), "Hymn group switch should have been completed by now. \n" +
                         "position of hymn no: " + currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber) +
                         "\n attempting to switch to hymn number: " + selectedHymnNumber);
-                lyricPager.setCurrentItem(Math.max(0, currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber)));
+                // straight to the hymn, not scrolling past the hymns between (a link, Back or Search is not a swipe)
+                lyricPager.setCurrentItem(Math.max(0, currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber)), false);
                 // the new hymn opens at its top, with the toolbar showing the hymn number
                 lyricPager.post(new Runnable() {
                     @Override
@@ -237,6 +251,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         private ArrayList<String> hymnNumbers;
         private HymnGroup hymnGroup;
         ContentArea currentContentArea;
+        // while the pager is given this book to open on this page: no other page is made the current one meanwhile
+        private int startAt = -1;
 
 
         public ArrayList<String> getHymnNumbers() {
@@ -268,6 +284,13 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         @Override
         public int getCount() {
             return hymnNumbers.size();
+        }
+
+        @Override
+        public void setPrimaryItem(ViewGroup container, int position, Object object) {
+            // the pager starts on page 0 whatever it is told next; that page must not report it is shown
+            if (startAt >= 0 && position != startAt) return;
+            super.setPrimaryItem(container, position, object);
         }
 
         @Override
