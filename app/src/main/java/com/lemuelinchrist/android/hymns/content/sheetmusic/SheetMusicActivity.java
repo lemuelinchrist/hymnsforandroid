@@ -40,6 +40,8 @@ public class SheetMusicActivity extends AppCompatActivity {
     private static final int EDITING_MIN_WIDTH_DP = 600;
     private WebView webview;
     private SharedPreferences sharedPreferences;
+    /** Preference: in the dark theme, show the sheet on light paper (set by the viewer's paper button). */
+    private static final String LIGHT_PAPER = "sheetLightPaper";
     private Insets cutout = Insets.NONE;   // the camera cutout's safe insets, in pixels
     private int keyboard = 0;              // the height of the on-screen keyboard, in pixels
     private ChordEdits chordEdits;
@@ -156,6 +158,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         boolean dark = Theme.isNight(this);
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
                 + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0")
+                + (dark && sharedPreferences.getBoolean(LIGHT_PAPER, false) ? "&paper=light" : "")
                 + (lyricsHymnId != null ? "&lyrics=" + Uri.encode(lyricsHymnId) : "")
                 + (editable ? "&edit=1" : ""));
     }
@@ -183,6 +186,12 @@ public class SheetMusicActivity extends AppCompatActivity {
         @JavascriptInterface
         public boolean put(String id, String bars) {
             return sheetId.equals(id) && chordEdits.putBars(id, bars);
+        }
+
+        /** The bar's paper button (dark theme only): the sheet on light paper, kept for the next sheet. */
+        @JavascriptInterface
+        public void setLightPaper(boolean on) {
+            sharedPreferences.edit().putBoolean(LIGHT_PAPER, on).apply();
         }
 
         @JavascriptInterface

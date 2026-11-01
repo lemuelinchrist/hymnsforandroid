@@ -9,7 +9,10 @@
   var params = new URLSearchParams(location.search);
   var hymnId = params.get('id');
   var shownId = hymnId;                       // the number printed at the top right (the translation's own when lyrics are swapped)
-  if (params.get('dark') === '1') document.documentElement.classList.add('dark');
+  // the app's theme is dark: dark paper, or light paper (black on white) when the reader chose it with the bar's paper button
+  var themeDark = params.get('dark') === '1';
+  var lightPaper = themeDark && params.get('paper') === 'light';
+  document.documentElement.classList.toggle('dark', themeDark && !lightPaper);
 
   var MEI_NS = 'http://www.music-encoding.org/ns/mei';
   var XML_NS = 'http://www.w3.org/XML/1998/namespace';
@@ -617,10 +620,15 @@
   function updateBar() {
     $('bPiano').classList.toggle('on', !state.guitar);
     $('bGuitar').classList.toggle('on', state.guitar);
-    // narrow phones get the short label (the bar has no room for "Hide staff" next to the back button)
-    var narrow = document.documentElement.clientWidth < 400;
+    // narrow phones get the short label (the bar has no room for "Hide staff" next to the back button), and tighter
+    // buttons; the paper button (dark theme) takes room too
+    var narrow = document.documentElement.clientWidth < (themeDark ? 500 : 400);
+    document.documentElement.classList.toggle('compact', narrow);
     $('bStaff').textContent = narrow ? 'Staff' : state.staff ? 'Hide staff' : 'Show staff';
     $('bStaff').classList.toggle('on', narrow && state.staff);
+    $('bPaper').hidden = !themeDark;
+    $('bPaper').classList.toggle('on', lightPaper);
+    $('bPaper').title = lightPaper ? 'Dark paper' : 'Light paper';
     $('bDown').disabled = state.shift <= -MAX_SHIFT;
     $('bUp').disabled = state.shift >= MAX_SHIFT;
     $('bEdit').hidden = !editable;
@@ -661,6 +669,13 @@
   $('bDown').addEventListener('click', function () { change(function () { state.shift = Math.max(-MAX_SHIFT, state.shift - 1); }); });
   $('bUp').addEventListener('click', function () { change(function () { state.shift = Math.min(MAX_SHIFT, state.shift + 1); }); });
   $('bStaff').addEventListener('click', function () { change(function () { state.staff = !state.staff; }); });
+  // only the colours change, so nothing is drawn again; the app keeps the choice for the next sheet
+  $('bPaper').addEventListener('click', function () {
+    lightPaper = !lightPaper;
+    document.documentElement.classList.toggle('dark', themeDark && !lightPaper);
+    try { if (window.HymnsEdits && window.HymnsEdits.setLightPaper) window.HymnsEdits.setLightPaper(lightPaper); } catch (e) { /* not kept */ }
+    updateBar();
+  });
   $('bEdit').addEventListener('click', function () { setEditing(!editing); });
   $('bOriginal').addEventListener('click', function () { change(function () { state.original = !state.original; }); });
 

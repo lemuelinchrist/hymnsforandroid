@@ -361,7 +361,18 @@ body.sheet-only #view { max-width: 1200px; padding-top: 12px; }
 .sheet-capo:empty { display: none; }
 .sheet-music { min-height: 120px; }
 .sheet-music svg { display: block; max-width: 100%; height: auto; }
-.sheet.dark .sheet-music > svg { filter: invert(.9) sepia(.15); }
+/* dark mode draws the music in its own colours (it was inverted with a CSS filter: bright hairline staves on near-black):
+   notes and text a soft light grey, the staff dimmer so the notes stand out, the thin lines a little thicker (Verovio's
+   own units: a staff line is 13). Verovio gives glyphs no fill and sets strokes to currentColor. Same as the app's viewer. */
+.sheet.dark { --s-ink: #d6d6d6; --s-staff: #8e8e8e; --s-rule: #b4b4b4; }
+.sheet.dark .sheet-music svg { fill: var(--s-ink); color: var(--s-ink); }
+.sheet.dark .sheet-music g.staff > path { stroke: var(--s-staff) !important; stroke-width: 17px; }
+.sheet.dark .sheet-music g.barLine path { stroke: var(--s-rule) !important; stroke-width: 30px; }
+.sheet.dark .sheet-music g.stem path { stroke: var(--s-ink) !important; stroke-width: 22px; }
+.sheet.dark .sheet-music g.ledgerLines path { stroke: var(--s-rule) !important; stroke-width: 20px; }
+/* light paper in the dark theme: a white page with black ink, and the book's day colour (not the night one) */
+.sheet.light-paper { background: #fff; color: #000; --ink: #000; --muted: #555; --line: #ccc; --g: var(--gd, #3D577A);
+  border-radius: 8px; padding: 10px 12px; }
 .sheet-status { color: var(--muted); padding: 48px 0; text-align: center; font-family: var(--ui); }
 .sheet-status.loading::before {
   content: ""; display: block; width: 28px; height: 28px; margin: 0 auto 12px; border-radius: 50%;
@@ -447,7 +458,8 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
   .panes.two { display: block !important; }
   .panes.two .lyrics-pane { position: static !important; max-height: none !important; overflow: visible !important; }
   .sheet-pane { border: 0; box-shadow: none; break-before: page; }
-  .sheet.dark .sheet-music > svg { filter: none; }
+  .sheet.dark { --s-ink: #000; --s-staff: #000; --s-rule: #000; }
+  .sheet.light-paper { padding: 0; }
   .stanza { break-inside: avoid; }
 }
 
@@ -457,7 +469,9 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 .sheet-music.editing g.measure { cursor: pointer; }
 .sheet-music.editing g.harm, .sheet-music.editing g.note, .sheet-music.editing g.rest { cursor: pointer; }
 .sheet-music g.harm.edit text, .sheet-music g.harm.edit tspan { fill: #b3261e; }
+.sheet.dark .sheet-music g.harm.edit text, .sheet.dark .sheet-music g.harm.edit tspan { fill: #ff8a80; }
 .sheet-music g.bar-selected > g.staff > path { stroke: var(--g); stroke-width: 22px; }
+.sheet.dark .sheet-music g.bar-selected > g.staff > path { stroke: var(--g) !important; stroke-width: 22px; }
 .sheet-music g.bar-selected g.harm text { font-weight: 700; }
 body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px); }
 

@@ -320,6 +320,32 @@ async function search(page, text) {
       await page.waitForFunction((b) => document.querySelector('.sheet-music svg').getBoundingClientRect().height > b * 1.1, before);
       await page.click('button[title="Original key and size"]');
     });
+    await test('dark theme: the sheet is drawn in its own colours, and the paper button gives light paper (kept)', async () => {
+      const dark = await newPage(browser, {colorScheme: 'dark'});
+      await open(dark.page, '#/sheet/E11');
+      await dark.page.waitForSelector('.sheet-music svg');
+      const look = () => dark.page.evaluate(() => {
+        const svg = document.querySelector('.sheet-music svg');
+        return {filter: getComputedStyle(svg).filter, fill: getComputedStyle(svg).fill, cls: document.querySelector('.sheet').className,
+          staff: getComputedStyle(document.querySelector('.sheet-music g.staff > path')).stroke};
+      });
+      const d = await look();
+      assert(d.filter === 'none', 'the sheet is still inverted: ' + d.filter);
+      assert(d.cls.includes('dark') && d.fill === 'rgb(214, 214, 214)' && d.staff === 'rgb(142, 142, 142)', 'colours ' + JSON.stringify(d));
+      await dark.page.click('.sheet-bar .tb.paper');
+      const l = await look();
+      assert(l.cls.includes('light-paper') && !l.cls.includes('dark') && l.fill === 'rgb(0, 0, 0)', 'light paper ' + JSON.stringify(l));
+      await dark.page.reload();
+      await dark.page.waitForSelector('.sheet-music svg');
+      assert((await look()).cls.includes('light-paper'), 'light paper not kept after a reload');
+      await dark.page.click('.sheet-bar .tb.paper');
+      await dark.ctx.close();
+      const light = await newPage(browser, {colorScheme: 'light'});
+      await open(light.page, '#/sheet/E11');
+      await light.page.waitForSelector('.sheet-music svg');
+      assert(await light.page.locator('.sheet-bar .tb.paper').isHidden(), 'the paper button shows in the light theme');
+      await light.ctx.close();
+    });
     await test('sheet-only view, Esc goes back', async () => {
       await page.click('a[title^="Sheet only"]');
       await page.waitForURL(/#\/sheet\/E9/);

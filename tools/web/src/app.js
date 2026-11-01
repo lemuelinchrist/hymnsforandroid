@@ -55,6 +55,7 @@ const ICONS = {
   close: '<path d="M6 6l12 12M18 6L6 18"/>',
   book: '<path d="M4 4.5h6a2 2 0 0 1 2 2V20a1.5 1.5 0 0 0-1.5-1.5H4zM20 4.5h-6a2 2 0 0 0-2 2V20a1.5 1.5 0 0 1 1.5-1.5H20z"/>',
   reset: '<path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5"/>',
+  paper: '<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/>',
   keyboard: '<rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/>',
   textSmaller: '<path d="M3 18l4.5-11L12 18M4.6 14h5.8M15 13h6"/>',
   textBigger: '<path d="M3 18l4.5-11L12 18M4.6 14h5.8M15 13h6M18 10v6"/>',
@@ -833,6 +834,8 @@ function sheetPanel(pane, hymn, {full}) {
   const bOrig = btn('Original chords', 'Show the sheet without your chord edits (O)', () => set({original: !state.original}), 'orig');
   bOrig.hidden = true;
   const bReset = btn(icon('reset'), 'Original key and size', () => set({shift: 0, scale: DEFAULT_SCALE}), 'icon');
+  // dark theme only: the sheet on light paper (black on white); remembered like the zoom
+  const bPaper = btn(icon('paper'), 'Light or dark paper', () => { store.set('sheetPaper', store.get('sheetPaper', null) === 'light' ? null : 'light'); paperLook(); }, 'icon paper');
   const other = full
     ? h('a', {class: 'tb icon', href: href('/h/' + hymn.id), title: 'Back to the lyrics (Esc)', 'aria-label': 'Back to the lyrics'}, icon('close'))
     : h('a', {class: 'tb icon', href: '#', title: 'Sheet only, for a music stand', 'aria-label': 'Sheet only',
@@ -844,7 +847,7 @@ function sheetPanel(pane, hymn, {full}) {
     bStaff,
     bEdit, bOrig,
     h('div', {class: 'zoom'}, bZoomOut, bZoomIn),
-    bReset,
+    bReset, bPaper,
     h('span', {class: 'grow'}),
     other);
   const note = hymn.sheetId !== hymn.id
@@ -856,7 +859,16 @@ function sheetPanel(pane, hymn, {full}) {
     h('a', {href: href('/h/' + hymn.id)}, chip(hymn.group, hymn.id)), ' ', h('span', null, hymn.first || '')) : null, bar, note, host]);
 
   const view = new SheetView(host);
-  view.root.classList.toggle('dark', isDark());
+  // dark theme: dark paper, or light paper if the reader chose it with the paper button
+  function paperLook() {
+    const light = isDark() && store.get('sheetPaper', null) === 'light';
+    view.root.classList.toggle('dark', isDark() && !light);
+    view.root.classList.toggle('light-paper', light);
+    bPaper.hidden = !isDark();
+    bPaper.setAttribute('aria-pressed', String(light));
+    bPaper.title = light ? 'Dark paper' : 'Light paper';
+  }
+  paperLook();
 
   function sheetParams() {
     const out = {};
@@ -920,7 +932,7 @@ function sheetPanel(pane, hymn, {full}) {
   updateBar();
   view.show(hymn.sheetId, state, hymn.lyricsId);
 
-  const onTheme = () => view.root.classList.toggle('dark', isDark());
+  const onTheme = paperLook;
   themeListeners.add(onTheme);
   const stopHiding = hideBarsOnScroll(pane);
   return {

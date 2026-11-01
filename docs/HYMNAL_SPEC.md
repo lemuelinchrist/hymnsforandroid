@@ -740,10 +740,20 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
 - Music: Verovio renders the MEI to SVG at page width, `scale` 40, `breaks: auto`, `lyricWordSpace` 3,
   `lyricSize` 4.5, `fontTextLiberation` true, margins 20, no Verovio header/footer.
 - Tap anywhere (not on the bar) toggles a top bar with: **Back**, **Piano | Guitar**, **− key +** (transpose, ±6
-  semitones; shows tonic and offset, e.g. `B♭ (+2)`), **Hide/Show staff** (`Staff` toggle under 400px). State resets
+  semitones; shows tonic and offset, e.g. `B♭ (+2)`), **Hide/Show staff** (`Staff` toggle under 400px, or under 500px in the dark theme where the paper button also needs room); in the dark theme also the round **paper** button (◐), which switches between dark paper and light paper (below). State resets
   each time the sheet is opened; it starts in the `sheetMusicType` variant; guitar starts with the staff hidden.
 - Pinch to zoom changes `scale` (20–100) and re-lays-out (reflows, never scrolls sideways). Resize re-lays-out.
-- Night mode: CSS vars switch to dark and the outer music `<svg>` gets `filter: invert(0.91)`.
+- Night mode (the app's theme is dark; the page is given `dark=1`): CSS vars switch to dark and **the music is drawn in its
+  own colours**, not inverted (it was `filter: invert(0.91)`, which gave bright hairline staves on near-black). Notes,
+  text and stems `#d6d6d6` on a `#1a1a1a` page; the staff `#8e8e8e` and bar and ledger lines `#b4b4b4`, so the notes
+  stand out against the staff; the thin lines a little thicker (Verovio's units: staff line 13 → 17, bar line 27 → 30,
+  stem 18 → 22, ledger 20). Verovio gives glyphs no fill and strokes `currentColor` through an id rule, so the page sets
+  `fill` and `color` on the music svgs and the line strokes by CSS (the web app needs `!important`, having no `#music`).
+  The web app does the same on `.sheet.dark`, and prints black.
+- **Paper button** (dark theme only): the sheet on **light paper**, black on white with the page and bar light, instead of
+  dark paper. It is the colours only, nothing is laid out again. The choice is kept and used for every sheet (Android: the
+  `sheetLightPaper` preference, set through the viewer's bridge and passed back as `paper=light`; web: `sheetPaper` in
+  the local store, a white page behind the sheet, the book's day colour). The button is not there in the light theme.
 - **Transpose**: Verovio `transpose` option (`+2`, `-1`), then `getMEI()` and continue from that MEI. Tail chords are
   moved by the page itself by the same interval.
 - **Guitar** (derived from the piano MEI, no separate source):
@@ -774,7 +784,7 @@ feature, file format and rules as the web app (`tools/web/README.md`, "Chord edi
 - **Editing:** a panel at the bottom. Tap a bar on the sheet (a note or chord also picks its beat); a strip shows the
   bar's beats (half beats in 4/4-type meters, plus every note's start); build the chord with buttons (root, ♭/♯,
   quality, bass) or type it (`bb7/d` is stored as `B♭7/D`); Remove chord, Undo, Original bar, Done, ‹ › for the
-  neighbouring bars. Changed chords are drawn red (inverted colour in night mode so they come out light red); the
+  neighbouring bars. Changed chords are drawn red (light red `#ff8a80` in night mode); the
   selected bar is highlighted. While editing, taps pick bars instead of hiding the bar. Back closes the panel first.
 - **Model:** per sheet `{"<bar>": {"was": [[beat, chord]], "chords": [[beat, chord]]}}`. A bar is the nth `<measure>`
   of the MEI (from 1), a beat its `tstamp`; `chords` replaces all of the bar's `<harm>`s; `was` is what the bar had,
