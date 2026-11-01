@@ -105,7 +105,7 @@ sheet side by side.
   in the header.
 - "In other languages" lists every related hymn by language name, so a translation is one tap away.
   Switching keeps the current tab (lyrics or sheet).
-- Footer: author, composer, meter, key, time, plus a link to the hymn on hymnal.net when there is one.
+- Footer: author, composer, meter, key, time, plus the hymn's piano videos when it has them.
 - If there is no sheet (no MEI for the hymn or its parent), the Sheet tab is hidden and the footer says
   there is no sheet music.
 

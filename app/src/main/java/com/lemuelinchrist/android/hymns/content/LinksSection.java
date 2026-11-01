@@ -23,9 +23,9 @@ import com.lemuelinchrist.android.hymns.style.BookColors;
 import java.util.ArrayList;
 
 /**
- * The card at the bottom of a hymn for links that open outside the app (below the details card): the hymn's piano
- * videos ("Piano videos: 1st tune ↗ · 2nd tune ↗", its parent's when it has none) and its page on hymnal.net for the
- * books that have one. The card hides itself when there is nothing to show. The same card is in the web app.
+ * The card at the bottom of a hymn for links that open outside the app (below the details card): today the hymn's
+ * piano videos ("Piano videos: 1st tune ↗ · 2nd tune ↗", its parent's when it has none), from the {@code link} table.
+ * The card hides itself when there is nothing to show.
  */
 public class LinksSection extends ContentComponent<View> {
     private static final String ARROW = " \u2197";
@@ -59,25 +59,16 @@ public class LinksSection extends ContentComponent<View> {
         if (!videos.isEmpty()) {
             String[][] parts = new String[videos.size()][];
             for (int i = 0; i < parts.length; i++) {
-                parts[i] = new String[]{videos.get(i)[0].trim(), YoutubeButton.embedAddress(videos.get(i)[1])};
+                parts[i] = new String[]{videos.get(i)[0].trim(), embedAddress(videos.get(i)[1])};
             }
             addRow("Piano videos", parts);
-        }
-        String site = hymnalNetSite();
-        if (site != null) {
-            addRow("hymnal.net", new String[][]{{"This hymn", "https://www.hymnal.net/en/hymn/" + site + "/" + hymn.getNo()}});
         }
         if (table.getChildCount() == 0) view.setVisibility(View.GONE);
     }
 
-    /** The books that hymnal.net has: its path for the book, else null. */
-    private String hymnalNetSite() {
-        switch (hymn.getHymnGroup().name()) {
-            case "E": return "h";
-            case "NS": return "ns";
-            case "CH": return "c";
-            default: return null;
-        }
+    /** The table keeps the watch address of a video; the card has always opened its embed address. */
+    private static String embedAddress(String url) {
+        return url.trim().replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/");
     }
 
     /** One row, label | links: parts are {shown text, address}, joined by " · ". */

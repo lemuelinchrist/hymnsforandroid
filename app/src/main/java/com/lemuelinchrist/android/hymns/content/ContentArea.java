@@ -137,7 +137,7 @@ public class ContentArea extends Fragment {
         shareButton = new ShareButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("shareButton")));
         youtubeButton = new YoutubeButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("youtubePianoButton")));
+                (ImageButton)rootView.findViewById(getRid("youtubeButton")));
         similarTuneButton = new SimilarTuneButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("similarTuneButton")));
 

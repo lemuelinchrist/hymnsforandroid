@@ -1,61 +1,30 @@
 package com.lemuelinchrist.android.hymns.content;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.preference.PreferenceManager;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
-import java.util.ArrayList;
-
 /**
+ * The YouTube button in the button bar: it searches YouTube for the hymn ({@link YouTubeSearchLauncher}). It is shown
+ * only when Settings → YouTube Button is on. (The hymn's own piano videos are in the links card, {@link LinksSection}.)
+ *
  * @author Lemuel Cantos
  * @since 22/2/2020
  */
 public class YoutubeButton extends ContentComponent<ImageButton> {
 
-    private static HymnsDao hymnsDao;
-    private final String youtubePreference;
-    private ArrayList<String> links= new ArrayList<>();
-    private ArrayList<String> comments= new ArrayList<>();
+    /** The setting: the button is shown and searches YouTube. Off by default. */
+    public static final String SEARCH = "youtubeSearch";
+    /** The setting until v5.8.2: "disabled", "piano" (the hymn's videos) or "search". */
+    private static final String OLD_SETTING = "youtubeButton";
 
     public YoutubeButton(final Hymn hymn, final Fragment parentFragment, ImageButton imageButton) {
         super(hymn, parentFragment, imageButton);
 
-        if (hymnsDao == null) {
-            hymnsDao = new HymnsDao(context);
-        }
-
-        if(hymn.getTune()!=null && !hymn.getTune().isEmpty()) {
-            hymnsDao.open();
-
-            // Prepare Links
-            // (a hymn without videos of its own shows its parent's)
-            for(String[] link: hymnsDao.getLinksOrParent(hymn.getHymnId(), hymn.getParentHymn(), "piano")) {
-                links.add(embedAddress(link[1]));
-                comments.add(link[0].trim());
-            }
-
-            hymnsDao.close();
-        }
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-        youtubePreference = sharedPreferences.getString("youtubeButton", "disabled");
-        if(youtubePreference.equals("disabled") ||
-                (youtubePreference.equals("piano") && links.size()==0)
-        ) {
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(SEARCH, false)) {
             imageButton.setVisibility(View.GONE);
         }
 
@@ -63,65 +32,18 @@ public class YoutubeButton extends ContentComponent<ImageButton> {
             @Override
             public void onClick(View v) {
                 logToHistory();
-                switch (youtubePreference) {
-                    case "piano":
-                        if(links.size()>1) {
-                            DialogFragment tuneDialog = ChooseTuneDialogFragment.newInstance(comments, links);
-                            tuneDialog.show(((FragmentActivity)context).getSupportFragmentManager(),"YouTube");
-                        } else if (links.size()==1) {
-                            launchYouTube(context, links.get(0));
-                        }
-                        break;
-                    case "search":
-                        YouTubeSearchLauncher youTubeSearchLauncher = new YouTubeSearchLauncher(context);
-                        youTubeSearchLauncher.launch(hymn);
-                        break;
-
-                }
-
+                new YouTubeSearchLauncher(context).launch(hymn);
             }
         });
     }
 
-    /** The table keeps the watch address of a video; the button and the links card have always opened its embed address. */
-    static String embedAddress(String url) {
-        return url.trim().replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/");
-    }
-
-    private static void launchYouTube(Context context, String link) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(link));
-        context.startActivity(intent);
-    }
-
-    // Android recreates a shown dialog with the empty constructor (e.g. on a dark mode switch), so its data
-    // must be in the arguments, not in constructor parameters.
-    public static class ChooseTuneDialogFragment extends DialogFragment {
-        private static final String COMMENTS = "comments";
-        private static final String LINKS = "links";
-
-        public static ChooseTuneDialogFragment newInstance(ArrayList<String> comments, ArrayList<String> links) {
-            ChooseTuneDialogFragment dialog = new ChooseTuneDialogFragment();
-            Bundle args = new Bundle();
-            args.putStringArrayList(COMMENTS, comments);
-            args.putStringArrayList(LINKS, links);
-            dialog.setArguments(args);
-            return dialog;
-        }
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final ArrayList<String> comments = requireArguments().getStringArrayList(COMMENTS);
-            final ArrayList<String> links = requireArguments().getStringArrayList(LINKS);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Choose tune to play");
-            builder.setItems(comments.toArray(new String[comments.size()]),new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    launchYouTube(requireContext(), links.get(which));
-                }
-            });
-
-            return builder.create();
-        }
+    /**
+     * Turns the old three-way setting into the switch, once: "search" is on, "disabled" and "piano" are off (the piano
+     * videos are in the links card now).
+     */
+    public static void migrateSetting(SharedPreferences preferences) {
+        if (!preferences.contains(OLD_SETTING)) return;
+        boolean search = "search".equals(preferences.getString(OLD_SETTING, "disabled"));
+        preferences.edit().putBoolean(SEARCH, search).remove(OLD_SETTING).apply();
     }
 }

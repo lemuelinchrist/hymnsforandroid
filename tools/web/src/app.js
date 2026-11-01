@@ -612,8 +612,6 @@ async function copyLyrics(hymn) {
   }
 }
 
-const HYMNALNET = {E: 'h', NS: 'ns', CH: 'c'};
-
 function metaNode(hymn) {
   // each value but the scripture opens the search (all hymnals) for it; a person without the life dates
   // and only in its own column of the search table (music, people): 4/4 is a time there, but a scripture reference
@@ -628,16 +626,13 @@ function metaNode(hymn) {
     ['Scripture', hymn.verse && hymn.verse.replace(/,\s*$/, '')],
     ['From', hymn.parentId && hymn.parentId !== hymn.id ? h('a', {href: '#/h/' + hymn.parentId}, hymn.parentId) : null],
   ].filter(([, v]) => v);
-  const site = HYMNALNET[hymn.group];
   const videos = DB.videos(hymn);
   return h('footer', {class: 'meta'},
     hymn.sheetId ? null : h('p', {class: 'no-sheet'}, 'No sheet music for this hymn.'),
     items.length ? h('dl', null, items.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])) : null,
     videos.length ? h('p', {class: 'videos'}, 'Piano videos: ', videos.map((v, i) => [i ? ' · ' : '',
       h('a', {href: v.url, target: '_blank', rel: 'noopener'},
-        (v.label || 'Video') + ' ↗')])) : null,
-    site ? h('a', {class: 'small', href: `https://www.hymnal.net/en/hymn/${site}/${hymn.no}`, target: '_blank', rel: 'noopener'},
-      'This hymn on hymnal.net ↗') : null);
+        (v.label || 'Video') + ' ↗')])) : null);
 }
 
 function familyNode(hymn) {

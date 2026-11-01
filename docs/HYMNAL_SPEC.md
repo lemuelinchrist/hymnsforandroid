@@ -52,7 +52,7 @@ Features:
 | History | Recently opened hymns (newest first, up to 100). The app reopens the last hymn on start. |
 | Play | Loops the hymn's melody (MIDI file looked up by tune code). |
 | Sheet music | Engraved from MEI with Verovio at screen width; piano or guitar (capo + chords derived), transpose ±6, "chords over lyrics" mode, pinch to zoom, dark in the dark themes. Translations can show their own lyrics under the borrowed sheet. On big screens (tablets, unfolded phones) the chords of the piano sheet can be edited, kept on the device and exported/imported (§11.5). |
-| YouTube (optional) | Either opens curated piano videos for the hymn or a YouTube search. |
+| YouTube (optional) | Searches YouTube for the hymn (Settings → YouTube Button, off by default). The hymn's piano videos are in the links card (§6.1). |
 | Similar tune (optional) | Lists other hymns sung to the same tune, preferring the current language. |
 | Share | A menu: share the lyrics, share a link to the hymn in the web app, or copy the lyrics. |
 | Display settings | Font size (5 steps), theme (System default / Light / Dark / Black), keep screen on, hide books you don't use (Languages (Hymn Books)). |
@@ -310,12 +310,12 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    (Until v5.6 these were in the header card and the related hymns were pills with book names at the bottom: the
    numbers moved up because brothers call hymns in several languages during meetings.)
 5. **Listen and links card** (below the details; hidden when it has no row): label `LISTEN AND LINKS`, then the same
-   two-column table, one row per item: `Piano videos` | the hymn's piano videos (`link` rows of kind `piano`, else its
-   parent's, §7.4) as links `<label> ↗` joined by ` · `, each opening the video the way the YouTube button does; and
-   `hymnal.net` | `This hymn ↗`, only for English (`E`, `https://www.hymnal.net/en/hymn/h/<no>`), New Songs (`NS`,
-   `.../ns/<no>`) and Children (`CH`, `.../c/<no>`). The links are underlined in the book's accent colour. The card shows
-   whatever the YouTube button setting is, and is independent of it. Links in the lyrics (the SoundCloud and YouTube
-   stanzas of the youth books) stay where they are.
+   two-column table, one row per item: `Piano videos` | the hymn's piano videos (`link` rows of kind `piano` where
+   `hymn_id` = this hymn's ID, else its parent's ID, in `n_order`) as links `<label> ↗` joined by ` · `. A tap opens the
+   stored `url` with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/`. The links are
+   underlined in the book's accent colour. The card does not depend on the YouTube button setting. Links in the lyrics
+   (the SoundCloud and YouTube stanzas of the youth books) stay where they are. (The web app opens the stored `watch`
+   address as it is.) More kinds of link can be added later as other `kind`s of the `link` table.
 
 Cards: 10dp side margins, 5dp radius, light elevation. Page and card colours: §6.3.
 
@@ -414,13 +414,12 @@ Toggle. Filled heart when the hymn is in Favorites. Stored as in §8.4.
 Resolve the sheet (§11.1). If none → toast "Sorry! sheet music not available". Otherwise open the viewer with
 `id=<sheet hymn id>` and `lyrics=<this hymn id>`.
 
-### 7.4 YouTube (optional; Settings → YouTube Button)
+### 7.4 YouTube (optional; Settings → YouTube Button, a switch, off by default)
 
-| Setting | Button visible | Tap |
-|---|---|---|
-| `disabled` (default) | no | — |
-| `piano` | only if the hymn has videos | Videos = `link` rows of kind `piano` where `hymn_id` = this hymn's ID, else rows of its parent's ID, in `n_order`. URL: the stored `url` with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/`. One video → open it; several → dialog "Choose tune to play" listing the `label`s. |
-| `search` | yes | Open `https://www.youtube.com/results?search_query=` + the query below, with the characters `+ . ; ! " ' : ,` removed and spaces as `+`. |
+When the switch is on the button is shown on every hymn; a tap opens `https://www.youtube.com/results?search_query=` +
+the query below, with the characters `+ . ; ! " ' : ,` removed and spaces as `+`. (Until v5.8.1 the setting also had a
+"plays YouTube piano videos" choice; the videos are in the links card now, §6.1. An old setting of "search" becomes on,
+"disabled" and "piano" become off.)
 
 The search query:
 
@@ -435,8 +434,6 @@ other churches' hymnals number their hymns differently, so the number finds this
 lines alone, a hymn with a common first line often brought up other churches' songs first. Adding a group name to the
 query was tried and dropped: when a song has no recording it brings up unrelated videos instead. The other books keep
 the lines until their recordings' titles are checked.
-
-The button is also hidden when the hymn has no tune.
 
 ### 7.5 Similar tune (optional; Settings → Similar Tune Button, default off)
 
@@ -697,7 +694,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `chordEdits` | action | — | Chord edits dialog: the edited sheets, Export, Import (§11.5); the summary counts the edited sheets |
 | `disableLanguages` | set of codes | `{I}` | hidden books: removed from drawer, the other-languages grid, and from search (§9) |
 | `otherLanguagesFolded` | bool | false | the other-languages grid on the hymn page is folded (§6.1); set by its Hide/Show row, not in the Settings screen |
-| `youtubeButton` | string | `disabled` | `disabled` / `piano` / `search` (§7.4); the summary shows the current choice |
+| `youtubeSearch` | bool | false | show the YouTube button, which searches YouTube (§7.4). Replaced the string `youtubeButton` (`disabled` / `piano` / `search`) in v5.8.2 |
 | `similarTune` | bool | false | show Similar Tune button (§7.5) |
 | `sheetMusicType` | string | `pianoSvg` | `pianoSvg` = Piano, `guitarSvg` = Guitar: the viewer's starting mode (§11) |
 | `about` | action | — | dialog with app name, version, "Source code:" and the repository address (`github.com/lemuelinchrist/hymnsforandroid`, a link), "Feedback:" and the project's support address (`hymnsforandroid.support@gmail.com`, a link). The web app's About card shows the same lines |
@@ -1051,7 +1048,7 @@ Concrete checks against the shipped data. A rebuild that passes these behaves li
 | 17 | Sheet on `FR10` | Opens `E52`'s sheet with French verse-1 syllables, French title, French verses below, `FR10` at top-right |
 | 18 | Sheet on a hymn with no own MEI and parent without MEI | "Sorry! sheet music not available" |
 | 19 | Transpose `E1` +3 | Key label `B (+3)`; guitar capo recomputed (B → capo 4) |
-| 20 | YouTube = piano on `E8` | Opens `https://www.youtube.com/embed/DL6lgn78DcU` |
+| 20 | Piano videos link on `E8` (links card) | Opens `https://www.youtube.com/embed/DL6lgn78DcU` |
 | 21 | Favorites export, then import on a fresh install | Same set of favorites |
 | 22 | History contains a removed ID | Opening it goes to the book's first hymn and the ID disappears from History and Favorites |
 | 23 | Theme Dark / Black / System default with the phone dark | Dark: dark grey page, lighter cards, dimmed book-colour bars, every screen dark; Black: black page and toolbar, `#CCCCCC` text; stanza numbers in night colour; sheet viewer dark |
