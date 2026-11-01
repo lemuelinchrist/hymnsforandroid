@@ -330,7 +330,7 @@ function homeScreen(view) {
 
   view.appendChild(h('div', {class: 'home'},
     installHint(),
-    h('section', {class: 'hero'},
+    (recent.length || favs.length) ? null : h('section', {class: 'hero'},   // first-run hint only
       h('h1', null, 'Hymns'),
       h('p', null, 'Type a number to open it in ', h('b', null, BY_CODE[currentGroup].name),
         ', or a few words from any line to search every hymnal.'),
