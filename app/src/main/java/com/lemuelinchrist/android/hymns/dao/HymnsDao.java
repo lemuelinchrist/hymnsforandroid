@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import com.lemuelinchrist.android.hymns.HymnDrawer;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
@@ -66,7 +67,7 @@ public class HymnsDao {
         } else {
             builder.excludeDisabledHymnGroups()
                     .addFilter("no", filter)
-                    .orderByHymnGroup(hymnGroup.toString());
+                    .orderByNumberThenBooks(HymnDrawer.booksByRecency(context, hymnGroup));
         }
         return database.rawQuery(builder.build(), null);
     }

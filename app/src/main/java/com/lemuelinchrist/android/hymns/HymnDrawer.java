@@ -64,6 +64,18 @@ public class HymnDrawer extends BaseAdapter {
         return shown;
     }
 
+    /**
+     * Every book in the order a number's hymns should be listed (Hymn Numbers tab): the Recent books of the drawer
+     * (the current one, then those of the latest hymns in History), then the others in the drawer's order.
+     */
+    public static List<HymnGroup> booksByRecency(Context context, HymnGroup current) {
+        List<HymnGroup> books = recentBooks(context, current, shownBooks(context));
+        for (HymnGroup group : HymnGroup.values()) {
+            if (!books.contains(group)) books.add(group);
+        }
+        return books;
+    }
+
     /** The current book, then the books of the latest hymns in History, each once. */
     private static List<HymnGroup> recentBooks(Context context, HymnGroup current, List<HymnGroup> shown) {
         List<HymnGroup> recent = new ArrayList<>();

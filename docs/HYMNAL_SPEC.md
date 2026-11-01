@@ -554,7 +554,7 @@ types the number. So Search always opens on Hymn Numbers (never "the last tab"),
 
 | # | Tab | Keyboard | Empty box shows | Typing |
 |---|---|---|---|---|
-| 0 | **Hymn Numbers** (first, default) | number keypad | current book by number | `no` (word filter, §9.4) in all enabled books; order `CAST(no AS int)`, then current book first, then by group code. **Submit** (Enter) jumps straight to `<book><typed number>`. Rows `<ID> - <first stanza line>`. |
+| 0 | **Hymn Numbers** (first, default) | number keypad | current book by number | `no` (word filter, §9.4) in all enabled books; order `CAST(no AS int)`, then the same number's books in the drawer's RECENT order (the current book, then the books of the latest hymns in History, up to 4 in all), then the other books in drawer order. **Submit** (Enter) jumps straight to `<book><typed number>`. Rows `<ID> - <first stanza line>`. |
 | 1 | **Search** | text | the current book's lists (§9.2) | one list of hymns from everything (§9.3) |
 | 2 | **Favorites** | none | favorites, with Back up / Restore (§8.4) | not searchable |
 | 3 | **History** | none | history | not searchable |
