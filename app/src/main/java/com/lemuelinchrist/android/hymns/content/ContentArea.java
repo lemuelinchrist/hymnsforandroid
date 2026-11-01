@@ -219,6 +219,43 @@ public class ContentArea extends Fragment {
         if (scrollView != null) scrollView.scrollTo(0, 0);
     }
 
+    /** How far down the page is scrolled: 0 at the top, 1 at the end of the hymn. */
+    public float getScrollFraction() {
+        if (scrollView == null || scrollView.getChildCount() == 0) return 0;
+        int range = scrollView.getChildAt(0).getHeight() - scrollView.getHeight();
+        return range <= 0 ? 0 : Math.min(1f, Math.max(0f, scrollView.getScrollY() / (float) range));
+    }
+
+    /**
+     * Scrolls to the same relative place (verse 10 of 20 of a hymn read in one language is about verse 10 of its
+     * translation), and keeps it there while the page is being laid out: it may not be yet.
+     */
+    public void scrollToFraction(final float fraction) {
+        if (scrollView == null || scrollView.getChildCount() == 0) return;
+        final View content = scrollView.getChildAt(0);
+        final Runnable apply = new Runnable() {
+            @Override
+            public void run() {
+                int range = content.getHeight() - scrollView.getHeight();
+                scrollView.scrollTo(0, range <= 0 ? 0 : Math.round(range * fraction));
+            }
+        };
+        apply.run();
+        final View.OnLayoutChangeListener whileLaidOut = new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int l, int t, int r, int b, int ol, int ot, int or, int ob) {
+                apply.run();
+            }
+        };
+        content.addOnLayoutChangeListener(whileLaidOut);
+        scrollView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                content.removeOnLayoutChangeListener(whileLaidOut);
+            }
+        }, 600);
+    }
+
     public void setHymnStack(HymnStack hymnStack) {
         this.hymnStack=hymnStack;
     }

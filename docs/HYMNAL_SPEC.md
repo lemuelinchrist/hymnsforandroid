@@ -284,6 +284,11 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
        Tapping it opens that hymn the same way, so the button now shows the hymn that was left in turn: a meeting in
        two languages goes back and forth with it. It disappears as soon as any other hymn is shown (a swipe, Search,
        Back, a similar tune). Opening a hymn goes straight to it, never through hymn 1 of its book.
+     - **Where the related hymn opens:** a related hymn opens at the **same relative place** as the hymn left
+       (scroll position ÷ scroll range, so verse 10 of a long hymn goes to about verse 10 of its translation, since
+       the languages differ in line heights), not at its top; this holds for the back-to-hymn button and the drawer
+       too. Any other hymn (Search, Back, similar tune, swipe) opens at its top. The grid itself is at the top of the
+       page, so a switch from it starts from the top; the button and the drawer work from anywhere in the hymn.
    - **Button bar**: a pill (corner radius 25dp) filled with the book's day colour holding white icons:
      Favorite ♡/♥, Play ▶/❚❚, Sheet music, YouTube (conditional), Similar tune (conditional), Share. See §7.
 3. **Lyrics card** (§6.2).

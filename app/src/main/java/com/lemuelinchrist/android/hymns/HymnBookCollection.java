@@ -37,6 +37,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private boolean hymnStackSeeded = false;
     // the hymn the back-to-hymn button belongs to (the related hymn we switched to), until another hymn is shown
     private String relatedTo;
+    // how far down the hymn left was scrolled, for the related hymn being switched to (not scrolled to its top)
+    private Float keepScroll;
 
     public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
@@ -155,12 +157,16 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             return;
         }
         relatedTo = related;   // before the switch: the new page reports it is shown while switching
+        ContentArea leaving = getCurrentHymnLyric();
+        keepScroll = leaving == null ? null : leaving.getScrollFraction();
         switchToHymnAndRememberChoice(related);
         context.showBackToHymn(from);
     }
 
     public void switchToHymn(String hymnId) {
 
+        final Float keep = keepScroll;   // for this switch only
+        keepScroll = null;
         if (hymnId.equals(getCurrentHymnId())) return;
 
         Log.i(getClass().getName(), "switching to hymn " + hymnId);
@@ -208,7 +214,10 @@ public class HymnBookCollection implements OnLyricVisibleListener {
                     public void run() {
                         try {
                             ContentArea shown = getCurrentHymnLyric();
-                            if (shown != null) shown.scrollToTop();
+                            if (shown != null) {
+                                // a related hymn (another language) opens at the same place, any other at its top
+                                if (keep != null) shown.scrollToFraction(keep); else shown.scrollToTop();
+                            }
                             context.showToolbar();
                         } catch (Exception e) {
                             Log.e(getClass().getName(), "Error trying to scroll to the top of the hymn");
