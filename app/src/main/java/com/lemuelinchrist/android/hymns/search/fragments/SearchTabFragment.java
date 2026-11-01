@@ -61,6 +61,8 @@ public class SearchTabFragment extends TabFragment {
     private Browse browse = Browse.FIRST_LINES;
     private String filter = "";
     private Boolean allBooks;     // null until the user picks; then kept while typing
+    private String onlyIn;       // a column of the search table to look in, while the words are those of the link
+    private String onlyInWords;
     private int searchCount = 0;
     private List<HymnSearch.Result> results = new ArrayList<>();
     private HymnSearch.Query query;
@@ -85,6 +87,7 @@ public class SearchTabFragment extends TabFragment {
     @Override
     public void setSearchFilter(String filter) {
         this.filter = filter == null ? "" : filter;
+        if (onlyIn != null && !this.filter.equals(onlyInWords)) onlyIn = null;
         main.removeCallbacksAndMessages(null);
         if (this.filter.trim().isEmpty()) {
             allBooks = null;
@@ -98,6 +101,12 @@ public class SearchTabFragment extends TabFragment {
     /** List the hymns of all books, not just the current one, whatever the words find. */
     public void showAllBooks() {
         allBooks = true;
+    }
+
+    /** Look for the words only in one column of the search table (null: anywhere) for as long as they stay as they are. */
+    public void onlyIn(String column, String words) {
+        onlyIn = column;
+        onlyInWords = words;
     }
 
     /** Enter: open the hymn whose number or ID was typed. False if there is none. */
@@ -157,13 +166,14 @@ public class SearchTabFragment extends TabFragment {
         Set<String> hidden = PreferenceManager.getDefaultSharedPreferences(requireContext())
                 .getStringSet("disableLanguages", new HashSet<>());
         HymnGroup current = selectedHymnGroup;
+        String column = onlyIn;
         searcher.execute(() -> {
             HymnSearch.Query q = HymnSearch.parse(typed);
             String id = HymnSearch.hymnIdOf(typed, current);
             String target = id != null && HymnSearch.exists(db, id) ? id : null;
             // a hymn number or ID only goes to that hymn: "ns 151" as words would find "opens" and "sins"
             List<HymnSearch.Result> found = target != null ? new ArrayList<>()
-                    : HymnSearch.search(db, q, current, hidden);
+                    : HymnSearch.search(db, q, current, hidden, column);
             main.post(() -> {
                 if (count != searchCount || !isAdded()) return;
                 query = q;

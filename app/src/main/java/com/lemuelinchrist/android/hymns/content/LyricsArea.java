@@ -105,22 +105,22 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
             // ########################### Build Details (the card at the bottom): label | value rows, only the items we have
             // each value but the verses opens the Search tab with that value
-            if (isNotEmpty(hymn.getMeter())) addDetail("Meter", new String[][]{{hymn.getMeter(), hymn.getMeter()}});
+            if (isNotEmpty(hymn.getMeter())) addDetail("Meter", "music", new String[][]{{hymn.getMeter(), phrase(hymn.getMeter())}});
             if (isNotEmpty(hymn.getTime())) {
                 // time and key share a row: "4/4 · Ab Major", each searched on its own
-                addDetail("Time", isNotEmpty(hymn.getKey())
-                        ? new String[][]{{hymn.getTime(), hymn.getTime()}, {" · ", null}, {hymn.getKey(), hymn.getKey()}}
-                        : new String[][]{{hymn.getTime(), hymn.getTime()}});
+                addDetail("Time", "music", isNotEmpty(hymn.getKey())
+                        ? new String[][]{{hymn.getTime(), phrase(hymn.getTime())}, {" · ", null}, {hymn.getKey(), hymn.getKey()}}
+                        : new String[][]{{hymn.getTime(), phrase(hymn.getTime())}});
             } else if (isNotEmpty(hymn.getKey())) {
-                addDetail("Key", new String[][]{{hymn.getKey(), hymn.getKey()}});
+                addDetail("Key", "music", new String[][]{{hymn.getKey(), hymn.getKey()}});
             }
             if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0"))
-                addDetail("Tune", new String[][]{{hymn.getTune(), "\"" + hymn.getTune() + "\""}});
+                addDetail("Tune", "music", new String[][]{{hymn.getTune(), phrase(hymn.getTune())}});
             if (isNotEmpty(hymn.getVerse())) addDetail("Verses", hymn.getVerse());
             if (isNotEmpty(hymn.getAuthor()))
-                addDetail("Author", new String[][]{{hymn.getAuthor(), personOf(hymn.getAuthor())}});
+                addDetail("Author", "people", new String[][]{{hymn.getAuthor(), personOf(hymn.getAuthor())}});
             if (isNotEmpty(hymn.getComposer()))
-                addDetail("Composer", new String[][]{{hymn.getComposer(), personOf(hymn.getComposer())}});
+                addDetail("Composer", "people", new String[][]{{hymn.getComposer(), personOf(hymn.getComposer())}});
             if (detailsTable.getChildCount() == 0) {
                 view.findViewById(getRid("detailsCard")).setVisibility(View.GONE);
             }
@@ -272,9 +272,10 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
     /**
      * A row whose value is made of parts: {shown text, words to search} each; no words (null) = plain text. A part
-     * opens the Search tab with its words.
+     * opens the Search tab with its words, looked for only in the column of the search table the row belongs to
+     * ("music" or "people"): "4/4" is a time there, but a scripture reference in a subject or the lyrics.
      */
-    private void addDetail(String label, String[][] parts) {
+    private void addDetail(String label, String column, String[][] parts) {
         TextView valueView = addDetailRow(label);
         SpannableStringBuilder text = new SpannableStringBuilder();
         for (String[] part : parts) {
@@ -285,7 +286,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             text.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(@NonNull View widget) {
-                    searchFor(words);
+                    searchFor(words, column);
                 }
 
                 @Override
@@ -313,13 +314,21 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         return valueView;
     }
 
+    /**
+     * Digits searched as an exact phrase: "4/4" and "8.5.8.3." are loose words ("4", "8", "5", "3") that nearly every
+     * hymn has somewhere, in scripture references and verse numbers; as a phrase they match the time or meter.
+     */
+    private static String phrase(String value) {
+        return "\"" + value.replace("\"", "") + "\"";
+    }
+
     /** "Thomas Ken, v. 1 (1637-1711)" is searched as "Thomas Ken". */
     private static String personOf(String person) {
         return person.replaceAll("\\s*\\([^)]*\\)", "").replaceAll(",\\s*v\\.\\s*\\d+.*$", "").trim();
     }
 
-    private void searchFor(String words) {
-        if (context instanceof HymnsActivity) ((HymnsActivity) context).openSearch(words);
+    private void searchFor(String words, String column) {
+        if (context instanceof HymnsActivity) ((HymnsActivity) context).openSearch(words, column);
     }
 
     private void openWebPage(String text) {

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -61,6 +62,8 @@ public final class HymnSearch {
     private static final Pattern QUOTED = Pattern.compile("[\"“”„«»]([^\"“”„«»]*)[\"“”„«»]?");
     private static final Pattern HYMN_ID = Pattern.compile("^([A-Za-z]{1,2})\\s*-?\\s*(\\d+)$");
     private static final Pattern NUMBER = Pattern.compile("^#?(\\d+)$");
+
+    private static final List<String> COLUMNS = Arrays.asList("first", "chorus", "subject", "people", "music", "body");
 
     private HymnSearch() {
     }
@@ -119,6 +122,12 @@ public final class HymnSearch {
 
     /** Every hymn outside the hidden books that has all of the query's terms, best first. */
     public static List<Result> search(SQLiteDatabase db, Query query, HymnGroup current, Collection<String> hidden) {
+        return search(db, query, current, hidden, null);
+    }
+
+    /** The same, finding the words only in one column ("music", "people", ...) of the search table; null: anywhere. */
+    public static List<Result> search(SQLiteDatabase db, Query query, HymnGroup current, Collection<String> hidden,
+                                      String column) {
         List<Result> results = new ArrayList<>();
         if (query.isEmpty()) return results;
 
@@ -126,6 +135,12 @@ public final class HymnSearch {
         List<String> args = new ArrayList<>();
         for (String term : query.terms) {
             if (where.length() > 0) where.append(" AND ");
+            if (column != null) {
+                if (!COLUMNS.contains(column)) throw new IllegalArgumentException(column);
+                where.append(column).append(" LIKE ?");
+                args.add("%" + term + "%");
+                continue;
+            }
             where.append("(first LIKE ? OR chorus LIKE ? OR subject LIKE ? OR people LIKE ? OR music LIKE ?"
                     + " OR body LIKE ?)");
             for (int i = 0; i < 6; i++) args.add("%" + term + "%");

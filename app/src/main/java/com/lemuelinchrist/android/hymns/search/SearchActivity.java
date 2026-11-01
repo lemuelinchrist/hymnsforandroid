@@ -35,6 +35,8 @@ public class SearchActivity extends AppCompatActivity  {
     public static final String ENTER_LYRIC = "Enter Search Text          ";
     /** Intent extra: words to search for as soon as the screen opens (on the Search tab, in all books). */
     public static final String EXTRA_QUERY = "query";
+    /** Intent extra, with the query: the one column of the search table ("music", "people") to look in. */
+    public static final String EXTRA_COLUMN = "column";
     private HymnGroup selectedHymnGroup;
     private String startWords;
     private ActionBar actionBar;
@@ -150,6 +152,7 @@ public class SearchActivity extends AppCompatActivity  {
             SearchTabFragment searchTab = (SearchTabFragment) mSearchTabsPagerAdapter.getTab(position);
             searchTab.setSavedQuery(words);
             searchTab.showAllBooks();
+            searchTab.onlyIn(extras.getString(EXTRA_COLUMN), words);
             startWords = words;
         }
     }

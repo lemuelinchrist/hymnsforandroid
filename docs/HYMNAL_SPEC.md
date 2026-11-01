@@ -284,6 +284,12 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    a two-column table at font size − 2sp, one row per item, omitted when empty, in this order: label (muted) | value
    (wraps in its own column, selectable): `Meter` · `Time` (with the key when both exist: `4/4 · Ab Major`), or `Key`
    when there is only a key · `Tune` (omit when `0`) · `Verses` · `Author` · `Composer`.
+   Every value but `Verses` is a link (underlined, book accent colour; the time and the key are separate links) that
+   opens the search screen on the Search tab, all books, with that value in the box. The search looks **only in one
+   column of the `search` table** while the box still holds the link's words: `music` for meter, time, key and tune,
+   `people` for author and composer (an author is searched without the dates and `v. N`). Time and meter are searched
+   as a quoted phrase, since `4/4` in search form is `4 4`, a scripture reference (`Mt. 4:4`) in a subject or the
+   lyrics. Editing the words searches everywhere again.
    (Until v5.6 these were in the header card and the related hymns were pills with book names at the bottom: the
    numbers moved up because brothers call hymns in several languages during meetings.)
 

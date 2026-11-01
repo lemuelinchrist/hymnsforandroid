@@ -60,6 +60,17 @@ public class HymnSearchTest {
     }
 
     @Test
+    public void timeLinkFindsOnlyHymnsWithThatTime() {
+        // anywhere, "4/4" also finds "Mt. 4:4" in a subject and verse numbers in the lyrics
+        List<HymnSearch.Result> anywhere = HymnSearch.search(db, HymnSearch.parse("\"4/4\""), HymnGroup.E,
+                Collections.<String>emptyList());
+        List<HymnSearch.Result> music = HymnSearch.search(db, HymnSearch.parse("\"4/4\""), HymnGroup.E,
+                Collections.<String>emptyList(), "music");
+        assertTrue(music.size() < anywhere.size());
+        assertTrue(music.stream().anyMatch(r -> r.id.equals("E1")));
+    }
+
+    @Test
     public void readsWordsAndQuotedPhrases() {
         assertEquals(Arrays.asList("ancient of days", "glory"), HymnSearch.parse("\"Ancient of Days,\" glory").terms);
         assertEquals(Arrays.asList("jesus", "lord"), HymnSearch.parse("Jésus  LORD jesus").terms);
