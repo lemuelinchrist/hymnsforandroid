@@ -712,7 +712,7 @@ function hymnScreen(view, hymn) {
       h('button', {class: 'icon-btn', title: 'Copy the lyrics (C)', 'aria-label': 'Copy the lyrics', onclick: () => copyLyrics(hymn)}, icon('copy')),
       h('button', {class: 'icon-btn print', title: 'Print', onclick: () => window.print()}, icon('print')),
       favBtn),
-    h('h1', {class: 'hymn-title', dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)}, hymn.first || hymn.id),
+    h('h1', {class: 'hymn-title' + (hymn.category ? ' with-subject' : ''), dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)}, hymn.first || hymn.id),
     hymn.category ? h('p', {class: 'category', dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)}, hymn.category, hymn.subcategory ? ' · ' + hymn.subcategory : '') : null,
     familyNode(hymn));
 

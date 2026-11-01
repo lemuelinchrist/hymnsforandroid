@@ -253,6 +253,13 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .hymn-id .hymnal { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .hymn-title { font: 600 clamp(24px, 3.4vw, 34px)/1.2 var(--serif); margin: 0 0 6px; text-wrap: balance; }
 .category { margin: 0 0 12px; color: var(--muted); }
+/* phones and tablets: the first line is the first line of stanza 1 right below, so the subject is the heading (bigger);
+   the first line stays in the page for screen readers, and in print */
+@media (max-width: 1079px) {
+  .hymn-title.with-subject { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .hymn-title.with-subject + .category { font-size: clamp(18px, 5vw, 22px); line-height: 1.3; font-weight: 500; color: var(--ink); opacity: .8; margin: 2px 0 12px; }
+}
+@media print { .hymn-title.with-subject { position: static; width: auto; height: auto; margin: 0 0 6px; clip-path: none; white-space: normal; } }
 .family { display: flex; flex-wrap: wrap; gap: 6px; }
 .fam {
   display: inline-flex; align-items: center; gap: 6px; padding: 4px 6px 4px 10px; border-radius: 16px; text-decoration: none;
