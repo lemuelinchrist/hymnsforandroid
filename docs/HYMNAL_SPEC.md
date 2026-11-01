@@ -168,12 +168,16 @@ CREATE TABLE "stanza" (
   "id" INTEGER NOT NULL PRIMARY KEY,
   "n_order" INTEGER                     -- display order within the hymn
 );
-CREATE TABLE "tune" (                   -- curated YouTube videos (name is historical)
-  _id VARCHAR,                          -- a HYMN ID (not a tune code), e.g. 'E8'
-  comment VARCHAR,                      -- label shown to the user: '1st tune', 'Alt tune: 295', 'New tune' ...
-  youtube_link TEXT                     -- YouTube video id, e.g. 'DL6lgn78DcU'
+CREATE TABLE "link" (                   -- links of a hymn to places outside the app (today: piano videos)
+  "id" INTEGER NOT NULL PRIMARY KEY,
+  "hymn_id" TEXT NOT NULL,              -- a HYMN ID (not a tune code), e.g. 'E8'
+  "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune)
+  "label" TEXT,                         -- label shown to the user: '1st tune', 'Alt tune: 295', 'New tune' ...
+  "url" TEXT NOT NULL,                  -- the whole address, e.g. 'https://www.youtube.com/watch?v=DL6lgn78DcU'
+  "n_order" INTEGER                     -- order among the hymn's links of that kind, from 1
 );
 CREATE INDEX stanza_parent_hymn ON stanza (parent_hymn, n_order);
+CREATE INDEX link_hymn ON link (hymn_id, kind, n_order);
 CREATE INDEX hymns_first_lines ON hymns (first_stanza_line, first_chorus_line);
 CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id = stanza.parent_hymn;
 -- SEQUENCE (SEQ_NAME, SEQ_COUNT): JPA bookkeeping of the provisioner; ignore.
@@ -408,7 +412,7 @@ Resolve the sheet (§11.1). If none → toast "Sorry! sheet music not available"
 | Setting | Button visible | Tap |
 |---|---|---|
 | `disabled` (default) | no | — |
-| `piano` | only if the hymn has videos | Videos = `tune` rows where `_id` = this hymn's ID, else rows of its parent's ID. URL `https://www.youtube.com/embed/<youtube_link>`. One video → open it; several → dialog "Choose tune to play" listing the `comment`s. |
+| `piano` | only if the hymn has videos | Videos = `link` rows of kind `piano` where `hymn_id` = this hymn's ID, else rows of its parent's ID, in `n_order`. URL: the stored `url` with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/`. One video → open it; several → dialog "Choose tune to play" listing the `label`s. |
 | `search` | yes | Open `https://www.youtube.com/results?search_query=` + the query below, with the characters `+ . ; ! " ' : ,` removed and spaces as `+`. |
 
 The search query:
@@ -875,7 +879,7 @@ Listed so a rebuild chooses on purpose. "Keep" = users rely on it; "Fix" = proba
 | 8 | History only records swiped-to hymns if they were opened deliberately or a button was tapped. | Keep (avoids flooding history while browsing). |
 | 9 | ~~Copy keeps `<i>`/`<u>` tags in the clipboard text.~~ | Done in v5.8: Share/Copy strip all markup (§7.6). |
 | 10 | Stanza labels like `copyright`, `chorusverse`, `-` are shown verbatim as the stanza number. | Decide: hide `-`, style `copyright` as a note. |
-| 11 | `tune` table is keyed by **hymn ID**, not tune code (name is misleading). | Keep the semantics; rename in the new schema. |
+| 11 | The old `tune` table was keyed by **hymn ID**, not tune code (name was misleading). | Done in v5.8.2: it is now the `link` table (hymn_id, kind, label, url, n_order). |
 | 12 | Hymn number submit jumps to `<book><number>` even if absent (falls back to the book's first hymn). | Fix: show "not found". |
 
 ---

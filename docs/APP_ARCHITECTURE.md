@@ -72,7 +72,7 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
     -   The `get(String hymnId)` method is the most critical. It fetches a `Hymn` and its `Stanza` objects.
     -   **Implements the "Parent Hymn" logic:** When fetching a hymn, it also fetches its parent (if one exists) and merges the data, providing a unified view to the rest of the app. This is a key piece of business logic located in the data layer.
     -   Provides the search queries (`getBy...`), which return a `Cursor` for the search lists, and `getHymnsWithSimilarTune` (see [`FEATURE_SIMILAR_TUNE.md`](./FEATURE_SIMILAR_TUNE.md)).
-    -   Uses a small `QueryBuilder` to assemble the search SQL (word filters, disabled-language filter, ordering). Note that values are concatenated into the SQL string rather than bound as parameters; `QueryBuilder` strips quotes and a few special characters from search text, but `get()` and the `tune` lookup concatenate IDs directly.
+    -   Uses a small `QueryBuilder` to assemble the search SQL (word filters, disabled-language filter, ordering). Note that values are concatenated into the SQL string rather than bound as parameters; `QueryBuilder` strips quotes and a few special characters from search text, but `get()` concatenates IDs directly (the `link` lookup binds them).
 
 ### 6. `Hymn.java` / `Stanza.java` (package `entities`)
 -   **Role:** Data Entities.

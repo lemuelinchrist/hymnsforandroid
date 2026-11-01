@@ -135,13 +135,17 @@ def build_db(assets):
     db = sqlite3.connect(tmp)
     db.execute('attach ? as src', (src,))
     # the tables, and only the index the web app uses (the stanzas of a hymn); fewer bytes to download
-    for (sql,) in db.execute("select sql from src.sqlite_master where type = 'table' and name in ('hymns', 'stanza', 'tune')"
+    for (sql,) in db.execute("select sql from src.sqlite_master where type = 'table' and name in ('hymns', 'stanza', 'link')"
                              ).fetchall():
         db.execute(sql)
     db.execute('create index stanza_hymn on stanza (parent_hymn, n_order)')
     db.execute('insert into hymns select * from src.hymns')
     db.execute('insert into stanza select * from src.stanza')
-    db.execute('insert into tune select * from src.tune')
+    db.execute('insert into link select * from src.link')
+    # the old name and shape of the piano videos (table `tune`), for pages still running the previous build while the new
+    # data downloads; they reload into the new build within seconds. Safe to remove in a later version.
+    db.execute("create view tune as select hymn_id as _id, label as comment,"
+               " replace(url, 'https://www.youtube.com/watch?v=', '') as youtube_link from link where kind = 'piano' order by id")
 
     # one row per hymn, in search form: the first lines, subject, author and composer, time, key, tune and meter, and all its
     # stanzas. A hymn with a parent takes the parent's author, composer, key, tune, meter, time, subject and stanzas where it has

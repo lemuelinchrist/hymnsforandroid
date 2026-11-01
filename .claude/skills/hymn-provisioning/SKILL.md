@@ -201,7 +201,7 @@ Sometimes a fix is a one- or two-field correction to a single hymn that isn't co
 
 Instead:
 1. Query the current value(s) to confirm what needs to change (`sqlite3 app/src/main/assets/hymns.sqlite "SELECT ..."`).
-2. Edit `sqlite/hymns.sql` directly — find the `INSERT INTO hymns VALUES(...)` line for that hymn ID and change the relevant field(s) in place (or the `INSERT INTO stanza`/`tune` line, if that's what needs fixing).
+2. Edit `sqlite/hymns.sql` directly — find the `INSERT INTO hymns VALUES(...)` line for that hymn ID and change the relevant field(s) in place (or the `INSERT INTO stanza`/`link` line, if that's what needs fixing).
 3. Run `./gradlew :sqlite:importSql` to rebuild `hymns.sqlite` from the edited `hymns.sql` and confirm the fix with a `sqlite3` query.
 4. Commit `sqlite/hymns.sql` as-is — no script needed. Because no `Provision*` script touches that hymn's ID range, the hand-edited row survives every future re-provisioning run untouched.
 

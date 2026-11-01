@@ -174,12 +174,12 @@ export function relatedIn(id, group) {
   return f ? f.id : null;
 }
 
-// the curated YouTube videos of a hymn, else of its parent: [{id, label}]
+// the piano videos of a hymn (the link table, kind 'piano'), else of its parent: [{url, label}]
 export function videos(hymnObj) {
   for (const hid of [hymnObj.id, hymnObj.parentId]) {
     if (!hid) continue;
-    const v = rows('select youtube_link as id, comment as label from tune where _id = ?', [hid]);
-    if (v.length) return v.map((x) => ({id: (x.id || '').trim(), label: (x.label || '').trim()})).filter((x) => x.id);
+    const v = rows("select url, label from link where hymn_id = ? and kind = 'piano' order by n_order", [hid]);
+    if (v.length) return v.map((x) => ({url: (x.url || '').trim(), label: (x.label || '').trim()})).filter((x) => x.url);
   }
   return [];
 }

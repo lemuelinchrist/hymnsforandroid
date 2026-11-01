@@ -2,7 +2,7 @@ package com.lemuelinchrist.hymns.lib;
 
 import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 import com.lemuelinchrist.hymns.lib.beans.StanzaEntity;
-import com.lemuelinchrist.hymns.lib.beans.TuneEntity;
+import com.lemuelinchrist.hymns.lib.beans.LinkEntity;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -82,11 +82,11 @@ public class Dao {
     }
 
 
-    public void save(TuneEntity tune) {
+    public void save(LinkEntity link) {
         em.getTransaction().begin();
-        em.persist(tune);
+        em.persist(link);
         em.getTransaction().commit();
-        System.out.println("Tune " + tune.getId() + " saved!");
+        System.out.println("Link " + link.getHymnId() + " saved!");
     }
 
     public void addRelatedHymn(String parentHymn, String relatedToAdd) {

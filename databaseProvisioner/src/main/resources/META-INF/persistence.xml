@@ -9,7 +9,7 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>com.lemuelinchrist.hymns.lib.beans.HymnsEntity</class>
         <class>com.lemuelinchrist.hymns.lib.beans.StanzaEntity</class>
-        <class>com.lemuelinchrist.hymns.lib.beans.TuneEntity</class>
+        <class>com.lemuelinchrist.hymns.lib.beans.LinkEntity</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:${sqliteFile}"/>
             <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC"/>

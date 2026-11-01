@@ -160,12 +160,13 @@ public class HymnsDao {
         return database.rawQuery(sql, null);
     }
 
-    public ArrayList<String> getYoutubeLinksFromHymnNo(String tune) {
-        ArrayList<String> links = new ArrayList<>();
-        try {
-            Cursor cursor = database.rawQuery("select * from tune where _id = ?", new String[]{tune});
+    /** The links of one kind ("piano") of a hymn, in order, from the link table: {label, url}. Not its parent's. */
+    public ArrayList<String[]> getLinks(String hymnId, String kind) {
+        ArrayList<String[]> links = new ArrayList<>();
+        try (Cursor cursor = database.rawQuery("select label, url from link where hymn_id = ? and kind = ? order by n_order",
+                new String[]{hymnId, kind})) {
             while (cursor.moveToNext()) {
-                links.add(cursor.getString(cursor.getColumnIndex("youtube_link")) + "|" + cursor.getString(cursor.getColumnIndex("comment")));
+                links.add(new String[]{cursor.getString(0), cursor.getString(1)});
             }
             return links;
         } catch (Exception e) {

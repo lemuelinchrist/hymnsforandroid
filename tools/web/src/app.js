@@ -634,7 +634,7 @@ function metaNode(hymn) {
     hymn.sheetId ? null : h('p', {class: 'no-sheet'}, 'No sheet music for this hymn.'),
     items.length ? h('dl', null, items.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])) : null,
     videos.length ? h('p', {class: 'videos'}, 'Piano videos: ', videos.map((v, i) => [i ? ' · ' : '',
-      h('a', {href: 'https://www.youtube.com/watch?v=' + encodeURIComponent(v.id), target: '_blank', rel: 'noopener'},
+      h('a', {href: v.url, target: '_blank', rel: 'noopener'},
         (v.label || 'Video') + ' ↗')])) : null,
     site ? h('a', {class: 'small', href: `https://www.hymnal.net/en/hymn/${site}/${hymn.no}`, target: '_blank', rel: 'noopener'},
       'This hymn on hymnal.net ↗') : null);

@@ -251,6 +251,14 @@ async function search(page, text) {
       await page.waitForURL(/#\/favorites/);
       assert(await page.locator('.page-title').textContent().then((t) => t.includes('Favorites')), 'not the favorites page');
     });
+    await test('piano videos: E1 has one, E3 two in order, C1 borrows its parent\'s, E35 has none', async () => {
+      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos a').evaluateAll((a) => a.map((x) => x.textContent + ' ' + x.href)); };
+      assert((await links('E1')).join() === '1st tune ↗ https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await links('E1'));
+      const e3 = await links('E3');
+      assert(e3.length === 2 && e3[0].startsWith('1st tune') && e3.every((x) => x.includes('https://www.youtube.com/watch?v=')), 'E3: ' + e3);
+      assert((await links('C1')).join() === (await links('E1')).join(), 'C1 should show E1\'s video');
+      assert((await links('E35')).length === 0 && await page.locator('.videos').count() === 0, 'E35 should have no videos line');
+    });
     await test('a hymn without sheet music has no Sheet tab and says so (C206)', async () => {
       await open(page, '#/h/C206');
       assert(await page.locator('.tabs').count() === 0, 'tabs shown');

@@ -2,7 +2,7 @@ package com.lemuelinchrist.hymns
 
 import com.lemuelinchrist.hymns.lib.Dao
 import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
-import com.lemuelinchrist.hymns.lib.beans.TuneEntity
+import com.lemuelinchrist.hymns.lib.beans.LinkEntity
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -68,15 +68,18 @@ class YoutubePiano {
                 if (hymn == null) {
                     throw new Exception("hymn not found")
                 }
-                TuneEntity tune = new TuneEntity();
-                tune.id = hymn.id
-                tune.comment = comment
-                tune.youtubeLink = code
+                LinkEntity pianoLink = new LinkEntity();
+                pianoLink.hymnId = hymn.id
+                pianoLink.kind = "piano"
+                pianoLink.label = comment
+                pianoLink.url = "https://www.youtube.com/watch?v=" + code
+                // the order among this hymn's piano videos: the first is 1
+                pianoLink.order = processedHymns.count { it == hymn.id } + 1
 
-                println tune
+                println pianoLink
                 processedHymns += hymn.id
                 try {
-                    dao.save(tune)
+                    dao.save(pianoLink)
                 } catch (Exception e) {
                     // do nothing
                 }

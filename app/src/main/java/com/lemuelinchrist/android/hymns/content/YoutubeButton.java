@@ -41,14 +41,15 @@ public class YoutubeButton extends ContentComponent<ImageButton> {
             hymnsDao.open();
 
             // Prepare Links
-            ArrayList<String> youtubeLinksFromHymnNo = hymnsDao.getYoutubeLinksFromHymnNo(hymn.getHymnId());
-            if(youtubeLinksFromHymnNo.size()==0) {
+            ArrayList<String[]> pianoLinks = hymnsDao.getLinks(hymn.getHymnId(), "piano");
+            if(pianoLinks.size()==0) {
                 // maybe its parent has links
-                youtubeLinksFromHymnNo = hymnsDao.getYoutubeLinksFromHymnNo(hymn.getParentHymn());
+                pianoLinks = hymnsDao.getLinks(hymn.getParentHymn(), "piano");
             }
-            for(String link: youtubeLinksFromHymnNo) {
-                links.add("https://www.youtube.com/embed/"+ link.split("\\|")[0].trim());
-                comments.add(link.split("\\|")[1].trim());
+            for(String[] link: pianoLinks) {
+                // the table keeps the watch address; the button has always opened the embed address of the video
+                links.add(link[1].trim().replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/"));
+                comments.add(link[0].trim());
             }
 
             hymnsDao.close();
