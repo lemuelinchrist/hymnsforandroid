@@ -143,8 +143,8 @@ def build_db(assets):
     db.execute('insert into stanza select * from src.stanza')
     db.execute('insert into tune select * from src.tune')
 
-    # one row per hymn, in search form: the first lines, subject, author and composer, key and tune, and all its
-    # stanzas. A hymn with a parent takes the parent's author, composer, key, tune, subject and stanzas where it has
+    # one row per hymn, in search form: the first lines, subject, author and composer, time, key, tune and meter, and all its
+    # stanzas. A hymn with a parent takes the parent's author, composer, key, tune, meter, time, subject and stanzas where it has
     # none, as on its page (SearchIndex.build in the app)
     db.execute('create table search (id text, grp text, first text, chorus text, subject text, people text,'
                ' music text, body text)')
@@ -152,7 +152,7 @@ def build_db(assets):
     for pid, text in db.execute('select parent_hymn, text from stanza order by parent_hymn, n_order'):
         stanzas.setdefault(pid, []).append(norm(text))
     cols = ['hymn_group', 'first_stanza_line', 'first_chorus_line', 'main_category', 'sub_category', 'author',
-            'composer', 'key', 'tune', 'parent_hymn']
+            'composer', 'key', 'tune', 'parent_hymn', 'meter', 'time']
     hymns = {r[0]: dict(zip(cols, [(v or '').strip() for v in r[1:]]))
              for r in db.execute('select _id, ' + ', '.join(cols) + ' from hymns')}
 
@@ -162,7 +162,7 @@ def build_db(assets):
         parent, depth = h['parent_hymn'], 0
         while parent in hymns and depth < 10:
             p = hymns[parent]
-            for f in ('author', 'composer', 'key', 'tune'):
+            for f in ('author', 'composer', 'key', 'tune', 'meter', 'time'):
                 h[f] = h[f] or p[f]
             if not h['main_category']:
                 h['main_category'], h['sub_category'] = p['main_category'], p['sub_category']
@@ -176,7 +176,7 @@ def build_db(assets):
         h = inherited(hid)
         rows.append((hid, h['hymn_group'], norm(h['first_stanza_line']), norm(h['first_chorus_line']),
                      norm(h['main_category'] + ' ' + h['sub_category']), norm(h['author'] + ' ' + h['composer']),
-                     norm(h['key'] + ' ' + h['tune']), h['body']))
+                     norm(h['time'] + ' ' + h['key'] + ' ' + h['tune'] + ' ' + h['meter']), h['body']))
     db.executemany('insert into search values (?, ?, ?, ?, ?, ?, ?, ?)', rows)
     groups_in_db = sorted({r[1] for r in rows})
     db.commit()

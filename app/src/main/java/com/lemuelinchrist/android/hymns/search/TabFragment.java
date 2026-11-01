@@ -118,7 +118,7 @@ public abstract class TabFragment extends Fragment {
         dao = new HymnsDao(container.getContext());
         dao.open();
 
-        setSearchFilter("");
+        setSearchFilter(savedQuery);
 
     }
 

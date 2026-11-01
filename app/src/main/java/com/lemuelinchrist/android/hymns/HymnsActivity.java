@@ -220,9 +220,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         if (itemId == android.R.id.home) {
             toggleDrawer();
         } else if (itemId == R.id.action_index) {
-            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
-            intent.putExtra("selectedHymnGroup", selectedHymnGroup);
-            startActivityForResult(intent, SEARCH_REQUEST);
+            openSearch(null);
             ret = true;
         } else if (itemId == R.id.action_settings) {
             Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
@@ -232,6 +230,14 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
             Log.w(HymnsActivity.class.getSimpleName(), "Warning!! No Item was selected!!");
         }
         return ret;
+    }
+
+    /** The search screen; with words it opens on the Search tab already searching for them (all books). */
+    public void openSearch(String words) {
+        Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+        intent.putExtra("selectedHymnGroup", selectedHymnGroup);
+        if (words != null) intent.putExtra(SearchActivity.EXTRA_QUERY, words);
+        startActivityForResult(intent, SEARCH_REQUEST);
     }
 
     private void changeThemeColor() {

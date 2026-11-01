@@ -95,6 +95,11 @@ public class SearchTabFragment extends TabFragment {
         }
     }
 
+    /** List the hymns of all books, not just the current one, whatever the words find. */
+    public void showAllBooks() {
+        allBooks = true;
+    }
+
     /** Enter: open the hymn whose number or ID was typed. False if there is none. */
     public boolean submit(String typed) {
         String id = HymnSearch.hymnIdOf(typed, selectedHymnGroup);

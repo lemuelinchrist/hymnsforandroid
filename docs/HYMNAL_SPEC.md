@@ -583,8 +583,8 @@ Live as you type, about 150 ms after the last key, run off the main thread.
 
 - **What is searched:** a `search` table, one row per hymn, every column in **search form** (§9.5): `first` (first
   stanza line), `chorus` (first chorus line), `subject` (main + sub category), `people` (author + composer), `music`
-  (key + tune), `body` (all its stanzas joined with ` | `), plus `id`, `grp`, `no` and `line` (the first stanza line as
-  shown, else the chorus line). A hymn with a parent takes the parent's author, composer, key, tune, subject and
+  (time + key + tune + meter), `body` (all its stanzas joined with ` | `), plus `id`, `grp`, `no` and `line` (the first stanza line as
+  shown, else the chorus line). A hymn with a parent takes the parent's author, composer, key, tune, meter, time, subject and
   stanzas where it has none (§5.1), so a translation is found by what its page shows.
 - **Terms:** the query in search form, split into words; text in quotes (`"…"`, `“…”`, `„…“`, `«…»`) is one term, an
   exact phrase. Duplicate terms count once. No word is dropped for being short, but a word of one or two Latin,

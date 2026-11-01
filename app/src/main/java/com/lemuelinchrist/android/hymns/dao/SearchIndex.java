@@ -154,7 +154,7 @@ public final class SearchIndex {
                     insert.bindString(6, SearchText.norm(h[CHORUS]));
                     insert.bindString(7, SearchText.norm(h[MAIN_CATEGORY] + " " + h[SUB_CATEGORY]));
                     insert.bindString(8, SearchText.norm(h[AUTHOR] + " " + h[COMPOSER]));
-                    insert.bindString(9, SearchText.norm(h[KEY] + " " + h[TUNE]));
+                    insert.bindString(9, SearchText.norm(h[TIME] + " " + h[KEY] + " " + h[TUNE] + " " + h[METER]));
                     insert.bindString(10, body.toString());
                     insert.executeInsert();
                 }
@@ -185,9 +185,9 @@ public final class SearchIndex {
     }
 
     private static final String[] COLUMNS = {"hymn_group", "no", "first_stanza_line", "first_chorus_line",
-            "main_category", "sub_category", "author", "composer", "key", "tune", "parent_hymn"};
+            "main_category", "sub_category", "author", "composer", "key", "tune", "parent_hymn", "meter", "time"};
     private static final int GROUP = 0, NO = 1, FIRST = 2, CHORUS = 3, MAIN_CATEGORY = 4, SUB_CATEGORY = 5,
-            AUTHOR = 6, COMPOSER = 7, KEY = 8, TUNE = 9, PARENT = 10;
+            AUTHOR = 6, COMPOSER = 7, KEY = 8, TUNE = 9, PARENT = 10, METER = 11, TIME = 12;
 
     // every hymn's own columns (never null), sorted by hymn ID
     private static Map<String, String[]> readHymns(SQLiteDatabase source) {
@@ -211,7 +211,7 @@ public final class SearchIndex {
         String parent = h[PARENT];
         for (int depth = 0; !parent.isEmpty() && hymns.containsKey(parent) && depth < 10; depth++) {
             String[] p = hymns.get(parent);
-            for (int field : new int[]{AUTHOR, COMPOSER, KEY, TUNE}) {
+            for (int field : new int[]{AUTHOR, COMPOSER, KEY, TUNE, METER, TIME}) {
                 if (h[field].isEmpty()) h[field] = p[field];
             }
             if (h[MAIN_CATEGORY].isEmpty()) {

@@ -33,7 +33,10 @@ public class SearchActivity extends AppCompatActivity  {
 
     public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
     public static final String ENTER_LYRIC = "Enter Search Text          ";
+    /** Intent extra: words to search for as soon as the screen opens (on the Search tab, in all books). */
+    public static final String EXTRA_QUERY = "query";
     private HymnGroup selectedHymnGroup;
+    private String startWords;
     private ActionBar actionBar;
     private SearchTabsPagerAdapter mSearchTabsPagerAdapter;
     private ViewPager mViewPager;
@@ -139,6 +142,16 @@ public class SearchActivity extends AppCompatActivity  {
 
         TabFragment.setSelectedHymnGroup(selectedHymnGroup);
 
+        // opened from a link in the hymn's details: the Search tab, already searching those words in all books
+        String words = extras.getString(EXTRA_QUERY);
+        if (words != null && savedInstanceState == null) {
+            int position = mSearchTabsPagerAdapter.getPositionOf(SearchTabFragment.class);
+            mViewPager.setCurrentItem(position, false);
+            SearchTabFragment searchTab = (SearchTabFragment) mSearchTabsPagerAdapter.getTab(position);
+            searchTab.setSavedQuery(words);
+            searchTab.showAllBooks();
+            startWords = words;
+        }
     }
 
 
@@ -175,6 +188,10 @@ public class SearchActivity extends AppCompatActivity  {
         searchBar.onActionViewExpanded();
 
         /** Setting an action listener */
+        if (startWords != null) {
+            searchBar.setQuery(startWords, false);
+            startWords = null;
+        }
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

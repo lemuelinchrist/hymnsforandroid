@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
@@ -23,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.HymnsActivity;
 import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
@@ -101,17 +104,23 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             otherLanguages.display();
 
             // ########################### Build Details (the card at the bottom): label | value rows, only the items we have
-            if (isNotEmpty(hymn.getMeter())) addDetail("Meter", hymn.getMeter());
+            // each value but the verses opens the Search tab with that value
+            if (isNotEmpty(hymn.getMeter())) addDetail("Meter", new String[][]{{hymn.getMeter(), hymn.getMeter()}});
             if (isNotEmpty(hymn.getTime())) {
-                // time and key share a row: "4/4 · Ab Major"
-                addDetail("Time", hymn.getTime() + (isNotEmpty(hymn.getKey()) ? " · " + hymn.getKey() : ""));
+                // time and key share a row: "4/4 · Ab Major", each searched on its own
+                addDetail("Time", isNotEmpty(hymn.getKey())
+                        ? new String[][]{{hymn.getTime(), hymn.getTime()}, {" · ", null}, {hymn.getKey(), hymn.getKey()}}
+                        : new String[][]{{hymn.getTime(), hymn.getTime()}});
             } else if (isNotEmpty(hymn.getKey())) {
-                addDetail("Key", hymn.getKey());
+                addDetail("Key", new String[][]{{hymn.getKey(), hymn.getKey()}});
             }
-            if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0")) addDetail("Tune", hymn.getTune());
+            if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0"))
+                addDetail("Tune", new String[][]{{hymn.getTune(), hymn.getTune()}});
             if (isNotEmpty(hymn.getVerse())) addDetail("Verses", hymn.getVerse());
-            if (isNotEmpty(hymn.getAuthor())) addDetail("Author", hymn.getAuthor());
-            if (isNotEmpty(hymn.getComposer())) addDetail("Composer", hymn.getComposer());
+            if (isNotEmpty(hymn.getAuthor()))
+                addDetail("Author", new String[][]{{hymn.getAuthor(), personOf(hymn.getAuthor())}});
+            if (isNotEmpty(hymn.getComposer()))
+                addDetail("Composer", new String[][]{{hymn.getComposer(), personOf(hymn.getComposer())}});
             if (detailsTable.getChildCount() == 0) {
                 view.findViewById(getRid("detailsCard")).setVisibility(View.GONE);
             }
@@ -257,15 +266,60 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
     /** One row of the details card (detail_row.xml), a little smaller than the lyrics. */
     private void addDetail(String label, String value) {
+        TextView valueView = addDetailRow(label);
+        valueView.setText(value);
+    }
+
+    /**
+     * A row whose value is made of parts: {shown text, words to search} each; no words (null) = plain text. A part
+     * opens the Search tab with its words.
+     */
+    private void addDetail(String label, String[][] parts) {
+        TextView valueView = addDetailRow(label);
+        SpannableStringBuilder text = new SpannableStringBuilder();
+        for (String[] part : parts) {
+            int start = text.length();
+            text.append(part[0]);
+            final String words = part[1];
+            if (words == null || words.isEmpty()) continue;
+            text.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    searchFor(words);
+                }
+
+                @Override
+                public void updateDrawState(@NonNull TextPaint ds) {
+                    ds.setColor(BookColors.accent(context, hymn.getHymnGroup()));
+                    ds.setUnderlineText(true);
+                }
+            }, start, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        valueView.setText(text);
+        // links and selecting text don't go together
+        valueView.setTextIsSelectable(false);
+        valueView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private TextView addDetailRow(String label) {
         float size = fontSize - 2;
         TableRow row = (TableRow) LayoutInflater.from(context).inflate(R.layout.detail_row, detailsTable, false);
         TextView labelView = row.findViewById(R.id.detailLabel);
         labelView.setText(label);
         labelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         TextView valueView = row.findViewById(R.id.detailValue);
-        valueView.setText(value);
         valueView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         detailsTable.addView(row);
+        return valueView;
+    }
+
+    /** "Thomas Ken, v. 1 (1637-1711)" is searched as "Thomas Ken". */
+    private static String personOf(String person) {
+        return person.replaceAll("\\s*\\([^)]*\\)", "").replaceAll(",\\s*v\\.\\s*\\d+.*$", "").trim();
+    }
+
+    private void searchFor(String words) {
+        if (context instanceof HymnsActivity) ((HymnsActivity) context).openSearch(words);
     }
 
     private void openWebPage(String text) {
