@@ -626,13 +626,23 @@ function metaNode(hymn) {
     ['Scripture', hymn.verse && hymn.verse.replace(/,\s*$/, '')],
     ['From', hymn.parentId && hymn.parentId !== hymn.id ? h('a', {href: '#/h/' + hymn.parentId}, hymn.parentId) : null],
   ].filter(([, v]) => v);
-  const videos = DB.videos(hymn);
   return h('footer', {class: 'meta'},
     hymn.sheetId ? null : h('p', {class: 'no-sheet'}, 'No sheet music for this hymn.'),
-    items.length ? h('dl', null, items.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])) : null,
-    videos.length ? h('p', {class: 'videos'}, 'Piano videos: ', videos.map((v, i) => [i ? ' · ' : '',
-      h('a', {href: v.url, target: '_blank', rel: 'noopener'},
-        (v.label || 'Video') + ' ↗')])) : null);
+    items.length ? h('dl', null, items.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])) : null);
+}
+
+// the card under the details for links that open outside the app (the Android app's "Listen and links" card): the
+// hymn's piano videos, its parent's when it has none; nothing at all when there are no rows
+function linksNode(hymn) {
+  const videos = DB.videos(hymn);
+  const rows = [
+    ['Piano videos', videos.length ? h('span', {class: 'videos'}, videos.map((v, i) => [i ? ' · ' : '',
+      h('a', {href: v.url, target: '_blank', rel: 'noopener'}, (v.label || 'Video') + ' ↗')])) : null],
+  ].filter(([, v]) => v);
+  if (!rows.length) return null;
+  return h('section', {class: 'card links-card'},
+    h('h2', null, 'Listen and links'),
+    h('dl', null, rows.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])));
 }
 
 function familyNode(hymn) {
@@ -717,7 +727,7 @@ function hymnScreen(view, hymn) {
     h('button', {role: 'tab', 'data-tab': 'lyrics', onclick: () => showTab('lyrics')}, 'Lyrics'),
     h('button', {role: 'tab', 'data-tab': 'sheet', onclick: () => showTab('sheet')}, 'Sheet music')) : null;
 
-  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, lyricsNode(hymn), sameTuneNode(hymn), metaNode(hymn));
+  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, lyricsNode(hymn), sameTuneNode(hymn), metaNode(hymn), linksNode(hymn));
   const sheetPane = hasSheet ? h('section', {class: 'pane sheet-pane'}) : null;
   const panes = h('div', {class: 'panes' + (hasSheet ? ' two' : '')}, lyricsPane, sheetPane);
   const page = h('article', {class: 'hymn', style: groupStyle(hymn.group)}, head, tabs, panes);

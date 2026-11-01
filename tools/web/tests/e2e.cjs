@@ -260,6 +260,10 @@ async function search(page, text) {
       assert((await links('E395')).join() === '1st tune ↗ https://www.youtube.com/watch?v=emzsWJGEj8Y', 'E395: ' + await links('E395'));
       assert((await links('C1')).join() === (await links('E1')).join(), 'C1 should show E1\'s video');
       assert((await links('E35')).length === 0 && await page.locator('.videos').count() === 0, 'E35 should have no videos line');
+      assert(await page.locator('.links-card').count() === 0, 'E35 should have no links card');
+      await open(page, '#/h/E12');
+      const card = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
+      assert(card === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗', 'the card reads: ' + card);
     });
     await test('a hymn without sheet music has no Sheet tab and says so (C206)', async () => {
       await open(page, '#/h/C206');

@@ -625,7 +625,13 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 /* ---- lyrics: the repeated chorus, links; two columns when there is room for them ---- */
 
 .stanza.again .text { opacity: .82; }
-.meta .videos { margin: 0 0 10px; }
+/* the card for links that open outside the app, under the details */
+.links-card { margin: 14px 0 8px; padding: 12px 18px 14px; font-size: 14px; }
+.links-card h2 { margin: 0 0 8px; font: 700 12px var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.links-card dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0; }
+.links-card dt { font-weight: 600; color: var(--muted); }
+.links-card dd { margin: 0; color: var(--ink); }
+@media print { .links-card { display: none; } }
 .stanza { break-inside: avoid; }
 @media (min-width: 760px) and (max-width: 1079px), (min-width: 640px) and (orientation: landscape) and (max-height: 600px) {
   .lyrics { column-width: 21em; column-gap: 2.5em; }

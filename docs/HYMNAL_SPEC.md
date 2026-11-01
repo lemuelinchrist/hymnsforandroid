@@ -314,8 +314,8 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    `hymn_id` = this hymn's ID, else its parent's ID, in `n_order`) as links `<label> ↗` joined by ` · `. A tap opens the
    stored `url` with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/`. The links are
    underlined in the book's accent colour. The card does not depend on the YouTube button setting. Links in the lyrics
-   (the SoundCloud and YouTube stanzas of the youth books) stay where they are. (The web app opens the stored `watch`
-   address as it is.) More kinds of link can be added later as other `kind`s of the `link` table.
+   (the SoundCloud and YouTube stanzas of the youth books) stay where they are. (The web app has the same card under its details, and opens the stored `watch`
+   address as it is; its card is not drawn when there is no row, and not printed.) More kinds of link can be added later as other `kind`s of the `link` table.
 
 Cards: 10dp side margins, 5dp radius, light elevation. Page and card colours: §6.3.
 
