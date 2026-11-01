@@ -1326,10 +1326,18 @@ function settingsScreen(view) {
 function setupServiceWorker() {
   if (!('serviceWorker' in navigator) || !window.isSecureContext) return;
   const hadController = !!navigator.serviceWorker.controller;
-  navigator.serviceWorker.register('sw.js').catch((e) => console.warn('service worker', e));
-  // a new build took over: offer to reload (not done by itself, so an edit in progress is not lost)
+  const opened = Date.now();
+  navigator.serviceWorker.register('sw.js').then((reg) => {
+    // look for a new build when the app comes back to the screen and once an hour, not only when it is opened
+    const check = () => reg.update().catch(() => {});
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });
+    setInterval(check, 60 * 60 * 1000);
+  }).catch((e) => console.warn('service worker', e));
+  // a new build took over. Just opened (nothing to lose yet) or out of sight: load it by itself. In use: offer to
+  // reload, so an edit in progress is not lost.
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (!hadController) return;
+    if (document.hidden || Date.now() - opened < 20000) { location.reload(); return; }
     const t = $('#toast');
     t.textContent = '';
     t.appendChild(document.createTextNode('A new version is ready. '));
