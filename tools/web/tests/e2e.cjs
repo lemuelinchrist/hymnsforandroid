@@ -80,7 +80,7 @@ async function search(page, text) {
     console.log('Loading');
     await test('first visit downloads the database and shows the hymnals', async () => {
       await open(page, '');
-      assert(await page.locator('.hymnals .hymnal-card').count() === 26, 'expected 26 hymnals');
+      assert(await page.locator('.hymnals .hymnal-card').count() === 27, 'expected 27 hymnals');
     });
     await test('a second visit opens the database from the browser, without downloading it', async () => {
       await page.waitForTimeout(500);   // the first visit stores it in IndexedDB
@@ -547,6 +547,19 @@ async function search(page, text) {
       await phone.page.waitForSelector('.sheet-music svg', {timeout: 60000});
       assert(await phone.page.isHidden('.lyrics-pane'), 'lyrics hidden');
       assert(phone.page.url().includes('tab=sheet'), 'URL has tab=sheet');
+    });
+    await test('reading the lyrics down hides the tab strip; scrolling up brings it back', async () => {
+      await open(phone.page, '#/h/C38');
+      const away = () => phone.page.evaluate(() => document.body.classList.contains('tabs-away'));
+      const scroll = async (y) => { await phone.page.evaluate((v) => window.scrollTo(0, v), y); await phone.page.waitForTimeout(300); };
+      assert(!await away(), 'strip hidden at the top');
+      await scroll(400);
+      assert(await away(), 'strip still showing after scrolling down');
+      await scroll(370);
+      assert(!await away(), 'strip did not come back when scrolling up');
+      await scroll(500);
+      await scroll(5);
+      assert(!await away(), 'strip hidden at the top of the page');
     });
     await test('swipe left opens the next hymn', async () => {
       await open(phone.page, '#/h/E8');

@@ -987,6 +987,7 @@ first load small.
 | WebView sheet viewer | iframe or direct navigation to `viewer/index.html?...` |
 | Theme | System default / Light / Dark from `prefers-color-scheme` and a setting |
 | Swipe between hymns | horizontal pointer/touch gestures + ←/→ keys; prefetch neighbours |
+| Lyrics / Sheet music tab strip (phones) | slides away while scrolling down the lyrics, back on any scroll up or at the top of the page; the sheet hides its own bars separately |
 | Toasts / dialogs | lightweight in-page equivalents |
 
 ### 14.5 Offline and updates

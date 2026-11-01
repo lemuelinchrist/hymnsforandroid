@@ -642,6 +642,7 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 
 /* ---- more room for the sheet on phones: the bars slide away while scrolling down (body.bars-away, app.js) ---- */
 .topbar, .tabs, .sheet-bar, .tabbar { transition: transform .2s ease; }
+body.tabs-away .tabs { transform: translateY(calc(-100% - 2px)); }   /* reading the lyrics: only the tab strip (app.js) */
 body.bars-away .tabbar { transform: translateY(100%); }
 body.bars-away .topbar { transform: translateY(-100%); }
 body.bars-away .tabs { transform: translateY(calc(-100% - var(--top) - env(safe-area-inset-top))); }

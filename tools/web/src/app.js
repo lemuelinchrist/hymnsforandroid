@@ -733,7 +733,7 @@ function hymnScreen(view, hymn) {
   }
   function showTab(t) {
     tab = t;
-    document.body.classList.remove('bars-away');
+    document.body.classList.remove('bars-away', 'tabs-away');
     page.dataset.tab = t;
     if (tabs) for (const b of tabs.children) b.setAttribute('aria-selected', String(b.dataset.tab === t));
     if (t === 'sheet' || wide.matches) ensureSheet();
@@ -760,6 +760,18 @@ function hymnScreen(view, hymn) {
   lyricsPane.addEventListener('touchstart', onStart, {passive: true});
   lyricsPane.addEventListener('touchend', onEnd, {passive: true});
 
+  // the Lyrics | Sheet music strip slides away while reading down the lyrics (more room), and comes back as soon as
+  // you scroll up or reach the top. The sheet hides its own bars (hideBarsOnScroll).
+  const body = document.body;
+  let lastY = window.scrollY;
+  const onLyricsScroll = () => {
+    const y = window.scrollY;
+    if (!tabs || tab !== 'lyrics' || wide.matches) { body.classList.remove('tabs-away'); lastY = y; return; }
+    if (y <= 40 || y < lastY - 6) { body.classList.remove('tabs-away'); lastY = y; return; }
+    if (y - lastY >= 8) { lastY = y; body.classList.add('tabs-away'); }
+  };
+  window.addEventListener('scroll', onLyricsScroll, {passive: true});
+
   keys = {
     ArrowLeft: () => nb.prev && go(href('/h/' + nb.prev, keepSheetParams())),
     ArrowRight: () => nb.next && go(href('/h/' + nb.next, keepSheetParams())),
@@ -772,6 +784,8 @@ function hymnScreen(view, hymn) {
   };
   cleanup = () => {
     wide.removeEventListener('change', onWide);
+    window.removeEventListener('scroll', onLyricsScroll);
+    body.classList.remove('tabs-away');
     if (sheet) sheet.destroy();
     Player.stop();
     keys = {};
