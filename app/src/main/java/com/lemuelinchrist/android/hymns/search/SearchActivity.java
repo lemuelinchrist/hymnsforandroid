@@ -134,6 +134,7 @@ public class SearchActivity extends AppCompatActivity  {
                 }
 
                 searchBar.setInputType(currentTabFragment.getInputType());
+                searchBar.setQueryHint(hintFor(currentTabFragment));
 
                 Log.d(this.getClass().getName(), "trying to clear text. Hope it wont throw error.");
                 searchBar.setQuery(currentTabFragment.getSavedQuery(), false);
@@ -173,6 +174,11 @@ public class SearchActivity extends AppCompatActivity  {
     }
 
 
+    /** Hymn Numbers only takes numbers; the other tabs search words. */
+    private static String hintFor(TabFragment tab) {
+        return tab instanceof HymnNumberTabFragment ? ENTER_HYMN_NO : ENTER_LYRIC;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -185,7 +191,7 @@ public class SearchActivity extends AppCompatActivity  {
 
         /** Get the edit text from the action view */
         searchBar = (SearchView) MenuItemCompat.getActionView(item);
-        searchBar.setQueryHint(ENTER_LYRIC);
+        searchBar.setQueryHint(hintFor(getCurrentTab()));
         // the restored tab may not be Hymn Numbers, so ask it for its keyboard
         searchBar.setInputType(getCurrentTab().getInputType());
         searchBar.onActionViewExpanded();
