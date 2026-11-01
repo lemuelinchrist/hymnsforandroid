@@ -101515,7 +101515,7 @@ INSERT INTO link VALUES(236,'E381','piano','1st tune','https://www.youtube.com/w
 INSERT INTO link VALUES(237,'E389','piano','1st tune','https://www.youtube.com/watch?v=vPiW3TNVmjM',1);
 INSERT INTO link VALUES(238,'E390','piano','1st tune','https://www.youtube.com/watch?v=GgFLXKO8NBs',1);
 INSERT INTO link VALUES(239,'E394','piano','New tune','https://www.youtube.com/watch?v=xsdDqaoE3L4',1);
-INSERT INTO link VALUES(240,'E3','piano','1st tune','https://www.youtube.com/watch?v=emzsWJGEj8Y',2);
+INSERT INTO link VALUES(240,'E395','piano','1st tune','https://www.youtube.com/watch?v=emzsWJGEj8Y',1);
 INSERT INTO link VALUES(241,'E396','piano','1st tune','https://www.youtube.com/watch?v=wz_Cvuj4jbM',1);
 INSERT INTO link VALUES(242,'E398','piano','1st tune','https://www.youtube.com/watch?v=WtoifCMA59g',1);
 INSERT INTO link VALUES(243,'E403','piano','1st tune','https://www.youtube.com/watch?v=YFPG2ZxaXoI',1);
