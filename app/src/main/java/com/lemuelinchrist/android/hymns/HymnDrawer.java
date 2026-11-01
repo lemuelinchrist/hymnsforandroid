@@ -27,7 +27,7 @@ import java.util.Set;
 /**
  * The book drawer's list: RECENT, the current book and the books of the latest hymns in History (up to
  * {@link #RECENT_BOOKS}), so each person finds their own languages at the top, whichever they are; then ALL BOOKS in
- * the usual order. Hidden books (Settings, Hymn Books) are left out. A row is the book's badge picture, its name and
+ * the usual order. Hidden books (Settings, Languages (Hymn Books)) are left out. A row is the book's badge picture, its name and
  * its number of hymns; the current book is highlighted in both lists.
  *
  * Created by lemuelcantos on 14/8/13.

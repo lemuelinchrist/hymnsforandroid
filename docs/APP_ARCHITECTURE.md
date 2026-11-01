@@ -27,7 +27,7 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
 ### 1. `HymnsActivity.java`
 -   **Role:** Main Controller / Entry Point.
 -   **Responsibilities:**
-    -   Manages the main UI, including the `Toolbar` (Action Bar) and the `DrawerLayout` (for the navigation drawer: a header, the list filled by `HymnDrawer` with RECENT books from History and ALL BOOKS, and a "Hymn Books…" link to Settings).
+    -   Manages the main UI, including the `Toolbar` (Action Bar) and the `DrawerLayout` (for the navigation drawer: a header, the list filled by `HymnDrawer` with RECENT books from History and ALL BOOKS, and a "Languages…" link to Settings (the Languages (Hymn Books) setting)).
     -   Initializes and holds a reference to `HymnBookCollection`.
     -   Handles user interactions from the menu (Search, Settings) and the navigation drawer (switching hymn books).
     -   Listens for `onLyricVisible` events from `ContentArea` to update the hymn title and theme colours in the action bar.

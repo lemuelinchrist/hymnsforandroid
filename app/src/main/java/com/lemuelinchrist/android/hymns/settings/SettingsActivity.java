@@ -23,7 +23,7 @@ import com.lemuelinchrist.android.hymns.logbook.FavoritesBackup;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
 public class SettingsActivity extends AppCompatActivity {
-    /** Intent extra: open the Hymn Books dialog at once (the drawer's "Hymn Books…" link). */
+    /** Intent extra: open the Hymn Books dialog at once (the drawer's "Languages…" link). */
     public static final String OPEN_HYMN_BOOKS = "openHymnBooks";
 
     private FavoritesBackup favoritesBackup;

@@ -158,7 +158,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
                 selectDrawerItem(position);
             }
         });
-        // the Hymn Books setting, to hide books someone never uses
+        // the Languages (Hymn Books) setting, to hide books someone never uses
         findViewById(R.id.drawer_hymn_books).setOnClickListener(v -> {
             mDrawerLayout.closeDrawer(mDrawer);
             Intent settings = new Intent(getBaseContext(), SettingsActivity.class);

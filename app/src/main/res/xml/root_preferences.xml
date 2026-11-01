@@ -41,7 +41,7 @@
         <!-- saves the hidden books; the key keeps its old name so existing settings carry over -->
         <com.lemuelinchrist.android.hymns.settings.HymnBooksPreference
                 app:key="disableLanguages"
-                app:title="Hymn Books"
+                app:title="Languages (Hymn Books)"
                 app:icon="@drawable/ic_library_books_black_32dp"
                 app:defaultValue="@array/disabled_languages_default"
         />

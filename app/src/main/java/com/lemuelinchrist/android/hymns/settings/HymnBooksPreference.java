@@ -27,9 +27,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * "Hymn Books" setting: a list of every hymn book with its icon, where a tick means the book is shown.
+ * "Languages (Hymn Books)" setting (named for what people look for: it was "Disable Languages" before v5.8): a list of
+ * every hymn book with its icon, where a tick means the book is shown.
  * It still saves the books that are <b>hidden</b> under the old "disableLanguages" key, so existing
- * settings carry over and the drawer, search and "Also in" chips read it as before.
+ * settings carry over and the drawer, search and "Other languages" grid read it as before.
  */
 public class HymnBooksPreference extends MultiSelectListPreference {
 
@@ -47,10 +48,10 @@ public class HymnBooksPreference extends MultiSelectListPreference {
         });
     }
 
-    /** "All 23 hymn books shown", "Hiding Indonesian" or "Hiding 5 hymn books". */
+    /** What the setting is for, then what it does now: "Hide the ones you never use (all 28 shown)", "Hiding Indonesian". */
     private static String summaryOf(List<HymnGroup> hidden) {
-        if (hidden.isEmpty()) return "All " + HymnGroup.values().length + " hymn books shown";
-        if (hidden.size() > NAMES_IN_SUMMARY) return "Hiding " + hidden.size() + " hymn books";
+        if (hidden.isEmpty()) return "Hide the ones you never use (all " + HymnGroup.values().length + " shown)";
+        if (hidden.size() > NAMES_IN_SUMMARY) return "Hiding " + hidden.size() + " of " + HymnGroup.values().length;
         StringBuilder names = new StringBuilder();
         for (HymnGroup group : hidden) {
             if (names.length() > 0) names.append(", ");
@@ -69,7 +70,7 @@ public class HymnBooksPreference extends MultiSelectListPreference {
         return result;
     }
 
-    /** Opens the dialog, as a tap on the setting does (the drawer's "Hymn Books…" link). */
+    /** Opens the dialog, as a tap on the setting does (the drawer's "Languages…" link). */
     public void showDialog() {
         onClick();
     }
@@ -92,7 +93,7 @@ public class HymnBooksPreference extends MultiSelectListPreference {
         });
 
         new AlertDialog.Builder(context)
-                .setTitle("Show these hymn books")
+                .setTitle("Choose the languages to show")
                 .setView(content)
                 .setNegativeButton(android.R.string.cancel, null)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
@@ -101,7 +102,7 @@ public class HymnBooksPreference extends MultiSelectListPreference {
                         if (!shown[i]) newHidden.add(groups[i].name());
                     }
                     if (newHidden.size() == groups.length) {
-                        Toast.makeText(getContext(), "At least one hymn book has to stay shown", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "At least one language has to stay shown", Toast.LENGTH_LONG).show();
                         return;
                     }
                     if (callChangeListener(newHidden)) setValues(newHidden);

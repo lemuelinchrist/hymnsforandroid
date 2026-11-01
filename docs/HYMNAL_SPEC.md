@@ -55,7 +55,7 @@ Features:
 | YouTube (optional) | Either opens curated piano videos for the hymn or a YouTube search. |
 | Similar tune (optional) | Lists other hymns sung to the same tune, preferring the current language. |
 | Share | A menu: share the lyrics, share a link to the hymn in the web app, or copy the lyrics. |
-| Display settings | Font size (5 steps), theme (System default / Light / Dark / Black), keep screen on, hide books you don't use. |
+| Display settings | Font size (5 steps), theme (System default / Light / Dark / Black), keep screen on, hide books you don't use (Languages (Hymn Books)). |
 
 ---
 
@@ -67,7 +67,7 @@ Everything the app needs at runtime is in the repository. A rebuild does **not**
 |---|---|---|---|---|
 | Hymn database | `app/src/main/assets/hymns.sqlite` (built from `sqlite/hymns.sql`, see §13) | SQLite 3 | 14,127 hymns, 71,090 stanzas, 674 video links; 18 MB | everything textual |
 | Book list, names, colours, order | `app/src/main/java/.../HymnGroup.java` | Java enum (also parsed by `tools/ios/build.py`) | 23 books | drawer, colours, ID parsing |
-| Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 23 | drawer, search list rows, the Hymn Books dialog |
+| Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 23 | drawer, search list rows, the Languages (Hymn Books) dialog |
 | Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,462 files; 19 MB | Play button |
 | Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,345 (E 1362, NS 1227, CS 291, CH 243, C 124, BF 98); 45 MB | sheet viewer |
 | Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,369 (Z 755, C 632, ZS 460, FR 224, CS 194, FY 104); 9.3 MB | sheet viewer overlay |
@@ -541,7 +541,10 @@ A web build SHOULD map this onto browser history (`#/E1` style URLs) so the brow
   - **RECENT**: the current book, then the books of the latest hymns in History, each once, up to **4**. Which books
     matter depends on the person's languages, so the drawer learns them instead of fixing an order.
   - **ALL BOOKS**: every **enabled** book (§10) in display order.
-  - **Hymn Books…**: opens Settings with the Hymn Books dialog (§10, `disableLanguages`), to hide books never used.
+  - **Languages…**: opens Settings with the Languages (Hymn Books) dialog (§10, `disableLanguages`), to hide books
+    never used. The setting is named with the word people look for ("Disable Languages" before v5.8, then "Hymn
+    Books", which hid what it does); its summary says what it is for (`Hide the ones you never use (all 28 shown)`,
+    then `Hiding Indonesian`, or `Hiding 5 of 28`) and the dialog is titled "Choose the languages to show".
 - A row: the book's badge picture (36dp; the app's own pictures since its first versions, kept as they are even
   where their letters differ from the code: H for English, B for Cebuano, Ch for Children), the display name (long
   names wrap), and the number of hymns ("1,362 hymns"). The current book has a rounded highlight in a tint of its
