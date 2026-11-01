@@ -115,7 +115,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                 addDetail("Key", new String[][]{{hymn.getKey(), hymn.getKey()}});
             }
             if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0"))
-                addDetail("Tune", new String[][]{{hymn.getTune(), hymn.getTune()}});
+                addDetail("Tune", new String[][]{{hymn.getTune(), "\"" + hymn.getTune() + "\""}});
             if (isNotEmpty(hymn.getVerse())) addDetail("Verses", hymn.getVerse());
             if (isNotEmpty(hymn.getAuthor()))
                 addDetail("Author", new String[][]{{hymn.getAuthor(), personOf(hymn.getAuthor())}});

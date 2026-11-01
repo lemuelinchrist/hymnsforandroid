@@ -611,9 +611,14 @@ async function copyLyrics(hymn) {
 const HYMNALNET = {E: 'h', NS: 'ns', CH: 'c'};
 
 function metaNode(hymn) {
+  // each value but the scripture opens the search (all hymnals) for it; a person without the life dates
+  const find = (value, words) => h('a', {href: href('/search', {q: '"' + (words || value).replace(/"/g, '') + '"', all: 1})}, value);
+  const person = (p) => p && find(p, p.replace(/\s*\([^)]*\)/g, '').replace(/,\s*v\.\s*\d+.*$/, '').trim());
+  const plain = (v) => v && find(v);
   const items = [
-    ['Author', hymn.author], ['Composer', hymn.composer], ['Meter', hymn.meter], ['Key', hymn.key],
-    ['Time', hymn.time], ['Tune', hymn.tune && hymn.tune.trim() !== '0' ? hymn.tune.trim() : null],
+    ['Author', person(hymn.author)], ['Composer', person(hymn.composer)], ['Meter', plain(hymn.meter)],
+    ['Key', plain(hymn.key)], ['Time', plain(hymn.time)],
+    ['Tune', hymn.tune && hymn.tune.trim() !== '0' ? find(hymn.tune.trim()) : null],
     ['Scripture', hymn.verse && hymn.verse.replace(/,\s*$/, '')],
     ['From', hymn.parentId && hymn.parentId !== hymn.id ? h('a', {href: '#/h/' + hymn.parentId}, hymn.parentId) : null],
   ].filter(([, v]) => v);
