@@ -289,7 +289,8 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    column of the `search` table** while the box still holds the link's words: `music` for meter, time, key and tune,
    `people` for author and composer (an author is searched without the dates and `v. N`). Time and meter are searched
    as a quoted phrase, since `4/4` in search form is `4 4`, a scripture reference (`Mt. 4:4`) in a subject or the
-   lyrics. Editing the words searches everywhere again.
+   lyrics. Editing the words searches everywhere again. (The web app does the same: the link is
+   `#/search?q="4/4"&all=1&in=music`, and `in=` stays on the hymnal / all hymnals switch but not on typing.)
    (Until v5.6 these were in the header card and the related hymns were pills with book names at the bottom: the
    numbers moved up because brothers call hymns in several languages during meetings.)
 

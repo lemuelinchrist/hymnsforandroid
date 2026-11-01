@@ -130,6 +130,23 @@ async function search(page, text) {
       const whole = found.findIndex((r) => r.score === 26 || r.score === 23), part = found.findIndex((r) => r.id === 'E343');
       assert(whole >= 0 && part > whole, 'whole-word match at ' + whole + ', E343 (flowers) at ' + part);
     });
+    await test('a details link ("4/4" under E1) searches only the music column, and keeps that in both lists', async () => {
+      await page.goto(BASE + '#/h/E1');
+      const link = page.locator('.meta a', {hasText: '4/4'}).first();
+      assert(await link.count() === 1, 'no 4/4 link in the details');
+      assert((await link.getAttribute('href')).includes('in=music'), 'link ' + await link.getAttribute('href'));
+      const r = await page.evaluate(async () => {
+        const DB = await import('./db.js');
+        return {anywhere: DB.search(['4 4'], '4 4', null, 1e6).length, music: DB.search(['4 4'], '4 4', null, 1e6, 'music').length};
+      });
+      assert(r.music > 0 && r.music < r.anywhere, 'music ' + r.music + ', anywhere ' + r.anywhere);
+      await link.click();
+      await page.waitForSelector('.results-head .seg a');
+      const segs = await page.locator('.results-head .seg a').evaluateAll((as) => as.map((x) => x.getAttribute('href')));
+      assert(segs.every((x) => x.includes('in=music')), 'the hymnal/all links lost it: ' + segs.join(' '));
+      const n = parseInt((await page.locator('.results-head .seg a.on .n').textContent()), 10);
+      assert(n > 0 && n <= r.music, 'shown ' + n + ' vs ' + r.music);
+    });
     await test('a phrase in quotes must be found together: "ancient of days"', async () => {
       const r = await page.evaluate(async () => {
         const DB = await import('./db.js');

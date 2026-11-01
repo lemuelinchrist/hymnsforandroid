@@ -322,14 +322,16 @@ function score(words, phrase, r) {
 // Hymns that have every word somewhere (first line, chorus line, subject, author or composer, key or tune, stanzas),
 // one per hymn, best first, then the current hymnal, the drawer's hymnal order and the number; the same order as the app's Search tab
 // (HYMNAL_SPEC.md §9.3). Returns [{id, group, no, line, score, where}] for all hymnals; the caller filters by hymnal.
-export function search(words, phrase = words.join(' '), current = null, limit = 3000) {
+export function search(words, phrase = words.join(' '), current = null, limit = 3000, only = null) {
   if (!words.length) return [];
-  const where = words.map(() => '(' + COLUMNS.map((c) => 's.' + c + ' like ?').join(' or ') + ')').join(' and ');
-  const params = words.flatMap((w) => COLUMNS.map(() => '%' + w.replace(/[%_]/g, '') + '%'));
+  // only: look in this one column ('music', 'people'), as a link in a hymn's details does; null: everywhere
+  const cols = only && COLUMNS.includes(only) ? [only] : COLUMNS;
+  const where = words.map(() => '(' + cols.map((c) => 's.' + c + ' like ?').join(' or ') + ')').join(' and ');
+  const params = words.flatMap((w) => cols.map(() => '%' + w.replace(/[%_]/g, '') + '%'));
   const found_ = rows(`select s.id, s.grp, s.first, s.chorus, s.subject, s.people, s.music, s.body, h.no,
                        coalesce(nullif(h.first_stanza_line, ''), h.first_chorus_line) as line
                        from search s join hymns h on h._id = s.id where ${where}`, params)
-    .filter((r) => words.every((w) => !isShortWord(w) || COLUMNS.some((c) => found(r[c], w))));
+    .filter((r) => words.every((w) => !isShortWord(w) || cols.some((c) => found(r[c], w))));
   for (const r of found_) {
     [r.score, r.where] = score(words, phrase, r);
     r.group = r.grp;

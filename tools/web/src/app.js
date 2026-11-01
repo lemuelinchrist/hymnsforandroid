@@ -425,6 +425,7 @@ function whyLine(r, words) {
 
 function searchScreen(view, q) {
   const all = route.params.get('all') === '1';
+  const only = ['music', 'people'].includes(route.params.get('in')) ? route.params.get('in') : null;
   const box = h('div', {class: 'search'});
   view.appendChild(box);
   // keep what is being typed (a space at the end); the URL has the text trimmed
@@ -451,7 +452,7 @@ function searchScreen(view, q) {
   }
 
   const t0 = performance.now();
-  const found = DB.search(pq.words, pq.phrase, currentGroup).filter((r) => isShown(r.group) || r.group === currentGroup);
+  const found = DB.search(pq.words, pq.phrase, currentGroup, 3000, only).filter((r) => isShown(r.group) || r.group === currentGroup);
   const inGroup = found.filter((r) => r.group === currentGroup);
   const showAll = all || !inGroup.length;
   const results = showAll ? found : inGroup;
@@ -459,9 +460,9 @@ function searchScreen(view, q) {
 
   box.appendChild(h('div', {class: 'results-head'},
     h('div', {class: 'seg', role: 'group'},
-      h('a', {href: href('/search', {q}), class: !showAll ? 'on' : '', 'aria-disabled': inGroup.length ? null : 'true'},
+      h('a', {href: href('/search', {q, in: only}), class: !showAll ? 'on' : '', 'aria-disabled': inGroup.length ? null : 'true'},
         BY_CODE[currentGroup].name, h('span', {class: 'n'}, inGroup.length)),
-      h('a', {href: href('/search', {q, all: 1}), class: showAll ? 'on' : ''}, 'All hymnals',
+      h('a', {href: href('/search', {q, all: 1, in: only}), class: showAll ? 'on' : ''}, 'All hymnals',
         h('span', {class: 'n'}, found.length))),
     h('span', {class: 'muted small', title: ms + ' ms'}, found.length >= 3000 ? 'showing the first 3000' : '')));
 
@@ -612,13 +613,15 @@ const HYMNALNET = {E: 'h', NS: 'ns', CH: 'c'};
 
 function metaNode(hymn) {
   // each value but the scripture opens the search (all hymnals) for it; a person without the life dates
-  const find = (value, words) => h('a', {href: href('/search', {q: '"' + (words || value).replace(/"/g, '') + '"', all: 1})}, value);
-  const person = (p) => p && find(p, p.replace(/\s*\([^)]*\)/g, '').replace(/,\s*v\.\s*\d+.*$/, '').trim());
-  const plain = (v) => v && find(v);
+  // and only in its own column of the search table (music, people): 4/4 is a time there, but a scripture reference
+  // in a subject or the lyrics (&in=, dropped as soon as the words are edited)
+  const find = (value, words, column) => h('a', {href: href('/search', {q: '"' + (words || value).replace(/"/g, '') + '"', all: 1, in: column})}, value);
+  const person = (p) => p && find(p, p.replace(/\s*\([^)]*\)/g, '').replace(/,\s*v\.\s*\d+.*$/, '').trim(), 'people');
+  const plain = (v) => v && find(v, null, 'music');
   const items = [
     ['Author', person(hymn.author)], ['Composer', person(hymn.composer)], ['Meter', plain(hymn.meter)],
     ['Key', plain(hymn.key)], ['Time', plain(hymn.time)],
-    ['Tune', hymn.tune && hymn.tune.trim() !== '0' ? find(hymn.tune.trim()) : null],
+    ['Tune', hymn.tune && hymn.tune.trim() !== '0' ? find(hymn.tune.trim(), null, 'music') : null],
     ['Scripture', hymn.verse && hymn.verse.replace(/,\s*$/, '')],
     ['From', hymn.parentId && hymn.parentId !== hymn.id ? h('a', {href: '#/h/' + hymn.parentId}, hymn.parentId) : null],
   ].filter(([, v]) => v);
