@@ -277,6 +277,13 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
        2 to 8). Number size = font size − 4sp (at least 12sp). Tap = open that hymn *and remember where we came from* (§8.2).
      - Folded or not is **one setting for every hymn** (`otherLanguagesFolded`, default false = open), kept across
        restarts; pages already built next to the current one follow it at once.
+     - **Back-to-hymn button** (a switch to a related hymn, by this grid or by choosing a book in the drawer when the
+       hymn has a related hymn there): a round button, 60dp, on the lower right of the hymn page, above the
+       navigation bar, **not there by default**. It appears when a related hymn is opened and is labelled with the
+       **hymn just left** (`C45`), filled with that hymn's book colour (the same as its button bar), white bold text.
+       Tapping it opens that hymn the same way, so the button now shows the hymn that was left in turn: a meeting in
+       two languages goes back and forth with it. It disappears as soon as any other hymn is shown (a swipe, Search,
+       Back, a similar tune). Opening a hymn goes straight to it, never through hymn 1 of its book.
    - **Button bar**: a pill (corner radius 25dp) filled with the book's day colour holding white icons:
      Favorite ♡/♥, Play ▶/❚❚, Sheet music, YouTube (conditional), Similar tune (conditional), Share. See §7.
 3. **Lyrics card** (§6.2).

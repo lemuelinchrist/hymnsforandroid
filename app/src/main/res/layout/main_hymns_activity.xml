@@ -40,6 +40,29 @@
                     android:background="?attr/hymnPageBackground"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
             />
+
+            <!-- after a switch to a related hymn (another language): the hymn left, to go back to it. Round, in its
+                 book's colour, labelled with its number; hidden until such a switch (HymnsActivity.showBackToHymn) -->
+            <TextView
+                    android:id="@+id/back_to_hymn"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="16dp"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:maxLines="1"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:elevation="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="9sp"
+                    app:autoSizeMaxTextSize="15sp"/>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <!-- the book drawer: a header, the books (HymnDrawer: Recent, All books) and a link to the Hymn Books setting -->

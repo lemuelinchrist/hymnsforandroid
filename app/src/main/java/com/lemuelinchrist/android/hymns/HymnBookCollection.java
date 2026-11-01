@@ -35,6 +35,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private HymnBookGroup currentHymnBookGroup;
     private HymnStack hymnStack = new HymnStack(HymnGroup.DEFAULT_HYMN_NUMBER);
     private boolean hymnStackSeeded = false;
+    // the hymn the back-to-hymn button belongs to (the related hymn we switched to), until another hymn is shown
+    private String relatedTo;
 
     public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
@@ -142,6 +144,21 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         switchToHymn(hymnNo);
     }
 
+    /**
+     * A switch to a related hymn (another language of the hymn being read): like switchToHymnAndRememberChoice, and
+     * the round button on the lower right offers the way back to the hymn left, until another hymn is shown.
+     */
+    public void switchToRelatedHymn(String related) {
+        String from = getCurrentHymnId();
+        if (from == null || from.equals(related)) {
+            switchToHymnAndRememberChoice(related);
+            return;
+        }
+        relatedTo = related;   // before the switch: the new page reports it is shown while switching
+        switchToHymnAndRememberChoice(related);
+        context.showBackToHymn(from);
+    }
+
     public void switchToHymn(String hymnId) {
 
         if (hymnId.equals(getCurrentHymnId())) return;
@@ -216,7 +233,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         if (related == null) {
             switchToHymn(selectedHymnGroup + "1");
         } else {
-            switchToHymnAndRememberChoice(related);
+            switchToRelatedHymn(related);
         }
 
     }
@@ -229,6 +246,12 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     public void onLyricVisible(String hymnId) {
         // Sometimes music might be playing in the background. Stop it.
         PlayButton.stopCurrentlyPlayingButton();
+
+        // any hymn but the related one ends the offer to go back (a swipe, Search, Back, a similar tune)
+        if (relatedTo != null && !relatedTo.equals(hymnId)) {
+            relatedTo = null;
+            context.hideBackToHymn();
+        }
 
         // sometimes current hymn lyric is null becuase of a random garbage cleanup.
         if(getCurrentHymnLyric()==null) {

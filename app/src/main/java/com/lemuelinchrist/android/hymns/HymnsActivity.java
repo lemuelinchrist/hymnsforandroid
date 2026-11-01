@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +48,8 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
 
     private ActionBar actionBar;
     private HymnBookCollection hymnBookCollection;
+    private TextView backToHymn;
+    private String backToHymnId;
     // Black was chosen when this screen was made: Dark and Black share the night mode, so a change between them
     // needs the screen made again by hand
     private boolean black;
@@ -76,6 +80,14 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         // Apply window insets for edge-to-edge display on Android 15+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root_layout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+            // keep the back-to-hymn button above the navigation bar
+            View backButton = findViewById(R.id.back_to_hymn);
+            if (backButton != null) {
+                ViewGroup.MarginLayoutParams margins = (ViewGroup.MarginLayoutParams) backButton.getLayoutParams();
+                margins.bottomMargin = Math.round(16 * getResources().getDisplayMetrics().density) + systemBars.bottom;
+                backButton.setLayoutParams(margins);
+            }
 
             // Dynamically set the height of the status bar scrim
             View statusScrim = findViewById(R.id.status_bar_scrim);
@@ -112,6 +124,10 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager));
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
+        backToHymn = findViewById(R.id.back_to_hymn);
+        backToHymn.setOnClickListener(v -> {
+            if (backToHymnId != null) hymnBookCollection.switchToRelatedHymn(backToHymnId);
+        });
 
         // Back: close the drawer, else return to the previous hymn, else leave the app
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
@@ -175,6 +191,42 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setDisplayConfig();
         hymnSwitcher=this;
+    }
+
+    /**
+     * The round button on the lower right, after a switch to a related hymn: labelled with the hymn we left, in its
+     * book's colour; it switches back to it.
+     */
+    public void showBackToHymn(String hymnId) {
+        if (backToHymn == null) return;
+        try {
+            HymnGroup group = HymnGroup.getHymnGroupFromID(hymnId);
+            GradientDrawable circle = new GradientDrawable();
+            circle.setShape(GradientDrawable.OVAL);
+            circle.setColor(BookColors.buttonBar(this, group));
+            backToHymn.setBackground(circle);
+        } catch (NoSuchHymnGroupException e) {
+            return;
+        }
+        backToHymnId = hymnId;
+        backToHymn.setText(hymnId);
+        backToHymn.setContentDescription("Back to hymn " + hymnId);
+        backToHymn.animate().cancel();
+        if (backToHymn.getVisibility() != View.VISIBLE) {
+            backToHymn.setAlpha(0f);
+            backToHymn.setScaleX(0.6f);
+            backToHymn.setScaleY(0.6f);
+            backToHymn.setVisibility(View.VISIBLE);
+        }
+        backToHymn.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(180).start();
+    }
+
+    public void hideBackToHymn() {
+        if (backToHymn == null || backToHymn.getVisibility() != View.VISIBLE) return;
+        backToHymnId = null;
+        backToHymn.animate().cancel();
+        backToHymn.animate().alpha(0f).scaleX(0.6f).scaleY(0.6f).setDuration(120)
+                .withEndAction(() -> backToHymn.setVisibility(View.GONE)).start();
     }
 
     private void refreshHymnDrawer() {
@@ -356,7 +408,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
 
     @Override
     public void switchToRelatedHymn(String hymnId) {
-        hymnBookCollection.switchToHymnAndRememberChoice(hymnId);
+        hymnBookCollection.switchToRelatedHymn(hymnId);
     }
 
     public static HymnSwitcher getHymnSwitcher() {

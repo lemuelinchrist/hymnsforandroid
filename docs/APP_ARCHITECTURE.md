@@ -33,6 +33,7 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
     -   Listens for `onLyricVisible` events from `ContentArea` to update the hymn title and theme colours in the action bar.
     -   Starts `SearchActivity` and receives the selected hymn via `onActivityResult`.
     -   Handles Back: closes the drawer, else goes to the previous hymn (`HymnBookCollection.goToPreviousHymn`), else leaves the app.
+    -   Shows and hides the round back-to-hymn button (`showBackToHymn`, `hideBackToHymn`; the view `back_to_hymn` in `main_hymns_activity.xml`), in the left hymn's book colour.
     -   Implements `HymnSwitcher`, which the related-hymn chips and the similar-tune dialog use to open a hymn (`HymnsActivity.getHymnSwitcher()`).
     -   Re-applies settings (theme, font, keep-screen-on, disabled languages) in `onResume` when a preference changed.
 
@@ -41,7 +42,7 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
 -   **Responsibilities:**
     -   Acts as the primary coordinator for the `ViewPager`.
     -   Creates and caches one `HymnBookGroup` adapter per hymn book, on first use.
-    -   Contains the core logic for switching between hymns (`switchToHymn`, `switchToHymnAndRememberChoice`) and translating between related hymns in different languages (`translateTo`).
+    -   Contains the core logic for switching between hymns (`switchToHymn`, `switchToHymnAndRememberChoice`) and translating between related hymns in different languages (`translateTo`). A switch to a related hymn (`switchToRelatedHymn`) also asks `HymnsActivity` to show the round back-to-hymn button for the hymn left; any other hymn shown (`onLyricVisible`) hides it. A book is opened on the target page at once (`switchHymnBook(group, hymnNo)`), so hymn 1 is never shown on the way.
     -   Maintains a `HymnStack` (`utils/HymnStack.java`) of hymns for the Back button. `switchToHymnAndRememberChoice` pushes the current hymn and then the target; plain `switchToHymn` and swiping do not touch the stack.
     -   Uses `HymnsDao` to get the list of hymn numbers for a given hymn book.
     -   On start (`refresh`), opens the most recent hymn from history, or `E1`.
