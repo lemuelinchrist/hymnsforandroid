@@ -174,6 +174,12 @@ public class HymnsDao {
         }
     }
 
+    /** The links of one kind of a hymn, else those of its parent (a translation shows its parent's piano videos). */
+    public ArrayList<String[]> getLinksOrParent(String hymnId, String parentId, String kind) {
+        ArrayList<String[]> links = getLinks(hymnId, kind);
+        return links.isEmpty() ? getLinks(parentId, kind) : links;
+    }
+
     public List<Hymn> getHymnsWithSimilarTune(Hymn targetHymn) {
         ArrayList<Hymn> hymns = new ArrayList<>();
         if(targetHymn.getTune()==null || targetHymn.getTune().isEmpty()) {

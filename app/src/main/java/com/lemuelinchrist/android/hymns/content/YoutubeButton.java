@@ -41,14 +41,9 @@ public class YoutubeButton extends ContentComponent<ImageButton> {
             hymnsDao.open();
 
             // Prepare Links
-            ArrayList<String[]> pianoLinks = hymnsDao.getLinks(hymn.getHymnId(), "piano");
-            if(pianoLinks.size()==0) {
-                // maybe its parent has links
-                pianoLinks = hymnsDao.getLinks(hymn.getParentHymn(), "piano");
-            }
-            for(String[] link: pianoLinks) {
-                // the table keeps the watch address; the button has always opened the embed address of the video
-                links.add(link[1].trim().replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/"));
+            // (a hymn without videos of its own shows its parent's)
+            for(String[] link: hymnsDao.getLinksOrParent(hymn.getHymnId(), hymn.getParentHymn(), "piano")) {
+                links.add(embedAddress(link[1]));
                 comments.add(link[0].trim());
             }
 
@@ -86,6 +81,11 @@ public class YoutubeButton extends ContentComponent<ImageButton> {
 
             }
         });
+    }
+
+    /** The table keeps the watch address of a video; the button and the links card have always opened its embed address. */
+    static String embedAddress(String url) {
+        return url.trim().replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/");
     }
 
     private static void launchYouTube(Context context, String link) {

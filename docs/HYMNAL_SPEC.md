@@ -309,6 +309,13 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    `#/search?q="4/4"&all=1&in=music`, and `in=` stays on the hymnal / all hymnals switch but not on typing.)
    (Until v5.6 these were in the header card and the related hymns were pills with book names at the bottom: the
    numbers moved up because brothers call hymns in several languages during meetings.)
+5. **Listen and links card** (below the details; hidden when it has no row): label `LISTEN AND LINKS`, then the same
+   two-column table, one row per item: `Piano videos` | the hymn's piano videos (`link` rows of kind `piano`, else its
+   parent's, §7.4) as links `<label> ↗` joined by ` · `, each opening the video the way the YouTube button does; and
+   `hymnal.net` | `This hymn ↗`, only for English (`E`, `https://www.hymnal.net/en/hymn/h/<no>`), New Songs (`NS`,
+   `.../ns/<no>`) and Children (`CH`, `.../c/<no>`). The links are underlined in the book's accent colour. The card shows
+   whatever the YouTube button setting is, and is independent of it. Links in the lyrics (the SoundCloud and YouTube
+   stanzas of the youth books) stay where they are.
 
 Cards: 10dp side margins, 5dp radius, light elevation. Page and card colours: §6.3.
 

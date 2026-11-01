@@ -43,6 +43,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
     private final TextView subjectHeader;
     private final ViewGroup stanzaView;
     private final OtherLanguagesSection otherLanguages;
+    private final LinksSection links;
     private final TableLayout detailsTable;
     private final SharedPreferences sharedPreferences;
     private int columnNo=0;
@@ -70,6 +71,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         detailsTable = view.findViewById(getRid("detailsTable"));
 
         otherLanguages = new OtherLanguagesSection(hymn, parentFragment, (ViewGroup) view.findViewById(getRid("otherLanguagesContainer")));
+        links = new LinksSection(hymn, parentFragment, view.findViewById(getRid("linksCard")), fontSize);
 
     }
 
@@ -124,6 +126,8 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             if (detailsTable.getChildCount() == 0) {
                 view.findViewById(getRid("detailsCard")).setVisibility(View.GONE);
             }
+            // the card below it: piano videos and the hymnal.net page
+            links.display();
 
             // ######################## Build Lyric Text
 
