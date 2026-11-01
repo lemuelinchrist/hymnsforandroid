@@ -689,7 +689,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `youtubeButton` | string | `disabled` | `disabled` / `piano` / `search` (§7.4); the summary shows the current choice |
 | `similarTune` | bool | false | show Similar Tune button (§7.5) |
 | `sheetMusicType` | string | `pianoSvg` | `pianoSvg` = Piano, `guitarSvg` = Guitar: the viewer's starting mode (§11) |
-| `about` | action | — | dialog with app name, version, feedback address `lemuelinchrist@gmail.com` |
+| `about` | action | — | dialog with app name, version, "Source code:" and the repository address (`github.com/lemuelinchrist/hymnsforandroid`, a link), "Feedback:" and the project's support address (`hymnsforandroid.support@gmail.com`, a link). The web app's About card shows the same lines |
 
 Changing any setting refreshes the reader (theme, font, drawer, current page) when returning to it.
 

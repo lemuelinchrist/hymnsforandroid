@@ -1345,9 +1345,10 @@ function settingsScreen(view) {
     h('p', null, 'Hymns ', v.app || '', ' · ', (v.hymns || 0).toLocaleString(), ' hymns · data of ', v.built || '?'),
     h('p', {class: 'muted small'}, 'The same hymns as the Android app ',
       h('a', {href: 'https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns', target: '_blank', rel: 'noopener'}, 'Hymns For Android'),
-      '. Sheet music from www.hymnal.net, engraved with Verovio (LGPL). ',
-      h('a', {href: 'https://github.com/lemuelinchrist/hymnsforandroid', target: '_blank', rel: 'noopener'}, 'Source code'), '.'),
-    h('p', {class: 'muted small'}, 'Feedback: ', h('a', {href: 'mailto:lemuelinchrist@gmail.com'}, 'lemuelinchrist@gmail.com')),
+      '. Sheet music from www.hymnal.net, engraved with Verovio (LGPL).'),
+    h('p', {class: 'muted small'}, 'Source code: ',
+      h('a', {href: 'https://github.com/lemuelinchrist/hymnsforandroid', target: '_blank', rel: 'noopener'}, 'github.com/lemuelinchrist/hymnsforandroid')),
+    h('p', {class: 'muted small'}, 'Feedback: ', h('a', {href: 'mailto:hymnsforandroid.support@gmail.com'}, 'hymnsforandroid.support@gmail.com')),
     window.matchMedia('(pointer: coarse)').matches ? null
       : h('p', null, h('button', {class: 'link', onclick: () => $('#helpDialog').showModal()}, 'Keyboard shortcuts'))));
 }
