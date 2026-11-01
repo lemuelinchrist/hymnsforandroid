@@ -244,6 +244,13 @@ async function search(page, text) {
       assert((await page.locator('.home-lists').textContent()).includes('Favorites'), 'favorites list');
       assert(await page.locator('.home-lists a[href="#/h/E8"]').count() >= 1, 'E8 in the lists');
     });
+    await test('big screens: the top bar has a Favorites star that opens the favorites, from a hymn too', async () => {
+      await open(page, '#/h/E8');
+      assert(await page.isVisible('#favoritesTop'), 'no Favorites star in the top bar');
+      await page.click('#favoritesTop');
+      await page.waitForURL(/#\/favorites/);
+      assert(await page.locator('.page-title').textContent().then((t) => t.includes('Favorites')), 'not the favorites page');
+    });
     await test('a hymn without sheet music has no Sheet tab and says so (C206)', async () => {
       await open(page, '#/h/C206');
       assert(await page.locator('.tabs').count() === 0, 'tabs shown');

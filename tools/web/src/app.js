@@ -290,6 +290,8 @@ function render() {
   $('#backBtn').hidden = !screen || shownDepth === 0;
   const tab = !screen ? 'home' : ['browse', 'favorites', 'settings'].includes(screen) ? screen : null;
   for (const a of document.querySelectorAll('.tabbar a')) a.classList.toggle('on', a.dataset.tab === tab);
+  $('#favoritesTop').classList.toggle('current', tab === 'favorites');
+  $('#settingsTop').classList.toggle('current', tab === 'settings');
   window.scrollTo(0, 0);
 }
 
@@ -1384,6 +1386,7 @@ async function start() {
   }
   for (const b of document.querySelectorAll('[data-close]')) b.addEventListener('click', () => b.closest('dialog').close());
   for (const t of document.querySelectorAll('.tabbar .ti')) t.appendChild(icon(t.dataset.icon));
+  $('#favoritesTop').appendChild(icon('star'));
   $('#settingsTop').appendChild(icon('settings'));
   $('#backBtn').addEventListener('click', goBack);
   window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredInstall = e; });

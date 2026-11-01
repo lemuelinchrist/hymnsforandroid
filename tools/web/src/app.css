@@ -540,6 +540,7 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 .topbar { padding-top: env(safe-area-inset-top); height: calc(var(--top) + env(safe-area-inset-top)); }
 .back-btn { margin-right: -6px; color: var(--ink); }
 .settings-top { color: var(--muted); }
+.settings-top.current { color: var(--g); }
 .tabbar { display: none; }
 @media (max-width: 720px) {
   .settings-top { display: none; }

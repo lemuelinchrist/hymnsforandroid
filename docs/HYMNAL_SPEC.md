@@ -987,6 +987,7 @@ first load small.
 | WebView sheet viewer | iframe or direct navigation to `viewer/index.html?...` |
 | Theme | System default / Light / Dark from `prefers-color-scheme` and a setting |
 | Swipe between hymns | horizontal pointer/touch gestures + ←/→ keys; prefetch neighbours |
+| Favorites and Settings (screens wider than a phone) | the bottom tab bar is for phones only; wider screens have a Favorites star and a Settings gear in the top bar |
 | Hymn heading (phones, tablets) | the subject (category · subcategory) is the heading, in a bigger size; the first line is left out of sight (stanza 1 shows it right below; it stays for screen readers and print). Wide screens show both |
 | Lyrics / Sheet music tab strip (phones) | slides away while scrolling down the lyrics, back on any scroll up or at the top of the page; the sheet hides its own bars separately |
 | Toasts / dialogs | lightweight in-page equivalents |
