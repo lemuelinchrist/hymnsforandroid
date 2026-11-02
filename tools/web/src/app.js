@@ -9,6 +9,7 @@
 //   #/settings         settings, chord edits, offline, about
 import * as DB from './db.js';
 import {GROUPS, BY_CODE, splitId, langOf, currentCode, currentId} from './groups.js';
+import {parseScripture} from './scripture.js';
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE, prefetchAll} from './sheet.js';
 import {createEditor} from './editor.js';
 import * as Edits from './edits.js';
@@ -627,6 +628,14 @@ async function copyLyrics(hymn) {
   }
 }
 
+// the Bible references as links to the Recovery Version text (as hymnal.net does); a part that can't be read stays text
+function scriptureNode(verses) {
+  const refs = parseScripture(verses);
+  if (!refs.length) return null;
+  return h('span', {class: 'scripture'}, refs.map((r, i) => [i ? ', ' : '',
+    r.url ? h('a', {href: r.url, target: '_blank', rel: 'noopener', title: 'Open in the Recovery Version'}, r.text) : r.text]));
+}
+
 function metaNode(hymn) {
   // each value but the scripture opens the search (all hymnals) for it; a person without the life dates
   // and only in its own column of the search table (music, people): 4/4 is a time there, but a scripture reference
@@ -638,7 +647,7 @@ function metaNode(hymn) {
     ['Author', person(hymn.author)], ['Composer', person(hymn.composer)], ['Meter', plain(hymn.meter)],
     ['Key', plain(hymn.key)], ['Time', plain(hymn.time)],
     ['Tune', hymn.tune && hymn.tune.trim() !== '0' ? find(hymn.tune.trim(), null, 'music') : null],
-    ['Scripture', hymn.verse && hymn.verse.replace(/,\s*$/, '')],
+    ['Scripture', scriptureNode(hymn.verse)],
     ['From', hymn.parentId && hymn.parentId !== hymn.id ? h('a', {href: '#/h/' + hymn.parentId}, hymn.parentId) : null],
   ].filter(([, v]) => v);
   return h('footer', {class: 'meta'},

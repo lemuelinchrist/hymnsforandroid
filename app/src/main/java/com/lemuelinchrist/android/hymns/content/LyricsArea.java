@@ -118,7 +118,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             }
             if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0"))
                 addDetail("Tune", "music", new String[][]{{hymn.getTune(), phrase(hymn.getTune())}});
-            if (isNotEmpty(hymn.getVerse())) addDetail("Verses", hymn.getVerse());
+            if (isNotEmpty(hymn.getVerse())) addVerses(Scripture.parse(hymn.getVerse()));
             if (isNotEmpty(hymn.getAuthor()))
                 addDetail("Author", "people", new String[][]{{hymn.getAuthor(), personOf(hymn.getAuthor())}});
             if (isNotEmpty(hymn.getComposer()))
@@ -269,11 +269,6 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
     }
 
     /** One row of the details card (detail_row.xml), a little smaller than the lyrics. */
-    private void addDetail(String label, String value) {
-        TextView valueView = addDetailRow(label);
-        valueView.setText(value);
-    }
-
     /**
      * A row whose value is made of parts: {shown text, words to search} each; no words (null) = plain text. A part
      * opens the Search tab with its words, looked for only in the column of the search table the row belongs to
@@ -304,6 +299,42 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         // links and selecting text don't go together
         valueView.setTextIsSelectable(false);
         valueView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    /**
+     * The row of Bible references: each one that can be read is a link to the Recovery Version text (see {@link Scripture}),
+     * opened in the browser; the others stay plain text. Shown separated by commas, without the one the data ends with.
+     */
+    private void addVerses(List<Scripture.Ref> refs) {
+        TextView valueView = addDetailRow("Verses");
+        SpannableStringBuilder text = new SpannableStringBuilder();
+        boolean anyLink = false;
+        for (Scripture.Ref ref : refs) {
+            if (text.length() > 0) text.append(", ");
+            int start = text.length();
+            text.append(ref.text);
+            if (ref.url == null) continue;
+            anyLink = true;
+            final String url = ref.url;
+            text.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    openWebPage(url);
+                }
+
+                @Override
+                public void updateDrawState(@NonNull TextPaint ds) {
+                    ds.setColor(BookColors.accent(context, hymn.getHymnGroup()));
+                    ds.setUnderlineText(true);
+                }
+            }, start, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        valueView.setText(text);
+        if (anyLink) {
+            // links and selecting text don't go together
+            valueView.setTextIsSelectable(false);
+            valueView.setMovementMethod(LinkMovementMethod.getInstance());
+        }
     }
 
     private TextView addDetailRow(String label) {

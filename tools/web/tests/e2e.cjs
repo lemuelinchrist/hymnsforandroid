@@ -133,6 +133,16 @@ async function search(page, text) {
       assert(saved === '["BUR637","E1","FRY12"] | ["RUS5","NS151"] | ["I","FRY"] | "BUR" | true', 'migrated: ' + saved);
       await page.evaluate(() => { ['favorites', 'recent', 'hidden', 'group'].forEach((k) => localStorage.removeItem('hfw.' + k)); });
     });
+    await test('the Bible references under a hymn link to the Recovery Version text', async () => {
+      await open(page, '#/h/E241');
+      const links = await page.locator('.meta .scripture a').evaluateAll((as) => as.map((a) => [a.textContent, a.href, a.target]));
+      assert(links.length === 1, 'E241 has one reference: ' + JSON.stringify(links));
+      assert(links[0][1] === 'https://text.recoveryversion.bible/66_Revelation_5.htm#Rev5-12', 'link: ' + JSON.stringify(links));
+      assert(links.every((l) => l[2] === '_blank'), 'opens in a new tab');
+      await open(page, '#/h/NS931');                    // a part without a book goes on from the one before: Ephesians 2:5-6,18,19-22
+      const ns = await page.locator('.meta .scripture a').evaluateAll((as) => as.map((a) => a.getAttribute('href').replace('https://text.recoveryversion.bible/', '')));
+      assert(ns.includes('49_Ephesians_2.htm#Eph2-18'), 'NS931: ' + JSON.stringify(ns));
+    });
     await test('words find the first line first: "blessings flow" -> E8', async () => {
       await open(page, '#/browse/E');
       await search(page, 'blessings flow');

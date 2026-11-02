@@ -310,7 +310,7 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    a two-column table at font size − 2sp, one row per item, omitted when empty, in this order: label (muted) | value
    (wraps in its own column, selectable): `Meter` · `Time` (with the key when both exist: `4/4 · Ab Major`), or `Key`
    when there is only a key · `Tune` (omit when `0`) · `Verses` · `Author` · `Composer`.
-   Every value but `Verses` is a link (underlined, book accent colour; the time and the key are separate links) that
+   `Verses` are links to the Bible (below). Every other value is a link (underlined, book accent colour; the time and the key are separate links) that
    opens the search screen on the Search tab, all books, with that value in the box. The search looks **only in one
    column of the `search` table** while the box still holds the link's words: `music` for meter, time, key and tune,
    `people` for author and composer (an author is searched without the dates and `v. N`). Time and meter are searched
@@ -319,6 +319,19 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    `#/search?q="4/4"&all=1&in=music`, and `in=` stays on the hymnal / all hymnals switch but not on typing.)
    (Until v5.6 these were in the header card and the related hymns were pills with book names at the bottom: the
    numbers moved up because brothers call hymns in several languages during meetings.)
+   **Verses** (Bible references): the hymn's `verse` text ("Ephesians 2:5-6,18,19-22,") is shown as a list of separate
+   references (`Ephesians 2:5-6, 18, 19-22`, without the trailing comma); each one that can be read is a link (underlined,
+   book accent colour) to the Recovery Version text, as hymnal.net links them: `https://text.recoveryversion.bible/` +
+   `<NN>_<Book>_<chapter>.htm` + `#<Abbr><chapter>-<verse>` (e.g. `66_Revelation_5.htm#Rev5-12`; the 66 books' file
+   names, anchor codes and chapter counts are in `content/Scripture.java` and `tools/web/src/scripture.js`, which hold
+   the same table and rules). It opens in the browser (Android: `ACTION_VIEW`; web: a new tab). Rules: the parts are
+   separated by commas or semicolons; a part with no book goes on from the one before (a bare `18` after `Ephesians 2:5-6`
+   is verse 2:18, and `19-22` its range; after a chapter alone, as in `Psalms 42,43`, a bare number is a chapter); a range
+   links to its first verse; a chapter alone, a chapter range (`Revelation 18-21`) or a book alone link to the chapter's
+   page (the first one); in a book of one chapter (Obadiah, Philemon, 2 John, 3 John, Jude) a number is a verse;
+   a trailing `a`/`b` is ignored; book names are English, Portuguese or Spanish (accents and spaces ignored); anything
+   else (another language's book names, a chapter the book doesn't have, a part before any book) stays plain text. Only
+   the link is made: the Bible text is not copied into the app (it is copyrighted).
 5. **Listen and links card** (below the details; hidden when it has no row): label `LISTEN AND LINKS`, then the same
    two-column table, one row per item: `Piano videos` | the hymn's piano videos (`link` rows of kind `piano` where
    `hymn_id` = this hymn's ID, else its parent's ID, in `n_order`) as links `<label> ↗` joined by ` · `. A tap opens the
