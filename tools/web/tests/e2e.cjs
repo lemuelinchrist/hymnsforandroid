@@ -80,7 +80,8 @@ async function search(page, text) {
     console.log('Loading');
     await test('first visit downloads the database and shows the hymnals', async () => {
       await open(page, '');
-      assert(await page.locator('.hymnals .hymnal-card').count() === 27, 'expected 27 hymnals');
+      const n = await page.locator('.hymnals .hymnal-card').count();
+      assert(n === 30, 'expected 30 hymnals, found ' + n);
     });
     await test('a second visit opens the database from the browser, without downloading it', async () => {
       await page.waitForTimeout(500);   // the first visit stores it in IndexedDB
