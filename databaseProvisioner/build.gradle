@@ -70,14 +70,14 @@ task runKikuyu(type: JavaExec) {
 task runRussian(type: JavaExec) {
     dependsOn ":sqlite:importSql"
     mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
-    args 'R'
+    args 'RUS'
     classpath = sourceSets.main.runtimeClasspath
 }
 
 task runBurmese(type: JavaExec) {
     dependsOn ":sqlite:importSql"
     mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
-    args 'MY'
+    args 'BUR'
     classpath = sourceSets.main.runtimeClasspath
 }
 

@@ -8,7 +8,7 @@
 //   #/favorites        favorites, with import/export in the Android app's format
 //   #/settings         settings, chord edits, offline, about
 import * as DB from './db.js';
-import {GROUPS, BY_CODE, splitId, langOf} from './groups.js';
+import {GROUPS, BY_CODE, splitId, langOf, currentCode, currentId} from './groups.js';
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE, prefetchAll} from './sheet.js';
 import {createEditor} from './editor.js';
 import * as Edits from './edits.js';
@@ -106,6 +106,21 @@ function toast(msg) {
 const wide = window.matchMedia('(min-width: 1080px)');
 
 // ---- settings ----
+
+// What this device saved under the old codes of three hymnals (MY, R, FY; 2026-11) gets the new codes, once
+function migrateStoredCodes() {
+  if (store.get('codesMigrated2026_11', false)) return;
+  const group = store.get('group', null);
+  if (group && currentCode(group) && currentCode(group) !== group) store.set('group', currentCode(group));
+  for (const key of ['recent', 'favorites']) {
+    const ids = store.get(key, null);
+    if (Array.isArray(ids)) store.set(key, [...new Set(ids.map(currentId))]);
+  }
+  const hiddenCodes = store.get('hidden', null);
+  if (Array.isArray(hiddenCodes)) store.set('hidden', [...new Set(hiddenCodes.map((c) => currentCode(c) || c))]);
+  store.set('codesMigrated2026_11', true);
+}
+migrateStoredCodes();
 
 let currentGroup = store.get('group', 'E');
 if (!BY_CODE[currentGroup]) currentGroup = 'E';
@@ -1165,7 +1180,7 @@ function favoriteIds(text) {
     line = line.replace(/^[^A-Za-z0-9]+/, '');
     const words = /^[A-Za-z0-9,;\s]*,[A-Za-z0-9,;\s]*$/.test(line) ? line.split(/[,;\s]+/) : [line.split(/[^A-Za-z0-9]/)[0]];
     for (const word of words) {
-      const id = word.toUpperCase();
+      const id = currentId(word.toUpperCase());
       if (/^[A-Z]{1,3}[0-9]{1,5}[A-Z]?$/.test(id) && DB.exists(id) && !ids.includes(id)) ids.push(id);
     }
   }

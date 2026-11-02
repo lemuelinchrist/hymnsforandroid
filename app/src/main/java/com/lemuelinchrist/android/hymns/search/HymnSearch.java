@@ -94,9 +94,11 @@ public final class HymnSearch {
         String q = typed == null ? "" : typed.trim();
         Matcher m = HYMN_ID.matcher(q);
         if (m.matches()) {
+            // the code is a book's, or one of the codes three books had before 2026-11 (MY, R, FY)
+            String code = HymnGroup.currentCode(m.group(1));
             try {
-                return HymnGroup.valueOf(m.group(1).toUpperCase()).name() + Integer.parseInt(m.group(2));
-            } catch (IllegalArgumentException e) {
+                return code == null ? null : code + Integer.parseInt(m.group(2));
+            } catch (NumberFormatException e) {
                 return null;
             }
         }

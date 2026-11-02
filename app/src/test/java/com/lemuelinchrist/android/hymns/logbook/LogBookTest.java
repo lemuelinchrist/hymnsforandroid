@@ -118,11 +118,43 @@ public class LogBookTest {
         LogBook logBook = new LogBook(context, FILE);
         logBook.log(hymn("E1"));
 
-        int added = logBook.addAll(Arrays.asList(hymn("NS47"), hymn("E1"), hymn("C100"), hymn("FY18")));
+        int added = logBook.addAll(Arrays.asList(hymn("NS47"), hymn("E1"), hymn("C100"), hymn("FRY18")));
 
         assertEquals(3, added);
-        assertEquals(Arrays.asList("NS47", "C100", "FY18", "E1"), savedIds());
+        assertEquals(Arrays.asList("NS47", "C100", "FRY18", "E1"), savedIds());
         assertEquals(0, logBook.addAll(Arrays.asList(hymn("E1"), hymn("C100"))));
+    }
+
+    @Test
+    public void migrateCodesGivesTheHymnsOfRenamedBooksTheirNewIds() throws InterruptedException {
+        LogBook logBook = new LogBook(context, FILE);
+        logBook.log(hymn("E1"));
+        Thread.sleep(2);
+        logBook.log(hymn("MY637"));
+        Thread.sleep(2);
+        logBook.log(hymn("R5"));
+        Thread.sleep(2);
+        logBook.log(hymn("FY12"));
+
+        assertEquals(3, LogBook.migrateCodes(context, FILE));
+
+        assertEquals(Arrays.asList("FRY12", "RUS5", "BUR637", "E1"), savedIds());
+        HymnRecord burmese = new LogBook(context, FILE).getAllRecords()[2];
+        assertEquals("BUR", burmese.getHymnGroup());
+        assertEquals("first line of MY637", burmese.getFirstLine());
+        assertEquals("a second run finds nothing to change", 0, LogBook.migrateCodes(context, FILE));
+    }
+
+    @Test
+    public void migrateCodesKeepsTheNewerRecordOfAHymnSavedUnderBothIds() throws InterruptedException {
+        LogBook logBook = new LogBook(context, FILE);
+        logBook.log(hymn("MY1"));
+        Thread.sleep(2);
+        logBook.log(hymn("BUR1"));
+
+        LogBook.migrateCodes(context, FILE);
+
+        assertEquals(Arrays.asList("BUR1"), savedIds());
     }
 
     @Test

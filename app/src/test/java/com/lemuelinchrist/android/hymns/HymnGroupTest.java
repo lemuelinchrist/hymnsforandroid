@@ -29,6 +29,22 @@ public class HymnGroupTest {
     }
 
     @Test
+    public void theOldCodesOfThreeBooksStillFindTheirHymns() {
+        assertEquals(HymnGroup.BUR, HymnGroup.getHymnGroupFromID("MY637"));
+        assertEquals(HymnGroup.RUS, HymnGroup.getHymnGroupFromID("R1"));
+        assertEquals(HymnGroup.FRY, HymnGroup.getHymnGroupFromID("fy12"));
+        assertEquals("BUR637", HymnGroup.currentId("MY637"));
+        assertEquals("RUS1", HymnGroup.currentId("r1"));
+        assertEquals("FRY12", HymnGroup.currentId("FY12"));
+        assertEquals("E1", HymnGroup.currentId("E1"));
+        assertEquals("XX9", HymnGroup.currentId("XX9"));
+        assertEquals("BUR", HymnGroup.currentCode("my"));
+        assertEquals("POR", HymnGroup.currentCode("por"));
+        assertEquals(null, HymnGroup.currentCode("XX"));
+        assertEquals("637", HymnGroup.getHymnNoFromID("MY637"));
+    }
+
+    @Test
     public void unknownCodesAreRefused() {
         for (String id : new String[]{"XX1", "ABCD1", "1", "PO1"}) {
             try {

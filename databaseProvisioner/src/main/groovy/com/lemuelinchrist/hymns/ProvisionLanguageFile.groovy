@@ -22,11 +22,13 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 class ProvisionLanguageFile {
 
     static final Map<String, Map> LANGUAGES = [
-            // the Russian hymnal: its own numbering (the "R" numbers in the German file's Related lines)
-            R : [file: '/Russian.txt', prefix: 'RUS-', maxNo: 1000, splitSubject: false],
+            // the Russian hymnal: its own numbering (the "R" numbers in the German file's Related lines). Its code was R
+            // until 2026-11: legacyGroup is cleaned out of the database with it (a one-time migration that stays)
+            RUS: [file: '/Russian.txt', prefix: 'RUS-', maxNo: 1000, splitSubject: false, legacyGroup: 'R'],
             // the Burmese hymnal: its own numbering, Subject is "category – subcategory". The extra songs after 235, 245
             // and 365 are numbered from 1001 (kept, 2026-10-30); their parents come from their end-notes (New Songs, Be Filled).
-            MY: [file: '/Burmese.txt', prefix: 'BUR-', maxNo: 1100, splitSubject: true,
+            // (its code was MY until 2026-11)
+            BUR: [file: '/Burmese.txt', prefix: 'BUR-', maxNo: 1100, splitSubject: true, legacyGroup: 'MY',
                  altNumbers: ['235-alt1': 1001, '235-alt2': 1002, '235-alt3': 1003,
                               '245-alt1': 1004, '245-alt2': 1005, '365-alt': 1006]],
             // the Tamil hymns: numbered like the English hymnal (TA1 = E1), 1501 and up are other songs
@@ -71,13 +73,16 @@ class ProvisionLanguageFile {
 
     void removeHymns() {
         println "Cleaning up existing ${group} hymns..."
-        for (int x = 1; x <= language.maxNo; x++) {
-            HymnsEntity old = dao.find(group + x)
-            if (old != null) {
-                // links added to hymns that are not the parent are not undone by dao.delete
-                (old.related - [old.parentHymn]).findAll { it?.trim() }.each { dao.removeRelatedHymn(it, old.id) }
+        // the book's earlier code too, so a database made before the rename loses its old rows
+        for (String code : [group, language.legacyGroup].findAll { it }) {
+            for (int x = 1; x <= language.maxNo; x++) {
+                HymnsEntity old = dao.find(code + x)
+                if (old != null) {
+                    // links added to hymns that are not the parent are not undone by dao.delete
+                    (old.related - [old.parentHymn]).findAll { it?.trim() }.each { dao.removeRelatedHymn(it, old.id) }
+                }
+                dao.delete(code + x)
             }
-            dao.delete(group + x)
         }
     }
 

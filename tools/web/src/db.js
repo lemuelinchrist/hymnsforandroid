@@ -1,6 +1,6 @@
 // The hymn database: the app's SQLite file, opened in the browser with sql.js.
 // The file is kept in IndexedDB, so it is downloaded again only when data/version.json says it changed.
-import {BY_CODE, GROUPS, splitId} from './groups.js';
+import {BY_CODE, GROUPS, splitId, currentCode, currentId} from './groups.js';
 import {fetchBytes, gunzip} from './files.js';
 
 let db = null;
@@ -106,7 +106,7 @@ const INHERITED = ['author', 'composer', 'time', 'tune', 'sheet_music_link', 'ke
 
 // A hymn as the app shows it: empty fields, categories and stanzas come from the parent hymn (HymnsDao.get).
 export function hymn(id) {
-  id = (id || '').toUpperCase();
+  id = currentId((id || '').toUpperCase());   // an old code (MY637) finds the hymn under its new one (BUR637)
   if (cache.has(id)) return cache.get(id);
   const row = hymnRow(id);
   if (!row) return null;
@@ -185,7 +185,7 @@ export function videos(hymnObj) {
 }
 
 export function exists(id) {
-  return !!(id && hymnRow(id.toUpperCase()));
+  return !!(id && hymnRow(currentId(id.toUpperCase())));
 }
 
 // Every version of a hymn: the hymn it comes from, everything that comes from that one, and the related lists.
@@ -276,7 +276,7 @@ export function plain(html) {
 export function parseQuery(q, group) {
   q = (q || '').trim();
   let m = /^([A-Za-z]{1,3})\s*-?\s*(\d+)$/.exec(q);
-  if (m && BY_CODE[m[1].toUpperCase()]) return {id: m[1].toUpperCase() + parseInt(m[2], 10)};
+  if (m && currentCode(m[1])) return {id: currentCode(m[1]) + parseInt(m[2], 10)};
   m = /^#?(\d+)$/.exec(q);
   if (m) return {id: group + parseInt(m[1], 10), number: true};
   const words = [];

@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.content.FaveButton;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
@@ -254,7 +255,7 @@ public class FavoritesBackup {
                     ? line.split("[,;\\s]+")
                     : new String[]{line.split("[^A-Za-z0-9]", 2)[0]};
             for (String word : words) {
-                if (HYMN_ID.matcher(word).matches()) ids.add(word);
+                if (HYMN_ID.matcher(word).matches()) ids.add(HymnGroup.currentId(word));
             }
         }
         return new ArrayList<>(ids);

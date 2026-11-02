@@ -90,9 +90,15 @@ Parsing rule (MUST match `HymnGroup.getHymnGroupFromID` / `getHymnNoFromID`):
   and it starts with a digit. (Until v5.8.3 a code was at most two letters; three-letter codes came with the
   Portuguese and Polish books, so that a book can be named by its language and a language can have two books.)
 - An ID whose group is unknown is invalid (skip it silently in lists).
+- **Old codes**: three books were renamed in 2026-11 to the three-letter codes their contributors already use: Burmese
+  `MY` is now `BUR`, Russian `R` is `RUS`, French Youth `FY` is `FRY`. An old code still resolves to the new one when a
+  hymn ID is read, typed or opened from a link (`MY637` is `BUR637`), and what a device saved is migrated once:
+  History and Favorites, the hidden books (Android: `CodeMigration`), the web app's stored favorites, recent hymns,
+  hidden books and current book. Chord edits need nothing: they are kept per sheet, and no MY, R or FY hymn has a sheet of
+  its own.
 
 The number part is a string. It is numeric for every hymn today, but compare and sort it as `CAST(no AS decimal)`.
-Numbers are **not** contiguous: `SW` uses printed page numbers (gaps), `KI` and `FY` follow their book's page order, `TA` and `UR` use the English numbers (gaps), `NS` has a block from 10002 (Long Beach songs:
+Numbers are **not** contiguous: `SW` uses printed page numbers (gaps), `KI` and `FRY` follow their book's page order, `TA` and `UR` use the English numbers (gaps), `NS` has a block from 10002 (Long Beach songs:
 LB12 = `NS10012`), `T` goes up to 30017, `G` to 10002, `SK` to 3049.
 
 The **default hymn** is `E1`.
@@ -113,7 +119,7 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | 6 | `CB` | Cebuano | `#FF8800` | `#FFCC80` | left | yes | 584 |
 | 7 | `T` | Tagalog | `#009688` | `#80CBC4` | left | yes | 1176 |
 | 8 | `FR` | French | `#E91E63` | `#F48FB1` | left | yes | 248 |
-| 9 | `FY` | French Youth | `#E91E63` | `#F48FB1` | left | yes | 176 |
+| 9 | `FRY` | French Youth | `#E91E63` | `#F48FB1` | left | yes | 176 |
 | 10 | `S` | Spanish | `#3F51B5` | `#9FA8DA` | left | yes | 910 |
 | 11 | `SY` | Spanish Youth | `#3F51B5` | `#9FA8DA` | left | yes | 426 |
 | 12 | `K` | Korean | `#795548` | `#BCAAA4` | left | yes | 1144 |
@@ -128,8 +134,8 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | 21 | `SK` | Slovak | `#9C27B0` | `#CE93D8` | left | yes | 360 |
 | 22 | `GK` | Greek | `#03A9F4` | `#4FC3F7` | left | yes | 124 |
 | 23 | `SW` | Kiswahili | `#00838F` | `#4DD0E1` | left | yes | 98 |
-| 24 | `R` | Russian | `#1565C0` | `#64B5F6` | left | yes | 800 |
-| 25 | `MY` | Burmese | `#2E7D32` | `#66BB6A` | left | yes | 706 |
+| 24 | `RUS` | Russian | `#1565C0` | `#64B5F6` | left | yes | 800 |
+| 25 | `BUR` | Burmese | `#2E7D32` | `#66BB6A` | left | yes | 706 |
 | 26 | `TA` | Tamil | `#546E7A` | `#90A4AE` | left | yes | 305 |
 | 27 | `UR` | Urdu | `#880E4F` | `#F06292` | **right** (RTL) | yes | 496 |
 | 28 | `KI` | Kikuyu | `#FF6F00` | `#FFB300` | left | yes | 72 |

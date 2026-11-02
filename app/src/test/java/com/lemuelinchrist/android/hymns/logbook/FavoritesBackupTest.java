@@ -22,7 +22,7 @@ public class FavoritesBackupTest {
                 "E8 – Praise God, from whom all blessings flow;\n" +
                 "C100 – 主已復活，\n" +
                 "FY18 – Viens, goûte et vois : le Seigneur est bon !\n";
-        assertEquals(Arrays.asList("E8", "C100", "FY18"), ids(text));
+        assertEquals(Arrays.asList("E8", "C100", "FRY18"), ids(text));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class FavoritesBackupTest {
     @Test
     public void readsTheOldCommaFormat() {
         assertEquals(Arrays.asList("E1", "C215", "NS10012"), ids("E1,C215,NS10012,"));
-        assertEquals(Arrays.asList("e1", "C215", "NS151"), ids("e1, C215 ,NS151;"));
+        assertEquals(Arrays.asList("E1", "C215", "NS151"), ids("e1, C215 ,NS151;"));
     }
 
     @Test

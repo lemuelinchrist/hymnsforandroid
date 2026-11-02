@@ -14,6 +14,7 @@ public class HymnsApplication extends Application {
     public void onCreate() {
         super.onCreate();
         YoutubeButton.migrateSetting(PreferenceManager.getDefaultSharedPreferences(this));
+        CodeMigration.run(this, PreferenceManager.getDefaultSharedPreferences(this));
         Theme.apply(this);
     }
 }

@@ -81,7 +81,7 @@ public class HymnsWithParentsTest {
     public void everyHymnOnceAndTranslatedBooksHaveAuthors() {
         assertEquals(count("1"), count("_id in (select _id from hymns)"));
         assertTrue(count("hymn_group = 'FR' and author is not null") > 200);
-        assertTrue(count("hymn_group = 'R' and main_category is not null") > 500);
+        assertTrue(count("hymn_group = 'RUS' and main_category is not null") > 500);
     }
 
     @Test

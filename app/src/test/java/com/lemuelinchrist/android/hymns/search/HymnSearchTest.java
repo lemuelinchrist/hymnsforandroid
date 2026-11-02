@@ -84,6 +84,9 @@ public class HymnSearchTest {
         assertEquals("E8", HymnSearch.hymnIdOf("e8", HymnGroup.C));
         assertEquals("C123", HymnSearch.hymnIdOf("123", HymnGroup.C));
         assertEquals("POR1360", HymnSearch.hymnIdOf("por 1360", HymnGroup.E));
+        assertEquals("BUR637", HymnSearch.hymnIdOf("my 637", HymnGroup.E));
+        assertEquals("RUS5", HymnSearch.hymnIdOf("R5", HymnGroup.E));
+        assertEquals("FRY12", HymnSearch.hymnIdOf("fy-12", HymnGroup.E));
         assertEquals("POY12", HymnSearch.hymnIdOf("POY-12", HymnGroup.E));
         assertNull(HymnSearch.hymnIdOf("XXXX 1", HymnGroup.E));
         assertNull(HymnSearch.hymnIdOf("XX 1", HymnGroup.E));
@@ -142,8 +145,8 @@ public class HymnSearchTest {
 
     @Test
     public void caseAndAccentsAreIgnoredInEveryAlphabet() {
-        assertFalse(search("бог", HymnGroup.R).isEmpty());
-        assertEquals(search("бог", HymnGroup.R).size(), search("БОГ", HymnGroup.R).size());
+        assertFalse(search("бог", HymnGroup.RUS).isEmpty());
+        assertEquals(search("бог", HymnGroup.RUS).size(), search("БОГ", HymnGroup.RUS).size());
         assertFalse(search("jesus", HymnGroup.FR).isEmpty());
         boolean french = false;
         for (HymnSearch.Result x : search("jesus", HymnGroup.FR)) french |= x.group == HymnGroup.FR;

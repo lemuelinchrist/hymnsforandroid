@@ -5,7 +5,7 @@ import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
 import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 
 /**
- * Provisions the French youth songbook (FY) from FrenchYouth.txt.
+ * Provisions the French youth songbook (FRY, FY before 2026-11) from FrenchYouth.txt.
  *
  * Source: "Cantique des jeunes (Recueil lyonnais 19-07-2024).pdf" (kept outside git in resources/originals). The book does not number its songs (its
  * index gives page numbers, often two songs to a page), so the songs are numbered in book order. Format per song:
@@ -34,13 +34,16 @@ class ProvisionFrenchYouth {
 
     void removeFrenchYouthHymns() {
         println "Cleaning up existing French youth hymns..."
-        for (int x = 1; x <= 400; x++) {
-            HymnsEntity old = dao.find("FY" + x)
-            if (old != null) {
-                // links added to hymns that are not the parent (e.g. a Tagalog hymn) are not undone by dao.delete
-                (old.related - [old.parentHymn]).findAll { it?.trim() }.each { dao.removeRelatedHymn(it, old.id) }
+        // FY was the code until 2026-11 (now FRY): a database made before the rename loses its FY rows too
+        for (String code : ["FRY", "FY"]) {
+            for (int x = 1; x <= 400; x++) {
+                HymnsEntity old = dao.find(code + x)
+                if (old != null) {
+                    // links added to hymns that are not the parent (e.g. a Tagalog hymn) are not undone by dao.delete
+                    (old.related - [old.parentHymn]).findAll { it?.trim() }.each { dao.removeRelatedHymn(it, old.id) }
+                }
+                dao.delete(code + x)
             }
-            dao.delete("FY" + x)
         }
     }
 
@@ -101,9 +104,9 @@ class ProvisionFrenchYouth {
         int fyNo = Integer.parseInt(line.replaceAll('[^0-9]', ''))
         println "******* Generating French youth hymn ${fyNo}..."
         hymn = new HymnsEntity();
-        hymn.id = 'FY' + fyNo
+        hymn.id = 'FRY' + fyNo
         hymn.no = fyNo.toString()
-        hymn.hymnGroup = 'FY'
+        hymn.hymnGroup = 'FRY'
         hymn.stanzas = new ArrayList<StanzaEntity>();
         stanza = null
         stanzaCounter = 0

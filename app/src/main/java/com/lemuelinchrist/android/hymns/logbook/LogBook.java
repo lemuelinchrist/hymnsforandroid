@@ -2,6 +2,7 @@ package com.lemuelinchrist.android.hymns.logbook;
 
 import android.content.Context;
 import android.util.Log;
+import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.content.ContentArea;
 import com.lemuelinchrist.android.hymns.content.FaveButton;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
@@ -53,6 +54,40 @@ public class LogBook {
             Log.e(LogBook.class.getName(),"Error reading history log book! \n " + e);
             logBook = new HashSet<>();
         }
+    }
+
+    /**
+     * Gives the hymns of the books whose codes changed (2026-11: MY is BUR, R is RUS, FY is FRY) their new IDs, so that
+     * History and Favorites saved before keep their hymns. Does nothing when no ID is old; a hymn that is in the list
+     * under both IDs keeps the newer record. Returns how many records changed.
+     */
+    public static int migrateCodes(Context context, String filename) {
+        LogBook book = new LogBook(context, filename);
+        Set<HymnRecord> migrated = new HashSet<>();
+        int changed = 0;
+        for (HymnRecord record : book.logBook) {
+            String id = HymnGroup.currentId(record.getHymnId());
+            if (!id.equals(record.getHymnId())) {
+                String code = HymnGroup.currentCode(record.getHymnGroup());
+                record = new HymnRecord(id, code == null ? record.getHymnGroup() : code, record.getFirstLine(), record.getRecordDate());
+                changed++;
+            }
+            HymnRecord same = null;
+            for (HymnRecord other : migrated) if (other.equals(record)) same = other;
+            if (same != null) {
+                if (same.getRecordDate().after(record.getRecordDate())) continue;
+                migrated.remove(same);
+            }
+            migrated.add(record);
+        }
+        if (changed > 0) {
+            try {
+                InternalStorage.writeObject(context, filename, migrated);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return changed;
     }
 
     /** Adds the hymn with the current time and saves. A hymn already in the log book moves to the top. */

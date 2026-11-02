@@ -111,6 +111,28 @@ async function search(page, text) {
       await page.press('#q', 'Enter');
       await page.waitForURL(/#\/h\/C206/);
     });
+    await test('the old codes MY, R and FY (renamed 2026-11) still work: typed, in a link, and in what the device saved', async () => {
+      await search(page, 'my 637');
+      await page.press('#q', 'Enter');
+      await page.waitForTimeout(700); assert(await page.evaluate(() => location.hash) === '#/h/BUR637', 'typed my 637 -> ' + await page.evaluate(() => location.hash));
+      await page.evaluate(() => { location.hash = '#/h/R5'; });        // an old link opens the hymn under its new code
+      await page.waitForTimeout(700); assert(await page.evaluate(() => location.hash) === '#/h/RUS5', 'link R5 -> ' + await page.evaluate(() => location.hash));
+      await page.evaluate(() => { location.hash = '#/h/fy12'; });
+      await page.waitForTimeout(700); assert(await page.evaluate(() => location.hash) === '#/h/FRY12', 'link fy12 -> ' + await page.evaluate(() => location.hash));
+      // what an old version saved: favorites, recent hymns, hidden books, the current book
+      await page.evaluate(() => {
+        localStorage.setItem('hfw.favorites', JSON.stringify(['MY637', 'E1', 'FY12', 'BUR637']));
+        localStorage.setItem('hfw.recent', JSON.stringify(['R5', 'NS151']));
+        localStorage.setItem('hfw.hidden', JSON.stringify(['I', 'FY']));
+        localStorage.setItem('hfw.group', JSON.stringify('MY'));
+        localStorage.removeItem('hfw.codesMigrated2026_11');
+      });
+      await open(page, '');
+      const saved = await page.evaluate(() => ['favorites', 'recent', 'hidden', 'group', 'codesMigrated2026_11']
+        .map((k) => localStorage.getItem('hfw.' + k)).join(' | '));
+      assert(saved === '["BUR637","E1","FRY12"] | ["RUS5","NS151"] | ["I","FRY"] | "BUR" | true', 'migrated: ' + saved);
+      await page.evaluate(() => { ['favorites', 'recent', 'hidden', 'group'].forEach((k) => localStorage.removeItem('hfw.' + k)); });
+    });
     await test('words find the first line first: "blessings flow" -> E8', async () => {
       await open(page, '#/browse/E');
       await search(page, 'blessings flow');
@@ -418,14 +440,14 @@ async function search(page, text) {
       await open(page, '');
       assert(await page.locator('.hymnals .hymnal-card:has(.code:text-is("I"))').count() === 0, 'I in the hymnals');
       await open(page, '#/h/E1');
-      assert(await page.locator('.family a[href*="I1"]').count() === 0, 'I1 in the other languages');
-      assert(await page.locator('.family a[href*="S1"]').count() === 1, 'S1 missing');
+      assert(await page.locator('.family a[href$="/h/I1"]').count() === 0, 'I1 in the other languages');
+      assert(await page.locator('.family a[href$="/h/S1"]').count() === 1, 'S1 missing');
     });
     await test('a hymnal switched off in Settings leaves the lists', async () => {
       await open(page, '#/settings');
       await page.click('.hymnal-toggle:has(.chip:text-is("S")) input');
       await open(page, '#/h/E1');
-      assert(await page.locator('.family a[href*="S1"]').count() === 0, 'S1 still shown');
+      assert(await page.locator('.family a[href$="/h/S1"]').count() === 0, 'S1 still shown');
       await open(page, '#/settings');
       await page.click('.hymnal-toggle:has(.chip:text-is("S")) input');
     });
