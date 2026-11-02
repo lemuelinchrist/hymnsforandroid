@@ -101,6 +101,12 @@ task runExtractUrduNewSongs(type: JavaExec) {
     args "${projectDir}/src/main/resources/Urdu.txt"
 }
 
+task runExtractNS226(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ExtractNS226'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 task runSpanish2026(type: JavaExec) {
     dependsOn ":sqlite:importSql"
     mainClass = 'com.lemuelinchrist.hymns.ProvisionSpanish2026'
