@@ -95,6 +95,12 @@ task runUrdu(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task runExtractUrduNewSongs(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.ExtractUrduNewSongs'
+    classpath = sourceSets.main.runtimeClasspath
+    args "${projectDir}/src/main/resources/Urdu.txt"
+}
+
 task runSpanish2026(type: JavaExec) {
     dependsOn ":sqlite:importSql"
     mainClass = 'com.lemuelinchrist.hymns.ProvisionSpanish2026'

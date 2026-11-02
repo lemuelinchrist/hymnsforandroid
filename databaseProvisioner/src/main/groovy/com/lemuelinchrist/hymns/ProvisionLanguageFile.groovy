@@ -32,8 +32,10 @@ class ProvisionLanguageFile {
             // the Tamil hymns: numbered like the English hymnal (TA1 = E1), 1501 and up are other songs
             TA: [file: '/Tamil.txt', prefix: 'TA-', maxNo: 2000, splitSubject: false],
             // the Urdu hymns of hymnal.net, numbered like the English hymnal (UR1 = E1), up to E8773; Urdu.txt is made
-            // from hymnal.net's pages (the v5.7 report, "Urdu hymns")
-            UR: [file: '/Urdu.txt', prefix: 'UR-', maxNo: 9000, splitSubject: true],
+            // from hymnal.net's pages (the v5.7 report, "Urdu hymns"). The Urdu New Songs are UR10000 + the NS number
+            // (UR10292 = NS292) and the Long Beach hymns UR20000 + the LB number (UR20082 = LB82 = NS10082): see
+            // ExtractUrduNewSongs
+            UR: [file: '/Urdu.txt', prefix: 'UR-', maxNo: 20999, splitSubject: true],
     ]
 
     final String group
