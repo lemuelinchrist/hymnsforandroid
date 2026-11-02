@@ -48,9 +48,9 @@ public class HymnBooksPreference extends MultiSelectListPreference {
         });
     }
 
-    /** What the setting is for, then what it does now: "Hide the ones you never use (all 28 shown)", "Hiding Indonesian". */
+    /** What the setting is for, then what it does now: "Simplify your view by hiding books you don't use (all 28 shown)", "Hiding Indonesian". */
     private static String summaryOf(List<HymnGroup> hidden) {
-        if (hidden.isEmpty()) return "Hide the ones you never use (all " + HymnGroup.values().length + " shown)";
+        if (hidden.isEmpty()) return "Simplify your view by hiding books you don't use (all " + HymnGroup.values().length + " shown)";
         if (hidden.size() > NAMES_IN_SUMMARY) return "Hiding " + hidden.size() + " of " + HymnGroup.values().length;
         StringBuilder names = new StringBuilder();
         for (HymnGroup group : hidden) {

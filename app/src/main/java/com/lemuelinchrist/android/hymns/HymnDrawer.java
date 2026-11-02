@@ -25,10 +25,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * The book drawer's list: RECENT, the current book and the books of the latest hymns in History (up to
- * {@link #RECENT_BOOKS}), so each person finds their own languages at the top, whichever they are; then ALL BOOKS in
- * the usual order. Hidden books (Settings, Languages (Hymn Books)) are left out. A row is the book's badge picture, its name and
- * its number of hymns; the current book is highlighted in both lists.
+ * The book drawer's list: every book in the usual order, as it was before v5.8 (the RECENT section of v5.8 was taken out
+ * again on 2026-11-02: the saints are used to the fixed order; {@link #booksByRecency} still orders the Hymn Numbers tab).
+ * Hidden books (Settings, Languages (Hymn Books)) are left out. A row is the book's badge picture, its name and its
+ * number of hymns; the current book is highlighted.
  *
  * Created by lemuelcantos on 14/8/13.
  */
@@ -47,11 +47,9 @@ public class HymnDrawer extends BaseAdapter {
         this.current = current;
         this.counts = HymnBooksPreference.countHymns(context);
 
-        List<HymnGroup> shown = shownBooks(context);
-        items.add("Recent");
-        items.addAll(recentBooks(context, current, shown));
-        items.add("All books");
-        items.addAll(shown);
+        // the books in their fixed order, as before v5.8: the saints know where each one is (the Recent section of
+        // v5.8 was taken out again, 2026-11-02)
+        items.addAll(shownBooks(context));
     }
 
     private static List<HymnGroup> shownBooks(Context context) {

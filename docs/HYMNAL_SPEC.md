@@ -545,13 +545,13 @@ A web build SHOULD map this onto browser history (`#/E1` style URLs) so the brow
 
 - Display names are in English for everyone (v5.8: the Chinese books were 中文-繁, 補充本-繁…, Indonesian was
   B.Indonesia), since the drawer serves readers of every language.
-- A header (app icon, "Hymns"), then two sections, then a fixed link at the bottom:
-  - **RECENT**: the current book, then the books of the latest hymns in History, each once, up to **4**. Which books
-    matter depends on the person's languages, so the drawer learns them instead of fixing an order.
-  - **ALL BOOKS**: every **enabled** book (§10) in display order.
+- A header (app icon, "Hymns"), then the list, then a fixed link at the bottom:
+  - **The books**: every **enabled** book (§10) in display order, a fixed order the saints know. (v5.8 put a RECENT
+    section of the latest books above it; it was taken out again on 2026-11-02 because saints are used to the old
+    arrangement. The Hymn Numbers tab still lists hymns of the same number by recent use, §9.)
   - **Languages…**: opens Settings with the Languages (Hymn Books) dialog (§10, `disableLanguages`), to hide books
     never used. The setting is named with the word people look for ("Disable Languages" before v5.8, then "Hymn
-    Books", which hid what it does); its summary says what it is for (`Hide the ones you never use (all 28 shown)`,
+    Books", which hid what it does); its summary says what it is for (`Simplify your view by hiding books you don't use (all 28 shown)`,
     then `Hiding Indonesian`, or `Hiding 5 of 28`) and the dialog is titled "Choose the languages to show".
 - A row: the book's badge picture (36dp; the app's own pictures since its first versions, kept as they are even
   where their letters differ from the code: H for English, B for Cebuano, Ch for Children), the display name (long
