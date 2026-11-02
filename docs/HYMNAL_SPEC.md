@@ -121,7 +121,7 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | 15 | `J` | Japanese | `#8BC34A` | `#AED581` | left | yes | 780 |
 | 16 | `I` | Indonesian | `#F44336` | `#E57373` | left | yes | 1133 |
 | 17 | `BF` | Be Filled | `#0099CC` | `#90CAF9` | left | **no** | 438 |
-| 18 | `NS` | New Songs | `#CC0000` | `#EF9A9A` | left | **no** | 1245 |
+| 18 | `NS` | New Songs | `#CC0000` | `#EF9A9A` | left | **no** | 1246 |
 | 19 | `CH` | Children | `#AFB42B` | `#E6EE9C` | left | **no** | 243 |
 | 20 | `F` | Farsi | `#673AB7` | `#B39DDB` | **right** (RTL) | yes | 329 |
 | 21 | `SK` | Slovak | `#9C27B0` | `#CE93D8` | left | yes | 360 |
@@ -130,7 +130,7 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | 24 | `R` | Russian | `#1565C0` | `#64B5F6` | left | yes | 800 |
 | 25 | `MY` | Burmese | `#2E7D32` | `#66BB6A` | left | yes | 706 |
 | 26 | `TA` | Tamil | `#546E7A` | `#90A4AE` | left | yes | 305 |
-| 27 | `UR` | Urdu | `#880E4F` | `#F06292` | **right** (RTL) | yes | 495 |
+| 27 | `UR` | Urdu | `#880E4F` | `#F06292` | **right** (RTL) | yes | 496 |
 | 28 | `KI` | Kikuyu | `#FF6F00` | `#FFB300` | left | yes | 72 |
 
 ¹ "Big" = a language hymnal (as opposed to the BF/NS/CH song collections). Used only by Similar Tune (§7.5).
