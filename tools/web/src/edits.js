@@ -62,7 +62,7 @@ export async function importAll(data, {force = false} = {}) {
   const mine = Object.fromEntries((await all()).map((r) => [r.sheet, r]));
   let added = 0, kept = 0;
   for (const [sheet, rec] of Object.entries(data.sheets)) {
-    if (!/^[A-Z]{1,2}\d+$/.test(sheet) || !rec || typeof rec.bars !== 'object') continue;
+    if (!/^[A-Z]{1,3}\d+$/.test(sheet) || !rec || typeof rec.bars !== 'object') continue;
     const cur = mine[sheet];
     if (cur && !force && (cur.updated || 0) > (rec.updated || 0)) { kept++; continue; }
     await run('readwrite', (s) => s.put({v: 1, sheet, updated: rec.updated || Date.now(), bars: rec.bars}, sheet));

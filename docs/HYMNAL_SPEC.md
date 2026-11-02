@@ -86,9 +86,10 @@ favorites, history, file names of `.mei` and `.json`).
 
 Parsing rule (MUST match `HymnGroup.getHymnGroupFromID` / `getHymnNoFromID`):
 
-- If the **second character is a letter**, the group is the first two characters (upper-cased); the number is the rest.
-- Otherwise the group is the first character; the number is the rest.
-- No group code is longer than two letters. An ID whose group is unknown is invalid (skip it silently in lists).
+- The group is the **leading letters** of the ID (1 to **3**, upper-cased: `E`, `CS`, `POR`); the number is the rest,
+  and it starts with a digit. (Until v5.8.3 a code was at most two letters; three-letter codes came with the
+  Portuguese and Polish books, so that a book can be named by its language and a language can have two books.)
+- An ID whose group is unknown is invalid (skip it silently in lists).
 
 The number part is a string. It is numeric for every hymn today, but compare and sort it as `CAST(no AS decimal)`.
 Numbers are **not** contiguous: `SW` uses printed page numbers (gaps), `KI` and `FY` follow their book's page order, `TA` and `UR` use the English numbers (gaps), `NS` has a block from 10002 (Long Beach songs:
@@ -132,6 +133,9 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | 26 | `TA` | Tamil | `#546E7A` | `#90A4AE` | left | yes | 305 |
 | 27 | `UR` | Urdu | `#880E4F` | `#F06292` | **right** (RTL) | yes | 496 |
 | 28 | `KI` | Kikuyu | `#FF6F00` | `#FFB300` | left | yes | 72 |
+| 29 | `POR` | Portuguese | `#33691E` | `#7CB342` | left | yes | 1360 |
+| 30 | `POY` | Portuguese Youth | `#558B2F` | `#9CCC65` | left | yes | 140 |
+| 31 | `POL` | Polish | `#5E35B1` | `#B39DDB` | left | yes | 424 |
 
 ¹ "Big" = a language hymnal (as opposed to the BF/NS/CH song collections). Used only by Similar Tune (§7.5).
 
@@ -551,7 +555,7 @@ A web build SHOULD map this onto browser history (`#/E1` style URLs) so the brow
     arrangement. The Hymn Numbers tab still lists hymns of the same number by recent use, §9.)
   - **Languages…**: opens Settings with the Languages (Hymn Books) dialog (§10, `disableLanguages`), to hide books
     never used. The setting is named with the word people look for ("Disable Languages" before v5.8, then "Hymn
-    Books", which hid what it does); its summary says what it is for (`Simplify your view by hiding books you don't use (all 28 shown)`,
+    Books", which hid what it does); its summary says what it is for (`Simplify your view by hiding books you don't use (all 31 shown)`,
     then `Hiding Indonesian`, or `Hiding 5 of 28`) and the dialog is titled "Choose the languages to show".
 - A row: the book's badge picture (36dp; the app's own pictures since its first versions, kept as they are even
   where their letters differ from the code: H for English, B for Cebuano, Ch for Children), the display name (long
@@ -644,7 +648,7 @@ Live as you type, about 150 ms after the last key, run off the main thread.
   smaller grey line shows why: the first chorus line, `Subject: <main> – <sub>`, `Author: … · Composer: …`,
   `Key: … · Tune: …`, or the stanza line with the most of the terms (the first one with all of them) other than the
   first line. No second line when it would only repeat the first.
-- **A hymn number or ID typed** (`123`, `#123`, `NS 151`, `ns151`, `e8`; a 1–2 letter book code, optional space or
+- **A hymn number or ID typed** (`123`, `#123`, `NS 151`, `ns151`, `e8`; a 1–3 letter book code, optional space or
   `-`, digits): if that hymn exists the list is only a first row **Go to `<ID>`** (a bare number means the current
   book), and **Enter** opens it. Otherwise the words are searched as usual and Enter just hides the keyboard.
 - **The table is built on the phone**, not shipped: in the background the first time the app runs after an install or

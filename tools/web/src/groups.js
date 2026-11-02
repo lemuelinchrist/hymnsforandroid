@@ -6,7 +6,7 @@ export const BY_CODE = Object.fromEntries(GROUPS.map((g, i) => [g.code, Object.a
 
 // "E8" -> {group: 'E', no: '8'}; null when the prefix is not a hymnal
 export function splitId(id) {
-  const m = /^([A-Za-z]{1,2})(\d+)$/.exec(id || '');
+  const m = /^([A-Za-z]{1,3})(\d+)$/.exec(id || '');
   if (!m || !BY_CODE[m[1].toUpperCase()]) return null;
   return {group: m[1].toUpperCase(), no: String(parseInt(m[2], 10))};
 }

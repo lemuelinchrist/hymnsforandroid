@@ -275,7 +275,7 @@ export function plain(html) {
 // query, for ranking hymns that have the words together first. (HymnSearch.parse in the app.)
 export function parseQuery(q, group) {
   q = (q || '').trim();
-  let m = /^([A-Za-z]{1,2})\s*-?\s*(\d+)$/.exec(q);
+  let m = /^([A-Za-z]{1,3})\s*-?\s*(\d+)$/.exec(q);
   if (m && BY_CODE[m[1].toUpperCase()]) return {id: m[1].toUpperCase() + parseInt(m[2], 10)};
   m = /^#?(\d+)$/.exec(q);
   if (m) return {id: group + parseInt(m[1], 10), number: true};

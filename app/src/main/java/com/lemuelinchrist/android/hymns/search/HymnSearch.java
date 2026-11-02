@@ -60,7 +60,7 @@ public final class HymnSearch {
     }
 
     private static final Pattern QUOTED = Pattern.compile("[\"“”„«»]([^\"“”„«»]*)[\"“”„«»]?");
-    private static final Pattern HYMN_ID = Pattern.compile("^([A-Za-z]{1,2})\\s*-?\\s*(\\d+)$");
+    private static final Pattern HYMN_ID = Pattern.compile("^([A-Za-z]{1,3})\\s*-?\\s*(\\d+)$");
     private static final Pattern NUMBER = Pattern.compile("^#?(\\d+)$");
 
     private static final List<String> COLUMNS = Arrays.asList("first", "chorus", "subject", "people", "music", "body");

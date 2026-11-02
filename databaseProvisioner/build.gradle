@@ -107,6 +107,27 @@ task runExtractNS226(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task runPortuguese(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'POR'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runPortugueseYouth(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'POY'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runPolish(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'POL'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 task runSpanish2026(type: JavaExec) {
     dependsOn ":sqlite:importSql"
     mainClass = 'com.lemuelinchrist.hymns.ProvisionSpanish2026'

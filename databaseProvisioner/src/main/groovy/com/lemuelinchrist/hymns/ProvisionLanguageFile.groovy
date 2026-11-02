@@ -36,6 +36,11 @@ class ProvisionLanguageFile {
             // (UR10292 = NS292) and the Long Beach hymns UR20000 + the LB number (UR20082 = LB82 = NS10082): see
             // ExtractUrduNewSongs
             UR: [file: '/Urdu.txt', prefix: 'UR-', maxNo: 20999, splitSubject: true],
+            // the Portuguese hymns (numbered like the English hymnal), the Portuguese Youth hymns (the file's POR-YP-n) and
+            // the Polish hymns (POL1-424): the first books with a three-letter code (2026-11-02, from Brother Victor's testers)
+            POR: [file: '/Portuguese.txt', prefix: 'POR-', maxNo: 1400, splitSubject: false],
+            POY: [file: '/PortugueseYouth.txt', prefix: 'POR-YP-', maxNo: 200, splitSubject: false],
+            POL: [file: '/Polish.txt', prefix: 'POL-', maxNo: 500, splitSubject: false],
     ]
 
     final String group
@@ -89,7 +94,7 @@ class ProvisionLanguageFile {
                 createNewHymn()
             } else if (line.startsWith("End-note:")) {
                 createNewNote()
-            } else if (isStanzaStart(line) && stanza?.no != "note") {
+            } else if (isStanzaStart(line) && (stanza?.no != "note" || endsNote(line))) {
                 createNewStanza()
             } else if (!line.isEmpty()) {
                 if (stanza == null) throw new RuntimeException("${hymn?.id}: text before the first stanza: " + line)
@@ -104,6 +109,15 @@ class ProvisionLanguageFile {
     // only a bare number starts a stanza: an end-note may list "1. Verses 1-8 and 26"
     static boolean isStanzaStart(String line) {
         return line.matches('[0-9]+') || line.matches('Coro( [0-9]+)?:')
+    }
+
+    // an end-note runs to the next chorus or the next stanza number in order, so a hymn can have notes between its
+    // stanzas (the Portuguese and Polish hymns sung by the sisters and the brothers); any other line stays in the note
+    // (a note that introduces a second tune, "Segunda Melodia:" or "Contra-melodia:", holds the whole second setting of
+    // the hymn, so it runs to the end of the hymn)
+    boolean endsNote(String line) {
+        if (stanza.text.toLowerCase().contains("melodia:")) return false
+        return line.startsWith("Coro") || Integer.parseInt(line) == stanzaCounter + 1
     }
 
     def wrapup() {
@@ -143,6 +157,16 @@ class ProvisionLanguageFile {
         return null
     }
 
+    // a Long Beach hymn is a New Songs one (LB12 = NS10012); an English hymn above 8000 (hymnal.net's translation of a
+    // Chinese hymn) is the Chinese hymn in our database (E8255 = C255), like UR8273 whose parent is C273
+    String relatedId(String id) {
+        def lb = id =~ /^LB(\d+)$/
+        if (lb.matches()) return "NS" + (10000 + Integer.parseInt(lb.group(1)))
+        def chinese = id =~ /^E8(\d{3})$/
+        if (chinese.matches() && dao.find(id) == null) return "C" + Integer.parseInt(chinese.group(1))
+        return id
+    }
+
     static String firstLineOf(String text) {
         return text.contains("<br/>") ? text.substring(0, text.indexOf("<br/>")) : text
     }
@@ -173,6 +197,7 @@ class ProvisionLanguageFile {
                 }
             } else if (line.startsWith("Related:")) {
                 String related = line.substring(line.indexOf(":") + 1).replace(" ", "").replace(";", ",")
+                related = related.split(",").collect { relatedId(it) }.join(",")
                 if (!related.isEmpty()) {
                     hymn.setRelatedString(related)
                     hymn.parentHymn = parentOf(hymn.related)

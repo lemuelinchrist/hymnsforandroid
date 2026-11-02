@@ -50,7 +50,7 @@ export function loadVerovio() {
 
 // sheets and sheet lyrics come in one file per hymnal (build.py)
 async function fromPack(kind, id) {
-  const g = (/^([A-Z]{1,2})\d/.exec(id) || [])[1];
+  const g = (/^([A-Z]{1,3})\d/.exec(id) || [])[1];
   const file = g && version && version[kind][g];
   if (!file) return null;
   const pack = await fetchGzJson(file);

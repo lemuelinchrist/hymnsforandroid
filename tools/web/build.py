@@ -70,6 +70,9 @@ DISPLAY = {
     'TA': {'name': 'தமிழ்', 'long': 'Tamil', 'lang': 'ta'},
     'UR': {'name': 'اردو', 'long': 'Urdu', 'lang': 'ur'},
     'KI': {'lang': 'ki', 'day': '#E65100'},
+    'POR': {'name': 'Português', 'long': 'Portuguese', 'lang': 'pt'},
+    'POY': {'name': 'Português (jovens)', 'long': 'Portuguese Youth', 'lang': 'pt'},
+    'POL': {'name': 'Polski', 'long': 'Polish', 'lang': 'pl'},
 }
 
 
@@ -108,7 +111,7 @@ def read_groups():
     """The hymnals as HymnGroup.java defines them, in its order: code, name, day and night colour, text direction."""
     src = open(ENUM, encoding='utf-8').read()
     rgb = r'Color\.rgb\(\s*0x([0-9A-Fa-f]{2})\s*,\s*0x([0-9A-Fa-f]{2})\s*,\s*0x([0-9A-Fa-f]{2})\s*\)'
-    pattern = re.compile(r'^\s+([A-Z]{1,2})\(\s*"([^"]+)"\s*,\s*' + rgb + r'\s*,\s*' + rgb + r'\s*,\s*Gravity\.(\w+)\s*\)', re.M)
+    pattern = re.compile(r'^\s+([A-Z]{1,3})\(\s*"([^"]+)"\s*,\s*' + rgb + r'\s*,\s*' + rgb + r'\s*,\s*Gravity\.(\w+)\s*\)', re.M)
     groups = []
     for m in pattern.finditer(src):
         code, name = m.group(1), m.group(2)
@@ -199,7 +202,7 @@ def build_db(assets):
 
 
 def group_of(hymn_id):
-    m = re.match(r'^([A-Z]{1,2})\d', hymn_id)
+    m = re.match(r'^([A-Z]{1,3})\d', hymn_id)
     return m.group(1) if m else None
 
 

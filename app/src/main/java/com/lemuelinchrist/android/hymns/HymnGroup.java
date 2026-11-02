@@ -120,6 +120,18 @@ public enum HymnGroup {
     //Amber (Amber 900 / Amber 600)
     KI("Kikuyu", Color.rgb(0xFF, 0x6F, 0x00),
             Color.rgb(0xFF, 0xB3, 0x00),
+            Gravity.LEFT),
+    //Light Green 900 / Light Green 600: the first books with a three-letter code (2026-11)
+    POR("Portuguese", Color.rgb(0x33, 0x69, 0x1E),
+            Color.rgb(0x7C, 0xB3, 0x42),
+            Gravity.LEFT),
+    //Light Green 800 / Light Green 400
+    POY("Portuguese Youth", Color.rgb(0x55, 0x8B, 0x2F),
+            Color.rgb(0x9C, 0xCC, 0x65),
+            Gravity.LEFT),
+    //Deep Purple 600 / Deep Purple 200
+    POL("Polish", Color.rgb(0x5E, 0x35, 0xB1),
+            Color.rgb(0xB3, 0x9D, 0xDB),
             Gravity.LEFT);
 
     private final String simpleName;
@@ -135,14 +147,20 @@ public enum HymnGroup {
         return nightColor;
     }
 
+    /** The longest book code (the letters before the number): 1 to {@value} letters (E, CS, POR). */
+    public static final int MAX_CODE_LENGTH = 3;
+
+    /** How many letters start the id: its book code ("E1" 1, "CS12" 2, "POR1360" 3); the number begins with a digit. */
+    private static int codeLength(String hymnId) {
+        int n = 0;
+        while (n < hymnId.length() && n < MAX_CODE_LENGTH && Character.isLetter(hymnId.charAt(n))) n++;
+        return n;
+    }
+
     public static HymnGroup getHymnGroupFromID(String hymnId) throws NoSuchHymnGroupException {
         //split hymn group from hymn number
         try {
-            if (Character.isLetter(hymnId.charAt(1))) {
-                return valueOf(hymnId.substring(0, 2).toUpperCase());
-            } else {
-                return valueOf(hymnId.substring(0, 1).toUpperCase());
-            }
+            return valueOf(hymnId.substring(0, codeLength(hymnId)).toUpperCase());
         } catch (IllegalArgumentException e) {
           throw new NoSuchHymnGroupException("No Such Hymn Group: " + hymnId);
         }
@@ -150,11 +168,7 @@ public enum HymnGroup {
 
     public static String getHymnNoFromID(String hymnId) {
         //split hymn group from hymn number
-        if (Character.isLetter(hymnId.charAt(1))) {
-            return hymnId.substring(2);
-        } else {
-            return hymnId.substring(1);
-        }
+        return hymnId.substring(codeLength(hymnId));
     }
 
     public static HymnGroup getDefaultHymnGroup() {

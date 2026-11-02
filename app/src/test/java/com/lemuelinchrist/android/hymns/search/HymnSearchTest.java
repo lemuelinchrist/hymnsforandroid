@@ -83,6 +83,9 @@ public class HymnSearchTest {
         assertEquals("NS151", HymnSearch.hymnIdOf("ns 151", HymnGroup.E));
         assertEquals("E8", HymnSearch.hymnIdOf("e8", HymnGroup.C));
         assertEquals("C123", HymnSearch.hymnIdOf("123", HymnGroup.C));
+        assertEquals("POR1360", HymnSearch.hymnIdOf("por 1360", HymnGroup.E));
+        assertEquals("POY12", HymnSearch.hymnIdOf("POY-12", HymnGroup.E));
+        assertNull(HymnSearch.hymnIdOf("XXXX 1", HymnGroup.E));
         assertNull(HymnSearch.hymnIdOf("XX 1", HymnGroup.E));
         assertNull(HymnSearch.hymnIdOf("love 1", HymnGroup.E));
     }

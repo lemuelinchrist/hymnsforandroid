@@ -37,7 +37,7 @@ public class ChordEdits {
 
     public static final String FORMAT = "hymns-chord-edits";
     static final String FILE_NAME = "chord-edits.json";
-    private static final Pattern SHEET_ID = Pattern.compile("[A-Z]{1,2}[0-9]+");
+    private static final Pattern SHEET_ID = Pattern.compile("[A-Z]{1,3}[0-9]+");
     private static final Pattern BAR = Pattern.compile("[1-9][0-9]{0,3}");
     private static final int MAX_CHORD_LENGTH = 24;
     // the viewer page writes on its own thread while Settings may be reading
