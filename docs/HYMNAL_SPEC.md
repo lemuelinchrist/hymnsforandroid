@@ -130,7 +130,7 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | 24 | `R` | Russian | `#1565C0` | `#64B5F6` | left | yes | 800 |
 | 25 | `MY` | Burmese | `#2E7D32` | `#66BB6A` | left | yes | 706 |
 | 26 | `TA` | Tamil | `#546E7A` | `#90A4AE` | left | yes | 305 |
-| 27 | `UR` | Urdu | `#880E4F` | `#F06292` | **right** (RTL) | yes | 446 |
+| 27 | `UR` | Urdu | `#880E4F` | `#F06292` | **right** (RTL) | yes | 495 |
 | 28 | `KI` | Kikuyu | `#FF6F00` | `#FFB300` | left | yes | 72 |
 
 ¹ "Big" = a language hymnal (as opposed to the BF/NS/CH song collections). Used only by Similar Tune (§7.5).
