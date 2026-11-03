@@ -89,30 +89,18 @@ class ProvisionFrench2 {
             }
         }
 
-        // save video and soundcloud links
-        if(videoLink!=null) {
-            stanza = new StanzaEntity()
-            stanza.setNo("YouTube Link")
-            stanza.setParentHymn(hymn)
-            stanza.text = videoLink
-            stanza.order = ++stanzaOrderCounter
-            hymn.getStanzas().add(stanza)
-
-            videoLink=null
-        }
-        if(soundcloudLink!=null) {
-            stanza = new StanzaEntity()
-            stanza.setNo("SoundCloud Link")
-            stanza.setParentHymn(hymn)
-            stanza.text = soundcloudLink
-            stanza.order = ++stanzaOrderCounter
-            hymn.getStanzas().add(stanza)
-
-            soundcloudLink=null
-        }
 
         println hymn
         dao.save(hymn)
+        // the links of the hymn go to the link table (kinds youtube and soundcloud), not among its stanzas
+        if(videoLink!=null) {
+            dao.saveLink(hymn.getId(), "youtube", videoLink, 1)
+            videoLink=null
+        }
+        if(soundcloudLink!=null) {
+            dao.saveLink(hymn.getId(), "soundcloud", soundcloudLink, 1)
+            soundcloudLink=null
+        }
     }
 
     def createNewHymn() {

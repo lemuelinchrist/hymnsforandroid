@@ -89,6 +89,16 @@ public class Dao {
         System.out.println("Link " + link.getHymnId() + " saved!");
     }
 
+    /** Saves a link of a hymn that is not a piano video: kind "youtube" or "soundcloud", the order among that kind from 1. */
+    public void saveLink(String hymnId, String kind, String url, int order) {
+        LinkEntity link = new LinkEntity();
+        link.setHymnId(hymnId);
+        link.setKind(kind);
+        link.setUrl(url);
+        link.setOrder(order);
+        save(link);
+    }
+
     public void addRelatedHymn(String parentHymn, String relatedToAdd) {
         if (parentHymn == null || parentHymn.isEmpty()) {
             System.out.println("Warning! no parent hymn! exiting");
@@ -154,6 +164,9 @@ public class Dao {
 
 
             em.getTransaction().begin();
+            // its YouTube and SoundCloud links go with it (its piano links belong to the hymn's tune, they stay)
+            em.createNativeQuery("delete from link where hymn_id = ?1 and kind in ('youtube', 'soundcloud')")
+                    .setParameter(1, hymnId).executeUpdate();
             em.remove(hymn);
             if(hymn.getParentHymn()!=null && !hymn.getParentHymn().isEmpty()) {
                 HymnsEntity parentHymn = em.find(HymnsEntity.class, hymn.getParentHymn());
