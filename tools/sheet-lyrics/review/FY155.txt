@@ -1,0 +1,24 @@
+# FY155  (sheet of NS803)  Seigneur, Tu connais mes soucis.
+# What is wrong:
+#   1.: French has 90-101 syllables for 45 note slots (French: Seigneur, Tu connais mes soucis. / Seigneur, devrait-il en être ainsi ? / Je suis épuisé ; mais sûr aussi / Qu'au fond de mon cœur je T’aime encore ; / Garde-mo)
+#   (C): the French hymn has no stanza chorus
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY155.txt and run:  python3 sheet-lyrics/align.py FY155
+
+== 1.
+# French text: Seigneur, Tu connais mes soucis. / Seigneur, devrait-il en être ainsi ? / Je suis épuisé ; mais sûr aussi / Qu'au fond de mon cœur je T’aime encore ; / Garde-moi ouvert, je T’en prie, à Tes / Pluies de bénédiction. / Envoie la pluie. / Pluies de bénédiction. / Je suis ouvert / À Tes pluies de bénédiction. / Bénis-moi de Tes pluies de bénédiction / Maintenant.
+# 45 notes in all; this suggestion has 90 syllables
+# 8 notes  | O Lord, You know I don’t like this.
+Sei-gneur, Tu con-nais mes sou-cis.
+# 9 notes  | O Lord, does it have to be this way?
+Sei-gneur, de-vrait| il en être ain-si?
+# 9 notes  | I’m worn, but still longing for Your kiss.
+Je suis é-pui-sé; mais sûr aus-si
+# 9 notes  | And deep in my heart I still love You,
+Qu'au fond de mon cœur je T’aime en-core;
+# 10 notes  | So keep me open anyway to Your
+Garde| moi ou-vert, je T’en prie, à Tes Plui- es  #EXTRA de  #EXTRA bé-né-dic-tion.  #EXTRA En-voie  #EXTRA la  #EXTRA pluie.  #EXTRA Plui-es  #EXTRA de  #EXTRA bé-né-dic-tion.  #EXTRA Je  #EXTRA suis  #EXTRA ou-vert  #EXTRA À  #EXTRA Tes  #EXTRA plui-es  #EXTRA de  #EXTRA bé-né-dic-tion.  #EXTRA Bé-nis-  #EXTRA moi  #EXTRA de  #EXTRA Tes  #EXTRA plui-es  #EXTRA de  #EXTRA bé-né-dic-tion  #EXTRA Main-te-nant.  #EXTRA

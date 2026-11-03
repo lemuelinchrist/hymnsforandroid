@@ -1,0 +1,69 @@
+# CS628  (sheet of E1339)  看哪,弟兄和睦同居,
+# What is wrong:
+#   1.: French has 36-36 syllables for 78 note slots (French: 看哪,弟兄和睦同居, / 是何等的善,是何等的美! / 看哪,弟兄和睦同居, / 是何等的善,是何等的美!)
+#   2.: French has 18-18 syllables for 56 note slots (French: 看哪,弟兄和睦同居, / 是何等的善,是何等的美!)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS628.txt and run:  python3 sheet-lyrics/align.py CS628
+
+== 1.
+# French text: 看哪,弟兄和睦同居, / 是何等的善,是何等的美! / 看哪,弟兄和睦同居, / 是何等的善,是何等的美!
+# 78 notes in all; this suggestion has 36 syllables
+# 10 notes  | Behold how good and how pleasant it is,
+看 哪, 弟 兄 和 睦 同 居, 是 何
+# 12 notes  | For brethren to dwell together in unity!
+等 的 善, 是 何 等 的 美! 看 哪, 弟 兄
+# 10 notes  | Behold how good and how pleasant it is,
+和 睦 同 居, 是 何 等 的 善, 是
+# 12 notes  | For brethren to dwell together in unity!
+何 等 的 美!
+# ??? only 4 syllables for 12 notes
+# 12 notes
+
+# ??? only 0 syllables for 12 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 10 notes
+
+# ??? only 0 syllables for 10 notes
+
+== 2.
+# French text: 看哪,弟兄和睦同居, / 是何等的善,是何等的美!
+# 56 notes in all; this suggestion has 18 syllables
+# 10 notes  | Behold how good and how pleasant it is,
+看 哪, 弟 兄 和 睦 同 居, 是 何
+# 12 notes  | For brethren to dwell together in unity!
+等 的 善, 是 何 等 的 美!
+# ??? only 8 syllables for 12 notes
+# 12 notes
+
+# ??? only 0 syllables for 12 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 10 notes
+
+# ??? only 0 syllables for 10 notes
+
+== 3.
+# French text: 又好比黑門的甘露,降在錫安山; / 黑門的甘露,降在錫安山; / 因為在那裏有耶和華所命定的福, / 就是永遠的生命。
+# 39 notes in all; this suggestion has 44 syllables
+# 6 notes  | As the dew of Hermon,
+又 好 比 黑 門 的
+# 8 notes  | And as the dew that descended
+甘 露, 降 在 錫 安 山; 黑
+# 8 notes  | Upon the mountains of Zion:
+門 的 甘 露, 降 在 錫 安
+# 10 notes  | For there the Lord commanded the blessing,
+山; 因 為 在 那 裏 有 耶 和 華
+# 7 notes  | Even life for evermore.
+所 命 定 的 福, 就 是 永  #EXTRA 遠  #EXTRA 的  #EXTRA 生  #EXTRA 命。  #EXTRA

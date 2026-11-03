@@ -1,0 +1,22 @@
+# ZS929  (sheet of NS285)  当我们在生命、性情、彰显
+# What is wrong:
+#   1.: French has 105-105 syllables for 31 note slots (French: 当我们在生命、性情、彰显 / 和功用上,成为与基督一样, / 我们就够资格为着祂的身体与祂同工。 / 当我们无依无靠的信靠主, / 倚靠祂作我们的爱和力量, / 并且听祂说话, / 我们的盼望就是借着身体的得赎而被提, / 我们的祷告乃是:“主耶稣阿,我愿你来！” / 我愿你来！主耶稣来！)
+#   2.: the French hymn has no stanza 2
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS929.txt and run:  python3 sheet-lyrics/align.py ZS929
+
+== 1.
+# French text: 当我们在生命、性情、彰显 / 和功用上,成为与基督一样, / 我们就够资格为着祂的身体与祂同工。 / 当我们无依无靠的信靠主, / 倚靠祂作我们的爱和力量, / 并且听祂说话, / 我们的盼望就是借着身体的得赎而被提, / 我们的祷告乃是:“主耶稣阿,我愿你来！” / 我愿你来！主耶稣来！
+# 31 notes in all; this suggestion has 105 syllables
+# 8 notes  | As we become the same as Christ
+当 我 们 在 生 命、 性 情、
+# 10 notes  | In life, nature, expression, and function,
+彰 显 和 功 用 上, 成 为 与 基
+# 9 notes  | We are qualified to work with Him
+督 一 样, 我 们 就 够 资 格
+# 4 notes  | For His Body.
+为 着 祂 的 身  #EXTRA 体  #EXTRA 与  #EXTRA 祂  #EXTRA 同  #EXTRA 工。  #EXTRA 当  #EXTRA 我  #EXTRA 们  #EXTRA 无  #EXTRA 依  #EXTRA 无  #EXTRA 靠  #EXTRA 的  #EXTRA 信  #EXTRA 靠  #EXTRA 主,  #EXTRA 倚  #EXTRA 靠  #EXTRA 祂  #EXTRA 作  #EXTRA 我  #EXTRA 们  #EXTRA 的  #EXTRA 爱  #EXTRA 和  #EXTRA 力  #EXTRA 量,  #EXTRA 并  #EXTRA 且  #EXTRA 听  #EXTRA 祂  #EXTRA 说  #EXTRA 话,  #EXTRA 我  #EXTRA 们  #EXTRA 的  #EXTRA 盼  #EXTRA 望  #EXTRA 就  #EXTRA 是  #EXTRA 借  #EXTRA 着  #EXTRA 身  #EXTRA 体  #EXTRA 的  #EXTRA 得  #EXTRA 赎  #EXTRA 而  #EXTRA 被  #EXTRA 提,  #EXTRA 我  #EXTRA 们  #EXTRA 的  #EXTRA 祷  #EXTRA 告  #EXTRA 乃  #EXTRA 是:“  #EXTRA 主  #EXTRA 耶  #EXTRA 稣  #EXTRA 阿,  #EXTRA 我  #EXTRA 愿  #EXTRA 你  #EXTRA 来！”  #EXTRA 我  #EXTRA 愿  #EXTRA 你  #EXTRA 来！  #EXTRA 主  #EXTRA 耶  #EXTRA 稣  #EXTRA 来！  #EXTRA

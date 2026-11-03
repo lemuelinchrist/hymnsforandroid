@@ -1,0 +1,55 @@
+# ZS812  (sheet of E1289)  已经得胜！
+# What is wrong:
+#   1.: French has 44-44 syllables for 114 note slots (French: 已经得胜！ / 基督已经胜过仇敌， / 得胜之声远近都可听见！ / 宝血有能， / 借牠我们必得胜利， / 不久全能得胜主必显现！)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS812.txt and run:  python3 sheet-lyrics/align.py ZS812
+
+== 1.
+# French text: 已经得胜！ / 基督已经胜过仇敌， / 得胜之声远近都可听见！ / 宝血有能， / 借牠我们必得胜利， / 不久全能得胜主必显现！
+# 114 notes in all; this suggestion has 44 syllables
+# 9 notes  | The vict'ry's won! The Lord has triumphed
+已 经 得 胜！ 基 督 已 经 胜
+# 3 notes  | o'er the foe!
+过 仇 敌，
+# 10 notes  | The vict'ry shout is heard afar and near!
+得 胜 之 声 远 近 都 可 听 见！
+# 12 notes  | His blood prevails! It giveth us the victory!
+宝 血 有 能， 借 牠 我 们 必 得 胜 利，
+# 10 notes  | And soon the mighty Victor will appear.
+不 久 全 能 得 胜 主 必 显 现！
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 13 notes
+
+# ??? only 0 syllables for 13 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes
+# 10 notes
+
+# ??? only 0 syllables for 10 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes

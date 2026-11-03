@@ -1,0 +1,60 @@
+# FR235  (sheet of E1197)  (Sœurs) Marchons dans
+# What is wrong:
+#   1.: French has 62-82 syllables for 132 note slots (French: (Sœurs) Marchons dans / (Frères) Sa lumière ! / (Sœurs) Communions / (Frères) Dans Sa grâce ! / (Sœurs) Oui, le sang / (Frères) De Jésus / (Tout le monde) Lave )
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR235.txt and run:  python3 sheet-lyrics/align.py FR235
+
+== 1.
+# French text: (Sœurs) Marchons dans / (Frères) Sa lumière ! / (Sœurs) Communions / (Frères) Dans Sa grâce ! / (Sœurs) Oui, le sang / (Frères) De Jésus / (Tout le monde) Lave tous nos péchés. / (Sœurs) Confessons ! / (Frères) Il est juste, / (Sœurs) Oui, toujours, / (Frères) Nous pardonne, / (Sœurs) Quelle joie, / (Frères) Nos péchés / (Tout le monde) Sont purifiés !
+# 132 notes in all; this suggestion has 82 syllables
+# 13 notes  | God is light, and in Him there is no darkness at all!
+(Sœurs) Mar-chons dans (Frè-res) Sa lu-mi-è-re! (Sœurs) Com-
+# 11 notes  | Oh, how we love within His presence to dwell!
+mu-ni-ons (Frè-res) Dans Sa grâ-ce! (Sœurs) Ou-
+# 13 notes  | In this light we enjoy a constant cleansing within —
+i, le sang (Frè-res) De Jé-sus (Tout le mon-de) La-
+# 4 notes  | From every sin!
+ve tous nos pé-
+# 3 notes
+chés. (Sœurs) Con-
+# 4 notes
+fes-sons! (Frè-res)
+# 3 notes
+Il est jus-
+# 4 notes
+te, (Sœurs) Ou-i,
+# 12 notes
+tou-jours, (Frè-res) Nous par-don-ne, (Sœurs) Quel-le joi-
+# 3 notes
+e, (Frè-res)
+# 7 notes
+Nos pé-chés (Tout le mon-de)
+# 4 notes
+Sont pu-ri-fi-
+# 3 notes
+és!
+# ??? only 1 syllables for 3 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 10 notes
+
+# ??? only 0 syllables for 10 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 10 notes
+
+# ??? only 0 syllables for 10 notes
+# 13 notes
+
+# ??? only 0 syllables for 13 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes

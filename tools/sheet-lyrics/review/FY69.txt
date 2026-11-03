@@ -1,0 +1,25 @@
+# FY69  (sheet of NS263)  // Ô, Il est bon de célébrer l’Éternel,
+# What is wrong:
+#   1.: French has 48-49 syllables for 94 note slots (French: // Ô, Il est bon de célébrer l’Éternel, / Et de psalmodier Ton nom, Très-Haut ! // / // D’annoncer le matin Ta bonté, / Ta fidélité dans les nuits, / Ô, Il est )
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY69.txt and run:  python3 sheet-lyrics/align.py FY69
+
+== 1.
+# French text: // Ô, Il est bon de célébrer l’Éternel, / Et de psalmodier Ton nom, Très-Haut ! // / // D’annoncer le matin Ta bonté, / Ta fidélité dans les nuits, / Ô, Il est bon de célébrer l’Éternel ! //
+# 94 notes in all; this suggestion has 49 syllables
+# 20 notes  | It’s a good thing to give thanks unto the Lord
+Ô, Il est bon de cé-lé-brer l’É-ter-nel, Et de psal-mo-di-er Ton nom, Très|
+# 20 notes  | And to sing praises unto our God.
+Haut!// D’an-non-cer le ma-tin Ta bon-té, Ta fi-dé-li-té dans les nuits, Ô, Il
+# 16 notes  | It’s a good thing to give thanks unto the Lord
+est bon de cé-lé-brer l’É-ter-nel!//
+# ??? only 9 syllables for 16 notes
+# 19 notes  | And to sing praises unto our God.
+
+# ??? only 0 syllables for 19 notes
+# 19 notes  | To show forth Thy lovingkindness
+
+# ??? only 0 syllables for 19 notes

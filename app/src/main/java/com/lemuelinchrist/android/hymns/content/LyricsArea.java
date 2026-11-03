@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
@@ -16,17 +18,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.HymnsActivity;
 import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.style.HymnTextFormatter;
-import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.style.ScriptFont;
+import com.lemuelinchrist.android.hymns.style.BookColors;
 import java.util.*;
 
 /**
@@ -36,10 +42,10 @@ import java.util.*;
 public class LyricsArea extends ContentComponent<NestedScrollView> {
     private final TextView subjectHeader;
     private final ViewGroup stanzaView;
-    private final TextView composerView;
-    private final TextView lyricHeader;
+    private final OtherLanguagesSection otherLanguages;
+    private final LinksSection links;
+    private final TableLayout detailsTable;
     private final SharedPreferences sharedPreferences;
-    private final Theme theme;
     private int columnNo=0;
     private LinearLayout currentTextLinearLayout;
     private static float fontSize;
@@ -52,7 +58,6 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         // Load saved data
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
-        theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
         disabledLanguages = sharedPreferences.getStringSet("disableLanguages",new HashSet<String>());
 
         // remove placeholder because it only contains dummy lyrics
@@ -62,11 +67,11 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
         subjectHeader = view.findViewById(getRid("subjectHeader"));
         subjectHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
 
-        lyricHeader = view.findViewById(getRid("lyricHeader"));
-        lyricHeader.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+        // the details card at the bottom is for reference, so a little smaller than the lyrics
+        detailsTable = view.findViewById(getRid("detailsTable"));
 
-        composerView = view.findViewById(getRid("composer"));
-        composerView.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
+        otherLanguages = new OtherLanguagesSection(hymn, parentFragment, (ViewGroup) view.findViewById(getRid("otherLanguagesContainer")));
+        links = new LinksSection(hymn, parentFragment, view.findViewById(getRid("linksCard")), fontSize);
 
     }
 
@@ -82,88 +87,47 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             //if hymn is still null, it means the user entered a hymn number that doesn't exist
             if (hymn == null) return;
 
-            // ########################### Build Header
-            boolean headerContentPresent=false;
+            // ########################### Build Header: subject, then the other languages' numbers
+            // (the header card always stays: the buttons are in it)
             StringBuilder text = new StringBuilder();
             if (isNotEmpty(hymn.getMainCategory())) {
-                headerContentPresent=true;
                 text.append("<b>" + hymn.getMainCategory() + "</b>");
             }
             if (isNotEmpty(hymn.getSubCategory())) {
-                headerContentPresent=true;
                 text.append("<br/>" + hymn.getSubCategory());
             }
             if (hymn.isNewTune()) text.append("<br/>(New Tune)");
-            subjectHeader.setText(Html.fromHtml(text.toString()));
-
-            text = new StringBuilder();
-            // **** tune header
-            if (isNotEmpty(hymn.getMeter())) {
-                headerContentPresent=true;
-                text.append("<br/>Meter: ");
-                text.append(hymn.getMeter());
-            }
-            if (isNotEmpty(hymn.getTime())) {
-                headerContentPresent=true;
-                text.append("<br/>Time: ");
-                text.append(hymn.getTime());
-            }
-            if (isNotEmpty(hymn.getKey())) {
-                headerContentPresent=true;
-                if(!text.toString().contains("Time: ")) {
-                    text.append("<br/>Key: ");
-                } else {
-                    text.append(" - ");
-                }
-                text.append(hymn.getKey());
-            }
-            if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0")) {
-                headerContentPresent=true;
-                text.append("<br/>Tune: ");
-                text.append(hymn.getTune());
-            }
-            if (isNotEmpty(hymn.getVerse())) {
-                headerContentPresent=true;
-                text.append("<br/>Verses: ");
-                text.append(hymn.getVerse());
-            }
-
-            // ** build related
-            List<String> related = hymn.getRelated();
-            if (related != null && related.size() != 0) {
-                headerContentPresent=true;
-                text.append("<br/>Related: ");
-                StringBuilder relatedConcat = new StringBuilder();
-                for (String r : related) {
-                    // remove languages that are disabled or not supported
-                    try {
-                        if (disabledLanguages.contains(HymnGroup.getHymnGroupFromID(r).name())) {
-                            continue;
-                        }
-                    } catch (NoSuchHymnGroupException e) {
-                        continue;
-                    }
-                    relatedConcat.append(", ");
-                    relatedConcat.append(r);
-                }
-
-                if (relatedConcat.length() > 2)
-                    text.append(relatedConcat.substring(2));
-            }
-
-            if(!headerContentPresent) {
-                View mainHeaderContainer = view.findViewById(getRid("mainHeaderContainer"));
-                mainHeaderContainer.setVisibility(View.GONE);
+            if (text.length() > 0) {
+                ScriptFont.apply(subjectHeader, hymn.getHymnGroup());
+                subjectHeader.setText(Html.fromHtml(text.toString()));
             } else {
-                // Use text.substring to remove the leading <br/>
-                String header;
-                if(text.length()>5) {
-                    header = text.substring(5);
-                } else {
-                    header = "";
-                }
-                lyricHeader.setText(Html.fromHtml(header));
+                subjectHeader.setVisibility(View.GONE);
             }
+            otherLanguages.display();
+
+            // ########################### Build Details (the card at the bottom): label | value rows, only the items we have
+            // each value but the verses opens the Search tab with that value
+            if (isNotEmpty(hymn.getMeter())) addDetail("Meter", "music", new String[][]{{hymn.getMeter(), phrase(hymn.getMeter())}});
+            if (isNotEmpty(hymn.getTime())) {
+                // time and key share a row: "4/4 · Ab Major", each searched on its own
+                addDetail("Time", "music", isNotEmpty(hymn.getKey())
+                        ? new String[][]{{hymn.getTime(), phrase(hymn.getTime())}, {" · ", null}, {hymn.getKey(), hymn.getKey()}}
+                        : new String[][]{{hymn.getTime(), phrase(hymn.getTime())}});
+            } else if (isNotEmpty(hymn.getKey())) {
+                addDetail("Key", "music", new String[][]{{hymn.getKey(), hymn.getKey()}});
+            }
+            if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0"))
+                addDetail("Tune", "music", new String[][]{{hymn.getTune(), phrase(hymn.getTune())}});
+            if (isNotEmpty(hymn.getVerse())) addVerses(Scripture.parse(hymn.getVerse()));
+            if (isNotEmpty(hymn.getAuthor()))
+                addDetail("Author", "people", new String[][]{{hymn.getAuthor(), personOf(hymn.getAuthor())}});
+            if (isNotEmpty(hymn.getComposer()))
+                addDetail("Composer", "people", new String[][]{{hymn.getComposer(), personOf(hymn.getComposer())}});
+            if (detailsTable.getChildCount() == 0) {
+                view.findViewById(getRid("detailsCard")).setVisibility(View.GONE);
+            }
+            // the card below it: piano videos and the hymnal.net page
+            links.display();
 
             // ######################## Build Lyric Text
 
@@ -215,19 +179,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // remove unused textview if uneven
             // if column is odd
             if (columnNo % 2 != 0) {
-                currentTextLinearLayout.removeViewAt(1);
-            }
-
-            // #################### Build Footer
-            text = new StringBuilder();
-            if(isNotEmpty(hymn.getAuthor()) || isNotEmpty(hymn.getComposer())) {
-                // only the lines we have, so a missing author doesn't show as "Author: null"
-                if (isNotEmpty(hymn.getAuthor())) text.append("Author: " + hymn.getAuthor());
-                if (isNotEmpty(hymn.getAuthor()) && isNotEmpty(hymn.getComposer())) text.append("<br/>");
-                if (isNotEmpty(hymn.getComposer())) text.append("Composer: " + hymn.getComposer());
-                composerView.setText(Html.fromHtml(text.toString()));
-            } else {
-                ((ViewGroup)composerView.getParent()).removeView(composerView);
+                removeColumn(currentTextLinearLayout, 1);
             }
 
         } catch (Exception e) {
@@ -246,21 +198,21 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             // close out any half-filled row left pending by the previous stanza, since its
             // right column would otherwise be orphaned once currentTextLinearLayout is replaced below
             if (columnNo % 2 != 0) {
-                currentTextLinearLayout.removeViewAt(1);
+                removeColumn(currentTextLinearLayout, 1);
             }
-            currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
+            currentTextLinearLayout = newRow();
             stanzaView.addView(currentTextLinearLayout);
-            view = (TextView) currentTextLinearLayout.getChildAt(0);
+            view = column(currentTextLinearLayout, 0);
             // next stanza must start a fresh row rather than trying to fill this row's (removed) right column
             columnNo = 0;
         } else if (++columnNo % 2 != 0) {
-            currentTextLinearLayout = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
+            currentTextLinearLayout = newRow();
             stanzaView.addView(currentTextLinearLayout);
             // left column on landscape mode
-            view = (TextView) currentTextLinearLayout.getChildAt(0);
+            view = column(currentTextLinearLayout, 0);
         } else {
             // right column on landscape mode
-            view = (TextView) currentTextLinearLayout.getChildAt(1);
+            view = column(currentTextLinearLayout, 1);
         }
 
         if(isLink) {
@@ -279,20 +231,139 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             view.setMovementMethod(LinkMovementMethod.getInstance());
         } else {
             // add colors to text
-            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()), theme.getTextColor(selectedHymnGroup));
+            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()),
+                    BookColors.accent(context, selectedHymnGroup), BookColors.color(context, R.attr.hymnHighlight));
             view.setText(formattedLyrics);
+            ScriptFont.apply(view, selectedHymnGroup);
         }
 
         view.setGravity(hymn.getHymnGroup().getTextAlignment());
 
         // stylize...
         view.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize);
-        view.setTextColor(theme.getTextColor());
-        view.setBackgroundColor(theme.getTextBackgroundColor());
 
         // notes have a row exclusively to themselves
         if(isFullWidthRow)
-            currentTextLinearLayout.removeViewAt(1);
+            removeColumn(currentTextLinearLayout, 1);
+    }
+
+    private LinearLayout newRow() {
+        return (LinearLayout) LayoutInflater.from(context).inflate(R.layout.stanza_linear_layout, null);
+    }
+
+    /**
+     * A row's first (0) or second (1) block. Side by side (landscape, tablets), right to left books start on the right,
+     * so the stanza is read before its chorus; the app isn't laid out right to left (no supportsRtl), hence by hand.
+     */
+    private TextView column(LinearLayout row, int i) {
+        return (TextView) row.getChildAt(isRightToLeftRow(row) ? 1 - i : i);
+    }
+
+    private void removeColumn(LinearLayout row, int i) {
+        row.removeView(column(row, i));
+    }
+
+    private boolean isRightToLeftRow(LinearLayout row) {
+        return row.getChildCount() == 2 && row.getOrientation() == LinearLayout.HORIZONTAL
+                && hymn.getHymnGroup().getTextAlignment() == Gravity.RIGHT;
+    }
+
+    /** One row of the details card (detail_row.xml), a little smaller than the lyrics. */
+    /**
+     * A row whose value is made of parts: {shown text, words to search} each; no words (null) = plain text. A part
+     * opens the Search tab with its words, looked for only in the column of the search table the row belongs to
+     * ("music" or "people"): "4/4" is a time there, but a scripture reference in a subject or the lyrics.
+     */
+    private void addDetail(String label, String column, String[][] parts) {
+        TextView valueView = addDetailRow(label);
+        SpannableStringBuilder text = new SpannableStringBuilder();
+        for (String[] part : parts) {
+            int start = text.length();
+            text.append(part[0]);
+            final String words = part[1];
+            if (words == null || words.isEmpty()) continue;
+            text.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    searchFor(words, column);
+                }
+
+                @Override
+                public void updateDrawState(@NonNull TextPaint ds) {
+                    ds.setColor(BookColors.accent(context, hymn.getHymnGroup()));
+                    ds.setUnderlineText(true);
+                }
+            }, start, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        valueView.setText(text);
+        // links and selecting text don't go together
+        valueView.setTextIsSelectable(false);
+        valueView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    /**
+     * The row of Bible references: each one that can be read is a link to the Recovery Version text (see {@link Scripture}),
+     * opened in the browser; the others stay plain text. Shown separated by commas, without the one the data ends with.
+     */
+    private void addVerses(List<Scripture.Ref> refs) {
+        TextView valueView = addDetailRow("Verses");
+        SpannableStringBuilder text = new SpannableStringBuilder();
+        boolean anyLink = false;
+        for (Scripture.Ref ref : refs) {
+            if (text.length() > 0) text.append(", ");
+            int start = text.length();
+            text.append(ref.text);
+            if (ref.url == null) continue;
+            anyLink = true;
+            final String url = ref.url;
+            text.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    openWebPage(url);
+                }
+
+                @Override
+                public void updateDrawState(@NonNull TextPaint ds) {
+                    ds.setColor(BookColors.accent(context, hymn.getHymnGroup()));
+                    ds.setUnderlineText(true);
+                }
+            }, start, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        valueView.setText(text);
+        if (anyLink) {
+            // links and selecting text don't go together
+            valueView.setTextIsSelectable(false);
+            valueView.setMovementMethod(LinkMovementMethod.getInstance());
+        }
+    }
+
+    private TextView addDetailRow(String label) {
+        float size = fontSize - 2;
+        TableRow row = (TableRow) LayoutInflater.from(context).inflate(R.layout.detail_row, detailsTable, false);
+        TextView labelView = row.findViewById(R.id.detailLabel);
+        labelView.setText(label);
+        labelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        TextView valueView = row.findViewById(R.id.detailValue);
+        valueView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
+        detailsTable.addView(row);
+        return valueView;
+    }
+
+    /**
+     * Digits searched as an exact phrase: "4/4" and "8.5.8.3." are loose words ("4", "8", "5", "3") that nearly every
+     * hymn has somewhere, in scripture references and verse numbers; as a phrase they match the time or meter.
+     */
+    private static String phrase(String value) {
+        return "\"" + value.replace("\"", "") + "\"";
+    }
+
+    /** "Thomas Ken, v. 1 (1637-1711)" is searched as "Thomas Ken". */
+    private static String personOf(String person) {
+        return person.replaceAll("\\s*\\([^)]*\\)", "").replaceAll(",\\s*v\\.\\s*\\d+.*$", "").trim();
+    }
+
+    private void searchFor(String words, String column) {
+        if (context instanceof HymnsActivity) ((HymnsActivity) context).openSearch(words, column);
     }
 
     private void openWebPage(String text) {

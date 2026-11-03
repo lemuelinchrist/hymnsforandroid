@@ -1,0 +1,40 @@
+# FY167  (sheet of NS970)  Cher Seigneur, Tu veux m’épouser, je suis à Toi.
+# What is wrong:
+#   adapting would change 20 of 125 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY167.txt and run:  python3 sheet-lyrics/align.py FY167
+
+== 1.
+# French text: Cher Seigneur, Tu veux m’épouser, je suis à Toi. / Maint’nant j’ouvre mon cœur à Toi, il T’appartient. / Un amour intime et affectueux, est tout ce que Tu veux de moi. / Vivre dans Ta présenc’ chaque jour, en unité. / Tu m’aimes d’un amour éternel, / Je T’aime d’un amour éternel. / Grâce à Ton amour, / Tu m’as trouvé, m’as attiré, / Et Ton amour m’a désarmé. / Tu T’es versé dans mon cœur pour que je T’aime.
+# 125 notes in all; this suggestion has 109 syllables
+# 12 notes  | Dear Lord, You want me as Your bride, all for Your own.
+Cher Sei-gneur, Tu veux m’é-pou-ser, je suis à Toi.
+# 12 notes  | So now my heart I open wide; it’s Yours alone.
+Maint’-nant j’ou-vre mon cœur à Toi, il T’ap-par-ti-
+# 17 notes  | An intimate love, affectionate, is all that You’re seeking in me.
+ent. Un a-mour in-ti-me et af-fec-tu-eux, est tout ce que Tu
+# 13 notes  | To live in Your presence, day by day, in unity.
+veux de moi. Vi-vre dans Ta pré-senc’-cha-que jour, en
+# 9 notes
+u-ni-té. Tu m’ai-mes d’un a-mour
+# 9 notes
+é-ter-nel, Je T’ai-me d’un a-mour
+# 5 notes
+é-ter-nel. Grâ-ce
+# 4 notes
+à Ton a-mour,
+# 4 notes
+Tu m’as trou-vé,
+# 8 notes
+m’as at-ti-ré, Et Ton a-mour
+# 14 notes
+m’a dé-sar-mé. Tu T’es ver-sé dans mon cœur pour que je
+# 9 notes
+T’ai-me.
+# ??? only 2 syllables for 9 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes

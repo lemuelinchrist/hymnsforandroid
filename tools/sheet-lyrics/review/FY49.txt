@@ -1,0 +1,20 @@
+# FY49  (sheet of E327)  Devant le trône du Très-Haut,
+# What is wrong:
+#   1.: French has 63-67 syllables for 32 note slots (French: Devant le trône du Très-Haut, / Mon Défenseur saura plaider, / Cet Avocat s’appelle amour, / Il intercèd’ pour moi, toujours. / Mon nom est gravé sur Ses mains,)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY49.txt and run:  python3 sheet-lyrics/align.py FY49
+
+== 1.
+# French text: Devant le trône du Très-Haut, / Mon Défenseur saura plaider, / Cet Avocat s’appelle amour, / Il intercèd’ pour moi, toujours. / Mon nom est gravé sur Ses mains, / Mon nom est inscrit dans Son cœur, / Puisqu’Il défend ma cause au ciel, / // Nul ne pourra me condamner. //
+# 32 notes in all; this suggestion has 63 syllables
+# 8 notes  | Before the throne of God above
+De-vant le trône du Très| Haut, Mon
+# 8 notes  | I have a strong, a perfect plea;
+Dé-fen-seur sau-ra plai-der, Cet
+# 8 notes  | A great High Priest, whose Name is Love,
+A-vo-cat s’ap-pelle a-mour, Il
+# 8 notes  | Who ever lives and pleads for me.
+in-ter-cèd’-pour moi, tou-jours. Mon nom  #EXTRA est  #EXTRA gra-vé  #EXTRA sur  #EXTRA Ses  #EXTRA mains,  #EXTRA Mon  #EXTRA nom  #EXTRA est  #EXTRA ins-crit  #EXTRA dans  #EXTRA Son  #EXTRA cœur,  #EXTRA Puisqu-’Il  #EXTRA dé-fend  #EXTRA ma  #EXTRA cause  #EXTRA au  #EXTRA ciel,  #EXTRA Nul  #EXTRA ne  #EXTRA pour-ra  #EXTRA me  #EXTRA con-dam-ner.//  #EXTRA

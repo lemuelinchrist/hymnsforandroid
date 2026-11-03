@@ -1,0 +1,47 @@
+# CS525  (sheet of E1255)  我們乃是為著
+# What is wrong:
+#   1.: French has 52-52 syllables for 91 note slots (French: 我們乃是為著 / 主的召會的恢復； / 乃是為著地方召會 / 在各地顯出。 / 站住地方合一立場， / 在主裡合一； / 我們建造神的居所， / 完成神旨意。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS525.txt and run:  python3 sheet-lyrics/align.py CS525
+
+== 1.
+# French text: 我們乃是為著 / 主的召會的恢復； / 乃是為著地方召會 / 在各地顯出。 / 站住地方合一立場， / 在主裡合一； / 我們建造神的居所， / 完成神旨意。
+# 91 notes in all; this suggestion has 52 syllables
+# 8 notes  | We are for the Lord's recovery
+我 們 乃 是 為 著 主 的
+# 5 notes  | Of the local church;
+召 會 的 恢 復；
+# 8 notes  | We are for the Lord's recovery
+乃 是 為 著 地 方 召 會
+# 7 notes  | Of the city and the earth.
+在 各 地 顯 出。 站 住
+# 8 notes  | Standing on the ground of oneness,
+地 方 合 一 立 場， 在 主
+# 5 notes  | Oneness in the Lord,
+裡 合 一； 我 們
+# 8 notes  | We are building up the temple
+建 造 神 的 居 所， 完 成
+# 5 notes  | Of our glorious Lord.
+神 旨 意。
+# ??? only 3 syllables for 5 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes

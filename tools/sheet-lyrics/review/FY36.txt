@@ -1,0 +1,21 @@
+# FY36  (sheet of E426)  Dévoile-moi Seigneur
+# What is wrong:
+#   1.: French has 51-66 syllables for 24 note slots (French: Dévoile-moi Seigneur / Que je voie Ta lumière / Et ne sois plus trompé, / Mais voie tout clairement. / Mais voie tout clairement. / Que Ta lumière vivante / Dis)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY36.txt and run:  python3 sheet-lyrics/align.py FY36
+
+== 1.
+# French text: Dévoile-moi Seigneur / Que je voie Ta lumière / Et ne sois plus trompé, / Mais voie tout clairement. / Mais voie tout clairement. / Que Ta lumière vivante / Disperse toute ma nuit, / Et rende tout brillant, Seigneur, / Je Te prie pour cela.
+# 24 notes in all; this suggestion has 51 syllables
+# 6 notes  | Remove my covering, Lord,
+Dé-voile| moi Sei-gneur Que
+# 6 notes  | That I may see Thy light,
+je voie Ta lu-mière Et
+# 6 notes  | And be deceived no more,
+ne sois plus trom-pé, Mais
+# 6 notes  | But all things see aright.
+voie tout clai-rement. Mais voie tout  #EXTRA clai-rement.  #EXTRA Que  #EXTRA Ta  #EXTRA lu-mière  #EXTRA vi-vante  #EXTRA Dis-perse  #EXTRA toute  #EXTRA ma  #EXTRA nuit,  #EXTRA Et  #EXTRA rende  #EXTRA tout  #EXTRA bril-lant,  #EXTRA Sei-gneur,  #EXTRA Je  #EXTRA Te  #EXTRA prie  #EXTRA pour  #EXTRA ce-la.  #EXTRA

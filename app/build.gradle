@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
-def hymnAppVersion = "v5.5"
+def hymnAppVersion = "v5.8.2"
 def autoVersionCode = ((System.currentTimeMillis() - 1704067200000L) / 60000).toInteger()
 
 
@@ -87,6 +87,8 @@ dependencies {
     implementation 'androidx.webkit:webkit:1.11.0'   // WebViewAssetLoader for the new sheet music viewer
 
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.robolectric:robolectric:4.14.1'   // runs LogBook (which needs a Context) on the computer
+    testImplementation 'androidx.test:core:1.6.1'
 }
 
 android {
@@ -105,3 +107,29 @@ tasks.configureEach { task ->
     }
 }
 
+// iOS users can't install the APK, so every release also ships a single-file offline lyrics-only web app
+// (see tools/ios/README.md). Runs after importSql so it reads the same hymns.sqlite the APK ships with.
+def iosPython = System.getProperty('os.name').toLowerCase().contains('windows') ? ['py', '-3'] : ['python3']
+def iosPythonOk = {
+    try { return new ProcessBuilder(iosPython + ['--version']).redirectErrorStream(true).start().waitFor() == 0 }
+    catch (Exception e) { return false }
+}
+tasks.register('buildIosHymnal', Exec) {
+    group = 'build'
+    description = 'Builds the single-file iOS/web hymnal (HymnsForAndroid<version>-iOS.html)'
+    dependsOn ':sqlite:importSql'
+    def out = "${buildDir}/outputs/ios/HymnsForAndroid${hymnAppVersion}-iOS.html"
+    inputs.files("${rootDir}/tools/ios/build.py", "${rootDir}/tools/ios/template.html",
+            "${rootDir}/app/src/main/assets/hymns.sqlite",
+            "${rootDir}/app/src/main/java/com/lemuelinchrist/android/hymns/HymnGroup.java")
+    outputs.file(out)
+    onlyIf {
+        def ok = iosPythonOk()
+        if (!ok) logger.warn("buildIosHymnal skipped: ${iosPython.join(' ')} not found, so no iOS html was built")
+        return ok
+    }
+    commandLine iosPython + ["${rootDir}/tools/ios/build.py", out]
+}
+tasks.matching { it.name == 'assembleRelease' || it.name == 'bundleRelease' }.configureEach {
+    finalizedBy 'buildIosHymnal'
+}

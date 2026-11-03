@@ -1,0 +1,47 @@
+# CS343  (sheet of NS290)  你的愛和你美麗自己，
+# What is wrong:
+#   2.: French has 31-31 syllables for 12 note slots (French: 因你，我得有聖別性情， / 我美麗來自你生命。 / 得更新順從聽命， / 同良人躥山越嶺。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS343.txt and run:  python3 sheet-lyrics/align.py CS343
+
+== 1.
+# French text: 你的愛和你美麗自己， / 吸引我快跑跟隨你。 / 我重生進你內室， / 蒙你餧養到永世。
+# 31 notes in all; this suggestion has 31 syllables
+# 9 notes  | Lord, Your beauty and love have drawn me,
+你 的 愛 和 你 美 麗 自 己，
+# 9 notes  | To pursue after You speedily.
+吸 引 我 快 跑 跟 隨 你。 我
+# 7 notes  | In Your chambers I am brought,
+重 生 進 你 內 室， 蒙
+# 6 notes  | And nourished here by Thee.
+你 餧 養 到 永 世。
+
+== (C)
+# French text: 請將我銘刻你心上， / 因你愛如死之堅強。 / 朝思暮想，良人，我王， / 願你快來，香草山上！
+# 33 notes in all; this suggestion has 32 syllables
+# 3 notes  | O set me a seal on Thy heart,
+請 將 我
+# 5 notes  | Your love strong as death doth abound.
+銘 刻 你 心 上，
+# 3 notes  | King, Belov’d, for You I am longing,
+因 你 愛
+# 5 notes  | Come quickly upon Spice’s Mount!
+如 死 之 堅 強。
+# 9 notes
+朝 思 暮 想， 良 人， 我 王， 願
+# 8 notes
+你 快 來， 香 草 山 上！
+# ??? only 7 syllables for 8 notes
+
+== 2.
+# French text: 因你，我得有聖別性情， / 我美麗來自你生命。 / 得更新順從聽命， / 同良人躥山越嶺。
+# 12 notes in all; this suggestion has 31 syllables
+# 2 notes  | By Your nature is mine sanctified,
+因 你，
+# 2 notes  | And my beauty’s from Your life divine.
+我 得
+# 8 notes  | I’m renewed, submissive, sweet,
+有 聖 別 性 情， 我 美 麗 來  #EXTRA 自  #EXTRA 你  #EXTRA 生  #EXTRA 命。  #EXTRA 得  #EXTRA 更  #EXTRA 新  #EXTRA 順  #EXTRA 從  #EXTRA 聽  #EXTRA 命，  #EXTRA 同  #EXTRA 良  #EXTRA 人  #EXTRA 躥  #EXTRA 山  #EXTRA 越  #EXTRA 嶺。  #EXTRA

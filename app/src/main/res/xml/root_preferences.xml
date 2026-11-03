@@ -9,13 +9,17 @@
                 app:key="FontSize"
                 app:title="@string/choose_font_size"
                 app:useSimpleSummaryProvider="true"
-                app:icon="@drawable/fontsize_black"
+                app:icon="@drawable/settings_font_size"
         />
-        <SwitchPreferenceCompat
-                app:key="nightMode"
-                app:defaultValue="false"
-                app:title="@string/nightMode"
-                app:icon="@drawable/ic_brightness"/>
+        <!-- System default, Light, Dark or Black (style/Theme); replaces the Night Mode switch (nightMode) -->
+        <ListPreference
+                app:key="theme"
+                app:defaultValue="system"
+                app:entries="@array/theme_preference"
+                app:entryValues="@array/theme_preference_values"
+                app:title="Theme"
+                app:useSimpleSummaryProvider="true"
+                app:icon="@drawable/settings_theme"/>
         <SwitchPreferenceCompat
                 app:key="keepDisplayOn"
                 app:defaultValue="false"
@@ -24,24 +28,28 @@
                 app:summary="Screen will never go to sleep"/>
         <Preference
                 app:key="manageFaves"
-                app:title="Import/Export Faves"
+                app:title="Back Up &amp; Restore Favorites"
                 app:icon="@drawable/ic_settings_favorite_black_32dp"
-                app:summary="Make sure to regularly backup your faves"
+                app:summary="Keep a copy, or move them to a new phone"
         />
-        <MultiSelectListPreference
+        <!-- the summary says how many sheets have changed chords (SettingsActivity) -->
+        <Preference
+                app:key="chordEdits"
+                app:title="Chord Edits"
+                app:icon="@drawable/ic_chord_edits_black_32dp"
+        />
+        <!-- saves the hidden books; the key keeps its old name so existing settings carry over -->
+        <com.lemuelinchrist.android.hymns.settings.HymnBooksPreference
                 app:key="disableLanguages"
-                app:title="Disable Languages"
-                app:summary="Disable Languages you do not use"
+                app:title="Languages (Hymn Books)"
                 app:icon="@drawable/ic_library_books_black_32dp"
                 app:defaultValue="@array/disabled_languages_default"
         />
-        <ListPreference
-                app:key="youtubeButton"
-                app:defaultValue="disabled"
-                app:entries="@array/youtube_button_preference"
-                app:entryValues="@array/youtube_button_preference_values"
+        <SwitchPreferenceCompat
+                app:key="youtubeSearch"
+                app:defaultValue="false"
                 app:title="@string/youtube_button"
-                app:summary="Enable Button that plays YouTube videos"
+                app:summary="Show a button that searches YouTube for the hymn"
                 app:icon="@drawable/ic_live_tv_black_32dp"/>
         <SwitchPreferenceCompat
                 app:key="similarTune"
@@ -57,17 +65,11 @@
                 app:title="@string/sheetMusicType"
                 app:useSimpleSummaryProvider="true"
                 app:icon="@drawable/ic_sheet_music_type_black_32dp"/>
-        <SwitchPreferenceCompat
-                app:key="newSheetMusicViewer"
-                app:defaultValue="false"
-                app:title="@string/newSheetMusicViewer"
-                app:summary="Sheet music that fits the screen (beta)"
-                app:icon="@drawable/ic_sheet_music_type_black_32dp"/>
         <Preference
                 app:key="about"
                 app:title="About Hymns"
                 app:summary="See version or send feedback"
-                app:icon="@drawable/ic_info"/>
+                app:icon="@drawable/settings_about"/>
 
     </PreferenceCategory>
 </PreferenceScreen>

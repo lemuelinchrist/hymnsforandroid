@@ -1,0 +1,27 @@
+# FY121  (sheet of E1266)  Brulants, brulants, nous somm’s brulants
+# What is wrong:
+#   1.: French has 106-114 syllables for 55 note slots (French: Brulants, brulants, nous somm’s brulants / En tout temps vers l’esprit tournant, / Unis pour Ton économie, / Un en esprit ; / Partout dans les localités / Nous )
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY121.txt and run:  python3 sheet-lyrics/align.py FY121
+
+== 1.
+# French text: Brulants, brulants, nous somm’s brulants / En tout temps vers l’esprit tournant, / Unis pour Ton économie, / Un en esprit ; / Partout dans les localités / Nous exprimons l’unité / Beaucoup de membr’s, mais un seul Corps, / Christ notre Tête. / Christ et l’églis’ locale, / Christ et l’églis’ locale, / Christ et l’églis’, / Notre vie, réalité, / Alléluia, alléluia ! / Seigneur, nous nous consacrons, / Pour l’édification du Corps, / Êtant bâtis dans l’amour.
+# 55 notes in all; this suggestion has 106 syllables
+# 8 notes  | Burning, burning, we are burning,
+Bru-lants, bru-lants, nous somm’s bru-lants
+# 8 notes  | Ever to our spirits turning,
+En tout temps vers l’es-prit tour-nant,
+# 12 notes  | One for Thine eternal purpose, in spirit one.
+U-nis pour Ton é-co-no-mie, Un en es-prit;
+# 8 notes  | On the ground of locality,
+Par-tout dans les lo-ca-li-tés
+# 7 notes  | We express our unity —
+Nous ex-pri-mons l’u-ni-té
+# 8 notes  | Many members, but one Body,
+Beau-coup de membr’s, mais un seul Corps,
+# 4 notes  | Christ as our Head.
+Christ notre Tête. Christ et  #EXTRA l’é-glis’-lo-cale,  #EXTRA Christ  #EXTRA et  #EXTRA l’é-glis’-lo-cale,  #EXTRA Christ  #EXTRA et  #EXTRA l’é-glis’,  #EXTRA Notre  #EXTRA vie,  #EXTRA ré-a-li-té,  #EXTRA Al-lé-lui-a,  #EXTRA al-lé-lui-a!  #EXTRA Sei-gneur,  #EXTRA nous  #EXTRA nous  #EXTRA con-sa-crons,  #EXTRA Pour  #EXTRA l’é-di-fi-ca-tion  #EXTRA du  #EXTRA Corps,  #EXTRA Ê-tant  #EXTRA bâ-tis  #EXTRA dans  #EXTRA l’a-mour.  #EXTRA

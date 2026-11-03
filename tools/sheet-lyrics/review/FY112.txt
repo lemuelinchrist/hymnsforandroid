@@ -1,0 +1,31 @@
+# FY112  (sheet of NS453)  // J’ai mis devant toi la vie et la mort,
+# What is wrong:
+#   1.: French has 63-70 syllables for 106 note slots (French: // J’ai mis devant toi la vie et la mort, / Bénédictions et malédictions, / Choisis la vie que tu viv’s, toi et ta semence.// / //En aimant Jéhovah ton Dieu, / )
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY112.txt and run:  python3 sheet-lyrics/align.py FY112
+
+== 1.
+# French text: // J’ai mis devant toi la vie et la mort, / Bénédictions et malédictions, / Choisis la vie que tu viv’s, toi et ta semence.// / //En aimant Jéhovah ton Dieu, / En écoutant Sa voix et en t’attachant à Lui, / Car Il’est ta vie, // / La longueur de tes jours.
+# 106 notes in all; this suggestion has 70 syllables
+# 13 notes  | I have set before you life and death, blessing and curse;
+J’ai mis de-vant toi la vi-e et la mort, Bé-né-
+# 11 notes  | Therefore choose life that you and your seed may live,
+dic-ti-ons et ma-lé-dic-ti-ons, Choi-sis
+# 13 notes  | I have set before you life and death, blessing and curse;
+la vi-e que tu viv’s, toi et ta se-men-ce.// //En
+# 11 notes  | Therefore choose life that you and your seed may live,
+ai-mant Jé-ho-vah ton Di-eu, En é-cou-
+# 21 notes
+tant Sa voix et en t’at-ta-chant à Lui, Car Il-’est ta vi-e,// La lon-gueur de tes
+# 5 notes
+jours.
+# ??? only 1 syllables for 5 notes
+# 21 notes
+
+# ??? only 0 syllables for 21 notes
+# 11 notes
+
+# ??? only 0 syllables for 11 notes

@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,11 @@ public class FileUtils {
         try
         {
 
-            in = new BufferedInputStream(new URL(urlString).openStream());
+            // hymnal.net refuses its sheet music (403) to a request without a browser user agent and a referer (2026-10)
+            URLConnection connection = new URL(urlString).openConnection();
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            connection.setRequestProperty("Referer", "https://www.hymnal.net/");
+            in = new BufferedInputStream(connection.getInputStream());
             fout = new FileOutputStream(filename);
 
             byte data[] = new byte[1024];

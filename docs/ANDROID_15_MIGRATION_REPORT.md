@@ -1,5 +1,9 @@
 # Android 15 (API 35) Migration & UI Repair Report: Deep Dive
 
+> **Historical record (May 2026).** It describes the app at the time. Since then: minSdk is 24 and target/compile SDK
+> 36 (`app/build.gradle`); sheet music is no longer SVG files but the MEI viewer (`docs/APP_ARCHITECTURE.md` §10);
+> `GEMINI.md`, mentioned at the end, is no longer in the repository.
+
 ## 📋 Overview
 This document provides an exhaustive technical breakdown of the migration from Target SDK 34 to **Target SDK 35 (Android 15)**. Due to Android 15's enforced "Edge-to-Edge" policy, the application required significant refactoring of its theme, layouts, and window management logic to maintain its professional aesthetic and usability.
 

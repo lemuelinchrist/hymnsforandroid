@@ -20,15 +20,50 @@ This skill is the condensed playbook for the common case: **correcting or updati
 - A `Provision*.groovy` script connects straight to `app/src/main/assets/hymns.sqlite` (path templated into `databaseProvisioner/src/main/resources/META-INF/persistence.xml` via `${sqliteFile}`). Each script deletes its own ID range first (e.g. `removeSpanishHymns()` wipes S1–S1000), then re-parses its `.txt` resource file and re-inserts via `Dao.save()`. This delete-then-reinsert pattern is what makes re-running a script safe/idempotent.
 - `./gradlew :sqlite:exportSql` — dumps the now-updated `hymns.sqlite` back into `sqlite/hymns.sql`. Run this **after** provisioning, and commit `hymns.sql` (never the `.sqlite` binaries — they're gitignored on purpose).
 
+## Extract from hymnal.net with Groovy, not Python
+
+Everything that downloads or parses hymnal.net pages lives in `databaseProvisioner` as Groovy/Java
+(`HymnalNetExtractor`, the `Extract*`/`Update*` scripts, Gradle tasks). Keep it that way: when a new hymnal.net book or
+sync is needed, write a Groovy script there that reuses `HymnalNetExtractor` (its `User-Agent`/`Referer` download,
+`dl.hn-dl` details, fake-page checks), **not a Python script** (Lemuel 2026-10-26, after the Urdu hymns were fetched
+with one-off Python scripts that were then removed). Python is fine for checking and analysing data, not for the
+extraction pipeline.
+
+## Which hymn is the parent
+
+A translated hymn's `parent_hymn` is the hymn it inherits key, time, meter, tune, author, composer and sheet music from
+(`HymnsDao` merges them at runtime), so pick the one those details really belong to:
+
+1. **English (`E`) or New Songs (`NS`)**: the default, whenever the hymn has one.
+2. Otherwise **Be Filled (`BF`)**.
+3. Otherwise **traditional Chinese: `C`, or `CS` for the supplement**. Never simplified Chinese (`Z`, `ZS`): those are
+   children of `C`/`CS` themselves (Z1 → C1), as are the Indonesian hymns translated from Chinese.
+
+All other links go into `related` only. `ProvisionLanguageFile.parentOf()` follows this order (Lemuel, 2026-10-26, for
+the Urdu hymns that hymnal.net translated from Chinese: UR8273 → C273). In the database (2026-10-26): about 9,800
+children of `E`, 814 of `NS`, 489 of `CS`, 253 of `C`, 23 of `BF`.
+
+## Where reports and contributors' files live
+
+- **Version reports** ("Hymns For Android v5.7 Report" and so on) are Lemuel's private Claude Docs, not files in this
+  public repo (moved 2026-10-27; `docs/v[0-9]*/` is git-ignored). Read and update them with the Claude Docs tools; the
+  links are in Claude's memory. "The v5.7 report" below means that doc.
+- **Contributors' original files** (Word, PDF, the `.txt` versions they email) go in `databaseProvisioner/src/main/resources/originals/`, which is
+  git-ignored: they stay on Lemuel's PC. Only the resource files the scripts read are committed.
+- Never put people's email addresses, or where saints live, into committed files (the repo is public).
+
 ## Known script ↔ resource ↔ ID-range mapping
 
 | Script | Resource file | ID range owned |
 |---|---|---|
 | `ProvisionSpanish2026.groovy` | `Spanish2026.txt` | S1–S1000 |
-| `ProvisionSwahili.groovy` (Gradle `runSwahili`) | `Swahili.txt` (hand-made from Kimathi's scanned `.docx`, see `docs/v5.5/v5.5-report.md`; send edits back to him) | SW1–SW300 (numbers = printed page numbers, with gaps) |
+| `ProvisionFrenchYouth.groovy` (Gradle `runFrenchYouth`) | `FrenchYouth.txt` (made from the PDF `Cantique des jeunes (Recueil lyonnais 19-07-2024).pdf`, kept in `databaseProvisioner/src/main/resources/originals/`, see the v5.6 report) | FRY1–FRY400 (book order; the book has no song numbers) |
+| `ProvisionLanguageFile.groovy` (Gradle `runRussian`, `runBurmese` (groups RUS and BUR; their codes were R and MY until 2026-11: each task also removes the old rows, `legacyGroup`), `runTamil`, `runUrdu`, `runPortuguese`, `runPortugueseYouth`, `runPolish`; one script, a settings table per language; run them in **one** Gradle call, since each task's `importSql` resets the database) | `Russian.txt`, `Burmese.txt`, `Tamil.txt` (Brother Victor's format; fixes listed in the v5.7 report; an optional `Hymn code: <tune>` line gives a hymn with no English one its melody, e.g. R244); `Portuguese.txt` (POR1–1360, numbered like the English hymnal), `PortugueseYouth.txt` (file header `POR-YP-n`, group POY) and `Polish.txt` (POL1–424), all from Brother Victor's testers, in his format with notes between stanzas (the first books with a three-letter code; a `Related:` LB12 becomes NS10012 and E8255 becomes C255); `Urdu.txt` (same format, made from hymnal.net's Urdu pages, see the v5.7 report; the Urdu New Songs and Long Beach hymns, which hymnal.net lists in its sitemap (`sitemaps/hymns-ns.xml`, `hymns-lb.xml`: pages ending in `ur`), are appended by `ExtractUrduNewSongs.groovy`, Gradle `runExtractUrduNewSongs`, as UR10000 + NS number and UR20000 + LB number; a hymn whose parent is not in the database stops `runUrdu`) | RUS1–RUS1000, BUR1–BUR1100 (alt songs from BUR1001), TA1–TA2000, UR1–UR20999, POR1–POR1400, POY1–POY200, POL1–POL500 |
+| `ProvisionSwahili.groovy` (Gradle `runSwahili`) | `Swahili.txt` (hand-made from Kimathi's scanned `.docx`, kept in `databaseProvisioner/src/main/resources/originals/`, see the v5.5 report; send edits back to him) | SW1–SW300 (numbers = printed page numbers, with gaps) |
+| `ProvisionKikuyu.groovy` (Gradle `runKikuyu`; extends `ProvisionSwahili`, same file format) | `Kikuyu.txt` (typed from Kimathi's scanned `Kikuyu hymnal .pdf` of 2026-10-30, his original uncorrected pages, kept in `databaseProvisioner/src/main/resources/originals/`; images only, no text layer; a few lines cut off in its screenshots are taken from his earlier `Updated and corrected Kikuyu hymnal.pdf`; send edits back to him) | KI1–KI300 (the order of his file, which has no hymn numbers; KI71–KI72 from the earlier PDF; holy names capitalized only where they mean God, as he asked) |
 | `ProvisionSpanishSupplement.groovy` | `HImnosCanticosEspirituales.txt` (name doesn't match "supplement" — verify by reading the script's `spanishFile =` line, not just the filename) | SY1–SY506 (own `SY` hymn group; was `S2000`–`S2506` before the v5.4 split, then `SS1`–`SS506` until the v5.4.5 rename to `SY` for naming consistency with German Youth's `GY`) |
 | `ProvisionGermanYouth.groovy` | `german/GermanYPsongs_v2.txt` | GY1–GY271 (own `GY` hymn group as of the v5.4 split; was `G2001`–`G2271` before that) |
-| `ProvisionGermanV2.groovy` (Gradle `runGerman`) | `german/New_German_hymns.txt` (G1–G460, the main German hymnal, maintained by Isaiah's team) **and** `german/GermanNewHymn_2019Dec.txt` (G1001–G1020) | deletes G1–G1336, re-provisions both files. `G10001`/`G10002` (German "non-hymns", from the old one-off `UpdateV33.groovy`) are outside the range and untouched. Drops `R` (Russian) entries from `Related:` since the app has no Russian group. |
+| `ProvisionGermanV2.groovy` (Gradle `runGerman`) | `german/New_German_hymns.txt` (G1–G460, the main German hymnal, maintained by Isaiah's team) **and** `german/GermanNewHymn_2019Dec.txt` (G1001–G1020) | deletes G1–G1336, re-provisions both files. `G10001`/`G10002` (German "non-hymns", from the old one-off `UpdateV33.groovy`) are outside the range and untouched. Drops `R` (Russian) entries from `Related:`: German hymns reach the Russian ones through their English parent, and the `R` numbers in `GermanNewHymn_2019Dec.txt` follow another book (451 of 453 in `New_German_hymns.txt` do match the `R` group). |
 
 `SY` and `GY` are dedicated `HymnGroup` entries (own section in the app, own icon), not just an ID-prefix convention — see `app/src/main/java/com/lemuelinchrist/android/hymns/HymnGroup.java`. English "New Songs" (`NS`) is a different case: it isn't sourced from an editable `.txt`/`Provision*.groovy` at all — it was populated long ago by one-off `Extract*.groovy`/`Update*.groovy` scripts scraping hymnal.net. There's no resource file to edit for an `NS` correction; see the one-off single-hymn fix section below.
 
@@ -41,10 +76,10 @@ When a new correction file arrives (e.g. via email) and you need to figure out w
 `Spanish2026.txt`, `HImnosCanticosEspirituales.txt` (Spanish Youth/Supplement), and `german/GermanYPsongs_v2.txt` (German Youth) are maintained by an external contributor, Victor, over email — **he is not a developer and has no git access**, so our repo copy and his own working copy are two independent files that only stay in sync because we manually pass changes back and forth. Whenever we make **any manual edit directly to one of these three files** (a disambiguation fix, a `Related:` link, anything beyond just applying a file Victor sent verbatim), his copy is now stale and **must be sent back to him**, or his next round of corrections will silently overwrite our fix.
 
 - Before editing, know that these are literally the same three files Victor edits and emails back — there is no separate "our version"/"his version" distinction in the pipeline; the resource `.txt` *is* his file.
-- After any direct edit (not just re-applying a file he sent), copy the current resource file(s) into `docs/v5.4/` (or the current version's docs folder) with a dated filename, following the existing naming pattern (e.g. `Supplemental_spanish_hymns_hymnsapp2026_renumbered_<date>.txt`), and flag to the user that these need to go back to Victor.
-- **When in doubt about whether a file has drifted from what Victor last sent**, don't guess — diff the live resource file against his last-received copy (archived in `docs/v5.4/`) directly:
+- After any direct edit (not just re-applying a file he sent), copy the current resource file(s) into `databaseProvisioner/src/main/resources/originals/` (git-ignored: contributors' files stay private) with a dated filename, following the existing naming pattern (e.g. `Supplemental_spanish_hymns_hymnsapp2026_renumbered_<date>.txt`), and flag to the user that these need to go back to Victor.
+- **When in doubt about whether a file has drifted from what Victor last sent**, don't guess — diff the live resource file against his last-received copy (kept in `databaseProvisioner/src/main/resources/originals/`; older ones are in the git history of `docs/v5.4/`, removed 2026-10-27) directly:
   ```bash
-  diff <(tr -d '\r' < docs/v5.4/<his_last_file>.txt) <(tr -d '\r' < databaseProvisioner/src/main/resources/<resource>.txt)
+  diff <(tr -d '\r' < databaseProvisioner/src/main/resources/originals/<his_last_file>.txt) <(tr -d '\r' < databaseProvisioner/src/main/resources/<resource>.txt)
   ```
   A clean diff means no send-back is needed for that file; don't assume based on memory of what you think you touched — verify all three files this way if there's any uncertainty, since it's cheap and it's exactly what settled this question on 2026-09-05 (only the Supplement file had drifted; the other two were byte-identical to what he'd sent).
 - If a fix diverges from what hymnal.net/Victor's own source literally shows (e.g. an invented disambiguation suffix on a tune code), explain *why* in the message back to him — he may otherwise "correct" it back to the literal value next time he touches that hymn.
@@ -59,6 +94,31 @@ Some collections were historically appended onto the end of a parent group's ID 
 4. **Critical**: update the script's `removeXxxHymns()` to delete **both** the new ID range **and** the old legacy range, permanently (a one-time migration cleanup that costs nothing to leave in place forever). Forgetting this leaves orphaned rows under the old prefix that never get cleaned up by any future re-run — verify with a targeted count query (`WHERE _id LIKE 'S2%' AND CAST(substr(_id,2) AS INTEGER) >= 2000`, not a naive `LIKE` that also matches legitimate low IDs).
 5. Grep **every** resource file (not just the one being split) for cross-references to the old ID range in `Related:` lines, and remap them — a split commonly breaks reciprocal links from a sibling collection (e.g. German Youth hymns referencing old Spanish-Supplement IDs).
 6. Document the new group in `docs/database_spec.md`'s hymn group table and this skill's ID-range table.
+
+### Making the group icon (`<code>.png`)
+
+The icons are 364×364 RGBA PNGs: a rounded square with a darker border, a lighter fill and off-white serif letters. The two colors are the group's own two colors from `HymnGroup.java` (the first is the day color, the second the night color): **darker = border, lighter = fill**. Check against an existing icon (e.g. `gk.png`, read with `convert gk.png -format "%[pixel:p{4,182}] %[pixel:p{60,60}]" info:`: border then fill) so the new one matches. Pick a color pair no other group uses. ImageMagick and the C059 font (a free Century Schoolbook clone, which the other icons' letters look like) are available in WSL:
+
+```bash
+convert -size 364x364 xc:none \
+  -fill "rgb(0,131,143)"  -draw "roundrectangle 0,0 363,363 64,64" \
+  -fill "rgb(77,208,225)" -draw "roundrectangle 12,12 351,351 54,54" \
+  -font /usr/share/fonts/opentype/urw-base35/C059-Roman.otf -pointsize 170 \
+  -fill "rgb(242,242,242)" -gravity center -annotate -4+22 "SW" -depth 8 \
+  app/src/main/res/drawable-xhdpi/sw.png
+```
+
+- **Center by measurement, not by `-gravity center` alone.** ImageMagick centers the font's whole line box, which has room below the baseline for letters like g/y, so capital-only text such as "SW" lands too high. Measure the visible letters and shift with the `-annotate +x+y` offset until their bounding box is centered at (182, 182):
+  ```python
+  from PIL import Image
+  im = Image.open('sw.png').convert('RGB'); px = im.load(); w, h = im.size
+  pts = [(x, y) for y in range(h) for x in range(w) if min(px[x, y]) > 225]
+  xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
+  print((min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2)
+  ```
+  (`-annotate -4+22` was right for "SW" at size 170; other letters need their own offset. Shrink `-pointsize` for 3-letter codes.)
+- `-depth 8` keeps it 8 bits per channel like the other icons (ImageMagick otherwise writes 16-bit).
+- Look at the result with the image Read tool next to a neighbour icon before committing. These are stand-ins; a designed icon from `docs/HymnIcons.pptx` can replace the file at any time (same name).
 
 ## Renaming an existing `HymnGroup`'s ID prefix (not a split — the group already has its own section)
 
@@ -141,7 +201,7 @@ Sometimes a fix is a one- or two-field correction to a single hymn that isn't co
 
 Instead:
 1. Query the current value(s) to confirm what needs to change (`sqlite3 app/src/main/assets/hymns.sqlite "SELECT ..."`).
-2. Edit `sqlite/hymns.sql` directly — find the `INSERT INTO hymns VALUES(...)` line for that hymn ID and change the relevant field(s) in place (or the `INSERT INTO stanza`/`tune` line, if that's what needs fixing).
+2. Edit `sqlite/hymns.sql` directly — find the `INSERT INTO hymns VALUES(...)` line for that hymn ID and change the relevant field(s) in place (or the `INSERT INTO stanza`/`link` line, if that's what needs fixing).
 3. Run `./gradlew :sqlite:importSql` to rebuild `hymns.sqlite` from the edited `hymns.sql` and confirm the fix with a `sqlite3` query.
 4. Commit `sqlite/hymns.sql` as-is — no script needed. Because no `Provision*` script touches that hymn's ID range, the hand-edited row survives every future re-provisioning run untouched.
 
@@ -152,9 +212,15 @@ This is exactly the "Manual Developer Workflow" already documented in `docs/data
 A hymn's `tune` field (parsed from a `Hymn code Hymnalnet:`/`Hymn code:` line — see the keyword gotcha above) is a numeric melody-shape code, e.g. `1233112353234321`. It is **shared across every hymn that uses that melody, in every language** — that's the entire point of the field: it's how the app finds "hymns with a similar tune" (`HymnsDao.getHymnsWithSimilarTune()` in the app) and how it plays the in-app MIDI preview.
 
 - **MIDI playback**: `Hymn.playHymn()` (`app/src/main/java/.../entities/Hymn.java`) does a **reflection lookup** on `R.raw` for a field named `"m" + tune`, i.e. it plays whatever raw resource is named `app/src/main/res/raw/m<tunecode>.mid`. There is exactly **one MIDI file per tune code**, not per hymn — dozens of hymns across `E`, `C`, `S`, `NS`, etc. can and do point at the same `.mid` file.
-- **Sheet music (SVG)** is the opposite: keyed by **hymn ID**, one file per hymn, in `app/src/main/assets/pianoSvg/<hymnId>.svg` and `guitarSvg/<hymnId>.svg`. A hymn with no tune/no English parent has no sheet music of its own and shows nothing (see `LegacySheetMusic.java` / `HymnsDao.get()`'s parent-inheritance fallback).
+- **Sheet music (SVG)** is the opposite: keyed by **hymn ID**, one file per hymn, in `tools/svg-to-lilypond/svg/pianoSvg/<hymnId>.svg` and `guitarSvg/<hymnId>.svg`. A hymn with no tune/no English parent has no sheet music of its own and shows nothing (see `LegacySheetMusic.java` / `HymnsDao.get()`'s parent-inheritance fallback).
 - **Because MIDI files are keyed by tune code, not hymn ID, never blanket-overwrite `app/src/main/res/raw/*.mid` from a fresh download batch.** If a newly-extracted hymn happens to share a tune code with hymns already in the app (very common — verify with `sqlite3 ... "SELECT _id FROM hymns WHERE tune='<code>'"` before copying), a fresh re-download for that code is not guaranteed byte-identical to what's already there (real incident: 9 of 70 new downloads differed in size, one by 6x) and can silently change audio for unrelated existing hymns in every language. **Diff staged/incoming `.mid` files against `git show HEAD:<path>` first; only copy files that are genuinely new (no existing hymn currently uses that tune code) or that you've confirmed are equivalent.**
-- Full download pipeline for one hymn: `HymnalNetExtractor.convertWebPageToHymn()` scrapes the hymn page, sets `sheetMusicLink` from the page's `.leadsheet span.svg` element (see selector note below), then calls `downloadSheetMusicAndMidi()`, which saves piano/guitar SVGs to `Constants.SHEET_PIANO_DIR`/`SHEET_GUITAR_DIR` (`databaseProvisioner/data/pianoSvg`/`guitarSvg` — a **local staging directory**, not the app) and the MIDI to `Constants.MIDI_PIANO_DIR` (`databaseProvisioner/data/midi`, also staging). **None of this lands in the app automatically** — after extraction, manually `cp` the new files from `databaseProvisioner/data/{pianoSvg,guitarSvg,midi}/` into `app/src/main/assets/{pianoSvg,guitarSvg}/` and `app/src/main/res/raw/` respectively (after the MIDI dedup check above). `Constants.MIDI_DIR` (from the `midi.dir` property) is a *different*, unused-by-download constant that happens to point at `app/src/main/res/raw` — don't confuse it with `MIDI_PIANO_DIR`.
+- Full download pipeline for one hymn: `HymnalNetExtractor.convertWebPageToHymn()` scrapes the hymn page, sets `sheetMusicLink` (in memory only: the `sheet_music_link` column was dropped in v5.6) from the page's `.leadsheet span.svg` element (see selector note below), then calls `downloadSheetMusicAndMidi()`, which appends `hymnId<TAB>link` to `databaseProvisioner/data/hymnalnet_links.tsv` and saves piano/guitar SVGs to `Constants.SHEET_PIANO_DIR`/`SHEET_GUITAR_DIR` (`databaseProvisioner/data/pianoSvg`/`guitarSvg` — a **local staging directory**, not the app) and the MIDI to `Constants.MIDI_PIANO_DIR` (`databaseProvisioner/data/midi`, also staging). **None of this lands in the app automatically** — after extraction, manually `cp` the new SVGs from `databaseProvisioner/data/{pianoSvg,guitarSvg}/` into `tools/svg-to-lilypond/svg/{pianoSvg,guitarSvg}/` (then the `svg-to-lilypond` skill makes the app's `.mei`), merge the rows of `data/hymnalnet_links.tsv` into `tools/svg-to-lilypond/svg/hymnalnet_links.tsv`, and copy the MIDI into `app/src/main/res/raw/` (after the MIDI dedup check above). `Constants.MIDI_DIR` (from the `midi.dir` property) is a *different*, unused-by-download constant that happens to point at `app/src/main/res/raw` — don't confuse it with `MIDI_PIANO_DIR`.
+- **hymnal.net changes found 2026-10-25 (handled in the downloader):** SVGs need a browser user agent and a hymnal.net
+  `Referer` (else 403; `FileUtils.saveUrl` sends both); the details are a `<dl class="hn-dl">` of `<dt>`/`<dd>`
+  (`HymnalNetExtractor.readDetails`); **no MIDI is served any more** (all `.mid` are 403, pages link MP3 tunes), so a
+  new tune gets no MIDI from hymnal.net. The related-songs block is not re-read yet: check `related` of a downloaded hymn.
+  To replace a single NS hymn saved from a fake page: delete its rows, then
+  `./gradlew :databaseProvisioner:runExtractNSFakePageReplacements -Phymns=752` (checks the sheet number).
 - **Known site-markup bug (fixed 2026-09-05):** hymnal.net changed its HTML at some point — the old selector `.leadsheet.piano span` no longer matches anything (should be `.leadsheet span.svg`). If a sync run logs `"warning no sheet Music link"` for hymns that visibly have sheet music on the live site, check `HymnalNetExtractor.java`'s two `.select(...)` calls for this selector before assuming the hymn genuinely lacks sheet music — the site can change markup again in the future.
 
 ## Syncing the Children (`CH`) collection from hymnal.net (reusable)
@@ -165,7 +231,7 @@ Replaces or adds each `CH<n>` with hymnal.net's `c/<n>` on the current DB (no im
 MIDI itself (children MIDIs are `c0082.mid`, not `child0082.mid`). Find the current size from the index
 (`/en/song-index/c/<letter>`; `c/57` is real but not indexed). Afterwards, as for NS: copy staged SVGs, copy only MIDI
 files for tune codes the app doesn't have yet, `exportSql`, then the `svg-to-lilypond` skill for `.ly`/`.mei`.
-First full run: 2026-10-10, 74 → 243 songs (see `docs/v5.5/v5.5-report.md`).
+First full run: 2026-10-10, 74 → 243 songs (see the v5.5 report).
 
 ## Downloading new hymnal.net songs (syncing the `NS`/"New Songs" collection)
 

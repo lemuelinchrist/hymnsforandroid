@@ -1,0 +1,23 @@
+# ZS860  (sheet of CS860)  去！使万民作主的门徒，教导神圣的真理，
+# What is wrong:
+#   1.: French has 64-64 syllables for 88 note slots (French: 去！使万民作主的门徒，教导神圣的真理， / 将国度福音传遍全地，催促主日子来临； / 享受包罗万有的基督，将祂分赐外邦人， / 使他们都成为神儿女，作神祭物献给神。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS860.txt and run:  python3 sheet-lyrics/align.py ZS860
+
+== 1.
+# French text: 去！使万民作主的门徒，教导神圣的真理， / 将国度福音传遍全地，催促主日子来临； / 享受包罗万有的基督，将祂分赐外邦人， / 使他们都成为神儿女，作神祭物献给神。
+# 88 notes in all; this suggestion has 64 syllables
+# 16 notes  | 去！使萬民作主的門徒，教導神聖的真理，
+去！ 使 万 民 作 主 的 门 徒， 教 导 神 圣 的 真 理，
+# 16 notes  | 將國度福音傳遍全地，催促主日子來臨；
+将 国 度 福 音 传 遍 全 地， 催 促 主 日 子 来 临；
+# 16 notes  | 享受包羅萬有的基督，將祂分賜外邦人，
+享 受 包 罗 万 有 的 基 督， 将 祂 分 赐 外 邦 人，
+# 16 notes  | 使他們都成為神兒女，作神祭物獻給神。
+使 他 们 都 成 为 神 儿 女， 作 神 祭 物 献 给 神。
+# 24 notes
+
+# ??? only 0 syllables for 24 notes

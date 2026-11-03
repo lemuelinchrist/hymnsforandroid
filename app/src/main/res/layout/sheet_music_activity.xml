@@ -3,7 +3,7 @@
               android:id="@+id/sheet_music_layout"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#FFFFFF">
+              android:background="@color/sheet_background">
 
     <WebView
             android:id="@+id/sheet_music_image"

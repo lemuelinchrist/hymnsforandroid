@@ -13,14 +13,17 @@ import com.lemuelinchrist.hymns.lib.beans.HymnsEntity
  *
  * hymnal.net serves a fake page when a page is fetched too fast, so every page is checked: a real page links a sheet
  * with its own number (ns0881_p.svg on ns/881). A fake is retried after a pause and never saved.
+ *
+ * Reusable: pass other numbers with -Phymns=752,800 (v5.7: NS752 was a copy of NS754, the real song was missing).
  */
 class ExtractNSFakePageReplacements {
     static final List<Integer> HYMNS = [881, 978, 981, 995, 997]
 
-    public static void main(arg) {
+    public static void main(String[] args) {
         Dao dao = new Dao()
 
-        for (int x : HYMNS) {
+        List<Integer> hymns = args ? args.collect { it.toInteger() } : HYMNS
+        for (int x : hymns) {
             HymnsEntity hymn = null
             for (int attempt = 1; attempt <= 3 && hymn == null; attempt++) {
                 sleep(15000)

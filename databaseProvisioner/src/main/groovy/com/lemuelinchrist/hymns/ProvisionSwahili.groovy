@@ -7,13 +7,17 @@ import com.lemuelinchrist.hymns.lib.beans.StanzaEntity
 /**
  * Provisions the Kiswahili hymnal (SW) from Swahili.txt.
  *
- * Source: Brother Kimathi's "SWAHILI HYMN BOOK .docx" (docs/v5.5), a scan of a printed hymnal. Hymn numbers are the
+ * Source: Brother Kimathi's "SWAHILI HYMN BOOK .docx" (kept outside git in resources/originals), a scan of a printed hymnal. Hymn numbers are the
  * printed page numbers, as he asked, so the numbers have gaps. Format per hymn: "SW-<n>", then Subject:/Related:/Parent:,
  * then numbered stanzas ("1", "2", ...) and "Chorus:" blocks, separated by blank lines.
  *
  * @since 2026-10-11
  */
 class ProvisionSwahili {
+    // ProvisionKikuyu reads a file in the same format with its own group code and number range
+    String group = 'SW'
+    String resource = '/Swahili.txt'
+    int maxNo = 300
     static File swahiliFile;
     Integer stanzaCounter = 0;
     Integer stanzaOrderCounter = 0;
@@ -22,7 +26,7 @@ class ProvisionSwahili {
     HymnsEntity hymn = null;
     StanzaEntity stanza = null;
     Set<String> anomalies = new HashSet<>();
-    private Dao dao = new Dao()
+    protected Dao dao = new Dao()
 
     public static void main(String[] args) {
         def swahili = new ProvisionSwahili();
@@ -33,14 +37,19 @@ class ProvisionSwahili {
     }
 
     void removeSwahiliHymns() {
-        println "Cleaning up existing Swahili hymns..."
-        for (int x = 1; x <= 300; x++) {
-            dao.delete("SW" + x)
+        println "Cleaning up existing ${group} hymns..."
+        for (int x = 1; x <= maxNo; x++) {
+            HymnsEntity old = dao.find(group + x)
+            if (old != null) {
+                // links added to hymns that are not the parent (e.g. a Tagalog hymn) are not undone by dao.delete
+                (old.related - [old.parentHymn]).findAll { it?.trim() }.each { dao.removeRelatedHymn(it, old.id) }
+            }
+            dao.delete(group + x)
         }
     }
 
     void provision() throws Exception {
-        swahiliFile = new File(this.getClass().getResource("/Swahili.txt").getPath());
+        swahiliFile = new File(ProvisionSwahili.class.getResource(resource).getPath());
         println "Reading from: ${swahiliFile.path}"
 
         iterator = swahiliFile.iterator();
@@ -49,7 +58,7 @@ class ProvisionSwahili {
             line = iterator.next().trim();
             if (line.isNumber() || line.startsWith("Chorus:")) {
                 createNewStanza()
-            } else if (line.startsWith('SW-')) {
+            } else if (line.startsWith(group + '-')) {
                 wrapup()
                 createNewHymn()
             } else if (!line.isEmpty()) {
@@ -81,6 +90,9 @@ class ProvisionSwahili {
 
         println hymn
         dao.save(hymn)
+        // dao.save() links the hymn back from its parent only; a Related: that is not the parent (T10240, ...) needs the
+        // reverse link too, so the language switch works from that hymn as well
+        (hymn.related - [hymn.parentHymn]).findAll { it?.trim() && dao.find(it) != null }.each { dao.addRelatedHymn(it, hymn.id) }
         hymn = null
         stanza = null
     }
@@ -91,11 +103,11 @@ class ProvisionSwahili {
 
     def createNewHymn() {
         int swNo = Integer.parseInt(line.replaceAll('[^0-9]', ''))
-        println "******* Generating Swahili Hymn ${swNo}..."
+        println "******* Generating ${group} Hymn ${swNo}..."
         hymn = new HymnsEntity();
-        hymn.id = 'SW' + swNo
+        hymn.id = group + swNo
         hymn.no = swNo.toString()
-        hymn.hymnGroup = 'SW'
+        hymn.hymnGroup = group
         hymn.stanzas = new ArrayList<StanzaEntity>();
         stanza = null
         stanzaCounter = 0

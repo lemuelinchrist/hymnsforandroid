@@ -1,0 +1,40 @@
+# FY47  (sheet of E1340)  // Et avec joie vous puiserez l’eau
+# What is wrong:
+#   1.: no way to spread 73-84 syllables over the phrases [9, 8, 7, 3, 17, 7, 3, 5, 10, 10, 4, 8, 16] (French: // Et avec joie vous puiserez l’eau / Aux fontaines du salut, / Et vous direz ce jour-là : / Je Te loue ! // / Invoquez Son nom, / Publiez Ses œuvres parmi les )
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY47.txt and run:  python3 sheet-lyrics/align.py FY47
+
+== 1.
+# French text: // Et avec joie vous puiserez l’eau / Aux fontaines du salut, / Et vous direz ce jour-là : / Je Te loue ! // / Invoquez Son nom, / Publiez Ses œuvres parmi les peuples, / Rappelez-leur la grandeur de Son nom ! / Pousses des cris de joie, habitant de Sion ! / Oh, comme Il est grand en ton milieu, le très Saint / D’Israël !
+# 107 notes in all; this suggestion has 84 syllables
+# 9 notes  | Therefore with joy shall ye draw water
+Et a-vec joi-e vous pui-se-rez
+# 8 notes  | Out of the wells of salvation.
+l’eau Aux fon-tai-nes du sa-lut,
+# 7 notes  | And in that day shall ye say,
+Et vous di-rez ce jour| là:
+# 3 notes  | Praise the Lord.
+Je Te lou-
+# 17 notes
+e!// In-vo-quez Son nom, Pu-bli-ez Ses œu-vres par-mi les peu-ples,
+# 7 notes
+Rap-pe-lez| leur la gran-deur
+# 3 notes
+de Son nom!
+# 5 notes
+Pous-ses des cris de
+# 10 notes
+joi-e, ha-bi-tant de Si-on! Oh, com-
+# 10 notes
+me Il est grand en ton mi-li-eu, le
+# 4 notes
+très Saint D’Is-ra-
+# 8 notes
+ël!
+# ??? only 1 syllables for 8 notes
+# 16 notes
+
+# ??? only 0 syllables for 16 notes

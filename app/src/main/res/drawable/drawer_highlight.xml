@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the current book's row in the drawer; HymnDrawer tints it in a tint of the book's colour (style/BookColors) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#ffffff"/>
+    <corners android:radius="26dp"/>
+</shape>

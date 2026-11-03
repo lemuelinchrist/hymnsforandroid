@@ -1,0 +1,30 @@
+# FR25  (sheet of E139)  Jésus ! Chantons Son nom puissant !
+# What is wrong:
+#   (C): no way to spread 18-21 syllables over the phrases [5, 4, 6] (French: Qu' Il règne, Lui, / Qu' Il règne, Jésus ! / Jésus ! Jésus ! Jésus ! / Qu' Il règne, le Seigneur !)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR25.txt and run:  python3 sheet-lyrics/align.py FR25
+
+== 1.
+# French text: Jésus ! Chantons Son nom puissant ! / Tombons tous à Ses pieds, / Tombons tous à Ses pieds, / Couronnons-Le royalement !
+# 28 notes in all; this suggestion has 28 syllables
+# 8 notes  | All hail the pow'r of Jesus' name!
+Jé-sus! Chan-tons Son nom puis-sant!
+# 6 notes  | Let angels prostrate fall,
+Tom-bons tous à Ses pieds,
+# 6 notes  | Let angels prostrate fall:
+Tom-bons tous à Ses pieds,
+# 8 notes  | Bring forth the royal diadem,
+Cou-ron-nons| Le roy-a-le-ment!
+
+== (C)
+# French text: Qu' Il règne, Lui, / Qu' Il règne, Jésus ! / Jésus ! Jésus ! Jésus ! / Qu' Il règne, le Seigneur !
+# 15 notes in all; this suggestion has 18 syllables
+# 5 notes  | And crown Him, crown Him,
+Qu'Il règne, Lui, Qu'Il règne,
+# 4 notes  | crown Him, crown Him;
+Jé-sus! Jé-sus!
+# 6 notes  | And crown Him Lord of all!
+Jé-sus! Jé-sus! Qu'Il règne, le  #EXTRA Sei-gneur!  #EXTRA

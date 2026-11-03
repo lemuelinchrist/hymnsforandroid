@@ -12,6 +12,7 @@ import com.lemuelinchrist.android.hymns.NoSuchHymnGroupException;
 import com.lemuelinchrist.android.hymns.R;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.*;
 
@@ -34,10 +35,8 @@ public class Hymn {
     private String tune="";
     private String no;
     private String parentHymn;
-    private String sheetMusicLink;
 
     private boolean isNewTune = false;
-    private boolean hasOwnSheetMusic = true;
 
     public String getVerse() {
         return verse;
@@ -52,14 +51,6 @@ public class Hymn {
 
     public Hymn(Context context) {
         this.context = context;
-    }
-
-    public String getSheetMusicLink() {
-        return sheetMusicLink;
-    }
-
-    public void setSheetMusicLink(String sheetMusicLink) {
-        this.sheetMusicLink = sheetMusicLink;
     }
 
     public String getParentHymn() {
@@ -252,7 +243,6 @@ public class Hymn {
                 ", tune='" + tune + '\'' +
                 ", no='" + no + '\'' +
                 ", parentHymn='" + parentHymn + '\'' +
-                ", sheetMusicLink='" + sheetMusicLink + '\'' +
                 ", verse='" + verse + '\'' +
                 '}';
     }
@@ -310,25 +300,13 @@ public class Hymn {
         return true;
     }
 
-    public void setHasOwnSheetMusic(boolean hasOwnSheetMusic) {
-        this.hasOwnSheetMusic = hasOwnSheetMusic;
-    }
-
     public boolean hasOwnSheetMusic() {
-        AssetManager assets = context.getAssets();
-        Log.e(getClass().getName(), "Looking for svg file: " + hymnId+".svg");
-        try {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-            String svgFolder = sharedPreferences.getString("sheetMusicType", "pianoSvg");
-            for (String fileName : assets.list(svgFolder)) {
-                if(fileName.equals(hymnId+".svg")) return true;
-            }
-
+        // sheet music ships as one MEI file per hymn (assets/sheetMei/<hymnId>.mei)
+        try (InputStream ignored = context.getAssets().open("sheetMei/" + hymnId + ".mei")) {
+            return true;
         } catch (IOException e) {
-            Log.e(getClass().getName(),"something went wrong while listing files in svg folder",e);
-
+            return false;
         }
-        return false;
     }
 
     public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {

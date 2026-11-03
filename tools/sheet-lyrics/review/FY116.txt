@@ -1,0 +1,32 @@
+# FY116  (sheet of E437)  L’as-tu entendu, vu, connu ?
+# What is wrong:
+#   suspicious syllable "Á"
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY116.txt and run:  python3 sheet-lyrics/align.py FY116
+
+== 1.
+# French text: L’as-tu entendu, vu, connu ? / N’es-tu pas un cœur épris ? / Il se signale entre dix mille ; / Choisis-Le, la meilleure part.
+# 30 notes in all; this suggestion has 30 syllables
+# 8 notes  | Hast thou heard Him, seen Him, known Him?
+L’as| tu en-ten-du, vu, con-nu?
+# 7 notes  | Is not thine a captured heart?
+N’es| tu pas un cœur é-pris?
+# 8 notes  | Chief among ten thousand own Him;
+Il se si-gnale en-tre dix mille;
+# 7 notes  | Joyful choose the better part.
+Choi-sis| Le, la meil-leure part.
+
+== (C)
+# French text: Sois captivé par Sa beauté, / Á Lui l’honneur mérité. / Contraint avec joie, couronn’-Le / Ton Roi incomparable.
+# 30 notes in all; this suggestion has 30 syllables
+# 8 notes  | Captivated by His beauty,
+Sois cap-ti-vé par Sa beau-té,
+# 7 notes  | Worthy tribute haste to bring;
+Á Lui l’hon-neur mé-ri-té.
+# 8 notes  | Let His peerless worth constrain thee,
+Con-traint a-vec joi-e, cou-ronn’|-
+# 7 notes  | Crown Him now unrivaled King.
+Le Ton Roi in-com-pa-rable.

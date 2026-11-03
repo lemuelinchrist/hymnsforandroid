@@ -1,0 +1,21 @@
+# FY95  (sheet of NS105)  Déchus, nous l’étions tous au début.
+# What is wrong:
+#   1.: French has 62-68 syllables for 30 note slots (French: Déchus, nous l’étions tous au début. / Captifs, d’un noir destin, sans espoir. / Comment être sauvés du péché du monde ? / En invoquant « Jésus, Jésus, Jésus. »)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY95.txt and run:  python3 sheet-lyrics/align.py FY95
+
+== 1.
+# French text: Déchus, nous l’étions tous au début. / Captifs, d’un noir destin, sans espoir. / Comment être sauvés du péché du monde ? / En invoquant « Jésus, Jésus, Jésus. » / Chaque instant, chaque jour ! / Invoquons le nom de Jésus / Nous trouvons le chemin. / C’est Jésus, cher Jésus !
+# 30 notes in all; this suggestion has 62 syllables
+# 2 notes  | Fallen, that’s the way we all begin:
+Dé-chus,
+# 7 notes  | Imprisoned by the evil fate we’re in.
+nous l’é-tions tous au dé-but.
+# 10 notes  | How can we from this hard world of sin
+Cap-tifs, d’un noir des-tin, sans es-poir. Comment
+# 11 notes  | &nbsp;&nbsp;&nbsp;&nbsp;be saved?
+être sau-vés du pé-ché du monde? En in-vo- quant«  #EXTRA Jé-sus,  #EXTRA Jé-sus,  #EXTRA Jé-sus.»  #EXTRA Chaque  #EXTRA ins-tant,  #EXTRA chaque  #EXTRA jour!  #EXTRA In-vo-quons  #EXTRA le  #EXTRA nom  #EXTRA de  #EXTRA Jé-sus  #EXTRA Nous  #EXTRA trou-vons  #EXTRA le  #EXTRA che-min.  #EXTRA C’est  #EXTRA Jé-sus,  #EXTRA cher  #EXTRA Jé-sus!  #EXTRA

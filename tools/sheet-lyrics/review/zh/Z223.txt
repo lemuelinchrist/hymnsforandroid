@@ -1,0 +1,21 @@
+# Z223  (sheet of E273)  主，我来就你，
+# What is wrong:
+#   1.: French has 75-75 syllables for 37 note slots (French: 主，我来就你， / 自由的恳祈， / 求你赐我以你能力； / 为着你国度， / 能力归我属， / 坐在天上进攻你仇敌。 / 能力！能力！ / 给我穿上能力！ / 穿上上头来的大能力！ / 能力！能力！ / 给我穿上能力！ / 你的身体今向你恳祈！)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z223.txt and run:  python3 sheet-lyrics/align.py Z223
+
+== 1.
+# French text: 主，我来就你， / 自由的恳祈， / 求你赐我以你能力； / 为着你国度， / 能力归我属， / 坐在天上进攻你仇敌。 / 能力！能力！ / 给我穿上能力！ / 穿上上头来的大能力！ / 能力！能力！ / 给我穿上能力！ / 你的身体今向你恳祈！
+# 37 notes in all; this suggestion has 75 syllables
+# 10 notes  | Lord, we come to Thee, and with liberty
+主， 我 来 就 你， 自 由 的 恳 祈，
+# 8 notes  | Claim we now from Thee pow'r of might;
+求 你 赐 我 以 你 能 力；
+# 10 notes  | For Thy kingdom's sake, may we pow'r partake,
+为 着 你 国 度， 能 力 归 我 属，
+# 9 notes  | Sitting in the heavenlies to fight.
+坐 在 天 上 进 攻 你 仇 敌。 能  #EXTRA 力！  #EXTRA 能  #EXTRA 力！  #EXTRA 给  #EXTRA 我  #EXTRA 穿  #EXTRA 上  #EXTRA 能  #EXTRA 力！  #EXTRA 穿  #EXTRA 上  #EXTRA 上  #EXTRA 头  #EXTRA 来  #EXTRA 的  #EXTRA 大  #EXTRA 能  #EXTRA 力！  #EXTRA 能  #EXTRA 力！  #EXTRA 能  #EXTRA 力！  #EXTRA 给  #EXTRA 我  #EXTRA 穿  #EXTRA 上  #EXTRA 能  #EXTRA 力！  #EXTRA 你  #EXTRA 的  #EXTRA 身  #EXTRA 体  #EXTRA 今  #EXTRA 向  #EXTRA 你  #EXTRA 恳  #EXTRA 祈！  #EXTRA

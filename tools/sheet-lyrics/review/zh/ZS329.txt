@@ -1,0 +1,14 @@
+# ZS329  (sheet of CS329)  何等喜乐，何等喜乐，
+# What is wrong:
+#   1.: French has 78-78 syllables for 63 note slots (French: 何等喜乐，何等喜乐， / 我们能够一无所有， / 一无所是，一无所见， / 惟见荣耀里的基督； / 何等喜乐，何等喜乐， / 我们能够一无所有， / 一无所是，一无所顾， / 惟顾祂在地权益。 / 注：本首诗辞编译自达秘（J. N. Darby）的话。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS329.txt and run:  python3 sheet-lyrics/align.py ZS329
+
+== 1.
+# French text: 何等喜乐，何等喜乐， / 我们能够一无所有， / 一无所是，一无所见， / 惟见荣耀里的基督； / 何等喜乐，何等喜乐， / 我们能够一无所有， / 一无所是，一无所顾， / 惟顾祂在地权益。 / 注：本首诗辞编译自达秘（J. N. Darby）的话。
+# 63 notes in all; this suggestion has 78 syllables
+# 63 notes  | 何等喜樂，何等喜樂，
+何 等 喜 乐， 何 等 喜 乐， 我 们 能 够 一 无 所 有， 一 无 所 是， 一 无 所 见， 惟 见 荣 耀 里 的 基 督； 何 等 喜 乐， 何 等 喜 乐， 我 们 能 够 一 无 所 有， 一 无 所 是， 一 无 所 顾， 惟 顾 祂 在 地 权 益。 注：  #EXTRA 本  #EXTRA 首  #EXTRA 诗  #EXTRA 辞  #EXTRA 编  #EXTRA 译  #EXTRA 自  #EXTRA 达  #EXTRA 秘（  #EXTRA J.  #EXTRA N.  #EXTRA Darby）  #EXTRA 的  #EXTRA 话。  #EXTRA

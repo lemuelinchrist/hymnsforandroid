@@ -6,4 +6,7 @@ package com.lemuelinchrist.android.hymns;
  */
 public interface HymnSwitcher {
     void switchToHymn(String id);
+
+    /** Like switchToHymn, but the Back button returns to the hymn we came from. */
+    void switchToRelatedHymn(String id);
 }

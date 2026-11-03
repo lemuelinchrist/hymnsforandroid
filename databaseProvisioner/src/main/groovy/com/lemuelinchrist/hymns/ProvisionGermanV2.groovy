@@ -131,7 +131,8 @@ class ProvisionGermanV2 {
 
             } else if (nextText.contains("Related:")) {
                 nextText = nextText.substring(nextText.indexOf(":") + 1).trim()
-                // Drop "R" (Russian) references: the app has no Russian hymns
+                // Drop "R" (Russian) references: the German hymn reaches the Russian one through its English parent,
+                // and the R numbers in GermanNewHymn_2019Dec.txt follow another Russian book
                 List<String> relatedList = nextText.split(",")
                         .collect { it.replace(" ", "") }
                         .findAll { !it.isEmpty() && !it.startsWith("R") }

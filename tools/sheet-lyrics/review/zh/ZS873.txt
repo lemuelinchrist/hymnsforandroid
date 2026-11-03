@@ -1,0 +1,31 @@
+# ZS873  (sheet of CS873)  看哪！我王坐车前往,
+# What is wrong:
+#   1.: French has 56-56 syllables for 98 note slots (French: 看哪！我王坐车前往, / 刚强无不得胜; / 光辉夺人,引我跟随, / 就此一定永定。 / 凯旋行列,撒香俘虏, / 欢呼同祂前行; / 世途舍弃竭力拼上, / 作祂行动见证。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS873.txt and run:  python3 sheet-lyrics/align.py ZS873
+
+== 1.
+# French text: 看哪！我王坐车前往, / 刚强无不得胜; / 光辉夺人,引我跟随, / 就此一定永定。 / 凯旋行列,撒香俘虏, / 欢呼同祂前行; / 世途舍弃竭力拼上, / 作祂行动见证。
+# 98 notes in all; this suggestion has 56 syllables
+# 8 notes  | 看哪!我王坐車前往,
+看 哪！ 我 王 坐 车 前 往,
+# 6 notes  | 剛強無不得勝;
+刚 强 无 不 得 胜;
+# 8 notes  | 光輝奪人,引我跟隨,
+光 辉 夺 人, 引 我 跟 随,
+# 6 notes  | 就此一定永定。
+就 此 一 定 永 定。
+# 8 notes  | 凱旋行列,撒香俘虜,
+凯 旋 行 列, 撒 香 俘 虏,
+# 6 notes  | 歡呼同祂前行;
+欢 呼 同 祂 前 行;
+# 8 notes  | 世途捨棄竭力拚上,
+世 途 舍 弃 竭 力 拼 上,
+# 6 notes  | 作祂行動見證。
+作 祂 行 动 见 证。
+# 42 notes
+
+# ??? only 0 syllables for 42 notes

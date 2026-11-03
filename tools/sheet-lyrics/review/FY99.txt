@@ -1,0 +1,26 @@
+# FY99  (sheet of NS952)  Le Fils de Dieu est dans mon esprit
+# What is wrong:
+#   1.: French has 102-120 syllables for 47 note slots (French: Le Fils de Dieu est dans mon esprit / (esprit, esprit, esprit…) / Mais tout’ mon âme n’est pas / Encore rendue conforme. / Grâce à Dieu qu’Il m’a mis dans le pr)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY99.txt and run:  python3 sheet-lyrics/align.py FY99
+
+== 1.
+# French text: Le Fils de Dieu est dans mon esprit / (esprit, esprit, esprit…) / Mais tout’ mon âme n’est pas / Encore rendue conforme. / Grâce à Dieu qu’Il m’a mis dans le processus / De conformation / À l’image… / … du Fils premier-né. / La loi de vie se répand en moi / (répand, répand, répand) / Transformant ce que je pense, / Je désire et je veux. / Je Le laisse donc œuvrer en moi jusqu’à / Ce que tout mon être / Porte l'image… / … du Fils premier-né.
+# 47 notes in all; this suggestion has 102 syllables
+# 9 notes  | The Son of God is in my spirit.
+Le Fils de Dieu est dans mon es-prit
+# 7 notes  | But my mind, emotion, will
+(es-prit, es-prit, es-prit…) Mais
+# 6 notes  | Have not been conformed yet.
+tout’-mon âme n’est pas En-
+# 11 notes  | So, I thank God that I’m under the process
+core ren-due con-forme. Grâce à Dieu qu’Il m’a mis
+# 5 notes  | Of conformation
+dans le pro-ces-sus
+# 4 notes  | To the image
+De con-for-ma-
+# 5 notes  | Of the Son of God.
+tion À l’i-mage… du Fils  #EXTRA pre-mier-  #EXTRA né.  #EXTRA La  #EXTRA loi  #EXTRA de  #EXTRA vie  #EXTRA se  #EXTRA ré-pand  #EXTRA en  #EXTRA moi  #EXTRA (ré-pand,  #EXTRA ré-pand,  #EXTRA ré-pand)  #EXTRA Trans-for-mant  #EXTRA ce  #EXTRA que  #EXTRA je  #EXTRA pense,  #EXTRA Je  #EXTRA dé-sire  #EXTRA et  #EXTRA je  #EXTRA veux.  #EXTRA Je  #EXTRA Le  #EXTRA laisse  #EXTRA donc  #EXTRA œu-vrer  #EXTRA en  #EXTRA moi  #EXTRA jusqu-’à  #EXTRA Ce  #EXTRA que  #EXTRA tout  #EXTRA mon  #EXTRA être  #EXTRA Porte  #EXTRA l'i-mage…  #EXTRA du  #EXTRA Fils  #EXTRA pre-mier-  #EXTRA né.  #EXTRA

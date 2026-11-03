@@ -1,0 +1,31 @@
+# Z293  (sheet of C293)  求你拣选我道路，
+# What is wrong:
+#   1.: French has 52-52 syllables for 78 note slots (French: 求你拣选我道路， / 我主，为我拣选， / 我无自己的羡慕， / 我要你的意念； / 你所命定的前途， / 无论何等困难， / 我要甘心的顺服， / 来寻你的喜欢。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z293.txt and run:  python3 sheet-lyrics/align.py Z293
+
+== 1.
+# French text: 求你拣选我道路， / 我主，为我拣选， / 我无自己的羡慕， / 我要你的意念； / 你所命定的前途， / 无论何等困难， / 我要甘心的顺服， / 来寻你的喜欢。
+# 78 notes in all; this suggestion has 52 syllables
+# 7 notes  | 求你揀選我道路，
+求 你 拣 选 我 道 路，
+# 6 notes  | 我主，為我揀選，
+我 主， 为 我 拣 选，
+# 7 notes  | 我無自己的羨慕，
+我 无 自 己 的 羡 慕，
+# 6 notes  | 我要你的意念；
+我 要 你 的 意 念；
+# 7 notes  | 你所命定的前途，
+你 所 命 定 的 前 途，
+# 6 notes  | 無論何等困難，
+无 论 何 等 困 难，
+# 7 notes  | 我要甘心的順服，
+我 要 甘 心 的 顺 服，
+# 6 notes  | 來尋你的喜歡。
+来 寻 你 的 喜 欢。
+# 26 notes
+
+# ??? only 0 syllables for 26 notes

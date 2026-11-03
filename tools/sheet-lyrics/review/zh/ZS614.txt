@@ -1,0 +1,28 @@
+# ZS614  (sheet of CS614)  我们在主爱里同住，
+# What is wrong:
+#   (C): French has 101-101 syllables for 59 note slots (French: 当我们信入神儿子， / 借祂的灵我们合一； / 当我们信入神儿子， / 借祂的灵我们合一。 / 合为一，我们合为一； / 合为一，我们合为一； / 合为一，我们合为一； / 合为一！ / 世界一直寻求和平， / 战争风声却总不停； / 忧心忡忡，无法消除； / 多少恨，多少泪， / 多少苦！主才是路！ / （接副歌，下)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS614.txt and run:  python3 sheet-lyrics/align.py ZS614
+
+== (C)
+# French text: 当我们信入神儿子， / 借祂的灵我们合一； / 当我们信入神儿子， / 借祂的灵我们合一。 / 合为一，我们合为一； / 合为一，我们合为一； / 合为一，我们合为一； / 合为一！ / 世界一直寻求和平， / 战争风声却总不停； / 忧心忡忡，无法消除； / 多少恨，多少泪， / 多少苦！主才是路！ / （接副歌，下同）
+# 59 notes in all; this suggestion has 101 syllables
+# 59 notes  | 當我們信入神兒子，
+当 我 们 信 入 神 儿 子， 借 祂 的 灵 我 们 合 一； 当 我 们 信 入 神 儿 子， 借 祂 的 灵 我 们 合 一。 合 为 一， 我 们 合 为 一； 合 为 一， 我 们 合 为 一； 合 为 一， 我 们 合 为 一； 合 为 一！ 世  #EXTRA 界  #EXTRA 一  #EXTRA 直  #EXTRA 寻  #EXTRA 求  #EXTRA 和  #EXTRA 平，  #EXTRA 战  #EXTRA 争  #EXTRA 风  #EXTRA 声  #EXTRA 却  #EXTRA 总  #EXTRA 不  #EXTRA 停；  #EXTRA 忧  #EXTRA 心  #EXTRA 忡  #EXTRA 忡，  #EXTRA 无  #EXTRA 法  #EXTRA 消  #EXTRA 除；  #EXTRA 多  #EXTRA 少  #EXTRA 恨，  #EXTRA 多  #EXTRA 少  #EXTRA 泪，  #EXTRA 多  #EXTRA 少  #EXTRA 苦！  #EXTRA 主  #EXTRA 才  #EXTRA 是  #EXTRA 路！  #EXTRA （接  #EXTRA 副  #EXTRA 歌，  #EXTRA 下  #EXTRA 同）  #EXTRA
+
+== 1.
+# French text: 我们在主爱里同住， / 真正合一已经恢复； / 弟兄姊妹不分彼此， / 父与子如何是永合一， / 我们也是！
+# 37 notes in all; this suggestion has 37 syllables
+# 8 notes  | 我們在主愛裡同住，
+我 们 在 主 爱 里 同 住，
+# 8 notes  | 真正合一已經恢復；
+真 正 合 一 已 经 恢 复；
+# 8 notes  | 弟兄姊妹不分彼此，
+弟 兄 姊 妹 不 分 彼 此，
+# 9 notes  | 父與子如何是永合一，
+父 与 子 如 何 是 永 合 一，
+# 4 notes  | 我們也是！
+我 们 也 是！

@@ -1,0 +1,37 @@
+# ZS505  (sheet of E1341)  耶和华所救赎的民
+# What is wrong:
+#   adapting would change 32 of 114 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS505.txt and run:  python3 sheet-lyrics/align.py ZS505
+
+== 1.
+# French text: 耶和华所救赎的民 / 必归回， / 他们要歌唱来到锡安； / 永远之乐 / 必归到他们的头上。 / 他们必得欢喜快乐； / 或忧愁，或叹息， / 尽都逃避！ / 耶和华所救赎的民 / 必归回， / 他们要歌唱来到锡安； / 永远之乐 / 必归到他们的头上。
+# 114 notes in all; this suggestion has 82 syllables
+# 11 notes  | Therefore the redeemed of the Lord shall return,
+耶 和 华 所 救 赎 的 民 必 归 回，
+# 9 notes  | And come with singing unto Zion;
+他 们 要 歌 唱 来 到 锡 安；
+# 12 notes  | And everlasting joy shall be upon their head.
+永 远 之 乐 必 归 到 他 们 的 头 上。
+# 11 notes  | Therefore the redeemed of the Lord shall return,
+他 们 必 得 欢 喜 快 乐； 或 忧 愁，
+# 9 notes  | And come with singing unto Zion;
+或 叹 息， 尽 都 逃 避！ 耶 和
+# 12 notes  | And everlasting joy shall be upon their head.
+华 所 救 赎 的 民 必 归 回， 他 们 要
+# 8 notes
+歌 唱 来 到 锡 安； 永 远
+# 10 notes
+之 乐 必 归 到 他 们 的 头 上。
+# 11 notes
+
+# ??? only 0 syllables for 11 notes
+# 9 notes
+
+# ??? only 0 syllables for 9 notes
+# 12 notes
+
+# ??? only 0 syllables for 12 notes

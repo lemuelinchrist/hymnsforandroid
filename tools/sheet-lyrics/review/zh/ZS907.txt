@@ -1,0 +1,14 @@
+# ZS907  (sheet of CS907)  别了！世界，
+# What is wrong:
+#   1.: French has 74-74 syllables for 56 note slots (French: 别了！世界， / 别了！世界， / 让这世界过去！ / 主快来了，主快来了！ / 我还留恋甚么？ / 别了！安逸， / 别了！糜烂， / 别了！属地享受； / 别了！所有缠累重量！ / 从此不再回头！ / 『安逸、』『糜烂，』可以自行更改，如『钱财、』『地位、』『电视』等。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS907.txt and run:  python3 sheet-lyrics/align.py ZS907
+
+== 1.
+# French text: 别了！世界， / 别了！世界， / 让这世界过去！ / 主快来了，主快来了！ / 我还留恋甚么？ / 别了！安逸， / 别了！糜烂， / 别了！属地享受； / 别了！所有缠累重量！ / 从此不再回头！ / 『安逸、』『糜烂，』可以自行更改，如『钱财、』『地位、』『电视』等。
+# 56 notes in all; this suggestion has 74 syllables
+# 56 notes  | 別了！世界，
+别 了！ 世 界， 别 了！ 世 界， 让 这 世 界 过 去！ 主 快 来 了， 主 快 来 了！ 我 还 留 恋 甚 么？ 别 了！ 安 逸， 别 了！ 糜 烂， 别 了！ 属 地 享 受； 别 了！ 所 有 缠 累 重 量！ 从 此 不 再 回 头！ 『安  #EXTRA 逸、』『  #EXTRA 糜  #EXTRA 烂，』  #EXTRA 可  #EXTRA 以  #EXTRA 自  #EXTRA 行  #EXTRA 更  #EXTRA 改，  #EXTRA 如『  #EXTRA 钱  #EXTRA 财、』『  #EXTRA 地  #EXTRA 位、』『  #EXTRA 电  #EXTRA 视』  #EXTRA 等。  #EXTRA

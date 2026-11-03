@@ -3,6 +3,7 @@ package com.lemuelinchrist.android.hymns.dao;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import com.lemuelinchrist.android.hymns.HymnGroup;
 import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
@@ -76,7 +77,6 @@ public class QueryBuilder {
         likeBuilder.append("(");
         String[] words = filter.trim().split(" ");
         for(int x=0; x<words.length; x++) {
-            if(x!=0 && words[x].trim().length()<3) continue;
             likeBuilder.append(" ");
             likeBuilder.append(columnName);
             likeBuilder.append(" LIKE '%");
@@ -147,16 +147,24 @@ public class QueryBuilder {
         return this;
     }
 
+    public QueryBuilder addCondition(String condition) {
+        if(notNullClause==null) notNullClause="";
+        notNullClause += " " + condition + " AND ";
+        return this;
+    }
+
     public QueryBuilder orderBy(String orderBy) {
         this.orderBy = " " + orderBy + " COLLATE LOCALIZED ASC ";
         return this;
     }
 
-    public QueryBuilder orderByHymnGroup(String hymnGroup) {
-        this.orderBy = " CAST(no AS int), " +
-                "CASE" +
-                "   WHEN hymn_group = '"+hymnGroup + "' THEN 1 ELSE hymn_group " +
-                "END";
+    /** By number, and hymns of the same number in the order of these books (the first book first). */
+    public QueryBuilder orderByNumberThenBooks(List<HymnGroup> books) {
+        StringBuilder sql = new StringBuilder(" CAST(no AS int), CASE hymn_group");
+        for (int i = 0; i < books.size(); i++) {
+            sql.append(" WHEN '").append(books.get(i).name()).append("' THEN ").append(i);
+        }
+        this.orderBy = sql.append(" ELSE ").append(books.size()).append(" END, hymn_group").toString();
         return this;
     }
 

@@ -2,7 +2,7 @@ package com.lemuelinchrist.hymns.lib;
 
 import com.lemuelinchrist.hymns.lib.beans.HymnsEntity;
 import com.lemuelinchrist.hymns.lib.beans.StanzaEntity;
-import com.lemuelinchrist.hymns.lib.beans.TuneEntity;
+import com.lemuelinchrist.hymns.lib.beans.LinkEntity;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -82,11 +82,11 @@ public class Dao {
     }
 
 
-    public void save(TuneEntity tune) {
+    public void save(LinkEntity link) {
         em.getTransaction().begin();
-        em.persist(tune);
+        em.persist(link);
         em.getTransaction().commit();
-        System.out.println("Tune " + tune.getId() + " saved!");
+        System.out.println("Link " + link.getHymnId() + " saved!");
     }
 
     public void addRelatedHymn(String parentHymn, String relatedToAdd) {
@@ -107,6 +107,15 @@ public class Dao {
         System.out.println("adding of Related Hymn successful, Hymn " + parentEntity.getId() + " saved!");
 
 
+    }
+
+    public void removeRelatedHymn(String hymnId, String relatedToRemove) {
+        em.getTransaction().begin();
+        HymnsEntity entity = em.find(HymnsEntity.class, hymnId);
+        if (entity != null) {
+            entity.removeRelated(relatedToRemove);
+        }
+        em.getTransaction().commit();
     }
 
     public void fixParentHymnOfChildren(String parentHymn) {
@@ -244,12 +253,11 @@ public class Dao {
 
     }
 
-    public void saveTuneAndSheetMusicLink(HymnsEntity hymn, String tune, String sheetMusicLink) {
+    public void saveTune(HymnsEntity hymn, String tune) {
         System.out.println("saving tune of hymn: " + hymn.getId());
         System.out.println("tune is: " + tune);
         em.getTransaction().begin();
         hymn.setTune(tune);
-        hymn.setSheetMusicLink(sheetMusicLink);
         em.getTransaction().commit();
         System.out.println("save successful!");
     }

@@ -1,0 +1,28 @@
+# C113  (sheet of E138)  何等權能！耶穌尊名！
+# What is wrong:
+#   (C): French has 20-20 syllables for 12 note slots (French: 祂作萬有之主， / 獻上冠冕，同心尊敬 / 祂作萬有之主。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C113.txt and run:  python3 sheet-lyrics/align.py C113
+
+== 1.
+# French text: 何等權能！耶穌尊名！ / 天使全都俯伏， / 獻上冠冕，同心尊敬
+# 22 notes in all; this suggestion has 22 syllables
+# 8 notes  | All hail the pow'r of Jesus' name!
+何 等 權 能！ 耶 穌 尊 名！
+# 6 notes  | Let angels prostrate fall;
+天 使 全 都 俯 伏，
+# 8 notes  | Bring forth the royal diadem,
+獻 上 冠 冕， 同 心 尊 敬
+
+== (C)
+# French text: 祂作萬有之主， / 獻上冠冕，同心尊敬 / 祂作萬有之主。
+# 12 notes in all; this suggestion has 20 syllables
+# 5 notes  | And crown Him, crown Him,
+祂 作 萬 有 之
+# 2 notes  | crown Him,
+主， 獻
+# 5 notes  | Crown Him Lord of all!
+上 冠 冕， 同 心 尊  #EXTRA 敬  #EXTRA 祂  #EXTRA 作  #EXTRA 萬  #EXTRA 有  #EXTRA 之  #EXTRA 主。  #EXTRA

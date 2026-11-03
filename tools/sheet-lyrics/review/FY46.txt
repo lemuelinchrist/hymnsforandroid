@@ -1,0 +1,21 @@
+# FY46  (sheet of NS10052)  Garde mon cœur à Toi fidèle,
+# What is wrong:
+#   1.: French has 81-92 syllables for 40 note slots (French: Garde mon cœur à Toi fidèle, / Mon regard fixé, ne déviant jamais, / Un cœur qui est pur et ne voit que Toi, / Un cœur qui T’adore et ne chérit que Toi. / Ton a)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY46.txt and run:  python3 sheet-lyrics/align.py FY46
+
+== 1.
+# French text: Garde mon cœur à Toi fidèle, / Mon regard fixé, ne déviant jamais, / Un cœur qui est pur et ne voit que Toi, / Un cœur qui T’adore et ne chérit que Toi. / Ton amour m’oblige à tout donner pour Toi / Non, je n’y puis rien, Tu as ravi mon cœur, / Quel privilège, je m’offre tout à Toi ! / Je T’aime tant, cher Seigneur, je T’aime et je T’adore !
+# 40 notes in all; this suggestion has 81 syllables
+# 9 notes  | Lord, keep my heart always true to You,
+Garde mon cœur à Toi fi-dèle, Mon re-
+# 10 notes  | Never backsliding, always viewing You,
+gard fi-xé, ne dé-viant ja-mais, Un cœur
+# 10 notes  | A heart that is pure that sees only You,
+qui est pur et ne voit que Toi, Un cœur
+# 11 notes  | A heart that loves You and treasures only You.
+qui T’a-dore et ne ché-rit que Toi. Ton a- mour  #EXTRA m’o-blige  #EXTRA à  #EXTRA tout  #EXTRA don-ner  #EXTRA pour  #EXTRA Toi  #EXTRA Non,  #EXTRA je  #EXTRA n’y  #EXTRA puis  #EXTRA rien,  #EXTRA Tu  #EXTRA as  #EXTRA ra-vi  #EXTRA mon  #EXTRA cœur,  #EXTRA Quel  #EXTRA pri-vi-lège,  #EXTRA je  #EXTRA m’offre  #EXTRA tout  #EXTRA à  #EXTRA Toi!  #EXTRA Je  #EXTRA T’aime  #EXTRA tant,  #EXTRA cher  #EXTRA Sei-gneur,  #EXTRA je  #EXTRA T’aime  #EXTRA et  #EXTRA je  #EXTRA T’a-dore!  #EXTRA

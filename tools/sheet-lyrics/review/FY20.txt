@@ -1,0 +1,43 @@
+# FY20  (sheet of NS325)  // Réjouissez-vous dans le Seigneur
+# What is wrong:
+#   1.: French has 26-31 syllables for 50 note slots (French: // Réjouissez-vous dans le Seigneur / Et encore réjouissez-vous ! // / // Réjouissez-vous ! / Et toujours réjouissez-vous ! //)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY20.txt and run:  python3 sheet-lyrics/align.py FY20
+
+== 1.
+# French text: // Réjouissez-vous dans le Seigneur / Et encore réjouissez-vous ! // / // Réjouissez-vous ! / Et toujours réjouissez-vous ! //
+# 50 notes in all; this suggestion has 31 syllables
+# 7 notes  | Rejoice in the Lord always;
+Ré-jou-is-sez| vous dans le
+# 7 notes  | And again I say, rejoice.
+Sei-gneur Et en-co-re ré-
+# 7 notes  | Rejoice in the Lord always;
+jou-is-sez| vous!// Ré-jou-is-
+# 7 notes  | And again I say, rejoice.
+sez| vous! Et tou-jours ré-jou-
+# 2 notes
+is-sez|
+# 2 notes
+vous!//
+# ??? only 1 syllables for 2 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes

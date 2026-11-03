@@ -1,0 +1,54 @@
+# FR168  (sheet of E1289)  C'est la victoire ! Christ a vaincu l'ennemi,
+# What is wrong:
+#   1.: French has 41-49 syllables for 114 note slots (French: C'est la victoire ! Christ a vaincu l'ennemi, / Ce cri de joie en tout lieu retentit. / Le sang triomphe, nous voici, des victorieux. / Bientôt le Vainqueur glo)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR168.txt and run:  python3 sheet-lyrics/align.py FR168
+
+== 1.
+# French text: C'est la victoire ! Christ a vaincu l'ennemi, / Ce cri de joie en tout lieu retentit. / Le sang triomphe, nous voici, des victorieux. / Bientôt le Vainqueur glorieux va venir.
+# 114 notes in all; this suggestion has 49 syllables
+# 9 notes  | The vict'ry's won! The Lord has triumphed
+C'est la vic-toi-re! Christ a vain-cu
+# 3 notes  | o'er the foe!
+l'en-ne-mi,
+# 10 notes  | The vict'ry shout is heard afar and near!
+Ce cri de joi-e en tout li-eu re-
+# 12 notes  | His blood prevails! It giveth us the victory!
+ten-tit. Le sang tri-om-phe, nous voi-ci, des vic-
+# 10 notes  | And soon the mighty Victor will appear.
+to-ri-eux. Bi-en-tôt le Vain-queur glo-
+# 4 notes
+ri-eux va ve-
+# 5 notes
+nir.
+# ??? only 1 syllables for 5 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 13 notes
+
+# ??? only 0 syllables for 13 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 5 notes
+
+# ??? only 0 syllables for 5 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes
+# 10 notes
+
+# ??? only 0 syllables for 10 notes
+# 8 notes
+
+# ??? only 0 syllables for 8 notes

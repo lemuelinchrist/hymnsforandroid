@@ -1,0 +1,38 @@
+# FY107  (sheet of NS620)  Que nous tous parvenions
+# What is wrong:
+#   1.: French has 161-187 syllables for 118 note slots (French: Que nous tous parvenions / À l'unité de la foi / À la plein’ connaissance / Du Fils de Dieu, / à l'unité de la foi, / À l’état d’homm’ mûrs, / À la mesure de la)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY107.txt and run:  python3 sheet-lyrics/align.py FY107
+
+== 1.
+# French text: Que nous tous parvenions / À l'unité de la foi / À la plein’ connaissance / Du Fils de Dieu, / à l'unité de la foi, / À l’état d’homm’ mûrs, / À la mesure de la statur’ de la plénitud’ de Christ, / Que nous tous parvenions. (Ep 4.13) / Réjouissons-nous, exultons et donnons-Lui gloire ; / Car les noces de l’Agneau sont là ! / Réjouissons-nous, exultons et donnons-Lui gloire ; / Car les noces de l’Agneau sont là ! / Et oui Son épouse s’est préparée ; / Car les noces de l’Agneau sont là ! (Ap 19.7) / Et je vis la cité sainte, Nouvell’ Jérusalem, / Descendant du ciel d’auprès de Dieu, / Préparée comm’ un’ mariée parée pour Son Époux, / Descendant du ciel d’auprès de Dieu. (Ap 21.2)
+# 118 notes in all; this suggestion has 161 syllables
+# 24 notes
+Que nous tous par-ve-nions À l'u-ni-té de la foi À la plein’-con-nais-sance Du Fils de Dieu, à
+# 7 notes
+l'u-ni-té de la foi, À
+# 5 notes
+l’é-tat d’homm’-mûrs, À
+# 14 notes
+la me-sure de la sta-tur’de la plé-ni-tud’de Christ, Que nous
+# 6 notes
+tous par-ve-nions. (Ep 4.13)
+# 4 notes
+Ré-jouis-sons| nous,
+# 9 notes
+e-xul-tons et don-nons| Lui gloire; Car
+# 9 notes
+les noces de l’A-gneau sont là! Ré-jouis-
+# 4 notes
+sons| nous, e-xul-
+# 9 notes
+tons et don-nons| Lui gloire; Car les noces
+# 9 notes
+de l’A-gneau sont là! Et oui Son é-
+# 9 notes
+pouse s’est pré-pa-rée; Car les noces de
+# 9 notes
+l’A-gneau sont là! (Ap 19.7) Et je vis la  #EXTRA ci-té  #EXTRA sainte,  #EXTRA Nou-vell’-Jé-ru-sa-lem,  #EXTRA Des-cen-dant  #EXTRA du  #EXTRA ciel  #EXTRA d’au-près  #EXTRA de  #EXTRA Dieu,  #EXTRA Pré-pa-rée  #EXTRA comm-’un’-ma-riée  #EXTRA pa-rée  #EXTRA pour  #EXTRA Son  #EXTRA É-poux,  #EXTRA Des-cen-dant  #EXTRA du  #EXTRA ciel  #EXTRA d’au-près  #EXTRA de  #EXTRA Dieu.  #EXTRA (Ap  #EXTRA 21.2)  #EXTRA

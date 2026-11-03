@@ -1,0 +1,23 @@
+# FY110  (sheet of NS407)  « Marchez », en 5.16, c’est « aller de ça de là »,
+# What is wrong:
+#   1.: French has 61-71 syllables for 32 note slots (French: « Marchez », en 5.16, c’est « aller de ça de là », / Marcher de façon / Habituell’, générale, / La marche de la vie quotidienne. / Vivant, bougeant, avec tout n)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY110.txt and run:  python3 sheet-lyrics/align.py FY110
+
+== 1.
+# French text: « Marchez », en 5.16, c’est « aller de ça de là », / Marcher de façon / Habituell’, générale, / La marche de la vie quotidienne. / Vivant, bougeant, avec tout notre être agissant / Selon l’esprit, / Peripateo et Stoicheo / Sont deux sortes de marche.
+# 32 notes in all; this suggestion has 61 syllables
+# 8 notes  | The first walk in verse sixteen means
+Mar-chez», en 5.16, c’est« al-ler de
+# 4 notes  | “Treading around“,
+ça de là», Mar-
+# 4 notes  | “Walking at large“,
+cher de fa-çon
+# 7 notes  | Habitually, gen’rally
+Ha-bi-tuell’, gé-né-rale, La
+# 9 notes  | A common walk—for our daily life.
+marche de la vie quo-ti-dienne. Vi-vant, bou-ge-ant,  #EXTRA a-vec  #EXTRA tout  #EXTRA notre  #EXTRA être  #EXTRA a-gis-sant  #EXTRA Se-lon  #EXTRA l’es-prit,  #EXTRA Pe-ri-pa-te-o  #EXTRA et  #EXTRA Stoi-che-o  #EXTRA Sont  #EXTRA deux  #EXTRA sortes  #EXTRA de  #EXTRA marche.  #EXTRA

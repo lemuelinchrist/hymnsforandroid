@@ -1,0 +1,30 @@
+# Z190  (sheet of E235)  赞美！赞美！赞美耶稣，
+# What is wrong:
+#   adapting would change 22 of 87 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/Z190.txt and run:  python3 sheet-lyrics/align.py Z190
+
+== 1.
+# French text: 赞美！赞美！赞美耶稣， / 我救赎主！ / 圣徒歌唱， / 将祂奇爱宣明； / 称颂！称颂！称颂基督！ / 天使俯伏， / 能力、尊贵， / 归于祂的圣名！ / 有如牧者， / 主将祂的人喂养， / 祂的膀臂怀抱他们安康。
+# 87 notes in all; this suggestion has 65 syllables
+# 12 notes  | Praise Him! Praise Him! Jesus, our blessed Redeemer!
+赞 美！ 赞 美！ 赞 美 耶 稣， 我 救 赎 主！
+# 10 notes  | Sing, ye saints! His wonderful love proclaim!
+圣 徒 歌 唱， 将 祂 奇 爱 宣 明；
+# 12 notes  | Hail Him! Hail Him! Mightiest angels in glory;
+称 颂！ 称 颂！ 称 颂 基 督！ 天 使 俯 伏，
+# 10 notes  | Strength and honor give to His holy name!
+能 力、 尊 贵， 归 于 祂 的 圣 名！
+# 11 notes  | Like a shepherd, Jesus will feed His people,
+有 如 牧 者， 主 将 祂 的 人 喂 养，
+# 10 notes  | In His arms He carried them all day long;
+祂 的 膀 臂 怀 抱 他 们 安 康。
+# 12 notes  | O ye saints that live in the light of His presence,
+
+# ??? only 0 syllables for 12 notes
+# 10 notes  | Praise Him! Praise Him! Ever in joyful song!
+
+# ??? only 0 syllables for 10 notes

@@ -26,17 +26,24 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
+import com.lemuelinchrist.android.hymns.logbook.FavoritesBackup;
 import com.lemuelinchrist.android.hymns.search.fragments.*;
 
 public class SearchActivity extends AppCompatActivity  {
 
     public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
     public static final String ENTER_LYRIC = "Enter Search Text          ";
+    /** Intent extra: words to search for as soon as the screen opens (on the Search tab, in all books). */
+    public static final String EXTRA_QUERY = "query";
+    /** Intent extra, with the query: the one column of the search table ("music", "people") to look in. */
+    public static final String EXTRA_COLUMN = "column";
     private HymnGroup selectedHymnGroup;
+    private String startWords;
     private ActionBar actionBar;
     private SearchTabsPagerAdapter mSearchTabsPagerAdapter;
     private ViewPager mViewPager;
     private SearchView searchBar;
+    private FavoritesBackup favoritesBackup;
 //    private MenuItem keyboardToggleButton;
 
 
@@ -47,6 +54,13 @@ public class SearchActivity extends AppCompatActivity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
+
+        // a restore refreshes the Favorites list. Coming back from the file picker brings the keyboard back up, so hide it.
+        favoritesBackup = new FavoritesBackup(this, added -> {
+            hideKeyboard();
+            TabFragment favoritesTab = mSearchTabsPagerAdapter.getTab(mSearchTabsPagerAdapter.getPositionOf(FavoritesTabFragment.class));
+            if (added && favoritesTab.getView() != null) favoritesTab.setSearchFilter("");
+        });
 
         Toolbar tabBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tabBar);
@@ -102,22 +116,25 @@ public class SearchActivity extends AppCompatActivity  {
 
                 Log.d(this.getClass().getName(), "Page position changed. new position is: " + position);
 
-                // clear focus when history tab is selected because history has no search
+                // clear focus when the history or favorites tab is selected because they have no search
                 // the options menu (with the search bar) may not have been created yet
                 if (searchBar == null) return;
 
                 TabFragment currentTabFragment = mSearchTabsPagerAdapter.getTab(position);
-                if ((currentTabFragment instanceof HistoryTabFragment)) {
-                    Log.d(this.getClass().getName(), "position is HistoryTabFragment. clear focus of search bar");
+                if (currentTabFragment instanceof HistoryTabFragment || currentTabFragment instanceof FavoritesTabFragment) {
+                    Log.d(this.getClass().getName(), "position is HistoryTabFragment or FavoritesTabFragment. clear focus of search bar");
                     // it's the only way to defocus the search bar
                     searchBar.setFocusable(false);
                     searchBar.setFocusable(true);
                     searchBar.setFocusableInTouchMode(true);
+                    // their lists can't be searched, so don't show the Search tab's words
+                    searchBar.setQuery("", false);
                     hideKeyboard();
                     return;
                 }
 
                 searchBar.setInputType(currentTabFragment.getInputType());
+                searchBar.setQueryHint(hintFor(currentTabFragment));
 
                 Log.d(this.getClass().getName(), "trying to clear text. Hope it wont throw error.");
                 searchBar.setQuery(currentTabFragment.getSavedQuery(), false);
@@ -128,6 +145,17 @@ public class SearchActivity extends AppCompatActivity  {
 
         TabFragment.setSelectedHymnGroup(selectedHymnGroup);
 
+        // opened from a link in the hymn's details: the Search tab, already searching those words in all books
+        String words = extras.getString(EXTRA_QUERY);
+        if (words != null && savedInstanceState == null) {
+            int position = mSearchTabsPagerAdapter.getPositionOf(SearchTabFragment.class);
+            mViewPager.setCurrentItem(position, false);
+            SearchTabFragment searchTab = (SearchTabFragment) mSearchTabsPagerAdapter.getTab(position);
+            searchTab.setSavedQuery(words);
+            searchTab.showAllBooks();
+            searchTab.onlyIn(extras.getString(EXTRA_COLUMN), words);
+            startWords = words;
+        }
     }
 
 
@@ -146,6 +174,11 @@ public class SearchActivity extends AppCompatActivity  {
     }
 
 
+    /** Hymn Numbers only takes numbers; the other tabs search words. */
+    private static String hintFor(TabFragment tab) {
+        return tab instanceof HymnNumberTabFragment ? ENTER_HYMN_NO : ENTER_LYRIC;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -158,12 +191,16 @@ public class SearchActivity extends AppCompatActivity  {
 
         /** Get the edit text from the action view */
         searchBar = (SearchView) MenuItemCompat.getActionView(item);
-        searchBar.setQueryHint(ENTER_LYRIC);
+        searchBar.setQueryHint(hintFor(getCurrentTab()));
         // the restored tab may not be Hymn Numbers, so ask it for its keyboard
         searchBar.setInputType(getCurrentTab().getInputType());
         searchBar.onActionViewExpanded();
 
         /** Setting an action listener */
+        if (startWords != null) {
+            searchBar.setQuery(startWords, false);
+            startWords = null;
+        }
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -171,6 +208,11 @@ public class SearchActivity extends AppCompatActivity  {
 
                 if (searchBar.getInputType()==InputType.TYPE_CLASS_PHONE) {
                     createIntentAndExit(selectedHymnGroup+query);
+                }
+                // a hymn number or ID typed in the Search tab opens that hymn
+                TabFragment currentTab = getCurrentTab();
+                if (currentTab instanceof SearchTabFragment && ((SearchTabFragment) currentTab).submit(query)) {
+                    return true;
                 }
 
                 filterListAndSaveQuery( query);
@@ -181,7 +223,8 @@ public class SearchActivity extends AppCompatActivity  {
             @Override
             public boolean onQueryTextChange(String newText) {
                 // dont do anything if text is empty, otherwise android will throw weird exceptions.
-                if (newText.isEmpty()) return false;
+                // The Search tab is the exception: an empty box goes back to listing the current book.
+                if (newText.isEmpty() && !(getCurrentTab() instanceof SearchTabFragment)) return false;
 
                 filterListAndSaveQuery(newText);
                 return true;
@@ -192,16 +235,14 @@ public class SearchActivity extends AppCompatActivity  {
         searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus && !getCurrentTab().canBeSearched()) {
-                    // switch to FirstLine Tab
-                    try {
-                        mViewPager.setCurrentItem(mSearchTabsPagerAdapter.getPositionOf(FirstLineTabFragment.class));
-                    }catch(Exception e) {
-                        Log.d(this.getClass().getName(),"Exception caught!");
-                    }
-
-                }
+                if (hasFocus) goToSearchTabIfNotSearchable();
             }
+        });
+        // the box may still have focus on Favorites or History, and then a tap on it changes no focus
+        View searchText = searchBar.findViewById(androidx.appcompat.R.id.search_src_text);
+        if (searchText != null) searchText.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) goToSearchTabIfNotSearchable();
+            return false;
         });
 
 
@@ -213,6 +254,13 @@ public class SearchActivity extends AppCompatActivity  {
 
 
         return true;
+    }
+
+    private void goToSearchTabIfNotSearchable() {
+        if (getCurrentTab().canBeSearched()) return;
+        mViewPager.setCurrentItem(mSearchTabsPagerAdapter.getPositionOf(SearchTabFragment.class));
+        searchBar.setQuery(getCurrentTab().getSavedQuery(), false);
+        showKeyboard();
     }
 
     public void createIntentAndExit(String hymnId) {
@@ -246,6 +294,10 @@ public class SearchActivity extends AppCompatActivity  {
 
     }
 
+    public FavoritesBackup getFavoritesBackup() {
+        return favoritesBackup;
+    }
+
     private TabFragment getCurrentTab() {
         return mSearchTabsPagerAdapter.getTab(mViewPager.getCurrentItem());
     }
@@ -271,14 +323,13 @@ public class SearchActivity extends AppCompatActivity  {
      */
     public static class SearchTabsPagerAdapter extends FragmentPagerAdapter {
         // indexed by position (getSearchTabIndex)
-        private final TabFragment[] tabs = new TabFragment[8];
+        private final TabFragment[] tabs = new TabFragment[4];
 
         public SearchTabsPagerAdapter(FragmentManager fm) {
             super(fm);
 
-            for (TabFragment tab : new TabFragment[]{new HymnNumberTabFragment(), new FirstLineTabFragment(),
-                    new FavoritesTabFragment(), new CategoryTabFragment(), new AuthorTabFragment(),
-                    new LyricsTabFragment(), new HistoryTabFragment(), new MusicKeyTabFragment()}) {
+            for (TabFragment tab : new TabFragment[]{new HymnNumberTabFragment(), new SearchTabFragment(),
+                    new FavoritesTabFragment(), new HistoryTabFragment()}) {
                 tabs[tab.getSearchTabIndex()] = tab;
             }
         }

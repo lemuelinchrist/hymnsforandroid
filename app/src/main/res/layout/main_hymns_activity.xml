@@ -29,7 +29,7 @@
                         android:minHeight="?attr/actionBarSize"
                         android:background="?attr/colorPrimary"
                         app:layout_scrollFlags="scroll|enterAlways"
-                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight"
 
                 />
             </com.google.android.material.appbar.AppBarLayout>
@@ -37,21 +37,114 @@
                     android:id="@+id/hymn_fragment_viewpager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#000000"
+                    android:background="?attr/hymnPageBackground"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
             />
+
+            <!-- after a switch to a related hymn (another language): the hymn left, to go back to it. Round, in its
+                 book's colour, labelled with its number; hidden until such a switch (HymnsActivity.showBackToHymn) -->
+            <TextView
+                    android:id="@+id/back_to_hymn"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="16dp"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:maxLines="1"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:elevation="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="gone"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="9sp"
+                    app:autoSizeMaxTextSize="15sp"/>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <ListView
+        <!-- the book drawer: a header, the books (HymnDrawer: Recent, All books) and a link to the Hymn Books setting -->
+        <LinearLayout
                 android:id="@+id/left_drawer"
-                android:layout_width="240dp"
+                android:layout_width="288dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                android:choiceMode="singleChoice"
-                android:dividerHeight="0dp"
-                style="@style/Theme.AppCompat.Light.DarkActionBar"
-                android:background="#e1e1e1"
-        />
+                android:orientation="vertical"
+                android:clickable="true"
+                android:background="@color/drawer_background">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp">
+
+                <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/icon"
+                        android:importantForAccessibility="no"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="12dp"
+                        android:text="@string/app_name"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/drawer_text"/>
+            </LinearLayout>
+
+            <ListView
+                    android:id="@+id/drawer_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="8dp"
+                    android:clipToPadding="false"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:listSelector="@android:color/transparent"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/drawer_line"/>
+
+            <LinearLayout
+                    android:id="@+id/drawer_hymn_books"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="24dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_library_books_black_32dp"
+                        android:importantForAccessibility="no"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="18dp"
+                        android:text="Languages…"
+                        android:textSize="15sp"
+                        android:textColor="@color/drawer_text"/>
+            </LinearLayout>
+        </LinearLayout>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

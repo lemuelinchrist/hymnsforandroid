@@ -1,0 +1,14 @@
+# ZS827  (sheet of CS827)  这是在你，朋友，
+# What is wrong:
+#   1.: French has 140-140 syllables for 64 note slots (French: 这是在你，朋友， / 你的被造 / 是为装神的生命， / 当你敞开你心怀的刹那， / 祂将要进来， / 在你深处安家。 / 呼喊祂名耶稣， / 祂是又真 / 又活的可爱救主， / 祂的灵正如同生命之气， / 哦，向祂敞开， / 就能将祂支取。 / 不要将祂不顾， / 你若虚空， / 惟有祂爱能满足， / 何不速来呼求，)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS827.txt and run:  python3 sheet-lyrics/align.py ZS827
+
+== 1.
+# French text: 这是在你，朋友， / 你的被造 / 是为装神的生命， / 当你敞开你心怀的刹那， / 祂将要进来， / 在你深处安家。 / 呼喊祂名耶稣， / 祂是又真 / 又活的可爱救主， / 祂的灵正如同生命之气， / 哦，向祂敞开， / 就能将祂支取。 / 不要将祂不顾， / 你若虚空， / 惟有祂爱能满足， / 何不速来呼求， / 让祂进入，你必无所失， / 却充满祂丰富。 / 主！耶稣！阿利路亚！ / 阿利路亚！耶稣。 / 主！耶稣！阿利路亚！ / 阿利路亚！耶稣。
+# 64 notes in all; this suggestion has 140 syllables
+# 64 notes  | 這是在你，朋友，
+这 是 在 你， 朋 友， 你 的 被 造 是 为 装 神 的 生 命， 当 你 敞 开 你 心 怀 的 刹 那， 祂 将 要 进 来， 在 你 深 处 安 家。 呼 喊 祂 名 耶 稣， 祂 是 又 真 又 活 的 可 爱 救 主， 祂 的 灵 正 如 同 生 命 之 气，  #EXTRA 哦，  #EXTRA 向  #EXTRA 祂  #EXTRA 敞  #EXTRA 开，  #EXTRA 就  #EXTRA 能  #EXTRA 将  #EXTRA 祂  #EXTRA 支  #EXTRA 取。  #EXTRA 不  #EXTRA 要  #EXTRA 将  #EXTRA 祂  #EXTRA 不  #EXTRA 顾，  #EXTRA 你  #EXTRA 若  #EXTRA 虚  #EXTRA 空，  #EXTRA 惟  #EXTRA 有  #EXTRA 祂  #EXTRA 爱  #EXTRA 能  #EXTRA 满  #EXTRA 足，  #EXTRA 何  #EXTRA 不  #EXTRA 速  #EXTRA 来  #EXTRA 呼  #EXTRA 求，  #EXTRA 让  #EXTRA 祂  #EXTRA 进  #EXTRA 入，  #EXTRA 你  #EXTRA 必  #EXTRA 无  #EXTRA 所  #EXTRA 失，  #EXTRA 却  #EXTRA 充  #EXTRA 满  #EXTRA 祂  #EXTRA 丰  #EXTRA 富。  #EXTRA 主！  #EXTRA 耶  #EXTRA 稣！  #EXTRA 阿  #EXTRA 利  #EXTRA 路  #EXTRA 亚！  #EXTRA 阿  #EXTRA 利  #EXTRA 路  #EXTRA 亚！  #EXTRA 耶  #EXTRA 稣。  #EXTRA 主！  #EXTRA 耶  #EXTRA 稣！  #EXTRA 阿  #EXTRA 利  #EXTRA 路  #EXTRA 亚！  #EXTRA 阿  #EXTRA 利  #EXTRA 路  #EXTRA 亚！  #EXTRA 耶  #EXTRA 稣。  #EXTRA

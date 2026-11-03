@@ -1,0 +1,28 @@
+# ZS801  (sheet of CS801)  从前浪费在世界中，
+# What is wrong:
+#   (C): French has 101-101 syllables for 59 note slots (French: 我们投入恢复流里， / 有分于祂荣耀经营； / 我们进入身体事奉， / 被建造完成神旨意。 / 被建造，完成神旨意； / 被建造，完成神旨意； / 被建造，完成神旨意； / 真欢喜！ / 世界情欲，即将过去， / 神的旨意永不止息。 / 我们不甘随流失去， / 我们愿被建造在一起， / 永不分离。 / （接副歌，下同。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS801.txt and run:  python3 sheet-lyrics/align.py ZS801
+
+== (C)
+# French text: 我们投入恢复流里， / 有分于祂荣耀经营； / 我们进入身体事奉， / 被建造完成神旨意。 / 被建造，完成神旨意； / 被建造，完成神旨意； / 被建造，完成神旨意； / 真欢喜！ / 世界情欲，即将过去， / 神的旨意永不止息。 / 我们不甘随流失去， / 我们愿被建造在一起， / 永不分离。 / （接副歌，下同。）
+# 59 notes in all; this suggestion has 101 syllables
+# 59 notes  | 我們投入恢復流裡，
+我 们 投 入 恢 复 流 里， 有 分 于 祂 荣 耀 经 营； 我 们 进 入 身 体 事 奉， 被 建 造 完 成 神 旨 意。 被 建 造， 完 成 神 旨 意； 被 建 造， 完 成 神 旨 意； 被 建 造， 完 成 神 旨 意； 真 欢 喜！ 世  #EXTRA 界  #EXTRA 情  #EXTRA 欲，  #EXTRA 即  #EXTRA 将  #EXTRA 过  #EXTRA 去，  #EXTRA 神  #EXTRA 的  #EXTRA 旨  #EXTRA 意  #EXTRA 永  #EXTRA 不  #EXTRA 止  #EXTRA 息。  #EXTRA 我  #EXTRA 们  #EXTRA 不  #EXTRA 甘  #EXTRA 随  #EXTRA 流  #EXTRA 失  #EXTRA 去，  #EXTRA 我  #EXTRA 们  #EXTRA 愿  #EXTRA 被  #EXTRA 建  #EXTRA 造  #EXTRA 在  #EXTRA 一  #EXTRA 起，  #EXTRA 永  #EXTRA 不  #EXTRA 分  #EXTRA 离。  #EXTRA （接  #EXTRA 副  #EXTRA 歌，  #EXTRA 下  #EXTRA 同。）  #EXTRA
+
+== 1.
+# French text: 从前浪费在世界中， / 全不关心神的行动， / 终日追求不过幻梦， / 尽都是如捉影、如捕风， / 凡事虚空。
+# 37 notes in all; this suggestion has 37 syllables
+# 8 notes  | 從前浪費在世界中，
+从 前 浪 费 在 世 界 中，
+# 8 notes  | 全不關心神的行動，
+全 不 关 心 神 的 行 动，
+# 8 notes  | 終日追求不過幻夢，
+终 日 追 求 不 过 幻 梦，
+# 9 notes  | 盡都是如捉影、如捕風，
+尽 都 是 如 捉 影、 如 捕 风，
+# 4 notes  | 凡事虛空。
+凡 事 虚 空。

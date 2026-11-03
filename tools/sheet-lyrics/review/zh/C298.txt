@@ -1,0 +1,32 @@
+# C298  (sheet of E395)  哦主，求你長在我心，
+# What is wrong:
+#   (C): French has 40-40 syllables for 28 note slots (French: 願你逐日維持的力， / 仍然顧我軟弱， / 你的亮光除我陰翳， / 生命吞我死涸。 / 第一節的『長，』意思是生長、長大。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C298.txt and run:  python3 sheet-lyrics/align.py C298
+
+== 1.
+# French text: 哦主，求你長在我心， / 你外再無他求！ / 使我逐日與你更親， / 逐日向罪自由。
+# 28 notes in all; this suggestion has 28 syllables
+# 8 notes  | O Jesus Christ, grow Thou in me,
+哦 主， 求 你 長 在 我 心，
+# 6 notes  | And all things else recede;
+你 外 再 無 他 求！
+# 8 notes  | My heart be daily nearer Thee,
+使 我 逐 日 與 你 更 親，
+# 6 notes  | From sin be daily freed.
+逐 日 向 罪 自 由。
+
+== (C)
+# French text: 願你逐日維持的力， / 仍然顧我軟弱， / 你的亮光除我陰翳， / 生命吞我死涸。 / 第一節的『長，』意思是生長、長大。
+# 28 notes in all; this suggestion has 40 syllables
+# 8 notes  | Each day let Thy supporting might
+願 你 逐 日 維 持 的 力，
+# 6 notes  | My weakness still embrace;
+仍 然 顧 我 軟 弱，
+# 8 notes  | My darkness vanish in Thy light,
+你 的 亮 光 除 我 陰 翳，
+# 6 notes  | Thy life my death efface.
+生 命 吞 我 死 涸。 第  #EXTRA 一  #EXTRA 節  #EXTRA 的『  #EXTRA 長，』  #EXTRA 意  #EXTRA 思  #EXTRA 是  #EXTRA 生  #EXTRA 長、  #EXTRA 長  #EXTRA 大。  #EXTRA

@@ -4,12 +4,14 @@ import com.lemuelinchrist.android.hymns.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,12 +20,17 @@ import androidx.core.view.GravityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.activity.OnBackPressedCallback;
+import com.google.android.material.appbar.AppBarLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
+import com.lemuelinchrist.android.hymns.content.OtherLanguagesSection;
+import com.lemuelinchrist.android.hymns.dao.SearchIndex;
 import com.lemuelinchrist.android.hymns.search.SearchActivity;
 import com.lemuelinchrist.android.hymns.settings.SettingsActivity;
+import com.lemuelinchrist.android.hymns.style.BookColors;
 import com.lemuelinchrist.android.hymns.style.Theme;
 
 
@@ -34,13 +41,18 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         SharedPreferences.OnSharedPreferenceChangeListener {
     protected final int SEARCH_REQUEST = 1;
     protected HymnGroup selectedHymnGroup = HymnGroup.getDefaultHymnGroup();
+    private View mDrawer;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
 
     private ActionBar actionBar;
     private HymnBookCollection hymnBookCollection;
-    private Theme theme = Theme.LIGHT;
+    private TextView backToHymn;
+    private String backToHymnId;
+    // Black was chosen when this screen was made: Dark and Black share the night mode, so a change between them
+    // needs the screen made again by hand
+    private boolean black;
     private SharedPreferences sharedPreferences;
     private boolean preferenceChanged = true;
     private HymnDrawer hymnDrawer;
@@ -49,10 +61,14 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        black = Theme.isBlack(this);
+        Theme.applyOverlay(this);
         Log.d(this.getClass().getName(), "start app");
 
         Log.d(this.getClass().getName(), "start Hymn App... Welcome to Hymns!");
         setContentView(R.layout.main_hymns_activity);
+        // the Search tab's table is built in the background once after each update (SearchIndex)
+        SearchIndex.prepare(this, null);
 
         // set up Toolbar and Action Bar first so they are available for other components
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -64,6 +80,14 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         // Apply window insets for edge-to-edge display on Android 15+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root_layout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+
+            // keep the back-to-hymn button above the navigation bar
+            View backButton = findViewById(R.id.back_to_hymn);
+            if (backButton != null) {
+                ViewGroup.MarginLayoutParams margins = (ViewGroup.MarginLayoutParams) backButton.getLayoutParams();
+                margins.bottomMargin = Math.round(16 * getResources().getDisplayMetrics().density) + systemBars.bottom;
+                backButton.setLayoutParams(margins);
+            }
 
             // Dynamically set the height of the status bar scrim
             View statusScrim = findViewById(R.id.status_bar_scrim);
@@ -97,13 +121,31 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         // Instantiate a ViewPager and a PagerAdapter.
-        hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager),theme);
+        hymnBookCollection = new HymnBookCollection(this,(ViewPager) findViewById(R.id.hymn_fragment_viewpager));
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        mDrawerList = findViewById(R.id.left_drawer);
+        backToHymn = findViewById(R.id.back_to_hymn);
+        backToHymn.setOnClickListener(v -> {
+            if (backToHymnId != null) hymnBookCollection.switchToRelatedHymn(backToHymnId);
+        });
+
+        // Back: close the drawer, else return to the previous hymn, else leave the app
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (mDrawerLayout.isDrawerOpen(mDrawer)) {
+                    mDrawerLayout.closeDrawer(mDrawer);
+                } else if (!hymnBookCollection.goToPreviousHymn()) {
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
+                }
+            }
+        });
+        mDrawer = findViewById(R.id.left_drawer);
+        mDrawerList = findViewById(R.id.drawer_list);
 
         // Apply window insets to the Navigation Drawer to handle status bar and nav bar overlap
-        ViewCompat.setOnApplyWindowInsetsListener(mDrawerList, (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(mDrawer, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(0, systemBars.top, 0, systemBars.bottom);
             return insets;
@@ -115,6 +157,13 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 selectDrawerItem(position);
             }
+        });
+        // the Languages (Hymn Books) setting, to hide books someone never uses
+        findViewById(R.id.drawer_hymn_books).setOnClickListener(v -> {
+            mDrawerLayout.closeDrawer(mDrawer);
+            Intent settings = new Intent(getBaseContext(), SettingsActivity.class);
+            settings.putExtra(SettingsActivity.OPEN_HYMN_BOOKS, true);
+            startActivity(settings);
         });
 
         refreshHymnDrawer();
@@ -131,15 +180,57 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
             }
+
+            // Recent and the highlight follow the hymn being read: made again whenever the drawer starts to open
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
+                if (newState != DrawerLayout.STATE_IDLE && !mDrawerLayout.isDrawerOpen(mDrawer)) refreshHymnDrawer();
+            }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setDisplayConfig();
         hymnSwitcher=this;
     }
 
+    /**
+     * The round button on the lower right, after a switch to a related hymn: labelled with the hymn we left, in its
+     * book's colour; it switches back to it.
+     */
+    public void showBackToHymn(String hymnId) {
+        if (backToHymn == null) return;
+        try {
+            HymnGroup group = HymnGroup.getHymnGroupFromID(hymnId);
+            GradientDrawable circle = new GradientDrawable();
+            circle.setShape(GradientDrawable.OVAL);
+            circle.setColor(BookColors.buttonBar(this, group));
+            backToHymn.setBackground(circle);
+        } catch (NoSuchHymnGroupException e) {
+            return;
+        }
+        backToHymnId = hymnId;
+        backToHymn.setText(hymnId);
+        backToHymn.setContentDescription("Back to hymn " + hymnId);
+        backToHymn.animate().cancel();
+        if (backToHymn.getVisibility() != View.VISIBLE) {
+            backToHymn.setAlpha(0f);
+            backToHymn.setScaleX(0.6f);
+            backToHymn.setScaleY(0.6f);
+            backToHymn.setVisibility(View.VISIBLE);
+        }
+        backToHymn.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(180).start();
+    }
+
+    public void hideBackToHymn() {
+        if (backToHymn == null || backToHymn.getVisibility() != View.VISIBLE) return;
+        backToHymnId = null;
+        backToHymn.animate().cancel();
+        backToHymn.animate().alpha(0f).scaleX(0.6f).scaleY(0.6f).setDuration(120)
+                .withEndAction(() -> backToHymn.setVisibility(View.GONE)).start();
+    }
+
     private void refreshHymnDrawer() {
-        hymnDrawer = new HymnDrawer(this,
-                R.layout.drawer_hymngroup_list);
+        hymnDrawer = new HymnDrawer(this, selectedHymnGroup);
         mDrawerList.setAdapter(hymnDrawer);
     }
 
@@ -155,9 +246,11 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     private void selectDrawerItem(int position) {
         Log.i(HymnsActivity.class.getSimpleName(), "Drawer Item selected: " + position);
 
-        selectedHymnGroup = hymnDrawer.getSelectedHymnGroup(position);
+        HymnGroup chosen = hymnDrawer.getSelectedHymnGroup(position);
+        if (chosen == null) return;   // a heading
+        selectedHymnGroup = chosen;
         hymnBookCollection.translateTo(selectedHymnGroup);
-        mDrawerLayout.closeDrawer(mDrawerList);
+        mDrawerLayout.closeDrawer(mDrawer);
     }
 
 
@@ -179,9 +272,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         if (itemId == android.R.id.home) {
             toggleDrawer();
         } else if (itemId == R.id.action_index) {
-            Intent intent = new Intent(getBaseContext(), SearchActivity.class);
-            intent.putExtra("selectedHymnGroup", selectedHymnGroup);
-            startActivityForResult(intent, SEARCH_REQUEST);
+            openSearch(null, null);
             ret = true;
         } else if (itemId == R.id.action_settings) {
             Intent settingsIntent = new Intent(getBaseContext(), SettingsActivity.class);
@@ -193,23 +284,29 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         return ret;
     }
 
+    /**
+     * The search screen; with words it opens on the Search tab already searching for them (all books), only in the
+     * given column of the search table if there is one (until the words are changed).
+     */
+    public void openSearch(String words, String column) {
+        Intent intent = new Intent(getBaseContext(), SearchActivity.class);
+        intent.putExtra("selectedHymnGroup", selectedHymnGroup);
+        if (words != null) {
+            intent.putExtra(SearchActivity.EXTRA_QUERY, words);
+            if (column != null) intent.putExtra(SearchActivity.EXTRA_COLUMN, column);
+        }
+        startActivityForResult(intent, SEARCH_REQUEST);
+    }
+
     private void changeThemeColor() {
-        theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
-        Log.i(getClass().getSimpleName(), "changeTheme: " + theme.name());
-        hymnBookCollection.setTheme(theme);
-        actionBar.setBackgroundDrawable(theme.getActionBarColor(selectedHymnGroup));
-        
-        // Ensure the window draws behind the status bar and apply the dark tint
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.parseColor("#44000000"));
+        actionBar.setBackgroundDrawable(new ColorDrawable(BookColors.toolbar(this, selectedHymnGroup)));
     }
 
     private void toggleDrawer() {
-        if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
-            mDrawerLayout.closeDrawer(mDrawerList);
+        if (mDrawerLayout.isDrawerOpen(mDrawer)) {
+            mDrawerLayout.closeDrawer(mDrawer);
         } else {
-            mDrawerLayout.openDrawer(mDrawerList);
+            mDrawerLayout.openDrawer(mDrawer);
         }
     }
 
@@ -233,13 +330,6 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     }
 
     @Override
-    public void onBackPressed() {
-        Log.d(HymnsActivity.class.getSimpleName(), "onBackPressed Called");
-        hymnBookCollection.goToPreviousHymn();
-
-    }
-
-    @Override
     public void onLyricVisible(String hymnId) {
 
         if (hymnId==null) hymnId=HymnGroup.DEFAULT_HYMN_NUMBER;
@@ -259,12 +349,19 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        // folding the other languages updates the pages itself; reloading the book for it on the next resume could
+        // land on hymn 1 when that resume brings a hymn chosen in Search (the reload read the page before the switch)
+        if (OtherLanguagesSection.FOLDED.equals(key)) return;
         preferenceChanged=true;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if (Theme.isBlack(this) != black) {
+            recreate();
+            return;
+        }
         if(preferenceChanged) {
             setDisplayConfig();
             changeThemeColor();
@@ -301,6 +398,17 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     public void switchToHymn(String hymnId) {
         hymnBookCollection.switchToHymn(hymnId);
+    }
+
+    /** Slides the toolbar back into view (it hides while scrolling down). */
+    public void showToolbar() {
+        AppBarLayout appBar = findViewById(R.id.appbar);
+        if (appBar != null) appBar.setExpanded(true, true);
+    }
+
+    @Override
+    public void switchToRelatedHymn(String hymnId) {
+        hymnBookCollection.switchToRelatedHymn(hymnId);
     }
 
     public static HymnSwitcher getHymnSwitcher() {

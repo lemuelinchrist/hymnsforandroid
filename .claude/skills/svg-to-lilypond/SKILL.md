@@ -1,11 +1,11 @@
 ---
 name: svg-to-lilypond
-description: Use when new or changed lead-sheet SVGs (app/src/main/assets/pianoSvg, guitarSvg) have arrived — e.g. after a hymnal.net / New Songs sync — and need converting to LilyPond (.ly) sources, or when investigating why a sheet fails conversion or verification, or when `.ly` files changed and the in-app viewer's MEI files (app/src/main/assets/sheetMei) need regenerating. Covers running the converter, reading the report, rebuilding the glyph catalog, the review workflow, and the traps already found.
+description: Use when new or changed lead-sheet SVGs (tools/svg-to-lilypond/svg/pianoSvg, guitarSvg) have arrived — e.g. after a hymnal.net / New Songs sync — and need converting to LilyPond (.ly) sources, or when investigating why a sheet fails conversion or verification, or when `.ly` files changed and the in-app viewer's MEI files (app/src/main/assets/sheetMei) need regenerating. Covers running the converter, reading the report, rebuilding the glyph catalog, the review workflow, and the traps already found.
 ---
 
 # SVG -> LilyPond conversion
 
-All code, data and the full technical record live in `svg-to-lilypond/`. **Read `svg-to-lilypond/DESIGN.md` §18
+All code, data and the full technical record live in `tools/svg-to-lilypond/`. **Read `tools/svg-to-lilypond/DESIGN.md` §18
 ("Implementation status and findings") before debugging anything** — most surprises have already been found there.
 
 The SVGs are LilyPond output (vector, exact coordinates). The converter reads them deterministically
@@ -15,16 +15,16 @@ re-reads the render and compares. Nothing is judged by eye except failures.
 ## Prerequisites (check, don't assume)
 - `lilypond --version` -> 2.24.3 (apt: `sudo apt install lilypond`; needs a real terminal for the password).
 - `rsvg-convert`, ImageMagick `convert`, Python 3 with `fontTools numpy Pillow`.
-- The checks read tune codes and lyrics from a **private snapshot** `svg-to-lilypond/build/hymns_snapshot.sqlite`, which
+- The checks read tune codes and lyrics from a **private snapshot** `tools/svg-to-lilypond/build/hymns_snapshot.sqlite`, which
   is rebuilt automatically from the committed `sqlite/hymns.sql` when missing or older. (Don't point tools at
   `app/src/main/assets/hymns.sqlite`: Gradle/IDE builds rewrite it and it was once corrupted mid-run.) If new hymns
   were added to the DB, make sure `sqlite/hymns.sql` has them (`./gradlew :sqlite:exportSql`, see `hymn-provisioning`).
 
 ## 1. Check the incoming files first
-- Not an HTML error page: `grep -l "<html" app/src/main/assets/pianoSvg/<ids>.svg` (hymnal.net returns HTTP 200 with a
+- Not an HTML error page: `grep -l "<html" tools/svg-to-lilypond/svg/pianoSvg/<ids>.svg` (hymnal.net returns HTTP 200 with a
   "page not found" page for some hymns; those were once shipped as .svg).
 - Exact `<GROUP><number>.svg` names, right case (the app's asset lookup is case-sensitive), and both a piano and a guitar file.
-- New files from `databaseProvisioner/data/{pianoSvg,guitarSvg}` must be copied into `app/src/main/assets/` first.
+- New files from `databaseProvisioner/data/{pianoSvg,guitarSvg}` must be copied into `tools/svg-to-lilypond/svg/` first (they are no longer shipped in the app).
 
 ## 2. Convert
 ```bash
@@ -97,7 +97,7 @@ The app's "New Sheet Music Viewer" (DESIGN.md section 19) does not read `.ly`: i
 `app/src/main/assets/sheetMei/<id>.mei`, made from the piano `.ly` by `tools/ly_to_mei.py`. **Whenever a `.ly` file is
 added or changed, regenerate the MEI before building a release**, or the viewer keeps showing the old sheet:
 ```bash
-python3 svg-to-lilypond/tools/ly_to_mei.py --all --out app/src/main/assets/sheetMei   # every line should end OK
+python3 tools/svg-to-lilypond/tools/ly_to_mei.py --all --out app/src/main/assets/sheetMei   # every line should end OK
 python3 -c "import glob,xml.etree.ElementTree as E;[E.parse(f) for f in glob.glob('app/src/main/assets/sheetMei/*.mei')];print('well-formed')"
 git status --short app/src/main/assets/sheetMei      # only the hymns whose .ly changed should show up
 ```
@@ -110,6 +110,19 @@ git status --short app/src/main/assets/sheetMei      # only the hymns whose .ly 
 
 ## 10. Latest results (2026-10-06)
 Piano 3,166/3,179 accepted (3,089 clean), guitar 3,164/3,179 (3,084 clean). The 13+15 left each have a reason in
-`svg-to-lilypond/DESIGN.md` section 18 ("Review tail"). The accepted `.ly` files are committed in `svg-to-lilypond/ly/` (never hand-edit;
+`tools/svg-to-lilypond/DESIGN.md` section 18 ("Review tail"). The accepted `.ly` files are committed in `tools/svg-to-lilypond/ly/` (never hand-edit;
 refresh after a significant converter change). A full run is ~3 h per variant on this host (`-j 8`, nice); while fixing,
 re-run only the previous REVIEW list (~15 min) and finish with a full run, diffing against the saved reports.
+
+## 10. Chord edits from the web app (2026-10-20)
+Pianists change chords in the web app (`tools/web`, Edit chords) and send in an exported `hymns-chord-edits-<date>.json`.
+`python3 tools/svg-to-lilypond/tools/chord_edits.py import <file> [--dry-run]` puts them into `ly/piano/<id>.ly` (the
+`harmonies` block), writes the MEI again, checks that only the edited bars' chords changed (note ids included, so the
+sheet-lyrics overlays keep working), and keeps the edits in `tools/svg-to-lilypond/chord_edits/<id>.json`.
+- **After refreshing `ly/` from the converter, run `chord_edits.py apply`** (`check` first to see what is missing):
+  the refresh rewrites the `.ly` files and would lose the edits. A bar whose chords changed under an edit is reported,
+  not overwritten.
+- New chord types (add9, 7sus4, m7♭5, maj9, 11, m11, 13) get their name written out in the `.ly`
+  (`\once \override ChordName.text`), since LilyPond's own names for them are unclear; `ly_to_mei.QUALITY` knows them.
+- A chord on a triplet beat is refused (not supported yet). Tests: `python3 tools/svg-to-lilypond/tools/test_chord_edits.py --corpus`.
+- Then rebuild the web app (it drops the device copies of edits that are now in the sheet) and release the APK.

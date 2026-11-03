@@ -1,0 +1,29 @@
+# ZS328  (sheet of NS10082)  怎能乡村女子如我，
+# What is wrong:
+#   1.: French has 108-108 syllables for 62 note slots (French: 怎能乡村女子如我， / 成为你的新妇、配偶？ / 你是如此圣洁、神圣， / 我却堕落、属人。 / 若非是你，我怎得以 / 在这罗曼史里像你？ / 在创世前，我蒙拣选， / 你计划永不变！ / （副一） / 神圣罗曼史， / 神心计划之； / 神成为卑微人子， / 追求乡村女子！ / 神永远的爱， / 无何能妨碍， / )
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS328.txt and run:  python3 sheet-lyrics/align.py ZS328
+
+== 1.
+# French text: 怎能乡村女子如我， / 成为你的新妇、配偶？ / 你是如此圣洁、神圣， / 我却堕落、属人。 / 若非是你，我怎得以 / 在这罗曼史里像你？ / 在创世前，我蒙拣选， / 你计划永不变！ / （副一） / 神圣罗曼史， / 神心计划之； / 神成为卑微人子， / 追求乡村女子！ / 神永远的爱， / 无何能妨碍， / 亦无何能以更改， / 神终得心所爱！
+# 62 notes in all; this suggestion has 108 syllables
+# 8 notes  | How could a country girl like me
+怎 能 乡 村 女 子 如 我，
+# 8 notes  | Become Your match — Your bride to be?
+成 为 你 的 新 妇、 配 偶？
+# 8 notes  | You’re holy and You are divine
+你 是 如 此 圣 洁、 神 圣，
+# 7 notes  | But I’m fallen and human.
+我 却 堕 落、 属 人。 若
+# 8 notes  | Without You, Lord, I have no chance
+非 是 你， 我 怎 得 以 在
+# 8 notes  | To be like You in this romance.
+这 罗 曼 史 里 像 你？ 在
+# 9 notes  | But You chose me ere the world began
+创 世 前， 我 蒙 拣 选， 你 计
+# 6 notes  | Nothing could change Your plan.
+划 永 不 变！ （副 一） 神  #EXTRA 圣  #EXTRA 罗  #EXTRA 曼  #EXTRA 史，  #EXTRA 神  #EXTRA 心  #EXTRA 计  #EXTRA 划  #EXTRA 之；  #EXTRA 神  #EXTRA 成  #EXTRA 为  #EXTRA 卑  #EXTRA 微  #EXTRA 人  #EXTRA 子，  #EXTRA 追  #EXTRA 求  #EXTRA 乡  #EXTRA 村  #EXTRA 女  #EXTRA 子！  #EXTRA 神  #EXTRA 永  #EXTRA 远  #EXTRA 的  #EXTRA 爱，  #EXTRA 无  #EXTRA 何  #EXTRA 能  #EXTRA 妨  #EXTRA 碍，  #EXTRA 亦  #EXTRA 无  #EXTRA 何  #EXTRA 能  #EXTRA 以  #EXTRA 更  #EXTRA 改，  #EXTRA 神  #EXTRA 终  #EXTRA 得  #EXTRA 心  #EXTRA 所  #EXTRA 爱！  #EXTRA

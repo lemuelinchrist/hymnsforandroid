@@ -1,0 +1,39 @@
+# FY10  (sheet of CH60)  Il y a d’la joie, joie, joie, joie, là dans mon cœur
+# What is wrong:
+#   suspicious syllable "(x2)"
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY10.txt and run:  python3 sheet-lyrics/align.py FY10
+
+== 1.
+# French text: Il y a d’la joie, joie, joie, joie, là dans mon cœur / (Où ça ?) Là dans mon cœur ! / (Où ça ?) Là dans mon cœur ! / Il y a d’la joie, joie, joie, joie, là dans mon cœur / Pour toujours dans mon cœur ! / // Et je suis heureux, oh oui si heureux ! / Car j’ai l’amour de Jésus dans mon cœur ! // (x2)
+# 76 notes in all; this suggestion has 72 syllables
+# 7 notes  | I’ve got the joy, joy, joy, joy
+Il y a d’la joi-e, joi-
+# 4 notes  | Down in my heart,
+e, joi-e, joi-
+# 4 notes  | Down in my heart,
+e, là dans mon
+# 4 notes  | Down in my heart,
+cœur (Où ça?) Là
+# 7 notes  | I’ve got the joy, joy, joy, joy
+dans mon cœur! (Où ça?) Là dans
+# 4 notes  | Down in my heart,
+mon cœur! Il y
+# 6 notes  | Down in my heart to stay.
+a d’la joi-e, joi-e,
+# 5 notes
+joi-e, joi-e, là
+# 5 notes
+dans mon cœur Pour tou-
+# 10 notes
+jours dans mon cœur! Et je suis heu-reux, oh
+# 5 notes
+ou-i si heu-reux!
+# 5 notes
+Car j’ai l’a-mour de
+# 10 notes
+Jé-sus dans mon cœur!// (x2)
+# ??? only 6 syllables for 10 notes

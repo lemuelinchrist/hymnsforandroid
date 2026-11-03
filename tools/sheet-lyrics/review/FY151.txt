@@ -1,0 +1,25 @@
+# FY151  (sheet of NS10011)  Quel amour ! Lorsque Dieu envoya Son Fils.
+# What is wrong:
+#   1.: French has 68-79 syllables for 47 note slots (French: Quel amour ! Lorsque Dieu envoya Son Fils. / De Dieu, déchu, / L’homme s'enfuit, / Mais Dieu donna Son Fils. / Dieu témoigne ainsi Son amour envers nous ; / Bie)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY151.txt and run:  python3 sheet-lyrics/align.py FY151
+
+== 1.
+# French text: Quel amour ! Lorsque Dieu envoya Son Fils. / De Dieu, déchu, / L’homme s'enfuit, / Mais Dieu donna Son Fils. / Dieu témoigne ainsi Son amour envers nous ; / Bien au fond du trou, / Alors perdus, / Christ mourut pour nous. / Tu ne L’épargnas pas, / Ton Fils bien-aimé. / Père, nous Te louons / Car Il nous est cher.
+# 47 notes in all; this suggestion has 68 syllables
+# 10 notes  | God is love, Who sent His beloved Son.
+Quel a-mour! Lorsque Dieu en-voy-a Son Fils.
+# 8 notes  | Man is fallen with corruption,
+De Dieu, dé-chu, L’homme s'en-fuit, Mais
+# 6 notes  | But You sent Your dear Son.
+Dieu don-na Son Fils. Dieu
+# 11 notes  | God commends His kindness and love toward us,
+té-moigne ain-si Son a-mour en-vers nous; Bien
+# 8 notes  | In that while we were yet sinners
+au fond du trou, A-lors per-dus,
+# 4 notes  | Christ died for us.
+Christ mou-rut pour nous.  #EXTRA Tu  #EXTRA ne  #EXTRA L’é-par-gnas  #EXTRA pas,  #EXTRA Ton  #EXTRA Fils  #EXTRA bien-  #EXTRA ai-mé.  #EXTRA Père,  #EXTRA nous  #EXTRA Te  #EXTRA louons  #EXTRA Car  #EXTRA Il  #EXTRA nous  #EXTRA est  #EXTRA cher.  #EXTRA

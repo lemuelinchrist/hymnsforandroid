@@ -23,10 +23,10 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | Code | Simple Name | Description                       |
 | ---- | ----------- | --------------------------------- |
 | E    | English     | English hymns.                    |
-| C    | 中文-繁     | Traditional Chinese hymns.        |
-| CS   | 補充本-繁   | Traditional Chinese supplement.   |
-| Z    | 中文-简     | Simplified Chinese hymns.         |
-| ZS   | 補充本-简   | Simplified Chinese supplement.    |
+| C    | Chinese (Traditional) | Traditional Chinese hymns.        |
+| CS   | Chinese Supplement (Traditional) | Traditional Chinese supplement.   |
+| Z    | Chinese (Simplified) | Simplified Chinese hymns.         |
+| ZS   | Chinese Supplement (Simplified) | Simplified Chinese supplement.    |
 | CB   | Cebuano     | Cebuano hymns.                    |
 | T    | Tagalog     | Tagalog hymns.                    |
 | FR   | French      | French hymns.                     |
@@ -36,7 +36,7 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | G    | German      | German hymns.                     |
 | GY   | German Youth | German youth hymns.              |
 | J    | Japanese    | Japanese hymns.                   |
-| I    | B.Indonesia | Indonesian hymns.                 |
+| I    | Indonesian  | Indonesian hymns.                 |
 | BF   | Be Filled   | "Be Filled" collection.           |
 | NS   | New Songs   | "New Songs" collection.           |
 | CH   | Children    | Children's hymns.                 |
@@ -44,6 +44,15 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | SK   | Slovak      | Slovak hymns.                     |
 | GK   | Greek       | Greek hymns.                      |
 | SW   | Kiswahili   | Kiswahili hymns (Kenya); numbers are the printed page numbers, so they have gaps. |
+| RUS  | Russian     | Russian hymnal (from Brother Victor, 2026-10); its own numbering, the Russian ("R" before 2026-11) numbers in the German file's Related lines. |
+| BUR  | Burmese     | Burmese (Myanmar) hymnal (from Brother Victor, 2026-10); its own numbering, extra songs from BUR1001 (the code was MY until 2026-11). |
+| TA   | Tamil       | Tamil hymns (from Brother Victor, 2026-10); numbered like the English hymnal (TA1 = E1), with gaps; TA1501 and up are other songs. |
+| UR   | Urdu        | Urdu hymns from hymnal.net (2026-10, asked for by a brother for the churches in Pakistan); numbered like the English hymnal (UR1 = E1), with gaps; UR8273 and similar follow hymnal.net's English translations of Chinese hymns (8000 + the Chinese number) and have the Chinese hymn as parent. The Urdu New Songs are UR10000 + the NS number (UR10292 = NS292) and the Urdu Long Beach hymns UR20000 + the LB number (UR20082 = LB82 = NS10082), with the New Songs hymn as parent; hymnal.net lists them at `/hymn/ns/<n>ur` and `/hymn/lb/<n>ur`, not in its Urdu hymnal. Right to left. |
+| KI   | Kikuyu      | Kikuyu hymns (Kenya, 2026-10, from the brother who sent the Kiswahili book); typed from a scan of his original typed pages (no hymn numbers), so they are numbered in the order of his file (KI1-KI70), then two hymns from his earlier file (KI71, KI72). Holy names are capitalized as he asked: Jesu, Ngai, Baba, Mwathani and the like always; Roho, Muoyo and the possessives (Waku, Wake, Yaku, Riaku, ...) only where they mean God ("roho-ini witu" stays small; "Muti wa Muoyo", the Tree of Life, is capitalized). Parents come from the page's English hymn number, or from the matching Kiswahili hymn. |
+| POR  | Portuguese  | Portuguese hymns (2026-11, files from the testers of Brother Victor, formatted by him); numbered exactly like the English hymnal (POR1 = E1, POR1-POR1360), parent the English hymn. The first book with a three-letter code. |
+| POY  | Portuguese Youth | Portuguese young people's songs (140, 2026-11, same source); POY1-POY140; parent the New Songs hymn where the file names one (76 do), Spanish Youth hymns in `related`. |
+| POL  | Polish      | Polish hymns (424, 2026-11, same source); POL1-POL424, parent the English hymn (hymnal.net's E8xxx translations of Chinese hymns are linked to the Chinese hymn: E8255 = C255), LB12 = NS10012. |
+| FRY  | French Youth | French young people's songbook (Lyon, 2024); numbered in book order (the book has no song numbers). Most have an English parent for the sheet music. |
 
 ## Database Lifecycle & Source of Truth
 
@@ -105,7 +114,6 @@ The database contains the following tables:
 | `time`              | VARCHAR | The time signature of the hymn.                   |
 | `tune`              | TEXT    | The tune of the hymn.                             |
 | `parent_hymn`       | TEXT    | The parent hymn, if any.                          |
-| `sheet_music_link`  | TEXT    | A URL to the sheet music.                         |
 | `verse`             | TEXT    | The scripture verse associated with the hymn.     |
 | `related`           | TEXT    | A comma-separated list of related hymn IDs.       |
 
@@ -120,15 +128,20 @@ The database contains the following tables:
 | `id`          | INTEGER | The unique ID of the stanza.              |
 | `n_order`     | INTEGER | The sorting order of the stanza.           |
 
-### `tune`
+### `link`
 
-Stores external media links (like YouTube) for specific tunes.
+Stores the links of a hymn to places outside the app, one row per link. Today these are the curated piano videos (`kind` = `piano`), used by the YouTube button in "piano" mode and by the web app's "Piano videos" line; when a hymn has no rows of a kind, its parent hymn's rows are used. (It replaced the table `tune` in v5.8.2: that table was keyed by hymn ID, not by tune code, and held only a YouTube video ID, so it could not hold any other kind of link.) Index `link_hymn (hymn_id, kind, n_order)`.
 
-| Column          | Type    | Description                                |
-| --------------- | ------- | ------------------------------------------ |
-| `_id`           | VARCHAR | The tune identifier (links to `hymns.tune`).|
-| `comment`       | VARCHAR | Description of the link (e.g., "Piano").    |
-| `youtube_link`  | TEXT    | The URL to the YouTube video.              |
+| Column    | Type    | Description                                |
+| --------- | ------- | ------------------------------------------ |
+| `id`      | INTEGER | Primary key (generated by the provisioner; sequence `link`). |
+| `hymn_id` | TEXT    | The **hymn ID** the link belongs to (e.g. "E8"). |
+| `kind`    | TEXT    | What the link is: `piano` (a piano video of the hymn's tune). |
+| `label`   | TEXT    | The text shown for it (e.g. "1st tune", "Alt tune: 295", "New tune"). |
+| `url`     | TEXT    | The whole web address, e.g. `https://www.youtube.com/watch?v=DL6lgn78DcU`. The Android YouTube button opens the `embed` form of a YouTube address (`https://www.youtube.com/embed/DL6lgn78DcU`); the web app opens the stored address. |
+| `n_order` | INTEGER | The order among the hymn's links of the same kind, from 1. |
+
+`YoutubePiano.groovy` (reads `pianohymns202112.txt`) writes the `piano` rows.
 
 ### `SEQUENCE`
 
@@ -141,18 +154,20 @@ Stores external media links (like YouTube) for specific tunes.
 
 **Important Note on Character Encoding:** The database contains text with special characters (e.g., accented letters, curly apostrophes). When querying the database and exporting data to files (like CSV), it is crucial to use **UTF-8 encoding** to prevent character corruption. Failure to do so will result in characters being replaced by placeholders like `?`.
 
-The database can be queried using the `sqlite3.exe` command-line tool located in the `sqlite` directory of this workspace.
+The database can be queried with the `sqlite3` command-line tool (install it and put it on the `PATH`; the build needs it too). Run these from the repository root.
 
 ### Example Queries
 
 **Get a hymn by its ID:**
 
 ```shell
-c:\dev\hymnsforandroid\sqlite\sqlite3.exe c:\dev\hymnsforandroid\app\src\main\assets\hymns.sqlite "SELECT * FROM hymns WHERE _id='E1'"
+sqlite3 app/src/main/assets/hymns.sqlite "SELECT * FROM hymns WHERE _id='E1'"
 ```
 
 **Get the stanzas for a hymn:**
 
 ```shell
-c:\dev\hymnsforandroid\sqlite\sqlite3.exe c:\dev\hymnsforandroid\app\src\main\assets\hymns.sqlite "SELECT * FROM stanza WHERE parent_hymn='E1' ORDER BY n_order"
+sqlite3 app/src/main/assets/hymns.sqlite "SELECT * FROM stanza WHERE parent_hymn='E1' ORDER BY n_order"
 ```
+
+For stanza `no` conventions, field quirks and how the app assembles a hymn at runtime, see [`HYMNAL_SPEC.md`](./HYMNAL_SPEC.md) §4–§5.

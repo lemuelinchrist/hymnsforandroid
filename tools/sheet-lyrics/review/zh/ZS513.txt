@@ -1,0 +1,37 @@
+# ZS513  (sheet of E1348)  看哪！
+# What is wrong:
+#   1.: French has 47-47 syllables for 102 note slots (French: 看哪！ / 各国各族各民各方人， / 身穿白衣， / 站在宝座和羔羊面前， / 大声欢呼， / 救恩归与神和羔羊， / 颂赞荣耀归祂， / 一直到永远！)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS513.txt and run:  python3 sheet-lyrics/align.py ZS513
+
+== 1.
+# French text: 看哪！ / 各国各族各民各方人， / 身穿白衣， / 站在宝座和羔羊面前， / 大声欢呼， / 救恩归与神和羔羊， / 颂赞荣耀归祂， / 一直到永远！
+# 102 notes in all; this suggestion has 47 syllables
+# 12 notes  | Behold, the tabernacle of God is with men,
+看 哪！ 各 国 各 族 各 民 各 方 人， 身
+# 25 notes  | And He will dwell with them, and they shall be His people,
+穿 白 衣， 站 在 宝 座 和 羔 羊 面 前， 大 声 欢 呼， 救 恩 归 与 神 和 羔 羊， 颂
+# 12 notes  | And God Himself shall be with them and be their God.
+赞 荣 耀 归 祂， 一 直 到 永 远！
+# ??? only 10 syllables for 12 notes
+# 12 notes  | Behold, the tabernacle of God is with men,
+
+# ??? only 0 syllables for 12 notes
+# 2 notes  | And God shall wipe away all tears from their eyes;
+
+# ??? only 0 syllables for 2 notes
+# 11 notes  | And there shall be no more death, neither sorrow,
+
+# ??? only 0 syllables for 11 notes
+# 8 notes  | nor crying, neither shall there be any more pain,
+
+# ??? only 0 syllables for 8 notes
+# 4 notes  | For the former things are passed away.
+
+# ??? only 0 syllables for 4 notes
+# 16 notes  | Behold, I make all things new.
+
+# ??? only 0 syllables for 16 notes

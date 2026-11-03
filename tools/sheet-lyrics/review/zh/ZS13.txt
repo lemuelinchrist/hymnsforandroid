@@ -1,0 +1,14 @@
+# ZS13  (sheet of CS13)  我要永远的歌唱
+# What is wrong:
+#   1.: French has 116-116 syllables for 74 note slots (French: 我要永远的歌唱 / 主耶稣的慈爱， / 我要唱，我要唱； / 何等的慈爱， / 我今活在召会之中， / 我要歌唱主耶稣的慈爱。 / 用我口，我要传扬 / 祂的信实，祂的信实。 / 用我口， / 我要传扬祂的信实， / 直到世世代代。 / 我要永远的歌唱 / 主耶稣的慈爱， / 我要唱，我要唱； / 何等的慈爱， / 我)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS13.txt and run:  python3 sheet-lyrics/align.py ZS13
+
+== 1.
+# French text: 我要永远的歌唱 / 主耶稣的慈爱， / 我要唱，我要唱； / 何等的慈爱， / 我今活在召会之中， / 我要歌唱主耶稣的慈爱。 / 用我口，我要传扬 / 祂的信实，祂的信实。 / 用我口， / 我要传扬祂的信实， / 直到世世代代。 / 我要永远的歌唱 / 主耶稣的慈爱， / 我要唱，我要唱； / 何等的慈爱， / 我今活在召会之中， / 我要歌唱主耶稣的慈爱。
+# 74 notes in all; this suggestion has 116 syllables
+# 74 notes  | 我要永遠的歌唱
+我 要 永 远 的 歌 唱 主 耶 稣 的 慈 爱， 我 要 唱， 我 要 唱； 何 等 的 慈 爱， 我 今 活 在 召 会 之 中， 我 要 歌 唱 主 耶 稣 的 慈 爱。 用 我 口， 我 要 传 扬 祂 的 信 实， 祂 的 信 实。 用 我 口， 我 要 传 扬 祂 的 信 实， 直 到 世 世 代 代。 我  #EXTRA 要  #EXTRA 永  #EXTRA 远  #EXTRA 的  #EXTRA 歌  #EXTRA 唱  #EXTRA 主  #EXTRA 耶  #EXTRA 稣  #EXTRA 的  #EXTRA 慈  #EXTRA 爱，  #EXTRA 我  #EXTRA 要  #EXTRA 唱，  #EXTRA 我  #EXTRA 要  #EXTRA 唱；  #EXTRA 何  #EXTRA 等  #EXTRA 的  #EXTRA 慈  #EXTRA 爱，  #EXTRA 我  #EXTRA 今  #EXTRA 活  #EXTRA 在  #EXTRA 召  #EXTRA 会  #EXTRA 之  #EXTRA 中，  #EXTRA 我  #EXTRA 要  #EXTRA 歌  #EXTRA 唱  #EXTRA 主  #EXTRA 耶  #EXTRA 稣  #EXTRA 的  #EXTRA 慈  #EXTRA 爱。  #EXTRA

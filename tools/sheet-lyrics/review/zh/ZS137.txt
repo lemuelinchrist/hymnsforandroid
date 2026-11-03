@@ -1,0 +1,14 @@
+# ZS137  (sheet of CS137)  如今主，你就是那灵，
+# What is wrong:
+#   1.: French has 103-103 syllables for 97 note slots (French: 如今主，你就是那灵， / 是那赐人生命的活灵， / 为进我灵，作我生命， / 你已完成必经的过程： / 你从天降下成肉体， / 从阴间上来又复起； / 今犹如空气在我口里， / 一喊你名，我就将你吸。 / 对我，你丰富无比； / 对我，你何等实际； / 丰富无比，何等实际， / 你今就在我心里！ / （重复一至四行）)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS137.txt and run:  python3 sheet-lyrics/align.py ZS137
+
+== 1.
+# French text: 如今主，你就是那灵， / 是那赐人生命的活灵， / 为进我灵，作我生命， / 你已完成必经的过程： / 你从天降下成肉体， / 从阴间上来又复起； / 今犹如空气在我口里， / 一喊你名，我就将你吸。 / 对我，你丰富无比； / 对我，你何等实际； / 丰富无比，何等实际， / 你今就在我心里！ / （重复一至四行）
+# 97 notes in all; this suggestion has 103 syllables
+# 97 notes  | 如今主，你就是那靈，
+如 今 主， 你 就 是 那 灵， 是 那 赐 人 生 命 的 活 灵， 为 进 我 灵， 作 我 生 命， 你 已 完 成 必 经 的 过 程： 你 从 天 降 下 成 肉 体， 从 阴 间 上 来 又 复 起； 今 犹 如 空 气 在 我 口 里， 一 喊 你 名， 我 就 将 你 吸。 对 我， 你 丰 富 无 比； 对 我， 你 何 等 实 际； 丰 富 无 比， 何 等 实 际， 你 今 就 在 我 心 里！ （重  #EXTRA 复  #EXTRA 一  #EXTRA 至  #EXTRA 四  #EXTRA 行）  #EXTRA

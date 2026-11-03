@@ -1,0 +1,36 @@
+# CS337  (sheet of NS309)  已過二十世紀以來，
+# What is wrong:
+#   adapting would change 18 of 112 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/CS337.txt and run:  python3 sheet-lyrics/align.py CS337
+
+== 1.
+# French text: 已過二十世紀以來， / 千千萬萬寶貴的性命， / 心愛的奇珍、崇高的地位、 / 以及燦爛的前途， / 都曾枉費在主耶穌身上。 / 對這些愛主的人， / 祂是全然可愛， / 祂是全然可愛， / 配得我們獻上一切， / 我們澆在主身上的不是枉費， / 乃是馨香的見證， / 見證祂的甘甜。
+# 112 notes in all; this suggestion has 96 syllables
+# 9 notes  | Throughout the past twenty centuries
+已 過 二 十 世 紀 以 來， 千
+# 8 notes  | Tens of thousands of precious lives,
+千 萬 萬 寶 貴 的 性 命，
+# 7 notes  | Heart treasures, high positions,
+心 愛 的 奇 珍、 崇 高
+# 9 notes  | And golden futures have been “wasted“
+的 地 位、 以 及 燦 爛 的 前
+# 6 notes  | Upon the Lord Jesus.
+途， 都 曾 枉 費 在
+# 10 notes  | To the ones who love Him in such a way
+主 耶 穌 身 上。 對 這 些 愛 主
+# 15 notes  | He is altogether lovely and worthy of their offering.
+的 人， 祂 是 全 然 可 愛， 祂 是 全 然 可 愛， 配
+# 12 notes  | What they have poured upon the Lord is not a waste
+得 我 們 獻 上 一 切， 我 們 澆 在 主
+# 12 notes  | But a fragrant testimony of His sweetness.
+身 上 的 不 是 枉 費， 乃 是 馨 香 的
+# 12 notes  | What they have poured upon the Lord is not a waste
+見 證， 見 證 祂 的 甘 甜。
+# ??? only 8 syllables for 12 notes
+# 12 notes  | But a fragrant testimony of His sweetness.
+
+# ??? only 0 syllables for 12 notes

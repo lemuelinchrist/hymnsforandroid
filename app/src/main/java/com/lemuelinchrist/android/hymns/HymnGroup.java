@@ -1,11 +1,12 @@
 package com.lemuelinchrist.android.hymns;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lemuelcantos on 18/8/13.
@@ -15,19 +16,19 @@ public enum HymnGroup {
             Color.rgb(0xB0, 0xBE, 0xC5),
             Gravity.LEFT),
     // Green
-    C("中文-繁", Color.rgb(0x66, 0x99, 0x00),
+    C("Chinese (Traditional)", Color.rgb(0x66, 0x99, 0x00),
             Color.rgb(0xA5, 0xD6, 0xA7),
             Gravity.LEFT),
     //Purple
-    CS("補充本-繁", Color.rgb(0x99, 0x33, 0xCC),
+    CS("Chinese Supplement (Traditional)", Color.rgb(0x99, 0x33, 0xCC),
             Color.rgb(0xCE, 0x93, 0xD8),
             Gravity.LEFT),
     // Green
-    Z("中文-简", Color.rgb(0x66, 0x99, 0x00),
+    Z("Chinese (Simplified)", Color.rgb(0x66, 0x99, 0x00),
             Color.rgb(0xA5, 0xD6, 0xA7),
             Gravity.LEFT),
     //Purple
-    ZS("補充本-简", Color.rgb(0x99, 0x33, 0xCC),
+    ZS("Chinese Supplement (Simplified)", Color.rgb(0x99, 0x33, 0xCC),
             Color.rgb(0xCE, 0x93, 0xD8),
             Gravity.LEFT),
     //Orange
@@ -40,6 +41,10 @@ public enum HymnGroup {
             Gravity.LEFT),
     //Pink
     FR("French", Color.rgb(0xE9, 0x1E, 0x63),
+            Color.rgb(0xF4, 0x8F, 0xB1),
+            Gravity.LEFT),
+    //Pink, like French (youth books share their language's colours: SY, GY)
+    FRY("French Youth", Color.rgb(0xE9, 0x1E, 0x63),
             Color.rgb(0xF4, 0x8F, 0xB1),
             Gravity.LEFT),
     //Indigo
@@ -67,7 +72,7 @@ public enum HymnGroup {
             Color.rgb(0xAE,0xD5,0x81),
             Gravity.LEFT),
     // Red
-    I("B.Indonesia",Color.rgb(0xF4,0x43,0x36),
+    I("Indonesian",Color.rgb(0xF4,0x43,0x36),
             Color.rgb(0xE5,0x73,0x73),
             Gravity.LEFT),
     //Blue
@@ -84,11 +89,11 @@ public enum HymnGroup {
             Gravity.LEFT),
     //Deep Purple
     F("Farsi", Color.rgb(0x67, 0x3A, 0xB7),
-            Color.rgb(0x95, 0x75, 0xCD),
+            Color.rgb(0xB3, 0x9D, 0xDB),
             Gravity.RIGHT),
     // Purple
     SK("Slovak", Color.rgb(0x9C, 0x27, 0xB0),
-            Color.rgb(0xBA, 0x68, 0xC8),
+            Color.rgb(0xCE, 0x93, 0xD8),
             Gravity.LEFT),
     //Light Blue
     GK("Greek", Color.rgb(0x03, 0xA9, 0xF4),
@@ -97,6 +102,38 @@ public enum HymnGroup {
     //Cyan
     SW("Kiswahili", Color.rgb(0x00, 0x83, 0x8F),
             Color.rgb(0x4D, 0xD0, 0xE1),
+            Gravity.LEFT),
+    //Dark Blue
+    RUS("Russian", Color.rgb(0x15, 0x65, 0xC0),
+            Color.rgb(0x64, 0xB5, 0xF6),
+            Gravity.LEFT),
+    //Dark Green
+    BUR("Burmese", Color.rgb(0x2E, 0x7D, 0x32),
+            Color.rgb(0x66, 0xBB, 0x6A),
+            Gravity.LEFT),
+    //Blue Grey
+    TA("Tamil", Color.rgb(0x54, 0x6E, 0x7A),
+            Color.rgb(0x90, 0xA4, 0xAE),
+            Gravity.LEFT),
+    //Burgundy (Pink 900 / Pink 300), right to left like Farsi
+    UR("Urdu", Color.rgb(0x88, 0x0E, 0x4F),
+            Color.rgb(0xF0, 0x62, 0x92),
+            Gravity.RIGHT),
+    //Amber (Amber 900 / Amber 600)
+    KI("Kikuyu", Color.rgb(0xFF, 0x6F, 0x00),
+            Color.rgb(0xFF, 0xB3, 0x00),
+            Gravity.LEFT),
+    //Light Green 900 / Light Green 600: the first books with a three-letter code (2026-11)
+    POR("Portuguese", Color.rgb(0x33, 0x69, 0x1E),
+            Color.rgb(0x7C, 0xB3, 0x42),
+            Gravity.LEFT),
+    //Light Green 800 / Light Green 400
+    POY("Portuguese Youth", Color.rgb(0x55, 0x8B, 0x2F),
+            Color.rgb(0x9C, 0xCC, 0x65),
+            Gravity.LEFT),
+    //Deep Purple 600 / Deep Purple 200
+    POL("Polish", Color.rgb(0x5E, 0x35, 0xB1),
+            Color.rgb(0xB3, 0x9D, 0xDB),
             Gravity.LEFT);
 
     private final String simpleName;
@@ -112,26 +149,56 @@ public enum HymnGroup {
         return nightColor;
     }
 
+    /** The longest book code (the letters before the number): 1 to {@value} letters (E, CS, POR). */
+    public static final int MAX_CODE_LENGTH = 3;
+
+    /** How many letters start the id: its book code ("E1" 1, "CS12" 2, "POR1360" 3); the number begins with a digit. */
+    private static int codeLength(String hymnId) {
+        int n = 0;
+        while (n < hymnId.length() && n < MAX_CODE_LENGTH && Character.isLetter(hymnId.charAt(n))) n++;
+        return n;
+    }
+
+    /**
+     * The codes that three books had before 2026-11 (Burmese MY, Russian R, French Youth FY), so that an old favorites
+     * backup, an old link or what someone types still finds the hymn: MY637 is BUR637.
+     */
+    private static final Map<String, String> OLD_CODES = new HashMap<>();
+    static {
+        OLD_CODES.put("MY", "BUR");
+        OLD_CODES.put("R", "RUS");
+        OLD_CODES.put("FY", "FRY");
+    }
+
+    /** The code of a book (any case, or one of the old codes) as the book's current code; null if there is no such book. */
+    public static String currentCode(String code) {
+        String upper = code == null ? "" : code.toUpperCase();
+        if (OLD_CODES.containsKey(upper)) return OLD_CODES.get(upper);
+        try {
+            return valueOf(upper).name();
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
+    /** The hymn ID with its book's current code ("MY637" -> "BUR637", "e1" -> "E1"); the ID unchanged when its book is unknown. */
+    public static String currentId(String hymnId) {
+        if (hymnId == null || hymnId.isEmpty()) return hymnId;
+        int n = codeLength(hymnId);
+        String code = currentCode(hymnId.substring(0, n));
+        return code == null ? hymnId : code + hymnId.substring(n);
+    }
+
     public static HymnGroup getHymnGroupFromID(String hymnId) throws NoSuchHymnGroupException {
         //split hymn group from hymn number
-        try {
-            if (Character.isLetter(hymnId.charAt(1))) {
-                return valueOf(hymnId.substring(0, 2).toUpperCase());
-            } else {
-                return valueOf(hymnId.substring(0, 1).toUpperCase());
-            }
-        } catch (IllegalArgumentException e) {
-          throw new NoSuchHymnGroupException("No Such Hymn Group: " + hymnId);
-        }
+        String code = currentCode(hymnId.substring(0, codeLength(hymnId)));
+        if (code == null) throw new NoSuchHymnGroupException("No Such Hymn Group: " + hymnId);
+        return valueOf(code);
     }
 
     public static String getHymnNoFromID(String hymnId) {
         //split hymn group from hymn number
-        if (Character.isLetter(hymnId.charAt(1))) {
-            return hymnId.substring(2);
-        } else {
-            return hymnId.substring(1);
-        }
+        return hymnId.substring(codeLength(hymnId));
     }
 
     public static HymnGroup getDefaultHymnGroup() {
@@ -171,13 +238,6 @@ public enum HymnGroup {
         return list.toArray(new String[list.size()]);
     }
 
-    public static HymnGroup getFromSimpleName(String simpleName) {
-        for (HymnGroup group: HymnGroup.values()) {
-            if(group.getSimpleName().equals(simpleName)) return group;
-        }
-        Log.e(HymnGroup.class.getSimpleName(), "warning: selected Hymn group not found. Switching to default group: E");
-        return getDefaultHymnGroup();
-    }
 
     public int getTextAlignment() {
         return textAlignment;

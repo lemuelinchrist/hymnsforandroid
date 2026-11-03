@@ -1,0 +1,23 @@
+# FY168  (sheet of NS712)  Aujourd’hui voyons
+# What is wrong:
+#   1.: French has 98-111 syllables for 50 note slots (French: Aujourd’hui voyons / Que sur terr’ Dieu veut S’exprimer / C’est pourquoi disons, / Seigneur, nous voici ! / Seigneur, envoie-nous / Partout pour le proclamer / )
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY168.txt and run:  python3 sheet-lyrics/align.py FY168
+
+== 1.
+# French text: Aujourd’hui voyons / Que sur terr’ Dieu veut S’exprimer / C’est pourquoi disons, / Seigneur, nous voici ! / Seigneur, envoie-nous / Partout pour le proclamer / Ce grand jubilée, / Son économie, Ensemble prions... / Pour ouvrir leurs yeux / Les ôtant de la nuit au jour, / Et de toute autorité / De Satan à Dieu, / Afin qu’ils reçoivent / Le pardon des fautes, / Et ce que Dieu a, / Ce que Dieu a fait, / Et ce qu’Il fera !
+# 50 notes in all; this suggestion has 98 syllables
+# 13 notes  | We must see today that God needs expressing on earth;
+Au-jourd’-hui voy-ons Que sur terr’-Dieu veut S’ex-pri-mer
+# 10 notes  | And for this we say, “Lord, increase in us!”
+C’est pour-quoi di-sons, Sei-gneur, nous voi-ci!
+# 5 notes  | Lord, give us Your heart
+Sei-gneur, en-voie| nous
+# 12 notes  | To speak what we’ve seen and heard of God’s Jubilee,
+Par-tout pour le pro-cla-mer Ce grand ju-bi-lée,
+# 10 notes  | His economy, the reason we pray...
+Son é-co-no-mie, En-semble prions... Pour ou- vrir  #EXTRA leurs  #EXTRA yeux  #EXTRA Les  #EXTRA ô-tant  #EXTRA de  #EXTRA la  #EXTRA nuit  #EXTRA au  #EXTRA jour,  #EXTRA Et  #EXTRA de  #EXTRA toute  #EXTRA au-to-ri-té  #EXTRA De  #EXTRA Sa-tan  #EXTRA à  #EXTRA Dieu,  #EXTRA A-fin  #EXTRA qu’ils  #EXTRA re-çoivent  #EXTRA Le  #EXTRA par-don  #EXTRA des  #EXTRA fautes,  #EXTRA Et  #EXTRA ce  #EXTRA que  #EXTRA Dieu  #EXTRA a,  #EXTRA Ce  #EXTRA que  #EXTRA Dieu  #EXTRA a  #EXTRA fait,  #EXTRA Et  #EXTRA ce  #EXTRA qu’Il  #EXTRA fe-ra!  #EXTRA

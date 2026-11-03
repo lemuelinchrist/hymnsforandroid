@@ -3,6 +3,7 @@ package com.lemuelinchrist.android.hymns.content;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -24,7 +25,7 @@ import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
-import com.lemuelinchrist.android.hymns.style.Theme;
+import com.lemuelinchrist.android.hymns.style.BookColors;
 import com.lemuelinchrist.android.hymns.utils.HymnStack;
 
 import java.util.HashSet;
@@ -46,14 +47,14 @@ public class ContentArea extends Fragment {
 
     private String hymnId;
     private HashSet<OnLyricVisibleListener> onLyricVisibleLIsteners = new HashSet<>();
-    private Theme theme;
     private HymnStack hymnStack;
+    private NestedScrollView scrollView;
 
     private CardView buttonContainer;
     private PlayButton playButton;
     private SheetMusicButton sheetMusicButton;
     private FaveButton faveButton;
-    private CopyButton copyButton;
+    private ShareButton shareButton;
     private YoutubeButton youtubeButton;
     private SimilarTuneButton similarTuneButton;
 
@@ -64,12 +65,8 @@ public class ContentArea extends Fragment {
         this.context = getContext();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        if (theme == null) {
-            theme = Theme.isNightModePreferred(sharedPreferences.getBoolean("nightMode", false));
-        }
-
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                theme.getStyle(), container, false);
+                R.layout.content_area, container, false);
 
         // Apply window insets to handle bottom navigation bar overlap on Android 15+
         rootView.setClipToPadding(false);
@@ -86,10 +83,13 @@ public class ContentArea extends Fragment {
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
 
         // This onTouchListener will solve the problem of the scrollView undesiringly focusing on the lyric portion
-        NestedScrollView scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
+        scrollView = rootView.findViewById(R.id.jellybeanContentScrollView);
         scrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
         scrollView.setFocusable(true);
         scrollView.setFocusableInTouchMode(true);
+        // taking focus from a touch leaves touch mode, and a focused view then gets the system's focus highlight over
+        // it: a white veil over the whole page at night
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) scrollView.setDefaultFocusHighlightEnabled(false);
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -125,7 +125,7 @@ public class ContentArea extends Fragment {
 
         buttonContainer = rootView.findViewById(getRid("buttonContainer"));
         if(buttonContainer !=null ){
-            buttonContainer.setCardBackgroundColor(hymn.getHymnGroup().getDayColor());
+            buttonContainer.setCardBackgroundColor(BookColors.buttonBar(context, hymn.getHymnGroup()));
         }
 
         playButton = new PlayButton(hymn,this,
@@ -134,10 +134,10 @@ public class ContentArea extends Fragment {
                 (ImageButton)rootView.findViewById(getRid("sheetMusicButton")));
         faveButton = new FaveButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("faveButton")));
-        copyButton = new CopyButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("copyButton")));
+        shareButton = new ShareButton(hymn,this,
+                (ImageButton)rootView.findViewById(getRid("shareButton")));
         youtubeButton = new YoutubeButton(hymn,this,
-                (ImageButton)rootView.findViewById(getRid("youtubePianoButton")));
+                (ImageButton)rootView.findViewById(getRid("youtubeButton")));
         similarTuneButton = new SimilarTuneButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("similarTuneButton")));
 
@@ -149,11 +149,10 @@ public class ContentArea extends Fragment {
                 .getPackageName());
     }
 
-    public static ContentArea newInstance(Context context, Theme theme) {
+    public static ContentArea newInstance(Context context) {
         ContentArea lyric = new ContentArea();
 
         lyric.setContext(context);
-        lyric.setTheme(theme);
         return lyric;
     }
 
@@ -166,6 +165,8 @@ public class ContentArea extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
 
         if (isVisibleToUser && hymn != null) {
+            // a swiped-to page may have been made (and scrolled) in advance by the pager: open it at its top
+            scrollToTop();
             onLyricVisible();
         }
     }
@@ -213,8 +214,46 @@ public class ContentArea extends Fragment {
         playButton.stop();
     }
 
-    public void setTheme(Theme theme) {
-        this.theme = theme;
+    /** A page that was scrolled earlier (or kept its position) opens at its top again. */
+    public void scrollToTop() {
+        if (scrollView != null) scrollView.scrollTo(0, 0);
+    }
+
+    /** How far down the page is scrolled: 0 at the top, 1 at the end of the hymn. */
+    public float getScrollFraction() {
+        if (scrollView == null || scrollView.getChildCount() == 0) return 0;
+        int range = scrollView.getChildAt(0).getHeight() - scrollView.getHeight();
+        return range <= 0 ? 0 : Math.min(1f, Math.max(0f, scrollView.getScrollY() / (float) range));
+    }
+
+    /**
+     * Scrolls to the same relative place (verse 10 of 20 of a hymn read in one language is about verse 10 of its
+     * translation), and keeps it there while the page is being laid out: it may not be yet.
+     */
+    public void scrollToFraction(final float fraction) {
+        if (scrollView == null || scrollView.getChildCount() == 0) return;
+        final View content = scrollView.getChildAt(0);
+        final Runnable apply = new Runnable() {
+            @Override
+            public void run() {
+                int range = content.getHeight() - scrollView.getHeight();
+                scrollView.scrollTo(0, range <= 0 ? 0 : Math.round(range * fraction));
+            }
+        };
+        apply.run();
+        final View.OnLayoutChangeListener whileLaidOut = new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int l, int t, int r, int b, int ol, int ot, int or, int ob) {
+                apply.run();
+            }
+        };
+        content.addOnLayoutChangeListener(whileLaidOut);
+        scrollView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                content.removeOnLayoutChangeListener(whileLaidOut);
+            }
+        }, 600);
     }
 
     public void setHymnStack(HymnStack hymnStack) {

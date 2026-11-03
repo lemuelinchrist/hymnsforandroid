@@ -1,0 +1,32 @@
+# C673  (sheet of E989)  耶穌，我救主，
+# What is wrong:
+#   1.: French has 36-36 syllables for 64 note slots (French: 耶穌，我救主， / 降生馬槽中， / 成為『憂患人』， / 來經歷苦痛； / 哦，這真希奇， / 值得我稱頌！ / 祂來尋我，尋我！)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C673.txt and run:  python3 sheet-lyrics/align.py C673
+
+== 1.
+# French text: 耶穌，我救主， / 降生馬槽中， / 成為『憂患人』， / 來經歷苦痛； / 哦，這真希奇， / 值得我稱頌！ / 祂來尋我，尋我！
+# 64 notes in all; this suggestion has 36 syllables
+# 10 notes  | Jesus, my Savior, to Bethlehem came,
+耶 穌， 我 救 主， 降 生 馬 槽 中，
+# 10 notes  | Laid in a manger to sorrow and shame;
+成 為『 憂 患 人』， 來 經 歷 苦 痛；
+# 10 notes  | O it was wonderful, blest be His name,
+哦， 這 真 希 奇， 值 得 我 稱 頌！
+# 6 notes  | Seeking for me, for me:
+祂 來 尋 我， 尋 我！
+# 6 notes  | Seeking for me, for me,
+
+# ??? only 0 syllables for 6 notes
+# 6 notes  | Seeking for me, for me;
+
+# ??? only 0 syllables for 6 notes
+# 10 notes  | O it was wonderful, blest be His name,
+
+# ??? only 0 syllables for 10 notes
+# 6 notes  | Seeking for me, for me.
+
+# ??? only 0 syllables for 6 notes

@@ -1,0 +1,14 @@
+# ZS814  (sheet of CS814)  我们现在就是
+# What is wrong:
+#   1.: French has 129-129 syllables for 86 note slots (French: 我们现在就是 / 在主的得胜里， / 不需要我们再来 / 挣扎与努力； / 我们只要享受， / 在灵里来支取， / 就经历得胜实际。 / 为何不齐夸胜！ / 齐夸胜齐夸胜！ / 我们已经与主 / 同高升！同高升！ / 三层天，在灵里， / 要得胜，多容易！ / 撒但在我们脚底！ / 在主得胜里面 / 我们一同有分， /)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS814.txt and run:  python3 sheet-lyrics/align.py ZS814
+
+== 1.
+# French text: 我们现在就是 / 在主的得胜里， / 不需要我们再来 / 挣扎与努力； / 我们只要享受， / 在灵里来支取， / 就经历得胜实际。 / 为何不齐夸胜！ / 齐夸胜齐夸胜！ / 我们已经与主 / 同高升！同高升！ / 三层天，在灵里， / 要得胜，多容易！ / 撒但在我们脚底！ / 在主得胜里面 / 我们一同有分， / 这得胜的联结 / 是永远不可分。 / 我岂能再失败、灰心， / 软弱无能？ / 我现在享受得胜！
+# 86 notes in all; this suggestion has 129 syllables
+# 86 notes  | 我們現在就是
+我 们 现 在 就 是 在 主 的 得 胜 里， 不 需 要 我 们 再 来 挣 扎 与 努 力； 我 们 只 要 享 受， 在 灵 里 来 支 取， 就 经 历 得 胜 实 际。 为 何 不 齐 夸 胜！ 齐 夸 胜 齐 夸 胜！ 我 们 已 经 与 主 同 高 升！ 同 高 升！ 三 层 天， 在 灵 里， 要 得 胜， 多 容 易！ 撒 但 在 我 们 脚 底！ 在  #EXTRA 主  #EXTRA 得  #EXTRA 胜  #EXTRA 里  #EXTRA 面  #EXTRA 我  #EXTRA 们  #EXTRA 一  #EXTRA 同  #EXTRA 有  #EXTRA 分，  #EXTRA 这  #EXTRA 得  #EXTRA 胜  #EXTRA 的  #EXTRA 联  #EXTRA 结  #EXTRA 是  #EXTRA 永  #EXTRA 远  #EXTRA 不  #EXTRA 可  #EXTRA 分。  #EXTRA 我  #EXTRA 岂  #EXTRA 能  #EXTRA 再  #EXTRA 失  #EXTRA 败、  #EXTRA 灰  #EXTRA 心，  #EXTRA 软  #EXTRA 弱  #EXTRA 无  #EXTRA 能？  #EXTRA 我  #EXTRA 现  #EXTRA 在  #EXTRA 享  #EXTRA 受  #EXTRA 得  #EXTRA 胜！  #EXTRA

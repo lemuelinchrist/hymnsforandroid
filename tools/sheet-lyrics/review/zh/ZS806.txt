@@ -1,0 +1,38 @@
+# ZS806  (sheet of E1282)  向前进，向前进，
+# What is wrong:
+#   adapting would change 13 of 83 notes (the French text and the music differ too much)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS806.txt and run:  python3 sheet-lyrics/align.py ZS806
+
+== 1.
+# French text: 向前进，向前进， / 在圣灵里向前进， / 阿利路亚，随召会前进。 / 我们今看见 / 主召会的恢复， / 随着七倍之灵前进。 / 无论往那里， / 使世人都知道， / 在这时代主一直前进！ / 在这时代主一直前进！
+# 83 notes in all; this suggestion has 70 syllables
+# 10 notes  | Marching on, marching on, in the Spirit
+向 前 进， 向 前 进， 在 圣 灵 里
+# 3 notes  | marching on;
+向 前 进，
+# 9 notes  | Hallelujah! The churches march on.
+阿 利 路 亚， 随 召 会 前 进。
+# 10 notes  | Marching on, marching on, in the Spirit
+我 们 今 看 见 主 召 会 的 恢
+# 3 notes  | marching on;
+复， 随 着
+# 9 notes  | Hallelujah! The churches march on.
+七 倍 之 灵 前 进。 无 论 往
+# 5 notes  | In the church we see
+那 里， 使 世 人
+# 6 notes  | The Lord's recovery
+都 知 道， 在 这 时
+# 9 notes  | And for it the Spirit seven-strong.
+代 主 一 直 前 进！ 在 这 时
+# 4 notes  | The world will know,
+代 主 一 直
+# 6 notes  | Wherever we shall go,
+前 进！
+# ??? only 2 syllables for 6 notes
+# 9 notes  | That in our age the Lord's marching on!
+
+# ??? only 0 syllables for 9 notes

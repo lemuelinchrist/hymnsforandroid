@@ -1,0 +1,44 @@
+# FY58  (sheet of NS10067)  L’amour de Christ me contraint maintenant
+# What is wrong:
+#   3.: French has 58-63 syllables for 32 note slots (French: L’amour de Christ / Me contraint maintenant à L’aimer complèt’ment. / Au plus profond / Son amour m’a touché, ma vie est consacrée. / Quel excellent et captivan)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY58.txt and run:  python3 sheet-lyrics/align.py FY58
+
+== 1.
+# French text: L’amour de Christ me contraint maintenant / À L’aimer tant, L’aimer complètement. / Au plus profond cet amour m’a touché ; / Ma vie et tout à Lui sont consacrés.
+# 40 notes in all; this suggestion has 40 syllables
+# 10 notes  | The love of Christ is now constraining me
+L’a-mour de Christ me con-traint main-te-nant
+# 10 notes  | That I would love and love Him utterly.
+À L’ai-mer tant, L’ai-mer com-plè-te-ment.
+# 10 notes  | His mighty love has touched me deep within
+Au plus pro-fond cet a-mour m’a tou-ché;
+# 10 notes  | To consecrate my life and all to Him.
+Ma vie et tout à Lui sont con-sa-crés.
+
+== (C)
+# French text: Quel excellent et captivant ; / Il me touche, et je Lui réponds / En m’abandonnant, en m’abandonnant à Lui.
+# 26 notes in all; this suggestion has 27 syllables
+# 8 notes  | His dying love so compelling,
+Quel ex-cellent et cap-ti-vant; Il
+# 8 notes  | And this tide has made me willing
+me touche, et je Lui ré-ponds En
+# 4 notes  | To love Him, I can’t help but love Him.
+m’a-ban-don-nant,
+# 6 notes
+en m’a-ban-don-nant à Lui.  #EXTRA
+
+== 3.
+# French text: L’amour de Christ / Me contraint maintenant à L’aimer complèt’ment. / Au plus profond / Son amour m’a touché, ma vie est consacrée. / Quel excellent et captivant ; / Il me touche, et je Lui réponds / En m’abandonnant, en m’abandonnant à Lui.
+# 32 notes in all; this suggestion has 58 syllables
+# 4 notes  | The love of Christ
+L’a-mour de Christ
+# 12 notes  | Is now constraining me to love Him utterly.
+Me con-traint main-te-nant à L’ai-mer com-plèt’ment. Au
+# 4 notes  | His mighty love
+plus pro-fond Son
+# 12 notes  | Has touched me deep within to consecrate to Him.
+a-mour m’a tou-ché, ma vie est con-sa-crée. Quel ex-cellent  #EXTRA et  #EXTRA cap-ti-vant;  #EXTRA Il  #EXTRA me  #EXTRA touche,  #EXTRA et  #EXTRA je  #EXTRA Lui  #EXTRA ré-ponds  #EXTRA En  #EXTRA m’a-ban-don-nant,  #EXTRA en  #EXTRA m’a-ban-don-nant  #EXTRA à  #EXTRA Lui.  #EXTRA

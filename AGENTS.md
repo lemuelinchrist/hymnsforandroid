@@ -20,8 +20,10 @@ The project is divided into three main parts:
 -   `databaseProvisioner/`: A Groovy project responsible for parsing raw hymn data and building the `hymns.sqlite` database.
     -   `src/main/groovy/`: The Groovy source code for the data provisioning process.
     -   `data/`: Contains raw data files (e.g., MIDI, SVG) used to generate the database.
--   `sqlite/`: Contains the `hymns.sql` schema file and the `sqlite3.exe` command-line tool for inspecting the database.
--   `docs/`: Contains all supplementary documentation, including the architecture deep-dive, diagrams, database specification, and other notes.
+-   `sqlite/`: Contains `hymns.sql`, the text dump of the database that git tracks (see `docs/database_spec.md`). Inspect the database with the `sqlite3` command-line tool, which the build also needs on the `PATH`.
+-   `tools/web/`: The web app (PWA) for iPhone/iPad users: hymns, search, favorites, sheet music with chord editing, offline. Built from the app's assets by `python3 tools/web/build.py`, published on GitHub Pages by `.github/workflows/web-app.yml` (run by hand from master after each release). See `tools/web/README.md`.
+-   `tools/ios/`: Builds `hymnal.html`, a single-file offline lyrics-only web version for iPhone users (`python3 tools/ios/build.py`). Book names/order come from `HymnGroup.java`; see `tools/ios/README.md`.
+-   `docs/`: Contains all supplementary documentation, including the architecture deep-dive, diagrams, database specification, and other notes. `docs/HYMNAL_SPEC.md` is the full functional and data specification (enough to rebuild the app on another platform, e.g. a PWA). Per-version reports (plans, contributor correspondence, decisions) are **not** in this public repo: they are Lemuel's private Claude Docs ("Hymns For Android vX.Y Report"), and `docs/v[0-9]*/` is git-ignored. Contributors' original files go in the git-ignored `databaseProvisioner/src/main/resources/originals/`.
 -   `AGENTS.md`: This file.
 -   `README.md`: The original, human-focused README file.
 
@@ -72,24 +74,25 @@ The Android app's source code is located in `app/src/main/java/com/lemuelinchris
 
 -   **`dao` (Data Access Objects)**: Contains classes responsible for all database interactions. `HymnsDao` is a key class here, providing methods to query the `hymns` and `stanza` tables. It also implements the "Parent Hymn" logic.
 -   **`entities`**: Contains the Java objects that map to database tables, such as `Hymn` and `Stanza`. These are the data models for the application.
--   **`content`**: Manages the display of hymn content. This package includes the view pagers and fragments that render the hymn lyrics and sheet music. `HymnTextContent` and `SheetMusicContent` are important classes.
--   **`search`**: Implements the search functionality. It contains the logic for building search queries and displaying results.
--   **`logbook`**: Handles user-specific data, such as history and favorites.
+-   **`content`**: Displays one hymn. `ContentArea` is the fragment for a hymn page; `LyricsArea` renders the header and stanzas; `OtherLanguagesSection` shows the foldable "OTHER LANGUAGES" number grid under the subject; `LinksSection` is the "LISTEN AND LINKS" card at the bottom (piano videos from the `link` table); `PlayButton`, `FaveButton`, `ShareButton`, `YoutubeButton`, `SimilarTuneButton` and `sheetmusic/SheetMusicButton` are the button bar. `sheetmusic/SheetMusicActivity` shows sheet music in a WebView running the Verovio viewer (`assets/viewer/`) on `assets/sheetMei/<id>.mei`; on tablets and unfolded phones its chords can be edited (`assets/viewer/editor.js`, saved through `logbook/ChordEdits`).
+-   **`search`**: The search screen (`SearchActivity`): Hymn Numbers, Search, Favorites and History tabs. `HymnSearch` finds and ranks hymns in the `search` table that `dao/SearchIndex` builds on the phone (`search.sqlite`), using `SearchText.norm`, the search form shared with the web app.
+-   **`logbook`**: Handles user-specific data, such as history and favorites, and the chord edits (`ChordEdits`, exported and imported by `ChordEditsBackup` in Settings).
 -   **`settings`**: Manages the application's settings and preferences.
+-   **`style`**: `Theme` (the Theme setting, System default / Light / Dark / Black: it only chooses; `HymnsApplication` applies it at start), `BookColors` (a book's `HymnGroup` colours as the theme uses them), `HymnTextFormatter`, `ScriptFont`. The colours themselves are in XML: `values/attrs.xml` (the hymn page's colour roles), `values/themes.xml` and `values-night/themes.xml` (Light, Dark, the Black overlay), `values/colors.xml` and `values-night/colors.xml` (the other screens).
 -   **`HymnsActivity.java`**: The main entry point and primary activity for the app. It coordinates the various components.
 -   **`HymnGroup.java`**: An enum that defines the different hymn books available in the app.
 
 ## 6. Development and Build
 
 ### Environment Setup
--   **Android Studio**: Arctic Fox (2020.3.1) or newer.
--   **Android SDK**: Version 34.
--   **JDK**: Version 11 or newer.
+-   **Android Studio**: a version that supports Android Gradle Plugin 8.13.
+-   **Android SDK**: compileSdk/targetSdk 36, minSdk 24.
+-   **JDK**: 17.
+-   **sqlite3** on the `PATH` (the build runs `:sqlite:importSql`), and **Python 3** for the iOS html (`buildIosHymnal`).
 
 ### Building the App
 1.  Open the project in Android Studio.
-2.  To select the sheet music variant (e.g., piano or guitar), you may need to edit `app/build.gradle`.
-3.  Build the app using the Gradle panel or by running `./gradlew assembleDebug`. The database is imported automatically during the build.
+2.  Build the app using the Gradle panel or by running `./gradlew assembleDebug`. The database is imported automatically during the build.
 
 ### Running the Database Provisioner
 The `databaseProvisioner` module is used to build the `hymns.sqlite` database from source files. To run it, execute its Gradle tasks from within Android Studio.
@@ -102,7 +105,8 @@ There is no CI/CD workflow for this (no `.github/workflows`) — releases are cr
 2. Build the release artifacts: `./gradlew clean assembleRelease bundleRelease`. This produces:
    - `app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk`
    - `app/build/outputs/bundle/release/HymnsForAndroidvX.Y-PianoAndGuitar.aab` (for Google Play)
-3. Create the GitHub release with the APK attached, using the `gh` CLI. Tag and title follow the `vX.Y` convention (title is `vX.Y - <short description>`):
+   - `app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html` (single-file offline lyrics-only hymnal, built by the `buildIosHymnal` task; no longer attached to releases since v5.6.1, as iPhone users have the web app)
+3. Create the GitHub release with the APK attached, using the `gh` CLI. Tag and title follow the `vX.Y` convention (title is `vX.Y - <short description>`), major.minor only even when `hymnAppVersion` has a patch number (`v5.7.6` → tag `v5.7`); the APK keeps its full-version file name:
    ```shell
    gh release create vX.Y \
      "app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk" \
@@ -112,3 +116,22 @@ There is no CI/CD workflow for this (no `.github/workflows`) — releases are cr
    ```
    Use `--draft` first so it can be previewed on GitHub before publishing; drop the flag (or `gh release edit vX.Y --draft=false`) to publish. Check `gh release view vX.Y` or recent releases (`gh release list`) for tone/format examples.
 4. The `.aab` bundle is for Google Play Console upload, not attached to the GitHub release.
+5. After publishing, deploy the web app from master: `gh workflow run web-app.yml --ref master` (`.github/workflows/web-app.yml`). Publishing does not deploy it: the github-pages environment only lets master deploy.
+
+## 8. Keeping the Public Docs Current
+
+The per-version reports are private (see `docs/` in section 2), so **the files in `docs/`, this file, the tools'
+READMEs and the GitHub release notes are the only public record of how the app works and why**. Keep them true as part
+of every change, in the same commit, not later:
+
+-   Behaviour or a screen changes (search, the hymn page, buttons, settings, favorites, sheet music): `docs/HYMNAL_SPEC.md`
+    (it must stay enough to rebuild the app) and, for new or renamed classes, `docs/APP_ARCHITECTURE.md` and section 5 above.
+-   The data changes (a new book or group code, a column, how parents and related hymns are chosen, numbering):
+    `docs/database_spec.md`, the group table in `docs/HYMNAL_SPEC.md`, and section 3/4 above.
+-   A tool or pipeline changes (provisioning, the web app, the sheet music converter): its README, and the skill in
+    `.claude/skills/` that describes it.
+-   A release: the GitHub release notes say what changed for users (section 7).
+
+Write what the app does and why it was designed that way, not who asked or what was said: no names of the people who
+send feedback or contributions, no email addresses, no places where saints meet. Those stay in the private reports.
+

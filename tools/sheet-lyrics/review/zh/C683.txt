@@ -1,0 +1,41 @@
+# C683  (sheet of E998)  耶穌愛我，從天降臨，
+# What is wrong:
+#   1.: French has 32-32 syllables for 58 note slots (French: 耶穌愛我，從天降臨， / 甘心虛己，成為肉身。 / 受盡譏誚、鞭打、辱罵， / 至終被釘十字苦架。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/C683.txt and run:  python3 sheet-lyrics/align.py C683
+
+== 1.
+# French text: 耶穌愛我，從天降臨， / 甘心虛己，成為肉身。 / 受盡譏誚、鞭打、辱罵， / 至終被釘十字苦架。
+# 58 notes in all; this suggestion has 32 syllables
+# 8 notes  | Christ has become one with sinners,
+耶 穌 愛 我， 從 天 降 臨，
+# 8 notes  | Sharing in all of our living;
+甘 心 虛 己， 成 為 肉 身。
+# 8 notes  | Crucified even for sinners,
+受 盡 譏 誚、 鞭 打、 辱 罵，
+# 8 notes  | Glorious life to us giving.
+至 終 被 釘 十 字 苦 架。
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 2 notes
+
+# ??? only 0 syllables for 2 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes

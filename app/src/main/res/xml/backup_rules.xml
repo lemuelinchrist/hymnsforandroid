@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android's own backup (Android 11 and older). The hymn database is copied from the app's assets, so leave it out:
+     Google keeps at most 25 MB per app, and the backup that carries the favorites fails as a whole when it is bigger. -->
+<full-backup-content>
+    <exclude domain="database" path="hymns.sqlite" />
+    <exclude domain="database" path="hymns.sqlite-journal" />
+</full-backup-content>

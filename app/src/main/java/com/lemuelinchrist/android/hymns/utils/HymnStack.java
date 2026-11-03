@@ -32,6 +32,17 @@ public class HymnStack {
         Log.i(this.getClass().getSimpleName(), "pushed hymn: " + hymn);
     }
 
+    /** Start over with this hymn as the only one in the stack. */
+    public void reset(String firstHymn) {
+        stack.clear();
+        stack.add(firstHymn);
+    }
+
+    /** True when there is a hymn to go back to. */
+    public boolean hasPrevious() {
+        return stack.size() > 1;
+    }
+
     public boolean isEmpty() {
         return stack.isEmpty();
     }

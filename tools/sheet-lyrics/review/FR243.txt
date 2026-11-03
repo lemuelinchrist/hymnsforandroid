@@ -1,0 +1,78 @@
+# FR243  (sheet of E1326)  À quoi sert donc l’existence ?
+# What is wrong:
+#   1.: French has 14-16 syllables for 130 note slots (French: À quoi sert donc l’existence ? / Recherchons tous la réponse :)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FR243.txt and run:  python3 sheet-lyrics/align.py FR243
+
+== 1.
+# French text: À quoi sert donc l’existence ? / Recherchons tous la réponse :
+# 130 notes in all; this suggestion has 16 syllables
+# 7 notes  | What is living all about,
+À quoi sert donc l’e-xis-ten-
+# 7 notes  | Where's the answer? Let's find out!
+ce? Re-cher-chons tous la ré-
+# 1 notes
+pon-
+# 3 notes
+se:
+# ??? only 1 syllables for 3 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 14 notes
+
+# ??? only 0 syllables for 14 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 4 notes
+
+# ??? only 0 syllables for 4 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 3 notes
+
+# ??? only 0 syllables for 3 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 14 notes
+
+# ??? only 0 syllables for 14 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes
+# 1 notes
+
+# ??? only 0 syllables for 1 notes
+# 6 notes
+
+# ??? only 0 syllables for 6 notes
+# 7 notes
+
+# ??? only 0 syllables for 7 notes

@@ -1,0 +1,67 @@
+# FY176  (sheet of NS763)  Je vous le dis en vérité cette génération
+# What is wrong:
+#   1.: French has 87-99 syllables for 48 note slots (French: Je vous le dis en vérité cette génération / Ne passera pas que tout cela n’arrive. / Je vous le dis en vérité cette génération / Ne passera pas que tout cela n’)
+#   2.: French has 82-102 syllables for 36 note slots (French: Et cet évangile du royaume sera proclamé / Dans toute la terre, dans la terre habitée. / Et cet évangile du royaume sera proclamé / Dans toute la terre, dans la)
+#   3.: French has 84-101 syllables for 32 note slots (French: Alors, retire de mon cœur tout endurcissement, / Et toutes les pierres enfouies aux profondeurs. / Arrache toutes les épines étouffant la semence. / Ainsi le ro)
+#   4.: French has 85-94 syllables for 30 note slots (French: Je proclamerai la parole de Dieu hardiment, / Ô remplis-moi de l’Esprit économique. / Je me lèverai pour annoncer l’évangile aux gens, / Ô sauve-les du péché et)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY176.txt and run:  python3 sheet-lyrics/align.py FY176
+
+== 1.
+# French text: Je vous le dis en vérité cette génération / Ne passera pas que tout cela n’arrive. / Je vous le dis en vérité cette génération / Ne passera pas que tout cela n’arrive. (Mt 24.34) / Le ciel et la terre passeront, / Mais Mes paroles ne passeront pas. / Le ciel et la terre passeront, / Mais Mes paroles ne passeront pas. (Mt 24.34-35)
+# 48 notes in all; this suggestion has 87 syllables
+# 5 notes  | I tell you truly, by no means this generation shall
+Je vous le dis en
+# 12 notes  | pass away,
+vé-ri-té cette gé-né-ra-tion Ne pas-se-ra
+# 7 notes  | until all these things take place. (x2) (Matt. 24:34)
+pas que tout ce-la n’ar-rive.
+# 5 notes
+Je vous le dis en
+# 12 notes
+vé-ri-té cette gé-né-ra-tion Ne pas-se-ra
+# 7 notes
+pas que tout ce-la n’ar-rive. (Mt  #EXTRA 24.34)  #EXTRA Le  #EXTRA ciel  #EXTRA et  #EXTRA la  #EXTRA terre  #EXTRA pas-se-ront,  #EXTRA Mais  #EXTRA Mes  #EXTRA pa-roles  #EXTRA ne  #EXTRA pas-se-ront  #EXTRA pas.  #EXTRA Le  #EXTRA ciel  #EXTRA et  #EXTRA la  #EXTRA terre  #EXTRA pas-se-ront,  #EXTRA Mais  #EXTRA Mes  #EXTRA pa-roles  #EXTRA ne  #EXTRA pas-se-ront  #EXTRA pas.  #EXTRA (Mt  #EXTRA 24.34-  #EXTRA 35)  #EXTRA
+
+== 2.
+# French text: Et cet évangile du royaume sera proclamé / Dans toute la terre, dans la terre habitée. / Et cet évangile du royaume sera proclamé / Dans toute la terre, dans la terre habitée. / Un témoignage à toute nation / Marquera alors la fin de l’âge. / Un témoignage à toute nation / Marquera alors la fin de l’âge. (Mt 24.14)
+# 36 notes in all; this suggestion has 82 syllables
+# 9 notes  | Though heaven and earth will pass away,
+Et cet é-van-gile du roy-aume se-
+# 9 notes  | My words shall by no means pass away. (x2) (Matt. 24:33)
+ra pro-cla-mé Dans toute la terre, dans
+# 9 notes
+la terre ha-bi-tée. Et cet é-van-
+# 9 notes
+gile du roy-aume se-ra pro-cla-mé Dans  #EXTRA toute  #EXTRA la  #EXTRA terre,  #EXTRA dans  #EXTRA la  #EXTRA terre  #EXTRA ha-bi-tée.  #EXTRA Un  #EXTRA té-moi-gnage  #EXTRA à  #EXTRA toute  #EXTRA na-tion  #EXTRA Mar-que-ra  #EXTRA a-lors  #EXTRA la  #EXTRA fin  #EXTRA de  #EXTRA l’âge.  #EXTRA Un  #EXTRA té-moi-gnage  #EXTRA à  #EXTRA toute  #EXTRA na-tion  #EXTRA Mar-que-ra  #EXTRA a-lors  #EXTRA la  #EXTRA fin  #EXTRA de  #EXTRA l’âge.  #EXTRA (Mt  #EXTRA 24.14)  #EXTRA
+
+== 3.
+# French text: Alors, retire de mon cœur tout endurcissement, / Et toutes les pierres enfouies aux profondeurs. / Arrache toutes les épines étouffant la semence. / Ainsi le royaume peut régner dans mon cœur. / Enlève la cause de réticence, / Je Te permets d’entrer dans mon cœur. / Reprends la croissance de la semence, / Remplis et règne en mes profondeurs. (Mt 13.3-9)
+# 32 notes in all; this suggestion has 84 syllables
+# 9 notes  | Go therefore, disciple all nations,
+A-lors, re-tire de mon cœur tout en-
+# 6 notes  | disciple all nations,
+dur-cis-sement, Et toutes les
+# 12 notes  | baptize into the name of the Father and Son
+pierres en-foui-es aux pro-fon-deurs. Ar-rache toutes les
+# 5 notes  | and Holy Spirit,
+é-pines é-touf-fant la  #EXTRA se-mence.  #EXTRA Ain-si  #EXTRA le  #EXTRA roy-aume  #EXTRA peut  #EXTRA ré-gner  #EXTRA dans  #EXTRA mon  #EXTRA cœur.  #EXTRA En-lève  #EXTRA la  #EXTRA cause  #EXTRA de  #EXTRA ré-ti-cence,  #EXTRA Je  #EXTRA Te  #EXTRA per-mets  #EXTRA d’en-trer  #EXTRA dans  #EXTRA mon  #EXTRA cœur.  #EXTRA Re-prends  #EXTRA la  #EXTRA crois-sance  #EXTRA de  #EXTRA la  #EXTRA se-mence,  #EXTRA Rem-plis  #EXTRA et  #EXTRA règne  #EXTRA en  #EXTRA mes  #EXTRA pro-fon-deurs.  #EXTRA (Mt  #EXTRA 13.3-  #EXTRA 9)  #EXTRA
+
+== 4.
+# French text: Je proclamerai la parole de Dieu hardiment, / Ô remplis-moi de l’Esprit économique. / Je me lèverai pour annoncer l’évangile aux gens, / Ô sauve-les du péché et de l’abîme. / Je témoignerai de mon esprit, / Afin d’infuser en eux la foi. / Je dispenserai mon précieux Christ, / Et le royaume enfin paraîtra. (Mt 4.17)
+# 30 notes in all; this suggestion has 85 syllables
+# 6 notes  | And behold, I’m with you;
+Je pro-cla-me-rai la
+# 3 notes  | I’m with you
+pa-role de
+# 3 notes  | all the days;
+Dieu har-diment,
+# 6 notes  | And behold, I’m with you;
+Ô rem-plis| moi de l’Es-
+# 3 notes  | I’m with you
+prit é-co-
+# 9 notes  | to the consummation of the age.
+no-mique. Je me lè-ve-rai pour an- non-cer  #EXTRA l’é-van-gile  #EXTRA aux  #EXTRA gens,  #EXTRA Ô  #EXTRA sauve-  #EXTRA les  #EXTRA du  #EXTRA pé-ché  #EXTRA et  #EXTRA de  #EXTRA l’a-bîme.  #EXTRA Je  #EXTRA té-moi-gne-rai  #EXTRA de  #EXTRA mon  #EXTRA es-prit,  #EXTRA A-fin  #EXTRA d’in-fu-ser  #EXTRA en  #EXTRA eux  #EXTRA la  #EXTRA foi.  #EXTRA Je  #EXTRA dis-pen-se-rai  #EXTRA mon  #EXTRA pré-cieux  #EXTRA Christ,  #EXTRA Et  #EXTRA le  #EXTRA roy-aume  #EXTRA en-fin  #EXTRA pa-raî-tra.  #EXTRA (Mt  #EXTRA 4.17)  #EXTRA

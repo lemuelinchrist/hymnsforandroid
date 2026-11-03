@@ -1,0 +1,33 @@
+# FY138  (sheet of NS10051)  Je ne sais pas où ils L’ont posé,
+# What is wrong:
+#   2.: French has 59-62 syllables for 32 note slots (French: Des disciples sont venus regarder, / Mais sont rentrés tout de suite chez eux. / Ils sont satisfaits par les faits, / Où est mon Seigneur ? / Où est-Il, mon Jés)
+#   (C): the French hymn has no stanza chorus
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/FY138.txt and run:  python3 sheet-lyrics/align.py FY138
+
+== 1.
+# French text: Je ne sais pas où ils L’ont posé, / Ils ont enlevé la pierr' du tombeau. / Ils ont enlevé mon Seigneur, / Ô où est-Il ?
+# 31 notes in all; this suggestion has 31 syllables
+# 9 notes  | I do not know where they have laid Him.
+Je ne sais pas où ils L’ont po-sé,
+# 10 notes  | The stone is taken away from the tomb.
+Ils ont en-le-vé la pierr'-du tom-beau.
+# 8 notes  | Oh! They have taken Him away!
+Ils ont en-le-vé mon Sei-gneur,
+# 4 notes  | Oh! Where is He?
+Ô où est| Il?
+
+== 2.
+# French text: Des disciples sont venus regarder, / Mais sont rentrés tout de suite chez eux. / Ils sont satisfaits par les faits, / Où est mon Seigneur ? / Où est-Il, mon Jésus ? / Où est-Il, mon Amour ? / Où est-Il, l’Amour de mon âme ? / Mon cher Jésus, Toi seul je veux.
+# 32 notes in all; this suggestion has 59 syllables
+# 10 notes  | Disciples came and saw the empty tomb
+Des dis-ciples sont ve-nus re-gar-der, Mais
+# 10 notes  | But went away so soon to their own homes.
+sont ren-trés tout de suite chez eux. Ils sont
+# 8 notes  | They’re satisfied with just the facts.
+sa-tis-faits par les faits, Où est
+# 4 notes  | But where’s my Lord?
+mon Sei-gneur? Où est-  #EXTRA Il,  #EXTRA mon  #EXTRA Jé-sus?  #EXTRA Où  #EXTRA est-  #EXTRA Il,  #EXTRA mon  #EXTRA A-mour?  #EXTRA Où  #EXTRA est-  #EXTRA Il,  #EXTRA l’A-mour  #EXTRA de  #EXTRA mon  #EXTRA âme?  #EXTRA Mon  #EXTRA cher  #EXTRA Jé-sus,  #EXTRA Toi  #EXTRA seul  #EXTRA je  #EXTRA veux.  #EXTRA

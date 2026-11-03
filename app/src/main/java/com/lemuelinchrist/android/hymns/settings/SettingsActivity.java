@@ -15,18 +15,26 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.preference.MultiSelectListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
+import com.lemuelinchrist.android.hymns.logbook.ChordEditsBackup;
+import com.lemuelinchrist.android.hymns.logbook.FavoritesBackup;
+import com.lemuelinchrist.android.hymns.style.Theme;
 
 public class SettingsActivity extends AppCompatActivity {
+    /** Intent extra: open the Hymn Books dialog at once (the drawer's "Languages…" link). */
+    public static final String OPEN_HYMN_BOOKS = "openHymnBooks";
+
+    private FavoritesBackup favoritesBackup;
+    private ChordEditsBackup chordEditsBackup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+        favoritesBackup = new FavoritesBackup(this, added -> {});
+        chordEditsBackup = new ChordEditsBackup(this, this::updateChordEditsSummary);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,6 +63,12 @@ public class SettingsActivity extends AppCompatActivity {
                 .commit();
     }
 
+    private void updateChordEditsSummary() {
+        SettingsFragment fragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(R.id.settings);
+        Preference preference = fragment == null ? null : fragment.findPreference("chordEdits");
+        if (preference != null) preference.setSummary(chordEditsBackup.summary());
+    }
+
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -72,15 +86,30 @@ public class SettingsActivity extends AppCompatActivity {
             favePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    DialogFragment favoriteSettingsDialog = new FavoriteSettingsDialog();
-                    favoriteSettingsDialog.show(getParentFragmentManager(), "manageFaves");
+                    ((SettingsActivity) requireActivity()).favoritesBackup.showMenu();
                     return true;
                 }
             });
+            // a new choice changes the night mode at once; the open screens are made again in it
+            findPreference(Theme.PREFERENCE).setOnPreferenceChangeListener((preference, choice) -> {
+                Theme.apply(requireContext(), (String) choice);
+                return true;
+            });
+            if (savedInstanceState == null && requireActivity().getIntent().getBooleanExtra(OPEN_HYMN_BOOKS, false)) {
+                HymnBooksPreference hymnBooks = findPreference("disableLanguages");
+                if (hymnBooks != null) hymnBooks.showDialog();
+            }
+            findPreference("chordEdits").setOnPreferenceClickListener(preference -> {
+                ((SettingsActivity) requireActivity()).chordEditsBackup.showMenu();
+                return true;
+            });
+        }
 
-            MultiSelectListPreference disableLanguages = findPreference("disableLanguages");
-            disableLanguages.setEntries(HymnGroup.getArrayOfSimpleNames());
-            disableLanguages.setEntryValues(HymnGroup.getArrayOfCodes());
+        // the count changes when a sheet opened from the list is edited, or after an import
+        @Override
+        public void onResume() {
+            super.onResume();
+            ((SettingsActivity) requireActivity()).updateChordEditsSummary();
         }
     }
 

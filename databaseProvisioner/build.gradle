@@ -49,9 +49,82 @@ task runGreek(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task runFrenchYouth(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionFrenchYouth'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 task runSwahili(type: JavaExec) {
     dependsOn ":sqlite:importSql"
     mainClass = 'com.lemuelinchrist.hymns.ProvisionSwahili'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runKikuyu(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionKikuyu'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runRussian(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'RUS'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runBurmese(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'BUR'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runTamil(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'TA'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runUrdu(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'UR'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runExtractUrduNewSongs(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.ExtractUrduNewSongs'
+    classpath = sourceSets.main.runtimeClasspath
+    args "${projectDir}/src/main/resources/Urdu.txt"
+}
+
+task runExtractNS226(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ExtractNS226'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runPortuguese(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'POR'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runPortugueseYouth(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'POY'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runPolish(type: JavaExec) {
+    dependsOn ":sqlite:importSql"
+    mainClass = 'com.lemuelinchrist.hymns.ProvisionLanguageFile'
+    args 'POL'
     classpath = sourceSets.main.runtimeClasspath
 }
 
@@ -92,10 +165,11 @@ task runExtractNS613To614(type: JavaExec) {
 }
 
 // Group C cleanup (v5.5): re-fetch NS hymns that were saved from hymnal.net's fake pages. Runs on top of the
-// current DB state (no importSql); delete the old rows first.
+// current DB state (no importSql); delete the old rows first. Other hymns: -Phymns=752,800
 task runExtractNSFakePageReplacements(type: JavaExec) {
     mainClass = 'com.lemuelinchrist.hymns.ExtractNSFakePageReplacements'
     classpath = sourceSets.main.runtimeClasspath
+    args = (project.findProperty('hymns') ?: '').toString().tokenize(',')
 }
 
 // Children sync from hymnal.net, reusable: -Pfrom=1 -Pto=243 (see SyncChildrenFromHymnalNet.groovy).

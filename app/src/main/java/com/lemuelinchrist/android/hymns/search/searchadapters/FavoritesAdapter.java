@@ -16,7 +16,7 @@ public class FavoritesAdapter extends SearchAdapter {
 
     public FavoritesAdapter(Context context, int layout) {
         super(context, layout);
-        faveLogBookList = new LogBook(context, FaveButton.FAVE_LOG_BOOK_FILE).getOrderedRecordList();
+        faveLogBookList = new LogBook(context, FaveButton.FAVE_LOG_BOOK_FILE).getAllRecords();
 
     }
 

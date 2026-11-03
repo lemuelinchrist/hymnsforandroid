@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.lemuelinchrist.android.hymns.style.ScriptFont;
+
 
 /**
  * Created by lemuelcantos on 31/10/15.
@@ -36,6 +38,8 @@ public abstract class SearchAdapter extends RecyclerView.Adapter<IndexViewHolder
     public void onBindViewHolder(final IndexViewHolder holder, int position) {
 
         provisionHolder(holder,position);
+        // Urdu first lines in Nastaliq
+        ScriptFont.apply(holder.list_item, holder.hymnNo);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

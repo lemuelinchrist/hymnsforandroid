@@ -1,0 +1,31 @@
+# ZS839  (sheet of CS839)  我的生命不再挥霍，
+# What is wrong:
+#   1.: French has 55-55 syllables for 75 note slots (French: 我的生命不再挥霍， / 自从我看见云彩， / 越过一片死寂荒漠， / 远远的显现出来； / 它像光明火柱， / 照亮黑暗道路， / 燃起人生新希望， / 定住我的脚步。)
+#
+# Edit the French line under each English phrase so that it uses exactly as many notes as the phrase has.
+# Write syllables joined by - ; a hyphen that really belongs to the word: | ; a syllable held over two notes ends with _ ;
+# two syllables sung on one note are joined with the tie sign (‿); a word that goes on in the next line ends with -
+# Then copy this file to sheet-lyrics/overrides/ZS839.txt and run:  python3 sheet-lyrics/align.py ZS839
+
+== 1.
+# French text: 我的生命不再挥霍， / 自从我看见云彩， / 越过一片死寂荒漠， / 远远的显现出来； / 它像光明火柱， / 照亮黑暗道路， / 燃起人生新希望， / 定住我的脚步。
+# 75 notes in all; this suggestion has 55 syllables
+# 8 notes  | 我的生命不再揮霍，
+我 的 生 命 不 再 挥 霍，
+# 7 notes  | 自從我看見雲彩，
+自 从 我 看 见 云 彩，
+# 8 notes  | 越過一片死寂荒漠，
+越 过 一 片 死 寂 荒 漠，
+# 7 notes  | 遠遠的顯現出來；
+远 远 的 显 现 出 来；
+# 6 notes  | 它像光明火柱，
+它 像 光 明 火 柱，
+# 6 notes  | 照亮黑暗道路，
+照 亮 黑 暗 道 路，
+# 7 notes  | 燃起人生新希望，
+燃 起 人 生 新 希 望，
+# 6 notes  | 定住我的腳步。
+定 住 我 的 脚 步。
+# 20 notes
+
+# ??? only 0 syllables for 20 notes
