@@ -147,10 +147,10 @@ function applyTheme() {
 
 function isDark() {
   const t = document.documentElement.dataset.theme;
-  return t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return t ? t !== 'light' : window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-// 'light', 'dark', or null to follow the device
+// 'light', 'dark', 'black', or null to follow the device
 function setTheme(t) {
   store.set('theme', t);
   applyTheme();
@@ -1278,7 +1278,7 @@ function settingsScreen(view) {
 
   // display
   const themeNow = store.get('theme', null);
-  const themeSeg = h('div', {class: 'seg'}, [[null, 'Device'], ['light', 'Light'], ['dark', 'Dark']].map(([t, label]) =>
+  const themeSeg = h('div', {class: 'seg'}, [[null, 'System default'], ['light', 'Light'], ['dark', 'Dark'], ['black', 'Black']].map(([t, label]) =>
     h('button', {type: 'button', 'aria-pressed': String(themeNow === t), onclick: () => { setTheme(t); render(); }}, label)));
   const sizeLabel = h('span', {class: 'size-label'}, Math.round(LYRIC_SIZES[lyricSize] * 100) + '%');
   const sizeRow = h('div', {class: 'setting'}, h('span', null, h('span', {class: 'label'}, 'Text size'), h('span', {class: 'hint'}, 'Lyrics')),
@@ -1297,9 +1297,13 @@ function settingsScreen(view) {
 
   // hymnals
   const counts = DB.groupCounts();
+  const all = GROUPS.filter((g) => counts[g.code]);
+  const hiddenNames = all.filter((g) => !isShown(g.code)).map((g) => g.name);
   box.appendChild(h('section', {class: 'card settings-card'},
-    h('h2', null, 'Hymnals'),
-    h('p', {class: 'muted small'}, 'Switch off the hymnals you do not use: they leave the lists, search and the “other languages” row.'),
+    h('h2', null, 'Languages (Hymn Books)'),
+    h('p', {class: 'muted small'}, 'Simplify your view by hiding books you don\'t use (' + (hiddenNames.length
+      ? 'hiding ' + (hiddenNames.length > 3 ? hiddenNames.length + ' of ' + all.length : hiddenNames.join(', '))
+      : 'all ' + all.length + ' shown') + '). Hidden books leave the lists, search and the “other languages” row.'),
     h('div', {class: 'hymnal-toggles'}, GROUPS.filter((g) => counts[g.code]).map((g) =>
       h('label', {class: 'hymnal-toggle', style: groupStyle(g.code)},
         h('input', {type: 'checkbox', checked: isShown(g.code) || null, onchange: (e) => {

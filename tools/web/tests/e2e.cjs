@@ -424,8 +424,27 @@ async function search(page, text) {
       assert(await page.getAttribute('html', 'data-theme') === 'dark', 'dark after reload');
       await page.waitForSelector('.sheet.dark .sheet-music svg', {timeout: 60000});
       await open(page, '#/settings');
-      await page.click('.settings-card .seg button:text-is("Device")');
+      await page.click('.settings-card .seg button:text-is("System default")');
       assert(await page.getAttribute('html', 'data-theme') === null, 'back to the device setting');
+    });
+
+    await test('Black theme: pure black page, remembered, sheet drawn dark', async () => {
+      await open(page, '#/settings');
+      await page.click('.settings-card .seg button:text-is("Black")');
+      assert(await page.getAttribute('html', 'data-theme') === 'black', 'black');
+      const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+      assert(bg === 'rgb(0, 0, 0)', 'background ' + bg);
+      await open(page, '#/h/E8');
+      await page.reload();
+      assert(await page.getAttribute('html', 'data-theme') === 'black', 'black after reload');
+      await page.waitForSelector('.sheet.dark .sheet-music svg', {timeout: 60000});
+      await open(page, '#/settings');
+      await page.click('.settings-card .seg button:text-is("System default")');
+    });
+    await test('Languages (Hymn Books) setting says what it is for', async () => {
+      await open(page, '#/settings');
+      const text = await page.locator('.settings-card', {hasText: 'Languages (Hymn Books)'}).first().textContent();
+      assert(/Simplify your view by hiding books you don't use \((all \d+ shown|hiding [^)]+)\)/.test(text), text.slice(0, 200));
     });
 
     console.log('Like the Android app');
