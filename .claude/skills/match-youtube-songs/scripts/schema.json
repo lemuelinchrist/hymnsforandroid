@@ -1,0 +1,1 @@
+{"type":"object","properties":{"video_id":{"type":"string"},"hymn_id":{"type":["string","null"]},"confidence":{"type":"string","enum":["high","medium","low"]},"evidence":{"type":"string"},"also_matches":{"type":"array","items":{"type":"string"}}},"required":["video_id","hymn_id","confidence","evidence"]}
