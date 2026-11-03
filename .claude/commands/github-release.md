@@ -31,14 +31,6 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
    ```
    This produces `app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk` and the `.aab` bundle (the `.aab` is for Play Console, not attached to the GitHub release). The build also runs the `buildIosHymnal` task (`app/build/outputs/ios/HymnsForAndroidv<version>-iOS.html`); it is **not attached** to the release any more, so a `buildIosHymnal skipped` warning does not matter.
 
-   **Every time you produce a release build** (also a build only for the Play test channel, before any GitHub release), end your report with the Google Play Console release notes, in exactly this form, in a code block so Lemuel can paste them (Lemuel 2026-11-03):
-   ```
-   <en-US>
-   short plain-text notes: what changed for users, one line per change, no emoji or markdown
-   </en-US>
-   ```
-   Play allows at most 500 characters in all inside the tags. Add a `<xx-XX>` block per other language only if he asks.
-
 6. **Tag and push**:
    ```
    git tag v<release>

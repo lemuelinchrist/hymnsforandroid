@@ -115,7 +115,7 @@ There is no CI/CD workflow for this (no `.github/workflows`) — releases are cr
      --notes "<release notes>"
    ```
    Use `--draft` first so it can be previewed on GitHub before publishing; drop the flag (or `gh release edit vX.Y --draft=false`) to publish. Check `gh release view vX.Y` or recent releases (`gh release list`) for tone/format examples.
-4. The `.aab` bundle is for Google Play Console upload, not attached to the GitHub release. With every release build, also write the Play Console release notes in the `<en-US>…</en-US>` form (at most 500 characters inside the tags), see `.claude/commands/github-release.md`.
+4. The `.aab` bundle is for Google Play Console upload, not attached to the GitHub release. With every release build, also write the Play Console release notes in the `<en-US>…</en-US>` form (at most 500 characters inside the tags), see `.claude/commands/google-play-release.md`.
 5. After publishing, deploy the web app from master: `gh workflow run web-app.yml --ref master` (`.github/workflows/web-app.yml`). Publishing does not deploy it: the github-pages environment only lets master deploy.
 
 ## 8. Keeping the Public Docs Current
