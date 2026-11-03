@@ -21,7 +21,7 @@
   color-scheme: light;
 }
 
-:root[data-theme="dark"] {
+:root[data-theme="dark"], :root[data-theme="black"] {
   --paper: #161412;
   --surface: #1e1b18;
   --raised: #252220;
@@ -36,8 +36,22 @@
   color-scheme: dark;
 }
 
+/* Black: the pre-v5.8 night mode of the Android app, over Dark */
+:root[data-theme="black"] {
+  --paper: #000000;
+  --surface: #000000;
+  --raised: #121212;
+  --ink: #cccccc;
+  --muted: #8f8f8f;
+  --line: #262626;
+  --line-strong: #3a3a3a;
+  --hover: #1a1a1a;
+  --mark: #5a4c0e;
+  --shadow: none;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme="light"]):not([data-theme="black"]) {
     --paper: #161412;
     --surface: #1e1b18;
     --raised: #252220;
@@ -55,7 +69,7 @@
 
 * { box-sizing: border-box; }
 [style*="--gd"] { --g: var(--gd); }
-:root[data-theme="dark"] [style*="--gd"] { --g: var(--gn); }
+:root[data-theme="dark"] [style*="--gd"], :root[data-theme="black"] [style*="--gd"] { --g: var(--gn); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) [style*="--gd"] { --g: var(--gn); } }
 
 html { -webkit-text-size-adjust: 100%; }
@@ -150,7 +164,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   border-radius: 6px; font: 600 13px/1.4 var(--ui); color: #fff; background: var(--gd, var(--g));
   font-variant-numeric: tabular-nums; flex: none; white-space: nowrap;
 }
-:root[data-theme="dark"] .chip { color: #161412; background: var(--gn, var(--g)); }
+:root[data-theme="dark"] .chip, :root[data-theme="black"] .chip { color: #161412; background: var(--gn, var(--g)); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chip { color: #161412; background: var(--gn, var(--g)); } }
 
 .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 20px; padding: 3px; background: var(--surface); gap: 2px; }
