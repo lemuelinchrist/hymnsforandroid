@@ -2,6 +2,7 @@ package com.lemuelinchrist.android.hymns.content;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -18,13 +19,15 @@ import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
+import com.lemuelinchrist.android.hymns.entities.Stanza;
 import com.lemuelinchrist.android.hymns.style.BookColors;
 
 import java.util.ArrayList;
 
 /**
  * The card at the bottom of a hymn for links that open outside the app (below the details card): today the hymn's
- * piano videos ("Piano videos: 1st tune ↗ · 2nd tune ↗", its parent's when it has none), from the {@code link} table.
+ * piano videos ("Piano videos: 1st tune ↗ · 2nd tune ↗", its parent's when it has none), from the {@code link} table,
+ * then the YouTube and SoundCloud links of the youth books (stanzas named "YouTube Link" / "SoundCloud Link").
  * The card hides itself when there is nothing to show.
  */
 public class LinksSection extends ContentComponent<View> {
@@ -63,7 +66,31 @@ public class LinksSection extends ContentComponent<View> {
             }
             addRow("Piano videos", parts);
         }
+        addStanzaLinks("YouTube", "youtube");
+        addStanzaLinks("SoundCloud", "soundcloud");
         if (table.getChildCount() == 0) view.setVisibility(View.GONE);
+    }
+
+    /** A stanza that holds a link (its text is the address) instead of lyrics. */
+    public static boolean isLinkStanza(Stanza stanza) {
+        String no = stanza.getNo() == null ? "" : stanza.getNo().toLowerCase();
+        return no.contains("youtube") || no.contains("soundcloud");
+    }
+
+    /** One row for the link stanzas of a kind: "Link 1 ↗ · Link 2 ↗" ("Link ↗" when there is one). */
+    private void addStanzaLinks(String label, String kind) {
+        ArrayList<String> addresses = new ArrayList<>();
+        for (Stanza stanza : hymn.getStanzas()) {
+            if (!isLinkStanza(stanza) || !stanza.getNo().toLowerCase().contains(kind)) continue;
+            String address = Html.fromHtml(stanza.getText() == null ? "" : stanza.getText()).toString().trim();
+            if (address.startsWith("http")) addresses.add(address);
+        }
+        if (addresses.isEmpty()) return;
+        String[][] parts = new String[addresses.size()][];
+        for (int i = 0; i < parts.length; i++) {
+            parts[i] = new String[]{addresses.size() == 1 ? "Link" : "Link " + (i + 1), addresses.get(i)};
+        }
+        addRow(label, parts);
     }
 
     /** The table keeps the watch address of a video; the card has always opened its embed address. */

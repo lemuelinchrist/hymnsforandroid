@@ -218,7 +218,7 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
 | `4a`, `4b`, `6a`, `-`, `verse`, `chorusverse`, `copyright` | few | stanza with that literal label |
 | `chorus` | 8,135 | chorus (exact match, lower-case). A hymn may have several (e.g. brothers/sisters alternate, E1118). |
 | contains `note` (`note`, `beginning-note`, `end-note`) | 311 | an editorial note: full-width, italic, red |
-| contains `youtube` / `soundcloud` (case-insensitive; `YouTube Link`, `SoundCloud Link`) | 289 | `text` is a URL; render as a tappable link |
+| contains `youtube` / `soundcloud` (case-insensitive; `YouTube Link`, `SoundCloud Link`) | 289 | `text` is a URL; shown in the links card (§6.1), not among the lyrics |
 
 ### 4.4 Stanza `text` markup
 
@@ -336,8 +336,10 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    two-column table, one row per item: `Piano videos` | the hymn's piano videos (`link` rows of kind `piano` where
    `hymn_id` = this hymn's ID, else its parent's ID, in `n_order`) as links `<label> ↗` joined by ` · `. A tap opens the
    stored `url` with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/`. The links are
-   underlined in the book's accent colour. The card does not depend on the YouTube button setting. Links in the lyrics
-   (the SoundCloud and YouTube stanzas of the youth books) stay where they are. (The web app has the same card under its details, and opens the stored `watch`
+   underlined in the book's accent colour. The card does not depend on the YouTube button setting. After the piano
+   videos come a `YouTube` and a `SoundCloud` row: the stanzas named `YouTube Link` / `SoundCloud Link` of the youth books
+   (§4.3, text = the address) as `Link ↗` (`Link 1 ↗ · Link 2 ↗` when there are several); they are not shown among the
+   lyrics. (The web app has the same card under its details, and opens the stored `watch`
    address as it is; its card is not drawn when there is no row, and not printed.) More kinds of link can be added later as other `kind`s of the `link` table.
 
 Cards: 10dp side margins, 5dp radius, light elevation. Page and card colours: §6.3.

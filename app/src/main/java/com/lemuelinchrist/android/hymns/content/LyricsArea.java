@@ -146,31 +146,27 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                         chorusText = "<i>@@" + stanza.getText() + "@@</i>";
                     }
                     text.append(chorusText);
-                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false,false);
+                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false);
                     text = new StringBuilder();
                 } else if (stanza.getNo().contains("note")) {
                     // notes get their own full-width row, regardless of where they fall in the hymn
                     text.append("<i>%%" + stanza.getText() + "%%</i>");
-                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), true, false);
+                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), true);
                     text = new StringBuilder();
-                } else if(stanza.getNo().toLowerCase().contains("youtube") ||
-                        stanza.getNo().toLowerCase().contains("soundcloud")) {
-                    // append stanza
-                    text.append(stanza.getText().trim() + "\n");
-                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false,true);
-                    text = new StringBuilder();
+                } else if(LinksSection.isLinkStanza(stanza)) {
+                    // the YouTube and SoundCloud links are in the links card, not among the lyrics
                 } else {
                     // append stanza
                     text.append("<b>##" + stanza.getNo() + "##</b><br/>");
                     text.append(stanza.getText());
-                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false,false);
+                    buildLyricViewAndAttach(text, hymn.getHymnGroup(), false);
                     text = new StringBuilder();
 
 
                     // append chorus after every stanza
                     if (hymn.getChorusCount() == 1 && !chorusText.isEmpty()) {
                         buildLyricViewAndAttach(new StringBuilder(chorusText), hymn.getHymnGroup(),
-                                false,false);
+                                false);
                         text = new StringBuilder();
                     }
                 }
@@ -190,7 +186,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
     }
 
-    private void buildLyricViewAndAttach(final StringBuilder text, HymnGroup selectedHymnGroup, boolean isFullWidthRow, boolean isLink) {
+    private void buildLyricViewAndAttach(final StringBuilder text, HymnGroup selectedHymnGroup, boolean isFullWidthRow) {
         Log.i(this.getClass().getSimpleName(), text.toString());
 
         TextView view;
@@ -215,27 +211,11 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             view = column(currentTextLinearLayout, 1);
         }
 
-        if(isLink) {
-            SpannableString spannableString = new SpannableString(text);
-            ClickableSpan clickableSpan = new ClickableSpan() {
-                @Override
-                public void onClick(@NonNull View widget) {
-                    // Handle the click event, for example, open a browser
-                    openWebPage(text.toString().trim());
-                }
-            };
-            // Set the ClickableSpan on the specific portion of the text
-            spannableString.setSpan(clickableSpan, 0, text.length(),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            view.setText(spannableString);
-            view.setMovementMethod(LinkMovementMethod.getInstance());
-        } else {
-            // add colors to text
-            CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()),
-                    BookColors.accent(context, selectedHymnGroup), BookColors.color(context, R.attr.hymnHighlight));
-            view.setText(formattedLyrics);
-            ScriptFont.apply(view, selectedHymnGroup);
-        }
+        // add colors to text
+        CharSequence formattedLyrics = HymnTextFormatter.format(Html.fromHtml(text.toString()),
+                BookColors.accent(context, selectedHymnGroup), BookColors.color(context, R.attr.hymnHighlight));
+        view.setText(formattedLyrics);
+        ScriptFont.apply(view, selectedHymnGroup);
 
         view.setGravity(hymn.getHymnGroup().getTextAlignment());
 

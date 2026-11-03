@@ -591,14 +591,7 @@ function lyricsNode(hymn) {
     h('div', {class: 'text'}, s.note ? h('div', {class: 'stanza-note'}, s.note) : null, richText(s.text)));
   for (const s of hymn.stanzas) {
     const kind = stanzaKind(s.no);
-    if (kind === 'link') {
-      const url = DB.plain(s.text).trim();
-      if (/^https?:\/\//.test(url)) {
-        box.appendChild(h('div', {class: 'stanza note'}, h('div', {class: 'no'}),
-          h('div', {class: 'text'}, h('a', {href: url, target: '_blank', rel: 'noopener'}, s.no + ' ↗'))));
-      }
-      continue;
-    }
+    if (kind === 'link') continue;   // in the links card
     box.appendChild(node(s, kind, false));
     if (kind === 'chorus') chorus = s;
     else if (kind === 'verse' && repeat && chorus) box.appendChild(node(chorus, 'chorus', true));
@@ -656,12 +649,21 @@ function metaNode(hymn) {
 }
 
 // the card under the details for links that open outside the app (the Android app's "Listen and links" card): the
-// hymn's piano videos, its parent's when it has none; nothing at all when there are no rows
+// hymn's piano videos, its parent's when it has none, then the YouTube and SoundCloud links of the youth books (stanzas
+// holding an address); nothing at all when there are no rows
 function linksNode(hymn) {
   const videos = DB.videos(hymn);
+  const stanzaLinks = (kind) => {
+    const urls = hymn.stanzas.filter((s) => s.no.toLowerCase().includes(kind)).map((s) => DB.plain(s.text).trim())
+      .filter((u) => /^https?:\/\//.test(u));
+    return urls.length ? h('span', {class: 'videos'}, urls.map((u, i) => [i ? ' · ' : '',
+      h('a', {href: u, target: '_blank', rel: 'noopener'}, (urls.length === 1 ? 'Link' : 'Link ' + (i + 1)) + ' ↗')])) : null;
+  };
   const rows = [
     ['Piano videos', videos.length ? h('span', {class: 'videos'}, videos.map((v, i) => [i ? ' · ' : '',
       h('a', {href: v.url, target: '_blank', rel: 'noopener'}, (v.label || 'Video') + ' ↗')])) : null],
+    ['YouTube', stanzaLinks('youtube')],
+    ['SoundCloud', stanzaLinks('soundcloud')],
   ].filter(([, v]) => v);
   if (!rows.length) return null;
   return h('section', {class: 'card links-card'},
