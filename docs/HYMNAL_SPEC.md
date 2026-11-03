@@ -133,12 +133,12 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | 20 | `F` | Farsi | `#673AB7` | `#B39DDB` | **right** (RTL) | yes | 329 |
 | 21 | `SK` | Slovak | `#9C27B0` | `#CE93D8` | left | yes | 360 |
 | 22 | `GK` | Greek | `#03A9F4` | `#4FC3F7` | left | yes | 124 |
-| 23 | `SW` | Kiswahili | `#00838F` | `#4DD0E1` | left | yes | 98 |
+| 23 | `SW` | Kiswahili | `#00838F` | `#4DD0E1` | left | yes | 99 |
 | 24 | `RUS` | Russian | `#1565C0` | `#64B5F6` | left | yes | 800 |
 | 25 | `BUR` | Burmese | `#2E7D32` | `#66BB6A` | left | yes | 706 |
 | 26 | `TA` | Tamil | `#546E7A` | `#90A4AE` | left | yes | 305 |
 | 27 | `UR` | Urdu | `#880E4F` | `#F06292` | **right** (RTL) | yes | 496 |
-| 28 | `KI` | Kikuyu | `#FF6F00` | `#FFB300` | left | yes | 72 |
+| 28 | `KI` | Kikuyu | `#FF6F00` | `#FFB300` | left | yes | 79 |
 | 29 | `POR` | Portuguese | `#33691E` | `#7CB342` | left | yes | 1360 |
 | 30 | `POY` | Portuguese Youth | `#558B2F` | `#9CCC65` | left | yes | 140 |
 | 31 | `POL` | Polish | `#5E35B1` | `#B39DDB` | left | yes | 424 |
