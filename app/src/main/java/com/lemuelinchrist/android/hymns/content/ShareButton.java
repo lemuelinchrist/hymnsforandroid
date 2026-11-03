@@ -73,14 +73,12 @@ public class ShareButton extends ContentComponent<ImageButton> {
 
     /**
      * The lyrics as plain text, as the web app copies them (lyricsText in tools/web/src/app.js): the title, then each
-     * stanza under its number, a chorus under its note in brackets if it has one, notes as they are, without the
-     * YouTube/SoundCloud stanzas.
+     * stanza under its number, a chorus under its note in brackets if it has one, notes as they are.
      */
     static String lyricsText(Hymn hymn) {
         StringBuilder out = new StringBuilder(title(hymn)).append("\n\n");
         for (Stanza stanza : hymn.getStanzas()) {
             String no = stanza.getNo() == null ? "" : stanza.getNo().toLowerCase();
-            if (no.contains("youtube") || no.contains("soundcloud")) continue;
             String text = plain(stanza.getText());
             if (text.isEmpty()) continue;
             if (no.equals("chorus")) {

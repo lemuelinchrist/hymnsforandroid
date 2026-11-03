@@ -153,8 +153,6 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                     text.append("<i>%%" + stanza.getText() + "%%</i>");
                     buildLyricViewAndAttach(text, hymn.getHymnGroup(), true);
                     text = new StringBuilder();
-                } else if(LinksSection.isLinkStanza(stanza)) {
-                    // the YouTube and SoundCloud links are in the links card, not among the lyrics
                 } else {
                     // append stanza
                     text.append("<b>##" + stanza.getNo() + "##</b><br/>");

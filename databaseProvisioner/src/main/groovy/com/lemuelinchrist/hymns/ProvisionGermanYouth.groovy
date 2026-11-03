@@ -105,20 +105,13 @@ class ProvisionGermanYouth {
         }
 
 
-        // save soundclound in hymns
-        if(soundcloudLink!=null) {
-            stanza = new StanzaEntity()
-            stanza.setNo("SoundCloud Link")
-            stanza.setParentHymn(hymn)
-            stanza.text = soundcloudLink
-            stanza.order = ++stanzaOrderCounter
-            hymn.getStanzas().add(stanza)
-
-            soundcloudLink=null
-        }
-
         println hymn
         dao.save(hymn)
+        // the links of the hymn go to the link table (kind soundcloud), not among its stanzas
+        if(soundcloudLink!=null) {
+            dao.saveLink(hymn.getId(), "soundcloud", soundcloudLink, 1)
+            soundcloudLink=null
+        }
     }
 
     def createNewHymn() {

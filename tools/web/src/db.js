@@ -184,6 +184,12 @@ export function videos(hymnObj) {
   return [];
 }
 
+// the hymn's own links of a kind other than piano ('youtube', 'soundcloud'), in order: [{url, label}]
+export function links(hymnObj, kind) {
+  return rows("select url, label from link where hymn_id = ? and kind = ? order by n_order", [hymnObj.id, kind])
+    .map((x) => ({url: (x.url || '').trim(), label: (x.label || '').trim()})).filter((x) => x.url);
+}
+
 export function exists(id) {
   return !!(id && hymnRow(currentId(id.toUpperCase())));
 }

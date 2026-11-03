@@ -178,11 +178,11 @@ CREATE TABLE "stanza" (
   "id" INTEGER NOT NULL PRIMARY KEY,
   "n_order" INTEGER                     -- display order within the hymn
 );
-CREATE TABLE "link" (                   -- links of a hymn to places outside the app (today: piano videos)
+CREATE TABLE "link" (                   -- links of a hymn to places outside the app (piano videos, and the YouTube and SoundCloud links of the youth books)
   "id" INTEGER NOT NULL PRIMARY KEY,
   "hymn_id" TEXT NOT NULL,              -- a HYMN ID (not a tune code), e.g. 'E8'
-  "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune)
-  "label" TEXT,                         -- label shown to the user: '1st tune', 'Alt tune: 295', 'New tune' ...
+  "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune), 'youtube' or 'soundcloud' (a recording of this hymn itself, no parent fallback)
+  "label" TEXT,                         -- label shown to the user: '1st tune', 'Alt tune: 295', 'New tune' ... (NULL for youtube/soundcloud: shown as 'Link')
   "url" TEXT NOT NULL,                  -- the whole address, e.g. 'https://www.youtube.com/watch?v=DL6lgn78DcU'
   "n_order" INTEGER                     -- order among the hymn's links of that kind, from 1
 );
@@ -218,7 +218,6 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
 | `4a`, `4b`, `6a`, `-`, `verse`, `chorusverse`, `copyright` | few | stanza with that literal label |
 | `chorus` | 8,135 | chorus (exact match, lower-case). A hymn may have several (e.g. brothers/sisters alternate, E1118). |
 | contains `note` (`note`, `beginning-note`, `end-note`) | 311 | an editorial note: full-width, italic, red |
-| contains `youtube` / `soundcloud` (case-insensitive; `YouTube Link`, `SoundCloud Link`) | 289 | `text` is a URL; shown in the links card (§6.1), not among the lyrics |
 
 ### 4.4 Stanza `text` markup
 
@@ -337,9 +336,9 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    `hymn_id` = this hymn's ID, else its parent's ID, in `n_order`) as links `<label> ↗` joined by ` · `. A tap opens the
    stored `url` with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/`. The links are
    underlined in the book's accent colour. The card does not depend on the YouTube button setting. After the piano
-   videos come a `YouTube` and a `SoundCloud` row: the stanzas named `YouTube Link` / `SoundCloud Link` of the youth books
-   (§4.3, text = the address) as `Link ↗` (`Link 1 ↗ · Link 2 ↗` when there are several); they are not shown among the
-   lyrics. (The web app has the same card under its details, and opens the stored `watch`
+   videos come a `YouTube` and a `SoundCloud` row: the hymn's own `link` rows of kind `youtube` / `soundcloud` (the youth
+   books; no fallback to the parent) as `Link ↗` (`Link 1 ↗ · Link 2 ↗` when there are several, or their `label`).
+   (Until v5.8.3 these were stanzas named `YouTube Link` / `SoundCloud Link`; there are none any more.) (The web app has the same card under its details, and opens the stored `watch`
    address as it is; its card is not drawn when there is no row, and not printed.) More kinds of link can be added later as other `kind`s of the `link` table.
 
 Cards: 10dp side margins, 5dp radius, light elevation. Page and card colours: §6.3.
@@ -358,8 +357,6 @@ for stanza in stanzas (ordered by n_order):
         chorusText = that chorus block            # last chorus seen
     elif 'note' in stanza.no:
         emit_full_width(italic(text) in red #D32F2F)
-    elif 'youtube' or 'soundcloud' in lower(stanza.no):
-        emit(link(text.trim()))                  # opens externally
     else:
         emit(bold(stanza.no) coloured + newline + text)
         if hymn has exactly ONE 'chorus' stanza and chorusText != '':
@@ -491,7 +488,7 @@ The subject (`EXTRA_SUBJECT`) is `<HymnID> · <first line>`. The lyrics text is 
 ```
 <HymnID> · <first line>\n\n
 each stanza, all markup removed: <no>\n<text>\n\n   (a chorus: its note as "(<note>)\n" if any, no number;
-                                                     a note or copyright: the text alone; YouTube/SoundCloud: left out)
+                                                     a note or copyright: the text alone)
 ```
 
 Why a menu and not one action: lyrics with a link appended would make everyone who pastes lyrics delete the link,

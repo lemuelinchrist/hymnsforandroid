@@ -149,6 +149,8 @@ For each changed hymn, decide which side is right. Fix the source `.txt` for any
 
 ## Gotcha: each script parses a different, hand-rolled set of field keywords
 
+**Links in the source files** (`Video:` / `Soundcloud:` lines of the Spanish and German youth files) become `link` rows of kind `youtube` / `soundcloud` (saved after the hymn with `Dao.saveLink`, deleted with the hymn by `Dao.delete`), not stanzas. A re-run of the Spanish Supplement drops the `related` entries other books added to its hymns (POY ones), so run `runPortugueseYouth` after it in the same Gradle call.
+
 `createNewHymn()` in each `Provision*.groovy` is a small state machine keyed on literal line prefixes like `Subject:`, `Related:`, `Meter:`, `Verses:`, `Soundcloud:`. **These keyword sets are not shared across scripts** — one script recognizing a field doesn't mean another does.
 
 Confirmed example: `ProvisionSpanish2026.groovy` has a branch for `"hymn code hymnalnet:"` that sets `hymn.tune`. `ProvisionGermanYouth.groovy` has **no such branch**. So a `Hymn code Hymnalnet: <code>` line in a German source file doesn't get parsed as metadata — it falls through to the generic "unrecognized line" `else` branch and gets inserted as if it were the first line of stanza/chorus lyrics. The symptom in the app: a hymn's tune field is empty/wrong, and there may be a bogus extra "chorus" whose text is literally the metadata line.
