@@ -27,7 +27,7 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
 
 5. **Build the release artifacts**:
    ```
-   ./gradlew clean assembleRelease bundleRelease
+   ./gradlew assembleRelease bundleRelease
    ```
    This produces `app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk` and the `.aab` bundle (the `.aab` is for Play Console, not attached to the GitHub release). The build also runs the `buildIosHymnal` task (`app/build/outputs/ios/HymnsForAndroidv<version>-iOS.html`); it is **not attached** to the release any more, so a `buildIosHymnal skipped` warning does not matter.
 

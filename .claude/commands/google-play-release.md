@@ -9,7 +9,7 @@ Arguments (optional): $ARGUMENTS: what to stress in the notes.
 ## Steps
 
 1. **Version.** Every upload needs a new version (`hymnAppVersion` in `app/build.gradle`): bump the patch number first if the current one has already been uploaded (see the memory note about bumping on every republish). Commit the bump.
-2. **Build** (slow, run it in the background): `./gradlew clean assembleRelease bundleRelease`. The upload file is `app/build/outputs/bundle/release/HymnsForAndroidv<version>-PianoAndGuitar.aab`.
+2. **Build** (slow, run it in the background): `./gradlew assembleRelease bundleRelease` (no `clean` unless a stale build is suspected: it adds about 2 minutes). The upload file is `app/build/outputs/bundle/release/HymnsForAndroidv<version>-PianoAndGuitar.aab`.
 3. **Release notes.** Every time you produce a release build, end your report with the Play Console release notes in exactly this form, in a code block so Lemuel can paste them (Lemuel 2026-11-03):
    ```
    <en-US>

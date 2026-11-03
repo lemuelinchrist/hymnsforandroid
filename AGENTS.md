@@ -102,7 +102,7 @@ The `databaseProvisioner` module is used to build the `hymns.sqlite` database fr
 There is no CI/CD workflow for this (no `.github/workflows`) — releases are created manually. The pattern below is inferred from past releases (v4.23–v5.1) and is not officially documented elsewhere, so treat it as the convention to follow, not a guaranteed spec.
 
 1. Bump `hymnAppVersion` in `app/build.gradle` (e.g. `"v5.1"` -> `"v5.2"`). `versionCode` is auto-derived from a timestamp, so it doesn't need manual bumping.
-2. Build the release artifacts: `./gradlew clean assembleRelease bundleRelease`. This produces:
+2. Build the release artifacts: `./gradlew assembleRelease bundleRelease` (no `clean`: it costs about 2 minutes and forces a full rebuild; add it only when a stale build is suspected). This produces:
    - `app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk`
    - `app/build/outputs/bundle/release/HymnsForAndroidvX.Y-PianoAndGuitar.aab` (for Google Play)
    - `app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html` (single-file offline lyrics-only hymnal, built by the `buildIosHymnal` task; no longer attached to releases since v5.6.1, as iPhone users have the web app)
