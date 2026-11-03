@@ -13,7 +13,8 @@ import sqlite3, re, sys, os, html, collections
 work, videos, ids = sys.argv[1], sys.argv[2], sys.argv[3:]
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
 GROUPS = os.environ.get('GROUPS', 'NS|E|BF|CH')
-db = sqlite3.connect(os.path.join(ROOT, 'sqlite', 'hymns.sqlite'))   # ./gradlew :sqlite:importSql if it is stale
+# HYMNS_DB: a database file to read instead of sqlite/hymns.sqlite (make a fresh one: sqlite3 <file> < sqlite/hymns.sql)
+db = sqlite3.connect(os.environ.get('HYMNS_DB') or os.path.join(ROOT, 'sqlite', 'hymns.sqlite'))   # ./gradlew :sqlite:importSql if it is stale
 par = dict(db.execute("select _id, parent_hymn from hymns"))
 isroot = lambda h: re.match(r'(%s)\d+$' % GROUPS, h) and not par.get(h)
 
