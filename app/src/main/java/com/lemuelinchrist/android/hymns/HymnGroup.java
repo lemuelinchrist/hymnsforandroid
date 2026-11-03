@@ -127,9 +127,9 @@ public enum HymnGroup {
     POR("Portuguese", Color.rgb(0x33, 0x69, 0x1E),
             Color.rgb(0x7C, 0xB3, 0x42),
             Gravity.LEFT),
-    //Light Green 800 / Light Green 400
-    POY("Portuguese Youth", Color.rgb(0x55, 0x8B, 0x2F),
-            Color.rgb(0x9C, 0xCC, 0x65),
+    //Light Green, like Portuguese (youth books share their language's colours: SY, GY, FRY)
+    POY("Portuguese Youth", Color.rgb(0x33, 0x69, 0x1E),
+            Color.rgb(0x7C, 0xB3, 0x42),
             Gravity.LEFT),
     //Deep Purple 600 / Deep Purple 200
     POL("Polish", Color.rgb(0x5E, 0x35, 0xB1),

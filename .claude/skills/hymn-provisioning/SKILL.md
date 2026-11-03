@@ -97,7 +97,7 @@ Some collections were historically appended onto the end of a parent group's ID 
 
 ### Making the group icon (`<code>.png`)
 
-The icons are 364×364 RGBA PNGs: a rounded square with a darker border, a lighter fill and off-white serif letters. The two colors are the group's own two colors from `HymnGroup.java` (the first is the day color, the second the night color): **darker = border, lighter = fill**. Check against an existing icon (e.g. `gk.png`, read with `convert gk.png -format "%[pixel:p{4,182}] %[pixel:p{60,60}]" info:`: border then fill) so the new one matches. Pick a color pair no other group uses. ImageMagick and the C059 font (a free Century Schoolbook clone, which the other icons' letters look like) are available in WSL:
+The icons are 364×364 RGBA PNGs: a rounded square with a darker border, a lighter fill and off-white serif letters. The two colors are the group's own two colors from `HymnGroup.java` (the first is the day color, the second the night color): **darker = border, lighter = fill**. Check against an existing icon (e.g. `gk.png`, read with `convert gk.png -format "%[pixel:p{4,182}] %[pixel:p{60,60}]" info:`: border then fill) so the new one matches. Pick a color pair no other group uses, **except for a youth book: it takes exactly the colors of its language's main book** (FR/FRY, S/SY, G/GY, POR/POY; same `HymnGroup` colors, same icon colors, only the letters differ), and the `docs/HYMNAL_SPEC.md` group table must show the same two colors. ImageMagick and the C059 font (a free Century Schoolbook clone, which the other icons' letters look like) are available in WSL:
 
 ```bash
 convert -size 364x364 xc:none \
