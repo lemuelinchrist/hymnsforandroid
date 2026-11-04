@@ -24,7 +24,7 @@ input[type=text]{font:inherit;padding:6px 8px;border:1px solid #99a;border-radiu
 .res{max-height:180px;overflow:auto;margin-top:4px}.res div{padding:4px 6px;cursor:pointer;border-bottom:1px solid #eee}.res div:hover{background:#eef}
 .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
 .chips span{width:26px;height:22px;text-align:center;font-size:11px;line-height:22px;border-radius:4px;background:#ddd;cursor:pointer}
-.chips .done{background:#7bd37f}.chips .skip{background:#ffcf6e}.chips .cur{outline:2px solid #2b3a55}
+.chips .done{background:#7bd37f}.chips .skip{background:#ffcf6e}.chips .nf{background:#7fb2f0}.chips .un{background:#e48a8a}.chips .cur{outline:2px solid #2b3a55}
 textarea{width:100%;height:240px;font:12px monospace}
 .hint{font-size:12px;color:#777}
 </style></head><body>
@@ -35,7 +35,7 @@ textarea{width:100%;height:240px;font:12px monospace}
 <section class="card"><div class="vid" id="vid"></div><h2 id="ttl"></h2>
 <div class="sub"><a id="yt" target="_blank" rel="noopener">Open on YouTube ↗</a> · <span id="vid-id"></span></div>
 <div class="chips" id="chips"></div>
-<p class="hint">Keys: 1–3 choose a candidate · S skip · ← → move. Your answers save in this browser automatically.</p></section>
+<p class="hint">Keys: 1–3 choose a candidate · S skip · N not in database · U video unavailable · ← → move. Your answers save in this browser automatically.</p></section>
 <section id="right"></section>
 </main>
 <div id="exportbox" class="card" style="display:none;margin:14px"><b>Export</b> — copy this and paste it back to me (or press Download).
@@ -44,10 +44,12 @@ textarea{width:100%;height:240px;font:12px monospace}
 const ROWS=__ROWS__, LYR=__LYR__;
 const KEY='nycypcd-review-v1';
 let ans={};try{ans=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+let notes={};try{notes=JSON.parse(localStorage.getItem(KEY+'-notes')||'{}')}catch(e){}
+const SPECIAL=['SKIP','NOTFOUND','UNAV'];
 let i=0;try{i=+localStorage.getItem(KEY+'-i')||0}catch(e){}
 const $=s=>document.querySelector(s);
 const norm=s=>s.toUpperCase().replace(/\s+/g,'');
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ans));localStorage.setItem(KEY+'-i',i)}catch(e){}};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ans));localStorage.setItem(KEY+'-i',i);localStorage.setItem(KEY+'-notes',JSON.stringify(notes))}catch(e){}};
 function lyricsHtml(h){const L=LYR[h];if(!L)return '<p class="hint">No lyrics in the database for '+h+'.</p>';
  return L.map(([n,t])=>'<p><small>'+esc(n)+'</small>'+esc(t)+'</p>').join('')}
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
@@ -59,18 +61,21 @@ function render(){
  $('#vid').innerHTML='<iframe src="https://www.youtube.com/embed/'+r.v+'" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
  $('#ttl').textContent=r.t;$('#yt').href='https://www.youtube.com/watch?v='+r.v;$('#vid-id').textContent=r.v;
  let h='';r.c.forEach((c,k)=>h+=card(c,k+1));
- const other=a&&a!=='SKIP'&&!r.c.includes(a)?a:'';
+ const other=a&&!SPECIAL.includes(a)&&!r.c.includes(a)?a:'';
  h+='<div class="card"><b>Another hymn</b> <span class="hint">type an ID (E123, NS45, BF7, CH9) or words from the lyrics</span><input type="text" id="oth" value="'+other+'" placeholder="e.g. NS868 or “jehovah’s lovingkindness”"><div class="res" id="res"></div>'+(other?'<div class="cand sel" style="margin-top:8px"><label><input type="radio" checked data-h="'+other+'"> '+other+'</label><div class="ly">'+lyricsHtml(other)+'</div></div>':'')+'</div>';
- h+='<p><button id="skip">Skip / none of these</button> '+(a==='SKIP'?'<b>(skipped)</b>':'')+'</p>';
+ const lab={SKIP:'skipped for now',NOTFOUND:'marked: not in our database',UNAV:'marked: video unavailable'}[a];
+ h+='<div class="card"><button id="nf">Not in our database (N)</button> <button id="un">Video unavailable (U)</button> <button id="skip">Skip for now (S)</button>'+(lab?' <b>'+lab+'</b>':'')+'<p class="hint" style="margin:8px 0 2px">Note (for a not-in-database song: its name, book or number, so we can add it later)</p><input type="text" id="note" value="'+esc(notes[r.v]||'').replace(/"/g,'&quot;')+'"></div>';
  $('#right').innerHTML=h;
  document.querySelectorAll('input[data-h]').forEach(e=>e.onchange=()=>{ans[r.v]=e.dataset.h;save();render()});
- $('#skip').onclick=()=>{ans[r.v]='SKIP';save();next()};
+ const mark=v=>{ans[r.v]=v;save();next()};
+ $('#skip').onclick=()=>mark('SKIP');$('#nf').onclick=()=>mark('NOTFOUND');$('#un').onclick=()=>mark('UNAV');
+ $('#note').oninput=e=>{notes[r.v]=e.target.value;save()};
  $('#oth').oninput=search;if(other)$('#oth').dataset.cur=other;
  chips();$('#bar i').style.width=(Object.keys(ans).length/ROWS.length*100)+'%';
- const d=Object.values(ans).filter(x=>x!=='SKIP').length,s=Object.values(ans).filter(x=>x==='SKIP').length;
- $('#stat').textContent=d+' chosen, '+s+' skipped, '+(ROWS.length-d-s)+' left';
+ const V=Object.values(ans),d=V.filter(x=>!SPECIAL.includes(x)).length,nf=V.filter(x=>x==='NOTFOUND').length,un=V.filter(x=>x==='UNAV').length,s=V.filter(x=>x==='SKIP').length;
+ $('#stat').textContent=d+' chosen, '+nf+' not in db, '+un+' unavailable, '+s+' skipped, '+(ROWS.length-V.length)+' left';
  $('#prev').disabled=i==0;$('#next').disabled=i==ROWS.length-1;save()}
-function chips(){$('#chips').innerHTML=ROWS.map((r,k)=>'<span data-k="'+k+'" class="'+(ans[r.v]?(ans[r.v]==='SKIP'?'skip':'done'):'')+(k==i?' cur':'')+'">'+(k+1)+'</span>').join('');
+function chips(){$('#chips').innerHTML=ROWS.map((r,k)=>'<span data-k="'+k+'" class="'+(ans[r.v]?({SKIP:'skip',NOTFOUND:'nf',UNAV:'un'}[ans[r.v]]||'done'):'')+(k==i?' cur':'')+'">'+(k+1)+'</span>').join('');
  document.querySelectorAll('#chips span').forEach(e=>e.onclick=()=>{i=+e.dataset.k;render()})}
 let idx=null;
 function search(e){const q=e.target.value.trim(),res=$('#res');if(q.length<2){res.innerHTML='';return}
@@ -85,8 +90,11 @@ $('#next').onclick=next;$('#prev').onclick=()=>{if(i>0){i--;render()}};
 document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'&&e.target.type==='text')return;
  const r=ROWS[i];if(e.key>='1'&&e.key<='9'&&r.c[e.key-1]){ans[r.v]=r.c[e.key-1];save();render()}
  else if(e.key==='s'||e.key==='S'){ans[r.v]='SKIP';save();next()}
+ else if(e.key==='n'||e.key==='N'){ans[r.v]='NOTFOUND';save();next()}
+ else if(e.key==='u'||e.key==='U'){ans[r.v]='UNAV';save();next()}
  else if(e.key==='ArrowRight')next();else if(e.key==='ArrowLeft'&&i>0){i--;render()}});
-$('#exp').onclick=()=>{const t='Video\tTitle\tYour hymn\n'+ROWS.map(r=>'https://www.youtube.com/watch?v='+r.v+'\t'+r.t+'\t'+(ans[r.v]&&ans[r.v]!=='SKIP'?ans[r.v]:'')).join('\n');
+$('#exp').onclick=()=>{const st=a=>!a?'undecided':a==='SKIP'?'skipped':a==='NOTFOUND'?'not in database':a==='UNAV'?'video unavailable':'hymn';
+ const t='Video\tTitle\tYour hymn\tStatus\tNote\n'+ROWS.map(r=>{const a=ans[r.v];return 'https://www.youtube.com/watch?v='+r.v+'\t'+r.t+'\t'+(a&&!SPECIAL.includes(a)?a:'')+'\t'+st(a)+'\t'+(notes[r.v]||'').replace(/[\t\n]+/g,' ')}).join('\n');
  $('#exportbox').style.display='block';$('#out').value=t;$('#out').select();scrollTo(0,document.body.scrollHeight)};
 $('#cp').onclick=()=>{$('#out').select();document.execCommand('copy')};
 $('#dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([$('#out').value],{type:'text/tab-separated-values'}));a.download='NYCYPCD_answers.tsv';a.click()};
