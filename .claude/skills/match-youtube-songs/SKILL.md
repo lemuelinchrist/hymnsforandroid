@@ -44,7 +44,7 @@ Pilot done 2026-11-03 on NYCYPCD (UC_1giUVT14MRXyEFtQZgmKQ, 267 songs, official 
    A wrong link is worse than a missing one: import only `high` after he has seen the list; a hymn and its translations
    share the root's links (`getLinksOrParent` only for piano; youtube/soundcloud rows are the hymn's own, so attach to the
    root hymn the video really sings and say so).
-7. **Import** (after his OK): a Groovy script in `databaseProvisioner` (like `YoutubePiano`) that saves `LinkEntity`
+7. **Import** (after his OK; done for NYCYPCD 2026-11-04: `ImportNycypcdYoutube.groovy` reads `NycypcdYoutube.txt`, `hymn id TAB video id`, label NYCYPCD, Gradle `runImportNycypcdYoutube`; copy it for the next channel): a Groovy script in `databaseProvisioner` (like `YoutubePiano`) that saves `LinkEntity`
    rows with `dao.saveLink(hymnId, "youtube", url, order)`, label = album or channel name if wanted; then the usual run
    in one Gradle call (`:sqlite:exportSql`), docs, and the emulator check.
 
