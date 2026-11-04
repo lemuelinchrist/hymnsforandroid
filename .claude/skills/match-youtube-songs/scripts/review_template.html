@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NYCYPCD review</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:15px/1.45 system-ui,sans-serif;background:#f4f4f6;color:#222}
+header{display:flex;gap:12px;align-items:center;padding:8px 14px;background:#2b3a55;color:#fff;position:sticky;top:0;z-index:5}
+header b{font-size:16px}header .sp{flex:1}
+button{font:inherit;padding:6px 12px;border:1px solid #99a;border-radius:6px;background:#fff;cursor:pointer}
+button.pri{background:#2e7d32;color:#fff;border-color:#2e7d32}button:disabled{opacity:.4}
+#bar{height:5px;background:#556;}#bar i{display:block;height:100%;background:#7bd37f;width:0}
+main{display:grid;grid-template-columns:minmax(420px,1fr) minmax(380px,1fr);gap:14px;padding:14px;align-items:start}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 1px 3px #0002}
+.vid{position:relative;padding-top:56.25%;background:#000;border-radius:8px;overflow:hidden}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+h2{margin:10px 0 2px;font-size:18px}.sub{color:#666;font-size:13px}
+.cand{border:2px solid #ddd;border-radius:8px;margin-bottom:10px;background:#fff}
+.cand.sel{border-color:#2e7d32;background:#f1faf1}
+.cand label{display:flex;gap:8px;align-items:center;padding:8px 10px;cursor:pointer;font-weight:600}
+.cand label input{width:20px;height:20px}
+.ly{max-height:46vh;overflow:auto;padding:0 12px 10px 38px;white-space:pre-wrap;font-size:14px}
+.ly p{margin:0 0 9px}.ly small{color:#888;display:block}
+input[type=text]{font:inherit;padding:6px 8px;border:1px solid #99a;border-radius:6px;width:100%}
+.res{max-height:180px;overflow:auto;margin-top:4px}.res div{padding:4px 6px;cursor:pointer;border-bottom:1px solid #eee}.res div:hover{background:#eef}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.chips span{width:26px;height:22px;text-align:center;font-size:11px;line-height:22px;border-radius:4px;background:#ddd;cursor:pointer}
+.chips .done{background:#7bd37f}.chips .skip{background:#ffcf6e}.chips .cur{outline:2px solid #2b3a55}
+textarea{width:100%;height:240px;font:12px monospace}
+.hint{font-size:12px;color:#777}
+</style></head><body>
+<header><b>NYCYPCD review</b><span id="pos"></span><span class="sp"></span><span id="stat"></span>
+<button id="prev">◀ Prev</button><button id="next" class="pri">Next ▶</button><button id="exp">Export</button></header>
+<div id="bar"><i></i></div>
+<main>
+<section class="card"><div class="vid" id="vid"></div><h2 id="ttl"></h2>
+<div class="sub"><a id="yt" target="_blank" rel="noopener">Open on YouTube ↗</a> · <span id="vid-id"></span></div>
+<div class="chips" id="chips"></div>
+<p class="hint">Keys: 1–3 choose a candidate · S skip · ← → move. Your answers save in this browser automatically.</p></section>
+<section id="right"></section>
+</main>
+<div id="exportbox" class="card" style="display:none;margin:14px"><b>Export</b> — copy this and paste it back to me (or press Download).
+<p><button id="cp" class="pri">Copy</button> <button id="dl">Download</button></p><textarea id="out" readonly></textarea></div>
+<script>
+const ROWS=__ROWS__, LYR=__LYR__;
+const KEY='nycypcd-review-v1';
+let ans={};try{ans=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+let i=0;try{i=+localStorage.getItem(KEY+'-i')||0}catch(e){}
+const $=s=>document.querySelector(s);
+const norm=s=>s.toUpperCase().replace(/\s+/g,'');
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ans));localStorage.setItem(KEY+'-i',i)}catch(e){}};
+function lyricsHtml(h){const L=LYR[h];if(!L)return '<p class="hint">No lyrics in the database for '+h+'.</p>';
+ return L.map(([n,t])=>'<p><small>'+esc(n)+'</small>'+esc(t)+'</p>').join('')}
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function card(h,key){const sel=ans[ROWS[i].v]===h;
+ return '<div class="cand'+(sel?' sel':'')+'"><label><input type="radio" name="pick" '+(sel?'checked':'')+' data-h="'+h+'"> '+(key?'['+key+'] ':'')+h+(LYR[h]?' — '+esc(LYR[h][0][1].split('\n')[0]):'')+'</label><div class="ly">'+lyricsHtml(h)+'</div></div>'}
+function render(){
+ const r=ROWS[i],a=ans[r.v];
+ $('#pos').textContent=(i+1)+' / '+ROWS.length;
+ $('#vid').innerHTML='<iframe src="https://www.youtube.com/embed/'+r.v+'" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+ $('#ttl').textContent=r.t;$('#yt').href='https://www.youtube.com/watch?v='+r.v;$('#vid-id').textContent=r.v;
+ let h='';r.c.forEach((c,k)=>h+=card(c,k+1));
+ const other=a&&a!=='SKIP'&&!r.c.includes(a)?a:'';
+ h+='<div class="card"><b>Another hymn</b> <span class="hint">type an ID (E123, NS45, BF7, CH9) or words from the lyrics</span><input type="text" id="oth" value="'+other+'" placeholder="e.g. NS868 or “jehovah’s lovingkindness”"><div class="res" id="res"></div>'+(other?'<div class="cand sel" style="margin-top:8px"><label><input type="radio" checked data-h="'+other+'"> '+other+'</label><div class="ly">'+lyricsHtml(other)+'</div></div>':'')+'</div>';
+ h+='<p><button id="skip">Skip / none of these</button> '+(a==='SKIP'?'<b>(skipped)</b>':'')+'</p>';
+ $('#right').innerHTML=h;
+ document.querySelectorAll('input[data-h]').forEach(e=>e.onchange=()=>{ans[r.v]=e.dataset.h;save();render()});
+ $('#skip').onclick=()=>{ans[r.v]='SKIP';save();next()};
+ $('#oth').oninput=search;if(other)$('#oth').dataset.cur=other;
+ chips();$('#bar i').style.width=(Object.keys(ans).length/ROWS.length*100)+'%';
+ const d=Object.values(ans).filter(x=>x!=='SKIP').length,s=Object.values(ans).filter(x=>x==='SKIP').length;
+ $('#stat').textContent=d+' chosen, '+s+' skipped, '+(ROWS.length-d-s)+' left';
+ $('#prev').disabled=i==0;$('#next').disabled=i==ROWS.length-1;save()}
+function chips(){$('#chips').innerHTML=ROWS.map((r,k)=>'<span data-k="'+k+'" class="'+(ans[r.v]?(ans[r.v]==='SKIP'?'skip':'done'):'')+(k==i?' cur':'')+'">'+(k+1)+'</span>').join('');
+ document.querySelectorAll('#chips span').forEach(e=>e.onclick=()=>{i=+e.dataset.k;render()})}
+let idx=null;
+function search(e){const q=e.target.value.trim(),res=$('#res');if(q.length<2){res.innerHTML='';return}
+ const id=norm(q);if(LYR[id]){res.innerHTML='<div data-h="'+id+'"><b>'+id+'</b> '+esc(LYR[id][0][1].split('\n')[0])+'</div>'}
+ else{if(!idx)idx=Object.entries(LYR).map(([h,L])=>[h,L.map(x=>x[1]).join(' ').toLowerCase().replace(/[^\p{L}\p{N} ]+/gu,' ').replace(/\s+/g,' '),L[0][1].split('\n')[0]]);
+  const w=q.toLowerCase().replace(/[^\p{L}\p{N} ]+/gu,' ').trim().split(/\s+/);
+  const m=idx.filter(x=>w.every(t=>x[1].includes(t))).slice(0,15);
+  res.innerHTML=m.map(x=>'<div data-h="'+x[0]+'"><b>'+x[0]+'</b> '+esc(x[2])+'</div>').join('')||'<div class="hint">no match</div>'}
+ res.querySelectorAll('div[data-h]').forEach(d=>d.onclick=()=>{ans[ROWS[i].v]=d.dataset.h;save();render()})}
+function next(){if(i<ROWS.length-1){i++;render();scrollTo(0,0)}else render()}
+$('#next').onclick=next;$('#prev').onclick=()=>{if(i>0){i--;render()}};
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'&&e.target.type==='text')return;
+ const r=ROWS[i];if(e.key>='1'&&e.key<='9'&&r.c[e.key-1]){ans[r.v]=r.c[e.key-1];save();render()}
+ else if(e.key==='s'||e.key==='S'){ans[r.v]='SKIP';save();next()}
+ else if(e.key==='ArrowRight')next();else if(e.key==='ArrowLeft'&&i>0){i--;render()}});
+$('#exp').onclick=()=>{const t='Video\tTitle\tYour hymn\n'+ROWS.map(r=>'https://www.youtube.com/watch?v='+r.v+'\t'+r.t+'\t'+(ans[r.v]&&ans[r.v]!=='SKIP'?ans[r.v]:'')).join('\n');
+ $('#exportbox').style.display='block';$('#out').value=t;$('#out').select();scrollTo(0,document.body.scrollHeight)};
+$('#cp').onclick=()=>{$('#out').select();document.execCommand('copy')};
+$('#dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([$('#out').value],{type:'text/tab-separated-values'}));a.download='NYCYPCD_answers.tsv';a.click()};
+render();
+</script></body></html>

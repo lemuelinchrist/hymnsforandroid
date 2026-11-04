@@ -44,6 +44,14 @@ Pilot done 2026-11-03 on NYCYPCD (UC_1giUVT14MRXyEFtQZgmKQ, 267 songs, official 
    A wrong link is worse than a missing one: import only `high` after he has seen the list; a hymn and its translations
    share the root's links (`getLinksOrParent` only for piano; youtube/soundcloud rows are the hymn's own, so attach to the
    root hymn the video really sings and say so).
+6b. **Review page for the rest** (the null/low/no-captions videos Lemuel checks himself; a CSV is too clumsy):
+   write `to_review.csv` (columns in `scripts/build_review.py`), run
+   `python3 scripts/build_review.py to_review.csv review.html`, serve it with
+   `python3 -m http.server 8765 --bind 127.0.0.1` (from `file://` YouTube refuses the embed) and give him
+   `http://127.0.0.1:8765/review.html`. Video embedded on the left, lyrics of the title-matched candidates on the right;
+   he ticks one (keys 1-3), types another hymn id or lyric words, or skips; progress saves in his browser; **Export**
+   gives a TSV (`Video, Title, Your hymn`) to paste back, then import it as in step 7. Not an artifact: artifact pages
+   cannot embed YouTube. Lemuel found it much easier than the CSV (2026-11-04).
 7. **Import** (after his OK; done for NYCYPCD 2026-11-04: `ImportNycypcdYoutube.groovy` reads `NycypcdYoutube.txt`, `hymn id TAB video id`, label NYCYPCD, Gradle `runImportNycypcdYoutube`; copy it for the next channel): a Groovy script in `databaseProvisioner` (like `YoutubePiano`) that saves `LinkEntity`
    rows with `dao.saveLink(hymnId, "youtube", url, order)`, label = album or channel name if wanted; then the usual run
    in one Gradle call (`:sqlite:exportSql`), docs, and the emulator check.
