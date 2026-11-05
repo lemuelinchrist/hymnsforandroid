@@ -225,6 +225,29 @@ A hymn's `tune` field (parsed from a `Hymn code Hymnalnet:`/`Hymn code:` line �
   `./gradlew :databaseProvisioner:runExtractNSFakePageReplacements -Phymns=752` (checks the sheet number).
 - **Known site-markup bug (fixed 2026-09-05):** hymnal.net changed its HTML at some point — the old selector `.leadsheet.piano span` no longer matches anything (should be `.leadsheet span.svg`). If a sync run logs `"warning no sheet Music link"` for hymns that visibly have sheet music on the live site, check `HymnalNetExtractor.java`'s two `.select(...)` calls for this selector before assuming the hymn genuinely lacks sheet music — the site can change markup again in the future.
 
+## Syncing the New Tunes (`BF436` and up) from hymnal.net (reusable)
+
+A New Tune is another tune for an English hymn (hymnal.net `en/hymn/nt/<key>`; key = the English number, plus `b` for a
+second tune, e.g. `284b`). In our DB it is a BF row whose `parent_hymn` is that English hymn; BF numbers do not follow
+hymnal.net's keys, so a tune is recognised by its sheet link in `hymnalnet_links.tsv` (`BF440 .../NewTunes/svg/e0251_new_p.svg`
+is key 251). `SyncNewTunes.groovy` reads the site's index (`/en/song-index/nt/<letter>`, saved in `data/nt_keys.txt`), then for each key
+replaces the tune we have (its YouTube/SoundCloud links are kept) or adds a new one as the next BF number. BF439 is a
+regular-hymn alternate (`e0300b`), not a New Tune: it is not touched. Category and subcategory are the parent's; the first
+stanza and chorus lines end in " (New Tune)". A key whose English hymn we do not have (`8409`) is skipped.
+
+```shell
+JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runSyncNewTunes --exclude-task :sqlite:importSql \
+  -Pnew=true -Plimit=15            # only tunes we do not have, at most 15 per run
+# other options: -Pkeys=251,284b (only these)   -Prefresh=true (read the index again)
+```
+
+**hymnal.net blocks an address that makes more than a few dozen requests in a short time** (2026-11-04: first
+"Connection refused", then "Remote host terminated the handshake", for an hour or more), however slow the pauses
+between requests are. So do a full sync (123 tunes in 2026-11) in batches of about 15 with 20 minutes or more between
+runs, and stop at the first refused connection. After a sync: copy the new SVGs from `databaseProvisioner/data/{pianoSvg,guitarSvg}`
+into `tools/svg-to-lilypond/svg/`, merge the rows of `data/hymnalnet_links.tsv` into the tracked `hymnalnet_links.tsv`
+(drop duplicate rows), `exportSql`, then the `svg-to-lilypond` skill for `.ly`/`.mei`. hymnal.net serves no MIDI for New Tunes.
+
 ## Syncing the Children (`CH`) collection from hymnal.net (reusable)
 
 `SyncChildrenFromHymnalNet.groovy`, run from WSL: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runSyncChildren -Pfrom=1 -Pto=243`.

@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -97,6 +98,23 @@ public class Dao {
         link.setUrl(url);
         link.setOrder(order);
         save(link);
+    }
+
+    /** Copies of a hymn's YouTube and SoundCloud links (delete() removes the originals), to save again after a replace. */
+    public List<LinkEntity> copyLinks(String hymnId) {
+        List<LinkEntity> copies = new ArrayList<>();
+        for (Object o : em.createNativeQuery("select * from link where hymn_id = ?1 and kind in ('youtube', 'soundcloud') order by kind, n_order", LinkEntity.class)
+                .setParameter(1, hymnId).getResultList()) {
+            LinkEntity l = (LinkEntity) o;
+            LinkEntity c = new LinkEntity();
+            c.setHymnId(l.getHymnId());
+            c.setKind(l.getKind());
+            c.setLabel(l.getLabel());
+            c.setUrl(l.getUrl());
+            c.setOrder(l.getOrder());
+            copies.add(c);
+        }
+        return copies;
     }
 
     /** Deletes the links of a kind with a label (a run of an importer starts by removing its own rows, so it can be repeated). */
