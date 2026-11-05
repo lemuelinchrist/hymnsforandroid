@@ -190,6 +190,28 @@ export function links(hymnObj, kind) {
     .map((x) => ({url: (x.url || '').trim(), label: (x.label || '').trim()})).filter((x) => x.url);
 }
 
+// A hymn with no YouTube or SoundCloud link of its own shows those of the nearest hymn above it that has some (its
+// parent, the parent's parent, ...): {from, kinds: {youtube: [...], soundcloud: [...]}}, or null (HymnsDao.getLinkedAncestor)
+export function inheritedLinks(hymnObj) {
+  if (links(hymnObj, 'youtube').length || links(hymnObj, 'soundcloud').length) return null;
+  let id = hymnObj.parentId;
+  for (let depth = 0; depth < 5 && id && id !== hymnObj.id; depth++) {
+    const kinds = {youtube: links({id}, 'youtube'), soundcloud: links({id}, 'soundcloud')};
+    if (kinds.youtube.length || kinds.soundcloud.length) return {from: id, kinds};
+    const row = hymnRow(id);
+    id = row && row.parent_hymn;
+  }
+  return null;
+}
+
+// the language of a book (HymnGroup.getLanguage): the three English books are English, the youth books and the
+// supplements are in their main language
+export function languageOf(code) {
+  if (['E', 'BF', 'NS', 'CH'].includes(code)) return 'English';
+  const g = BY_CODE[code];
+  return ((g && (g.long || g.name)) || code).replace(/ \(.*\)$/, '').replace(' Supplement', '').replace(' Youth', '');
+}
+
 export function exists(id) {
   return !!(id && hymnRow(currentId(id.toUpperCase())));
 }

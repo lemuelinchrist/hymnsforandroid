@@ -650,11 +650,18 @@ function metaNode(hymn) {
 // from the link table; nothing at all when there are no rows
 function linksNode(hymn) {
   const videos = DB.videos(hymn);
+  // no YouTube or SoundCloud link of its own: the nearest hymn above it that has some; in another language each link
+  // says which ("English ↗", "English – label ↗") so nobody takes an English recording for a Spanish one
+  const up = DB.inheritedLinks(hymn);
+  const language = up && DB.languageOf(splitId(up.from).group);
+  const foreign = up && language !== DB.languageOf(hymn.group);
   const ownLinks = (kind) => {
-    const list = DB.links(hymn, kind);
+    const list = up ? up.kinds[kind] : DB.links(hymn, kind);
+    const text = (v, i) => foreign
+      ? (v.label ? language + ' – ' + v.label : list.length === 1 ? language : language + ' ' + (i + 1))
+      : (v.label || (list.length === 1 ? 'Link' : 'Link ' + (i + 1)));
     return list.length ? h('span', {class: 'videos'}, list.map((v, i) => [i ? ' · ' : '',
-      h('a', {href: v.url, target: '_blank', rel: 'noopener'},
-        (v.label || (list.length === 1 ? 'Link' : 'Link ' + (i + 1))) + ' ↗')])) : null;
+      h('a', {href: v.url, target: '_blank', rel: 'noopener'}, text(v, i) + ' ↗')])) : null;
   };
   const rows = [
     ['Piano videos', videos.length ? h('span', {class: 'videos'}, videos.map((v, i) => [i ? ' · ' : '',

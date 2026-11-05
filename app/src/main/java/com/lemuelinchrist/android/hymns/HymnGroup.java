@@ -209,6 +209,13 @@ public enum HymnGroup {
         return dayColor;
     }
 
+    /** The language of the book ("English" for Be Filled, New Songs and Children; "Chinese" for all four Chinese books;
+     *  the youth books and supplements are in their main language). Labels a link a hymn inherits from another language. */
+    public String getLanguage() {
+        if (this == E || this == BF || this == NS || this == CH) return "English";
+        return simpleName.replaceAll(" \\(.*\\)$", "").replace(" Supplement", "").replace(" Youth", "");
+    }
+
     public String getSimpleName() {
         return simpleName;
     }

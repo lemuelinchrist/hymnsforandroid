@@ -15,6 +15,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
@@ -55,6 +56,16 @@ public class LinksSection extends ContentComponent<View> {
             videos = dao.getLinksOrParent(hymn.getHymnId(), hymn.getParentHymn(), "piano");
             youtube = dao.getLinks(hymn.getHymnId(), "youtube");
             soundcloud = dao.getLinks(hymn.getHymnId(), "soundcloud");
+            if (youtube.isEmpty() && soundcloud.isEmpty()) {
+                // no recording of its own: the nearest hymn above it that has one (an English hymn's for a translation, ...)
+                String ancestor = dao.getLinkedAncestor(hymn.getParentHymn());
+                if (ancestor != null && !ancestor.equals(hymn.getHymnId())) {
+                    String language = HymnGroup.getHymnGroupFromID(ancestor).getLanguage();
+                    boolean sameLanguage = language.equals(hymn.getHymnGroup().getLanguage());
+                    youtube = inherited(dao.getLinks(ancestor, "youtube"), sameLanguage ? null : language);
+                    soundcloud = inherited(dao.getLinks(ancestor, "soundcloud"), sameLanguage ? null : language);
+                }
+            }
         } catch (Exception e) {
             // no videos then
         } finally {
@@ -71,6 +82,22 @@ public class LinksSection extends ContentComponent<View> {
         addLinks("YouTube", youtube);
         addLinks("SoundCloud", soundcloud);
         if (table.getChildCount() == 0) view.setVisibility(View.GONE);
+    }
+
+    /**
+     * Links taken from a hymn above this one. In another language each is labelled with that language, so nobody takes
+     * an English recording for a Spanish one: "English ↗", "English 1 ↗ · English 2 ↗", "English – label ↗".
+     */
+    private static ArrayList<String[]> inherited(ArrayList<String[]> links, String language) {
+        if (language == null) return links;
+        ArrayList<String[]> labelled = new ArrayList<>();
+        for (int i = 0; i < links.size(); i++) {
+            String label = links.get(i)[0] == null ? "" : links.get(i)[0].trim();
+            String shown = !label.isEmpty() ? language + " \u2013 " + label
+                    : links.size() == 1 ? language : language + " " + (i + 1);
+            labelled.add(new String[]{shown, links.get(i)[1]});
+        }
+        return labelled;
     }
 
     /** One row for the links of a kind: "Link 1 ↗ · Link 2 ↗" ("Link ↗" when there is one, its label when it has one). */

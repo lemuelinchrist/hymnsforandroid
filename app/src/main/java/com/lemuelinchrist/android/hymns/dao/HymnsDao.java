@@ -180,6 +180,24 @@ public class HymnsDao {
         return links.isEmpty() ? getLinks(parentId, kind) : links;
     }
 
+    /**
+     * The nearest hymn above this one (its parent, the parent's parent, ...) that has YouTube or SoundCloud links of its
+     * own, or null. A hymn with no such links of its own shows that hymn's.
+     */
+    public String getLinkedAncestor(String parentId) {
+        String id = parentId;
+        for (int depth = 0; depth < 5 && id != null && !id.isEmpty(); depth++) {
+            try (Cursor cursor = database.rawQuery(
+                    "select 1 from link where hymn_id = ? and kind in ('youtube', 'soundcloud') limit 1", new String[]{id})) {
+                if (cursor.moveToFirst()) return id;
+            }
+            try (Cursor cursor = database.rawQuery("select parent_hymn from hymns where _id = ?", new String[]{id})) {
+                id = cursor.moveToFirst() ? cursor.getString(0) : null;
+            }
+        }
+        return null;
+    }
+
     public List<Hymn> getHymnsWithSimilarTune(Hymn targetHymn) {
         ArrayList<Hymn> hymns = new ArrayList<>();
         if(targetHymn.getTune()==null || targetHymn.getTune().isEmpty()) {

@@ -181,7 +181,7 @@ CREATE TABLE "stanza" (
 CREATE TABLE "link" (                   -- links of a hymn to places outside the app (piano videos, and the YouTube and SoundCloud links of the youth books)
   "id" INTEGER NOT NULL PRIMARY KEY,
   "hymn_id" TEXT NOT NULL,              -- a HYMN ID (not a tune code), e.g. 'E8'
-  "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune), 'youtube' or 'soundcloud' (a recording of this hymn itself, no parent fallback)
+  "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune), 'youtube' or 'soundcloud' (a recording of this hymn; a hymn with none of its own shows those of the hymn above it, see the links card)
   "label" TEXT,                         -- label shown to the user: '1st tune', 'Alt tune: 295', 'New tune' ... (NULL for youtube/soundcloud: shown as 'Link')
   "url" TEXT NOT NULL,                  -- the whole address, e.g. 'https://www.youtube.com/watch?v=DL6lgn78DcU'
   "n_order" INTEGER                     -- order among the hymn's links of that kind, from 1
@@ -336,8 +336,14 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    `hymn_id` = this hymn's ID, else its parent's ID, in `n_order`) as links `<label> ↗` joined by ` · `. A tap opens the
    stored `url` with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/`. The links are
    underlined in the book's accent colour. The card does not depend on the YouTube button setting. After the piano
-   videos come a `YouTube` and a `SoundCloud` row: the hymn's own `link` rows of kind `youtube` / `soundcloud` (the youth
-   books; no fallback to the parent) as `Link ↗` (`Link 1 ↗ · Link 2 ↗` when there are several, or their `label`).
+   videos come a `YouTube` and a `SoundCloud` row: the hymn's own `link` rows of kind `youtube` / `soundcloud` as `Link ↗` (`Link 1 ↗ · Link 2 ↗` when there are
+   several, or their `label`). A hymn with **none** of its own (neither kind) shows those of the nearest hymn above it
+   (its parent, the parent's parent, ... up to 5 steps) that has some, both kinds taken from that one hymn; a hymn with
+   any link of its own gets nothing inherited. When the hymn above is in another language (`HymnGroup.getLanguage`:
+   English for E/BF/NS/CH, Chinese for the four Chinese books, the youth books and supplements in their main
+   language), each inherited link is labelled with that language, so it is not taken for a recording in the hymn's
+   own: `English ↗`, `English 1 ↗ · English 2 ↗`, `English – <label> ↗`. In the same language (a Be Filled hymn from
+   an English hymn) the labels are shown as they are.
    (Until v5.8.3 these were stanzas named `YouTube Link` / `SoundCloud Link`; there are none any more.) (The web app has the same card under its details, and opens the stored `watch`
    address as it is; its card is not drawn when there is no row, and not printed.) More kinds of link can be added later as other `kind`s of the `link` table.
 
