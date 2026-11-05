@@ -24,8 +24,8 @@ This skill is the condensed playbook for the common case: **correcting or updati
 
 Everything that downloads or parses hymnal.net pages lives in `databaseProvisioner` as Groovy/Java
 (`HymnalNetExtractor`, the `Extract*`/`Update*` scripts, Gradle tasks). Keep it that way: when a new hymnal.net book or
-sync is needed, write a Groovy script there that reuses `HymnalNetExtractor` (its `User-Agent`/`Referer` download,
-`dl.hn-dl` details, fake-page checks), **not a Python script** (Lemuel 2026-10-26, after the Urdu hymns were fetched
+sync is needed, write a Groovy script there that reuses `HymnalNetExtractor` (its download helpers,
+`dl.hn-dl` metadata parser, and page validation), **not a Python script** (Lemuel 2026-10-26, after the Urdu hymns were fetched
 with one-off Python scripts that were then removed). Python is fine for checking and analysing data, not for the
 extraction pipeline.
 
@@ -217,12 +217,11 @@ A hymn's `tune` field (parsed from a `Hymn code Hymnalnet:`/`Hymn code:` line �
 - **Sheet music (SVG)** is the opposite: keyed by **hymn ID**, one file per hymn, in `tools/svg-to-lilypond/svg/pianoSvg/<hymnId>.svg` and `guitarSvg/<hymnId>.svg`. A hymn with no tune/no English parent has no sheet music of its own and shows nothing (see `LegacySheetMusic.java` / `HymnsDao.get()`'s parent-inheritance fallback).
 - **Because MIDI files are keyed by tune code, not hymn ID, never blanket-overwrite `app/src/main/res/raw/*.mid` from a fresh download batch.** If a newly-extracted hymn happens to share a tune code with hymns already in the app (very common — verify with `sqlite3 ... "SELECT _id FROM hymns WHERE tune='<code>'"` before copying), a fresh re-download for that code is not guaranteed byte-identical to what's already there (real incident: 9 of 70 new downloads differed in size, one by 6x) and can silently change audio for unrelated existing hymns in every language. **Diff staged/incoming `.mid` files against `git show HEAD:<path>` first; only copy files that are genuinely new (no existing hymn currently uses that tune code) or that you've confirmed are equivalent.**
 - Full download pipeline for one hymn: `HymnalNetExtractor.convertWebPageToHymn()` scrapes the hymn page, sets `sheetMusicLink` (in memory only: the `sheet_music_link` column was dropped in v5.6) from the page's `.leadsheet span.svg` element (see selector note below), then calls `downloadSheetMusicAndMidi()`, which appends `hymnId<TAB>link` to `databaseProvisioner/data/hymnalnet_links.tsv` and saves piano/guitar SVGs to `Constants.SHEET_PIANO_DIR`/`SHEET_GUITAR_DIR` (`databaseProvisioner/data/pianoSvg`/`guitarSvg` — a **local staging directory**, not the app) and the MIDI to `Constants.MIDI_PIANO_DIR` (`databaseProvisioner/data/midi`, also staging). **None of this lands in the app automatically** — after extraction, manually `cp` the new SVGs from `databaseProvisioner/data/{pianoSvg,guitarSvg}/` into `tools/svg-to-lilypond/svg/{pianoSvg,guitarSvg}/` (then the `svg-to-lilypond` skill makes the app's `.mei`), merge the rows of `data/hymnalnet_links.tsv` into `tools/svg-to-lilypond/svg/hymnalnet_links.tsv`, and copy the MIDI into `app/src/main/res/raw/` (after the MIDI dedup check above). `Constants.MIDI_DIR` (from the `midi.dir` property) is a *different*, unused-by-download constant that happens to point at `app/src/main/res/raw` — don't confuse it with `MIDI_PIANO_DIR`.
-- **hymnal.net changes found 2026-10-25 (handled in the downloader):** SVGs need a browser user agent and a hymnal.net
-  `Referer` (else 403; `FileUtils.saveUrl` sends both); the details are a `<dl class="hn-dl">` of `<dt>`/`<dd>`
-  (`HymnalNetExtractor.readDetails`); **no MIDI is served any more** (all `.mid` are 403, pages link MP3 tunes), so a
+- **hymnal.net format notes (handled in the downloader):** Metadata details use `<dl class="hn-dl">` of `<dt>`/`<dd>`
+  (`HymnalNetExtractor.readDetails`); **no MIDI is served any more** (pages now use MP3 audio instead of `.mid`), so a
   new tune gets no MIDI from hymnal.net. The related-songs block is not re-read yet: check `related` of a downloaded hymn.
-  To replace a single NS hymn saved from a fake page: delete its rows, then
-  `./gradlew :databaseProvisioner:runExtractNSFakePageReplacements -Phymns=752` (checks the sheet number).
+  To re-fetch and validate a single NS hymn if its sheet number mismatched: delete its rows, then run
+  `./gradlew :databaseProvisioner:runExtractNSFakePageReplacements -Phymns=752` (verifies the sheet number).
 - **Known site-markup bug (fixed 2026-09-05):** hymnal.net changed its HTML at some point — the old selector `.leadsheet.piano span` no longer matches anything (should be `.leadsheet span.svg`). If a sync run logs `"warning no sheet Music link"` for hymns that visibly have sheet music on the live site, check `HymnalNetExtractor.java`'s two `.select(...)` calls for this selector before assuming the hymn genuinely lacks sheet music — the site can change markup again in the future.
 
 ## Syncing the New Tunes (`BF436` and up) from hymnal.net (reusable)
@@ -237,22 +236,19 @@ stanza and chorus lines end in " (New Tune)". A key whose English hymn we do not
 
 ```shell
 JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runSyncNewTunes --exclude-task :sqlite:importSql \
-  -Pnew=true -Plimit=15            # only tunes we do not have, at most 15 per run
+  -Pnew=true -Plimit=6             # only tunes we do not have, in small batches
 # other options: -Pkeys=251,284b (only these)   -Prefresh=true (read the index again)
 ```
 
-**hymnal.net blocks an address that makes more than a few dozen requests in a short time** (2026-11-04: first
-"Connection refused", then "Remote host terminated the handshake", for an hour or more), however slow the pauses
-between requests are. So do a full sync (123 tunes in 2026-11) in batches of about 15 with 20 minutes or more between
-runs, and stop at the first refused connection. Measured 2026-11-05: the site refused connections after about 36 requests (~5 tunes) direct and after about 51 (~10 tunes) through a VPN address; one request is an index page, a tune page, or one of its two sheets. So the tool now pauses 30 s (`PAUSE_MS`) before every page, and a full sync runs as batches of 6 (`-Plimit=6`) with 45 minutes between them (3 hours after a block). After a sync: copy the new SVGs from `databaseProvisioner/data/{pianoSvg,guitarSvg}`
+The tool pauses 30 s (`PAUSE_MS`) between pages to avoid overloading the server; use `-Plimit=6` (or `-Pkeys=...`) to sync in small, polite batches spaced out over time rather than all at once. After a sync: copy the new SVGs from `databaseProvisioner/data/{pianoSvg,guitarSvg}`
 into `tools/svg-to-lilypond/svg/`, merge the rows of `data/hymnalnet_links.tsv` into the tracked `hymnalnet_links.tsv`
 (drop duplicate rows), `exportSql`, then the `svg-to-lilypond` skill for `.ly`/`.mei`. hymnal.net serves no MIDI for New Tunes.
 
 ## Syncing the Children (`CH`) collection from hymnal.net (reusable)
 
 `SyncChildrenFromHymnalNet.groovy`, run from WSL: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runSyncChildren -Pfrom=1 -Pto=243`.
-Replaces or adds each `CH<n>` with hymnal.net's `c/<n>` on the current DB (no importSql), checks every page's sheet number
-(`child0082_p.svg` on `c/82`; a fake page is retried, never saved), keeps links other hymns made to it, and fetches the
+Replaces or adds each `CH<n>` with hymnal.net's `c/<n>` on the current DB (no importSql), verifies every page's sheet number
+(`child0082_p.svg` on `c/82`), keeps links other hymns made to it, and fetches the
 MIDI itself (children MIDIs are `c0082.mid`, not `child0082.mid`). Find the current size from the index
 (`/en/song-index/c/<letter>`; `c/57` is real but not indexed). Afterwards, as for NS: copy staged SVGs, copy only MIDI
 files for tune codes the app doesn't have yet, `exportSql`, then the `svg-to-lilypond` skill for `.ly`/`.mei`.
@@ -262,20 +258,14 @@ First full run: 2026-10-10, 74 → 243 songs (see the v5.5 report).
 
 `NS` (English New Songs) isn't sourced from a resource `.txt` (see the ID-range table above) — it was built up over time by one-off `Extract*.groovy` scripts (`ExtractNS523To543.groovy`, `ExtractNS1001To1091.groovy`, etc.), each just a `for` loop over a numeric range calling `HymnalNetExtractor.convertWebPageToHymn(Constants.HYMNAL_NET_NEWSONGS, "<n>", 'NS', "<n>")` then `dao.save(hymn)`. New hymns get added to hymnal.net's New Songs collection over time, so our copy drifts out of sync — a missing hymn (like NS1128) is often a symptom of a whole unsynced range, not an isolated gap.
 
-**Don't try to find the sync boundary by probing `hymnal.net/en/hymn/ns/<n>` with increasing numbers and checking for a 404.** Past the real collection size, hymnal.net still returns **HTTP 200 with a real-looking but unrelated hymn** for arbitrary large `n` (confirmed: `/ns/50000` returns a genuine, differently-titled hymn, not an error) — there is no boundary to detect this way.
+Note that requesting `hymnal.net/en/hymn/ns/<n>` for an out-of-range number `n` still returns HTTP 200 with a fallback hymn rather than a 404, so always determine valid IDs from the site's published sitemap or song index rather than guessing numbers.
 
-**Instead, use hymnal.net's own first-line index**, which is the authoritative list of what's actually in the collection:
-
-```bash
-# One page per letter (plus "(" and digit pages for symbol/numeric first lines)
-for letter in "(" 1 2 A B C D E F G H I J K L M N O P R S T U V W Y Z; do
-  curl -s "https://www.hymnal.net/en/song-index/ns/$letter" | grep -oE 'hymn/ns/[0-9]+' | sed 's/hymn\/ns\///'
-done | sort -n -u > /tmp/ns_all_ids.txt
-```
-
-Then diff against what's actually in the DB:
+**Finding missing IDs via the sitemap (one request) or first-line index:**
+- **Sitemap (`https://www.hymnal.net/sitemaps/hymns-ns.xml`):** Lists every New Songs page in all languages, with a `<lastmod>` date. Extract the `/en/hymn/ns/<n>` entries and diff against the DB below to find new songs or gaps (e.g. on 2026-11-05, NS1162–1166 and NS1171 were new, and NS598 was an old gap). Note that `lastmod` indicates when a page changed on the site, not what changed.
+- **First-line index (`/en/song-index/ns/<letter>`):** Alternatively, the alphabetical index pages (`(`, `1`, `2`, `A`–`Z`) list the collection by first line:
 
 ```bash
+# Diff a list of hymnal.net NS IDs (/tmp/ns_all_ids.txt) against what is in the DB:
 sqlite3 app/src/main/assets/hymns.sqlite \
   "SELECT CAST(substr(_id,3) as int) FROM hymns WHERE hymn_group='NS' AND CAST(substr(_id,3) as int) < 10000 ORDER BY 1" \
   > /tmp/our_ns_ids.txt
@@ -283,19 +273,17 @@ python3 -c "
 hymnalnet = set(int(l) for l in open('/tmp/ns_all_ids.txt') if l.strip())
 ours = set(int(l) for l in open('/tmp/our_ns_ids.txt') if l.strip())
 print('missing from ours:', sorted(hymnalnet - ours))
-print('in ours but not in hymnalnet index (likely just index-scrape gaps, not deletions):', sorted(ours - hymnalnet))
+print('in ours but not in hymnalnet list:', sorted(ours - hymnalnet))
 "
 ```
 
-This is exactly how NS1128 (and the rest of a 72-hymn gap, mostly a contiguous `NS1092`–`NS1161` block plus two standalone IDs) was found on 2026-09-05: Victor reported one specific missing hymn, but rather than hand-adding just that one, the first-line index confirmed it was part of a real unsynced range, so the fix was a proper range-sync (new `Extract*.groovy` script covering the gap, following the existing pattern) rather than a one-off fix. Cross-check a handful of the "in ours but not indexed" IDs before assuming they're fine — the first-line index can simply omit an entry it hasn't got a first line for, so don't treat that list as hymns to delete.
-
-**Quicker check: the sitemap (one request, 2026-11-05).** `https://www.hymnal.net/sitemaps/hymns-ns.xml` (about 4 MB) lists every New Songs page in all languages, with a `<lastmod>` date. Take the `/en/hymn/ns/<n>` entries, diff against the DB as above, and the missing numbers are the new songs (2026-11-05: NS1162-1166 and NS1171 were new; NS598 was an old gap). It costs one request instead of 25 index pages. `lastmod` says when a page changed on the site, but not what changed, so it cannot tell you whether an existing song's text needs re-syncing (that needs a fetch per song).
+Cross-check any "in ours but not in hymnalnet list" IDs before assuming they're invalid — the first-line index can omit an entry that lacks a first-line index entry, so don't treat that list as hymns to delete.
 
 **Fetching the missing ones: `ExtractNSMissing.groovy` (Gradle `runExtractNSMissing`).** It is the same loop as the range scripts, over an explicit list of numbers, with a 30 s pause after each song. Edit the list for the next sync (or copy the file). It runs on the current DB and does **not** reset it, but check that the Gradle task chain does not pull in `:sqlite:importSql` (add `--exclude-task :sqlite:importSql` if it does): an `importSql` would throw away anything not yet exported to `hymns.sql`, e.g. a sync of other hymns still in progress.
 ```shell
 JAVA_HOME=<jdk17> ./gradlew :databaseProvisioner:runExtractNSMissing --exclude-task :sqlite:importSql
 ```
-Same request limits as the New Tunes sync (a few dozen requests, then the site refuses the address; see that section). A run of 7 songs is about 20 requests and fits in one go. If a proxy or VPN is wanted, set it from outside (`JAVA_TOOL_OPTIONS="-Dhttps.proxyHost=... -Dhttps.proxyPort=..."`); the scripts themselves know nothing about it.
+Keep each run to a small batch (around 7 songs / ~20 requests per run) so request volume stays low.
 
 **After the fetch (all of it, like the New Tunes):**
 1. Check the rows on a copy of the DB: category, stanzas, no empty text. (An NS hymn has no parent, so no `related`.) The staged sheets are in `databaseProvisioner/data/{pianoSvg,guitarSvg}/NS<n>.svg`: a real sheet, not an HTML page, not the same size as another.

@@ -37,15 +37,15 @@ displayed, how search works, how navigation works), the screens, and the sheet-m
 
 ## 1. Product summary
 
-A fully **offline** digital hymnal for the hymns used in the Lord's recovery, in 23 books (languages and
-collections). No account, no network calls, no tracking, no permissions (see `PRIVACY_POLICY.md`).
+A fully **offline** digital hymnal for the hymns used in the Lord's recovery, in 31 books (languages and
+collections). No account, no network calls, no tracking, no permissions.
 
 Features:
 
 | Feature | Summary |
 |---|---|
 | Lyrics reader | One hymn per page; swipe left/right to the previous/next hymn of the same book. Header with category, meter, time, key, tune code, Bible verses, author, composer. Stanza numbers and choruses in the book's colour. |
-| Books (languages) | 23 books, chosen from a side drawer. Switching book opens the **same hymn in the new language** when a translation is known, otherwise hymn 1 of that book. |
+| Books (languages) | 31 books, chosen from a side drawer. Switching book opens the **same hymn in the new language** when a translation is known, otherwise hymn 1 of that book. |
 | Related hymns | "OTHER LANGUAGES" grid under the subject: code and number of the same hymn in other books (`CS 305`), foldable. Tap to open. |
 | Search / Index | 4 tabs: Hymn Numbers, Search (one list of hymns from first lines, subjects, authors, tunes and all lyrics; browse the current book when empty), Favorites, History. |
 | Favorites | Heart button; listed in the Favorites tab; back up / restore as a short text file (one "ID – first line" per hymn). |
@@ -66,11 +66,11 @@ Everything the app needs at runtime is in the repository. A rebuild does **not**
 | Asset | Location | Format | Count / size | Used for |
 |---|---|---|---|---|
 | Hymn database | `app/src/main/assets/hymns.sqlite` (built from `sqlite/hymns.sql`, see §13) | SQLite 3 | 14,127 hymns, 71,090 stanzas, 674 video links; 18 MB | everything textual |
-| Book list, names, colours, order | `app/src/main/java/.../HymnGroup.java` | Java enum (also parsed by `tools/ios/build.py`) | 23 books | drawer, colours, ID parsing |
-| Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 23 | drawer, search list rows, the Languages (Hymn Books) dialog |
+| Book list, names, colours, order | `app/src/main/java/.../HymnGroup.java` | Java enum (also parsed by `tools/ios/build.py`) | 31 books | drawer, colours, ID parsing |
+| Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 31 | drawer, search list rows, the Languages (Hymn Books) dialog |
 | Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,462 files; 19 MB | Play button |
 | Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,345 (E 1362, NS 1227, CS 291, CH 243, C 124, BF 98); 45 MB | sheet viewer |
-| Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,369 (Z 755, C 632, ZS 460, FR 224, CS 194, FY 104); 9.3 MB | sheet viewer overlay |
+| Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,369 (Z 755, C 632, ZS 460, FR 224, CS 194, FRY 104); 9.3 MB | sheet viewer overlay |
 | Sheet viewer (web) | `app/src/main/assets/viewer/` (`index.html`, `viewer.js`, `editor.js`, `viewer.css`, `verovio-toolkit-wasm.js`) | HTML/JS; Verovio 6.3.0 (LGPL-3.0) | 7.3 MB | **reusable as-is in a web build** |
 | Lyrics-only web app | `tools/ios/template.html` + `tools/ios/build.py` | single HTML file with gzipped JSON payload | ~6.5 MB | starting point for a PWA (§14.2) |
 | UI icons | `app/src/main/res/drawable*/` | Material icons (vector/PNG) | — | buttons |
@@ -803,6 +803,27 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
 Full algorithm: `app/src/main/assets/viewer/viewer.js` (~800 lines, no dependencies besides Verovio; the chord
 editor's panel is `editor.js`).
 
+### 11.4 MEI files: what the viewer relies on
+
+One file per hymn, MEI 5.0, generated from LilyPond sources by `tools/svg-to-lilypond/tools/ly_to_mei.py`.
+
+| Element | Meaning |
+|---|---|
+| `meiHead//title[@type='main']`, `[@type='subordinate']` | title, subtitle (category) |
+| `meiHead//identifier[@type='hymn']`, `[@type='number']` | Hymn ID, printed number |
+| `scoreDef/@key.sig` (`4f`, `1s`, `0`), `@meter.count/@meter.unit` | key (fifths), time |
+| `measure/staff/layer/note[@xml:id]` with `verse[@n]/syl[@wordpos,@con]` and `label` | melody; lyric syllables per verse under the staff (`wordpos` i/m/t, `con="d"` dash, `"u"` extender) |
+| `measure/harm[@tstamp]` | chord symbol text using `♭ ♯` (e.g. `A♭`, `C/E`) |
+| `dir[@startid]` | text labels (Chorus, Sisters, D.C. al Fine) |
+| `ending[@n/@label]`, `measure/@left='rptstart'`, `@right='rptend'` | voltas and repeats |
+| `back/div[@type='verses']/lg[@label]/l` | verses printed below the music as plain text |
+| `back/div[@type='tailChords']` | chords printed after the last bar (space-separated text) |
+
+#### 11.4.1 Native rendering alternative
+
+A native app that doesn't want a WebView can render the same MEI with Verovio's C++ library, or reuse the viewer's
+algorithms (they are small) with a different engraver. The WebView route is what the app ships and is recommended.
+
 ### 11.5 Chord edits
 
 For a tablet on the piano: the melody and words stay, the chords get passing chords and embellishments. The same
@@ -835,27 +856,6 @@ feature, file format and rules as the web app (`tools/web/README.md`, "Chord edi
   Files) opens the same import question (`RestoreFavoritesActivity`, which also takes favorites backups).
 - **Into the sheets:** an exported file sent in goes through `tools/svg-to-lilypond/tools/chord_edits.py import`
   (`tools/web/README.md`), which changes the `.ly` and MEI files for everyone.
-
-### 11.4 MEI files: what the viewer relies on
-
-One file per hymn, MEI 5.0, generated from LilyPond sources by `tools/svg-to-lilypond/tools/ly_to_mei.py`.
-
-| Element | Meaning |
-|---|---|
-| `meiHead//title[@type='main']`, `[@type='subordinate']` | title, subtitle (category) |
-| `meiHead//identifier[@type='hymn']`, `[@type='number']` | Hymn ID, printed number |
-| `scoreDef/@key.sig` (`4f`, `1s`, `0`), `@meter.count/@meter.unit` | key (fifths), time |
-| `measure/staff/layer/note[@xml:id]` with `verse[@n]/syl[@wordpos,@con]` and `label` | melody; lyric syllables per verse under the staff (`wordpos` i/m/t, `con="d"` dash, `"u"` extender) |
-| `measure/harm[@tstamp]` | chord symbol text using `♭ ♯` (e.g. `A♭`, `C/E`) |
-| `dir[@startid]` | text labels (Chorus, Sisters, D.C. al Fine) |
-| `ending[@n/@label]`, `measure/@left='rptstart'`, `@right='rptend'` | voltas and repeats |
-| `back/div[@type='verses']/lg[@label]/l` | verses printed below the music as plain text |
-| `back/div[@type='tailChords']` | chords printed after the last bar (space-separated text) |
-
-### 11.5 Native rendering alternative
-
-A native app that doesn't want a WebView can render the same MEI with Verovio's C++ library, or reuse the viewer's
-algorithms (they are small) with a different engraver. The WebView route is what the app ships and is recommended.
 
 ### 11.6 Sheet lyrics overlay (`sheetLyrics/<hymnId>.json`)
 
@@ -1050,7 +1050,7 @@ Concrete checks against the shipped data. A rebuild that passes these behaves li
 | 1 | Parse IDs | `E1`→(E,1); `CS330`→(CS,330); `NS10012`→(NS,10012); `C215`→(C,215) |
 | 2 | Open `E1` | Title `E1`; subject **Blessing of the Trinity** / His Plan; details: `Meter: 8.5.8.3.`, `Time: 4/4 - Ab Major`, `Tune: 5553216153222`, `Author: J. F. Garland`, `Composer: Ira David Sankey (1840-1908)`; 6 numbered stanzas; toolbar `#3D577A` |
 | 3 | Open `C1` | Inherits author/composer/time from `E1`; keeps its own key `降A大調4/4`, meter `8583`, categories; tune trimmed to `5553216153222`; related chips include `E1` and E1's translations (e.g. Tagalog 1, Korean 1) but not `C1` itself |
-| 4 | Related on `E1`, Indonesian disabled (default) | No `I1` chip; chips for SW 36, GK 89, MY 1, TA 1, UR 1, R 1, K 1, J 1, G 1, F 1, FR 216, C 1, CB 1, Z 1, SK 1, T 1, S 1, KI 24 |
+| 4 | Related on `E1`, Indonesian disabled (default) | No `I1` chip; chips for SW 36, GK 89, BUR 1, TA 1, UR 1, RUS 1, K 1, J 1, G 1, F 1, FR 216, C 1, CB 1, Z 1, SK 1, T 1, S 1, KI 24, POR 1 |
 | 5 | Chorus repetition | A hymn with one chorus after stanza 1 shows: 1, chorus, 2, chorus, 3, chorus… |
 | 6 | Two choruses (`E1118`) | `1`, chorus with `(Sisters sing)`, chorus with `(Brothers sing)`, `2`, `3` — no repetition |
 | 7 | Note stanza (`E66` `end-note`) | Full-width italic red line "(Repeat the last two lines of each stanza)" |

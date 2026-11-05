@@ -12,11 +12,14 @@ This document specifies the schema of the `hymns.sqlite` database and provides g
 ### Choosing Between Parent and Related
 
 When connecting hymns across languages, use this rule of thumb:
-- **Parent**: Use when the child hymn is a direct translation or adaptation that should **inherit** metadata (tune, composer, category, etc.) from another hymn to avoid duplication.
-- **Related**: Use when hymns merely share a tune or are loosely connected. This creates a link in the UI but does **not** trigger data inheritance.
+- **Parent**: Use when the child hymn is a direct translation or adaptation that should **inherit** metadata (key, time, meter, tune, author, composer, category, and sheet music) from another hymn to avoid duplication. Pick the parent in this priority order (`ProvisionLanguageFile.parentOf()`):
+  1. **English (`E`) or New Songs (`NS`)**: the default whenever the hymn has one.
+  2. Otherwise **Be Filled (`BF`)**.
+  3. Otherwise **traditional Chinese (`C`, or `CS` for the supplement)**. Never simplified Chinese (`Z`, `ZS`), which are children of `C`/`CS` themselves (`Z1` → `C1`).
+- **Related**: Use for all other cross-language links, or when hymns merely share a tune or are loosely connected. This creates a link in the UI but does **not** trigger data inheritance.
 
 ### The Rule of Reciprocity
-Unlike the `parent_hymn` (which is a one-way pointer), the `related` column should ideally be **reciprocal**. If `Hymn A` lists `Hymn B` as related, `Hymn B` should also list `Hymn A` in its `related` column to ensure the connection works regardless of which hymn the user starts from.
+Unlike the `parent_hymn` (which is a one-way pointer), the `related` column should ideally be **reciprocal**. If `Hymn A` lists `Hymn B` as related, `Hymn B` should also list `Hymn A` in its `related` column to ensure the connection works regardless of which hymn the user starts from (`Dao.save()` automatically adds a child's ID to its parent's `related` set when saving).
 
 ### Available Hymn Groups
 
@@ -37,22 +40,22 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | GY   | German Youth | German youth hymns.              |
 | J    | Japanese    | Japanese hymns.                   |
 | I    | Indonesian  | Indonesian hymns.                 |
-| BF   | Be Filled   | "Be Filled" collection. BF436 and up are hymnal.net's New Tunes: another tune for an English hymn, whose `parent_hymn` is that hymn (see the hymn-provisioning skill). |
+| BF   | Be Filled   | "Be Filled" collection. BF436 and up are hymnal.net's New Tunes: another tune for an English hymn, whose `parent_hymn` is that hymn (see [`LANGUAGE_PROVISIONING_GUIDE.md`](./LANGUAGE_PROVISIONING_GUIDE.md)). |
 | NS   | New Songs   | "New Songs" collection.           |
 | CH   | Children    | Children's hymns.                 |
 | F    | Farsi       | Farsi hymns.                      |
 | SK   | Slovak      | Slovak hymns.                     |
 | GK   | Greek       | Greek hymns.                      |
-| SW   | Kiswahili   | Kiswahili hymns (Kenya); numbers are the printed page numbers, so they have gaps (SW102 and SW103, added 2026-11, continue after the last page number). |
-| RUS  | Russian     | Russian hymnal (from Brother Victor, 2026-10); its own numbering, the Russian ("R" before 2026-11) numbers in the German file's Related lines. |
-| BUR  | Burmese     | Burmese (Myanmar) hymnal (from Brother Victor, 2026-10); its own numbering, extra songs from BUR1001 (the code was MY until 2026-11). |
-| TA   | Tamil       | Tamil hymns (from Brother Victor, 2026-10); numbered like the English hymnal (TA1 = E1), with gaps; TA1501 and up are other songs. |
-| UR   | Urdu        | Urdu hymns from hymnal.net (2026-10, asked for by a brother for the churches in Pakistan); numbered like the English hymnal (UR1 = E1), with gaps; UR8273 and similar follow hymnal.net's English translations of Chinese hymns (8000 + the Chinese number) and have the Chinese hymn as parent. The Urdu New Songs are UR10000 + the NS number (UR10292 = NS292) and the Urdu Long Beach hymns UR20000 + the LB number (UR20082 = LB82 = NS10082), with the New Songs hymn as parent; hymnal.net lists them at `/hymn/ns/<n>ur` and `/hymn/lb/<n>ur`, not in its Urdu hymnal. Right to left. |
-| KI   | Kikuyu      | Kikuyu hymns (Kenya, 2026-10, from the brother who sent the Kiswahili book); typed from a scan of his original typed pages (no hymn numbers), so they are numbered in the order of his file (KI1-KI70), then two hymns from his earlier file (KI71, KI72), then eight more he sent later (KI73-KI80), then sixteen more (KI81-KI96). Holy names are capitalized as he asked: Jesu, Ngai, Baba, Mwathani and the like always; Roho, Muoyo and the possessives (Waku, Wake, Yaku, Riaku, ...) only where they mean God ("roho-ini witu" stays small; "Muti wa Muoyo", the Tree of Life, is capitalized). Parents come from the page's English hymn number, or from the matching Kiswahili hymn. |
-| POR  | Portuguese  | Portuguese hymns (2026-11, files from the testers of Brother Victor, formatted by him); numbered exactly like the English hymnal (POR1 = E1, POR1-POR1360), parent the English hymn. The first book with a three-letter code. |
-| POY  | Portuguese Youth | Portuguese young people's songs (140, 2026-11, same source); POY1-POY140; parent the New Songs hymn where the file names one (76 do), Spanish Youth hymns in `related`. |
-| POL  | Polish      | Polish hymns (424, 2026-11, same source); POL1-POL424, parent the English hymn (hymnal.net's E8xxx translations of Chinese hymns are linked to the Chinese hymn: E8255 = C255), LB12 = NS10012. |
-| FRY  | French Youth | French young people's songbook (Lyon, 2024); numbered in book order (the book has no song numbers). Most have an English parent for the sheet music. |
+| SW   | Kiswahili   | Kiswahili hymns; numbers are the printed page numbers, so they have gaps (SW102 and SW103 continue after the last page number). |
+| RUS  | Russian     | Russian hymnal; its own numbering (the code was `R` until 2026-11). |
+| BUR  | Burmese     | Burmese (Myanmar) hymnal; its own numbering, extra songs from BUR1001 (the code was `MY` until 2026-11). |
+| TA   | Tamil       | Tamil hymns; numbered like the English hymnal (TA1 = E1), with gaps; TA1501 and up are additional songs. |
+| UR   | Urdu        | Urdu hymns from hymnal.net; numbered like the English hymnal (UR1 = E1), with gaps; UR8273 and similar follow hymnal.net's English translations of Chinese hymns (8000 + the Chinese number) and have the Chinese hymn as parent. The Urdu New Songs are UR10000 + the NS number (UR10292 = NS292) and the Urdu Long Beach hymns UR20000 + the LB number (UR20082 = LB82 = NS10082), with the New Songs hymn as parent; hymnal.net lists them at `/hymn/ns/<n>ur` and `/hymn/lb/<n>ur`, not in its Urdu hymnal. Right to left. |
+| KI   | Kikuyu      | Kikuyu hymns; numbered in source-file order (KI1–KI96, as the original pages have no hymn numbers). Holy names are capitalized where they refer to God: Jesu, Ngai, Baba, Mwathani and the like always; Roho, Muoyo and the possessives (Waku, Wake, Yaku, Riaku, ...) only where they mean God ("roho-ini witu" stays lowercase; "Muti wa Muoyo", the Tree of Life, is capitalized). Parents come from the page's English hymn number, or from the matching Kiswahili hymn. |
+| POR  | Portuguese  | Portuguese hymns; numbered like the English hymnal (POR1 = E1, POR1–POR1360), with the English hymn as parent. The first book with a three-letter code. |
+| POY  | Portuguese Youth | Portuguese young people's songs (POY1–POY140); parent is the New Songs hymn where the file names one (76 do), with Spanish Youth hymns in `related`. |
+| POL  | Polish      | Polish hymns (POL1–POL424); parent is the English hymn (hymnal.net's E8xxx translations of Chinese hymns are linked to the Chinese hymn: E8255 = C255), LB12 = NS10012. |
+| FRY  | French Youth | French young people's songbook; numbered in book order (the book has no song numbers; the code was `FY` until 2026-11). Most have an English parent for the sheet music. |
 
 ## Database Lifecycle & Source of Truth
 
@@ -130,7 +133,7 @@ The database contains the following tables:
 
 ### `link`
 
-Stores the links of a hymn to places outside the app, one row per link. These are the curated piano videos (`kind` = `piano`), used by the YouTube button in "piano" mode and by the "Piano videos" line of the links card; when a hymn has no piano rows, its parent hymn's rows are used. The YouTube and SoundCloud links of the youth books (Spanish Youth, German Youth) are rows of kind `youtube` and `soundcloud` (45 and 242 rows); the NYCYPCD channel's recordings of English and New Songs hymns (245 rows for 245 hymns, one video each, label `NYCYPCD`, matched by lyrics with the `match-youtube-songs` skill and checked by hand; 150 by the matcher, 95 chosen by hand on a review page) are `youtube` rows too, written by `ImportNycypcdYoutube.groovy` from `NycypcdYoutube.txt` (Gradle `runImportNycypcdYoutube`), shown in the same card as a `YouTube` and a `SoundCloud` line, the hymn's own only (they were stanzas named `YouTube Link` / `SoundCloud Link` until v5.8.3). (It replaced the table `tune` in v5.8.2: that table was keyed by hymn ID, not by tune code, and held only a YouTube video ID, so it could not hold any other kind of link.) Index `link_hymn (hymn_id, kind, n_order)`.
+Stores the links of a hymn to places outside the app, one row per link. These are the curated piano videos (`kind` = `piano`), used by the "Piano videos" line of the links card; when a hymn has no piano rows, its parent hymn's rows are used. The YouTube and SoundCloud links of the youth books (Spanish Youth, German Youth) are rows of kind `youtube` and `soundcloud` (45 and 242 rows); the NYCYPCD channel's recordings of English and New Songs hymns (245 rows for 245 hymns, one video each, label `NYCYPCD`) are `youtube` rows too, written by `ImportNycypcdYoutube.groovy` from `NycypcdYoutube.txt` (Gradle `runImportNycypcdYoutube`), shown in the same card as a `YouTube` and a `SoundCloud` line, the hymn's own only (they were stanzas named `YouTube Link` / `SoundCloud Link` until v5.8.3). (It replaced the table `tune` in v5.8.2: that table was keyed by hymn ID, not by tune code, and held only a YouTube video ID, so it could not hold any other kind of link.) Index `link_hymn (hymn_id, kind, n_order)`.
 
 | Column    | Type    | Description                                |
 | --------- | ------- | ------------------------------------------ |
