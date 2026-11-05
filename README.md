@@ -136,4 +136,4 @@ For questions or support, please open an issue on the GitHub repository.
 
 ---
 
-*Hymns For Android - Worship anytime, anywhere.*
+*Hymns For Android - Enjoy the Lord through singing anytime, anywhere.*
