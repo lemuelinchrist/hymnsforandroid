@@ -337,6 +337,11 @@ def main():
         .replace('/*DATA*/[]', json.dumps(data_files, indent=1))
     write(swpath, sw.encode('utf-8'))
 
+    # loose pages that are not part of the app (extra/<folder>/...), published beside it; the service worker leaves them alone
+    extra = os.path.join(HERE, 'extra')
+    if os.path.isdir(extra):
+        shutil.copytree(extra, os.path.join(DIST, 'extra'))
+
     size = sum(os.path.getsize(os.path.join(r, n)) for r, _, ns in os.walk(DIST) for n in ns)
     print('build %s, %.1f MB in dist/, done in %.1fs' % (build_id, size / 1e6, time.time() - t))
 

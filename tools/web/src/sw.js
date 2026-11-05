@@ -41,6 +41,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   const path = rel(url);
   if (path === null) return;                                  // another site (YouTube links and the like)
+  if (path.startsWith('extra/')) return;                      // a loose page published beside the app (see build.py)
 
   if (req.mode === 'navigate') {                              // the page itself: the stored one, whatever the hash
     event.respondWith(caches.match('./', {cacheName: SHELL_CACHE}).then((r) => r || fetch(req)));

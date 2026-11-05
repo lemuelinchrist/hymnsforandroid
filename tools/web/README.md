@@ -38,6 +38,13 @@ Every page has `<meta name="robots" content="noindex, nofollow">`, so search eng
 of their results; people find it through the link in the main README (since 2026-10-20) or by being sent the link.
 (A `robots.txt` would only count at the root of the domain, which a GitHub Pages project site does not control.)
 
+## Loose pages (`extra/`)
+
+A folder `tools/web/extra/<name>/` (with its own `index.html`) is copied into the site as `/extra/<name>/`, beside the
+app, for a one-off page such as a review questionnaire for a contributor. The service worker ignores `extra/`, so the
+page opens even on a phone that has the app installed. Give the folder an unguessable name and `noindex` in the page;
+the repository is public, so the page is too. Delete the folder when the page has done its job.
+
 ## Chord edits
 
 On a piano sheet, **Edit chords** (or `E`): tap a bar, pick a beat (half beats too), build or type the chord.
