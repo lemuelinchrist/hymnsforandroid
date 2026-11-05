@@ -165,6 +165,11 @@ task runExtractNS1092To1161(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task runExtractNSMissing(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.ExtractNSMissing'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 task runExtractNS613To614(type: JavaExec) {
     mainClass = 'com.lemuelinchrist.hymns.ExtractNS613To614'
     classpath = sourceSets.main.runtimeClasspath
@@ -184,4 +189,13 @@ task runSyncChildren(type: JavaExec) {
     mainClass = 'com.lemuelinchrist.hymns.SyncChildrenFromHymnalNet'
     classpath = sourceSets.main.runtimeClasspath
     args = [project.findProperty('from') ?: '1', project.findProperty('to') ?: '1']
+}
+
+// New Tunes (BF436 and up) sync from hymnal.net, reusable: optional -Pkeys=251,284b -Pnew=true -Plimit=15 -Prefresh=true (see SyncNewTunes.groovy).
+// Runs on top of the current DB state (no importSql).
+task runSyncNewTunes(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.SyncNewTunes'
+    classpath = sourceSets.main.runtimeClasspath
+    args = [(project.findProperty('keys') ?: '').toString(), (project.findProperty('new') ?: 'false').toString(),
+            (project.findProperty('limit') ?: '').toString(), (project.findProperty('refresh') ?: 'false').toString()]
 }

@@ -37,7 +37,7 @@ Unlike the `parent_hymn` (which is a one-way pointer), the `related` column shou
 | GY   | German Youth | German youth hymns.              |
 | J    | Japanese    | Japanese hymns.                   |
 | I    | Indonesian  | Indonesian hymns.                 |
-| BF   | Be Filled   | "Be Filled" collection.           |
+| BF   | Be Filled   | "Be Filled" collection. BF436 and up are hymnal.net's New Tunes: another tune for an English hymn, whose `parent_hymn` is that hymn (see the hymn-provisioning skill). |
 | NS   | New Songs   | "New Songs" collection.           |
 | CH   | Children    | Children's hymns.                 |
 | F    | Farsi       | Farsi hymns.                      |
