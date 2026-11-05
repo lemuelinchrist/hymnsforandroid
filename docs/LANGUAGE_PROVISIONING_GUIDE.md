@@ -185,6 +185,14 @@ All code that downloads or parses pages from `hymnal.net` lives in `databaseProv
 ### Syncing Collections from hymnal.net
 Note that `Extract*` scripts are not idempotent (unlike `Provision*` scripts, they do not delete existing IDs first), and should be run with `--exclude-task :sqlite:importSql` when you have unexported changes in `hymns.sqlite`.
 
+- **Watch out for hymnal.net "fake" (decoy) pages:**
+  When a requested hymn number does not exist (e.g. `/en/hymn/ns/50000`) **or** when pages are fetched too quickly, `hymnal.net` does not return HTTP 404 or 429—instead, it returns **HTTP 200 with a fake page** containing the (sometimes word-scrambled) lyrics, sheet music link, tune code, and MIDI of a *different* hymn.
+  - **How to detect:** A real page always links to a sheet music SVG whose filename contains its own zero-padded hymn number (e.g. `ns0881_p.svg` on `ns/881`, `child0082_p.svg` on `c/82`). Any page whose `sheetMusicLink` does not match the requested number is a fake page and must never be saved (see `SyncChildrenFromHymnalNet.groovy` and `ExtractNSFakePageReplacements.groovy`).
+  - **How to replace a saved fake page:** If a fake page was accidentally saved to the database for an `NS` hymn, delete its existing rows (`DELETE FROM stanza WHERE parent_hymn='NS752'; DELETE FROM hymns WHERE _id='NS752';`) and re-fetch with validation using:
+    ```bash
+    JAVA_HOME=/path/to/jdk17 ./gradlew :databaseProvisioner:runExtractNSFakePageReplacements --exclude-task :sqlite:importSql -Phymns=752
+    ```
+
 - **New Tunes (`BF436` and up):**
   `SyncNewTunes.groovy` reads the site index (`data/nt_keys.txt`) and updates or adds New Tunes under the `BF` group with their English `parent_hymn` set. Run in small batches (the tool pauses 30s between pages):
   ```bash

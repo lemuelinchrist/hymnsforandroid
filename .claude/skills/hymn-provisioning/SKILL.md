@@ -220,8 +220,12 @@ A hymn's `tune` field (parsed from a `Hymn code Hymnalnet:`/`Hymn code:` line �
 - **hymnal.net format notes (handled in the downloader):** Metadata details use `<dl class="hn-dl">` of `<dt>`/`<dd>`
   (`HymnalNetExtractor.readDetails`); **no MIDI is served any more** (pages now use MP3 audio instead of `.mid`), so a
   new tune gets no MIDI from hymnal.net. The related-songs block is not re-read yet: check `related` of a downloaded hymn.
-  To re-fetch and validate a single NS hymn if its sheet number mismatched: delete its rows, then run
-  `./gradlew :databaseProvisioner:runExtractNSFakePageReplacements -Phymns=752` (verifies the sheet number).
+- **Gotcha — hymnal.net "fake" (decoy) pages:** When a hymn number does not exist or when pages are fetched too fast,
+  `hymnal.net` returns **HTTP 200 with a fake page** (the scrambled words, sheet music link, tune code, and MIDI of
+  another hymn) instead of an HTTP error. Always verify that `hymn.sheetMusicLink` contains the requested hymn's own
+  zero-padded number (e.g. `ns0881_p.svg` on `ns/881`, `child0082_p.svg` on `c/82`), and never save a page that doesn't
+  match. To replace a single `NS` hymn that was saved from a fake page: delete its rows in `stanza` and `hymns`, then run
+  `./gradlew :databaseProvisioner:runExtractNSFakePageReplacements --exclude-task :sqlite:importSql -Phymns=752` (checks the sheet number and retries).
 - **Known site-markup bug (fixed 2026-09-05):** hymnal.net changed its HTML at some point — the old selector `.leadsheet.piano span` no longer matches anything (should be `.leadsheet span.svg`). If a sync run logs `"warning no sheet Music link"` for hymns that visibly have sheet music on the live site, check `HymnalNetExtractor.java`'s two `.select(...)` calls for this selector before assuming the hymn genuinely lacks sheet music — the site can change markup again in the future.
 
 ## Syncing the New Tunes (`BF436` and up) from hymnal.net (reusable)
