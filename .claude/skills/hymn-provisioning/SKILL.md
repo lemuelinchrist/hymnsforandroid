@@ -289,6 +289,20 @@ print('in ours but not in hymnalnet index (likely just index-scrape gaps, not de
 
 This is exactly how NS1128 (and the rest of a 72-hymn gap, mostly a contiguous `NS1092`–`NS1161` block plus two standalone IDs) was found on 2026-09-05: Victor reported one specific missing hymn, but rather than hand-adding just that one, the first-line index confirmed it was part of a real unsynced range, so the fix was a proper range-sync (new `Extract*.groovy` script covering the gap, following the existing pattern) rather than a one-off fix. Cross-check a handful of the "in ours but not indexed" IDs before assuming they're fine — the first-line index can simply omit an entry it hasn't got a first line for, so don't treat that list as hymns to delete.
 
+**Quicker check: the sitemap (one request, 2026-11-05).** `https://www.hymnal.net/sitemaps/hymns-ns.xml` (about 4 MB) lists every New Songs page in all languages, with a `<lastmod>` date. Take the `/en/hymn/ns/<n>` entries, diff against the DB as above, and the missing numbers are the new songs (2026-11-05: NS1162-1166 and NS1171 were new; NS598 was an old gap). It costs one request instead of 25 index pages. `lastmod` says when a page changed on the site, but not what changed, so it cannot tell you whether an existing song's text needs re-syncing (that needs a fetch per song).
+
+**Fetching the missing ones: `ExtractNSMissing.groovy` (Gradle `runExtractNSMissing`).** It is the same loop as the range scripts, over an explicit list of numbers, with a 30 s pause after each song. Edit the list for the next sync (or copy the file). It runs on the current DB and does **not** reset it, but check that the Gradle task chain does not pull in `:sqlite:importSql` (add `--exclude-task :sqlite:importSql` if it does): an `importSql` would throw away anything not yet exported to `hymns.sql`, e.g. a sync of other hymns still in progress.
+```shell
+JAVA_HOME=<jdk17> ./gradlew :databaseProvisioner:runExtractNSMissing --exclude-task :sqlite:importSql
+```
+Same request limits as the New Tunes sync (a few dozen requests, then the site refuses the address; see that section). A run of 7 songs is about 20 requests and fits in one go. If a proxy or VPN is wanted, set it from outside (`JAVA_TOOL_OPTIONS="-Dhttps.proxyHost=... -Dhttps.proxyPort=..."`); the scripts themselves know nothing about it.
+
+**After the fetch (all of it, like the New Tunes):**
+1. Check the rows on a copy of the DB: category, stanzas, no empty text. (An NS hymn has no parent, so no `related`.) The staged sheets are in `databaseProvisioner/data/{pianoSvg,guitarSvg}/NS<n>.svg`: a real sheet, not an HTML page, not the same size as another.
+2. Copy the SVGs into `tools/svg-to-lilypond/svg/{pianoSvg,guitarSvg}/` and append the `NS<n>` rows of `databaseProvisioner/data/hymnalnet_links.tsv` to `tools/svg-to-lilypond/svg/hymnalnet_links.tsv` (one row per id, the last wins).
+3. `./gradlew :sqlite:exportSql`; `git diff --stat sqlite/hymns.sql` should show the new `NS` rows and their stanzas, and the SEQUENCE line.
+4. Convert with the `svg-to-lilypond` skill: `python3 tools/convert.py <the piano and guitar SVGs> -j 8` from `tools/svg-to-lilypond`; copy the accepted `build/ly/piano/<id>.ly` into `ly/piano/`; `ly_to_mei.py --all --out app/src/main/assets/sheetMei`; commit. A sheet with `unknown glyph ids` (2026-11-05: NS1166, a long sheet with a boxed "Chorus" and triplets) stays without `.ly`/`.mei`: the app shows its SVG; extending the glyph catalog is a separate job.
+
 After extraction: `Dao.save()` auto-maintains **reciprocal `Related` links** — if the newly-fetched (or re-provisioned) hymn has `parentHymn` set, saving it also adds its own ID into the parent's `related` set automatically (see `Dao.java`'s `save(HymnsEntity)`). So wiring a translation to its newly-added English parent is usually just: add `Related: NS<n>` to the translation's source line and re-run its owning `Provision*` script — no separate manual DB edit needed for the reciprocal side.
 
 ## Verifying a fix without building the app
