@@ -99,6 +99,14 @@ public class Dao {
         save(link);
     }
 
+    /** Deletes the links of a kind with a label (a run of an importer starts by removing its own rows, so it can be repeated). */
+    public void deleteLinks(String kind, String label) {
+        em.getTransaction().begin();
+        em.createNativeQuery("delete from link where kind = ?1 and label = ?2")
+                .setParameter(1, kind).setParameter(2, label).executeUpdate();
+        em.getTransaction().commit();
+    }
+
     public void addRelatedHymn(String parentHymn, String relatedToAdd) {
         if (parentHymn == null || parentHymn.isEmpty()) {
             System.out.println("Warning! no parent hymn! exiting");

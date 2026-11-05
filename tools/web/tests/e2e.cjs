@@ -621,18 +621,19 @@ async function search(page, text) {
       assert(await phone.page.isHidden('.lyrics-pane'), 'lyrics hidden');
       assert(phone.page.url().includes('tab=sheet'), 'URL has tab=sheet');
     });
-    await test('reading the lyrics down hides the tab strip; scrolling up brings it back', async () => {
+    await test('the tab strip stays at the top of the page and the page is the only scroller', async () => {
       await open(phone.page, '#/h/C38');
-      const away = () => phone.page.evaluate(() => document.body.classList.contains('tabs-away'));
-      const scroll = async (y) => { await phone.page.evaluate((v) => window.scrollTo(0, v), y); await phone.page.waitForTimeout(300); };
-      assert(!await away(), 'strip hidden at the top');
-      await scroll(400);
-      assert(await away(), 'strip still showing after scrolling down');
-      await scroll(370);
-      assert(!await away(), 'strip did not come back when scrolling up');
-      await scroll(500);
-      await scroll(5);
-      assert(!await away(), 'strip hidden at the top of the page');
+      await phone.page.evaluate(() => window.scrollTo(0, 600));
+      await phone.page.waitForTimeout(300);
+      await phone.page.evaluate(() => window.scrollTo(0, 560));
+      await phone.page.waitForTimeout(300);
+      const r = await phone.page.evaluate(() => ({
+        y: document.querySelector('.tabs').getBoundingClientRect().bottom,
+        away: document.body.classList.contains('tabs-away'),
+        pos: getComputedStyle(document.querySelector('.tabs')).position,
+        ov: getComputedStyle(document.querySelector('.lyrics-pane')).overflowY}));
+      assert(r.pos !== 'sticky' && r.y < 0 && !r.away, 'tab strip follows the page, not the screen');
+      assert(r.ov === 'visible', 'lyrics pane has its own scrollbar');
     });
     await test('swipe left opens the next hymn', async () => {
       await open(phone.page, '#/h/E8');

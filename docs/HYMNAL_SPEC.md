@@ -133,12 +133,12 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 | 20 | `F` | Farsi | `#673AB7` | `#B39DDB` | **right** (RTL) | yes | 329 |
 | 21 | `SK` | Slovak | `#9C27B0` | `#CE93D8` | left | yes | 360 |
 | 22 | `GK` | Greek | `#03A9F4` | `#4FC3F7` | left | yes | 124 |
-| 23 | `SW` | Kiswahili | `#00838F` | `#4DD0E1` | left | yes | 99 |
+| 23 | `SW` | Kiswahili | `#00838F` | `#4DD0E1` | left | yes | 101 |
 | 24 | `RUS` | Russian | `#1565C0` | `#64B5F6` | left | yes | 800 |
 | 25 | `BUR` | Burmese | `#2E7D32` | `#66BB6A` | left | yes | 706 |
 | 26 | `TA` | Tamil | `#546E7A` | `#90A4AE` | left | yes | 305 |
 | 27 | `UR` | Urdu | `#880E4F` | `#F06292` | **right** (RTL) | yes | 496 |
-| 28 | `KI` | Kikuyu | `#FF6F00` | `#FFB300` | left | yes | 79 |
+| 28 | `KI` | Kikuyu | `#FF6F00` | `#FFB300` | left | yes | 96 |
 | 29 | `POR` | Portuguese | `#33691E` | `#7CB342` | left | yes | 1360 |
 | 30 | `POY` | Portuguese Youth | `#33691E` | `#7CB342` | left | yes | 140 |
 | 31 | `POL` | Polish | `#5E35B1` | `#B39DDB` | left | yes | 424 |
@@ -1019,7 +1019,7 @@ first load small.
 | Swipe between hymns | horizontal pointer/touch gestures + ←/→ keys; prefetch neighbours |
 | Favorites and Settings (screens wider than a phone) | the bottom tab bar is for phones only; wider screens have a Favorites star and a Settings gear in the top bar |
 | Hymn heading (phones, tablets) | the subject (category · subcategory) is the heading, in a bigger size; the first line is left out of sight (stanza 1 shows it right below; it stays for screen readers and print). Wide screens show both |
-| Lyrics / Sheet music tab strip (phones) | slides away while scrolling down the lyrics, back on any scroll up or at the top of the page; the sheet hides its own bars separately |
+| Lyrics / Sheet music tab strip (phones) | fixed at the top of the page (scrolls away with it, does not reappear on scrolling up); the sheet hides its own bars separately |
 | Toasts / dialogs | lightweight in-page equivalents |
 
 ### 14.5 Offline and updates

@@ -290,15 +290,14 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 
 @media (min-width: 1080px) {
   .panes.two { display: grid; grid-template-columns: minmax(340px, 40%) 1fr; gap: 28px; align-items: start; }
-  .panes.two .lyrics-pane { position: sticky; top: calc(var(--top) + 16px); max-height: calc(100vh - var(--top) - 32px); overflow: auto; padding-right: 8px; scrollbar-width: thin; }
 }
 @media (max-width: 1079px) {
   .tabs {
-    display: flex; position: sticky; top: var(--top); z-index: 10; background: var(--paper); margin: 0 -20px 12px;
+    display: flex; background: var(--paper); margin: 0 -20px 12px;
     padding: 0 20px; border-bottom: 1px solid var(--line);
   }
   .tabs button {
-    flex: 1; max-width: 220px; padding: 12px 8px; border: 0; background: none; cursor: pointer; color: var(--muted);
+    flex: 1; padding: 12px 8px; border: 0; background: none; cursor: pointer; color: var(--muted);
     border-bottom: 3px solid transparent; font-weight: 600; font-size: 15px;
   }
   .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--g); }
@@ -331,11 +330,10 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 
 .sheet-pane { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: clip; }
 .sheet-bar {
-  position: sticky; top: var(--top); z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
   padding: 10px 12px; background: color-mix(in srgb, var(--surface) 92%, transparent);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
 }
-@media (max-width: 1079px) { .hymn .sheet-bar { top: calc(var(--top) + 47px); } }
 .sheet-bar .tb {
   display: inline-flex; align-items: center; justify-content: center; gap: 4px; height: 34px; min-width: 34px; padding: 0 12px;
   border: 1px solid var(--line-strong); border-radius: 17px; background: var(--surface); cursor: pointer; font-size: 14px;
@@ -362,6 +360,11 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   .sheet-bar { gap: 6px; padding: 8px; }
   .sheet-bar .tb { padding: 0 9px; }
   .transpose .key { min-width: 4.4em; }
+  /* two tidy rows: Piano/Guitar, key, zoom; then the staff and chord buttons, with the icon buttons on the right */
+  .sheet-bar > * { order: 2; }
+  .sheet-bar > .seg, .sheet-bar > .transpose, .sheet-bar > .zoom { order: 1; }
+  .sheet-bar > .grow { order: 3; }
+  .sheet-bar > .tb.icon { order: 4; }
   .sheet-host { padding: 12px 6px 20px; }
 }
 
@@ -669,14 +672,10 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 @media print { .same-tune { display: none; } }
 
 /* ---- more room for the sheet on phones: the bars slide away while scrolling down (body.bars-away, app.js) ---- */
-.topbar, .tabs, .sheet-bar, .tabbar { transition: transform .2s ease; }
-body.tabs-away .tabs { transform: translateY(calc(-100% - 2px)); }   /* reading the lyrics: only the tab strip (app.js) */
+.topbar, .tabbar { transition: transform .2s ease; }
 body.bars-away .tabbar { transform: translateY(100%); }
 body.bars-away .topbar { transform: translateY(-100%); }
-body.bars-away .tabs { transform: translateY(calc(-100% - var(--top) - env(safe-area-inset-top))); }
-body.bars-away .sheet-bar { transform: translateY(calc(-100% - var(--top) - 47px - env(safe-area-inset-top))); }
-body.bars-away.sheet-only .sheet-bar { transform: translateY(calc(-100% - var(--top) - env(safe-area-inset-top))); }
-@media print { body.bars-away .topbar, body.bars-away .sheet-bar { transform: none; } }
+@media print { body.bars-away .topbar { transform: none; } }
 /* phones on their side: slimmer bars */
 @media (orientation: landscape) and (max-height: 500px) {
   :root { --top: 50px; }
