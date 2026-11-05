@@ -244,7 +244,7 @@ JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runSyncNewTunes --excl
 **hymnal.net blocks an address that makes more than a few dozen requests in a short time** (2026-11-04: first
 "Connection refused", then "Remote host terminated the handshake", for an hour or more), however slow the pauses
 between requests are. So do a full sync (123 tunes in 2026-11) in batches of about 15 with 20 minutes or more between
-runs, and stop at the first refused connection. After a sync: copy the new SVGs from `databaseProvisioner/data/{pianoSvg,guitarSvg}`
+runs, and stop at the first refused connection. Measured 2026-11-05: the site refused connections after about 36 requests (~5 tunes) direct and after about 51 (~10 tunes) through a VPN address; one request is an index page, a tune page, or one of its two sheets. So the tool now pauses 30 s (`PAUSE_MS`) before every page, and a full sync runs as batches of 6 (`-Plimit=6`) with 45 minutes between them (3 hours after a block). After a sync: copy the new SVGs from `databaseProvisioner/data/{pianoSvg,guitarSvg}`
 into `tools/svg-to-lilypond/svg/`, merge the rows of `data/hymnalnet_links.tsv` into the tracked `hymnalnet_links.tsv`
 (drop duplicate rows), `exportSql`, then the `svg-to-lilypond` skill for `.ly`/`.mei`. hymnal.net serves no MIDI for New Tunes.
 

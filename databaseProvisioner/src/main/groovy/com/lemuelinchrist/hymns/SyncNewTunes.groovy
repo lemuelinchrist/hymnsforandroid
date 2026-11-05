@@ -36,7 +36,7 @@ import org.jsoup.Jsoup
  */
 class SyncNewTunes {
     static final String SUFFIX = " (New Tune)"
-    static final int PAUSE_MS = 10000
+    static final int PAUSE_MS = 30000
 
     static void main(String[] args) {
         Set<String> only = (args.length > 0 && args[0]) ? args[0].tokenize(',') as Set : null
