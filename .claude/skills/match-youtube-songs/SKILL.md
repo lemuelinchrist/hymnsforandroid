@@ -50,7 +50,7 @@ Pilot done 2026-11-03 on NYCYPCD (UC_1giUVT14MRXyEFtQZgmKQ, 267 songs, official 
    `python3 -m http.server 8765 --bind 127.0.0.1` (from `file://` YouTube refuses the embed) and give him
    `http://127.0.0.1:8765/review.html`. Video embedded on the left, lyrics of the title-matched candidates on the right;
    he ticks one (keys 1-3), types another hymn id or lyric words, or marks it *not in our database* (N, with a note: the
-   song to add later, keep these in the report), *video unavailable* (U, nothing to do) or skip (S); progress saves in
+   song to add later, keep these in the report), *video unavailable* (U, nothing to do), *not English* (E, for a later language) or skip (S); progress saves in
    his browser; **Export** gives a TSV (`Video, Title, Your hymn, Status, Note`) to paste back, then import the
    `hymn` rows as in step 7 and document the not-in-database ones. Not an artifact: artifact pages
    cannot embed YouTube. Lemuel found it much easier than the CSV (2026-11-04).
@@ -78,13 +78,18 @@ what is new. Run it whenever you want to know whether NYCYPCD released something
   link's own label instead of NYCYPCD, e.g. `NS10052  oRP-lXV_b9o  Howard Higashi`, the composer's own recording) and
   those in `tools/youtube-monitor/nycypcd_known.tsv` with a status: `not-in-database` (song to add to the hymnal later),
   `unavailable`, `duplicate` (dropped because its hymn already had a link, kept here so it is never reviewed again),
-  `other-language` (skipped until that language is added), `not-a-song`.
+  `other-language` (skipped until that language is added), `pending-translation` (a recording in another language whose
+  title matches a translated hymn exactly: listed in `nycypcd_pending_translations.tsv`, not imported until the translators have
+  checked it), `not-a-song`.
 - **Official channel**: checked 2026-11-05: nycypcd.org links to `youtube.com/user/nycypcd`, which is channel
   `UC_1giUVT14MRXyEFtQZgmKQ` (@NYCYPCD), whose videos point back to nycypcd.org ("Buy the CD").
 
 ### Steps for a sync
 1. Run the checker (above). New videos or tracks are printed with title and (for tracks) album.
-2. Match the new ones. Videos with captions: steps 3-5 of this skill. Releases tracks (no captions): by title against the first
+2. Match the new ones. For titles: `python3 -I tools/youtube-monitor/match_titles.py new.json out.tsv` (`new.json` from the checker's
+   `--json`): exact title + one hymn = `import` (no link yet) or `duplicate` (the hymn already has one); everything else is `review`.
+   A recording in another language goes on the **translated hymn itself** (S432, POR432...), not on its English parent, and is held
+   in `nycypcd_pending_translations.tsv` until the translators have checked it. Older notes: Videos with captions: steps 3-5 of this skill. Releases tracks (no captions): by title against the first
    stanza and chorus lines of all hymns (a scratch script; exact title = high, prefix = review), collapsing a hymn and its
    New Tune copy to the root hymn (`parent_hymn`). Non-English tracks can match hymns of that language's group, or its English
    parent through the hymn number in the title.

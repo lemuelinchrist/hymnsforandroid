@@ -4,7 +4,7 @@
 usage: python3 build_review.py <to_review.csv> <out.html>
 CSV columns (UTF-8, header row): Video (youtube watch url), Title, Status,
 "Possible hymns from the title (first line)" (entries like `NS868 (IT IS ...); E12 (...)`), "Your hymn (fill in)".
-Lyrics of the E, NS, BF and CH hymns come from app/src/main/assets/hymns.sqlite (children with no own stanzas
+Lyrics of the E, NS, BF and CH hymns and of every candidate hymn (any language) come from app/src/main/assets/hymns.sqlite (children with no own stanzas
 use their parent's). Serve the html over http (python3 -m http.server 8765 --bind 127.0.0.1): from file://
 YouTube refuses the embed (error 153). Answers (TSV: Video, Title, Your hymn) come from the page's Export button.
 """
@@ -12,7 +12,10 @@ import csv, json, re, sqlite3, sys, pathlib
 here = pathlib.Path(__file__).resolve().parent
 root = here.parents[3]
 db = sqlite3.connect(root / 'app/src/main/assets/hymns.sqlite')
-hy = dict(db.execute("select _id,parent_hymn from hymns where hymn_group in ('E','NS','BF','CH')"))
+# lyrics of the E, NS, BF, CH hymns (for typing another id) and of every hymn named as a candidate (any language)
+rows_csv = list(csv.DictReader(open(sys.argv[1], encoding='utf-8-sig', newline='')))
+cand_ids = {c for r in rows_csv for c in re.findall(r'\b([A-Z]{1,3}\d+) \(', r['Possible hymns from the title (first line)'])}
+hy = {h: p for h, g, p in db.execute('select _id,hymn_group,parent_hymn from hymns') if g in ('E', 'NS', 'BF', 'CH') or h in cand_ids}
 def lyrics(h):
     q = "select no,text from stanza where parent_hymn=? order by n_order"
     rows = db.execute(q, (h,)).fetchall()
@@ -21,10 +24,10 @@ def lyrics(h):
     return [[n, re.sub(r'<br\s*/?>', '\n', t or '')] for n, t in rows]
 L = {h: v for h in hy if (v := lyrics(h))}
 rows = []
-with open(sys.argv[1], encoding='utf-8-sig', newline='') as f:
-    for r in csv.DictReader(f):
+if True:
+    for r in rows_csv:
         vid = re.search(r'v=([\w-]+)', r['Video']).group(1)
-        cands = re.findall(r'\b([A-Z]{1,2}\d+) \(', r['Possible hymns from the title (first line)'])
+        cands = re.findall(r'\b([A-Z]{1,3}\d+) \(', r['Possible hymns from the title (first line)'])
         rows.append({'v': vid, 't': r['Title'], 'c': cands})
 html = (here / 'review_template.html').read_text(encoding='utf-8')
 html = html.replace('__ROWS__', json.dumps(rows, ensure_ascii=False)).replace('__LYR__', json.dumps(L, ensure_ascii=False, separators=(',', ':')))

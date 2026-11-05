@@ -10,7 +10,8 @@ so a new album or a missed song shows up. It lists the channel with `yt-dlp --fl
 `--releases` also lists the Releases tab (albums in many languages, audio-only uploads that are not in the Videos tab) and
 caches its tracks in `nycypcd_releases.tsv`; without it only the Videos tab is checked. A third column in
 `NycypcdYoutube.txt` is the label of that link instead of NYCYPCD. Statuses in `nycypcd_known.tsv`: `not-in-database`,
-`unavailable`, `duplicate` (hymn already had a link), `other-language`, `not-a-song`.
+`unavailable`, `duplicate` (hymn already had a link), `other-language`, `pending-translation` (see `nycypcd_pending_translations.tsv`), `not-a-song`.
+`match_titles.py` matches the NEW ones to hymns by title (see its header).
 
 Exit 0 = all accounted for, 1 = new videos listed, 2 = channel not listable. New videos go through the
 `match-youtube-songs` skill; after the review add them to `NycypcdYoutube.txt` or `nycypcd_known.tsv`.
