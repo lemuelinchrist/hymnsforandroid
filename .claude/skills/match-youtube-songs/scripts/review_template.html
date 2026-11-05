@@ -42,11 +42,11 @@ textarea{width:100%;height:240px;font:12px monospace}
 <p><button id="cp" class="pri">Copy</button> <button id="dl">Download</button></p><textarea id="out" readonly></textarea></div>
 <script>
 const ROWS=__ROWS__, LYR=__LYR__;
-const KEY='nycypcd-review-v1';
+const KEY='review-'+(h=>{for(var k=0,x=ROWS.map(r=>r.v).join();k<x.length;k++)h=Math.imul(h,31)+x.charCodeAt(k)|0;return (h>>>0).toString(36)})(7); // one saved state per video list, so a new list does not load an old one's answers
 let ans={};try{ans=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 let notes={};try{notes=JSON.parse(localStorage.getItem(KEY+'-notes')||'{}')}catch(e){}
 const SPECIAL=['SKIP','NOTFOUND','UNAV'];
-let i=0;try{i=+localStorage.getItem(KEY+'-i')||0}catch(e){}
+let i=0;try{i=+localStorage.getItem(KEY+'-i')||0}catch(e){}if(!(i>=0&&i<ROWS.length))i=0;
 const $=s=>document.querySelector(s);
 const norm=s=>s.toUpperCase().replace(/\s+/g,'');
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ans));localStorage.setItem(KEY+'-i',i);localStorage.setItem(KEY+'-notes',JSON.stringify(notes))}catch(e){}};

@@ -12,7 +12,7 @@ is delegated to `agy` on Lemuel's Antigravity quota (see the memory note "Delega
 and reads the final report; never read the captions or lyrics yourself. Nothing is imported before Lemuel has seen the report.
 
 Pilot done 2026-11-03 on NYCYPCD (UC_1giUVT14MRXyEFtQZgmKQ, 267 songs, official channel of a publisher of Recovery songs):
-5 of 5 songs matched at high confidence with `gemini-3.8-flash-low`, 16-80 s and 30-50k tokens each. Full run not done yet.
+5 of 5 songs matched at high confidence with `gemini-3.8-flash-low`, 16-80 s and 30-50k tokens each. The full run of the Videos tab was done 2026-11-04 (245 links imported); the Releases tab was added 2026-11-05 (see "Syncing the NYCYPCD channel").
 
 ## Steps
 
@@ -57,6 +57,57 @@ Pilot done 2026-11-03 on NYCYPCD (UC_1giUVT14MRXyEFtQZgmKQ, 267 songs, official 
 7. **Import** (after his OK; done for NYCYPCD 2026-11-04: `ImportNycypcdYoutube.groovy` reads `NycypcdYoutube.txt`, `hymn id TAB video id`, label NYCYPCD, Gradle `runImportNycypcdYoutube`; copy it for the next channel): a Groovy script in `databaseProvisioner` (like `YoutubePiano`) that saves `LinkEntity`
    rows with `dao.saveLink(hymnId, "youtube", url, order)`, label = album or channel name if wanted; then the usual run
    in one Gradle call (`:sqlite:exportSql`), docs, and the emulator check.
+
+## Syncing the NYCYPCD channel (new albums, missed songs)
+
+`tools/youtube-monitor/check_channel.py` compares the channel with everything the hymnal has accounted for and lists
+what is new. Run it whenever you want to know whether NYCYPCD released something (an always-on agent could run it weekly):
+
+    python3 -I tools/youtube-monitor/check_channel.py --releases --ytdlp <venv>/bin/yt-dlp
+
+- **Two places hold the channel's songs.** The **Videos tab** (267 videos, full videos) and the **Releases tab** (57 albums,
+  481 tracks, in many languages: English, Spanish, Portuguese, French, Czech/Slovak, Russian). The Releases tracks are
+  auto-generated "Release - Topic" audio uploads, **not** in the Videos tab, with **no captions and no language field**:
+  matching them is by title only (a track titled like a hymn's first or chorus line; some titles carry the hymn number,
+  e.g. "(Hino 1229)", "Himnos 383"). Without `--releases` the script checks the Videos tab only (one request).
+- **The RSS feed does not work** (404). The script uses `yt-dlp --flat-playlist` on the `/videos` and `/releases` tabs;
+  `--releases` lists each album with a 4 s pause and caches the tracks in `tools/youtube-monitor/nycypcd_releases.tsv`
+  (resumable; delete it to refresh).
+- **What counts as accounted for** (the script prints the rest as NEW, exit code 1): the video ids in
+  `databaseProvisioner/src/main/resources/NycypcdYoutube.txt` (`hymn id TAB video id`, matched; a third column is the
+  link's own label instead of NYCYPCD, e.g. `NS10052  oRP-lXV_b9o  Howard Higashi`, the composer's own recording) and
+  those in `tools/youtube-monitor/nycypcd_known.tsv` with a status: `not-in-database` (song to add to the hymnal later),
+  `unavailable`, `duplicate` (dropped because its hymn already had a link, kept here so it is never reviewed again),
+  `other-language` (skipped until that language is added), `not-a-song`.
+- **Official channel**: checked 2026-11-05: nycypcd.org links to `youtube.com/user/nycypcd`, which is channel
+  `UC_1giUVT14MRXyEFtQZgmKQ` (@NYCYPCD), whose videos point back to nycypcd.org ("Buy the CD").
+
+### Steps for a sync
+1. Run the checker (above). New videos or tracks are printed with title and (for tracks) album.
+2. Match the new ones. Videos with captions: steps 3-5 of this skill. Releases tracks (no captions): by title against the first
+   stanza and chorus lines of all hymns (a scratch script; exact title = high, prefix = review), collapsing a hymn and its
+   New Tune copy to the root hymn (`parent_hymn`). Non-English tracks can match hymns of that language's group, or its English
+   parent through the hymn number in the title.
+3. Review page (step 6b) for everything that is not an exact match. **Build it from a new work folder**; the page keeps
+   answers in the browser per video list (since 2026-11-05; before, one fixed key made a new list crash with an empty page
+   when an old position was saved). Lemuel reads **Export** (or the answers can be read from the page's `ans` and `notes`
+   variables with the Chrome tool).
+4. Apply his answers:
+   - a hymn that **has no NYCYPCD link yet**: add `hymn id TAB video id` to `NycypcdYoutube.txt`; several videos for one hymn
+     are fine (order 1, 2, ...), give a recording by someone else its own label in a third column;
+   - a hymn that **already has a link**: drop the new one and record the video id in `nycypcd_known.tsv` as `duplicate`, so
+     the next sync does not ask again (unless Lemuel says to keep both, as for the composer's own recording);
+   - *not in our database* -> `not-in-database` (note the song to add later); *unavailable* -> `unavailable`; skipped ones
+     (other language) -> `other-language`.
+5. Import and export in one Gradle call from WSL: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql`
+   (about 2 minutes; the import resets the database from `hymns.sql` first and deletes the NYCYPCD rows, so it is re-runnable).
+   Check `select count(*) from link where kind='youtube' and label='NYCYPCD'` and `pragma integrity_check`, run the checker
+   again (the new ones must be gone from NEW) and commit `NycypcdYoutube.txt`, `nycypcd_known.tsv` and `sqlite/hymns.sql`.
+6. In the app the hymn page's "LISTEN AND LINKS" card shows each link by its label; two links with the same label read
+   "NYCYPCD ↗ · NYCYPCD ↗", so give a second recording a distinct label.
+
+Status 2026-11-05: Videos tab and the English Releases tracks that Lemuel reviewed are imported (264 links). Still NEW: the
+exact-title tracks and the non-English ones that were not sent to review (the monitor lists them).
 
 ## Traps
 - Titles are song names, not hymn numbers; several hymns share a first line (a hymn and its Be Filled / New Songs copy):
