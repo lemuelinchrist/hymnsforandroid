@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 6.47\mm
+  top-margin = 9.81\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,10 +25,10 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.82
+    \vspace #1.16
   }
-  system-system-spacing = #'((basic-distance . 12.58) (minimum-distance . 12.58) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 14.98) (minimum-distance . 14.98) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.11) (minimum-distance . 12.11) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 15.01) (minimum-distance . 15.01) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
@@ -98,7 +98,7 @@ verseOne = \lyricmode {
   \fill-line {
     \null
     \line { \left-column {
-      \line { \bold "2." \column { "“When through fiery trials thy pathway shall lie," "My grace, all sufficient, shall be thy supply;" "The flame shall not hurt thee; I only design" "Thy dross to consume, and thy gold to refine.”" \translate #'(0.00 . -0.49) "“E’en down to old age all My people shall prove" \translate #'(0.00 . -0.49) "My sovereign, eternal, unchangeable love;" \translate #'(0.00 . -0.49) "And then, when grey hairs shall their temples adorn," \translate #'(0.00 . -0.49) "Like lambs they shall still in My bosom be borne.”" \translate #'(0.00 . -0.97) "“The soul that on Jesus hath leaned for repose," \translate #'(0.00 . -0.97) "I will not, I will not desert to his foes;" \translate #'(0.00 . -0.97) "That soul, though all hell should endeavor to shake," \translate #'(0.00 . -0.97) "I’ll never, no, never, no, never forsake!”" } }
+      \line { \bold "2." \column { "“When through fiery trials thy pathway shall lie," "My grace, all sufficient, shall be thy supply;" "The flame shall not hurt thee; I only design" "Thy dross to consume, and thy gold to refine.”" \translate #'(0.00 . -0.48) "“E’en down to old age all My people shall prove" \translate #'(0.00 . -0.48) "My sovereign, eternal, unchangeable love;" \translate #'(0.00 . -0.48) "And then, when grey hairs shall their temples adorn," \translate #'(0.00 . -0.48) "Like lambs they shall still in My bosom be borne.”" \translate #'(0.00 . -0.95) "“The soul that on Jesus hath leaned for repose," \translate #'(0.00 . -0.95) "I will not, I will not desert to his foes;" \translate #'(0.00 . -0.95) "That soul, though all hell should endeavor to shake," \translate #'(0.00 . -0.95) "I’ll never, no, never, no, never forsake!”" } }
     } \hspace #1.1 }
     \null
   }

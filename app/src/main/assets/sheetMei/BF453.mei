@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">I know not what awaits me (Alternate) (New Tune)</title>
-<title type="subordinate">Comfort in Trials—By Trusting the Lord</title>
+<title type="subordinate">Comfort in Trials — By Trusting the Lord</title>
 </titleStmt><pubStmt><identifier type="hymn">BF453</identifier><identifier type="number">711b</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
@@ -22,10 +22,10 @@
 <beam>
 <note xml:id="n5" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
-<note xml:id="n6" pname="f" oct="4" dur="8"/>
-</beam>
-<note xml:id="n7" pname="f" oct="4" dur="4">
+<note xml:id="n6" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">waits</syl></verse></note>
+</beam>
+<note xml:id="n7" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n8" pname="e" oct="4" dur="8">
 <verse n="1"><syl>me,</syl></verse></note>
@@ -171,7 +171,7 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<slur startid="#n50" endid="#n52"/>
+<tie startid="#n50" endid="#n51"/>
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="f" oct="4" dur="1"/>

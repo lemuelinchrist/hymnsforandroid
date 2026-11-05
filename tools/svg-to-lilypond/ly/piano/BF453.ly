@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.88
+    \vspace #1.10
   }
-  system-system-spacing = #'((basic-distance . 12.76) (minimum-distance . 12.76) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.26) (minimum-distance . 12.26) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -35,7 +35,7 @@
 
 \header {
   title = "I know not what awaits me (Alternate) (New Tune)"
-  subtitle = "Comfort in Trials—By Trusting the Lord"
+  subtitle = "Comfort in Trials — By Trusting the Lord"
   opus = "711b"
 }
 
@@ -49,7 +49,7 @@ global = {
 melody = {
   \clef treble
   \global
-  c'8 a'4 a'4 | g'4 f'8[ f'8~] f'4 e'8([ f'8~] | f'2.) f'4 | g'4 a'4 g'4 f'8[ f'8~] \break | f'4. c'8 a'4 c''4 | bes'8 a'4 g'8 g'4 f'8[ f'8~] | f'2. f'4 | g'4 a'4 g'4 f'8[ f'8~] \break | f'4. c'8 a'4 c''4 | bes'4 a'8[ g'8~] g'4 f'8[ f'8~] | f'2. f'4 | g'4 a'4 g'4 f'8[ f'8(] | f'1~ | f'1) \break | r2^\markup { \box \bold "Chorus" } a'8[ bes'8] c''4 | c''8( bes'4) bes'8( a'4) a'4 | a'4( g'8)[ f'8~(] f'2~ | f'1) \break | r4. c'8 a'4 c''4 | c''8( bes'4.~ bes'4) a'4 | a'4( g'8[ f'8~] f'2~ | f'1) \break | r4. c'8 a'4 c''4 | c''8( bes'4) bes'8( a'4) a'4 | a'4 g'8[ f'8~(] f'2~ | f'2.) f'4 \break | f'2. f'4 | e'2. f'4~ | f'4 f'2.~ | f'2. f'4 \break | f'2. f'4 | e'2. f'4~ | f'4 f'2.~ | f'2. r4 \bar "|."
+  c'8 a'4 a'4 | g'4 f'8[ f'8~] f'4 e'8([ f'8~] | f'2.) f'4 | g'4 a'4 g'4 f'8[ f'8~] \break | f'4. c'8 a'4 c''4 | bes'8 a'4 g'8 g'4 f'8[ f'8~] | f'2. f'4 | g'4 a'4 g'4 f'8[ f'8~] \break | f'4. c'8 a'4 c''4 | bes'4 a'8[ g'8~] g'4 f'8[ f'8~] | f'2. f'4 | g'4 a'4 g'4 f'8[ f'8~] | f'1~ | f'1 \break | r2^\markup { \box \bold "Chorus" } a'8[ bes'8] c''4 | c''8( bes'4) bes'8( a'4) a'4 | a'4( g'8)[ f'8~(] f'2~ | f'1) \break | r4. c'8 a'4 c''4 | c''8( bes'4.~ bes'4) a'4 | a'4( g'8[ f'8~] f'2~ | f'1) \break | r4. c'8 a'4 c''4 | c''8( bes'4) bes'8( a'4) a'4 | a'4 g'8[ f'8~(] f'2~ | f'2.) f'4 \break | f'2. f'4 | e'2. f'4~ | f'4 f'2.~ | f'2. f'4 \break | f'2. f'4 | e'2. f'4~ | f'4 f'2.~ | f'2. r4 \bar "|."
 }
 
 harmonies = \chordmode {
@@ -58,7 +58,7 @@ harmonies = \chordmode {
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "I" "know" "not" "what" "a" -- _ "waits" "me," _ _ "God" "kind" -- "ly" "veils" "my" "eyes," _ "And" "o’er" "each" "step" "of" "my" "on" -- "ward" "way" _ "He" "makes" "new" "scenes" "to" "rise;" _ "And" "ev" -- "ery" "joy" "He" _ "sends" "me" _ "comes" "A" "sweet" "and" "glad" "sur" -- "prise." _ _ \set stanza = "(C)" "Where" "He" "may" "lead" _ "me" _ "I’ll" "fol" -- _ "low," _ _ "My" "trust" "in" "Him" _ _ "re" -- "pose;" _ _ _ _ "And" "ev" -- "ery" "ho" -- _ "ur" _ "in" "per" -- "fect" _ "peace," _ "I’ll" "sing," "“He" "knows," "He" _ "knows”," _ "I’ll" "sing," "“He" "knows," "He" _ "knows.”" _
+  \set ignoreMelismata = ##t \set stanza = "1." "I" "know" "not" "what" "a" -- "waits" _ "me," _ _ "God" "kind" -- "ly" "veils" "my" "eyes," _ "And" "o’er" "each" "step" "of" "my" "on" -- "ward" "way" _ "He" "makes" "new" "scenes" "to" "rise;" _ "And" "ev" -- "ery" "joy" "He" _ "sends" "me" _ "comes" "A" "sweet" "and" "glad" "sur" -- "prise." _ _ \set stanza = "(C)" "Where" "He" "may" "lead" _ "me" _ "I’ll" "fol" -- _ "low," _ _ "My" "trust" "in" "Him" _ _ "re" -- "pose;" _ _ _ _ "And" "ev" -- "ery" "ho" -- _ "ur" _ "in" "per" -- "fect" _ "peace," _ "I’ll" "sing," "“He" "knows," "He" _ "knows”," _ "I’ll" "sing," "“He" "knows," "He" _ "knows.”" _
 }
 
 \score {

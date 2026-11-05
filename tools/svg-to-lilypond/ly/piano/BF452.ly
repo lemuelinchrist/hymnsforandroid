@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,17 +25,17 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.82
+    \vspace #1.18
   }
-  system-system-spacing = #'((basic-distance . 12.59) (minimum-distance . 12.59) (padding . 0) (stretchability . 0))
-  score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.12) (minimum-distance . 12.12) (padding . 0) (stretchability . 0))
+  score-markup-spacing = #'((basic-distance . 15.01) (minimum-distance . 15.01) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
 }
 
 \header {
   title = "Unto Him that hath Thou givest (Alternate) (New Tune)"
-  subtitle = "Longings—For Growth in Christ"
+  subtitle = "Longings — For Growth in Christ"
   opus = "394b"
 }
 
@@ -54,7 +54,7 @@ melody = {
 
 harmonies = \chordmode {
   \global
-  ees8 s8 | s4. s8 s8 s8 | c4:m s4 s8 s8 | f4.:m s8 s8 s8 | bes2 bes8:7/aes s8 | ees4./g s8 s8 s8 | aes4 s4 s8 s8 | f4./a s8 f8 s8 | bes2 ees8/g s8 | aes4. s8 s8 s8 | ees4/g s4 ees8 s8 | g4. s8 s8 s8 | c2:m ees8/bes s8 | aes4. s8 bes8:7/aes s8 | ees4/g s4 c8:m s8 | aes4. s8 bes8:7 s8 | ees4 aes2/ees | ees2 s4 |
+  ees8 s8 | s4. s8 s8 s8 | c4:m s4 s8 s8 | f4.:m s8 s8 s8 | bes2 bes8:7/aes s8 | ees4./g s8 s8 s8 | aes4 s4 s8 s8 | f4./a s8 f8 s8 | bes2 ees8/g s8 | aes4. s8 s8 s8 | ees4/g s4 ees8 s8 | g4. s8 s8 s8 | c2:m ees8/bes s8 | aes4. s8 bes8:7/aes s8 | ees4/g s4 c8:m s8 | aes4. s8 bes8:7 s8 | ees2 aes4/ees | ees2 s4 |
 }
 
 verseOne = \lyricmode {
@@ -102,9 +102,9 @@ verseOne = \lyricmode {
       \vspace #0.88
       \line { \bold "3." \column { "Let me grow by sun and shower," "Every moment water me;" "Make me really, hour by hour," "More and more conformed to Thee," "That Thy loving eye may trace" "Day by day my growth in grace." } }
       \vspace #0.88
-      \line { \bold "4." \column { "From Thy fulness grace outpouring," "Show me ever greater things;" "Raise me higher, sunward soaring," "Mounting as on eagle-wings." "By the brightness of Thy face," "Ever let me grow in grace." } }
+      \line { \bold "4." \column { "From Thy fullness grace outpouring," "Show me ever greater things;" "Raise me higher, sunward soaring," "Mounting as on eagle-wings." "By the brightness of Thy face," "Ever let me grow in grace." } }
       \vspace #0.88
-      \line { \bold "5." \column { "Let me, then, be always growing," "Never, never standing still," "Listening, learning, better knowing" "Thee and Thy most blessed will." "Till I win the glorious race," "Daily let me grow in grace." \translate #'(3.24 . -1.50) "(Repeat the last two lines of each stanza)" } }
+      \line { \bold "5." \column { "Let me, then, be always growing," "Never, never standing still," "Listening, learning, better knowing" "Thee and Thy most blessed will." "Till I win the glorious race," "Daily let me grow in grace." \translate #'(0.00 . -2.00) "Repeat the last two lines of each stanza" } }
     } \hspace #1.1 }
     \null
   }
