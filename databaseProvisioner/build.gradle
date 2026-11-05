@@ -165,6 +165,11 @@ task runExtractNS1092To1161(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task runExtractNSMissing(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.ExtractNSMissing'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 task runExtractNS613To614(type: JavaExec) {
     mainClass = 'com.lemuelinchrist.hymns.ExtractNS613To614'
     classpath = sourceSets.main.runtimeClasspath
