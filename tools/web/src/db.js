@@ -190,6 +190,13 @@ export function links(hymnObj, kind) {
     .map((x) => ({url: (x.url || '').trim(), label: (x.label || '').trim()})).filter((x) => x.url);
 }
 
+// the New Tunes of a hymn (the hymns that have it as parent and are marked new_tune), in number order, each with its own
+// recordings: [{id, links: [{url, label}]}] (HymnsDao.getNewTunes)
+export function newTunes(hymnObj) {
+  return rows("select _id as id from hymns where parent_hymn = ? and new_tune = 1 and hymn_group = 'BF' order by cast(no as integer)",
+    [hymnObj.id]).map((r) => ({id: r.id, links: links({id: r.id}, 'youtube').concat(links({id: r.id}, 'soundcloud'))}));
+}
+
 // A hymn with no YouTube or SoundCloud link of its own shows those of the nearest hymn above it that has some (its
 // parent, the parent's parent, ...): {from, kinds: {youtube: [...], soundcloud: [...]}}, or null (HymnsDao.getLinkedAncestor)
 export function inheritedLinks(hymnObj) {

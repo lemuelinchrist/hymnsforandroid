@@ -663,11 +663,18 @@ function linksNode(hymn) {
     return list.length ? h('span', {class: 'videos'}, list.map((v, i) => [i ? ' · ' : '',
       h('a', {href: v.url, target: '_blank', rel: 'noopener'}, text(v, i) + ' ↗')])) : null;
   };
+  const tunes = DB.newTunes(hymn);
+  const recordings = tunes.flatMap((t) => t.links.map((v) => ({url: v.url, text: v.label ? t.id + ' – ' + v.label : t.id})));
   const rows = [
     ['Piano videos', videos.length ? h('span', {class: 'videos'}, videos.map((v, i) => [i ? ' · ' : '',
       h('a', {href: v.url, target: '_blank', rel: 'noopener'}, (v.label || 'Video') + ' ↗')])) : null],
     ['YouTube', ownLinks('youtube')],
     ['SoundCloud', ownLinks('soundcloud')],
+    // another tune for this hymn's words: the tunes themselves (open in the app), then their recordings
+    ['New tunes', tunes.length ? h('span', {class: 'videos'}, tunes.map((t, i) => [i ? ' · ' : '',
+      h('a', {href: '#/h/' + t.id}, t.id)])) : null],
+    ['New tune recordings', recordings.length ? h('span', {class: 'videos'}, recordings.map((r, i) => [i ? ' · ' : '',
+      h('a', {href: r.url, target: '_blank', rel: 'noopener'}, r.text + ' ↗')])) : null],
   ].filter(([, v]) => v);
   if (!rows.length) return null;
   return h('section', {class: 'card links-card'},

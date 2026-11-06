@@ -105,7 +105,7 @@ sheet side by side.
   in the header.
 - "In other languages" lists every related hymn by language name, so a translation is one tap away.
   Switching keeps the current tab (lyrics or sheet).
-- Footer: author, composer, meter, key, time, then a "Listen and links" card with the hymn's piano videos when it has them (the Android app's card).
+- Footer: author, composer, meter, key, time, then a "Listen and links" card with the hymn's piano videos when it has them, and its New Tunes (links to them) with their recordings (the Android app's card).
 - If there is no sheet (no MEI for the hymn or its parent), the Sheet tab is hidden and the footer says
   there is no sheet music.
 

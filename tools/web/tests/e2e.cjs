@@ -285,7 +285,7 @@ async function search(page, text) {
       assert(await page.locator('.page-title').textContent().then((t) => t.includes('Favorites')), 'not the favorites page');
     });
     await test('piano videos: E1 has one, E12 two in order, E395 its own and a NYCYPCD one, C1 borrows its parent\'s, E35 has none', async () => {
-      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos a').evaluateAll((a) => a.map((x) => x.textContent + ' ' + x.href)); };
+      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href)); };
       assert((await links('E1')).join() === '1st tune ↗ https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await links('E1'));
       const e12 = await links('E12');
       assert(e12.length === 2 && e12[0].startsWith('1st tune') && e12[1].startsWith('2nd tune') && e12.every((x) => x.includes('https://www.youtube.com/watch?v=')), 'E12: ' + e12);
@@ -297,7 +297,20 @@ async function search(page, text) {
       assert(await page.locator('.links-card').count() === 0, 'E35 should have no links card');
       await open(page, '#/h/E12');
       const card = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
-      assert(card === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗', 'the card reads: ' + card);
+      assert(card === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455', 'the card reads: ' + card);
+    });
+    await test('new tunes: a hymn lists its New Tunes (open in the app) and their recordings in the links card', async () => {
+      await open(page, '#/h/E12');
+      const card = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
+      assert(/New tunes BF171 · BF455/.test(card), 'E12 card: ' + card);
+      assert(!card.includes('New tune recordings'), 'E12 has no recordings of its new tunes: ' + card);
+      await page.click('.links-card a[href="#/h/BF455"]');
+      await page.waitForURL(/#\/h\/BF455/);
+      await open(page, '#/h/E1079');
+      const card2 = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
+      assert(/New tunes BF94/.test(card2) && /New tune recordings BF94 – NYCYPCD ↗/.test(card2), 'E1079 card: ' + card2);
+      await open(page, '#/h/BF455');
+      assert(!(await page.locator('.links-card').innerText().catch(() => '')).includes('New tunes'), 'a New Tune lists no New Tunes');
     });
     await test('a hymn without sheet music has no Sheet tab and says so (C206)', async () => {
       await open(page, '#/h/C206');

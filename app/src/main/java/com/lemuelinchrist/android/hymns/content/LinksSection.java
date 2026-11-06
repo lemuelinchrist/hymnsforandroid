@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.HymnGroup;
+import com.lemuelinchrist.android.hymns.HymnSwitcher;
+import com.lemuelinchrist.android.hymns.HymnsActivity;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
@@ -31,6 +33,7 @@ import java.util.ArrayList;
  */
 public class LinksSection extends ContentComponent<View> {
     private static final String ARROW = " \u2197";
+    private static final String HYMN = "hymn:";   // an address that is a hymn of the app, not a web page
 
     private final TableLayout table;
     private final float size;
@@ -50,6 +53,8 @@ public class LinksSection extends ContentComponent<View> {
         ArrayList<String[]> videos = new ArrayList<>();
         ArrayList<String[]> youtube = new ArrayList<>();
         ArrayList<String[]> soundcloud = new ArrayList<>();
+        ArrayList<String[]> newTunes = new ArrayList<>();         // {id, "hymn:" + id}
+        ArrayList<String[]> newTuneRecordings = new ArrayList<>(); // {"BF455 – label", address}
         HymnsDao dao = new HymnsDao(context);
         try {
             dao.open();
@@ -64,6 +69,15 @@ public class LinksSection extends ContentComponent<View> {
                     boolean sameLanguage = language.equals(hymn.getHymnGroup().getLanguage());
                     youtube = inherited(dao.getLinks(ancestor, "youtube"), sameLanguage ? null : language);
                     soundcloud = inherited(dao.getLinks(ancestor, "soundcloud"), sameLanguage ? null : language);
+                }
+            }
+            for (String id : dao.getNewTunes(hymn.getHymnId())) {
+                newTunes.add(new String[]{id, HYMN + id});
+                ArrayList<String[]> recordings = dao.getLinks(id, "youtube");
+                recordings.addAll(dao.getLinks(id, "soundcloud"));
+                for (String[] r : recordings) {
+                    String label = r[0] == null ? "" : r[0].trim();
+                    newTuneRecordings.add(new String[]{label.isEmpty() ? id : id + " \u2013 " + label, r[1].trim()});
                 }
             }
         } catch (Exception e) {
@@ -81,6 +95,9 @@ public class LinksSection extends ContentComponent<View> {
         }
         addLinks("YouTube", youtube);
         addLinks("SoundCloud", soundcloud);
+        // another tune for this hymn's words: the tunes themselves (open in the app), then their recordings
+        if (!newTunes.isEmpty()) addRow("New tunes", newTunes.toArray(new String[0][]));
+        if (!newTuneRecordings.isEmpty()) addRow("New tune recordings", newTuneRecordings.toArray(new String[0][]));
         if (table.getChildCount() == 0) view.setVisibility(View.GONE);
     }
 
@@ -130,12 +147,18 @@ public class LinksSection extends ContentComponent<View> {
         for (int i = 0; i < parts.length; i++) {
             if (i > 0) text.append(" \u00b7 ");
             int start = text.length();
-            text.append(parts[i][0]).append(ARROW);
             final String address = parts[i][1];
+            final boolean inApp = address.startsWith(HYMN);
+            text.append(parts[i][0]).append(inApp ? "" : ARROW);
             text.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(@NonNull View widget) {
-                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(address)));
+                    if (inApp) {
+                        HymnSwitcher hymnSwitcher = HymnsActivity.getHymnSwitcher();
+                        if (hymnSwitcher != null) hymnSwitcher.switchToRelatedHymn(address.substring(HYMN.length()));
+                    } else {
+                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(address)));
+                    }
                 }
 
                 @Override

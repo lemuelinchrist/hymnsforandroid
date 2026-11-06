@@ -185,6 +185,18 @@ public class HymnsDao {
         }
     }
 
+    /** The ids of the New Tunes of a hymn (the hymns that have it as parent and are marked new_tune), in number order. */
+    public ArrayList<String> getNewTunes(String hymnId) {
+        ArrayList<String> ids = new ArrayList<>();
+        try (Cursor cursor = database.rawQuery("select _id from hymns where parent_hymn = ? and new_tune = 1 and hymn_group = 'BF'"
+                + " order by cast(no as integer)", new String[]{hymnId})) {
+            while (cursor.moveToNext()) ids.add(cursor.getString(0));
+        } catch (Exception e) {
+            // none then
+        }
+        return ids;
+    }
+
     /** The links of one kind of a hymn, else those of its parent (a translation shows its parent's piano videos). */
     public ArrayList<String[]> getLinksOrParent(String hymnId, String parentId, String kind) {
         ArrayList<String[]> links = getLinks(hymnId, kind);

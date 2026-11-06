@@ -345,6 +345,10 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    language), each inherited link is labelled with that language, so it is not taken for a recording in the hymn's
    own: `English ↗`, `English 1 ↗ · English 2 ↗`, `English – <label> ↗`. In the same language (a Be Filled hymn from
    an English hymn) the labels are shown as they are.
+   Last come the hymn's New Tunes (the hymns whose `parent_hymn` is this hymn, `hymn_group` `BF` and `new_tune` = 1, in
+   number order): a `New tunes` row with each as its ID (`BF455 · BF501`), a tap opens that hymn in the app, and, only
+   when one has a `youtube` or `soundcloud` link of its own, a `New tune recordings` row with each such link as
+   `<ID> ↗` (`<ID> – <label> ↗` when it has a label). A New Tune itself, or a hymn with none, shows neither row.
    (Until v5.8.3 these were stanzas named `YouTube Link` / `SoundCloud Link`; there are none any more.) (The web app has the same card under its details, and opens the stored `watch`
    address as it is; its card is not drawn when there is no row, and not printed.) More kinds of link can be added later as other `kind`s of the `link` table.
 
