@@ -24,6 +24,11 @@
          the drawer colour, its name the accent with this share of black over it -->
     <attr name="drawerHighlightShare" format="float"/>
     <attr name="drawerHighlightTextDarken" format="float"/>
+    <!-- A column that is never wider than maxContentWidth (settings/MaxWidthLinearLayout): Settings on a tablet -->
+    <declare-styleable name="MaxWidthLinearLayout">
+        <attr name="maxContentWidth" format="dimension"/>
+    </declare-styleable>
+
     <!-- A row of the Settings screen (settings/SettingsRow) -->
     <declare-styleable name="SettingsRow">
         <attr name="rowIcon" format="reference"/>

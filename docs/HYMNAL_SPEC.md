@@ -734,7 +734,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `sheetMusicType` | string | `pianoSvg` | `pianoSvg` = Piano, `guitarSvg` = Guitar: the viewer's starting mode (§11) |
 
 **The Android Settings screen (v5.9)** is one scrolling page of cards; every choice is made on the page, with no
-dialog for a simple choice. From the top:
+dialog for a simple choice. On a tablet or an unfolded phone the page (and the About page) is a centred column at most 640 dp wide. From the top:
 
 1. **Text size**: five "A" steps (Small to XXL); the chosen one is tinted and its name shows beside the title.
 2. **Theme**: four small pictures (System, Light, Dark, Black) with their names; the chosen one has a thick border.
