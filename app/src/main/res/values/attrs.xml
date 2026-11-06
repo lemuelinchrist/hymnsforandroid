@@ -24,4 +24,15 @@
          the drawer colour, its name the accent with this share of black over it -->
     <attr name="drawerHighlightShare" format="float"/>
     <attr name="drawerHighlightTextDarken" format="float"/>
+    <!-- A row of the Settings screen (settings/SettingsRow) -->
+    <declare-styleable name="SettingsRow">
+        <attr name="rowIcon" format="reference"/>
+        <attr name="rowTitle" format="string"/>
+        <attr name="rowSummary" format="string"/>
+        <attr name="rowTrailing" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="chevron" value="1"/>
+            <enum name="switcher" value="2"/>
+        </attr>
+    </declare-styleable>
 </resources>

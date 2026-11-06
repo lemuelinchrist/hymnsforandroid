@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the line between two rows of a card, inset to the text -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android" android:insetLeft="72dp">
+    <shape><size android:height="1dp"/><solid android:color="@color/set_line"/></shape>
+</inset>

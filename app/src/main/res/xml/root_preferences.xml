@@ -1,75 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The default value of every setting, and nothing else: HymnsActivity loads this file with
+  PreferenceManager.setDefaultValues, so the keys have the same values everywhere in the app. The Settings screen
+  itself (settings/SettingsActivity, layout/settings_activity.xml) does not show this file.
+-->
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <PreferenceCategory>
-
-        <ListPreference
-                app:defaultValue="18f"
-                app:entries="@array/font_size"
-                app:entryValues="@array/font_size_values"
-                app:key="FontSize"
-                app:title="@string/choose_font_size"
-                app:useSimpleSummaryProvider="true"
-                app:icon="@drawable/settings_font_size"
-        />
-        <!-- System default, Light, Dark or Black (style/Theme); replaces the Night Mode switch (nightMode) -->
-        <ListPreference
-                app:key="theme"
-                app:defaultValue="system"
-                app:entries="@array/theme_preference"
-                app:entryValues="@array/theme_preference_values"
-                app:title="Theme"
-                app:useSimpleSummaryProvider="true"
-                app:icon="@drawable/settings_theme"/>
-        <SwitchPreferenceCompat
-                app:key="keepDisplayOn"
-                app:defaultValue="false"
-                app:title="@string/keepDisplayOn"
-                app:icon="@drawable/ic_lightbulb_outline_black_32dp"
-                app:summary="Screen will never go to sleep"/>
-        <Preference
-                app:key="manageFaves"
-                app:title="Back Up &amp; Restore Favorites"
-                app:icon="@drawable/ic_settings_favorite_black_32dp"
-                app:summary="Keep a copy, or move them to a new phone"
-        />
-        <!-- the summary says how many sheets have changed chords (SettingsActivity) -->
-        <Preference
-                app:key="chordEdits"
-                app:title="Chord Edits"
-                app:icon="@drawable/ic_chord_edits_black_32dp"
-        />
-        <!-- saves the hidden books; the key keeps its old name so existing settings carry over -->
-        <com.lemuelinchrist.android.hymns.settings.HymnBooksPreference
-                app:key="disableLanguages"
-                app:title="Languages (Hymn Books)"
-                app:icon="@drawable/ic_library_books_black_32dp"
-                app:defaultValue="@array/disabled_languages_default"
-        />
-        <SwitchPreferenceCompat
-                app:key="youtubeSearch"
-                app:defaultValue="false"
-                app:title="@string/youtube_button"
-                app:summary="Show a button that searches YouTube for the hymn"
-                app:icon="@drawable/ic_live_tv_black_32dp"/>
-        <SwitchPreferenceCompat
-                app:key="similarTune"
-                app:defaultValue="false"
-                app:title="@string/similarTuneSwitch"
-                app:summary="Enable Button for switching to hymns with a similar tune"
-                app:icon="@drawable/ic_related_hymns_black_32dp"/>
-        <ListPreference
-                app:key="sheetMusicType"
-                app:defaultValue="pianoSvg"
-                app:entries="@array/sheet_music_type_preference"
-                app:entryValues="@array/sheet_music_type_preference_values"
-                app:title="@string/sheetMusicType"
-                app:useSimpleSummaryProvider="true"
-                app:icon="@drawable/ic_sheet_music_type_black_32dp"/>
-        <Preference
-                app:key="about"
-                app:title="About Hymns"
-                app:summary="See version or send feedback"
-                app:icon="@drawable/settings_about"/>
-
-    </PreferenceCategory>
+    <ListPreference app:key="FontSize" app:defaultValue="18f"
+            app:entries="@array/font_size" app:entryValues="@array/font_size_values"/>
+    <!-- System default, Light, Dark or Black (style/Theme); replaces the Night Mode switch (nightMode) -->
+    <ListPreference app:key="theme" app:defaultValue="system"
+            app:entries="@array/theme_preference" app:entryValues="@array/theme_preference_values"/>
+    <SwitchPreferenceCompat app:key="keepDisplayOn" app:defaultValue="false"/>
+    <!-- the hidden books; the key keeps its old name so existing settings carry over (settings/HymnBooksDialog) -->
+    <MultiSelectListPreference app:key="disableLanguages" app:defaultValue="@array/disabled_languages_default"
+            app:entries="@array/disabled_languages_default" app:entryValues="@array/disabled_languages_default"/>
+    <SwitchPreferenceCompat app:key="youtubeSearch" app:defaultValue="false"/>
+    <SwitchPreferenceCompat app:key="similarTune" app:defaultValue="false"/>
+    <ListPreference app:key="sheetMusicType" app:defaultValue="pianoSvg"
+            app:entries="@array/sheet_music_type_preference" app:entryValues="@array/sheet_music_type_preference_values"/>
 </PreferenceScreen>

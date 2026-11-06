@@ -52,10 +52,10 @@ Features:
 | History | Recently opened hymns (newest first, up to 100). The app reopens the last hymn on start. |
 | Play | Loops the hymn's melody (MIDI file looked up by tune code). |
 | Sheet music | Engraved from MEI with Verovio at screen width; piano or guitar (capo + chords derived), transpose ±6, "chords over lyrics" mode, pinch to zoom, dark in the dark themes. Translations can show their own lyrics under the borrowed sheet. On big screens (tablets, unfolded phones) the chords of the piano sheet can be edited, kept on the device and exported/imported (§11.5). |
-| YouTube (optional) | Searches YouTube for the hymn (Settings → YouTube Button, off by default). The hymn's piano videos are in the links card (§6.1). |
+| YouTube (optional) | Searches YouTube for the hymn (Settings → YouTube button, off by default). The hymn's piano videos are in the links card (§6.1). |
 | Similar tune (optional) | Lists other hymns sung to the same tune, preferring the current language. |
 | Share | A menu: share the lyrics, share a link to the hymn in the web app, or copy the lyrics. |
-| Display settings | Font size (5 steps), theme (System default / Light / Dark / Black), keep screen on, hide books you don't use (Languages (Hymn Books)). |
+| Display settings | Font size (5 steps), theme (System default / Light / Dark / Black), keep screen on, hide books you don't use (Hymn books), a QR code to share the app (§10). |
 
 ---
 
@@ -468,7 +468,7 @@ lines alone, a hymn with a common first line often brought up other churches' so
 query was tried and dropped: when a song has no recording it brings up unrelated videos instead. The other books keep
 the lines until their recordings' titles are checked.
 
-### 7.5 Similar tune (optional; Settings → Similar Tune Button, default off)
+### 7.5 Similar tune (optional; Settings → Similar tune button, default off)
 
 Hidden when the setting is off or the hymn has no tune. On tap:
 
@@ -554,7 +554,7 @@ A web build SHOULD map this onto browser history (`#/E1` style URLs) so the brow
 
 - Same record shape as History. Toggled by the heart button. Listed newest-first (by time favorited), all of them
   (History stops at 100). The top of the Favorites tab shows "N favorites" (or "No favorites yet. Tap ♥ on a hymn to
-  add it.") with **Back up** and **Restore**; Settings → "Back Up & Restore Favorites" opens a dialog with both.
+  add it.") with **Back up** and **Restore**; Settings → Favorites opens a dialog with both.
 - **Back up** text (also the file `hymns-favorites.txt`), newest first:
   ```
   My favorite hymns (Hymns For Android): 3 hymns
@@ -727,14 +727,32 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `FontSize` | string | `18f` | `14f` Small, `18f` Medium, `22f` Large, `26f` Extra Large, `32f` XXL (sp) |
 | `theme` | string | `system` | `system` / `light` / `dark` / `black` (§6.3). Replaced `nightMode` (bool) in v5.8: on the first start after the update, `nightMode` on becomes `dark`, else `system` |
 | `keepDisplayOn` | bool | false | keep the screen awake (web: Screen Wake Lock API) in reader and sheet viewer |
-| `manageFaves` | action | — | Back up & restore favorites dialog (§8.4) |
-| `chordEdits` | action | — | Chord edits dialog: the edited sheets, Export, Import (§11.5); the summary counts the edited sheets |
 | `disableLanguages` | set of codes | `{I}` | hidden books: removed from drawer, the other-languages grid, and from search (§9) |
 | `otherLanguagesFolded` | bool | false | the other-languages grid on the hymn page is folded (§6.1); set by its Hide/Show row, not in the Settings screen |
 | `youtubeSearch` | bool | false | show the YouTube button, which searches YouTube (§7.4). Replaced the string `youtubeButton` (`disabled` / `piano` / `search`) in v5.8.2 |
 | `similarTune` | bool | false | show Similar Tune button (§7.5) |
 | `sheetMusicType` | string | `pianoSvg` | `pianoSvg` = Piano, `guitarSvg` = Guitar: the viewer's starting mode (§11) |
-| `about` | action | — | dialog with app name, version, "Source code:" and the repository address (`github.com/lemuelinchrist/hymnsforandroid`, a link), "Feedback:" and the project's support address (`hymnsforandroid.support@gmail.com`, a link). The web app's About card shows the same lines |
+
+**The Android Settings screen (v5.9)** is one scrolling page of cards; every choice is made on the page, with no
+dialog for a simple choice. From the top:
+
+1. **Text size**: five "A" steps (Small to XXL); the chosen one is tinted and its name shows beside the title.
+2. **Theme**: four small pictures (System, Light, Dark, Black) with their names; the chosen one has a thick border.
+3. **Sheet music**: a two-part switch, Piano | Guitar.
+4. **On the hymn page**: three switch rows: YouTube button, Similar tune button, Keep screen on.
+5. **Hymn books**: one row (up to three coloured book chips and a summary such as "Hiding Indonesian") that opens the
+   "Choose the languages to show" dialog (every book with its icon, hymn count and a tick; at least one stays shown).
+   The drawer's "Languages…" link opens Settings with that dialog already open.
+6. **Your data**: **Favorites** (opens the back up / restore dialog, §8.4) and **Chord edits** (opens the chord edits
+   dialog: the edited sheets, Export, Import, §11.5; its summary counts the edited sheets).
+7. **Share the app**: a QR code shown on the page, with a switch **Android | iPhone and all devices**. Android points to
+   the app's Google Play page; iPhone and all devices points to the web app
+   (`https://lemuelinchrist.github.io/hymnsforandroid/`) and its note says how to add it to the Home Screen. Under the
+   code: the address, **Copy link** and **Share link** (the system share sheet). The QR code is drawn on the phone
+   (error correction level M), black on white in every theme.
+8. **About** (a row that opens its own page): the app name and version, **Send feedback** (an email to the project's
+   support address, `hymnsforandroid.support@gmail.com`, with the version in the subject) and **Source code** (the
+   repository, `github.com/lemuelinchrist/hymnsforandroid`). The web app's About card shows the same lines.
 
 Changing any setting refreshes the reader (theme, font, drawer, current page) when returning to it.
 
@@ -863,7 +881,7 @@ feature, file format and rules as the web app (`tools/web/README.md`, "Chord edi
 - **Saved** at once, on every change, by the host. Android: `files/chord-edits.json` in the app's storage,
   `{"format": "hymns-chord-edits", "v": 1, "sheets": {"E8": {"updated": <ms>, "bars": {…}}}}`, written to a new file
   first and then swapped in; included in Android's own backup like the favorites.
-- **Settings → Chord Edits:** lists the edited sheets, newest first (`E8 – first line`, `N bars · date`; a tap opens
+- **Settings → Chord edits:** lists the edited sheets, newest first (`E8 – first line`, `N bars · date`; a tap opens
   the sheet), with **Export** (Send through the share sheet, or Save as a file; `hymns-chord-edits-<date>.json`, the
   stored file plus `"exported"`) and **Import** (a file picker; asks "Import chord edits?" listing the sheets, then
   says how many were imported and kept). A sheet replaces this device's edits of it unless it was edited later here.

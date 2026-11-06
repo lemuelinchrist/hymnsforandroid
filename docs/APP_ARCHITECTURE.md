@@ -99,14 +99,22 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
     -   `getOrderedRecordList()` returns newest first, at most 100.
 
 ### 9. `SettingsActivity.java` (package `settings`)
--   **Role:** Preferences screen.
+-   **Role:** The Settings screen: one scrolling page of cards (`layout/settings_activity.xml`), no `PreferenceFragment`.
 -   **Responsibilities:**
-    -   A `PreferenceFragmentCompat` built from `res/xml/root_preferences.xml` (font size, theme, keep display on, disabled languages, YouTube button, similar tune button, sheet music type, about).
-    -   "Back Up & Restore Favorites" opens `logbook/FavoritesBackup`'s dialog (also used by the Favorites tab's Back up / Restore bar,
+    -   Each control reads and writes the default shared preferences under the keys the rest of the app reads
+        (`FontSize`, `theme`, `keepDisplayOn`, `youtubeSearch`, `similarTune`, `sheetMusicType`, `disableLanguages`).
+        `xml/root_preferences.xml` is no longer shown: it only holds the default values, which `HymnsActivity` loads at start.
+    -   Text size steps, theme pictures (`layout/settings_theme_tile.xml`) and the Piano | Guitar switch are built here;
+        the switch rows and the other rows are `SettingsRow` views (`rowIcon`, `rowTitle`, `rowSummary`, `rowTrailing`).
+    -   The Hymn books row opens `HymnBooksDialog` (the books list; also counts the hymns per book for the drawer).
+    -   "Favorites" opens `logbook/FavoritesBackup`'s dialog (also used by the Favorites tab's Back up / Restore bar,
         and by `logbook/RestoreFavoritesActivity`, which opens a backup file tapped in another app).
-    -   "Chord Edits" opens `logbook/ChordEditsBackup`'s dialog: the sheets whose chords were changed on this device, Export
+    -   "Chord edits" opens `logbook/ChordEditsBackup`'s dialog: the sheets whose chords were changed on this device, Export
         (share or save a `hymns-chord-edits-<date>.json`) and Import. `RestoreFavoritesActivity` hands it a chord edits file
         tapped in another app, and a favorites backup to `FavoritesBackup`.
+    -   "Share the app" draws a QR code on the page (`io.nayuki.qrcodegen`, Nayuki's QR Code generator, MIT licence, copied
+        into the source tree) for the Google Play page or the web app, with Copy link and Share link.
+    -   "About" opens `AboutActivity`: the version, Send feedback (an email) and Source code (a link).
     -   The edits themselves are kept by `logbook/ChordEdits` in `files/chord-edits.json`, in the web app's export format.
 
 ### 10. `SheetMusicActivity.java` (package `content.sheetmusic`)
