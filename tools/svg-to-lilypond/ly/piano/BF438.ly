@@ -8,7 +8,7 @@
   #(set-paper-size "letter")
   left-margin = 12.7\mm
   right-margin = 8.89\mm
-  top-margin = 8.91\mm
+  top-margin = 12.84\mm
   bottom-margin = 12.50\mm
   indent = 0
   #(define fonts
@@ -25,9 +25,9 @@
       }
       \raise #-8.1 \fontsize #8.5 \fromproperty #'header:opus
     }
-    \vspace #0.71
+    \vspace #1.16
   }
-  system-system-spacing = #'((basic-distance . 13.35) (minimum-distance . 13.35) (padding . 0) (stretchability . 0))
+  system-system-spacing = #'((basic-distance . 12.97) (minimum-distance . 12.97) (padding . 0) (stretchability . 0))
   score-markup-spacing = #'((basic-distance . 15.00) (minimum-distance . 15.00) (padding . 0) (stretchability . 0))
   scoreTitleMarkup = ##f
   tagline = \markup \line { \hspace #1.84 \override #'(font-name . "Trebuchet MS") "www.hymnal.net" }
@@ -35,7 +35,7 @@
 
 \header {
   title = "I give my heart to Thee (New Tune)"
-  subtitle = "Experience of Christ—Love for Him"
+  subtitle = "Experience of Christ — Love for Him"
   opus = "543"
 }
 
@@ -58,7 +58,7 @@ harmonies = \chordmode {
 }
 
 verseOne = \lyricmode {
-  \set ignoreMelismata = ##t \set stanza = "1." "I" "give" _ "my" "heart" "to" _ "Thee," "O" "Je" -- "sus" "most" _ "de" -- "sired;" _ "And" "heart" "for" "heart" "the" "gift" _ "shall" "be," "For" "Thou" "my" "heart" "hast" _ "fired." _ "Thou" "hearts" "a" -- "lone" "wouldst" _ "move," _ "Thou" "on" -- "ly" "hearts" "dost" _ "love;" _ "I" "would" "love" "Thee" "as" "Thou" "lov’st" "me," "O" "Je" -- "sus" "most" _ "de" -- _ "sired." _
+  \set ignoreMelismata = ##t \set stanza = "1." "I" "give" _ "my" "heart" "to" _ "Thee," "O" "Je" -- "sus" "most" _ "de" -- "sired;" _ "And" "heart" "for" "heart" "the" "gift" _ "shall" "be," "For" "Thou" "my" "heart" "hast" _ "fired." _ "Thou" "hearts" "a" -- "lone" "wouldst" _ "move," _ "Thou" "on" -- "ly" "hearts" "dost" "love;" _ _ "I" "would" "love" "Thee" "as" "Thou" "lov’st" "me," "O" "Je" -- "sus" "most" _ "de" -- _ "sired." _
 }
 
 \score {
@@ -97,7 +97,7 @@ verseOne = \lyricmode {
 \markup {
   \fill-line {
     \left-column {
-      \line { \bold "2." \column { "What off’ring can I make," "Dear Lord, to love like Thine;" "That Thou, the Word, didst stoop to take" "A human form like mine?" "“Give Me thy heart, my son“:" "Lord, Thou my heart hast won;" "I would love Thee as Thou lov’st me," "O Jesus most desired." } }
+      \line { \bold "2." \column { "What off’ring can I make," "Dear Lord, to love like Thine;" "That Thou, the Word, didst stoop to take" "A human form like mine?" "“Give Me thy heart, My son”:" "Lord, Thou my heart hast won;" "I would love Thee as Thou lov’st me," "O Jesus most desired." } }
       \vspace #0.88
       \line { \bold "3." \column { "Thy heart is opened wide," "Its offered love most free," "That heart to heart I may abide," "And hide myself in Thee." "Ah, how Thy love doth burn," "Till I that love return!" "I would love Thee as Thou lov’st me," "O Jesus most desired." } }
     }
