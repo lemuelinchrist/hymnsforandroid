@@ -9,4 +9,7 @@ public interface HymnSwitcher {
 
     /** Like switchToHymn, but the Back button returns to the hymn we came from. */
     void switchToRelatedHymn(String id);
+
+    /** Like switchToRelatedHymn, but the hymn opens at its top (a New Tune, not another language of the same hymn). */
+    void switchToHymnFromTop(String id);
 }

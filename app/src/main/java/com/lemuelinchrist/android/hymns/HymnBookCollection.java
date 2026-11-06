@@ -39,6 +39,13 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private String relatedTo;
     // how far down the hymn left was scrolled, for the related hymn being switched to (not scrolled to its top)
     private Float keepScroll;
+    // until when the toolbar stays as it is (hidden by scrolling) for such a switch: the pager and the switch both
+    // would bring it back, which pushes the page down
+    private long keepToolbarUntil;
+
+    private boolean keepingToolbar() {
+        return System.currentTimeMillis() < keepToolbarUntil;
+    }
 
     public HymnBookCollection(final HymnsActivity context, final ViewPager lyricPager) {
         this.context = context;
@@ -60,7 +67,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             public void onPageScrollStateChanged(int state) {
                 if (state == ViewPager.SCROLL_STATE_IDLE && pageChanged) {
                     pageChanged = false;
-                    lyricPager.post(context::showToolbar);
+                    if (!keepingToolbar()) lyricPager.post(context::showToolbar);
                 }
             }
         });
@@ -151,6 +158,15 @@ public class HymnBookCollection implements OnLyricVisibleListener {
      * the round button on the lower right offers the way back to the hymn left, until another hymn is shown.
      */
     public void switchToRelatedHymn(String related) {
+        switchToRelatedHymn(related, true);
+    }
+
+    /**
+     * @param sameSpot true for another language of the hymn (the page opens at the same place, and a hidden toolbar
+     *                 stays hidden, so the verse being sung stays in view); false for a hymn that is something else
+     *                 (a New Tune), which opens at its top like any hymn, with the toolbar showing
+     */
+    public void switchToRelatedHymn(String related, boolean sameSpot) {
         String from = getCurrentHymnId();
         if (from == null || from.equals(related)) {
             switchToHymnAndRememberChoice(related);
@@ -158,7 +174,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         }
         relatedTo = related;   // before the switch: the new page reports it is shown while switching
         ContentArea leaving = getCurrentHymnLyric();
-        keepScroll = leaving == null ? null : leaving.getScrollFraction();
+        keepScroll = !sameSpot || leaving == null ? null : leaving.getScrollFraction();
+        keepToolbarUntil = sameSpot && context.isToolbarHidden() ? System.currentTimeMillis() + 1000 : 0;
         switchToHymnAndRememberChoice(related);
         context.showBackToHymn(from);
     }
@@ -167,6 +184,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         final Float keep = keepScroll;   // for this switch only
         keepScroll = null;
+        if (keep == null) keepToolbarUntil = 0;
         if (hymnId.equals(getCurrentHymnId())) return;
 
         Log.i(getClass().getName(), "switching to hymn " + hymnId);
@@ -218,7 +236,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
                                 // a related hymn (another language) opens at the same place, any other at its top
                                 if (keep != null) shown.scrollToFraction(keep); else shown.scrollToTop();
                             }
-                            context.showToolbar();
+                            if (!keepingToolbar()) context.showToolbar();
                         } catch (Exception e) {
                             Log.e(getClass().getName(), "Error trying to scroll to the top of the hymn");
                         }

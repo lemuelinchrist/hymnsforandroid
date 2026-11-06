@@ -517,6 +517,10 @@ and a hidden long press for the link would go unnoticed.
   (else the new hymn's header would sit under the status bar). Android: once the pager is at rest, after it has moved
   the focus to the new page, because on Android 16 and up a page taking focus asks to be shown in full and the
   scrolling app bar hides itself for that.
+- Switching to another language of the hymn being read (Other languages, drawer, the way back) keeps the reading
+  place (the same fraction of the page, so the stanza being sung stays in view) and leaves a toolbar that scrolling
+  had hidden hidden. A link to a hymn that is something else (a New Tune in the links card) opens it at its top with
+  the toolbar showing, like any hymn.
 - Opening a hymn from anywhere (search, related chip, drawer, back) switches the pager to that hymn's book if
   needed, jumps to it, scrolls it to the top and shows the toolbar.
 - If the target hymn does not exist (stale history/favorite, or a typed number not in the book): go to the first

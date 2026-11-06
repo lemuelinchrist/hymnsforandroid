@@ -406,6 +406,17 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         if (appBar != null) appBar.setExpanded(true, true);
     }
 
+    /** True while the toolbar is (even partly) scrolled out of view. */
+    public boolean isToolbarHidden() {
+        AppBarLayout appBar = findViewById(R.id.appbar);
+        return appBar != null && appBar.getTop() < 0;
+    }
+
+    @Override
+    public void switchToHymnFromTop(String hymnId) {
+        hymnBookCollection.switchToRelatedHymn(hymnId, false);
+    }
+
     @Override
     public void switchToRelatedHymn(String hymnId) {
         hymnBookCollection.switchToRelatedHymn(hymnId);

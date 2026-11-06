@@ -155,7 +155,7 @@ public class LinksSection extends ContentComponent<View> {
                 public void onClick(@NonNull View widget) {
                     if (inApp) {
                         HymnSwitcher hymnSwitcher = HymnsActivity.getHymnSwitcher();
-                        if (hymnSwitcher != null) hymnSwitcher.switchToRelatedHymn(address.substring(HYMN.length()));
+                        if (hymnSwitcher != null) hymnSwitcher.switchToHymnFromTop(address.substring(HYMN.length()));
                     } else {
                         context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(address)));
                     }
