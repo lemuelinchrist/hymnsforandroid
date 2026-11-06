@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true"><shape><solid android:color="@color/set_tint"/><corners android:radius="21dp"/></shape></item>
+    <item><shape><solid android:color="@android:color/transparent"/></shape></item>
+</selector>

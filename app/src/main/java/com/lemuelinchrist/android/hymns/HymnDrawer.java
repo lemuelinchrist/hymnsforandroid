@@ -14,7 +14,7 @@ import androidx.preference.PreferenceManager;
 import com.lemuelinchrist.android.hymns.content.ContentArea;
 import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
-import com.lemuelinchrist.android.hymns.settings.HymnBooksPreference;
+import com.lemuelinchrist.android.hymns.settings.HymnBooksDialog;
 import com.lemuelinchrist.android.hymns.style.BookColors;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class HymnDrawer extends BaseAdapter {
     public HymnDrawer(Context context, HymnGroup current) {
         this.context = context;
         this.current = current;
-        this.counts = HymnBooksPreference.countHymns(context);
+        this.counts = HymnBooksDialog.countHymns(context);
 
         // the books in their fixed order, as before v5.8: the saints know where each one is (the Recent section of
         // v5.8 was taken out again, 2026-11-02)

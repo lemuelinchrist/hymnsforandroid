@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The switch's round thumb in a 28dp box: 24dp when on, 16dp when off (like Material 3) -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:width="28dp" android:height="28dp"><shape><size android:width="28dp" android:height="28dp"/><solid android:color="@android:color/transparent"/></shape></item>
+            <item android:width="24dp" android:height="24dp" android:gravity="center"><shape android:shape="oval"><solid android:color="@color/set_on_primary"/></shape></item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:width="28dp" android:height="28dp"><shape><size android:width="28dp" android:height="28dp"/><solid android:color="@android:color/transparent"/></shape></item>
+            <item android:width="16dp" android:height="16dp" android:gravity="center"><shape android:shape="oval"><solid android:color="@color/set_outline"/></shape></item>
+        </layer-list>
+    </item>
+</selector>

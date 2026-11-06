@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One row of the Settings screen: tinted icon, title, summary, then a chevron or a switch (settings/SettingsRow) -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <ImageView
+        android:id="@+id/rowIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/settings_icon_bg"
+        android:importantForAccessibility="no"
+        android:padding="9dp"
+        app:tint="@color/set_on_tint"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/rowTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/set_text"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/rowSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/set_muted"
+            android:textSize="13.5sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/rowChevron"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_set_chevron"
+        android:visibility="gone"
+        app:tint="@color/set_muted"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/rowSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@null"
+        android:clickable="false"
+        android:focusable="false"
+        android:thumb="@drawable/settings_switch_thumb"
+        app:track="@drawable/settings_switch_track"
+        android:visibility="gone"
+        app:showText="false"
+        app:switchMinWidth="52dp"
+        app:thumbTextPadding="0dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+</merge>

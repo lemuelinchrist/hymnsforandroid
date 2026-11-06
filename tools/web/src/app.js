@@ -1270,6 +1270,53 @@ function downloadFile(name, text, type) {
   setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
 }
 
+// ---- share the app ----
+
+const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns';
+const WEB_URL = 'https://lemuelinchrist.github.io/hymnsforandroid/';
+
+// the QR code as an inline SVG (black squares on white, with a margin of two squares)
+function qrSvg(text) {
+  const q = qrcode(0, 'M');
+  q.addData(text);
+  q.make();
+  const n = q.getModuleCount(), m = 2;
+  let d = '';
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) d += 'M' + (c + m) + ' ' + (r + m) + 'h1v1h-1z';
+  const size = n + 2 * m;
+  return '<svg viewBox="0 0 ' + size + ' ' + size + '" shape-rendering="crispEdges" role="img" aria-label="QR code for ' + text + '">'
+    + '<rect width="100%" height="100%" fill="#fff"/><path d="' + d + '" fill="#111"/></svg>';
+}
+
+function shareCard() {
+  let web = true;   // a person on the web app is most likely sharing the web app
+  const card = h('section', {class: 'card settings-card share-card'}, h('h2', null, 'Share the app'));
+  const draw = () => {
+    const url = web ? WEB_URL : PLAY_URL;
+    const qr = h('div', {class: 'qr'});
+    qr.innerHTML = qrSvg(url);
+    const seg = h('div', {class: 'seg'}, [[false, 'Android'], [true, 'iPhone and all devices']].map(([isWeb, label]) =>
+      h('button', {type: 'button', 'aria-pressed': String(web === isWeb), onclick: () => { web = isWeb; draw(); }}, label)));
+    const copy = async () => {
+      try { await navigator.clipboard.writeText(url); toast('Link copied'); } catch (e) { toast(url); }
+    };
+    card.replaceChildren(
+      h('h2', null, 'Share the app'),
+      h('p', {class: 'muted small'}, 'Let someone scan this with their phone’s camera.'),
+      h('div', {class: 'share-seg'}, seg),
+      qr,
+      h('p', {class: 'qr-url'}, url.replace('https://', '')),
+      h('p', {class: 'muted small qr-note'}, web
+        ? 'Opens the web app in the browser. On an iPhone or iPad: tap Share, then Add to Home Screen, and it works offline like an app.'
+        : 'Opens Hymns For Android on Google Play.'),
+      h('div', {class: 'row share-row'},
+        h('button', {type: 'button', class: 'btn', onclick: copy}, 'Copy link'),
+        navigator.share ? h('button', {type: 'button', class: 'btn', onclick: () => navigator.share({title: 'Hymns For Android', url}).catch(() => {})}, icon('share'), 'Share link') : null));
+  };
+  draw();
+  return card;
+}
+
 function settingsScreen(view) {
   const box = h('div', {class: 'page'});
   view.appendChild(box);
@@ -1371,6 +1418,9 @@ function settingsScreen(view) {
       : 'The hymns work offline. Sheets and tunes you have opened do too; download all of them here (about 20 MB).';
   box.appendChild(h('section', {class: 'card settings-card'},
     h('h2', null, 'Offline'), offlineStatus, sw ? h('div', {class: 'row'}, offlineBtn) : null));
+
+  // share the app: a QR code for the Google Play page, or for the web app (iPhone and every other device)
+  box.appendChild(shareCard());
 
   // about
   const v = DB.version || {};
