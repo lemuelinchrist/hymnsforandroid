@@ -242,7 +242,7 @@ const listCache = new Map();
 export function list(group) {
   if (!listCache.has(group)) {
     listCache.set(group, rows(
-      `select h._id as id, h.no as no, coalesce(h.first_stanza_line, p.first_stanza_line) as first,
+      `select h._id as id, h.no as no, case when h.new_tune = 1 and coalesce(nullif(coalesce(h.first_stanza_line, p.first_stanza_line), ''), '') != '' then coalesce(h.first_stanza_line, p.first_stanza_line) || ' (New Tune)' else coalesce(h.first_stanza_line, p.first_stanza_line) end as first,
               coalesce(h.main_category, p.main_category) as category, coalesce(h.sub_category, p.sub_category) as sub
        from hymns h left join hymns p on p._id = h.parent_hymn
        where h.hymn_group = ? order by cast(h.no as integer)`, [group]));
@@ -357,7 +357,7 @@ export function search(words, phrase = words.join(' '), current = null, limit = 
   const where = words.map(() => '(' + cols.map((c) => 's.' + c + ' like ?').join(' or ') + ')').join(' and ');
   const params = words.flatMap((w) => cols.map(() => '%' + w.replace(/[%_]/g, '') + '%'));
   const found_ = rows(`select s.id, s.grp, s.first, s.chorus, s.subject, s.people, s.music, s.body, h.no,
-                       coalesce(nullif(h.first_stanza_line, ''), h.first_chorus_line) as line
+                       case when h.new_tune = 1 and coalesce(coalesce(nullif(h.first_stanza_line, ''), h.first_chorus_line), '') != '' then coalesce(nullif(h.first_stanza_line, ''), h.first_chorus_line) || ' (New Tune)' else coalesce(nullif(h.first_stanza_line, ''), h.first_chorus_line) end as line
                        from search s join hymns h on h._id = s.id where ${where}`, params)
     .filter((r) => words.every((w) => !isShortWord(w) || cols.some((c) => found(r[c], w))));
   for (const r of found_) {

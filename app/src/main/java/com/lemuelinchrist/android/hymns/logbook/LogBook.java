@@ -5,6 +5,7 @@ import android.util.Log;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.content.ContentArea;
 import com.lemuelinchrist.android.hymns.content.FaveButton;
+import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
 import java.io.FileNotFoundException;
@@ -210,6 +211,7 @@ public class LogBook {
         } else {
             firstLine = hymn.getFirstStanzaLine();
         }
+        firstLine = HymnsDao.tagged(firstLine, hymn.isNewTune());
 
         return new HymnRecord(hymn.getHymnId(), hymn.getGroup(), firstLine, date);
     }

@@ -159,8 +159,8 @@ def build_db(assets):
     for pid, text in db.execute('select parent_hymn, text from stanza order by parent_hymn, n_order'):
         stanzas.setdefault(pid, []).append(norm(text))
     cols = ['hymn_group', 'first_stanza_line', 'first_chorus_line', 'main_category', 'sub_category', 'author',
-            'composer', 'key', 'tune', 'parent_hymn', 'meter', 'time']
-    hymns = {r[0]: dict(zip(cols, [(v or '').strip() for v in r[1:]]))
+            'composer', 'key', 'tune', 'parent_hymn', 'meter', 'time', 'new_tune']
+    hymns = {r[0]: dict(zip(cols, [str(v or '').strip() for v in r[1:]]))
              for r in db.execute('select _id, ' + ', '.join(cols) + ' from hymns')}
 
     def inherited(hid):
@@ -181,7 +181,10 @@ def build_db(assets):
     rows = []
     for hid in hymns:
         h = inherited(hid)
-        rows.append((hid, h['hymn_group'], norm(h['first_stanza_line']), norm(h['first_chorus_line']),
+        # a New Tune's first lines end in " (New Tune)" in the search, so it finds them so (the data has no such text)
+        tag = ' (New Tune)' if h['new_tune'] == '1' else ''
+        first, chorus = [(h[k] + tag) if h[k] else h[k] for k in ('first_stanza_line', 'first_chorus_line')]
+        rows.append((hid, h['hymn_group'], norm(first), norm(chorus),
                      norm(h['main_category'] + ' ' + h['sub_category']), norm(h['author'] + ' ' + h['composer']),
                      norm(h['time'] + ' ' + h['key'] + ' ' + h['tune'] + ' ' + h['meter']), h['body']))
     db.executemany('insert into search values (?, ?, ?, ?, ?, ?, ?, ?)', rows)

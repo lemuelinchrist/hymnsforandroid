@@ -42,9 +42,12 @@ LINKS = os.path.join(ROOT, 'tools/svg-to-lilypond/svg/hymnalnet_links.tsv')
 links = dict(l.rstrip('\n').split('\t', 1) for l in open(LINKS, encoding='utf-8').readlines()[1:] if '\t' in l)
 rows = [r + (links.get(r[0]),) for r in c.execute("""select _id,hymn_group,no,first_stanza_line,first_chorus_line,author,
   composer,key,time,tune,meter,main_category,sub_category,verse,related,parent_hymn from hymns""")]
+new_tunes = {r[0] for r in c.execute('select _id from hymns where new_tune = 1')}
 byid = {r[0]: r for r in rows}
 hymns = []
 for (i,g,no,fs,fc,au,co,key,tm,tune,meter,mc,sc,verse,rel,par,sheet) in rows:
+    if i in new_tunes:
+        fs, fc = (fs + ' (New Tune)') if fs else fs, (fc + ' (New Tune)') if fc else fc
     p = byid.get(par)
     def inh(v, idx): return v if v else (p[idx] if p and p[idx] else '')
     stz = st.get(i) or (st.get(par) if p else None) or []

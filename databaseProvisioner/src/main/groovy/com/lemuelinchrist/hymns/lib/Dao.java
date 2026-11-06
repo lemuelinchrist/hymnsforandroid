@@ -65,6 +65,10 @@ public class Dao {
             if (hymn.getTune() == null || hymn.getTune().isEmpty()) {
                 hymn.setTune(parentHymn.getTune());
             }
+            // a translation of a New Tune is one too (its page says so)
+            if (hymn.getNewTune() == null && parentHymn.getNewTune() != null && parentHymn.getNewTune() == 1) {
+                hymn.setNewTune(1);
+            }
 
             // Get current related set
             Set<String> relatedSet = parentHymn.getRelated();

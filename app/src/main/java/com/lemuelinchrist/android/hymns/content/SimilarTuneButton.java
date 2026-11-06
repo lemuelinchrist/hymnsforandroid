@@ -51,7 +51,7 @@ public class SimilarTuneButton extends ContentComponent<ImageButton> {
                     descriptions = new ArrayList<>();
                     ArrayList<String> hymnIds = new ArrayList<>();
                     for (Hymn relatedHymn : relatedHymns) {
-                        descriptions.add(relatedHymn.getHymnId() + " - " + relatedHymn.getFirstStanzaLine());
+                        descriptions.add(relatedHymn.getHymnId() + " - " + HymnsDao.tagged(relatedHymn.getFirstStanzaLine(), relatedHymn.isNewTune()));
                         hymnIds.add(relatedHymn.getHymnId());
                     }
 

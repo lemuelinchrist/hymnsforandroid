@@ -19,9 +19,9 @@ public class AuthorAdapter extends HymnCursorAdapter {
     @Override
     protected void provisionHolderUsingCursor(IndexViewHolder indexViewHolder) {
 
-        String first_line = cursor.getString(cursor.getColumnIndex("first_stanza_line"));
+        String first_line = HymnsDao.line(cursor, "first_stanza_line");
         if(first_line==null || first_line.isEmpty()) {
-            first_line = cursor.getString(cursor.getColumnIndex("first_chorus_line"));
+            first_line = HymnsDao.line(cursor, "first_chorus_line");
         }
 
         String author = retouch(cursor.getString(cursor.getColumnIndex("author")));

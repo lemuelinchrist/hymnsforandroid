@@ -44,11 +44,22 @@ public class HymnsDao {
         dbHelper.close();
     }
 
+    /** What a list shows for a first line: the line, then " (New Tune)" for a New Tune (the data has no such text). */
+    public static String tagged(String line, boolean newTune) {
+        return newTune && line != null && !line.trim().isEmpty() ? line + " (New Tune)" : line;
+    }
+
+    /** The first line (or any line column) of a list row, with " (New Tune)" when the row's new_tune is 1. */
+    public static String line(Cursor cursor, String column) {
+        int tag = cursor.getColumnIndex(HymnFields.new_tune.toString());
+        return tagged(cursor.getString(cursor.getColumnIndex(column)), tag >= 0 && cursor.getInt(tag) == 1);
+    }
+
     // the first stanza and chorus lines of one book, alphabetically (the Search tab's First Lines list)
     public Cursor getFirstLinesOf(HymnGroup hymnGroup) {
-        String fromClause = "(select first_stanza_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' \n" +
+        String fromClause = "(select first_stanza_line as stanza_chorus, no, _id, hymn_group, new_tune from hymns where stanza_chorus NOT NULL and stanza_chorus != '' \n" +
                 "union\n" +
-                "select first_chorus_line as stanza_chorus, no, _id, hymn_group from hymns where stanza_chorus NOT NULL and stanza_chorus != '' ) ";
+                "select first_chorus_line as stanza_chorus, no, _id, hymn_group, new_tune from hymns where stanza_chorus NOT NULL and stanza_chorus != '' ) ";
 
         String orderBy = sortKey("stanza_chorus");
 
@@ -91,7 +102,7 @@ public class HymnsDao {
 
     private static String hymnsWithParents(int generations) {
         StringBuilder sql = new StringBuilder("(select h._id, h.hymn_group, h.no, h.first_stanza_line,"
-                + " h.first_chorus_line");
+                + " h.first_chorus_line, h.new_tune");
         for (String column : new String[]{"author", "composer", "key", "tune", "main_category"}) {
             sql.append(", coalesce(nullif(h.").append(column).append(", '')");
             for (int g = 1; g <= generations; g++) {

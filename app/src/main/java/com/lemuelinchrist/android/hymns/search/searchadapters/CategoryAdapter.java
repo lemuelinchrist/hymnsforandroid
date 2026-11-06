@@ -26,7 +26,7 @@ public class CategoryAdapter extends HymnCursorAdapter {
         String subject = cursor.getString(cursor.getColumnIndex("main_category"));
         if (!sub_category.trim().isEmpty()) subject += " - " + sub_category;
         String categoryText = "<b>" + subject + "</b>"
-                + "<br/>" + cursor.getString(cursor.getColumnIndex("_id")) + " - " + cursor.getString(cursor.getColumnIndex("first_stanza_line"));
+                + "<br/>" + cursor.getString(cursor.getColumnIndex("_id")) + " - " + HymnsDao.line(cursor, "first_stanza_line");
         indexViewHolder.list_item.setText(Html.fromHtml(categoryText));
 
         String hymnGroup = cursor.getString(cursor.getColumnIndex(HymnsDao.HymnFields.hymn_group.toString()));

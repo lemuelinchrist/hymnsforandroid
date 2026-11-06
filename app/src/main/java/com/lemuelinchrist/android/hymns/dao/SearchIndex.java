@@ -145,6 +145,10 @@ public final class SearchIndex {
                         moreStanzas = stanzas.moveToNext();
                     }
                     if (body.length() > 0) withStanzas.add(id);
+                    // a New Tune's first lines end in " (New Tune)" here, so the search finds and shows them so
+                    boolean newTune = h[NEW_TUNE].equals("1");
+                    h[FIRST] = HymnsDao.tagged(h[FIRST], newTune);
+                    h[CHORUS] = HymnsDao.tagged(h[CHORUS], newTune);
                     String line = h[FIRST].isEmpty() ? h[CHORUS] : h[FIRST];
                     insert.bindString(1, id);
                     insert.bindString(2, h[GROUP].trim());
@@ -185,9 +189,10 @@ public final class SearchIndex {
     }
 
     private static final String[] COLUMNS = {"hymn_group", "no", "first_stanza_line", "first_chorus_line",
-            "main_category", "sub_category", "author", "composer", "key", "tune", "parent_hymn", "meter", "time"};
+            "main_category", "sub_category", "author", "composer", "key", "tune", "parent_hymn", "meter", "time",
+            "ifnull(new_tune, 0)"};
     private static final int GROUP = 0, NO = 1, FIRST = 2, CHORUS = 3, MAIN_CATEGORY = 4, SUB_CATEGORY = 5,
-            AUTHOR = 6, COMPOSER = 7, KEY = 8, TUNE = 9, PARENT = 10, METER = 11, TIME = 12;
+            AUTHOR = 6, COMPOSER = 7, KEY = 8, TUNE = 9, PARENT = 10, METER = 11, TIME = 12, NEW_TUNE = 13;
 
     // every hymn's own columns (never null), sorted by hymn ID
     private static Map<String, String[]> readHymns(SQLiteDatabase source) {

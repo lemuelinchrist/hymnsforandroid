@@ -169,7 +169,7 @@ CREATE TABLE "hymns" (
   "parent_hymn" TEXT,                   -- Hymn ID this one inherits from (translation -> original)
   "verse" TEXT,                         -- Bible references, comma separated
   "related" TEXT,                       -- comma-separated Hymn IDs (same hymn in other books)
-  "new_tune" INTEGER                    -- 1 = a hymnal.net New Tune: the header says "(New Tune)". NULL for all others
+  "new_tune" INTEGER                    -- 1 = a New Tune (hymnal.net's, or a translation of one): the header says "(New Tune)" and lists add it to the first line. NULL for all others
 );
 CREATE TABLE "stanza" (
   "parent_hymn" TEXT NOT NULL,          -- Hymn ID the stanza belongs to (NOT the parent hymn concept)
@@ -237,7 +237,7 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
 
 1. Read the `hymns` row; trim `tune`.
 2. Read its stanzas: `SELECT * FROM stanza WHERE parent_hymn = :id ORDER BY n_order`.
-3. `isNewTune = (new_tune == 1)` — the hymn's own `new_tune` column, never inherited from the parent; shown as "(New Tune)" in the header.
+3. `isNewTune = (new_tune == 1)` — the hymn's own `new_tune` column, never inherited from the parent; shown as "(New Tune)" in the header. Every list that shows a first line (hymn numbers, first lines, favorites, history, subjects, authors, tunes, same-tune choices) and the search (its `line`, `first` and `chorus`, so typing "new tune" finds them) shows `first line + " (New Tune)"` for such a hymn; the stored first lines never contain that text, and sharing and the YouTube search use the plain line.
 4. If `parent_hymn` is set, load the parent **recursively with the same rules** and fill every *empty* child field
    from it:
 

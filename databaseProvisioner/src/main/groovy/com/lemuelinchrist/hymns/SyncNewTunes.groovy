@@ -27,15 +27,13 @@ import org.jsoup.Jsoup
  *
  * - The parent is the English hymn (E<number>); a tune whose English hymn we do not have is listed and skipped.
  * - Category and subcategory are the parent's (hymnal.net spells some differently, e.g. "Fullness").
- * - The first stanza line and first chorus line end in "(New Tune)", as BF436 to BF454 always did, so a search result
- *   can be told from the hymn itself.
+ * - new_tune is 1; the apps add " (New Tune)" to the first lines themselves (the data has no such text).
  * - A tune we have is replaced; its YouTube and SoundCloud links are kept (Dao.delete removes them, so they are saved
  *   again). BF439 is a tune from the regular hymn page (e0300b), not a New Tune: it is not touched.
  * - hymnal.net serves a fake page (another song's sheet) now and then: a page whose sheet is not its own is retried,
  *   never saved.
  */
 class SyncNewTunes {
-    static final String SUFFIX = " (New Tune)"
     static final int PAUSE_MS = 30000
 
     static void main(String[] args) {
@@ -150,7 +148,5 @@ class SyncNewTunes {
         hymn.setNewTune(1)
         if (parent.mainCategory) hymn.setMainCategory(parent.mainCategory)
         if (parent.subCategory) hymn.setSubCategory(parent.subCategory)
-        if (hymn.firstStanzaLine && !hymn.firstStanzaLine.endsWith(SUFFIX)) hymn.setFirstStanzaLine(hymn.firstStanzaLine + SUFFIX)
-        if (hymn.firstChorusLine && !hymn.firstChorusLine.endsWith(SUFFIX)) hymn.setFirstChorusLine(hymn.firstChorusLine + SUFFIX)
     }
 }
