@@ -696,3 +696,12 @@ body.bars-away .topbar { transform: translateY(-100%); }
   .sheet > :not(.sheet-music), .sheet-music > :not(svg) { padding-inline: 8px; }
 }
 @media (pointer: coarse) and (min-width: 1080px) { .panes.two .sheet-pane { margin-inline-start: 0; } }
+
+/* Settings: share the app */
+.share-seg { display: flex; justify-content: center; margin: 4px 0 12px; }
+.share-seg .seg button { font-size: 13px; padding: 6px 14px; }
+.qr { width: 200px; margin: 0 auto 10px; padding: 10px; background: #fff; border-radius: 14px; border: 1px solid var(--line); }
+.qr svg { display: block; width: 100%; height: auto; }
+.qr-url { text-align: center; font-weight: 650; font-size: 13px; margin: 6px 0 2px; overflow-wrap: anywhere; }
+.qr-note { text-align: center; margin: 2px 0 6px; }
+.share-row { justify-content: center; }

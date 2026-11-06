@@ -752,7 +752,7 @@ dialog for a simple choice. From the top:
    (error correction level M), black on white in every theme.
 8. **About** (a row that opens its own page): the app name and version, **Send feedback** (an email to the project's
    support address, `hymnsforandroid.support@gmail.com`, with the version in the subject) and **Source code** (the
-   repository, `github.com/lemuelinchrist/hymnsforandroid`). The web app's About card shows the same lines.
+   repository, `github.com/lemuelinchrist/hymnsforandroid`). The web app's About card shows the same lines. The web app has the same **Share the app** card (QR code with the Android | iPhone and all devices switch, opening on the web app; Copy link, and Share link where the browser can share), among its own cards (Display, Languages, Chord edits, Offline, Share, About).
 
 Changing any setting refreshes the reader (theme, font, drawer, current page) when returning to it.
 

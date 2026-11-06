@@ -455,6 +455,20 @@ async function search(page, text) {
       await open(page, '#/settings');
       await page.click('.settings-card .seg button:text-is("System default")');
     });
+    await test('Settings: Share the app shows a QR code for the web app, and for Google Play when switched', async () => {
+      await open(page, '#/settings');
+      const card = page.locator('.share-card');
+      assert(await card.locator('.qr-url').textContent() === 'lemuelinchrist.github.io/hymnsforandroid/', 'web address first');
+      const web = await card.locator('.qr svg path').getAttribute('d');
+      assert(web && web.length > 500, 'a QR code is drawn');
+      await card.locator('.seg button:text-is("Android")').click();
+      assert((await card.locator('.qr-url').textContent()).startsWith('play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns'), 'Google Play address');
+      assert(await card.locator('.seg button:text-is("Android")').getAttribute('aria-pressed') === 'true', 'Android is chosen');
+      const play = await card.locator('.qr svg path').getAttribute('d');
+      assert(play !== web, 'the code changed with the address');
+      await card.locator('.seg button:text-is("iPhone and all devices")').click();
+      assert(await card.locator('.qr svg path').getAttribute('d') === web, 'and back');
+    });
     await test('Languages (Hymn Books) setting says what it is for', async () => {
       await open(page, '#/settings');
       const text = await page.locator('.settings-card', {hasText: 'Languages (Hymn Books)'}).first().textContent();

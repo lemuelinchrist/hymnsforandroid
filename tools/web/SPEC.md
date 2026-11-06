@@ -152,7 +152,7 @@ tools/web/                (was svg-to-lilypond/hymnsforweb/ until 2026-10-20)
     db.js            sql.js wrapper: open the DB, get a hymn (with the parent merge), search, browse
     groups.js        hymnal names, colours and order (from HymnGroup.java)
     sheet.js         viewer.js ported into a class: new SheetView(box).show(id, {guitar, shift, staff, scale})
-  vendor/            sql.js 1.13.0
+  vendor/            sql.js 1.13.0, qrcode.js 1.4.4 (the QR code in Settings → Share the app)
   tests/e2e.cjs      Playwright tests
   dist/              (git-ignored) what gets served
 ```
@@ -287,6 +287,11 @@ How it works now:
   files are kept once fetched (cache first); `version.json` is network first. The database is not stored by the
   service worker: `db.js` keeps it unpacked in IndexedDB. Settings → Offline downloads all sheet packs at once
   (about 5 MB) and asks the browser to keep the storage.
+- **Settings → Share the app** (same section on Android): a QR code on the page, drawn as an inline SVG by `qrcode.js`
+  (error correction M, black on white in every theme), with a switch **Android | iPhone and all devices**: Android is the
+  Google Play page, the other is this web app (`https://lemuelinchrist.github.io/hymnsforandroid/`, with the Add to Home
+  Screen hint). It opens on the web app. Under the code: the address, **Copy link** and, where the browser has the Web
+  Share API, **Share link**. `app.js` `shareCard`, `qrSvg`; checked by an e2e test.
 - **Hymnals from `HymnGroup.java`** (order, app names, colours, right-to-left), with web names and a few darker
   colours from `DISPLAY` in `build.py`. A new language needs no change here.
 - **Translated words under a borrowed sheet** (`sheetLyrics`, ported from the app's `viewer.js`): FR, FY, C, CS, Z, ZS.
