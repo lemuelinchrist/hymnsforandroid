@@ -147,6 +147,7 @@ class SyncNewTunes {
     static void prepare(Dao dao, HymnsEntity hymn, String parentId) {
         HymnsEntity parent = dao.find(parentId)
         hymn.setParentHymn(parentId)
+        hymn.setNewTune(1)
         if (parent.mainCategory) hymn.setMainCategory(parent.mainCategory)
         if (parent.subCategory) hymn.setSubCategory(parent.subCategory)
         if (hymn.firstStanzaLine && !hymn.firstStanzaLine.endsWith(SUFFIX)) hymn.setFirstStanzaLine(hymn.firstStanzaLine + SUFFIX)

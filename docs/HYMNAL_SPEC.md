@@ -168,7 +168,8 @@ CREATE TABLE "hymns" (
   "tune" TEXT,                          -- melody code, also the MIDI file name
   "parent_hymn" TEXT,                   -- Hymn ID this one inherits from (translation -> original)
   "verse" TEXT,                         -- Bible references, comma separated
-  "related" TEXT                        -- comma-separated Hymn IDs (same hymn in other books)
+  "related" TEXT,                       -- comma-separated Hymn IDs (same hymn in other books)
+  "new_tune" INTEGER                    -- 1 = a hymnal.net New Tune: the header says "(New Tune)". NULL for all others
 );
 CREATE TABLE "stanza" (
   "parent_hymn" TEXT NOT NULL,          -- Hymn ID the stanza belongs to (NOT the parent hymn concept)
@@ -236,7 +237,7 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
 
 1. Read the `hymns` row; trim `tune`.
 2. Read its stanzas: `SELECT * FROM stanza WHERE parent_hymn = :id ORDER BY n_order`.
-3. `isNewTune = (group == 'BF' && tune is not empty)` — shown as "(New Tune)" in the header.
+3. `isNewTune = (new_tune == 1)` — the hymn's own `new_tune` column, never inherited from the parent; shown as "(New Tune)" in the header.
 4. If `parent_hymn` is set, load the parent **recursively with the same rules** and fill every *empty* child field
    from it:
 

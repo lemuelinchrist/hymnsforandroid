@@ -21,7 +21,7 @@ public class HymnsDao {
 
     public static enum HymnFields {
         _id, hymn_group, first_stanza_line, first_chorus_line, main_category, sub_category, meter, author,
-        composer, time, key, tune, no, parent_hymn, verse, related
+        composer, time, key, tune, no, parent_hymn, verse, related, new_tune
     }
 
     public static enum StanzaFields {
@@ -261,7 +261,6 @@ public class HymnsDao {
             hymn.setStanzas(stanzas);
             cursor.close();
 
-            hymn.setNewTune(hymn.getHymnGroup().equals(HymnGroup.BF) && hymn.getTune() != null);
             // *** Get Parent Hymn then Merge!
             Hymn parentHymn = get(hymn.getParentHymn());
             if (parentHymn != null) {
@@ -324,6 +323,7 @@ public class HymnsDao {
         hymn.setParentHymn(cursor.getString(cursor.getColumnIndex(HymnFields.parent_hymn.toString())));
         hymn.setVerse(cursor.getString(cursor.getColumnIndex(HymnFields.verse.toString())));
         hymn.addRelated(cursor.getString(cursor.getColumnIndex(HymnFields.related.toString())));
+        hymn.setNewTune(cursor.getInt(cursor.getColumnIndex(HymnFields.new_tune.toString())) == 1);
 
         if (hymn.getTune() != null) hymn.setTune(hymn.getTune().trim());
         return hymn;

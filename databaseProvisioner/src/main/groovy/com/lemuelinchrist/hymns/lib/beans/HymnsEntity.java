@@ -55,6 +55,18 @@ public class HymnsEntity {
     @Basic
     @jakarta.persistence.Column(name = "related")
     private String related;
+    // 1 for a hymnal.net New Tune: the app adds "(New Tune)" to its header. Null for every other hymn.
+    @Basic
+    @jakarta.persistence.Column(name = "new_tune")
+    private Integer newTune;
+
+    public Integer getNewTune() {
+        return newTune;
+    }
+
+    public void setNewTune(Integer newTune) {
+        this.newTune = newTune;
+    }
 
 
     @OneToMany(mappedBy="parentHymn", fetch = FetchType.EAGER,cascade= CascadeType.ALL)

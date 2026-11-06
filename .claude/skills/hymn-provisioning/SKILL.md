@@ -236,7 +236,7 @@ hymnal.net's keys, so a tune is recognised by its sheet link in `hymnalnet_links
 is key 251). `SyncNewTunes.groovy` reads the site's index (`/en/song-index/nt/<letter>`, saved in `data/nt_keys.txt`), then for each key
 replaces the tune we have (its YouTube/SoundCloud links are kept) or adds a new one as the next BF number. BF439 is a
 regular-hymn alternate (`e0300b`), not a New Tune: it is not touched. Category and subcategory are the parent's; the first
-stanza and chorus lines end in " (New Tune)". A key whose English hymn we do not have (`8409`) is skipped.
+stanza and chorus lines end in " (New Tune)", and `new_tune` is 1 (that column, not the BF group or a tune, decides the header label). A key whose English hymn we do not have (`8409`) is skipped.
 
 ```shell
 JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runSyncNewTunes --exclude-task :sqlite:importSql \
