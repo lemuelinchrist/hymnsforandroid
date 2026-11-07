@@ -123,12 +123,11 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
 
 - **LSM** (Living Stream Ministry - Topic, UCrr3HofwiRkJBR-WgUixRlQ), English: 193 links, label `LSM` (2026-11-07), `lsm_known.tsv`.
 - **臺灣福音書房** (Taiwan Gospel Book Room - Topic, UCYE5AHiolvE8tj-LYgPuzig, some albums under UCZolsL-QScygLdBTc36TbUQ),
-  Chinese, 70 albums: 278 sung links (label `臺灣福音書房`) and 41 instrumental (`臺灣福音書房 (Instrumental)`) on C/CS
-  hymns (2026-11-07), `tgb_known.tsv`. Lessons: many titles are Simplified Chinese (convert with OpenCC `s2t` before comparing
+  Chinese, 70 albums: 293 sung links (labels `臺灣福音書房`, `臺灣福音書房 2`) and 103 instrumental (`臺灣福音書房 (Instrumental)`)
+  on C/CS hymns (2026-11-07), `tgb_known.tsv`. Lessons: many titles are Simplified Chinese (convert with OpenCC `s2t` before comparing
   with the Traditional C/CS lines) and many carry the number, `（诗歌227）` = C227, `（补充本839）` = CS839 (reliable even when
-  the title is a subject, not the first line). 讚美詩集 / Hymns of Praise is an instrumental series: label it, and use it only
-  for a hymn with no sung recording. Children's series (兒童教材詩歌集, 兒童詩歌, 性格的培養詩歌集) are left out: the songs are
-  simplified for children. One recording per hymn (Lemuel 2026-11-07). The official channel 臺灣福音書房
+  the title is a subject, not the first line). 讚美詩集 / Hymns of Praise is an instrumental series: label it. Children's series (兒童教材詩歌集, 兒童詩歌, 性格的培養詩歌集) are left out: the songs are
+  simplified for children. Limit per Chinese hymn (Lemuel 2026-11-07): at most 2 sung recordings + 1 instrumental; a second sung one gets its own label so the links card does not show the same label twice. The official channel 臺灣福音書房
   (UCW4K7RJzb3bhrBgbhT2OBLA) is mostly messages and training videos; about 47 single hymn videos with the number in the
   title are not linked yet.
 - Review pages for another language: `REVIEW_GROUPS=C,CS python3 scripts/build_review.py ...` so that typing a C/CS id
