@@ -4,7 +4,7 @@ A French hymn (FR<n>) borrows the sheet of its English hymn, so its sheet used t
 This folder puts the French words under the notes, without making a second copy of every sheet.
 
 ```
-python3 tools/sheet-lyrics/align.py            # all French hymns: writes app/src/main/assets/sheetLyrics/FR<n>.json + review/
+python3 tools/sheet-lyrics/align.py            # all French hymns: writes app/src/main/assets/sheetLyrics/FR<n>.json and FRY<n>.json (French Youth) + review/
 python3 tools/sheet-lyrics/align.py FR10 FR16  # just these
 python3 tools/sheet-lyrics/test_french.py      # checks of the syllable splitter
 ```
@@ -16,7 +16,7 @@ python3 tools/sheet-lyrics/test_french.py      # checks of the syllable splitter
 2. `align.py` reads the notes of the English sheet (`sheetMei/<parent>.mei`; only notes that carry a syllable count),
    finds how many notes each English phrase has (from the English stanza in the database), and picks one reading per
    French word so that the French fills exactly those notes. Cheapest combination wins.
-3. The result is `sheetLyrics/FR<n>.json`: the syllable for each note id, the title, and verses 2, 3... (plain text below
+3. The result is `sheetLyrics/FR<n>.json` (named with the hymn's current book code: when a code is renamed, rename these files too; `SheetLyricsFilesTest` checks it): the syllable for each note id, the title, and verses 2, 3... (plain text below
    the staff, taken from the database as they are). The viewer (`assets/viewer/viewer.js`, `applyLyrics`) swaps them into
    the English MEI before drawing, when the app opens the sheet from a French hymn (`?lyrics=FR<n>`).
    Hymns with no overlay file just show the English sheet.

@@ -133,3 +133,8 @@ tasks.register('buildIosHymnal', Exec) {
 tasks.matching { it.name == 'assembleRelease' || it.name == 'bundleRelease' }.configureEach {
     finalizedBy 'buildIosHymnal'
 }
+
+// SheetLyricsFilesTest reads the lyrics files: run it again when they change
+tasks.withType(Test).configureEach {
+    inputs.dir('src/main/assets/sheetLyrics')
+}

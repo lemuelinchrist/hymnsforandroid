@@ -892,6 +892,8 @@ feature, file format and rules as the web app (`tools/web/README.md`, "Chord edi
 
 ### 11.6 Sheet lyrics overlay (`sheetLyrics/<hymnId>.json`)
 
+The file is named with the hymn's **current** book code (`FRY18.json`, not the old `FY18.json`): the app looks the file up by the hymn ID, so a renamed book code needs its files renamed too (v5.8 renamed FY to FRY and the 104 French Youth files were left behind until v5.9; the unit test `SheetLyricsFilesTest` now guards it).
+
 Puts a translation's own words under the borrowed (parent's) sheet without duplicating the sheet.
 
 ```json

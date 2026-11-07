@@ -515,6 +515,12 @@ async function search(page, text) {
       assert(await page.textContent('.sheet-no:not(.sheet-spacer)') === 'FR10', 'number');
       assert((await page.textContent('.sheet-from')).includes('E52'), 'from note');
     });
+    await test('a French Youth song shows its own words under the borrowed sheet (FRY18; the lyrics files carry the book code)', async () => {
+      await open(page, '#/h/FRY18');
+      await page.waitForSelector('.sheet-music svg', {timeout: 60000});
+      assert((await page.textContent('.sheet-title')).startsWith('Viens'), 'title ' + await page.textContent('.sheet-title'));
+      assert(await page.textContent('.sheet-no:not(.sheet-spacer)') === 'FRY18', 'number');
+    });
     await test('favorites import in the Android format, and export', async () => {
       await page.evaluate(() => localStorage.removeItem('hfw.favorites'));
       await open(page, '#/favorites');
