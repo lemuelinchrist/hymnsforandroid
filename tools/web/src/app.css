@@ -562,7 +562,6 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 @media (max-width: 720px) {
   #favoritesTop { display: none; }   /* phones: Favorites is on the home page; the gear stays */
   .settings-top { margin-left: -4px; }
-  .back-btn:not([hidden]) + .brand { display: none; }
 }
 #toast.sticky { pointer-events: auto; }
 .toast-link { color: inherit; font-weight: 600; margin-left: 4px; }
