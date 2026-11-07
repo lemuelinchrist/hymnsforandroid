@@ -752,7 +752,7 @@ dialog for a simple choice. On a tablet or an unfolded phone the page (and the A
    (error correction level M), black on white in every theme.
 8. **About** (a row that opens its own page): the app name and version, **Send feedback** (an email to the project's
    support address, `hymnsforandroid.support@gmail.com`, with the version in the subject) and **Source code** (the
-   repository, `github.com/lemuelinchrist/hymnsforandroid`). The web app's About card shows the same lines. The web app has the same **Share the app** card (QR code with the Android | iPhone and all devices switch, opening on the web app; Copy link, and Share link where the browser can share), among its own cards (Display, Languages, Chord edits, Offline, Share, About).
+   repository, `github.com/lemuelinchrist/hymnsforandroid`). The web app's About card shows the same lines. The web app has the same **Share the app** card (QR code with the Android | iPhone and all devices switch, opening on the web app; Copy link, and Share link where the browser can share), among its own cards (Display, Languages, Chord edits, Offline, Share, About). Its **Text size** and **Appearance** (the theme) are drawn like the Android ones, above the cards: a header with the chosen name on the right, five "A" steps (the web's seven sizes are reached with the A buttons on a hymn; the steps are the middle five) and four theme pictures.
 
 Changing any setting refreshes the reader (theme, font, drawer, current page) when returning to it.
 

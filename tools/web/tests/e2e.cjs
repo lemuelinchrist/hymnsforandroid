@@ -431,20 +431,20 @@ async function search(page, text) {
     });
     await test('dark mode is set in Settings and remembered', async () => {
       await open(page, '#/settings');
-      await page.click('.settings-card .seg button:text-is("Dark")');
+      await page.click('.theme-tile[aria-label="Dark"]');
       assert(await page.getAttribute('html', 'data-theme') === 'dark', 'dark');
       await open(page, '#/h/E8');
       await page.reload();
       assert(await page.getAttribute('html', 'data-theme') === 'dark', 'dark after reload');
       await page.waitForSelector('.sheet.dark .sheet-music svg', {timeout: 60000});
       await open(page, '#/settings');
-      await page.click('.settings-card .seg button:text-is("System default")');
+      await page.click('.theme-tile[aria-label="System default"]');
       assert(await page.getAttribute('html', 'data-theme') === null, 'back to the device setting');
     });
 
     await test('Black theme: pure black page, remembered, sheet drawn dark', async () => {
       await open(page, '#/settings');
-      await page.click('.settings-card .seg button:text-is("Black")');
+      await page.click('.theme-tile[aria-label="Black"]');
       assert(await page.getAttribute('html', 'data-theme') === 'black', 'black');
       const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
       assert(bg === 'rgb(0, 0, 0)', 'background ' + bg);
@@ -453,7 +453,15 @@ async function search(page, text) {
       assert(await page.getAttribute('html', 'data-theme') === 'black', 'black after reload');
       await page.waitForSelector('.sheet.dark .sheet-music svg', {timeout: 60000});
       await open(page, '#/settings');
-      await page.click('.settings-card .seg button:text-is("System default")');
+      await page.click('.theme-tile[aria-label="System default"]');
+    });
+    await test('Settings: Text size has the five Android steps; the chosen one is marked and the hymn follows', async () => {
+      await open(page, '#/settings');
+      await page.click('.size-steps button[aria-label="XXL"]');
+      assert(await page.locator('.set-head:has-text("Text size") span').textContent() === 'XXL', 'value beside the title');
+      assert(await page.locator('.size-steps button[aria-pressed="true"]').getAttribute('aria-label') === 'XXL', 'XXL not marked');
+      assert(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--lyric-scale').trim()) === '1.6', 'lyrics not bigger');
+      await page.click('.size-steps button[aria-label="Medium"]');   // back to the default
     });
     await test('Settings: Share the app shows a QR code for the web app, and for Google Play when switched', async () => {
       await open(page, '#/settings');

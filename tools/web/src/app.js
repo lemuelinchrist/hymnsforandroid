@@ -1324,19 +1324,41 @@ function settingsScreen(view) {
   box.appendChild(h('h1', {class: 'page-title'}, icon('settings'), 'Settings'));
 
   // display
+  // text size: the five Android steps (Small ... XXL) on steps 1-5 of the page's seven (0 and 6 only with the A buttons on a hymn)
+  const SIZE_NAMES = ['Small', 'Medium', 'Large', 'Extra Large', 'XXL'];
+  const step = () => Math.max(0, Math.min(4, lyricSize - 1));
+  const sizeValue = h('span', null, SIZE_NAMES[step()]);
+  const sizeSteps = h('div', {class: 'card size-steps', role: 'group', 'aria-label': 'Text size'}, SIZE_NAMES.map((name, i) =>
+    h('button', {type: 'button', 'aria-label': name, 'aria-pressed': String(i === step()), style: 'font-size:' + (13 + 4 * i) + 'px',
+      onclick: () => {
+        setLyricSize(i + 1);
+        sizeValue.textContent = name;
+        for (const [j, x] of [...sizeSteps.children].entries()) x.setAttribute('aria-pressed', String(j === i));
+      }}, 'A')));
+  box.appendChild(h('div', {class: 'set-head'}, h('h2', null, 'Text size'), sizeValue));
+  box.appendChild(sizeSteps);
+
+  // theme: a small picture per choice
   const themeNow = store.get('theme', null);
-  const themeSeg = h('div', {class: 'seg'}, [[null, 'System default'], ['light', 'Light'], ['dark', 'Dark'], ['black', 'Black']].map(([t, label]) =>
-    h('button', {type: 'button', 'aria-pressed': String(themeNow === t), onclick: () => { setTheme(t); render(); }}, label)));
-  const sizeLabel = h('span', {class: 'size-label'}, Math.round(LYRIC_SIZES[lyricSize] * 100) + '%');
-  const sizeRow = h('div', {class: 'setting'}, h('span', null, h('span', {class: 'label'}, 'Text size'), h('span', {class: 'hint'}, 'Lyrics')),
-    h('div', {class: 'stepper'},
-      h('button', {type: 'button', class: 'btn', 'aria-label': 'Smaller', onclick: () => { setLyricSize(lyricSize - 1); sizeLabel.textContent = Math.round(LYRIC_SIZES[lyricSize] * 100) + '%'; }}, icon('textSmaller')),
-      sizeLabel,
-      h('button', {type: 'button', class: 'btn', 'aria-label': 'Bigger', onclick: () => { setLyricSize(lyricSize + 1); sizeLabel.textContent = Math.round(LYRIC_SIZES[lyricSize] * 100) + '%'; }}, icon('textBigger'))));
+  const THEMES = [
+    [null, 'System', 'System default', {bg: '#ffffff', bar: '#3d577a', line: '#8a9099', half: true}],
+    ['light', 'Light', 'Light', {bg: '#ffffff', bar: '#3d577a', line: '#c9ced5'}],
+    ['dark', 'Dark', 'Dark', {bg: '#1d1f23', bar: '#2c3e57', line: '#4a4f57'}],
+    ['black', 'Black', 'Black', {bg: '#000000', bar: '#1c2a3c', line: '#3a3a3a'}]];
+  const themeValue = h('span', null, THEMES.find((t) => t[0] === themeNow)[2]);
+  const mock = (m) => {
+    const e = h('span', {class: 'mock', style: `--m-bg:${m.bg};--m-bar:${m.bar};--m-line:${m.line}`});
+    if (m.half) e.appendChild(h('span', {class: 'half'}));
+    for (const [top, right] of [[19, 8], [26, 16], [33, 10], [40, 28]]) e.appendChild(h('i', {style: `top:${top}px;right:${right}px`}));
+    return e;
+  };
+  box.appendChild(h('div', {class: 'set-head'}, h('h2', null, 'Appearance'), themeValue));
+  box.appendChild(h('div', {class: 'theme-tiles', role: 'group', 'aria-label': 'Appearance'}, THEMES.map(([t, name, full, m]) =>
+    h('button', {type: 'button', class: 'theme-tile', 'aria-pressed': String(themeNow === t), 'aria-label': full,
+      onclick: () => { setTheme(t); render(); }}, h('span', {class: 'frame'}, mock(m)), h('span', {class: 'name'}, name)))));
+
   box.appendChild(h('section', {class: 'card settings-card'},
     h('h2', null, 'Display'),
-    h('div', {class: 'setting wrap'}, h('span', {class: 'label'}, 'Appearance'), themeSeg),
-    sizeRow,
     toggleRow('Repeat the chorus', 'After every stanza, when a hymn has one chorus', repeatChorus,
       (on) => { repeatChorus = on; store.set('repeatChorus', on); }),
     toggleRow('Keep the screen on', 'wakeLock' in navigator ? 'While the app is open' : 'Not supported by this browser (on iPhone: iOS 18.4 or later)',
