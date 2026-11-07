@@ -70,7 +70,7 @@ Everything the app needs at runtime is in the repository. A rebuild does **not**
 | Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 31 | drawer, search list rows, the Languages (Hymn Books) dialog |
 | Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,462 files; 19 MB | Play button |
 | Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,345 (E 1362, NS 1227, CS 291, CH 243, C 124, BF 98); 45 MB | sheet viewer |
-| Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,369 (Z 755, C 632, ZS 460, FR 224, CS 194, FRY 104); 9.3 MB | sheet viewer overlay |
+| Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,446 (Z 755, C 632, ZS 460, FR 239, CS 194, FRY 166): every French and French Youth hymn that has a sheet; about 10 MB | sheet viewer overlay |
 | Sheet viewer (web) | `app/src/main/assets/viewer/` (`index.html`, `viewer.js`, `editor.js`, `viewer.css`, `verovio-toolkit-wasm.js`) | HTML/JS; Verovio 6.3.0 (LGPL-3.0) | 7.3 MB | **reusable as-is in a web build** |
 | Lyrics-only web app | `tools/ios/template.html` + `tools/ios/build.py` | single HTML file with gzipped JSON payload | ~6.5 MB | starting point for a PWA (§14.2) |
 | UI icons | `app/src/main/res/drawable*/` | Material icons (vector/PNG) | — | buttons |
@@ -892,7 +892,7 @@ feature, file format and rules as the web app (`tools/web/README.md`, "Chord edi
 
 ### 11.6 Sheet lyrics overlay (`sheetLyrics/<hymnId>.json`)
 
-The file is named with the hymn's **current** book code (`FRY18.json`, not the old `FY18.json`): the app looks the file up by the hymn ID, so a renamed book code needs its files renamed too (v5.8 renamed FY to FRY and the 104 French Youth files were left behind until v5.9; the unit test `SheetLyricsFilesTest` now guards it).
+The file is named with the hymn's **current** book code (`FRY18.json`, not the old `FY18.json`): the app looks the file up by the hymn ID, so a renamed book code needs its files renamed too (v5.8 renamed FY to FRY and the 104 French Youth files were left behind until v5.9; the unit test `SheetLyricsFilesTest` now guards it). The 77 French hymns whose words the code could not fit to the notes were fitted by hand (`tools/sheet-lyrics/overrides/`, v5.9), to be checked by a French speaker.
 
 Puts a translation's own words under the borrowed (parent's) sheet without duplicating the sheet.
 

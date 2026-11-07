@@ -553,7 +553,9 @@ def write_notes(placed, syl_out, compound=True):
 def override_lines(hid):
     """overrides/FR1.txt: '== 1.' starts a block; one line per phrase: words separated by spaces, syllables by '-'
     ('|' = a hyphen inside the text), a syllable ending in '_' is held over two notes, two syllables under one note are
-    joined with the tie sign. Lines starting with # are comments."""
+    joined with the tie sign. Lines starting with # are comments. '@sung 2 3' names other French stanzas the override
+    put under the notes, so they are not printed again below the staff. A block '== +2.' is plain text shown below the staff
+    as verse 2 (the rest of a French stanza that holds two verses)."""
     path = os.path.join(OVERRIDES, hid + '.txt')
     if not os.path.exists(path):
         return {}
@@ -562,10 +564,13 @@ def override_lines(hid):
         raw = raw.rstrip('\n')
         if raw.startswith('#'):
             continue
+        if raw.startswith('@sung'):                # '@sung 2 3': these French stanzas are under the notes too
+            blocks['@sung'] = raw.split()[1:]
+            continue
         if raw.startswith('=='):
             cur = raw[2:].strip()
             blocks[cur] = []
-        elif cur is not None:
+        elif cur is not None and raw.strip():     # a blank line between blocks is not a phrase
             blocks[cur].append(raw.strip())
     return blocks
 
@@ -624,8 +629,13 @@ def build(c, hid):
     syl_out, problems, review = {}, [], {}
     adjust = {'hold': 0, 'merge': 0}
     quality = 'exact'
+    seen = {}
     for seg in segs:
         key = label_to_stanza(seg['label'])
+        seen[seg['label']] = seen.get(seg['label'], 0) + 1
+        nth = '%s#%d' % (seg['label'], seen[seg['label']])    # '(C)#2': the second chorus of the sheet, when they differ
+        if nth in ov:
+            seg = dict(seg, label=nth)
         groups, used_chorus, err = english_groups(seg['slots'], en, key)
         if err:
             groups, used_chorus = punctuation_groups(seg['slots']), False
@@ -654,7 +664,7 @@ def build(c, hid):
                     pos += n
             if not ok:
                 continue
-            quality = 'check' if quality == 'exact' else quality
+            quality = 'hand'                     # fitted by hand in overrides/: a French speaker checks it
             write_notes(placed, syl_out, LANG['name'] == 'fr')
             continue
         if not fr_lines:
@@ -706,8 +716,10 @@ def build(c, hid):
         review = review or {}
     if problems:
         return None, problems, review
-    under = {label_to_stanza(s['label']) for s in segs}
+    under = {label_to_stanza(s['label']) for s in segs} | set(ov.get('@sung', []))   # not repeated below the staff
     verses = [{'label': no + '.', 'lines': lines} for no, lines in fr.items() if no.isdigit() and no not in under]
+    # '== +2.' blocks of an override: lines of a French stanza that hold more than the notes take, shown below the staff
+    verses = [{'label': lbl[1:], 'lines': lines} for lbl, lines in ov.items() if lbl.startswith('+')] + verses
     title = (row[1] or '').replace('\xa0', ' ').strip().rstrip(' ,;:.!?»\u3001\u3002\uff0c\uff1b\uff1a\uff01\uff1f')
     subtitle = ''
     if LANG['name'] == 'zh':                       # the Chinese categories are fine to show (the French ones are not accented)
@@ -829,11 +841,12 @@ def reason(details):
 
 def write_index(rows):
     os.makedirs(REVIEW_DIR, exist_ok=True)
-    done = [r for r in rows if r[1] in ('ok', 'adapted', 'check')]
+    done = [r for r in rows if r[1] in ('ok', 'adapted', 'check', 'hand')]
     out = ['# French sheet lyrics: what a French speaker should look at', '',
            'Made by `python3 sheet-lyrics/align.py` (see ../README.md). %d of %d French hymns have French lyrics under the notes.' % (len(done), len(rows)), '']
     adapted = [r for r in rows if r[1] == 'adapted']
     check = [r for r in rows if r[1] == 'check']
+    hand = [r for r in rows if r[1] == 'hand']
     review = [r for r in rows if r[1] == 'needs-review']
     nosheet = [r for r in rows if r[1] == 'no-sheet']
     out += ['## Needs a person (%d): these still show the English sheet' % len(review), '',
@@ -843,6 +856,10 @@ def write_index(rows):
     out += ['', '## Adapted by code, please check (%d)' % len(adapted), '',
             'A syllable is held over two notes (_) or two weak syllables share a note. Each has a file showing the result.', '',
             ', '.join('[%s](%s.txt)' % (r[0], r[0]) for r in adapted) or '(none)', '',
+            '## Fitted by hand, please check (%d)' % len(hand), '',
+            'The code could not fit these; a person put each French syllable under its note (`../overrides/<hymn>.txt`, with notes on'
+            ' what was decided, such as a line sung twice or a stanza shown below the staff).', '',
+            ', '.join('[%s](../overrides/%s.txt)' % (r[0], r[0]) for r in hand) or '(none)', '',
             '## Fits, but phrases and French lines do not end together (%d)' % len(check), '', ', '.join(r[0] for r in check) or '(none)', '',
             '## No sheet at all (%d)' % len(nosheet), '',
             'These French hymns have no English hymn to borrow a sheet from, or that hymn has no sheet: %s' % ', '.join(r[0] for r in nosheet), '']

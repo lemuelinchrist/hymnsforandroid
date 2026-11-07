@@ -42,6 +42,6 @@ To fix one: open the file, edit the French under each phrase so that it has exac
 and run `python3 tools/sheet-lyrics/align.py FR<n>`. Edit **a copy in `overrides/`** (same name): `overrides/FR<n>.txt` wins over the
 database. Syllables are joined by `-`, a hyphen that really belongs to the word is written `|`, a syllable held over two notes
 ends with `_`, two syllables sung on one note are joined with `‿`, and a word that goes on in the next line ends with `-`.
-Every phrase line must use exactly as many notes as the English phrase above it has.
+Every phrase line must use exactly as many notes as the English phrase above it has. When the override puts lines of other French stanzas under the notes (the French book splits the song differently), a line `@sung 2 3` names them, so they are not printed again below the staff. When one French stanza holds more verses than the notes take, the rest goes in a block `== +2.` (plain lines), shown below the staff as verse 2. When a sheet has the same label twice with different music (two choruses), `== (C)#2` is the second one.
 
-`check` in the report means the French fits the notes but its lines do not end where the English phrases end.
+`check` in the report means the French fits the notes but its lines do not end where the English phrases end. `hand` means the hymn was fitted by hand in `overrides/` (all 77 that the code could not fit were done that way in v5.9, to be checked by a French speaker; `review/INDEX.md` lists them).
