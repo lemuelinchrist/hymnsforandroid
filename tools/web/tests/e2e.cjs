@@ -585,6 +585,23 @@ async function search(page, text) {
       assert(text.startsWith('E8 · Praise God') && text.includes('\n1\n'), JSON.stringify(text.slice(0, 80)));
     });
 
+    await test('Share button: a menu with Copy lyrics and Copy link (no Web Share here), link names the hymn; Escape closes it', async () => {
+      await open(page, '#/h/E8');
+      assert(await page.locator('.hymn-nav .share').count() === 1 && await page.locator('.hymn-nav [title="Copy the lyrics (C)"]').count() === 0, 'share button');
+      await page.click('.hymn-nav .share');
+      const labels = await page.locator('.share-menu button').allTextContents();
+      assert(labels.join() === (await page.evaluate(() => !!navigator.share) ? 'Share lyrics,Share link,Copy lyrics' : 'Copy lyrics,Copy link'), labels.join());
+      await page.click('.share-menu button:text-is("' + (labels.includes('Copy link') ? 'Copy link' : 'Copy lyrics') + '")');
+      await page.waitForTimeout(300);
+      assert(await page.locator('.share-menu').count() === 0, 'menu stays open');
+      if (labels.includes('Copy link')) {
+        const text = await page.evaluate(() => navigator.clipboard.readText());
+        assert(/^E8 · .+\nhttps:\/\/lemuelinchrist\.github\.io\/hymnsforandroid\/#\/h\/E8$/.test(text), JSON.stringify(text));
+      }
+      await page.click('.hymn-nav .share');
+      await page.keyboard.press('Escape');
+      assert(await page.locator('.share-menu').count() === 0, 'Escape');
+    });
     await test('Play loops the tune and stops on the next hymn (E1)', async () => {
       await open(page, '#/h/E1');
       await page.click('.hymn-nav .play');

@@ -500,6 +500,7 @@ The share icon opens a small menu (Android `PopupMenu` under the button):
   with sheet music and nothing to install; for a group about to sing together.
 - **Copy lyrics**: the same text to the clipboard, toast "Lyrics copied". Kept in the menu because people paste
   lyrics into slides and notes, and Android 7–9's share sheet has no Copy entry.
+  The web app has the same Share button and menu (Share lyrics and Share link use the browser's share sheet where it has one; otherwise the menu offers Copy lyrics and Copy link).
 
 The subject (`EXTRA_SUBJECT`) is `<HymnID> · <first line>`. The lyrics text is the web app's (`lyricsText`):
 

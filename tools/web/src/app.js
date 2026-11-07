@@ -631,6 +631,41 @@ function searchWords(hymn) {
 const youtubeSearchUrl = (hymn) => 'https://www.youtube.com/results?search_query=' + searchWords(hymn);
 const soundcloudSearchUrl = (hymn) => 'https://soundcloud.com/search/sounds?q=' + searchWords(hymn);
 
+// the Share button (as the Android one): a small menu under it. Where the browser can share (phones, tablets, Safari,
+// Edge) it offers Share lyrics, Share link and Copy lyrics; elsewhere Copy lyrics and Copy link.
+const hymnLink = (hymn) => hymn.id + (hymn.first ? ' \u00b7 ' + hymn.first : '') + '\n' + WEB_URL + '#/h/' + hymn.id;
+async function copyText(text, done) {
+  try { await navigator.clipboard.writeText(text); toast(done); } catch (e) { toast('Could not copy'); }
+}
+async function shareNow(text, title) {
+  try { await navigator.share({title, text}); } catch (e) { if (e.name !== 'AbortError') toast('Could not share'); }
+}
+function shareMenu(hymn, anchor) {
+  document.querySelector('.share-menu')?.remove();
+  const title = hymn.id + (hymn.first ? ' \u00b7 ' + hymn.first : '');
+  const items = navigator.share
+    ? [['Share lyrics', () => shareNow(lyricsText(hymn), title)], ['Share link', () => shareNow(hymnLink(hymn), title)], ['Copy lyrics', () => copyLyrics(hymn)]]
+    : [['Copy lyrics', () => copyLyrics(hymn)], ['Copy link', () => copyText(hymnLink(hymn), 'Link copied')]];
+  const menu = h('div', {class: 'share-menu', role: 'menu'}, items.map(([label, fn]) =>
+    h('button', {role: 'menuitem', onclick: () => { close(); fn(); }}, label)));
+  const close = () => {
+    menu.remove();
+    document.removeEventListener('pointerdown', away, true);
+    document.removeEventListener('keydown', esc, true);
+    anchor.setAttribute('aria-expanded', 'false');
+  };
+  const away = (e) => { if (!menu.contains(e.target) && !anchor.contains(e.target)) close(); };
+  const esc = (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); anchor.focus(); } };
+  document.body.appendChild(menu);
+  const r = anchor.getBoundingClientRect();
+  menu.style.top = (r.bottom + 4) + 'px';
+  menu.style.right = Math.max(8, innerWidth - r.right) + 'px';
+  anchor.setAttribute('aria-expanded', 'true');
+  document.addEventListener('pointerdown', away, true);
+  document.addEventListener('keydown', esc, true);
+  menu.querySelector('button').focus();
+}
+
 async function copyLyrics(hymn) {
   try {
     await navigator.clipboard.writeText(lyricsText(hymn));
@@ -809,7 +844,8 @@ function hymnScreen(view, hymn) {
       h('button', {class: 'icon-btn size', title: 'Smaller text', onclick: () => setLyricSize(lyricSize - 1)}, icon('textSmaller')),
       h('button', {class: 'icon-btn size', title: 'Bigger text', onclick: () => setLyricSize(lyricSize + 1)}, icon('textBigger')),
       playBtn,
-      h('button', {class: 'icon-btn', title: 'Copy the lyrics (C)', 'aria-label': 'Copy the lyrics', onclick: () => copyLyrics(hymn)}, icon('copy')),
+      h('button', {class: 'icon-btn share', title: 'Share (C copies the lyrics)', 'aria-label': 'Share', 'aria-haspopup': 'menu', 'aria-expanded': 'false',
+        onclick: (e) => shareMenu(hymn, e.currentTarget)}, icon('share')),
       h('button', {class: 'icon-btn print', title: 'Print', onclick: () => window.print()}, icon('print')),
       favBtn),
     h('h1', {class: 'hymn-title' + (hymn.category ? ' with-subject' : ''), dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)}, hymn.first || hymn.id),

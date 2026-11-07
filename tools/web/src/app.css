@@ -748,3 +748,9 @@ body.bars-away .topbar { transform: translateY(-100%); }
 .lyrics-box { container-type: inline-size; font-size: calc(clamp(16px, 4.4vw, 19px) * var(--lyric-scale)); }
 .lyrics { width: fit-content; max-width: 100%; margin-inline: auto; }
 @container (min-width: 44.5em) { .lyrics { width: auto; max-width: none; margin-inline: 0; } }
+
+/* the Share menu under the hymn's Share button */
+.share-menu { position: fixed; z-index: 60; min-width: 11em; padding: 6px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); display: grid; }
+.share-menu button { all: unset; box-sizing: border-box; padding: 11px 14px; border-radius: 8px; cursor: pointer; font: 500 15px var(--ui); white-space: nowrap; }
+.share-menu button:hover, .share-menu button:focus-visible { background: var(--hover); }
+@media print { .share-menu { display: none; } }

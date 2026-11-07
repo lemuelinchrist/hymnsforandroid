@@ -265,7 +265,7 @@ iPhone and iPad users install it from Safari. Decisions:
    `docs/HYMNAL_SPEC.md`): the hymnals' colours, picking a hymnal on a hymn opens its translation, the "other
    languages" row, a single chorus repeated after every stanza (a setting, on by default), Back returns where you
    came from, favorites import/export in the Android format (`E1,C215,`), hymnals that can be switched off
-   (Indonesian off at first), keep the screen on, copy the lyrics, the curated piano videos.
+   (Indonesian off at first), keep the screen on, a Share button like the Android one (a small menu: Share lyrics, Share link and Copy lyrics where the browser can share; Copy lyrics and Copy link elsewhere; the link is `<ID> · <first line>` and the hymn's web app address; the C key still copies the lyrics), the curated piano videos.
    Different on purpose: one smart search box instead of eight tabs, no bottom tab bar (phones keep the
    height for the hymn: the logo goes home and stays beside Back, so home is one tap from any depth, the home page has the hymnals and Favorites, the top bar has the
    Settings gear, the Android app's gear; while the search box is in use it takes the whole bar but Back), lyrics and sheet side by side on wide screens, lyrics in two columns when there is room; a lyrics page with width to spare (tablet, or a hymn without sheet music on a desktop) puts the single lyrics column in the middle (two columns fill the width once 44.5em of the lyrics text fit); on phones the hymn number carries its book code (CS258) since the book name is left out there.
