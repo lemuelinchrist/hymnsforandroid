@@ -504,7 +504,7 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
   .hymn-id { overflow: hidden; }
   .hymn-id .hymnal { display: none; }   /* phones: the hymnal shows in the top bar and the language row */
   .hymn-id { gap: 3px; }
-  .hymn-id .hcode { display: inline; color: var(--g); font: 700 15px var(--ui); letter-spacing: .03em; }   /* but its code stays beside the number: CS258 */
+  .hymn-id .hcode { display: inline; color: var(--g); font: 700 20px var(--ui); letter-spacing: .02em; }   /* but its code stays beside the number: CS258 */
 }
 
 /* ---- print: the lyrics, then the sheet on its own page; no controls ---- */
@@ -746,3 +746,4 @@ body.bars-away .topbar { transform: translateY(-100%); }
 /* a lyrics page that has the width to spare puts the lyrics in the middle (not beside the sheet music, which has its own column) */
 @media (min-width: 760px) and (max-width: 1079px) { .lyrics-pane { max-width: 46em; margin-inline: auto; } }
 @media (min-width: 1080px) { .panes:not(.two) .lyrics-pane { max-width: 46em; margin-inline: auto; } }
+@media (max-width: 759px) { .lyrics { width: fit-content; max-width: 100%; margin-inline: auto; } }   /* short lines: the block sits in the middle, the lines stay left-aligned */

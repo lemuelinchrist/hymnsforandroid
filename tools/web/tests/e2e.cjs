@@ -760,6 +760,11 @@ async function search(page, text) {
       const t = await phone.page.evaluate(() => document.querySelector('.hymn-id').innerText.replace(/\s+/g, ''));
       assert(t === 'E8', 'shows ' + t);
     });
+    await test('phone: a hymn with short lines has its lyrics block in the middle', async () => {
+      await open(phone.page, '#/h/J55');
+      const r = await phone.page.evaluate(() => { const b = document.querySelector('.lyrics').getBoundingClientRect(); return [b.left, innerWidth - b.right]; });
+      assert(Math.abs(r[0] - r[1]) < 3, 'margins ' + r.map(Math.round).join(' / '));
+    });
     await test('tablet: the lyrics sit in the middle of the page', async () => {
       const tb = await newPage(browser, {viewport: {width: 900, height: 1100}});
       await open(tb.page, '#/h/E8');
