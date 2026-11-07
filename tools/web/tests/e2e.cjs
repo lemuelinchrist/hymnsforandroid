@@ -284,10 +284,12 @@ async function search(page, text) {
       await page.waitForURL(/#\/favorites/);
       assert(await page.locator('.page-title').textContent().then((t) => t.includes('Favorites')), 'not the favorites page');
     });
-    await test('Listen and links always has a YouTube search (E: "Hymn 8 ...", C: first line and chorus)', async () => {
+    await test('Listen and links always has a YouTube and a SoundCloud search (E: "Hymn 8 ...", C: first line and chorus)', async () => {
       await open(page, '#/h/E8');
       const href = await page.getAttribute('.links-card a[href*="results?search_query"]', 'href');
       assert(href === 'https://www.youtube.com/results?search_query=Hymn+8+Praise+God+from+whom+all+blessings+flow', 'E8: ' + href);
+      const sc = await page.getAttribute('.links-card a[href*="soundcloud.com/search"]', 'href');
+      assert(sc === 'https://soundcloud.com/search/sounds?q=Hymn+8+Praise+God+from+whom+all+blessings+flow', 'E8 SoundCloud: ' + sc);
       await open(page, '#/h/C206');
       const c = await page.getAttribute('.links-card a[href*="results?search_query"]', 'href');
       assert(c.length > 50 && !/[%:,!.;]/.test(c.slice(45)), 'C206: ' + c);
@@ -305,7 +307,7 @@ async function search(page, text) {
       assert(await page.locator('.links-card dt').allTextContents().then((t) => t.join() === 'Search'), 'E35 should have only the search row');
       await open(page, '#/h/E12');
       const card = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
-      assert(card === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455 Search YouTube ↗', 'the card reads: ' + card);
+      assert(card === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455 Search YouTube ↗ · SoundCloud ↗', 'the card reads: ' + card);
     });
     await test('new tunes: a hymn lists its New Tunes (open in the app) and their recordings in the links card', async () => {
       await open(page, '#/h/E12');

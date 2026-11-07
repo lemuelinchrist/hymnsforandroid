@@ -610,16 +610,17 @@ function lyricsText(hymn) {
   return out.filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n').trim() + '\n';
 }
 
-// the "Search YouTube" link in the links card: a YouTube search for the hymn, made as the Android app's YouTube button does (YouTubeSearchLauncher.searchFor).
-// English and New Songs recordings are titled with the number ("Hymn 313", "NS 46"); the other books use the first
-// stanza line and the first chorus line.
-function youtubeSearchUrl(hymn) {
+// the Search row of the links card: YouTube and SoundCloud searches for the hymn, the words made as the Android app's
+// YouTube button does (YouTubeSearchLauncher.searchFor). English and New Songs recordings are titled with the number
+// ("Hymn 313", "NS 46"); the other books use the first stanza line and the first chorus line.
+function searchWords(hymn) {
   const first = hymn.first || '', chorus = hymn.chorus || '';
   const prefix = {E: 'Hymn ', NS: 'NS '}[hymn.group.toUpperCase()];
   const query = prefix && hymn.no ? prefix + hymn.no + ' ' + first : (first ? first + ' ' : '') + chorus;
-  return 'https://www.youtube.com/results?search_query=' +
-    query.replace(/[+.;!"':,]/g, '').trim().replace(/ /g, '+');
+  return query.replace(/[+.;!"':,]/g, '').trim().replace(/ /g, '+');
 }
+const youtubeSearchUrl = (hymn) => 'https://www.youtube.com/results?search_query=' + searchWords(hymn);
+const soundcloudSearchUrl = (hymn) => 'https://soundcloud.com/search/sounds?q=' + searchWords(hymn);
 
 async function copyLyrics(hymn) {
   try {
@@ -688,7 +689,9 @@ function linksNode(hymn) {
     ['New tune recordings', recordings.length ? h('span', {class: 'videos'}, recordings.map((r, i) => [i ? ' · ' : '',
       h('a', {href: r.url, target: '_blank', rel: 'noopener'}, r.text + ' ↗')])) : null],
     // every hymn has this one, so the card is on every hymn page
-    ['Search', h('span', {class: 'videos search'}, h('a', {href: youtubeSearchUrl(hymn), target: '_blank', rel: 'noopener'}, 'YouTube ↗'))],
+    ['Search', h('span', {class: 'videos search'},
+      h('a', {href: youtubeSearchUrl(hymn), target: '_blank', rel: 'noopener'}, 'YouTube ↗'), ' · ',
+      h('a', {href: soundcloudSearchUrl(hymn), target: '_blank', rel: 'noopener'}, 'SoundCloud ↗'))],
   ].filter(([, v]) => v);
   return h('section', {class: 'card links-card'},
     h('h2', null, 'Listen and links'),

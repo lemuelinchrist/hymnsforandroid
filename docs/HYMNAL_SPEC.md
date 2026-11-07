@@ -462,8 +462,8 @@ The search query:
 | `NS` | `NS <no> <first_stanza_line>` | `NS 46 …` |
 | every other book | `<first_stanza_line> <first_chorus_line>` | |
 
-The web app has no button and no switch for this: the same search is the last row of the links card (`Search`: `YouTube ↗`,
-opens in a new tab; the query is built the same way), so its card is on every hymn page.
+The web app has no button and no switch for this: the same search is the last row of the links card (`Search`: `YouTube ↗ · SoundCloud ↗`,
+each opens in a new tab; the query is built the same way, and SoundCloud's is `https://soundcloud.com/search/sounds?q=`), so its card is on every hymn page.
 
 Why the number: recordings of English hymns and New Songs are usually titled with it ("Hymn 313", "NS 46"), and
 other churches' hymnals number their hymns differently, so the number finds this hymnal's recordings first. With the
