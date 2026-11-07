@@ -305,19 +305,19 @@ async function search(page, text) {
       }
     });
     await test('piano videos: E1 has one, E12 two in order, E395 its own and a NYCYPCD one, C1 borrows its parent\'s, E35 has none', async () => {
-      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos:not(.search) a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href)); };
+      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos:not(.search) a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href).filter((x) => !x.startsWith('LSM'))); };   // LSM recordings come and go with the data
       assert((await links('E1')).join() === '1st tune ↗ https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await links('E1'));
       const e12 = await links('E12');
       assert(e12.length === 2 && e12[0].startsWith('1st tune') && e12[1].startsWith('2nd tune') && e12.every((x) => x.includes('https://www.youtube.com/watch?v=')), 'E12: ' + e12);
       assert((await links('E3')).length === 1, 'E3 has one video');
       const e395 = await links('E395');   // its own piano video, then the NYCYPCD recording (a youtube link)
       assert(e395.length === 2 && e395[0] === '1st tune ↗ https://www.youtube.com/watch?v=emzsWJGEj8Y' && e395[1].startsWith('NYCYPCD'), 'E395: ' + e395);
-      assert((await links('C1')).join() === (await links('E1')).join(), 'C1 should show E1\'s video');
+      assert((await links('C1'))[0] === (await links('E1'))[0], 'C1 should show E1\'s video first: ' + await links('C1'));
       assert((await links('E35')).length === 0 && await page.locator('.videos:not(.search)').count() === 0, 'E35 should have no videos line');
       assert(await page.locator('.links-card dt').allTextContents().then((t) => t.join() === 'Search'), 'E35 should have only the search row');
       await open(page, '#/h/E12');
       const card = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
-      assert(card === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455 Search YouTube ↗ · SoundCloud ↗', 'the card reads: ' + card);
+      assert(card.replace(/ YouTube LSM ↗/, '') === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455 Search YouTube ↗ · SoundCloud ↗', 'the card reads: ' + card);
     });
     await test('new tunes: a hymn lists its New Tunes (open in the app) and their recordings in the links card', async () => {
       await open(page, '#/h/E12');
@@ -754,6 +754,18 @@ async function search(page, text) {
         const r = await phone.page.evaluate((x) => { const b = document.querySelector(x).getBoundingClientRect(); return [b.width, b.height]; }, sel);
         assert(r[0] >= 40 && r[1] >= 36, sel + ' is ' + r.map(Math.round).join('x'));
       }
+    });
+    await test('phone hymn page: the hymnal code stands beside the number (CS258)', async () => {
+      await open(phone.page, '#/h/E8');
+      const t = await phone.page.evaluate(() => document.querySelector('.hymn-id').innerText.replace(/\s+/g, ''));
+      assert(t === 'E8', 'shows ' + t);
+    });
+    await test('tablet: the lyrics sit in the middle of the page', async () => {
+      const tb = await newPage(browser, {viewport: {width: 900, height: 1100}});
+      await open(tb.page, '#/h/E8');
+      const r = await tb.page.evaluate(() => { const b = document.querySelector('.lyrics-pane').getBoundingClientRect(); return [b.left, innerWidth - b.right]; });
+      assert(Math.abs(r[0] - r[1]) < 3 && r[0] > 40, 'margins ' + r.map(Math.round).join(' / '));
+      await tb.ctx.close();
     });
     await test('the search box takes the whole top bar but Back while it is in use', async () => {
       await open(phone.page, '#/h/E8');

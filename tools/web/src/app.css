@@ -273,6 +273,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .hymn-id .num { font: 600 28px var(--serif); font-variant-numeric: tabular-nums; }
 .hymn-id .num { flex: none; }
 .hymn-id .hymnal { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.hymn-id .hcode { display: none; }
 .hymn-title { font: 600 clamp(24px, 3.4vw, 34px)/1.2 var(--serif); margin: 0 0 6px; text-wrap: balance; }
 .category { margin: 0 0 12px; color: var(--muted); }
 /* phones and tablets: the first line is the first line of stanza 1 right below, so the subject is the heading (bigger);
@@ -502,6 +503,8 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
   .tabs { margin: 0 -16px 12px; padding: 0 16px; }
   .hymn-id { overflow: hidden; }
   .hymn-id .hymnal { display: none; }   /* phones: the hymnal shows in the top bar and the language row */
+  .hymn-id { gap: 3px; }
+  .hymn-id .hcode { display: inline; color: var(--g); font: 700 15px var(--ui); letter-spacing: .03em; }   /* but its code stays beside the number: CS258 */
 }
 
 /* ---- print: the lyrics, then the sheet on its own page; no controls ---- */
@@ -739,3 +742,7 @@ body.bars-away .topbar { transform: translateY(-100%); }
 .qr-url { text-align: center; font-weight: 650; font-size: 13px; margin: 6px 0 2px; overflow-wrap: anywhere; }
 .qr-note { text-align: center; margin: 2px 0 6px; }
 .share-row { justify-content: center; }
+
+/* a lyrics page that has the width to spare puts the lyrics in the middle (not beside the sheet music, which has its own column) */
+@media (min-width: 760px) and (max-width: 1079px) { .lyrics-pane { max-width: 46em; margin-inline: auto; } }
+@media (min-width: 1080px) { .panes:not(.two) .lyrics-pane { max-width: 46em; margin-inline: auto; } }

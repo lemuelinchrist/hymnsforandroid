@@ -802,7 +802,7 @@ function hymnScreen(view, hymn) {
       h('a', {class: 'icon-btn' + (nb.prev ? '' : ' disabled'), href: nb.prev ? href('/h/' + nb.prev, keepSheetParams()) : null,
         title: nb.prev ? 'Previous: ' + nb.prev + ' (←)' : null, 'aria-label': 'Previous hymn'}, icon('prev')),
       h('a', {class: 'hymn-id', href: '#/browse/' + hymn.group, title: 'All of ' + g.name},
-        h('span', {class: 'hymnal'}, g.name), h('span', {class: 'num'}, hymn.no)),
+        h('span', {class: 'hymnal'}, g.name), h('span', {class: 'hcode'}, hymn.group), h('span', {class: 'num'}, hymn.no)),
       h('a', {class: 'icon-btn' + (nb.next ? '' : ' disabled'), href: nb.next ? href('/h/' + nb.next, keepSheetParams()) : null,
         title: nb.next ? 'Next: ' + nb.next + ' (→)' : null, 'aria-label': 'Next hymn'}, icon('next')),
       h('span', {class: 'grow'}),
