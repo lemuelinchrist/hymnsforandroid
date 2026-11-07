@@ -615,6 +615,14 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 .setting input[type="checkbox"]:checked { background: var(--g); }
 .setting input[type="checkbox"]:checked::after { transform: translateX(18px); }
 .setting .seg button { font-size: 13px; padding: 5px 12px; }
+/* a choice too wide for the row (Appearance on a phone) goes under its label, full width */
+.setting.wrap { flex-wrap: wrap; row-gap: 8px; }
+.setting.wrap .seg { margin-left: auto; max-width: 100%; }
+@media (max-width: 560px) {
+  .setting.wrap .seg { flex: 1 1 100%; margin-left: 0; }
+  .setting.wrap .seg button { flex: 1 1 auto; justify-content: center; padding: 5px 8px; }
+}
+@media (max-width: 360px) { .setting.wrap .seg button { padding: 5px 4px; } }
 .stepper { display: flex; align-items: center; gap: 8px; }
 .size-label { min-width: 3.2em; text-align: center; font-variant-numeric: tabular-nums; }
 .row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }

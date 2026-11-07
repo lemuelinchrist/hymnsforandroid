@@ -1334,7 +1334,7 @@ function settingsScreen(view) {
       h('button', {type: 'button', class: 'btn', 'aria-label': 'Bigger', onclick: () => { setLyricSize(lyricSize + 1); sizeLabel.textContent = Math.round(LYRIC_SIZES[lyricSize] * 100) + '%'; }}, icon('textBigger'))));
   box.appendChild(h('section', {class: 'card settings-card'},
     h('h2', null, 'Display'),
-    h('div', {class: 'setting'}, h('span', {class: 'label'}, 'Appearance'), themeSeg),
+    h('div', {class: 'setting wrap'}, h('span', {class: 'label'}, 'Appearance'), themeSeg),
     sizeRow,
     toggleRow('Repeat the chorus', 'After every stanza, when a hymn has one chorus', repeatChorus,
       (on) => { repeatChorus = on; store.set('repeatChorus', on); }),
@@ -1431,7 +1431,7 @@ function settingsScreen(view) {
       h('a', {href: 'https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns', target: '_blank', rel: 'noopener'}, 'Hymns For Android'),
       '. Sheet music from www.hymnal.net, engraved with Verovio (LGPL).'),
     h('p', {class: 'muted small'}, 'Source code: ',
-      h('a', {href: 'https://github.com/lemuelinchrist/hymnsforandroid', target: '_blank', rel: 'noopener'}, 'github.com/lemuelinchrist/hymnsforandroid')),
+      h('a', {href: 'https://github.com/lemuelinchrist/hymnsforandroid', target: '_blank', rel: 'noopener', style: 'overflow-wrap: anywhere'}, 'github.com/lemuelinchrist/hymnsforandroid')),
     h('p', {class: 'muted small'}, 'Feedback: ', h('a', {href: 'mailto:hymnsforandroid.support@gmail.com'}, 'hymnsforandroid.support@gmail.com')),
     window.matchMedia('(pointer: coarse)').matches ? null
       : h('p', null, h('button', {class: 'link', onclick: () => $('#helpDialog').showModal()}, 'Keyboard shortcuts'))));
