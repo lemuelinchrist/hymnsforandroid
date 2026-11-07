@@ -640,6 +640,18 @@ async function search(page, text) {
       assert((await (await fetch(BASE + 'icons/apple-touch-icon.png')).ok), 'apple-touch-icon');
       assert(await page.getAttribute('meta[name="robots"]', 'content') === 'noindex, nofollow', 'robots meta');
     });
+    await test('offline right after the very first visit (no second online load): the app still starts', async () => {
+      const off = await browser.newContext({viewport: {width: 1400, height: 900}});
+      const p = await off.newPage();
+      await open(p, '#/h/E9');
+      await p.waitForFunction(async () => !!(await navigator.serviceWorker.ready).active);
+      await p.waitForFunction(async () => !!(await caches.match(new URL('data/version.json', location.href).href)), null, {timeout: 20000});
+      await off.setOffline(true);
+      await p.reload();
+      await p.waitForSelector('body.ready', {timeout: 30000});
+      await onHymn(p, 'E9');
+      await off.close();
+    });
     await test('the app opens and shows hymns and sheets without a network', async () => {
       const off = await browser.newContext({viewport: {width: 1400, height: 900}});
       const p = await off.newPage();

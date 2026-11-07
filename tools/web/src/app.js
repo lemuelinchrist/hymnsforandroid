@@ -625,8 +625,8 @@ function searchWords(hymn) {
   const first = hymn.first || '', chorus = hymn.chorus || '';
   const prefix = {E: 'Hymn ', NS: 'NS '}[hymn.group.toUpperCase()];
   const query = prefix && hymn.no ? prefix + hymn.no + ' ' + first : (first ? first + ' ' : '') + chorus;
-  // the Android app's punctuation, plus ? ’ and the full-width marks; the marks are removed (heav'n -> heavn); runs of spaces count as one, so no "++"
-  return query.replace(/[+.;!?"':,\u2019\uff0c\uff1b\uff1f\uff01\u3002\uff0e\u3001]/g, '').trim().replace(/\s+/g, '+');
+  // the Android app's punctuation, plus ? ’, the full-width marks and CJK brackets; the marks are removed (heav'n -> heavn); runs of spaces count as one, so no "++"
+  return query.replace(/[+.;!?"':,\u2019\uff0c\uff1b\uff1f\uff01\u3002\uff0e\u3001\u300c\u300d\u300e\u300f\u3010\u3011\u300a\u300b]/g, '').trim().replace(/\s+/g, '+');
 }
 const youtubeSearchUrl = (hymn) => 'https://www.youtube.com/results?search_query=' + searchWords(hymn);
 const soundcloudSearchUrl = (hymn) => 'https://soundcloud.com/search/sounds?q=' + searchWords(hymn);

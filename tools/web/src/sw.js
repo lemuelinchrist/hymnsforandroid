@@ -4,7 +4,8 @@
 //   - data files with a hash in their name (DATA: sheets, sheet lyrics, the music renderer) are kept once fetched;
 //     they never change, so they are served from the store without asking the network;
 //   - tunes (midi/<hash>.mid) are kept once played, the same way; there are too many to list, so they are matched by name
-//   - data/version.json is asked from the network first, so a new build is noticed, and from the store offline;
+//   - data/version.json is asked from the network first, so a new build is noticed, and from the store offline; it and the
+//     search index are stored on install too, so the very first visit already works offline;
 //   - the database itself is not stored here: the app keeps it unpacked in IndexedDB.
 const BUILD = '/*BUILD*/';
 const SHELL = /*SHELL*/[];
@@ -14,7 +15,17 @@ const DATA_CACHE = 'hymns-data';
 const TUNE = /^midi\/[0-9a-f]{10}\.(mid|mp3)$/;
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(SHELL_CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  event.waitUntil((async () => {
+    await (await caches.open(SHELL_CACHE)).addAll(SHELL);
+    // the version file and the search index are stored now, not when the page first asks (that first ask comes before
+    // this worker controls the page, so it would never be stored and the app could not start offline until a second visit)
+    const data = await caches.open(DATA_CACHE);
+    const early = ['data/version.json', ...DATA.filter((f) => /^data\/index-/.test(f))];
+    await Promise.all(early.map((f) => fetch(f, {cache: 'reload'}).then((r) => {
+      if (r.ok) return data.put(new URL(f, self.registration.scope).href, r);
+    }).catch(() => {})));
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', (event) => {

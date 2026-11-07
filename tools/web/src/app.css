@@ -132,6 +132,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 }
 .searchbox input:focus { border-color: var(--g); box-shadow: 0 0 0 3px var(--g-soft); }
 .searchbox input::-webkit-search-cancel-button { display: none; }
+.searchbox input::placeholder { text-overflow: ellipsis; }   /* a hint that does not fit ends in ..., not mid-word */
 .search-icon { position: absolute; left: 14px; color: var(--muted); pointer-events: none; }
 .searchbox kbd { position: absolute; right: 14px; pointer-events: none; }
 .searchbox input:focus ~ kbd, .searchbox input:not(:placeholder-shown) ~ kbd { display: none; }
@@ -223,7 +224,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .hymnal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
 .hymnal-card {
   position: relative; display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 12px;
-  align-items: center; padding: 14px 14px 14px 18px; border-radius: var(--radius); text-decoration: none; text-align: start;
+  align-items: center; align-content: center; padding: 14px 14px 14px 18px; border-radius: var(--radius); text-decoration: none; text-align: start;
   background: var(--surface); border: 1px solid var(--line); cursor: pointer; overflow: hidden;
   transition: transform .12s, box-shadow .12s, border-color .12s;
 }
