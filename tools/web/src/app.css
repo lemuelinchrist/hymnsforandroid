@@ -208,10 +208,11 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   border: 1px solid var(--line-strong); background: var(--surface); font-size: 14px;
 }
 .tip:hover { border-color: var(--g); color: var(--g); }
-.home-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin: 8px 0 32px; }
+.home-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 16px; margin: 8px 0 32px; }
 .home-lists .card { padding: 12px 8px 8px; }
 .home-lists h2 { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; margin: 4px 12px 8px; color: var(--muted); }
 .home-lists h2 .link { margin-left: auto; font-weight: 400; }
+.home-empty { margin: 0 12px 8px; }
 .hymnals h2 { font-size: 15px; font-weight: 600; color: var(--muted); margin: 8px 0 12px; }
 .hymnal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
 .hymnal-card {
@@ -445,7 +446,7 @@ dialog .hymnal-grid { padding: 8px 20px 20px; }
 .keys dd { margin: 0; }
 
 #toast {
-  position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; z-index: 30;
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px); opacity: 0; pointer-events: none; z-index: 30;
   background: var(--ink); color: var(--paper); padding: 10px 18px; border-radius: 20px; font-size: 14px; transition: .2s;
 }
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
@@ -552,32 +553,16 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 }
 @media print { .chord-editor { display: none !important; } }
 
-/* ---- app shell: back button, tab bar (phones), install hint ---- */
+/* ---- app shell: back button, install hint ---- */
 
 .topbar { padding-top: env(safe-area-inset-top); height: calc(var(--top) + env(safe-area-inset-top)); }
 .back-btn { margin-right: -6px; color: var(--ink); }
 .settings-top { color: var(--muted); }
 .settings-top.current { color: var(--g); }
-.tabbar { display: none; }
 @media (max-width: 720px) {
-  .settings-top { display: none; }
+  #favoritesTop { display: none; }   /* phones: Favorites is on the home page; the gear stays */
+  .settings-top { margin-left: -4px; }
   .back-btn:not([hidden]) + .brand { display: none; }
-  .tabbar {
-    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
-    padding: 4px max(8px, env(safe-area-inset-left)) calc(4px + env(safe-area-inset-bottom));
-    background: color-mix(in srgb, var(--paper) 92%, transparent);
-    backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
-    border-top: 1px solid var(--line);
-  }
-  .tabbar a {
-    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 5px 0 3px;
-    text-decoration: none; color: var(--muted); font-size: 11px; font-weight: 500; -webkit-tap-highlight-color: transparent;
-  }
-  .tabbar a.on { color: var(--g); }
-  .tabbar a.on svg { stroke-width: 2.3; }
-  #view { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
-  body.sheet-only .tabbar, body.editing-chords .tabbar { display: none; }
-  #toast { bottom: calc(76px + env(safe-area-inset-bottom)); }
 }
 #toast.sticky { pointer-events: auto; }
 .toast-link { color: inherit; font-weight: 600; margin-left: 4px; }
@@ -680,8 +665,7 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 @media print { .same-tune { display: none; } }
 
 /* ---- more room for the sheet on phones: the bars slide away while scrolling down (body.bars-away, app.js) ---- */
-.topbar, .tabbar { transition: transform .2s ease; }
-body.bars-away .tabbar { transform: translateY(100%); }
+.topbar { transition: transform .2s ease; }
 body.bars-away .topbar { transform: translateY(-100%); }
 @media print { body.bars-away .topbar { transform: none; } }
 /* phones on their side: slimmer bars */

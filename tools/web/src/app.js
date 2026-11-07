@@ -61,7 +61,8 @@ const ICONS = {
   textSmaller: '<path d="M3 18l4.5-11L12 18M4.6 14h5.8M15 13h6"/>',
   textBigger: '<path d="M3 18l4.5-11L12 18M4.6 14h5.8M15 13h6M18 10v6"/>',
   home: '<path d="M4 11l8-6.5 8 6.5M6 9.5V20h12V9.5"/>',
-  settings: '<circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/>',
+  // the Android app's gear (res/drawable/ic_settings_white_48dp.xml), filled
+  settings: '<path fill="currentColor" stroke="none" fill-rule="evenodd" d="M19.1,12.9a2.8,2.8 0,0 0,0.1 -0.9,2.8 2.8,0 0,0 -0.1,-0.9l2.1,-1.6a0.7,0.7 0,0 0,0.1 -0.6L19.4,5.5a0.7,0.7 0,0 0,-0.6 -0.2l-2.4,1a6.5,6.5 0,0 0,-1.6 -0.9l-0.4,-2.6a0.5,0.5 0,0 0,-0.5 -0.4H10.1a0.5,0.5 0,0 0,-0.5 0.4L9.3,5.4a5.6,5.6 0,0 0,-1.7 0.9l-2.4,-1a0.4,0.4 0,0 0,-0.5 0.2l-2,3.4c-0.1,0.2 0,0.4 0.2,0.6l2,1.6a2.8,2.8 0,0 0,-0.1 0.9,2.8 2.8,0 0,0 0.1,0.9L2.8,14.5a0.7,0.7 0,0 0,-0.1 0.6l1.9,3.4a0.7,0.7 0,0 0,0.6 0.2l2.4,-1a6.5,6.5 0,0 0,1.6 0.9l0.4,2.6a0.5,0.5 0,0 0,0.5 0.4h3.8a0.5,0.5 0,0 0,0.5 -0.4l0.3,-2.6a5.6,5.6 0,0 0,1.7 -0.9l2.4,1a0.4,0.4 0,0 0,0.5 -0.2l2,-3.4c0.1,-0.2 0,-0.4 -0.2,-0.6ZM12,15.6A3.6,3.6 0,1 1,15.6 12,3.6 3.6,0 0,1 12,15.6Z"/>',
   copy: '<rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/>',
   share: '<path d="M12 3.5v11M8 7.5l4-4 4 4M5.5 12v6.5a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5V12"/>',
   play: '<path d="M8 5.5v13l10.5-6.5z"/>',
@@ -135,8 +136,6 @@ function setGroup(code) {
   $('#hymnalBtn .dot').dataset.code = code;
   $('#q').placeholder = window.innerWidth < 720 ? 'Number or words'
     : 'Search ' + BY_CODE[code].name + ' by number, or any hymnal by words';
-  const tab = document.querySelector('.tabbar [data-tab="browse"]');
-  if (tab) tab.setAttribute('href', '#/browse/' + code);
 }
 
 function applyTheme() {
@@ -305,7 +304,6 @@ function render() {
   shownDepth = depth();
   $('#backBtn').hidden = !screen || shownDepth === 0;
   const tab = !screen ? 'home' : ['browse', 'favorites', 'settings'].includes(screen) ? screen : null;
-  for (const a of document.querySelectorAll('.tabbar a')) a.classList.toggle('on', a.dataset.tab === tab);
   $('#favoritesTop').classList.toggle('current', tab === 'favorites');
   $('#settingsTop').classList.toggle('current', tab === 'settings');
   window.scrollTo(0, 0);
@@ -358,11 +356,14 @@ function homeScreen(view) {
         h('button', {class: 'tip', onclick: () => searchFor('blessings flow')}, '“blessings flow”'),
         h('button', {class: 'tip', onclick: () => searchFor('NS 151')}, 'NS 151'),
         touch ? null : h('button', {class: 'tip', onclick: () => $('#helpDialog').showModal()}, icon('keyboard'), 'Shortcuts'))),
-    (recent.length || favs.length) ? h('div', {class: 'home-lists'},
-      favs.length ? h('section', {class: 'card'}, h('h2', null, icon('star'), 'Favorites',
-        h('a', {class: 'link small', href: '#/favorites'}, 'All')), list(favs)) : null,
+    // Favorites always shows (also empty): on phones it is the way to the Favorites page and its import
+    h('div', {class: 'home-lists'},
+      h('section', {class: 'card'}, h('h2', null, icon('star'), 'Favorites',
+        h('a', {class: 'link small', href: '#/favorites'}, favs.length ? 'All' : 'Import')),
+        favs.length ? list(favs) : h('p', {class: 'muted small home-empty'},
+          'Tap the star on a hymn to keep it here, or import your favorites from the Android app.')),
       recent.length ? h('section', {class: 'card'}, h('h2', null, 'Recently opened',
-        h('button', {class: 'link small', onclick: () => { store.set('recent', []); render(); }}, 'Clear')), list(recent)) : null) : null,
+        h('button', {class: 'link small', onclick: () => { store.set('recent', []); render(); }}, 'Clear')), list(recent)) : null),
     h('section', {class: 'hymnals'},
       h('h2', null, 'Hymnals'),
       h('div', {class: 'hymnal-grid'}, shownGroups().map((g) =>
@@ -1470,7 +1471,6 @@ async function start() {
     d.addEventListener('click', (e) => { if (e.target === d) d.close(); });   // a click outside closes it
   }
   for (const b of document.querySelectorAll('[data-close]')) b.addEventListener('click', () => b.closest('dialog').close());
-  for (const t of document.querySelectorAll('.tabbar .ti')) t.appendChild(icon(t.dataset.icon));
   $('#favoritesTop').appendChild(icon('star'));
   $('#settingsTop').appendChild(icon('settings'));
   $('#backBtn').addEventListener('click', goBack);

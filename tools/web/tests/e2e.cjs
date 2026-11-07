@@ -633,6 +633,18 @@ async function search(page, text) {
         assert(over <= 0, 'page is ' + over + 'px too wide');
       });
     }
+    await test('no bottom tab bar: the top bar has the Settings gear, the home page an empty Favorites card that opens Favorites', async () => {
+      await open(phone.page, '');
+      await phone.page.evaluate(() => localStorage.removeItem('hfw.favorites'));
+      await open(phone.page, '');
+      assert(await phone.page.locator('.tabbar').count() === 0, 'tab bar still there');
+      assert(await phone.page.isHidden('#favoritesTop'), 'the star should be on the home page, not the top bar');
+      const fav = phone.page.locator('.home-lists a[href="#/favorites"]');
+      assert(await fav.textContent() === 'Import', 'empty Favorites card should offer Import');
+      await phone.page.tap('#settingsTop');
+      await phone.page.waitForURL(/#\/settings/);
+      assert(await phone.page.locator('#settingsTop svg path[fill="currentColor"]').count() === 1, 'not the Android gear');
+    });
     await test('the search box opens the number pad; ABC switches to letters, and it is remembered', async () => {
       await open(phone.page, '');
       const mode = () => phone.page.evaluate(() => document.querySelector('#q').inputMode);

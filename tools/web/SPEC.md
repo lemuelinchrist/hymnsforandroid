@@ -266,8 +266,9 @@ iPhone and iPad users install it from Safari. Decisions:
    languages" row, a single chorus repeated after every stanza (a setting, on by default), Back returns where you
    came from, favorites import/export in the Android format (`E1,C215,`), hymnals that can be switched off
    (Indonesian off at first), keep the screen on, copy the lyrics, the curated piano videos.
-   Different on purpose: one smart search box instead of eight tabs, a bottom tab bar on phones (Hymns · Hymnal ·
-   Favorites · Settings), lyrics and sheet side by side on wide screens, lyrics in two columns when there is room.
+   Different on purpose: one smart search box instead of eight tabs, no bottom tab bar (phones keep the
+   height for the hymn: the logo goes home, the home page has the hymnals and Favorites, the top bar has the
+   Settings gear, the Android app's gear), lyrics and sheet side by side on wide screens, lyrics in two columns when there is room.
 2. **Chord edits on the device + baked into the sheets.** No server: edits live in IndexedDB (`edits.js`), with
    export/import of a JSON file. Exported files are sent in and put into the `.ly`/MEI sources so every app gets
    the chords (tooling for that is a later step). The media host's `hymnsforweb` service and its data were removed.
