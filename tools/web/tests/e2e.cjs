@@ -645,6 +645,21 @@ async function search(page, text) {
       await phone.page.waitForURL(/#\/settings/);
       assert(await phone.page.locator('#settingsTop svg path[fill="currentColor"]').count() === 1, 'not the Android gear');
     });
+    await test('the search box takes the whole top bar but Back while it is in use', async () => {
+      await open(phone.page, '#/h/E8');
+      await open(phone.page, '#/h/E9');
+      const w0 = await phone.page.evaluate(() => document.querySelector('.searchbox').offsetWidth);
+      await phone.page.tap('#q');
+      assert(await phone.page.isHidden('.brand') && await phone.page.isHidden('#hymnalBtn') && await phone.page.isHidden('#settingsTop'), 'others still shown');
+      assert(await phone.page.isVisible('#backBtn'), 'Back hidden');
+      const w1 = await phone.page.evaluate(() => document.querySelector('.searchbox').offsetWidth);
+      assert(w1 > w0 + 80, 'box ' + w0 + ' -> ' + w1);
+      await phone.page.tap('#kbToggle');
+      assert(await phone.page.isHidden('#hymnalBtn'), 'ABC collapsed the box');
+      await phone.page.evaluate(() => document.activeElement.blur());
+      assert(await phone.page.isVisible('#hymnalBtn') && await phone.page.isVisible('.brand'), 'not back after leaving the box');
+      await phone.page.evaluate(() => localStorage.removeItem('hfw.keyboard'));   // the next test starts on numbers
+    });
     await test('the search box opens the number pad; ABC switches to letters, and it is remembered', async () => {
       await open(phone.page, '');
       const mode = () => phone.page.evaluate(() => document.querySelector('#q').inputMode);
