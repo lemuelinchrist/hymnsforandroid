@@ -43,6 +43,8 @@ function append(e, children) {
 }
 
 const ICONS = {
+  down: '<path d="M6 9l6 6 6-6"/>',
+  up: '<path d="M6 15l6-6 6 6"/>',
   prev: '<path d="M15 5l-7 7 7 7"/>',
   next: '<path d="M9 5l7 7-7 7"/>',
   search: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/>',
@@ -182,6 +184,11 @@ let repeatChorus = store.get('repeatChorus', true);
 
 // keep the screen on while the app is open (Screen Wake Lock; iOS 18.4+ for a home-screen app)
 let keepAwake = store.get('keepAwake', false);
+// the other languages row: one row that scrolls (phones), or all of them below each other; one choice for every hymn
+let familyOpen = store.get('familyOpen', false);
+// the button on the lower right after a switch to another language: {back: the hymn just left, at: the hymn shown now}.
+// It goes as soon as any other hymn is shown (the Android app's back-to-hymn button).
+let swapBack = null;
 let wakeLock = null;
 async function updateWakeLock() {
   try {
@@ -701,14 +708,45 @@ function linksNode(hymn) {
 function familyNode(hymn) {
   const fam = DB.family(hymn.id).filter((f) => f.id === hymn.id || isShown(f.group));
   if (fam.length < 2) return null;
-  return h('nav', {class: 'family', 'aria-label': 'Other languages'},
+  const nav = h('nav', {class: 'family', 'aria-label': 'Other languages'},
     fam.map((f) => {
       const g = BY_CODE[f.group];
       const cur = f.id === hymn.id;
       return h('a', {href: href('/h/' + f.id, keepSheetParams()), class: 'fam' + (cur ? ' current' : ''),
-        style: groupStyle(f.group), 'aria-current': cur ? 'page' : null, title: (g.long || g.name) + ' ' + f.no},
-        h('span', {class: 'fam-name'}, g.name), h('span', {class: 'fam-no'}, f.no));
+        style: groupStyle(f.group), 'aria-current': cur ? 'page' : null, title: (g.long || g.name) + ' ' + f.no,
+        onclick: cur ? null : () => { swapBack = {back: hymn.id, at: f.id}; }},
+      h('span', {class: 'fam-name'}, g.name), h('span', {class: 'fam-no'}, f.no));
     }));
+  // too many for one row (phones): a button opens them all below each other
+  const more = h('button', {type: 'button', class: 'fam-more', hidden: true, 'aria-expanded': String(familyOpen)});
+  const wrap = h('div', {class: 'family-wrap' + (familyOpen ? ' open' : '')}, nav, more);
+  const showMore = () => {
+    more.innerHTML = '';
+    more.append(icon(familyOpen ? 'up' : 'down'), h('span', null, familyOpen ? 'Fewer' : 'All ' + fam.length));
+    more.setAttribute('aria-expanded', String(familyOpen));
+    more.setAttribute('aria-label', familyOpen ? 'Show one row of languages' : 'Show all ' + fam.length + ' languages');
+    wrap.classList.toggle('open', familyOpen);
+  };
+  more.addEventListener('click', () => { familyOpen = !familyOpen; store.set('familyOpen', familyOpen); showMore(); });
+  showMore();
+  const fits = () => {   // the button only where the row is cut off (or after it was opened)
+    const cut = nav.scrollWidth > nav.clientWidth + 2 && getComputedStyle(nav).flexWrap === 'nowrap';
+    more.hidden = !(cut || (familyOpen && matchMedia('(max-width: 720px)').matches));
+  };
+  requestAnimationFrame(() => { fits(); });
+  window.addEventListener('resize', fits, {passive: true});
+  const mo = new MutationObserver(() => { if (!wrap.isConnected) { window.removeEventListener('resize', fits); mo.disconnect(); } });
+  mo.observe(document.getElementById('view'), {childList: true});
+  return wrap;
+}
+
+// the round button on the lower right after a switch to another language: it goes back to the hymn just left
+function swapBackButton(hymn) {
+  if (!swapBack || swapBack.at !== hymn.id || !DB.exists(swapBack.back)) { swapBack = null; return null; }
+  const back = swapBack.back;
+  return h('a', {class: 'swap-back', href: '#/h/' + back, style: groupStyle(splitId(back).group),
+    title: 'Back to ' + back, 'aria-label': 'Back to ' + back,
+    onclick: () => { swapBack = {back: hymn.id, at: back}; }}, back);
 }
 
 // other hymns sung to this tune (the Android app's "similar tune" button), at the end of the lyrics
@@ -783,7 +821,7 @@ function hymnScreen(view, hymn) {
   const lyricsPane = h('section', {class: 'pane lyrics-pane'}, lyricsNode(hymn), sameTuneNode(hymn), metaNode(hymn), linksNode(hymn));
   const sheetPane = hasSheet ? h('section', {class: 'pane sheet-pane'}) : null;
   const panes = h('div', {class: 'panes' + (hasSheet ? ' two' : '')}, lyricsPane, sheetPane);
-  const page = h('article', {class: 'hymn', style: groupStyle(hymn.group)}, head, tabs, panes);
+  const page = h('article', {class: 'hymn', style: groupStyle(hymn.group)}, head, tabs, panes, swapBackButton(hymn));
   view.appendChild(page);
 
   let sheet = null;
@@ -1176,6 +1214,7 @@ function setupHymnalPicker() {
         dlg.close();
         if (onHymn && g.code === onHymn.group) return;
         setGroup(g.code);
+        if (there) swapBack = {back: onHymn.id, at: there};
         go(there ? '#/h/' + there : '#/browse/' + g.code);
       }},
     h('span', {class: 'code'}, g.code), h('span', {class: 'name', dir: 'auto'}, g.name),

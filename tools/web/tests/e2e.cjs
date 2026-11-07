@@ -651,6 +651,35 @@ async function search(page, text) {
         assert(over <= 0, 'page is ' + over + 'px too wide');
       });
     }
+    await test('other languages: a long row has an All button that shows every language below each other; remembered', async () => {
+      await open(phone.page, '#/h/BF78');
+      await phone.page.waitForSelector('.fam-more:not([hidden])');
+      const row = () => phone.page.evaluate(() => { const n = document.querySelector('.family'); return [n.scrollWidth > n.clientWidth + 2, n.offsetHeight]; });
+      const [scrolls, oneRow] = await row();
+      assert(scrolls, 'the row should scroll while closed');
+      await phone.page.tap('.fam-more');
+      const [scrolls2, tall] = await row();
+      assert(!scrolls2 && tall > oneRow * 3, 'all languages should show below each other: ' + oneRow + ' -> ' + tall);
+      await open(phone.page, '#/h/BF79');
+      assert(await phone.page.locator('.family-wrap.open').count() === 1, 'the choice is kept for the next hymn');
+      await phone.page.tap('.fam-more');   // closed again for the other tests
+      assert(await phone.page.locator('.family-wrap.open').count() === 0, 'closed again');
+    });
+    await test('a button on the lower right goes back after switching language, and goes at any other hymn (BF78 -> E600 -> back)', async () => {
+      await open(phone.page, '#/h/BF78');
+      assert(await phone.page.locator('.swap-back').count() === 0, 'no button before a switch');
+      await phone.page.tap('.fam:has-text("English")');
+      await onHymn(phone.page, 'E600');
+      assert(await phone.page.textContent('.swap-back') === 'BF78', 'button should name the hymn just left');
+      await phone.page.tap('.swap-back');
+      await onHymn(phone.page, 'BF78');
+      assert(await phone.page.textContent('.swap-back') === 'E600', 'now it names E600 (back and forth)');
+      await phone.page.tap('.fam:has-text("English")');
+      await onHymn(phone.page, 'E600');
+      await phone.page.tap('.hymn-nav a[aria-label="Next hymn"]');
+      await onHymn(phone.page, 'E601');
+      assert(await phone.page.locator('.swap-back').count() === 0, 'any other hymn removes the button');
+    });
     await test('no bottom tab bar: the top bar has the Settings gear, the home page an empty Favorites card that opens Favorites', async () => {
       await open(phone.page, '');
       await phone.page.evaluate(() => localStorage.removeItem('hfw.favorites'));

@@ -298,6 +298,10 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
        Tapping it opens that hymn the same way, so the button now shows the hymn that was left in turn: a meeting in
        two languages goes back and forth with it. It disappears as soon as any other hymn is shown (a swipe, Search,
        Back, a similar tune). Opening a hymn goes straight to it, never through hymn 1 of its book.
+       The web app has both: its other-languages row (the chips under the title) is one row that scrolls on phones, with an
+       **All N** button at its right that opens every language below each other (**Fewer** closes it; one choice for every
+       hymn, kept on the device, closed at first), and the back-to-hymn button is the same 60px round button on the lower
+       right, shown after a chip or a hymnal choice that switches language and removed by any other hymn.
      - **Where the related hymn opens:** a related hymn opens at the **same relative place** as the hymn left
        (scroll position ÷ scroll range, so verse 10 of a long hymn goes to about verse 10 of its translation, since
        the languages differ in line heights), not at its top; this holds for the back-to-hymn button and the drawer
