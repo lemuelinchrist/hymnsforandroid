@@ -410,7 +410,7 @@ dark room on OLED phones.
 |---|---|---|---|
 | Toolbar | book day colour | day colour 55 % over `#1D1F23` | black |
 | Button bar (pill) | book day colour | day colour 70 % over `#1D1F23` | black |
-| Page background | white | `#121316` | black |
+| Page background | `#F4F6F9` (the Settings page's; cards, bars and the drawer are white on it) | `#121316` | black |
 | Cards (header, lyrics, details) | white, elevated | `#1D1F23`, elevated | black, no shadow |
 | Lyric text | `#4E4E4E` | `#E3E4E7` | `#CCCCCC` |
 | Stanza numbers, chorus, "Hide" | book day colour | book night colour | book night colour |

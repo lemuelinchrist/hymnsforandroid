@@ -2,7 +2,7 @@
 <resources>
     <!-- Light: the hymn page's colours by day (values-night/themes.xml has Dark under the same name) -->
     <style name="Hymns.Colors" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="hymnPageBackground">#ffffff</item>
+        <item name="hymnPageBackground">#f4f6f9</item>
         <item name="hymnCardBackground">#ffffff</item>
         <item name="hymnCardElevation">5dp</item>
         <item name="hymnText">#4e4e4e</item>
