@@ -66,7 +66,6 @@ const ICONS = {
   copy: '<rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/>',
   share: '<path d="M12 3.5v11M8 7.5l4-4 4 4M5.5 12v6.5a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5V12"/>',
   play: '<path d="M8 5.5v13l10.5-6.5z"/>',
-  youtube: '<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2v5.6l5-2.8z" fill="currentColor"/>',
   pause: '<path d="M8.5 5.5v13M15.5 5.5v13"/>',
 };
 
@@ -182,7 +181,6 @@ function shownGroups() {
 let repeatChorus = store.get('repeatChorus', true);
 
 // keep the screen on while the app is open (Screen Wake Lock; iOS 18.4+ for a home-screen app)
-let youtubeButton = store.get('youtubeButton', false);   // off by default, as in the Android app
 let keepAwake = store.get('keepAwake', false);
 let wakeLock = null;
 async function updateWakeLock() {
@@ -612,7 +610,7 @@ function lyricsText(hymn) {
   return out.filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n').trim() + '\n';
 }
 
-// the YouTube button: a YouTube search for the hymn, as the Android app makes it (YouTubeSearchLauncher.searchFor).
+// the "Search YouTube" link in the links card: a YouTube search for the hymn, made as the Android app's YouTube button does (YouTubeSearchLauncher.searchFor).
 // English and New Songs recordings are titled with the number ("Hymn 313", "NS 46"); the other books use the first
 // stanza line and the first chorus line.
 function youtubeSearchUrl(hymn) {
@@ -661,7 +659,7 @@ function metaNode(hymn) {
 
 // the card under the details for links that open outside the app (the Android app's "Listen and links" card): the
 // hymn's piano videos, its parent's when it has none, then its own YouTube and SoundCloud links (the youth books), all
-// from the link table; nothing at all when there are no rows
+// from the link table, and always a YouTube search for the hymn
 function linksNode(hymn) {
   const videos = DB.videos(hymn);
   // no YouTube or SoundCloud link of its own: the nearest hymn above it that has some; in another language each link
@@ -689,8 +687,9 @@ function linksNode(hymn) {
       h('a', {href: '#/h/' + t.id}, t.id)])) : null],
     ['New tune recordings', recordings.length ? h('span', {class: 'videos'}, recordings.map((r, i) => [i ? ' · ' : '',
       h('a', {href: r.url, target: '_blank', rel: 'noopener'}, r.text + ' ↗')])) : null],
+    // every hymn has this one, so the card is on every hymn page
+    ['Search', h('span', {class: 'videos search'}, h('a', {href: youtubeSearchUrl(hymn), target: '_blank', rel: 'noopener'}, 'YouTube ↗'))],
   ].filter(([, v]) => v);
-  if (!rows.length) return null;
   return h('section', {class: 'card links-card'},
     h('h2', null, 'Listen and links'),
     h('dl', null, rows.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])));
@@ -767,8 +766,6 @@ function hymnScreen(view, hymn) {
       h('button', {class: 'icon-btn size', title: 'Smaller text', onclick: () => setLyricSize(lyricSize - 1)}, icon('textSmaller')),
       h('button', {class: 'icon-btn size', title: 'Bigger text', onclick: () => setLyricSize(lyricSize + 1)}, icon('textBigger')),
       playBtn,
-      youtubeButton ? h('a', {class: 'icon-btn youtube', href: youtubeSearchUrl(hymn), target: '_blank', rel: 'noopener',
-        title: 'Search YouTube for this hymn', 'aria-label': 'Search YouTube for this hymn'}, icon('youtube')) : null,
       h('button', {class: 'icon-btn', title: 'Copy the lyrics (C)', 'aria-label': 'Copy the lyrics', onclick: () => copyLyrics(hymn)}, icon('copy')),
       h('button', {class: 'icon-btn print', title: 'Print', onclick: () => window.print()}, icon('print')),
       favBtn),
@@ -1376,8 +1373,6 @@ function settingsScreen(view) {
     h('h2', null, 'Display'),
     toggleRow('Repeat the chorus', 'After every stanza, when a hymn has one chorus', repeatChorus,
       (on) => { repeatChorus = on; store.set('repeatChorus', on); }),
-    toggleRow('YouTube button', 'On a hymn: search YouTube for it', youtubeButton,
-      (on) => { youtubeButton = on; store.set('youtubeButton', on); }),
     toggleRow('Keep the screen on', 'wakeLock' in navigator ? 'While the app is open' : 'Not supported by this browser (on iPhone: iOS 18.4 or later)',
       keepAwake, (on) => { keepAwake = on; store.set('keepAwake', on); updateWakeLock(); })));
 

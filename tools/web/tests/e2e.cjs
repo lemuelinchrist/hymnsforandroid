@@ -284,24 +284,16 @@ async function search(page, text) {
       await page.waitForURL(/#\/favorites/);
       assert(await page.locator('.page-title').textContent().then((t) => t.includes('Favorites')), 'not the favorites page');
     });
-    await test('YouTube button: off at first; switched on in Settings it searches YouTube (E: "Hymn 8 ...", C: first line and chorus)', async () => {
+    await test('Listen and links always has a YouTube search (E: "Hymn 8 ...", C: first line and chorus)', async () => {
       await open(page, '#/h/E8');
-      assert(await page.locator('.hymn-nav .youtube').count() === 0, 'button shown while the setting is off');
-      await open(page, '#/settings');
-      await page.click('label.setting:has-text("YouTube button")');
-      await open(page, '#/h/E8');
-      const href = await page.getAttribute('.hymn-nav .youtube', 'href');
+      const href = await page.getAttribute('.links-card a[href*="results?search_query"]', 'href');
       assert(href === 'https://www.youtube.com/results?search_query=Hymn+8+Praise+God+from+whom+all+blessings+flow', 'E8: ' + href);
       await open(page, '#/h/C206');
-      const c = await page.getAttribute('.hymn-nav .youtube', 'href');
-      assert(c.startsWith('https://www.youtube.com/results?search_query=') && !/[%:,!.;]/.test(c.slice(45)), 'C206: ' + c);
-      await open(page, '#/settings');
-      await page.click('label.setting:has-text("YouTube button")');
-      await open(page, '#/h/E8');
-      assert(await page.locator('.hymn-nav .youtube').count() === 0, 'button still shown after switching off');
+      const c = await page.getAttribute('.links-card a[href*="results?search_query"]', 'href');
+      assert(c.length > 50 && !/[%:,!.;]/.test(c.slice(45)), 'C206: ' + c);
     });
     await test('piano videos: E1 has one, E12 two in order, E395 its own and a NYCYPCD one, C1 borrows its parent\'s, E35 has none', async () => {
-      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href)); };
+      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos:not(.search) a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href)); };
       assert((await links('E1')).join() === '1st tune ↗ https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await links('E1'));
       const e12 = await links('E12');
       assert(e12.length === 2 && e12[0].startsWith('1st tune') && e12[1].startsWith('2nd tune') && e12.every((x) => x.includes('https://www.youtube.com/watch?v=')), 'E12: ' + e12);
@@ -309,11 +301,11 @@ async function search(page, text) {
       const e395 = await links('E395');   // its own piano video, then the NYCYPCD recording (a youtube link)
       assert(e395.length === 2 && e395[0] === '1st tune ↗ https://www.youtube.com/watch?v=emzsWJGEj8Y' && e395[1].startsWith('NYCYPCD'), 'E395: ' + e395);
       assert((await links('C1')).join() === (await links('E1')).join(), 'C1 should show E1\'s video');
-      assert((await links('E35')).length === 0 && await page.locator('.videos').count() === 0, 'E35 should have no videos line');
-      assert(await page.locator('.links-card').count() === 0, 'E35 should have no links card');
+      assert((await links('E35')).length === 0 && await page.locator('.videos:not(.search)').count() === 0, 'E35 should have no videos line');
+      assert(await page.locator('.links-card dt').allTextContents().then((t) => t.join() === 'Search'), 'E35 should have only the search row');
       await open(page, '#/h/E12');
       const card = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
-      assert(card === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455', 'the card reads: ' + card);
+      assert(card === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455 Search YouTube ↗', 'the card reads: ' + card);
     });
     await test('new tunes: a hymn lists its New Tunes (open in the app) and their recordings in the links card', async () => {
       await open(page, '#/h/E12');
