@@ -462,6 +462,9 @@ The search query:
 | `NS` | `NS <no> <first_stanza_line>` | `NS 46 …` |
 | every other book | `<first_stanza_line> <first_chorus_line>` | |
 
+The web app has the same button (a link that opens the search in a new tab, in the hymn's top row after Play) and the same
+switch, **YouTube button**, off by default, in its Display card; the query is built the same way.
+
 Why the number: recordings of English hymns and New Songs are usually titled with it ("Hymn 313", "NS 46"), and
 other churches' hymnals number their hymns differently, so the number finds this hymnal's recordings first. With the
 lines alone, a hymn with a common first line often brought up other churches' songs first. Adding a group name to the

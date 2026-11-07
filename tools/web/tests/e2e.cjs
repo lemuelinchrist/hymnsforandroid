@@ -284,6 +284,22 @@ async function search(page, text) {
       await page.waitForURL(/#\/favorites/);
       assert(await page.locator('.page-title').textContent().then((t) => t.includes('Favorites')), 'not the favorites page');
     });
+    await test('YouTube button: off at first; switched on in Settings it searches YouTube (E: "Hymn 8 ...", C: first line and chorus)', async () => {
+      await open(page, '#/h/E8');
+      assert(await page.locator('.hymn-nav .youtube').count() === 0, 'button shown while the setting is off');
+      await open(page, '#/settings');
+      await page.click('label.setting:has-text("YouTube button")');
+      await open(page, '#/h/E8');
+      const href = await page.getAttribute('.hymn-nav .youtube', 'href');
+      assert(href === 'https://www.youtube.com/results?search_query=Hymn+8+Praise+God+from+whom+all+blessings+flow', 'E8: ' + href);
+      await open(page, '#/h/C206');
+      const c = await page.getAttribute('.hymn-nav .youtube', 'href');
+      assert(c.startsWith('https://www.youtube.com/results?search_query=') && !/[%:,!.;]/.test(c.slice(45)), 'C206: ' + c);
+      await open(page, '#/settings');
+      await page.click('label.setting:has-text("YouTube button")');
+      await open(page, '#/h/E8');
+      assert(await page.locator('.hymn-nav .youtube').count() === 0, 'button still shown after switching off');
+    });
     await test('piano videos: E1 has one, E12 two in order, E395 its own and a NYCYPCD one, C1 borrows its parent\'s, E35 has none', async () => {
       const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href)); };
       assert((await links('E1')).join() === '1st tune ↗ https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await links('E1'));
