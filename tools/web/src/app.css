@@ -140,6 +140,7 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   border: 1px solid var(--line-strong); background: var(--bg); color: var(--muted); font: 600 12px var(--ui); letter-spacing: .03em;
 }
 .searchbox:has(.kb-toggle:not([hidden])) input { padding-right: 56px; }
+.searchbox:has(.kb-toggle:not([hidden])) kbd { display: none; }   /* the / hint would sit under the ABC key */
 .hymnal-btn {
   display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; flex: none; cursor: pointer;
   border: 1px solid var(--line-strong); border-radius: 20px; background: var(--surface); white-space: nowrap; max-width: 14em;
@@ -283,7 +284,9 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   display: flex; align-items: center; justify-content: center; text-decoration: none; background: var(--g); color: #fff;
   font: 700 15px var(--ui); box-shadow: 0 3px 10px rgba(0, 0, 0, .3); -webkit-tap-highlight-color: transparent;
 }
-body.sheet-only .swap-back, body.editing-chords .swap-back { display: none; }
+body.sheet-only .swap-back, body.editing-chords .swap-back, .hymn[data-tab="sheet"] .swap-back { display: none; }   /* not over the music */
+:root[data-theme="dark"] .swap-back, :root[data-theme="black"] .swap-back { color: #161412; background: var(--gn, var(--g)); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .swap-back { color: #161412; background: var(--gn, var(--g)); } }
 @media print { .swap-back { display: none; } }
 @media print { .hymn-title.with-subject { position: static; width: auto; height: auto; margin: 0 0 6px; clip-path: none; white-space: normal; } }
 .family { display: flex; flex-wrap: wrap; gap: 6px; }

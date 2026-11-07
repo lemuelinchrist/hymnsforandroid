@@ -294,6 +294,16 @@ async function search(page, text) {
       const c = await page.getAttribute('.links-card a[href*="results?search_query"]', 'href');
       assert(c.length > 50 && !/[%:,!.;]/.test(c.slice(45)), 'C206: ' + c);
     });
+    await test('search links: no doubled plus signs, no ? or curly/full-width marks (SW103, FRY30, FRY88, ZS911)', async () => {
+      for (const id of ['SW103', 'FR100', 'FRY30', 'FRY88', 'ZS911', 'TA909']) {
+        await open(page, '#/h/' + id);
+        for (const sel of ['a[href*="results?search_query"]', 'a[href*="soundcloud.com/search"]']) {
+          const href = await page.getAttribute('.links-card ' + sel, 'href');
+          const q = decodeURIComponent(href.split(/[?&](?:search_query|q)=/)[1]);
+          assert(!/\+\+|^\+|\+$/.test(q) && !/[?\u2019\uff0c\uff1b\uff1f\uff01\u3002\uff0e\u3001]/.test(q), id + ': ' + q);
+        }
+      }
+    });
     await test('piano videos: E1 has one, E12 two in order, E395 its own and a NYCYPCD one, C1 borrows its parent\'s, E35 has none', async () => {
       const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos:not(.search) a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href)); };
       assert((await links('E1')).join() === '1st tune ↗ https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await links('E1'));
@@ -464,6 +474,14 @@ async function search(page, text) {
       await page.waitForSelector('.sheet.dark .sheet-music svg', {timeout: 60000});
       await open(page, '#/settings');
       await page.click('.theme-tile[aria-label="System default"]');
+    });
+    await test('Settings: a theme tile keeps the keyboard focus after it is chosen', async () => {
+      await open(page, '#/settings');
+      await page.focus('.theme-tile[aria-label="Dark"]');
+      await page.keyboard.press('Enter');
+      assert(await page.evaluate(() => document.activeElement.getAttribute('aria-label')) === 'Dark', 'focus lost');
+      await page.focus('.theme-tile[aria-label="System default"]');
+      await page.keyboard.press('Enter');
     });
     await test('Settings: Text size has the five Android steps; the chosen one is marked and the hymn follows', async () => {
       await open(page, '#/settings');
@@ -691,6 +709,18 @@ async function search(page, text) {
       await phone.page.tap('#settingsTop');
       await phone.page.waitForURL(/#\/settings/);
       assert(await phone.page.locator('#settingsTop svg path[fill="currentColor"]').count() === 1, 'not the Android gear');
+    });
+    await test('the back-to-hymn button is dark-on-pastel in the dark theme and hidden on the Sheet music tab', async () => {
+      await open(phone.page, '#/h/BF78');
+      await phone.page.tap('.fam:has-text("English")');
+      await onHymn(phone.page, 'E600');
+      assert(await phone.page.evaluate(() => getComputedStyle(document.querySelector('.swap-back')).color) === 'rgb(255, 255, 255)', 'light theme: white text');
+      await phone.page.evaluate(() => { document.documentElement.dataset.theme = 'dark'; });
+      assert(await phone.page.evaluate(() => getComputedStyle(document.querySelector('.swap-back')).color) === 'rgb(22, 20, 18)', 'dark theme: dark text');
+      await phone.page.evaluate(() => { delete document.documentElement.dataset.theme; });
+      await phone.page.click('.tabs button[data-tab="sheet"]');
+      assert(await phone.page.isHidden('.swap-back'), 'button over the music');
+      await open(phone.page, '#/h/E8');   // no button left for the next tests
     });
     await test('the search box takes the whole top bar but Back while it is in use', async () => {
       await open(phone.page, '#/h/E8');

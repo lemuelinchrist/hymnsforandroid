@@ -624,7 +624,8 @@ function searchWords(hymn) {
   const first = hymn.first || '', chorus = hymn.chorus || '';
   const prefix = {E: 'Hymn ', NS: 'NS '}[hymn.group.toUpperCase()];
   const query = prefix && hymn.no ? prefix + hymn.no + ' ' + first : (first ? first + ' ' : '') + chorus;
-  return query.replace(/[+.;!"':,]/g, '').trim().replace(/ /g, '+');
+  // the Android app's punctuation, plus ? ’ and the full-width marks; the marks are removed (heav'n -> heavn); runs of spaces count as one, so no "++"
+  return query.replace(/[+.;!?"':,\u2019\uff0c\uff1b\uff1f\uff01\u3002\uff0e\u3001]/g, '').trim().replace(/\s+/g, '+');
 }
 const youtubeSearchUrl = (hymn) => 'https://www.youtube.com/results?search_query=' + searchWords(hymn);
 const soundcloudSearchUrl = (hymn) => 'https://soundcloud.com/search/sounds?q=' + searchWords(hymn);
@@ -1409,7 +1410,8 @@ function settingsScreen(view) {
   box.appendChild(h('div', {class: 'set-head'}, h('h2', null, 'Appearance'), themeValue));
   box.appendChild(h('div', {class: 'theme-tiles', role: 'group', 'aria-label': 'Appearance'}, THEMES.map(([t, name, full, m]) =>
     h('button', {type: 'button', class: 'theme-tile', 'aria-pressed': String(themeNow === t), 'aria-label': full,
-      onclick: () => { setTheme(t); render(); }}, h('span', {class: 'frame'}, mock(m)), h('span', {class: 'name'}, name)))));
+      onclick: () => { setTheme(t); render(); document.querySelector(`.theme-tile[aria-label="${full}"]`)?.focus(); }},   // the page is drawn again: keep the focus
+    h('span', {class: 'frame'}, mock(m)), h('span', {class: 'name'}, name)))));
 
   box.appendChild(h('section', {class: 'card settings-card'},
     h('h2', null, 'Display'),
