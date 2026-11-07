@@ -765,12 +765,23 @@ async function search(page, text) {
       const r = await phone.page.evaluate(() => { const b = document.querySelector('.lyrics').getBoundingClientRect(); return [b.left, innerWidth - b.right]; });
       assert(Math.abs(r[0] - r[1]) < 3, 'margins ' + r.map(Math.round).join(' / '));
     });
-    await test('tablet: the lyrics sit in the middle of the page', async () => {
-      const tb = await newPage(browser, {viewport: {width: 900, height: 1100}});
-      await open(tb.page, '#/h/E8');
-      const r = await tb.page.evaluate(() => { const b = document.querySelector('.lyrics-pane').getBoundingClientRect(); return [b.left, innerWidth - b.right]; });
-      assert(Math.abs(r[0] - r[1]) < 3 && r[0] > 40, 'margins ' + r.map(Math.round).join(' / '));
-      await tb.ctx.close();
+    await test('lyrics: one column in the middle of the page, two columns once there is room (not beside the sheet)', async () => {
+      const probe = async (w) => {
+        const q = await newPage(browser, {viewport: {width: w, height: 1000}});
+        await open(q.page, '#/h/E56');
+        const r = await q.page.evaluate(() => {
+          const b = document.querySelector('.lyrics').getBoundingClientRect();
+          return [b.left, innerWidth - b.right, new Set([...document.querySelectorAll('.stanza')].map((x) => Math.round(x.getBoundingClientRect().left))).size];
+        });
+        await q.ctx.close();
+        return r;
+      };
+      for (const w of [500, 760, 900]) {
+        const r = await probe(w);
+        assert(Math.abs(r[0] - r[1]) < 3 && r[2] === 1, w + ' px: margins ' + r.map(Math.round).join(' / '));
+      }
+      const wide = await probe(1050);
+      assert(wide[2] === 2, '1050 px: ' + wide[2] + ' column(s)');
     });
     await test('the search box takes the whole top bar but Back while it is in use', async () => {
       await open(phone.page, '#/h/E8');

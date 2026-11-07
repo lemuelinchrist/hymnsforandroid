@@ -820,7 +820,7 @@ function hymnScreen(view, hymn) {
     h('button', {role: 'tab', 'data-tab': 'lyrics', onclick: () => showTab('lyrics')}, 'Lyrics'),
     h('button', {role: 'tab', 'data-tab': 'sheet', onclick: () => showTab('sheet')}, 'Sheet music')) : null;
 
-  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, lyricsNode(hymn), sameTuneNode(hymn), metaNode(hymn), linksNode(hymn));
+  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, h('div', {class: 'lyrics-box'}, lyricsNode(hymn)), sameTuneNode(hymn), metaNode(hymn), linksNode(hymn));
   const sheetPane = hasSheet ? h('section', {class: 'pane sheet-pane'}) : null;
   const panes = h('div', {class: 'panes' + (hasSheet ? ' two' : '')}, lyricsPane, sheetPane);
   const page = h('article', {class: 'hymn', style: groupStyle(hymn.group)}, head, tabs, panes, swapBackButton(hymn));

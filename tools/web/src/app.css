@@ -743,7 +743,8 @@ body.bars-away .topbar { transform: translateY(-100%); }
 .qr-note { text-align: center; margin: 2px 0 6px; }
 .share-row { justify-content: center; }
 
-/* a lyrics page that has the width to spare puts the lyrics in the middle (not beside the sheet music, which has its own column) */
-@media (min-width: 760px) and (max-width: 1079px) { .lyrics-pane { max-width: 46em; margin-inline: auto; } }
-@media (min-width: 1080px) { .panes:not(.two) .lyrics-pane { max-width: 46em; margin-inline: auto; } }
-@media (max-width: 759px) { .lyrics { width: fit-content; max-width: 100%; margin-inline: auto; } }   /* short lines: the block sits in the middle, the lines stay left-aligned */
+/* the lyrics: one column sits in the middle of the page (the lines stay left-aligned); once there is room for two columns
+   (44.5em of the lyrics' own text size, so it follows the Text size setting) they fill the width and flow into columns */
+.lyrics-box { container-type: inline-size; font-size: calc(clamp(16px, 4.4vw, 19px) * var(--lyric-scale)); }
+.lyrics { width: fit-content; max-width: 100%; margin-inline: auto; }
+@container (min-width: 44.5em) { .lyrics { width: auto; max-width: none; margin-inline: 0; } }
