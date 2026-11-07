@@ -1,16 +1,16 @@
-/* Hymns (web app). Warm paper, serif lyrics, each hymnal in its own colour (--gd day, --gn night). */
+/* Hymns (web app). Cool light paper like the Android Settings, serif lyrics, each hymnal in its own colour (--gd day, --gn night). */
 
 :root {
-  --paper: #f7f3ec;
-  --surface: #fffdf9;
+  --paper: #f4f6f9;     /* the Android Settings colours (res/values/colors.xml set_*), light theme */
+  --surface: #ffffff;
   --raised: #ffffff;
-  --ink: #1f1c18;
-  --muted: #6c655b;
-  --line: #e4ddd1;
-  --line-strong: #cfc6b7;
-  --hover: #efe9de;
+  --ink: #1b1d21;
+  --muted: #5d636c;
+  --line: #e3e6ea;
+  --line-strong: #c9ced5;
+  --hover: #e9edf2;
   --mark: #ffe58a;
-  --shadow: 0 1px 2px rgba(60, 45, 20, .06), 0 4px 16px rgba(60, 45, 20, .06);
+  --shadow: 0 1px 2px rgba(20, 30, 50, .06), 0 4px 16px rgba(20, 30, 50, .06);
   --g: var(--gd, #3D577A);
   --g-soft: color-mix(in srgb, var(--g) 12%, transparent);
   --radius: 12px;
