@@ -153,7 +153,9 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   .topbar { gap: 6px; padding: 0 10px; }
   .brand span { display: none; }
   .searchbox kbd { display: none; }
-  .hymnal-btn { padding: 0 12px; }
+  .hymnal-btn { padding: 0 12px; min-width: 44px; justify-content: center; }
+  .brand { padding: 6px; margin: -6px; }   /* the 28px logo gets a 40px touch area without moving anything */
+  .kb-toggle { height: 36px; min-width: 48px; }
   .hymnal-btn #hymnalName { display: none; }
   .hymnal-btn .dot { width: auto; height: auto; background: none; color: var(--g); font-weight: 700; }
   .hymnal-btn .dot::before { content: attr(data-code); }
@@ -278,6 +280,8 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
   .hymn-title.with-subject { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .hymn-title.with-subject + .category { font-size: clamp(18px, 5vw, 22px); line-height: 1.3; font-weight: 500; color: var(--ink); opacity: .8; margin: 2px 0 12px; }
 }
+/* the toast moves up while the back-to-hymn button is on the page */
+body:has(.swap-back) #toast { bottom: calc(92px + env(safe-area-inset-bottom)); }
 /* the back-to-hymn button (after a switch to another language) */
 .swap-back {
   position: fixed; right: 16px; bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 24; width: 60px; height: 60px; border-radius: 50%;
@@ -463,7 +467,7 @@ dialog {
   border: 1px solid var(--line); border-radius: 16px; background: var(--paper); color: var(--ink); padding: 0;
   width: min(760px, calc(100vw - 24px)); max-height: calc(100vh - 48px); box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
 }
-dialog::backdrop { background: rgba(20, 15, 10, .45); backdrop-filter: blur(2px); }
+dialog::backdrop { background: rgba(15, 20, 30, .45); backdrop-filter: blur(2px); }
 dialog > header { display: flex; align-items: center; justify-content: space-between; padding: 12px 12px 4px 20px; }
 dialog h2 { margin: 0; font-size: 18px; }
 dialog .hymnal-grid { padding: 8px 20px 20px; }
@@ -485,7 +489,7 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
   .hymnal-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
   .hymnal-card { padding: 10px 10px 10px 14px; column-gap: 8px; }
   .hymnal-card .code { min-width: 1.9em; font-size: 13px; }
-  .hymnal-card .name { font-size: 15px; }
+  .hymnal-card .name { font-size: 15px; white-space: normal; overflow: visible; line-height: 1.25; }   /* long names wrap, not cut */
   .hymn-id .hymnal { font-size: 13px; }
   .hymn-id .num { font-size: 24px; }
   .family { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px; padding: 0 16px 4px; scrollbar-width: none; }
@@ -530,7 +534,7 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; max-width: 920px; margin: 0 auto;
   padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: var(--raised); color: var(--ink);
   border: 1px solid var(--line-strong); border-bottom: 0; border-radius: 16px 16px 0 0;
-  box-shadow: 0 -6px 24px rgba(40, 30, 10, .18); font-family: var(--ui);
+  box-shadow: 0 -6px 24px rgba(20, 30, 50, .18); font-family: var(--ui);
 }
 .chord-editor[hidden] { display: none; }
 .ce-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }

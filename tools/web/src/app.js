@@ -136,7 +136,7 @@ function setGroup(code) {
   btn.setAttribute('style', groupStyle(code));
   $('#hymnalName').textContent = BY_CODE[code].name;
   $('#hymnalBtn .dot').dataset.code = code;
-  $('#q').placeholder = window.innerWidth < 720 ? 'Number or words'
+  $('#q').placeholder = window.innerWidth < 360 ? 'No. or words' : window.innerWidth < 720 ? 'Number or words'
     : 'Search ' + BY_CODE[code].name + ' by number, or any hymnal by words';
 }
 
@@ -269,6 +269,7 @@ function render() {
   view.className = '';
   document.body.classList.remove('sheet-only');
   const [screen, arg] = route.parts;
+  if (screen !== 'h' && screen !== 'sheet') swapBack = null;   // a detour (home, search, settings) ends the back-to-hymn button
   let title = 'Hymns';
   try {
     if (!screen) {

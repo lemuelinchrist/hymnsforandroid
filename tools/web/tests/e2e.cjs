@@ -722,6 +722,27 @@ async function search(page, text) {
       assert(await phone.page.isHidden('.swap-back'), 'button over the music');
       await open(phone.page, '#/h/E8');   // no button left for the next tests
     });
+    await test('a detour ends the back-to-hymn button (Settings, then browser Back); the toast rides above it', async () => {
+      await open(phone.page, '#/h/BF78');
+      await phone.page.tap('.fam:has-text("English")');
+      await onHymn(phone.page, 'E600');
+      await phone.page.waitForTimeout(400);   // the toast animates its position
+      const toastBottom = (() => phone.page.evaluate(() => getComputedStyle(document.querySelector('#toast')).bottom));
+      assert(parseInt(await toastBottom(), 10) >= 90, 'toast should be above the button: ' + await toastBottom());
+      await phone.page.tap('#settingsTop');
+      await phone.page.waitForURL(/#\/settings/);
+      await phone.page.waitForSelector('.theme-tile');   // Settings is drawn
+      await phone.page.goBack();
+      await onHymn(phone.page, 'E600');
+      assert(await phone.page.locator('.swap-back').count() === 0, 'button still there after a detour');
+    });
+    await test('phone top bar: the logo, the hymnal button and ABC are 40px touch targets', async () => {
+      await open(phone.page, '');
+      for (const sel of ['.brand', '#hymnalBtn', '#kbToggle']) {
+        const r = await phone.page.evaluate((x) => { const b = document.querySelector(x).getBoundingClientRect(); return [b.width, b.height]; }, sel);
+        assert(r[0] >= 40 && r[1] >= 36, sel + ' is ' + r.map(Math.round).join('x'));
+      }
+    });
     await test('the search box takes the whole top bar but Back while it is in use', async () => {
       await open(phone.page, '#/h/E8');
       await open(phone.page, '#/h/E9');

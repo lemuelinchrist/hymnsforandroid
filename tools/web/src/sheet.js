@@ -326,7 +326,11 @@ export class SheetView {
     try {
       [this.tk, xml, overlay] = await Promise.all([loadVerovio(), fetchMei(sheetId), fetchLyrics(lyricsId)]);
     } catch (e) {
-      if (token === this.token) this.status('Sheet music could not be loaded (' + e.message + ').', 'error');
+      if (token === this.token) {
+        const offline = !navigator.onLine || /failed to fetch|network|load failed/i.test(e.message);
+        this.status(offline ? 'This sheet is not on this device yet. Open it once while you are online and it will work offline.'
+          : 'Sheet music could not be loaded (' + e.message + ').', 'error');
+      }
       return;
     }
     if (token !== this.token) return;
