@@ -312,3 +312,13 @@ How it works now:
 - **Chord edits into the sheets** (2026-10-20): `tools/svg-to-lilypond/tools/chord_edits.py` (see
   `tools/svg-to-lilypond/DESIGN.md` §20). The app drops a device's edits once the sheet itself has those chords
   (`prepare()` in `sheet.js`; dim/°, aug/+ count as the same).
+
+## 10. The app's language (2026-11-08, with the Android localization)
+
+The web app's own texts speak English, Traditional Chinese, Simplified Chinese, Spanish and French, as the Android app
+does (`docs/HYMNAL_SPEC.md` §10.1). Decisions: the translations are keyed by the English text in `src/strings.js`
+(no build step, English is the fallback), the setting is kept on the device (`hfw.lang`; empty = follow the browser),
+changing it redraws the open screen without a reload, and the book names, the hymn counts' wording and the first book of a
+new person come from the Android string files so the two apps cannot disagree. Left English on purpose, as in the
+Android app: " (New Tune)", the YouTube search words, Be Filled and New Songs; also the manifest name. The translations
+are drafts for a reader of each language to check; those shared with the Android app are the same words.

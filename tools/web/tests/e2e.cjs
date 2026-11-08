@@ -904,6 +904,59 @@ async function search(page, text) {
       await sp.ctx.close();
     }
 
+    console.log('Language');
+    await test('the browser language chooses the app language: zh-TW starts in C in Traditional Chinese, es in S', async () => {
+      const t = await newPage(browser, {locale: 'zh-TW'});
+      await open(t.page, '');
+      assert(await t.page.evaluate(() => document.documentElement.lang) === 'zh-Hant', 'lang is not zh-Hant');
+      assert((await t.page.textContent('#hymnalName')).includes('中文'), 'a new person in Traditional Chinese starts in C: ' + await t.page.textContent('#hymnalName'));
+      assert((await t.page.textContent('.hero h1')) === '詩歌', 'the heading is not 詩歌');
+      assert((await t.page.getAttribute('#settingsTop', 'aria-label')) === '設定', 'the settings link is not translated');
+      await t.ctx.close();
+      const s = await newPage(browser, {locale: 'es-MX'});
+      await open(s.page, '');
+      assert((await s.page.textContent('#hymnalName')) === 'Español', 'a new person in Spanish starts in S');
+      // the other books say what they are in Spanish, under their own names, with the count as Spanish counts
+      const card = await s.page.textContent('.hymnal-card[href="#/browse/C"] .count');
+      assert(/Chino \(tradicional\) · 786 himnos/.test(card), 'book subtitle: ' + card);
+      await s.ctx.close();
+    });
+    await test('Settings -> App language switches at once, is kept, and Phone\'s language follows the browser again', async () => {
+      const t = await newPage(browser, {locale: 'en-US'});
+      await open(t.page, '#/settings');
+      assert((await t.page.textContent('h1.page-title')).includes('Settings'), 'English at first');
+      await t.page.selectOption('.lang-select', 'fr');
+      await t.page.waitForFunction(() => document.querySelector('h1.page-title').textContent.includes('Réglages'));
+      assert(await t.page.evaluate(() => document.documentElement.lang) === 'fr', 'html lang is fr');
+      assert((await t.page.getAttribute('#favoritesTop', 'aria-label')) === 'Favoris', 'the top bar is written again');
+      assert((await t.page.getAttribute('#q', 'placeholder')).includes('Cherchez') || (await t.page.getAttribute('#q', 'placeholder')).includes('Numéro'), 'the search box is written again: ' + await t.page.getAttribute('#q', 'placeholder'));
+      await t.page.reload();
+      await t.page.waitForSelector('body.ready', {timeout: 60000});
+      assert((await t.page.textContent('h1.page-title')).includes('Réglages'), 'the choice is kept after a reload');
+      await t.page.selectOption('.lang-select', '');
+      await t.page.waitForFunction(() => document.querySelector('h1.page-title').textContent.includes('Settings'));
+      await t.ctx.close();
+    });
+    await test('a hymn page in Simplified Chinese: details, links card and the sheet toolbar are translated', async () => {
+      const t = await newPage(browser, {locale: 'zh-CN'});
+      await open(t.page, '#/h/E8');
+      await onHymn(t.page, 'E8');
+      const text = await t.page.textContent('#view');
+      for (const w of ['聆听与链接', '作词']) assert(text.includes(w), 'missing ' + w + ' in the hymn page');
+      await t.page.goto(BASE + '#/sheet/E8');
+      await t.page.waitForSelector('.sheet-bar');
+      const bar = await t.page.textContent('.sheet-bar');
+      assert(bar.includes('钢琴') && bar.includes('吉他') && bar.includes('编辑和弦'), 'sheet toolbar: ' + bar);
+      await t.ctx.close();
+    });
+    await test('English stays exactly as it was (a count of one, a count of many)', async () => {
+      const t = await newPage(browser, {locale: 'en-US'});
+      await open(t.page, '');
+      const card = await t.page.textContent('.hymnal-card[href="#/browse/S"] .count');
+      assert(/^Spanish · [\d,]+ hymns$/.test(card), 'English book subtitle: ' + card);
+      await t.ctx.close();
+    });
+
     await test('no errors in the browser console', async () => {
       assert(!errors.length, errors.slice(0, 10).join('\n'));
     });

@@ -2,6 +2,7 @@
 // The file is kept in IndexedDB, so it is downloaded again only when data/version.json says it changed.
 import {BY_CODE, GROUPS, splitId, currentCode, currentId} from './groups.js';
 import {fetchBytes, gunzip} from './files.js';
+import {tr} from './i18n.js';
 
 let db = null;
 let sheetIds = new Set();
@@ -277,7 +278,7 @@ export function groupCounts() {
 export function categories(group) {
   const cats = new Map();
   for (const h of list(group)) {
-    const c = h.category || 'Other';
+    const c = h.category || tr('Other');
     if (!cats.has(c)) cats.set(c, new Map());
     const subs = cats.get(c);
     const s = h.sub || '';

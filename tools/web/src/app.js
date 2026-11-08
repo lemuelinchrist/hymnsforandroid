@@ -8,7 +8,8 @@
 //   #/favorites        favorites, with import/export in the Android app's format
 //   #/settings         settings, chord edits, offline, about
 import * as DB from './db.js';
-import {GROUPS, BY_CODE, splitId, langOf, currentCode, currentId} from './groups.js';
+import {GROUPS, BY_CODE, splitId, langOf, currentCode, currentId, bookName, languageName, bookSubtitle, firstGroup} from './groups.js';
+import {tr, tn, trh, num, lang, LANGS, getChoice, setChoice, applyStatic} from './i18n.js';
 import {parseScripture} from './scripture.js';
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE, prefetchAll} from './sheet.js';
 import {createEditor} from './editor.js';
@@ -126,8 +127,9 @@ function migrateStoredCodes() {
 }
 migrateStoredCodes();
 
-let currentGroup = store.get('group', 'E');
-if (!BY_CODE[currentGroup]) currentGroup = 'E';
+// a new person starts in the first book of the app's language (Android's first_hymn): C1 in Traditional Chinese, S1 in Spanish...
+let currentGroup = store.get('group', null);
+if (!BY_CODE[currentGroup]) currentGroup = firstGroup();
 
 function setGroup(code) {
   currentGroup = code;
@@ -136,8 +138,8 @@ function setGroup(code) {
   btn.setAttribute('style', groupStyle(code));
   $('#hymnalName').textContent = BY_CODE[code].name;
   $('#hymnalBtn .dot').dataset.code = code;
-  $('#q').placeholder = window.innerWidth < 360 ? 'No. or words' : window.innerWidth < 720 ? 'Number or words'
-    : 'Search ' + BY_CODE[code].name + ' by number, or any hymnal by words';
+  $('#q').placeholder = window.innerWidth < 360 ? tr('No. or words') : window.innerWidth < 720 ? tr('Number or words')
+    : tr('Search {0} by number, or any hymnal by words', BY_CODE[code].name);
 }
 
 function applyTheme() {
@@ -217,7 +219,7 @@ function toggleFavorite(id) {
   const on = !favs.includes(id);
   favs = on ? [id, ...favs] : favs.filter((x) => x !== id);
   store.set('favorites', favs);
-  toast(on ? id + ' added to favorites' : id + ' removed from favorites');
+  toast(on ? tr('{0} added to favorites', id) : tr('{0} removed from favorites', id));
   return on;
 }
 
@@ -270,23 +272,23 @@ function render() {
   document.body.classList.remove('sheet-only');
   const [screen, arg] = route.parts;
   if (screen !== 'h' && screen !== 'sheet') swapBack = null;   // a detour (home, search, settings) ends the back-to-hymn button
-  let title = 'Hymns';
+  let title = tr('Hymns');
   try {
     if (!screen) {
       homeScreen(view);
     } else if (screen === 'search') {
       searchScreen(view, route.params.get('q') || '');
-      title = 'Search · ' + title;
+      title = tr('Search') + ' · ' + title;
     } else if (screen === 'browse' && (!arg || BY_CODE[arg.toUpperCase()])) {
       const code = arg ? arg.toUpperCase() : currentGroup;
       browseScreen(view, code);
       title = BY_CODE[code].name + ' · ' + title;
     } else if (screen === 'favorites') {
       favoritesScreen(view);
-      title = 'Favorites · ' + title;
+      title = tr('Favorites') + ' · ' + title;
     } else if (screen === 'settings') {
       settingsScreen(view);
-      title = 'Settings · ' + title;
+      title = tr('Settings') + ' · ' + title;
     } else if ((screen === 'h' || screen === 'sheet') && arg) {
       const hymn = DB.hymn(arg);
       if (!hymn) {
@@ -295,7 +297,7 @@ function render() {
         if (hymn.id !== arg) { quietly(href('/' + screen + '/' + hymn.id, Object.fromEntries(route.params))); }
         if (screen === 'h') hymnScreen(view, hymn);
         else sheetScreen(view, hymn);
-        title = hymn.id + ' · ' + (hymn.first || '') + ' · Hymns';
+        title = hymn.id + ' · ' + (hymn.first || '') + ' · ' + tr('Hymns');
       }
     } else if (splitId(screen)) {
       quietly(href('/h/' + screen.toUpperCase()));
@@ -305,7 +307,7 @@ function render() {
     }
   } catch (e) {
     console.error(e);
-    view.appendChild(h('div', {class: 'empty'}, h('h2', null, 'Something went wrong'), h('p', null, String(e))));
+    view.appendChild(h('div', {class: 'empty'}, h('h2', null, tr('Something went wrong')), h('p', null, String(e))));
   }
   document.title = title;
   if (screen !== 'search') $('#q').value = '';
@@ -319,8 +321,8 @@ function render() {
 
 function notFound(view, what) {
   view.appendChild(h('div', {class: 'empty'},
-    h('h2', null, 'No hymn “' + what + '”'),
-    h('p', null, 'It may have been removed or renumbered. ', h('a', {href: '#/'}, 'Back to the start'))));
+    h('h2', null, tr('No hymn “{0}”', what)),
+    h('p', null, tr('It may have been removed or renumbered. '), h('a', {href: '#/'}, tr('Back to the start')))));
 }
 
 // ---- home ----
@@ -334,12 +336,11 @@ function installHint() {
   const box = h('section', {class: 'install card'},
     h('img', {src: 'icons/apple-touch-icon.png', alt: '', width: 44, height: 44}),
     h('div', null,
-      h('b', null, 'Install Hymns on this ' + (ios ? (/iPad/.test(navigator.userAgent) ? 'iPad' : 'iPhone') : 'device')),
-      ios ? h('p', null, 'Tap ', icon('share'), ' Share, then ', h('b', null, 'Add to Home Screen'),
-        '. It opens like an app and works without internet.')
-        : h('p', null, 'It opens like an app and works without internet. ',
-          h('button', {class: 'link', onclick: async () => { deferredInstall.prompt(); deferredInstall = null; box.remove(); }}, 'Install'))),
-    h('button', {class: 'icon-btn', 'aria-label': 'Close', onclick: () => { store.set('installHintClosed', true); box.remove(); }}, icon('close')));
+      h('b', null, tr('Install Hymns on this {0}', tr(ios ? (/iPad/.test(navigator.userAgent) ? 'iPad' : 'iPhone') : 'device'))),
+      ios ? h('p', null, trh('Tap {0} Share, then {1}. It opens like an app and works without internet.', icon('share'), h('b', null, tr('Add to Home Screen'))))
+        : h('p', null, trh('It opens like an app and works without internet. {0}',
+          h('button', {class: 'link', onclick: async () => { deferredInstall.prompt(); deferredInstall = null; box.remove(); }}, tr('Install'))))),
+    h('button', {class: 'icon-btn', 'aria-label': tr('Close'), onclick: () => { store.set('installHintClosed', true); box.remove(); }}, icon('close')));
   return box;
 }
 
@@ -356,30 +357,29 @@ function homeScreen(view) {
   view.appendChild(h('div', {class: 'home'},
     installHint(),
     (recent.length || favs.length) ? null : h('section', {class: 'hero'},   // first-run hint only
-      h('h1', null, 'Hymns'),
-      h('p', null, 'Type a number to open it in ', h('b', null, BY_CODE[currentGroup].name),
-        ', or a few words from any line to search every hymnal.'),
+      h('h1', null, tr('Hymns')),
+      h('p', null, trh('Type a number to open it in {0}, or a few words from any line to search every hymnal.', h('b', null, BY_CODE[currentGroup].name))),
       h('div', {class: 'hero-tips'},
         h('button', {class: 'tip', onclick: () => go('#/h/' + currentGroup + '1')}, currentGroup + ' 1'),
         h('button', {class: 'tip', onclick: () => searchFor('blessings flow')}, '“blessings flow”'),
         h('button', {class: 'tip', onclick: () => searchFor('NS 151')}, 'NS 151'),
-        touch ? null : h('button', {class: 'tip', onclick: () => $('#helpDialog').showModal()}, icon('keyboard'), 'Shortcuts'))),
+        touch ? null : h('button', {class: 'tip', onclick: () => $('#helpDialog').showModal()}, icon('keyboard'), tr('Shortcuts')))),
     // Favorites always shows (also empty): on phones it is the way to the Favorites page and its import
     h('div', {class: 'home-lists'},
-      h('section', {class: 'card'}, h('h2', null, icon('star'), 'Favorites',
-        h('a', {class: 'link small', href: '#/favorites'}, favs.length ? 'All' : 'Import')),
+      h('section', {class: 'card'}, h('h2', null, icon('star'), tr('Favorites'),
+        h('a', {class: 'link small', href: '#/favorites'}, favs.length ? tr('All') : tr('Import'))),
         favs.length ? list(favs) : h('p', {class: 'muted small home-empty'},
-          'Tap the star on a hymn to keep it here, or import your favorites from the Android app.')),
-      recent.length ? h('section', {class: 'card'}, h('h2', null, 'Recently opened',
-        h('button', {class: 'link small', onclick: () => { store.set('recent', []); render(); }}, 'Clear')), list(recent)) : null),
+          tr('Tap the star on a hymn to keep it here, or import your favorites from the Android app.'))),
+      recent.length ? h('section', {class: 'card'}, h('h2', null, tr('Recently opened'),
+        h('button', {class: 'link small', onclick: () => { store.set('recent', []); render(); }}, tr('Clear'))), list(recent)) : null),
     h('section', {class: 'hymnals'},
-      h('h2', null, 'Hymnals'),
+      h('h2', null, tr('Hymnals')),
       h('div', {class: 'hymnal-grid'}, shownGroups().map((g) =>
         h('a', {class: 'hymnal-card' + (g.code === currentGroup ? ' current' : ''), href: '#/browse/' + g.code,
           style: groupStyle(g.code)},
           h('span', {class: 'code'}, g.code),
           h('span', {class: 'name', dir: 'auto'}, g.name),
-          h('span', {class: 'count'}, (g.long ? g.long + ' · ' : '') + counts[g.code] + ' hymns')))))));
+          h('span', {class: 'count'}, bookSubtitle(g.code, tn('{0} hymn', '{0} hymns', counts[g.code])))))))));
 }
 
 function hymnRow(hm, extra) {
@@ -438,12 +438,12 @@ function whyLine(r, words) {
   const x = DB.hymn(r.id);
   if (!x) return null;
   const join = (sep, ...parts) => parts.map((p) => (p || '').trim()).filter(Boolean).join(sep);
-  const label = (l, v) => (v || '').trim() ? l + v.trim() : '';
+  const label = (l, v) => (v || '').trim() ? tr(l, v.trim()) : '';
   switch (r.where) {
     case 'chorus': return {text: x.chorus || ''};
-    case 'subject': return {text: 'Subject: ' + join(' – ', x.category, x.subcategory)};
-    case 'people': return {text: join(' · ', label('Author: ', x.author), label('Composer: ', x.composer))};
-    case 'music': return {text: join(' · ', label('Key: ', x.key), label('Tune: ', x.tune))};
+    case 'subject': return {text: tr('Subject: {0}', join(' – ', x.category, x.subcategory))};
+    case 'people': return {text: join(' · ', label('Author: {0}', x.author), label('Composer: {0}', x.composer))};
+    case 'music': return {text: join(' · ', label('Key: {0}', x.key), label('Tune: {0}', x.tune))};
     default: {
       const line = DB.matchLine(r.id, words);
       return line ? {text: line, lyrics: true} : null;
@@ -462,20 +462,20 @@ function searchScreen(view, q) {
 
   if (pq.id) {
     const main = DB.hymn(pq.id);
-    box.appendChild(h('h1', {class: 'results-title'}, main ? 'Go to ' + main.id : 'No hymn ' + pq.id));
+    box.appendChild(h('h1', {class: 'results-title'}, main ? tr('Go to {0}', main.id) : tr('No hymn {0}', pq.id)));
     if (main) box.appendChild(h('ul', {class: 'hymn-list big'}, hymnRow(main, h('span', {class: 'enter'}, 'Enter ↵'))));
     if (pq.number) {
       const no = pq.id.replace(/^\D+/, '');
       const others = shownGroups().filter((g) => g.code !== currentGroup).map((g) => DB.hymn(g.code + no)).filter(Boolean);
       if (others.length) {
-        box.appendChild(h('h2', {class: 'results-sub'}, 'Number ' + no + ' in other hymnals'));
+        box.appendChild(h('h2', {class: 'results-sub'}, tr('Number {0} in other hymnals', no)));
         box.appendChild(h('ul', {class: 'hymn-list'}, others.map((o) => hymnRow(o))));
       }
     }
     return;
   }
   if (!pq.words.length) {
-    box.appendChild(h('div', {class: 'empty'}, h('p', null, 'Type a number or some words.')));
+    box.appendChild(h('div', {class: 'empty'}, h('p', null, tr('Type a number or some words.'))));
     return;
   }
 
@@ -490,18 +490,18 @@ function searchScreen(view, q) {
     h('div', {class: 'seg', role: 'group'},
       h('a', {href: href('/search', {q, in: only}), class: !showAll ? 'on' : '', 'aria-disabled': inGroup.length ? null : 'true'},
         BY_CODE[currentGroup].name, h('span', {class: 'n'}, inGroup.length)),
-      h('a', {href: href('/search', {q, all: 1, in: only}), class: showAll ? 'on' : ''}, 'All hymnals',
+      h('a', {href: href('/search', {q, all: 1, in: only}), class: showAll ? 'on' : ''}, tr('All hymnals'),
         h('span', {class: 'n'}, found.length))),
-    h('span', {class: 'muted small', title: ms + ' ms'}, found.length >= 3000 ? 'showing the first 3000' : '')));
+    h('span', {class: 'muted small', title: ms + ' ms'}, found.length >= 3000 ? tr('showing the first {0}', num(3000)) : '')));
 
   if (!results.length) {
-    box.appendChild(h('div', {class: 'empty'}, h('p', null, 'Nothing found for “' + q + '”.')));
+    box.appendChild(h('div', {class: 'empty'}, h('p', null, tr('Nothing found for “{0}”.', q))));
     return;
   }
   const ul = h('ul', {class: 'hymn-list results'});
   box.appendChild(ul);
   let shown = 0;
-  const more = h('button', {class: 'more', onclick: () => page()}, 'Show more');
+  const more = h('button', {class: 'more', onclick: () => page()}, tr('Show more'));
   function page() {
     const next = results.slice(shown, shown + 60);
     for (const r of next) {
@@ -532,10 +532,10 @@ function browseScreen(view, code) {
   view.appendChild(page);
   page.appendChild(h('header', {class: 'browse-head'},
     h('h1', null, chip(code), ' ', g.name),
-    h('p', {class: 'muted'}, (g.long ? g.long + ' · ' : '') + hymns.length + ' hymns'),
+    h('p', {class: 'muted'}, bookSubtitle(code, tn('{0} hymn', '{0} hymns', hymns.length))),
     h('div', {class: 'seg'},
-      h('a', {href: href('/browse/' + code), class: tab === 'no' ? 'on' : ''}, 'By number'),
-      h('a', {href: href('/browse/' + code, {tab: 'cat'}), class: tab === 'cat' ? 'on' : ''}, 'By category'))));
+      h('a', {href: href('/browse/' + code), class: tab === 'no' ? 'on' : ''}, tr('By number')),
+      h('a', {href: href('/browse/' + code, {tab: 'cat'}), class: tab === 'cat' ? 'on' : ''}, tr('By category')))));
 
   if (tab === 'no') {
     page.appendChild(h('div', {class: 'numbers', dir: 'ltr'}, hymns.map((x) =>
@@ -590,7 +590,7 @@ function stanzaKind(no) {
 function lyricsNode(hymn) {
   const g = BY_CODE[hymn.group];
   const box = h('div', {class: 'lyrics' + (g.cjk ? ' cjk' : ''), dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)});
-  if (!hymn.stanzas.length) box.appendChild(h('p', {class: 'muted'}, 'No lyrics for this hymn.'));
+  if (!hymn.stanzas.length) box.appendChild(h('p', {class: 'muted'}, tr('No lyrics for this hymn.')));
   const choruses = hymn.stanzas.filter((s) => stanzaKind(s.no) === 'chorus');
   const repeat = repeatChorus && choruses.length === 1;
   let chorus = null;
@@ -635,17 +635,17 @@ const soundcloudSearchUrl = (hymn) => 'https://soundcloud.com/search/sounds?q=' 
 // Edge) it offers Share lyrics, Share link and Copy lyrics; elsewhere Copy lyrics and Copy link.
 const hymnLink = (hymn) => hymn.id + (hymn.first ? ' \u00b7 ' + hymn.first : '') + '\n' + WEB_URL + '#/h/' + hymn.id;
 async function copyText(text, done) {
-  try { await navigator.clipboard.writeText(text); toast(done); } catch (e) { toast('Could not copy'); }
+  try { await navigator.clipboard.writeText(text); toast(done); } catch (e) { toast(tr('Could not copy')); }
 }
 async function shareNow(text, title) {
-  try { await navigator.share({title, text}); } catch (e) { if (e.name !== 'AbortError') toast('Could not share'); }
+  try { await navigator.share({title, text}); } catch (e) { if (e.name !== 'AbortError') toast(tr('Could not share')); }
 }
 function shareMenu(hymn, anchor) {
   document.querySelector('.share-menu')?.remove();
   const title = hymn.id + (hymn.first ? ' \u00b7 ' + hymn.first : '');
   const items = navigator.share
-    ? [['Share lyrics', () => shareNow(lyricsText(hymn), title)], ['Share link', () => shareNow(hymnLink(hymn), title)], ['Copy lyrics', () => copyLyrics(hymn)]]
-    : [['Copy lyrics', () => copyLyrics(hymn)], ['Copy link', () => copyText(hymnLink(hymn), 'Link copied')]];
+    ? [[tr('Share lyrics'), () => shareNow(lyricsText(hymn), title)], [tr('Share link'), () => shareNow(hymnLink(hymn), title)], [tr('Copy lyrics'), () => copyLyrics(hymn)]]
+    : [[tr('Copy lyrics'), () => copyLyrics(hymn)], [tr('Copy link'), () => copyText(hymnLink(hymn), tr('Link copied'))]];
   const menu = h('div', {class: 'share-menu', role: 'menu'}, items.map(([label, fn]) =>
     h('button', {role: 'menuitem', onclick: () => { close(); fn(); }}, label)));
   const close = () => {
@@ -669,9 +669,9 @@ function shareMenu(hymn, anchor) {
 async function copyLyrics(hymn) {
   try {
     await navigator.clipboard.writeText(lyricsText(hymn));
-    toast('Lyrics copied');
+    toast(tr('Lyrics copied'));
   } catch (e) {
-    toast('Could not copy the lyrics');
+    toast(tr('Could not copy the lyrics'));
   }
 }
 
@@ -680,7 +680,7 @@ function scriptureNode(verses) {
   const refs = parseScripture(verses);
   if (!refs.length) return null;
   return h('span', {class: 'scripture'}, refs.map((r, i) => [i ? ', ' : '',
-    r.url ? h('a', {href: r.url, target: '_blank', rel: 'noopener', title: 'Open in the Recovery Version'}, r.text) : r.text]));
+    r.url ? h('a', {href: r.url, target: '_blank', rel: 'noopener', title: tr('Open in the Recovery Version')}, r.text) : r.text]));
 }
 
 function metaNode(hymn) {
@@ -691,14 +691,14 @@ function metaNode(hymn) {
   const person = (p) => p && find(p, p.replace(/\s*\([^)]*\)/g, '').replace(/,\s*v\.\s*\d+.*$/, '').trim(), 'people');
   const plain = (v) => v && find(v, null, 'music');
   const items = [
-    ['Author', person(hymn.author)], ['Composer', person(hymn.composer)], ['Meter', plain(hymn.meter)],
-    ['Key', plain(hymn.key)], ['Time', plain(hymn.time)],
-    ['Tune', hymn.tune && hymn.tune.trim() !== '0' ? find(hymn.tune.trim(), null, 'music') : null],
-    ['Scripture', scriptureNode(hymn.verse)],
-    ['From', hymn.parentId && hymn.parentId !== hymn.id ? h('a', {href: '#/h/' + hymn.parentId}, hymn.parentId) : null],
+    [tr('Author'), person(hymn.author)], [tr('Composer'), person(hymn.composer)], [tr('Meter'), plain(hymn.meter)],
+    [tr('Key'), plain(hymn.key)], [tr('Time'), plain(hymn.time)],
+    [tr('Tune'), hymn.tune && hymn.tune.trim() !== '0' ? find(hymn.tune.trim(), null, 'music') : null],
+    [tr('Scripture'), scriptureNode(hymn.verse)],
+    [tr('From'), hymn.parentId && hymn.parentId !== hymn.id ? h('a', {href: '#/h/' + hymn.parentId}, hymn.parentId) : null],
   ].filter(([, v]) => v);
   return h('footer', {class: 'meta'},
-    hymn.sheetId ? null : h('p', {class: 'no-sheet'}, 'No sheet music for this hymn.'),
+    hymn.sheetId ? null : h('p', {class: 'no-sheet'}, tr('No sheet music for this hymn.')),
     items.length ? h('dl', null, items.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])) : null);
 }
 
@@ -710,47 +710,47 @@ function linksNode(hymn) {
   // no YouTube or SoundCloud link of its own: the nearest hymn above it that has some; in another language each link
   // says which ("English ↗", "English – label ↗") so nobody takes an English recording for a Spanish one
   const up = DB.inheritedLinks(hymn);
-  const language = up && DB.languageOf(splitId(up.from).group);
-  const foreign = up && language !== DB.languageOf(hymn.group);
+  const language = up && (languageName(splitId(up.from).group) || DB.languageOf(splitId(up.from).group));
+  const foreign = up && DB.languageOf(splitId(up.from).group) !== DB.languageOf(hymn.group);
   const ownLinks = (kind) => {
     const list = up ? up.kinds[kind] : DB.links(hymn, kind);
     const text = (v, i) => foreign
       ? (v.label ? language + ' – ' + v.label : list.length === 1 ? language : language + ' ' + (i + 1))
-      : (v.label || (list.length === 1 ? 'Link' : 'Link ' + (i + 1)));
+      : (v.label || (list.length === 1 ? tr('Link') : tr('Link {0}', i + 1)));
     return list.length ? h('span', {class: 'videos'}, list.map((v, i) => [i ? ' · ' : '',
       h('a', {href: v.url, target: '_blank', rel: 'noopener'}, text(v, i) + ' ↗')])) : null;
   };
   const tunes = DB.newTunes(hymn);
   const recordings = tunes.flatMap((t) => t.links.map((v) => ({url: v.url, text: v.label ? t.id + ' – ' + v.label : t.id})));
   const rows = [
-    ['Piano videos', videos.length ? h('span', {class: 'videos'}, videos.map((v, i) => [i ? ' · ' : '',
-      h('a', {href: v.url, target: '_blank', rel: 'noopener'}, (v.label || 'Video') + ' ↗')])) : null],
+    [tr('Piano videos'), videos.length ? h('span', {class: 'videos'}, videos.map((v, i) => [i ? ' · ' : '',
+      h('a', {href: v.url, target: '_blank', rel: 'noopener'}, (v.label || tr('Video')) + ' ↗')])) : null],
     ['YouTube', ownLinks('youtube')],
     ['SoundCloud', ownLinks('soundcloud')],
     // another tune for this hymn's words: the tunes themselves (open in the app), then their recordings
-    ['New tunes', tunes.length ? h('span', {class: 'videos'}, tunes.map((t, i) => [i ? ' · ' : '',
+    [tr('New tunes'), tunes.length ? h('span', {class: 'videos'}, tunes.map((t, i) => [i ? ' · ' : '',
       h('a', {href: '#/h/' + t.id}, t.id)])) : null],
-    ['New tune recordings', recordings.length ? h('span', {class: 'videos'}, recordings.map((r, i) => [i ? ' · ' : '',
+    [tr('New tune recordings'), recordings.length ? h('span', {class: 'videos'}, recordings.map((r, i) => [i ? ' · ' : '',
       h('a', {href: r.url, target: '_blank', rel: 'noopener'}, r.text + ' ↗')])) : null],
     // every hymn has this one, so the card is on every hymn page
-    ['Search', h('span', {class: 'videos search'},
+    [tr('Search'), h('span', {class: 'videos search'},
       h('a', {href: youtubeSearchUrl(hymn), target: '_blank', rel: 'noopener'}, 'YouTube ↗'), ' · ',
       h('a', {href: soundcloudSearchUrl(hymn), target: '_blank', rel: 'noopener'}, 'SoundCloud ↗'))],
   ].filter(([, v]) => v);
   return h('section', {class: 'card links-card'},
-    h('h2', null, 'Listen and links'),
+    h('h2', null, tr('Listen and links')),
     h('dl', null, rows.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])));
 }
 
 function familyNode(hymn) {
   const fam = DB.family(hymn.id).filter((f) => f.id === hymn.id || isShown(f.group));
   if (fam.length < 2) return null;
-  const nav = h('nav', {class: 'family', 'aria-label': 'Other languages'},
+  const nav = h('nav', {class: 'family', 'aria-label': tr('Other languages')},
     fam.map((f) => {
       const g = BY_CODE[f.group];
       const cur = f.id === hymn.id;
       return h('a', {href: href('/h/' + f.id, keepSheetParams()), class: 'fam' + (cur ? ' current' : ''),
-        style: groupStyle(f.group), 'aria-current': cur ? 'page' : null, title: (g.long || g.name) + ' ' + f.no,
+        style: groupStyle(f.group), 'aria-current': cur ? 'page' : null, title: bookName(f.group) + ' ' + f.no,
         onclick: cur ? null : () => { swapBack = {back: hymn.id, at: f.id}; }},
       h('span', {class: 'fam-name'}, g.name), h('span', {class: 'fam-no'}, f.no));
     }));
@@ -759,9 +759,9 @@ function familyNode(hymn) {
   const wrap = h('div', {class: 'family-wrap' + (familyOpen ? ' open' : '')}, nav, more);
   const showMore = () => {
     more.innerHTML = '';
-    more.append(icon(familyOpen ? 'up' : 'down'), h('span', null, familyOpen ? 'Fewer' : 'All ' + fam.length));
+    more.append(icon(familyOpen ? 'up' : 'down'), h('span', null, familyOpen ? tr('Fewer') : tr('All {0}', fam.length)));
     more.setAttribute('aria-expanded', String(familyOpen));
-    more.setAttribute('aria-label', familyOpen ? 'Show one row of languages' : 'Show all ' + fam.length + ' languages');
+    more.setAttribute('aria-label', familyOpen ? tr('Show one row of languages') : tr('Show all {0} languages', fam.length));
     wrap.classList.toggle('open', familyOpen);
   };
   more.addEventListener('click', () => { familyOpen = !familyOpen; store.set('familyOpen', familyOpen); showMore(); });
@@ -782,7 +782,7 @@ function swapBackButton(hymn) {
   if (!swapBack || swapBack.at !== hymn.id || !DB.exists(swapBack.back)) { swapBack = null; return null; }
   const back = swapBack.back;
   return h('a', {class: 'swap-back', href: '#/h/' + back, style: groupStyle(splitId(back).group),
-    title: 'Back to ' + back, 'aria-label': 'Back to ' + back,
+    title: tr('Back to {0}', back), 'aria-label': tr('Back to {0}', back),
     onclick: () => { swapBack = {back: hymn.id, at: back}; }}, back);
 }
 
@@ -791,7 +791,7 @@ function sameTuneNode(hymn) {
   const list = DB.sameTune(hymn.id, isShown);
   if (!list.length) return null;
   return h('section', {class: 'same-tune'},
-    h('h2', null, 'Also sung to this tune'),
+    h('h2', null, tr('Also sung to this tune')),
     h('ul', {class: 'hymn-list'}, list.map((x) => hymnRow(x))));
 }
 
@@ -812,49 +812,49 @@ function hymnScreen(view, hymn) {
 
   // the tune, looped, as in the Android app; it stops when another hymn is opened
   const tune = DB.tuneFile(hymn);
-  const playBtn = h('button', {class: 'icon-btn play', title: tune ? 'Play the tune (Space)' : 'No tune for this hymn',
-    'aria-label': 'Play the tune', 'aria-pressed': 'false', disabled: tune ? null : true, onclick: () => togglePlay()});
+  const playBtn = h('button', {class: 'icon-btn play', title: tune ? tr('Play the tune (Space)') : tr('No tune for this hymn'),
+    'aria-label': tr('Play the tune'), 'aria-pressed': 'false', disabled: tune ? null : true, onclick: () => togglePlay()});
   const showPlay = (on) => {
     playBtn.innerHTML = '';
     playBtn.appendChild(icon(on ? 'pause' : 'play'));
     playBtn.setAttribute('aria-pressed', String(on));
-    playBtn.title = on ? 'Stop (Space)' : tune ? 'Play the tune (Space)' : 'No tune for this hymn';
+    playBtn.title = on ? tr('Stop (Space)') : tune ? tr('Play the tune (Space)') : tr('No tune for this hymn');
   };
   function togglePlay() {
-    if (!tune) { toast('Sorry, no tune for this hymn'); return; }
+    if (!tune) { toast(tr('Sorry, no tune for this hymn')); return; }
     if (Player.playing() === hymn.id) { Player.stop(); showPlay(false); return; }
     showPlay(true);
-    Player.play(tune, hymn.id).catch(() => { showPlay(false); toast('Could not play the tune'); });
+    Player.play(tune, hymn.id).catch(() => { showPlay(false); toast(tr('Could not play the tune')); });
   }
   showPlay(Player.playing() === hymn.id);
 
-  const favBtn = h('button', {class: 'icon-btn' + (fav ? ' on' : ''), title: 'Favorite (F)', 'aria-pressed': String(fav),
+  const favBtn = h('button', {class: 'icon-btn' + (fav ? ' on' : ''), title: tr('Favorite (F)'), 'aria-pressed': String(fav),
     onclick: () => { const on = toggleFavorite(hymn.id); favBtn.classList.toggle('on', on); favBtn.setAttribute('aria-pressed', String(on)); }},
   icon('star'));
 
   const head = h('header', {class: 'hymn-head'},
     h('div', {class: 'hymn-nav'},
       h('a', {class: 'icon-btn' + (nb.prev ? '' : ' disabled'), href: nb.prev ? href('/h/' + nb.prev, keepSheetParams()) : null,
-        title: nb.prev ? 'Previous: ' + nb.prev + ' (←)' : null, 'aria-label': 'Previous hymn'}, icon('prev')),
-      h('a', {class: 'hymn-id', href: '#/browse/' + hymn.group, title: 'All of ' + g.name},
+        title: nb.prev ? tr('Previous: {0} (←)', nb.prev) : null, 'aria-label': tr('Previous hymn')}, icon('prev')),
+      h('a', {class: 'hymn-id', href: '#/browse/' + hymn.group, title: tr('All of {0}', g.name)},
         h('span', {class: 'hymnal'}, g.name), h('span', {class: 'hcode'}, hymn.group), h('span', {class: 'num'}, hymn.no)),
       h('a', {class: 'icon-btn' + (nb.next ? '' : ' disabled'), href: nb.next ? href('/h/' + nb.next, keepSheetParams()) : null,
-        title: nb.next ? 'Next: ' + nb.next + ' (→)' : null, 'aria-label': 'Next hymn'}, icon('next')),
+        title: nb.next ? tr('Next: {0} (→)', nb.next) : null, 'aria-label': tr('Next hymn')}, icon('next')),
       h('span', {class: 'grow'}),
-      h('button', {class: 'icon-btn size', title: 'Smaller text', onclick: () => setLyricSize(lyricSize - 1)}, icon('textSmaller')),
-      h('button', {class: 'icon-btn size', title: 'Bigger text', onclick: () => setLyricSize(lyricSize + 1)}, icon('textBigger')),
+      h('button', {class: 'icon-btn size', title: tr('Smaller text'), onclick: () => setLyricSize(lyricSize - 1)}, icon('textSmaller')),
+      h('button', {class: 'icon-btn size', title: tr('Bigger text'), onclick: () => setLyricSize(lyricSize + 1)}, icon('textBigger')),
       playBtn,
-      h('button', {class: 'icon-btn share', title: 'Share (C copies the lyrics)', 'aria-label': 'Share', 'aria-haspopup': 'menu', 'aria-expanded': 'false',
+      h('button', {class: 'icon-btn share', title: tr('Share (C copies the lyrics)'), 'aria-label': tr('Share'), 'aria-haspopup': 'menu', 'aria-expanded': 'false',
         onclick: (e) => shareMenu(hymn, e.currentTarget)}, icon('share')),
-      h('button', {class: 'icon-btn print', title: 'Print', onclick: () => window.print()}, icon('print')),
+      h('button', {class: 'icon-btn print', title: tr('Print'), onclick: () => window.print()}, icon('print')),
       favBtn),
     h('h1', {class: 'hymn-title' + (hymn.category ? ' with-subject' : ''), dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)}, hymn.first || hymn.id),
     hymn.category ? h('p', {class: 'category', dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)}, hymn.category, hymn.subcategory ? ' · ' + hymn.subcategory : '') : null,
     familyNode(hymn));
 
   const tabs = hasSheet ? h('div', {class: 'tabs', role: 'tablist'},
-    h('button', {role: 'tab', 'data-tab': 'lyrics', onclick: () => showTab('lyrics')}, 'Lyrics'),
-    h('button', {role: 'tab', 'data-tab': 'sheet', onclick: () => showTab('sheet')}, 'Sheet music')) : null;
+    h('button', {role: 'tab', 'data-tab': 'lyrics', onclick: () => showTab('lyrics')}, tr('Lyrics')),
+    h('button', {role: 'tab', 'data-tab': 'sheet', onclick: () => showTab('sheet')}, tr('Sheet music'))) : null;
 
   const lyricsPane = h('section', {class: 'pane lyrics-pane'}, h('div', {class: 'lyrics-box'}, lyricsNode(hymn)), sameTuneNode(hymn), metaNode(hymn), linksNode(hymn));
   const sheetPane = hasSheet ? h('section', {class: 'pane sheet-pane'}) : null;
@@ -920,8 +920,8 @@ function sheetScreen(view, hymn) {
   document.body.classList.add('sheet-only');
   remember(hymn.id);
   if (!hymn.sheetId) {
-    view.appendChild(h('div', {class: 'empty'}, h('h2', null, 'No sheet music for ' + hymn.id),
-      h('p', null, h('a', {href: '#/h/' + hymn.id}, 'Back to the lyrics'))));
+    view.appendChild(h('div', {class: 'empty'}, h('h2', null, tr('No sheet music for {0}', hymn.id)),
+      h('p', null, h('a', {href: '#/h/' + hymn.id}, tr('Back to the lyrics')))));
     return;
   }
   const pane = h('section', {class: 'pane sheet-pane full', style: groupStyle(hymn.group)});
@@ -959,27 +959,27 @@ function sheetPanel(pane, hymn, {full}) {
   };
 
   const btn = (label, title, onclick, cls = '') => h('button', {type: 'button', class: 'tb ' + cls, title, 'aria-label': title, onclick}, label);
-  const bPiano = btn('Piano', 'Piano sheet (P)', () => set({guitar: false}));
-  const bGuitar = btn('Guitar', 'Guitar sheet (G)', () => set({guitar: true}));
-  const bDown = btn('−', 'Transpose down a semitone (−)', () => set({shift: state.shift - 1}), 'step');
-  const bUp = btn('+', 'Transpose up a semitone (+)', () => set({shift: state.shift + 1}), 'step');
-  const keyLabel = h('button', {type: 'button', class: 'key', title: 'Back to the original key'}, '…');
+  const bPiano = btn(tr('Piano'), tr('Piano sheet (P)'), () => set({guitar: false}));
+  const bGuitar = btn(tr('Guitar'), tr('Guitar sheet (G)'), () => set({guitar: true}));
+  const bDown = btn('−', tr('Transpose down a semitone (−)'), () => set({shift: state.shift - 1}), 'step');
+  const bUp = btn('+', tr('Transpose up a semitone (+)'), () => set({shift: state.shift + 1}), 'step');
+  const keyLabel = h('button', {type: 'button', class: 'key', title: tr('Back to the original key')}, '…');
   keyLabel.addEventListener('click', () => set({shift: 0}));
-  const bStaff = btn('Staff', 'Show or hide the staff (H)', () => set({staff: !state.staff}), 'toggle');
-  const bZoomOut = btn(icon('zoomOut'), 'Smaller (Z)', () => set({scale: state.scale - 5}), 'icon');
-  const bZoomIn = btn(icon('zoomIn'), 'Bigger (Shift+Z)', () => set({scale: state.scale + 5}), 'icon');
-  const bEdit = btn('Edit chords', 'Edit the chords of the piano sheet (E)', () => setEdit(!view.editing), 'edit');
-  const bOrig = btn('Original chords', 'Show the sheet without your chord edits (O)', () => set({original: !state.original}), 'orig');
+  const bStaff = btn(tr('Staff'), tr('Show or hide the staff (H)'), () => set({staff: !state.staff}), 'toggle');
+  const bZoomOut = btn(icon('zoomOut'), tr('Smaller (Z)'), () => set({scale: state.scale - 5}), 'icon');
+  const bZoomIn = btn(icon('zoomIn'), tr('Bigger (Shift+Z)'), () => set({scale: state.scale + 5}), 'icon');
+  const bEdit = btn(tr('Edit chords'), tr('Edit the chords of the piano sheet (E)'), () => setEdit(!view.editing), 'edit');
+  const bOrig = btn(tr('Original chords'), tr('Show the sheet without your chord edits (O)'), () => set({original: !state.original}), 'orig');
   bOrig.hidden = true;
-  const bReset = btn(icon('reset'), 'Original key and size', () => set({shift: 0, scale: DEFAULT_SCALE}), 'icon');
+  const bReset = btn(icon('reset'), tr('Original key and size'), () => set({shift: 0, scale: DEFAULT_SCALE}), 'icon');
   // dark theme only: the sheet on light paper (black on white); remembered like the zoom
-  const bPaper = btn(icon('paper'), 'Light or dark paper', () => { store.set('sheetPaper', store.get('sheetPaper', null) === 'light' ? null : 'light'); paperLook(); }, 'icon paper');
+  const bPaper = btn(icon('paper'), tr('Light or dark paper'), () => { store.set('sheetPaper', store.get('sheetPaper', null) === 'light' ? null : 'light'); paperLook(); }, 'icon paper');
   const other = full
-    ? h('a', {class: 'tb icon', href: href('/h/' + hymn.id), title: 'Back to the lyrics (Esc)', 'aria-label': 'Back to the lyrics'}, icon('close'))
-    : h('a', {class: 'tb icon', href: '#', title: 'Sheet only, for a music stand', 'aria-label': 'Sheet only',
+    ? h('a', {class: 'tb icon', href: href('/h/' + hymn.id), title: tr('Back to the lyrics (Esc)'), 'aria-label': tr('Back to the lyrics')}, icon('close'))
+    : h('a', {class: 'tb icon', href: '#', title: tr('Sheet only, for a music stand'), 'aria-label': tr('Sheet only'),
       onclick: (e) => { e.preventDefault(); go(href('/sheet/' + hymn.id, sheetParams())); }}, icon('expand'));
 
-  const bar = h('div', {class: 'sheet-bar', role: 'toolbar', 'aria-label': 'Sheet music'},
+  const bar = h('div', {class: 'sheet-bar', role: 'toolbar', 'aria-label': tr('Sheet music')},
     h('div', {class: 'seg'}, bPiano, bGuitar),
     h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
     bStaff,
@@ -989,8 +989,8 @@ function sheetPanel(pane, hymn, {full}) {
     h('span', {class: 'grow'}),
     other);
   const note = hymn.sheetId !== hymn.id
-    ? h('p', {class: 'sheet-from'}, 'Music of ', h('a', {href: '#/h/' + hymn.sheetId}, hymn.sheetId),
-      ' (', BY_CODE[splitId(hymn.sheetId).group].name, ')', hymn.lyricsId ? ', with the words of ' + hymn.id : '')
+    ? h('p', {class: 'sheet-from'}, trh('Music of {0} ({1})', h('a', {href: '#/h/' + hymn.sheetId}, hymn.sheetId), BY_CODE[splitId(hymn.sheetId).group].name),
+      hymn.lyricsId ? tr(', with the words of {0}', hymn.id) : '')
     : null;
   const host = h('div', {class: 'sheet-host'});
   append(pane, [full ? h('div', {class: 'sheet-title-bar'},
@@ -1004,7 +1004,7 @@ function sheetPanel(pane, hymn, {full}) {
     view.root.classList.toggle('light-paper', light);
     bPaper.hidden = !isDark();
     bPaper.setAttribute('aria-pressed', String(light));
-    bPaper.title = light ? 'Dark paper' : 'Light paper';
+    bPaper.title = light ? tr('Dark paper') : tr('Light paper');
   }
   paperLook();
 
@@ -1050,9 +1050,9 @@ function sheetPanel(pane, hymn, {full}) {
     bPiano.setAttribute('aria-pressed', String(!state.guitar));
     bGuitar.setAttribute('aria-pressed', String(state.guitar));
     bStaff.setAttribute('aria-pressed', String(state.staff));
-    bStaff.textContent = state.staff ? 'Hide staff' : 'Show staff';
+    bStaff.textContent = state.staff ? tr('Hide staff') : tr('Show staff');
     bEdit.setAttribute('aria-pressed', String(view.editing));
-    bEdit.textContent = view.editing ? 'Editing chords' : 'Edit chords';
+    bEdit.textContent = view.editing ? tr('Editing chords') : tr('Edit chords');
     bOrig.hidden = !view.hasEdits();
     bOrig.setAttribute('aria-pressed', String(!!state.original));
     bDown.disabled = state.shift <= -MAX_SHIFT;
@@ -1061,8 +1061,9 @@ function sheetPanel(pane, hymn, {full}) {
     bZoomIn.disabled = state.scale >= MAX_SCALE;
     bReset.hidden = !state.shift && state.scale === DEFAULT_SCALE;
     keyLabel.textContent = info.tonic ? info.tonic + (state.shift ? ' (' + (state.shift > 0 ? '+' : '') + state.shift + ')' : '') : '…';
-    keyLabel.title = state.shift ? 'Transposed ' + (state.shift > 0 ? 'up ' : 'down ') + Math.abs(state.shift)
-      + ' semitone' + (Math.abs(state.shift) > 1 ? 's' : '') + ' · click for the original key' : 'Original key';
+    keyLabel.title = !state.shift ? tr('Original key') : state.shift > 0
+      ? tn('Transposed up {0} semitone · click for the original key', 'Transposed up {0} semitones · click for the original key', state.shift)
+      : tn('Transposed down {0} semitone · click for the original key', 'Transposed down {0} semitones · click for the original key', -state.shift);
     keyLabel.disabled = !state.shift;
   }
   view.onchange = (st, info) => updateBar(info);
@@ -1089,7 +1090,7 @@ function hideBarsOnScroll(pane) {
   const usable = () => smallScreen.matches && pane.offsetParent !== null && !body.classList.contains('editing-chords');
   const away = (on) => {
     body.classList.toggle('bars-away', on);
-    if (on && !store.get('barsHintShown', false)) { store.set('barsHintShown', true); toast('Tap the sheet to show the toolbar'); }
+    if (on && !store.get('barsHintShown', false)) { store.set('barsHintShown', true); toast(tr('Tap the sheet to show the toolbar')); }
   };
   let lastY = window.scrollY;
   const onScroll = () => {
@@ -1209,7 +1210,7 @@ function setupKeyboardToggle(q) {
     const numbers = store.get('keyboard', 'numbers') === 'numbers';
     q.inputMode = numbers ? 'numeric' : 'search';
     btn.textContent = numbers ? 'ABC' : '123';   // like the iPhone's own key: what it switches to
-    btn.setAttribute('aria-label', numbers ? 'Type letters' : 'Type numbers');
+    btn.setAttribute('aria-label', numbers ? tr('Type letters') : tr('Type numbers'));
   };
   show();
   btn.hidden = false;
@@ -1230,7 +1231,7 @@ function rerenderSearch() {
   const view = $('#view');
   view.innerHTML = '';
   searchScreen(view, route.params.get('q') || '');
-  document.title = 'Search · Hymns';
+  document.title = tr('Search') + ' · ' + tr('Hymns');
 }
 
 // ---- the hymnal picker ----
@@ -1243,7 +1244,7 @@ function setupHymnalPicker() {
   const grid = $('#hymnalChoices');
   const onHymn = route && route.parts[0] === 'h' && DB.hymn(route.parts[1]);
   $('#hymnalHint').hidden = !onHymn;
-  if (onHymn) $('#hymnalHint').textContent = 'Opens ' + onHymn.id + ' in the hymnal you pick, where it has it.';
+  if (onHymn) $('#hymnalHint').textContent = tr('Opens {0} in the hymnal you pick, where it has it.', onHymn.id);
   grid.innerHTML = '';
   for (const g of shownGroups()) {
     const there = onHymn && g.code !== onHymn.group ? DB.relatedIn(onHymn.id, g.code) : null;
@@ -1256,7 +1257,7 @@ function setupHymnalPicker() {
         go(there ? '#/h/' + there : '#/browse/' + g.code);
       }},
     h('span', {class: 'code'}, g.code), h('span', {class: 'name', dir: 'auto'}, g.name),
-    h('span', {class: 'count'}, there ? 'Has this hymn: ' + splitId(there).no : counts[g.code] + ' hymns')));
+    h('span', {class: 'count'}, there ? tr('Has this hymn: {0}', splitId(there).no) : bookSubtitle(g.code, tn('{0} hymn', '{0} hymns', counts[g.code])))));
   }
 }
 
@@ -1270,9 +1271,9 @@ function favoritesText() {
     const first = (hymn.first || hymn.chorus || '').trim();
     return first ? id + ' – ' + first : id;
   });
-  return 'My favorite hymns (Hymns For Android): ' + favs.length + (favs.length === 1 ? ' hymn' : ' hymns') + '\n\n' +
-    'To put them back: in the Android app, open this text as a file or tap Search, then Favorites > Restore;\n' +
-    'in the web app, paste it under Favorites.\n\n' + lines.join('\n') + '\n';
+  return tr('My favorite hymns (Hymns For Android): {0}', tn('{0} hymn', '{0} hymns', favs.length)) + '\n\n' +
+    tr('To put them back: in the Android app, open this text as a file or tap Search, then Favorites > Restore;\nin the web app, paste it under Favorites.')
+    + '\n\n' + lines.join('\n') + '\n';
 }
 
 // the hymn numbers in a favorites text, as the Android app reads them: the first word of each line,
@@ -1305,9 +1306,9 @@ async function shareText(text, title) {
   }
   try {
     await navigator.clipboard.writeText(text);
-    toast('Copied: paste it into a message or a note');
+    toast(tr('Copied: paste it into a message or a note'));
   } catch (e) {
-    toast('Could not copy');
+    toast(tr('Could not copy'));
   }
 }
 
@@ -1315,36 +1316,47 @@ function favoritesScreen(view) {
   const favs = favorites().filter((id) => DB.exists(id));
   const box = h('div', {class: 'page'});
   view.appendChild(box);
-  box.appendChild(h('h1', {class: 'page-title'}, icon('star'), 'Favorites'));
+  box.appendChild(h('h1', {class: 'page-title'}, icon('star'), tr('Favorites')));
   if (!favs.length) {
-    box.appendChild(h('p', {class: 'muted'}, 'No favorites yet. Tap the star on a hymn to add it here.'));
+    box.appendChild(h('p', {class: 'muted'}, tr('No favorites yet. Tap the star on a hymn to add it here.')));
   } else {
     box.appendChild(h('section', {class: 'card list-card'}, h('ul', {class: 'hymn-list'}, favs.map((id) => {
       const row = hymnRow(DB.hymn(id), null);
-      row.appendChild(h('button', {class: 'icon-btn remove', title: 'Remove from favorites', 'aria-label': 'Remove ' + id,
-        onclick: () => { store.set('favorites', favorites().filter((x) => x !== id)); row.remove(); toast(id + ' removed'); }}, icon('close')));
+      row.appendChild(h('button', {class: 'icon-btn remove', title: tr('Remove from favorites'), 'aria-label': tr('Remove {0}', id),
+        onclick: () => { store.set('favorites', favorites().filter((x) => x !== id)); row.remove(); toast(tr('{0} removed', id)); }}, icon('close')));
       return row;
     }))));
   }
-  const area = h('textarea', {class: 'paste', rows: 3, placeholder: 'Paste your favorites here (the text made by Export or by the Android app\'s Back up)'});
+  const area = h('textarea', {class: 'paste', rows: 3, placeholder: tr('Paste your favorites here (the text made by Export or by the Android app\'s Back up)')});
   box.appendChild(h('section', {class: 'card settings-card'},
-    h('h2', null, 'Move favorites between devices'),
-    h('p', {class: 'muted small'}, 'Works with the Android app: there, Search → Favorites → Back up / Restore.'),
+    h('h2', null, tr('Move favorites between devices')),
+    h('p', {class: 'muted small'}, tr('Works with the Android app: there, Search → Favorites → Back up / Restore.')),
     h('div', {class: 'row'},
-      h('button', {class: 'btn', disabled: !favs.length || null, onclick: () => shareText(favoritesText(), 'Hymn favorites')}, icon('share'), 'Export'),
+      h('button', {class: 'btn', disabled: !favs.length || null, onclick: () => shareText(favoritesText(), tr('Hymn favorites'))}, icon('share'), tr('Export')),
       h('button', {class: 'btn', onclick: async () => {
         try { area.value = await navigator.clipboard.readText(); } catch (e) { area.focus(); }
-      }}, 'Paste')),
+      }}, tr('Paste'))),
     area,
     h('div', {class: 'row'}, h('button', {class: 'btn primary', onclick: () => {
       const n = importFavorites(area.value);
-      if (!n && !area.value.trim()) { toast('Paste a list first'); return; }
-      toast(n ? n + ' favorite' + (n > 1 ? 's' : '') + ' added' : 'Nothing new in that list');
+      if (!n && !area.value.trim()) { toast(tr('Paste a list first')); return; }
+      toast(n ? tn('{0} favorite added', '{0} favorites added', n) : tr('Nothing new in that list'));
       render();
-    }}, 'Import'))));
+    }}, tr('Import')))));
 }
 
 // ---- settings ----
+
+// ", " between names in a list; 、 in Chinese
+const listSeparator = () => (lang.startsWith('zh') ? '、' : ', ');
+
+// the app's language was changed (Settings -> Language): the page's own texts and the open screen are written again
+function changeLanguage(value) {
+  setChoice(value);
+  applyStatic();
+  setGroup(currentGroup);
+  render();
+}
 
 function toggleRow(label, hint, on, onchange) {
   const input = h('input', {type: 'checkbox', role: 'switch', checked: on || null, onchange: (e) => onchange(e.target.checked)});
@@ -1377,34 +1389,34 @@ function qrSvg(text) {
   let d = '';
   for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) d += 'M' + (c + m) + ' ' + (r + m) + 'h1v1h-1z';
   const size = n + 2 * m;
-  return '<svg viewBox="0 0 ' + size + ' ' + size + '" shape-rendering="crispEdges" role="img" aria-label="QR code for ' + text + '">'
+  return '<svg viewBox="0 0 ' + size + ' ' + size + '" shape-rendering="crispEdges" role="img" aria-label="' + tr('QR code for {0}', text) + '">'
     + '<rect width="100%" height="100%" fill="#fff"/><path d="' + d + '" fill="#111"/></svg>';
 }
 
 function shareCard() {
   let web = true;   // a person on the web app is most likely sharing the web app
-  const card = h('section', {class: 'card settings-card share-card'}, h('h2', null, 'Share the app'));
+  const card = h('section', {class: 'card settings-card share-card'}, h('h2', null, tr('Share the app')));
   const draw = () => {
     const url = web ? WEB_URL : PLAY_URL;
     const qr = h('div', {class: 'qr'});
     qr.innerHTML = qrSvg(url);
-    const seg = h('div', {class: 'seg'}, [[false, 'Android'], [true, 'iPhone and all devices']].map(([isWeb, label]) =>
+    const seg = h('div', {class: 'seg'}, [[false, 'Android'], [true, tr('iPhone and all devices')]].map(([isWeb, label]) =>
       h('button', {type: 'button', 'aria-pressed': String(web === isWeb), onclick: () => { web = isWeb; draw(); }}, label)));
     const copy = async () => {
-      try { await navigator.clipboard.writeText(url); toast('Link copied'); } catch (e) { toast(url); }
+      try { await navigator.clipboard.writeText(url); toast(tr('Link copied')); } catch (e) { toast(url); }
     };
     card.replaceChildren(
-      h('h2', null, 'Share the app'),
-      h('p', {class: 'muted small'}, 'Let someone scan this with their phone’s camera.'),
+      h('h2', null, tr('Share the app')),
+      h('p', {class: 'muted small'}, tr('Let someone scan this with their phone’s camera.')),
       h('div', {class: 'share-seg'}, seg),
       qr,
       h('p', {class: 'qr-url'}, url.replace('https://', '')),
       h('p', {class: 'muted small qr-note'}, web
-        ? 'Opens the web app in the browser. On an iPhone or iPad: tap Share, then Add to Home Screen, and it works offline like an app.'
-        : 'Opens Hymns For Android on Google Play.'),
+        ? tr('Opens the web app in the browser. On an iPhone or iPad: tap Share, then Add to Home Screen, and it works offline like an app.')
+        : tr('Opens Hymns For Android on Google Play.')),
       h('div', {class: 'row share-row'},
-        h('button', {type: 'button', class: 'btn', onclick: copy}, 'Copy link'),
-        navigator.share ? h('button', {type: 'button', class: 'btn', onclick: () => navigator.share({title: 'Hymns For Android', url}).catch(() => {})}, icon('share'), 'Share link') : null));
+        h('button', {type: 'button', class: 'btn', onclick: copy}, tr('Copy link')),
+        navigator.share ? h('button', {type: 'button', class: 'btn', onclick: () => navigator.share({title: 'Hymns For Android', url}).catch(() => {})}, icon('share'), tr('Share link')) : null));
   };
   draw();
   return card;
@@ -1413,21 +1425,21 @@ function shareCard() {
 function settingsScreen(view) {
   const box = h('div', {class: 'page'});
   view.appendChild(box);
-  box.appendChild(h('h1', {class: 'page-title'}, icon('settings'), 'Settings'));
+  box.appendChild(h('h1', {class: 'page-title'}, icon('settings'), tr('Settings')));
 
   // display
   // text size: the five Android steps (Small ... XXL) on steps 1-5 of the page's seven (0 and 6 only with the A buttons on a hymn)
   const SIZE_NAMES = ['Small', 'Medium', 'Large', 'Extra Large', 'XXL'];
   const step = () => Math.max(0, Math.min(4, lyricSize - 1));
-  const sizeValue = h('span', null, SIZE_NAMES[step()]);
-  const sizeSteps = h('div', {class: 'card size-steps', role: 'group', 'aria-label': 'Text size'}, SIZE_NAMES.map((name, i) =>
-    h('button', {type: 'button', 'aria-label': name, 'aria-pressed': String(i === step()), style: 'font-size:' + (13 + 4 * i) + 'px',
+  const sizeValue = h('span', null, tr(SIZE_NAMES[step()]));
+  const sizeSteps = h('div', {class: 'card size-steps', role: 'group', 'aria-label': tr('Text size')}, SIZE_NAMES.map((name, i) =>
+    h('button', {type: 'button', 'aria-label': tr(name), 'aria-pressed': String(i === step()), style: 'font-size:' + (13 + 4 * i) + 'px',
       onclick: () => {
         setLyricSize(i + 1);
-        sizeValue.textContent = name;
+        sizeValue.textContent = tr(name);
         for (const [j, x] of [...sizeSteps.children].entries()) x.setAttribute('aria-pressed', String(j === i));
       }}, 'A')));
-  box.appendChild(h('div', {class: 'set-head'}, h('h2', null, 'Text size'), sizeValue));
+  box.appendChild(h('div', {class: 'set-head'}, h('h2', null, tr('Text size')), sizeValue));
   box.appendChild(sizeSteps);
 
   // theme: a small picture per choice
@@ -1437,35 +1449,44 @@ function settingsScreen(view) {
     ['light', 'Light', 'Light', {bg: '#ffffff', bar: '#3d577a', line: '#c9ced5'}],
     ['dark', 'Dark', 'Dark', {bg: '#1d1f23', bar: '#2c3e57', line: '#4a4f57'}],
     ['black', 'Black', 'Black', {bg: '#000000', bar: '#1c2a3c', line: '#3a3a3a'}]];
-  const themeValue = h('span', null, THEMES.find((t) => t[0] === themeNow)[2]);
+  const themeValue = h('span', null, tr(THEMES.find((t) => t[0] === themeNow)[2]));
   const mock = (m) => {
     const e = h('span', {class: 'mock', style: `--m-bg:${m.bg};--m-bar:${m.bar};--m-line:${m.line}`});
     if (m.half) e.appendChild(h('span', {class: 'half'}));
     for (const [top, right] of [[19, 8], [26, 16], [33, 10], [40, 28]]) e.appendChild(h('i', {style: `top:${top}px;right:${right}px`}));
     return e;
   };
-  box.appendChild(h('div', {class: 'set-head'}, h('h2', null, 'Appearance'), themeValue));
-  box.appendChild(h('div', {class: 'theme-tiles', role: 'group', 'aria-label': 'Appearance'}, THEMES.map(([t, name, full, m]) =>
-    h('button', {type: 'button', class: 'theme-tile', 'aria-pressed': String(themeNow === t), 'aria-label': full,
-      onclick: () => { setTheme(t); render(); document.querySelector(`.theme-tile[aria-label="${full}"]`)?.focus(); }},   // the page is drawn again: keep the focus
-    h('span', {class: 'frame'}, mock(m)), h('span', {class: 'name'}, name)))));
+  box.appendChild(h('div', {class: 'set-head'}, h('h2', null, tr('Appearance')), themeValue));
+  box.appendChild(h('div', {class: 'theme-tiles', role: 'group', 'aria-label': tr('Appearance')}, THEMES.map(([t, name, full, m]) =>
+    h('button', {type: 'button', class: 'theme-tile', 'aria-pressed': String(themeNow === t), 'aria-label': tr(full),
+      onclick: () => { setTheme(t); render(); document.querySelector(`.theme-tile[aria-label="${tr(full)}"]`)?.focus(); }},   // the page is drawn again: keep the focus
+    h('span', {class: 'frame'}, mock(m)), h('span', {class: 'name'}, tr(name))))));
 
   box.appendChild(h('section', {class: 'card settings-card'},
-    h('h2', null, 'Display'),
-    toggleRow('Repeat the chorus', 'After every stanza, when a hymn has one chorus', repeatChorus,
+    h('h2', null, tr('Display')),
+    toggleRow(tr('Repeat the chorus'), tr('After every stanza, when a hymn has one chorus'), repeatChorus,
       (on) => { repeatChorus = on; store.set('repeatChorus', on); }),
-    toggleRow('Keep the screen on', 'wakeLock' in navigator ? 'While the app is open' : 'Not supported by this browser (on iPhone: iOS 18.4 or later)',
+    toggleRow(tr('Keep the screen on'), 'wakeLock' in navigator ? tr('While the app is open') : tr('Not supported by this browser (on iPhone: iOS 18.4 or later)'),
       keepAwake, (on) => { keepAwake = on; store.set('keepAwake', on); updateWakeLock(); })));
+
+  // the app's language (the hymns stay in their own languages)
+  box.appendChild(h('section', {class: 'card settings-card'},
+    h('h2', null, tr('Language')),
+    h('label', {class: 'setting'}, h('span', {class: 'label'}, tr('App language')),
+      h('select', {class: 'lang-select', onchange: (e) => changeLanguage(e.target.value)},
+        [['', tr('Phone\'s language')], ...LANGS].map(([code, name]) =>
+          h('option', {value: code, selected: code === getChoice() || null}, name))))));
 
   // hymnals
   const counts = DB.groupCounts();
   const all = GROUPS.filter((g) => counts[g.code]);
   const hiddenNames = all.filter((g) => !isShown(g.code)).map((g) => g.name);
   box.appendChild(h('section', {class: 'card settings-card'},
-    h('h2', null, 'Languages (Hymn Books)'),
-    h('p', {class: 'muted small'}, 'Simplify your view by hiding books you don\'t use (' + (hiddenNames.length
-      ? 'hiding ' + (hiddenNames.length > 3 ? hiddenNames.length + ' of ' + all.length : hiddenNames.join(', '))
-      : 'all ' + all.length + ' shown') + '). Hidden books leave the lists, search and the “other languages” row.'),
+    h('h2', null, tr('Languages (Hymn Books)')),
+    h('p', {class: 'muted small'}, tr('Simplify your view by hiding books you don\'t use ({0}). Hidden books leave the lists, search and the “other languages” row.',
+      hiddenNames.length
+        ? (hiddenNames.length > 3 ? tr('hiding {0} of {1}', hiddenNames.length, all.length) : tr('hiding {0}', hiddenNames.join(listSeparator())))
+        : tr('all {0} shown', all.length))),
     h('div', {class: 'hymnal-toggles'}, GROUPS.filter((g) => counts[g.code]).map((g) =>
       h('label', {class: 'hymnal-toggle', style: groupStyle(g.code)},
         h('input', {type: 'checkbox', checked: isShown(g.code) || null, onchange: (e) => {
@@ -1476,7 +1497,7 @@ function settingsScreen(view) {
         h('span', {class: 'chip'}, g.code), h('span', {dir: 'auto'}, g.name))))));
 
   // chord edits
-  const editsCard = h('section', {class: 'card settings-card'}, h('h2', null, 'Chord edits'));
+  const editsCard = h('section', {class: 'card settings-card'}, h('h2', null, tr('Chord edits')));
   box.appendChild(editsCard);
   const editsInfo = h('p', {class: 'muted small'}, '…');
   const fileInput = h('input', {type: 'file', accept: '.json,application/json', hidden: true, onchange: async (e) => {
@@ -1484,30 +1505,29 @@ function settingsScreen(view) {
     if (!f) return;
     try {
       const r = await Edits.importAll(JSON.parse(await f.text()));
-      toast(r.added + ' sheet' + (r.added === 1 ? '' : 's') + ' imported' + (r.kept ? ', ' + r.kept + ' kept (newer here)' : ''));
+      toast(tn('{0} sheet imported', '{0} sheets imported', r.added) + (r.kept ? listSeparator() + tr('{0} kept (newer here)', r.kept) : ''));
       render();
     } catch (err) {
-      toast(err.message || 'Could not read that file');
+      toast(err.message || tr('Could not read that file'));
     }
   }});
   const editedList = h('ul', {class: 'hymn-list'});
   append(editsCard, [
-    h('p', {class: 'muted small'}, 'Chords you change on a piano sheet (Edit chords) are saved on this device. Export them to keep a copy, '
-      + 'to move them to another device, or to send them in so they can go into the sheets for everyone.'),
+    h('p', {class: 'muted small'}, tr('Chords you change on a piano sheet (Edit chords) are saved on this device. Export them to keep a copy, to move them to another device, or to send them in so they can go into the sheets for everyone.')),
     editsInfo, editedList,
     h('div', {class: 'row'},
       h('button', {class: 'btn', onclick: async () => {
         const data = await Edits.exportAll();
-        if (!Object.keys(data.sheets).length) { toast('No chord edits yet'); return; }
+        if (!Object.keys(data.sheets).length) { toast(tr('No chord edits yet')); return; }
         downloadFile('hymns-chord-edits-' + new Date().toISOString().slice(0, 10) + '.json', JSON.stringify(data, null, 1), 'application/json');
-      }}, icon('share'), 'Export'),
-      h('button', {class: 'btn', onclick: () => fileInput.click()}, 'Import'), fileInput)]);
+      }}, icon('share'), tr('Export')),
+      h('button', {class: 'btn', onclick: () => fileInput.click()}, tr('Import')), fileInput)]);
   Edits.all().then((list) => {
-    editsInfo.textContent = list.length ? list.length + ' sheet' + (list.length > 1 ? 's' : '') + ' with edits:' : 'No chord edits yet.';
+    editsInfo.textContent = list.length ? tn('{0} sheet with edits:', '{0} sheets with edits:', list.length) : tr('No chord edits yet.');
     list.sort((a, b) => b.updated - a.updated);
     for (const r of list) {
       const hm = DB.hymn(r.sheet);
-      if (hm) editedList.appendChild(hymnRow(hm, h('span', {class: 'snippet'}, Object.keys(r.bars).length + ' bars · ' + new Date(r.updated).toLocaleDateString())));
+      if (hm) editedList.appendChild(hymnRow(hm, h('span', {class: 'snippet'}, tn('{0} bar', '{0} bars', Object.keys(r.bars).length) + ' · ' + new Date(r.updated).toLocaleDateString(lang))));
     }
   });
 
@@ -1515,25 +1535,25 @@ function settingsScreen(view) {
   const offlineStatus = h('p', {class: 'muted small'}, '');
   const offlineBtn = h('button', {class: 'btn', onclick: async () => {
     offlineBtn.disabled = true;
-    offlineStatus.textContent = 'Downloading the sheet music…';
+    offlineStatus.textContent = tr('Downloading the sheet music…');
     try {
       if (navigator.storage && navigator.storage.persist) await navigator.storage.persist();
       await prefetchAll();
       const tunes = DB.allTuneFiles();
-      await Player.prefetch(tunes, (f) => { offlineStatus.textContent = 'Downloading the tunes… ' + Math.round(f * 100) + '%'; });
-      offlineStatus.textContent = 'All sheet music and tunes are on this device.';
+      await Player.prefetch(tunes, (f) => { offlineStatus.textContent = tr('Downloading the tunes… {0}%', Math.round(f * 100)); });
+      offlineStatus.textContent = tr('All sheet music and tunes are on this device.');
       store.set('offlineAll', DB.version.build);
     } catch (e) {
-      offlineStatus.textContent = 'Download stopped: ' + e.message;
+      offlineStatus.textContent = tr('Download stopped: {0}', e.message);
     }
     offlineBtn.disabled = false;
-  }}, 'Download all sheet music and tunes');
+  }}, tr('Download all sheet music and tunes'));
   const sw = 'serviceWorker' in navigator && window.isSecureContext;
-  offlineStatus.textContent = !sw ? 'Offline use needs the app’s https address.'
-    : store.get('offlineAll', null) ? 'Sheet music and tunes were downloaded for offline use.'
-      : 'The hymns work offline. Sheets and tunes you have opened do too; download all of them here (about 20 MB).';
+  offlineStatus.textContent = !sw ? tr('Offline use needs the app’s https address.')
+    : store.get('offlineAll', null) ? tr('Sheet music and tunes were downloaded for offline use.')
+      : tr('The hymns work offline. Sheets and tunes you have opened do too; download all of them here (about 20 MB).');
   box.appendChild(h('section', {class: 'card settings-card'},
-    h('h2', null, 'Offline'), offlineStatus, sw ? h('div', {class: 'row'}, offlineBtn) : null));
+    h('h2', null, tr('Offline')), offlineStatus, sw ? h('div', {class: 'row'}, offlineBtn) : null));
 
   // share the app: a QR code for the Google Play page, or for the web app (iPhone and every other device)
   box.appendChild(shareCard());
@@ -1541,16 +1561,15 @@ function settingsScreen(view) {
   // about
   const v = DB.version || {};
   box.appendChild(h('section', {class: 'card settings-card about'},
-    h('h2', null, 'About'),
-    h('p', null, 'Hymns ', v.app || '', ' · ', (v.hymns || 0).toLocaleString(), ' hymns · data of ', v.built || '?'),
-    h('p', {class: 'muted small'}, 'The same hymns as the Android app ',
-      h('a', {href: 'https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns', target: '_blank', rel: 'noopener'}, 'Hymns For Android'),
-      '. Sheet music from www.hymnal.net, engraved with Verovio (LGPL).'),
-    h('p', {class: 'muted small'}, 'Source code: ',
+    h('h2', null, tr('About')),
+    h('p', null, tr('Hymns {0} · {1} hymns · data of {2}', v.app || '', num(v.hymns || 0), v.built || '?')),
+    h('p', {class: 'muted small'}, trh('The same hymns as the Android app {0}. Sheet music from www.hymnal.net, engraved with Verovio (LGPL).',
+      h('a', {href: 'https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns', target: '_blank', rel: 'noopener'}, 'Hymns For Android'))),
+    h('p', {class: 'muted small'}, tr('Source code: '),
       h('a', {href: 'https://github.com/lemuelinchrist/hymnsforandroid', target: '_blank', rel: 'noopener', style: 'overflow-wrap: anywhere'}, 'github.com/lemuelinchrist/hymnsforandroid')),
-    h('p', {class: 'muted small'}, 'Feedback: ', h('a', {href: 'mailto:hymnsforandroid.support@gmail.com'}, 'hymnsforandroid.support@gmail.com')),
+    h('p', {class: 'muted small'}, tr('Feedback: '), h('a', {href: 'mailto:hymnsforandroid.support@gmail.com'}, 'hymnsforandroid.support@gmail.com')),
     window.matchMedia('(pointer: coarse)').matches ? null
-      : h('p', null, h('button', {class: 'link', onclick: () => $('#helpDialog').showModal()}, 'Keyboard shortcuts'))));
+      : h('p', null, h('button', {class: 'link', onclick: () => $('#helpDialog').showModal()}, tr('Keyboard shortcuts')))));
 }
 
 // ---- start ----
@@ -1572,13 +1591,14 @@ function setupServiceWorker() {
     if (document.hidden || Date.now() - opened < 20000) { location.reload(); return; }
     const t = $('#toast');
     t.textContent = '';
-    t.appendChild(document.createTextNode('A new version is ready. '));
-    t.appendChild(h('button', {class: 'link toast-link', onclick: () => location.reload()}, 'Reload'));
+    t.appendChild(document.createTextNode(tr('A new version is ready. ')));
+    t.appendChild(h('button', {class: 'link toast-link', onclick: () => location.reload()}, tr('Reload')));
     t.classList.add('show', 'sticky');
   });
 }
 
 async function start() {
+  applyStatic();
   applyTheme();
   setLyricSize(lyricSize);
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => themeListeners.forEach((f) => f()));
@@ -1598,11 +1618,11 @@ async function start() {
     await DB.open((f) => {
       $('#loading').hidden = false;
       bar.style.width = Math.round(f * 100) + '%';
-      $('#loadingText').textContent = 'Downloading hymns… ' + Math.round(f * 100) + '%';
+      $('#loadingText').textContent = tr('Downloading hymns… {0}%', Math.round(f * 100));
     });
   } catch (e) {
     console.error(e);
-    $('#loadingText').textContent = 'Could not load the hymns: ' + e.message;
+    $('#loadingText').textContent = tr('Could not load the hymns: {0}', e.message);
     $('#loading').hidden = false;
     $('#loading').classList.add('error');
     return;

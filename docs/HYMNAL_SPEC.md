@@ -767,7 +767,7 @@ dialog for a simple choice. On a tablet or an unfolded phone the page (and the A
    (error correction level M), black on white in every theme.
 9. **About** (a row that opens its own page): the app name and version, **Send feedback** (an email to the project's
    support address, `hymnsforandroid.support@gmail.com`, with the version in the subject) and **Source code** (the
-   repository, `github.com/lemuelinchrist/hymnsforandroid`). The web app's About card shows the same lines. The web app has the same **Share the app** card (QR code with the Android | iPhone and all devices switch, opening on the web app; Copy link, and Share link where the browser can share), among its own cards (Display, Languages, Chord edits, Offline, Share, About). Its **Text size** and **Appearance** (the theme) are drawn like the Android ones, above the cards: a header with the chosen name on the right, five "A" steps (the web's seven sizes are reached with the A buttons on a hymn; the steps are the middle five) and four theme pictures.
+   repository, `github.com/lemuelinchrist/hymnsforandroid`). The web app's About card shows the same lines. The web app has the same **Share the app** card (QR code with the Android | iPhone and all devices switch, opening on the web app; Copy link, and Share link where the browser can share), among its own cards (Display, Language, Languages (Hymn Books), Chord edits, Offline, Share, About). Its **Text size** and **Appearance** (the theme) are drawn like the Android ones, above the cards: a header with the chosen name on the right, five "A" steps (the web's seven sizes are reached with the A buttons on a hymn; the steps are the middle five) and four theme pictures.
 
 ### 10.1 The app's language
 
@@ -793,6 +793,16 @@ Traditional Chinese, Simplified Chinese, Spanish or French; the hymns themselves
 - Android: `res/values/strings.xml` (English), `values-b+zh+Hant`, `values-b+zh+Hans`, `values-es`, `values-fr`; a
   string without a translation shows in English. `StringsTranslationsTest` checks that a translation has no string
   English lacks and the same placeholders. The sheet viewer gets the language as `&lang=zh-Hant|zh-Hans|es|fr` (§11.2).
+- **The web app** speaks the same five languages. Settings → **Language** → *App language* is a list with the same
+  choices (*Phone's language* by default: the first language of the browser's list that the app has, Traditional for
+  zh-Hant/TW/HK/MO, else Simplified); the choice is kept on the device and the screen is written again at once. Its
+  texts are in `tools/web/src/strings.js`, keyed by the English text (a text without a translation shows in English;
+  most have the same words as the Android strings, the chord editor's the same as `assets/viewer/strings.js`). The book
+  names (the big native name, the translated name and the count under it, the sentences and the labels of inherited
+  links) and the book a new person starts in are the Android app's own: `build.py` reads `book_<code>`,
+  `language_<code>` and `first_hymn` from `res/values-*/strings.xml`. The page title, the install hint, the keyboard
+  shortcuts and the favorites text it exports are translated too; the manifest's name and the home-screen title stay
+  "Hymns" (a web app manifest has one name).
 
 Changing any setting refreshes the reader (theme, font, drawer, current page) when returning to it.
 

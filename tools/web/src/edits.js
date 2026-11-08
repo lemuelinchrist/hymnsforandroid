@@ -4,6 +4,8 @@
 // Export/import moves them between devices, and an exported file can be baked into the sheets themselves
 // (see tools/web/README.md).
 
+import {tr} from './i18n.js';
+
 const DB_NAME = 'hymns-edits';
 const STORE = 'sheets';
 export const FORMAT = 'hymns-chord-edits';
@@ -58,7 +60,7 @@ export async function exportAll() {
 
 // an exported file: a sheet replaces this device's edits of that sheet when it was edited later (or `force`)
 export async function importAll(data, {force = false} = {}) {
-  if (!data || data.format !== FORMAT || typeof data.sheets !== 'object') throw new Error('This is not a chord edits file.');
+  if (!data || data.format !== FORMAT || typeof data.sheets !== 'object') throw new Error(tr('This is not a chord edits file.'));
   const mine = Object.fromEntries((await all()).map((r) => [r.sheet, r]));
   let added = 0, kept = 0;
   for (const [sheet, rec] of Object.entries(data.sheets)) {
