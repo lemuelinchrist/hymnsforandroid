@@ -138,7 +138,7 @@ function setGroup(code) {
   btn.setAttribute('style', groupStyle(code));
   $('#hymnalName').textContent = BY_CODE[code].name;
   $('#hymnalBtn .dot').dataset.code = code;
-  $('#q').placeholder = window.innerWidth < 360 ? tr('No. or words') : window.innerWidth < 720 ? tr('Number or words')
+  $('#q').placeholder = window.innerWidth < 420 && /^(fr|es)/.test(lang) || window.innerWidth < 360 ? tr('No. or words') : window.innerWidth < 720 ? tr('Number or words')
     : tr('Search {0} by number, or any hymnal by words', BY_CODE[code].name);
 }
 

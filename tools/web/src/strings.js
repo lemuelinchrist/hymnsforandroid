@@ -5,6 +5,7 @@
 // chord editor's and the sheet's are the same as assets/viewer/strings.js. Drafts, to be checked by a reader of each.
 // Simplified Chinese was made from Traditional with OpenCC (tw2sp), then corrected by hand.
 const ZH_HANT = {
+  "major": "大調",
   "Hymns": "詩歌",
   "Hymns, home": "詩歌，首頁",
   "Back": "返回",
@@ -266,6 +267,7 @@ const ZH_HANT = {
 };
 
 const ZH_HANS = {
+  "major": "大调",
   "Hymns": "诗歌",
   "Hymns, home": "诗歌，首页",
   "Back": "返回",
@@ -527,6 +529,7 @@ const ZH_HANS = {
 };
 
 const ES = {
+  "major": "mayor",
   "Hymns": "Himnos",
   "Hymns, home": "Himnos, inicio",
   "Back": "Atrás",
@@ -788,6 +791,7 @@ const ES = {
 };
 
 const FR = {
+  "major": "majeur",
   "Hymns": "Cantiques",
   "Hymns, home": "Cantiques, accueil",
   "Back": "Retour",
