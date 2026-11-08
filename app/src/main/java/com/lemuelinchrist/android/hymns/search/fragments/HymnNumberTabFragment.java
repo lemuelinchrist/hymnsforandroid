@@ -37,8 +37,8 @@ public class HymnNumberTabFragment extends TabFragment {
     }
 
     @Override
-    public String getTabName() {
-        return "  Hymn Numbers";
+    public int getTabName() {
+        return R.string.tab_hymn_numbers;
     }
 
     @Override

@@ -24,7 +24,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back up"
+            android:text="@string/backup_button"
             android:textColor="@color/choice_on"/>
 
     <Button
@@ -32,7 +32,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Restore"
+            android:text="@string/restore_button"
             android:textColor="@color/choice_on"/>
 
 </LinearLayout>

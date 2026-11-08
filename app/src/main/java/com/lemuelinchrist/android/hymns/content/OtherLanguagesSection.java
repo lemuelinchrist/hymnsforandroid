@@ -142,7 +142,7 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
                 throw new IllegalStateException(e);   // already filtered out in enabledRelatedIds()
             }
             View cell = inflater.inflate(R.layout.other_languages_cell, grid, false);
-            cell.setContentDescription(group.getSimpleName() + " " + HymnGroup.getHymnNoFromID(id));
+            cell.setContentDescription(context.getString(R.string.other_language_cell, group.getDisplayName(context), HymnGroup.getHymnNoFromID(id)));
             cell.setOnClickListener(v -> {
                 HymnSwitcher hymnSwitcher = HymnsActivity.getHymnSwitcher();
                 if (hymnSwitcher != null) hymnSwitcher.switchToRelatedHymn(id);

@@ -72,24 +72,22 @@ public class FavoritesBackup {
 
     public void showMenu() {
         dialog()
-                .setTitle("Back up & restore favorites")
-                .setMessage("Back up: send your favorites to yourself (email, chat, Drive) or save them as a file.\n\n" +
-                        "Restore: on your other phone, open that file with this app, or tap Restore here.\n\n" +
-                        "If you set up a new phone from your Google backup, your favorites usually come along by themselves.")
-                .setPositiveButton("Back up", (dialog, which) -> backUp())
-                .setNegativeButton("Restore", (dialog, which) -> restore())
-                .setNeutralButton("Close", null)
+                .setTitle(R.string.fav_backup_title)
+                .setMessage(R.string.fav_backup_intro)
+                .setPositiveButton(R.string.backup_button, (dialog, which) -> backUp())
+                .setNegativeButton(R.string.restore_button, (dialog, which) -> restore())
+                .setNeutralButton(R.string.close, null)
                 .show();
     }
 
     public void backUp() {
         if (getFavorites().length == 0) {
-            message("No favorites yet", "Tap the heart on a hymn to add it to your favorites.");
+            message(R.string.fav_none_title, R.string.fav_none_body);
             return;
         }
         dialog()
-                .setTitle("Back up favorites")
-                .setItems(new String[]{"Send (email, chat, Drive…)", "Save as a file on this phone"}, (dialog, which) -> {
+                .setTitle(R.string.fav_backup_choose)
+                .setItems(new String[]{activity.getString(R.string.send_email_chat_drive), activity.getString(R.string.save_file_phone)}, (dialog, which) -> {
                     if (which == 0) share();
                     else saveFileLauncher.launch(FILE_NAME);
                 })
@@ -98,8 +96,8 @@ public class FavoritesBackup {
 
     public void restore() {
         dialog()
-                .setTitle("Restore favorites")
-                .setItems(new String[]{"Open a backup file", "Paste copied text"}, (dialog, which) -> {
+                .setTitle(R.string.fav_restore_title)
+                .setItems(new String[]{activity.getString(R.string.fav_restore_open_file), activity.getString(R.string.fav_restore_paste)}, (dialog, which) -> {
                     if (which == 0) openFileLauncher.launch(new String[]{"text/*", "application/octet-stream"});
                     else restoreFromClipboard();
                 })
@@ -111,17 +109,19 @@ public class FavoritesBackup {
     }
 
     String buildBackupText() {
-        return formatBackupText(getFavorites());
+        HymnRecord[] favorites = getFavorites();
+        return formatBackupText(favorites, activity.getString(R.string.fav_file_heading, hymns(favorites.length)),
+                activity.getString(R.string.fav_file_how));
     }
 
-    // the favorites newest first, as the Back up text
-    static String formatBackupText(HymnRecord[] favorites) {
+    /**
+     * The favorites newest first, as the Back up text, under a heading and how to restore them (in the app's language;
+     * Restore only reads the hymn numbers at the start of the lines, so these never hold one).
+     */
+    static String formatBackupText(HymnRecord[] favorites, String heading, String howToRestore) {
         StringBuilder text = new StringBuilder();
-        text.append("My favorite hymns (Hymns For Android): ").append(favorites.length)
-                .append(favorites.length == 1 ? " hymn" : " hymns").append("\n\n");
-        text.append("To put them back: open this file with the Hymns app,\n");
-        text.append("or copy all of this text, then in the app tap Search,\n");
-        text.append("then Favorites > Restore > Paste copied text.\n\n");
+        text.append(heading).append("\n\n");
+        text.append(howToRestore).append("\n\n");
         for (HymnRecord record : favorites) {
             text.append(record.getHymnId());
             if (record.getFirstLine() != null) text.append(" – ").append(record.getFirstLine().trim());
@@ -139,25 +139,25 @@ public class FavoritesBackup {
 
             Intent sendIntent = new Intent(Intent.ACTION_SEND);
             sendIntent.setType("text/plain");
-            sendIntent.putExtra(Intent.EXTRA_SUBJECT, "My favorite hymns");
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.fav_file_subject));
             sendIntent.putExtra(Intent.EXTRA_TEXT, text);
             sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
             sendIntent.setClipData(ClipData.newRawUri(FILE_NAME, uri));
             sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            activity.startActivity(Intent.createChooser(sendIntent, "Back up favorites"));
+            activity.startActivity(Intent.createChooser(sendIntent, activity.getString(R.string.fav_backup_choose)));
         } catch (IOException e) {
             Log.e(getClass().getName(), "Could not write the backup file", e);
-            message("Back up failed", "The backup file could not be written.");
+            message(R.string.fav_backup_failed, R.string.fav_file_not_written);
         }
     }
 
     private void saveTo(Uri uri) {
         try {
             writeText(activity.getContentResolver().openOutputStream(uri), buildBackupText());
-            Toast.makeText(activity, "Favorites saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, R.string.fav_saved, Toast.LENGTH_SHORT).show();
         } catch (IOException | RuntimeException e) {
             Log.e(getClass().getName(), "Could not save the backup file", e);
-            message("Back up failed", "The file could not be saved there. Please try another place.");
+            message(R.string.fav_backup_failed, R.string.file_not_saved_there);
         }
     }
 
@@ -168,8 +168,7 @@ public class FavoritesBackup {
         if (clip != null && clip.getItemCount() > 0) text = clip.getItemAt(0).coerceToText(activity);
 
         if (text == null || text.toString().trim().isEmpty()) {
-            message("Nothing copied", "Copy your backup text first: open the email or message, " +
-                    "long-press the text, choose Select all, then Copy. Then come back and tap Restore again.");
+            message(R.string.fav_nothing_copied, R.string.fav_nothing_copied_body);
             return;
         }
         restoreFromText(text.toString());
@@ -190,7 +189,7 @@ public class FavoritesBackup {
             text = readText(activity.getContentResolver().openInputStream(uri));
         } catch (IOException | RuntimeException e) {
             Log.e(getClass().getName(), "Could not read " + uri, e);
-            finishedMessage("Restore failed", "This file could not be opened.");
+            finishedMessage(R.string.fav_restore_failed, activity.getString(R.string.file_could_not_open));
             return;
         }
         restoreFromText(text);
@@ -215,32 +214,32 @@ public class FavoritesBackup {
         hymnsDao.close();
 
         String notInAppNote = notInApp == 0 ? "" :
-                "\n\n" + hymns(notInApp) + (notInApp == 1 ? " is" : " are") + " not in this version of the app.";
+                "\n\n" + activity.getString(R.string.fav_not_in_app, plural(R.plurals.fav_not_in_app_count, notInApp));
 
         if (newHymns.isEmpty()) {
             String body = alreadyFaves > 0
-                    ? "All " + hymns(alreadyFaves) + " are already in your favorites." + notInAppNote
+                    ? plural(R.plurals.fav_all_already, alreadyFaves) + notInAppNote
                     : openedFile != null
-                    ? "This file is not a favorites backup: it has no hymn numbers in it."
-                    : "No hymn numbers were found. Please use the text or file made by Back up.";
-            finishedMessage(alreadyFaves > 0 ? "Nothing to add" : "No favorites found", body);
+                    ? activity.getString(R.string.fav_not_a_backup)
+                    : activity.getString(R.string.fav_no_numbers);
+            finishedMessage(alreadyFaves > 0 ? R.string.fav_nothing_to_add : R.string.fav_none_found, body);
             return;
         }
 
-        String body = "Add " + hymns(newHymns.size()) + " to your favorites?";
-        if (alreadyFaves > 0) body += "\n\n" + hymns(alreadyFaves) + (alreadyFaves == 1 ? " is" : " are") + " already there.";
+        String body = plural(R.plurals.fav_add_question, newHymns.size());
+        if (alreadyFaves > 0) body += "\n\n" + plural(R.plurals.fav_already_there, alreadyFaves);
         body += notInAppNote;
 
         boolean[] added = {false};
         dialog()
-                .setTitle("Restore favorites")
+                .setTitle(R.string.fav_restore_title)
                 .setMessage(body)
-                .setPositiveButton("Add", (dialog, which) -> {
+                .setPositiveButton(R.string.add_button, (dialog, which) -> {
                     int count = faveLogBook.addAll(newHymns);
                     added[0] = count > 0;
-                    Toast.makeText(activity, "Added " + hymns(count) + " to your favorites", Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity, plural(R.plurals.fav_added, count), Toast.LENGTH_LONG).show();
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.cancel, null)
                 .setOnDismissListener(dialog -> listener.onRestoreFinished(added[0]))
                 .show();
     }
@@ -261,26 +260,30 @@ public class FavoritesBackup {
         return new ArrayList<>(ids);
     }
 
-    private static String hymns(int count) {
-        return count + (count == 1 ? " hymn" : " hymns");
+    private String hymns(int count) {
+        return activity.getResources().getQuantityString(R.plurals.hymns_count, count, String.valueOf(count));
+    }
+
+    private String plural(int id, int count) {
+        return activity.getResources().getQuantityString(id, count, count);
     }
 
     private AlertDialog.Builder dialog() {
         return new AlertDialog.Builder(activity, R.style.FavoritesDialog);
     }
 
-    private void message(String title, String body) {
-        dialog().setTitle(title).setMessage(body).setPositiveButton("OK", null).show();
+    private void message(int title, int body) {
+        dialog().setTitle(title).setMessage(body).setPositiveButton(R.string.ok, null).show();
     }
 
-    private void finishedMessage(String title, String body) {
+    private void finishedMessage(int title, String body) {
         boolean[] handedOver = {false};
-        AlertDialog.Builder builder = dialog().setTitle(title).setMessage(body).setPositiveButton("OK", null)
+        AlertDialog.Builder builder = dialog().setTitle(title).setMessage(body).setPositiveButton(R.string.ok, null)
                 .setOnDismissListener(dialog -> {
                     if (!handedOver[0]) listener.onRestoreFinished(false);
                 });
         if (openedFile != null) {
-            builder.setNeutralButton("Open with another app", (dialog, which) -> handedOver[0] = openWithAnotherApp());
+            builder.setNeutralButton(R.string.open_with_another_app, (dialog, which) -> handedOver[0] = openWithAnotherApp());
         }
         builder.show();
     }
@@ -297,7 +300,7 @@ public class FavoritesBackup {
             return true;
         } catch (RuntimeException e) {
             Log.e(getClass().getName(), "Could not open " + openedFile + " with another app", e);
-            Toast.makeText(activity, "No other app can open this file", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, R.string.no_other_app, Toast.LENGTH_LONG).show();
             return false;
         }
     }

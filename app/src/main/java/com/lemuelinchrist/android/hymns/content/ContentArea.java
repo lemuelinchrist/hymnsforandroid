@@ -103,7 +103,7 @@ public class ContentArea extends Fragment {
         //Sometimes hymnId can be null when app wakes up from a sleep several hours long. need to retrieve it from history
         if(hymnId==null) {
             HymnRecord[] records = historyLogBook.getOrderedRecordList();
-            hymnId = records.length>0 ? records[0].getHymnId() : HymnGroup.DEFAULT_HYMN_NUMBER;
+            hymnId = records.length>0 ? records[0].getHymnId() : HymnGroup.firstHymn(context);
         }
 
         hymnsDao.open();
@@ -112,7 +112,7 @@ public class ContentArea extends Fragment {
             // the hymn was removed from the database: forget it and show the default hymn
             Log.w(this.getClass().getSimpleName(), "hymn " + hymnId + " not found. showing the default hymn");
             LogBook.removeFromHistoryAndFavorites(context, hymnId);
-            hymnId = HymnGroup.DEFAULT_HYMN_NUMBER;
+            hymnId = HymnGroup.firstHymn(context);
             hymn = hymnsDao.get(hymnId);
         }
         hymnsDao.close();
@@ -204,7 +204,7 @@ public class ContentArea extends Fragment {
     public void log() {
         // No need to log default hymn number since it's the starting point anyway
         // NOTE: possible null pointer here!
-        if(hymnStack != null && hymnStack.contains(hymn.getHymnId()) && !getHymnId().equals(HymnGroup.DEFAULT_HYMN_NUMBER))
+        if(hymnStack != null && hymnStack.contains(hymn.getHymnId()) && (context == null || !getHymnId().equals(HymnGroup.firstHymn(context))))
             historyLogBook.log(hymn);
     }
 

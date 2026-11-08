@@ -11,7 +11,7 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:paddingBottom="8dp"
-            android:text="Hidden languages don't appear in the book list, in search or under &quot;Other languages&quot;."
+            android:text="@string/hymn_books_note"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     <ListView

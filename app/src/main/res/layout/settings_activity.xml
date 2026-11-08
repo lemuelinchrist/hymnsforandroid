@@ -49,7 +49,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
-            <TextView style="@style/SettingsHeader" android:text="Text size" />
+            <TextView style="@style/SettingsHeader" android:text="@string/settings_text_size" />
             <TextView android:id="@+id/textSizeValue" style="@style/SettingsHeaderValue" />
         </LinearLayout>
         <LinearLayout
@@ -67,7 +67,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
-            <TextView style="@style/SettingsHeader" android:text="Theme" />
+            <TextView style="@style/SettingsHeader" android:text="@string/settings_theme" />
             <TextView android:id="@+id/themeValue" style="@style/SettingsHeaderValue" />
         </LinearLayout>
         <LinearLayout
@@ -83,7 +83,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
-            <TextView style="@style/SettingsHeader" android:text="Sheet music" />
+            <TextView style="@style/SettingsHeader" android:text="@string/settings_sheet_music" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/sheetMusicSeg"
@@ -105,7 +105,7 @@
                 android:maxLines="1"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:text="Piano"
+                android:text="@string/settings_piano"
                 android:textColor="@color/settings_choice_text"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -123,7 +123,7 @@
                 android:maxLines="1"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:text="Guitar"
+                android:text="@string/settings_guitar"
                 android:textColor="@color/settings_choice_text"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -136,7 +136,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
-            <TextView style="@style/SettingsHeader" android:text="On the hymn page" />
+            <TextView style="@style/SettingsHeader" android:text="@string/settings_on_hymn_page" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,24 +150,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_set_tv"
-                app:rowTitle="YouTube button"
-                app:rowSummary="Search YouTube for the hymn"
+                app:rowTitle="@string/settings_youtube"
+                app:rowSummary="@string/settings_youtube_summary"
                 app:rowTrailing="switcher" />
             <com.lemuelinchrist.android.hymns.settings.SettingsRow
                 android:id="@+id/similarRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_set_tune"
-                app:rowTitle="Similar tune button"
-                app:rowSummary="Switch to hymns sung to the same tune"
+                app:rowTitle="@string/settings_similar"
+                app:rowSummary="@string/settings_similar_summary"
                 app:rowTrailing="switcher" />
             <com.lemuelinchrist.android.hymns.settings.SettingsRow
                 android:id="@+id/keepOnRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_set_bulb"
-                app:rowTitle="Keep screen on"
-                app:rowSummary="The screen won't sleep while a hymn is open"
+                app:rowTitle="@string/settings_keep_on"
+                app:rowSummary="@string/settings_keep_on_summary"
                 app:rowTrailing="switcher" />
         </LinearLayout>
         <LinearLayout
@@ -178,7 +178,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
-            <TextView style="@style/SettingsHeader" android:text="Hymn books" />
+            <TextView style="@style/SettingsHeader" android:text="@string/settings_hymn_books" />
             <TextView android:id="@+id/booksValue" style="@style/SettingsHeaderValue" />
         </LinearLayout>
         <LinearLayout
@@ -193,7 +193,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_set_books"
-                app:rowTitle="Books to show"
+                app:rowTitle="@string/settings_books_to_show"
                 app:rowSummary=""
                 app:rowTrailing="chevron" />
         </LinearLayout>
@@ -205,7 +205,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
-            <TextView style="@style/SettingsHeader" android:text="Your data" />
+            <TextView style="@style/SettingsHeader" android:text="@string/settings_your_data" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -219,15 +219,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_set_heart"
-                app:rowTitle="Favorites"
-                app:rowSummary="Back up, or move them to a new phone"
+                app:rowTitle="@string/settings_favorites"
+                app:rowSummary="@string/settings_favorites_summary"
                 app:rowTrailing="chevron" />
             <com.lemuelinchrist.android.hymns.settings.SettingsRow
                 android:id="@+id/chordEditsRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_set_chords"
-                app:rowTitle="Chord edits"
+                app:rowTitle="@string/chord_edits_title"
                 app:rowSummary=""
                 app:rowTrailing="chevron" />
         </LinearLayout>
@@ -239,7 +239,7 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
-            <TextView style="@style/SettingsHeader" android:text="Share the app" />
+            <TextView style="@style/SettingsHeader" android:text="@string/settings_share_app" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -255,7 +255,7 @@
                 android:layout_marginStart="18dp"
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="12dp"
-                android:text="Let someone scan this with their phone's camera."
+                android:text="@string/share_scan"
                 android:textColor="@color/set_muted"
                 android:textSize="13.5sp" />
 
@@ -284,7 +284,7 @@
                 android:maxLines="1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:text="Android"
+                android:text="@string/share_android"
                 android:textColor="@color/settings_choice_text"
                 android:textSize="13.5sp"
                 android:textStyle="bold" />
@@ -302,7 +302,7 @@
                 android:maxLines="1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:text="iPhone and all devices"
+                android:text="@string/share_web"
                 android:textColor="@color/settings_choice_text"
                 android:textSize="13.5sp"
                 android:textStyle="bold" />
@@ -316,7 +316,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/settings_qr_bg"
-                android:contentDescription="QR code to share the app"
+                android:contentDescription="@string/share_qr"
                 android:padding="10dp"
                 android:scaleType="fitXY" />
 
@@ -355,7 +355,7 @@
                     style="@style/SettingsButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Copy link" />
+                    android:text="@string/copy_link" />
 
                 <Button
                     android:id="@+id/shareSend"
@@ -363,7 +363,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/settings_button_filled"
-                    android:text="Share link"
+                    android:text="@string/share_link"
                     android:textColor="@color/set_on_primary" />
             </LinearLayout>
         </LinearLayout>
@@ -378,8 +378,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_set_info"
-                app:rowTitle="About"
-                app:rowSummary="Version, send feedback, source code"
+                app:rowTitle="@string/settings_about"
+                app:rowSummary="@string/settings_about_summary"
                 app:rowTrailing="chevron" />
         </LinearLayout>
         </com.lemuelinchrist.android.hymns.settings.MaxWidthLinearLayout>

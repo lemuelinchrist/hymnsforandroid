@@ -56,7 +56,7 @@ public class SearchResultAdapter extends SearchAdapter {
         if (goTo != null) {
             if (position == 0) {
                 holder.hymnNo = goTo;
-                holder.list_item.setText(Html.fromHtml("Go to <b>" + goTo + "</b>"));
+                holder.list_item.setText(Html.fromHtml(context.getString(R.string.search_go_to, goTo)));
                 setIcon(holder, goTo.replaceAll("[0-9]", ""));
                 return;
             }
@@ -95,11 +95,11 @@ public class SearchResultAdapter extends SearchAdapter {
             case CHORUS:
                 return hymn.getFirstChorusLine();
             case SUBJECT:
-                return "Subject: " + join(" – ", hymn.getMainCategory(), hymn.getSubCategory());
+                return context.getString(R.string.search_why_subject, join(" – ", hymn.getMainCategory(), hymn.getSubCategory()));
             case PEOPLE:
-                return join(" · ", label("Author: ", hymn.getAuthor()), label("Composer: ", hymn.getComposer()));
+                return join(" · ", label(R.string.search_why_author, hymn.getAuthor()), label(R.string.search_why_composer, hymn.getComposer()));
             case MUSIC:
-                return join(" · ", label("Key: ", hymn.getKey()), label("Tune: ", hymn.getTune()));
+                return join(" · ", label(R.string.search_why_key, hymn.getKey()), label(R.string.search_why_tune, hymn.getTune()));
             default:
                 return bestLine(hymn, r.line);
         }
@@ -150,8 +150,8 @@ public class SearchResultAdapter extends SearchAdapter {
                 && (end == text.length() || !Character.isLetterOrDigit(text.charAt(end)));
     }
 
-    private static String label(String label, String value) {
-        return value == null || value.trim().isEmpty() ? null : label + value.trim();
+    private String label(int label, String value) {
+        return value == null || value.trim().isEmpty() ? null : context.getString(label, value.trim());
     }
 
     private static String join(String separator, String... parts) {

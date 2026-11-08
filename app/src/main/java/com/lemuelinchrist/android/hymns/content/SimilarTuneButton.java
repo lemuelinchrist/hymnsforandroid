@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.content;
 
+import com.lemuelinchrist.android.hymns.R;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -58,7 +59,7 @@ public class SimilarTuneButton extends ContentComponent<ImageButton> {
                     DialogFragment tuneDialog = ChooseSimilarHymnDialogFragment.newInstance(descriptions, hymnIds);
                     tuneDialog.show(((FragmentActivity) context).getSupportFragmentManager(), "Same Tune");
                 } else {
-                    Toast.makeText(context, "Sorry! No Hymn with similar tune available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.similar_tune_none, Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -86,7 +87,7 @@ public class SimilarTuneButton extends ContentComponent<ImageButton> {
             final List<String> descriptions = requireArguments().getStringArrayList(DESCRIPTIONS);
             final List<String> hymnIds = requireArguments().getStringArrayList(HYMN_IDS);
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Go to hymn with similar tune");
+            builder.setTitle(R.string.similar_tune_title);
             builder.setItems(descriptions.toArray(new String[descriptions.size()]),new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     HymnSwitcher hymnSwitcher = HymnsActivity.getHymnSwitcher();

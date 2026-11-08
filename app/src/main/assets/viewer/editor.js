@@ -8,7 +8,7 @@
   var ROOTS = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
   var QUALITIES = [['', 'major'], ['m', 'm'], ['7', '7'], ['maj7', 'maj7'], ['m7', 'm7'], ['6', '6'], ['9', '9'], ['add9', 'add9'],
     ['sus4', 'sus4'], ['sus2', 'sus2'], ['7sus4', '7sus4'], ['dim', 'dim'], ['dim7', 'dim7'], ['m7♭5', 'm7♭5'], ['aug', 'aug']];
-  var STATUS = {idle: '', saved: 'Saved on this device ✓', error: 'Not saved, trying again…'};
+  var STATUS = {idle: '', saved: tr('Saved on this device ✓'), error: tr('Not saved, trying again…')};
   var CHORD = /^([A-G])(𝄫|𝄪|♭|♯)?(.*?)(?:\/([A-G])(𝄫|𝄪|♭|♯)?)?$/;
   var EMPTY = {root: '', acc: '', quality: '', bass: '', bassAcc: ''};
 
@@ -52,30 +52,30 @@
   function near(a, b) { return Math.abs(a - b) < 1e-3; }
 
   window.createChordEditor = function (view, onclose) {
-    var root = el('section', 'chord-editor', null, {'aria-label': 'Chord editor'});
+    var root = el('section', 'chord-editor', null, {'aria-label': tr('Chord editor')});
     var bar = null, beat = 1;
 
     var status = el('span', 'ce-status');
-    var bUndo = el('button', 'ce-btn', 'Undo', {type: 'button'});
-    var bRevert = el('button', 'ce-btn', 'Original bar', {type: 'button'});
-    var bDone = el('button', 'ce-btn primary', 'Done', {type: 'button'});
-    var prev = el('button', 'ce-btn icon', '‹', {type: 'button', 'aria-label': 'Previous bar'});
-    var next = el('button', 'ce-btn icon', '›', {type: 'button', 'aria-label': 'Next bar'});
+    var bUndo = el('button', 'ce-btn', tr('Undo'), {type: 'button'});
+    var bRevert = el('button', 'ce-btn', tr('Original bar'), {type: 'button'});
+    var bDone = el('button', 'ce-btn primary', tr('Done'), {type: 'button'});
+    var prev = el('button', 'ce-btn icon', '‹', {type: 'button', 'aria-label': tr('Previous bar')});
+    var next = el('button', 'ce-btn icon', '›', {type: 'button', 'aria-label': tr('Next bar')});
     var title = el('strong', 'ce-title');
     var stale = el('div', 'ce-stale');
     stale.hidden = true;
     var top = el('div', 'ce-top');
     [prev, title, next, el('span', 'grow'), status, bUndo, bRevert, bDone].forEach(function (c) { top.appendChild(c); });
 
-    var strip = el('div', 'ce-beats', null, {role: 'group', 'aria-label': 'Beats'});
+    var strip = el('div', 'ce-beats', null, {role: 'group', 'aria-label': tr('Beats')});
     var build = el('div', 'ce-build');
     var rootRow = el('div', 'ce-row');
     var qualRow = el('div', 'ce-row scroll');
     var bassRow = el('div', 'ce-row');
     var textRow = el('div', 'ce-row ce-text');
     var input = el('input', 'ce-input', null, {type: 'text', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false',
-      placeholder: 'Chord', 'aria-label': 'Chord', enterkeyhint: 'done'});
-    var bClear = el('button', 'ce-btn', 'Remove chord', {type: 'button'});
+      placeholder: tr('Chord'), 'aria-label': tr('Chord'), enterkeyhint: 'done'});
+    var bClear = el('button', 'ce-btn', tr('Remove chord'), {type: 'button'});
     textRow.appendChild(input);
     textRow.appendChild(bClear);
     build.appendChild(rootRow);
@@ -95,11 +95,11 @@
     rootBtns.concat([flat, sharp, textRow]).forEach(function (c) { rootRow.appendChild(c); });
     var qualBtns = QUALITIES.map(function (q) { return [q[0], btn(q[1], function () { edit(function (p) { p.quality = q[0]; }); })]; });
     qualBtns.forEach(function (x) { qualRow.appendChild(x[1]); });
-    var bassNone = btn('none', function () { edit(function (p) { p.bass = ''; p.bassAcc = ''; }); });
+    var bassNone = btn(tr('none'), function () { edit(function (p) { p.bass = ''; p.bassAcc = ''; }); });
     var bassBtns = ROOTS.map(function (r) { return btn(r, function () { edit(function (p) { p.bass = r; p.bassAcc = ''; }); }, 'note'); });
     var bassFlat = btn('♭', function () { edit(function (p) { if (p.bass) p.bassAcc = p.bassAcc === '♭' ? '' : '♭'; }); }, 'note');
     var bassSharp = btn('♯', function () { edit(function (p) { if (p.bass) p.bassAcc = p.bassAcc === '♯' ? '' : '♯'; }); }, 'note');
-    bassRow.appendChild(el('span', 'ce-label', 'Bass'));
+    bassRow.appendChild(el('span', 'ce-label', tr('Bass')));
     [bassNone].concat(bassBtns, [bassFlat, bassSharp]).forEach(function (c) { bassRow.appendChild(c); });
 
     function chordAt(t) {
@@ -146,7 +146,7 @@
       var open = bar != null;
       root.classList.toggle('no-bar', !open);
       var info = open && view.barInfo(bar);
-      title.textContent = open ? 'Bar ' + bar + (info && info.edited ? ' ✎' : '') : 'Tap a bar on the sheet';
+      title.textContent = open ? tr('Bar {0}', bar) + (info && info.edited ? ' ✎' : '') : tr('Tap a bar on the sheet');
       prev.disabled = !open || bar <= 1;
       next.disabled = !open || !info || bar >= info.count;
       bUndo.disabled = !view.history.length;
@@ -156,8 +156,9 @@
       status.className = 'ce-status ' + st;
       var bad = view.stale;
       stale.hidden = !bad.length;
-      stale.textContent = bad.length ? 'The sheet has changed since you edited bar' + (bad.length > 1 ? 's ' : ' ') + bad.join(', ')
-        + '. Check ' + (bad.length > 1 ? 'those bars' : 'that bar') + '.' : '';
+      stale.textContent = !bad.length ? '' : bad.length > 1
+        ? tr('The sheet has changed since you edited bars {0}. Check those bars.', bad.join(', '))
+        : tr('The sheet has changed since you edited bar {0}. Check that bar.', bad[0]);
 
       strip.textContent = '';
       if (!open || !info) { build.hidden = true; strip.hidden = true; return; }
@@ -191,7 +192,7 @@
       bassFlat.disabled = bassSharp.disabled = !p.bass;
       bClear.disabled = !cur;
       if (document.activeElement !== input) input.value = cur;
-      input.placeholder = 'Type a chord for beat ' + beatLabel(beat);
+      input.placeholder = tr('Type a chord for beat {0}', beatLabel(beat));
     }
 
     view.onpick = function (pick) { go(pick.bar, pick.beat); };

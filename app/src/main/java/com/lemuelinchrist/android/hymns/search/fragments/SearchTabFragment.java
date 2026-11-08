@@ -44,10 +44,11 @@ import java.util.concurrent.Executors;
 public class SearchTabFragment extends TabFragment {
 
     private enum Browse {
-        FIRST_LINES("First Lines"), SUBJECTS("Subjects"), AUTHORS("Authors"), TUNES("Tunes");
-        final String label;
+        FIRST_LINES(R.string.browse_first_lines), SUBJECTS(R.string.browse_subjects), AUTHORS(R.string.browse_authors),
+        TUNES(R.string.browse_tunes);
+        final int label;
 
-        Browse(String label) {
+        Browse(int label) {
             this.label = label;
         }
     }
@@ -122,7 +123,7 @@ public class SearchTabFragment extends TabFragment {
     private void showBrowse() {
         choices.removeAllViews();
         for (Browse b : Browse.values()) {
-            addChoice(b.label, b == browse, v -> {
+            addChoice(getString(b.label), b == browse, v -> {
                 browse = b;
                 showBrowse();
             });
@@ -156,7 +157,7 @@ public class SearchTabFragment extends TabFragment {
         if (db == null) {
             choices.removeAllViews();
             mRecyclerView.setAdapter(null);
-            showStatus("Preparing the search… (once after each update)");
+            showStatus(getString(R.string.search_preparing));
             SearchIndex.prepare(requireContext(), () -> {
                 if (isAdded() && filter.equals(typed)) search();
             });
@@ -190,18 +191,18 @@ public class SearchTabFragment extends TabFragment {
         boolean all = allBooks != null ? allBooks : inBook.isEmpty() && !results.isEmpty();
 
         choices.removeAllViews();
-        addChoice(selectedHymnGroup.getSimpleName() + " · " + inBook.size(), !all, v -> {
+        addChoice(getString(R.string.search_in_book, selectedHymnGroup.getDisplayName(requireContext()), inBook.size()), !all, v -> {
             allBooks = false;
             showResults();
         });
-        addChoice("All books · " + results.size(), all, v -> {
+        addChoice(getString(R.string.search_all_books, results.size()), all, v -> {
             allBooks = true;
             showResults();
         });
 
         if (results.isEmpty() && goTo != null) choices.removeAllViews();
         List<HymnSearch.Result> shown = all ? results : inBook;
-        if (shown.isEmpty() && goTo == null) showStatus("No hymns found");
+        if (shown.isEmpty() && goTo == null) showStatus(getString(R.string.search_no_hymns));
         else status.setVisibility(View.GONE);
         mRecyclerView.setAdapter(new SearchResultAdapter(container.getContext(), R.layout.recyclerview_hymn_list,
                 goTo, shown, query.terms, dao));
@@ -235,8 +236,8 @@ public class SearchTabFragment extends TabFragment {
     }
 
     @Override
-    public String getTabName() {
-        return "Search";
+    public int getTabName() {
+        return R.string.tab_search;
     }
 
     @Override

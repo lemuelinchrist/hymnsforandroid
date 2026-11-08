@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.content;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.SpannableStringBuilder;
@@ -65,10 +66,11 @@ public class LinksSection extends ContentComponent<View> {
                 // no recording of its own: the nearest hymn above it that has one (an English hymn's for a translation, ...)
                 String ancestor = dao.getLinkedAncestor(hymn.getParentHymn());
                 if (ancestor != null && !ancestor.equals(hymn.getHymnId())) {
-                    String language = HymnGroup.getHymnGroupFromID(ancestor).getLanguage();
-                    boolean sameLanguage = language.equals(hymn.getHymnGroup().getLanguage());
-                    youtube = inherited(dao.getLinks(ancestor, "youtube"), sameLanguage ? null : language);
-                    soundcloud = inherited(dao.getLinks(ancestor, "soundcloud"), sameLanguage ? null : language);
+                    HymnGroup ancestorGroup = HymnGroup.getHymnGroupFromID(ancestor);
+                    boolean sameLanguage = ancestorGroup.languageBook() == hymn.getHymnGroup().languageBook();
+                    String language = ancestorGroup.getLanguageName(context);
+                    youtube = inherited(context, dao.getLinks(ancestor, "youtube"), sameLanguage ? null : language);
+                    soundcloud = inherited(context, dao.getLinks(ancestor, "soundcloud"), sameLanguage ? null : language);
                 }
             }
             for (String id : dao.getNewTunes(hymn.getHymnId())) {
@@ -91,13 +93,13 @@ public class LinksSection extends ContentComponent<View> {
             for (int i = 0; i < parts.length; i++) {
                 parts[i] = new String[]{videos.get(i)[0].trim(), embedAddress(videos.get(i)[1])};
             }
-            addRow("Piano videos", parts);
+            addRow(context.getString(R.string.links_piano_videos), parts);
         }
         addLinks("YouTube", youtube);
         addLinks("SoundCloud", soundcloud);
         // another tune for this hymn's words: the tunes themselves (open in the app), then their recordings
-        if (!newTunes.isEmpty()) addRow("New tunes", newTunes.toArray(new String[0][]));
-        if (!newTuneRecordings.isEmpty()) addRow("New tune recordings", newTuneRecordings.toArray(new String[0][]));
+        if (!newTunes.isEmpty()) addRow(context.getString(R.string.links_new_tunes), newTunes.toArray(new String[0][]));
+        if (!newTuneRecordings.isEmpty()) addRow(context.getString(R.string.links_new_tune_recordings), newTuneRecordings.toArray(new String[0][]));
         if (table.getChildCount() == 0) view.setVisibility(View.GONE);
     }
 
@@ -105,13 +107,13 @@ public class LinksSection extends ContentComponent<View> {
      * Links taken from a hymn above this one. In another language each is labelled with that language, so nobody takes
      * an English recording for a Spanish one: "English ↗", "English 1 ↗ · English 2 ↗", "English – label ↗".
      */
-    private static ArrayList<String[]> inherited(ArrayList<String[]> links, String language) {
+    private static ArrayList<String[]> inherited(Context context, ArrayList<String[]> links, String language) {
         if (language == null) return links;
         ArrayList<String[]> labelled = new ArrayList<>();
         for (int i = 0; i < links.size(); i++) {
             String label = links.get(i)[0] == null ? "" : links.get(i)[0].trim();
-            String shown = !label.isEmpty() ? language + " \u2013 " + label
-                    : links.size() == 1 ? language : language + " " + (i + 1);
+            String shown = !label.isEmpty() ? context.getString(R.string.links_language_label, language, label)
+                    : links.size() == 1 ? language : context.getString(R.string.links_language_numbered, language, i + 1);
             labelled.add(new String[]{shown, links.get(i)[1]});
         }
         return labelled;
@@ -123,7 +125,8 @@ public class LinksSection extends ContentComponent<View> {
         String[][] parts = new String[links.size()][];
         for (int i = 0; i < parts.length; i++) {
             String shown = links.get(i)[0] == null ? "" : links.get(i)[0].trim();
-            if (shown.isEmpty()) shown = links.size() == 1 ? "Link" : "Link " + (i + 1);
+            if (shown.isEmpty()) shown = links.size() == 1 ? context.getString(R.string.links_link)
+                    : context.getString(R.string.links_link_numbered, i + 1);
             parts[i] = new String[]{shown, links.get(i)[1].trim()};
         }
         addRow(label, parts);

@@ -191,7 +191,7 @@ public class Hymn {
     }
 
     private void showNotAvailableToast() {
-        Toast.makeText(context, "Sorry! hymn not available", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.sorry_hymn_not_available, Toast.LENGTH_SHORT).show();
     }
 
     public void stopHymn() {

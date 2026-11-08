@@ -8,14 +8,14 @@
             android:orderInCategory="100"
             yourapp:showAsAction="always"
             android:icon="@drawable/ic_search_white"
-            android:title="Index"/>
+            android:title="@string/menu_index"/>
 
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="110"
         yourapp:showAsAction="always"
         android:icon="@drawable/ic_settings_white_48dp"
-        android:title="Settings"
+        android:title="@string/menu_settings"
         />
 
 </menu>

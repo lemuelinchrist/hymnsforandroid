@@ -81,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Settings");
+            actionBar.setTitle(R.string.title_activity_settings);
         }
 
         // Apply window insets to handle edge-to-edge display on Android 15+
@@ -167,7 +167,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void bindTheme() {
         themeValues = getResources().getStringArray(R.array.theme_preference_values);
         themeNames = getResources().getStringArray(R.array.theme_preference);
-        String[] shortNames = {"System", "Light", "Dark", "Black"};
+        int[] shortNames = {R.string.theme_tile_system, R.string.theme_tile_light, R.string.theme_tile_dark, R.string.theme_tile_black};
         int[] mocks = {R.drawable.settings_mock_system, R.drawable.settings_mock_light,
                 R.drawable.settings_mock_dark, R.drawable.settings_mock_black};
         themeTiles = findViewById(R.id.themeTiles);
@@ -278,15 +278,15 @@ public class SettingsActivity extends AppCompatActivity {
         for (HymnGroup group : all) {
             if (!hidden.contains(group.name())) continue;
             hiddenCount++;
-            if (names.length() > 0) names.append(", ");
-            names.append(group.getSimpleName());
+            if (names.length() > 0) names.append(getString(R.string.list_separator));
+            names.append(group.getDisplayName(this));
         }
         String summary;
-        if (hiddenCount == 0) summary = "All " + all.length + " books shown";
-        else if (hiddenCount <= 2) summary = "Hiding " + names;
-        else summary = (all.length - hiddenCount) + " of " + all.length + " books shown";
+        if (hiddenCount == 0) summary = getString(R.string.books_all_shown, all.length);
+        else if (hiddenCount <= 2) summary = getString(R.string.books_hiding, names);
+        else summary = getString(R.string.books_some_shown, all.length - hiddenCount, all.length);
         booksRow.setSummary(summary);
-        ((TextView) findViewById(R.id.booksValue)).setText((all.length - hiddenCount) + " of " + all.length);
+        ((TextView) findViewById(R.id.booksValue)).setText(getString(R.string.books_value, all.length - hiddenCount, all.length));
     }
 
     // ---- share the app ----
@@ -296,16 +296,16 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.shareWeb).setOnClickListener(v -> chooseShare(true));
         findViewById(R.id.shareCopy).setOnClickListener(v -> {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setPrimaryClip(ClipData.newPlainText("Hymns For Android", shareUrl()));
+            clipboard.setPrimaryClip(ClipData.newPlainText(getString(R.string.hymnsForAndroid), shareUrl()));
             // Android 13 and later confirm a copy themselves
-            if (Build.VERSION.SDK_INT < 33) Toast.makeText(this, "Link copied", Toast.LENGTH_SHORT).show();
+            if (Build.VERSION.SDK_INT < 33) Toast.makeText(this, R.string.link_copied, Toast.LENGTH_SHORT).show();
         });
         findViewById(R.id.shareSend).setOnClickListener(v -> {
             Intent send = new Intent(Intent.ACTION_SEND);
             send.setType("text/plain");
-            send.putExtra(Intent.EXTRA_SUBJECT, "Hymns For Android");
-            send.putExtra(Intent.EXTRA_TEXT, "Hymns For Android\n" + shareUrl());
-            startActivity(Intent.createChooser(send, "Share the app"));
+            send.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.hymnsForAndroid));
+            send.putExtra(Intent.EXTRA_TEXT, getString(R.string.hymnsForAndroid) + "\n" + shareUrl());
+            startActivity(Intent.createChooser(send, getString(R.string.settings_share_app)));
         });
         showShare();
     }
@@ -324,11 +324,9 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.shareWeb).setSelected(shareWeb);
         ImageView qr = findViewById(R.id.shareQr);
         qr.setImageBitmap(qrBitmap(shareUrl(), (int) (176 * getResources().getDisplayMetrics().density)));
-        qr.setContentDescription("QR code for " + shareUrl().replace("https://", ""));
+        qr.setContentDescription(getString(R.string.share_qr_for, shareUrl().replace("https://", "")));
         ((TextView) findViewById(R.id.shareUrl)).setText(shareUrl().replace("https://", ""));
-        ((TextView) findViewById(R.id.shareNote)).setText(shareWeb
-                ? "Opens the web app in the browser. On an iPhone or iPad: tap Share, then Add to Home Screen, and it works offline like an app."
-                : "Opens Hymns For Android on Google Play.");
+        ((TextView) findViewById(R.id.shareNote)).setText(shareWeb ? R.string.share_note_web : R.string.share_note_android);
     }
 
     /** The QR code as a black and white picture about {@code targetPx} wide, with whole pixels per square so it stays sharp. */

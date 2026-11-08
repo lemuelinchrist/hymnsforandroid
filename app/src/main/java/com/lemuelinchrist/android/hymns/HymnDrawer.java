@@ -148,7 +148,7 @@ public class HymnDrawer extends BaseAdapter {
                 .getIdentifier(group.name().toLowerCase(Locale.ROOT), "drawable", context.getPackageName()));
 
         TextView name = row.findViewById(R.id.hymnGroupName);
-        name.setText(group.getSimpleName());
+        name.setText(group.getDisplayName(context));
         if (isCurrent) name.setTextColor(BookColors.drawerHighlightText(context, group));
         else name.setTextColor(context.getColor(R.color.drawer_text));
         name.setTypeface(isCurrent ? Typeface.create("sans-serif-medium", Typeface.NORMAL) : Typeface.DEFAULT);
@@ -156,7 +156,7 @@ public class HymnDrawer extends BaseAdapter {
         TextView count = row.findViewById(R.id.hymnGroupCount);
         Integer hymns = counts.get(group.name());
         count.setVisibility(hymns == null ? View.GONE : View.VISIBLE);
-        if (hymns != null) count.setText(String.format(Locale.ENGLISH, "%,d %s", hymns, hymns == 1 ? "hymn" : "hymns"));
+        if (hymns != null) count.setText(context.getResources().getQuantityString(R.plurals.hymns_count, hymns, String.format(Locale.getDefault(), "%,d", hymns)));
 
         View highlight = row.findViewById(R.id.hymnGroupHighlight);
         highlight.setVisibility(isCurrent ? View.VISIBLE : View.GONE);

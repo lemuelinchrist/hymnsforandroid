@@ -52,7 +52,7 @@ public final class HymnBooksDialog {
         });
 
         new AlertDialog.Builder(context)
-                .setTitle("Choose the languages to show")
+                .setTitle(R.string.hymn_books_title)
                 .setView(content)
                 .setNegativeButton(android.R.string.cancel, null)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
@@ -61,7 +61,7 @@ public final class HymnBooksDialog {
                         if (!shown[i]) newHidden.add(groups[i].name());
                     }
                     if (newHidden.size() == groups.length) {
-                        Toast.makeText(context, "At least one language has to stay shown", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, R.string.hymn_books_keep_one, Toast.LENGTH_LONG).show();
                         return;
                     }
                     onSave.accept(newHidden);
@@ -100,11 +100,11 @@ public final class HymnBooksDialog {
             Context context = getContext();
             ((ImageView) row.findViewById(R.id.hymnBookIcon)).setImageResource(context.getResources()
                     .getIdentifier(group.name().toLowerCase(), "drawable", context.getPackageName()));
-            ((TextView) row.findViewById(R.id.hymnBookName)).setText(group.getSimpleName());
+            ((TextView) row.findViewById(R.id.hymnBookName)).setText(group.getDisplayName(context));
             TextView count = row.findViewById(R.id.hymnBookCount);
             Integer hymns = counts.get(group.name());
             count.setVisibility(hymns == null ? View.GONE : View.VISIBLE);
-            if (hymns != null) count.setText(hymns + (hymns == 1 ? " hymn" : " hymns"));
+            if (hymns != null) count.setText(context.getResources().getQuantityString(R.plurals.hymns_count, hymns, String.valueOf(hymns)));
             ((CheckBox) row.findViewById(R.id.hymnBookShown)).setChecked(shown[position]);
             return row;
         }

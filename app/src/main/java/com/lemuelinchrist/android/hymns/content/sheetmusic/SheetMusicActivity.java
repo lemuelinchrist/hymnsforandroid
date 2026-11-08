@@ -93,7 +93,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, closeEditorOnBack);
 
         if (!hasMei(selectedHymnId)) {
-            Toast.makeText(this, "Sorry! Sheet music not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.sorry_sheet_music_not_available, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -160,7 +160,8 @@ public class SheetMusicActivity extends AppCompatActivity {
                 + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0")
                 + (dark && sharedPreferences.getBoolean(LIGHT_PAPER, false) ? "&paper=light" : "")
                 + (lyricsHymnId != null ? "&lyrics=" + Uri.encode(lyricsHymnId) : "")
-                + (editable ? "&edit=1" : ""));
+                + (editable ? "&edit=1" : "")
+                + "&lang=" + getString(R.string.ui_language));
     }
 
     private static boolean isViewerPage(Uri url) {

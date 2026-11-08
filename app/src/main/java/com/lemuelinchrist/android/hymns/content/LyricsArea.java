@@ -96,7 +96,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             if (isNotEmpty(hymn.getSubCategory())) {
                 text.append("<br/>" + hymn.getSubCategory());
             }
-            if (hymn.isNewTune()) text.append("<br/>(New Tune)");
+            if (hymn.isNewTune()) text.append("<br/>" + context.getString(R.string.new_tune_header));
             if (text.length() > 0) {
                 ScriptFont.apply(subjectHeader, hymn.getHymnGroup());
                 subjectHeader.setText(Html.fromHtml(text.toString()));
@@ -107,22 +107,22 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
 
             // ########################### Build Details (the card at the bottom): label | value rows, only the items we have
             // each value but the verses opens the Search tab with that value
-            if (isNotEmpty(hymn.getMeter())) addDetail("Meter", "music", new String[][]{{hymn.getMeter(), phrase(hymn.getMeter())}});
+            if (isNotEmpty(hymn.getMeter())) addDetail(context.getString(R.string.detail_meter), "music", new String[][]{{hymn.getMeter(), phrase(hymn.getMeter())}});
             if (isNotEmpty(hymn.getTime())) {
                 // time and key share a row: "4/4 · Ab Major", each searched on its own
-                addDetail("Time", "music", isNotEmpty(hymn.getKey())
+                addDetail(context.getString(R.string.detail_time), "music", isNotEmpty(hymn.getKey())
                         ? new String[][]{{hymn.getTime(), phrase(hymn.getTime())}, {" · ", null}, {hymn.getKey(), hymn.getKey()}}
                         : new String[][]{{hymn.getTime(), phrase(hymn.getTime())}});
             } else if (isNotEmpty(hymn.getKey())) {
-                addDetail("Key", "music", new String[][]{{hymn.getKey(), hymn.getKey()}});
+                addDetail(context.getString(R.string.detail_key), "music", new String[][]{{hymn.getKey(), hymn.getKey()}});
             }
             if (isNotEmpty(hymn.getTune()) && !hymn.getTune().equals("0"))
-                addDetail("Tune", "music", new String[][]{{hymn.getTune(), phrase(hymn.getTune())}});
+                addDetail(context.getString(R.string.detail_tune), "music", new String[][]{{hymn.getTune(), phrase(hymn.getTune())}});
             if (isNotEmpty(hymn.getVerse())) addVerses(Scripture.parse(hymn.getVerse()));
             if (isNotEmpty(hymn.getAuthor()))
-                addDetail("Author", "people", new String[][]{{hymn.getAuthor(), personOf(hymn.getAuthor())}});
+                addDetail(context.getString(R.string.detail_author), "people", new String[][]{{hymn.getAuthor(), personOf(hymn.getAuthor())}});
             if (isNotEmpty(hymn.getComposer()))
-                addDetail("Composer", "people", new String[][]{{hymn.getComposer(), personOf(hymn.getComposer())}});
+                addDetail(context.getString(R.string.detail_composer), "people", new String[][]{{hymn.getComposer(), personOf(hymn.getComposer())}});
             if (detailsTable.getChildCount() == 0) {
                 view.findViewById(getRid("detailsCard")).setVisibility(View.GONE);
             }
@@ -284,7 +284,7 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
      * opened in the browser; the others stay plain text. Shown separated by commas, without the one the data ends with.
      */
     private void addVerses(List<Scripture.Ref> refs) {
-        TextView valueView = addDetailRow("Verses");
+        TextView valueView = addDetailRow(context.getString(R.string.detail_verses));
         SpannableStringBuilder text = new SpannableStringBuilder();
         boolean anyLink = false;
         for (Scripture.Ref ref : refs) {

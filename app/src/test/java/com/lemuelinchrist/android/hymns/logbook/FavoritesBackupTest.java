@@ -63,11 +63,11 @@ public class FavoritesBackupTest {
                 new HymnRecord("C100", "C", "主已復活，", new Date(1)),
                 new HymnRecord("FR216", "FR", null, new Date(0)),
         };
-        String text = FavoritesBackup.formatBackupText(favorites);
+        String text = backupText(favorites);
 
         assertTrue(text, text.startsWith("My favorite hymns (Hymns For Android): 3 hymns\n"));
         assertTrue(text, text.endsWith("\n\nE8 – Praise God, from whom all blessings flow;\nC100 – 主已復活，\nFR216\n"));
-        assertTrue(FavoritesBackup.formatBackupText(new HymnRecord[]{favorites[0]}).contains(": 1 hymn\n"));
+        assertTrue(backupText(new HymnRecord[]{favorites[0]}).contains(": 1 hymn\n"));
     }
 
     @Test
@@ -79,7 +79,27 @@ public class FavoritesBackupTest {
                 new HymnRecord("SW10", "SW", "Yesu, Yesu, Yesu", new Date(1)),
                 new HymnRecord("BF100", "BF", null, new Date(0)),
         };
-        assertEquals(Arrays.asList("NS47", "E1", "SW10", "BF100"), ids(FavoritesBackup.formatBackupText(favorites)));
-        assertTrue(ids(FavoritesBackup.formatBackupText(new HymnRecord[0])).isEmpty());
+        assertEquals(Arrays.asList("NS47", "E1", "SW10", "BF100"), ids(backupText(favorites)));
+        assertTrue(ids(backupText(new HymnRecord[0])).isEmpty());
+    }
+
+    @Test
+    public void restoreReadsBackATranslatedBackup() {
+        // the heading and the note are in the app's language; only the hymn lines are read back
+        HymnRecord[] favorites = {
+                new HymnRecord("C100", "C", "主已復活，", new Date(1)),
+                new HymnRecord("E8", "E", "Praise God, from whom all blessings flow; ", new Date(0)),
+        };
+        String text = FavoritesBackup.formatBackupText(favorites, "我的收藏詩歌（Hymns For Android）：2 首詩歌",
+                "要放回去：用詩歌 app 開啟這個檔案，\n或複製全部文字，然後在 app 裡點搜尋，\n再點收藏 > 還原 > 貼上複製的文字。");
+        assertEquals(Arrays.asList("C100", "E8"), ids(text));
+    }
+
+    // the English text, as the app writes it in English
+    private static String backupText(HymnRecord[] favorites) {
+        return FavoritesBackup.formatBackupText(favorites,
+                "My favorite hymns (Hymns For Android): " + favorites.length + (favorites.length == 1 ? " hymn" : " hymns"),
+                "To put them back: open this file with the Hymns app,\nor copy all of this text, then in the app tap Search,\n"
+                        + "then Favorites > Restore > Paste copied text.");
     }
 }

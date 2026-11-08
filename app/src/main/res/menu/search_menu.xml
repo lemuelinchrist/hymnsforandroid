@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/searchHymns"
-        android:title="Search"
+        android:title="@string/search"
         indexMenu:showAsAction="always"
         indexMenu:actionViewClass="androidx.appcompat.widget.SearchView"
         />

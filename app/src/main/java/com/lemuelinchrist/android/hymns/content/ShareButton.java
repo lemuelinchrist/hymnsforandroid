@@ -32,15 +32,15 @@ public class ShareButton extends ContentComponent<ImageButton> {
         imageButton.setOnClickListener(v -> {
             logToHistory();
             PopupMenu menu = new PopupMenu(new ContextThemeWrapper(context, R.style.ShareMenu), v);
-            menu.getMenu().add("Share lyrics").setOnMenuItemClickListener(item -> {
+            menu.getMenu().add(R.string.share_lyrics).setOnMenuItemClickListener(item -> {
                 share(lyricsText(hymn));
                 return true;
             });
-            menu.getMenu().add("Share link").setOnMenuItemClickListener(item -> {
+            menu.getMenu().add(R.string.share_link).setOnMenuItemClickListener(item -> {
                 share(title(hymn) + "\n" + WEB_APP_HYMN + hymn.getHymnId());
                 return true;
             });
-            menu.getMenu().add("Copy lyrics").setOnMenuItemClickListener(item -> {
+            menu.getMenu().add(R.string.copy_lyrics).setOnMenuItemClickListener(item -> {
                 copy(lyricsText(hymn));
                 return true;
             });
@@ -60,7 +60,7 @@ public class ShareButton extends ContentComponent<ImageButton> {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboard == null) return;
         clipboard.setPrimaryClip(ClipData.newPlainText("Hymn lyrics", text));
-        Toast.makeText(context, "Lyrics copied", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.lyrics_copied, Toast.LENGTH_SHORT).show();
     }
 
     /** "E123 · first line" */
