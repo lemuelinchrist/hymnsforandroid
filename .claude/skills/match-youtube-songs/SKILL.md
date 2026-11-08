@@ -95,8 +95,8 @@ what is new. Run it whenever you want to know whether NYCYPCD released something
    parent through the hymn number in the title.
 3. Review page (step 6b) for everything that is not an exact match. **Build it from a new work folder**; the page keeps
    answers in the browser per video list (since 2026-11-05; before, one fixed key made a new list crash with an empty page
-   when an old position was saved). Lemuel reads **Export** (or the answers can be read from the page's `ans` and `notes`
-   variables with the Chrome tool).
+   when an old position was saved). Lemuel reads **Export** (or the answers can be read from the page's `ans`, `notes` and `ROWS`
+   variables with the Chrome tool, from a new tab group: the earlier session's tabs are invisible).
 4. Apply his answers:
    - a hymn that **has no NYCYPCD link yet**: add `hymn id TAB video id` to `NycypcdYoutube.txt`; several videos for one hymn
      are fine (order 1, 2, ...), give a recording by someone else its own label in a third column;
@@ -111,8 +111,7 @@ what is new. Run it whenever you want to know whether NYCYPCD released something
 6. In the app the hymn page's "LISTEN AND LINKS" card shows each link by its label; two links with the same label read
    "NYCYPCD ↗ · NYCYPCD ↗", so give a second recording a distinct label.
 
-Status 2026-11-05: Videos tab and the English Releases tracks that Lemuel reviewed are imported (264 links). Still NEW: the
-exact-title tracks and the non-English ones that were not sent to review (the monitor lists them).
+Status 2026-11-08: NYCYPCD has 371 links (the monitor lists what is still NEW); `recordings.tsv` shows what is linked, known or unmatched on every channel.
 
 ## "- Topic" channels (LSM, 臺灣福音書房)
 
@@ -124,12 +123,32 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
 - **LSM** (Living Stream Ministry - Topic, UCrr3HofwiRkJBR-WgUixRlQ), English: 193 links, label `LSM` (2026-11-07), `lsm_known.tsv`.
 - **臺灣福音書房** (Taiwan Gospel Book Room - Topic, UCYE5AHiolvE8tj-LYgPuzig, some albums under UCZolsL-QScygLdBTc36TbUQ),
   Chinese, 70 albums: 293 sung links (labels `臺灣福音書房`, `臺灣福音書房 2`) and 103 instrumental (`臺灣福音書房 (Instrumental)`)
-  on C/CS hymns (2026-11-07), `tgb_known.tsv`. Lessons: many titles are Simplified Chinese (convert with OpenCC `s2t` before comparing
+  on C/CS hymns (2026-11-07), `tgb_known.tsv`; 9 more on 2026-11-08 (405 in all, see the official channel below). Lessons: many titles are Simplified Chinese (convert with OpenCC `s2t` before comparing
   with the Traditional C/CS lines) and many carry the number, `（诗歌227）` = C227, `（补充本839）` = CS839 (reliable even when
   the title is a subject, not the first line). 讚美詩集 / Hymns of Praise is an instrumental series: label it. Children's series (兒童教材詩歌集, 兒童詩歌, 性格的培養詩歌集) are left out: the songs are
   simplified for children. Limit per Chinese hymn (Lemuel 2026-11-07): at most 2 sung recordings + 1 instrumental; a second sung one gets its own label so the links card does not show the same label twice. The official channel 臺灣福音書房
-  (UCW4K7RJzb3bhrBgbhT2OBLA) is mostly messages and training videos; about 47 single hymn videos with the number in the
-  title are not linked yet.
+  (UCW4K7RJzb3bhrBgbhT2OBLA) is mostly messages and training videos (615 videos). Done 2026-11-08: the 5 plain hymn videos with the number
+  in the title are linked (label `臺灣福音書房`); 4 of the 12 "唱詩人選輯" tracks (the hymn's title is inside the hymn, not its first line)
+  were confirmed by ear and linked, 8 were rejected; the 39 kids' action-song videos of regular hymns are NOT linked (children sing them)
+  but saved in `tools/youtube-monitor/tgb_kids_series.tsv` for later.
+- **Loving the Lord - Topic** (UCF0V197WENYJAGHzYRFbUog), English, 11 albums, 265 tracks: 139 links, label `Loving the Lord` (`... 2` for a second
+  sung one, `(Instrumental)`), 2026-11-08, from titles with the number ("(Hymn 1151)", "Hymns 251", "- Hymn 166") and exact first lines;
+  71 uncertain titles went to a review page (answers still to be read). YouTube's metadata says "℗ Loving the Lord"; the 7 of its 11 albums that
+  the Joseph's Storehouses channel (@JosephsStorehouses, 994 videos, 63 playlists, some are conference messages) lists as "... (by Hymn CDs)"
+  are marked with the studio Hymn CDs in `recordings.tsv` (no official Hymn CDs channel found). Not yet looked at: Joseph's Storehouses itself and
+  the **NYCYPCD English** channel (@nycypcd-english, UCcS0QoAJh3PucoYLQXJG2bg, 280 videos titled like "Drink! A River - H 1151", "... - NS 868").
+- **Melody of Lilies** (@MelodyofLilies; Releases tab 23 albums + 11 playlists + 50 videos, 86 unique tracks; mostly the group's own songs, not hymnal hymns), English, a
+  popular Recovery producer: 17 links, label `Melody of Lilies` (2026-11-08): 6 exact titles + 11 confirmed by ear; the other ~50 titles matched no hymn (`melodyoflilies_known.tsv`, `recordings.tsv`).
+- **Joseph's Storehouses** (@JosephsStorehouses, 994 videos in 63 playlists, 2026-11-08): saints' groups and CDs, not an official publisher (the playlists name the
+  group: "(by Boston, Cambridge, Newton)", "(by ATX YP)"...; 7 are the Hymn CDs albums, the same recordings as Loving the Lord, so not linked twice) plus
+  messages and kids' songs (left out). 211 links, label `Joseph's Storehouses` (`2`, `(Instrumental)`) from exact titles (max 2 sung + 1 instrumental per hymn).
+  Still open: 301 videos with only a partial title match, which Lemuel wants to try by downloading and transcribing the lyrics (to be discussed); 436 match nothing.
+- **Rules that held for the Topic channels**: a number in the title (`Hymn N`, `Hymns N`, `诗歌N`) is reliable; a track titled "- New Tune" belongs to
+  the New Tune hymn (e.g. BF345), never to the root hymn, so it is not linked to the root; an instrumental track gets the label `<name> (Instrumental)`
+  (max 1 per hymn); sung ones max 2 per hymn per channel; English hymns may carry links from several channels (NYCYPCD + LSM + others).
+  Re-provisioning drops the links: run `runImportNycypcdYoutube` after it. The import renumbers the link row ids, so the raw diff of `sqlite/hymns.sql`
+  is huge; check the real one with `grep '^INSERT INTO link ' sqlite/hymns.sql | sed -E "s/^INSERT INTO link VALUES\([0-9]+,//" | sort` against the old file.
+- **Keep the source of every recording** (Lemuel 2026-11-08): `tools/youtube-monitor/recordings.tsv` has album, channel and publisher of every track, linked or not, so unlinked songs can be linked when their hymn arrives. Add a new channel's rows when importing it (`python3 -I tools/youtube-monitor/build_recordings.py --tracks ...`, see its docstring; without arguments it refreshes the statuses).
 - Review pages for another language: `REVIEW_GROUPS=C,CS python3 scripts/build_review.py ...` so that typing a C/CS id
   under "Another hymn" finds it.
 
