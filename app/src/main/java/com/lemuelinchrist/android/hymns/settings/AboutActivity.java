@@ -28,7 +28,7 @@ public class AboutActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("About");
+            actionBar.setTitle(R.string.settings_about);
         }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.settings_layout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -38,14 +38,14 @@ public class AboutActivity extends AppCompatActivity {
         });
 
         final String version = version();
-        ((TextView) findViewById(R.id.aboutVersion)).setText("Version " + version);
+        ((TextView) findViewById(R.id.aboutVersion)).setText(getString(R.string.about_version, version));
         findViewById(R.id.aboutFeedback).setOnClickListener(v -> {
             Intent mail = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + FEEDBACK_EMAIL));
             mail.putExtra(Intent.EXTRA_SUBJECT, "Hymns For Android " + version);
-            open(mail, "No email app found. Write to " + FEEDBACK_EMAIL);
+            open(mail, getString(R.string.about_no_email, FEEDBACK_EMAIL));
         });
         findViewById(R.id.aboutSource).setOnClickListener(v ->
-                open(new Intent(Intent.ACTION_VIEW, Uri.parse(SOURCE_URL)), "No browser found. The address is " + SOURCE_URL));
+                open(new Intent(Intent.ACTION_VIEW, Uri.parse(SOURCE_URL)), getString(R.string.about_no_browser, SOURCE_URL)));
     }
 
     private String version() {

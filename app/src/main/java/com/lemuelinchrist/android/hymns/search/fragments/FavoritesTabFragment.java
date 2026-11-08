@@ -41,8 +41,8 @@ public class FavoritesTabFragment extends TabFragment {
     }
 
     @Override
-    public String getTabName() {
-        return "Favorites";
+    public int getTabName() {
+        return R.string.tab_favorites;
     }
 
     @Override
@@ -51,8 +51,8 @@ public class FavoritesTabFragment extends TabFragment {
         mRecyclerView.setAdapter(adapter);
         int count = adapter.getItemCount();
         if (favoritesCount != null) {
-            favoritesCount.setText(count == 0 ? "No favorites yet. Tap ♥ on a hymn to add it."
-                    : count + (count == 1 ? " favorite" : " favorites"));
+            favoritesCount.setText(count == 0 ? getString(R.string.favorites_none)
+                    : getResources().getQuantityString(R.plurals.favorites_count, count, count));
         }
     }
 

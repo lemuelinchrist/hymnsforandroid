@@ -65,24 +65,21 @@ public class ChordEditsBackup {
     /** the summary under "Chord Edits" in Settings */
     public String summary() {
         int count = chordEdits.all().size();
-        return count == 0 ? "No chord edits yet" : sheets(count) + " with changed chords";
+        return count == 0 ? activity.getString(R.string.chord_edits_none) : plural(R.plurals.chord_edits_summary, count);
     }
 
     public void showMenu() {
         List<ChordEdits.Sheet> edited = chordEdits.all();
         View view = LayoutInflater.from(activity).inflate(R.layout.chord_edits_dialog, null);
         ((TextView) view.findViewById(R.id.chordEditsIntro)).setText(edited.isEmpty()
-                ? "Chords you change on the piano sheet music (Edit chords, on tablets and unfolded phones) are kept on " +
-                "this device. Import brings in chord edits exported from another device or from the web app."
-                : "Chords you changed on the sheet music are kept on this device. Export them to keep a copy, to move " +
-                "them to another device (or the web app), or to send them in so they can go into the sheets for everyone.");
+                ? R.string.chord_edits_intro_empty : R.string.chord_edits_intro);
         AlertDialog dialog = dialog()
-                .setTitle("Chord edits")
+                .setTitle(R.string.chord_edits_title)
                 .setView(view)
-                .setPositiveButton("Export", (d, which) -> export())
-                .setNegativeButton("Import", (d, which) -> openFileLauncher.launch(
+                .setPositiveButton(R.string.export_button, (d, which) -> export())
+                .setNegativeButton(R.string.import_button, (d, which) -> openFileLauncher.launch(
                         new String[]{"application/json", "text/*", "application/octet-stream"}))
-                .setNeutralButton("Close", null)
+                .setNeutralButton(R.string.close, null)
                 .create();
 
         ViewGroup rows = view.findViewById(R.id.chordEditsSheets);
@@ -95,7 +92,8 @@ public class ChordEditsBackup {
             String firstLine = hymn == null || hymn.getFirstStanzaLine() == null ? "" : " – " + hymn.getFirstStanzaLine().trim().replaceAll("[,;:]+$", "");
             ((TextView) row.findViewById(R.id.chordEditsHymn)).setText(sheet.id + firstLine);
             ((TextView) row.findViewById(R.id.chordEditsDetail)).setText(
-                    sheet.bars + (sheet.bars == 1 ? " bar" : " bars") + " · " + date.format(new Date(sheet.updated)));
+                    activity.getResources().getQuantityString(R.plurals.chord_edits_bars, sheet.bars, sheet.bars,
+                            date.format(new Date(sheet.updated))));
             row.setOnClickListener(v -> {
                 dialog.dismiss();
                 Intent intent = new Intent(activity, SheetMusicActivity.class);
@@ -110,12 +108,12 @@ public class ChordEditsBackup {
 
     public void export() {
         if (chordEdits.all().isEmpty()) {
-            message("No chord edits yet", "Open a hymn's sheet music on a tablet or an unfolded phone and tap Edit chords.");
+            message(R.string.chord_edits_none, R.string.chord_edits_none_body);
             return;
         }
         dialog()
-                .setTitle("Export chord edits")
-                .setItems(new String[]{"Send (email, chat, Drive…)", "Save as a file on this device"}, (dialog, which) -> {
+                .setTitle(R.string.chord_edits_export_title)
+                .setItems(new String[]{activity.getString(R.string.send_email_chat_drive), activity.getString(R.string.save_file_device)}, (dialog, which) -> {
                     if (which == 0) share();
                     else saveFileLauncher.launch(fileName());
                 })
@@ -134,24 +132,24 @@ public class ChordEditsBackup {
 
             Intent sendIntent = new Intent(Intent.ACTION_SEND);
             sendIntent.setType("application/json");
-            sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Chord edits (Hymns)");
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.chord_edits_subject));
             sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
             sendIntent.setClipData(ClipData.newRawUri(file.getName(), uri));
             sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            activity.startActivity(Intent.createChooser(sendIntent, "Export chord edits"));
+            activity.startActivity(Intent.createChooser(sendIntent, activity.getString(R.string.chord_edits_export_title)));
         } catch (IOException e) {
             Log.e(getClass().getName(), "Could not write the chord edits file", e);
-            message("Export failed", "The file could not be written.");
+            message(R.string.export_failed, R.string.file_not_written);
         }
     }
 
     private void saveTo(Uri uri) {
         try {
             FavoritesBackup.writeText(activity.getContentResolver().openOutputStream(uri), chordEdits.exportJson());
-            Toast.makeText(activity, "Chord edits saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, R.string.chord_edits_saved, Toast.LENGTH_SHORT).show();
         } catch (IOException | RuntimeException e) {
             Log.e(getClass().getName(), "Could not save the chord edits file", e);
-            message("Export failed", "The file could not be saved there. Please try another place.");
+            message(R.string.export_failed, R.string.file_not_saved_there);
         }
     }
 
@@ -177,7 +175,7 @@ public class ChordEditsBackup {
             importText(FavoritesBackup.readText(activity.getContentResolver().openInputStream(uri)));
         } catch (IOException | RuntimeException e) {
             Log.e(getClass().getName(), "Could not read " + uri, e);
-            finishedMessage("Import failed", "This file could not be opened.");
+            finishedMessage(R.string.import_failed, R.string.file_could_not_open);
         }
     }
 
@@ -186,45 +184,47 @@ public class ChordEditsBackup {
         try {
             sheets = ChordEdits.readFile(text);
         } catch (IllegalArgumentException e) {
-            finishedMessage("Import failed", "This is not a chord edits file.");
+            finishedMessage(R.string.import_failed, R.string.chord_edits_not_a_file);
             return;
         }
         List<String> ids = new ArrayList<>();
         for (Iterator<String> it = sheets.keys(); it.hasNext(); ) ids.add(it.next());
         if (ids.isEmpty()) {
-            finishedMessage("Nothing to import", "This file has no chord edits in it.");
+            finishedMessage(R.string.nothing_to_import, R.string.chord_edits_empty_file);
             return;
         }
-        String listed = android.text.TextUtils.join(", ", ids.subList(0, Math.min(MAX_LISTED, ids.size())))
-                + (ids.size() > MAX_LISTED ? " and " + (ids.size() - MAX_LISTED) + " more" : "");
+        String listed = android.text.TextUtils.join(activity.getString(R.string.list_separator),
+                ids.subList(0, Math.min(MAX_LISTED, ids.size())));
+        if (ids.size() > MAX_LISTED) listed = activity.getString(R.string.list_and_more, listed, ids.size() - MAX_LISTED);
         dialog()
-                .setTitle("Import chord edits?")
-                .setMessage("This file has changed chords for " + sheets(ids.size()) + ": " + listed + ".\n\n" +
-                        "A sheet you edited later on this device keeps your version.")
-                .setPositiveButton("Import", (dialog, which) -> {
+                .setTitle(R.string.chord_edits_import_title)
+                .setMessage(activity.getResources().getQuantityString(R.plurals.chord_edits_import_body, ids.size(),
+                        ids.size(), listed))
+                .setPositiveButton(R.string.import_button, (dialog, which) -> {
                     ChordEdits.ImportResult result = chordEdits.importSheets(sheets);
-                    Toast.makeText(activity, sheets(result.added) + " imported" +
-                            (result.kept > 0 ? ", " + result.kept + " kept (edited later on this device)" : ""), Toast.LENGTH_LONG).show();
+                    String imported = plural(R.plurals.chord_edits_imported, result.added);
+                    if (result.kept > 0) imported = activity.getString(R.string.chord_edits_kept, imported, result.kept);
+                    Toast.makeText(activity, imported, Toast.LENGTH_LONG).show();
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton(R.string.cancel, null)
                 .setOnDismissListener(dialog -> onFinished.run())
                 .show();
     }
 
-    private static String sheets(int count) {
-        return count + (count == 1 ? " sheet" : " sheets");
+    private String plural(int id, int count) {
+        return activity.getResources().getQuantityString(id, count, count);
     }
 
     private AlertDialog.Builder dialog() {
         return new AlertDialog.Builder(activity, R.style.FavoritesDialog);
     }
 
-    private void message(String title, String body) {
-        dialog().setTitle(title).setMessage(body).setPositiveButton("OK", null).show();
+    private void message(int title, int body) {
+        dialog().setTitle(title).setMessage(body).setPositiveButton(R.string.ok, null).show();
     }
 
-    private void finishedMessage(String title, String body) {
-        dialog().setTitle(title).setMessage(body).setPositiveButton("OK", null)
+    private void finishedMessage(int title, int body) {
+        dialog().setTitle(title).setMessage(body).setPositiveButton(R.string.ok, null)
                 .setOnDismissListener(dialog -> onFinished.run()).show();
     }
 }

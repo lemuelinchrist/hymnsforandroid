@@ -1,11 +1,13 @@
 package com.lemuelinchrist.android.hymns;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -201,6 +203,16 @@ public enum HymnGroup {
         return hymnId.substring(codeLength(hymnId));
     }
 
+    /**
+     * The hymn someone starts on before they have opened any (an empty history): the first hymn of the book in the
+     * app's language, the string first_hymn (E1; C1 in Traditional Chinese, Z1 in Simplified Chinese). Someone who
+     * has a history goes on where they were, whatever the language.
+     */
+    public static String firstHymn(Context context) {
+        String id = context.getString(R.string.first_hymn);
+        return currentCode(id.substring(0, codeLength(id))) == null ? DEFAULT_HYMN_NUMBER : id;
+    }
+
     public static HymnGroup getDefaultHymnGroup() {
         return HymnGroup.getHymnGroupFromID(DEFAULT_HYMN_NUMBER);
     }
@@ -216,8 +228,43 @@ public enum HymnGroup {
         return simpleName.replaceAll(" \\(.*\\)$", "").replace(" Supplement", "").replace(" Youth", "");
     }
 
+    /** The English name of the book ("Chinese (Traditional)"); what the user sees is {@link #getDisplayName}. */
     public String getSimpleName() {
         return simpleName;
+    }
+
+    /**
+     * The name of the book in the app's language: the string book_&lt;code&gt; ("book_c"), English when it has no
+     * translation. Be Filled and New Songs keep their English names in every language.
+     */
+    public String getDisplayName(Context context) {
+        return text(context, "book_" + name(), simpleName);
+    }
+
+    /**
+     * The language of the book in the app's language (the string language_&lt;code of its main book&gt;): "English"
+     * for Be Filled, New Songs and Children, "Chinese" for the four Chinese books. Labels a link a hymn inherits.
+     */
+    public String getLanguageName(Context context) {
+        return text(context, "language_" + languageBook().name(), getLanguage());
+    }
+
+    /** The main book of the book's language: E for BF, NS and CH, C for the Chinese books, S for SY and so on. */
+    public HymnGroup languageBook() {
+        switch (this) {
+            case BF: case NS: case CH: return E;
+            case CS: case Z: case ZS: return C;
+            case FRY: return FR;
+            case SY: return S;
+            case GY: return G;
+            case POY: return POR;
+            default: return this;
+        }
+    }
+
+    private static String text(Context context, String name, String english) {
+        int id = context.getResources().getIdentifier(name.toLowerCase(Locale.ROOT), "string", context.getPackageName());
+        return id == 0 ? english : context.getString(id);
     }
 
     HymnGroup(String simpleName, int dayColor, int nightColor, int textAlignment) {

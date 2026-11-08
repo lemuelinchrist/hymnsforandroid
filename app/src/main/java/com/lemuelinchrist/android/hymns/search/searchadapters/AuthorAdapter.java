@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.search.searchadapters;
 
+import com.lemuelinchrist.android.hymns.R;
 import android.content.Context;
 import android.database.Cursor;
 import android.text.Html;
@@ -41,7 +42,7 @@ public class AuthorAdapter extends HymnCursorAdapter {
 
     private String retouch(String name) {
         if(name==null || name.trim().isEmpty()) {
-            return "Unknown";
+            return context.getString(R.string.unknown_author);
         }
         return name;
     }

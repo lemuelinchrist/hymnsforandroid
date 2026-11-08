@@ -89,7 +89,8 @@ public abstract class TabFragment extends Fragment {
 
     public abstract int getSearchTabIndex();
 
-    public abstract String getTabName();
+    /** the tab's title, a string resource */
+    public abstract int getTabName();
 
     public abstract boolean canBeSearched();
 

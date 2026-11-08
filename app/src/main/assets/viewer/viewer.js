@@ -624,15 +624,15 @@
     // buttons; the paper button (dark theme) takes room too
     var narrow = document.documentElement.clientWidth < (themeDark ? 500 : 400);
     document.documentElement.classList.toggle('compact', narrow);
-    $('bStaff').textContent = narrow ? 'Staff' : state.staff ? 'Hide staff' : 'Show staff';
+    $('bStaff').textContent = tr(narrow ? 'Staff' : state.staff ? 'Hide staff' : 'Show staff');
     $('bStaff').classList.toggle('on', narrow && state.staff);
     $('bPaper').hidden = !themeDark;
     $('bPaper').classList.toggle('on', lightPaper);
-    $('bPaper').title = lightPaper ? 'Dark paper' : 'Light paper';
+    $('bPaper').title = tr(lightPaper ? 'Dark paper' : 'Light paper');
     $('bDown').disabled = state.shift <= -MAX_SHIFT;
     $('bUp').disabled = state.shift >= MAX_SHIFT;
     $('bEdit').hidden = !editable;
-    $('bEdit').textContent = editing ? 'Editing chords' : 'Edit chords';
+    $('bEdit').textContent = tr(editing ? 'Editing chords' : 'Edit chords');
     $('bEdit').classList.toggle('on', editing);
     $('bOriginal').hidden = !editable || !hasEdits();
     $('bOriginal').classList.toggle('on', !!state.original);
@@ -643,7 +643,7 @@
       build();
       render();
     } catch (e) {
-      status('Could not render this sheet: ' + e);
+      status(tr('Could not render this sheet: {0}', e));
     }
   }
 
@@ -803,7 +803,7 @@
       build();
       render();
     } catch (e) {
-      status('Could not render this sheet: ' + e);
+      status(tr('Could not render this sheet: {0}', e));
     }
     updateBar();
   }
@@ -825,5 +825,5 @@
       load(xml);
       start();
     })
-    .catch(function (e) { status('Sheet music not found (' + e.message + ')'); });
+    .catch(function (e) { status(tr('Sheet music not found ({0})', e.message)); });
 })();

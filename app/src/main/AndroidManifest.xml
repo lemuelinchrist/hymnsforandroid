@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".settings.AboutActivity"
-            android:label="About"
+            android:label="@string/settings_about"
             android:parentActivityName=".settings.SettingsActivity"
             android:theme="@style/SettingsTheme" />
         <activity
@@ -67,7 +67,7 @@
         <!-- opens a favorites backup or chord edits file tapped in an email, chat or Drive -->
         <activity
             android:name=".logbook.RestoreFavoritesActivity"
-            android:label="Open in Hymns"
+            android:label="@string/open_in_hymns"
             android:theme="@style/Translucent"
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize"
             android:excludeFromRecents="true"

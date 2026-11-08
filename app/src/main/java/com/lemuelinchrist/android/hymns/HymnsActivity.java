@@ -210,7 +210,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         }
         backToHymnId = hymnId;
         backToHymn.setText(hymnId);
-        backToHymn.setContentDescription("Back to hymn " + hymnId);
+        backToHymn.setContentDescription(getString(R.string.back_to_hymn, hymnId));
         backToHymn.animate().cancel();
         if (backToHymn.getVisibility() != View.VISIBLE) {
             backToHymn.setAlpha(0f);
@@ -332,7 +332,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     public void onLyricVisible(String hymnId) {
 
-        if (hymnId==null) hymnId=HymnGroup.DEFAULT_HYMN_NUMBER;
+        if (hymnId==null) hymnId=HymnGroup.firstHymn(this);
 
         try {
             selectedHymnGroup = HymnGroup.getHymnGroupFromID(hymnId);

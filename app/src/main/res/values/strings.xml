@@ -1,52 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<!--
+  Every text the app shows, in English. The translations are in values-b+zh+Hant (Traditional Chinese) and
+  values-b+zh+Hans (Simplified Chinese); a string they do not have yet shows in English.
+  The hymn data (lyrics, subjects, names) is not here: each book is already in its own language.
+  Keep the names of the hymn books Be Filled and New Songs in English in every language.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="hello">Hello World, HymnsActivity!</string>
+    <!-- The language these strings are in, as a language tag: tells the sheet music viewer (assets/viewer/strings.js)
+         which texts to show, and chooses the first book a new user sees (HymnGroup.firstBook). -->
+    <string name="ui_language">en</string>
+
+    <!-- The hymn a new user starts on (HymnGroup.firstHymn): the first hymn of the book in this language -->
+    <string name="first_hymn">E1</string>
+
+    <!-- The launcher label -->
     <string name="app_name">Hymns</string>
-    <string name="searchString">Search</string>
-    <string name="noText">No:</string>
-    <string name="enterHymnNo">Enter Hymn No.</string>
-    <string name="go">Go</string>
-    <string name="playHymn">Play Hymn</string>
-    <string name="pauseHymn">Pause Hymn</string>
-    <string name="faveHymn">Fave Hymn</string>
-    <string name="unfaveHymn">Unfave Hymn</string>
-    <string name="hymnsForAndroid">Hymns for Android</string>
-    <string name="version">v3.1</string>
-    <string name="about">About</string>
-    <string name="branch">piano</string>
+    <string name="hymnsForAndroid" translatable="false">Hymns For Android</string>
 
-    <!-- Navigation Drawer -->
+    <!-- Common buttons -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
+    <string name="sorry_hymn_not_available">Sorry! Hymn not available</string>
+    <string name="sorry_sheet_music_not_available">Sorry! Sheet music not available</string>
 
+    <!-- Plurals used in several places -->
+    <plurals name="hymns_count">
+        <item quantity="one">%1$s hymn</item>
+        <item quantity="other">%1$s hymns</item>
+    </plurals>
+
+    <!-- The hymn books, as the drawer, search and Settings show them. Be Filled and New Songs keep their English
+         names in every language. -->
+    <string name="book_e">English</string>
+    <string name="book_c">Chinese (Traditional)</string>
+    <string name="book_cs">Chinese Supplement (Traditional)</string>
+    <string name="book_z">Chinese (Simplified)</string>
+    <string name="book_zs">Chinese Supplement (Simplified)</string>
+    <string name="book_cb">Cebuano</string>
+    <string name="book_t">Tagalog</string>
+    <string name="book_fr">French</string>
+    <string name="book_fry">French Youth</string>
+    <string name="book_s">Spanish</string>
+    <string name="book_sy">Spanish Youth</string>
+    <string name="book_k">Korean</string>
+    <string name="book_g">German</string>
+    <string name="book_gy">German Youth</string>
+    <string name="book_j">Japanese</string>
+    <string name="book_i">Indonesian</string>
+    <string name="book_bf" translatable="false">Be Filled</string>
+    <string name="book_ns" translatable="false">New Songs</string>
+    <string name="book_ch">Children</string>
+    <string name="book_f">Farsi</string>
+    <string name="book_sk">Slovak</string>
+    <string name="book_gk">Greek</string>
+    <string name="book_sw">Kiswahili</string>
+    <string name="book_rus">Russian</string>
+    <string name="book_bur">Burmese</string>
+    <string name="book_ta">Tamil</string>
+    <string name="book_ur">Urdu</string>
+    <string name="book_ki">Kikuyu</string>
+    <string name="book_por">Portuguese</string>
+    <string name="book_poy">Portuguese Youth</string>
+    <string name="book_pol">Polish</string>
+
+    <!-- The languages, labelling a link a hymn takes from a hymn in another language ("English – label") -->
+    <string name="language_e">English</string>
+    <string name="language_c">Chinese</string>
+    <string name="language_cb">Cebuano</string>
+    <string name="language_t">Tagalog</string>
+    <string name="language_fr">French</string>
+    <string name="language_s">Spanish</string>
+    <string name="language_k">Korean</string>
+    <string name="language_g">German</string>
+    <string name="language_j">Japanese</string>
+    <string name="language_i">Indonesian</string>
+    <string name="language_f">Farsi</string>
+    <string name="language_sk">Slovak</string>
+    <string name="language_gk">Greek</string>
+    <string name="language_sw">Kiswahili</string>
+    <string name="language_rus">Russian</string>
+    <string name="language_bur">Burmese</string>
+    <string name="language_ta">Tamil</string>
+    <string name="language_ur">Urdu</string>
+    <string name="language_ki">Kikuyu</string>
+    <string name="language_por">Portuguese</string>
+    <string name="language_pol">Polish</string>
+
+    <!-- Main screen and drawer -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="english">English</string>
-    <string name="choose_font_size">Choose Font Size</string>
-    <string name="choose_hymn_first">Please choose a hymn first before clicking this button.</string>
-    <string name="no_hymn_selected">No Hymn Selected</string>
-    <string name="ok">Ok</string>
+    <string name="drawer_languages">Languages…</string>
+    <string name="menu_index">Index</string>
+    <string name="menu_settings">Settings</string>
+    <string name="open_in_hymns">Open in Hymns</string>
+    <string name="back_to_hymn">Back to hymn %1$s</string>
 
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="settings">Manage Faves</string>
-    <string name="search_youtube">Search YouTube</string>
-    <string name="title_activity_settings">Settings</string>
-
-    <string name="headerFiller">Meter:8.5.8.3\nTime:4/4 - Ab Major\nRelated: CB1, K1, J1, G1, T1, C1, S1</string>
-    <string name="lyricFiller">
-        ##1##\nGlory be to God the Father,\nAnd to Christ the Son,\nGlory to the Holy Spirit-\nEver One.\n\n##2##\nAs we view the vast creation,\nPlanned with wondrous skill,\nSo our hearts would move to worship,\nAnd be still.\n\n##3##\nBut, our God, how great Thy yearning\nTo have sons who love\nIn the Son e\'en now to praise Thee,\nLove to prove!\n\n##4##\n\'Twas Thy thought in revelation,\nTo present to men\nSecrets of Thine own affections,\nTheirs to win.\n\n##5##\nSo in Christ, through His redemption\n(Vanquished evil powers!)\nThou hast brought, in new creation,\nWorshippers!\n\n##6##\nGlory be to God the Father,\nAnd to Christ the Son,\nGlory to the Holy Spirit\nEver One.\n\n\n</string>
-    <string name="composerFiller">Author: J. F. Garland\\nComposer: Ira David Sankey (1840-1908)</string>
+    <!-- The hymn page -->
     <string name="details">DETAILS</string>
     <string name="linksCard">LISTEN AND LINKS</string>
     <string name="otherLanguages">OTHER LANGUAGES</string>
     <string name="otherLanguagesHide">Hide</string>
     <string name="otherLanguagesShow">Show</string>
-    <string name="subjectFiller">Blessing of the Trinity\nHis Plan</string>
-    <string name="keepDisplayOn">Keep Display On</string>
-    <string name="youtube_button">YouTube Button</string>
-    <string name="similarTuneSwitch">Similar Tune Button</string>
-    <string name="sheetMusicType">Sheet Music Type</string>
+    <string name="other_language_cell">%1$s %2$s</string>
+    <!-- English in every language for now, like " (New Tune)" after first lines in the lists and the search -->
+    <string name="new_tune_header" translatable="false">(New Tune)</string>
+    <string name="detail_meter">Meter</string>
+    <string name="detail_time">Time</string>
+    <string name="detail_key">Key</string>
+    <string name="detail_tune">Tune</string>
+    <string name="detail_author">Author</string>
+    <string name="detail_composer">Composer</string>
+    <string name="detail_verses">Verses</string>
+    <string name="links_piano_videos">Piano videos</string>
+    <string name="links_new_tunes">New tunes</string>
+    <string name="links_new_tune_recordings">New tune recordings</string>
+    <string name="links_link">Link</string>
+    <string name="links_link_numbered">Link %1$d</string>
+    <string name="links_language_numbered">%1$s %2$d</string>
+    <string name="links_language_label">%1$s – %2$s</string>
+    <string name="share_lyrics">Share lyrics</string>
+    <string name="share_link">Share link</string>
+    <string name="copy_lyrics">Copy lyrics</string>
+    <string name="lyrics_copied">Lyrics copied</string>
+    <string name="similar_tune_title">Go to hymn with similar tune</string>
+    <string name="similar_tune_none">Sorry! No hymn with a similar tune available</string>
+
+    <!-- Search -->
+    <string name="search">Search</string>
+    <string name="search_index_title">%1$s Index</string>
+    <string name="search_hint_number">Enter Hymn No.</string>
+    <string name="search_hint_text">Enter Search Text</string>
+    <string name="tab_hymn_numbers">Hymn Numbers</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_favorites">Favorites</string>
+    <string name="tab_history">History</string>
+    <string name="browse_first_lines">First Lines</string>
+    <string name="browse_subjects">Subjects</string>
+    <string name="browse_authors">Authors</string>
+    <string name="browse_tunes">Tunes</string>
+    <string name="search_preparing">Preparing the search… (once after each update)</string>
+    <string name="search_in_book">%1$s · %2$d</string>
+    <string name="search_all_books">All books · %1$d</string>
+    <string name="search_no_hymns">No hymns found</string>
+    <string name="search_go_to">Go to &lt;b>%1$s&lt;/b></string>
+    <string name="search_why_subject">Subject: %1$s</string>
+    <string name="search_why_author">Author: %1$s</string>
+    <string name="search_why_composer">Composer: %1$s</string>
+    <string name="search_why_key">Key: %1$s</string>
+    <string name="search_why_tune">Tune: %1$s</string>
+    <string name="unknown_author">Unknown</string>
+    <string name="favorites_none">No favorites yet. Tap ♥ on a hymn to add it.</string>
+    <plurals name="favorites_count">
+        <item quantity="one">%1$d favorite</item>
+        <item quantity="other">%1$d favorites</item>
+    </plurals>
+
+    <!-- Favorites backup -->
+    <string name="backup_button">Back up</string>
+    <string name="restore_button">Restore</string>
+    <string name="add_button">Add</string>
+    <string name="fav_backup_title">Back up &amp; restore favorites</string>
+    <string name="fav_backup_intro">Back up: send your favorites to yourself (email, chat, Drive) or save them as a file.\n\nRestore: on your other phone, open that file with this app, or tap Restore here.\n\nIf you set up a new phone from your Google backup, your favorites usually come along by themselves.</string>
+    <string name="fav_none_title">No favorites yet</string>
+    <string name="fav_none_body">Tap the heart on a hymn to add it to your favorites.</string>
+    <string name="fav_backup_choose">Back up favorites</string>
+    <string name="send_email_chat_drive">Send (email, chat, Drive…)</string>
+    <string name="save_file_phone">Save as a file on this phone</string>
+    <string name="fav_restore_title">Restore favorites</string>
+    <string name="fav_restore_open_file">Open a backup file</string>
+    <string name="fav_restore_paste">Paste copied text</string>
+    <!-- The first lines of a favorites backup. Restore only reads the hymn numbers at the start of the lines, so
+         keep hymn numbers (like E1) out of these lines. -->
+    <string name="fav_file_heading">My favorite hymns (Hymns For Android): %1$s</string>
+    <string name="fav_file_how">To put them back: open this file with the Hymns app,\nor copy all of this text, then in the app tap Search,\nthen Favorites > Restore > Paste copied text.</string>
+    <string name="fav_file_subject">My favorite hymns</string>
+    <string name="fav_backup_failed">Back up failed</string>
+    <string name="fav_file_not_written">The backup file could not be written.</string>
+    <string name="file_not_saved_there">The file could not be saved there. Please try another place.</string>
+    <string name="fav_saved">Favorites saved</string>
+    <string name="fav_nothing_copied">Nothing copied</string>
+    <string name="fav_nothing_copied_body">Copy your backup text first: open the email or message, long-press the text, choose Select all, then Copy. Then come back and tap Restore again.</string>
+    <string name="fav_restore_failed">Restore failed</string>
+    <string name="file_could_not_open">This file could not be opened.</string>
+    <string name="fav_not_in_app">%1$s not in this version of the app.</string>
+    <plurals name="fav_not_in_app_count">
+        <item quantity="one">%1$d hymn is</item>
+        <item quantity="other">%1$d hymns are</item>
+    </plurals>
+    <plurals name="fav_all_already">
+        <item quantity="one">The %1$d hymn is already in your favorites.</item>
+        <item quantity="other">All %1$d hymns are already in your favorites.</item>
+    </plurals>
+    <string name="fav_not_a_backup">This file is not a favorites backup: it has no hymn numbers in it.</string>
+    <string name="fav_no_numbers">No hymn numbers were found. Please use the text or file made by Back up.</string>
+    <string name="fav_nothing_to_add">Nothing to add</string>
+    <string name="fav_none_found">No favorites found</string>
+    <plurals name="fav_add_question">
+        <item quantity="one">Add %1$d hymn to your favorites?</item>
+        <item quantity="other">Add %1$d hymns to your favorites?</item>
+    </plurals>
+    <plurals name="fav_already_there">
+        <item quantity="one">%1$d hymn is already there.</item>
+        <item quantity="other">%1$d hymns are already there.</item>
+    </plurals>
+    <plurals name="fav_added">
+        <item quantity="one">Added %1$d hymn to your favorites</item>
+        <item quantity="other">Added %1$d hymns to your favorites</item>
+    </plurals>
+    <string name="open_with_another_app">Open with another app</string>
+    <string name="no_other_app">No other app can open this file</string>
+
+    <!-- Chord edits -->
+    <string name="chord_edits_title">Chord edits</string>
+    <string name="chord_edits_none">No chord edits yet</string>
+    <plurals name="chord_edits_summary">
+        <item quantity="one">%1$d sheet with changed chords</item>
+        <item quantity="other">%1$d sheets with changed chords</item>
+    </plurals>
+    <string name="chord_edits_intro_empty">Chords you change on the piano sheet music (Edit chords, on tablets and unfolded phones) are kept on this device. Import brings in chord edits exported from another device or from the web app.</string>
+    <string name="chord_edits_intro">Chords you changed on the sheet music are kept on this device. Export them to keep a copy, to move them to another device (or the web app), or to send them in so they can go into the sheets for everyone.</string>
+    <string name="export_button">Export</string>
+    <string name="import_button">Import</string>
+    <plurals name="chord_edits_bars">
+        <item quantity="one">%1$d bar · %2$s</item>
+        <item quantity="other">%1$d bars · %2$s</item>
+    </plurals>
+    <string name="chord_edits_none_body">Open a hymn\'s sheet music on a tablet or an unfolded phone and tap Edit chords.</string>
+    <string name="chord_edits_export_title">Export chord edits</string>
+    <string name="save_file_device">Save as a file on this device</string>
+    <string name="chord_edits_subject">Chord edits (Hymns)</string>
+    <string name="export_failed">Export failed</string>
+    <string name="file_not_written">The file could not be written.</string>
+    <string name="chord_edits_saved">Chord edits saved</string>
+    <string name="import_failed">Import failed</string>
+    <string name="chord_edits_not_a_file">This is not a chord edits file.</string>
+    <string name="nothing_to_import">Nothing to import</string>
+    <string name="chord_edits_empty_file">This file has no chord edits in it.</string>
+    <string name="chord_edits_import_title">Import chord edits?</string>
+    <string name="list_and_more">%1$s and %2$d more</string>
+    <plurals name="chord_edits_import_body">
+        <item quantity="one">This file has changed chords for %1$d sheet: %2$s.\n\nA sheet you edited later on this device keeps your version.</item>
+        <item quantity="other">This file has changed chords for %1$d sheets: %2$s.\n\nA sheet you edited later on this device keeps your version.</item>
+    </plurals>
+    <plurals name="chord_edits_imported">
+        <item quantity="one">%1$d sheet imported</item>
+        <item quantity="other">%1$d sheets imported</item>
+    </plurals>
+    <string name="chord_edits_kept">%1$s, %2$d kept (edited later on this device)</string>
+
+    <!-- Settings -->
+    <string name="title_activity_settings">Settings</string>
+    <string name="settings_text_size">Text size</string>
+    <string name="settings_theme">Theme</string>
+    <string name="theme_tile_system">System</string>
+    <string name="theme_tile_light">Light</string>
+    <string name="theme_tile_dark">Dark</string>
+    <string name="theme_tile_black">Black</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_sheet_music">Sheet music</string>
+    <string name="settings_piano">Piano</string>
+    <string name="settings_guitar">Guitar</string>
+    <string name="settings_on_hymn_page">On the hymn page</string>
+    <string name="settings_youtube">YouTube button</string>
+    <string name="settings_youtube_summary">Search YouTube for the hymn</string>
+    <string name="settings_similar">Similar tune button</string>
+    <string name="settings_similar_summary">Switch to hymns sung to the same tune</string>
+    <string name="settings_keep_on">Keep screen on</string>
+    <string name="settings_keep_on_summary">The screen won\'t sleep while a hymn is open</string>
+    <string name="settings_hymn_books">Hymn books</string>
+    <string name="settings_books_to_show">Books to show</string>
+    <string name="books_all_shown">All %1$d books shown</string>
+    <string name="books_hiding">Hiding %1$s</string>
+    <string name="books_some_shown">%1$d of %2$d books shown</string>
+    <string name="books_value">%1$d of %2$d</string>
+    <string name="list_separator">", "</string>
+    <string name="settings_your_data">Your data</string>
+    <string name="settings_favorites">Favorites</string>
+    <string name="settings_favorites_summary">Back up, or move them to a new phone</string>
+    <string name="settings_share_app">Share the app</string>
+    <string name="share_scan">Let someone scan this with their phone\'s camera.</string>
+    <string name="share_android" translatable="false">Android</string>
+    <string name="share_web">iPhone and all devices</string>
+    <string name="share_qr">QR code to share the app</string>
+    <string name="share_qr_for">QR code for %1$s</string>
+    <string name="copy_link">Copy link</string>
+    <string name="link_copied">Link copied</string>
+    <string name="share_note_web">Opens the web app in the browser. On an iPhone or iPad: tap Share, then Add to Home Screen, and it works offline like an app.</string>
+    <string name="share_note_android">Opens Hymns For Android on Google Play.</string>
+    <string name="settings_about">About</string>
+    <string name="settings_about_summary">Version, send feedback, source code</string>
+    <string name="hymn_books_title">Choose the languages to show</string>
+    <string name="hymn_books_note">Hidden languages don\'t appear in the book list, in search or under \"Other languages\".</string>
+    <string name="hymn_books_keep_one">At least one language has to stay shown</string>
+
+    <!-- About -->
+    <string name="about_version">Version %1$s</string>
+    <string name="about_feedback">Send feedback</string>
+    <string name="about_source">Source code</string>
+    <string name="about_no_email">No email app found. Write to %1$s</string>
+    <string name="about_no_browser">No browser found. The address is %1$s</string>
+
+    <!-- Layout previews only (tools) -->
+    <string name="headerFiller" translatable="false" tools:ignore="UnusedResources">Meter:8.5.8.3\nTime:4/4 - Ab Major\nRelated: CB1, K1, J1, G1, T1, C1, S1</string>
+    <string name="subjectFiller" translatable="false">Blessing of the Trinity\nHis Plan</string>
+    <string name="lyricFiller" translatable="false">
+        ##1##\nGlory be to God the Father,\nAnd to Christ the Son,\nGlory to the Holy Spirit-\nEver One.\n\n##2##\nAs we view the vast creation,\nPlanned with wondrous skill,\nSo our hearts would move to worship,\nAnd be still.\n\n##3##\nBut, our God, how great Thy yearning\nTo have sons who love\nIn the Son e\'en now to praise Thee,\nLove to prove!\n\n##4##\n\'Twas Thy thought in revelation,\nTo present to men\nSecrets of Thine own affections,\nTheirs to win.\n\n##5##\nSo in Christ, through His redemption\n(Vanquished evil powers!)\nThou hast brought, in new creation,\nWorshippers!\n\n##6##\nGlory be to God the Father,\nAnd to Christ the Son,\nGlory to the Holy Spirit\nEver One.\n\n\n</string>
 
 </resources>

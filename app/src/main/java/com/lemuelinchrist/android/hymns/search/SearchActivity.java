@@ -31,8 +31,6 @@ import com.lemuelinchrist.android.hymns.search.fragments.*;
 
 public class SearchActivity extends AppCompatActivity  {
 
-    public static final String ENTER_HYMN_NO = "Enter Hymn No.            ";
-    public static final String ENTER_LYRIC = "Enter Search Text          ";
     /** Intent extra: words to search for as soon as the screen opens (on the Search tab, in all books). */
     public static final String EXTRA_QUERY = "query";
     /** Intent extra, with the query: the one column of the search table ("music", "people") to look in. */
@@ -88,7 +86,7 @@ public class SearchActivity extends AppCompatActivity  {
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
         selectedHymnGroup = (HymnGroup) extras.get("selectedHymnGroup");
-        setTitle(selectedHymnGroup.getSimpleName() + " Index");
+        setTitle(getString(R.string.search_index_title, selectedHymnGroup.getDisplayName(this)));
 
 
         actionBar = getSupportActionBar();
@@ -134,7 +132,7 @@ public class SearchActivity extends AppCompatActivity  {
                 }
 
                 searchBar.setInputType(currentTabFragment.getInputType());
-                searchBar.setQueryHint(hintFor(currentTabFragment));
+                searchBar.setQueryHint(getString(hintFor(currentTabFragment)));
 
                 Log.d(this.getClass().getName(), "trying to clear text. Hope it wont throw error.");
                 searchBar.setQuery(currentTabFragment.getSavedQuery(), false);
@@ -175,8 +173,8 @@ public class SearchActivity extends AppCompatActivity  {
 
 
     /** Hymn Numbers only takes numbers; the other tabs search words. */
-    private static String hintFor(TabFragment tab) {
-        return tab instanceof HymnNumberTabFragment ? ENTER_HYMN_NO : ENTER_LYRIC;
+    private static int hintFor(TabFragment tab) {
+        return tab instanceof HymnNumberTabFragment ? R.string.search_hint_number : R.string.search_hint_text;
     }
 
     @Override
@@ -191,7 +189,7 @@ public class SearchActivity extends AppCompatActivity  {
 
         /** Get the edit text from the action view */
         searchBar = (SearchView) MenuItemCompat.getActionView(item);
-        searchBar.setQueryHint(hintFor(getCurrentTab()));
+        searchBar.setQueryHint(getString(hintFor(getCurrentTab())));
         // the restored tab may not be Hymn Numbers, so ask it for its keyboard
         searchBar.setInputType(getCurrentTab().getInputType());
         searchBar.onActionViewExpanded();
@@ -321,7 +319,7 @@ public class SearchActivity extends AppCompatActivity  {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
      * sections of the app.
      */
-    public static class SearchTabsPagerAdapter extends FragmentPagerAdapter {
+    public class SearchTabsPagerAdapter extends FragmentPagerAdapter {
         // indexed by position (getSearchTabIndex)
         private final TabFragment[] tabs = new TabFragment[4];
 
@@ -368,7 +366,7 @@ public class SearchActivity extends AppCompatActivity  {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return tabs[position].getTabName();
+            return getString(tabs[position].getTabName());
         }
 
 

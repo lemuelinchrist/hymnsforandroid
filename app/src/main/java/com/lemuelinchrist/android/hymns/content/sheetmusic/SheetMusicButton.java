@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.content.sheetmusic;
 
+import com.lemuelinchrist.android.hymns.R;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -36,7 +37,7 @@ public class SheetMusicButton extends ContentComponent<ImageButton> {
             intent.putExtra("lyricsHymnId", hymn.getHymnId());   // a translation borrows its parent's sheet but may have its own lyrics
             context.startActivity(intent);
         } else {
-            Toast.makeText(context, "Sorry! sheet music not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.sorry_sheet_music_not_available, Toast.LENGTH_SHORT).show();
         }
     }
 

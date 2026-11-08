@@ -15,8 +15,8 @@ public class HistoryTabFragment extends TabFragment {
     }
 
     @Override
-    public String getTabName() {
-        return "History";
+    public int getTabName() {
+        return R.string.tab_history;
     }
 
     @Override

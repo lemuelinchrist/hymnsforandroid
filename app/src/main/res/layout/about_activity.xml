@@ -2,6 +2,7 @@
 <!-- The About page of Settings (AboutActivity) -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/settings_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -87,7 +88,8 @@
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_set_mail"
                 app:rowSummary="hymnsforandroid.support@gmail.com"
-                app:rowTitle="Send feedback"
+                tools:ignore="HardcodedText"
+                app:rowTitle="@string/about_feedback"
                 app:rowTrailing="chevron" />
 
             <com.lemuelinchrist.android.hymns.settings.SettingsRow
@@ -96,7 +98,8 @@
                 android:layout_height="wrap_content"
                 app:rowIcon="@drawable/ic_set_code"
                 app:rowSummary="github.com/lemuelinchrist/hymnsforandroid"
-                app:rowTitle="Source code"
+                tools:ignore="HardcodedText"
+                app:rowTitle="@string/about_source"
                 app:rowTrailing="chevron" />
         </LinearLayout>
     </com.lemuelinchrist.android.hymns.settings.MaxWidthLinearLayout>

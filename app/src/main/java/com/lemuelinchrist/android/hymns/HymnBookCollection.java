@@ -72,7 +72,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
             }
         });
 
-        switchHymnBook(HymnGroup.getDefaultHymnGroup());
+        switchHymnBook(HymnGroup.getHymnGroupFromID(HymnGroup.firstHymn(context)));
     }
 
     public void refresh() {
@@ -81,7 +81,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         if(getCurrentHymnId()==null) {
             LogBook historyLogBook = new LogBook(context,HISTORY_LOGBOOK_FILE);
             HymnRecord[] records = historyLogBook.getOrderedRecordList();
-            currentHymnId = records.length>0 ? records[0].getHymnId() : HymnGroup.DEFAULT_HYMN_NUMBER;
+            currentHymnId = records.length>0 ? records[0].getHymnId() : HymnGroup.firstHymn(context);
         } else {
             currentHymnId =  getCurrentHymnId();
         }
