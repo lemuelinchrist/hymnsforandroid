@@ -137,6 +137,8 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   the Joseph's Storehouses channel (@JosephsStorehouses, 994 videos, 63 playlists, some are conference messages) lists as "... (by Hymn CDs)"
   are marked with the studio Hymn CDs in `recordings.tsv` (no official Hymn CDs channel found). Not yet looked at: Joseph's Storehouses itself and
   the **NYCYPCD English** channel (@nycypcd-english, UCcS0QoAJh3PucoYLQXJG2bg, 280 videos titled like "Drink! A River - H 1151", "... - NS 868").
+- **Melody of Lilies** (@MelodyofLilies; Releases tab 23 albums + 11 playlists + 50 videos, 86 unique tracks; mostly the group's own songs, not hymnal hymns), English, a
+  popular Recovery producer: 17 links, label `Melody of Lilies` (2026-11-08): 6 exact titles + 11 confirmed by ear; the other ~50 titles matched no hymn (`melodyoflilies_known.tsv`, `recordings.tsv`).
 - **Rules that held for the Topic channels**: a number in the title (`Hymn N`, `Hymns N`, `诗歌N`) is reliable; a track titled "- New Tune" belongs to
   the New Tune hymn (e.g. BF345), never to the root hymn, so it is not linked to the root; an instrumental track gets the label `<name> (Instrumental)`
   (max 1 per hymn); sung ones max 2 per hymn per channel; English hymns may carry links from several channels (NYCYPCD + LSM + others).
