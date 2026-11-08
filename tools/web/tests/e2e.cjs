@@ -905,7 +905,7 @@ async function search(page, text) {
     }
 
     console.log('Language');
-    await test('the browser language chooses the app language: zh-TW starts in C in Traditional Chinese, es in S', async () => {
+    await test('the browser language chooses the app language: zh-TW starts in C in Traditional Chinese, an unknown language gets English', async () => {
       const t = await newPage(browser, {locale: 'zh-TW'});
       await open(t.page, '');
       assert(await t.page.evaluate(() => document.documentElement.lang) === 'zh-Hant', 'lang is not zh-Hant');
@@ -913,26 +913,25 @@ async function search(page, text) {
       assert((await t.page.textContent('.hero h1')) === '詩歌', 'the heading is not 詩歌');
       assert((await t.page.getAttribute('#settingsTop', 'aria-label')) === '設定', 'the settings link is not translated');
       await t.ctx.close();
+      // a language the app does not have (Spanish) gets English, and starts in E
       const s = await newPage(browser, {locale: 'es-MX'});
       await open(s.page, '');
-      assert((await s.page.textContent('#hymnalName')) === 'Español', 'a new person in Spanish starts in S');
-      // the other books say what they are in Spanish, under their own names, with the count as Spanish counts
-      const card = await s.page.textContent('.hymnal-card[href="#/browse/C"] .count');
-      assert(/Chino \(tradicional\) · 786 himnos/.test(card), 'book subtitle: ' + card);
+      assert(await s.page.evaluate(() => document.documentElement.lang) === 'en', 'Spanish browser falls back to English');
+      assert((await s.page.textContent('#hymnalName')) === 'English', 'starts in E');
       await s.ctx.close();
     });
     await test('Settings -> App language switches at once, is kept, and Phone\'s language follows the browser again', async () => {
       const t = await newPage(browser, {locale: 'en-US'});
       await open(t.page, '#/settings');
       assert((await t.page.textContent('h1.page-title')).includes('Settings'), 'English at first');
-      await t.page.selectOption('.lang-select', 'fr');
-      await t.page.waitForFunction(() => document.querySelector('h1.page-title').textContent.includes('Réglages'));
-      assert(await t.page.evaluate(() => document.documentElement.lang) === 'fr', 'html lang is fr');
-      assert((await t.page.getAttribute('#favoritesTop', 'aria-label')) === 'Favoris', 'the top bar is written again');
-      assert((await t.page.getAttribute('#q', 'placeholder')).includes('Cherchez') || (await t.page.getAttribute('#q', 'placeholder')).includes('Numéro'), 'the search box is written again: ' + await t.page.getAttribute('#q', 'placeholder'));
+      await t.page.selectOption('.lang-select', 'zh-Hans');
+      await t.page.waitForFunction(() => document.querySelector('h1.page-title').textContent.includes('设置'));
+      assert(await t.page.evaluate(() => document.documentElement.lang) === 'zh-Hans', 'html lang is zh-Hans');
+      assert((await t.page.getAttribute('#favoritesTop', 'aria-label')) === '收藏', 'the top bar is written again');
+      assert((await t.page.getAttribute('#q', 'placeholder')).includes('号码') || (await t.page.getAttribute('#q', 'placeholder')).includes('搜索'), 'the search box is written again: ' + await t.page.getAttribute('#q', 'placeholder'));
       await t.page.reload();
       await t.page.waitForSelector('body.ready', {timeout: 60000});
-      assert((await t.page.textContent('h1.page-title')).includes('Réglages'), 'the choice is kept after a reload');
+      assert((await t.page.textContent('h1.page-title')).includes('设置'), 'the choice is kept after a reload');
       await t.page.selectOption('.lang-select', '');
       await t.page.waitForFunction(() => document.querySelector('h1.page-title').textContent.includes('Settings'));
       await t.ctx.close();

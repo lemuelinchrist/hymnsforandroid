@@ -315,7 +315,7 @@ How it works now:
 
 ## 10. The app's language (2026-11-08, with the Android localization)
 
-The web app's own texts speak English, Traditional Chinese, Simplified Chinese, Spanish and French, as the Android app
+The web app's own texts speak English, Traditional Chinese and Simplified Chinese, as the Android app
 does (`docs/HYMNAL_SPEC.md` §10.1). Decisions: the translations are keyed by the English text in `src/strings.js`
 (no build step, English is the fallback), the setting is kept on the device (`hfw.lang`; empty = follow the browser),
 changing it redraws the open screen without a reload, and the book names, the hymn counts' wording and the first book of a
