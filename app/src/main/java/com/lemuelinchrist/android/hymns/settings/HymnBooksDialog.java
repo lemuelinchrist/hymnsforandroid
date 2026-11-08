@@ -104,7 +104,8 @@ public final class HymnBooksDialog {
             TextView count = row.findViewById(R.id.hymnBookCount);
             Integer hymns = counts.get(group.name());
             String subtitle = group.getSubtitle(context, hymns == null ? null
-                    : context.getResources().getQuantityString(R.plurals.hymns_count, hymns, String.valueOf(hymns)));
+                    : context.getResources().getQuantityString(R.plurals.hymns_count, hymns,
+                    String.format(java.util.Locale.getDefault(), "%,d", hymns)));
             count.setVisibility(subtitle == null ? View.GONE : View.VISIBLE);
             count.setText(subtitle);
             ((CheckBox) row.findViewById(R.id.hymnBookShown)).setChecked(shown[position]);

@@ -86,7 +86,8 @@ public class SimilarTuneButton extends ContentComponent<ImageButton> {
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final List<String> descriptions = requireArguments().getStringArrayList(DESCRIPTIONS);
             final List<String> hymnIds = requireArguments().getStringArrayList(HYMN_IDS);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            // the hymn page's theme makes dialog text white: the title was invisible (as with the share menu)
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.FavoritesDialog);
             builder.setTitle(R.string.similar_tune_title);
             builder.setItems(descriptions.toArray(new String[descriptions.size()]),new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {

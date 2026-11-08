@@ -623,9 +623,12 @@
     // narrow phones get the short label (the bar has no room for "Hide staff" next to the back button), and tighter
     // buttons; the paper button (dark theme) takes room too
     var narrow = document.documentElement.clientWidth < (themeDark ? 500 : 400);
-    document.documentElement.classList.toggle('compact', narrow);
-    $('bStaff').textContent = tr(narrow ? 'Staff' : state.staff ? 'Hide staff' : 'Show staff');
-    $('bStaff').classList.toggle('on', narrow && state.staff);
+    function setNarrow(n) {
+      document.documentElement.classList.toggle('compact', n);
+      $('bStaff').textContent = tr(n ? 'Staff' : state.staff ? 'Hide staff' : 'Show staff');
+      $('bStaff').classList.toggle('on', n && state.staff);
+    }
+    setNarrow(narrow);
     $('bPaper').hidden = !themeDark;
     $('bPaper').classList.toggle('on', lightPaper);
     $('bPaper').title = tr(lightPaper ? 'Dark paper' : 'Light paper');
@@ -636,6 +639,10 @@
     $('bEdit').classList.toggle('on', editing);
     $('bOriginal').hidden = !editable || !hasEdits();
     $('bOriginal').classList.toggle('on', !!state.original);
+    // a long label ("Ocultar pentagrama", "Masquer la portée") or a big system font can overflow even a wide bar:
+    // then the short label and the tighter buttons, as on a narrow phone
+    var bar = $('bar');
+    if (!narrow && bar.scrollWidth > bar.clientWidth + 1) setNarrow(true);
   }
 
   function redraw() {
