@@ -178,6 +178,33 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
+            <TextView style="@style/SettingsHeader" android:text="@string/settings_language" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/settings_card_bg"
+            android:divider="@drawable/settings_divider"
+            android:orientation="vertical"
+            android:showDividers="middle">
+            <!-- the language of the app's own texts (not of the hymns): LanguageSetting -->
+            <com.lemuelinchrist.android.hymns.settings.SettingsRow
+                android:id="@+id/languageRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rowIcon="@drawable/ic_set_language"
+                app:rowTitle="@string/settings_app_language"
+                app:rowSummary=""
+                app:rowTrailing="chevron" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
             <TextView style="@style/SettingsHeader" android:text="@string/settings_hymn_books" />
             <TextView android:id="@+id/booksValue" style="@style/SettingsHeaderValue" />
         </LinearLayout>

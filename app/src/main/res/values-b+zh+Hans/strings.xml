@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Simplified Chinese (mainland wording). A draft, to be checked by a reader of Simplified Chinese.
+  Made from values-b+zh+Hant with OpenCC (tw2sp), then corrected by hand (“” quotes, 复制, 二维码, 屏幕常亮…).
+-->
+<resources>
+
+    <string name="ui_language">zh-Hans</string>
+    <string name="first_hymn">Z1</string>
+
+    <string name="app_name">诗歌</string>
+
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="close">关闭</string>
+    <string name="sorry_hymn_not_available">抱歉！没有这首诗歌</string>
+    <string name="sorry_sheet_music_not_available">抱歉！没有这首诗歌的乐谱</string>
+
+    <plurals name="hymns_count">
+        <item quantity="other">%1$s 首诗歌</item>
+    </plurals>
+
+    <string name="book_e">英文</string>
+    <string name="book_c">中文（繁体）</string>
+    <string name="book_cs">中文补充本（繁体）</string>
+    <string name="book_z">中文（简体）</string>
+    <string name="book_zs">中文补充本（简体）</string>
+    <string name="book_cb">宿雾文</string>
+    <string name="book_t">他加禄文</string>
+    <string name="book_fr">法文</string>
+    <string name="book_fry">法文青年</string>
+    <string name="book_s">西班牙文</string>
+    <string name="book_sy">西班牙文青年</string>
+    <string name="book_k">韩文</string>
+    <string name="book_g">德文</string>
+    <string name="book_gy">德文青年</string>
+    <string name="book_j">日文</string>
+    <string name="book_i">印尼文</string>
+    <string name="book_ch">英文儿童</string>
+    <string name="book_f">波斯文</string>
+    <string name="book_sk">斯洛伐克文</string>
+    <string name="book_gk">希腊文</string>
+    <string name="book_sw">斯瓦希里文</string>
+    <string name="book_rus">俄文</string>
+    <string name="book_bur">缅甸文</string>
+    <string name="book_ta">泰米尔文</string>
+    <string name="book_ur">乌尔都文</string>
+    <string name="book_ki">基库尤文</string>
+    <string name="book_por">葡萄牙文</string>
+    <string name="book_poy">葡萄牙文青年</string>
+    <string name="book_pol">波兰文</string>
+
+    <string name="language_e">英文</string>
+    <string name="language_c">中文</string>
+    <string name="language_cb">宿雾文</string>
+    <string name="language_t">他加禄文</string>
+    <string name="language_fr">法文</string>
+    <string name="language_s">西班牙文</string>
+    <string name="language_k">韩文</string>
+    <string name="language_g">德文</string>
+    <string name="language_j">日文</string>
+    <string name="language_i">印尼文</string>
+    <string name="language_f">波斯文</string>
+    <string name="language_sk">斯洛伐克文</string>
+    <string name="language_gk">希腊文</string>
+    <string name="language_sw">斯瓦希里文</string>
+    <string name="language_rus">俄文</string>
+    <string name="language_bur">缅甸文</string>
+    <string name="language_ta">泰米尔文</string>
+    <string name="language_ur">乌尔都文</string>
+    <string name="language_ki">基库尤文</string>
+    <string name="language_por">葡萄牙文</string>
+    <string name="language_pol">波兰文</string>
+
+    <string name="drawer_open">打开菜单</string>
+    <string name="drawer_close">关闭菜单</string>
+    <string name="drawer_languages">语言…</string>
+    <string name="menu_index">索引</string>
+    <string name="menu_settings">设置</string>
+    <string name="open_in_hymns">用诗歌打开</string>
+    <string name="back_to_hymn">回到诗歌 %1$s</string>
+
+    <string name="details">详细信息</string>
+    <string name="linksCard">聆听与链接</string>
+    <string name="otherLanguages">其他语言</string>
+    <string name="otherLanguagesHide">隐藏</string>
+    <string name="otherLanguagesShow">显示</string>
+    <string name="other_language_cell">%1$s %2$s</string>
+    <string name="detail_meter">韵律</string>
+    <string name="detail_time">拍子</string>
+    <string name="detail_key">调</string>
+    <string name="detail_tune">曲调</string>
+    <string name="detail_author">作词</string>
+    <string name="detail_composer">作曲</string>
+    <string name="detail_verses">经节</string>
+    <string name="links_piano_videos">钢琴视频</string>
+    <string name="links_new_tunes">新曲调</string>
+    <string name="links_new_tune_recordings">新曲调录音</string>
+    <string name="links_link">链接</string>
+    <string name="links_link_numbered">链接 %1$d</string>
+    <string name="links_language_numbered">%1$s %2$d</string>
+    <string name="links_language_label">%1$s – %2$s</string>
+    <string name="share_lyrics">分享歌词</string>
+    <string name="share_link">分享链接</string>
+    <string name="copy_lyrics">复制歌词</string>
+    <string name="lyrics_copied">已复制歌词</string>
+    <string name="similar_tune_title">前往同曲调的诗歌</string>
+    <string name="similar_tune_none">抱歉！没有同曲调的诗歌</string>
+
+    <string name="search">搜索</string>
+    <string name="search_index_title">%1$s 索引</string>
+    <string name="search_hint_number">输入诗歌号码</string>
+    <string name="search_hint_text">输入要搜索的文字</string>
+    <string name="tab_hymn_numbers">诗歌号码</string>
+    <string name="tab_search">搜索</string>
+    <string name="tab_favorites">收藏</string>
+    <string name="tab_history">历史记录</string>
+    <string name="browse_first_lines">首句</string>
+    <string name="browse_subjects">类别</string>
+    <string name="browse_authors">作者</string>
+    <string name="browse_tunes">曲调</string>
+    <string name="search_preparing">正在准备搜索…（每次更新后一次）</string>
+    <string name="search_in_book">%1$s · %2$d</string>
+    <string name="search_all_books">所有诗歌本 · %1$d</string>
+    <string name="search_no_hymns">找不到诗歌</string>
+    <string name="search_go_to">前往 &lt;b>%1$s&lt;/b></string>
+    <string name="search_why_subject">类别：%1$s</string>
+    <string name="search_why_author">作词：%1$s</string>
+    <string name="search_why_composer">作曲：%1$s</string>
+    <string name="search_why_key">调：%1$s</string>
+    <string name="search_why_tune">曲调：%1$s</string>
+    <string name="unknown_author">不详</string>
+    <string name="favorites_none">还没有收藏。在诗歌上点 ♥ 就能收藏。</string>
+    <plurals name="favorites_count">
+        <item quantity="other">%1$d 首收藏</item>
+    </plurals>
+
+    <string name="backup_button">备份</string>
+    <string name="restore_button">还原</string>
+    <string name="add_button">加入</string>
+    <string name="fav_backup_title">备份与还原收藏</string>
+    <string name="fav_backup_intro">备份：把你的收藏传给自己（电子邮件、聊天、云端硬盘），或保存为文件。\n\n还原：在你的另一部手机上，用这个 app 打开那个文件，或在这里点“还原”。\n\n如果你用 Google 备份设置新手机，收藏通常会自动跟着过去。</string>
+    <string name="fav_none_title">还没有收藏</string>
+    <string name="fav_none_body">在诗歌上点爱心，就能加入收藏。</string>
+    <string name="fav_backup_choose">备份收藏</string>
+    <string name="send_email_chat_drive">发送（电子邮件、聊天、云端硬盘…）</string>
+    <string name="save_file_phone">在这部手机上保存为文件</string>
+    <string name="fav_restore_title">还原收藏</string>
+    <string name="fav_restore_open_file">打开备份文件</string>
+    <string name="fav_restore_paste">粘贴复制的文字</string>
+    <string name="fav_file_heading">我收藏的诗歌（Hymns For Android）：%1$s</string>
+    <string name="fav_file_how">要放回去：用诗歌 app 打开这个文件，\n或复制全部的文字，然后在 app 里点“搜索”，\n再点“收藏”>“还原”>“粘贴复制的文字”。</string>
+    <string name="fav_file_subject">我收藏的诗歌</string>
+    <string name="fav_backup_failed">备份失败</string>
+    <string name="fav_file_not_written">无法写入备份文件。</string>
+    <string name="file_not_saved_there">文件无法保存在那里，请换一个地方。</string>
+    <string name="fav_saved">已保存收藏</string>
+    <string name="fav_nothing_copied">没有复制任何文字</string>
+    <string name="fav_nothing_copied_body">请先复制备份的文字：打开那封邮件或消息，长按文字，选“全选”，再选“复制”。然后回来再点一次“还原”。</string>
+    <string name="fav_restore_failed">还原失败</string>
+    <string name="file_could_not_open">无法打开这个文件。</string>
+    <string name="fav_not_in_app">%1$s不在这个版本的 app 里。</string>
+    <plurals name="fav_not_in_app_count">
+        <item quantity="other">有 %1$d 首诗歌</item>
+    </plurals>
+    <plurals name="fav_all_already">
+        <item quantity="other">这 %1$d 首诗歌都已经在你的收藏里。</item>
+    </plurals>
+    <string name="fav_not_a_backup">这个文件不是收藏的备份：里面没有诗歌号码。</string>
+    <string name="fav_no_numbers">找不到诗歌号码。请使用“备份”产生的文字或文件。</string>
+    <string name="fav_nothing_to_add">没有可加入的诗歌</string>
+    <string name="fav_none_found">找不到收藏</string>
+    <plurals name="fav_add_question">
+        <item quantity="other">要把 %1$d 首诗歌加入你的收藏吗？</item>
+    </plurals>
+    <plurals name="fav_already_there">
+        <item quantity="other">有 %1$d 首诗歌已经在收藏里。</item>
+    </plurals>
+    <plurals name="fav_added">
+        <item quantity="other">已把 %1$d 首诗歌加入你的收藏</item>
+    </plurals>
+    <string name="open_with_another_app">用其他 app 打开</string>
+    <string name="no_other_app">没有其他 app 能打开这个文件</string>
+
+    <string name="chord_edits_title">和弦修改</string>
+    <string name="chord_edits_none">还没有修改和弦</string>
+    <plurals name="chord_edits_summary">
+        <item quantity="other">%1$d 份乐谱改过和弦</item>
+    </plurals>
+    <string name="chord_edits_intro_empty">你在钢琴乐谱上修改的和弦（“编辑和弦”，在平板和展开的折叠屏手机上）会保存在这台设备上。“导入”可以带入从另一台设备或网页版导出的和弦修改。</string>
+    <string name="chord_edits_intro">你在乐谱上修改的和弦保存在这台设备上。导出可以保留一份副本、移到另一台设备（或网页版），或寄出去，让修改放进大家的乐谱里。</string>
+    <string name="export_button">导出</string>
+    <string name="import_button">导入</string>
+    <plurals name="chord_edits_bars">
+        <item quantity="other">%1$d 小节 · %2$s</item>
+    </plurals>
+    <string name="chord_edits_none_body">在平板或展开的折叠屏手机上打开一首诗歌的乐谱，再点“编辑和弦”。</string>
+    <string name="chord_edits_export_title">导出和弦修改</string>
+    <string name="save_file_device">在这台设备上保存为文件</string>
+    <string name="chord_edits_subject">和弦修改（诗歌）</string>
+    <string name="export_failed">导出失败</string>
+    <string name="file_not_written">无法写入文件。</string>
+    <string name="chord_edits_saved">已保存和弦修改</string>
+    <string name="import_failed">导入失败</string>
+    <string name="chord_edits_not_a_file">这不是和弦修改的文件。</string>
+    <string name="nothing_to_import">没有可导入的内容</string>
+    <string name="chord_edits_empty_file">这个文件里没有和弦修改。</string>
+    <string name="chord_edits_import_title">要导入和弦修改吗？</string>
+    <string name="list_and_more">%1$s 等另外 %2$d 份</string>
+    <plurals name="chord_edits_import_body">
+        <item quantity="other">这个文件改过 %1$d 份乐谱的和弦：%2$s。\n\n你之后在这台设备上改过的乐谱，会保留你的版本。</item>
+    </plurals>
+    <plurals name="chord_edits_imported">
+        <item quantity="other">已导入 %1$d 份乐谱</item>
+    </plurals>
+    <string name="chord_edits_kept">%1$s，保留 %2$d 份（之后在这台设备上改过）</string>
+
+    <string name="title_activity_settings">设置</string>
+    <string name="settings_text_size">文字大小</string>
+    <string name="settings_theme">主题</string>
+    <string name="theme_tile_system">系统</string>
+    <string name="theme_tile_light">浅色</string>
+    <string name="theme_tile_dark">深色</string>
+    <string name="theme_tile_black">黑色</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_app_language">App 语言</string>
+    <string name="language_follow_phone">手机的语言</string>
+    <string name="settings_sheet_music">乐谱</string>
+    <string name="settings_piano">钢琴</string>
+    <string name="settings_guitar">吉他</string>
+    <string name="settings_on_hymn_page">诗歌页面上</string>
+    <string name="settings_youtube">YouTube 按钮</string>
+    <string name="settings_youtube_summary">在 YouTube 上搜索这首诗歌</string>
+    <string name="settings_similar">同曲调按钮</string>
+    <string name="settings_similar_summary">切换到用同一个曲调唱的诗歌</string>
+    <string name="settings_keep_on">屏幕常亮</string>
+    <string name="settings_keep_on_summary">打开诗歌时屏幕不会熄灭</string>
+    <string name="settings_hymn_books">诗歌本</string>
+    <string name="settings_books_to_show">要显示的诗歌本</string>
+    <string name="books_all_shown">显示全部 %1$d 本</string>
+    <string name="books_hiding">已隐藏：%1$s</string>
+    <string name="books_some_shown">显示 %1$d 本，共 %2$d 本</string>
+    <string name="books_value">%1$d / %2$d</string>
+    <string name="list_separator">、</string>
+    <string name="settings_your_data">你的数据</string>
+    <string name="settings_favorites">收藏</string>
+    <string name="settings_favorites_summary">备份，或移到新手机</string>
+    <string name="settings_share_app">分享这个 app</string>
+    <string name="share_scan">让别人用手机相机扫描这个二维码。</string>
+    <string name="share_web">iPhone 及所有设备</string>
+    <string name="share_qr">分享 app 的 二维码</string>
+    <string name="share_qr_for">%1$s 的 二维码</string>
+    <string name="copy_link">复制链接</string>
+    <string name="link_copied">已复制链接</string>
+    <string name="share_note_web">在浏览器中打开网页版。在 iPhone 或 iPad 上：点“分享”，再点“添加到主屏幕”，就能像 app 一样脱机使用。</string>
+    <string name="share_note_android">在 Google Play 上打开 Hymns For Android。</string>
+    <string name="settings_about">关于</string>
+    <string name="settings_about_summary">版本、意见反馈、源代码</string>
+    <string name="hymn_books_title">选择要显示的语言</string>
+    <string name="hymn_books_note">隐藏的语言不会出现在诗歌本清单、搜索和“其他语言”里。</string>
+    <string name="hymn_books_keep_one">至少要显示一种语言</string>
+
+    <string name="about_version">版本 %1$s</string>
+    <string name="about_feedback">意见反馈</string>
+    <string name="about_source">源代码</string>
+    <string name="about_no_email">找不到电子邮件 app。请写信到 %1$s</string>
+    <string name="about_no_browser">找不到浏览器。网址是 %1$s</string>
+
+</resources>
