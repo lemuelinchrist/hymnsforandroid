@@ -15,3 +15,13 @@ caches its tracks in `nycypcd_releases.tsv`; without it only the Videos tab is c
 
 Exit 0 = all accounted for, 1 = new videos listed, 2 = channel not listable. New videos go through the
 `match-youtube-songs` skill; after the review add them to `NycypcdYoutube.txt` or `nycypcd_known.tsv`.
+
+## recordings.tsv: where every recording came from
+
+`recordings.tsv` has one row per track or video of the channels we looked at (2,082 rows, 2026-11-08): video id, status
+(`linked`, a status of the `*_known.tsv` files, `kids-series`, or `unmatched`), the hymns it is linked to, the link label,
+the album or playlist (name and id), the YouTube channel, the publisher or studio (blank when unknown), the title and a note.
+It also lists the tracks that are NOT linked, including songs not in the hymnal yet, so that they can be linked when the hymn
+arrives. The database keeps only the label; this file is the record of the source. When a new channel or album is imported,
+add its rows here (the album names come from `topic_albums.py` and `yt-dlp --flat-playlist`, or the Releases tab for NYCYPCD).
+Loving the Lord - Topic: the albums that Joseph's Storehouses lists as "(by Hymn CDs)" are marked with the studio Hymn CDs.

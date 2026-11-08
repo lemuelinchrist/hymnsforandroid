@@ -130,6 +130,9 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   simplified for children. Limit per Chinese hymn (Lemuel 2026-11-07): at most 2 sung recordings + 1 instrumental; a second sung one gets its own label so the links card does not show the same label twice. The official channel 臺灣福音書房
   (UCW4K7RJzb3bhrBgbhT2OBLA) is mostly messages and training videos; about 47 single hymn videos with the number in the
   title are not linked yet.
+- **Loving the Lord - Topic** (UCF0V197WENYJAGHzYRFbUog), English, 11 albums, 265 tracks: 139 links, label `Loving the Lord` (`... 2` for a second
+  sung one, `(Instrumental)`), 2026-11-08; 71 uncertain titles went to a review page. Most albums are also on the Joseph's Storehouses channel (playlists "... (by Hymn CDs)").
+- **Keep the source of every recording**: add its album, channel and publisher to `tools/youtube-monitor/recordings.tsv`, linked or not (Lemuel 2026-11-08).
 - Review pages for another language: `REVIEW_GROUPS=C,CS python3 scripts/build_review.py ...` so that typing a C/CS id
   under "Another hymn" finds it.
 
