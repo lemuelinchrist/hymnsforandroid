@@ -81,7 +81,7 @@ export function createEditor(view, {onclose}) {
   const flat = btn('♭', () => edit((p) => { if (p.root) p.acc = p.acc === '♭' ? '' : '♭'; }), 'note');
   const sharp = btn('♯', () => edit((p) => { if (p.root) p.acc = p.acc === '♯' ? '' : '♯'; }), 'note');
   rootRow.append(el('span', 'ce-label', tr('Chord')), ...rootBtns, flat, sharp, textRow);
-  const qualBtns = QUALITIES.map(([q, label]) => [q, btn(label, () => edit((p) => { p.quality = q; }))]);
+  const qualBtns = QUALITIES.map(([q, label]) => [q, btn(label === 'major' ? tr('major') : label, () => edit((p) => { p.quality = q; }))]);
   qualRow.append(...qualBtns.map((x) => x[1]));
   const bassNone = btn(tr('none'), () => edit((p) => { p.bass = ''; p.bassAcc = ''; }));
   const bassBtns = ROOTS.map((r) => btn(r, () => edit((p) => { p.bass = r; p.bassAcc = ''; }), 'note'));
