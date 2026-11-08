@@ -20,6 +20,7 @@ GitHub Pages does not send .gz files as compressed responses, so the app unpacks
 import argparse
 import gzip
 import hashlib
+import html
 import json
 import os
 import re
@@ -33,6 +34,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
 DEFAULT_ASSETS = os.path.join(ROOT, 'app', 'src', 'main', 'assets')
 ENUM = os.path.join(ROOT, 'app', 'src', 'main', 'java', 'com', 'lemuelinchrist', 'android', 'hymns', 'HymnGroup.java')
+STRINGS = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'values', 'strings.xml')
 APP_GRADLE = os.path.join(ROOT, 'app', 'build.gradle')
 RAW = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'raw')
 APP_ICON = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'drawable-xhdpi', 'icon.png')
@@ -41,38 +43,38 @@ DIST = os.path.join(HERE, 'dist')
 ACCENTS = re.compile('[̀-ͯ]')
 TAGS = re.compile(r'<!--.*?-->|<[^>]*>')
 
-# How the web app names a hymnal, where it differs from HymnGroup.java (the app's drawer names): the name in the
-# hymnal's own language, an English name for the cards, the text language, and a darker day colour where the app's
-# is too light for text on white. A hymnal added to HymnGroup.java appears with its app name and colours.
+# What the web app adds to HymnGroup.java for a hymnal: the text language, and a darker day colour where the app's is
+# too light for text on white. The names come from the app (read_groups): the name in the hymnal's own language from
+# the native_<code> strings, and HymnGroup.java's English name for the cards when it differs.
 DISPLAY = {
-    'C': {'name': '中文 (繁)', 'long': 'Chinese (Traditional)', 'lang': 'zh-Hant', 'cjk': True},
-    'CS': {'name': '補充本 (繁)', 'long': 'Chinese Supplement (Traditional)', 'lang': 'zh-Hant', 'cjk': True},
-    'Z': {'name': '中文 (简)', 'long': 'Chinese (Simplified)', 'lang': 'zh-Hans', 'cjk': True},
-    'ZS': {'name': '补充本 (简)', 'long': 'Chinese Supplement (Simplified)', 'lang': 'zh-Hans', 'cjk': True},
+    'C': {'lang': 'zh-Hant', 'cjk': True},
+    'CS': {'lang': 'zh-Hant', 'cjk': True},
+    'Z': {'lang': 'zh-Hans', 'cjk': True},
+    'ZS': {'lang': 'zh-Hans', 'cjk': True},
     'CB': {'lang': 'ceb', 'day': '#E67A00'},
     'T': {'lang': 'tl', 'day': '#00897B'},
-    'FR': {'name': 'Français', 'long': 'French', 'lang': 'fr'},
-    'FRY': {'name': 'Français (jeunes)', 'long': 'French Youth', 'lang': 'fr'},
-    'S': {'name': 'Español', 'long': 'Spanish', 'lang': 'es'},
-    'SY': {'name': 'Español (jóvenes)', 'long': 'Spanish Youth', 'lang': 'es'},
-    'K': {'name': '한국어', 'long': 'Korean', 'lang': 'ko', 'cjk': True},
-    'G': {'name': 'Deutsch', 'long': 'German', 'lang': 'de', 'day': '#F4511E'},
-    'GY': {'name': 'Deutsch (Jugend)', 'long': 'German Youth', 'lang': 'de', 'day': '#F4511E'},
-    'J': {'name': '日本語', 'long': 'Japanese', 'lang': 'ja', 'cjk': True, 'day': '#689F38'},
-    'I': {'name': 'B. Indonesia', 'long': 'Indonesian', 'lang': 'id'},
+    'FR': {'lang': 'fr'},
+    'FRY': {'lang': 'fr'},
+    'S': {'lang': 'es'},
+    'SY': {'lang': 'es'},
+    'K': {'lang': 'ko', 'cjk': True},
+    'G': {'lang': 'de', 'day': '#F4511E'},
+    'GY': {'lang': 'de', 'day': '#F4511E'},
+    'J': {'lang': 'ja', 'cjk': True, 'day': '#689F38'},
+    'I': {'lang': 'id'},
     'CH': {'day': '#8D9124'},
-    'F': {'name': 'فارسی', 'long': 'Farsi', 'lang': 'fa'},
-    'SK': {'name': 'Slovenčina', 'long': 'Slovak', 'lang': 'sk'},
-    'GK': {'name': 'Ελληνικά', 'long': 'Greek', 'lang': 'el', 'day': '#0288D1'},
+    'F': {'lang': 'fa'},
+    'SK': {'lang': 'sk'},
+    'GK': {'lang': 'el', 'day': '#0288D1'},
     'SW': {'lang': 'sw'},
-    'RUS': {'name': 'Русский', 'long': 'Russian', 'lang': 'ru'},
-    'BUR': {'name': 'မြန်မာ', 'long': 'Burmese', 'lang': 'my'},
-    'TA': {'name': 'தமிழ்', 'long': 'Tamil', 'lang': 'ta'},
-    'UR': {'name': 'اردو', 'long': 'Urdu', 'lang': 'ur'},
+    'RUS': {'lang': 'ru'},
+    'BUR': {'lang': 'my'},
+    'TA': {'lang': 'ta'},
+    'UR': {'lang': 'ur'},
     'KI': {'lang': 'ki', 'day': '#E65100'},
-    'POR': {'name': 'Português', 'long': 'Portuguese', 'lang': 'pt'},
-    'POY': {'name': 'Português (jovens)', 'long': 'Portuguese Youth', 'lang': 'pt'},
-    'POL': {'name': 'Polski', 'long': 'Polish', 'lang': 'pl'},
+    'POR': {'lang': 'pt'},
+    'POY': {'lang': 'pt'},
+    'POL': {'lang': 'pl'},
 }
 
 
@@ -108,8 +110,11 @@ def copy_tree(src, dst):
 
 
 def read_groups():
-    """The hymnals as HymnGroup.java defines them, in its order: code, name, day and night colour, text direction."""
+    """The hymnals as HymnGroup.java defines them, in its order: code, name, day and night colour, text direction;
+    the name in the hymnal's own language from the app's native_<code> strings, with the English name as 'long'."""
     src = open(ENUM, encoding='utf-8').read()
+    native = {m.group(1): html.unescape(m.group(2)) for m in
+              re.finditer(r'<string name="native_([a-z]+)"[^>]*>([^<]*)</string>', open(STRINGS, encoding='utf-8').read())}
     rgb = r'Color\.rgb\(\s*0x([0-9A-Fa-f]{2})\s*,\s*0x([0-9A-Fa-f]{2})\s*,\s*0x([0-9A-Fa-f]{2})\s*\)'
     pattern = re.compile(r'^\s+([A-Z]{1,3})\(\s*"([^"]+)"\s*,\s*' + rgb + r'\s*,\s*' + rgb + r'\s*,\s*Gravity\.(\w+)\s*\)', re.M)
     groups = []
@@ -121,6 +126,9 @@ def read_groups():
         if m.group(9) == 'RIGHT':
             g['rtl'] = True
         g.update(DISPLAY.get(code, {}))
+        own = native.get(code.lower())
+        if own and own != name:
+            g['name'], g['long'] = own, name
         groups.append(g)
     if len(groups) < 20:
         sys.exit('Could not read the hymnals from ' + ENUM)

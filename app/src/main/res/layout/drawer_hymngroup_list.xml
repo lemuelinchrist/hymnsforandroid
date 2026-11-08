@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- One book in the drawer (HymnDrawer): the book's badge picture (drawable-xhdpi/<code>.png), the name, the number of hymns.
+<!-- One book in the drawer (HymnDrawer): the book's badge picture (drawable-xhdpi/<code>.png), the book's name in its own language, and under it the name in the app's language and the number of hymns.
      The current book gets a rounded highlight in a tint of its colour. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
@@ -41,13 +41,15 @@
                     android:id="@+id/hymnGroupName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textColor="@color/drawer_text"/>
 
             <TextView
                     android:id="@+id/hymnGroupCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:ellipsize="end"
                     android:textSize="12sp"
                     android:textColor="@color/drawer_muted"/>
         </LinearLayout>

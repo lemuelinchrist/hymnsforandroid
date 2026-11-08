@@ -191,7 +191,7 @@ public class SearchTabFragment extends TabFragment {
         boolean all = allBooks != null ? allBooks : inBook.isEmpty() && !results.isEmpty();
 
         choices.removeAllViews();
-        addChoice(getString(R.string.search_in_book, selectedHymnGroup.getDisplayName(requireContext()), inBook.size()), !all, v -> {
+        addChoice(getString(R.string.search_in_book, selectedHymnGroup.getNativeName(requireContext()), inBook.size()), !all, v -> {
             allBooks = false;
             showResults();
         });
