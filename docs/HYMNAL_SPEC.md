@@ -589,8 +589,12 @@ A web build SHOULD map this onto browser history (`#/E1` style URLs) so the brow
 
 ### 8.5 Book drawer
 
-- Display names are in English for everyone (v5.8: the Chinese books were 中文-繁, 補充本-繁…, Indonesian was
-  B.Indonesia), since the drawer serves readers of every language.
+- Each book shows its name **in its own language**, big (Español, 中文 (繁), 補充本 (繁), 한국어, فارسی; English, Be Filled,
+  New Songs, Children, Cebuano, Tagalog, Kiswahili and Kikuyu as they are), and under it, small, its name in the app's
+  language and the number of hymns ("Spanish · 910 hymns"; "西班牙文 · 910 首詩歌" in Chinese). The translated name is
+  left out when it would repeat the big one ("English" in English) and for a book in the app's own language (the four
+  Chinese books in Chinese). The web app shows the same names: both read the `native_<code>` strings of the app's
+  `res/values/strings.xml`. (Until 2026-11 the drawer showed English names for everyone.)
 - A header (app icon, "Hymns"), then the list, then a fixed link at the bottom:
   - **The books**: every **enabled** book (§10) in display order, a fixed order the saints know. (v5.8 put a RECENT
     section of the latest books above it; it was taken out again on 2026-11-02 because saints are used to the old
@@ -600,8 +604,8 @@ A web build SHOULD map this onto browser history (`#/E1` style URLs) so the brow
     Books", which hid what it does); its summary says what it is for (`Simplify your view by hiding books you don't use (all 31 shown)`,
     then `Hiding Indonesian`, or `Hiding 5 of 28`) and the dialog is titled "Choose the languages to show".
 - A row: the book's badge picture (36dp; the app's own pictures since its first versions, kept as they are even
-  where their letters differ from the code: H for English, B for Cebuano, Ch for Children), the display name (long
-  names wrap), and the number of hymns ("1,362 hymns"). The current book has a rounded highlight in a tint of its
+  where their letters differ from the code: H for English, B for Cebuano, Ch for Children), the book's own name, and the
+  small line (at most two lines). The current book has a rounded highlight in a tint of its
   colour, in both sections: by day 14 % of its day colour over white, its name darkened; at night 20 % of its night
   colour over the drawer, its name in the night colour (§6.3).
 - The lists are made again each time the drawer starts to open.
@@ -774,8 +778,10 @@ Traditional Chinese or Simplified Chinese; the hymns themselves are always in th
   it, else English; Hong Kong, Macau and Taiwan get Traditional, mainland China and Singapore Simplified) or one of the
   three, each written in its own language so it can be found from any language. Android keeps the choice (AppCompat
   per-app language; Android 13 and later also list it under the phone's App languages). The open screens are redrawn at once.
-- **Book names** are translated (英文, 中文（繁體）, 中文補充本（繁體）…, Children = 英文兒童), except **Be Filled** and
-  **New Songs**, which keep their English names in every language. The book codes (E, C, CS…) never change.
+- **Book names**: the drawer and the books dialog show each book's own name with the translated name under it (§8.5);
+  sentences and the Other languages grid's spoken names use the translated name (英文, 中文（繁體）…, Children =
+  英文兒童), except **Be Filled** and **New Songs**, which keep their English names in every language. The search
+  title and its book filter use the book's own name. The book codes (E, C, CS…) never change.
 - **The launcher label** is 詩歌 / 诗歌 in Chinese, Hymns in English.
 - **First hymn**: someone with no History starts on the first hymn of the book in their language (§8.1).
 - **Not translated**: the " (New Tune)" after first lines and in the header (it is part of the search index and the

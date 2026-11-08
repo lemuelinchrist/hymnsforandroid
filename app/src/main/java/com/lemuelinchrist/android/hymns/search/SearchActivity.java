@@ -86,7 +86,7 @@ public class SearchActivity extends AppCompatActivity  {
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
         selectedHymnGroup = (HymnGroup) extras.get("selectedHymnGroup");
-        setTitle(getString(R.string.search_index_title, selectedHymnGroup.getDisplayName(this)));
+        setTitle(getString(R.string.search_index_title, selectedHymnGroup.getNativeName(this)));
 
 
         actionBar = getSupportActionBar();

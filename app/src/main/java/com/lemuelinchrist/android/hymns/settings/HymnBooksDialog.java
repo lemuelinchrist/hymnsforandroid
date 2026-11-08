@@ -100,11 +100,13 @@ public final class HymnBooksDialog {
             Context context = getContext();
             ((ImageView) row.findViewById(R.id.hymnBookIcon)).setImageResource(context.getResources()
                     .getIdentifier(group.name().toLowerCase(), "drawable", context.getPackageName()));
-            ((TextView) row.findViewById(R.id.hymnBookName)).setText(group.getDisplayName(context));
+            ((TextView) row.findViewById(R.id.hymnBookName)).setText(group.getNativeName(context));
             TextView count = row.findViewById(R.id.hymnBookCount);
             Integer hymns = counts.get(group.name());
-            count.setVisibility(hymns == null ? View.GONE : View.VISIBLE);
-            if (hymns != null) count.setText(context.getResources().getQuantityString(R.plurals.hymns_count, hymns, String.valueOf(hymns)));
+            String subtitle = group.getSubtitle(context, hymns == null ? null
+                    : context.getResources().getQuantityString(R.plurals.hymns_count, hymns, String.valueOf(hymns)));
+            count.setVisibility(subtitle == null ? View.GONE : View.VISIBLE);
+            count.setText(subtitle);
             ((CheckBox) row.findViewById(R.id.hymnBookShown)).setChecked(shown[position]);
             return row;
         }

@@ -29,12 +29,15 @@
                 android:id="@+id/hymnBookName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         <TextView
                 android:id="@+id/hymnBookCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
     </LinearLayout>
 

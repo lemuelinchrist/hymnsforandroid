@@ -241,12 +241,42 @@ public enum HymnGroup {
         return text(context, "book_" + name(), simpleName);
     }
 
+    /** The name of the book in its own language ("Español", "中文 (繁)"), the same whatever the app's language. */
+    public String getNativeName(Context context) {
+        return text(context, "native_" + name(), simpleName);
+    }
+
+    /**
+     * The line under the book's own name in the drawer and the books dialog: its name in the app's language and the
+     * number of hymns ("Spanish · 910 hymns"), only the number when the two names are the same ("English" in English).
+     */
+    public String getSubtitle(Context context, String hymnCount) {
+        String name = getDisplayName(context);
+        // a book in the app's own language needs no translation of its name: "中文 (繁)" in Chinese, "English" in English
+        if (name.equals(getNativeName(context)) || isInLanguage(context.getString(R.string.ui_language))) return hymnCount;
+        return hymnCount == null ? name : context.getString(R.string.book_subtitle, name, hymnCount);
+    }
+
     /**
      * The language of the book in the app's language (the string language_&lt;code of its main book&gt;): "English"
      * for Be Filled, New Songs and Children, "Chinese" for the four Chinese books. Labels a link a hymn inherits.
      */
     public String getLanguageName(Context context) {
         return text(context, "language_" + languageBook().name(), getLanguage());
+    }
+
+    /** Whether the book is in the language of this language tag ("zh-Hant": the four Chinese books). */
+    boolean isInLanguage(String languageTag) {
+        String language = languageTag.split("-")[0];
+        switch (languageBook()) {
+            case E: return language.equals("en");
+            case C: return language.equals("zh");
+            case S: return language.equals("es");
+            case FR: return language.equals("fr");
+            case G: return language.equals("de");
+            case POR: return language.equals("pt");
+            default: return false;
+        }
     }
 
     /** The main book of the book's language: E for BF, NS and CH, C for the Chinese books, S for SY and so on. */

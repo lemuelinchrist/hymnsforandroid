@@ -65,6 +65,43 @@
     <string name="book_poy">Portuguese Youth</string>
     <string name="book_pol">Polish</string>
 
+    <!-- The hymn books in their own language (HymnGroup.getNativeName), the same in every language of the app: the big
+         name in the drawer and the books dialog, with book_<code> and the hymn count under it ("Español" over
+         "Spanish · 910 hymns"). The web app shows the same names (tools/web/build.py reads them from here). -->
+    <string name="native_e" translatable="false">English</string>
+    <string name="native_c" translatable="false">中文 (繁)</string>
+    <string name="native_cs" translatable="false">補充本 (繁)</string>
+    <string name="native_z" translatable="false">中文 (简)</string>
+    <string name="native_zs" translatable="false">补充本 (简)</string>
+    <string name="native_cb" translatable="false">Cebuano</string>
+    <string name="native_t" translatable="false">Tagalog</string>
+    <string name="native_fr" translatable="false">Français</string>
+    <string name="native_fry" translatable="false">Français (jeunes)</string>
+    <string name="native_s" translatable="false">Español</string>
+    <string name="native_sy" translatable="false">Español (jóvenes)</string>
+    <string name="native_k" translatable="false">한국어</string>
+    <string name="native_g" translatable="false">Deutsch</string>
+    <string name="native_gy" translatable="false">Deutsch (Jugend)</string>
+    <string name="native_j" translatable="false">日本語</string>
+    <string name="native_i" translatable="false">B. Indonesia</string>
+    <string name="native_bf" translatable="false">Be Filled</string>
+    <string name="native_ns" translatable="false">New Songs</string>
+    <string name="native_ch" translatable="false">Children</string>
+    <string name="native_f" translatable="false">فارسی</string>
+    <string name="native_sk" translatable="false">Slovenčina</string>
+    <string name="native_gk" translatable="false">Ελληνικά</string>
+    <string name="native_sw" translatable="false">Kiswahili</string>
+    <string name="native_rus" translatable="false">Русский</string>
+    <string name="native_bur" translatable="false">မြန်မာ</string>
+    <string name="native_ta" translatable="false">தமிழ்</string>
+    <string name="native_ur" translatable="false">اردو</string>
+    <string name="native_ki" translatable="false">Kikuyu</string>
+    <string name="native_por" translatable="false">Português</string>
+    <string name="native_poy" translatable="false">Português (jovens)</string>
+    <string name="native_pol" translatable="false">Polski</string>
+    <!-- the line under a book's own name: its name in the app's language, then the number of hymns -->
+    <string name="book_subtitle">%1$s · %2$s</string>
+
     <!-- The languages, labelling a link a hymn takes from a hymn in another language ("English – label") -->
     <string name="language_e">English</string>
     <string name="language_c">Chinese</string>
