@@ -635,6 +635,11 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 .setting input[type="checkbox"]:checked { background: var(--g); }
 .setting input[type="checkbox"]:checked::after { transform: translateX(18px); }
 .setting .seg button { font-size: 13px; padding: 5px 12px; }
+.lang-select {
+  height: 38px; padding: 0 12px; border-radius: 19px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink);
+  font: inherit; font-size: 15px; max-width: 60%; cursor: pointer;
+}
+.lang-select:focus-visible { outline: 2px solid var(--g); outline-offset: 2px; }
 /* Settings: Text size and Appearance as on the Android Settings screen (header + value, steps, theme pictures) */
 .set-head { display: flex; align-items: baseline; gap: 8px; margin: 14px 6px 8px; }
 .set-head h2 { flex: 1; margin: 0; font-size: 13.5px; font-weight: 700; color: var(--set-primary); }

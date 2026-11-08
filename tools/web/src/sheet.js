@@ -7,6 +7,7 @@
 import {version} from './db.js';
 import {fetchGzJson} from './files.js';
 import * as Edits from './edits.js';
+import {tr} from './i18n.js';
 
 const MEI_NS = 'http://www.music-encoding.org/ns/mei';
 const XML_NS = 'http://www.w3.org/XML/1998/namespace';
@@ -321,15 +322,15 @@ export class SheetView {
     this.shownId = sheetId;
     this.baseXml = null;
     this.meiText = null;
-    this.status('Loading sheet music…', 'loading');
+    this.status(tr('Loading sheet music…'), 'loading');
     let xml, overlay;
     try {
       [this.tk, xml, overlay] = await Promise.all([loadVerovio(), fetchMei(sheetId), fetchLyrics(lyricsId)]);
     } catch (e) {
       if (token === this.token) {
         const offline = !navigator.onLine || /failed to fetch|network|load failed/i.test(e.message);
-        this.status(offline ? 'This sheet is not on this device yet. Open it once while you are online and it will work offline.'
-          : 'Sheet music could not be loaded (' + e.message + ').', 'error');
+        this.status(offline ? tr('This sheet is not on this device yet. Open it once while you are online and it will work offline.')
+          : tr('Sheet music could not be loaded ({0}).', e.message), 'error');
       }
       return;
     }
@@ -366,7 +367,7 @@ export class SheetView {
       this.build();
       this.render();
     } catch (e) {
-      this.status('Could not render this sheet: ' + e, 'error');
+      this.status(tr('Could not render this sheet: {0}', e), 'error');
     }
     if (this.onchange) this.onchange(this.state, this.info);
     if (this.onedited) this.onedited('view');

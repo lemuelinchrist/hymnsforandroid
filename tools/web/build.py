@@ -34,7 +34,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
 DEFAULT_ASSETS = os.path.join(ROOT, 'app', 'src', 'main', 'assets')
 ENUM = os.path.join(ROOT, 'app', 'src', 'main', 'java', 'com', 'lemuelinchrist', 'android', 'hymns', 'HymnGroup.java')
-STRINGS = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'values', 'strings.xml')
+RES = os.path.join(ROOT, 'app', 'src', 'main', 'res')
+STRINGS = os.path.join(RES, 'values', 'strings.xml')
 APP_GRADLE = os.path.join(ROOT, 'app', 'build.gradle')
 RAW = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'raw')
 APP_ICON = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'drawable-xhdpi', 'icon.png')
@@ -107,6 +108,32 @@ def copy_tree(src, dst):
             d = os.path.join(dst, os.path.relpath(s, src))
             os.makedirs(os.path.dirname(d), exist_ok=True)
             shutil.copyfile(s, d)
+
+
+def read_names():
+    """The app's book and language names in each language of the app, from res/values-*/strings.xml:
+    {'zh-Hant': {'book': {'c': '中文（繁體）', ...}, 'language': {'c': '中文', ...}, 'first': 'C'}, 'es': ...}.
+    'first' is the book a new user starts in (the first_hymn string). English is not listed: HymnGroup.java has it."""
+    names = {}
+    for folder in sorted(os.listdir(RES)):
+        m = re.match(r'values-(.+)$', folder)
+        path = os.path.join(RES, folder, 'strings.xml')
+        if not m or not os.path.exists(path) or not m.group(1).startswith(('b+', 'es', 'fr')):
+            continue
+        tag = m.group(1).replace('b+', '').replace('+', '-')
+        text = open(path, encoding='utf-8').read()
+        found = {k: html.unescape(v).replace("\\'", "'") for k, v in
+                 re.findall(r'<string name="([a-z_]+)"[^>]*>([^<]*)</string>', text)}
+        entry = {'book': {}, 'language': {}}
+        for key, value in found.items():
+            for kind in ('book', 'language'):
+                if key.startswith(kind + '_'):
+                    entry[kind][key[len(kind) + 1:]] = value
+        first = re.match(r'[A-Za-z]+', found.get('first_hymn', ''))
+        if first:
+            entry['first'] = first.group(0).upper()
+        names[tag] = entry
+    return names
 
 
 def read_groups():
@@ -307,6 +334,7 @@ def main():
     copy_tree(os.path.join(HERE, 'vendor'), os.path.join(DIST, 'vendor'))
 
     groups = read_groups()
+    names = read_names()
     version, in_db = build_db(args.assets)
     known = {g['code'] for g in groups}
     for g in in_db:
@@ -328,14 +356,16 @@ def main():
     version['indexFile'] = 'data/index-%s.json' % short_hash(index)
     write(os.path.join(DIST, version['indexFile']), index)
     build_id = short_hash(json.dumps(version, sort_keys=True).encode() + b''.join(
-        open(os.path.join(HERE, 'src', n), 'rb').read() for n in sorted(os.listdir(os.path.join(HERE, 'src')))))
+        open(os.path.join(HERE, 'src', n), 'rb').read() for n in sorted(os.listdir(os.path.join(HERE, 'src')))
+    ) + json.dumps([groups, names], sort_keys=True).encode())
     version['build'] = build_id
     write(os.path.join(DIST, 'data', 'version.json'), json.dumps(version, indent=1).encode('utf-8'))
 
     # the hymnals into groups.js, the build into the service worker
     gpath = os.path.join(DIST, 'groups.js')
     src = open(gpath, encoding='utf-8').read()
-    write(gpath, src.replace('/*GROUPS*/[]', json.dumps(groups, ensure_ascii=False, indent=1)).encode('utf-8'))
+    src = src.replace('/*GROUPS*/[]', json.dumps(groups, ensure_ascii=False, indent=1)).replace('/*NAMES*/{}', json.dumps(names, ensure_ascii=False, indent=1))
+    write(gpath, src.encode('utf-8'))
     shell = sorted(os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/')
                    for r, _, ns in os.walk(DIST) for n in ns
                    if not re.match(r'(data|sheets|lyrics|verovio|midi)/', os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/'))

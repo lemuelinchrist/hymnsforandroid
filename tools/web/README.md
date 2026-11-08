@@ -45,6 +45,16 @@ app, for a one-off page such as a review questionnaire for a contributor. The se
 page opens even on a phone that has the app installed. Give the folder an unguessable name and `noindex` in the page;
 the repository is public, so the page is too. Delete the folder when the page has done its job.
 
+## Language
+
+The web app's own texts (not the hymns) come in English, Traditional Chinese, Simplified Chinese, Spanish and French,
+like the Android app: Settings → Language → App language (*Phone's language* by default). The texts are in
+`src/strings.js` (English text → translation; a text without one shows in English), written with `tr()`, `tn()` (counts)
+and `trh()` (text with elements) from `src/i18n.js`; the fixed texts of `index.html` carry `data-tr` attributes.
+The names of the books and a new person's first book are read by `build.py` from the Android strings
+(`app/src/main/res/values-*/strings.xml`), so adding a language there needs a language in `i18n.js` and `strings.js` too.
+A new text: use `tr('English text')` and add its four translations to `strings.js`.
+
 ## Chord edits
 
 On a piano sheet, **Edit chords** (or `E`): tap a bar, pick a beat (half beats too), build or type the chord.

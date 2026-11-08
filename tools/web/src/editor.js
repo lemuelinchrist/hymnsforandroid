@@ -3,12 +3,14 @@
 // Every change goes through SheetView.setBar(), which redraws the sheet and saves it on this device.
 
 import {splitChord} from './sheet.js';
+import {tr} from './i18n.js';
 
 const ROOTS = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 const QUALITIES = [['', 'major'], ['m', 'm'], ['7', '7'], ['maj7', 'maj7'], ['m7', 'm7'], ['6', '6'], ['9', '9'], ['add9', 'add9'],
   ['sus4', 'sus4'], ['sus2', 'sus2'], ['7sus4', '7sus4'], ['dim', 'dim'], ['dim7', 'dim7'], ['m7♭5', 'm7♭5'], ['aug', 'aug']];
 const STATUS = {
-  idle: '', pending: 'Saving…', saving: 'Saving…', saved: 'Saved on this device ✓', error: 'Not saved, trying again…',
+  idle: () => '', pending: () => tr('Saving…'), saving: () => tr('Saving…'), saved: () => tr('Saved on this device ✓'),
+  error: () => tr('Not saved, trying again…'),
 };
 
 function el(tag, cls, text, attrs) {
@@ -42,30 +44,30 @@ function compose(p) {
 }
 
 export function createEditor(view, {onclose}) {
-  const root = el('section', 'chord-editor', null, {'aria-label': 'Chord editor'});
+  const root = el('section', 'chord-editor', null, {'aria-label': tr('Chord editor')});
   let bar = null, beat = 1;
 
   const status = el('span', 'ce-status');
-  const bUndo = el('button', 'ce-btn', 'Undo', {type: 'button'});
-  const bRevert = el('button', 'ce-btn', 'Original bar', {type: 'button', title: 'Put the original chords back in this bar'});
-  const bDone = el('button', 'ce-btn primary', 'Done', {type: 'button'});
-  const prev = el('button', 'ce-btn icon', '‹', {type: 'button', 'aria-label': 'Previous bar'});
-  const next = el('button', 'ce-btn icon', '›', {type: 'button', 'aria-label': 'Next bar'});
+  const bUndo = el('button', 'ce-btn', tr('Undo'), {type: 'button'});
+  const bRevert = el('button', 'ce-btn', tr('Original bar'), {type: 'button', title: tr('Put the original chords back in this bar')});
+  const bDone = el('button', 'ce-btn primary', tr('Done'), {type: 'button'});
+  const prev = el('button', 'ce-btn icon', '‹', {type: 'button', 'aria-label': tr('Previous bar')});
+  const next = el('button', 'ce-btn icon', '›', {type: 'button', 'aria-label': tr('Next bar')});
   const title = el('strong', 'ce-title');
   const stale = el('div', 'ce-stale');
   stale.hidden = true;
   const top = el('div', 'ce-top');
   top.append(prev, title, next, el('span', 'grow'), status, bUndo, bRevert, bDone);
 
-  const strip = el('div', 'ce-beats', null, {role: 'group', 'aria-label': 'Beats'});
+  const strip = el('div', 'ce-beats', null, {role: 'group', 'aria-label': tr('Beats')});
   const build = el('div', 'ce-build');
   const rootRow = el('div', 'ce-row');
   const qualRow = el('div', 'ce-row scroll');
   const bassRow = el('div', 'ce-row');
   const textRow = el('div', 'ce-row ce-text');
   const input = el('input', 'ce-input', null, {type: 'text', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false',
-    placeholder: 'Chord', 'aria-label': 'Chord', enterkeyhint: 'done'});
-  const bClear = el('button', 'ce-btn', 'Remove chord', {type: 'button'});
+    placeholder: tr('Chord'), 'aria-label': tr('Chord'), enterkeyhint: 'done'});
+  const bClear = el('button', 'ce-btn', tr('Remove chord'), {type: 'button'});
   textRow.append(input, bClear);
   build.append(rootRow, qualRow, bassRow);
   root.append(top, stale, strip, build);
@@ -78,14 +80,14 @@ export function createEditor(view, {onclose}) {
   const rootBtns = ROOTS.map((r) => btn(r, () => edit((p) => { p.root = r; p.acc = ''; }), 'note'));
   const flat = btn('♭', () => edit((p) => { if (p.root) p.acc = p.acc === '♭' ? '' : '♭'; }), 'note');
   const sharp = btn('♯', () => edit((p) => { if (p.root) p.acc = p.acc === '♯' ? '' : '♯'; }), 'note');
-  rootRow.append(el('span', 'ce-label', 'Chord'), ...rootBtns, flat, sharp, textRow);
+  rootRow.append(el('span', 'ce-label', tr('Chord')), ...rootBtns, flat, sharp, textRow);
   const qualBtns = QUALITIES.map(([q, label]) => [q, btn(label, () => edit((p) => { p.quality = q; }))]);
   qualRow.append(...qualBtns.map((x) => x[1]));
-  const bassNone = btn('none', () => edit((p) => { p.bass = ''; p.bassAcc = ''; }));
+  const bassNone = btn(tr('none'), () => edit((p) => { p.bass = ''; p.bassAcc = ''; }));
   const bassBtns = ROOTS.map((r) => btn(r, () => edit((p) => { p.bass = r; p.bassAcc = ''; }), 'note'));
   const bassFlat = btn('♭', () => edit((p) => { if (p.bass) p.bassAcc = p.bassAcc === '♭' ? '' : '♭'; }), 'note');
   const bassSharp = btn('♯', () => edit((p) => { if (p.bass) p.bassAcc = p.bassAcc === '♯' ? '' : '♯'; }), 'note');
-  bassRow.append(el('span', 'ce-label', 'Bass'), bassNone, ...bassBtns, bassFlat, bassSharp);
+  bassRow.append(el('span', 'ce-label', tr('Bass')), bassNone, ...bassBtns, bassFlat, bassSharp);
 
   function chordAt(t) {
     const c = view.chordsOf(bar).find(([x]) => Math.abs(x - t) < 1e-3);
@@ -131,18 +133,18 @@ export function createEditor(view, {onclose}) {
     const open = bar != null;
     root.classList.toggle('no-bar', !open);
     const info = open && view.barInfo(bar);
-    title.textContent = open ? 'Bar ' + bar + (info && info.edited ? ' ✎' : '') : 'Tap a bar on the sheet';
+    title.textContent = open ? tr('Bar {0}', bar) + (info && info.edited ? ' ✎' : '') : tr('Tap a bar on the sheet');
     prev.disabled = !open || bar <= 1;
     next.disabled = !open || !info || bar >= info.count;
     bUndo.disabled = !view.history.length;
     bRevert.disabled = !open || !info || !info.edited;
     const st = view.save.status;
-    status.textContent = STATUS[st] || '';
+    status.textContent = STATUS[st] ? STATUS[st]() : '';
     status.className = 'ce-status ' + st;
     const bad = view.stale;
     stale.hidden = !bad.length;
-    stale.textContent = bad.length ? 'The sheet has changed since you edited bar' + (bad.length > 1 ? 's ' : ' ') + bad.join(', ')
-      + '. Check ' + (bad.length > 1 ? 'those bars' : 'that bar') + '.' : '';
+    stale.textContent = !bad.length ? '' : bad.length > 1 ? tr('The sheet has changed since you edited bars {0}. Check those bars.', bad.join(', '))
+      : tr('The sheet has changed since you edited bar {0}. Check that bar.', bad[0]);
 
     strip.textContent = '';
     if (!open || !info) { build.hidden = true; strip.hidden = true; return; }
@@ -168,7 +170,7 @@ export function createEditor(view, {onclose}) {
     bassFlat.disabled = bassSharp.disabled = !p.bass;
     bClear.disabled = !cur;
     if (document.activeElement !== input) input.value = cur;
-    input.placeholder = 'Type a chord for beat ' + beatLabel(beat);
+    input.placeholder = tr('Type a chord for beat {0}', beatLabel(beat));
   }
 
   view.onpick = ({bar: n, beat: t}) => go(n, t);
