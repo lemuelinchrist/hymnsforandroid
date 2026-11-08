@@ -1,4 +1,4 @@
-// The viewer's own texts in the app's language: the app opens index.html with ?lang=zh-Hant or ?lang=zh-Hans (the
+// The viewer's own texts in the app's language: the app opens index.html with ?lang=zh-Hant, zh-Hans, es or fr (the
 // web app may pass the same). tr('Edit chords') gives the translation, the English text itself when there is none;
 // tr('Bar {0}', 12) fills in the numbers. Elements of index.html with data-tr (text) or data-tr-label (aria-label)
 // are translated here at the start. The sheet itself (titles, lyrics, the capo line) follows the hymn, not this.
@@ -81,9 +81,88 @@
     'The sheet has changed since you edited bars {0}. Check those bars.': '你编辑第 {0} 小节之后，乐谱已经改变。请检查那些小节。'
   };
 
+  var ES = {
+    'Sheet music': 'Partitura',
+    'Back': 'Atrás',
+    'Piano': 'Piano',
+    'Guitar': 'Guitarra',
+    'Transpose down': 'Bajar el tono',
+    'Transpose up': 'Subir el tono',
+    'Light or dark paper': 'Papel claro u oscuro',
+    'Light paper': 'Papel claro',
+    'Dark paper': 'Papel oscuro',
+    'Staff': 'Pentagrama',
+    'Show staff': 'Mostrar pentagrama',
+    'Hide staff': 'Ocultar pentagrama',
+    'Edit chords': 'Editar acordes',
+    'Editing chords': 'Editando acordes',
+    'Original chords': 'Acordes originales',
+    'Loading…': 'Cargando…',
+    'Could not render this sheet: {0}': 'No se pudo mostrar esta partitura: {0}',
+    'Sheet music not found ({0})': 'No se encontró la partitura ({0})',
+    'Chord editor': 'Editor de acordes',
+    'Undo': 'Deshacer',
+    'Original bar': 'Compás original',
+    'Done': 'Listo',
+    'Previous bar': 'Compás anterior',
+    'Next bar': 'Compás siguiente',
+    'Beats': 'Tiempos',
+    'Chord': 'Acorde',
+    'Remove chord': 'Quitar acorde',
+    'Bass': 'Bajo',
+    'none': 'ninguno',
+    'Bar {0}': 'Compás {0}',
+    'Tap a bar on the sheet': 'Toca un compás en la partitura',
+    'Type a chord for beat {0}': 'Escribe un acorde para el tiempo {0}',
+    'Saved on this device ✓': 'Guardado en este dispositivo ✓',
+    'Not saved, trying again…': 'No guardado, reintentando…',
+    'The sheet has changed since you edited bar {0}. Check that bar.': 'La partitura cambió desde que editaste el compás {0}. Revisa ese compás.',
+    'The sheet has changed since you edited bars {0}. Check those bars.': 'La partitura cambió desde que editaste los compases {0}. Revisa esos compases.'
+  };
+  var FR = {
+    'Sheet music': 'Partition',
+    'Back': 'Retour',
+    'Piano': 'Piano',
+    'Guitar': 'Guitare',
+    'Transpose down': 'Transposer vers le bas',
+    'Transpose up': 'Transposer vers le haut',
+    'Light or dark paper': 'Papier clair ou sombre',
+    'Light paper': 'Papier clair',
+    'Dark paper': 'Papier sombre',
+    'Staff': 'Portée',
+    'Show staff': 'Afficher la portée',
+    'Hide staff': 'Masquer la portée',
+    'Edit chords': 'Modifier les accords',
+    'Editing chords': 'Modification des accords',
+    'Original chords': 'Accords d’origine',
+    'Loading…': 'Chargement…',
+    'Could not render this sheet: {0}': 'Impossible d’afficher cette partition : {0}',
+    'Sheet music not found ({0})': 'Partition introuvable ({0})',
+    'Chord editor': 'Éditeur d’accords',
+    'Undo': 'Annuler',
+    'Original bar': 'Mesure d’origine',
+    'Done': 'Terminé',
+    'Previous bar': 'Mesure précédente',
+    'Next bar': 'Mesure suivante',
+    'Beats': 'Temps',
+    'Chord': 'Accord',
+    'Remove chord': 'Supprimer l’accord',
+    'Bass': 'Basse',
+    'none': 'aucune',
+    'Bar {0}': 'Mesure {0}',
+    'Tap a bar on the sheet': 'Touchez une mesure sur la partition',
+    'Type a chord for beat {0}': 'Saisissez un accord pour le temps {0}',
+    'Saved on this device ✓': 'Enregistré sur cet appareil ✓',
+    'Not saved, trying again…': 'Non enregistré, nouvelle tentative…',
+    'The sheet has changed since you edited bar {0}. Check that bar.': 'La partition a changé depuis que vous avez modifié la mesure {0}. Vérifiez cette mesure.',
+    'The sheet has changed since you edited bars {0}. Check those bars.': 'La partition a changé depuis que vous avez modifié les mesures {0}. Vérifiez ces mesures.'
+  };
+
   var lang = '';
   try { lang = new URLSearchParams(location.search).get('lang') || ''; } catch (e) { /* no query: English */ }
-  var table = /^zh-(Hant|TW|HK|MO)\b/i.test(lang) ? HANT : /^zh\b/i.test(lang) ? HANS : {};
+  var NONE = {};
+  var table = /^zh-(Hant|TW|HK|MO)\b/i.test(lang) ? HANT : /^zh\b/i.test(lang) ? HANS
+    : /^es\b/i.test(lang) ? ES : /^fr\b/i.test(lang) ? FR : NONE;
 
   window.tr = function (english) {
     var text = table.hasOwnProperty(english) ? table[english] : english;
@@ -92,8 +171,8 @@
   };
 
   function translatePage() {
-    if (table !== HANT && table !== HANS) return;
-    document.documentElement.lang = table === HANT ? 'zh-Hant' : 'zh-Hans';
+    if (table === NONE) return;
+    document.documentElement.lang = table === HANT ? 'zh-Hant' : table === HANS ? 'zh-Hans' : table === ES ? 'es' : 'fr';
     document.title = window.tr(document.title);
     Array.prototype.forEach.call(document.querySelectorAll('[data-tr]'), function (e) {
       e.textContent = window.tr(e.textContent.trim());

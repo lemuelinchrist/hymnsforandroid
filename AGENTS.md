@@ -136,8 +136,9 @@ of every change, in the same commit, not later:
 -   A release: the GitHub release notes say what changed for users (section 7).
 
 -   A text the user sees: put it in `res/values/strings.xml` (never a literal in Java or a layout; lint's
-    HardcodedText is an error) and add its Traditional and Simplified Chinese drafts to `values-b+zh+Hant` and
-    `values-b+zh+Hans` in the same change (a missing one shows in English). Be Filled and New Songs stay English.
+    HardcodedText is an error) and add its drafts to `values-b+zh+Hant`, `values-b+zh+Hans`, `values-es` and `values-fr` (and
+    `assets/viewer/strings.js` for the sheet viewer) in the same change (a missing one shows in English;
+    `StringsTranslationsTest` checks the placeholders). Be Filled and New Songs stay English.
 
 Write what the app does and why it was designed that way, not who asked or what was said: no names of the people who
 send feedback or contributions, no email addresses, no places where saints meet. Those stay in the private reports.
