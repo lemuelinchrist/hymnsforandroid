@@ -80,7 +80,7 @@ The Android app's source code is located in `app/src/main/java/com/lemuelinchris
 -   **`content`**: Displays one hymn. `ContentArea` is the fragment for a hymn page; `LyricsArea` renders the header and stanzas; `OtherLanguagesSection` shows the foldable "OTHER LANGUAGES" number grid under the subject; `LinksSection` is the "LISTEN AND LINKS" card at the bottom (the `link` table: piano videos, and the youth books' YouTube and SoundCloud links); `PlayButton`, `FaveButton`, `ShareButton`, `YoutubeButton`, `SimilarTuneButton` and `sheetmusic/SheetMusicButton` are the button bar. `sheetmusic/SheetMusicActivity` shows sheet music in a WebView running the Verovio viewer (`assets/viewer/`) on `assets/sheetMei/<id>.mei`; on tablets and unfolded phones its chords can be edited (`assets/viewer/editor.js`, saved through `logbook/ChordEdits`).
 -   **`search`**: The search screen (`SearchActivity`): Hymn Numbers, Search, Favorites and History tabs. `HymnSearch` finds and ranks hymns in the `search` table that `dao/SearchIndex` builds on the phone (`search.sqlite`), using `SearchText.norm`, the search form shared with the web app.
 -   **`logbook`**: Handles user-specific data, such as history and favorites, and the chord edits (`ChordEdits`, exported and imported by `ChordEditsBackup` in Settings).
--   **`settings`**: The Settings screen (`SettingsActivity`, one page of cards with every choice on the page, `SettingsRow`, `HymnBooksDialog`, a QR code to share the app) and its About page (`AboutActivity`). `res/xml/root_preferences.xml` only holds the default values.
+-   **`settings`**: The Settings screen (`SettingsActivity`, one page of cards with every choice on the page, `SettingsRow`, `HymnBooksDialog`, `LanguageSetting` (the app's language), a QR code to share the app) and its About page (`AboutActivity`). `res/xml/root_preferences.xml` only holds the default values.
 -   **`style`**: `Theme` (the Theme setting, System default / Light / Dark / Black: it only chooses; `HymnsApplication` applies it at start), `BookColors` (a book's `HymnGroup` colours as the theme uses them), `HymnTextFormatter`, `ScriptFont`. The colours themselves are in XML: `values/attrs.xml` (the hymn page's colour roles), `values/themes.xml` and `values-night/themes.xml` (Light, Dark, the Black overlay), `values/colors.xml` and `values-night/colors.xml` (the other screens).
 -   **`HymnsActivity.java`**: The main entry point and primary activity for the app. It coordinates the various components.
 -   **`HymnGroup.java`**: An enum that defines the different hymn books available in the app.
@@ -134,6 +134,10 @@ of every change, in the same commit, not later:
 -   A tool or pipeline changes (provisioning, the web app, the sheet music converter): its README, and the skill in
     `.claude/skills/` that describes it.
 -   A release: the GitHub release notes say what changed for users (section 7).
+
+-   A text the user sees: put it in `res/values/strings.xml` (never a literal in Java or a layout; lint's
+    HardcodedText is an error) and add its Traditional and Simplified Chinese drafts to `values-b+zh+Hant` and
+    `values-b+zh+Hans` in the same change (a missing one shows in English). Be Filled and New Songs stay English.
 
 Write what the app does and why it was designed that way, not who asked or what was said: no names of the people who
 send feedback or contributions, no email addresses, no places where saints meet. Those stay in the private reports.

@@ -97,6 +97,14 @@ android {
     }
     lint {
         abortOnError = false
+        // a text the user sees belongs in strings.xml, so it can be translated
+        error 'HardcodedText'
+        // a missing translation shows in English: a warning, not a reason to stop a release
+        warning 'MissingTranslation'
+    }
+    // the app's languages (values, values-b+zh+Hant, values-b+zh+Hans) for the phone's App languages setting
+    androidResources {
+        generateLocaleConfig = true
     }
 }
 

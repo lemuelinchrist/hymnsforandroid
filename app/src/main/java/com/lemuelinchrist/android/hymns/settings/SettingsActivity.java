@@ -100,6 +100,7 @@ public class SettingsActivity extends AppCompatActivity {
         bindSwitch(R.id.youtubeRow, YOUTUBE);
         bindSwitch(R.id.similarRow, SIMILAR);
         bindSwitch(R.id.keepOnRow, KEEP_ON);
+        bindLanguage();
         bindBooks();
         findViewById(R.id.favoritesRow).setOnClickListener(v -> favoritesBackup.showMenu());
         chordEditsRow = findViewById(R.id.chordEditsRow);
@@ -227,6 +228,15 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     // ---- hymn books ----
+
+    // ---- language of the app's texts ----
+
+    private void bindLanguage() {
+        SettingsRow languageRow = findViewById(R.id.languageRow);
+        languageRow.setSummary(LanguageSetting.currentName(this));
+        languageRow.setOnClickListener(v -> LanguageSetting.showDialog(this,
+                () -> languageRow.setSummary(LanguageSetting.currentName(this))));
+    }
 
     private void bindBooks() {
         booksRow = findViewById(R.id.booksRow);

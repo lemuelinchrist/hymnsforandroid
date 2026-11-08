@@ -115,6 +115,12 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
         tapped in another app, and a favorites backup to `FavoritesBackup`.
     -   "Share the app" draws a QR code on the page (`io.nayuki.qrcodegen`, Nayuki's QR Code generator, MIT licence, copied
         into the source tree) for the Google Play page or the web app, with Copy link and Share link.
+    -   "App language" opens `LanguageSetting`'s dialog (Phone's language, English, 繁體中文, 简体中文), which sets the
+        AppCompat per-app language (`AppCompatDelegate.setApplicationLocales`; kept on Android 12 and older by the
+        `AppLocalesMetadataHolderService` in the manifest, and listed for Android 13+ by `generateLocaleConfig`).
+        Every text the app shows is in `res/values/strings.xml`, translated in `values-b+zh+Hant` and `values-b+zh+Hans`;
+        book names come from `HymnGroup.getDisplayName` (strings `book_<code>`), the first hymn of a new user from
+        `HymnGroup.firstHymn` (the string `first_hymn`), and the sheet viewer's texts from `assets/viewer/strings.js`.
     -   "About" opens `AboutActivity`: the version, Send feedback (an email) and Source code (a link).
     -   The edits themselves are kept by `logbook/ChordEdits` in `files/chord-edits.json`, in the web app's export format.
 

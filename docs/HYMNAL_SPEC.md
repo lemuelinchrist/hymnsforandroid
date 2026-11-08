@@ -533,7 +533,8 @@ and a hidden long press for the link would go unnoticed.
   needed, jumps to it, scrolls it to the top and shows the toolbar.
 - If the target hymn does not exist (stale history/favorite, or a typed number not in the book): go to the first
   hymn of its book and **remove the ID from History and Favorites**. If the book is unknown, show `E1`.
-- On start: open the most recent History entry, else `E1`.
+- On start: open the most recent History entry, else the first hymn of the book in the app's language (§10.1): `E1`
+  in English, `C1` in Traditional Chinese, `Z1` in Simplified Chinese.
 
 ### 8.2 Back stack (MUST)
 
@@ -748,19 +749,41 @@ dialog for a simple choice. On a tablet or an unfolded phone the page (and the A
 2. **Theme**: four small pictures (System, Light, Dark, Black) with their names; the chosen one has a thick border.
 3. **Sheet music**: a two-part switch, Piano | Guitar.
 4. **On the hymn page**: three switch rows: YouTube button, Similar tune button, Keep screen on.
-5. **Hymn books**: one row (up to three coloured book chips and a summary such as "Hiding Indonesian") that opens the
+5. **Language**: one row, **App language**, that opens a dialog: Phone's language (the default), English, 繁體中文,
+   简体中文 (§10.1).
+6. **Hymn books**: one row (up to three coloured book chips and a summary such as "Hiding Indonesian") that opens the
    "Choose the languages to show" dialog (every book with its icon, hymn count and a tick; at least one stays shown).
    The drawer's "Languages…" link opens Settings with that dialog already open.
-6. **Your data**: **Favorites** (opens the back up / restore dialog, §8.4) and **Chord edits** (opens the chord edits
+7. **Your data**: **Favorites** (opens the back up / restore dialog, §8.4) and **Chord edits** (opens the chord edits
    dialog: the edited sheets, Export, Import, §11.5; its summary counts the edited sheets).
-7. **Share the app**: a QR code shown on the page, with a switch **Android | iPhone and all devices**. Android points to
+8. **Share the app**: a QR code shown on the page, with a switch **Android | iPhone and all devices**. Android points to
    the app's Google Play page; iPhone and all devices points to the web app
    (`https://lemuelinchrist.github.io/hymnsforandroid/`) and its note says how to add it to the Home Screen. Under the
    code: the address, **Copy link** and **Share link** (the system share sheet). The QR code is drawn on the phone
    (error correction level M), black on white in every theme.
-8. **About** (a row that opens its own page): the app name and version, **Send feedback** (an email to the project's
+9. **About** (a row that opens its own page): the app name and version, **Send feedback** (an email to the project's
    support address, `hymnsforandroid.support@gmail.com`, with the version in the subject) and **Source code** (the
    repository, `github.com/lemuelinchrist/hymnsforandroid`). The web app's About card shows the same lines. The web app has the same **Share the app** card (QR code with the Android | iPhone and all devices switch, opening on the web app; Copy link, and Share link where the browser can share), among its own cards (Display, Languages, Chord edits, Offline, Share, About). Its **Text size** and **Appearance** (the theme) are drawn like the Android ones, above the cards: a header with the chosen name on the right, five "A" steps (the web's seven sizes are reached with the A buttons on a hymn; the steps are the middle five) and four theme pictures.
+
+### 10.1 The app's language
+
+The app's own texts (menus, buttons, labels, dialogs, the book names, the sheet viewer's buttons) are in English,
+Traditional Chinese or Simplified Chinese; the hymns themselves are always in their book's language.
+
+- **Choice**: Settings → Language → App language: *Phone's language* (default: the phone's language when the app has
+  it, else English; Hong Kong, Macau and Taiwan get Traditional, mainland China and Singapore Simplified) or one of the
+  three, each written in its own language so it can be found from any language. Android keeps the choice (AppCompat
+  per-app language; Android 13 and later also list it under the phone's App languages). The open screens are redrawn at once.
+- **Book names** are translated (英文, 中文（繁體）, 中文補充本（繁體）…, Children = 英文兒童), except **Be Filled** and
+  **New Songs**, which keep their English names in every language. The book codes (E, C, CS…) never change.
+- **The launcher label** is 詩歌 / 诗歌 in Chinese, Hymns in English.
+- **First hymn**: someone with no History starts on the first hymn of the book in their language (§8.1).
+- **Not translated**: the " (New Tune)" after first lines and in the header (it is part of the search index and the
+  History text), the YouTube search words (they match how recordings are titled), and the Send feedback email subject.
+- A favorites backup's heading and note are written in the app's language; Restore reads only the hymn numbers, so a
+  backup made in any language restores in any other.
+- Android: `res/values/strings.xml` (English), `values-b+zh+Hant`, `values-b+zh+Hans`; a string without a translation
+  shows in English. The sheet viewer gets the language as `&lang=zh-Hant|zh-Hans` (§11.2).
 
 Changing any setting refreshes the reader (theme, font, drawer, current page) when returning to it.
 
@@ -784,9 +807,11 @@ lyricsId  = h._id             (passed so a translation can overlay its own words
 The viewer is a self-contained web page (`assets/viewer/`). Hosts open:
 
 ```
-viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>][&edit=1]
+viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>][&edit=1][&lang=en|zh-Hant|zh-Hans]
 ```
 
+- `lang` is the language of the viewer's own buttons and messages (`assets/viewer/strings.js`, §10.1); English when
+  missing. The sheet itself (titles, lyrics, the capo line) follows the hymn.
 - `edit=1` offers chord editing (§11.5). Android passes it when the screen's smallest width is at least 600 dp
   (tablets, unfolded foldables); on phones the page only shows edits the device already has.
 
