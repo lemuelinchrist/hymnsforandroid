@@ -152,6 +152,22 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
 - Review pages for another language: `REVIEW_GROUPS=C,CS python3 scripts/build_review.py ...` so that typing a C/CS id
   under "Another hymn" finds it.
 
+## Matching by transcribed lyrics (no captions, partial titles)
+
+For videos whose title matches a hymn only in part (or not at all) and that have no usable captions, transcribe the audio instead (Lemuel, 2026-11-08):
+`tools/audio-transcribe/batch_lyrics.py <work>` (audio files in `<work>/in/`, the file stem is the video id: ffmpeg, Demucs vocals stem, Whisper turbo on the GPU,
+seconds per song) then `match_lyrics.py <work>/lyrics` (share of the song's word pairs found in each hymn's lyrics). Accept a match automatically when the top hymn scores
+0.5+ AND leads the second by 0.2+ (and, when the title named candidates, is one of them); everything else goes to a review page; below 0.25 with no title candidate
+is probably not in the hymnal. Hold back titles with "New Tune" / "Alternate Tune" (a different tune than the hymn's page). On the first run 41 of 55 local songs and
+25 of 40 downloaded songs were accepted automatically.
+- **Audio without YouTube**: Lemuel's own collection (`G:\My Drive\Archives\Hymns`, ~2,800 ogg files in album folders; not mounted in WSL, read it with
+  `powershell.exe`). Use a local file only when the album folder has the same name as the YouTube playlist AND the track title equals the video title; the same title in
+  another album is NOT used (a different recording).
+- **Downloading audio from YouTube without being blocked**: the lowest-quality audio only (`-f worstaudio`, 1-2 MB), ONE process, a random 30-90 s pause, `timeout 120`,
+  stop (or sleep an hour) after 4 failures in a row, resume by skipping files that exist. About 1 song per minute worked without a single error. For hundreds of songs
+  hand it to the always-on `media` host (brief `~/joseph/TASK.md`, script `~/joseph/dl.sh`; skill media-resident-agent-setup) and `rsync` the files back.
+- Do not `pkill -f` a pattern that occurs in your own command line (it kills your shell, exit 144).
+
 ## Traps
 - Titles are song names, not hymn numbers; several hymns share a first line (a hymn and its Be Filled / New Songs copy):
   collapse to the root hymn (`parent_hymn`) before counting candidates.
