@@ -7,6 +7,7 @@ import com.lemuelinchrist.hymns.lib.beans.LinkEntity
  * Imports the YouTube recordings of the NYCYPCD channel as link rows of kind youtube (label NYCYPCD).
  * NycypcdYoutube.txt: one "hymn id TAB video id" per line, matched by the match-youtube-songs skill and checked by Lemuel.
  * An optional third column replaces the label NYCYPCD for that link (a recording by someone else, e.g. the composer).
+ * The label is the publisher of the recording, else its album, not the channel (tools/youtube-monitor/link_labels.py).
  * A hymn with two recordings gets order 1 and 2. It starts by deleting the rows labelled NYCYPCD, so it can be run again.
  */
 class ImportNycypcdYoutube {
@@ -21,6 +22,9 @@ class ImportNycypcdYoutube {
         file.readLines("UTF-8").findAll { !it.trim().isEmpty() && !it.startsWith("#") }
                 .collect { it.split("\t") }.findAll { it.length > 2 && it[2].trim() }
                 .collect { it[2].trim() }.unique().each { dao.deleteLinks("youtube", it) }
+        // labels used before 2026-11-09 (the channel name), so that the old rows go when a file now labels them by publisher or album
+        ["Joseph's Storehouses", "Joseph's Storehouses 2", "Joseph's Storehouses (Instrumental)", "Loving the Lord",
+         "Loving the Lord 2", "Loving the Lord (Instrumental)"].each { dao.deleteLinks("youtube", it) }
         def order = [:]
         int saved = 0
         file.eachLine("UTF-8") { line ->
