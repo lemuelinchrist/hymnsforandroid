@@ -14,6 +14,8 @@ and reads the final report; never read the captions or lyrics yourself. Nothing 
 Pilot done 2026-11-03 on NYCYPCD (UC_1giUVT14MRXyEFtQZgmKQ, 267 songs, official channel of a publisher of Recovery songs):
 5 of 5 songs matched at high confidence with `gemini-3.8-flash-low`, 16-80 s and 30-50k tokens each. The full run of the Videos tab was done 2026-11-04 (245 links imported); the Releases tab was added 2026-11-05 (see "Syncing the NYCYPCD channel").
 
+**Before proposing any next source, read the current version's report ("Hymns For Android vX.Y Report", Claude Docs) and `recordings.tsv`: the lists in this file go stale.**
+
 ## Steps
 
 1. **Work folder**: a new one in the scratchpad (`<scratch>/<channel>/`), never inside the repo. Python venv there with
@@ -133,16 +135,16 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   but saved in `tools/youtube-monitor/tgb_kids_series.tsv` for later.
 - **Loving the Lord - Topic** (UCF0V197WENYJAGHzYRFbUog), English, 11 albums, 265 tracks: 139 links, label `Loving the Lord` (`... 2` for a second
   sung one, `(Instrumental)`), 2026-11-08, from titles with the number ("(Hymn 1151)", "Hymns 251", "- Hymn 166") and exact first lines;
-  71 uncertain titles went to a review page (answers still to be read). YouTube's metadata says "℗ Loving the Lord"; the 7 of its 11 albums that
+  71 uncertain titles went to a review page (reviewed; only the 4 albums Joseph's Storehouses does not have). YouTube's metadata says "℗ Loving the Lord"; the 7 of its 11 albums that
   the Joseph's Storehouses channel (@JosephsStorehouses, 994 videos, 63 playlists, some are conference messages) lists as "... (by Hymn CDs)"
-  are marked with the studio Hymn CDs in `recordings.tsv` (no official Hymn CDs channel found). Not yet looked at: Joseph's Storehouses itself and
-  the **NYCYPCD English** channel (@nycypcd-english, UCcS0QoAJh3PucoYLQXJG2bg, 280 videos titled like "Drink! A River - H 1151", "... - NS 868").
+  are marked with the studio Hymn CDs in `recordings.tsv` (no official Hymn CDs channel found). The **NYCYPCD English** channel (@nycypcd-english, UCcS0QoAJh3PucoYLQXJG2bg, 280 videos titled like "Drink! A River - H 1151") was checked 2026-11-08 and
+  DROPPED: 227 of its 280 titles are tracks we already have. Do not offer it again.
 - **Melody of Lilies** (@MelodyofLilies; Releases tab 23 albums + 11 playlists + 50 videos, 86 unique tracks; mostly the group's own songs, not hymnal hymns), English, a
   popular Recovery producer: 17 links, label `Melody of Lilies` (2026-11-08): 6 exact titles + 11 confirmed by ear; the other ~50 titles matched no hymn (`melodyoflilies_known.tsv`, `recordings.tsv`).
 - **Joseph's Storehouses** (@JosephsStorehouses, 994 videos in 63 playlists, 2026-11-08): saints' groups and CDs, not an official publisher (the playlists name the
   group: "(by Boston, Cambridge, Newton)", "(by ATX YP)"...; 7 are the Hymn CDs albums, the same recordings as Loving the Lord, so not linked twice) plus
   messages and kids' songs (left out). 211 links, label `Joseph's Storehouses` (`2`, `(Instrumental)`) from exact titles (max 2 sung + 1 instrumental per hymn).
-  Still open: 301 videos with only a partial title match, which Lemuel wants to try by downloading and transcribing the lyrics (to be discussed); 436 match nothing.
+  The 301 partial-title videos were transcribed and matched 2026-11-08/09 (about 324 links in all, 113 more in v5.9.4). Only 29 poor transcriptions (mostly instrumentals) and ~300 videos with no title match and no local copy remain, nothing planned.
 - **Rules that held for the Topic channels**: a number in the title (`Hymn N`, `Hymns N`, `诗歌N`) is reliable; a track titled "- New Tune" belongs to
   the New Tune hymn (e.g. BF345), never to the root hymn, so it is not linked to the root; an instrumental track gets the label `<name> (Instrumental)`
   (max 1 per hymn); sung ones max 2 per hymn per channel; English hymns may carry links from several channels (NYCYPCD + LSM + others).
