@@ -158,17 +158,42 @@ public class SettingsActivity extends AppCompatActivity {
         themeNames = getResources().getStringArray(R.array.theme_preference);
         SettingsRow row = findViewById(R.id.themeRow);
         row.setSummary(themeNames[themeIndex()]);
-        row.setOnClickListener(v -> new AlertDialog.Builder(this)
+        row.setOnClickListener(v -> showThemeDialog());
+    }
+
+    /** The theme choices as four small pictures with their names, in a popup (the page itself keeps a plain row). */
+    private void showThemeDialog() {
+        int[] shortNames = {R.string.theme_tile_system, R.string.theme_tile_light, R.string.theme_tile_dark, R.string.theme_tile_black};
+        int[] mocks = {R.drawable.settings_mock_system, R.drawable.settings_mock_light,
+                R.drawable.settings_mock_dark, R.drawable.settings_mock_black};
+        LinearLayout tiles = new LinearLayout(this);
+        tiles.setOrientation(LinearLayout.HORIZONTAL);
+        int pad = (int) (16 * getResources().getDisplayMetrics().density);
+        tiles.setPadding(pad, pad / 2, pad, 0);
+        AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.settings_theme)
-                .setSingleChoiceItems(themeNames, themeIndex(), (dialog, which) -> {
-                    dialog.dismiss();
-                    if (which == themeIndex()) return;
-                    prefs.edit().putString(Theme.PREFERENCE, themeValues[which]).commit();
-                    // the page is made again in the new theme (the row's summary is read again then)
-                    Theme.apply(this, themeValues[which]);
-                })
+                .setView(tiles)
                 .setNegativeButton(R.string.cancel, null)
-                .show());
+                .create();
+        int selected = themeIndex();
+        for (int i = 0; i < themeValues.length; i++) {
+            final int index = i;
+            View tile = LayoutInflater.from(this).inflate(R.layout.settings_theme_tile, tiles, false);
+            tile.findViewById(R.id.tileMock).setBackgroundResource(mocks[i]);
+            ((TextView) tile.findViewById(R.id.tileLabel)).setText(shortNames[i]);
+            tile.setContentDescription(themeNames[i]);
+            tile.setSelected(i == selected);
+            tile.findViewById(R.id.tileFrame).setSelected(i == selected);
+            tile.setOnClickListener(v -> {
+                dialog.dismiss();
+                if (index == themeIndex()) return;
+                prefs.edit().putString(Theme.PREFERENCE, themeValues[index]).commit();
+                // a new choice changes the night mode at once; the open screens are made again in it
+                Theme.apply(this, themeValues[index]);
+            });
+            tiles.addView(tile);
+        }
+        dialog.show();
     }
 
     private int themeIndex() {
