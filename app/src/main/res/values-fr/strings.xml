@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  French ("vous"). A draft made by Claude, to be checked by a French reader. "Cantique" is the word used for a hymn
+  here; typographic apostrophes (’) so that none has to be escaped.
+-->
+<resources>
+
+    <string name="ui_language">fr</string>
+    <string name="first_hymn">FR1</string>
+
+    <string name="app_name">Cantiques</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
+    <string name="close">Fermer</string>
+    <string name="sorry_hymn_not_available">Désolé ! Ce cantique n’est pas disponible</string>
+    <string name="sorry_sheet_music_not_available">Désolé ! La partition n’est pas disponible</string>
+
+    <plurals name="hymns_count">
+        <item quantity="one">%1$s cantique</item>
+        <item quantity="many">%1$s cantiques</item>
+        <item quantity="other">%1$s cantiques</item>
+    </plurals>
+
+    <string name="book_e">Anglais</string>
+    <string name="book_c">Chinois (traditionnel)</string>
+    <string name="book_cs">Supplément chinois (traditionnel)</string>
+    <string name="book_z">Chinois (simplifié)</string>
+    <string name="book_zs">Supplément chinois (simplifié)</string>
+    <string name="book_cb">Cebuano</string>
+    <string name="book_t">Tagalog</string>
+    <string name="book_fr">Français</string>
+    <string name="book_fry">Français (jeunes)</string>
+    <string name="book_s">Espagnol</string>
+    <string name="book_sy">Espagnol (jeunes)</string>
+    <string name="book_k">Coréen</string>
+    <string name="book_g">Allemand</string>
+    <string name="book_gy">Allemand (jeunes)</string>
+    <string name="book_j">Japonais</string>
+    <string name="book_i">Indonésien</string>
+    <string name="book_ch">Enfants (anglais)</string>
+    <string name="book_f">Persan</string>
+    <string name="book_sk">Slovaque</string>
+    <string name="book_gk">Grec</string>
+    <string name="book_sw">Swahili</string>
+    <string name="book_rus">Russe</string>
+    <string name="book_bur">Birman</string>
+    <string name="book_ta">Tamoul</string>
+    <string name="book_ur">Ourdou</string>
+    <string name="book_ki">Kikuyu</string>
+    <string name="book_por">Portugais</string>
+    <string name="book_poy">Portugais (jeunes)</string>
+    <string name="book_pol">Polonais</string>
+
+    <string name="language_e">Anglais</string>
+    <string name="language_c">Chinois</string>
+    <string name="language_cb">Cebuano</string>
+    <string name="language_t">Tagalog</string>
+    <string name="language_fr">Français</string>
+    <string name="language_s">Espagnol</string>
+    <string name="language_k">Coréen</string>
+    <string name="language_g">Allemand</string>
+    <string name="language_j">Japonais</string>
+    <string name="language_i">Indonésien</string>
+    <string name="language_f">Persan</string>
+    <string name="language_sk">Slovaque</string>
+    <string name="language_gk">Grec</string>
+    <string name="language_sw">Swahili</string>
+    <string name="language_rus">Russe</string>
+    <string name="language_bur">Birman</string>
+    <string name="language_ta">Tamoul</string>
+    <string name="language_ur">Ourdou</string>
+    <string name="language_ki">Kikuyu</string>
+    <string name="language_por">Portugais</string>
+    <string name="language_pol">Polonais</string>
+
+    <string name="drawer_open">Ouvrir le menu de navigation</string>
+    <string name="drawer_close">Fermer le menu de navigation</string>
+    <string name="drawer_languages">Langues…</string>
+    <string name="menu_index">Index</string>
+    <string name="menu_settings">Réglages</string>
+    <string name="open_in_hymns">Ouvrir dans Cantiques</string>
+    <string name="back_to_hymn">Retour au cantique %1$s</string>
+
+    <string name="details">DÉTAILS</string>
+    <string name="linksCard">ÉCOUTER ET LIENS</string>
+    <string name="otherLanguages">AUTRES LANGUES</string>
+    <string name="otherLanguagesHide">Masquer</string>
+    <string name="otherLanguagesShow">Afficher</string>
+    <string name="other_language_cell">%1$s %2$s</string>
+    <string name="detail_meter">Mètre</string>
+    <string name="detail_time">Mesure</string>
+    <string name="detail_key">Tonalité</string>
+    <string name="detail_tune">Mélodie</string>
+    <string name="detail_author">Auteur</string>
+    <string name="detail_composer">Compositeur</string>
+    <string name="detail_verses">Versets</string>
+    <string name="links_piano_videos">Vidéos au piano</string>
+    <string name="links_new_tunes">Nouvelles mélodies</string>
+    <string name="links_new_tune_recordings">Enregistrements des nouvelles mélodies</string>
+    <string name="links_link">Lien</string>
+    <string name="links_link_numbered">Lien %1$d</string>
+    <string name="links_language_numbered">%1$s %2$d</string>
+    <string name="links_language_label">%1$s – %2$s</string>
+    <string name="share_lyrics">Partager les paroles</string>
+    <string name="share_link">Partager le lien</string>
+    <string name="copy_lyrics">Copier les paroles</string>
+    <string name="lyrics_copied">Paroles copiées</string>
+    <string name="similar_tune_title">Aller à un cantique sur la même mélodie</string>
+    <string name="similar_tune_none">Désolé ! Aucun cantique sur la même mélodie</string>
+
+    <string name="search">Rechercher</string>
+    <string name="search_index_title">Index : %1$s</string>
+    <string name="search_hint_number">Numéro du cantique</string>
+    <string name="search_hint_text">Texte à rechercher</string>
+    <string name="tab_hymn_numbers">Numéros</string>
+    <string name="tab_search">Recherche</string>
+    <string name="tab_favorites">Favoris</string>
+    <string name="tab_history">Historique</string>
+    <string name="browse_first_lines">Premiers vers</string>
+    <string name="browse_subjects">Sujets</string>
+    <string name="browse_authors">Auteurs</string>
+    <string name="browse_tunes">Mélodies</string>
+    <string name="search_preparing">Préparation de la recherche… (une fois après chaque mise à jour)</string>
+    <string name="search_in_book">%1$s · %2$d</string>
+    <string name="search_all_books">Tous les recueils · %1$d</string>
+    <string name="search_no_hymns">Aucun cantique trouvé</string>
+    <string name="search_go_to">Aller à &lt;b>%1$s&lt;/b></string>
+    <string name="search_why_subject">Sujet : %1$s</string>
+    <string name="search_why_author">Auteur : %1$s</string>
+    <string name="search_why_composer">Compositeur : %1$s</string>
+    <string name="search_why_key">Tonalité : %1$s</string>
+    <string name="search_why_tune">Mélodie : %1$s</string>
+    <string name="unknown_author">Inconnu</string>
+    <string name="favorites_none">Aucun favori pour l’instant. Touchez ♥ sur un cantique pour l’ajouter.</string>
+    <plurals name="favorites_count">
+        <item quantity="one">%1$d favori</item>
+        <item quantity="many">%1$d favoris</item>
+        <item quantity="other">%1$d favoris</item>
+    </plurals>
+
+    <string name="backup_button">Sauvegarder</string>
+    <string name="restore_button">Restaurer</string>
+    <string name="add_button">Ajouter</string>
+    <string name="fav_backup_title">Sauvegarder et restaurer les favoris</string>
+    <string name="fav_backup_intro">Sauvegarder : envoyez vos favoris à vous-même (e-mail, messagerie, Drive) ou enregistrez-les dans un fichier.\n\nRestaurer : sur votre autre téléphone, ouvrez ce fichier avec cette app, ou touchez Restaurer ici.\n\nSi vous configurez un nouveau téléphone à partir de votre sauvegarde Google, vos favoris suivent généralement tout seuls.</string>
+    <string name="fav_none_title">Aucun favori</string>
+    <string name="fav_none_body">Touchez le cœur sur un cantique pour l’ajouter à vos favoris.</string>
+    <string name="fav_backup_choose">Sauvegarder les favoris</string>
+    <string name="send_email_chat_drive">Envoyer (e-mail, messagerie, Drive…)</string>
+    <string name="save_file_phone">Enregistrer dans un fichier sur ce téléphone</string>
+    <string name="fav_restore_title">Restaurer les favoris</string>
+    <string name="fav_restore_open_file">Ouvrir un fichier de sauvegarde</string>
+    <string name="fav_restore_paste">Coller le texte copié</string>
+    <string name="fav_file_heading">Mes cantiques favoris (Hymns For Android) : %1$s</string>
+    <string name="fav_file_how">Pour les remettre : ouvrez ce fichier avec l’app Cantiques,\nou copiez tout ce texte, puis dans l’app touchez Rechercher,\npuis Favoris > Restaurer > Coller le texte copié.</string>
+    <string name="fav_file_subject">Mes cantiques favoris</string>
+    <string name="fav_backup_failed">Échec de la sauvegarde</string>
+    <string name="fav_file_not_written">Le fichier de sauvegarde n’a pas pu être écrit.</string>
+    <string name="file_not_saved_there">Le fichier n’a pas pu être enregistré à cet endroit. Essayez un autre emplacement.</string>
+    <string name="fav_saved">Favoris enregistrés</string>
+    <string name="fav_nothing_copied">Rien n’a été copié</string>
+    <string name="fav_nothing_copied_body">Copiez d’abord le texte de la sauvegarde : ouvrez l’e-mail ou le message, appuyez longuement sur le texte, choisissez Tout sélectionner, puis Copier. Revenez ensuite et touchez de nouveau Restaurer.</string>
+    <string name="fav_restore_failed">Échec de la restauration</string>
+    <string name="file_could_not_open">Ce fichier n’a pas pu être ouvert.</string>
+    <string name="fav_not_in_app">%1$s</string>
+    <plurals name="fav_not_in_app_count">
+        <item quantity="one">%1$d cantique n’est pas dans cette version de l’app.</item>
+        <item quantity="many">%1$d cantiques ne sont pas dans cette version de l’app.</item>
+        <item quantity="other">%1$d cantiques ne sont pas dans cette version de l’app.</item>
+    </plurals>
+    <plurals name="fav_all_already">
+        <item quantity="one">Le cantique est déjà dans vos favoris.</item>
+        <item quantity="many">Les %1$d cantiques sont déjà dans vos favoris.</item>
+        <item quantity="other">Les %1$d cantiques sont déjà dans vos favoris.</item>
+    </plurals>
+    <string name="fav_not_a_backup">Ce fichier n’est pas une sauvegarde de favoris : il ne contient aucun numéro de cantique.</string>
+    <string name="fav_no_numbers">Aucun numéro de cantique trouvé. Utilisez le texte ou le fichier créé par Sauvegarder.</string>
+    <string name="fav_nothing_to_add">Rien à ajouter</string>
+    <string name="fav_none_found">Aucun favori trouvé</string>
+    <plurals name="fav_add_question">
+        <item quantity="one">Ajouter %1$d cantique à vos favoris ?</item>
+        <item quantity="many">Ajouter %1$d cantiques à vos favoris ?</item>
+        <item quantity="other">Ajouter %1$d cantiques à vos favoris ?</item>
+    </plurals>
+    <plurals name="fav_already_there">
+        <item quantity="one">%1$d cantique y est déjà.</item>
+        <item quantity="many">%1$d cantiques y sont déjà.</item>
+        <item quantity="other">%1$d cantiques y sont déjà.</item>
+    </plurals>
+    <plurals name="fav_added">
+        <item quantity="one">%1$d cantique ajouté à vos favoris</item>
+        <item quantity="many">%1$d cantiques ajoutés à vos favoris</item>
+        <item quantity="other">%1$d cantiques ajoutés à vos favoris</item>
+    </plurals>
+    <string name="open_with_another_app">Ouvrir avec une autre app</string>
+    <string name="no_other_app">Aucune autre app ne peut ouvrir ce fichier</string>
+
+    <string name="chord_edits_title">Modifications d’accords</string>
+    <string name="chord_edits_none">Aucune modification d’accords pour l’instant</string>
+    <plurals name="chord_edits_summary">
+        <item quantity="one">%1$d partition aux accords modifiés</item>
+        <item quantity="many">%1$d partitions aux accords modifiés</item>
+        <item quantity="other">%1$d partitions aux accords modifiés</item>
+    </plurals>
+    <string name="chord_edits_intro_empty">Les accords que vous modifiez sur la partition de piano (Modifier les accords, sur tablette et téléphone pliant déplié) sont conservés sur cet appareil. Importer ajoute des modifications d’accords exportées depuis un autre appareil ou depuis l’app web.</string>
+    <string name="chord_edits_intro">Les accords que vous avez modifiés sur la partition sont conservés sur cet appareil. Exportez-les pour en garder une copie, les déplacer vers un autre appareil (ou l’app web), ou les envoyer afin qu’ils entrent dans les partitions de tous.</string>
+    <string name="export_button">Exporter</string>
+    <string name="import_button">Importer</string>
+    <plurals name="chord_edits_bars">
+        <item quantity="one">%1$d mesure · %2$s</item>
+        <item quantity="many">%1$d mesures · %2$s</item>
+        <item quantity="other">%1$d mesures · %2$s</item>
+    </plurals>
+    <string name="chord_edits_none_body">Ouvrez la partition d’un cantique sur une tablette ou un téléphone pliant déplié, puis touchez Modifier les accords.</string>
+    <string name="chord_edits_export_title">Exporter les modifications d’accords</string>
+    <string name="save_file_device">Enregistrer dans un fichier sur cet appareil</string>
+    <string name="chord_edits_subject">Modifications d’accords (Cantiques)</string>
+    <string name="export_failed">Échec de l’exportation</string>
+    <string name="file_not_written">Le fichier n’a pas pu être écrit.</string>
+    <string name="chord_edits_saved">Modifications d’accords enregistrées</string>
+    <string name="import_failed">Échec de l’importation</string>
+    <string name="chord_edits_not_a_file">Ce n’est pas un fichier de modifications d’accords.</string>
+    <string name="nothing_to_import">Rien à importer</string>
+    <string name="chord_edits_empty_file">Ce fichier ne contient aucune modification d’accords.</string>
+    <string name="chord_edits_import_title">Importer les modifications d’accords ?</string>
+    <string name="list_and_more">%1$s et %2$d de plus</string>
+    <plurals name="chord_edits_import_body">
+        <item quantity="one">Ce fichier contient des accords modifiés pour %1$d partition : %2$s.\n\nUne partition que vous avez modifiée plus tard sur cet appareil garde votre version.</item>
+        <item quantity="many">Ce fichier contient des accords modifiés pour %1$d partitions : %2$s.\n\nUne partition que vous avez modifiée plus tard sur cet appareil garde votre version.</item>
+        <item quantity="other">Ce fichier contient des accords modifiés pour %1$d partitions : %2$s.\n\nUne partition que vous avez modifiée plus tard sur cet appareil garde votre version.</item>
+    </plurals>
+    <plurals name="chord_edits_imported">
+        <item quantity="one">%1$d partition importée</item>
+        <item quantity="many">%1$d partitions importées</item>
+        <item quantity="other">%1$d partitions importées</item>
+    </plurals>
+    <string name="chord_edits_kept">%1$s, %2$d conservées (modifiées plus tard sur cet appareil)</string>
+
+    <string name="title_activity_settings">Réglages</string>
+    <string name="settings_text_size">Taille du texte</string>
+    <string name="settings_theme">Thème</string>
+    <string name="theme_tile_system">Système</string>
+    <string name="theme_tile_light">Clair</string>
+    <string name="theme_tile_dark">Sombre</string>
+    <string name="theme_tile_black">Noir</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_app_language">Langue de l’app</string>
+    <string name="language_follow_phone">Langue du téléphone</string>
+    <string name="settings_sheet_music">Partitions</string>
+    <string name="settings_piano">Piano</string>
+    <string name="settings_guitar">Guitare</string>
+    <string name="settings_on_hymn_page">Sur la page du cantique</string>
+    <string name="settings_youtube">Bouton YouTube</string>
+    <string name="settings_youtube_summary">Chercher le cantique sur YouTube</string>
+    <string name="settings_similar">Bouton « Même mélodie »</string>
+    <string name="settings_similar_summary">Passer aux cantiques chantés sur la même mélodie</string>
+    <string name="settings_keep_on">Garder l’écran allumé</string>
+    <string name="settings_keep_on_summary">L’écran ne s’éteint pas tant qu’un cantique est ouvert</string>
+    <string name="settings_hymn_books">Recueils de cantiques</string>
+    <string name="settings_books_to_show">Recueils à afficher</string>
+    <string name="books_all_shown">Les %1$d recueils sont affichés</string>
+    <string name="books_hiding">Masqués : %1$s</string>
+    <string name="books_some_shown">%1$d recueils affichés sur %2$d</string>
+    <string name="books_value">%1$d sur %2$d</string>
+    <string name="list_separator">", "</string>
+    <string name="settings_your_data">Vos données</string>
+    <string name="settings_favorites">Favoris</string>
+    <string name="settings_favorites_summary">Sauvegarder, ou passer à un nouveau téléphone</string>
+    <string name="settings_share_app">Partager l’app</string>
+    <string name="share_scan">Laissez quelqu’un scanner ceci avec l’appareil photo de son téléphone.</string>
+    <string name="share_web">iPhone et tous les appareils</string>
+    <string name="share_qr">Code QR pour partager l’app</string>
+    <string name="share_qr_for">Code QR de %1$s</string>
+    <string name="copy_link">Copier le lien</string>
+    <string name="link_copied">Lien copié</string>
+    <string name="share_note_web">Ouvre l’app web dans le navigateur. Sur un iPhone ou un iPad : touchez Partager, puis Sur l’écran d’accueil, et elle fonctionne hors ligne comme une app.</string>
+    <string name="share_note_android">Ouvre Hymns For Android sur Google Play.</string>
+    <string name="settings_about">À propos</string>
+    <string name="settings_about_summary">Version, envoyer un avis, code source</string>
+    <string name="hymn_books_title">Choisissez les langues à afficher</string>
+    <string name="hymn_books_note">Les langues masquées n’apparaissent pas dans la liste des recueils, dans la recherche ni sous « Autres langues ».</string>
+    <string name="hymn_books_keep_one">Au moins une langue doit rester affichée</string>
+
+    <string name="about_version">Version %1$s</string>
+    <string name="about_feedback">Envoyer un avis</string>
+    <string name="about_source">Code source</string>
+    <string name="about_no_email">Aucune app de messagerie trouvée. Écrivez à %1$s</string>
+    <string name="about_no_browser">Aucun navigateur trouvé. L’adresse est %1$s</string>
+
+</resources>

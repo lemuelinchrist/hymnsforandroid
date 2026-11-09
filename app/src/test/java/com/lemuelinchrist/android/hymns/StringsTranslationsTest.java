@@ -20,14 +20,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * The translations (values-b+zh+Hant, values-b+zh+Hans) against the English strings.xml:
+ * The translations (values-b+zh+Hant, values-b+zh+Hans, values-es, values-fr) against the English strings.xml:
  * no string that English does not have (a renamed or removed one left behind), and the same %1$s / %2$d placeholders
  * in every string, since a missing or swapped one crashes or garbles a dialog only in that language. A string that is
  * not translated yet is allowed (it shows in English); strings marked translatable="false" are not to be translated.
  */
 public class StringsTranslationsTest {
     private static final File RES = new File("src/main/res");
-    private static final String[] LANGUAGES = {"values-b+zh+Hant", "values-b+zh+Hans"};
+    private static final String[] LANGUAGES = {"values-b+zh+Hant", "values-b+zh+Hans", "values-es", "values-fr"};
     private static final Pattern PLACEHOLDER = Pattern.compile("%(\\d+)\\$[sd]");
 
     /** name -> text, for strings, string-array items ("name[0]") and plurals ("name:other"), and the untranslatable names */
@@ -101,7 +101,8 @@ public class StringsTranslationsTest {
 
     @Test
     public void everyLanguageNamesItselfAndStartsOnItsOwnFirstHymn() throws Exception {
-        String[][] expected = {{"values-b+zh+Hant", "zh-Hant", "C1"}, {"values-b+zh+Hans", "zh-Hans", "Z1"}};
+        String[][] expected = {{"values-b+zh+Hant", "zh-Hant", "C1"}, {"values-b+zh+Hans", "zh-Hans", "Z1"},
+                {"values-es", "es", "S1"}, {"values-fr", "fr", "FR1"}};
         for (String[] e : expected) {
             Map<String, String> strings = read(new File(RES, e[0] + "/strings.xml"), null);
             assertEquals(e[0], e[1], strings.get("ui_language"));

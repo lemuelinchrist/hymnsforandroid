@@ -1,5 +1,5 @@
 // The web app's own language (menus, buttons, labels, messages; the hymns themselves are always in their book's
-// language), the same five as the Android app: English, Traditional Chinese, Simplified Chinese.
+// language), the same five as the Android app: English, Traditional Chinese, Simplified Chinese, Spanish, French.
 //   tr('Edit chords')                      the text in the app's language, the English itself when there is no translation
 //   tr('Bar {0}', 12)                      {0}, {1}... are filled in
 //   tn('{0} hymn', '{0} hymns', n)         a count; {0} is the number, written the way the language writes it
@@ -9,7 +9,7 @@
 import {STRINGS} from './strings.js';
 
 // each language in its own language, so it can be found from any language; '' is "Phone's language"
-export const LANGS = [['en', 'English'], ['zh-Hant', '繁體中文'], ['zh-Hans', '简体中文']];
+export const LANGS = [['en', 'English'], ['zh-Hant', '繁體中文'], ['zh-Hans', '简体中文'], ['es', 'Español'], ['fr', 'Français']];
 
 const KEY = 'hfw.lang';
 
@@ -28,7 +28,7 @@ export function detect(list) {
   for (const tag of list || []) {
     const [language, ...rest] = String(tag).split('-');
     const l = language.toLowerCase();
-    if (l === 'en') return l;
+    if (l === 'en' || l === 'es' || l === 'fr') return l;
     if (l === 'zh') {
       const parts = rest.map((p) => p.toLowerCase());
       if (parts.includes('hant')) return 'zh-Hant';
