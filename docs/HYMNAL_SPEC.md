@@ -760,7 +760,7 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 whose value opens a short list of choices. On a tablet or an unfolded phone the page (and the About page) is a centred column at most 640 dp wide. From the top:
 
 1. **Text size** and **Theme**: two plain rows in one card, like App language. The row shows the current choice
-   (Small to XXL; System default, Light, Dark, Black) and opens a popup: Text size a plain list (Small to XXL); Theme four small pictures (System, Light, Dark, Black) with
+   (Small to XXL; System default, Light, Dark, Black) and opens a rounded popup: Text size a five-step slider with the step's name and a sample stanza at that size (OK saves it); Theme four small pictures (System, Light, Dark, Black) with
    their names, the current one framed. (A first v5.9 draft had five "A" steps and the four pictures on the page itself;
    that looked too flashy next to the rest, so the page has rows and only the Theme popup keeps the pictures.) The web app keeps the steps and pictures on the page.
 3. **Sheet music**: a two-part switch, Piano | Guitar.

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Every popup (AlertDialog, style Hymns.AlertDialog): rounded corners in the Settings card colour -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="16dp" android:insetRight="16dp" android:insetTop="16dp" android:insetBottom="16dp">
+    <shape>
+        <solid android:color="@color/set_card" />
+        <corners android:radius="28dp" />
+    </shape>
+</inset>

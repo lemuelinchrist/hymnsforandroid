@@ -75,6 +75,48 @@
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
+            <TextView style="@style/SettingsHeader" android:text="@string/settings_on_hymn_page" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/settings_card_bg"
+            android:divider="@drawable/settings_divider"
+            android:orientation="vertical"
+            android:showDividers="middle">
+            <com.lemuelinchrist.android.hymns.settings.SettingsRow
+                android:id="@+id/youtubeRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rowIcon="@drawable/ic_set_tv"
+                app:rowTitle="@string/settings_youtube"
+                app:rowSummary="@string/settings_youtube_summary"
+                app:rowTrailing="switcher" />
+            <com.lemuelinchrist.android.hymns.settings.SettingsRow
+                android:id="@+id/similarRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rowIcon="@drawable/ic_set_tune"
+                app:rowTitle="@string/settings_similar"
+                app:rowSummary="@string/settings_similar_summary"
+                app:rowTrailing="switcher" />
+            <com.lemuelinchrist.android.hymns.settings.SettingsRow
+                android:id="@+id/keepOnRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rowIcon="@drawable/ic_set_bulb"
+                app:rowTitle="@string/settings_keep_on"
+                app:rowSummary="@string/settings_keep_on_summary"
+                app:rowTrailing="switcher" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
             <TextView style="@style/SettingsHeader" android:text="@string/settings_sheet_music" />
         </LinearLayout>
         <LinearLayout
@@ -119,48 +161,6 @@
                 android:textColor="@color/settings_choice_text"
                 android:textSize="14sp"
                 android:textStyle="bold" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
-            <TextView style="@style/SettingsHeader" android:text="@string/settings_on_hymn_page" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/settings_card_bg"
-            android:divider="@drawable/settings_divider"
-            android:orientation="vertical"
-            android:showDividers="middle">
-            <com.lemuelinchrist.android.hymns.settings.SettingsRow
-                android:id="@+id/youtubeRow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:rowIcon="@drawable/ic_set_tv"
-                app:rowTitle="@string/settings_youtube"
-                app:rowSummary="@string/settings_youtube_summary"
-                app:rowTrailing="switcher" />
-            <com.lemuelinchrist.android.hymns.settings.SettingsRow
-                android:id="@+id/similarRow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:rowIcon="@drawable/ic_set_tune"
-                app:rowTitle="@string/settings_similar"
-                app:rowSummary="@string/settings_similar_summary"
-                app:rowTrailing="switcher" />
-            <com.lemuelinchrist.android.hymns.settings.SettingsRow
-                android:id="@+id/keepOnRow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:rowIcon="@drawable/ic_set_bulb"
-                app:rowTitle="@string/settings_keep_on"
-                app:rowSummary="@string/settings_keep_on_summary"
-                app:rowTrailing="switcher" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
@@ -138,15 +139,35 @@ public class SettingsActivity extends AppCompatActivity {
         sizeNames = getResources().getStringArray(R.array.font_size);
         SettingsRow row = findViewById(R.id.textSizeRow);
         row.setSummary(sizeNames[textSizeIndex()]);
-        row.setOnClickListener(v -> new AlertDialog.Builder(this)
+        row.setOnClickListener(v -> showTextSizeDialog(row));
+    }
+
+    /** Text size: five steps on a slider, the step's name, and a sample stanza at that size; OK saves it. */
+    private void showTextSizeDialog(SettingsRow row) {
+        View content = LayoutInflater.from(this).inflate(R.layout.dialog_text_size, null);
+        SeekBar seek = content.findViewById(R.id.sizeSeek);
+        TextView name = content.findViewById(R.id.sizeName);
+        TextView sample = content.findViewById(R.id.sizeSample);
+        SeekBar.OnSeekBarChangeListener show = new SeekBar.OnSeekBarChangeListener() {
+            @Override public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
+                name.setText(sizeNames[progress]);
+                sample.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, Float.parseFloat(sizeValues[progress].replace("f", "")));
+            }
+            @Override public void onStartTrackingTouch(SeekBar bar) { }
+            @Override public void onStopTrackingTouch(SeekBar bar) { }
+        };
+        seek.setOnSeekBarChangeListener(show);
+        seek.setProgress(textSizeIndex());
+        show.onProgressChanged(seek, seek.getProgress(), false);
+        new AlertDialog.Builder(this)
                 .setTitle(R.string.settings_text_size)
-                .setSingleChoiceItems(sizeNames, textSizeIndex(), (dialog, which) -> {
-                    prefs.edit().putString(FONT_SIZE, sizeValues[which]).apply();
-                    row.setSummary(sizeNames[which]);
-                    dialog.dismiss();
+                .setView(content)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    prefs.edit().putString(FONT_SIZE, sizeValues[seek.getProgress()]).apply();
+                    row.setSummary(sizeNames[seek.getProgress()]);
                 })
                 .setNegativeButton(R.string.cancel, null)
-                .show());
+                .show();
     }
 
     private int textSizeIndex() {
