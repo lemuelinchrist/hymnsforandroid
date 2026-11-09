@@ -502,7 +502,7 @@ Hidden when the setting is off or the hymn has no tune. On tap:
 
 ### 7.6 Share
 
-The share icon opens a small menu (Android `PopupMenu` under the button):
+The share icon opens a small rounded menu under the button (Android `PopupWindow`, `layout/popup_share.xml`: an icon tile and a label per action):
 
 - **Share lyrics**: the system share sheet (`ACTION_SEND`, `text/plain`) with the lyrics as plain text.
 - **Share link**: the share sheet with `<HymnID> · <first line>` and, on the next line, the hymn in the web app:

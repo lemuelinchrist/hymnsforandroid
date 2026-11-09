@@ -35,9 +35,34 @@
         <item name="android:textColorPrimary">@color/dialog_text</item>
     </style>
 
-    <!-- ShareButton's menu: the hymn page's theme makes text white, which hid the menu items -->
-    <style name="ShareMenu" parent="ThemeOverlay.AppCompat.DayNight">
-        <item name="android:textColorPrimary">@color/dialog_text</item>
+    <!-- Rows of the Share button's menu (layout/popup_share) -->
+    <style name="ShareRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+    <style name="ShareRowIcon">
+        <item name="android:layout_width">38dp</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:padding">9dp</item>
+        <item name="android:background">@drawable/settings_icon_bg</item>
+        <item name="android:importantForAccessibility">no</item>
+        <item name="tint">@color/set_on_tint</item>
+    </style>
+    <style name="ShareRowText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">14dp</item>
+        <item name="android:textColor">@color/set_text</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <!-- RestoreFavoritesActivity: only its dialogs show, over whatever app opened the file -->

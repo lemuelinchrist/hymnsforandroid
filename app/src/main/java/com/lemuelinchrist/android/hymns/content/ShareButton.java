@@ -4,9 +4,12 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.view.ContextThemeWrapper;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.R;
@@ -31,20 +34,32 @@ public class ShareButton extends ContentComponent<ImageButton> {
 
         imageButton.setOnClickListener(v -> {
             logToHistory();
-            PopupMenu menu = new PopupMenu(new ContextThemeWrapper(context, R.style.ShareMenu), v);
-            menu.getMenu().add(R.string.share_lyrics).setOnMenuItemClickListener(item -> {
+            View card = LayoutInflater.from(context).inflate(R.layout.popup_share, null);
+            PopupWindow popup = new PopupWindow(card, ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT, true);
+            popup.setElevation(12 * context.getResources().getDisplayMetrics().density);
+            card.findViewById(R.id.shareLyrics).setOnClickListener(row -> {
+                popup.dismiss();
                 share(lyricsText(hymn));
-                return true;
             });
-            menu.getMenu().add(R.string.share_link).setOnMenuItemClickListener(item -> {
+            card.findViewById(R.id.shareLink).setOnClickListener(row -> {
+                popup.dismiss();
                 share(title(hymn) + "\n" + WEB_APP_HYMN + hymn.getHymnId());
-                return true;
             });
-            menu.getMenu().add(R.string.copy_lyrics).setOnMenuItemClickListener(item -> {
+            card.findViewById(R.id.copyLyrics).setOnClickListener(row -> {
+                popup.dismiss();
                 copy(lyricsText(hymn));
-                return true;
             });
-            menu.show();
+            // under the button, kept inside the screen with a margin
+            float density = context.getResources().getDisplayMetrics().density;
+            card.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+            int[] at = new int[2];
+            v.getLocationOnScreen(at);
+            int screenWidth = context.getResources().getDisplayMetrics().widthPixels;
+            int margin = (int) (12 * density);
+            int x = Math.max(margin, Math.min(at[0] + v.getWidth() / 2 - card.getMeasuredWidth() / 2,
+                    screenWidth - card.getMeasuredWidth() - margin));
+            popup.showAtLocation(v, Gravity.TOP | Gravity.START, x, at[1] + v.getHeight());
         });
     }
 

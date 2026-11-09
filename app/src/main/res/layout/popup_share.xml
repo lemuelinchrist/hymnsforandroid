@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The Share button's menu (content/ShareButton): a rounded card with an icon tile and a label per action -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_round_bg"
+    android:minWidth="236dp"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout style="@style/ShareRow" android:id="@+id/shareLyrics">
+        <ImageView style="@style/ShareRowIcon" android:src="@drawable/ic_set_share" />
+        <TextView style="@style/ShareRowText" android:text="@string/share_lyrics" />
+    </LinearLayout>
+    <LinearLayout style="@style/ShareRow" android:id="@+id/shareLink">
+        <ImageView style="@style/ShareRowIcon" android:src="@drawable/ic_set_link" />
+        <TextView style="@style/ShareRowText" android:text="@string/share_link" />
+    </LinearLayout>
+    <LinearLayout style="@style/ShareRow" android:id="@+id/copyLyrics">
+        <ImageView style="@style/ShareRowIcon" android:src="@drawable/ic_set_copy" />
+        <TextView style="@style/ShareRowText" android:text="@string/copy_lyrics" />
+    </LinearLayout>
+</LinearLayout>
