@@ -168,6 +168,12 @@ is probably not in the hymnal. Hold back titles with "New Tune" / "Alternate Tun
   hand it to the always-on `media` host (brief `~/joseph/TASK.md`, script `~/joseph/dl.sh`; skill media-resident-agent-setup) and `rsync` the files back.
 - Do not `pkill -f` a pattern that occurs in your own command line (it kills your shell, exit 144).
 
+## Link labels (Lemuel, 2026-11-09)
+The label a link shows is the **publisher** of the recording, else its **album / playlist**, never the channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives "Group").
+`tools/youtube-monitor/link_labels.py` rewrites the third column of the Joseph's Storehouses and Loving the Lord lines of `NycypcdYoutube.txt` from `recordings.tsv`
+(a second link with the same label on a hymn gets " 2", instrumentals " (Instrumental)"); write new lines of those channels with the placeholder label "Joseph's Storehouses" and run it.
+NYCYPCD, LSM, Melody of Lilies and 臺灣福音書房 keep their labels. The importer deletes the old channel-named rows. No database column: the label is the data.
+
 ## Traps
 - Titles are song names, not hymn numbers; several hymns share a first line (a hymn and its Be Filled / New Songs copy):
   collapse to the root hymn (`parent_hymn`) before counting candidates.
