@@ -112,13 +112,13 @@ def copy_tree(src, dst):
 
 def read_names():
     """The app's book and language names in each language of the app, from res/values-*/strings.xml:
-    {'zh-Hant': {'book': {'c': '中文（繁體）', ...}, 'language': {'c': '中文', ...}, 'first': 'C'}, 'es': ...}.
+    {'zh-Hant': {'book': {'c': '中文（繁體）', ...}, 'language': {'c': '中文', ...}, 'first': 'C'}}.
     'first' is the book a new user starts in (the first_hymn string). English is not listed: HymnGroup.java has it."""
     names = {}
     for folder in sorted(os.listdir(RES)):
         m = re.match(r'values-(.+)$', folder)
         path = os.path.join(RES, folder, 'strings.xml')
-        if not m or not os.path.exists(path) or not m.group(1).startswith(('b+', 'es')):
+        if not m or not os.path.exists(path) or not m.group(1).startswith('b+'):
             continue
         tag = m.group(1).replace('b+', '').replace('+', '-')
         text = open(path, encoding='utf-8').read()

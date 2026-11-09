@@ -10,16 +10,15 @@ import java.util.Locale;
 
 /**
  * The Language setting of Settings: the language of the app's own texts (menus, buttons, labels, book names), not of
- * the hymns. "Phone's language" (the default) follows the phone; English, 繁體中文, 简体中文 and Español are written in their
+ * the hymns. "Phone's language" (the default) follows the phone; English, 繁體中文 and 简体中文 are written in their
  * own language, so someone who lands in a language they cannot read still finds theirs. The choice is kept by
  * AppCompat (autoStoreLocales in the manifest; Android 13 and later keep it themselves and also offer it under the
  * phone's App languages), and the open screens are made again in the new language.
  */
 public final class LanguageSetting {
-    /** the language tags of the choices after "Phone's language": the folders values (English), b+zh+Hant, b+zh+Hans, es */
-    private static final String[] TAGS = {"en", "zh-Hant", "zh-Hans", "es"};
-    private static final int[] NAMES = {R.string.language_name_en, R.string.language_name_zh_hant, R.string.language_name_zh_hans,
-            R.string.language_name_es};
+    /** the language tags of the choices after "Phone's language": the folders values (English), b+zh+Hant, b+zh+Hans */
+    private static final String[] TAGS = {"en", "zh-Hant", "zh-Hans"};
+    private static final int[] NAMES = {R.string.language_name_en, R.string.language_name_zh_hant, R.string.language_name_zh_hans};
 
     private LanguageSetting() {
     }
@@ -56,11 +55,10 @@ public final class LanguageSetting {
     }
 
     /**
-     * "zh-Hant", "zh-TW", "zh-HK" and "zh-MO" are Traditional, the other Chinese Simplified; Spanish as
-     * it is; any other language English.
+     * "zh-Hant", "zh-TW", "zh-HK" and "zh-MO" are Traditional, the other Chinese Simplified; any other language
+     * English.
      */
     static int indexOf(Locale locale) {
-        if ("es".equals(locale.getLanguage())) return 3;
         if (!"zh".equals(locale.getLanguage())) return 0;
         String script = locale.getScript();
         if ("Hant".equals(script)) return 1;

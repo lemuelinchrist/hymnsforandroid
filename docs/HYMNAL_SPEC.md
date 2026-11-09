@@ -756,11 +756,12 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `similarTune` | bool | false | show Similar Tune button (§7.5) |
 | `sheetMusicType` | string | `pianoSvg` | `pianoSvg` = Piano, `guitarSvg` = Guitar: the viewer's starting mode (§11) |
 
-**The Android Settings screen (v5.9)** is one scrolling page of cards; every choice is made on the page, with no
-dialog for a simple choice. On a tablet or an unfolded phone the page (and the About page) is a centred column at most 640 dp wide. From the top:
+**The Android Settings screen (v5.9)** is one scrolling page of cards; every choice is on the page: a switch, or a row
+whose value opens a short list of choices. On a tablet or an unfolded phone the page (and the About page) is a centred column at most 640 dp wide. From the top:
 
-1. **Text size**: five "A" steps (Small to XXL); the chosen one is tinted and its name shows beside the title.
-2. **Theme**: four small pictures (System, Light, Dark, Black) with their names; the chosen one has a thick border.
+1. **Text size** and **Theme**: two plain rows in one card, like App language. The row shows the current choice
+   (Small to XXL; System default, Light, Dark, Black) and opens a list of choices. (A first v5.9 draft had five "A" steps
+   and four small theme pictures; they looked too flashy next to the rest and were replaced by rows.)
 3. **Sheet music**: a two-part switch, Piano | Guitar.
 4. **On the hymn page**: three switch rows: YouTube button, Similar tune button, Keep screen on.
 5. **Language**: one row, **App language**, that opens a dialog: Phone's language (the default), English, 繁體中文,
@@ -782,28 +783,29 @@ dialog for a simple choice. On a tablet or an unfolded phone the page (and the A
 ### 10.1 The app's language
 
 The app's own texts (menus, buttons, labels, dialogs, the book names, the sheet viewer's buttons) are in English,
-Traditional Chinese, Simplified Chinese or Spanish; the hymns themselves are always in their book's language.
+Traditional Chinese or Simplified Chinese; the hymns themselves are always in their book's language.
 
 - **Choice**: Settings → Language → App language: *Phone's language* (default: the phone's language when the app has
   it, else English; Hong Kong, Macau and Taiwan get Traditional, mainland China and Singapore Simplified) or one of the
-  four (English, 繁體中文, 简体中文, Español), each written in its own language so it can be found from any language. Android keeps the choice (AppCompat
+  three (English, 繁體中文, 简体中文), each written in its own language so it can be found from any language. Android keeps the choice (AppCompat
   per-app language; Android 13 and later also list it under the phone's App languages). The open screens are redrawn at once.
 - **Book names**: the drawer and the books dialog show each book's own name with the translated name under it (§8.5);
   sentences and the Other languages grid's spoken names use the translated name (英文, 中文（繁體）…, Children =
   英文兒童), except **Be Filled** and **New Songs**, which keep their English names in every language. The search
   title and its book filter use the book's own name. The book codes (E, C, CS…) never change.
 - **The launcher label** is 詩歌 / 诗歌 in Chinese, Hymns in English.
-- **First hymn**: someone with no History starts on the first hymn of the book in their language (§8.1): C1, Z1 or S1.
-- **Wording**: Spanish uses neutral Latin American wording and "tú" (the app is "Himnos"). Numbers follow the language
-  (1.362 in Spanish).
+- **First hymn**: someone with no History starts on the first hymn of the book in their language (§8.1): C1 or Z1.
+- **Spanish is not offered**: the Spanish saints' hymnbook is new, and the app should not look like a replacement for
+  the printed book, so the app's own texts are not translated into Spanish (the Spanish hymns are, of course). The
+  draft is kept on the branch `localization-es-ui`.
 - **Not translated**: the " (New Tune)" after first lines and in the header (it is part of the search index and the
   History text), the YouTube search words (they match how recordings are titled), and the Send feedback email subject.
 - A favorites backup's heading and note are written in the app's language; Restore reads only the hymn numbers, so a
   backup made in any language restores in any other.
-- Android: `res/values/strings.xml` (English), `values-b+zh+Hant`, `values-b+zh+Hans`, `values-es`; a
+- Android: `res/values/strings.xml` (English), `values-b+zh+Hant`, `values-b+zh+Hans`; a
   string without a translation shows in English. `StringsTranslationsTest` checks that a translation has no string
-  English lacks and the same placeholders. The sheet viewer gets the language as `&lang=zh-Hant|zh-Hans|es` (§11.2).
-- **The web app** speaks the same five languages. Settings → **Language** → *App language* is a list with the same
+  English lacks and the same placeholders. The sheet viewer gets the language as `&lang=zh-Hant|zh-Hans` (§11.2).
+- **The web app** speaks the same three languages. Settings → **Language** → *App language* is a list with the same
   choices (*Phone's language* by default: the first language of the browser's list that the app has, Traditional for
   zh-Hant/TW/HK/MO, else Simplified); the choice is kept on the device and the screen is written again at once. Its
   texts are in `tools/web/src/strings.js`, keyed by the English text (a text without a translation shows in English;
@@ -836,7 +838,7 @@ lyricsId  = h._id             (passed so a translation can overlay its own words
 The viewer is a self-contained web page (`assets/viewer/`). Hosts open:
 
 ```
-viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>][&edit=1][&lang=en|zh-Hant|zh-Hans|es]
+viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>][&edit=1][&lang=en|zh-Hant|zh-Hans]
 ```
 
 - `lang` is the language of the viewer's own buttons and messages (`assets/viewer/strings.js`, §10.1); English when

@@ -641,27 +641,6 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
   font: inherit; font-size: 15px; max-width: 60%; cursor: pointer;
 }
 .lang-select:focus-visible { outline: 2px solid var(--g); outline-offset: 2px; }
-/* Settings: Text size and Appearance as on the Android Settings screen (header + value, steps, theme pictures) */
-.set-head { display: flex; align-items: baseline; gap: 8px; margin: 14px 6px 8px; }
-.set-head h2 { flex: 1; margin: 0; font-size: 13.5px; font-weight: 700; color: var(--set-primary); }
-.set-head span { font-size: 13.5px; color: var(--muted); }
-.size-steps { display: flex; height: 64px; padding: 6px; margin-bottom: 8px; }
-.size-steps button {
-  flex: 1; border: 0; border-radius: 13px; background: none; cursor: pointer; padding: 0;
-  color: var(--muted); font: 700 13px var(--ui);
-}
-.size-steps button[aria-pressed="true"] { background: var(--set-tint); color: var(--set-on-tint); }
-.theme-tiles { display: flex; margin: 0 -4px 8px; }
-.theme-tile { flex: 1; min-width: 0; margin: 0 4px; padding: 0; border: 0; background: none; cursor: pointer; color: var(--muted); font: 12.5px var(--ui); text-align: center; }
-.theme-tile .frame { display: block; height: 84px; padding: 4px; border: 2px solid var(--line); border-radius: 14px; box-sizing: border-box; }
-.theme-tile[aria-pressed="true"] .frame { border: 3px solid var(--set-primary); padding: 3px; }
-.theme-tile[aria-pressed="true"] { color: var(--set-on-tint); }
-:root[data-theme="dark"] .theme-tile[aria-pressed="true"], :root[data-theme="black"] .theme-tile[aria-pressed="true"] { color: var(--ink); }
-.theme-tile .mock { display: block; position: relative; height: 100%; border-radius: 12px; overflow: hidden; background: var(--m-bg); }
-.theme-tile .mock::before { content: ""; position: absolute; top: 7px; left: 8px; right: 8px; height: 9px; border-radius: 3px; background: var(--m-bar); }
-.theme-tile .mock i { position: absolute; left: 8px; height: 4px; border-radius: 2px; background: var(--m-line); }
-.theme-tile .mock .half { position: absolute; top: 0; bottom: 0; left: 50%; right: 0; background: #1d1f23; }
-.theme-tile .name { display: block; margin-top: 6px; }
 .row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
 .btn {
   display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-radius: 19px; cursor: pointer;

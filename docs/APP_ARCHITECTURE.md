@@ -105,7 +105,7 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
         (`FontSize`, `theme`, `keepDisplayOn`, `youtubeSearch`, `similarTune`, `sheetMusicType`, `disableLanguages`).
         `xml/root_preferences.xml` is no longer shown: it only holds the default values, which `HymnsActivity` loads at start.
     -   `MaxWidthLinearLayout` keeps the page a centred column at most 640 dp wide on tablets.
-    -   Text size steps, theme pictures (`layout/settings_theme_tile.xml`) and the Piano | Guitar switch are built here;
+    -   The Text size and Theme rows (each opens a list of choices, like App language) and the Piano | Guitar switch are built here;
         the switch rows and the other rows are `SettingsRow` views (`rowIcon`, `rowTitle`, `rowSummary`, `rowTrailing`).
     -   The Hymn books row opens `HymnBooksDialog` (the books list; also counts the hymns per book for the drawer).
     -   "Favorites" opens `logbook/FavoritesBackup`'s dialog (also used by the Favorites tab's Back up / Restore bar,
@@ -115,10 +115,10 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
         tapped in another app, and a favorites backup to `FavoritesBackup`.
     -   "Share the app" draws a QR code on the page (`io.nayuki.qrcodegen`, Nayuki's QR Code generator, MIT licence, copied
         into the source tree) for the Google Play page or the web app, with Copy link and Share link.
-    -   "App language" opens `LanguageSetting`'s dialog (Phone's language, English, 繁體中文, 简体中文, Español), which sets the
+    -   "App language" opens `LanguageSetting`'s dialog (Phone's language, English, 繁體中文, 简体中文), which sets the
         AppCompat per-app language (`AppCompatDelegate.setApplicationLocales`; kept on Android 12 and older by the
         `AppLocalesMetadataHolderService` in the manifest, and listed for Android 13+ by `generateLocaleConfig`).
-        Every text the app shows is in `res/values/strings.xml`, translated in `values-b+zh+Hant`, `values-b+zh+Hans`, and `values-es`;
+        Every text the app shows is in `res/values/strings.xml`, translated in `values-b+zh+Hant` and `values-b+zh+Hans`;
         book names come from `HymnGroup.getDisplayName` (strings `book_<code>`), the first hymn of a new user from
         `HymnGroup.firstHymn` (the string `first_hymn`), and the sheet viewer's texts from `assets/viewer/strings.js`.
     -   "About" opens `AboutActivity`: the version, Send feedback (an email) and Source code (a link).

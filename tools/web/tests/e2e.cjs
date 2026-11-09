@@ -469,20 +469,20 @@ async function search(page, text) {
     });
     await test('dark mode is set in Settings and remembered', async () => {
       await open(page, '#/settings');
-      await page.click('.theme-tile[aria-label="Dark"]');
+      await page.selectOption('label.setting:has-text("Theme") select', {value: 'dark'});
       assert(await page.getAttribute('html', 'data-theme') === 'dark', 'dark');
       await open(page, '#/h/E8');
       await page.reload();
       assert(await page.getAttribute('html', 'data-theme') === 'dark', 'dark after reload');
       await page.waitForSelector('.sheet.dark .sheet-music svg', {timeout: 60000});
       await open(page, '#/settings');
-      await page.click('.theme-tile[aria-label="System default"]');
+      await page.selectOption('label.setting:has-text("Theme") select', {value: ''});
       assert(await page.getAttribute('html', 'data-theme') === null, 'back to the device setting');
     });
 
     await test('Black theme: pure black page, remembered, sheet drawn dark', async () => {
       await open(page, '#/settings');
-      await page.click('.theme-tile[aria-label="Black"]');
+      await page.selectOption('label.setting:has-text("Theme") select', {value: 'black'});
       assert(await page.getAttribute('html', 'data-theme') === 'black', 'black');
       const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
       assert(bg === 'rgb(0, 0, 0)', 'background ' + bg);
@@ -491,23 +491,16 @@ async function search(page, text) {
       assert(await page.getAttribute('html', 'data-theme') === 'black', 'black after reload');
       await page.waitForSelector('.sheet.dark .sheet-music svg', {timeout: 60000});
       await open(page, '#/settings');
-      await page.click('.theme-tile[aria-label="System default"]');
+      await page.selectOption('label.setting:has-text("Theme") select', {value: ''});
     });
-    await test('Settings: a theme tile keeps the keyboard focus after it is chosen', async () => {
+    await test('Settings: Text size is a list of the five Android steps and the hymn follows', async () => {
       await open(page, '#/settings');
-      await page.focus('.theme-tile[aria-label="Dark"]');
-      await page.keyboard.press('Enter');
-      assert(await page.evaluate(() => document.activeElement.getAttribute('aria-label')) === 'Dark', 'focus lost');
-      await page.focus('.theme-tile[aria-label="System default"]');
-      await page.keyboard.press('Enter');
-    });
-    await test('Settings: Text size has the five Android steps; the chosen one is marked and the hymn follows', async () => {
-      await open(page, '#/settings');
-      await page.click('.size-steps button[aria-label="XXL"]');
-      assert(await page.locator('.set-head:has-text("Text size") span').textContent() === 'XXL', 'value beside the title');
-      assert(await page.locator('.size-steps button[aria-pressed="true"]').getAttribute('aria-label') === 'XXL', 'XXL not marked');
+      const sel = 'label.setting:has-text("Text size") select';
+      assert(await page.$$eval(sel + ' option', (o) => o.map((x) => x.textContent).join()) === 'Small,Medium,Large,Extra Large,XXL', 'the steps');
+      await page.selectOption(sel, '4');
+      assert(await page.locator(sel + ' option:checked').textContent() === 'XXL', 'XXL not chosen');
       assert(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--lyric-scale').trim()) === '1.6', 'lyrics not bigger');
-      await page.click('.size-steps button[aria-label="Medium"]');   // back to the default
+      await page.selectOption(sel, '1');   // back to the default
     });
     await test('Settings: Share the app shows a QR code for the web app, and for Google Play when switched', async () => {
       await open(page, '#/settings');
@@ -778,7 +771,7 @@ async function search(page, text) {
       assert(parseInt(await toastBottom(), 10) >= 90, 'toast should be above the button: ' + await toastBottom());
       await phone.page.tap('#settingsTop');
       await phone.page.waitForURL(/#\/settings/);
-      await phone.page.waitForSelector('.theme-tile');   // Settings is drawn
+      await phone.page.waitForSelector('.app-lang');   // Settings is drawn
       await phone.page.goBack();
       await onHymn(phone.page, 'E600');
       assert(await phone.page.locator('.swap-back').count() === 0, 'button still there after a detour');
@@ -923,7 +916,7 @@ async function search(page, text) {
     }
 
     console.log('Language');
-    await test('the browser language chooses the app language: zh-TW starts in C in Traditional Chinese, es in S', async () => {
+    await test('the browser language chooses the app language: zh-TW starts in C in Traditional Chinese', async () => {
       const t = await newPage(browser, {locale: 'zh-TW'});
       await open(t.page, '');
       assert(await t.page.evaluate(() => document.documentElement.lang) === 'zh-Hant', 'lang is not zh-Hant');
@@ -931,27 +924,20 @@ async function search(page, text) {
       assert((await t.page.textContent('.hero h1')) === '詩歌', 'the heading is not 詩歌');
       assert((await t.page.getAttribute('#settingsTop', 'aria-label')) === '設定', 'the settings link is not translated');
       await t.ctx.close();
-      const s = await newPage(browser, {locale: 'es-MX'});
-      await open(s.page, '');
-      assert((await s.page.textContent('#hymnalName')) === 'Español', 'a new person in Spanish starts in S');
-      // the other books say what they are in Spanish, under their own names, with the count as Spanish counts
-      const card = await s.page.textContent('.hymnal-card[href="#/browse/C"] .count');
-      assert(/Chino \(tradicional\) · 786 himnos/.test(card), 'book subtitle: ' + card);
-      await s.ctx.close();
     });
     await test('Settings -> App language switches at once, is kept, and Phone\'s language follows the browser again', async () => {
       const t = await newPage(browser, {locale: 'en-US'});
       await open(t.page, '#/settings');
       assert((await t.page.textContent('h1.page-title')).includes('Settings'), 'English at first');
-      await t.page.selectOption('.lang-select', 'es');
-      await t.page.waitForFunction(() => document.querySelector('h1.page-title').textContent.includes('Ajustes'));
-      assert(await t.page.evaluate(() => document.documentElement.lang) === 'es', 'html lang is es');
-      assert((await t.page.getAttribute('#favoritesTop', 'aria-label')) === 'Favoritos', 'the top bar is written again');
-      assert((await t.page.getAttribute('#q', 'placeholder')).includes('Busca') || (await t.page.getAttribute('#q', 'placeholder')).includes('Número'), 'the search box is written again: ' + await t.page.getAttribute('#q', 'placeholder'));
+      await t.page.selectOption('.app-lang', 'zh-Hant');
+      await t.page.waitForFunction(() => document.querySelector('h1.page-title').textContent.includes('設定'));
+      assert(await t.page.evaluate(() => document.documentElement.lang) === 'zh-Hant', 'html lang is zh-Hant');
+      assert((await t.page.getAttribute('#settingsTop', 'aria-label')) === '設定', 'the top bar is written again');
+      assert(await t.page.$$eval('.app-lang option', (o) => o.map((x) => x.value).join()) === ',en,zh-Hant,zh-Hans', 'the language choices');
       await t.page.reload();
       await t.page.waitForSelector('body.ready', {timeout: 60000});
-      assert((await t.page.textContent('h1.page-title')).includes('Ajustes'), 'the choice is kept after a reload');
-      await t.page.selectOption('.lang-select', '');
+      assert((await t.page.textContent('h1.page-title')).includes('設定'), 'the choice is kept after a reload');
+      await t.page.selectOption('.app-lang', '');
       await t.page.waitForFunction(() => document.querySelector('h1.page-title').textContent.includes('Settings'));
       await t.ctx.close();
     });

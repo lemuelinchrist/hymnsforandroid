@@ -1,4 +1,4 @@
-// The viewer's own texts in the app's language: the app opens index.html with ?lang=zh-Hant, zh-Hans or es (the
+// The viewer's own texts in the app's language: the app opens index.html with ?lang=zh-Hant or zh-Hans (the
 // web app may pass the same). tr('Edit chords') gives the translation, the English text itself when there is none;
 // tr('Bar {0}', 12) fills in the numbers. Elements of index.html with data-tr (text) or data-tr-label (aria-label)
 // are translated here at the start. The sheet itself (titles, lyrics, the capo line) follows the hymn, not this.
@@ -81,50 +81,12 @@
     'The sheet has changed since you edited bars {0}. Check those bars.': '你编辑第 {0} 小节之后，乐谱已经改变。请检查那些小节。'
   };
 
-  var ES = {
-    'Sheet music': 'Partitura',
-    'Back': 'Atrás',
-    'Piano': 'Piano',
-    'Guitar': 'Guitarra',
-    'Transpose down': 'Bajar el tono',
-    'Transpose up': 'Subir el tono',
-    'Light or dark paper': 'Papel claro u oscuro',
-    'Light paper': 'Papel claro',
-    'Dark paper': 'Papel oscuro',
-    'Staff': 'Pentagrama',
-    'Show staff': 'Mostrar pentagrama',
-    'Hide staff': 'Ocultar pentagrama',
-    'Edit chords': 'Editar acordes',
-    'Editing chords': 'Editando acordes',
-    'Original chords': 'Acordes originales',
-    'Loading…': 'Cargando…',
-    'Could not render this sheet: {0}': 'No se pudo mostrar esta partitura: {0}',
-    'Sheet music not found ({0})': 'No se encontró la partitura ({0})',
-    'Chord editor': 'Editor de acordes',
-    'Undo': 'Deshacer',
-    'Original bar': 'Compás original',
-    'Done': 'Listo',
-    'Previous bar': 'Compás anterior',
-    'Next bar': 'Compás siguiente',
-    'Beats': 'Tiempos',
-    'Chord': 'Acorde',
-    'Remove chord': 'Quitar acorde',
-    'Bass': 'Bajo',
-    'none': 'ninguno',
-    'Bar {0}': 'Compás {0}',
-    'Tap a bar on the sheet': 'Toca un compás en la partitura',
-    'Type a chord for beat {0}': 'Escribe un acorde para el tiempo {0}',
-    'Saved on this device ✓': 'Guardado en este dispositivo ✓',
-    'Not saved, trying again…': 'No guardado, reintentando…',
-    'The sheet has changed since you edited bar {0}. Check that bar.': 'La partitura cambió desde que editaste el compás {0}. Revisa ese compás.',
-    'The sheet has changed since you edited bars {0}. Check those bars.': 'La partitura cambió desde que editaste los compases {0}. Revisa esos compases.'
-  };
 
   var lang = '';
   try { lang = new URLSearchParams(location.search).get('lang') || ''; } catch (e) { /* no query: English */ }
   var NONE = {};
   var table = /^zh-(Hant|TW|HK|MO)\b/i.test(lang) ? HANT : /^zh\b/i.test(lang) ? HANS
-    : /^es\b/i.test(lang) ? ES : NONE;
+    : NONE;
 
   window.tr = function (english) {
     var text = table.hasOwnProperty(english) ? table[english] : english;
