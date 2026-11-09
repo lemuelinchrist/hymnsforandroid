@@ -118,7 +118,7 @@ def read_names():
     for folder in sorted(os.listdir(RES)):
         m = re.match(r'values-(.+)$', folder)
         path = os.path.join(RES, folder, 'strings.xml')
-        if not m or not os.path.exists(path) or not m.group(1).startswith(('b+', 'es', 'fr')):
+        if not m or not os.path.exists(path) or not m.group(1).startswith(('b+', 'es')):
             continue
         tag = m.group(1).replace('b+', '').replace('+', '-')
         text = open(path, encoding='utf-8').read()

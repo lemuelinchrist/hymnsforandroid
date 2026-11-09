@@ -104,18 +104,14 @@ public class FavoritesBackupTest {
     }
 
     @Test
-    public void restoreReadsBackSpanishAndFrenchBackups() {
+    public void restoreReadsBackSpanishBackups() {
         HymnRecord[] favorites = {
                 new HymnRecord("S1", "S", "Gloria dad a Dios el Padre,", new Date(1)),
-                new HymnRecord("FR216", "FR", "Rendons gloire à notre Père,", new Date(0)),
+                new HymnRecord("S2", "S", "Padre nuestro, te‿adoramos", new Date(0)),
         };
         String es = FavoritesBackup.formatBackupText(favorites, "Mis himnos favoritos (Hymns For Android): 2 himnos",
                 "Para recuperarlos: abre este archivo con la app Himnos,\no copia todo este texto y, en la app, toca Buscar,\n"
                         + "luego Favoritos > Restaurar > Pegar el texto copiado.");
-        String fr = FavoritesBackup.formatBackupText(favorites, "Mes cantiques favoris (Hymns For Android) : 2 cantiques",
-                "Pour les remettre : ouvrez ce fichier avec l’app Cantiques,\nou copiez tout ce texte, puis dans l’app touchez Rechercher,\n"
-                        + "puis Favoris > Restaurer > Coller le texte copié.");
-        assertEquals(Arrays.asList("S1", "FR216"), ids(es));
-        assertEquals(Arrays.asList("S1", "FR216"), ids(fr));
+        assertEquals(Arrays.asList("S1", "S2"), ids(es));
     }
 }

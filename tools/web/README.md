@@ -47,7 +47,7 @@ the repository is public, so the page is too. Delete the folder when the page ha
 
 ## Language
 
-The web app's own texts (not the hymns) come in English, Traditional Chinese, Simplified Chinese, Spanish and French,
+The web app's own texts (not the hymns) come in English, Traditional Chinese, Simplified Chinese and Spanish,
 like the Android app: Settings → Language → App language (*Phone's language* by default). The texts are in
 `src/strings.js` (English text → translation; a text without one shows in English), written with `tr()`, `tn()` (counts)
 and `trh()` (text with elements) from `src/i18n.js`; the fixed texts of `index.html` carry `data-tr` attributes.

@@ -136,7 +136,7 @@ of every change, in the same commit, not later:
 -   A release: the GitHub release notes say what changed for users (section 7).
 
 -   A text the user sees: put it in `res/values/strings.xml` (never a literal in Java or a layout; lint's
-    HardcodedText is an error) and add its drafts to `values-b+zh+Hant`, `values-b+zh+Hans`, `values-es` and `values-fr` (and
+    HardcodedText is an error) and add its drafts to `values-b+zh+Hant`, `values-b+zh+Hans`, and `values-es` (and
     `assets/viewer/strings.js` for the sheet viewer) in the same change (a missing one shows in English;
     `StringsTranslationsTest` checks the placeholders). Be Filled and New Songs stay English.
 
