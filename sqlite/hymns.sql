@@ -115238,8 +115238,8 @@ INSERT INTO stanza VALUES('SW109','5','Nilalapo nikuone Wewe,<br/>Hata gizani ni
 INSERT INTO stanza VALUES('SW110','1','Nilikuwa mbali na Mungu,<br/>Sikuona Mwangaza,<br/>Kwa Neno nikaangaziwa,<br/>Yesu ndani yangu.<br/>',NULL,419894,1);
 INSERT INTO stanza VALUES('SW110','chorus','Yesu ndani yangu,<br/>Yesu ndani yangu,<br/>Ni wokovu wa ajabu,<br/>Yesu ndani yangu!<br/>',NULL,419895,2);
 INSERT INTO stanza VALUES('SW110','2','Mwangaza kama wa jua,<br/>Wacha raha ya dunia,<br/>Nina mwangaza moyoni,<br/>Yesu ndani yangu.<br/>',NULL,419896,3);
-INSERT INTO stanza VALUES('SW110','3','Uzima ndani ya mbegu,<br/>Ukazaa mti,<br/>Tumsifu kwa ukweli,<br/>Roho ndani yangu.<br/>',NULL,419897,4);
-INSERT INTO stanza VALUES('SW110','4','Natamani kujaa roho,<br/>Mifuanani Nawe,<br/>Nina wazo la dhamana,<br/>Yesu ndani yangu.<br/>',NULL,419898,5);
+INSERT INTO stanza VALUES('SW110','3','Uzima ndani ya mbegu,<br/>Ukazaa Mti,<br/>Tumsifu kwa ukweli,<br/>Roho ndani yangu.<br/>',NULL,419897,4);
+INSERT INTO stanza VALUES('SW110','4','Natamani kujazwa roho,<br/>Nifuanani Nawe,<br/>Nina wazo la dhamana,<br/>Yesu ndani yangu.<br/>',NULL,419898,5);
 INSERT INTO stanza VALUES('KI1','1','Njihuria na Roho wa utugi<br/>Ndoka thi-ini wa Roho<br/>Njihuria na wega Waku<br/>Uka na unjihurie<br/>',NULL,419899,1);
 INSERT INTO stanza VALUES('KI1','chorus','Njihuria, njihuria<br/>Roho Waku njihuria<br/>Unjohore maundu-ini<br/>Unjihurie na Roho<br/>',NULL,419900,2);
 INSERT INTO stanza VALUES('KI1','2','Riu njihuria na Roho<br/>Gukira umenyo wakwa<br/>Riu Niwe ngwenda muno<br/>Uka na unjihurie<br/>',NULL,419901,3);
