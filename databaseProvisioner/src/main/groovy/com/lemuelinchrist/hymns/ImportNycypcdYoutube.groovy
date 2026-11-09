@@ -4,11 +4,13 @@ import com.lemuelinchrist.hymns.lib.Dao
 import com.lemuelinchrist.hymns.lib.beans.LinkEntity
 
 /**
- * Imports the YouTube recordings of the NYCYPCD channel as link rows of kind youtube (label NYCYPCD).
- * NycypcdYoutube.txt: one "hymn id TAB video id" per line, matched by the match-youtube-songs skill and checked by Lemuel.
- * An optional third column replaces the label NYCYPCD for that link (a recording by someone else, e.g. the composer).
- * The label is the publisher of the recording, else its album, not the channel (tools/youtube-monitor/link_labels.py).
- * A hymn with two recordings gets order 1 and 2. It starts by deleting the rows labelled NYCYPCD, so it can be run again.
+ * Imports the YouTube recordings of the hymns as link rows of kind youtube (the "Listen and links" card).
+ * NycypcdYoutube.txt: one recording per line, tab separated: hymn id, video id, publisher, album, "instrumental" or empty.
+ * The publisher (label) is who made the recording, the album its album or playlist; either may be empty, never the YouTube
+ * channel (tools/youtube-monitor/link_meta.py fills them from recordings.tsv). A line with only two columns is a recording
+ * of the NYCYPCD channel. A hymn's recordings get order 1, 2, ... in the file's order.
+ * It starts by deleting every youtube row that has a publisher or an album (the rows of a book's editor have neither and
+ * stay), so it can be run again.
  */
 class ImportNycypcdYoutube {
 
@@ -16,34 +18,28 @@ class ImportNycypcdYoutube {
         def resource = ImportNycypcdYoutube.class.getResource("/NycypcdYoutube.txt")
         if (resource == null) throw new Exception("Resource not found!")
         Dao dao = new Dao()
-        dao.deleteLinks("youtube", "NYCYPCD")
-        // the labels of the third column go too, so that a re-run does not double those links
+        dao.deleteImportedRecordings()
         def file = new File(resource.toURI())
-        file.readLines("UTF-8").findAll { !it.trim().isEmpty() && !it.startsWith("#") }
-                .collect { it.split("\t") }.findAll { it.length > 2 && it[2].trim() }
-                .collect { it[2].trim() }.unique().each { dao.deleteLinks("youtube", it) }
-        // labels used before 2026-11-09 (the channel name), so that the old rows go when a file now labels them by publisher or album
-        ["Joseph's Storehouses", "Joseph's Storehouses 2", "Joseph's Storehouses (Instrumental)", "Loving the Lord",
-         "Loving the Lord 2", "Loving the Lord (Instrumental)"].each { dao.deleteLinks("youtube", it) }
         def order = [:]
         int saved = 0
         file.eachLine("UTF-8") { line ->
-            line = line.trim()
-            if (line.isEmpty() || line.startsWith("#")) return
-            def parts = line.split("\t")
-            String hymnId = parts[0]
+            if (line.trim().isEmpty() || line.startsWith("#")) return
+            def parts = line.split("\t", -1)
+            String hymnId = parts[0].trim()
             if (dao.find(hymnId) == null) throw new Exception("Hymn $hymnId does not exist")
             int n = (order[hymnId] ?: 0) + 1
             order[hymnId] = n
             LinkEntity link = new LinkEntity()
             link.setHymnId(hymnId)
             link.setKind("youtube")
-            link.setLabel(parts.length > 2 && parts[2].trim() ? parts[2].trim() : "NYCYPCD")
-            link.setUrl("https://www.youtube.com/watch?v=" + parts[1])
+            link.setLabel(parts.length > 2 ? parts[2].trim() : "NYCYPCD")
+            link.setAlbum(parts.length > 3 && parts[3].trim() ? parts[3].trim() : null)
+            link.setInstrumental(parts.length > 4 && parts[4].trim() == "instrumental" ? 1 : null)
+            link.setUrl("https://www.youtube.com/watch?v=" + parts[1].trim())
             link.setOrder(n)
             dao.save(link)
             saved++
         }
-        println "NYCYPCD links saved: $saved for ${order.size()} hymns"
+        println "Recordings saved: $saved for ${order.size()} hymns"
     }
 }

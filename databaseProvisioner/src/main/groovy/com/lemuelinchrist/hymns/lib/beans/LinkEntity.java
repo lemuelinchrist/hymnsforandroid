@@ -33,6 +33,14 @@ public class LinkEntity {
     @Basic
     @jakarta.persistence.Column(name = "label")
     private String label;
+    /** the album or playlist a recording is from (youtube and soundcloud rows; the label is its publisher) */
+    @Basic
+    @jakarta.persistence.Column(name = "album")
+    private String album;
+    /** 1 for an instrumental recording, else NULL */
+    @Basic
+    @jakarta.persistence.Column(name = "instrumental")
+    private Integer instrumental;
     /** the whole web address */
     @Basic
     @jakarta.persistence.Column(name = "url")
@@ -72,6 +80,22 @@ public class LinkEntity {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public Integer getInstrumental() {
+        return instrumental;
+    }
+
+    public void setInstrumental(Integer instrumental) {
+        this.instrumental = instrumental;
     }
 
     public String getUrl() {

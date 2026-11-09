@@ -185,27 +185,31 @@ export function videos(hymnObj) {
   return [];
 }
 
-// the hymn's own links of a kind other than piano ('youtube', 'soundcloud'), in order: [{url, label}]
-export function links(hymnObj, kind) {
-  return rows("select url, label from link where hymn_id = ? and kind = ? order by n_order", [hymnObj.id, kind])
-    .map((x) => ({url: (x.url || '').trim(), label: (x.label || '').trim()})).filter((x) => x.url);
+// the recordings of a hymn itself (YouTube first, then SoundCloud, in order): [{kind, label, album, instrumental, url}].
+// label is the publisher (empty when unknown), album the album or playlist; a link with neither is one a book's editor chose
+// (the youth books), which the card always shows (HymnsDao.getRecordings)
+export function recordings(hymnObj) {
+  return rows("select kind, label, album, instrumental, url from link where hymn_id = ? and kind in ('youtube', 'soundcloud')"
+    + " order by kind desc, n_order", [hymnObj.id])
+    .map((x) => ({kind: x.kind, label: (x.label || '').trim(), album: (x.album || '').trim(), instrumental: x.instrumental === 1,
+      url: (x.url || '').trim()})).filter((x) => x.url);
 }
 
 // the New Tunes of a hymn (the hymns that have it as parent and are marked new_tune), in number order, each with its own
-// recordings: [{id, links: [{url, label}]}] (HymnsDao.getNewTunes)
+// recordings: [{id, recordings}] (HymnsDao.getNewTunes)
 export function newTunes(hymnObj) {
   return rows("select _id as id from hymns where parent_hymn = ? and new_tune = 1 and hymn_group = 'BF' order by cast(no as integer)",
-    [hymnObj.id]).map((r) => ({id: r.id, links: links({id: r.id}, 'youtube').concat(links({id: r.id}, 'soundcloud'))}));
+    [hymnObj.id]).map((r) => ({id: r.id, recordings: recordings({id: r.id})}));
 }
 
-// A hymn with no YouTube or SoundCloud link of its own shows those of the nearest hymn above it that has some (its
-// parent, the parent's parent, ...): {from, kinds: {youtube: [...], soundcloud: [...]}}, or null (HymnsDao.getLinkedAncestor)
+// A hymn with no recording of its own shows those of the nearest hymn above it that has some (its parent, the parent's
+// parent, ...): {from, recordings}, or null (HymnsDao.getLinkedAncestor)
 export function inheritedLinks(hymnObj) {
-  if (links(hymnObj, 'youtube').length || links(hymnObj, 'soundcloud').length) return null;
+  if (recordings(hymnObj).length) return null;
   let id = hymnObj.parentId;
   for (let depth = 0; depth < 5 && id && id !== hymnObj.id; depth++) {
-    const kinds = {youtube: links({id}, 'youtube'), soundcloud: links({id}, 'soundcloud')};
-    if (kinds.youtube.length || kinds.soundcloud.length) return {from: id, kinds};
+    const list = recordings({id});
+    if (list.length) return {from: id, recordings: list};
     const row = hymnRow(id);
     id = row && row.parent_hymn;
   }

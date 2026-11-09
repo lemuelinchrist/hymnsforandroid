@@ -183,9 +183,11 @@ CREATE TABLE "link" (                   -- links of a hymn to places outside the
   "id" INTEGER NOT NULL PRIMARY KEY,
   "hymn_id" TEXT NOT NULL,              -- a HYMN ID (not a tune code), e.g. 'E8'
   "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune), 'youtube' or 'soundcloud' (a recording of this hymn; a hymn with none of its own shows those of the hymn above it, see the links card)
-  "label" TEXT,                         -- label shown to the user: '1st tune', 'Alt tune: 295', 'New tune' ... (NULL for youtube/soundcloud: shown as 'Link')
+  "label" TEXT,                         -- piano: the text shown ('1st tune', 'Alt tune: 295', 'New tune' ...); youtube/soundcloud: the PUBLISHER of the recording ('NYCYPCD', 'Hymn CDs'; empty when unknown, never the channel)
   "url" TEXT NOT NULL,                  -- the whole address, e.g. 'https://www.youtube.com/watch?v=DL6lgn78DcU'
-  "n_order" INTEGER                     -- order among the hymn's links of that kind, from 1
+  "n_order" INTEGER,                    -- order among the hymn's links of that kind, from 1
+  "album" TEXT,                         -- youtube/soundcloud: the album or playlist the recording is from
+  "instrumental" INTEGER                -- youtube/soundcloud: 1 for an instrumental recording, else NULL
 );
 CREATE INDEX stanza_parent_hymn ON stanza (parent_hymn, n_order);
 CREATE INDEX link_hymn ON link (hymn_id, kind, n_order);
@@ -336,25 +338,33 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    a trailing `a`/`b` is ignored; book names are English, Portuguese or Spanish (accents and spaces ignored); anything
    else (another language's book names, a chapter the book doesn't have, a part before any book) stays plain text. Only
    the link is made: the Bible text is not copied into the app (it is copyrighted).
-5. **Listen and links card** (below the details; hidden when it has no row): label `LISTEN AND LINKS`, then the same
-   two-column table, one row per item: `Piano videos` | the hymn's piano videos (`link` rows of kind `piano` where
-   `hymn_id` = this hymn's ID, else its parent's ID, in `n_order`) as links `<label> ↗` joined by ` · `. A tap opens the
-   stored `url` with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/`. The links are
-   underlined in the book's accent colour. The card does not depend on the YouTube button setting. After the piano
-   videos come a `YouTube` and a `SoundCloud` row: the hymn's own `link` rows of kind `youtube` / `soundcloud` as `Link ↗` (`Link 1 ↗ · Link 2 ↗` when there are
-   several, or their `label`). A hymn with **none** of its own (neither kind) shows those of the nearest hymn above it
-   (its parent, the parent's parent, ... up to 5 steps) that has some, both kinds taken from that one hymn; a hymn with
-   any link of its own gets nothing inherited. When the hymn above is in another language (`HymnGroup.getLanguage`:
-   English for E/BF/NS/CH, Chinese for the four Chinese books, the youth books and supplements in their main
-   language), each inherited link is labelled with that language, so it is not taken for a recording in the hymn's
-   own: `English ↗`, `English 1 ↗ · English 2 ↗`, `English – <label> ↗`. In the same language (a Be Filled hymn from
-   an English hymn) the labels are shown as they are.
-   Last come the hymn's New Tunes (the hymns whose `parent_hymn` is this hymn, `hymn_group` `BF` and `new_tune` = 1, in
-   number order): a `New tunes` row with each as its ID (`BF455 · BF501`), a tap opens that hymn in the app, and, only
-   when one has a `youtube` or `soundcloud` link of its own, a `New tune recordings` row with each such link as
-   `<ID> ↗` (`<ID> – <label> ↗` when it has a label). A New Tune itself, or a hymn with none, shows neither row.
-   (Until v5.8.3 these were stanzas named `YouTube Link` / `SoundCloud Link`; there are none any more.) (The web app has the same card under its details, and opens the stored `watch`
-   address as it is; its card is not drawn when there is no row, and not printed.) More kinds of link can be added later as other `kind`s of the `link` table.
+5. **Listen and links card** (below the details; hidden when it has nothing to show): label `LISTEN AND LINKS`, then sections, each with a
+   heading (`RECORDINGS`, `PIANO VIDEOS`, `NEW TUNES`, in capitals) and the number of links on its right; a section with nothing is left out.
+   - **Recordings**: the hymn's own `link` rows of kind `youtube` (first) and `soundcloud`, in `n_order`. A row is a link at least 56 dp tall:
+     a round icon (play for YouTube, music for SoundCloud) in the book's accent colour, a first line, a second line and an arrow `↗`. The first
+     line is the **publisher** (`label`: who made the recording: NYCYPCD, Living Stream Ministry, Hymn CDs, the group of a "Playlist (by Group)",
+     ...), else the **album** (`album`: the album or playlist), else the platform (`YouTube` / `SoundCloud`); the second line is the album
+     after a publisher, else the platform. The YouTube channel is never shown. An instrumental recording (`instrumental` = 1) has
+     ` · Instrumental` (muted) after its first line. A tap opens the stored `url`. A link with neither a publisher nor an album is one a book's
+     editor chose (the Spanish and German youth books): it is always shown. A hymn with **no** recording of its own shows those of the nearest
+     hymn above it (parent, grandparent, ... up to 5 steps); when that hymn is in another language (`HymnGroup.getLanguage`: English for E/BF/NS/CH,
+     Chinese for the four Chinese books, the youth books and supplements in their main language) each first line starts with the language
+     (`English – NYCYPCD`) so it is not taken for a recording in the hymn's own; a hymn with any recording of its own gets nothing inherited.
+   - **Piano videos**: `link` rows of kind `piano` where `hymn_id` is this hymn, else its parent (`n_order`): the label (`1st tune`) over
+     `Piano video · YouTube`. A tap opens the url with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/` (the web
+     app opens the watch address as it is).
+   - **New tunes**: the hymns whose `parent_hymn` is this hymn, `hymn_group` `BF` and `new_tune` = 1, in number order: a row `BF94 · New tune` /
+     `Same words, another tune · opens in the app` (arrow `›`; a tap opens that hymn in the app), and under it, indented, that tune's own
+     recordings (first line as above, second line `BF94 · <album>`). A New Tune itself, or a hymn with none, has no such section.
+   - **Showing more**: a section shows its first 3 links (a New Tune with its recordings counts as one) and a button `Show N more`, which
+     becomes `Show fewer`; the links of a book's editor do not count and are always shown. Nothing is dropped for being the 4th: every known
+     recording of the hymn is linked (the import no longer caps them), and a recording of the same title in the same album twice is one
+     (a re-upload; `link_meta.py` keeps the first).
+   - **Wide windows**: where the window is 600 dp wide or more (an unfolded foldable, a tablet; `values-w600dp`/`w840dp` `links_columns` = 2 or 3)
+     the links are cards in a grid (icon, publisher, the album on up to two lines) instead of rows, a New Tune's recordings following it.
+     The web app does the same by the width of the card (a container query of 520 px), and has a last section `SEARCH` with `YouTube` and
+     `SoundCloud` (a search for the hymn, as the Android YouTube button makes it), so every hymn page has the card.
+   The card does not depend on the YouTube button setting. (Until v5.8.3 these were stanzas named `YouTube Link` / `SoundCloud Link`; there are none any more.)
 
 Cards: 10dp side margins, 5dp radius, light elevation. Page and card colours: §6.3.
 

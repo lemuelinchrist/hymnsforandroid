@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the "Show N more" button of the links card (the tint is set in code from the book colour) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="?attr/hymnBadgeBackground"/>
+    <corners android:radius="8dp"/>
+</shape>

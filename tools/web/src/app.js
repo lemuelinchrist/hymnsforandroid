@@ -69,6 +69,9 @@ const ICONS = {
   copy: '<rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/>',
   share: '<path d="M12 3.5v11M8 7.5l4-4 4 4M5.5 12v6.5a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5V12"/>',
   play: '<path d="M8 5.5v13l10.5-6.5z"/>',
+  cloud: '<path d="M7 18.5a4 4 0 0 1-.5-7.97 5.5 5.5 0 0 1 10.6 1.1A3.5 3.5 0 0 1 17 18.5z"/>',
+  piano: '<rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M9.2 5v14M14.8 5v14M7.2 5v7M12 5v7M16.8 5v7"/>',
+  tune: '<path d="M9 18V5.5l10-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>',
   pause: '<path d="M8.5 5.5v13M15.5 5.5v13"/>',
 };
 
@@ -702,44 +705,67 @@ function metaNode(hymn) {
     items.length ? h('dl', null, items.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])) : null);
 }
 
-// the card under the details for links that open outside the app (the Android app's "Listen and links" card): the
-// hymn's piano videos, its parent's when it has none, then its own YouTube and SoundCloud links (the youth books), all
-// from the link table, and always a YouTube search for the hymn
+// the card under the details for links that open outside the app (the Android app's "Listen and links" card), in sections:
+// Recordings (the hymn's YouTube and SoundCloud links, or those of the nearest hymn above it that has some), Piano videos
+// (its parent's when it has none), New tunes (the Be Filled hymns with another tune for its words, each with its own
+// recordings under it) and Search (YouTube and SoundCloud). A link is a row of at least 56 px (icon, who made it, which
+// album, an arrow); where the card is wide (a tablet, an unfolded phone) the links are cards in a grid (app.css). A section
+// shows its first LINKS_SHOWN links and a "Show N more" button; the links a book's editor chose (no publisher, no album: the
+// Spanish and German youth books) are always shown.
+const LINKS_SHOWN = 3;
 function linksNode(hymn) {
-  const videos = DB.videos(hymn);
-  // no YouTube or SoundCloud link of its own: the nearest hymn above it that has some; in another language each link
-  // says which ("English ↗", "English – label ↗") so nobody takes an English recording for a Spanish one
+  const open = {};   // section key -> all links shown
+  const platform = (kind) => (kind === 'soundcloud' ? 'SoundCloud' : 'YouTube');
+  // no recording of its own: the nearest hymn above it that has some; in another language each link says which
+  // ("English – NYCYPCD") so nobody takes an English recording for a Spanish one
   const up = DB.inheritedLinks(hymn);
   const language = up && (languageName(splitId(up.from).group) || DB.languageOf(splitId(up.from).group));
   const foreign = up && DB.languageOf(splitId(up.from).group) !== DB.languageOf(hymn.group);
-  const ownLinks = (kind) => {
-    const list = up ? up.kinds[kind] : DB.links(hymn, kind);
-    const text = (v, i) => foreign
-      ? (v.label ? language + ' – ' + v.label : list.length === 1 ? language : language + ' ' + (i + 1))
-      : (v.label || (list.length === 1 ? tr('Link') : tr('Link {0}', i + 1)));
-    return list.length ? h('span', {class: 'videos'}, list.map((v, i) => [i ? ' · ' : '',
-      h('a', {href: v.url, target: '_blank', rel: 'noopener'}, text(v, i) + ' ↗')])) : null;
+  const recItem = (r, tuneId) => {
+    const title = r.label || r.album || platform(r.kind);
+    const sub = r.label ? (r.album || platform(r.kind)) : (r.album ? platform(r.kind) : null);
+    return {icon: r.kind === 'soundcloud' ? 'cloud' : 'play', title: !tuneId && foreign ? language + ' – ' + title : title,
+      sub: tuneId ? (sub ? tuneId + ' · ' + sub : tuneId) : sub, tag: r.instrumental, href: r.url, pinned: !r.label && !r.album, kids: []};
   };
-  const tunes = DB.newTunes(hymn);
-  const recordings = tunes.flatMap((t) => t.links.map((v) => ({url: v.url, text: v.label ? t.id + ' – ' + v.label : t.id})));
-  const rows = [
-    [tr('Piano videos'), videos.length ? h('span', {class: 'videos'}, videos.map((v, i) => [i ? ' · ' : '',
-      h('a', {href: v.url, target: '_blank', rel: 'noopener'}, (v.label || tr('Video')) + ' ↗')])) : null],
-    ['YouTube', ownLinks('youtube')],
-    ['SoundCloud', ownLinks('soundcloud')],
-    // another tune for this hymn's words: the tunes themselves (open in the app), then their recordings
-    [tr('New tunes'), tunes.length ? h('span', {class: 'videos'}, tunes.map((t, i) => [i ? ' · ' : '',
-      h('a', {href: '#/h/' + t.id}, t.id)])) : null],
-    [tr('New tune recordings'), recordings.length ? h('span', {class: 'videos'}, recordings.map((r, i) => [i ? ' · ' : '',
-      h('a', {href: r.url, target: '_blank', rel: 'noopener'}, r.text + ' ↗')])) : null],
-    // every hymn has this one, so the card is on every hymn page
-    [tr('Search'), h('span', {class: 'videos search'},
-      h('a', {href: youtubeSearchUrl(hymn), target: '_blank', rel: 'noopener'}, 'YouTube ↗'), ' · ',
-      h('a', {href: soundcloudSearchUrl(hymn), target: '_blank', rel: 'noopener'}, 'SoundCloud ↗'))],
-  ].filter(([, v]) => v);
+  const own = (up ? up.recordings : DB.recordings(hymn)).map((r) => recItem(r));
+  const piano = DB.videos(hymn).map((v) => ({icon: 'piano', title: v.label || tr('Video'), sub: tr('Piano video · YouTube'),
+    href: v.url, kids: []}));
+  const tunes = DB.newTunes(hymn).map((t) => ({icon: 'tune', title: tr('{0} · New tune', t.id),
+    sub: tr('Same words, another tune · opens in the app'), href: '#/h/' + t.id, inApp: true,
+    kids: t.recordings.map((r) => recItem(r, t.id))}));
+  const find = [
+    {icon: 'search', title: 'YouTube', sub: tr('Search for this hymn'), href: youtubeSearchUrl(hymn), kids: []},
+    {icon: 'search', title: 'SoundCloud', sub: tr('Search for this hymn'), href: soundcloudSearchUrl(hymn), kids: []},
+  ];
+  const row = (it, child) => h('a', {class: 'lk-row' + (child ? ' child' : ''), href: it.href,
+    target: it.inApp ? null : '_blank', rel: it.inApp ? null : 'noopener'},
+  h('span', {class: 'lk-ic'}, icon(it.icon)),
+  h('span', {class: 'lk-t'},
+    h('span', {class: 'lk-t1'}, it.title, it.tag ? h('span', {class: 'lk-tag'}, tr('Instrumental')) : null),
+    it.sub ? h('span', {class: 'lk-t2'}, it.sub) : null),
+  h('span', {class: 'lk-go', 'aria-hidden': 'true'}, it.inApp ? '›' : '↗'));
+  const section = (key, title, items) => {
+    if (!items.length) return null;
+    const box = h('div', {class: 'lk-section'});
+    const draw = () => {
+      let n = 0;
+      const shown = items.filter((it) => it.pinned || open[key] || ++n <= LINKS_SHOWN);
+      const hidden = items.length - shown.length;
+      box.replaceChildren(
+        h('div', {class: 'lk-head'}, h('span', null, title), h('span', {class: 'lk-n'}, String(items.length))),
+        h('div', {class: 'lk-list'}, shown.flatMap((it) => [row(it, false), ...it.kids.map((k) => row(k, true))])),
+        ...(hidden > 0 || open[key] ? [h('button', {type: 'button', class: 'lk-more', 'aria-expanded': String(!!open[key]),
+          onclick: () => { open[key] = !open[key]; draw(); }},
+        open[key] ? tr('Show fewer') : tr('Show {0} more', hidden))] : []));
+    };
+    draw();
+    return box;
+  };
+  // every hymn has the search section, so the card is on every hymn page
   return h('section', {class: 'card links-card'},
     h('h2', null, tr('Listen and links')),
-    h('dl', null, rows.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])));
+    section('rec', tr('Recordings'), own), section('piano', tr('Piano videos'), piano),
+    section('tunes', tr('New tunes'), tunes), section('search', tr('Search'), find));
 }
 
 function familyNode(hymn) {

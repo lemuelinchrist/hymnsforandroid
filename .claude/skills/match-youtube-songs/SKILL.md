@@ -168,11 +168,13 @@ is probably not in the hymnal. Hold back titles with "New Tune" / "Alternate Tun
   hand it to the always-on `media` host (brief `~/joseph/TASK.md`, script `~/joseph/dl.sh`; skill media-resident-agent-setup) and `rsync` the files back.
 - Do not `pkill -f` a pattern that occurs in your own command line (it kills your shell, exit 144).
 
-## Link labels (Lemuel, 2026-11-09)
-The label a link shows is the **publisher** of the recording, else its **album / playlist**, never the channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives "Group").
-`tools/youtube-monitor/link_labels.py` rewrites the third column of the Joseph's Storehouses and Loving the Lord lines of `NycypcdYoutube.txt` from `recordings.tsv`
-(a second link with the same label on a hymn gets " 2", instrumentals " (Instrumental)"); write new lines of those channels with the placeholder label "Joseph's Storehouses" and run it.
-NYCYPCD, LSM, Melody of Lilies and 臺灣福音書房 keep their labels. The importer deletes the old channel-named rows. No database column: the label is the data.
+## Link labels and columns (Lemuel, 2026-11-09)
+A link row has the **publisher** (`label`: who made the recording), the **album** (`album`) and an `instrumental` flag; the card shows the publisher, else the album, never the
+YouTube channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives the group as the publisher and X as the album). `NycypcdYoutube.txt` lines are
+`hymn id TAB video id TAB publisher TAB album TAB instrumental`; write a new line as `hymn TAB video` or with the placeholder publisher "Joseph's Storehouses", then run
+`python3 -I tools/youtube-monitor/link_meta.py`, which rewrites every line from `recordings.tsv` (and drops a recording of the same title in the same album as one the hymn already has).
+There is no cap on the number of recordings per hymn any more: the card shows 3 and "Show N more". Importing needs the three columns in the DB: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql`.
+NYCYPCD, LSM (written "Living Stream Ministry"), Melody of Lilies and 臺灣福音書房 keep their publisher names.
 
 ## Traps
 - Titles are song names, not hymn numbers; several hymns share a first line (a hymn and its Be Filled / New Songs copy):

@@ -196,11 +196,11 @@
                         android:layout_height="wrap_content"
                         android:text="@string/linksCard"
                         android:layout_marginBottom="6dp"/>
-                <TableLayout
-                        android:id="@+id/linksTable"
+                <LinearLayout
+                        android:id="@+id/linksList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:shrinkColumns="1"/>
+                        android:orientation="vertical"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

@@ -92,9 +92,6 @@ const ZH_HANT = {
   "Listen and links": "聆聽與連結",
   "Piano videos": "鋼琴影片",
   "New tunes": "新曲調",
-  "New tune recordings": "新曲調錄音",
-  "Link": "連結",
-  "Link {0}": "連結 {0}",
   "Video": "影片",
   "Other languages": "其他語言",
   "Fewer": "收合",
@@ -264,6 +261,14 @@ const ZH_HANT = {
   "Reload": "重新載入",
   "Type letters": "輸入字母",
   "Type numbers": "輸入數字",
+  "Recordings": "錄音",
+  "Instrumental": "器樂",
+  "Piano video · YouTube": "鋼琴影片 · YouTube",
+  "{0} · New tune": "{0} · 新曲調",
+  "Same words, another tune · opens in the app": "同樣的詩詞，另一個曲調 · 在應用程式中開啟",
+  "Show {0} more": "再顯示 {0} 項",
+  "Show fewer": "收起",
+  "Search for this hymn": "搜尋這首詩歌",
 };
 
 const ZH_HANS = {
@@ -354,9 +359,6 @@ const ZH_HANS = {
   "Listen and links": "聆听与链接",
   "Piano videos": "钢琴视频",
   "New tunes": "新曲调",
-  "New tune recordings": "新曲调录音",
-  "Link": "链接",
-  "Link {0}": "链接 {0}",
   "Video": "视频",
   "Other languages": "其他语言",
   "Fewer": "收合",
@@ -526,6 +528,14 @@ const ZH_HANS = {
   "Reload": "重新加载",
   "Type letters": "输入字母",
   "Type numbers": "输入数字",
+  "Recordings": "录音",
+  "Instrumental": "器乐",
+  "Piano video · YouTube": "钢琴视频 · YouTube",
+  "{0} · New tune": "{0} · 新曲调",
+  "Same words, another tune · opens in the app": "同样的诗词，另一个曲调 · 在应用中打开",
+  "Show {0} more": "再显示 {0} 项",
+  "Show fewer": "收起",
+  "Search for this hymn": "搜索这首诗歌",
 };
 
 const ES = {
@@ -616,9 +626,6 @@ const ES = {
   "Listen and links": "Escuchar y enlaces",
   "Piano videos": "Videos de piano",
   "New tunes": "Melodías nuevas",
-  "New tune recordings": "Grabaciones de melodías nuevas",
-  "Link": "Enlace",
-  "Link {0}": "Enlace {0}",
   "Video": "Video",
   "Other languages": "Otros idiomas",
   "Fewer": "Menos",
@@ -788,6 +795,14 @@ const ES = {
   "Reload": "Recargar",
   "Type letters": "Escribir letras",
   "Type numbers": "Escribir números",
+  "Recordings": "Grabaciones",
+  "Instrumental": "Instrumental",
+  "Piano video · YouTube": "Video de piano · YouTube",
+  "{0} · New tune": "{0} · Melodía nueva",
+  "Same words, another tune · opens in the app": "Misma letra, otra melodía · se abre en la aplicación",
+  "Show {0} more": "Mostrar {0} más",
+  "Show fewer": "Mostrar menos",
+  "Search for this hymn": "Buscar este himno",
 };
 
 export const STRINGS = {'zh-Hant': ZH_HANT, 'zh-Hans': ZH_HANS, es: ES};

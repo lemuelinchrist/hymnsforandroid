@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- how many links of the "Listen and links" card sit side by side (LinksSection): 1 = rows; more = cards.
+         600 dp and wider (an unfolded foldable, a tablet) uses cards; the number follows the window width. -->
+    <integer name="links_columns">1</integer>
+</resources>

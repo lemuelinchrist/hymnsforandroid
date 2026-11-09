@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- one link of the links card as a card (windows 600 dp and wider): icon and up to two lines of text; the album may take two lines -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:minHeight="64dp"
+              android:orientation="horizontal"
+              android:gravity="top"
+              android:padding="12dp"
+              android:background="@drawable/link_tile_bg"
+              android:clickable="true"
+              android:focusable="true">
+    <ImageView
+            android:id="@+id/linkIcon"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:padding="7dp"
+            android:background="@drawable/link_icon_bg"
+            android:importantForAccessibility="no"/>
+    <LinearLayout
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+        <TextView
+                android:id="@+id/linkTitle"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:maxLines="1" android:ellipsize="end"
+                android:textColor="?attr/hymnText"
+                android:textStyle="bold"/>
+        <TextView
+                android:id="@+id/linkSub"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:maxLines="2" android:ellipsize="end"
+                android:textColor="?attr/hymnTextMuted"/>
+    </LinearLayout>
+</LinearLayout>

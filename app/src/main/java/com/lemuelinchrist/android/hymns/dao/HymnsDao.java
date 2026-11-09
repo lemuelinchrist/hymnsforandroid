@@ -8,6 +8,7 @@ import android.util.Log;
 import com.lemuelinchrist.android.hymns.HymnDrawer;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
+import com.lemuelinchrist.android.hymns.entities.Recording;
 import com.lemuelinchrist.android.hymns.entities.Stanza;
 
 import java.util.ArrayList;
@@ -183,6 +184,24 @@ public class HymnsDao {
         } catch (Exception e) {
             return links;
         }
+    }
+
+    /**
+     * The YouTube and SoundCloud recordings of a hymn itself (not its parent's), YouTube first, in order.
+     * The link table has the publisher in {@code label}, the album in {@code album} and {@code instrumental} (1 or NULL).
+     */
+    public ArrayList<Recording> getRecordings(String hymnId) {
+        ArrayList<Recording> recordings = new ArrayList<>();
+        try (Cursor cursor = database.rawQuery("select kind, label, album, instrumental, url from link where hymn_id = ?"
+                + " and kind in ('youtube', 'soundcloud') order by kind desc, n_order", new String[]{hymnId})) {
+            while (cursor.moveToNext()) {
+                recordings.add(new Recording(cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                        cursor.getInt(3) == 1, cursor.getString(4)));
+            }
+        } catch (Exception e) {
+            // none then
+        }
+        return recordings;
     }
 
     /** The ids of the New Tunes of a hymn (the hymns that have it as parent and are marked new_tune), in number order. */

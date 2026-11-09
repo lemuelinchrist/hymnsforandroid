@@ -304,33 +304,51 @@ async function search(page, text) {
         }
       }
     });
-    await test('piano videos: E1 has one, E12 two in order, E395 its own and a NYCYPCD one, C1 borrows its parent\'s, E35 has none', async () => {
-      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos:not(.search) a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href).filter((x) => /^(\d+(st|nd|rd|th) tune|NYCYPCD)/.test(x))); };   // only the piano videos and the NYCYPCD recording: the other channels' recordings (LSM, Loving the Lord, Joseph's Storehouses...) come and go with the data
-      assert((await links('E1')).join() === '1st tune ↗ https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await links('E1'));
-      const e12 = await links('E12');
+    // the links card: sections (Recordings, Piano videos, New tunes, Search) of rows; a row is {title | second line href}
+    const sec = (name) => page.locator('.lk-section').filter({has: page.locator('.lk-head span:first-child', {hasText: new RegExp('^' + name + '$')})});
+    const rowsOf = (name) => sec(name).locator('.lk-row').evaluateAll((a) => a.map((x) => x.querySelector('.lk-t1').textContent + ' | '
+      + (x.querySelector('.lk-t2') ? x.querySelector('.lk-t2').textContent : '') + ' ' + x.getAttribute('href')));
+    const heads = () => page.locator('.links-card .lk-head span:first-child').allTextContents();
+    await test('links card: piano videos in order, recordings by publisher and album, the sections E1, E12, E35, C1 have', async () => {
+      await open(page, '#/h/E1');
+      assert((await rowsOf('Piano videos')).join() === '1st tune | Piano video · YouTube https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await rowsOf('Piano videos'));
+      assert((await rowsOf('Recordings'))[0].startsWith('Living Stream Ministry | The Triune God Has Now Become Our All https://www.youtube.com/watch?v='), 'E1 recording: ' + await rowsOf('Recordings'));
+      await open(page, '#/h/E12');
+      const e12 = await rowsOf('Piano videos');
       assert(e12.length === 2 && e12[0].startsWith('1st tune') && e12[1].startsWith('2nd tune') && e12.every((x) => x.includes('https://www.youtube.com/watch?v=')), 'E12: ' + e12);
-      assert((await links('E3')).length === 1, 'E3 has one video');
-      const e395 = await links('E395');   // its own piano video, then the NYCYPCD recording (a youtube link)
-      assert(e395.length === 2 && e395[0] === '1st tune ↗ https://www.youtube.com/watch?v=emzsWJGEj8Y' && e395[1].startsWith('NYCYPCD'), 'E395: ' + e395);
-      assert((await links('C1'))[0] === (await links('E1'))[0], 'C1 should show E1\'s video first: ' + await links('C1'));
-      assert((await links('E35')).length === 0 && await page.locator('.videos:not(.search)').count() === 0, 'E35 should have no videos line');
-      assert(await page.locator('.links-card dt').allTextContents().then((t) => t.join() === 'Search'), 'E35 should have only the search row');
-      await open(page, '#/h/E12');
-      const card = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
-      assert(card.replace(/ YouTube [^|]*? ↗ (?=New tunes)/, ' ') === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455 Search YouTube ↗ · SoundCloud ↗', 'the card reads: ' + card);
+      assert((await heads()).join() === 'Recordings,Piano videos,New tunes,Search', 'E12 sections: ' + await heads());
+      await open(page, '#/h/E3');
+      assert((await rowsOf('Piano videos')).length === 1, 'E3 has one video');
+      await open(page, '#/h/C1');
+      assert((await rowsOf('Piano videos'))[0] === (await (async () => { await open(page, '#/h/E1'); return rowsOf('Piano videos'); })())[0], 'C1 should show E1\'s video');
+      await open(page, '#/h/E35');
+      assert((await heads()).join() === 'Search', 'E35 has only the search section: ' + await heads());
     });
-    await test('new tunes: a hymn lists its New Tunes (open in the app) and their recordings in the links card', async () => {
+    await test('links card: three recordings first, "Show N more" for the rest, an instrumental is tagged (E395)', async () => {
+      await open(page, '#/h/E395');
+      assert((await rowsOf('Recordings')).length === 3 && (await rowsOf('Recordings'))[0].startsWith('NYCYPCD | I Surrender All'), 'E395 first: ' + await rowsOf('Recordings'));
+      assert(await page.locator('.links-card .lk-tag').count() === 0, 'the instrumental is behind "Show more"');
+      await sec('Recordings').locator('.lk-more').click();
+      assert((await rowsOf('Recordings')).length === 5, 'E395 all: ' + await rowsOf('Recordings'));
+      assert(await sec('Recordings').locator('.lk-tag').allTextContents().then((t) => t.join() === 'Instrumental'), 'one Instrumental tag');
+      await sec('Recordings').locator('.lk-more').click();
+      assert((await rowsOf('Recordings')).length === 3, 'Show fewer');
+    });
+    await test('links card: a youth book editor\'s link has no publisher or album and is always shown (SY110)', async () => {
+      await open(page, '#/h/SY110');
+      const r = await rowsOf('Recordings');
+      assert(r.length === 1 && r[0].startsWith('YouTube | ') && !(await page.locator('.links-card .lk-more').count()), 'SY110: ' + r);
+    });
+    await test('new tunes: a hymn lists its New Tunes (open in the app) with their recordings under them', async () => {
       await open(page, '#/h/E12');
-      const card = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
-      assert(/New tunes BF171 · BF455/.test(card), 'E12 card: ' + card);
-      assert(!card.includes('New tune recordings'), 'E12 has no recordings of its new tunes: ' + card);
-      await page.click('.links-card a[href="#/h/BF455"]');
-      await page.waitForURL(/#\/h\/BF455/);
+      assert((await rowsOf('New tunes'))[0] === 'BF171 · New tune | Same words, another tune · opens in the app #/h/BF171', 'E12: ' + await rowsOf('New tunes'));
+      await page.click('.links-card a[href="#/h/BF171"]');
+      await page.waitForURL(/#\/h\/BF171/);
       await open(page, '#/h/E1079');
-      const card2 = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
-      assert(/New tunes BF94/.test(card2) && /New tune recordings BF94 – NYCYPCD ↗/.test(card2), 'E1079 card: ' + card2);
-      await open(page, '#/h/BF455');
-      assert(!(await page.locator('.links-card').innerText().catch(() => '')).includes('New tunes'), 'a New Tune lists no New Tunes');
+      const t = await rowsOf('New tunes');
+      assert(t[0].startsWith('BF94 · New tune') && t[1].startsWith('NYCYPCD | BF94 · Channels Only'), 'E1079: ' + t);
+      await open(page, '#/h/BF171');
+      assert(!(await heads()).includes('New tunes'), 'a New Tune lists no New Tunes');
     });
     await test('a hymn without sheet music has no Sheet tab and says so (C206)', async () => {
       await open(page, '#/h/C206');

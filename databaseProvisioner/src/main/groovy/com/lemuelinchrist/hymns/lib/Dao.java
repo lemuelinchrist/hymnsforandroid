@@ -129,6 +129,17 @@ public class Dao {
         em.getTransaction().commit();
     }
 
+    /**
+     * Deletes the recordings that ImportNycypcdYoutube wrote: the youtube rows with a publisher or an album. The youtube rows
+     * with neither are the links a book's editor gave (the youth books) and stay.
+     */
+    public void deleteImportedRecordings() {
+        em.getTransaction().begin();
+        em.createNativeQuery("delete from link where kind = 'youtube' and (coalesce(label, '') <> '' or coalesce(album, '') <> '')")
+                .executeUpdate();
+        em.getTransaction().commit();
+    }
+
     public void addRelatedHymn(String parentHymn, String relatedToAdd) {
         if (parentHymn == null || parentHymn.isEmpty()) {
             System.out.println("Warning! no parent hymn! exiting");
