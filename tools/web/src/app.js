@@ -1453,21 +1453,43 @@ function settingsScreen(view) {
   view.appendChild(box);
   box.appendChild(h('h1', {class: 'page-title'}, icon('settings'), tr('Settings')));
 
-  // display: text size and theme are plain lists, like the language (the Android app has them as rows that open a list)
+  // display
   // text size: the five Android steps (Small ... XXL) on steps 1-5 of the page's seven (0 and 6 only with the A buttons on a hymn)
   const SIZE_NAMES = ['Small', 'Medium', 'Large', 'Extra Large', 'XXL'];
   const step = () => Math.max(0, Math.min(4, lyricSize - 1));
+  const sizeValue = h('span', null, tr(SIZE_NAMES[step()]));
+  const sizeSteps = h('div', {class: 'card size-steps', role: 'group', 'aria-label': tr('Text size')}, SIZE_NAMES.map((name, i) =>
+    h('button', {type: 'button', 'aria-label': tr(name), 'aria-pressed': String(i === step()), style: 'font-size:' + (13 + 4 * i) + 'px',
+      onclick: () => {
+        setLyricSize(i + 1);
+        sizeValue.textContent = tr(name);
+        for (const [j, x] of [...sizeSteps.children].entries()) x.setAttribute('aria-pressed', String(j === i));
+      }}, 'A')));
+  box.appendChild(h('div', {class: 'set-head'}, h('h2', null, tr('Text size')), sizeValue));
+  box.appendChild(sizeSteps);
+
+  // theme: a small picture per choice
   const themeNow = store.get('theme', null);
-  const THEMES = [[null, 'System default'], ['light', 'Light'], ['dark', 'Dark'], ['black', 'Black']];
+  const THEMES = [
+    [null, 'System', 'System default', {bg: '#ffffff', bar: '#3d577a', line: '#8a9099', half: true}],
+    ['light', 'Light', 'Light', {bg: '#ffffff', bar: '#3d577a', line: '#c9ced5'}],
+    ['dark', 'Dark', 'Dark', {bg: '#1d1f23', bar: '#2c3e57', line: '#4a4f57'}],
+    ['black', 'Black', 'Black', {bg: '#000000', bar: '#1c2a3c', line: '#3a3a3a'}]];
+  const themeValue = h('span', null, tr(THEMES.find((t) => t[0] === themeNow)[2]));
+  const mock = (m) => {
+    const e = h('span', {class: 'mock', style: `--m-bg:${m.bg};--m-bar:${m.bar};--m-line:${m.line}`});
+    if (m.half) e.appendChild(h('span', {class: 'half'}));
+    for (const [top, right] of [[19, 8], [26, 16], [33, 10], [40, 28]]) e.appendChild(h('i', {style: `top:${top}px;right:${right}px`}));
+    return e;
+  };
+  box.appendChild(h('div', {class: 'set-head'}, h('h2', null, tr('Appearance')), themeValue));
+  box.appendChild(h('div', {class: 'theme-tiles', role: 'group', 'aria-label': tr('Appearance')}, THEMES.map(([t, name, full, m]) =>
+    h('button', {type: 'button', class: 'theme-tile', 'aria-pressed': String(themeNow === t), 'aria-label': tr(full),
+      onclick: () => { setTheme(t); render(); document.querySelector(`.theme-tile[aria-label="${tr(full)}"]`)?.focus(); }},   // the page is drawn again: keep the focus
+    h('span', {class: 'frame'}, mock(m)), h('span', {class: 'name'}, tr(name))))));
 
   box.appendChild(h('section', {class: 'card settings-card'},
     h('h2', null, tr('Display')),
-    h('label', {class: 'setting'}, h('span', {class: 'label'}, tr('Text size')),
-      h('select', {class: 'lang-select', onchange: (e) => setLyricSize(Number(e.target.value) + 1)},
-        SIZE_NAMES.map((name, i) => h('option', {value: String(i), selected: i === step() || null}, tr(name))))),
-    h('label', {class: 'setting'}, h('span', {class: 'label'}, tr('Theme')),
-      h('select', {class: 'lang-select', onchange: (e) => { setTheme(e.target.value || null); render(); }},
-        THEMES.map(([t, name]) => h('option', {value: t || '', selected: t === themeNow || null}, tr(name))))),
     toggleRow(tr('Repeat the chorus'), tr('After every stanza, when a hymn has one chorus'), repeatChorus,
       (on) => { repeatChorus = on; store.set('repeatChorus', on); }),
     toggleRow(tr('Keep the screen on'), 'wakeLock' in navigator ? tr('While the app is open') : tr('Not supported by this browser (on iPhone: iOS 18.4 or later)'),
@@ -1477,7 +1499,7 @@ function settingsScreen(view) {
   box.appendChild(h('section', {class: 'card settings-card'},
     h('h2', null, tr('Language')),
     h('label', {class: 'setting'}, h('span', {class: 'label'}, tr('App language')),
-      h('select', {class: 'lang-select app-lang', onchange: (e) => changeLanguage(e.target.value)},
+      h('select', {class: 'lang-select', onchange: (e) => changeLanguage(e.target.value)},
         [['', tr('Phone\'s language')], ...LANGS].map(([code, name]) =>
           h('option', {value: code, selected: code === getChoice() || null}, name))))));
 

@@ -105,7 +105,7 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
         (`FontSize`, `theme`, `keepDisplayOn`, `youtubeSearch`, `similarTune`, `sheetMusicType`, `disableLanguages`).
         `xml/root_preferences.xml` is no longer shown: it only holds the default values, which `HymnsActivity` loads at start.
     -   `MaxWidthLinearLayout` keeps the page a centred column at most 640 dp wide on tablets.
-    -   The Text size and Theme rows (each opens a popup: a list for the size, four small theme pictures from `layout/settings_theme_tile.xml` for the theme) and the Piano | Guitar switch are built here;
+    -   Text size steps, theme pictures (`layout/settings_theme_tile.xml`) and the Piano | Guitar switch are built here;
         the switch rows and the other rows are `SettingsRow` views (`rowIcon`, `rowTitle`, `rowSummary`, `rowTrailing`).
     -   The Hymn books row opens `HymnBooksDialog` (the books list; also counts the hymns per book for the drawer).
     -   "Favorites" opens `logbook/FavoritesBackup`'s dialog (also used by the Favorites tab's Back up / Restore bar,

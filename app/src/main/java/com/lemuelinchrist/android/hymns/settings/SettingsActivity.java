@@ -20,7 +20,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -64,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
     private ChordEditsBackup chordEditsBackup;
     private boolean shareWeb;
 
-    private LinearLayout bookChips;
+    private LinearLayout sizeSteps, themeTiles, bookChips;
     private String[] sizeValues, sizeNames, themeValues, themeNames;
     private SettingsRow booksRow, chordEditsRow;
 
@@ -131,73 +130,74 @@ public class SettingsActivity extends AppCompatActivity {
         chordEditsRow.setSummary(chordEditsBackup.summary());
     }
 
-    // ---- text size and theme: a row that opens a list of choices ----
+    // ---- text size: five steps ----
 
     private void bindTextSize() {
         sizeValues = getResources().getStringArray(R.array.font_size_values);
         sizeNames = getResources().getStringArray(R.array.font_size);
-        SettingsRow row = findViewById(R.id.textSizeRow);
-        row.setSummary(sizeNames[textSizeIndex()]);
-        row.setOnClickListener(v -> new AlertDialog.Builder(this)
-                .setTitle(R.string.settings_text_size)
-                .setSingleChoiceItems(sizeNames, textSizeIndex(), (dialog, which) -> {
-                    prefs.edit().putString(FONT_SIZE, sizeValues[which]).apply();
-                    row.setSummary(sizeNames[which]);
-                    dialog.dismiss();
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .show());
+        sizeSteps = findViewById(R.id.sizeSteps);
+        for (int i = 0; i < sizeValues.length; i++) {
+            final int index = i;
+            TextView step = new TextView(this);
+            step.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
+            step.setText("A");
+            step.setGravity(Gravity.CENTER);
+            step.setTextSize(13 + 4 * i);
+            step.setTypeface(step.getTypeface(), android.graphics.Typeface.BOLD);
+            step.setTextColor(ContextCompat.getColorStateList(this, R.color.settings_choice_text));
+            step.setBackgroundResource(R.drawable.settings_step_bg);
+            step.setContentDescription(sizeNames[i]);
+            step.setOnClickListener(v -> {
+                prefs.edit().putString(FONT_SIZE, sizeValues[index]).apply();
+                showTextSize();
+            });
+            sizeSteps.addView(step);
+        }
+        showTextSize();
     }
 
-    private int textSizeIndex() {
-        return Math.max(0, Arrays.asList(sizeValues).indexOf(prefs.getString(FONT_SIZE, "18f")));
+    private void showTextSize() {
+        String current = prefs.getString(FONT_SIZE, "18f");
+        int selected = Math.max(0, Arrays.asList(sizeValues).indexOf(current));
+        for (int i = 0; i < sizeSteps.getChildCount(); i++) sizeSteps.getChildAt(i).setSelected(i == selected);
+        ((TextView) findViewById(R.id.textSizeValue)).setText(sizeNames[selected]);
     }
+
+    // ---- theme: a picture per choice ----
 
     private void bindTheme() {
         themeValues = getResources().getStringArray(R.array.theme_preference_values);
         themeNames = getResources().getStringArray(R.array.theme_preference);
-        SettingsRow row = findViewById(R.id.themeRow);
-        row.setSummary(themeNames[themeIndex()]);
-        row.setOnClickListener(v -> showThemeDialog());
-    }
-
-    /** The theme choices as four small pictures with their names, in a popup (the page itself keeps a plain row). */
-    private void showThemeDialog() {
         int[] shortNames = {R.string.theme_tile_system, R.string.theme_tile_light, R.string.theme_tile_dark, R.string.theme_tile_black};
         int[] mocks = {R.drawable.settings_mock_system, R.drawable.settings_mock_light,
                 R.drawable.settings_mock_dark, R.drawable.settings_mock_black};
-        LinearLayout tiles = new LinearLayout(this);
-        tiles.setOrientation(LinearLayout.HORIZONTAL);
-        int pad = (int) (16 * getResources().getDisplayMetrics().density);
-        tiles.setPadding(pad, pad / 2, pad, 0);
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.settings_theme)
-                .setView(tiles)
-                .setNegativeButton(R.string.cancel, null)
-                .create();
-        int selected = themeIndex();
+        themeTiles = findViewById(R.id.themeTiles);
         for (int i = 0; i < themeValues.length; i++) {
-            final int index = i;
-            View tile = LayoutInflater.from(this).inflate(R.layout.settings_theme_tile, tiles, false);
+            final String value = themeValues[i];
+            View tile = LayoutInflater.from(this).inflate(R.layout.settings_theme_tile, themeTiles, false);
             tile.findViewById(R.id.tileMock).setBackgroundResource(mocks[i]);
             ((TextView) tile.findViewById(R.id.tileLabel)).setText(shortNames[i]);
             tile.setContentDescription(themeNames[i]);
-            tile.setSelected(i == selected);
-            tile.findViewById(R.id.tileFrame).setSelected(i == selected);
             tile.setOnClickListener(v -> {
-                dialog.dismiss();
-                if (index == themeIndex()) return;
-                prefs.edit().putString(Theme.PREFERENCE, themeValues[index]).commit();
+                prefs.edit().putString(Theme.PREFERENCE, value).commit();
                 // a new choice changes the night mode at once; the open screens are made again in it
-                Theme.apply(this, themeValues[index]);
+                Theme.apply(this, value);
+                showTheme();
             });
-            tiles.addView(tile);
+            themeTiles.addView(tile);
         }
-        dialog.show();
+        showTheme();
     }
 
-    private int themeIndex() {
-        return Math.max(0, Arrays.asList(themeValues).indexOf(Theme.choice(this)));
+    private void showTheme() {
+        String current = Theme.choice(this);
+        int selected = Math.max(0, Arrays.asList(themeValues).indexOf(current));
+        for (int i = 0; i < themeTiles.getChildCount(); i++) {
+            View tile = themeTiles.getChildAt(i);
+            tile.setSelected(i == selected);
+            tile.findViewById(R.id.tileFrame).setSelected(i == selected);
+        }
+        ((TextView) findViewById(R.id.themeValue)).setText(themeNames[selected]);
     }
 
     // ---- sheet music: Piano or Guitar ----
