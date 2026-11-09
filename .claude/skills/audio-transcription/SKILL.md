@@ -12,8 +12,22 @@ workflow around them.
 
 - Python: `/home/lemue/venvs/transcribe/bin/python` (venv outside the repo; setup in the README). Check the GPU with
   `nvidia-smi` (RTX 5080, seen from WSL); PyTorch must be a cu128 build.
+- Audio on Google Drive (`G:`) is not mounted in WSL: copy it in with
+  `powershell.exe -NoProfile -Command "Copy-Item -LiteralPath 'G:\...\x.ogg' -Destination 'C:\...\temp\transcribe\<song>\source.ogg'"`.
 - Work folder per song: `temp/transcribe/<song>/` (`temp/` is not tracked; the audio and stems are someone else's
-  recording and must never be committed). `temp/transcribe/christ_is_everything/` is the first song done.
+  recording and must never be committed). `temp/transcribe/christ_is_everything/` was the first song done, `come_with_me_from_lebanon/` (BF354, one stanza, 2008 choir recording) the second.
+
+## First: the words
+
+Before transcribing, **ask the user for the lyrics** (or which hymn it is), unless they already gave them. Known words
+make the sheet much more accurate: Whisper mishears a choir ("Sunir and Irma" for "Senir and Hermon"), and every wrong
+word puts syllables, and so notes, in the wrong place.
+- A hymn in the app: its stanzas are in the database,
+  `sqlite3 app/src/main/assets/hymns.sqlite "select no, text from stanza where parent_hymn='BF354' order by n_order"`
+  (lines are split by `<br/>`). Search by a first line with `select _id, first_stanza_line from hymns where first_stanza_line like '%...%'`.
+- Otherwise the user's text, or none (then Whisper's words, fixed in `words`).
+Ask also how the song is built if it is not clear (one stanza? a chorus?): transcribe **one pass** of it, not the whole
+recording; a part sung again only serves to check the first (repeats must agree).
 
 ## Steps
 
@@ -21,9 +35,10 @@ workflow around them.
 V=/home/lemue/venvs/transcribe/bin; T=tools/audio-transcribe; D=temp/transcribe/<song>
 $V/python $T/prepare.py $D --url "https://www.youtube.com/watch?v=<id>"     # or --audio file.mp3
 $V/python $T/crepe_melody.py $D
-$V/python $T/lyrics.py $D                    # then read $D/lyrics.txt: the structure of the song
+$V/python $T/lyrics.py $D                    # then read $D/lyrics.txt: where each line starts, the structure
 $V/python $T/new_sheet_config.py $D --title "<title>"
-#   edit $D/sheet.json: sections (one pass of each part; "repeat": 2 for a part sung twice), misheard words
+#   edit $D/sheet.json: "lines" = the known words, one line each with its start from lyrics.txt ("end" on the last);
+#   sections (one pass of the stanza; "repeat": 2 for a part sung twice); "hyphens" for names pyphen leaves whole
 $V/python $T/align_words.py $D
 $V/python $T/make_sheet.py $D                # sheet.pdf / .png / .musicxml / .midi
 $V/python $T/show.py $D                      # bar by bar, to review
@@ -42,6 +57,7 @@ The model cannot listen, so check the draft against itself:
   where they differ, one is wrong. Compare the bars with `show.py`.
 - **Syllables on notes**: almost every note of a hymn carries one syllable; many melisma notes (`_` in `show.py`) in a
   line mean the alignment or the note cutting is off there.
+- **The tuning line** `crepe_melody.py` prints: tens of cents means an old or sunk recording; it is taken out.
 - **Raw data** for one spot: notes of the melody MIDI, `pitch.npz` (time, f0, confidence every 10 ms), `beats.npy`,
   `syllables.json`. A short Python look at 2-3 seconds around the bar usually shows the cause.
 
@@ -55,11 +71,19 @@ in the script, re-run, and check the other places the rule touches (repeats must
 - Words on the wrong notes → Whisper's word times drift. Fixed: forced alignment (MMS_FA) per syllable.
 - G♭/E♮ in a C minor line → slides into the next note. Fixed: `scale` in sheet.json.
 - Octave flips → brothers and sisters. Fixed: octave chosen per note for a smooth line inside `range`.
+- Notes "all over the place", repeats disagreeing (F♯/G for one sung note) → the recording was 28 cents flat. Fixed:
+  `crepe_melody.py` measures the tuning and takes it out.
+- Passing slides and stray notes between the sung ones → notes are now made per syllable (`"notes": "syllables"`).
+- Wrong words → for a hymn in the database, give its stanza as `lines` in sheet.json instead of Whisper's words, and
+  only one pass of the stanza as the section (hence: ask for the lyrics first).
+- A line's first word placed inside the line before ("Come" inside "mountains") → the alignment window reached back
+  into the previous line. Fixed: a line's window starts after the previous line's last syllable.
 A clue that is a one-off (a word misheard, a section limit) goes into `sheet.json`. Last-mile corrections the rules
 cannot reach are best made by the user in MuseScore on `sheet.musicxml`.
 
 ## Traps
 
+- music21 caches parsed files: `show.py` parses with `forceSource=True`, or it may show an older sheet.
 - `pkill -f yt-dlp` kills your own shell if its command line contains "yt-dlp": use `pkill -f "[y]t-dlp"`.
 - Whisper calls `ffmpeg` by name: `lyrics.py` links imageio-ffmpeg's binary into the venv's `bin/`.
 - python-ly's MusicXML export loses the lyric text and turns chord names into a second part: `make_sheet.py` exports the

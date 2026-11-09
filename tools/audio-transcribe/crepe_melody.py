@@ -1,7 +1,7 @@
 """Melody from the vocals stem with CREPE (GPU): a pitch every 10 ms, then cut into notes.
 
 usage: crepe_melody.py <song dir> [--conf 0.5] [--min-ms 100]
-writes <song dir>/midi/melody_crepe.mid and <song dir>/pitch.npz (time, f0, confidence)
+writes <song dir>/midi/melody_crepe.mid and <song dir>/pitch.npz (time, f0, confidence, voiced, tuning in semitones)
 """
 import argparse, pathlib, numpy as np, torch, torchcrepe, librosa, pretty_midi
 ap = argparse.ArgumentParser(); ap.add_argument('dir'); ap.add_argument('--conf', type=float, default=0.5); ap.add_argument('--min-ms', type=float, default=100)
@@ -12,7 +12,6 @@ f0, conf = torchcrepe.predict(torch.tensor(y)[None], sr, hop, 65, 1000, 'full', 
 conf = torchcrepe.filter.median(conf, 5); f0 = torchcrepe.filter.mean(f0, 5)
 f0, conf = f0[0].cpu().numpy(), conf[0].cpu().numpy()
 t = np.arange(len(f0)) * hop / sr
-np.savez(d / 'pitch.npz', t=t, f0=f0, conf=conf)
 # energy gate too: silence between phrases
 rms = librosa.feature.rms(y=y, frame_length=1024, hop_length=hop)[0][:len(f0)]
 voiced = (conf >= a.conf) & (rms >= 0.1 * np.percentile(rms, 95))
@@ -20,6 +19,13 @@ voiced = (conf >= a.conf) & (rms >= 0.1 * np.percentile(rms, 95))
 # run the pitch is smoothed (vibrato, scoops) and cut where it settles on another semitone for 70 ms or more
 from scipy.ndimage import median_filter
 mf = librosa.hz_to_midi(np.maximum(f0, 1))
+# tuning: a recording off A=440 (an old tape, a choir that sank) puts the sung notes between two semitones, and the
+# rounding then flips between them (F sharp / G). Measure the offset on the confident frames and take it out.
+sure = voiced & (conf >= 0.8)
+tuning = float(np.angle(np.mean(np.exp(2j * np.pi * mf[sure]))) / (2 * np.pi)) if sure.any() else 0.0
+mf = mf - tuning
+print('tuning', f'{tuning * 100:+.0f}', 'cents')
+np.savez(d / 'pitch.npz', t=t, f0=f0, conf=conf, tuning=tuning, voiced=voiced)
 notes, i, n = [], 0, len(voiced)
 while i < n:
     if not voiced[i]: i += 1; continue

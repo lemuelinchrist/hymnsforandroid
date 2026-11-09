@@ -48,6 +48,10 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
 | `scale` | pitch classes allowed (0 = C); a note outside moves to the nearest one (sliding singers). Minor keys keep the leading tone |
 | `range` | MIDI range of the written melody (58-77 = B♭3-F5): every note's octave is chosen inside it, the line moving smoothly |
 | `words` | fixes for misheard words, `{"history production": "His reproduction"}` |
+| `lines` | the known words in place of Whisper's, one line each with its start: `[{"start": 54.7, "text": "Come with me from Lebanon, my bride"}, ...]` (`"end"` on the last line); the start of each from `lyrics.txt` |
+| `notes` | `"syllables"` (default with `syllables.json`): one note per syllable, see below; `"pitch"`: the older way |
+| `melisma_s` | how long (s) the voice must hold a second pitch inside one syllable to write it as a second note (0.25) |
+| `hyphens` | syllables pyphen gets wrong, `{"Lebanon": "Leb-a-non"}` (it leaves many names whole; a possessive `s'` is always kept on the last syllable) |
 | `sections` | `[{"mark": "A", "t0": 17.0, "t1": 34.5, "repeat": 2}, ...]`, seconds of the recording; keep one pass of a part sung twice and mark it `repeat` |
 
 ## How it works, and why
@@ -60,7 +64,18 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
   the consonant between them. Cutting at every wobble wrote one quarter note as two eighths.
 - **Forced alignment for the words.** Whisper finds the words but its word times drift by up to half a second; MMS_FA
   places the known words in the audio letter by letter, so each syllable has a time within about 0.1 s of its note.
-  Syllables come from pyphen. The syllable-to-note match is a dynamic programme over the whole section.
+  Syllables come from pyphen. When the words are known (a hymn in the database), give them as `lines`: Whisper's
+  guesses then only matter for where the lines start.
+- **One note per syllable.** A hymn sings almost every syllable on one note, so the notes are made from the syllables
+  (`"notes": "syllables"`, the default once `syllables.json` exists): a syllable's pitch is the semitone its voice holds
+  longest between its start and the next syllable, so the scoop into it and the slide out of it do not count; it gets a
+  second or third note only where the voice settles on another semitone for `melisma_s` (0.25 s) or more. Cutting the
+  pitch line into notes first (`"notes": "pitch"`, the older way, then matched to the syllables by a dynamic programme)
+  wrote passing slides and other voices as notes of their own: on "Come with Me from Lebanon" 82 notes for 59
+  syllables, against 65 this way.
+- **Tuning.** An old recording or a choir that sank can sit between two semitones (that one was 28 cents flat), and
+  rounding then flips between them (F♯ and G for one sung note). `crepe_melody.py` measures the offset on the sure
+  frames and takes it out (it prints it; near 0 for a recording in tune).
 - **Octave and key.** A choir sings the melody in two octaves; the sheet writes one. Out-of-key notes are almost always
   slides.
 - **Chords** are a simple chroma-template guess (major, minor, dominant 7) per half bar: a slash chord or a passing

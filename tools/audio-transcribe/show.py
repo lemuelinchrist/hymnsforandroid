@@ -1,6 +1,6 @@
 """Prints the sheet bar by bar: note (length in eighths) and its syllable. usage: show.py <song dir> [first bar] [last bar]"""
 import sys, music21
-s = music21.converter.parse(sys.argv[1] + '/sheet.musicxml')
+s = music21.converter.parse(sys.argv[1] + '/sheet.musicxml', forceSource=True)   # its cache can hold an older sheet
 a, b = (int(sys.argv[2]), int(sys.argv[3])) if len(sys.argv) > 3 else (1, 999)
 for i, m in enumerate(s.parts[0].getElementsByClass('Measure'), 1):
     if not a <= i <= b: continue

@@ -7,8 +7,10 @@ writes sheet.ly, sheet.pdf, sheet.png, sheet.midi and sheet.musicxml (for MuseSc
 
 Per section (sheet.json "sections", t0..t1 in seconds of the recording):
 - notes snapped to eighths of the tracked beat, held to the next note across gaps up to a beat (breaths, clipped ends);
-- every syllable gets a run of one or more notes, in order, by its time from the forced alignment (dynamic programming:
-  timing error plus a small cost for each extra melisma note); a note is split when there are fewer notes than syllables;
+- "notes": "syllables" (default with syllables.json): one note per syllable, the pitch its voice holds longest, a second
+  note only where the voice holds another pitch for "melisma_s"; "notes": "pitch": the melody MIDI's notes, every
+  syllable getting a run of one or more of them by its time (dynamic programming: timing error plus a small cost for
+  each extra melisma note), a note split when there are fewer notes than syllables;
 - a note outside "scale" (a slide into the next note) moves to the nearest scale note, towards the next note;
 - the octave of each note is chosen so the line moves smoothly inside "range" (brothers and sisters in one octave);
 - chords: one per half bar, chroma of the other+bass stems against major, minor and dominant-7 templates, smoothed.
@@ -43,6 +45,10 @@ def syllables(w):
     return hy.inserted(clean).split('-') if clean else []
 
 NAMES = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
+# a sharp key spells the black keys as sharps (F sharp in G major, not G flat)
+SHARP_KEYS = {'major': ('g', 'd', 'a', 'e', 'b', 'fis', 'cis'), 'minor': ('e', 'b', 'fis', 'cis', 'gis', 'dis', 'ais')}
+if cfg['key'] in SHARP_KEYS.get(cfg.get('mode', 'major'), ()):
+    NAMES = ['c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b']
 def name(p):
     o = p // 12 - 4
     return NAMES[p % 12] + ("'" * o if o > 0 else "," * -o)
@@ -84,6 +90,50 @@ def chords_for(first_u, n_halves):
     return [CH[k][0] for k in path[::-1]]
 chord_toks, chord_list = [], []
 
+# notes from the syllables (sheet.json "notes": "syllables", the default when syllables.json exists): a hymn sings one
+# note per syllable, and the forced alignment knows where each syllable starts. The pitch of a syllable is the one its
+# voice holds longest between its start and the next syllable (the scoop at its start and the slide at its end are
+# short); a second or third note (a melisma) only where the voice settles on another semitone for MELISMA_S or more.
+by_syllable = cfg.get('notes', 'syllables' if (d / 'syllables.json').exists() else 'pitch') == 'syllables'
+MELISMA_S = cfg.get('melisma_s', 0.25)
+if by_syllable:
+    from scipy.ndimage import median_filter
+    P = np.load(d / 'pitch.npz')
+    pt, pconf = P['t'], P['conf']
+    pv = P['voiced'] if 'voiced' in P.files else pconf >= 0.5
+    pm_ = pretty_midi.hz_to_note_number(np.maximum(P['f0'], 1)) - (float(P['tuning']) if 'tuning' in P.files else 0.0)
+def syllable_notes(syls, t_end):
+    out, prev = [], None
+    for j, (st, lab) in enumerate(syls):
+        nx = syls[j + 1][0] if j + 1 < len(syls) else t_end
+        i0, i1 = np.searchsorted(pt, st), np.searchsorted(pt, nx)
+        idx = np.arange(i0, i1)[pv[i0:i1]]
+        if len(idx) < 3:   # hardly voiced (a short word on a consonant): the less sure frames, else the last pitch
+            idx = np.arange(i0, i1)[pconf[i0:i1] >= 0.2]
+        if len(idx) < 3:
+            if prev is not None: out.append([unit(st), unit(nx), prev, lab])
+            continue
+        semi = np.round(median_filter(pm_[idx], size=min(9, len(idx)) | 1, mode='nearest')).astype(int)
+        # runs of one semitone, in order; frames are 10 ms
+        runs = []
+        for k, q in zip(idx, semi):
+            if runs and runs[-1][2] == q and k - runs[-1][1] <= 3: runs[-1][1] = k
+            else: runs.append([k, k, int(q)])
+        main = max(runs, key=lambda r: r[1] - r[0])
+        long = [r for r in runs if (r[1] - r[0]) * 0.01 >= MELISMA_S or r is main]
+        held = []   # the notes of this syllable: long runs, same-pitch neighbours joined
+        for r in long:
+            if held and held[-1][2] == r[2]: held[-1][1] = r[1]
+            else: held.append(list(r))
+        held = held[:3]
+        end = pt[min(idx[-1] + 1, len(pt) - 1)]
+        for k, (a_, b_, q) in enumerate(held):
+            s_ = st if k == 0 else pt[a_]
+            e_ = pt[held[k + 1][0]] if k + 1 < len(held) else end
+            out.append([unit(s_), unit(e_), q, lab if k == 0 else None])
+        prev = held[-1][2]
+    return out
+
 music, lyr, qmidi = [], [], []
 for sec in cfg['sections']:
     ns = [[n.start, n.end, n.pitch] for n in raw if sec['t0'] <= n.start < sec['t1']]
@@ -98,21 +148,24 @@ for sec in cfg['sections']:
             parts = syllables(w['word']); t0, t1 = w['start'], max(w['end'], w['start'] + 0.1)
             for k, part in enumerate(parts):
                 syls.append([t0 + (t1 - t0) * k / len(parts), part + (' --' if k < len(parts) - 1 else '')])
-    while len(ns) < len(syls):   # still short: split the longest note
-        k = max(range(len(ns)), key=lambda i: ns[i][1] - ns[i][0]); s_, e_, p_ = ns[k]
-        ns[k:k + 1] = [[s_, (s_ + e_) / 2, p_], [(s_ + e_) / 2, e_, p_]]
-    # monotonic alignment: each syllable takes a run of 1+ notes, all notes used, timing error + a cost per melisma note
-    N, S, INF = len(ns), len(syls), 1e9
-    dp = np.full((N + 1, S + 1), INF); back = np.zeros((N + 1, S + 1), int); dp[0, 0] = 0
-    for j in range(1, S + 1):
-        for i in range(j, N - (S - j) + 1):
-            for k in range(j - 1, i):
-                c = dp[k, j - 1] + abs(ns[k][0] - syls[j - 1][0]) + 0.25 * (i - k - 1)
-                if c < dp[i, j]: dp[i, j] = c; back[i, j] = k
-    labels = [None] * N; i = N
-    for j in range(S, 0, -1):
-        k = back[i, j]; labels[k] = syls[j - 1][1]; i = k
-    notes = [[unit(s_), unit(e_), p_, labels[i]] for i, (s_, e_, p_) in enumerate(ns)]
+    if by_syllable and syls:
+        notes = syllable_notes(syls, sec['t1'])
+    else:
+        while len(ns) < len(syls):   # still short: split the longest note
+            k = max(range(len(ns)), key=lambda i: ns[i][1] - ns[i][0]); s_, e_, p_ = ns[k]
+            ns[k:k + 1] = [[s_, (s_ + e_) / 2, p_], [(s_ + e_) / 2, e_, p_]]
+        # monotonic alignment: each syllable takes a run of 1+ notes, all notes used, timing error + a cost per melisma note
+        N, S, INF = len(ns), len(syls), 1e9
+        dp = np.full((N + 1, S + 1), INF); back = np.zeros((N + 1, S + 1), int); dp[0, 0] = 0
+        for j in range(1, S + 1):
+            for i in range(j, N - (S - j) + 1):
+                for k in range(j - 1, i):
+                    c = dp[k, j - 1] + abs(ns[k][0] - syls[j - 1][0]) + 0.25 * (i - k - 1)
+                    if c < dp[i, j]: dp[i, j] = c; back[i, j] = k
+        labels = [None] * N; i = N
+        for j in range(S, 0, -1):
+            k = back[i, j]; labels[k] = syls[j - 1][1]; i = k
+        notes = [[unit(s_), unit(e_), p_, labels[i]] for i, (s_, e_, p_) in enumerate(ns)]
     notes.sort(key=lambda n: n[0])
     clean = []
     for n in notes:
