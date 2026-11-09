@@ -355,9 +355,10 @@ body.sheet-only .swap-back, body.editing-chords .swap-back, .hymn[data-tab="shee
 .stanza.note .text { font-size: .8em; color: var(--muted); font-style: italic; }
 .stanza-note { font: italic .75em var(--ui); color: var(--muted); }
 .meta { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
-.meta dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0 0 12px; }
+/* the label column is capped (a long label such as "Grabaciones de melodías nuevas" wraps instead of squeezing the value) */
+.meta dl { display: grid; grid-template-columns: fit-content(10em) minmax(0, 1fr); gap: 4px 16px; margin: 0 0 12px; }
 .meta dt { font-weight: 600; }
-.meta dd { margin: 0; color: var(--ink); }
+.meta dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
 
 /* ---- sheet panel ---- */
 
@@ -688,9 +689,9 @@ body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + 16px);
 /* the card for links that open outside the app, under the details */
 .links-card { margin: 14px 0 8px; padding: 12px 18px 14px; font-size: 14px; }
 .links-card h2 { margin: 0 0 8px; font: 700 12px var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.links-card dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0; }
+.links-card dl { display: grid; grid-template-columns: fit-content(10em) minmax(0, 1fr); gap: 4px 16px; margin: 0; }
 .links-card dt { font-weight: 600; color: var(--muted); }
-.links-card dd { margin: 0; color: var(--ink); }
+.links-card dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
 @media print { .links-card { display: none; } }
 .stanza { break-inside: avoid; }
 @media (min-width: 760px) and (max-width: 1079px), (min-width: 640px) and (orientation: landscape) and (max-height: 600px) {

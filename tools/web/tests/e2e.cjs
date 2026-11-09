@@ -305,7 +305,7 @@ async function search(page, text) {
       }
     });
     await test('piano videos: E1 has one, E12 two in order, E395 its own and a NYCYPCD one, C1 borrows its parent\'s, E35 has none', async () => {
-      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos:not(.search) a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href).filter((x) => !x.startsWith('LSM'))); };   // LSM recordings come and go with the data
+      const links = async (id) => { await open(page, '#/h/' + id); return page.locator('.videos:not(.search) a').evaluateAll((a) => a.filter((x) => !x.getAttribute('href').startsWith('#')).map((x) => x.textContent + ' ' + x.href).filter((x) => /^(\d+(st|nd|rd|th) tune|NYCYPCD)/.test(x))); };   // only the piano videos and the NYCYPCD recording: the other channels' recordings (LSM, Loving the Lord, Joseph's Storehouses...) come and go with the data
       assert((await links('E1')).join() === '1st tune ↗ https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await links('E1'));
       const e12 = await links('E12');
       assert(e12.length === 2 && e12[0].startsWith('1st tune') && e12[1].startsWith('2nd tune') && e12.every((x) => x.includes('https://www.youtube.com/watch?v=')), 'E12: ' + e12);
@@ -317,7 +317,7 @@ async function search(page, text) {
       assert(await page.locator('.links-card dt').allTextContents().then((t) => t.join() === 'Search'), 'E35 should have only the search row');
       await open(page, '#/h/E12');
       const card = (await page.locator('.links-card').innerText()).replace(/\s+/g, ' ');
-      assert(card.replace(/ YouTube LSM ↗/, '') === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455 Search YouTube ↗ · SoundCloud ↗', 'the card reads: ' + card);
+      assert(card.replace(/ YouTube [^|]*? ↗ (?=New tunes)/, ' ') === 'LISTEN AND LINKS Piano videos 1st tune ↗ · 2nd tune ↗ New tunes BF171 · BF455 Search YouTube ↗ · SoundCloud ↗', 'the card reads: ' + card);
     });
     await test('new tunes: a hymn lists its New Tunes (open in the app) and their recordings in the links card', async () => {
       await open(page, '#/h/E12');
