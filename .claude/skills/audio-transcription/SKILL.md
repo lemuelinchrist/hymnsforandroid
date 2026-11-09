@@ -76,6 +76,10 @@ in the script, re-run, and check the other places the rule touches (repeats must
 - Passing slides and stray notes between the sung ones → notes are now made per syllable (`"notes": "syllables"`).
 - Wrong words → for a hymn in the database, give its stanza as `lines` in sheet.json instead of Whisper's words, and
   only one pass of the stanza as the section (hence: ask for the lyrics first).
+- Chords flat (one chord for bars) or odd → the bar lines were a beat off and the bass stem silent (no bass player).
+  Fixed: `"bar_offset": "auto"`, bass from the accompaniment's low register, melody and key as evidence; check with
+  `CHORD_DEBUG=1`. Ask the user if the key sounds right (a song ends on its tonic, mostly).
+- Notes an eighth early → a syllable's time is its first consonant's. Fixed: the note starts at the voice onset.
 - A line's first word placed inside the line before ("Come" inside "mountains") → the alignment window reached back
   into the previous line. Fixed: a line's window starts after the previous line's last syllable.
 A clue that is a one-off (a word misheard, a section limit) goes into `sheet.json`. Last-mile corrections the rules

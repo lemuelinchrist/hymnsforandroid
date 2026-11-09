@@ -44,7 +44,8 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
 | `title` | title on the sheet |
 | `midi` | the melody to use (`melody_crepe`) |
 | `key`, `mode` | LilyPond key, e.g. `"c"`, `"minor"`; `"ees"`, `"major"` |
-| `beats_per_bar`, `bar_offset` | 4 and 1 for 4/4 with bars starting on beat 1 of the tracked beats; change `bar_offset` when the barlines fall half a bar off |
+| `beats_per_bar`, `bar_offset` | 4 for 4/4; `bar_offset` `"auto"` (see below; it prints its choice) or the tracked beat the bars start on (0-3), to overrule it |
+| `chord_weights` | overrides the chord evidence weights: `acc`, `bass`, `melody`, `key`, `change`, `change_mid_bar` (see `make_sheet.py`) |
 | `scale` | pitch classes allowed (0 = C); a note outside moves to the nearest one (sliding singers). Minor keys keep the leading tone |
 | `range` | MIDI range of the written melody (58-77 = B♭3-F5): every note's octave is chosen inside it, the line moving smoothly |
 | `words` | fixes for misheard words, `{"history production": "His reproduction"}` |
@@ -78,8 +79,17 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
   frames and takes it out (it prints it; near 0 for a recording in tune).
 - **Octave and key.** A choir sings the melody in two octaves; the sheet writes one. Out-of-key notes are almost always
   slides.
-- **Chords** are a simple chroma-template guess (major, minor, dominant 7) per half bar: a slash chord or a passing
-  chord comes out as a neighbouring triad ("Bm" for Cm over B).
+- **Where the bars start.** The beat tracker finds beats, not beat 1. `"bar_offset": "auto"` takes the half-bar grid
+  on which the accompaniment's chords are clearest (the harmony changes on the bar line or the half bar), then of its
+  two offsets the one with more held syllables on beat 1. One beat off, chords straddle the changes and come out flat
+  ("Come with Me from Lebanon": offset 1 gave G for eight bars, offset 0 the progression); on "Christ Is Everything"
+  it finds the offset 1 checked by ear.
+- **Chords**, one per half bar, weigh four kinds of evidence: the accompaniment's chroma against major, minor and
+  dominant-7 templates; the bass (the bass stem, or the accompaniment's low register when there is no bass player: a
+  silent stem scaled to its own maximum is only noise); the sung melody (chord tones on the beat count double); and the
+  key (the key's own chords, then the secondary dominants; others need clear evidence). A Viterbi pass charges for
+  each change, more inside a bar. `CHORD_DEBUG=1 make_sheet.py D` prints the best three per half bar to calibrate.
+  The key and melody made the old "Bm" for Cm over B into G7. A slash chord still comes out as its triad.
 
 ## Known limits
 

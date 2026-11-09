@@ -16,10 +16,10 @@ Per section (sheet.json "sections", t0..t1 in seconds of the recording):
 - chords: one per half bar, chroma of the other+bass stems against major, minor and dominant-7 templates, smoothed.
 It prints, per section, the syllables and any lost; show.py prints the result bar by bar to check it.
 """
-import json, sys, pathlib, subprocess, re, numpy as np, pretty_midi, pyphen
+import json, os, sys, pathlib, subprocess, re, numpy as np, pretty_midi, pyphen
 d = pathlib.Path(sys.argv[1]); cfg = json.load(open(d / 'sheet.json'))
 beats = np.load(d / 'beats.npy'); bidx = np.arange(len(beats)); U = 2
-BAR = cfg['beats_per_bar'] * U; OFF = cfg['bar_offset'] * U
+BAR = cfg['beats_per_bar'] * U   # OFF (where the bars start) is set after the chords' set-up: it may be found
 unit = lambda t: int(round(np.interp(t, beats, bidx) * U))
 raw = sorted(pretty_midi.PrettyMIDI(str(d / 'midi' / f"{cfg['midi']}.mid")).instruments[0].notes, key=lambda n: n.start)
 words = [w for s in json.load(open(d / 'lyrics.json')) for w in s['words'] if re.search(r'\w', w['word'])]
@@ -54,41 +54,117 @@ def name(p):
     return NAMES[p % 12] + ("'" * o if o > 0 else "," * -o)
 DUR = {1: ['8'], 2: ['4'], 3: ['4.'], 4: ['2'], 5: ['2', '8'], 6: ['2.'], 7: ['2.', '8'], 8: ['1']}
 
-# chords: chroma of the accompaniment (other + bass stems), templates of major, minor and dominant-7 chords,
-# one chord per half bar, smoothed by a Viterbi pass that charges for every change
+# chords, one per half bar, from four kinds of evidence (weights in CW, "chord_weights" in sheet.json overrides them):
+# - the accompaniment's chroma (other + bass stems) against major, minor and dominant-7 templates;
+# - the bass: the bass stem, or the low register of the accompaniment when there is no bass player (a piano's left
+#   hand); only counted as far as it is really there: a silent stem scaled to its own maximum is noise;
+# - the melody: a sung note that is a chord tone (on a beat counts double) is evidence too, a note that is not one
+#   against it (the accompaniment of a choir recording is often faint);
+# - the key: a hymn mostly uses the key's own chords (I ii iii IV V vi, V7); the secondary dominants (V of V, of vi,
+#   of ii, of IV) a little less; any other chord needs clear evidence.
+# A Viterbi pass charges for every change, more inside a bar than on the bar line.
 import librosa
 cache = d / 'chroma.npz'
-if not cache.exists():
+C = np.load(cache) if cache.exists() else None
+if C is None or 'low' not in C.files:
     st = d / 'stems/htdemucs/source'
     o, sr = librosa.load(st / 'other.wav', sr=22050); b, _ = librosa.load(st / 'bass.wav', sr=22050)
-    np.savez(cache, acc=librosa.feature.chroma_cqt(y=o + b, sr=sr, hop_length=512), bass=librosa.feature.chroma_cqt(y=b, sr=sr, hop_length=512),
-             t=librosa.frames_to_time(np.arange(librosa.feature.chroma_cqt(y=b, sr=sr, hop_length=512).shape[1]), sr=sr, hop_length=512))
-C = np.load(cache)
-CH = []   # (lily name, root, template)
+    acc = librosa.feature.chroma_cqt(y=o + b, sr=sr, hop_length=512)
+    bass = librosa.feature.chroma_cqt(y=b, sr=sr, hop_length=512, fmin=librosa.note_to_hz('C1'), n_octaves=4)
+    low = librosa.feature.chroma_cqt(y=o + b, sr=sr, hop_length=512, fmin=librosa.note_to_hz('C1'), n_octaves=3)
+    n_ = min(acc.shape[1], bass.shape[1], low.shape[1])
+    np.savez(cache, acc=acc[:, :n_], bass=bass[:, :n_], low=low[:, :n_], t=librosa.frames_to_time(np.arange(n_), sr=sr, hop_length=512),
+             bass_level=float(np.sqrt(np.mean(b ** 2)) / (np.sqrt(np.mean(o ** 2)) + 1e-9)))
+    C = np.load(cache)
+# a bass stem under a tenth of the accompaniment's level is no bass player: use the accompaniment's low register
+BASS = C['bass'] if float(C['bass_level']) >= 0.1 else C['low']
+CW = {'acc': 1.0, 'bass': 0.25, 'melody': 0.35, 'key': 0.12, 'change': 0.1, 'change_mid_bar': 0.05}
+CW.update(cfg.get('chord_weights', {}))
+TONIC = NAMES.index(cfg['key']) if cfg['key'] in NAMES else 0
+if cfg.get('mode', 'major') == 'minor':   # degrees of the key's own chords: (semitones above the tonic, quality)
+    DIATONIC = {(0, ':m'), (3, ''), (5, ':m'), (7, ''), (7, ':7'), (8, ''), (10, ''), (2, ':m')}
+    SECONDARY = {(0, ':7'), (2, ':7'), (5, ''), (10, ':7')}
+else:
+    DIATONIC = {(0, ''), (2, ':m'), (4, ':m'), (5, ''), (7, ''), (7, ':7'), (9, ':m'), (11, ':m')}
+    SECONDARY = {(2, ''), (2, ':7'), (4, ''), (4, ':7'), (9, ''), (9, ':7'), (0, ':7'), (10, '')}
+CH = []   # (lily name, root, template, key prior)
 for r in range(12):
     for q, iv in (('', (0, 4, 7)), (':m', (0, 3, 7)), (':7', (0, 4, 7, 10))):
-        t = np.zeros(12); t[[(r + i) % 12 for i in iv]] = 1; CH.append((NAMES[r] + q, r, t / np.linalg.norm(t)))
-def chords_for(first_u, n_halves):
+        t = np.zeros(12); t[[(r + i) % 12 for i in iv]] = 1
+        deg = ((r - TONIC) % 12, q)
+        prior = 1.0 if deg in DIATONIC else 0.4 if deg in SECONDARY else -0.5
+        CH.append((NAMES[r] + q, r, t / np.linalg.norm(t), prior))
+def chords_for(first_u, n_halves, melody=()):
     sec_t = lambda u: np.interp(u / U, bidx, beats)
     score = np.zeros((n_halves, len(CH)))
     for h in range(n_halves):
-        a_, b_ = sec_t(first_u + h * BAR // 2), sec_t(first_u + (h + 1) * BAR // 2)
+        ua, ub = first_u + h * BAR // 2, first_u + (h + 1) * BAR // 2
+        a_, b_ = sec_t(ua), sec_t(ub)
         m = (C['t'] >= a_) & (C['t'] < b_)
-        if not m.any(): continue
-        acc = C['acc'][:, m].mean(1); bass = C['bass'][:, m].mean(1)
-        acc = acc / (np.linalg.norm(acc) + 1e-9); bass = bass / (bass.max() + 1e-9)
-        for k, (_, r, t) in enumerate(CH):
-            score[h, k] = acc @ t + 0.3 * bass[r] - (0.05 if ':7' in CH[k][0] else 0)
-    # Viterbi: stay is free, a change costs 0.15
+        # the melody in this half bar: duration of each pitch class, a note starting on a beat counts double
+        mel = np.zeros(12)
+        for s_, e_, p_, _ in melody:
+            ov = min(e_, ub) - max(s_, ua)
+            if ov > 0: mel[p_ % 12] += ov * (2 if s_ >= ua and (s_ - first_u) % U == 0 else 1)
+        mel = mel / (mel.sum() + 1e-9)
+        acc = C['acc'][:, m].mean(1) if m.any() else np.zeros(12); acc = acc / (np.linalg.norm(acc) + 1e-9)
+        low = BASS[:, m].mean(1) if m.any() else np.zeros(12)
+        low = low / (low.sum() + 1e-9)                      # a share of the bass, not its own maximum
+        for k, (_, r, t, prior) in enumerate(CH):
+            tones = t > 0
+            score[h, k] = (CW['acc'] * (acc @ t) + CW['bass'] * (low[r] * 3 - 0.25)
+                           + CW['melody'] * (mel[tones].sum() - mel[~tones].sum()) + CW['key'] * prior
+                           - (0.04 if CH[k][0].endswith(':7') else 0))
+    if os.environ.get('CHORD_DEBUG'):   # the best three per half bar, to calibrate the weights
+        for h in range(n_halves):
+            top = np.argsort(-score[h])[:3]
+            print(f'  bar {h // 2 + 1}{"ab"[h % 2]}', '  '.join(f'{CH[k][0]} {score[h, k]:.2f}' for k in top))
+    # Viterbi: staying is free, a change costs more inside a bar than on the bar line
     best = score[0].copy(); back = np.zeros((n_halves, len(CH)), int)
     for h in range(1, n_halves):
-        stay = best; move = best.max() - 0.15
+        cost = CW['change'] + (CW['change_mid_bar'] if h % 2 else 0)
+        stay = best; move = best.max() - cost
         back[h] = np.where(stay >= move, np.arange(len(CH)), best.argmax())
         best = np.maximum(stay, move) + score[h]
     path = [int(best.argmax())]
     for h in range(n_halves - 1, 0, -1): path.append(back[h][path[-1]])
     return [CH[k][0] for k in path[::-1]]
 chord_toks, chord_list = [], []
+
+# where the bars start ("bar_offset": "auto", or a number of beats). The beat tracker finds the beats, not beat 1:
+# - the harmony changes on the bar line or the half bar, so the half-bar windows on the right beats give the clearest
+#   chords (the best template's match is higher); this picks between the offsets 0/2 and 1/3;
+# - long sung notes fall on beat 1 more than on beat 3 (and syllables just before it are pickups); this picks the one
+# of the two. Printed, so a wrong guess can be fixed with a number.
+def find_bar_offset():
+    spans = [(s['t0'], s['t1']) for s in cfg['sections']]
+    nb = cfg['beats_per_bar']; half = max(1, nb // 2)
+    clarity = []
+    for off in range(half):
+        vals = []
+        for k in range(off, len(beats) - half, half):
+            a_, b_ = beats[k], beats[k + half]
+            if not any(t0 <= a_ and b_ <= t1 for t0, t1 in spans): continue
+            m = (C['t'] >= a_) & (C['t'] < b_)
+            if not m.any(): continue
+            acc = C['acc'][:, m].mean(1); acc = acc / (np.linalg.norm(acc) + 1e-9)
+            vals.append(max(acc @ ch[2] for ch in CH))
+        clarity.append(float(np.mean(vals)) if vals else 0.0)
+    best = int(np.argmax(clarity))
+    sy = json.load(open(d / 'syllables.json')) if (d / 'syllables.json').exists() else []
+    sy = [x for x in sy if any(t0 - 0.5 <= x['start'] < t1 for t0, t1 in spans)]
+    weight = {}
+    for off in range(best, nb, half):
+        w = 0.0
+        for i, x in enumerate(sy):
+            pos = np.interp(x['start'], beats, bidx); dur = (sy[i + 1]['start'] if i + 1 < len(sy) else x['end']) - x['start']
+            if round((pos - off) * 2) / 2 % nb == 0: w += dur
+        weight[off] = w
+    off = max(weight, key=weight.get) if weight else best
+    print('bar offset', off, '(chord clarity per half-bar grid', [round(c, 3) for c in clarity], ', held syllables on beat 1',
+          {k: round(v, 1) for k, v in weight.items()}, ')')
+    return off
+OFF = (find_bar_offset() if cfg.get('bar_offset', 'auto') == 'auto' else cfg['bar_offset']) * U
 
 # notes from the syllables (sheet.json "notes": "syllables", the default when syllables.json exists): a hymn sings one
 # note per syllable, and the forced alignment knows where each syllable starts. The pitch of a syllable is the one its
@@ -128,7 +204,8 @@ def syllable_notes(syls, t_end):
         held = held[:3]
         end = pt[min(idx[-1] + 1, len(pt) - 1)]
         for k, (a_, b_, q) in enumerate(held):
-            s_ = st if k == 0 else pt[a_]
+            # the note starts where the voice does: a syllable's time is its first consonant's ("Chr-ist")
+            s_ = (pt[idx[0]] if pt[idx[0]] - st < 0.3 else st) if k == 0 else pt[a_]
             e_ = pt[held[k + 1][0]] if k + 1 < len(held) else end
             out.append([unit(s_), unit(e_), q, lab if k == 0 else None])
         prev = held[-1][2]
@@ -216,7 +293,7 @@ for sec in cfg['sections']:
     rest = (BAR - (pos - first) % BAR) % BAR
     toks += ['r' + x for x in DUR[rest]] if rest else []
     nh = ((pos + rest - first) // BAR) * 2
-    ch = chords_for(first, nh); chord_list += ch
+    ch = chords_for(first, nh, [(s_, e_, p_, l_) for s_, e_, p_, l_ in clean]); chord_list += ch
     chord_toks.append(' '.join(c.replace(':', '2:') if ':' in c else c + '2' for c in ch))
     toks += ['}'] if sec.get('repeat') else []
     if not sec.get('repeat'): toks += ['\\bar "||"'] if sec is not cfg['sections'][-1] else ['\\bar "|."']

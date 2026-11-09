@@ -19,7 +19,7 @@ for ln in lines[1:]:
     if ln['start'] - cur[1] >= 4: sections.append(cur); cur = [ln['start'] - 0.7, ln['end']]
     else: cur[1] = ln['end']
 sections.append(cur)
-cfg = {'title': a.title, 'midi': 'melody_crepe', 'key': name, 'mode': k.mode, 'beats_per_bar': 4, 'bar_offset': 1,
+cfg = {'title': a.title, 'midi': 'melody_crepe', 'key': name, 'mode': k.mode, 'beats_per_bar': 4, 'bar_offset': 'auto',
        'scale': scale, 'range': [58, 77], 'words': {},
        'sections': [{'mark': chr(65 + i), 't0': round(s, 1), 't1': round(e + 1.5, 1)} for i, (s, e) in enumerate(sections)]}
 json.dump(cfg, open(d / 'sheet.json', 'w'), indent=1)
