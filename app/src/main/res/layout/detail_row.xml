@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- one row of the details card: the label muted, the value wrapping in its own column (LyricsArea sets the size) -->
+<!-- one row of the details card: the label muted, the value wrapping in its own column (LyricsArea sets the size).
+     The label is capped (a long label such as "Grabaciones de melodías nuevas" wraps instead of squeezing the value). -->
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
           android:layout_width="match_parent"
           android:layout_height="wrap_content">
@@ -8,6 +9,7 @@
             android:id="@+id/detailLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="140dp"
             android:paddingRight="16dp"
             android:textColor="?attr/hymnTextMuted"/>
 
