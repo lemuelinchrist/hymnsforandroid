@@ -68,6 +68,9 @@ const ICONS = {
   settings: '<path fill="currentColor" stroke="none" fill-rule="evenodd" d="M19.1,12.9a2.8,2.8 0,0 0,0.1 -0.9,2.8 2.8,0 0,0 -0.1,-0.9l2.1,-1.6a0.7,0.7 0,0 0,0.1 -0.6L19.4,5.5a0.7,0.7 0,0 0,-0.6 -0.2l-2.4,1a6.5,6.5 0,0 0,-1.6 -0.9l-0.4,-2.6a0.5,0.5 0,0 0,-0.5 -0.4H10.1a0.5,0.5 0,0 0,-0.5 0.4L9.3,5.4a5.6,5.6 0,0 0,-1.7 0.9l-2.4,-1a0.4,0.4 0,0 0,-0.5 0.2l-2,3.4c-0.1,0.2 0,0.4 0.2,0.6l2,1.6a2.8,2.8 0,0 0,-0.1 0.9,2.8 2.8,0 0,0 0.1,0.9L2.8,14.5a0.7,0.7 0,0 0,-0.1 0.6l1.9,3.4a0.7,0.7 0,0 0,0.6 0.2l2.4,-1a6.5,6.5 0,0 0,1.6 0.9l0.4,2.6a0.5,0.5 0,0 0,0.5 0.4h3.8a0.5,0.5 0,0 0,0.5 -0.4l0.3,-2.6a5.6,5.6 0,0 0,1.7 -0.9l2.4,1a0.4,0.4 0,0 0,0.5 -0.2l2,-3.4c0.1,-0.2 0,-0.4 -0.2,-0.6ZM12,15.6A3.6,3.6 0,1 1,15.6 12,3.6 3.6,0 0,1 12,15.6Z"/>',
   copy: '<rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/>',
   share: '<path d="M12 3.5v11M8 7.5l4-4 4 4M5.5 12v6.5a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5V12"/>',
+  // the Share menu's tiles, as the Android app's (res/drawable/ic_set_share.xml, ic_set_link.xml)
+  shareNodes: '<circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="5.5" r="2.6"/><circle cx="18" cy="18.5" r="2.6"/><path d="M8.3 10.8l7.4-4.2M8.3 13.2l7.4 4.2"/>',
+  link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
   play: '<path d="M8 5.5v13l10.5-6.5z"/>',
   cloud: '<path d="M7 18.5a4 4 0 0 1-.5-7.97 5.5 5.5 0 0 1 10.6 1.1A3.5 3.5 0 0 1 17 18.5z"/>',
   piano: '<rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M9.2 5v14M14.8 5v14M7.2 5v7M12 5v7M16.8 5v7"/>',
@@ -647,10 +650,10 @@ function shareMenu(hymn, anchor) {
   document.querySelector('.share-menu')?.remove();
   const title = hymn.id + (hymn.first ? ' \u00b7 ' + hymn.first : '');
   const items = navigator.share
-    ? [[tr('Share lyrics'), () => shareNow(lyricsText(hymn), title)], [tr('Share link'), () => shareNow(hymnLink(hymn), title)], [tr('Copy lyrics'), () => copyLyrics(hymn)]]
-    : [[tr('Copy lyrics'), () => copyLyrics(hymn)], [tr('Copy link'), () => copyText(hymnLink(hymn), tr('Link copied'))]];
-  const menu = h('div', {class: 'share-menu', role: 'menu'}, items.map(([label, fn]) =>
-    h('button', {role: 'menuitem', onclick: () => { close(); fn(); }}, label)));
+    ? [['shareNodes', tr('Share lyrics'), () => shareNow(lyricsText(hymn), title)], ['link', tr('Share link'), () => shareNow(hymnLink(hymn), title)], ['copy', tr('Copy lyrics'), () => copyLyrics(hymn)]]
+    : [['copy', tr('Copy lyrics'), () => copyLyrics(hymn)], ['link', tr('Copy link'), () => copyText(hymnLink(hymn), tr('Link copied'))]];
+  const menu = h('div', {class: 'share-menu', role: 'menu'}, items.map(([ic, label, fn]) =>
+    h('button', {role: 'menuitem', onclick: () => { close(); fn(); }}, h('span', {class: 'tile'}, icon(ic)), label)));
   const close = () => {
     menu.remove();
     document.removeEventListener('pointerdown', away, true);

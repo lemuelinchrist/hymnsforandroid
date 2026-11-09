@@ -780,7 +780,8 @@ body.bars-away .topbar { transform: translateY(-100%); }
 @container (min-width: 44.5em) { .lyrics { width: auto; max-width: none; margin-inline: 0; } }
 
 /* the Share menu under the hymn's Share button */
-.share-menu { position: fixed; z-index: 60; min-width: 11em; padding: 6px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); display: grid; }
-.share-menu button { all: unset; box-sizing: border-box; padding: 11px 14px; border-radius: 8px; cursor: pointer; font: 500 15px var(--ui); white-space: nowrap; }
+.share-menu { position: fixed; z-index: 60; min-width: 14.5em; padding: 8px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 2px 6px rgba(20, 30, 50, .12), 0 10px 30px rgba(20, 30, 50, .18); display: grid; gap: 2px; }
+.share-menu button { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; padding: 7px 14px 7px 8px; border-radius: 14px; cursor: pointer; font: 500 16px var(--ui); white-space: nowrap; }
 .share-menu button:hover, .share-menu button:focus-visible { background: var(--hover); }
+.share-menu .tile { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--set-tint); color: var(--set-on-tint); }
 @media print { .share-menu { display: none; } }
