@@ -756,11 +756,13 @@ Stored in platform preferences (web: `localStorage`). Keys are the Android keys;
 | `similarTune` | bool | false | show Similar Tune button (§7.5) |
 | `sheetMusicType` | string | `pianoSvg` | `pianoSvg` = Piano, `guitarSvg` = Guitar: the viewer's starting mode (§11) |
 
-**The Android Settings screen (v5.9)** is one scrolling page of cards; every choice is made on the page, with no
-dialog for a simple choice. On a tablet or an unfolded phone the page (and the About page) is a centred column at most 640 dp wide. From the top:
+**The Android Settings screen (v5.9)** is one scrolling page of cards; every choice is on the page: a switch, or a row
+whose value opens a short list of choices. On a tablet or an unfolded phone the page (and the About page) is a centred column at most 640 dp wide. From the top:
 
-1. **Text size**: five "A" steps (Small to XXL); the chosen one is tinted and its name shows beside the title.
-2. **Theme**: four small pictures (System, Light, Dark, Black) with their names; the chosen one has a thick border.
+1. **Text size** and **Theme**: two plain rows in one card, like App language. The row shows the current choice
+   (Small to XXL; System default, Light, Dark, Black) and opens a popup: Text size a plain list (Small to XXL); Theme four small pictures (System, Light, Dark, Black) with
+   their names, the current one framed. (A first v5.9 draft had five "A" steps and the four pictures on the page itself;
+   that looked too flashy next to the rest, so the page has rows and only the Theme popup keeps the pictures.) The web app keeps the steps and pictures on the page.
 3. **Sheet music**: a two-part switch, Piano | Guitar.
 4. **On the hymn page**: three switch rows: YouTube button, Similar tune button, Keep screen on.
 5. **Language**: one row, **App language**, that opens a dialog: Phone's language (the default), English, 繁體中文,
