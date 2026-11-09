@@ -25,6 +25,8 @@ import org.jsoup.Jsoup
  * Runs on the current DB (no importSql). Sheets go to the staging folders (databaseProvisioner/data/...), not the app;
  * copy them over afterwards (see the hymn-provisioning skill).
  *
+ * - A tune that an older BF song (BF1-435; its guitar sheet is the same New Tune, `_new_g.svg`) already has is skipped,
+ *   never added a second time.
  * - The parent is the English hymn (E<number>); a tune whose English hymn we do not have is listed and skipped.
  * - Category and subcategory are the parent's (hymnal.net spells some differently, e.g. "Fullness").
  * - new_tune is 1; the apps add " (New Tune)" to the first lines themselves (the data has no such text).
@@ -47,6 +49,7 @@ class SyncNewTunes {
         // (a later row of the same BF number wins, so a tune saved twice counts for its last sheet)
         Map<String, String> keyOfId = [:]
         int maxNo = 0
+        Set<String> oldKeys = [] as Set
         [new File(Constants.DATA_DIR, "../../tools/svg-to-lilypond/svg/hymnalnet_links.tsv"),
          new File(Constants.DATA_DIR, "hymnalnet_links.tsv")].findAll { it.exists() }.each { f ->
             f.eachLine { line ->
@@ -56,6 +59,9 @@ class SyncNewTunes {
                 if (m.length > 1) {
                     def k = m[1] =~ /NewTunes\/svg\/e0*(\d+b?)_new_p\.svg/
                     if (k.find()) keyOfId[m[0]] = k.group(1)
+                    // BF1-435 are older songs whose guitar sheet is a New Tune (_new_g.svg): the tune is already ours
+                    def g = m[1] =~ /NewTunes\/svg\/e0*(\d+b?)_new_g\.svg/
+                    if (g.find()) oldKeys << g.group(1)
                 }
             }
         }
@@ -64,7 +70,8 @@ class SyncNewTunes {
         Map<String, String> haveByKey = [:]
         keyOfId.each { id, key -> haveByKey[key] = id }
 
-        List<String> keys = siteKeys(refresh).findAll { (only == null || only.contains(it)) && !(newOnly && haveByKey.containsKey(it)) }
+        // a tune that BF1-435 already has under an older number is never added again (2026-11-09: 61 duplicates removed)
+        List<String> keys = siteKeys(refresh).findAll { (only == null || only.contains(it)) && !(newOnly && haveByKey.containsKey(it)) && (haveByKey.containsKey(it) || !oldKeys.contains(it)) }
         List<String> skipped = [], failed = [], added = [], replaced = []
         int left = 0
         for (String key : keys) {
