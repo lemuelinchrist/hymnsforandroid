@@ -95,8 +95,9 @@ public class LinksSection extends ContentComponent<View> {
             videos = dao.getLinksOrParent(hymn.getHymnId(), hymn.getParentHymn(), "piano");
             ArrayList<Recording> own = dao.getRecordings(hymn.getHymnId());
             String language = null;
-            if (own.isEmpty()) {
-                // no recording of its own: the nearest hymn above it that has one (an English hymn's for a translation, ...)
+            if (own.isEmpty() && !hymn.hasOwnTune()) {
+                // no recording of its own: the nearest hymn above it that has one (an English hymn's for a translation, ...);
+                // never for a New Tune, whose parent sings another tune
                 String ancestor = dao.getLinkedAncestor(hymn.getParentHymn());
                 if (ancestor != null && !ancestor.equals(hymn.getHymnId())) {
                     own = dao.getRecordings(ancestor);

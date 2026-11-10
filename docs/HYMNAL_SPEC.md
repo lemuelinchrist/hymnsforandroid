@@ -250,6 +250,10 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
    | stanzas (none at all) | the parent's stanzas (33 hymns rely on this) |
    | sheet music | — (resolved separately, §11.1) |
 
+   **Own tune:** a New Tune whose parent is not one (`new_tune` = 1 on the hymn, not on its parent: a BF New Tune of an English
+   hymn) does **not** take composer, time, tune or key from the parent, nor its sheet music (§11.1), piano videos or recordings
+   in the links card: they are another tune. A translation of a New Tune has the New Tune as parent and borrows from it as usual.
+
    The child's own `no`, `first_stanza_line`, `first_chorus_line`, `hymn_group` are never inherited.
 5. Related set (§5.2).
 
@@ -347,10 +351,10 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
      after a publisher, else the platform. The YouTube channel is never shown. An instrumental recording (`instrumental` = 1) has
      ` · Instrumental` (muted) after its first line. A tap opens the stored `url`. A link with neither a publisher nor an album is one a book's
      editor chose (the Spanish and German youth books): it is always shown. A hymn with **no** recording of its own shows those of the nearest
-     hymn above it (parent, grandparent, ... up to 5 steps); when that hymn is in another language (`HymnGroup.getLanguage`: English for E/BF/NS/CH,
+     hymn above it (parent, grandparent, ... up to 5 steps, never past a New Tune whose parent has another tune, §5.1); when that hymn is in another language (`HymnGroup.getLanguage`: English for E/BF/NS/CH,
      Chinese for the four Chinese books, the youth books and supplements in their main language) each first line starts with the language
      (`English – NYCYPCD`) so it is not taken for a recording in the hymn's own; a hymn with any recording of its own gets nothing inherited.
-   - **Piano videos**: `link` rows of kind `piano` where `hymn_id` is this hymn, else its parent (`n_order`): the label (`1st tune`) over
+   - **Piano videos**: `link` rows of kind `piano` where `hymn_id` is this hymn, else its parent (never for an own-tune New Tune, §5.1) (`n_order`): the label (`1st tune`) over
      `Piano video · YouTube`. A tap opens the url with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/` (the web
      app opens the watch address as it is).
    - **New tunes**: the hymns whose `parent_hymn` is this hymn, `hymn_group` `BF` and `new_tune` = 1, in number order: a row `BF94 · New tune` /
@@ -829,7 +833,7 @@ Hidden state (not user-visible settings): History, Favorites (§8), chord edits 
 
 ```
 sheetId(h) = h._id            if sheetMei/<h._id>.mei exists
-           = h.parent_hymn    else if parent set and sheetMei/<parent>.mei exists
+           = h.parent_hymn    else if parent set, h is not an own-tune New Tune (§5.1), and sheetMei/<parent>.mei exists
            = none
 lyricsId  = h._id             (passed so a translation can overlay its own words)
 ```

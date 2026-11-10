@@ -104,6 +104,7 @@ function relatedIds(s) {
 }
 
 const INHERITED = ['author', 'composer', 'time', 'tune', 'sheet_music_link', 'key', 'meter', 'verse'];
+const TUNE_FIELDS = ['composer', 'time', 'tune', 'sheet_music_link', 'key'];   // not inherited by a New Tune
 
 // A hymn as the app shows it: empty fields, categories and stanzas come from the parent hymn (HymnsDao.get).
 export function hymn(id) {
@@ -119,15 +120,18 @@ export function hymn(id) {
   };
   for (const f of INHERITED) h[f] = row[f];
   const parent = h.parentId && hymnRow(h.parentId);
+  // a New Tune of a hymn with another tune keeps its own music: no tune, sheet, piano videos or recordings from the parent
+  // (HymnsDao.startsOwnTune); a translation of a New Tune still borrows from it
+  h.ownTune = !!parent && row.new_tune === 1 && parent.new_tune !== 1;
   if (parent) {
-    for (const f of INHERITED) if (!h[f]) h[f] = parent[f];
+    for (const f of INHERITED) if (!h[f] && !(h.ownTune && TUNE_FIELDS.includes(f))) h[f] = parent[f];
     if (!h.category) { h.category = parent.main_category; h.subcategory = parent.sub_category; }
     if (!h.stanzas.length) h.stanzas = stanzaRows(parent._id);
     h.related.push(...relatedIds(parent.related));
   }
   if (!h.first && h.stanzas.length) h.first = plain(h.stanzas[0].text).split('\n')[0];
   // the sheet: its own, else its parent's (SheetMusicButton.getRootMusicSheet)
-  h.sheetId = sheetIds.has(id) ? id : (h.parentId && sheetIds.has(h.parentId) ? h.parentId : null);
+  h.sheetId = sheetIds.has(id) ? id : (h.parentId && !h.ownTune && sheetIds.has(h.parentId) ? h.parentId : null);
   // a translation that borrows the sheet may have its own words for it (sheetLyrics/<id>.json)
   h.lyricsId = h.sheetId && h.sheetId !== id && lyricIds.has(id) ? id : null;
   cache.set(id, h);
@@ -177,7 +181,7 @@ export function relatedIn(id, group) {
 
 // the piano videos of a hymn (the link table, kind 'piano'), else of its parent: [{url, label}]
 export function videos(hymnObj) {
-  for (const hid of [hymnObj.id, hymnObj.parentId]) {
+  for (const hid of [hymnObj.id, hymnObj.ownTune ? null : hymnObj.parentId]) {
     if (!hid) continue;
     const v = rows("select url, label from link where hymn_id = ? and kind = 'piano' order by n_order", [hid]);
     if (v.length) return v.map((x) => ({url: (x.url || '').trim(), label: (x.label || '').trim()})).filter((x) => x.url);
@@ -205,12 +209,14 @@ export function newTunes(hymnObj) {
 // A hymn with no recording of its own shows those of the nearest hymn above it that has some (its parent, the parent's
 // parent, ...): {from, recordings}, or null (HymnsDao.getLinkedAncestor)
 export function inheritedLinks(hymnObj) {
-  if (recordings(hymnObj).length) return null;
+  if (recordings(hymnObj).length || hymnObj.ownTune) return null;
   let id = hymnObj.parentId;
   for (let depth = 0; depth < 5 && id && id !== hymnObj.id; depth++) {
     const list = recordings({id});
     if (list.length) return {from: id, recordings: list};
     const row = hymnRow(id);
+    const up = row && row.parent_hymn && hymnRow(row.parent_hymn);
+    if (row && row.new_tune === 1 && up && up.new_tune !== 1) return null;   // stop at a New Tune: above it is another tune
     id = row && row.parent_hymn;
   }
   return null;

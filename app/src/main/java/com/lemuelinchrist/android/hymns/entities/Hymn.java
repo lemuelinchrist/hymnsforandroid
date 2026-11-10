@@ -37,6 +37,7 @@ public class Hymn {
     private String parentHymn;
 
     private boolean isNewTune = false;
+    private boolean ownTune = false;
 
     public String getVerse() {
         return verse;
@@ -289,6 +290,15 @@ public class Hymn {
 
     public void setNewTune(boolean newTune) {
         isNewTune = newTune;
+    }
+
+    /** A New Tune whose parent has another tune: its music (tune, sheet, piano videos, recordings) is never the parent's. */
+    public boolean hasOwnTune() {
+        return ownTune;
+    }
+
+    public void setOwnTune(boolean ownTune) {
+        this.ownTune = ownTune;
     }
 
     private static boolean isNumeric(String str) {

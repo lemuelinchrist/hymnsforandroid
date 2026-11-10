@@ -216,15 +216,33 @@ public class HymnsDao {
         return ids;
     }
 
-    /** The links of one kind of a hymn, else those of its parent (a translation shows its parent's piano videos). */
+    /**
+     * The links of one kind of a hymn, else those of its parent (a translation shows its parent's piano videos). A New Tune
+     * never takes its parent's: they play the parent's tune ({@link #startsOwnTune}).
+     */
     public ArrayList<String[]> getLinksOrParent(String hymnId, String parentId, String kind) {
         ArrayList<String[]> links = getLinks(hymnId, kind);
-        return links.isEmpty() ? getLinks(parentId, kind) : links;
+        return links.isEmpty() && !startsOwnTune(hymnId) ? getLinks(parentId, kind) : links;
+    }
+
+    /**
+     * True for a New Tune whose parent is not one (a BF New Tune of an English hymn): its tune, sheet music, piano videos and
+     * recordings are its own and never come from the parent, which has another tune. A translation of a New Tune is
+     * marked new_tune too, but its parent is the New Tune, so it still borrows from it.
+     */
+    public boolean startsOwnTune(String hymnId) {
+        try (Cursor cursor = database.rawQuery("select h.new_tune = 1 and p._id is not null and ifnull(p.new_tune, 0) != 1"
+                + " from hymns h left join hymns p on p._id = h.parent_hymn where h._id = ?", new String[]{hymnId})) {
+            return cursor.moveToFirst() && cursor.getInt(0) == 1;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
      * The nearest hymn above this one (its parent, the parent's parent, ...) that has YouTube or SoundCloud links of its
-     * own, or null. A hymn with no such links of its own shows that hymn's.
+     * own, or null. A hymn with no such links of its own shows that hymn's. The search stops at a New Tune
+     * ({@link #startsOwnTune}): the hymns above it sing another tune.
      */
     public String getLinkedAncestor(String parentId) {
         String id = parentId;
@@ -233,6 +251,7 @@ public class HymnsDao {
                     "select 1 from link where hymn_id = ? and kind in ('youtube', 'soundcloud') limit 1", new String[]{id})) {
                 if (cursor.moveToFirst()) return id;
             }
+            if (startsOwnTune(id)) return null;
             try (Cursor cursor = database.rawQuery("select parent_hymn from hymns where _id = ?", new String[]{id})) {
                 id = cursor.moveToFirst() ? cursor.getString(0) : null;
             }
@@ -306,15 +325,18 @@ public class HymnsDao {
             // *** Get Parent Hymn then Merge!
             Hymn parentHymn = get(hymn.getParentHymn());
             if (parentHymn != null) {
+                // a New Tune of a hymn with another tune keeps its own music: no composer, time, tune or key from the parent
+                boolean ownTune = hymn.isNewTune() && !parentHymn.isNewTune();
+                hymn.setOwnTune(ownTune);
                 if (isEmpty(hymn.getAuthor()))
                     hymn.setAuthor(parentHymn.getAuthor());
-                if (isEmpty(hymn.getComposer()))
+                if (!ownTune && isEmpty(hymn.getComposer()))
                     hymn.setComposer(parentHymn.getComposer());
-                if (isEmpty(hymn.getTime()))
+                if (!ownTune && isEmpty(hymn.getTime()))
                     hymn.setTime(parentHymn.getTime());
-                if (isEmpty(hymn.getTune()))
+                if (!ownTune && isEmpty(hymn.getTune()))
                     hymn.setTune(parentHymn.getTune());
-                if (isEmpty(hymn.getKey()))
+                if (!ownTune && isEmpty(hymn.getKey()))
                     hymn.setKey(parentHymn.getKey());
                 if (isEmpty(hymn.getMainCategory())) {
                     hymn.setMainCategory(parentHymn.getMainCategory());
