@@ -54,6 +54,8 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
 | `melisma_s` | how long (s) the voice must hold a second pitch inside one syllable to write it as a second note (0.25) |
 | `hyphens` | syllables pyphen gets wrong, `{"Lebanon": "Leb-a-non"}` (it leaves many names whole; a possessive `s'` is always kept on the last syllable) |
 | `sections` | `[{"mark": "A", "t0": 17.0, "t1": 34.5, "repeat": 2}, ...]`, seconds of the recording; keep one pass of a part sung twice and mark it `repeat` |
+| a section's `key`, `mode`, `scale` | a section in another key than the song's (a chorus in B major after a stanza in D major): the key signature changes there, and its chords and its scale follow |
+| a section's `fix` | one-off corrections per sung syllable, counted from 0 in the section: `{"syl": 4, "pitch": 67}` (MIDI pitch; the octave is still chosen), `{"syl": 8, "shift": -1}` (its start, in eighths). For what the other stanzas or the user's ear say against this pass |
 
 ## How it works, and why
 
@@ -77,8 +79,15 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
 - **Tuning.** An old recording or a choir that sank can sit between two semitones (that one was 28 cents flat), and
   rounding then flips between them (F♯ and G for one sung note). `crepe_melody.py` measures the offset on the sure
   frames and takes it out (it prints it; near 0 for a recording in tune).
-- **Octave and key.** A choir sings the melody in two octaves; the sheet writes one. Out-of-key notes are almost always
-  slides.
+- **Octave and key.** A choir sings the melody in two octaves; the sheet writes one, and a held note on which the
+  tracker goes from the brothers to the sisters (an octave jump inside a syllable) stays one note. Out-of-key notes
+  are almost always slides, **unless a whole part is out of key**: then the part is in another key ("Bend Me to Thy
+  Will": stanza in D major, chorus in B major, written flat as G/B/D/F sharp snapped into D major until the chorus got
+  its own `key` and `scale`).
+- **All the stanzas, not one.** A hymn sings its tune once per stanza: transcribe one, then run the others the same way
+  (their words as `lines`) and compare. Fast eighth notes differ from pass to pass (scoops); the pitch most passes
+  agree on goes into the section's `fix`. The beat tracker can gain or lose a beat between stanzas, so `"auto"` bar
+  offsets differ per pass: take the offset that puts the long notes on beat 1 and set it as a number.
 - **Where the bars start.** The beat tracker finds beats, not beat 1. `"bar_offset": "auto"` takes the half-bar grid
   on which the accompaniment's chords are clearest (the harmony changes on the bar line or the half bar), then of its
   two offsets the one with more held syllables on beat 1. One beat off, chords straddle the changes and come out flat

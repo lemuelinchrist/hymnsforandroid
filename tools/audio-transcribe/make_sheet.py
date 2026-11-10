@@ -80,21 +80,24 @@ if C is None or 'low' not in C.files:
 BASS = C['bass'] if float(C['bass_level']) >= 0.1 else C['low']
 CW = {'acc': 1.0, 'bass': 0.25, 'melody': 0.35, 'key': 0.12, 'change': 0.1, 'change_mid_bar': 0.05}
 CW.update(cfg.get('chord_weights', {}))
-TONIC = NAMES.index(cfg['key']) if cfg['key'] in NAMES else 0
-if cfg.get('mode', 'major') == 'minor':   # degrees of the key's own chords: (semitones above the tonic, quality)
-    DIATONIC = {(0, ':m'), (3, ''), (5, ':m'), (7, ''), (7, ':7'), (8, ''), (10, ''), (2, ':m')}
-    SECONDARY = {(0, ':7'), (2, ':7'), (5, ''), (10, ':7')}
-else:
-    DIATONIC = {(0, ''), (2, ':m'), (4, ':m'), (5, ''), (7, ''), (7, ':7'), (9, ':m'), (11, ':m')}
-    SECONDARY = {(2, ''), (2, ':7'), (4, ''), (4, ':7'), (9, ''), (9, ':7'), (0, ':7'), (10, '')}
-CH = []   # (lily name, root, template, key prior)
+CH = []   # (lily name, root, template, quality)
 for r in range(12):
     for q, iv in (('', (0, 4, 7)), (':m', (0, 3, 7)), (':7', (0, 4, 7, 10))):
         t = np.zeros(12); t[[(r + i) % 12 for i in iv]] = 1
-        deg = ((r - TONIC) % 12, q)
-        prior = 1.0 if deg in DIATONIC else 0.4 if deg in SECONDARY else -0.5
-        CH.append((NAMES[r] + q, r, t / np.linalg.norm(t), prior))
-def chords_for(first_u, n_halves, melody=()):
+        CH.append((NAMES[r] + q, r, t / np.linalg.norm(t), q))
+def key_priors(key, mode):
+    # the key prior of every chord; per section, as a section can be in its own key (a chorus in the parallel major)
+    tonic = NAMES.index(key) if key in NAMES else 0
+    if mode == 'minor':   # degrees of the key's own chords: (semitones above the tonic, quality)
+        diatonic = {(0, ':m'), (3, ''), (5, ':m'), (7, ''), (7, ':7'), (8, ''), (10, ''), (2, ':m')}
+        secondary = {(0, ':7'), (2, ':7'), (5, ''), (10, ':7')}
+    else:
+        diatonic = {(0, ''), (2, ':m'), (4, ':m'), (5, ''), (7, ''), (7, ':7'), (9, ':m'), (11, ':m')}
+        secondary = {(2, ''), (2, ':7'), (4, ''), (4, ':7'), (9, ''), (9, ':7'), (0, ':7'), (10, '')}
+    return [1.0 if ((r - tonic) % 12, q) in diatonic else 0.4 if ((r - tonic) % 12, q) in secondary else -0.5 for _, r, _, q in CH]
+PRIORS = key_priors(cfg['key'], cfg.get('mode', 'major'))
+def chords_for(first_u, n_halves, melody=(), priors=None):
+    priors = priors or PRIORS
     sec_t = lambda u: np.interp(u / U, bidx, beats)
     score = np.zeros((n_halves, len(CH)))
     for h in range(n_halves):
@@ -110,8 +113,8 @@ def chords_for(first_u, n_halves, melody=()):
         acc = C['acc'][:, m].mean(1) if m.any() else np.zeros(12); acc = acc / (np.linalg.norm(acc) + 1e-9)
         low = BASS[:, m].mean(1) if m.any() else np.zeros(12)
         low = low / (low.sum() + 1e-9)                      # a share of the bass, not its own maximum
-        for k, (_, r, t, prior) in enumerate(CH):
-            tones = t > 0
+        for k, (_, r, t, _) in enumerate(CH):
+            tones = t > 0; prior = priors[k]
             score[h, k] = (CW['acc'] * (acc @ t) + CW['bass'] * (low[r] * 3 - 0.25)
                            + CW['melody'] * (mel[tones].sum() - mel[~tones].sum()) + CW['key'] * prior
                            - (0.04 if CH[k][0].endswith(':7') else 0))
@@ -197,9 +200,9 @@ def syllable_notes(syls, t_end):
             else: runs.append([k, k, int(q)])
         main = max(runs, key=lambda r: r[1] - r[0])
         long = [r for r in runs if (r[1] - r[0]) * 0.01 >= MELISMA_S or r is main]
-        held = []   # the notes of this syllable: long runs, same-pitch neighbours joined
-        for r in long:
-            if held and held[-1][2] == r[2]: held[-1][1] = r[1]
+        held = []   # the notes of this syllable: long runs, same-pitch neighbours joined; an octave apart is the same
+        for r in long:   # note too (the tracker going from the brothers to the sisters on a held note), not a melisma
+            if held and held[-1][2] % 12 == r[2] % 12: held[-1][1] = r[1]
             else: held.append(list(r))
         held = held[:3]
         end = pt[min(idx[-1] + 1, len(pt) - 1)]
@@ -212,6 +215,7 @@ def syllable_notes(syls, t_end):
     return out
 
 music, lyr, qmidi = [], [], []
+cur_key = (cfg['key'], cfg.get('mode', 'major'))   # a section can have its own "key", "mode" and "scale"
 for sec in cfg['sections']:
     ns = [[n.start, n.end, n.pitch] for n in raw if sec['t0'] <= n.start < sec['t1']]
     ws = [w for w in words if sec['t0'] - 0.5 <= w['start'] < sec['t1']]
@@ -244,17 +248,27 @@ for sec in cfg['sections']:
             k = back[i, j]; labels[k] = syls[j - 1][1]; i = k
         notes = [[unit(s_), unit(e_), p_, labels[i]] for i, (s_, e_, p_) in enumerate(ns)]
     notes.sort(key=lambda n: n[0])
+    # "fix" of a section: one-off corrections by ear or from the other stanzas, per sung syllable (counted from 0 in
+    # the section): {"syl": 4, "pitch": 67} sets its MIDI pitch (the octave is still chosen), {"syl": 26, "shift": -1}
+    # moves its start by eighths
+    sung = [n for n in notes if n[3] is not None]
+    for fx in sec.get('fix', []):
+        n = sung[fx['syl']]
+        if 'pitch' in fx: n[2] = fx['pitch']
+        if 'shift' in fx: n[0] += fx['shift']; n[1] = max(n[1], n[0] + 1)
+    notes.sort(key=lambda n: n[0])
     clean = []
     for n in notes:
         if clean and n[0] <= clean[-1][0]:   # same eighth: a sung syllable moves one eighth later, a melisma note goes
             if n[3] is None: continue
-            n[0] = clean[-1][0] + 1
+            if clean[-1][3] is None: clean.pop()   # (also the melisma note before it on that eighth)
+            else: n[0] = clean[-1][0] + 1
         if clean and n[0] < clean[-1][1]: clean[-1][1] = n[0]
         n[1] = max(n[1], n[0] + 1); clean.append(n)
     for i in range(len(clean) - 1):
         if clean[i + 1][0] - clean[i][1] <= U: clean[i][1] = clean[i + 1][0]
     # key: a note outside the scale (a slide into the next note) moves to the nearest scale note, towards the next note
-    scale = set(cfg.get('scale', []))
+    scale = set(sec.get('scale', cfg.get('scale', [])))
     if scale:
         for i, n in enumerate(clean):
             if n[2] % 12 not in scale:
@@ -279,7 +293,10 @@ for sec in cfg['sections']:
         while length > 0:
             room = BAR - (pos - first) % BAR; take = min(room, length); out.append(take); pos += take; length -= take
         return out
-    toks = [f'\\mark "{sec["mark"]}"'] + (['\\repeat volta 2 {'] if sec.get('repeat') else [])
+    sec_key = (sec.get('key', cfg['key']), sec.get('mode', cfg.get('mode', 'major')))
+    if sec_key != cur_key: key_toks = [f'\\key {sec_key[0]} \\{sec_key[1]}']; cur_key = sec_key
+    else: key_toks = []
+    toks = key_toks + [f'\\mark "{sec["mark"]}"'] + (['\\repeat volta 2 {'] if sec.get('repeat') else [])
     pos = first
     for k, (s, e, p, lab) in enumerate(clean):
         if s > pos:
@@ -293,7 +310,7 @@ for sec in cfg['sections']:
     rest = (BAR - (pos - first) % BAR) % BAR
     toks += ['r' + x for x in DUR[rest]] if rest else []
     nh = ((pos + rest - first) // BAR) * 2
-    ch = chords_for(first, nh, [(s_, e_, p_, l_) for s_, e_, p_, l_ in clean]); chord_list += ch
+    ch = chords_for(first, nh, [(s_, e_, p_, l_) for s_, e_, p_, l_ in clean], key_priors(*sec_key)); chord_list += ch
     chord_toks.append(' '.join(c.replace(':', '2:') if ':' in c else c + '2' for c in ch))
     toks += ['}'] if sec.get('repeat') else []
     if not sec.get('repeat'): toks += ['\\bar "||"'] if sec is not cfg['sections'][-1] else ['\\bar "|."']

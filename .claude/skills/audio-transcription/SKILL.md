@@ -15,7 +15,7 @@ workflow around them.
 - Audio on Google Drive (`G:`) is not mounted in WSL: copy it in with
   `powershell.exe -NoProfile -Command "Copy-Item -LiteralPath 'G:\...\x.ogg' -Destination 'C:\...\temp\transcribe\<song>\source.ogg'"`.
 - Work folder per song: `temp/transcribe/<song>/` (`temp/` is not tracked; the audio and stems are someone else's
-  recording and must never be committed). `temp/transcribe/christ_is_everything/` was the first song done, `come_with_me_from_lebanon/` (BF354, one stanza, 2008 choir recording) the second.
+  recording and must never be committed).
 
 ## First: the words
 
@@ -61,6 +61,12 @@ The model cannot listen, so check the draft against itself:
 - **Raw data** for one spot: notes of the melody MIDI, `pitch.npz` (time, f0, confidence every 10 ms), `beats.npy`,
   `syllables.json`. A short Python look at 2-3 seconds around the bar usually shows the cause.
 
+- **A hymn with several stanzas: every stanza is a repeat.** Run each stanza through align and make_sheet (its words
+  as `lines`, its seconds as sections) and compare the bars; a per-syllable look at `pitch.npz` in its raw octave,
+  against `beats.npy`, shows what the passes agree on. Put what the majority says into the section's `fix`.
+- **A part whose raw pitches are steadily outside the scale** (G sharp, D sharp in a D major song) is in another key,
+  not sliding: give the section its own `key`, `mode`, `scale`.
+
 ## Using the user's clues
 
 The user listens and gives clues like "the first two notes are eighths but it is one quarter: 'Christ' is the G quarter,
@@ -82,7 +88,21 @@ in the script, re-run, and check the other places the rule touches (repeats must
 - Notes an eighth early → a syllable's time is its first consonant's. Fixed: the note starts at the voice onset.
 - A line's first word placed inside the line before ("Come" inside "mountains") → the alignment window reached back
   into the previous line. Fixed: a line's window starts after the previous line's last syllable.
-A clue that is a one-off (a word misheard, a section limit) goes into `sheet.json`. Last-mile corrections the rules
+- A chorus written with the wrong notes throughout (G/B/D/F sharp read as D major) → the chorus is in another key.
+  Fixed: a section's own `key`, `mode`, `scale`.
+- A held note cut in two an octave apart → the tracker went from the brothers to the sisters. Fixed: an octave jump
+  inside a syllable is one note.
+- A passing note the user hears but the sheet lacks (an E between F sharp and D sharp) → shorter than `melisma_s`, so
+  dropped as a slide; if it is there in every repeat it is a note: put it in with the section's `fix`.
+
+**When the user hears another note than the sheet has**, look at every voice, not only the tracked melody: a CQT
+(librosa, 36 bins per octave, averaged per half beat from `beats.npy`) of the vocals stem, of `other.wav` and of
+`source.wav` at that spot, in each repeat. It shows whether a second voice sings the note, whether it is the
+accompaniment's (a guitar holding the third above the voice), or whether the pitch tracker dropped it. Say what the
+recording shows either way, and leave the choice to the user's ear.
+
+A clue that is a one-off (a word misheard, a section limit, one note's pitch or start: the section's `fix`) goes into
+`sheet.json`. Last-mile corrections the rules
 cannot reach are best made by the user in MuseScore on `sheet.musicxml`.
 
 ## Traps
