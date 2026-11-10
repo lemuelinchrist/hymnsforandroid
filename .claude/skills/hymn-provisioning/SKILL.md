@@ -234,7 +234,7 @@ A New Tune is another tune for an English hymn (hymnal.net `en/hymn/nt/<key>`; k
 second tune, e.g. `284b`). In our DB it is a BF row whose `parent_hymn` is that English hymn; BF numbers do not follow
 hymnal.net's keys, so a tune is recognised by its sheet link in `hymnalnet_links.tsv` (`BF440 .../NewTunes/svg/e0251_new_p.svg`
 is key 251). `SyncNewTunes.groovy` reads the site's index (`/en/song-index/nt/<letter>`, saved in `data/nt_keys.txt`), then for each key
-replaces the tune we have (its YouTube/SoundCloud links are kept) or adds a new one as the next BF number. A key whose tune BF1-435 already has (its row in `hymnalnet_links.tsv` is a `_new_g.svg` link) is skipped, so it is never added twice (61 such duplicates, e.g. BF455 = BF171, were removed 2026-11-09; the old number stays). BF439 is a
+replaces the tune we have (its YouTube/SoundCloud links are kept) or adds a new one as the next BF number. A key whose tune BF1-435 already has (its row in `hymnalnet_links.tsv` is a `_new_g.svg` link) is skipped, so it is never added twice (61 such duplicates, e.g. BF455 = BF171, were removed 2026-11-09, and 9 more with identical sheets on 2026-11-10: BF473, BF476, BF458, BF493, BF494, BF519, BF541, BF547, BF555; the old number stays). BF439 is a
 regular-hymn alternate (`e0300b`), not a New Tune: it is not touched. Category and subcategory are the parent's; `new_tune` is 1 (that column, not the BF group or a tune, decides the label; the apps add " (New Tune)" to the first lines, the stored lines have no such text). `Dao.save` also sets `new_tune` on a hymn whose parent is a New Tune (its translations). A key whose English hymn we do not have (`8409`) is skipped.
 
 ```shell
