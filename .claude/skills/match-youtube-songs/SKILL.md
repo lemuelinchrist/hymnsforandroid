@@ -165,6 +165,11 @@ is probably not in the hymnal. Hold back titles with "New Tune" / "Alternate Tun
 - **Audio without YouTube**: Lemuel's own collection (`G:\My Drive\Archives\Hymns`, ~2,800 ogg files in album folders; not mounted in WSL, read it with
   `powershell.exe`). Use a local file only when the album folder has the same name as the YouTube playlist AND the track title equals the video title; the same title in
   another album is NOT used (a different recording).
+- **Albums that are not online at all** (2026-11-10): Lemuel uploads them to his own channel (HymnsForAndroid). Make one video per track (a still card
+  with the album title, Joseph's Storehouses style: 1920x1080, ffmpeg `-loop 1 -i card.png -i track.ogg -tune stillimage -shortest`), he uploads them,
+  then in Studio each gets its title (no track number), the album playlist, "not made for kids" and Public. Link with the publisher = the group
+  (e.g. `Irvine YP`) and album = the album name, in `NycypcdYoutube.txt` and `recordings.tsv` (channel `HymnsForAndroid`). First: "Strength For the Day -
+  Irvine YP July 1999", 13 links. YouTube allows only a few uploads a day until the channel's identity is verified.
 - **Downloading audio from YouTube without being blocked**: the lowest-quality audio only (`-f worstaudio`, 1-2 MB), ONE process, a random 30-90 s pause, `timeout 120`,
   stop (or sleep an hour) after 4 failures in a row, resume by skipping files that exist. About 1 song per minute worked without a single error. For hundreds of songs
   hand it to the always-on `media` host (brief `~/joseph/TASK.md`, script `~/joseph/dl.sh`; skill media-resident-agent-setup) and `rsync` the files back.
