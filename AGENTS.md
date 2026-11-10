@@ -143,3 +143,12 @@ of every change, in the same commit, not later:
 Write what the app does and why it was designed that way, not who asked or what was said: no names of the people who
 send feedback or contributions, no email addresses, no places where saints meet. Those stay in the private reports.
 
+
+## 9. Working in This Checkout
+
+-   **Small changes go straight to master** (a UI tweak, a one-line fix, a doc touch-up): commit and push, no feature
+    branch. Bigger work (a new language, a data resync, a multi-file fix) gets its own branch, merged when the owner says so.
+-   **Several agent sessions share this checkout and its git index.** Before a commit, run `git diff --cached --name-only`;
+    commit only your own paths (`git commit <paths>`), never a bare `git commit`, which would sweep another session's
+    staged files into yours.
+-   Run `databaseProvisioner` and `sqlite` Gradle tasks from WSL with the Linux JDK (see the `hymn-provisioning` skill).

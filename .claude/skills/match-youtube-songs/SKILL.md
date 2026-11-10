@@ -170,6 +170,18 @@ is probably not in the hymnal. Hold back titles with "New Tune" / "Alternate Tun
   then in Studio each gets its title (no track number), the album playlist, "not made for kids" and Public. Link with the publisher = the group
   (e.g. `Irvine YP`) and album = the album name, in `NycypcdYoutube.txt` and `recordings.tsv` (channel `HymnsForAndroid`). First: "Strength For the Day -
   Irvine YP July 1999", 13 links. YouTube allows only a few uploads a day until the channel's identity is verified.
+  - Each album gets its **own card colour** (Lemuel 2026-11-10), so the playlists look different. White Georgia Italic title on a coloured
+    1080x1080 square centred on black. The output files carry **no track-number prefix** (he wants the file name to be the YouTube title); keep the
+    album order from the original files, which still have their numbers, when filling a playlist.
+  - The YouTube Data API is not used for uploads: videos uploaded through an unaudited API project stay private, and the default quota allows about
+    6 uploads a day. Uploading in Studio (up to 15 files at once) is the way.
+  - Recordings by saints may sing a **New Tune**: never link to the E hymn without asking. Hymn numbers in the old file names can be wrong
+    (one "Hast thou heard Him" track said H556; it is E437, and 556 is "Thy name is sweet"): check every number against the lyrics.
+  - Songs with no title match: transcribe the local copy with Whisper (the audio-transcription skill's venv, with its `bin/` on `PATH`, because Whisper calls `ffmpeg`)
+    and search the stanzas for a distinctive line.
+- **Which hymn id to propose** (Lemuel 2026-11-10): New Songs are the parents of the BF (Be Filled) songs, so a BF song whose `parent_hymn` is an NS
+  song is linked to the **NS** id (NS232, not BF339). Propose BF only when the BF song has no NS parent (BF153, BF154) or when it is a New Tune of an
+  E hymn (BF152 under E437). Look up `parent_hymn` of every BF candidate before proposing.
 - **Downloading audio from YouTube without being blocked**: the lowest-quality audio only (`-f worstaudio`, 1-2 MB), ONE process, a random 30-90 s pause, `timeout 120`,
   stop (or sleep an hour) after 4 failures in a row, resume by skipping files that exist. About 1 song per minute worked without a single error. For hundreds of songs
   hand it to the always-on `media` host (brief `~/joseph/TASK.md`, script `~/joseph/dl.sh`; skill media-resident-agent-setup) and `rsync` the files back.
