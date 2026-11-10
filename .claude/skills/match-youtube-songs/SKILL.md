@@ -182,6 +182,12 @@ is probably not in the hymnal. Hold back titles with "New Tune" / "Alternate Tun
 - **Which hymn id to propose** (Lemuel 2026-11-10): New Songs are the parents of the BF (Be Filled) songs, so a BF song whose `parent_hymn` is an NS
   song is linked to the **NS** id (NS232, not BF339). Propose BF only when the BF song has no NS parent (BF153, BF154) or when it is a New Tune of an
   E hymn (BF152 under E437). Look up `parent_hymn` of every BF candidate before proposing.
+- **The Something New albums sing New Tunes only** (Lemuel 2026-11-10): link a hymn track to its BF New Tune; when the E hymn has none yet,
+  create one (a `hymns` row: `hymn_group` BF, `parent_hymn` = the E hymn, `new_tune` = 1, first line copied, words inherited; add the BF id to the
+  E hymn's `related`). A song not in the hymnal at all becomes a BF song with no parent and its own stanzas (words from the transcription, checked
+  by Lemuel). New BF numbers fill the free numbers above 435 first (left by removed duplicates), lowest first; BF385-400 is left alone.
+  Edit `app/src/main/assets/hymns.sqlite`, run `:sqlite:exportSql` **before** `runImportNycypcdYoutube` (it starts with `importSql`, which rebuilds
+  the database from `hymns.sql` and drops unexported edits).
 - **Downloading audio from YouTube without being blocked**: the lowest-quality audio only (`-f worstaudio`, 1-2 MB), ONE process, a random 30-90 s pause, `timeout 120`,
   stop (or sleep an hour) after 4 failures in a row, resume by skipping files that exist. About 1 song per minute worked without a single error. For hundreds of songs
   hand it to the always-on `media` host (brief `~/joseph/TASK.md`, script `~/joseph/dl.sh`; skill media-resident-agent-setup) and `rsync` the files back.
