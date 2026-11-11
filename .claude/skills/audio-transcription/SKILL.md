@@ -48,8 +48,18 @@ $V/python $T/grid.py $D <s> [<s> ...]          # the raw pitch per eighth, every
 Look at `sheet.png` with the Read tool and review with `show.py`. `make_sheet.py` prints per section the syllables, how many
 were placed and any lost (must be none).
 
-Give the user: `sheet.pdf` (to read), `sheet.musicxml` (MuseScore 4 is installed on Windows: to fix notes by ear),
-`sheet.midi`, and say plainly what is uncertain (bars, why).
+Give the user: `sheet.pdf` (to read), `sheet.midi`, and say plainly what is uncertain (bars, why).
+
+**Correcting it together**: the user fixes notes by ear in the lead sheet editor (`tools/lead-sheet-editor/`, see its
+README), not in MuseScore:
+```sh
+$V/python tools/lead-sheet-editor/from_musicxml.py $D        # sheet.musicxml -> $D/leadsheet.json (kept if it exists: --force)
+python3 tools/lead-sheet-editor/server.py                    # in the background; http://localhost:8777/?song=<song>
+```
+From then on `leadsheet.json` is the sheet: the user's edits are saved into it, so do not run `from_musicxml.py --force`
+over them. Read their `message` and note comments (`c`) there, see what they changed against the newest file in
+`leadsheet.history/`, and make your own changes in the file (`server.dump`); the page shows them in blue. What the
+user corrected by ear is a clue like any other: find why the pipeline had it wrong.
 
 ## Reviewing without ears
 

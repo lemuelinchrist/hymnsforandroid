@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lead Sheet Editor</title>
+<style>
+  :root { --bg: #f4f1ea; --panel: #fff; --ink: #1f1d1a; --muted: #6b665e; --line: #d9d3c7; --accent: #1f5f8b; --sel: #c62828; --changed: #1565c0; --note: #b26a00; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.4 system-ui, "Segoe UI", sans-serif; }
+  header { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 8px 14px; background: var(--panel); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5; }
+  header label { color: var(--muted); font-size: 12px; display: flex; align-items: center; gap: 5px; }
+  input, select, textarea, button { font: inherit; color: inherit; }
+  input[type=text], input[type=number], select, textarea { border: 1px solid var(--line); border-radius: 6px; padding: 4px 7px; background: #fff; }
+  #title { width: 240px; font-weight: 600; } #tempo { width: 62px; } #timeN { width: 46px; } #pickup { width: 56px; }
+  #status { margin-left: auto; color: var(--muted); font-size: 12px; }
+  #status.warn { color: var(--sel); font-weight: 600; }
+  .tools { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 8px 14px; background: var(--panel); border-bottom: 1px solid var(--line); position: sticky; top: 45px; z-index: 4; }
+  .group { display: flex; gap: 3px; align-items: center; }
+  .group > span { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; margin-right: 3px; }
+  button { border: 1px solid var(--line); background: #faf8f4; border-radius: 6px; padding: 4px 9px; cursor: pointer; min-width: 30px; }
+  button:hover { background: #efeadf; } button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 14px; padding: 14px; align-items: start; }
+  #paper { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 14px 26px; min-height: 300px; }
+  #paper h1 { text-align: center; font: 600 22px Georgia, serif; margin: 0 0 6px; }
+  #music svg { display: block; width: 100%; height: auto; }
+  #music g.note, #music g.rest { cursor: pointer; }
+  #music g.noted, #music g.noted * { fill: var(--note); stroke: var(--note); }
+  #music g.changed, #music g.changed * { fill: var(--changed); stroke: var(--changed); }
+  #music g.sel, #music g.sel * { fill: var(--sel); stroke: var(--sel); }
+  #music g.playing, #music g.playing * { fill: #2e7d32; stroke: #2e7d32; }
+  aside { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+  .card h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 0 0 8px; }
+  .row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; } .row label { width: 62px; color: var(--muted); font-size: 12px; flex: none; }
+  .row input { flex: 1; min-width: 0; }
+  #what { font-weight: 600; margin-bottom: 8px; }
+  textarea { width: 100%; min-height: 70px; resize: vertical; }
+  #comments div { padding: 3px 0; border-top: 1px solid var(--line); cursor: pointer; font-size: 13px; } #comments b { color: var(--note); }
+  .keys { color: var(--muted); font-size: 12px; } .keys kbd { background: #f0ece3; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; font: 11px ui-monospace, monospace; color: var(--ink); }
+  audio { width: 100%; }
+  .legend { font-size: 12px; color: var(--muted); } .legend i { font-style: normal; font-weight: 700; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } aside { position: static; } .tools { position: static; } }
+  @media print { header, .tools, aside { display: none !important; } body { background: #fff; } main { display: block; padding: 0; } #paper { border: 0; }
+    #music g.sel, #music g.sel *, #music g.changed, #music g.changed *, #music g.noted, #music g.noted * { fill: #000; stroke: #000; } }
+</style>
+</head>
+<body>
+<header>
+  <label>Song <select id="song"></select></label>
+  <label>Title <input type="text" id="title"></label>
+  <label>Key <select id="key"></select><select id="mode"><option>major</option><option>minor</option></select></label>
+  <label>Time <input type="number" id="timeN" min="1" max="12"> / <select id="timeD"><option>2</option><option>4</option><option>8</option></select></label>
+  <label title="Length of the upbeat bar, in eighth notes (0 = the song starts on beat 1)">Upbeat <input type="number" id="pickup" min="0" step="0.5"> eighths</label>
+  <label>Tempo <input type="number" id="tempo" min="30" max="240"></label>
+  <span id="status">Loading…</span>
+</header>
+<div class="tools">
+  <div class="group" id="durs"><span>Length</span></div>
+  <div class="group"><span>Pitch</span>
+    <button data-act="down" title="One scale step down (↓)">↓</button><button data-act="up" title="One scale step up (↑)">↑</button>
+    <button data-act="flat" title="A semitone down (Shift ↓)">♭</button><button data-act="sharp" title="A semitone up (Shift ↑)">♯</button>
+    <button data-act="octdown" title="An octave down (Ctrl ↓)">8↓</button><button data-act="octup" title="An octave up (Ctrl ↑)">8↑</button>
+    <button data-act="enh" title="Write it the other way: C sharp / D flat">♯↔♭</button>
+  </div>
+  <div class="group"><span>Note</span>
+    <button data-act="rest" title="Note ↔ rest (R)">Rest</button>
+    <button data-act="before" title="New note before this one">+ Before</button><button data-act="after" title="New note after this one (N)">+ After</button>
+    <button data-act="split" title="Cut this note into two halves (S)">Split</button>
+    <button data-act="del" title="Remove this note (Delete)">Delete</button>
+  </div>
+  <div class="group"><span>Sheet</span>
+    <button data-act="undo" title="Ctrl Z">Undo</button><button data-act="redo" title="Ctrl Y">Redo</button>
+    <button data-act="trdown" title="Whole song a semitone down">Key −</button><button data-act="trup" title="Whole song a semitone up">Key +</button>
+    <button data-act="verse" title="Add a line of words under the notes">+ Verse</button>
+  </div>
+  <div class="group"><span>Listen</span>
+    <button data-act="play" id="play" class="primary" title="Play from the chosen note (Space)">▶ Play</button>
+  </div>
+  <div class="group"><span>Save as</span>
+    <button data-act="print">Print / PDF</button><button data-act="mei">MEI</button><button data-act="midi">MIDI</button>
+  </div>
+</div>
+<main>
+  <section id="paper"><h1 id="heading"></h1><div id="music"></div></section>
+  <aside>
+    <div class="card">
+      <h2>Chosen note</h2>
+      <div id="what">Click a note</div>
+      <div id="verses"></div>
+      <div class="row"><label for="chord">Chord</label><input type="text" id="chord" placeholder="G, Am, D7, G/B"></div>
+      <div class="row"><label for="comment">Comment</label><input type="text" id="comment" placeholder="e.g. sounds too high"></div>
+      <div class="keys">Words: <kbd>Space</kbd> next note, <kbd>-</kbd> the word goes on, empty = held from the note before.</div>
+    </div>
+    <div class="card" id="audiocard" hidden><h2>The recording</h2><audio id="audio" controls preload="none"></audio></div>
+    <div class="card"><h2>Notes between us</h2><textarea id="message" placeholder="Write here what to look at; Claude reads and answers here."></textarea>
+      <div id="comments"></div></div>
+    <div class="card legend"><i style="color:var(--sel)">Red</i> chosen · <i style="color:var(--changed)">Blue</i> changed in the file since you last edited · <i style="color:var(--note)">Orange</i> has a comment</div>
+    <div class="card keys"><h2>Keys</h2>
+      <kbd>←</kbd> <kbd>→</kbd> choose · <kbd>↑</kbd> <kbd>↓</kbd> pitch (<kbd>Shift</kbd> semitone, <kbd>Ctrl</kbd> octave) · <kbd>A</kbd>–<kbd>G</kbd> that note ·
+      <kbd>3</kbd> 16th <kbd>4</kbd> 8th <kbd>5</kbd> quarter <kbd>6</kbd> half <kbd>7</kbd> whole <kbd>.</kbd> dot · <kbd>R</kbd> rest · <kbd>N</kbd> new note ·
+      <kbd>S</kbd> split · <kbd>Del</kbd> remove · <kbd>Enter</kbd> words · <kbd>H</kbd> chord · <kbd>Space</kbd> play
+    </div>
+  </aside>
+</main>
+<script src="/verovio.js"></script>
+<script src="/editor.js"></script>
+</body>
+</html>
