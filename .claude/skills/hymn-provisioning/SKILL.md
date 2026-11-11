@@ -210,6 +210,16 @@ Instead:
 
 This is exactly the "Manual Developer Workflow" already documented in `docs/database_spec.md` — it's the right tool for a single-hymn fix, not a new provisioning script.
 
+## A new song that is a scripture verse
+
+When a new song's words look like a Bible passage (e.g. NS "As for me, I will call upon God" = Psalm 55:16-18), look the
+passage up in the Recovery Version and fill the hymn's `verse` column with the reference (`Psa. 55:16-18`). Read the
+chapter at `https://text.recoveryversion.bible/<nn>_<Book>_<chapter>.htm` (nn = book number 01-66 from
+`https://text.recoveryversion.bible/RcV.htm`, e.g. `19_Psalms_55.htm`; WebFetch works, the home page has no chapter links).
+Songs often follow the KJV/ASV wording, not the Recovery Version ("I will call upon God, and the Lord shall save me" vs
+"I call out to God, And Jehovah will save me"), and may reorder or skip verses: match by meaning and give the whole range.
+Keep the title as the song's first words, do not replace the words with the Recovery Version text. (Lemuel, 2026-11-11)
+
 ## Tunes and their MIDI file equivalent
 
 > **New hymn without a MIDI?** hymnal.net serves no MIDI any more: use the `generate-midi` skill (`tools/hymn-midi/make_missing.py`) instead of looking for a download.
