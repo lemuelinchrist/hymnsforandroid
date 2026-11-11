@@ -99,6 +99,10 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_PUT(self):
         u = urlparse(self.path); q = parse_qs(u.query); d = self.song(q)
+        if u.path == '/api/mei' and d is not None:   # the sheet as the page draws it, in the app's MEI form: leadsheet.mei
+            mei = self.rfile.read(int(self.headers.get('Content-Length', 0))).decode()
+            if not mei.startswith('<?xml'): return self.send(400, {'error': 'not MEI'})
+            (d / 'leadsheet.mei').write_text(mei, encoding='utf-8'); return self.send(200, {})
         if u.path != '/api/sheet' or d is None: return self.send(404, {'error': 'not found'})
         f = d / 'leadsheet.json'
         try: sheet = json.loads(self.rfile.read(int(self.headers.get('Content-Length', 0))).decode())

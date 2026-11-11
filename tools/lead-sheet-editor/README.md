@@ -133,6 +133,13 @@ orange and the comment is listed under **Notes between us**, where a click on it
 the box there. The other editor reads both in the file, changes the notes or answers in the same places, and those
 changes show up blue in the page.
 
+## Taking the sheet into the app's tools
+
+Every save also writes `<song>/leadsheet.mei`, the sheet in the form of the app's own sheets (`assets/sheetMei`: key
+as `key.sig`, chords with a `tstamp`). `tools/hymn-midi/make_midi.py <song>/leadsheet.mei out.mid <bpm>` makes the piano
+MIDI from it (the `generate-midi` skill); copying it into the app (`sheetMei/<id>.mei`, the hymn's tune code,
+`res/raw/m<tune>.mid`) is a separate step.
+
 ## Working together on one sheet
 
 - The page saves half a second after each change (`Saved` at the top right) and keeps the version before each save in

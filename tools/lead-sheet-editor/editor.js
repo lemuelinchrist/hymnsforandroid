@@ -76,7 +76,7 @@
     bars.forEach(function (b) { b.items.forEach(function (it) { if (it.idx >= 0) (piecesOf[it.idx] = piecesOf[it.idx] || []).push(it.id); }); });
     var x = '<?xml version="1.0" encoding="UTF-8"?>\n<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0"><meiHead><fileDesc><titleStmt><title>' +
       esc(sheet.title || '') + '</title></titleStmt><pubStmt/></fileDesc></meiHead><music><body><mdiv><score>' +
-      '<scoreDef keysig="' + (f === 0 ? '0' : Math.abs(f) + (f > 0 ? 's' : 'f')) + '" meter.count="' + sheet.time[0] + '" meter.unit="' + sheet.time[1] +
+      '<scoreDef key.sig="' + (f === 0 ? '0' : Math.abs(f) + (f > 0 ? 's' : 'f')) + '" meter.count="' + sheet.time[0] + '" meter.unit="' + sheet.time[1] +
       '" midi.bpm="' + (sheet.tempo || 90) + '"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef><section>';
     bars.forEach(function (b, bi) {
       var state = {}, layer = '', extra = '', open = false;
@@ -120,7 +120,7 @@
           }
         }
         if (it.idx >= 0 && piecesOf[it.idx][0] === it.id && sheet.notes[it.idx].ch)
-          extra += '<harm staff="1" place="above" startid="#' + it.id + '">' + esc(sheet.notes[it.idx].ch) + '</harm>';
+          extra += '<harm staff="1" place="above" tstamp="' + (1 + (it.pos - (bar - b.len)) / (16 / sheet.time[1])) + '">' + esc(sheet.notes[it.idx].ch) + '</harm>';   // as the app's sheets (tools/hymn-midi reads tstamp)
         if (open && beamable && !withNext) { layer += '</beam>'; open = false; }
       });
       x += '<measure n="' + (bi + 1) + '"' + (b.len < bar ? ' metcon="false"' : '') + (bi === bars.length - 1 ? ' right="end"' : '') +
@@ -213,7 +213,10 @@
       .then(function (r) { return r.json().then(function (j) { return {code: r.status, j: j}; }); })
       .then(function (r) {
         saving = false;
-        if (r.code === 200) { rev = r.j.rev; if (dirty) save(); else status('Saved ' + now()); }
+        if (r.code === 200) {
+          rev = r.j.rev; if (dirty) save(); else status('Saved ' + now());
+          fetch('/api/mei?song=' + encodeURIComponent(song), {method: 'PUT', body: lastMei}).catch(function () {});   // leadsheet.mei beside it
+        }
         else if (r.code === 409) load(true, 'The file was changed elsewhere at the same moment: that version is shown, your last change was not saved');
         else status('Not saved: ' + (r.j.error || r.code), true);
       }).catch(function () { saving = false; dirty = true; status('Not saved: is the server running?', true); });
