@@ -42,6 +42,7 @@ $V/python $T/new_sheet_config.py $D --title "<title>"
 $V/python $T/align_words.py $D
 $V/python $T/make_sheet.py $D                # sheet.pdf / .png / .musicxml / .midi
 $V/python $T/show.py $D                      # bar by bar, to review
+$V/python $T/grid.py $D <s> [<s> ...]          # the raw pitch per eighth, every stanza side by side: must agree with show.py
 ```
 
 Look at `sheet.png` with the Read tool and review with `show.py`. `make_sheet.py` prints per section the syllables, how many
@@ -93,7 +94,47 @@ in the script, re-run, and check the other places the rule touches (repeats must
 - A held note cut in two an octave apart → the tracker went from the brothers to the sisters. Fixed: an octave jump
   inside a syllable is one note.
 - A passing note the user hears but the sheet lacks (an E between F sharp and D sharp) → shorter than `melisma_s`, so
-  dropped as a slide; if it is there in every repeat it is a note: put it in with the section's `fix`.
+  dropped as a slide; if it is there in every repeat it is a note: put it in with the section's `fix`
+  (`"then"`: a second note on the syllable's second half).
+
+- Line starts an octave too high (C5 B4 written for a sung C4 B3 that leaps up to A4) → the octave rule smoothed away a
+  real leap. Fixed: `"octave": "sung"` in sheet.json; see the next section.
+
+## Before giving the sheet: check it against the raw pitch of every stanza
+
+Do this on the first draft, not after the user says the notes are wrong ("We Rest on Thee": the first sheet had every
+low line start an octave up, and the stanza comparison had not shown it, because all four stanzas went through the same
+rules and so agreed with each other in the same error). `show.py` on each stanza compares the pipeline with itself;
+`grid.py` compares it with the recording:
+
+```sh
+$V/python $T/grid.py $D 6.07 42.59 79.00 115.82    # one time per stanza: the same sung beat in each (from syllables.json)
+```
+
+It prints, per half bar and per eighth, CREPE's pitch in its raw octave and the strongest pitches of the vocals stem,
+for each stanza. It uses neither the words nor their alignment. Read it against `show.py`, bar by bar:
+- **Octave.** A note the grid has an octave away from the sheet (B3 against B4) is the octave rule at work. Decide which
+  it is from the vocals stem: a sung B3 comes with F♯5 (its third harmonic), and when the next note is A4 with no A3
+  under it, one voice really leaps. One voice, no doubling → `"octave": "sung"` (and a `range` that reaches the low
+  notes). Brothers and sisters an octave apart → leave the rule on.
+- **An eighth the sheet does not have.** A pitch that fills an eighth in most stanzas but is missing in the sheet is a
+  note under `melisma_s`: a pickup of two eighths on one syllable (D4 C4 before the B3), a line's last syllable falling
+  a step (A then G), a turn (F♯ then G). Put it in with `"then"` in the section's `fix`. "B4/A" in one eighth is a
+  short note or a slide, not a second eighth.
+- **Syllables an eighth late or early.** Where one stanza's `show.py` has a line's notes one eighth off from the grid
+  and from the other stanzas (a long first note, the rest squeezed), the alignment slipped a syllable: `"shift"` them.
+- **Lengths.** A long note followed by a pickup: the grid shows how many eighths each really has (a quarter and a
+  two-eighth pickup, not a dotted quarter and one eighth).
+- **A repeat that is not the same.** Lines sung again may start or end differently (the second time like another line;
+  an ending on the tonic instead of the second). If every stanza does it, it is the tune: write the lines out, no
+  `repeat`.
+- **A note split between two pitches in the stanzas' vote** (2 against 2): print the pitch every 40 ms inside that
+  syllable in each stanza; it usually is a slide or a turn that all stanzas sing alike, cut differently.
+- **Chords.** `CHORD_DEBUG=1` scores close together and a chord foreign to the key (A7 in G major) with no sign of its
+  third in the accompaniment: prefer the key's chord (`"chord_weights": {"key": 0.6}`) and tell the user the chords
+  are weak.
+
+Then say in the report what the stanzas agree on and what stays open (slides, sixteenths the eighth grid cannot write).
 
 **When the user hears another note than the sheet has**, look at every voice, not only the tracked melody: a CQT
 (librosa, 36 bins per octave, averaged per half beat from `beats.npy`) of the vocals stem, of `other.wav` and of

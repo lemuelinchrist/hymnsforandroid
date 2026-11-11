@@ -34,6 +34,7 @@ never commit it). `D` below is that folder.
 | 6 | `make_sheet.py D` | the lead sheet | `sheet.pdf`, `sheet.png`, `sheet.ly`, `sheet.musicxml`, `sheet.midi` |
 
 Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, length in eighths, syllable, chord);
+`grid.py D <seconds> [<seconds> ...]` prints the raw sung pitch per eighth for each stanza side by side (one time per stanza, the same sung beat in each), with the strongest pitches of the vocals stem: it uses neither the words nor the octave rule, so it shows what the sheet got wrong where all stanzas went wrong alike;
 `check_by_ear.py D melody_crepe` writes a stereo file with the vocals left and the melody as a plain tone right;
 `roll.py D <from s> <to s> melody_crepe` draws a piano roll (`roll.png`).
 
@@ -48,6 +49,7 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
 | `chord_weights` | overrides the chord evidence weights: `acc`, `bass`, `melody`, `key`, `change`, `change_mid_bar` (see `make_sheet.py`) |
 | `scale` | pitch classes allowed (0 = C); a note outside moves to the nearest one (sliding singers). Minor keys keep the leading tone |
 | `range` | MIDI range of the written melody (58-77 = B♭3-F5): every note's octave is chosen inside it, the line moving smoothly |
+| `octave` | `"sung"`: keep every note in the octave it was sung in (one singer; a line that starts low and leaps up). Without it the octave is chosen for a smooth line, which is right for a choir in two octaves but lifts a low line start an octave |
 | `words` | fixes for misheard words, `{"history production": "His reproduction"}` |
 | `lines` | the known words in place of Whisper's, one line each with its start: `[{"start": 54.7, "text": "Come with me from Lebanon, my bride"}, ...]` (`"end"` on the last line); the start of each from `lyrics.txt` |
 | `notes` | `"syllables"` (default with `syllables.json`): one note per syllable, see below; `"pitch"`: the older way |
@@ -55,7 +57,7 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
 | `hyphens` | syllables pyphen gets wrong, `{"Lebanon": "Leb-a-non"}` (it leaves many names whole; a possessive `s'` is always kept on the last syllable) |
 | `sections` | `[{"mark": "A", "t0": 17.0, "t1": 34.5, "repeat": 2}, ...]`, seconds of the recording; keep one pass of a part sung twice and mark it `repeat` |
 | a section's `key`, `mode`, `scale` | a section in another key than the song's (a chorus in B major after a stanza in D major): the key signature changes there, and its chords and its scale follow |
-| a section's `fix` | one-off corrections per sung syllable, counted from 0 in the section: `{"syl": 4, "pitch": 67}` (MIDI pitch; the octave is still chosen), `{"syl": 8, "shift": -1}` (its start, in eighths). For what the other stanzas or the user's ear say against this pass |
+| a section's `fix` | one-off corrections per sung syllable, counted from 0 in the section: `{"syl": 4, "pitch": 67}` (MIDI pitch; the octave is still chosen), `{"syl": 8, "shift": -1}` (its start, in eighths), `{"syl": 4, "then": 67}` (a second note of that pitch on its second half: a short turn every stanza sings but that is shorter than `melisma_s`). For what the other stanzas or the user's ear say against this pass |
 
 ## How it works, and why
 

@@ -250,12 +250,16 @@ for sec in cfg['sections']:
     notes.sort(key=lambda n: n[0])
     # "fix" of a section: one-off corrections by ear or from the other stanzas, per sung syllable (counted from 0 in
     # the section): {"syl": 4, "pitch": 67} sets its MIDI pitch (the octave is still chosen), {"syl": 26, "shift": -1}
-    # moves its start by eighths
+    # moves its start by eighths, {"syl": 4, "then": 67} gives it a second note of that pitch on its second half (a
+    # short turn every stanza sings but that is under "melisma_s")
     sung = [n for n in notes if n[3] is not None]
     for fx in sec.get('fix', []):
         n = sung[fx['syl']]
         if 'pitch' in fx: n[2] = fx['pitch']
         if 'shift' in fx: n[0] += fx['shift']; n[1] = max(n[1], n[0] + 1)
+        if 'then' in fx:
+            n[1] = max(n[1], n[0] + 2); mid = n[0] + (n[1] - n[0]) // 2
+            notes.append([mid, n[1], fx['then'], None]); n[1] = mid
     notes.sort(key=lambda n: n[0])
     clean = []
     for n in notes:
@@ -277,6 +281,8 @@ for sec in cfg['sections']:
     # octave per note: the line moves smoothly (no leaps over a sixth) and stays in the singing range lo..hi
     lo, hi = cfg.get('range', [58, 77])
     cand = [[q for q in (n[2] - 24, n[2] - 12, n[2], n[2] + 12, n[2] + 24) if lo <= q <= hi] or [n[2]] for n in clean]
+    if cfg.get('octave') == 'sung':   # one singer (no brothers and sisters an octave apart): the sung octave is the melody's,
+        cand = [[n[2]] for n in clean]   # leaps included (a line that starts low and jumps up a seventh)
     cost = [[0.0] * len(c) for c in cand]; back = [[0] * len(c) for c in cand]
     for i in range(1, len(clean)):
         for a_, q in enumerate(cand[i]):
