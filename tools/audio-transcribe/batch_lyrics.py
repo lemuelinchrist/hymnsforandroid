@@ -21,6 +21,8 @@ for i in range(0, len(wavs), 20):
 model = whisper.load_model('turbo', device='cuda')
 for p in todo:
     r = model.transcribe(str(w / 'stems' / 'htdemucs' / p.stem / 'vocals.wav'), language='en', condition_on_previous_text=False,
-                         initial_prompt='A hymn sung by a choir.')
+                         initial_prompt='A hymn sung by a choir.',
+                         # Whisper's defaults dropped whole 30 s windows of sparse or rapped vocals (a song lost its first 25 s)
+                         no_speech_threshold=0.9, logprob_threshold=-2.0, compression_ratio_threshold=3.0, temperature=0.0)
     (w / 'lyrics' / (p.stem + '.txt')).write_text('\n'.join(s['text'].strip() for s in r['segments']), encoding='utf8')
     print(p.stem, flush=True)
