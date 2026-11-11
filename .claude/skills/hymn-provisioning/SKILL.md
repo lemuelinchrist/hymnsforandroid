@@ -212,6 +212,8 @@ This is exactly the "Manual Developer Workflow" already documented in `docs/data
 
 ## Tunes and their MIDI file equivalent
 
+> **New hymn without a MIDI?** hymnal.net serves no MIDI any more: use the `generate-midi` skill (`tools/hymn-midi/make_missing.py`) instead of looking for a download.
+
 A hymn's `tune` field (parsed from a `Hymn code Hymnalnet:`/`Hymn code:` line — see the keyword gotcha above) is a numeric melody-shape code, e.g. `1233112353234321`. It is **shared across every hymn that uses that melody, in every language** — that's the entire point of the field: it's how the app finds "hymns with a similar tune" (`HymnsDao.getHymnsWithSimilarTune()` in the app) and how it plays the in-app MIDI preview.
 
 - **MIDI playback**: `Hymn.playHymn()` (`app/src/main/java/.../entities/Hymn.java`) does a **reflection lookup** on `R.raw` for a field named `"m" + tune`, i.e. it plays whatever raw resource is named `app/src/main/res/raw/m<tunecode>.mid`. There is exactly **one MIDI file per tune code**, not per hymn — dozens of hymns across `E`, `C`, `S`, `NS`, etc. can and do point at the same `.mid` file.
@@ -220,7 +222,7 @@ A hymn's `tune` field (parsed from a `Hymn code Hymnalnet:`/`Hymn code:` line �
 - Full download pipeline for one hymn: `HymnalNetExtractor.convertWebPageToHymn()` scrapes the hymn page, sets `sheetMusicLink` (in memory only: the `sheet_music_link` column was dropped in v5.6) from the page's `.leadsheet span.svg` element (see selector note below), then calls `downloadSheetMusicAndMidi()`, which appends `hymnId<TAB>link` to `databaseProvisioner/data/hymnalnet_links.tsv` and saves piano/guitar SVGs to `Constants.SHEET_PIANO_DIR`/`SHEET_GUITAR_DIR` (`databaseProvisioner/data/pianoSvg`/`guitarSvg` — a **local staging directory**, not the app) and the MIDI to `Constants.MIDI_PIANO_DIR` (`databaseProvisioner/data/midi`, also staging). **None of this lands in the app automatically** — after extraction, manually `cp` the new SVGs from `databaseProvisioner/data/{pianoSvg,guitarSvg}/` into `tools/svg-to-lilypond/svg/{pianoSvg,guitarSvg}/` (then the `svg-to-lilypond` skill makes the app's `.mei`), merge the rows of `data/hymnalnet_links.tsv` into `tools/svg-to-lilypond/svg/hymnalnet_links.tsv`, and copy the MIDI into `app/src/main/res/raw/` (after the MIDI dedup check above). `Constants.MIDI_DIR` (from the `midi.dir` property) is a *different*, unused-by-download constant that happens to point at `app/src/main/res/raw` — don't confuse it with `MIDI_PIANO_DIR`.
 - **hymnal.net format notes (handled in the downloader):** Metadata details use `<dl class="hn-dl">` of `<dt>`/`<dd>`
   (`HymnalNetExtractor.readDetails`); **no MIDI is served any more** (pages now use MP3 audio instead of `.mid`), so a
-  new tune gets no MIDI from hymnal.net. The related-songs block is not re-read yet: check `related` of a downloaded hymn.
+  new tune gets no MIDI from hymnal.net. **Make it ourselves with the `generate-midi` skill** (a two-hand piano MIDI from our own sheet; run it after every sync, it lists the hymns that still have a tune but no MIDI). The related-songs block is not re-read yet: check `related` of a downloaded hymn.
 - **Gotcha — hymnal.net "fake" (decoy) pages:** When a hymn number does not exist or when pages are fetched too fast,
   `hymnal.net` returns **HTTP 200 with a fake page** (the scrambled words, sheet music link, tune code, and MIDI of
   another hymn) instead of an HTTP error. Always verify that `hymn.sheetMusicLink` contains the requested hymn's own
