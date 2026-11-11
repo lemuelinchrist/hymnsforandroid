@@ -8,7 +8,7 @@ import os, sqlite3, sys, pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import make_midi
 REPO = pathlib.Path(__file__).resolve().parents[2]
-raw = {p.name[1:-4].lower() for p in (REPO / 'app/src/main/res/raw').glob('m*.mid')}
+raw = {p.stem[1:].lower() for p in (REPO / 'app/src/main/res/raw').glob('m*.*')}  # any extension: a .mid next to an .mp3 of the same name is a duplicate resource and breaks the build
 db = sqlite3.connect(f"file:{REPO}/app/src/main/assets/hymns.sqlite?mode=ro", uri=True)
 rows = {r[0]: r for r in db.execute('select _id, parent_hymn, tune from hymns')}
 mei = REPO / 'app/src/main/assets/sheetMei'
