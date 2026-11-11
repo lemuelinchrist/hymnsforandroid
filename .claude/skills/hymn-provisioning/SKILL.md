@@ -213,7 +213,7 @@ This is exactly the "Manual Developer Workflow" already documented in `docs/data
 ## A new song that is a scripture verse
 
 When a new song's words look like a Bible passage (e.g. NS "As for me, I will call upon God" = Psalm 55:16-18), look the
-passage up in the Recovery Version and fill the hymn's `verse` column with the reference (`Psa. 55:16-18`). Read the
+passage up in the Recovery Version and fill the hymn's `verse` column with the reference (full book name, as in `2 Timothy 3:16,`: here `Psalms 55:16-18,`; check a few NS rows for the exact form). Read the
 chapter at `https://text.recoveryversion.bible/<nn>_<Book>_<chapter>.htm` (nn = book number 01-66 from
 `https://text.recoveryversion.bible/RcV.htm`, e.g. `19_Psalms_55.htm`; WebFetch works, the home page has no chapter links).
 Songs often follow the KJV/ASV wording, not the Recovery Version ("I will call upon God, and the Lord shall save me" vs
