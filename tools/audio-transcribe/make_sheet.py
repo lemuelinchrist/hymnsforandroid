@@ -137,8 +137,13 @@ chord_toks, chord_list = [], []
 # where the bars start ("bar_offset": "auto", or a number of beats). The beat tracker finds the beats, not beat 1:
 # - the harmony changes on the bar line or the half bar, so the half-bar windows on the right beats give the clearest
 #   chords (the best template's match is higher); this picks between the offsets 0/2 and 1/3;
-# - long sung notes fall on beat 1 more than on beat 3 (and syllables just before it are pickups); this picks the one
-# of the two. Printed, so a wrong guess can be fixed with a number.
+# - of those two, the bar line is where the chord changes: a hymn mostly holds a chord for a bar, so the accompaniment
+#   differs more across a bar line than across the middle of a bar ("We Rest on Thee": G for four beats from "rest",
+#   then A minor for four);
+# - only when the harmony does not say (under BAR_CHANGE_RATIO): long sung notes fall on beat 1 more than on beat 3.
+#   That rule alone put the long notes of "We Rest on Thee" on beat 1 and every chord change in the middle of a bar.
+# Printed, so a wrong guess can be fixed with a number. BAR_OFFSET_CHECK=1 prints the choice and stops.
+BAR_CHANGE_RATIO = 1.15
 def find_bar_offset():
     spans = [(s['t0'], s['t1']) for s in cfg['sections']]
     nb = cfg['beats_per_bar']; half = max(1, nb // 2)
@@ -163,10 +168,28 @@ def find_bar_offset():
             pos = np.interp(x['start'], beats, bidx); dur = (sy[i + 1]['start'] if i + 1 < len(sy) else x['end']) - x['start']
             if round((pos - off) * 2) / 2 % nb == 0: w += dur
         weight[off] = w
+    # how much the accompaniment changes across each half-bar boundary of that grid, per candidate bar line
+    def chroma(a_, b_):
+        m = (C['t'] >= a_) & (C['t'] < b_)
+        if not m.any(): return None
+        v = C['acc'][:, m].mean(1); return v / (np.linalg.norm(v) + 1e-9)
+    change = {off: [] for off in range(best, nb, half)}
+    for k in range(best + half, len(beats) - half, half):
+        if not any(t0 <= beats[k - half] and beats[k + half] <= t1 for t0, t1 in spans): continue
+        x, y = chroma(beats[k - half], beats[k]), chroma(beats[k], beats[k + half])
+        if x is None or y is None: continue
+        for off in change:
+            if (k - off) % nb == 0: change[off].append(1 - float(x @ y))
+    change = {k: float(np.mean(v)) if v else 0.0 for k, v in change.items()}
+    ranked = sorted(change, key=change.get, reverse=True)
+    by = 'held syllables'
     off = max(weight, key=weight.get) if weight else best
-    print('bar offset', off, '(chord clarity per half-bar grid', [round(c, 3) for c in clarity], ', held syllables on beat 1',
-          {k: round(v, 1) for k, v in weight.items()}, ')')
+    if len(ranked) > 1 and change[ranked[0]] > BAR_CHANGE_RATIO * change[ranked[1]]: off, by = ranked[0], 'chord changes'
+    print('bar offset', off, 'by', by, '(chord clarity per half-bar grid', [round(c, 3) for c in clarity],
+          ', chord change across the bar line', {k: round(v, 4) for k, v in change.items()},
+          ', held syllables on beat 1', {k: round(v, 1) for k, v in weight.items()}, ')')
     return off
+if os.environ.get('BAR_OFFSET_CHECK'): find_bar_offset(); sys.exit()
 OFF = (find_bar_offset() if cfg.get('bar_offset', 'auto') == 'auto' else cfg['bar_offset']) * U
 
 # notes from the syllables (sheet.json "notes": "syllables", the default when syllables.json exists): a hymn sings one

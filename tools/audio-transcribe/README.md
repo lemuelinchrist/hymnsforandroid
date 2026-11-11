@@ -90,11 +90,17 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
   (their words as `lines`) and compare. Fast eighth notes differ from pass to pass (scoops); the pitch most passes
   agree on goes into the section's `fix`. The beat tracker can gain or lose a beat between stanzas, so `"auto"` bar
   offsets differ per pass: take the offset that puts the long notes on beat 1 and set it as a number.
-- **Where the bars start.** The beat tracker finds beats, not beat 1. `"bar_offset": "auto"` takes the half-bar grid
-  on which the accompaniment's chords are clearest (the harmony changes on the bar line or the half bar), then of its
-  two offsets the one with more held syllables on beat 1. One beat off, chords straddle the changes and come out flat
-  ("Come with Me from Lebanon": offset 1 gave G for eight bars, offset 0 the progression); on "Christ Is Everything"
-  it finds the offset 1 checked by ear.
+- **Where the bars start.** The beat tracker finds beats, not beat 1. `"bar_offset": "auto"` decides in two steps.
+  First the half-bar grid on which the accompaniment's chords are clearest (the harmony changes on the bar line or the
+  half bar): one beat off, chords straddle the changes and come out flat ("Come with Me from Lebanon": offset 1 gave G
+  for eight bars, offset 0 the progression). Then, of that grid's two offsets, **the one where the chords change on
+  the bar line**: a hymn mostly holds a chord for a whole bar, so the accompaniment differs more across a bar line than
+  across the middle of a bar. Only when that says nothing (the two within 15 %) do the held syllables decide (long
+  notes on beat 1 rather than beat 3). The held syllables alone were the rule before and put the first bar line of
+  "We Rest on Thee" half a bar late: its long notes are on beat 3, while its chords (G for four beats from "rest", A
+  minor for the next four) say plainly where the bars are. On the four songs transcribed so far the chord rule finds
+  the offset that was checked by ear, each time by a factor of two or more. `BAR_OFFSET_CHECK=1 make_sheet.py D`
+  prints the choice and its numbers without making the sheet.
 - **Chords**, one per half bar, weigh four kinds of evidence: the accompaniment's chroma against major, minor and
   dominant-7 templates; the bass (the bass stem, or the accompaniment's low register when there is no bass player: a
   silent stem scaled to its own maximum is only noise); the sung melody (chord tones on the beat count double); and the

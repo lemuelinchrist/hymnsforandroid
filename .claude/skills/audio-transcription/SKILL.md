@@ -93,6 +93,9 @@ in the script, re-run, and check the other places the rule touches (repeats must
 - Passing slides and stray notes between the sung ones → notes are now made per syllable (`"notes": "syllables"`).
 - Wrong words → for a hymn in the database, give its stanza as `lines` in sheet.json instead of Whisper's words, and
   only one pass of the stanza as the section (hence: ask for the lyrics first).
+- Every bar line half a bar late (chords changing in the middle of each bar; the user: "the song starts at G, and the
+  chord changes every four beats") → of the two offsets half a bar apart, the one with the long notes on beat 1 was
+  taken. Fixed: the offset where the accompaniment changes across the bar line; long notes only as a tie-break.
 - Chords flat (one chord for bars) or odd → the bar lines were a beat off and the bass stem silent (no bass player).
   Fixed: `"bar_offset": "auto"`, bass from the accompaniment's low register, melody and key as evidence; check with
   `CHORD_DEBUG=1`. Ask the user if the key sounds right (a song ends on its tonic, mostly).
@@ -140,6 +143,14 @@ for each stanza. It uses neither the words nor their alignment. Read it against 
   `repeat`.
 - **A note split between two pitches in the stanzas' vote** (2 against 2): print the pitch every 40 ms inside that
   syllable in each stanza; it usually is a slide or a turn that all stanzas sing alike, cut differently.
+- **The first bar line.** The bar line is where the chord changes, not where the long notes are. Look at the chords
+  per half bar (`CHORD_DEBUG=1`, or the accompaniment's root per half bar): a chord that lasts four beats starts on
+  beat 1, so the first of those half bars begins a bar ("We Rest on Thee": G from "rest" for four beats, then A minor
+  from "Shield" for four, so the bar line is before "rest" and only "We" is the upbeat). The word stress agrees with
+  it more often than the note lengths do ("We REST on Thee, our SHIELD"): a long note at the end of a line may well sit
+  on beat 3. `"bar_offset": "auto"` now decides this way and prints `by chord changes` with both numbers; when it
+  prints `by held syllables` the harmony did not say, so tell the user the bar lines may be half a bar off. The beat
+  tracker's phase differs from stanza to stanza, so the offset number of one stanza is not the next one's.
 - **Chords.** `CHORD_DEBUG=1` scores close together and a chord foreign to the key (A7 in G major) with no sign of its
   third in the accompaniment: prefer the key's chord (`"chord_weights": {"key": 0.6}`) and tell the user the chords
   are weak.
