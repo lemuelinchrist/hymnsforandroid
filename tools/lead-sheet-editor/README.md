@@ -32,6 +32,107 @@ In the page: click a note, then
 Bar lines, ties over a bar line, beams and accidentals are not edited: they follow from the notes, the time signature
 and the upbeat (the length of the first, incomplete bar).
 
+## Guide: correcting a sheet step by step
+
+### 1. Open the sheet
+
+1. Start the server (first command above) and leave its window open. It prints the address.
+2. Open http://localhost:8777/ in the browser. **Song** at the top left chooses among the songs that have a
+   `leadsheet.json`; the address keeps the choice (`?song=<folder>`), so it can be bookmarked.
+3. A song that is not in the list has no `leadsheet.json` yet: make it with `from_musicxml.py` (second command above)
+   and reload the page.
+
+The top right always says where the sheet stands: `Loaded`, `Saving…`, `Saved 9:41:07 PM`, or
+`Updated from the file …` when someone else changed it. Red text there means the change was **not** saved (the server
+is not running, or the file was changed at the same moment).
+
+### 2. Listen and find the wrong note
+
+1. Start the recording in **The recording** card and follow the sheet.
+2. Click a note and press **Space** (or **▶ Play**): the sheet plays from that note, and the note being played turns
+   green. Space again stops it. Clicking a note also sounds it once.
+3. Play the same line in the recording and in the sheet, one after the other, until you hear where they differ.
+
+### 3. Fix a wrong pitch
+
+Click the note (it turns red), then:
+
+| To do this | Press | Or click |
+|---|---|---|
+| one step higher or lower in the key (G → A → B → C) | ↑ ↓ | ↑ ↓ |
+| a semitone higher or lower (G → G♯) | Shift ↑ ↓ | ♯ ♭ |
+| an octave higher or lower | Ctrl ↑ ↓ | 8↑ 8↓ |
+| a named note, the nearest one (the key's F is F♯ in G major) | A to G | |
+| write C♯ as D♭ or the other way | | ♯↔♭ |
+
+Each change sounds the new pitch. ← and → go to the note before and after, so a whole line can be walked with the
+keyboard: → ↑ → → ↓ ...
+
+### 4. Fix a wrong length
+
+Click the note and choose its length: the **Length** buttons, or the keys **3** (16th), **4** (8th), **5** (quarter),
+**6** (half), **7** (whole); **.** adds or removes the dot. The button of the note's present length is dark.
+
+Changing a length moves everything after it, so fix lengths in pairs. Example, a sheet has two even eighths where
+the singer is short on the first and early on the second:
+
+1. click the first, press **3** (it becomes a 16th);
+2. click the second, press **.** on an eighth (it becomes a dotted eighth).
+
+The bar is full again. A bar that looks wrong after a change (a tie into the next bar, rests at the end of the sheet)
+is the page telling that the lengths before it no longer add up.
+
+A long note that crosses a bar line is still one note here: give it its whole length and the page draws the tie.
+
+### 5. Add, remove and split notes
+
+- **A note is missing**: click the note before it and press **N** (or **+ After**; **+ Before** for the other side).
+  The new note copies the pitch and length of the chosen one: correct them as in steps 3 and 4.
+- **A note too many**: click it and press **Delete**.
+- **One note should be two** (a syllable sung on two notes): click it and press **S**. It is cut into two halves of the
+  same pitch; move the second one with ↑ ↓. The second half has no word, so it is slurred to the first.
+- **A rest**: click the note and press **R**. R again makes it a note.
+
+### 6. Words
+
+1. Click the note where the words start and press **Enter**: the cursor is in the **Word** box.
+2. Type the syllable and press **Space**: it is written and the next note is chosen. Type the next one.
+3. Inside a word press **-** in place of Space: `De-` `fend-` `er` is written as De - fend - er.
+4. A note that carries on the syllable before it stays **empty**: just press Space on it.
+5. **Esc** leaves the box.
+
+**+ Verse** adds another line of words under the notes (stanza 2 under stanza 1); the card then has a box per verse.
+
+### 7. Chords
+
+Click the note the chord starts on, press **H**, type the chord (`G`, `Am`, `D7`, `G/B`, `F#m`, `Bb`) and press Enter.
+An empty box removes the chord. **Key −** and **Key +** move the whole song a semitone, notes and chords together.
+
+### 8. The head of the sheet
+
+Title, key, time signature and tempo are in the top bar. **Upbeat** is the length of the first, incomplete bar in
+eighth notes (`1` for a single eighth note before the first bar line, `0` when the song starts on beat 1). If every
+bar line sits in the wrong place, the upbeat is what to change, not the notes.
+
+### 9. When something went wrong
+
+**Undo** (Ctrl Z) takes back one change at a time, also a change that came from the file; **Redo** is Ctrl Y. Older
+versions are in the song's `leadsheet.history/` folder, one file per save, named by date and time: copy one over
+`leadsheet.json` to go back to it.
+
+### 10. Take the sheet out
+
+- **Print / PDF** prints the sheet alone (choose "Save as PDF" in the print window).
+- **MIDI** downloads the melody; **MEI** downloads the sheet in the format the app's sheet viewer reads.
+- Nothing needs saving by hand: the sheet is already in `leadsheet.json`.
+
+### 11. Asking the other editor
+
+To leave a question on one note, click it and write in **Comment** ("too high?", "is this an eighth?"): the note turns
+orange and the comment is listed under **Notes between us**, where a click on it goes to the note. Longer things go in
+the box there. The other editor reads both in the file, changes the notes or answers in the same places, and those
+changes show up blue in the page.
+
 ## Working together on one sheet
 
 - The page saves half a second after each change (`Saved` at the top right) and keeps the version before each save in
