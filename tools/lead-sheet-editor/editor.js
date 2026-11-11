@@ -416,6 +416,10 @@
   }
   // for the console and for tests
   window.leadSheet = {mei: function () { return lastMei; }, sheet: function () { return sheet; }, select: select, act: act};
-  verovio.module.onRuntimeInitialized = function () { tk = new verovio.toolkit(); render(); };
+  // Verovio's runtime may be ready before or after this script runs (it is cached after the first visit): try until it is
+  (function boot() {
+    try { tk = new verovio.toolkit(); } catch (e) { tk = null; setTimeout(boot, 100); return; }
+    render();
+  })();
   init();
 })();
