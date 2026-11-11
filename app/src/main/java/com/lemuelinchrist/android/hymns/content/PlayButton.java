@@ -24,19 +24,25 @@ public class PlayButton extends ContentComponent<ImageButton> {
                 if(isPlaying){
                     stop();
                 } else {
+                    // stays on "play" when the hymn has no melody
                     play();
                 }
-                isPlaying=!isPlaying;
             }
         });
     }
     public void play() {
         stopCurrentlyPlayingButton();
+        if (!hymn.playHymn()) {
+            isPlaying=false;
+            view.setImageResource(R.drawable.ic_play_arrow_white_48dp);
+            return;
+        }
+        isPlaying=true;
         view.setImageResource(R.drawable.ic_pause_white_48dp);
         currentlyPlayingButton=this;
-        hymn.playHymn();
     }
     public void stop() {
+        isPlaying=false;
         view.setImageResource(R.drawable.ic_play_arrow_white_48dp);
         hymn.stopHymn();
     }

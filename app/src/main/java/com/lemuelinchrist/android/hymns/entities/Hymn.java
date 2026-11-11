@@ -160,34 +160,42 @@ public class Hymn {
         this.tune = tune;
     }
 
-    public void playHymn() {
+    /** Starts the melody; false when there is none (the "not available" toast is shown) or it could not start. */
+    public boolean playHymn() {
         Class<R.raw> rClass = R.raw.class;
         try {
 
             //	we don't want to play another thread while the song is still playing.
             if (mp != null && mp.isPlaying()) {
-                return;
+                return true;
             }
 
             if (tune == null || tune.equals("") || tune.equals("0")) {
                 showNotAvailableToast();
-                return;
+                return false;
             }
 
             Field field = rClass.getDeclaredField("m" + tune.toLowerCase());
             mp = MediaPlayer.create(context, field.getInt(null));
+            if (mp == null) {
+                // the file exists but cannot be decoded (an empty or broken MIDI)
+                showNotAvailableToast();
+                return false;
+            }
 
             mp.setLooping(true);
             mp.start();
+            return true;
 
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
             showNotAvailableToast();
 
         } catch (Exception e) {
-            Log.e(this.getClass().getName(),e.getMessage());
+            Log.e(this.getClass().getName(),String.valueOf(e.getMessage()));
             e.printStackTrace();
         }
+        return false;
 
     }
 
