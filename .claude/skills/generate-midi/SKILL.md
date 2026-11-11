@@ -32,6 +32,16 @@ no `res/raw/m<tune>.mid`, and the app's Play button shows "Sorry, hymn not avail
 5. Re-run `make_missing.py` (it should now find nothing to make) and build; Play on one of the hymns in the emulator.
 6. Update the MIDI count in `docs/HYMNAL_SPEC.md` (melodies section) when files were added.
 
+## A tune that has no tune code (a New Tune we made ourselves, e.g. from a recording)
+The tune code is the **scale degrees (1-7, relative to the key's tonic) of the first 16 melody notes**, repeated notes included, as
+in BF474 `1231423112351765` (C D E C F D E C C D E G C B A G in C major) and BF469 `35212311176545` (hymnal.net's own stops earlier).
+Make it from the sheet, check that no hymn has it (`select _id from hymns where tune='<code>'`), and set the hymn's `tune`, `key`,
+`time` (and the parent's category, sub-category and author) in `app/src/main/assets/hymns.sqlite`; then
+`cp app/src/main/assets/hymns.sqlite sqlite/ && (cd sqlite && sqlite3 hymns.sqlite .dump > hymns.sql)` (what `:sqlite:exportSql` does) and
+check `git diff sqlite/hymns.sql` shows only that row. The sheet goes to `sheetMei/<id>.mei` (the lead sheet editor writes the right form,
+`tools/lead-sheet-editor/`; give it the app's header: title with "(New Tune)", subordinate title = the category line, hymn and parent
+number) and the MIDI to `res/raw/m<code>.mid`. View it with the app's viewer served from `app/src/main/assets` (`/viewer/index.html?id=<id>`).
+
 ## Limits and traps
 - One style only; hymnal.net's other accompaniments (block chords, oom-pah, broken chords) would need their own left-hand generators from the chord symbols.
 - The left-hand pattern in 3/4 and 6/8 is just the held dyads so far (the beat-4 pattern is 4/4 only); improve it when a listener asks.

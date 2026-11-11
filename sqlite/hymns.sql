@@ -18548,7 +18548,7 @@ INSERT INTO hymns VALUES('BF468',NULL,NULL,NULL,'Once I was dead in sin,','BF',N
 INSERT INTO hymns VALUES('BF470',NULL,NULL,NULL,'How can I ever stay away','BF',NULL,NULL,NULL,'470',NULL,NULL,NULL,'E471',NULL,NULL,1);
 INSERT INTO hymns VALUES('BF471',NULL,NULL,NULL,'O the riches of my Savior,','BF',NULL,NULL,NULL,'471',NULL,NULL,NULL,'E542',NULL,NULL,1);
 INSERT INTO hymns VALUES('BF472',NULL,NULL,NULL,'Spring up, well, with water;','BF',NULL,NULL,NULL,'472',NULL,NULL,NULL,'E250',NULL,NULL,1);
-INSERT INTO hymns VALUES('BF473',NULL,NULL,NULL,'We rest on Thee, our Shield and our Defender;','BF',NULL,NULL,NULL,'473',NULL,NULL,NULL,'E881',NULL,NULL,1);
+INSERT INTO hymns VALUES('BF473','Edith Gilling Cherry (1872-1897)',NULL,NULL,'We rest on Thee, our Shield and our Defender;','BF','G Major','Spiritual Warfare',NULL,'473','In Faith','4/4','5431171667132345','E881',NULL,NULL,1);
 INSERT INTO hymns VALUES('BF476',NULL,NULL,NULL,'Take my life, and let it be','BF',NULL,NULL,NULL,'476',NULL,NULL,NULL,'E1359',NULL,NULL,1);
 CREATE TABLE IF NOT EXISTS "stanza" (
 	 "parent_hymn" TEXT NOT NULL,
