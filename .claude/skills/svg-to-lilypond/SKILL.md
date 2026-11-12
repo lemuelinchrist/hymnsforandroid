@@ -128,6 +128,13 @@ python3 tools/svg-to-lilypond/tools/from_leadsheet_data.py NS226 NS1166 BF69    
   the words do not fit the section: fix by hand or leave the hymn out.
 - A section of the music sings the stanza of its label (Verse 2 = stanza 2; a Chorus or Ending takes the first chorus
   whose syllables fill its notes). Stanzas not under the notes go below the music.
+- Some pages mark no sections (NS389: verse, chorus, verse, chorus in one run of bars): the syllable counts give them
+  (stanzas of 28, 42 and 59 syllables against the notes per phrase), then name them with `--sections
+  "NS389=9@4:Chorus,20:Verse_2,35@4:Chorus"` (bar, `@n` = the n-th item of the bar when a section starts on a pickup).
+  The page may also write `(startrepeat5)`: read as a repeat start. A page can hold another song than the hymn we
+  have under that number (NS389 did, now fixed): the fetch only checks the tune code, so compare the title with the
+  hymn's first line before converting.
+- NS889's second ending (5 bars) has no words under it: its last line is not placed.
 - Checked on BF69 against hymnal.net's own drawing (same 98 notes, 27 chords, 95 syllables) and on NS1166 and NS226
   against their old SVGs' words. Not handled yet: a key or time change inside a song, 6/8 (never seen in the data).
 
