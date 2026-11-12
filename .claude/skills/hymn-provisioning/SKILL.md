@@ -241,6 +241,15 @@ A hymn's `tune` field (parsed from a `Hymn code Hymnalnet:`/`Hymn code:` line �
   `./gradlew :databaseProvisioner:runExtractNSFakePageReplacements --exclude-task :sqlite:importSql -Phymns=752` (checks the sheet number and retries).
 - **Known site-markup bug (fixed 2026-09-05):** hymnal.net changed its HTML at some point — the old selector `.leadsheet.piano span` no longer matches anything (should be `.leadsheet span.svg`). If a sync run logs `"warning no sheet Music link"` for hymns that visibly have sheet music on the live site, check `HymnalNetExtractor.java`'s two `.select(...)` calls for this selector before assuming the hymn genuinely lacks sheet music — the site can change markup again in the future.
 
+## Sheet music from hymnal.net since 2026-11: page data, not SVG files
+
+The site's sheet SVG addresses are gone; the hymn page holds the sheet as JSON and draws it in the browser.
+`HymnalNetExtractor.convertWebPageToHymn()` now also saves that JSON as `databaseProvisioner/data/leadsheetData/<id>.json`
+(with the page's title), and `ExtractLeadsheetData.groovy` fetches it for hymns we already have, reading the database only:
+`./gradlew :databaseProvisioner:runExtractLeadsheetData -Phymns=NS226,NS1166,BF69:h/8773` (an id, plus `:<page>` when
+the page is not the book's plain one; a page is saved only when its address and hymn code are the hymn's; 15 s between
+pages). Turning the JSON into our sheet is in the `svg-to-lilypond` skill (section 9b), the MIDI in `generate-midi`.
+
 ## Syncing the New Tunes (`BF436` and up) from hymnal.net (reusable)
 
 A New Tune is another tune for an English hymn (hymnal.net `en/hymn/nt/<key>`; key = the English number, plus `b` for a

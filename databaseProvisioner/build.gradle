@@ -183,6 +183,14 @@ task runExtractNSFakePageReplacements(type: JavaExec) {
     args = (project.findProperty('hymns') ?: '').toString().tokenize(',')
 }
 
+// The sheet data (key, chords, numbered melody) of hymns we have, from their hymnal.net pages, into
+// data/leadsheetData/<id>.json. Only reads the database. -Phymns=NS226,NS1166,BF69:h/8773
+task runExtractLeadsheetData(type: JavaExec) {
+    mainClass = 'com.lemuelinchrist.hymns.ExtractLeadsheetData'
+    classpath = sourceSets.main.runtimeClasspath
+    args = (project.findProperty('hymns') ?: '').toString().tokenize(',')
+}
+
 // Children sync from hymnal.net, reusable: -Pfrom=1 -Pto=243 (see SyncChildrenFromHymnalNet.groovy).
 // Runs on top of the current DB state (no importSql).
 task runSyncChildren(type: JavaExec) {

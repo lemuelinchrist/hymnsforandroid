@@ -11,6 +11,9 @@ to the original (`ACCEPT`, `ACCEPT_DB_MISMATCH`) are here; sheets still in `REVI
 - `status.csv`: status per file, whether it uses the wider lyric word spacing (`wide`), LilyPond's own (`default`) or the tight fallback (`tight 0.6`, `tight 0.3`),
   and the converter commit that produced it.
 - Commit a refresh only after a significant converter change (a full regeneration rewrites most files).
+- **Three files are not from an SVG:** `BF69.ly`, `NS226.ly` and `NS1166.ly` were written by `tools/from_leadsheet_data.py`
+  from hymnal.net's page data (the site serves no sheet SVG since 2026-11; their first line says so). A full
+  regeneration from the SVGs does not make them: run that tool again for them.
 - Results and known gaps: `../DESIGN.md` section 18.
 - **Chord edits** sent in from the web app are put into these files by `tools/chord_edits.py` and kept in
   `../chord_edits/` (their source). After a refresh of this folder, run `python3 tools/chord_edits.py apply` so they are

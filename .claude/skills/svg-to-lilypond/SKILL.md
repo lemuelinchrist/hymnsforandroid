@@ -108,6 +108,29 @@ git status --short app/src/main/assets/sheetMei      # only the hymns whose .ly 
   the converter (and DESIGN.md section 19) rather than hand-editing MEI. To look at one: `ly_to_mei.py --render <ids>`
   (needs the `verovio` Python package in a venv).
 
+## 9b. A sheet hymnal.net no longer serves as an SVG: build it from the page data (2026-11-12)
+
+Since 2026-11 hymnal.net has no sheet SVG files: a hymn page holds the sheet as JSON (key, time, chords per bar, the
+melody in numbered notation) and draws it in the browser. Two steps replace the download and `convert.py` for such a hymn:
+
+```
+JAVA_HOME=<jdk17> ./gradlew :databaseProvisioner:runExtractLeadsheetData -Phymns=NS226,NS1166,BF69:h/8773   # -> databaseProvisioner/data/leadsheetData/<id>.json
+python3 tools/svg-to-lilypond/tools/from_leadsheet_data.py NS226 NS1166 BF69      # -> build/leadsheet/<id>.ly, lines "to check"
+```
+
+- `from_leadsheet_data.py` (its docstring lists the notation) builds the IR that `recognize.py` makes from an SVG and
+  lets `emit_ly.py` write it, so the `.ly` is the usual dialect: copy it to `ly/piano/`, then `ly_to_mei.py` as in
+  section 9. Render it first (`lilypond --png`) and look.
+- The data is written as if the key were C (numbered melody, chords in C): the tool moves both to the page's key.
+- The data has no words under the notes. They come from the hymn's stanzas in the database, one syllable per sung
+  note, cut the way our existing sheets cut each word (a dictionary made from `ly/piano`, cached in
+  `build/syllables.json`). "guessed: di-vides" means a word no sheet has: read it. "37 syllables for 35 notes" means
+  the words do not fit the section: fix by hand or leave the hymn out.
+- A section of the music sings the stanza of its label (Verse 2 = stanza 2; a Chorus or Ending takes the first chorus
+  whose syllables fill its notes). Stanzas not under the notes go below the music.
+- Checked on BF69 against hymnal.net's own drawing (same 98 notes, 27 chords, 95 syllables) and on NS1166 and NS226
+  against their old SVGs' words. Not handled yet: a key or time change inside a song, 6/8 (never seen in the data).
+
 ## 10. Latest results (2026-10-06)
 Piano 3,166/3,179 accepted (3,089 clean), guitar 3,164/3,179 (3,084 clean). The 13+15 left each have a reason in
 `tools/svg-to-lilypond/DESIGN.md` section 18 ("Review tail"). The accepted `.ly` files are committed in `tools/svg-to-lilypond/ly/` (never hand-edit;

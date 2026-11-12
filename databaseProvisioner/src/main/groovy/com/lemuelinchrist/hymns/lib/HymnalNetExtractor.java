@@ -323,6 +323,10 @@ public class HymnalNetExtractor {
         }catch (Exception e) {
             System.out.println("warning no sheet Music link");
         }
+        // the sheet as page data (what the site has instead of an SVG file since 2026-11)
+        String leadsheetData = readLeadsheetData(doc);
+        if (leadsheetData != null) saveLeadsheetData(hymn.getId(), leadsheetData);
+        else System.out.println("warning no sheet data in the page");
 
         // **** Important! hymn will not work if first_stanza_line is null
         if(hymn.getFirstStanzaLine()==null) {
@@ -382,6 +386,37 @@ public class HymnalNetExtractor {
         String text = (wholeLine ? dd.text() : dd.select("a").text()).replace('\u00A0', ' ').trim();
         if (!wholeLine && text.isEmpty()) text = dd.text().trim();
         return text.isEmpty() ? null : text;
+    }
+
+    /**
+     * The sheet of a hymn as hymnal.net's page holds it since 2026-11 (it serves no SVG file any more and draws the
+     * sheet in the browser): the JSON of <script id="hn-leadsheet-data">, with key, time, tempo, chords and the melody
+     * in numbered notation, and the page's title added as "title" (the sheet's heading). Null when the page has none.
+     */
+    public static String readLeadsheetData(Document doc) {
+        Element data = doc.getElementById("hn-leadsheet-data");
+        if (data == null || !data.data().trim().startsWith("{")) return null;
+        // "Who is She? – New Songs 226 | hymnal.net"
+        String title = doc.title();
+        int dash = title.lastIndexOf(" \u2013 ");
+        if (dash > 0) title = title.substring(0, dash);
+        title = title.trim().replace("\\", "\\\\").replace("\"", "\\\"");
+        return "{\"title\":\"" + title + "\"," + data.data().trim().substring(1);
+    }
+
+    /** The "Hymn code" of a page in the new layout, or null. */
+    public static String readTuneCode(Document doc) {
+        return detail(doc, "Hymn code", false);
+    }
+
+    /** Saves the page's sheet data as DATA_DIR/leadsheetData/<hymnId>.json (a staging folder, like pianoSvg). */
+    public static Path saveLeadsheetData(String hymnId, String json) throws IOException {
+        Path dir = Paths.get(Constants.DATA_DIR, "leadsheetData");
+        Files.createDirectories(dir);
+        Path file = dir.resolve(hymnId + ".json");
+        Files.write(file, (json + "\n").getBytes(StandardCharsets.UTF_8));
+        System.out.println("Sheet data saved: " + file);
+        return file;
     }
 
     public static void downloadSheetMusicAndMidi(String hymnalAddress, HymnsEntity hymn) throws IOException {
