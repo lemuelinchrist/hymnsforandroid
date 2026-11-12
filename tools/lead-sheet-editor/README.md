@@ -169,3 +169,7 @@ MIDI from it (the `generate-midi` skill); copying it into the app (`sheetMei/<id
 One voice, one staff; no triplets, no repeats or endings (write the lines out); the keys with up to six sharps or
 five flats. A sheet from someone's recording is a derivative of their arrangement: it stays in `temp/` (not tracked)
 until the owner decides what goes into the app.
+
+## Putting the sheet into the app
+
+`leadsheet.mei` is only the music. `python3 tools/lead-sheet-editor/finish_mei.py leadsheet.mei <id> <parent id> "<title>" > app/src/main/assets/sheetMei/<id>.mei` adds the header (subtitle and number from the parent's sheet) and the parent's later stanzas (`<back>`, the only place the viewer takes the stanzas below the notes from), and prints every bar's length so a wrong bar shows.

@@ -68,7 +68,11 @@ parent's or a neighbour's MEI:
   (copy it from the parent hymn's MEI for a New Tune; the notes carry only verse 1). The viewer draws the stanzas below
   the notes from this block only, so without it a sheet shows just the first stanza.
 - A 4/4 sheet has `meter.sym="common"` on `scoreDef` (shown as C; all other 4/4 sheets have it).
-- One element per line like the other files (the editor writes a single block), and check that every bar adds up.
+- One element per line like the other files, and every bar adds up.
+
+`python3 tools/lead-sheet-editor/finish_mei.py leadsheet.mei <id> <parent id> "<title> (New Tune)" > app/src/main/assets/sheetMei/<id>.mei`
+does all of this (the editor itself now writes `meter.sym` and one element per line): the music from `leadsheet.mei`, the
+subtitle, number and `<back>` stanzas from the parent's sheet, and it prints each bar's length to stderr.
 
 ## Reviewing without ears
 
