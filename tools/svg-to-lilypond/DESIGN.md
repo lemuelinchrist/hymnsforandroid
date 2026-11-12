@@ -456,9 +456,9 @@ every hymn has both, none are HTML, and there are no odd names. All pairs agree 
 - Not individually tested: the other restored hymns, the guitar variant, and the 7 refreshed pairs.
 
 Still open (not fixed):
-1. **NS389 identity mismatch:** hymnal.net's `ns/389` is now "For we by the Spirit (Gal. 5:5-6)",
-   but our DB NS389 is "The Lord is my greatest love". The NS numbering has drifted for at least this
-   hymn. Belongs to the New Songs sync work (see the `hymn-provisioning` skill).
+1. ~~NS389 identity mismatch~~ (fixed 2026-11-12): hymnal.net's `ns/389` is "For we by the Spirit (Gal. 5:5-6)",
+   which our NS389 now is; "The Lord is my greatest love" stayed only as the Tagalog hymn T10704, no longer tied to NS389.
+   The NS numbering had drifted for at least this hymn.
 2. **Stale sheets in general:** E756, E909, NS1, NS123 and NS188 differ from hymnal.net today (E909 is
    now refreshed). There are probably more across the corpus. A full refresh audit would mean
    downloading all ~6,400 files; not done.

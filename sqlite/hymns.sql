@@ -3830,7 +3830,7 @@ INSERT INTO hymns VALUES('NS385','C. S.','C. S.',NULL,'In a world full of tempta
 INSERT INTO hymns VALUES('NS386',NULL,NULL,'WHEN WE BELIEVE INTO THE SON,','The world is longing, seeking for peace,','NS','G Major','The Church',NULL,'386','Her Unity','4/4','12344432313222343',NULL,NULL,'CS614,T10614,ZS614,',NULL);
 INSERT INTO hymns VALUES('NS387',NULL,'C. S.',NULL,'But whoever drinks of the water','NS','F Major','Scriptures for Singing',NULL,'387',NULL,'4/4','3231375651112',NULL,'John 4:14,','',NULL);
 INSERT INTO hymns VALUES('NS388',NULL,'J. W.',NULL,'I am my beloved’s,','NS','D Minor','Scriptures for Singing',NULL,'388',NULL,'3/4','671217552222323',NULL,'Song of Songs 7:10-12,','',NULL);
-INSERT INTO hymns VALUES('NS389',NULL,'J. W.',NULL,'The Lord is my greatest love, ','NS','G Major','The Church',NULL,'389','As Our Home and Rest','4/4',NULL,NULL,NULL,',T10704,',NULL);
+INSERT INTO hymns VALUES('NS389',NULL,'J. W.','WE EAGERLY AWAIT THE HOPE OF RIGHTEOUSNESS,','For we by the Spirit,','NS','C Major','Scriptures for Singing','6.9.6.7. with chorus.','389',NULL,'4/4','117653555555453',NULL,'Galatians 5:5-6,',NULL,NULL);
 INSERT INTO hymns VALUES('NS390','C. S.','C. S.','MAKE US THOSE WHO’RE ONE WITH YOU IN PRAYER,','Let us work together with the Lord through prayer,','NS','Eb Major','Prayer',NULL,'390','Expressing the Lord','4/4','55556532123',NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('NS391','D. L.','D. L.',NULL,'Oh how sweet it is just to know my Christ!','NS','G Major','Experience of Christ',NULL,'391','Loving Him','4/4','3456535173111765565',NULL,NULL,'GY140,',NULL);
 INSERT INTO hymns VALUES('NS392','S. A. W.','S. A. W.','THE SPIRIT OF THE TRIUNE GOD','Our God is one and yet triune,','NS','F Major','Blessing of the Trinity','8.6.8.6.D. with chorus.','392','His Revelation','4/4','55112313323215',NULL,NULL,'',NULL);
@@ -6699,7 +6699,7 @@ INSERT INTO hymns VALUES('T10625',NULL,NULL,NULL,'Far from world and all its cha
 INSERT INTO hymns VALUES('T10701',NULL,NULL,'PRAISE THE LORD! PRAISE THE LORD!','Oh, listen to the wanderer','T',NULL,'CHURCH LIFE',NULL,'10701',NULL,NULL,NULL,'E1235',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10702',NULL,NULL,NULL,'In solitude lived I in time past,','T',NULL,'CHURCH LIFE',NULL,'10702',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10703',NULL,NULL,NULL,'Aren''t you glad, you''re now in the church—','T',NULL,'CHURCH LIFE',NULL,'10703',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO hymns VALUES('T10704',NULL,NULL,NULL,replace('The Lord is my greatest love,\nHesus ang aking sinta,','\n',char(10)),'T',NULL,'CHURCH LIFE',NULL,'10704',NULL,NULL,NULL,'NS389',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('T10704',NULL,'J. W.',NULL,replace('The Lord is my greatest love,\nHesus ang aking sinta,','\n',char(10)),'T','G Major','CHURCH LIFE',NULL,'10704','As Our Home and Rest','4/4',NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10705',NULL,NULL,'FOR THE LORD''S RECOVERY,','Happy days when we are home','T',NULL,'CHURCH LIFE',NULL,'10705',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10706',NULL,NULL,NULL,'We have a joyful song to sing,','T',NULL,'CHURCH LIFE',NULL,'10706',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10708',NULL,NULL,NULL,'O Lord, everybody''s home.','T',NULL,'CHURCH LIFE',NULL,'10708',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -37402,8 +37402,6 @@ INSERT INTO stanza VALUES('NS387','1','But whoever drinks of the water<br/>That 
 INSERT INTO stanza VALUES('NS388','1','I am my beloved’s,<br/>And his desire is for me.<br/>',NULL,20684,1);
 INSERT INTO stanza VALUES('NS388','2','Come, my beloved,<br/>Let us go forth into the fields;<br/>Let us lodge in the villages.<br/>',NULL,20685,2);
 INSERT INTO stanza VALUES('NS388','3','Let us rise up early for the vineyards;<br/>Let us see if the vine has budded,<br/>If the blossom is open,<br/>If the pomegranates are in bloom;<br/>There I will give you my love.<br/>',NULL,20686,3);
-INSERT INTO stanza VALUES('NS389','1','The Lord is my greatest love, <br/>He’s won me completely;<br/>As Comforter He ever brings<br/>Timely help and sympathy.<br/>He died, that I be redeemed,<br/>He rose, a life-giving Stream;<br/>Now He in me abides, <br/>My peace, my joy, my life;<br/>Dear Lord! How I love Thee,<br/>Evermore, I love Thee!<br/>',NULL,20687,1);
-INSERT INTO stanza VALUES('NS389','2','The church is my home sweet home,<br/>She fills all my longing,<br/>The Lord’s beloved bride is she,<br/>All my days for her shall be. <br/>O home full of love and care!<br/>God’s river of life we share;<br/>I’m strengthened every day,<br/>And guided all the way;<br/>Dear Church! How I love Thee,<br/>Home sweet home, I love Thee!<br/>',NULL,20688,2);
 INSERT INTO stanza VALUES('NS390','1','Let us work together with the Lord through prayer,<br/>Praying every time and everywhere.<br/>He will not accomplish His will on His own;<br/>Seek Him ‘till His purpose is made known.<br/>',NULL,20689,1);
 INSERT INTO stanza VALUES('NS390','chorus','Make us those who’re one with You in prayer,<br/>Echoing the things for which You care.<br/>Lord, do make us one so that Your heart’s desire we share;<br/>In this age, Lord gain Your men of prayer.<br/>',NULL,20690,2);
 INSERT INTO stanza VALUES('NS390','2','Let us open to the Lord Himself through prayer,<br/>Breathe Him deeply as the living air.<br/>Gain the life supply by praying into Him,<br/>’Till our being’s filled up to the brim.<br/>',NULL,20691,3);
@@ -115392,6 +115390,9 @@ INSERT INTO stanza VALUES('BF463','1','Here I am, the least of all,<br/>Once aga
 INSERT INTO stanza VALUES('BF463','2','Here I am, a little stone,<br/>So filled with earth''s impurities,<br/>How could I be Your jasper?<br/>How can You build Your home in me?<br/>How will You build Your counterpart?<br/>I only know, I only say:<br/>Here I am, here I am, here I am.<br/>',NULL,420451,420451);
 INSERT INTO stanza VALUES('BF463','3','Here I am, a part of Him,<br/>No matter what, a son of God,<br/>What did I do to have this promise?<br/>I know His life will grow in me,<br/>I know my God will have His way,<br/>Inside this vessel there''s a treasure.<br/>Here I am, here I am, here I am.<br/>',NULL,420452,420452);
 INSERT INTO stanza VALUES('BF464','1','Jesus Lord, my Beloved,<br/>You''re so personal, affectionate to me;<br/>You''ve attracted me and have charmed me too,<br/>I''m captivated by You.<br/>',NULL,420453,420453);
+INSERT INTO stanza VALUES('NS389','1','For we by the Spirit,<br/>For we by the Spirit out of faith,<br/>For we by the Spirit,<br/>Eagerly await the hope.<br/>',NULL,420454,1);
+INSERT INTO stanza VALUES('NS389','chorus','We eagerly await the hope of righteousness,<br/>Eagerly await the hope of righteousness,<br/>We by the Spirit out of faith,<br/>Eagerly await the hope of righteousness.<br/>',NULL,420455,2);
+INSERT INTO stanza VALUES('NS389','2','For in Christ Jesus<br/>Neither circumcision avails anything,<br/>For in Christ Jesus<br/>Neither circumcision avails anything,<br/>But faith, faith avails,<br/>But faith operating through love.<br/>But faith, faith avails,<br/>Faith operating through love.<br/>',NULL,420456,3);
 CREATE TABLE IF NOT EXISTS "link"
 (
 	"id" INTEGER NOT NULL,
