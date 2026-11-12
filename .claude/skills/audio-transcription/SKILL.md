@@ -61,6 +61,15 @@ over them. Read their `message` and note comments (`c`) there, see what they cha
 `leadsheet.history/`, and make your own changes in the file (`server.dump`); the page shows them in blue. What the
 user corrected by ear is a clue like any other: find why the pipeline had it wrong.
 
+**Before the sheet goes into the app** (`app/src/main/assets/sheetMei/<id>.mei`): the editor's `leadsheet.mei` is only the
+music, so make it uniform with the other sheets (the BF473 sheet lacked all of this at first). Compare it with the
+parent's or a neighbour's MEI:
+- Every later stanza must be in `<back><div type="verses"><lg label="2."><l>…</l></lg>…</div></back>` before `</music>`
+  (copy it from the parent hymn's MEI for a New Tune; the notes carry only verse 1). The viewer draws the stanzas below
+  the notes from this block only, so without it a sheet shows just the first stanza.
+- A 4/4 sheet has `meter.sym="common"` on `scoreDef` (shown as C; all other 4/4 sheets have it).
+- One element per line like the other files (the editor writes a single block), and check that every bar adds up.
+
 ## Reviewing without ears
 
 The model cannot listen, so check the draft against itself:
