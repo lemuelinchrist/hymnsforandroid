@@ -116,7 +116,7 @@ export function hymn(id) {
     id, group: row.hymn_group, no: row.no, parentId: row.parent_hymn || null,
     first: row.first_stanza_line, chorus: row.first_chorus_line,
     category: row.main_category, subcategory: row.sub_category,
-    stanzas: stanzaRows(id), related: relatedIds(row.related),
+    stanzas: stanzaRows(id), related: relatedIds(row.related), newTune: row.new_tune === 1,   // the hymn's own column, never inherited
   };
   for (const f of INHERITED) h[f] = row[f];
   const parent = h.parentId && hymnRow(h.parentId);

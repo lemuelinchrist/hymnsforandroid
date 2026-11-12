@@ -350,6 +350,12 @@ async function search(page, text) {
       await open(page, '#/h/BF171');
       assert(!(await heads()).includes('New tunes'), 'a New Tune lists no New Tunes');
     });
+    await test('the header of a New Tune ends with "(New Tune)", other hymns have none (BF171, E12)', async () => {
+      await open(page, '#/h/BF171');
+      assert((await page.locator('.hymn .category').innerText()).trim().endsWith('(New Tune)'), 'BF171 header');
+      await open(page, '#/h/E12');
+      assert(!(await page.locator('.hymn').innerText()).includes('(New Tune)'), 'E12 header');
+    });
     await test('a hymn without sheet music has no Sheet tab and says so (C206)', async () => {
       await open(page, '#/h/C206');
       assert(await page.locator('.tabs').count() === 0, 'tabs shown');
