@@ -45,7 +45,7 @@ def main():
     for p in tsv(REPO + "/databaseProvisioner/src/main/resources/NycypcdYoutube.txt"):
         linked[p[1]].append(p[0]); label.setdefault(p[1], p[2] if len(p) > 2 else "NYCYPCD")
     known = {}
-    for f in ("nycypcd_known", "lsm_known", "tgb_known", "lovingthelord_known", "melodyoflilies_known", "josephs_known"):
+    for f in ("nycypcd_known", "lsm_known", "tgb_known", "lovingthelord_known", "melodyoflilies_known", "josephs_known", "hymnsinging_known"):
         for p in tsv(R + f + ".tsv"):
             known[p[0]] = (p[1], " ".join(p[2:]))
     for p in tsv(R + "tgb_kids_series.tsv"):  # videoId, hymn, title, has-link

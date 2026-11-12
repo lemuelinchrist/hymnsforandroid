@@ -141,6 +141,11 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   DROPPED: 227 of its 280 titles are tracks we already have. Do not offer it again.
 - **Melody of Lilies** (@MelodyofLilies; Releases tab 23 albums + 11 playlists + 50 videos, 86 unique tracks; mostly the group's own songs, not hymnal hymns), English, a
   popular Recovery producer: 17 links, label `Melody of Lilies` (2026-11-08): 6 exact titles + 11 confirmed by ear; the other ~50 titles matched no hymn (`melodyoflilies_known.tsv`, `recordings.tsv`).
+- **Hymn Singing** (@hymnsingingLR, UCk5QAUglOYFgfm07VLj5ysQ; 220 videos; playlists Hymns, New Song, Be Filled, New Tune, Tagalog Hymns, Tour of a Lifetime): saints' groups singing
+  in meetings (the quality varies; Lemuel judged only the playlist **Hymns**, PL1twdZLXinrqYc3oNlygRE_4A5NEgsZAK, good enough). 38 links, label `Hymn Singing`, album `Hymns` (2026-11-12): the hymns of that playlist
+  that had no recording (28 with only a piano video, 10 with no link at all; one video per hymn), from the number and first line in the titles. The playlist videos have **no captions**
+  (not even automatic ones), so the caption check cannot run; the other playlists have captions and a subject title ("NS 750 - Pathway of Life"): 19 were confirmed by agy, then dropped
+  as Lemuel scoped the run to the Hymns playlist. A title's number can be wrong (NS 697 is NS897, NS 378 is E378). `hymnsinging_known.tsv` holds the two duplicate videos. "No links" means no sung recording: a piano video alone does not count.
 - **Joseph's Storehouses** (@JosephsStorehouses, 994 videos in 63 playlists, 2026-11-08): saints' groups and CDs, not an official publisher (the playlists name the
   group: "(by Boston, Cambridge, Newton)", "(by ATX YP)"...; 7 are the Hymn CDs albums, the same recordings as Loving the Lord, so not linked twice) plus
   messages and kids' songs (left out). 211 links, label `Joseph's Storehouses` (`2`, `(Instrumental)`) from exact titles (max 2 sung + 1 instrumental per hymn).
