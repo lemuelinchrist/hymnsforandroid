@@ -115412,7 +115412,7 @@ INSERT INTO stanza VALUES('BF485','1','If therefore you were raised together wit
 INSERT INTO stanza VALUES('BF485','2','We should seek the things that are<br/>In heaven with our Christ,<br/>Things like knowing Christ as life,<br/>He''s everything to us.<br/>We take Christ as life and walk in Him.<br/>We take Christ as life and walk in Him.<br/>',NULL,420467,420467);
 INSERT INTO stanza VALUES('BF485','3','Set your mind on the things above, not on the things on earth.<br/>For you died and now your life is hidden with Christ in God.<br/>Now our lives are hidden with Christ in God.<br/>Now our lives are hidden with Christ in God.<br/>Set your mind on the things which are above.<br/>',NULL,420468,420468);
 INSERT INTO stanza VALUES('BF487','1','He who does not love has not known God,<br/>Because God is love, God is love.<br/>Love is the substance of God, nature of His essence,<br/>The excellent way to be and to do anything.<br/>',NULL,420469,420469);
-INSERT INTO stanza VALUES('BF487','2','We love because He loved us first,<br/>infusing us with His love divine.<br/>This is the love with which I love the Lord and the brothers;<br/>He generates within me this love, not I, but Christ.<br/>',NULL,420470,420470);
+INSERT INTO stanza VALUES('BF487','2','We love because He loved us first,<br/>infusing us with His love divine.<br/>This is the love with which I love the Lord, the brothers;<br/>He generates within me this love, not I, but Christ.<br/>',NULL,420470,420470);
 INSERT INTO stanza VALUES('BF487','chorus','Hallelujah,<br/>This is the way that the body builds itself<br/>In love, in love, it''s not by effort, allowing Him to live this love in me.<br/>',NULL,420471,420471);
 CREATE TABLE IF NOT EXISTS "link"
 (
