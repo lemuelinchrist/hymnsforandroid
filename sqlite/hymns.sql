@@ -18555,7 +18555,7 @@ INSERT INTO hymns VALUES('BF481',NULL,NULL,NULL,'Come and rejoice with me!','BF'
 INSERT INTO hymns VALUES('BF482',NULL,NULL,NULL,'As for me, I will call upon God,','BF',NULL,NULL,NULL,'482',NULL,NULL,NULL,NULL,'Psalms 55:16-18,',NULL,NULL);
 INSERT INTO hymns VALUES('BF485',NULL,NULL,NULL,'If therefore you were raised together with our Christ,','BF',NULL,NULL,NULL,'485',NULL,NULL,NULL,NULL,'Colossians 3:1-3,',NULL,NULL);
 INSERT INTO hymns VALUES('BF487',NULL,NULL,NULL,'He who does not love has not known God,','BF',NULL,NULL,NULL,'487',NULL,NULL,NULL,NULL,'1 John 4:8,19,1 Corinthians 12:31,Ephesians 4:16,',NULL,NULL);
-INSERT INTO hymns VALUES('BF489',NULL,NULL,NULL,'Being empowered with all power,','BF','C Major',NULL,NULL,'489',NULL,'4/4','5543321334234554',NULL,'Colossians 1:11-12,',NULL,NULL);
+INSERT INTO hymns VALUES('BF489',NULL,NULL,NULL,'Being empowered with all power,','BF','C Major',NULL,NULL,'489',NULL,'4/4','5433213342345433',NULL,'Colossians 1:11-12,',NULL,NULL);
 INSERT INTO hymns VALUES('BF490',NULL,NULL,NULL,'And leaving them,','BF','C Major',NULL,NULL,'490',NULL,'4/4','1133332213332132',NULL,'Matthew 21:17,Matthew 26:6-7,John 12:1-3,',NULL,NULL);
 CREATE TABLE IF NOT EXISTS "stanza" (
 	 "parent_hymn" TEXT NOT NULL,
