@@ -868,7 +868,9 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
 ### 11.3 Viewer behaviour
 
 - Header: MEI main title (centred), subtitle (bold), the hymn ID at top-right (the overlay's ID when lyrics are
-  swapped); verses 2+ below the music as text in columns; footer `www.hymnal.net`.
+  swapped); verses 2+ below the music as text in columns; footer `www.hymnal.net`, or `Hymns For Android` on a
+  sheet made for this app (transcribed from a recording: its MEI head has
+  `<identifier type="source">Hymns For Android</identifier>` in `pubStmt`, and the footer shows that text).
 - Music: Verovio renders the MEI to SVG at page width, `scale` 40, `breaks: auto`, `lyricWordSpace` 3,
   `lyricSize` 4.5, `fontTextLiberation` true, margins 20, no Verovio header/footer.
 - Tap anywhere (not on the bar) toggles a top bar with: **Back**, **Piano | Guitar**, **− key +** (transpose, ±6
@@ -1138,7 +1140,8 @@ first load small.
 
 ### 14.6 Content and attribution
 
-The sheet viewer footer credits `www.hymnal.net`; keep it. Verovio is LGPL-3.0 (`viewer/VEROVIO-NOTICE.txt`) — ship
+The sheet viewer footer credits `www.hymnal.net`; keep it. Sheets made for this app (not from hymnal.net) say
+`Hymns For Android` there instead (§11.3). Verovio is LGPL-3.0 (`viewer/VEROVIO-NOTICE.txt`) — ship
 it unmodified with the notice. The app code is Apache-2.0 (`LICENSE`). Hymn texts and music have their own
 copyright holders (authors marked `*` are Living Stream Ministry); anyone republishing the content publicly should
 check permissions for their use.

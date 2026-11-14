@@ -95,6 +95,10 @@
       if (titles[i].getAttribute('type') === 'main') $('title').textContent = titles[i].textContent;
       if (titles[i].getAttribute('type') === 'subordinate') $('subtitle').textContent = titles[i].textContent;
     }
+    // a sheet made for this app (transcribed from a recording) names itself; all others came from hymnal.net
+    var ids = q('identifier'), credit = 'www.hymnal.net';
+    for (i = 0; i < ids.length; i++) if (ids[i].getAttribute('type') === 'source' && ids[i].textContent) credit = ids[i].textContent;
+    $('credit').textContent = credit;
     // the hymn ID as the app shows it everywhere else (the printed number is missing on NS and CH sheets);
     // the hidden copy on the left keeps the title centred
     $('number').textContent = shownId;

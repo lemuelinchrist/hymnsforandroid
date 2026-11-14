@@ -69,6 +69,8 @@ parent's or a neighbour's MEI:
   the notes from this block only, so without it a sheet shows just the first stanza.
 - A 4/4 sheet has `meter.sym="common"` on `scoreDef` (shown as C; all other 4/4 sheets have it).
 - One element per line like the other files, and every bar adds up.
+- `<identifier type="source">Hymns For Android</identifier>` in `pubStmt`: the sheet is ours, so the viewer's footer says
+  Hymns For Android instead of www.hymnal.net.
 
 `python3 tools/lead-sheet-editor/finish_mei.py leadsheet.mei <id> <parent id> "<title> (New Tune)" > app/src/main/assets/sheetMei/<id>.mei`
 does all of this (the editor itself now writes `meter.sym` and one element per line): the music from `leadsheet.mei`, the

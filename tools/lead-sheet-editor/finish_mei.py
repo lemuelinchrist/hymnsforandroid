@@ -4,7 +4,8 @@
   python3 tools/lead-sheet-editor/finish_mei.py leadsheet.mei BF473 E881 "We rest on Thee, ... (New Tune)" > BF473.mei
 
 Takes the music from leadsheet.mei and, from the parent's sheet, the subtitle, the printed number and the later stanzas
-(<back>, which is all the viewer draws below the notes). Then checks every bar adds up."""
+(<back>, which is all the viewer draws below the notes), and marks the sheet as ours
+(<identifier type="source">: the viewer's footer then says Hymns For Android, not www.hymnal.net). Then checks every bar adds up."""
 import re, sys
 from fractions import Fraction as F
 from pathlib import Path
@@ -19,7 +20,8 @@ def main(mei, hymn, parent, title):
     sub = re.search(r'<title type="subordinate">.*?</title>', par).group(0)
     number = re.search(r'<identifier type="number">(.*?)</identifier>', par).group(1)
     head = ('<meiHead><fileDesc><titleStmt><title type="main">%s</title>\n%s\n</titleStmt><pubStmt><identifier type="hymn">%s'
-            '</identifier><identifier type="number">%s</identifier></pubStmt></fileDesc></meiHead>'
+            '</identifier><identifier type="number">%s</identifier><identifier type="source">Hymns For Android</identifier>'
+            '</pubStmt></fileDesc></meiHead>'
             % (title.replace('&', '&amp;'), sub, hymn, number))
     s = re.sub(r'<meiHead>.*?</meiHead>', head, s, flags=re.S)
     s = re.sub(r'\s*<back>.*?</back>', '', s, flags=re.S)
