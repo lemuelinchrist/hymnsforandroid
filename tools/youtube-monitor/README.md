@@ -16,6 +16,10 @@ caches its tracks in `nycypcd_releases.tsv`; without it only the Videos tab is c
 Exit 0 = all accounted for, 1 = new videos listed, 2 = channel not listable. New videos go through the
 `match-youtube-songs` skill; after the review add them to `NycypcdYoutube.txt` or `nycypcd_known.tsv`.
 
+To check **all 8 monitored channels** (NYCYPCD, the three `- Topic` channels, Joseph's Storehouses, Melody of Lilies, 臺灣福音書房 official, and HymnsForAndroid; excluding Hymn Singing):
+
+    ~/.venvs/hymns-yt/bin/python tools/youtube-monitor/check_all_channels.py [--channel <key>] [--json out.json]
+
 ## recordings.tsv: where every recording came from
 
 `recordings.tsv` has one row per track or video of the channels we looked at (2,082 rows, 2026-11-08): video id, status

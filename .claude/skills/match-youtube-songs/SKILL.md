@@ -115,6 +115,24 @@ what is new. Run it whenever you want to know whether NYCYPCD released something
 
 Status 2026-11-08: NYCYPCD has 371 links (the monitor lists what is still NEW); `recordings.tsv` shows what is linked, known or unmatched on every channel.
 
+### Checking all monitored channels (except Hymn Singing)
+
+`tools/youtube-monitor/check_all_channels.py` checks all 8 monitored channels (`nycypcd`, `lsm`, `tgb-topic`, `loving-the-lord`, `josephs`, `melody-of-lilies`, `tgb-official`, `hymnsforandroid`; **Hymn Singing** is excluded):
+
+    ~/.venvs/hymns-yt/bin/python tools/youtube-monitor/check_all_channels.py [--channel <key>] [--json out.json]
+
+- Regular channels are listed with `yt-dlp --flat-playlist` (`/videos`, plus `/releases` / `/playlists` where configured); `- Topic` channels use `topic_albums.py` + `yt-dlp`, skipping immutable `OLAK5uy_` albums already in `recordings.tsv` (pass `--refresh-albums` to re-list them).
+- Accounted-for IDs come from `NycypcdYoutube.txt`, each channel's `*_known.tsv` / `tgb_kids_series.tsv`, and `recordings.tsv` (so previously-seen `unmatched` videos are not re-reported; pass `--no-recordings` to include them). Exit 0 = no new videos, 1 = new videos found, 2 = listing error. Use `--list` to see the channel keys.
+
+### Checking all monitored channels (except Hymn Singing)
+
+`tools/youtube-monitor/check_all_channels.py` checks all 8 monitored channels (`nycypcd`, `lsm`, `tgb-topic`, `loving-the-lord`, `josephs`, `melody-of-lilies`, `tgb-official`, `hymnsforandroid`; **Hymn Singing** is excluded):
+
+    ~/.venvs/hymns-yt/bin/python tools/youtube-monitor/check_all_channels.py [--channel <key>] [--json out.json]
+
+- Regular channels are listed with `yt-dlp --flat-playlist` (`/videos`, plus `/releases` / `/playlists` where configured); `- Topic` channels use `topic_albums.py` + `yt-dlp`, skipping immutable `OLAK5uy_` albums already in `recordings.tsv` (pass `--refresh-albums` to re-list them).
+- Accounted-for IDs come from `NycypcdYoutube.txt`, each channel's `*_known.tsv` / `tgb_kids_series.tsv`, and `recordings.tsv` (so previously-seen `unmatched` videos are not re-reported; pass `--no-recordings` to include them). Exit 0 = no new videos, 1 = new videos found, 2 = listing error. Use `--list` to see the channel keys.
+
 ## "- Topic" channels (LSM, 臺灣福音書房)
 
 A publisher's "- Topic" channel (auto-generated music) has no Videos/Releases/Playlists tab for yt-dlp. List its albums
