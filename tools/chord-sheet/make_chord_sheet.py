@@ -37,9 +37,11 @@ def clean(text):
     text = re.sub(r'\[[^\]]*\]', '', text)
     text = re.sub(r'\s+', ' ', text).strip()
     text = text.replace("'", '’')
-    out, opened = [], False
-    for ch in text:
-        if ch == '"': out.append('”' if opened else '“'); opened = not opened
+    # a quote opens at the start of the line or after a space or bracket, and closes anywhere else (a line may hold
+    # only the closing quote of a speech that began in the line before)
+    out = []
+    for i, ch in enumerate(text):
+        if ch == '"': out.append('“' if i == 0 or text[i - 1] in ' ([—' else '”')
         else: out.append(ch)
     return ''.join(out)
 

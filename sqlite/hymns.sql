@@ -115502,7 +115502,7 @@ INSERT INTO stanza VALUES('BF512','2','Lord, You sought me and pursued me.<br/>U
 INSERT INTO stanza VALUES('BF512','3','Let me linger in this sweetness.<br/>Remain here in Your presence.<br/>Lost within Your beauty.<br/>Sweet foretaste of eternity.<br/>As our hearts blend into one.<br/>How I long for Your return.<br/>Come Beloved. Satisfy<br/>Your longing for a match, a bride.<br/>',NULL,420535,420535);
 INSERT INTO stanza VALUES('BF514','1','Sitting beside a well<br/>Jesus saw her, a Samaritan<br/>Drawing near, seeking water there.<br/>',NULL,420536,420536);
 INSERT INTO stanza VALUES('BF514','2','How He was moved for her,<br/>Empty woman—so dissatisfied.<br/>He spoke a word just to open her.<br/>',NULL,420537,420537);
-INSERT INTO stanza VALUES('BF514','3','“I’ve living water here<br/>That can fill your deepest longing, dear.<br/>Ask of Me, I will give it thee.“<br/>',NULL,420538,420538);
+INSERT INTO stanza VALUES('BF514','3','“I’ve living water here<br/>That can fill your deepest longing, dear.<br/>Ask of Me, I will give it thee.”<br/>',NULL,420538,420538);
 INSERT INTO stanza VALUES('BF514','chorus','Sir, how Your funny words<br/>Draw me in the heat of day<br/>I’m not really seeking<br/>But You started speaking<br/>And I cannot turn away<br/>',NULL,420539,420539);
 INSERT INTO stanza VALUES('BF514','chorus','Now You mention it, Lord,<br/>I’m really very hot and dry<br/>Something tells me<br/>Out of everything I tried<br/>That You can satisfy<br/>',NULL,420540,420540);
 INSERT INTO stanza VALUES('BF514','4','Ah, living water, Lord!<br/>See it running over evermore<br/>Into my wearied, thirsting heart!<br/>',NULL,420541,420541);
