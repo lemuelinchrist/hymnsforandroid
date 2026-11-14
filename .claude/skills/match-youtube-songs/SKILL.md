@@ -276,6 +276,36 @@ YouTube channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives 
 There is no cap on the number of recordings per hymn any more: the card shows 3 and "Show N more". Importing needs the three columns in the DB: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql`.
 NYCYPCD, LSM (written "Living Stream Ministry"), Melody of Lilies and 臺灣福音書房 keep their publisher names.
 
+## Finding recordings by hymn number (English hymns with no sung link; Lemuel, 2026-11-14)
+
+For English hymns (and later the songs) that have no sung recording yet (a piano video does not count), search YouTube and SoundCloud
+with the hymn number and first line, and let Lemuel choose. Pilot: E4-E40, the first 20 with no link; 16 links imported.
+Only recordings by saints of the Lord's Recovery are wanted; a title or description that names the hymn number is the sign.
+Scripts in `scripts/` (work in a scratchpad folder):
+1. `python3 search_links.py <tag> E41 E42 ...` (`yt-dlp` search with full metadata: `ytsearch8:` for "Hymn N first line", "Hymns N", "first line HN";
+   `scsearch8:` for the first two; about 15-25 hits per hymn, 4 processes in parallel were fine) -> `res2_<tag>.json`.
+2. `python3 filter_links.py` keeps a hit only if (a) title or description has the number in a hymn form (`Hymn 4`, `Hymns 4`, `H4`, `#4`, `E4`; a bare "4"
+   gives false hits like "Red Dirt Hymns 4"), (b) most of the first line's first words are in title+description (otherwise "Orchestra Hymns 5"
+   passes), (c) the title and the channel do not say piano/instrumental/organ/karaoke, and (d) 1-15 minutes. The unfiltered search gave 204 candidates
+   for 20 hymns, the filter 69 (Lemuel: "not bad", then stricter). Some outsiders still pass (a bed-and-breakfast channel); the choice is his.
+3. `python3 build_links_review.py` -> `review.html`, serve with `python3 -m http.server 8766 --bind 127.0.0.1`. The reviewer is hymn-centred (the opposite of
+   `build_review.py`): the lyrics stay on the left, the candidate links on the right with a tick box (several per hymn), a "Load player"
+   button (YouTube and SoundCloud widget), **Sung / Instrumental** per link (default sung), a box "My own link(s)" (one per line; write `instrumental` after a link),
+   "None fits", and **Export** (TSV `Hymn, Kind, Id, Title, Channel, Type, Note`). Answers are saved in his browser; the Chrome tool is blocked from
+   reading them ("Cookie/query string data"), so he pastes the export.
+4. **Import** the answers: a one-off recording without album or playlist is labelled **"YouTube 1", "YouTube 2"** (per hymn, in his order) or
+   **"SoundCloud 1"**, no album, `instrumental` flag where chosen.
+   - YouTube: a line `hymn TAB video TAB YouTube 1 TAB (empty album) TAB instrumental` in `NycypcdYoutube.txt` (it must be there: the import deletes every
+     youtube row with a label), a row in `recordings.tsv`, then `runImportNycypcdYoutube :sqlite:exportSql`.
+   - SoundCloud: the search only gives an internal id: get the permalink with
+     `yt-dlp --skip-download --print "%(webpage_url)s | %(title)s" https://api.soundcloud.com/tracks/<id>`; strip `?si=...&utm_...` from pasted links.
+     Insert the row by hand (`kind='soundcloud'`, id `SEQ_COUNT+1`, move the `link` counter, `n_order` 1...), run `:sqlite:exportSql` **first**,
+     then the import (the import starts with `importSql` and would drop an unexported edit).
+5. Check a doubtful case by ear/lyrics before arguing: E1 and E9 share the first line "Glory be to God the Father"; the LSM track of that name is E1's words
+   ("As we view the vast creation"), confirmed by transcription; E9 (the doxology) still has no recording.
+
+Status 2026-11-14: E4-E40 done (E8, E9, E14, E29, E34, E37, E38: none fits). 924 English hymns without a sung link remain (13 of the 20 got one); the next 20 would be E41 on. On hold.
+
 ## Traps
 - Titles are song names, not hymn numbers; several hymns share a first line (a hymn and its Be Filled / New Songs copy):
   collapse to the root hymn (`parent_hymn`) before counting candidates.

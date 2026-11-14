@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Link review</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:15px/1.45 system-ui,sans-serif;background:#f4f4f6;color:#222}
+header{display:flex;gap:12px;align-items:center;padding:8px 14px;background:#2b3a55;color:#fff;position:sticky;top:0;z-index:5}
+header .sp{flex:1}
+button{font:inherit;padding:6px 12px;border:1px solid #99a;border-radius:6px;background:#fff;cursor:pointer}
+button.pri{background:#2e7d32;color:#fff;border-color:#2e7d32}button:disabled{opacity:.4}
+main{display:grid;grid-template-columns:minmax(320px,2fr) minmax(420px,3fr);gap:14px;padding:14px;align-items:start}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 1px 3px #0002}
+.ly{white-space:pre-wrap;font-size:15px;max-height:80vh;overflow:auto}.ly p{margin:0 0 10px}.ly small{color:#888;display:block}
+.cand{border:2px solid #ddd;border-radius:8px;margin-bottom:10px;background:#fff;padding:8px 10px}
+.cand.sel{border-color:#2e7d32;background:#f1faf1}
+.cand label{display:flex;gap:8px;align-items:flex-start;cursor:pointer;font-weight:600}
+.cand input{width:20px;height:20px;margin-top:2px}
+.meta{font-weight:400;color:#666;font-size:12px}.tag{display:inline-block;font-size:11px;padding:0 6px;border-radius:8px;color:#fff;margin-right:4px}
+.yt{background:#c4302b}.sc{background:#f50}
+.pl{margin-top:8px;position:relative}.pl iframe{width:100%;border:0;border-radius:6px}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.chips span{width:30px;height:22px;text-align:center;font-size:11px;line-height:22px;border-radius:4px;background:#ddd;cursor:pointer}
+.chips .done{background:#7bd37f}.chips .none{background:#ffcf6e}.chips .cur{outline:2px solid #2b3a55}
+input[type=text]{font:inherit;padding:6px 8px;border:1px solid #99a;border-radius:6px;width:100%}
+textarea{width:100%;height:240px;font:12px monospace}.hint{font-size:12px;color:#777}
+</style></head><body>
+<header><b>Link review</b><span id="pos"></span><span class="sp"></span><span id="stat"></span>
+<button id="prev">◀ Prev</button><button id="next" class="pri">Next ▶</button><button id="exp">Export</button></header>
+<main>
+<section class="card"><h2 id="ttl" style="margin:0 0 6px"></h2><div class="ly" id="ly"></div><div class="chips" id="chips"></div>
+<p class="hint">Keys: 1–9 tick/untick a link · N none fits · ← → move. Saved in this browser automatically.</p></section>
+<section id="right"></section>
+</main>
+<div id="exportbox" class="card" style="display:none;margin:14px"><b>Export</b> — copy and paste it back to me.
+<p><button id="cp" class="pri">Copy</button></p><textarea id="out" readonly></textarea></div>
+<script>
+const ROWS=__ROWS__;
+const KEY='linkreview-'+ROWS.map(r=>r.h).join().length+ROWS[0].h;
+let ans={},notes={},extra={},typ={},i=0;try{typ=JSON.parse(localStorage.getItem(KEY+'t')||'{}');extra=JSON.parse(localStorage.getItem(KEY+'x')||'{}');ans=JSON.parse(localStorage.getItem(KEY)||'{}');notes=JSON.parse(localStorage.getItem(KEY+'n')||'{}');i=+localStorage.getItem(KEY+'i')||0}catch(e){}
+const $=s=>document.querySelector(s),esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(ans));localStorage.setItem(KEY+'n',JSON.stringify(notes));localStorage.setItem(KEY+'x',JSON.stringify(extra));localStorage.setItem(KEY+'t',JSON.stringify(typ));localStorage.setItem(KEY+'i',i)}catch(e){}};
+const cid=c=>c.k+':'+c.id;
+const dur=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+const player=c=>c.k==='youtube'?'<iframe height="250" src="https://www.youtube.com/embed/'+c.id+'" allow="encrypted-media;picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>'
+ :'<iframe height="166" src="https://w.soundcloud.com/player/?url='+encodeURIComponent('https://api.soundcloud.com/tracks/'+c.id)+'"></iframe>';
+function render(){const r=ROWS[i],sel=ans[r.h]||[];
+ $('#pos').textContent=r.h+'  ('+(i+1)+' / '+ROWS.length+')';$('#ttl').textContent=r.h+' — '+r.first;
+ $('#ly').innerHTML=r.st.map(([n,t])=>'<p><small>'+esc(n)+'</small>'+esc(t)+'</p>').join('');
+ $('#right').innerHTML=r.c.map((c,k)=>{const on=sel.includes(cid(c));
+  return '<div class="cand'+(on?' sel':'')+'" data-i="'+k+'"><label><input type="checkbox" '+(on?'checked':'')+' data-i="'+k+'"><span><span class="tag '+(c.k==='youtube'?'yt':'sc')+'">'+(c.k==='youtube'?'YouTube':'SoundCloud')+'</span>['+(k+1)+'] '+esc(c.t)+'<br><span class="meta">'+esc(c.ch)+' · '+dur(c.d)+'</span></span></label>'
+   +'<div style="margin:6px 0 0 28px;font-size:13px"><label style="display:inline;font-weight:400"><input type="radio" style="width:auto" name="t'+k+'" data-t="'+k+'" value="" '+(typ[cid(c)]?'':'checked')+'> Sung</label> &nbsp; <label style="display:inline;font-weight:400"><input type="radio" style="width:auto" name="t'+k+'" data-t="'+k+'" value="instrumental" '+(typ[cid(c)]?'checked':'')+'> Instrumental</label></div>'
+   +'<div class="pl" data-i="'+k+'"><button class="load">▶ Load player</button></div></div>'}).join('')
+  +'<div class="card"><b>My own link(s)</b> <span class="hint">YouTube or SoundCloud, one per line; add the word instrumental after a link if it has no singing</span><textarea id="extra" style="height:70px" placeholder="https://www.youtube.com/watch?v=...">'+esc(extra[r.h])+'</textarea></div>'
+  +'<div class="card"><button id="none">None fits (N)</button> '+(ans[r.h]&&!ans[r.h].length?'<b>marked: none fits</b>':'')
+  +'<p class="hint" style="margin:8px 0 2px">Another link, or a note</p><input type="text" id="note" value="'+esc(notes[r.h])+'"></div>';
+ document.querySelectorAll('input[data-t]').forEach(e=>e.onchange=()=>{const id=cid(r.c[+e.dataset.t]);if(e.value)typ[id]=1;else delete typ[id];save()});
+ document.querySelectorAll('input[type=checkbox]').forEach(e=>e.onchange=()=>toggle(+e.dataset.i));
+ document.querySelectorAll('.load').forEach(b=>b.onclick=()=>{const k=+b.parentNode.dataset.i;b.parentNode.innerHTML=player(r.c[k])});
+ $('#none').onclick=()=>{ans[r.h]=[];save();next()};$('#extra').oninput=e=>{extra[r.h]=e.target.value;save();chipsOnly()};$('#note').oninput=e=>{notes[r.h]=e.target.value;save()};
+ $('#chips').innerHTML=ROWS.map((x,k)=>'<span data-k="'+k+'" class="'+(ans[x.h]?(ans[x.h].length?'done':'none'):'')+(k==i?' cur':'')+'">'+x.h.slice(1)+'</span>').join('');
+ document.querySelectorAll('#chips span').forEach(e=>e.onclick=()=>{i=+e.dataset.k;render()});
+ const V=ROWS.filter(x=>ans[x.h]);$('#stat').textContent=V.filter(x=>ans[x.h].length).length+' with links ('+Object.values(ans).reduce((a,b)=>a+b.length,0)+' links), '+V.filter(x=>!ans[x.h].length).length+' none fits, '+(ROWS.length-V.length)+' left';
+ $('#prev').disabled=i==0;$('#next').disabled=i==ROWS.length-1;save()}
+function chipsOnly(){}
+function toggle(k){const r=ROWS[i],id=cid(r.c[k]);let s=ans[r.h]||[];s=s.includes(id)?s.filter(x=>x!==id):s.concat(id);
+ if(!s.length)delete ans[r.h];else ans[r.h]=s;const y=scrollY;render();scrollTo(0,y)}
+function next(){if(i<ROWS.length-1){i++;scrollTo(0,0)}render()}
+$('#next').onclick=next;$('#prev').onclick=()=>{if(i>0){i--;render()}};
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'&&e.target.type==='text')return;const r=ROWS[i];
+ if(e.key>='1'&&e.key<='9'&&r.c[e.key-1])toggle(+e.key-1);else if(e.key==='n'||e.key==='N'){ans[r.h]=[];save();next()}
+ else if(e.key==='ArrowRight')next();else if(e.key==='ArrowLeft'&&i>0){i--;render()}});
+$('#exp').onclick=()=>{const T=(r,k,id,t,ch,ty)=>[r.h,k,id,t,ch,ty,notes[r.h]||''].join('\t');
+ const ex=r=>(extra[r.h]||'').split(/\n/).filter(l=>/https?:/.test(l)).map(l=>T(r,'my link',l.match(/https?:\S+/)[0],'','',/instrumental/i.test(l)?'instrumental':'sung'));
+ const t='Hymn\tKind\tId\tTitle\tChannel\tType\tNote\n'+ROWS.map(r=>{const s=ans[r.h]||[];
+  const rows=s.map(x=>{const c=r.c.find(c=>cid(c)===x);return T(r,c.k,c.id,c.t,c.ch,typ[x]?'instrumental':'sung')}).concat(ex(r));
+  if(!rows.length)rows.push(T(r,'','','','',ans[r.h]?'none fits':'undecided'));return rows.join('\n')}).join('\n');
+ $('#exportbox').style.display='block';$('#out').value=t;$('#out').select()};
+$('#cp').onclick=()=>{$('#out').select();document.execCommand('copy')};
+render();
+</script></body></html>
