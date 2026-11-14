@@ -306,6 +306,23 @@ Scripts in `scripts/` (work in a scratchpad folder):
 
 Status 2026-11-14: E4-E40 done (E8, E9, E14, E29, E34, E37, E38: none fits). 924 English hymns without a sung link remain (13 of the 20 got one); the next 20 would be E41 on. On hold.
 
+## Hymns without links: search Lemuel's local collection (2026-11-14)
+
+`G:\My Drive\Archives\Hymns\Hymns Ogg 1` (828 files in ~45 album folders, some with sub-folders; read it with `powershell.exe`, copy to `C:\Temp\hymnlocal`).
+Find tracks for hymns/songs that have no sung link, then he uploads whole albums:
+1. Match file names to the first lines/chorus lines of E/NS/BF hymns (first 3-4 words) and keep those whose hymn (and its New Tunes) has no
+   sung link; skip the albums already uploaded and the children's album. Copy those tracks as `tNNN.ogg`, transcribe them
+   (`batch_lyrics.py`) and match (`match_lyrics.py`): 0.5+ with a 0.2 lead = high confidence. Of 153 transcribed tracks, 41 were high confidence for 40 hymns.
+2. Lemuel picks the albums (most high-confidence tracks first). `scripts/make_album_videos.py <folder> <out> "<Album>" "#rrggbb"` builds one 1080p still-card
+   mp4 per track in `C:\Users\lemue\Videos\<Album>` (title = file name without number prefix and `(#N)` tag; own card colour per album: teal `#1f7a6b`
+   A Joyful Way to Drink, burgundy `#8c2f39` Pressing On 1999). He uploads them to the HymnsForAndroid channel with a playlist per album.
+3. Match **every** video of the uploaded playlists (`yt-dlp --flat-playlist` on the playlist, map file to video id by title), transcribe the album,
+   match: the old `(#N)` tags in file names agree with the words when the score is weak (they can be wrong: "Hallelujah to the Lamb (#921)" is E551),
+   check weak scores by reading the transcript against the hymn's chorus ("Breathing" 0.28 is NS77). Link all tracks, also to hymns that already have links
+   (no cap), publisher empty, album = playlist title; ask before linking an E hymn that has a New Tune (BF child) when the tune is unclear.
+   Import as in the Link labels section (`hymn TAB video TAB TAB album TAB`).
+   Done: Pressing On 1999 and A Joyful Way To Drink (41 links; "If in all I do" is not in the hymnal; Intro/Exit skipped). Not yet uploaded: the other albums in the collection.
+
 ## Traps
 - Titles are song names, not hymn numbers; several hymns share a first line (a hymn and its Be Filled / New Songs copy):
   collapse to the root hymn (`parent_hymn`) before counting candidates.
