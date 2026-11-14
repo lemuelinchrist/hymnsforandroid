@@ -198,6 +198,46 @@ is probably not in the hymnal. Hold back titles with "New Tune" / "Alternate Tun
   hand it to the always-on `media` host (brief `~/joseph/TASK.md`, script `~/joseph/dl.sh`; skill media-resident-agent-setup) and `rsync` the files back.
 - Do not `pkill -f` a pattern that occurs in your own command line (it kills your shell, exit 144).
 
+## Updating HymnsForAndroid video titles & descriptions
+
+Once all lyrics are in `app/src/main/assets/hymns.sqlite`, `tools/youtube-monitor/update_descriptions.py` updates the title and description of every `HymnsForAndroid` video in `recordings.tsv`:
+
+- **Environment & credentials** (kept outside the repo, `chmod 600`):
+  - Python venv: `~/.venvs/hymns-yt` (`google-api-python-client`, `google-auth-oauthlib`).
+  - OAuth Desktop client JSON: `~/.config/hymnsforandroid/client_secret.json` (Google Cloud project `HymnsForAndroid-YouTube`, YouTube Data API v3 enabled, app in Testing mode with the channel owner's email under Test users).
+  - Cached OAuth token: `~/.config/hymnsforandroid/youtube_token.json` (scope `youtube.force-ssl`). If re-auth is needed from WSL, `run_local_server(port=0)` prints the `accounts.google.com` URL to open in Windows Chrome.
+- **Format**:
+  - **Title**: appends ` - <ID>` (e.g., `Strength for the Day - BF169`) unless the title already ends with `<ID>` (checked against YouTube's 100-char limit).
+  - **Description** (overwrites existing):
+    - First line: `<ID> Hymn & Sheet Music: https://lemuelinchrist.github.io/hymnsforandroid/#/h/<ID>` if `app/src/main/assets/sheetMei/<ID>.mei` exists, else `<ID> Hymn: https://lemuelinchrist.github.io/hymnsforandroid/#/h/<ID>`.
+    - Stanzas from `hymns.sqlite` (falling back through `parent_hymn`, `<br/>` -> newline, `chorus` -> `Chorus`, omitting labels for `-`/`beginning-note`/`end-note`/`verse`).
+    - Footer: `---` and `Hymns For Android Web App: https://lemuelinchrist.github.io/hymnsforandroid/`.
+- **Commands**:
+  - Dry run: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --video <VIDEO_ID> --show`
+  - Single-video test: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --video <VIDEO_ID> --apply`
+  - Full run: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --apply`
+- **Quota & safety**: `videos.list` is batched (50 IDs/call), unchanged videos (matching title and description) are skipped, and existing `categoryId`, `tags`, `defaultLanguage`, and `defaultAudioLanguage` are preserved. Each `videos.update` costs 50 quota units (default 10,000/day, so ~146 videos fit in one day). Tested 2026-11-14 on `hwvmdDKP9q4` (`BF169`).
+
+## Updating HymnsForAndroid video titles & descriptions
+
+Once all lyrics are in `app/src/main/assets/hymns.sqlite`, `tools/youtube-monitor/update_descriptions.py` updates the title and description of every `HymnsForAndroid` video in `recordings.tsv`:
+
+- **Environment & credentials** (kept outside the repo, `chmod 600`):
+  - Python venv: `~/.venvs/hymns-yt` (`google-api-python-client`, `google-auth-oauthlib`).
+  - OAuth Desktop client JSON: `~/.config/hymnsforandroid/client_secret.json` (Google Cloud project `HymnsForAndroid-YouTube`, YouTube Data API v3 enabled, app in Testing mode with the channel owner's email under Test users).
+  - Cached OAuth token: `~/.config/hymnsforandroid/youtube_token.json` (scope `youtube.force-ssl`). If re-auth is needed from WSL, `run_local_server(port=0)` prints the `accounts.google.com` URL to open in Windows Chrome.
+- **Format**:
+  - **Title**: appends ` - <ID>` (e.g., `Strength for the Day - BF169`) unless the title already ends with `<ID>` (checked against YouTube's 100-char limit).
+  - **Description** (overwrites existing):
+    - First line: `<ID> Hymn & Sheet Music: https://lemuelinchrist.github.io/hymnsforandroid/#/h/<ID>` if `app/src/main/assets/sheetMei/<ID>.mei` exists, else `<ID> Hymn: https://lemuelinchrist.github.io/hymnsforandroid/#/h/<ID>`.
+    - Stanzas from `hymns.sqlite` (falling back through `parent_hymn`, `<br/>` -> newline, `chorus` -> `Chorus`, omitting labels for `-`/`beginning-note`/`end-note`/`verse`).
+    - Footer: `---` and `Hymns For Android Web App: https://lemuelinchrist.github.io/hymnsforandroid/`.
+- **Commands**:
+  - Dry run: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --video <VIDEO_ID> --show`
+  - Single-video test: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --video <VIDEO_ID> --apply`
+  - Full run: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --apply`
+- **Quota & safety**: `videos.list` is batched (50 IDs/call), unchanged videos (matching title and description) are skipped, and existing `categoryId`, `tags`, `defaultLanguage`, and `defaultAudioLanguage` are preserved. Each `videos.update` costs 50 quota units (default 10,000/day, so ~146 videos fit in one day). Tested 2026-11-14 on `hwvmdDKP9q4` (`BF169`).
+
 ## Link labels and columns (Lemuel, 2026-11-09)
 A link row has the **publisher** (`label`: who made the recording), the **album** (`album`) and an `instrumental` flag; the card shows the publisher, else the album, never the
 YouTube channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives the group as the publisher and X as the album). `NycypcdYoutube.txt` lines are

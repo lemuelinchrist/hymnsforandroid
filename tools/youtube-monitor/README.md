@@ -25,3 +25,7 @@ It also lists the tracks that are NOT linked, including songs not in the hymnal 
 arrives. The database keeps the publisher (`label`), the album and the instrumental flag; this file is the record of the source (the channel). When a new channel or album is imported,
 add its rows here with `build_recordings.py` (the album names come from `topic_albums.py` and `yt-dlp --flat-playlist`, or the Releases tab for NYCYPCD).
 Loving the Lord - Topic: the albums that Joseph's Storehouses lists as "(by Hymn CDs)" are marked with the studio Hymn CDs.
+
+## Updating HymnsForAndroid descriptions and titles
+
+`update_descriptions.py` updates the title (`<title> - <ID>`) and description (web app link, sheet music note when `app/src/main/assets/sheetMei/<ID>.mei` exists, and lyrics from `hymns.sqlite`) of `HymnsForAndroid` videos in `recordings.tsv` via the YouTube Data API v3. See the `match-youtube-songs` skill for credentials, venv setup, and usage (`--video <ID> --show`, `--apply`).
