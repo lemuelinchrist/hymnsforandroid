@@ -870,7 +870,8 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
 - Header: MEI main title (centred), subtitle (bold), the hymn ID at top-right (the overlay's ID when lyrics are
   swapped); verses 2+ below the music as text in columns; footer `www.hymnal.net`, or `Hymns For Android` on a
   sheet made for this app (transcribed from a recording: its MEI head has
-  `<identifier type="source">Hymns For Android</identifier>` in `pubStmt`, and the footer shows that text).
+  `<identifier type="source">Hymns For Android</identifier>` in `pubStmt`, and the footer shows that text). The web app
+  shows the same line under its sheets.
 - Music: Verovio renders the MEI to SVG at page width, `scale` 40, `breaks: auto`, `lyricWordSpace` 3,
   `lyricSize` 4.5, `fontTextLiberation` true, margins 20, no Verovio header/footer.
 - Tap anywhere (not on the bar) toggles a top bar with: **Back**, **Piano | Guitar**, **− key +** (transpose, ±6

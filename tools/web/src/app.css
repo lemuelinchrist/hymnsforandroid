@@ -441,6 +441,7 @@ body.sheet-only #view { max-width: 1200px; padding-top: 12px; }
 .sheet-tail:empty { display: none; }
 .sheet-verses { display: flex; flex-wrap: wrap; gap: .9em 2.5em; justify-content: center; margin-top: 1em; font-size: .95em; }
 .sheet-stanza { display: flex; gap: .4em; max-width: 100%; }
+.sheet-credit { text-align: center; color: var(--muted); font-size: .75em; margin-top: 2em; font-family: sans-serif; }
 .sheet-stanza .label { font-weight: bold; min-width: 1.2em; text-align: right; }
 .sheet-stanza .lines div { line-height: 1.35; }
 

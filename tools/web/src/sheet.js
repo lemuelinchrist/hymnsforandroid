@@ -274,7 +274,8 @@ export class SheetView {
     this.music = el('div', 'sheet-music');
     this.tail = el('div', 'sheet-tail');
     this.verses = el('section', 'sheet-verses');
-    root.append(this.head, this.music, this.tail, this.verses);
+    this.credit = el('footer', 'sheet-credit');   // where the sheet is from, as in the Android viewer
+    root.append(this.head, this.music, this.tail, this.verses, this.credit);
 
     this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE, original: false};
     this.editing = false;
@@ -403,6 +404,10 @@ export class SheetView {
       if (t.getAttribute('type') === 'main') this.title.textContent = t.textContent;
       if (t.getAttribute('type') === 'subordinate') this.subtitle.textContent = t.textContent;
     }
+    // a sheet made for this app (transcribed from a recording) names itself; all others came from hymnal.net
+    let credit = 'www.hymnal.net';
+    for (const id of mei(doc, 'identifier')) if (id.getAttribute('type') === 'source' && id.textContent) credit = id.textContent;
+    this.credit.textContent = credit;
     // the hymn ID (the printed number is missing on NS and CH sheets); the hidden copy keeps the title centred
     this.number.textContent = this.shownId;
     this.spacer.textContent = this.shownId;
