@@ -42,6 +42,9 @@
   // (editor.js uses this object; the web app's SheetView has the same members)
   var editable = params.get('edit') === '1';
   var editing = false, editor = null;
+  // a sheet of chords over the words, with no melody yet (<identifier type="kind">chords</identifier>): its notes only
+  // carry the words and chords, so it is always drawn with the staff hidden and its chords cannot be edited
+  var chordsOnly = false;
   var view = {bars: [], edits: {}, history: [], stale: [], selected: null, steps: 0, panelHeight: 0, saveStatus: 'idle', onpick: null};
 
   function $(id) { return document.getElementById(id); }
@@ -97,7 +100,11 @@
     }
     // a sheet made for this app (transcribed from a recording) names itself; all others came from hymnal.net
     var ids = q('identifier'), credit = 'www.hymnal.net';
-    for (i = 0; i < ids.length; i++) if (ids[i].getAttribute('type') === 'source' && ids[i].textContent) credit = ids[i].textContent;
+    for (i = 0; i < ids.length; i++) {
+      if (ids[i].getAttribute('type') === 'source' && ids[i].textContent) credit = ids[i].textContent;
+      if (ids[i].getAttribute('type') === 'kind' && ids[i].textContent === 'chords') chordsOnly = true;
+    }
+    if (chordsOnly) { state.staff = false; editable = false; }
     $('credit').textContent = credit;
     // the hymn ID as the app shows it everywhere else (the printed number is missing on NS and CH sheets);
     // the hidden copy on the left keeps the title centred
@@ -253,6 +260,7 @@
     function readUnit(el) { if (el.getAttribute('meter.unit')) unit = parseInt(el.getAttribute('meter.unit'), 10); }
 
     function measure(m) {
+      if (chordsOnly) newLine();   // a chords-only sheet has one bar per line of the words
       if (m.getAttribute('left') === 'rptstart') mark('‖:');
       var events = [], byId = {}, onset = 1;
       (function walk(el, factor) {
@@ -296,13 +304,13 @@
         // so they do not split a word
         ev.labels.forEach(function (l) {
           l = l === 'scripts.segno' ? 'Segno' : l;
-          if (SECTION.test(l)) mark(l, 'box', true);
+          if (SECTION.test(l) || chordsOnly) mark(l, 'box', true);   // chords-only: stanza numbers too
           else ev.tags.push(l);
         });
         if (ev.syl.length || ev.chords.length) line().push(ev);
         var first = ev.syl[0] || ev.syl.filter(Boolean)[0];
         if (first) syllables++;
-        if (first && first.pos !== 'i' && first.pos !== 'm' && SENTENCE_END.test(first.text) && syllables >= 6) newLine();
+        if (first && first.pos !== 'i' && first.pos !== 'm' && SENTENCE_END.test(first.text) && syllables >= 6 && !chordsOnly) newLine();
       });
       var right = m.getAttribute('right');
       if (right === 'rptend') mark(':‖');
@@ -594,7 +602,7 @@
 
   // editing is on the piano sheet with the staff shown and the edits in place
   function setEditing(on) {
-    if (on === editing || !tk) return;
+    if (on === editing || !tk || (on && chordsOnly)) return;
     editing = on;
     store.setEditing(on);   // the app's Back button closes the editor first
     if (on) {
@@ -638,6 +646,7 @@
     $('bPaper').title = tr(lightPaper ? 'Dark paper' : 'Light paper');
     $('bDown').disabled = state.shift <= -MAX_SHIFT;
     $('bUp').disabled = state.shift >= MAX_SHIFT;
+    $('bStaff').hidden = chordsOnly;
     $('bEdit').hidden = !editable;
     $('bEdit').textContent = tr(editing ? 'Editing chords' : 'Edit chords');
     $('bEdit').classList.toggle('on', editing);
@@ -679,7 +688,7 @@
   $('bGuitar').addEventListener('click', function () { change(function () { state.guitar = true; }); });
   $('bDown').addEventListener('click', function () { change(function () { state.shift = Math.max(-MAX_SHIFT, state.shift - 1); }); });
   $('bUp').addEventListener('click', function () { change(function () { state.shift = Math.min(MAX_SHIFT, state.shift + 1); }); });
-  $('bStaff').addEventListener('click', function () { change(function () { state.staff = !state.staff; }); });
+  $('bStaff').addEventListener('click', function () { if (!chordsOnly) change(function () { state.staff = !state.staff; }); });
   // only the colours change, so nothing is drawn again; the app keeps the choice for the next sheet
   $('bPaper').addEventListener('click', function () {
     lightPaper = !lightPaper;

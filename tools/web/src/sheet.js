@@ -406,7 +406,13 @@ export class SheetView {
     }
     // a sheet made for this app (transcribed from a recording) names itself; all others came from hymnal.net
     let credit = 'www.hymnal.net';
-    for (const id of mei(doc, 'identifier')) if (id.getAttribute('type') === 'source' && id.textContent) credit = id.textContent;
+    // a sheet of chords over the words, with no melody yet (kind "chords"): its notes only carry the words and chords,
+    // so it is always drawn with the staff hidden and its chords cannot be edited
+    this.chordsOnly = false;
+    for (const id of mei(doc, 'identifier')) {
+      if (id.getAttribute('type') === 'source' && id.textContent) credit = id.textContent;
+      if (id.getAttribute('type') === 'kind' && id.textContent === 'chords') this.chordsOnly = true;
+    }
     this.credit.textContent = credit;
     // the hymn ID (the printed number is missing on NS and CH sheets); the hidden copy keeps the title centred
     this.number.textContent = this.shownId;
@@ -491,8 +497,9 @@ export class SheetView {
     if (!this.meiText) return;
     const width = this.music.clientWidth;
     this.width = width;
-    this.root.classList.toggle('chart-mode', !this.state.staff);
-    if (!this.state.staff) { this.renderChart(); return; }
+    const chart = !this.state.staff || this.chordsOnly;
+    this.root.classList.toggle('chart-mode', chart);
+    if (chart) { this.renderChart(); return; }
     const scale = this.state.scale;
     this.tk.setOptions({
       pageWidth: Math.max(400, Math.round(width * 100 / scale)),
@@ -525,6 +532,7 @@ export class SheetView {
   // original key, and saved on this device (edits.js). A bar's list replaces all the chords of that bar.
 
   setEditing(on, changes = {}) {
+    if (on && this.chordsOnly) return;
     if (on === this.editing && !Object.keys(changes).length) return;
     Object.assign(this.state, changes);
     this.editing = on;
@@ -687,7 +695,9 @@ export class SheetView {
     };
     const readUnit = (e) => { if (e.getAttribute('meter.unit')) unit = parseInt(e.getAttribute('meter.unit'), 10); };
 
+    const chordsOnly = this.chordsOnly;
     const measure = (m) => {
+      if (chordsOnly) newLine();   // a chords-only sheet has one bar per line of the words
       if (m.getAttribute('left') === 'rptstart') mark('‖:');
       const events = [], byId = {};
       let onset = 1;
@@ -732,13 +742,13 @@ export class SheetView {
         // section labels go in the line as a box; others ("Sisters", "D.C. al Fine") as a small tag in the chord row
         ev.labels.forEach((l) => {
           l = l === 'scripts.segno' ? 'Segno' : l;
-          if (SECTION.test(l)) mark(l, 'box', true);
+          if (SECTION.test(l) || chordsOnly) mark(l, 'box', true);   // chords-only: stanza numbers too
           else ev.tags.push(l);
         });
         if (ev.syl.length || ev.chords.length) line().push(ev);
         const first = ev.syl[0] || ev.syl.filter(Boolean)[0];
         if (first) syllables++;
-        if (first && first.pos !== 'i' && first.pos !== 'm' && SENTENCE_END.test(first.text) && syllables >= 6) newLine();
+        if (first && first.pos !== 'i' && first.pos !== 'm' && SENTENCE_END.test(first.text) && syllables >= 6 && !chordsOnly) newLine();
       });
       if (m.getAttribute('right') === 'rptend') mark(':‖');
     };

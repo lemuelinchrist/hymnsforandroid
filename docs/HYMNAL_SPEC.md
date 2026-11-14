@@ -69,7 +69,7 @@ Everything the app needs at runtime is in the repository. A rebuild does **not**
 | Book list, names, colours, order | `app/src/main/java/.../HymnGroup.java` | Java enum (also parsed by `tools/ios/build.py`) | 31 books | drawer, colours, ID parsing |
 | Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 31 | drawer, search list rows, the Languages (Hymn Books) dialog |
 | Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,523 files (one tune is an .mp3); 19 MB | Play button |
-| Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,392 (E 1362, NS 1238, CS 291, CH 243, BF 134, C 124); 45 MB | sheet viewer |
+| Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,407 (E 1362, NS 1238, CS 291, CH 243, BF 149, C 124); 45 MB | sheet viewer |
 | Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,446 (Z 755, C 632, ZS 460, FR 239, CS 194, FRY 166): every French and French Youth hymn that has a sheet; about 10 MB | sheet viewer overlay |
 | Sheet viewer (web) | `app/src/main/assets/viewer/` (`index.html`, `viewer.js`, `editor.js`, `viewer.css`, `verovio-toolkit-wasm.js`) | HTML/JS; Verovio 6.3.0 (LGPL-3.0) | 7.3 MB | **reusable as-is in a web build** |
 | Lyrics-only web app | `tools/ios/template.html` + `tools/ios/build.py` | single HTML file with gzipped JSON payload | ~6.5 MB | starting point for a PWA (§14.2) |
@@ -874,6 +874,14 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
   shows the same line under its sheets.
 - Music: Verovio renders the MEI to SVG at page width, `scale` 40, `breaks: auto`, `lyricWordSpace` 3,
   `lyricSize` 4.5, `fontTextLiberation` true, margins 20, no Verovio header/footer.
+- **Chords-only sheets.** A song we have words and chords for but no notes yet (15 Be Filled songs on 2026-11-14,
+  chords from songbase.life) has a sheet marked `<identifier type="kind">chords</identifier>` in `pubStmt`. Its MEI
+  is one bar per line of the words, each word (or part of a word where a chord changes inside it) a quarter note that
+  only carries the syllable and the chord; stanza numbers and "Chorus" are `<dir>` labels, stanzas without chords are
+  in `<back>`. Such a sheet is always shown as chords over the words (staff hidden), one line per bar, every label in
+  a box; the Staff and Edit chords buttons are hidden. Piano shows the chords at sounding pitch, Guitar the capo and
+  shapes worked out from the key as for any sheet; transposing works. It has no tune code and no MIDI. Made by
+  `tools/chord-sheet/make_chord_sheet.py`; when the melody is written the real sheet replaces the file.
 - Tap anywhere (not on the bar) toggles a top bar with: **Back**, **Piano | Guitar**, **− key +** (transpose, ±6
   semitones; shows tonic and offset, e.g. `B♭ (+2)`), **Hide/Show staff** (`Staff` toggle under 400px, or under 500px in the dark theme where the paper button also needs room); in the dark theme also the round **paper** button (◐), which switches between dark paper and light paper (below). State resets
   each time the sheet is opened; it starts in the `sheetMusicType` variant; guitar starts with the staff hidden.

@@ -1051,6 +1051,7 @@ function sheetPanel(pane, hymn, {full}) {
   // chord editing: only on the piano sheet with the staff shown and the edits in place
   let editor = null;
   function setEdit(on) {
+    if (on && view.chordsOnly) return;   // chords over the words only: nothing to edit on a staff
     document.body.classList.remove('bars-away');
     if (on) {
       Object.assign(state, {guitar: false, staff: true, original: false});
@@ -1082,6 +1083,7 @@ function sheetPanel(pane, hymn, {full}) {
     bGuitar.setAttribute('aria-pressed', String(state.guitar));
     bStaff.setAttribute('aria-pressed', String(state.staff));
     bStaff.textContent = state.staff ? tr('Hide staff') : tr('Show staff');
+    bStaff.hidden = bEdit.hidden = !!view.chordsOnly;
     bEdit.setAttribute('aria-pressed', String(view.editing));
     bEdit.textContent = view.editing ? tr('Editing chords') : tr('Edit chords');
     bOrig.hidden = !view.hasEdits();
