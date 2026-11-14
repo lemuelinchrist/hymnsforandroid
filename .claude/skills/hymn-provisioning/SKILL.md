@@ -210,6 +210,29 @@ Instead:
 
 This is exactly the "Manual Developer Workflow" already documented in `docs/database_spec.md` — it's the right tool for a single-hymn fix, not a new provisioning script.
 
+## Gotcha: rows added by hand need the `SEQUENCE` counters moved too (stanza and link ids)
+
+The provisioner (EclipseLink) gives every new `stanza` and `link` row its id from the table `SEQUENCE`
+(`SEQ_NAME` `stanza` or `link`, `SEQ_COUNT` = the id used last). A row you insert yourself (`sqlite3`, Python, an
+`INSERT` in `hymns.sql`) with an id the counter has not handed out makes the next provisioning run fail with
+`UNIQUE constraint failed: link.id` (or `stanza.id`), and the run can leave the database half-written. It happened on
+2026-11-14: a SoundCloud link was inserted with id 62172 while the `link` counter still said 62171, and the next
+`runImportNycypcdYoutube` stopped at its first row.
+
+Rules for any hand-made row in `link` or `stanza`:
+1. Prefer the provisioner's own path (`dao.saveLink`, `runImportNycypcdYoutube`, a `Provision*` script): it moves the counter.
+2. By hand, take the id from the counter, not from a guess: `sqlite3 app/src/main/assets/hymns.sqlite "select * from SEQUENCE"`;
+   the new id is `SEQ_COUNT + 1` (and one more for each further row).
+3. **Then move the counter to the last id you used**, in the same step:
+   `sqlite3 app/src/main/assets/hymns.sqlite "update SEQUENCE set SEQ_COUNT=(select max(id) from link) where SEQ_NAME='link'"`
+   (same for `stanza`), then `./gradlew :sqlite:exportSql` so `hymns.sql` carries both the row and the counter.
+4. Check before committing: `select max(id) from link`, `select max(id) from stanza` must not be larger than the matching
+   `SEQ_COUNT` (`select * from SEQUENCE`). If the counter is behind (a row was added without it), set it to `max(id)` as in
+   step 3 *in `sqlite/hymns.sql`* (`INSERT INTO SEQUENCE VALUES('link',...)`) when the import tasks are about to run:
+   they begin by rebuilding the database from `hymns.sql`, so a change made only in the app's `hymns.sqlite` is lost.
+5. Hand-edited stanza rows did not move the `stanza` counter for months (it was 420449 with stanzas up to 420547);
+   fixed 2026-11-14. Do not trust the counter without step 4.
+
 ## A new song that is a scripture verse
 
 When a new song's words look like a Bible passage (e.g. NS "As for me, I will call upon God" = Psalm 55:16-18), look the

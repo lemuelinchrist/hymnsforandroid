@@ -108,6 +108,11 @@ what is new. Run it whenever you want to know whether NYCYPCD released something
      (other language) -> `other-language`.
 5. Import and export in one Gradle call from WSL: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql`
    (about 2 minutes; the import resets the database from `hymns.sql` first and deletes the NYCYPCD rows, so it is re-runnable).
+   **If it stops with `UNIQUE constraint failed: link.id`**, a link row was added by hand without moving the `link` counter:
+   see "rows added by hand need the `SEQUENCE` counters moved too" in the `hymn-provisioning` skill (set `SEQ_COUNT` to `max(id)`
+   in `sqlite/hymns.sql`, then run again; the import rebuilds the database from `hymns.sql` first, so a fix only in the app's
+   `hymns.sqlite` is lost). **Any link you insert yourself** (a SoundCloud link, a one-off video) takes `SEQ_COUNT + 1` as its id
+   and then sets `SEQ_COUNT` to it, in the same step, before `:sqlite:exportSql`.
    Check `select count(*) from link where kind='youtube' and label='NYCYPCD'` and `pragma integrity_check`, run the checker
    again (the new ones must be gone from NEW) and commit `NycypcdYoutube.txt`, `nycypcd_known.tsv` and `sqlite/hymns.sql`.
 6. In the app the hymn page's "LISTEN AND LINKS" card shows each link by its label; two links with the same label read
@@ -132,6 +137,13 @@ Status 2026-11-08: NYCYPCD has 371 links (the monitor lists what is still NEW); 
 
 - Regular channels are listed with `yt-dlp --flat-playlist` (`/videos`, plus `/releases` / `/playlists` where configured); `- Topic` channels use `topic_albums.py` + `yt-dlp`, skipping immutable `OLAK5uy_` albums already in `recordings.tsv` (pass `--refresh-albums` to re-list them).
 - Accounted-for IDs come from `NycypcdYoutube.txt`, each channel's `*_known.tsv` / `tgb_kids_series.tsv`, and `recordings.tsv` (so previously-seen `unmatched` videos are not re-reported; pass `--no-recordings` to include them). Exit 0 = no new videos, 1 = new videos found, 2 = listing error. Use `--list` to see the channel keys.
+
+## SoundCloud links
+
+Both apps show `soundcloud` link rows (a SoundCloud icon and the label, in the same "Listen and links" card as YouTube; the
+Android app and the web app open the link outside the app). There is no import tool for them yet (the youth books' rows were
+written by their provisioners through `Dao.saveLink`): insert a row `kind='soundcloud'` with the id rule above (`SEQ_COUNT + 1`,
+then move the counter), `label` = the publisher, `album` if known, and `n_order` after the hymn's other recordings.
 
 ## "- Topic" channels (LSM, 臺灣福音書房)
 

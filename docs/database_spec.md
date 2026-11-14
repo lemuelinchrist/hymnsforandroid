@@ -158,6 +158,10 @@ Stores the links of a hymn to places outside the app, one row per link. These ar
 | `SEQ_NAME`| VARCHAR | The name of the sequence.             |
 | `SEQ_COUNT`| NUMBER  | The current value of the sequence.    |
 
+The provisioner takes the id of every new `stanza` and `link` row from this table (`SEQ_NAME` `stanza` / `link`; `SEQ_COUNT` is
+the id used last). A row inserted by hand must take `SEQ_COUNT + 1` and then move the counter to its id, or the next provisioning
+run fails with `UNIQUE constraint failed`; the counter must never be below `max(id)` of its table.
+
 ## How to Query
 
 **Important Note on Character Encoding:** The database contains text with special characters (e.g., accented letters, curly apostrophes). When querying the database and exporting data to files (like CSV), it is crucial to use **UTF-8 encoding** to prevent character corruption. Failure to do so will result in characters being replaced by placeholders like `?`.
