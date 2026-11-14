@@ -304,7 +304,7 @@ Scripts in `scripts/` (work in a scratchpad folder):
 5. Check a doubtful case by ear/lyrics before arguing: E1 and E9 share the first line "Glory be to God the Father"; the LSM track of that name is E1's words
    ("As we view the vast creation"), confirmed by transcription; E9 (the doxology) still has no recording.
 
-Status 2026-11-14: E4-E40 done (E8, E9, E14, E29, E34, E37, E38: none fits). 924 English hymns without a sung link remain (13 of the 20 got one); the next 20 would be E41 on. On hold.
+Status 2026-11-14: E41-E70 done too (only 4 of 20 got links: E41 x2, E43, E45, E70; the others in that range are old-hymn titles that saints rarely sing); E4-E40 done (E8, E9, E14, E29, E34, E37, E38: none fits). 924 English hymns without a sung link remain (13 of the 20 got one); the next 20 would be E41 on. On hold.
 
 ## Hymns without links: search Lemuel's local collection (2026-11-14)
 
