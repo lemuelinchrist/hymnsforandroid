@@ -3,7 +3,7 @@ BEGIN TRANSACTION;
 CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(50) NOT NULL, SEQ_COUNT NUMBER(19), PRIMARY KEY (SEQ_NAME));
 INSERT INTO SEQUENCE VALUES('SEQ_GEN',X'3530');
 INSERT INTO SEQUENCE VALUES('stanza',420565);
-INSERT INTO SEQUENCE VALUES('link',74462);
+INSERT INTO SEQUENCE VALUES('link',74463);
 INSERT INTO SEQUENCE VALUES('related',X'36323439');
 CREATE TABLE IF NOT EXISTS "hymns" (
 	 "_id" VARCHAR NOT NULL,
@@ -118305,6 +118305,7 @@ INSERT INTO link VALUES(74459,'E986','youtube','','https://www.youtube.com/watch
 INSERT INTO link VALUES(74460,'NS217','youtube','','https://www.youtube.com/watch?v=cEsn1CGJhJw',1,'Pressing On 1999',NULL);
 INSERT INTO link VALUES(74461,'NS474','youtube','','https://www.youtube.com/watch?v=xZ_iEowvvYQ',1,'Pressing On 1999',NULL);
 INSERT INTO link VALUES(74462,'E70','youtube','YouTube 1','https://www.youtube.com/watch?v=8sA2o_5OQvw',1,NULL,NULL);
+INSERT INTO link VALUES(74463,'E84','soundcloud','SoundCloud 1','https://soundcloud.com/isaac-estrada-654863557/hark-the-herald-angels-sing',1,NULL,NULL);
 CREATE VIEW "hymns_stanza" AS select * from hymns inner join stanza on hymns._id=stanza.parent_hymn;
 CREATE INDEX stanza_parent_hymn on stanza (parent_hymn,n_order);
 CREATE INDEX hymns_first_lines on hymns (first_stanza_line,first_chorus_line);
