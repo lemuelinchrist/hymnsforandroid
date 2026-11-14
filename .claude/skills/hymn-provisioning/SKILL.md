@@ -233,6 +233,14 @@ Rules for any hand-made row in `link` or `stanza`:
 5. Hand-edited stanza rows did not move the `stanza` counter for months (it was 420449 with stanzas up to 420547);
    fixed 2026-11-14. Do not trust the counter without step 4.
 
+**Writing the lyrics of a new song** (typed from a recording, a review page or a site such as songbase.life), as Lemuel set the
+rules on 2026-11-13/14: (1) the words follow the recording, not the Recovery Version or the ministry wording; (2) **the first
+letter of every line is a capital**, also when the line continues the sentence of the line before ("once and for all, for every
+man." becomes "Once and for all, ..." only if it starts a line); (3) we add the commas and periods at the line ends; (4) curly
+apostrophes (’) as in the other hymns, also in "Whate’er" and "Jesus’"; (5) "He/Him/His/Thy/Thee/Thou" for the Lord, as the hymnal
+does; (6) a stanza is `1`, `2` ..., a chorus is `chorus`, a source note is an `end-note`, a second-voice cue a `beginning-note`.
+A song that is a scripture passage gets its references in the `verse` field (next section).
+
 ## A new song that is a scripture verse
 
 When a new song's words look like a Bible passage (e.g. NS "As for me, I will call upon God" = Psalm 55:16-18), look the

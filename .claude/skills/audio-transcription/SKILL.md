@@ -29,6 +29,10 @@ word puts syllables, and so notes, in the wrong place.
 Ask also how the song is built if it is not clear (one stanza? a chorus?): transcribe **one pass** of it, not the whole
 recording; a part sung again only serves to check the first (repeats must agree).
 
+**Writing the words down** (Lemuel's rules): follow the recording, not the corpus; **the first letter of every line is a capital**;
+we add the commas and periods at the line ends; curly apostrophes (’); capital He/Him/His, Thy/Thee/Thou for the Lord. The
+full list is in the `hymn-provisioning` skill ("Writing the lyrics of a new song").
+
 ## Steps
 
 ```sh
