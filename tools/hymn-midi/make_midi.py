@@ -84,7 +84,7 @@ def main(src, out, bpm=110):
     xml_tie = [(x.get('startid')[1:], x.get('endid')[1:]) for x in root.iter('tie')]
     total = beat
     gone = set()
-    for a, b in xml_tie:
+    for a, b in reversed(xml_tie):   # last link first, so a chain of ties (a-b, b-c) ends as one note
         na, nb = byid.get(a), byid.get(b)
         if na and nb and na.pitch == nb.pitch and id(nb) not in gone:
             na.end = nb.end; gone.add(id(nb))

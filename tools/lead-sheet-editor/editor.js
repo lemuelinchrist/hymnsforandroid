@@ -67,6 +67,9 @@
     return bars;
   }
 
+  // A note with "tie" is not sung again: it is the note before it held on (same pitch), e.g. under a new chord.
+  function tied(i) { var n = sheet.notes[i], b = sheet.notes[i - 1]; return !!(n && b && n.tie && n.p != null && b.p === n.p); }
+
   function toMei() {
     var bars = layout(), ka = keyAlter(), f = fifths(), bar = barLen();
     var beat = sheet.time[1] === 8 && sheet.time[0] % 3 === 0 ? 6 : 4;
@@ -112,11 +115,13 @@
           layer += '<note' + attrs + ' pname="' + s.pname + '" oct="' + s.oct + '"' + acc + (verses ? '>' + verses + '</note>' : '/>');
           var at = ids.indexOf(it.id);
           if (at < ids.length - 1) extra += '<tie startid="#' + it.id + '" endid="#' + ids[at + 1] + '"/>';
+          else if (tied(it.idx + 1)) extra += '<tie startid="#' + it.id + '" endid="#' + piecesOf[it.idx + 1][0] + '"/>';   // "tie": held on from this note
           // a note without a syllable is sung on the syllable before it: a slur from that note to the last such note
           if (first && hasWords && n.w && n.w[0]) {
             var last = it.idx;
             while (last + 1 < sheet.notes.length && sheet.notes[last + 1].p != null && !(sheet.notes[last + 1].w && sheet.notes[last + 1].w[0])) last++;
-            if (last > it.idx) extra += '<slur startid="#' + it.id + '" endid="#' + piecesOf[last][0] + '"/>';
+            var slurred = false; for (var q = it.idx + 1; q <= last; q++) if (!tied(q)) slurred = true;   // ties alone need no slur
+            if (slurred) extra += '<slur startid="#' + it.id + '" endid="#' + piecesOf[last][0] + '"/>';
           }
         }
         if (it.idx >= 0 && piecesOf[it.idx][0] === it.id && sheet.notes[it.idx].ch)
@@ -275,7 +280,8 @@
     playing = {oscs: [], timers: []}; $('play').textContent = '■ Stop';
     sheet.notes.slice(from).forEach(function (n, k) {
       var i = from + k, len = n.d * unit;
-      if (n.p != null) playing.oscs.push(tone(n.p, t, len * 0.95));
+      var held = len; for (var q = i + 1; tied(q); q++) held += sheet.notes[q].d * unit;
+      if (n.p != null && !tied(i)) playing.oscs.push(tone(n.p, t, held - len * 0.05));
       playing.timers.push(setTimeout(function () {
         document.querySelectorAll('#music .playing').forEach(function (e) { e.classList.remove('playing'); });
         els(i).forEach(function (e) { e.classList.add('playing'); });
@@ -309,6 +315,7 @@
         sheet.notes.splice(at, 0, m); sel = at;
       });
     }
+    else if (a === 'tie') { var b = sheet.notes[sel - 1]; if (n && n.p != null && b && b.p != null) edit(function () { if (n.tie) delete n.tie; else { n.tie = true; n.p = b.p; delete n.e; if (b.e) n.e = true; n.w = (n.w || ['']).map(function () { return ''; }); } }); }
     else if (a === 'split') { if (n && n.d > 1) edit(function () { var h = Math.floor(n.d / 2); sheet.notes.splice(sel + 1, 0, {p: n.p, d: n.d - h, w: ['']}); n.d = h; }); }
     else if (a === 'del') { if (n) edit(function () { sheet.notes.splice(sel, 1); if (sel >= sheet.notes.length) sel = Math.max(0, sheet.notes.length - 1); }); }
     else if (a === 'undo') { if (undo.length) { redo.push(JSON.stringify(sheet)); sheet = JSON.parse(undo.pop()); changed = {}; fields(); if (sel >= sheet.notes.length) sel = Math.max(0, sheet.notes.length - 1); touch(); } }
@@ -395,6 +402,7 @@
       else if (k === '.') { var n = sheet.notes[sel]; if (n) { var to = {1: 1, 2: 3, 3: 2, 4: 6, 6: 4, 8: 12, 12: 8}[n.d]; if (to) setDur(to); } }
       else if (/^[a-gA-G]$/.test(k)) letter(k);
       else if (k === 'r' || k === 'R') act('rest'); else if (k === 'n' || k === 'N' || k === 'Insert') act('after');
+      else if (k === 't' || k === 'T') act('tie');
       else if (k === 's' || k === 'S') act('split'); else if (k === 'Delete' || k === 'Backspace') act('del');
       else if (k === ' ') act('play');
       else if (k === 'Enter') { var inp = $('verses').querySelector('input:not(:disabled)'); if (inp) { inp.focus(); inp.select(); } }

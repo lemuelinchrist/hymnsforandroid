@@ -91,6 +91,10 @@ A long note that crosses a bar line is still one note here: give it its whole le
 - **A note too many**: click it and press **Delete**.
 - **One note should be two** (a syllable sung on two notes): click it and press **S**. It is cut into two halves of the
   same pitch; move the second one with ↑ ↓. The second half has no word, so it is slurred to the first.
+- **A note held on, not sung again** (a tie, for example a long note under which the chord changes): make it two
+  notes (**S**), click the second and press **T** (or **Tie**). It takes the pitch of the note before it, is drawn tied
+  to it and is not played again; its own chord stays on it. T again makes it a separate note. In the file: `"tie": true`.
+  A long note that only crosses a bar line needs none of this (step 4).
 - **A rest**: click the note and press **R**. R again makes it a note.
 
 ### 6. Words
@@ -162,6 +166,7 @@ MIDI from it (the `generate-midi` skill); copying it into the app (`sheetMei/<id
 | a note's `p` | MIDI pitch (60 = middle C), `null` for a rest |
 | `d` | length in sixteenths (2 = eighth, 4 = quarter, 6 = dotted quarter); any length, the page writes ties where needed |
 | `w` | the syllable, one per verse; ends in `-` when the word goes on; `""` = held from the note before |
+| `tie` | `true`: this note is the note before it held on (same pitch): drawn tied, not played again |
 | `ch`, `c`, `e` | chord symbol above the note; a comment; `true` to spell the note the other way (D♭ for C♯) |
 
 ## Limits
