@@ -321,7 +321,7 @@ Find tracks for hymns/songs that have no sung link, then he uploads whole albums
    check weak scores by reading the transcript against the hymn's chorus ("Breathing" 0.28 is NS77). Link all tracks, also to hymns that already have links
    (no cap), publisher empty, album = playlist title; ask before linking an E hymn that has a New Tune (BF child) when the tune is unclear.
    Import as in the Link labels section (`hymn TAB video TAB TAB album TAB`).
-   Done: Pressing On 1999 and A Joyful Way To Drink (41 links; "If in all I do" is not in the hymnal; Intro/Exit skipped). Not yet uploaded: the other albums in the collection.
+   Done: Pressing On 1999 and A Joyful Way To Drink (41 links; "If in all I do" is not in the hymnal; Intro/Exit skipped). Titles and descriptions of the 41 videos were updated with `update_descriptions.py` (2026-11-14). Lemuel decided NOT to upload the other albums of the collection (low-quality recordings): do not offer them again.
 
 ## Traps
 - Titles are song names, not hymn numbers; several hymns share a first line (a hymn and its Be Filled / New Songs copy):
