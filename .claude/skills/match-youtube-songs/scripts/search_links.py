@@ -21,12 +21,14 @@ def search(prefix,q,n):
 out={}
 for h in ids:
     fl=db.execute('select first_stanza_line from hymns where _id=?',(h,)).fetchone()[0]
-    fl=re.sub(r'<.*?>','',fl).strip(' ,;:!'); no=h[1:]
+    fl=re.sub(r'<.*?>','',fl).strip(' ,;:!'); grp=re.match(r'[A-Z]+',h).group(0); no=h[len(grp):]
+    if grp=='E': qs=(f'Hymn {no} {fl}',f'Hymns {no}',f'{fl} H{no}')
+    else: qs=(f'{grp} {no} {fl}',f'New Song {no} {fl}',f'{fl} {grp}{no}')
     yt={}
-    for q in (f'Hymn {no} {fl}',f'Hymns {no}',f'{fl} H{no}'):
+    for q in qs:
         for r in search('ytsearch',q,8): yt[r['id']]=r
     sc={}
-    for q in (f'Hymn {no} {fl}',f'Hymns {no}'):
+    for q in qs[:2]:
         for r in search('scsearch',q,8): sc[r['id']]=r
     out[h]={'first':fl,'yt':list(yt.values()),'sc':list(sc.values())}
     print(h,len(yt),len(sc),file=sys.stderr)

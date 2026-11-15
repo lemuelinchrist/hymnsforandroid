@@ -5,8 +5,9 @@ d={}
 for f in sorted(glob.glob('res2_*.json')): d.update(json.load(open(f)))
 out={}
 for h,v in d.items():
-    no=h[1:]
-    kw=re.compile(r'(?:\bhymns?|\bh|\bno\.?|#|\bnumber)\s*[:#.\-]?\s*(?:\d+\s*[,&/]\s*)*'+no+r'(?!\d)|^\s*'+no+r'\s*[.\-:)]|\b[eE]'+no+r'(?!\d)',re.I)
+    grp=re.match(r'[A-Z]+',h).group(0); no=h[len(grp):]
+    pre={'E':r'hymns?|h|no\.?|#|number','NS':r'ns|new songs?|songs?|no\.?|#','BF':r'bf|be filled|songs?|no\.?|#'}[grp]
+    kw=re.compile(r'(?:\b(?:'+pre+r')|#)\s*[:#.\-]?\s*(?:\d+\s*[,&/]\s*)*'+no+r'(?!\d)|^\s*'+no+r'\s*[.\-:)]|\b'+grp+no+r'(?!\d)',re.I)
     res={'first':v['first'],'yt':[],'sc':[]}
     for k in('yt','sc'):
         for r in v[k]:

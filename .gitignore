@@ -30,3 +30,6 @@ databaseProvisioner/src/main/resources/originals/
 
 # local secrets
 .env
+
+# Local Antigravity customizations (symlinks to .claude/skills and Claude local memory)
+.agents/
