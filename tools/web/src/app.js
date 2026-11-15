@@ -877,10 +877,10 @@ function hymnScreen(view, hymn) {
         onclick: (e) => shareMenu(hymn, e.currentTarget)}, icon('share')),
       h('button', {class: 'icon-btn print', title: tr('Print'), onclick: () => window.print()}, icon('print')),
       favBtn),
-    h('h1', {class: 'hymn-title' + (hymn.category ? ' with-subject' : ''), dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)}, hymn.first || hymn.id),
     hymn.category || hymn.newTune ? h('p', {class: 'category', dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)},
-      hymn.category ? [hymn.category, hymn.subcategory ? ' · ' + hymn.subcategory : ''] : null,
-      hymn.newTune ? [hymn.category ? h('br') : null, '(New Tune)'] : null) : null,   // as the Android header: a last line
+      hymn.category ? h('span', {class: 'cat-main'}, hymn.category) : null,
+      hymn.subcategory ? h('span', {class: 'cat-sub'}, hymn.subcategory) : null,
+      hymn.newTune ? h('span', {class: 'cat-newtune'}, '(New Tune)') : null) : null,   // as the Android header: a last line
     familyNode(hymn));
 
   const tabs = hasSheet ? h('div', {class: 'tabs', role: 'tablist'},

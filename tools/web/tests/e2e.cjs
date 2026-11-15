@@ -101,7 +101,7 @@ async function search(page, text) {
       await search(page, '8');
       await page.press('#q', 'Enter');
       await page.waitForURL(/#\/h\/E8/);
-      assert((await page.textContent('.hymn-title')).includes('Praise God'), 'E8 title');
+      assert((await page.textContent('.lyrics')).includes('Praise God'), 'E8 title');
     });
     await test('a hymn ID opens that hymn (ns151, "C 206")', async () => {
       await search(page, 'ns151');

@@ -274,14 +274,13 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .hymn-id .num { flex: none; }
 .hymn-id .hymnal { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .hymn-id .hcode { display: none; }
-.hymn-title { font: 600 clamp(24px, 3.4vw, 34px)/1.2 var(--serif); margin: 0 0 6px; text-wrap: balance; }
-.category { margin: 0 0 12px; color: var(--muted); }
-/* phones and tablets: the first line is the first line of stanza 1 right below, so the subject is the heading (bigger);
-   the first line stays in the page for screen readers, and in print */
-@media (max-width: 1079px) {
-  .hymn-title.with-subject { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .hymn-title.with-subject + .category { font-size: clamp(18px, 5vw, 22px); line-height: 1.3; font-weight: 500; color: var(--ink); opacity: .8; margin: 2px 0 12px; }
+.category {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 2px; margin: 4px 0 12px; color: var(--muted); text-wrap: balance;
 }
+.cat-main { font-size: clamp(15.5px, 4vw, 17px); font-weight: 650; line-height: 1.3; color: var(--ink); }
+.cat-sub { font-size: clamp(13.5px, 3.5vw, 14.5px); font-weight: 450; line-height: 1.35; color: var(--muted); max-width: 52ch; }
+.cat-newtune { font-size: 13.5px; line-height: 1.3; color: var(--muted); }
 /* the toast moves up while the back-to-hymn button is on the page */
 body:has(.swap-back) #toast { bottom: calc(92px + env(safe-area-inset-bottom)); }
 /* the back-to-hymn button (after a switch to another language) */
@@ -294,8 +293,7 @@ body.sheet-only .swap-back, body.editing-chords .swap-back, .hymn[data-tab="shee
 :root[data-theme="dark"] .swap-back, :root[data-theme="black"] .swap-back { color: #161412; background: var(--gn, var(--g)); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .swap-back { color: #161412; background: var(--gn, var(--g)); } }
 @media print { .swap-back { display: none; } }
-@media print { .hymn-title.with-subject { position: static; width: auto; height: auto; margin: 0 0 6px; clip-path: none; white-space: normal; } }
-.family { display: flex; flex-wrap: wrap; gap: 6px; }
+.family { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
 .fam {
   display: inline-flex; align-items: center; gap: 6px; padding: 4px 6px 4px 10px; border-radius: 16px; text-decoration: none;
   border: 1px solid var(--line-strong); background: var(--surface); font-size: 14px; line-height: 1.3;
@@ -309,8 +307,8 @@ body.sheet-only .swap-back, body.editing-chords .swap-back, .hymn[data-tab="shee
     padding: 0 14px 0 30px; border: 0; cursor: pointer; font: 600 13px var(--ui); color: var(--g);
     background: linear-gradient(to right, transparent, var(--paper) 22px);
   }
-  .family-wrap.open .family { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0 0 4px; }
-  .family-wrap.open .fam-more { position: static; max-height: none; height: 32px; padding: 0; margin-top: 2px; background: none; }
+  .family-wrap.open .family { flex-wrap: wrap; justify-content: center; overflow: visible; margin: 0; padding: 0 0 4px; }
+  .family-wrap.open .fam-more { position: static; max-height: none; height: 32px; padding: 0; margin: 2px auto 0; display: flex; background: none; }
 }
 .fam:hover { border-color: var(--g); }
 .fam .fam-no { background: var(--g-soft); color: var(--g); padding: 0 7px; border-radius: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }
@@ -344,7 +342,7 @@ body.sheet-only .swap-back, body.editing-chords .swap-back, .hymn[data-tab="shee
 @font-face { font-family: "Noto Nastaliq Urdu"; src: url("vendor/NotoNastaliqUrdu-Regular.ttf") format("truetype"); font-display: swap; }
 :lang(ur), .hymn-row .first:lang(ur), .hymn-row .snippet:lang(ur) { font-family: "Noto Nastaliq Urdu", var(--serif); }
 .lyrics:lang(ur) { line-height: 2.3; }
-.hymn-title:lang(ur), .hymn-row .first:lang(ur) { line-height: 1.9; }
+.hymn-row .first:lang(ur) { line-height: 1.9; }
 .stanza { display: grid; grid-template-columns: 2em 1fr; margin: 0 0 1.1em; }
 .stanza .no { color: var(--g); font: 600 .8em/1.95 var(--ui); font-variant-numeric: tabular-nums; }
 .lyrics.cjk .stanza .no { line-height: 2.25; }
@@ -496,7 +494,7 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
   .hymnal-card .name { font-size: 15px; white-space: normal; overflow: visible; line-height: 1.25; }   /* long names wrap, not cut */
   .hymn-id .hymnal { font-size: 13px; }
   .hymn-id .num { font-size: 24px; }
-  .family { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px; padding: 0 16px 4px; scrollbar-width: none; }
+  .family { flex-wrap: nowrap; justify-content: safe center; overflow-x: auto; margin: 0 -16px; padding: 0 16px 4px; scrollbar-width: none; }
   .family::-webkit-scrollbar { display: none; }
   .fam { flex: none; }
   .sheet { font-size: 14px; }
