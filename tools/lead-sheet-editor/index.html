@@ -21,7 +21,7 @@
   button { border: 1px solid var(--line); background: #faf8f4; border-radius: 6px; padding: 4px 9px; cursor: pointer; min-width: 30px; }
   button:hover { background: #efeadf; } button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
   button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-  main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 14px; padding: 14px; align-items: start; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 14px; padding: 14px; align-items: start; }
   #paper { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 14px 26px; min-height: 300px; }
   #paper h1 { text-align: center; font: 600 22px Georgia, serif; margin: 0 0 6px; }
   #music svg { display: block; width: 100%; height: auto; }
@@ -30,11 +30,19 @@
   #music g.changed, #music g.changed * { fill: var(--changed); stroke: var(--changed); }
   #music g.sel, #music g.sel * { fill: var(--sel); stroke: var(--sel); }
   #music g.playing, #music g.playing * { fill: #2e7d32; stroke: #2e7d32; }
+  #music text.count { fill: var(--accent); stroke: none; font: 600 300px ui-monospace, "Cascadia Mono", Consolas, monospace; text-anchor: middle; pointer-events: none; }
+  #music text.count.held { fill: var(--muted); font-weight: 400; }
   aside { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 12px; }
   .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
   .card h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 0 0 8px; }
-  .row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; } .row label { width: 62px; color: var(--muted); font-size: 12px; flex: none; }
+  .row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; } .row label { width: 58px; color: var(--muted); font-size: 12px; flex: none; }
   .row input { flex: 1; min-width: 0; }
+  .ce-box { border-top: 1px solid var(--line); margin: 8px 0; padding-top: 8px; display: flex; flex-direction: column; gap: 5px; }
+  .ce-row { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
+  .ce-lbl { width: 42px; color: var(--muted); font-size: 11px; flex: none; }
+  .ce-row button { padding: 2px 6px; min-width: 24px; font-size: 12px; border-radius: 5px; }
+  .ce-row button.note { font-weight: 600; }
+  .ce-row button:disabled { opacity: 0.4; cursor: default; }
   #what { font-weight: 600; margin-bottom: 8px; }
   textarea { width: 100%; min-height: 70px; resize: vertical; }
   #comments div { padding: 3px 0; border-top: 1px solid var(--line); cursor: pointer; font-size: 13px; } #comments b { color: var(--note); }
@@ -75,9 +83,12 @@
     <button data-act="undo" title="Ctrl Z">Undo</button><button data-act="redo" title="Ctrl Y">Redo</button>
     <button data-act="trdown" title="Whole song a semitone down">Key −</button><button data-act="trup" title="Whole song a semitone up">Key +</button>
     <button data-act="verse" title="Add a line of words under the notes">+ Verse</button>
+    <button data-act="counts" id="counts" class="on" title="Show or hide beat counting under the notes">1 &amp; 2 &amp;</button>
   </div>
   <div class="group"><span>Listen</span>
     <button data-act="play" id="play" class="primary" title="Play from the chosen note (Space)">▶ Play</button>
+    <button data-act="playMel" id="playMel" class="on" title="Play or mute the melody">Melody</button>
+    <button data-act="playCh" id="playCh" class="on" title="Play or mute the chords">Chords</button>
   </div>
   <div class="group"><span>Save as</span>
     <button data-act="print">Print / PDF</button><button data-act="mei">MEI</button><button data-act="midi">MIDI</button>
@@ -90,7 +101,13 @@
       <h2>Chosen note</h2>
       <div id="what">Click a note</div>
       <div id="verses"></div>
-      <div class="row"><label for="chord">Chord</label><input type="text" id="chord" placeholder="G, Am, D7, G/B"></div>
+      <div class="ce-box">
+        <div class="row" style="margin-bottom:2px"><label for="chord">Chord</label><input type="text" id="chord" placeholder="G, Am, D7, G/B"><button type="button" id="chordClear" title="Remove chord">✕</button></div>
+        <div class="ce-row" id="ceKey"></div>
+        <div class="ce-row" id="ceRoot"></div>
+        <div class="ce-row" id="ceQual"></div>
+        <div class="ce-row" id="ceBass"></div>
+      </div>
       <div class="row"><label for="comment">Comment</label><input type="text" id="comment" placeholder="e.g. sounds too high"></div>
       <div class="keys">Words: <kbd>Space</kbd> next note, <kbd>-</kbd> the word goes on, empty = held from the note before.</div>
     </div>

@@ -26,8 +26,8 @@ In the page: click a note, then
 - **words**: Enter, type the syllable, Space for the next note; `-` when the word goes on (`De-` `fend-` `er`); a note
   left empty is sung on the syllable before it and gets a slur;
 - **chord** (H) and a **comment** on the note; "Notes between us" for anything longer;
-- **Play** (Space) plays the melody from the chosen note; the recording, when the song folder has it, plays beside it;
-- Undo / Redo, Key − / + (transposes notes and chords), + Verse, Print / PDF, and the sheet as MEI or MIDI.
+- **Play** (Space) plays from the chosen note with **Melody** and **Chords** toggles (either or both); the recording, when the song folder has it, plays beside it;
+- Undo / Redo, Key − / + (transposes notes and chords), + Verse, **1 & 2 &** (shows or hides the beat counting under every note and rest), Print / PDF, and the sheet as MEI or MIDI.
 
 Bar lines, ties over a bar line, beams and accidentals are not edited: they follow from the notes, the time signature
 and the upbeat (the length of the first, incomplete bar).
@@ -109,8 +109,10 @@ A long note that crosses a bar line is still one note here: give it its whole le
 
 ### 7. Chords
 
-Click the note the chord starts on, press **H**, type the chord (`G`, `Am`, `D7`, `G/B`, `F#m`, `Bb`) and press Enter.
-An empty box removes the chord. **Key −** and **Key +** move the whole song a semitone, notes and chords together.
+Click the note the chord starts on, then build the chord with the buttons in the **Chosen note** card:
+- **In key**: one-click diatonic chords for the song's key (e.g. `G`, `Am`, `Bm`, `C`, `D`, `D7`, `Em` in G major; click again to remove).
+- **Root / Type / Bass**: same buttons as the web app's chord editor (`C`–`B` + `♭`/`♯`, qualities `maj`, `m`, `7`, `maj7`, `m7`, `6`, `9`, `add9`, `sus4`, `sus2`, `7sus4`, `dim`, `dim7`, `m7b5`, `aug`, and slash bass `none` or `C`–`B` + `♭`/`♯`).
+- Or press **H** to type the chord directly in the box (`✕` removes the chord). **Key −** and **Key +** move the whole song a semitone, notes and chords together.
 
 ### 8. The head of the sheet
 
