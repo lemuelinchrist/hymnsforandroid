@@ -2843,7 +2843,7 @@ INSERT INTO hymns VALUES('BF350','','','LORD, I LOVE YOU BECAUSE YOU LOVE ME.','
 INSERT INTO hymns VALUES('BF351','','',NULL,'Let the north wind blow —','BF',NULL,NULL,NULL,'351',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF352','','',NULL,'Make a joyful unto the Lord,','BF',NULL,NULL,NULL,'352',NULL,NULL,NULL,NULL,NULL,'SY275,',NULL);
 INSERT INTO hymns VALUES('BF353','','',NULL,'Holding to truth in love,','BF',NULL,NULL,NULL,'353',NULL,NULL,NULL,NULL,NULL,'',NULL);
-INSERT INTO hymns VALUES('BF354','','',NULL,'Come with me from Lebanon, my bride','BF',NULL,NULL,NULL,'354',NULL,NULL,NULL,NULL,NULL,'',NULL);
+INSERT INTO hymns VALUES('BF354','','',NULL,'Come with me from Lebanon, my bride','BF','G Major',NULL,NULL,'354',NULL,'4/4','3513451556554332',NULL,'Song of Songs 4:8,','',NULL);
 INSERT INTO hymns VALUES('BF355','','',NULL,'Everyone who believes','BF',NULL,NULL,NULL,'355',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF356','','',NULL,'He stepped out of glory,','BF',NULL,NULL,NULL,'356',NULL,NULL,NULL,'NS762',NULL,'',NULL);
 INSERT INTO hymns VALUES('BF357','','','SINGING, I LOVE YOU, LORD.','In moments like these I sing out a song.','BF',NULL,NULL,NULL,'357',NULL,NULL,NULL,NULL,NULL,'SY189,',NULL);
