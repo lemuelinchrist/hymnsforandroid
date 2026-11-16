@@ -17,6 +17,9 @@ public class PlayButton extends ContentComponent<ImageButton> {
 
     public PlayButton(final Hymn hymn, Fragment parentFragment, ImageButton imageButton) {
         super(hymn,parentFragment,imageButton);
+        if (!hymn.hasMelody()) {
+            imageButton.setVisibility(View.GONE);
+        }
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
