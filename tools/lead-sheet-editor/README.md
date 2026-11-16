@@ -1,8 +1,8 @@
 # Lead sheet editor
 
-A small web app to correct a lead sheet (melody, words, chords) by hand and by ear, without MuseScore or any other
-notation program. It was made for the drafts that `tools/audio-transcribe` writes from a recording, which always need
-a last pass by someone who can listen.
+A small web app to correct a lead sheet (melody, words, chords) by hand and by ear, and to give it a left hand, without
+MuseScore or any other notation program. It was made for the drafts that `tools/audio-transcribe` writes from a
+recording, which always need a last pass by someone who can listen.
 
 It is built for two editors at once: the person in the browser and an agent (or anyone with a text editor) working on
 the same file. The sheet is one JSON file per song; the page saves every change into it and shows within two seconds
@@ -13,60 +13,77 @@ what anyone else wrote into it.
 ```sh
 python3 tools/lead-sheet-editor/server.py                # http://localhost:8777/ ; --port, --root (default temp/transcribe)
 /home/lemue/venvs/transcribe/bin/python tools/lead-sheet-editor/from_musicxml.py temp/transcribe/<song>   # sheet.musicxml -> leadsheet.json
+node tools/lead-sheet-editor/test_music.js               # the tests of the logic (music.js)
 ```
 
 The server only listens on this computer (127.0.0.1) and needs nothing but Python 3. `from_musicxml.py` needs music21
 (the transcribe venv has it); it does not replace a `leadsheet.json` that exists unless `--force` is given, since the
 file may hold hand edits. The page draws with the app's own Verovio (`app/src/main/assets/viewer/verovio-toolkit-wasm.js`).
 
-In the page: click a note, then
-- **pitch**: ↑ ↓ one step of the key, Shift for a semitone, Ctrl for an octave, or the letter A–G;
-- **length**: the buttons, or 3 (16th) 4 (8th) 5 (quarter) 6 (half) 7 (whole) and `.` for a dot;
-- **notes**: N a new note after it, S split it in two, R note ↔ rest, Delete;
-- **words**: Enter, type the syllable, Space for the next note; `-` when the word goes on (`De-` `fend-` `er`); a note
-  left empty is sung on the syllable before it and gets a slur;
-- **chord** (H) and a **comment** on the note; "Notes between us" for anything longer;
-- **Play** (Space) plays from the chosen note with **Melody** and **Chords** toggles (either or both); the recording, when the song folder has it, plays beside it;
-- Undo / Redo, Key − / + (transposes notes and chords), + Verse, **1 & 2 &** (shows or hides the beat counting under every note and rest), Print / PDF, and the sheet as MEI or MIDI.
+## The page
 
-Bar lines, ties over a bar line, beams and accidentals are not edited: they follow from the notes, the time signature
-and the upbeat (the length of the first, incomplete bar).
+- **Top bar**: the song, its title, whether the sheet is saved, Undo / Redo, **Versions** (every save keeps the version
+  before it; any of them can be brought back), **Save as** (Print / PDF, the lead sheet as MEI, the sheet with the left
+  hand as MEI, MIDI), the keys (**?**) and light / dark.
+- **Second bar**: key (− and + move the whole song a semitone, notes and chords), time, upbeat, tempo; on the right what
+  the sheet shows: the beat counting (**1 & 2 &**), the **left hand**'s staff, and its size.
+- **Two ways of working**, chosen at the left of the third bar:
+  - **Melody** (F1): notes and words. The keys mean notes: ↑ ↓, A–G, 3–7, N, S, T, R, Delete.
+  - **Chords & left hand** (F2): the chords and how they are played. The keys mean chords (A–G types one, 1–7 puts a
+    chord of the key), so the melody cannot be changed by accident. The side panel has the chord builder and the left
+    hand's card.
+- **The sheet** in the middle, the **side panel** on the right (the chosen note, the left hand, the recording, notes
+  between the editors).
+- **Bottom**: the player (Play, Loop, Click, speed, which parts sound, piano or organ tone) and a **keyboard** that shows
+  what sounds at the chosen note: the melody note red, the left hand green, the notes of the chord with a dot. A click
+  on a key sets the chosen note to it.
 
 ## Guide: correcting a sheet step by step
 
 ### 1. Open the sheet
 
 1. Start the server (first command above) and leave its window open. It prints the address.
-2. Open http://localhost:8777/ in the browser. **Song** at the top left chooses among the songs that have a
+2. Open http://localhost:8777/ in the browser. The list at the top left chooses among the songs that have a
    `leadsheet.json`; the address keeps the choice (`?song=<folder>`), so it can be bookmarked.
 3. A song that is not in the list has no `leadsheet.json` yet: make it with `from_musicxml.py` (second command above)
    and reload the page.
 
 The top right always says where the sheet stands: `Loaded`, `Saving…`, `Saved 9:41:07 PM`, or
-`Updated from the file …` when someone else changed it. Red text there means the change was **not** saved (the server
-is not running, or the file was changed at the same moment).
+`Updated from the file …` when someone else changed it. A red message there means the change was **not** saved (the
+server is not running, or the file was changed at the same moment).
 
 ### 2. Listen and find the wrong note
 
-1. Start the recording in **The recording** card and follow the sheet.
-2. Click a note and press **Space** (or **▶ Play**): the sheet plays from that note, and the note being played turns
-   green. Space again stops it. Clicking a note also sounds it once.
-3. Play the same line in the recording and in the sheet, one after the other, until you hear where they differ.
+1. Click a note and press **P** (or **▶ From this note** in **The recording**): the recording plays from that note.
+   P again stops it. While it plays, the note it has reached is purple in the sheet (**Follow**), and ½× or ¾× slows it
+   down without changing the pitch.
+2. Press **Space** (or **▶ Play**): the sheet plays from the chosen note, and the note being played turns green. Space
+   again stops it. Clicking a note also sounds it once.
+3. **Loop** (L) repeats the bar of the chosen note, or the notes chosen (Shift ← → or Shift click chooses several),
+   until Space. **Click** (M) adds a click on every beat. The speed can be halved; **Organ** in place of Piano holds
+   every note at full strength for its whole length, which shows wrong lengths better.
+
+**Where the recording is.** The page knows the tempo and, from the transcription, where the singing starts; that is
+enough to land near the chosen note. To make it exact: pause the recording right where the chosen note starts and press
+**This note is here**. One such place sets the start; two or more (say, the first note of each line) make the page
+follow a recording that speeds up or slows down. They are kept in the sheet (`sync`).
 
 ### 3. Fix a wrong pitch
 
-Click the note (it turns red), then:
+In **Melody**, click the note (it turns red), then:
 
 | To do this | Press | Or click |
 |---|---|---|
 | one step higher or lower in the key (G → A → B → C) | ↑ ↓ | ↑ ↓ |
 | a semitone higher or lower (G → G♯) | Shift ↑ ↓ | ♯ ♭ |
 | an octave higher or lower | Ctrl ↑ ↓ | 8↑ 8↓ |
-| a named note, the nearest one (the key's F is F♯ in G major) | A to G | |
+| a named note, the nearest one (the key's F is F♯ in G major) | A to G | a key of the keyboard |
 | write C♯ as D♭ or the other way | | ♯↔♭ |
 
-Each change sounds the new pitch. ← and → go to the note before and after, so a whole line can be walked with the
-keyboard: → ↑ → → ↓ ...
+Each change sounds the new pitch. ← and → go to the note before and after, Tab and Shift Tab to the next bar and the
+one before, so a whole line can be walked with the keyboard: → ↑ → → ↓ ...
+
+With several notes chosen, the same keys move all of them (a line an octave too low: choose it, Ctrl ↑).
 
 ### 4. Fix a wrong length
 
@@ -84,7 +101,7 @@ is the page telling that the lengths before it no longer add up.
 
 A long note that crosses a bar line is still one note here: give it its whole length and the page draws the tie.
 
-### 5. Add, remove and split notes
+### 5. Add, remove, split and copy notes
 
 - **A note is missing**: click the note before it and press **N** (or **+ After**; **+ Before** for the other side).
   The new note copies the pitch and length of the chosen one: correct them as in steps 3 and 4.
@@ -96,6 +113,9 @@ A long note that crosses a bar line is still one note here: give it its whole le
   to it and is not played again; its own chord stays on it. T again makes it a separate note. In the file: `"tie": true`.
   A long note that only crosses a bar line needs none of this (step 4).
 - **A rest**: click the note and press **R**. R again makes it a note.
+- **A line that comes again**: choose its notes (Shift →, or Shift click on the last one), **Ctrl C**, click the note it
+  should follow, **Ctrl V**. The notes come with their chords and without their words, since a repeated line is mostly
+  sung to other words. Ctrl X cuts, Esc goes back to one chosen note.
 
 ### 6. Words
 
@@ -109,30 +129,90 @@ A long note that crosses a bar line is still one note here: give it its whole le
 
 ### 7. Chords
 
-Click the note the chord starts on, then build the chord with the buttons in the **Chosen note** card:
-- **In key**: one-click diatonic chords for the song's key (e.g. `G`, `Am`, `Bm`, `C`, `D`, `D7`, `Em` in G major; click again to remove).
-- **Root / Type / Bass**: same buttons as the web app's chord editor (`C`–`B` + `♭`/`♯`, qualities `maj`, `m`, `7`, `maj7`, `m7`, `6`, `9`, `add9`, `sus4`, `sus2`, `7sus4`, `dim`, `dim7`, `m7b5`, `aug`, and slash bass `none` or `C`–`B` + `♭`/`♯`).
-- Or press **H** to type the chord directly in the box (`✕` removes the chord). **Key −** and **Key +** move the whole song a semitone, notes and chords together.
+Go to **Chords & left hand** (F2) and click the note the chord starts on. Then, the fastest way first:
 
-### 8. The head of the sheet
+- **1 to 7** puts a chord of the key: the number on each **In key** button (in G major 1 = G, 2 = Am, 3 = Bm, 4 = C,
+  5 = D, 6 = Em, 7 = D7). A green line under a button means that chord holds most of the melody from here to the next
+  chord: a hint for where no chord is known yet, not a rule.
+- **A to G** starts typing one: the chord box opens with the letter, go on with `m`, `7`, `sus4`, `/B` and press Enter.
+- **Root / Type / Bass**: the same buttons as the app's chord editor (`C`–`B` + `♭`/`♯`, the types `maj`, `m`, `7`,
+  `maj7`, `m7`, `6`, `9`, `add9`, `sus4`, `sus2`, `7sus4`, `dim`, `dim7`, `m7b5`, `aug`, and a bass note).
+- **Tab** goes to the next bar (also from the chord box), ↑ ↓ to the chord before and after, **Delete** removes the
+  chord of the chosen note.
 
-Title, key, time signature and tempo are in the top bar. **Upbeat** is the length of the first, incomplete bar in
+So a song whose chords change with the bar is: `1` Tab `4` Tab `5` Tab `1` ... In **Melody** the chord box is there too
+(**H**), for a chord noticed on the way.
+
+A chord can sit on any note or rest. Where it should change under a held note, split the note and tie the halves (step 5).
+
+### 8. The left hand
+
+The chords can be played: the card **Left hand** (in Chords & left hand) chooses how, and a second staff in the bass
+clef shows it. Nothing is written by hand for this; the staff follows the chords, also when they change later.
+
+| Style | What it plays | Choices |
+|---|---|---|
+| **Strike** | the chord in one stroke | Two notes (root and fifth), Three notes (the triad), Open (root, fifth, octave), Hymn (root and fifth where the chord starts, third and fifth higher up in the bars it lasts); Held, Twice a bar, Every beat |
+| **Bass + chord** | a bass note, then the chord | by the time signature: Root and fifth, Bass and chords, Slow, In eighths; in three, Waltz |
+| **Arpeggio** | the chord one note at a time | Open (root, fifth, octave), Wide (to the tenth), Broken chord, Alberti, Rise and hold; in quarters, eighths or sixteenths |
+| **Own** | a pattern typed by hand | see below |
+
+Under the styles: **▼ ▲** move the whole left hand an octave (the note between them is the lowest bass note),
+**Pedal** lets the notes ring until the chord or the bar ends (`con pedale` on the sheet), **Held ending** makes the last
+bar one held chord. Choosing a style plays the bar of the chosen note, to hear it.
+
+**A different pattern for a part of the song.** **Applies to** says where a choice goes: the **Whole song**, **From
+this note** on (a chorus played fuller than the verse), or **This bar** alone (one held chord before the chorus). The
+places are listed under it and marked in green on the sheet; ✕ takes one out. **None** from a note on makes the left
+hand silent there.
+
+**What it does by itself**: the upbeat bar stays empty; a pattern starts again with every chord and every bar; the left
+hand moves on the beat (a chord on a note that comes in early and is held over the beat starts with that beat); and a
+figure that would reach the melody goes down an octave, whole, so the hands do not cross.
+
+**A pattern written by hand.** Every style is a line of text, shown in the **Pattern** box: steps of the same length
+(the list beside it: eighths, quarters ..., or *held* for one step that lasts).
+
+| In a step | Meaning |
+|---|---|
+| `1` `3` `5` `7` `8` `10` `12` | the notes of the chord counted up from the bass: `8` is the octave, `10` the third above it |
+| `c` `C` | the chord in the middle of the keyboard: `c` two notes (the third with the fifth, or with the seventh), `C` all of them |
+| `1+5` | together |
+| `-` `.` | the step before goes on; silence |
+| `A \| B` | A in the bar where the chord starts, B in the bars it lasts |
+
+`1 5 8 5` in eighths is the open arpeggio, `1 c c` in quarters a waltz, `1+5 | c` held the hymn style,
+`1 - 5 8 10 - 8 5` a slower figure of its own.
+
+**Writing it out.** When the pattern is nearly right but single notes should be different, **Write it out as notes…**
+turns the left hand into notes of its own. From then on they are changed like melody notes (click one; ↑ ↓, the lengths,
+S, T, R, Delete, Ctrl C / V); on a chord, a click on one of its notes chooses that note alone, a second click the whole
+chord again; **Shift A–G** or a key of the keyboard adds a note to the chord. The chords no longer move a written-out
+left hand: **This bar from the chords again** makes the chosen bars anew, **Back to the pattern** drops the written
+notes. This is the way to a full piano sheet: let the pattern do most of it, then write the rest.
+
+### 9. The head of the sheet
+
+Title, key, time signature and tempo are in the top bars. **Upbeat** is the length of the first, incomplete bar in
 eighth notes (`1` for a single eighth note before the first bar line, `0` when the song starts on beat 1). If every
 bar line sits in the wrong place, the upbeat is what to change, not the notes.
 
-### 9. When something went wrong
+### 10. When something went wrong
 
-**Undo** (Ctrl Z) takes back one change at a time, also a change that came from the file; **Redo** is Ctrl Y. Older
-versions are in the song's `leadsheet.history/` folder, one file per save, named by date and time: copy one over
-`leadsheet.json` to go back to it.
+**Undo** (Ctrl Z) takes back one change at a time, also a change that came from the file; **Redo** is Ctrl Y.
+**Versions** lists the sheet as it was before each save (the last 200, in the song's `leadsheet.history/` folder): a
+click brings one back, and Undo returns from it.
 
-### 10. Take the sheet out
+### 11. Take the sheet out
 
-- **Print / PDF** prints the sheet alone (choose "Save as PDF" in the print window).
-- **MIDI** downloads the melody; **MEI** downloads the sheet in the format the app's sheet viewer reads.
-- Nothing needs saving by hand: the sheet is already in `leadsheet.json`.
+- **Print / PDF** prints the sheet as it is on the page, with or without the left hand (choose "Save as PDF" in the
+  print window).
+- **Lead sheet** downloads the melody, words and chords as MEI, the format the app's sheet viewer reads; **With the
+  left hand** the same with the second staff; **MIDI** what is on the page.
+- Nothing needs saving by hand: the sheet is already in `leadsheet.json`, and beside it `leadsheet.mei` and, when it
+  has a left hand, `piano.mei`.
 
-### 11. Asking the other editor
+### 12. Asking the other editor
 
 To leave a question on one note, click it and write in **Comment** ("too high?", "is this an eighth?"): the note turns
 orange and the comment is listed under **Notes between us**, where a click on it goes to the note. Longer things go in
@@ -142,9 +222,15 @@ changes show up blue in the page.
 ## Taking the sheet into the app's tools
 
 Every save also writes `<song>/leadsheet.mei`, the sheet in the form of the app's own sheets (`assets/sheetMei`: key
-as `key.sig`, chords with a `tstamp`). `tools/hymn-midi/make_midi.py <song>/leadsheet.mei out.mid <bpm>` makes the piano
-MIDI from it (the `generate-midi` skill); copying it into the app (`sheetMei/<id>.mei`, the hymn's tune code,
-`res/raw/m<tune>.mid`) is a separate step.
+as `key.sig`, chords with a `tstamp`). It is always the lead sheet alone, whatever the page shows.
+`tools/hymn-midi/make_midi.py <song>/leadsheet.mei out.mid <bpm>` makes the piano MIDI from it (the `generate-midi`
+skill); copying it into the app (`sheetMei/<id>.mei`, the hymn's tune code, `res/raw/m<tune>.mid`) is a separate step.
+
+`piano.mei` is the same music with a second staff (`<staffDef n="2">`, bass clef, in a brace) for the left hand. One MEI
+file can hold both kinds of sheet: the lead sheet is the piano sheet without staff 2, and everything else (bars, words,
+chords, ids) is the same in both. **The app's viewer does not know a second staff yet** (its chords-over-words view and
+its chord editor read every staff as the melody), so `piano.mei` does not go into `sheetMei/` until the viewer has a
+way to leave staff 2 out; until then it is for printing, for MIDI and for other notation programs.
 
 ## Working together on one sheet
 
@@ -156,6 +242,8 @@ MIDI from it (the `generate-midi` skill); copying it into the app (`sheetMei/<id
 - An agent reads `leadsheet.json` (the `message`, each note's `c` comment, the notes themselves), compares it with the
   newest file in `leadsheet.history/` to see what the person changed, and writes its own changes with `server.dump`
   (one note per line, so diffs read as a list of notes). It answers in `message` or in a note's `c`.
+- An agent gives a sheet a left hand by writing `acc` (and a note's `lh`) into the file; `music.js` runs under Node,
+  so `require('./music.js').accompany(sheet)` shows the notes a pattern gives without a browser (see `test_music.js`).
 
 ## leadsheet.json
 
@@ -170,12 +258,29 @@ MIDI from it (the `generate-midi` skill); copying it into the app (`sheetMei/<id
 | `w` | the syllable, one per verse; ends in `-` when the word goes on; `""` = held from the note before |
 | `tie` | `true`: this note is the note before it held on (same pitch): drawn tied, not played again |
 | `ch`, `c`, `e` | chord symbol above the note; a comment; `true` to spell the note the other way (D♭ for C♯) |
+| `acc` | the left hand's pattern for the whole song: `{"pat": "1 5 8 5", "rate": 2, "low": 36, "pedal": true, "end": false, "style": "arp/open"}`. `pat` as in step 8; `rate` the length of a step in sixteenths (0 = one held step); `low` the lowest bass note (MIDI, 36 = C2: the bass is the first such note from there up); `end: false` plays the pattern to the end in place of a held last chord; `style` only tells the page which button to light. No `acc`: no left hand |
+| a note's `lh` | a pattern like `acc` that takes over from this note on; with `"for": "bar"` only to the end of this bar, with `"for": "chord"` to the end of the chord; `{"pat": ""}` is silence |
+| `left` | a left hand written out, in order from the first note of the song: `{"p": [43, 50], "d": 8}`, `p` a list of pitches or `null`; `tie` as for the melody. While it is there, `acc` and `lh` are not played |
+| `sync` | where the recording is: `[[sixteenths from the first note, seconds], ...]`, places set by ear |
+
+## The files
+
+| File | What it is |
+|---|---|
+| `server.py` | the local server: the page, the sheets, their history, the recording |
+| `index.html`, `editor.css` | the page |
+| `music.js` | the logic, with no page in it: keys and chords, bars, MEI, the left hand from the patterns. Also runs under Node |
+| `sound.js` | the piano and organ tones and the player (it schedules a little ahead of the clock, so it can loop and stop at once) |
+| `editor.js` | the page's behaviour: what is chosen, the panels, every change as an undo step and a save |
+| `test_music.js` | tests of `music.js`, and of its MEI through the app's Verovio |
+| `from_musicxml.py`, `finish_mei.py` | a MusicXML draft into `leadsheet.json`; `leadsheet.mei` into a sheet of the app |
 
 ## Limits
 
-One voice, one staff; no triplets, no repeats or endings (write the lines out); the keys with up to six sharps or
-five flats. A sheet from someone's recording is a derivative of their arrangement: it stays in `temp/` (not tracked)
-until the owner decides what goes into the app.
+One voice in each hand; no triplets, no repeats or endings (write the lines out); the keys with up to six sharps or
+five flats. A written-out left hand does not follow later changes of the melody's lengths: it keeps its own time. A
+sheet from someone's recording is a derivative of their arrangement: it stays in `temp/` (not tracked) until the owner
+decides what goes into the app.
 
 ## Putting the sheet into the app
 

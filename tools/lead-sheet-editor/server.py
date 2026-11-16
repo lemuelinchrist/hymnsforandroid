@@ -1,9 +1,10 @@
 """The lead sheet editor's local server.  usage: python3 tools/lead-sheet-editor/server.py [--port 8777] [--root temp/transcribe]
 
-Serves the editor (index.html) and the sheets under <root>: one folder per song with a leadsheet.json.
+Serves the editor (index.html and its scripts) and the sheets under <root>: one folder per song with a leadsheet.json.
 The json file is the shared state: the page saves into it, and anyone editing the file directly (an agent, a text
 editor) is seen by the page, which reloads when the file changes. Every save keeps the version before it in
-<song>/leadsheet.history/.
+<song>/leadsheet.history/, and the page writes the sheet beside it as MEI: leadsheet.mei (the lead sheet, in the form
+of the app's sheets) and, when the sheet has a left hand, piano.mei (the same with a second staff).
 """
 import argparse, json, os, re, shutil, time
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
@@ -14,16 +15,27 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 VEROVIO = REPO / 'app/src/main/assets/viewer/verovio-toolkit-wasm.js'
 AUDIO = ('source.mp3', 'source.ogg', 'source.m4a', 'source.wav')
+PAGE = {'/': 'index.html', '/index.html': 'index.html', '/editor.js': 'editor.js', '/music.js': 'music.js', '/sound.js': 'sound.js',
+        '/editor.css': 'editor.css'}
 TYPES = {'.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
          '.json': 'application/json', '.wav': 'audio/wav', '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg', '.m4a': 'audio/mp4'}
 
 
 def dump(sheet):
-    """One note per line, so that a diff of two versions reads as a list of changed notes."""
-    head = {k: v for k, v in sheet.items() if k != 'notes'}
-    out = json.dumps(head, ensure_ascii=False, indent=1)[:-2]
-    notes = ',\n  '.join(json.dumps(n, ensure_ascii=False) for n in sheet.get('notes', []))
-    return out + (',\n' if head else '\n') + ' "notes": [\n  ' + notes + '\n ]\n}\n'
+    """One note per line, so that a diff of two versions reads as a list of changed notes (also the left hand's, "left")."""
+    rows = [k for k in ('left', 'notes') if k == 'notes' or sheet.get(k)]
+    head = {k: v for k, v in sheet.items() if k not in ('left', 'notes')}
+    out = json.dumps(head, ensure_ascii=False, indent=1)[:-2] if head else '{'
+    for i, k in enumerate(rows):
+        body = ',\n  '.join(json.dumps(n, ensure_ascii=False) for n in sheet.get(k, []))
+        out += (',\n' if head or i else '\n') + ' "%s": [\n  %s\n ]' % (k, body)
+    return out + '\n}\n'
+
+
+def first_line(d):
+    """Where the singing starts in the recording, in seconds, as the transcription noted it (sheet.json), else None."""
+    try: return float(json.loads((d / 'sheet.json').read_text(encoding='utf-8'))['lines'][0]['start'])
+    except Exception: return None
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -70,8 +82,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         u = urlparse(self.path); q = parse_qs(u.query)
-        if u.path in ('/', '/index.html'): return self.file(HERE / 'index.html')
-        if u.path == '/editor.js': return self.file(HERE / 'editor.js')
+        if u.path in PAGE: return self.file(HERE / PAGE[u.path])
         if u.path == '/verovio.js': return self.file(VEROVIO)
         if u.path == '/api/list':
             songs = []
@@ -91,7 +102,14 @@ class Handler(BaseHTTPRequestHandler):
             try: sheet = json.loads(f.read_text(encoding='utf-8'))
             except Exception as e: return self.send(500, {'error': f'leadsheet.json is not valid JSON: {e}'})
             audio = next((a for a in AUDIO if (d / a).is_file()), None)
-            return self.send(200, {'rev': str(f.stat().st_mtime_ns), 'sheet': sheet, 'audio': audio})
+            return self.send(200, {'rev': str(f.stat().st_mtime_ns), 'sheet': sheet, 'audio': audio,
+                                   'start': first_line(d) if audio else None})
+        if u.path == '/api/history':   # the versions before each save, newest first; ?v=<name> gives one of them
+            h = d / 'leadsheet.history'; v = (q.get('v') or [''])[0]
+            if not v: return self.send(200, sorted((x.stem for x in h.glob('*.json')), reverse=True) if h.is_dir() else [])
+            if not re.fullmatch(r'[\w-]+', v) or not (h / (v + '.json')).is_file(): return self.send(404, {'error': 'no such version'})
+            try: return self.send(200, {'sheet': json.loads((h / (v + '.json')).read_text(encoding='utf-8'))})
+            except Exception as e: return self.send(500, {'error': f'not valid JSON: {e}'})
         if u.path == '/audio':
             a = next((d / a for a in AUDIO if (d / a).is_file()), None)
             return self.file(a) if a else self.send(404, {'error': 'no audio'})
@@ -99,10 +117,13 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_PUT(self):
         u = urlparse(self.path); q = parse_qs(u.query); d = self.song(q)
-        if u.path == '/api/mei' and d is not None:   # the sheet as the page draws it, in the app's MEI form: leadsheet.mei
+        if u.path == '/api/mei' and d is not None:   # the sheet in the app's MEI form: leadsheet.mei, with a left hand piano.mei
             mei = self.rfile.read(int(self.headers.get('Content-Length', 0))).decode()
+            out = d / ('piano.mei' if (q.get('kind') or [''])[0] == 'piano' else 'leadsheet.mei')
+            if not mei and out.name == 'piano.mei':   # the sheet has no left hand any more
+                out.unlink(missing_ok=True); return self.send(200, {})
             if not mei.startswith('<?xml'): return self.send(400, {'error': 'not MEI'})
-            (d / 'leadsheet.mei').write_text(mei, encoding='utf-8'); return self.send(200, {})
+            out.write_text(mei, encoding='utf-8'); return self.send(200, {})
         if u.path != '/api/sheet' or d is None: return self.send(404, {'error': 'not found'})
         f = d / 'leadsheet.json'
         try: sheet = json.loads(self.rfile.read(int(self.headers.get('Content-Length', 0))).decode())

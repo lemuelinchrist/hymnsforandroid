@@ -6,7 +6,9 @@ Needs music21 (the transcribe venv has it). An existing leadsheet.json is kept u
 leadsheet.json: {"title", "key" ("G", "Bb", "F#"), "mode", "time" [4, 4], "tempo", "pickup" (sixteenths in the upbeat
 bar, 0 = none), "message" (notes between the editors), "notes": [{"p": MIDI pitch or null for a rest, "d": length in
 sixteenths, "w": [syllable per verse; "De-" = the word goes on; "" = the syllable before is held], "ch": chord above
-it, "c": a comment on this note, "e": true = spell it the other way (D flat for C sharp)}]}"""
+it, "c": a comment on this note, "e": true = spell it the other way (D flat for C sharp)}]}
+The editor adds more as the sheet is worked on (the left hand: "acc", a note's "lh", "left"; the recording: "sync"):
+see README.md."""
 import sys, json, music21
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
