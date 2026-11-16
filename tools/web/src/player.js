@@ -86,7 +86,8 @@ function parseMidi(buf) {
   const start = notes.length ? notes[0].t : 0;
   for (const n of notes) n.t -= start;                 // no silence before the first note
   const length = notes.reduce((m, n) => Math.max(m, n.t + n.dur), 0);
-  return {notes, length};
+  const first = events.find((e) => e.type === 'tempo');
+  return {notes, length, tempo: first ? first.tempo : 500000};     // tempo: microseconds to a quarter note
 }
 
 // ---- the piano ----
@@ -181,6 +182,136 @@ function loopAudio(url, key) {
 }
 
 export function playing() { return current ? current.key : null; }
+
+// the tempo of a tune's MIDI file in quarter notes a minute (the sheets have none), or 0 when it has none
+export async function tuneTempo(url) {
+  if (!url || /\.mp3$/.test(url)) return 0;
+  try { return Math.round(60e6 / (await loadSong(url)).tempo); } catch (e) { return 0; }
+}
+
+// ---- playing a sheet (sheetplayer.js) ----
+// The notes are made from the sheet itself (piano.js scoreOf), not read from a MIDI file, so it is the sheet as shown:
+// its key, its chords and the piano part. Notes are made 2.5 s ahead; the sheet's own elements light up from a
+// frame loop that reads the audio clock.
+//   score: {events: [{q, d, note, vel, hand, ids}], length}  (q and d in quarter notes)
+//   o: {from, bpm, speed, loop, mute: {m, f, l, c: true}, onFrame(q, ids), onEnd()}
+export function playScore(score, o) {
+  stop();
+  const c = audio(), key = 'sheet';
+  const out = c.createGain();
+  out.connect(master);
+  const spq = 60 / (o.bpm * (o.speed || 1));            // seconds to a quarter note
+  const from = Math.max(0, Math.min(o.from || 0, score.length - 0.25)), span = Math.max(0.25, score.length - from);
+  const mute = o.mute || {};
+  const evs = score.events.filter((e) => !mute[e.hand]);
+  let first = 0;
+  while (first < evs.length && evs[first].q < from - 1e-6) first++;
+  const t0 = c.currentTime + 0.12;                      // when `from` sounds, the first time through
+  const oscs = new Set();
+  let i = first, lap = 0, stopped = false, timer = null, raf = 0, shown = '';
+  const position = () => {
+    const q = (c.currentTime - t0) / spq;
+    return q < 0 ? from : o.loop ? from + (q % span) : Math.min(score.length, from + q);
+  };
+  const finish = () => control.stop();
+  const tick = () => {
+    if (stopped) return;
+    const horizon = c.currentTime + 2.5;
+    for (;;) {
+      if (i >= evs.length) {
+        if (!o.loop || !evs.length) break;
+        if (t0 + (lap + 1) * span * spq > horizon) break;
+        lap++; i = first; continue;
+      }
+      const e = evs[i], when = t0 + (lap * span + e.q - from) * spq;
+      if (when > horizon) break;
+      i++;
+      if (when < c.currentTime - 0.3) continue;         // the page was suspended: skip what is long past
+      const osc = playNote(c, out, {note: e.note, vel: e.vel, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(when, c.currentTime));
+      oscs.add(osc);
+      osc.onended = () => oscs.delete(osc);
+    }
+    if (!o.loop && c.currentTime > t0 + span * spq + 0.4) { finish(); return; }
+    timer = setTimeout(tick, 200);
+  };
+  const frame = () => {
+    if (stopped) return;
+    const q = position(), ids = new Set();
+    for (const e of evs) { if (e.q > q) break; if (e.ids.length && q < e.q + Math.max(e.d, 0.25)) e.ids.forEach((id) => ids.add(id)); }
+    const list = Array.from(ids), sig = list.join(',');
+    if (o.onFrame) o.onFrame(q, sig !== shown ? list : null);
+    shown = sig;
+    raf = requestAnimationFrame(frame);
+  };
+  const control = {
+    key,
+    position,
+    stop() {
+      if (stopped) return;
+      stopped = true;
+      clearTimeout(timer);
+      cancelAnimationFrame(raf);
+      out.gain.setTargetAtTime(0, c.currentTime, 0.05);
+      setTimeout(() => { for (const osc of oscs) { try { osc.stop(); } catch (e) { /* already done */ } } out.disconnect(); }, 400);
+      if (current === control) current = null;
+      if (o.onFrame) o.onFrame(position(), []);
+      if (o.onEnd) o.onEnd();
+    },
+  };
+  current = control;
+  tick();
+  frame();
+  return control;
+}
+
+// for the tests: a score rendered without a speaker (peak level, how loud on the whole, how many seconds long)
+export async function renderScoreForTest(score, bpm, seconds = 10) {
+  const c = new OfflineAudioContext(1, 44100 * seconds, 44100);
+  const comp = c.createDynamicsCompressor();
+  comp.threshold.value = -18;
+  comp.ratio.value = 4;
+  const g = c.createGain();
+  g.gain.value = 0.5;
+  g.connect(comp).connect(c.destination);
+  const spq = 60 / bpm;
+  for (const e of score.events) if (e.q * spq < seconds) playNote(c, g, {note: e.note, vel: e.vel, dur: Math.max(0.08, e.d * spq * 0.97)}, e.q * spq + 0.05);
+  const data = (await c.startRendering()).getChannelData(0);
+  let peak = 0, sum = 0;
+  for (const v of data) { peak = Math.max(peak, Math.abs(v)); sum += v * v; }
+  return {peak, rms: Math.sqrt(sum / data.length), notes: score.events.length};
+}
+
+// a score as a standard MIDI file (format 1: the melody and the notes added to it on one track, the left hand and the
+// chords on the other), at `bpm` quarter notes a minute
+export function toMidi(score, bpm, title = '') {
+  const DIV = 480, bytes = [];
+  const push = (...b) => b.forEach((x) => bytes.push(x & 0xff));
+  const vlq = (v, into) => { const parts = [v & 0x7f]; while ((v >>= 7) > 0) parts.unshift((v & 0x7f) | 0x80); into.push(...parts); };
+  const text = (s) => Array.from(new TextEncoder().encode(s));
+  const track = (events, ch, name, tempo) => {
+    const t = [];
+    const nm = text(name).slice(0, 100);
+    vlq(0, t); t.push(0xff, 0x03, nm.length, ...nm);
+    if (tempo) { const us = Math.round(60e6 / bpm); vlq(0, t); t.push(0xff, 0x51, 3, (us >> 16) & 0xff, (us >> 8) & 0xff, us & 0xff); vlq(0, t); t.push(0xff, 0x58, 4, 4, 2, 24, 8); }
+    vlq(0, t); t.push(0xc0 | ch, 0);                                  // acoustic grand piano
+    const list = [];
+    for (const e of events) {
+      const on = Math.round(e.q * DIV), off = Math.max(on + 1, Math.round((e.q + e.d * 0.97) * DIV));
+      list.push([on, 1, 0x90 | ch, e.note, Math.max(1, Math.min(127, e.vel))], [off, 0, 0x80 | ch, e.note, 0]);
+    }
+    list.sort((a, b) => a[0] - b[0] || a[1] - b[1]);                  // an off before an on at the same tick
+    let at = 0;
+    for (const [tick, , st, n, v] of list) { vlq(tick - at, t); t.push(st, n, v); at = tick; }
+    vlq(0, t); t.push(0xff, 0x2f, 0);
+    return t;
+  };
+  const hands = {right: score.events.filter((e) => e.hand === 'm' || e.hand === 'f'), left: score.events.filter((e) => e.hand === 'l' || e.hand === 'c')};
+  const tracks = [track(hands.right, 0, title || 'Melody', true)];
+  if (hands.left.length) tracks.push(track(hands.left, 1, 'Left hand', false));
+  push(0x4d, 0x54, 0x68, 0x64, 0, 0, 0, 6, 0, 1, 0, tracks.length, DIV >> 8, DIV & 0xff);
+  for (const t of tracks) { push(0x4d, 0x54, 0x72, 0x6b, t.length >>> 24, t.length >>> 16, t.length >>> 8, t.length); bytes.push(...t); }
+  return new Uint8Array(bytes);
+}
 
 // play a tune file (midi/<hash>.mid or .mp3); key says what is playing (the hymn ID). Must be called from a tap.
 export async function play(url, key) {

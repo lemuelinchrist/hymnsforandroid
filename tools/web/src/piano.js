@@ -63,6 +63,10 @@ function readBars(doc) {
   const measure = (m) => {
     const per = 16 / unit, nominal = Math.round(count * per), ka = keyAlter(fifths), state = {};
     const bar = {el: m, g, unit, count, fifths, nominal, beat: unit === 8 && count % 3 === 0 ? 6 : Math.max(1, Math.round(per)), notes: [], harms: []};
+    const par = m.parentNode;
+    bar.ending = par && par.localName === 'ending' ? parseInt(par.getAttribute('n') || '1', 10) || 1 : 0;   // which ending the bar is in
+    bar.rptstart = m.getAttribute('left') === 'rptstart';
+    bar.rptend = m.getAttribute('right') === 'rptend';
     const staff = kids(m).find((c) => c.localName === 'staff');
     let end = 0;
     const walk = (e, start, factor) => {
@@ -123,11 +127,12 @@ export function timeOf(doc) {
   return b ? [b.count, b.unit] : [4, 4];
 }
 
-// Adds the piano part to a parsed sheet (in place): choice as above. Returns what it added: {left, right} (numbers
-// of notes), for the tests.
-export function addPiano(doc, choice) {
-  const M = lib(), bars = readBars(doc), out = {left: 0, right: 0};
-  if (!M || !bars.length || !choice) return out;
+// Reads a sheet and works out the piano part for a choice (null parts when it has none): the bars, the melody's
+// notes with the notes added under them, the chords on the beat, the left hand's events. addPiano writes it into the
+// sheet, scoreOf makes the notes to play from it.
+function analyse(doc, choice) {
+  const M = lib(), bars = readBars(doc);
+  if (!M || !bars.length) return null;
   const endG = bars[bars.length - 1].g + bars[bars.length - 1].len;
   const upbeat = bars.length > 1 && bars[0].len < bars[0].nominal;
   const first = upbeat ? bars[0].len : 0;
@@ -168,6 +173,15 @@ export function addPiano(doc, choice) {
     const mel = notes.map((n) => [n.g, n.g + n.d, n.fill ? n.fill[0] : n.p]);
     left = M.accompanyOn({bars: bars.map((b) => ({g: b.g, len: b.len})), first, chords, mel, last, base}).events;
   }
+  return {M, bars, notes, harms, chords, left, upbeat, first, endG, base};
+}
+
+// Adds the piano part to a parsed sheet (in place): choice as above. Returns what it added: {left, right} (numbers
+// of notes), for the tests.
+export function addPiano(doc, choice) {
+  const out = {left: 0, right: 0}, A = choice && analyse(doc, choice);
+  if (!A) return out;
+  const {M, bars, chords, left, upbeat} = A, rh = choice.rh && choice.rh.add > 0 ? choice.rh : null;
 
   // ---- into the sheet
   if (left) {
@@ -237,4 +251,103 @@ export function addPiano(doc, choice) {
     });
   }
   return out;
+}
+
+// ---- the notes to play ----
+
+// the order the bars are played in: a repeat sign sends the music back to the start, or to the bar after the one
+// before, and the second time the first ending is left out. [index of a bar, ...]
+export function playOrder(bars) {
+  const order = [];
+  let start = 0, repeating = false, prevEnding = 0, i = 0, guard = 0;
+  const done = new Set();
+  while (i < bars.length && guard++ < bars.length * 4 + 10) {
+    const b = bars[i];
+    if (b.rptstart) start = i;
+    if (repeating && b.ending === 1) { i++; continue; }                         // the second time through
+    if (repeating && b.ending === 0 && prevEnding >= 2) { repeating = false; start = i; }   // past the endings
+    order.push(i);
+    prevEnding = b.ending;
+    if (b.rptend && !done.has(i)) { done.add(i); repeating = true; i = start; continue; }
+    if (b.rptend) { repeating = false; start = i + 1; }
+    i++;
+  }
+  return order;
+}
+
+// What a sheet sounds like, for its state as shown: {events, length, order, bars, idQ, barAt}. `choice` is how the hands
+// play, `hands` whether the piano part is on (else the melody, and the chords softly under it). Positions and lengths
+// are in quarter notes. An event is {q, d, note, vel, hand: 'm' melody | 'f' notes added to it | 'l' left hand | 'c' chord,
+// ids: the elements of the sheet that light up while it sounds}.
+export function scoreOf(doc, choice, {hands = false} = {}) {
+  const A = analyse(doc, hands && choice ? choice : {lh: null, rh: {add: 0}});
+  if (!A) return null;
+  const {M, bars, notes, chords, left} = A;
+  const per = bars.map(() => []);
+  const barIndex = (g) => { let k = 0; while (k < bars.length - 1 && bars[k + 1].g <= g + 1e-6) k++; return k; };
+  const put = (bi, e) => per[bi].push(e);
+
+  // the melody, a tied note one note; the notes added under it go with it
+  let prev = null;
+  notes.forEach((n) => {
+    const bi = bars.indexOf(n.bar);
+    if (n.tiedTo && prev && prev.note === n.p && Math.abs(prev.g + prev.dg - n.g) < 0.01) {
+      prev.dg += n.d; prev.ids.push(xmlId(n.el));
+      if (prev.fillEvents) prev.fillEvents.forEach((f) => { f.dg += n.d; });
+      return;
+    }
+    const ev = {g: n.g, dg: n.d, note: n.p, vel: 100, hand: 'm', ids: [xmlId(n.el)].filter(Boolean)};
+    put(bi, ev);
+    if (n.fill) {
+      ev.fillEvents = n.fill.map((p) => ({g: n.g, dg: n.d, note: p, vel: 72, hand: 'f', ids: []}));
+      ev.fillEvents.forEach((f) => put(bi, f));
+    }
+    prev = ev;
+  });
+
+  // the left hand, or the chords softly in its place
+  if (left) {
+    bars.forEach((b, bi) => {
+      left.filter((e) => e.g >= b.g - 1e-6 && e.g < b.g + b.len - 1e-6).forEach((e, k) => {
+        if (!e.p) return;
+        e.p.forEach((p) => put(bi, {g: e.g, dg: e.ring || e.d, note: p, vel: 64, hand: 'l', ids: ['lh' + bi + 'n' + k]}));
+      });
+    });
+  } else {
+    chords.forEach((c) => {
+      if (!c.info) return;
+      const pitches = M.chordPitches(c.ch);
+      bars.forEach((b, bi) => {
+        const from = Math.max(b.g, c.g), to = Math.min(b.g + b.len, c.end);
+        if (to - from > 1e-6) pitches.forEach((p, k) => put(bi, {g: from, dg: to - from, note: p, vel: k ? 38 : 48, hand: 'c', ids: []}));
+      });
+    });
+  }
+
+  // the bars in the order they are played
+  const order = playOrder(bars), events = [], idQ = {}, barAt = [];
+  let at = 0;
+  order.forEach((bi) => {
+    const b = bars[bi];
+    barAt.push({q: at / 4, bar: bi + 1});
+    per[bi].forEach((e) => {
+      const q = (at + e.g - b.g) / 4;
+      const out = {q, d: e.dg / 4, note: e.note, vel: e.vel, hand: e.hand, ids: e.ids};
+      events.push(out);
+      e.ids.forEach((id) => { if (!(id in idQ)) idQ[id] = q; });
+    });
+    at += b.len;
+  });
+  // a chord that goes on from one bar to the next is one sound
+  events.sort((x, y) => x.q - y.q || x.note - y.note);
+  const open = {}, kept = [];
+  events.forEach((e) => {
+    if (e.hand === 'c') {
+      const o = open[e.note];
+      if (o && Math.abs(o.q + o.d - e.q) < 1e-6) { o.d += e.d; return; }
+      open[e.note] = e;
+    }
+    kept.push(e);
+  });
+  return {events: kept, length: at / 4, order, bars: bars.length, idQ, barAt};
 }

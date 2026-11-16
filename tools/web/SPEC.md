@@ -125,6 +125,8 @@ the URL (`?v=guitar&t=2&staff=0`), so a link opens the same view.
 | Reset | Appears after a change and returns to the original key and size. Clicking the key label also returns to the original key. |
 | ⤢ | The sheet-only view (`#/sheet/E8`). |
 
+| Play sheet | Plays the sheet as shown (key, chord edits, both hands when on) and lights up the notes; tap a note or a bar to play from there; speed, Loop, melody / accompaniment, Save MIDI (README, "Play sheet"). `M`, and `Space` on the sheet alone. |
+
 Piano/guitar, the staff, the zoom and Both hands (with its style) are remembered between hymns. Transposition is per hymn and is kept only
 in the URL. (The app opens guitar sheets with the staff hidden. Here the last choice wins, since the web app
 has no separate default-sheet setting.)

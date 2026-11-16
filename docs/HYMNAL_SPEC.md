@@ -929,6 +929,11 @@ chords are moved onto the beat for the left hand; the left hand stays under the 
 and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,
 `tools/web/src/piano.js` reads a sheet's bars, chords and melody for it. A native app can run the same file.
 
+The web app also **plays the sheet** (Play sheet): the notes come from the same reading of the sheet (melody with tied notes
+joined, the left hand and the added notes, or the chords softly when Both hands is off), in the order the repeats and endings
+give; the tempo is that of the hymn's tune file, folded into 50 to 160 quarter notes a minute. The elements of the notes that
+sound are marked in the drawn sheet, and the sheet can be saved as a MIDI file.
+
 ### 11.4 MEI files: what the viewer relies on
 
 One file per hymn, MEI 5.0, generated from LilyPond sources by `tools/svg-to-lilypond/tools/ly_to_mei.py`.

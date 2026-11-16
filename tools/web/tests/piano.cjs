@@ -28,7 +28,8 @@ async function waitForServer() {
 
 // runs in the page: the sheets of one pack through addPiano and Verovio
 async function inPage({file, step, only}) {
-  const {addPiano} = await import('./piano.js');
+  const {addPiano, scoreOf} = await import('./piano.js');
+  const {toMidi, parseMidi} = await import('./player.js');
   const {loadVerovio} = await import('./sheet.js');
   const {fetchGzJson} = await import('./files.js');
   const tk = await loadVerovio(), pack = await fetchGzJson(file);
@@ -57,7 +58,7 @@ async function inPage({file, step, only}) {
     walk(staff, 1);
     return {len: at, notes};
   }
-  const out = {sheets: 0, runs: 0, problems: [], left: 0, right: 0, noLeft: [], shown: {}};
+  const out = {sheets: 0, runs: 0, problems: [], left: 0, right: 0, noLeft: [], shown: {}, midi: 0, repeats: 0};
   const ids = Object.keys(pack).sort();
   for (let i = 0; i < ids.length; i++) {
     const id = ids[i];
@@ -76,6 +77,11 @@ async function inPage({file, step, only}) {
         if (kind) continue;
         const added = addPiano(doc, choice);
         out.runs++; out.left += added.left; out.right += added.right;
+        // bars with repeats and endings: the order they are played in
+        if (id === 'BF465' && name === 'hymn' && !vname) {
+          const sc0 = scoreOf(new DOMParser().parseFromString(text, 'application/xml'), choice, {hands: false});
+          if (sc0.order.length !== 46) out.problems.push(where + ': the repeat should play 46 bars, not ' + sc0.order.length + ' of ' + sc0.bars);
+        }
         if (choice.lh && hasChords && !added.left) out.noLeft.push(where);
         if (only) out.shown[where] = added;
         let unit = 4, count = 4;
@@ -89,6 +95,24 @@ async function inPage({file, step, only}) {
           if (Math.abs(one.len - two.len) > 0.01) out.problems.push(where + ': bar ' + (mi + 1) + ' is ' + one.len + ' above, ' + two.len + ' below');
         });
         if (!tk.loadData(new XMLSerializer().serializeToString(doc))) out.problems.push(where + ': Verovio does not read it');
+        // what plays: finite and in order, every element it lights up is in the sheet that is drawn, and it is a MIDI file
+        const hands = !!choice.lh || choice.rh.add > 0, sc = scoreOf(new DOMParser().parseFromString(text, 'application/xml'), choice, {hands});
+        const have = new Set(Array.from(doc.getElementsByTagNameNS(NS, '*')).map((e) => e.getAttributeNS('http://www.w3.org/XML/1998/namespace', 'id')));
+        if (!sc || !sc.events.length) out.problems.push(where + ': nothing to play');
+        else {
+          const badEv = sc.events.find((e, k) => !(e.q >= 0 && e.d > 0 && e.note > 20 && e.note < 110 && e.q + e.d <= sc.length + 4) || (k && e.q < sc.events[k - 1].q));
+          if (badEv) out.problems.push(where + ': a note at ' + badEv.q + ' (' + badEv.note + ', ' + badEv.d + ') of ' + sc.length);
+          const lost = Object.keys(sc.idQ).filter((id) => !have.has(id));
+          if (lost.length) out.problems.push(where + ': ' + lost.length + ' elements to light up are not in the sheet, e.g. ' + lost[0]);
+          if (hands && choice.lh && !sc.events.some((e) => e.hand === 'l') && added.left) out.problems.push(where + ': no left hand in the notes to play');
+          if (sc.order.length < sc.bars) out.problems.push(where + ': ' + sc.order.length + ' bars played of ' + sc.bars);
+          if (i % 7 === 0 && name === 'arpeggio') {
+            const midi = parseMidi(toMidi(sc, 90, id).buffer);
+            if (midi.notes.length !== sc.events.length) out.problems.push(where + ': MIDI has ' + midi.notes.length + ' notes of ' + sc.events.length);
+            out.midi = (out.midi || 0) + 1;
+          }
+          out.repeats = (out.repeats || 0) + (sc.order.length > sc.bars ? 1 : 0);
+        }
       } catch (e) {
         out.problems.push(where + ': ' + e.message);
       }
@@ -188,6 +212,86 @@ async function ui(page) {
     await page.keyboard.press('b'); await settle();
     assert(await staves() === 1, 'B takes the piano part away');
   });
+  console.log('Play sheet');
+  await openSheet('E8');
+  await test('Play sheet opens the player, plays and lights up the notes; Stop stops', async () => {
+    assert(await page.locator('.sheet-player').isHidden(), 'the player is not open yet');
+    await page.click('.tb.playsheet'); await page.waitForTimeout(1500);
+    assert(await page.locator('.sheet-player').isVisible(), 'the player row');
+    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'it plays: the button says Stop');
+    const lit = await page.locator('.sheet-music g.playing').count();
+    assert(lit > 0, 'notes are lit while they sound: ' + lit);
+    assert(/Bar \d+ · ♩ = \d+/.test(await page.locator('.sp-where').textContent()), 'the place and the tempo');
+    assert(await page.evaluate(() => document.body.classList.contains('sheet-playing')), 'the bars stay while it plays');
+    await page.click('.sheet-player .tb.primary'); await page.waitForTimeout(500);
+    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Play'), 'stopped: the button says Play');
+    assert(await page.locator('.sheet-music g.playing').count() === 0, 'nothing lit after Stop');
+  });
+  await test('with Both hands on it plays the piano part too', async () => {
+    await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();
+    assert(await page.locator('.tb.hands').getAttribute('aria-pressed') === 'false', 'Both hands is off here');
+    await page.click('.tb.hands'); await settle();
+    await page.click('.tb.playsheet'); await page.waitForTimeout(1300);
+    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'it plays');
+    assert(await page.locator('[id^="lh"].playing').count() > 0, 'the left hand lights up too');
+    await page.click('.sheet-player .tb.primary'); await settle();
+  });
+  await test('tapping a note plays from there; the speed and the parts can be changed while it plays', async () => {
+    await page.locator('.sheet-music g.measure').nth(6).locator('g.note .notehead').first().click({force: true}); await page.waitForTimeout(1200);
+    const bar = parseInt(/Bar (\d+)/.exec(await page.locator('.sp-where').textContent())[1], 10);
+    assert(bar >= 7, 'it plays from the tapped bar, not the start: bar ' + bar);
+    await page.selectOption('.sp-speed', '0.5'); await settle();
+    assert(/♩ = \d+/.test(await page.locator('.sp-where').textContent()), 'still playing at half speed');
+    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'it goes on after a change of speed');
+    await page.click('.sheet-player .tb:text-is("Melody")'); await settle();
+    await page.click('.sheet-player .tb:text-is("Melody")'); await page.selectOption('.sp-speed', '1'); await settle();
+    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'still playing');
+  });
+  await test('tapping the empty space of a bar plays from that bar', async () => {
+    await page.click('.sheet-player .tb.primary'); await settle();   // stop
+    const r = await page.locator('.sheet-music g.measure').nth(3).boundingBox();
+    await page.mouse.click(r.x + r.width / 2, r.y + 2); await page.waitForTimeout(900);
+    const bar = parseInt(/Bar (\d+)/.exec(await page.locator('.sp-where').textContent())[1], 10);
+    assert(bar >= 4 && bar <= 5, 'it plays from the bar tapped (the fourth), not the start: bar ' + bar);
+    await page.selectOption('.sp-speed', '1');
+  });
+  await test('a change to the sheet goes on playing with the new notes: the key, and the style', async () => {
+    const before = await page.locator('.sp-where').textContent();
+    await page.keyboard.press('+'); await settle();
+    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'transposed, still playing');
+    assert(await page.locator('.sheet-music g.playing').count() >= 0, 'lights up in the new key');
+    await page.keyboard.press('0'); await settle();
+    await page.click('.tb.style'); await settle();
+    await pick('Left hand', 'Arpeggio');
+    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'a new style, still playing');
+    await page.click('.piano-panel button:text-is("Done")'); await settle();
+  });
+  await test('the sheet sounds: rendered without a speaker it has body and does not clip', async () => {
+    const level = await page.evaluate(async () => {
+      const {scoreOf} = await import('./piano.js'), {renderScoreForTest} = await import('./player.js'), {fetchGzJson} = await import('./files.js');
+      const v = await (await fetch('data/version.json')).json(), pack = await fetchGzJson(v.sheets.E);
+      const xml = pack.E8.replace(/<back>[\s\S]*<\/back>/, ''), out = {};
+      for (const [name, hands, choice] of [['lead', false, null], ['piano', true, {lh: {family: 'arp', kind: 'open', rhythm: '8'}, rh: {add: 2, on: 'beat'}}]]) {
+        const sc = scoreOf(new DOMParser().parseFromString(xml, 'application/xml'), choice, {hands});
+        out[name] = await renderScoreForTest(sc, 100, 8);
+      }
+      return out;
+    });
+    assert(level.lead.rms > 0.002 && level.lead.peak < 1, 'the lead sheet: ' + JSON.stringify(level.lead));
+    assert(level.piano.rms > level.lead.rms && level.piano.peak < 1, 'the piano part is fuller and does not clip: ' + JSON.stringify(level));
+  });
+  await test('the tune\'s Play button and the sheet stop each other; closing the player stops it', async () => {
+    await page.goto(BASE + '#/h/E8'); await page.waitForSelector('.hymn'); await settle();
+    await page.click('.hymn-nav .icon-btn.play'); await page.waitForTimeout(600);
+    assert(await page.locator('.hymn-nav .icon-btn.play').getAttribute('aria-pressed') === 'true', 'the tune plays');
+    await page.click('.tb.playsheet'); await page.waitForTimeout(1200);
+    assert(await page.locator('.hymn-nav .icon-btn.play').getAttribute('aria-pressed') === 'false', 'the sheet took over: the tune button is off');
+    await page.click('.hymn-nav .icon-btn.play'); await page.waitForTimeout(600);
+    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Play'), 'the tune took over: the sheet stopped');
+    await page.click('.hymn-nav .icon-btn.play'); await page.waitForTimeout(300);
+    await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();
+    assert(await page.locator('.sheet-player').isHidden(), 'closed');
+  });
   return failed;
 }
 
@@ -203,7 +307,7 @@ async function ui(page) {
     await page.waitForSelector('body.ready', {timeout: 120000});
     if (!only) bad += await ui(page);
     const version = await (await fetch(BASE + 'data/version.json')).json();
-    const total = {sheets: 0, runs: 0, left: 0, right: 0};
+    const total = {sheets: 0, runs: 0, left: 0, right: 0, midi: 0, repeats: 0};
     for (const [group, file] of Object.entries(version.sheets)) {
       if (only && !only.some((id) => id.replace(/\d+$/, '') === group)) continue;
       const t = Date.now(), r = await page.evaluate(inPage, {file, step, only});
@@ -215,7 +319,8 @@ async function ui(page) {
       if (r.problems.length > 12) console.log('      … ' + r.problems.length + ' in all');
       if (only) console.log(JSON.stringify(r.shown, null, 1));
     }
-    console.log(`${total.sheets} sheets, ${total.runs} piano parts, ${total.left} notes in the left hand, ${total.right} added to the right: ` +
+    console.log(`${total.sheets} sheets, ${total.runs} piano parts, ${total.left} notes in the left hand, ${total.right} added to the right; ` +
+      `${total.repeats} that play with repeats, ${total.midi} saved as MIDI and read back: ` +
       (bad ? bad + ' PROBLEMS' : 'all whole bars that Verovio reads'));
   } finally {
     await browser.close();

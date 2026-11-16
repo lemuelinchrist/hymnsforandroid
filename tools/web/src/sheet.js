@@ -290,6 +290,9 @@ export class SheetView {
 
     this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE, original: false, hands: false};
     this.piano = null;             // how the hands play when state.hands is on (piano.js: {lh, rh}); the app sets it
+    this.soundXml = null;          // the MEI as it sounds: in this key, with the edits, without the guitar's changes
+    this.renders = 0;              // how many times the music was drawn (the player lights notes up again after one)
+    this.onsound = null;
     this.time = [4, 4];            // the sheet's time signature (of its first whole bar)
     this.editing = false;
     this.selected = null;          // the bar being edited
@@ -464,6 +467,7 @@ export class SheetView {
       xml = tk.getMEI();
       tk.setOptions({transpose: ''});
     }
+    this.soundXml = xml;
     let doc = parseXml(xml);
     const fifths = state.shift ? keyFifths(doc) : this.baseFifths;
     const tonic = TONIC[fifths + 7];
@@ -518,10 +522,12 @@ export class SheetView {
     }
     this.meiDoc = doc;
     this.meiText = new XMLSerializer().serializeToString(doc);
+    if (this.onsound) this.onsound();
   }
 
   render() {
     if (!this.meiText) return;
+    this.renders++;
     const width = this.music.clientWidth;
     this.width = width;
     const chart = !this.state.staff || this.chordsOnly;

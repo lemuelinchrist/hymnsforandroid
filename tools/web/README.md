@@ -81,6 +81,21 @@ left hand moves on the beat and stays under the right hand, the last bar is one 
 bars, the chords and the melody of a sheet and writes the second staff and the added notes into the MEI before Verovio
 draws it. It is not there on the guitar sheet, with the staff hidden, or on a chords-only sheet.
 
+## Play sheet
+
+**Play sheet** (or `M`; `Space` on the sheet alone) plays the sheet as it is shown: in its key (transposing), with this
+device's chord edits, and, with Both hands on, the piano part, else the melody with the chords softly under it. The notes
+that sound light up and the page follows them; a tap on a note, or on a bar, plays from there. A row under the toolbar has
+Play / Stop, back to the start, the speed (½ to 1¼), Loop, the melody and the accompaniment on or off, Follow, and
+**Save MIDI** (the sheet as a MIDI file: the melody, and the left hand on a track of its own). A change while it plays
+(the key, a chord, a style) goes on from the same place with the new notes.
+
+The notes are not read from a MIDI file or from Verovio but made from the sheet by `piano.js` (`scoreOf`), the same data that
+draws the second staff, so what is heard is what is drawn: tied notes are one note, the pedal makes a left hand note ring, and
+repeats and endings are played out (the first ending is left out the second time). The tempo is the one of the hymn's tune
+file (the sheets have none), folded into 50 to 160 where a file counts the beat as an eighth. The sound is the Play button's
+small Web Audio piano (`player.js`, `playScore`); starting the sheet stops the tune and the other way round.
+
 ## Chord edits
 
 On a piano sheet, **Edit chords** (or `E`): tap a bar, pick a beat (half beats too), then take a chord of the key
@@ -121,7 +136,7 @@ under an edit.
 node tools/web/tests/e2e.cjs                 # 63 checks in Chromium: search, hymns, sheets, tunes, Android behaviour, offline, phone
 node tools/web/tests/e2e.cjs --sheets 300    # also renders 300 random sheets in four modes each (--sheets all: every one)
 node tools/web/tests/edit.cjs                # 12 checks of the chord editor, saving, export and import
-node tools/web/tests/piano.cjs               # Both hands: 5 checks of the buttons and the panel, then every 12th sheet in five styles (--all: every sheet)
+node tools/web/tests/piano.cjs               # Both hands and Play sheet: 11 checks of the buttons, the panel and the player, then every 12th sheet in five styles, also what plays and its MIDI file (--all: every sheet)
 node tools/web/tests/scripture.cjs          # 10 checks of the Bible references as links (src/scripture.js), also on every reference in the database
 ```
 
@@ -137,7 +152,8 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/sheet.js` | the sheet viewer (ported from the app's `assets/viewer/viewer.js`), translated words, chord edits |
 | `src/player.js` | Play: reads the app's MIDI files (`res/raw/m<tune>.mid`) and plays them looped with a small Web Audio piano |
 | `src/editor.js`, `src/edits.js` | the chord editor panel; edits on the device, export and import |
-| `src/piano.js`, `src/pianopanel.js` | Both hands: the piano part written into a sheet's MEI; the Style panel. The rules are `music.js`, copied by `build.py` from `tools/lead-sheet-editor/` |
+| `src/piano.js`, `src/pianopanel.js` | Both hands: the piano part written into a sheet's MEI, and the notes to play (`scoreOf`, `playOrder`); the Style panel. The rules are `music.js`, copied by `build.py` from `tools/lead-sheet-editor/` |
+| `src/sheetplayer.js` | Play sheet: the row of controls, lighting up the notes, tap to play from there |
 | `src/files.js` | fetching and unpacking the gzipped data files |
 | `src/groups.js` | the hymnals; `build.py` fills them in from `HymnGroup.java` |
 | `src/sw.js`, `src/manifest.webmanifest` | service worker (offline) and install manifest; `build.py` writes the file lists in |
