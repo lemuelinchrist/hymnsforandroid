@@ -10,7 +10,7 @@
   var hand = 'n', head = -1;    // 'n' the melody, 'l' a written-out left hand; the chosen note of a left-hand chord (-1: all)
   var mode = 'melody', scope = 'song', scopeFor = -1;
   var undo = [], redo = [], dirty = false, saving = false, saveTimer = null, changed = {};
-  var lh = null, leadMei = '', pianoMei = '', sentPiano = null, drawnBars = [];
+  var lh = null, rh = null, leadMei = '', pianoMei = '', sentPiano = null, drawnBars = [];
   var ceUi = null, clip = null, toastTimer = null, toldPattern = false, heardIdx = -1;
   var prefs = {counts: true, left: true, keys: true, zoom: 1, metro: false, loop: false, speed: 1, mel: true, acc: true, tone: 'piano', follow: true, theme: ''};
   try { var saved = JSON.parse(localStorage.getItem('leadSheetEditor') || '{}'); Object.keys(prefs).forEach(function (k) { if (typeof saved[k] === typeof prefs[k]) prefs[k] = saved[k]; }); } catch (e) {}
@@ -32,9 +32,11 @@
     return {bar: b + 1, start: Math.max(0, b * bar - off), end: (b + 1) * bar - off, beat: txt};
   }
   function verseCount() { var nv = 1; sheet.notes.forEach(function (n) { if (n.w && n.w.length > nv) nv = n.w.length; }); return nv; }
-  function eventName(n) {
+  function eventName(n, i) {
     if (M.isRest(n)) return 'Rest';
-    return M.pitchesOf(n).map(function (p) { return M.noteName(sheet, p, hand === 'n' && n.e); }).join(' + ');
+    var s = M.pitchesOf(n).map(function (p) { return M.noteName(sheet, p, hand === 'n' && n.e); }).join(' + ');
+    if (hand === 'n' && rh && rh[i]) s += ' (with ' + rh[i].map(function (p) { return M.noteName(sheet, p); }).reverse().join(', ') + ')';
+    return s;
   }
   function durName(d) { for (var i = 0; i < M.DUR_BUTTONS.length; i++) if (M.DUR_BUTTONS[i][0] === d) return M.DUR_BUTTONS[i][1].toLowerCase(); return d / 2 + ' eighths'; }
   function toast(text) {
@@ -47,19 +49,20 @@
   function render() {
     if (!tk || !sheet) return;
     $('heading').textContent = sheet.title || '';
-    lh = M.leftHand(sheet);
+    lh = M.leftHand(sheet); rh = M.rightHand(sheet);
     if (hand === 'l' && !(lh && lh.written)) { hand = 'n'; head = -1; }
     sel = clamp(sel, 0, Math.max(0, list().length - 1)); anchor = clamp(anchor, 0, Math.max(0, list().length - 1));
-    var show = !!(lh && prefs.left), pedal = !!(lh && !lh.written && ((sheet.acc && sheet.acc.pedal) || sheet.notes.some(function (n) { return n.lh && n.lh.pedal; })));
-    var marks = show ? lh.marks.filter(function (m, i) { return i > 0 || !m.song; }).map(function (m) { return {t: m.t, text: patternLabel(m.a)}; }) : [];
+    var piano = !!(lh || rh), show = piano && prefs.left, left = lh ? lh.events : null;   // the piano part: either hand has more than the lead sheet
+    var pedal = !!(lh && !lh.written && ((sheet.acc && sheet.acc.pedal) || sheet.notes.some(function (n) { return n.lh && n.lh.pedal; })));
+    var marks = show && lh ? lh.marks.filter(function (m, i) { return i > 0 || !m.song; }).map(function (m) { return {t: m.t, text: patternLabel(m.a)}; }) : [];
     leadMei = M.toMei(sheet);
-    pianoMei = lh ? M.toMei(sheet, {left: lh.events, pedal: pedal}) : '';
-    var shown = show ? M.toMei(sheet, {left: lh.events, pedal: pedal, marks: marks, countLine: prefs.counts}) : leadMei;
-    drawnBars = M.layout(sheet, sheet.notes, 'n', show ? Math.max(M.total(sheet.notes), M.total(lh.events)) : 0);
+    pianoMei = piano ? M.toMei(sheet, {left: left, right: rh, pedal: pedal}) : '';
+    var shown = show ? M.toMei(sheet, {left: left, right: rh, pedal: pedal, marks: marks, countLine: prefs.counts && !!lh}) : leadMei;
+    drawnBars = M.layout(sheet, sheet.notes, 'n', show && lh ? Math.max(M.total(sheet.notes), M.total(lh.events)) : 0);
     var width = $('music').clientWidth || 800, scale = Math.round(clamp(Math.round(width / 18), 40, 64) * prefs.zoom);
     tk.setOptions({pageWidth: Math.round(width * 100 / scale), pageHeight: 60000, adjustPageHeight: true, scale: scale, breaks: 'auto',
       header: 'none', footer: 'none', pageMarginLeft: 20, pageMarginRight: 20, pageMarginTop: 30, pageMarginBottom: prefs.counts ? 70 : 10,
-      lyricSize: 4.5, lyricWordSpace: 3, spacingStaff: 10, spacingSystem: prefs.counts || show ? 18 : 14});
+      lyricSize: 4.5, lyricWordSpace: 3, spacingStaff: 10, spacingSystem: prefs.counts || (show && lh) ? 18 : 14});
     try {
       tk.loadData(shown);
       var html = ''; for (var p = 1; p <= tk.getPageCount(); p++) html += tk.renderToSVG(p);
@@ -68,8 +71,8 @@
     } catch (e) { $('music').textContent = 'Could not draw the sheet: ' + e; return; }
     document.body.classList.toggle('lh-written', !!(lh && lh.written));
     document.body.classList.toggle('hand-l', hand === 'l'); document.body.classList.toggle('hand-n', hand !== 'l');
-    $('pianoMei').disabled = !lh; $('lhshow').disabled = !lh; $('lhshow').classList.toggle('on', show);
-    $('playCh').textContent = lh ? 'Left hand' : 'Chords';
+    $('pianoMei').disabled = !piano; $('lhshow').disabled = !piano; $('lhshow').classList.toggle('on', show);
+    $('playCh').textContent = piano ? 'Piano part' : 'Chords';
     mark();
   }
   // "1 & 2 &" under the melody: under the words, or under the upper staff
@@ -155,9 +158,9 @@
   function panel() {
     var a = list(), n = a[sel];
     $('noteTitle').textContent = hand === 'l' ? 'Left hand' : 'Chosen note';
-    if (!n) { $('what').textContent = 'Click a note'; lhPanel(); recPanel(); return; }
+    if (!n) { $('what').textContent = 'Click a note'; lhPanel(); rhPanel(); recPanel(); return; }
     var pl = place(timeOf(sel, a)), many = hi() - lo() + 1;
-    $('what').innerHTML = (many > 1 ? many + ' notes chosen' : M.esc(eventName(n)) + ', ' + durName(n.d)) +
+    $('what').innerHTML = (many > 1 ? many + ' notes chosen' : M.esc(eventName(n, sel)) + ', ' + durName(n.d)) +
       '<small>bar ' + pl.bar + ', beat ' + pl.beat + ' · ' + (hand === 'l' ? 'left hand ' : 'note ') + (sel + 1) + ' of ' + a.length + '</small>';
     $('where').textContent = 'Bar ' + pl.bar + ' · beat ' + pl.beat;
     if (hand === 'n') {
@@ -212,7 +215,24 @@
       var d = document.createElement('div'); d.innerHTML = '<b>Note ' + (i + 1) + ' (' + M.esc((m.w && m.w[0]) || M.noteName(sheet, m.p, m.e)) + ')</b> ' + M.esc(m.c);
       d.onclick = function () { setHand('n'); select(i); }; cl.appendChild(d);
     });
-    lhPanel(); recPanel();
+    lhPanel(); rhPanel(); recPanel();
+  }
+
+  // ---- the right hand's panel: notes of the chord under the melody
+  var RH_ON = {chord: 'where a chord starts', beat: 'on the beat', long: 'on long notes', all: 'on every note'};
+  function rhPanel() {
+    if (!sheet) return;
+    var r = sheet.rh || {add: 0}, add = r.add | 0, on = r.on || 'beat';
+    document.querySelectorAll('#rhAdd button').forEach(function (b) { b.classList.toggle('on', +b.dataset.add === add); });
+    document.querySelectorAll('#rhOn button').forEach(function (b) { b.classList.toggle('on', b.dataset.on === on); });
+    $('rhOn').style.display = add ? '' : 'none';
+    $('rhState').textContent = add ? '· ' + (add === 1 ? 'two' : 'three') + ' notes ' + RH_ON[on] : '';
+    $('rhHandRow').style.display = hand === 'n' && chosen().some(function (n) { return Array.isArray(n.h); }) ? '' : 'none';
+  }
+  function setRight(add, on) {
+    edit(function () { if (add) sheet.rh = {add: add, on: on || (sheet.rh && sheet.rh.on) || 'beat'}; else delete sheet.rh; });
+    if (!prefs.left && add) { prefs.left = true; keep(); render(); }
+    if (add) audition();
   }
 
   // ---- the left hand's panel
@@ -376,6 +396,7 @@
     var chord = null; for (var k = Math.min(mi, sheet.notes.length - 1); k >= 0; k--) if (sheet.notes[k].ch) { chord = M.chordInfo(sheet.notes[k].ch); break; }
     if (chord) { var pcs = chord.tones.map(function (x) { return M.mod12(chord.root + x[0]); }); Object.keys(keyEls).forEach(function (p) { if (pcs.indexOf(p % 12) >= 0) keyEls[p].classList.add('tone'); }); }
     if (lh && lh.events.length && t < M.total(lh.events)) M.pitchesOf(lh.events[hand === 'l' ? sel : indexAt(lh.events, t)]).forEach(function (p) { if (keyEls[p]) keyEls[p].classList.add('left'); });
+    if (rh && rh[mi] && (hand === 'n' || t < M.total(sheet.notes))) rh[mi].forEach(function (p) { if (keyEls[p]) keyEls[p].classList.add('left'); });
     if (m && !M.isRest(m) && (hand === 'n' || t < M.total(sheet.notes)) && keyEls[m.p]) keyEls[m.p].classList.add('mel');
   }
   function keyPressed(p) {
@@ -383,6 +404,10 @@
     if (hand === 'l' && n) {
       edit(function () { var ps = M.pitchesOf(n), at = ps.indexOf(p); if (at >= 0) ps.splice(at, 1); else ps.push(p); n.p = ps.length ? ps.sort(function (a, b) { return a - b; }) : null; delete n.tie; head = -1; });
     } else if (mode === 'melody' && n) edit(function () { n.p = p; delete n.e; delete n.tie; n.w = n.w || ['']; });
+    else if (mode === 'chords' && hand === 'n' && n && !M.isRest(n) && p < n.p) {   // a note added under the melody, by hand
+      edit(function () { var hs = (rh && rh[sel] ? rh[sel].slice() : []), at = hs.indexOf(p); if (at >= 0) hs.splice(at, 1); else hs.push(p); n.h = hs.sort(function (a, b) { return a - b; }); });
+      if (!prefs.left) { prefs.left = true; keep(); render(); }
+    }
     try { S.note(p, S.now(), 0.4, 0.22, prefs.tone); } catch (e) {}
   }
   function light(ps, ms) {
@@ -464,10 +489,13 @@
       ev.push({t: m.t, d: m.d, show: !quiet, hand: 'n', i: m.i, ps: [m.p], fire: function (when, sec) { if (prefs.mel) S.note(m.p, when, sec * 0.96, 0.26, tone); }});
     });
     if (prefs.acc) {
+      pl.fill.forEach(function (f) {
+        ev.push({t: f.t, d: f.d, fire: function (when, sec) { f.ps.forEach(function (p) { S.note(p, when, sec * 0.96, 0.14, tone); }); if (prefs.keys && !quiet) setTimeout(function () { light(f.ps, sec * 900); }, Math.max(0, (when - S.now()) * 1000)); }});
+      });
       pl.left.forEach(function (l) {
         ev.push({t: l.t, d: l.d, show: !quiet, hand: 'l', i: l.i, ps: l.ps, fire: function (when, sec) { l.ps.forEach(function (p) { S.note(p, when, sec * 0.98, 0.16, tone); }); }});
       });
-      if (!pl.left.length) pl.pad.forEach(function (c) {
+      if (!pl.left.length && !pl.fill.length) pl.pad.forEach(function (c) {
         ev.push({t: c.t, d: c.d, fire: function (when, sec) { c.ps.forEach(function (p, i) { S.note(p, when, Math.max(0.05, sec - 0.03), i === 0 ? 0.11 : 0.065, 'soft'); }); }});
       });
     }
@@ -492,7 +520,7 @@
   }
   function play() {
     if (S.playing()) { stopPlay(); return; }
-    var a = list(), many = hi() > lo(), from = timeOf(lo(), a), end = Math.max(M.total(sheet.notes), lh ? M.total(lh.events) : 0);
+    var a = list(), many = hi() > lo(), from = timeOf(lo(), a), end = Math.max(M.total(sheet.notes), lh ? M.total(lh.events) : 0);   // lh: the left hand may go on longer
     if (!$('audio').paused) $('audio').pause();
     if (prefs.loop) {
       if (many) startPlay(from, timeOf(hi() + 1, a), true);
@@ -532,7 +560,7 @@
     v = (v || '').trim();
     if ((n.ch || '') === v) return;
     edit(function () { if (v) n.ch = v; else delete n.ch; });
-    if (v) { if (lh) audition(); else beepChord(v); }
+    if (v) { if (lh || rh) audition(); else beepChord(v); }
   }
   function editChordPart(fn) {
     var n = sheet && hand === 'n' && sheet.notes[sel]; if (!n) return;
@@ -577,7 +605,7 @@
     var evs = clip.events.map(function (e) {
       if (hand === 'l') return {p: M.isRest(e) ? null : M.pitchesOf(e), d: e.d};
       var n = {p: M.isRest(e) ? null : M.pitchesOf(e).pop(), d: e.d};   // the words stay behind: a repeated line is sung to other words
-      if (n.p != null) n.w = ['']; if (clip.hand === 'n') { if (e.ch) n.ch = e.ch; if (e.e) n.e = true; if (e.tie) n.tie = true; }
+      if (n.p != null) n.w = ['']; if (clip.hand === 'n') { if (e.ch) n.ch = e.ch; if (e.e) n.e = true; if (e.tie) n.tie = true; if (e.h) n.h = e.h; }
       return n;
     });
     edit(function () { var a = list(), at = a.length ? hi() + 1 : 0; Array.prototype.splice.apply(a, [at, 0].concat(evs)); anchor = at; sel = at + evs.length - 1; });
@@ -622,7 +650,7 @@
     else if (a === 'trup' || a === 'trdown') {
       edit(function () {
         var d = a === 'trup' ? 1 : -1, pc = M.mod12(M.tonicPc(sheet) + d);
-        sheet.notes.forEach(function (m) { if (m.p != null) m.p += d; delete m.e; if (m.ch) m.ch = M.trChord(m.ch, d); });
+        sheet.notes.forEach(function (m) { if (m.p != null) m.p += d; delete m.e; if (m.ch) m.ch = M.trChord(m.ch, d); if (m.h) m.h = m.h.map(function (p) { return p + d; }); });
         (sheet.left || []).forEach(function (m) { if (!M.isRest(m)) m.p = M.pitchesOf(m).map(function (p) { return p + d; }); });
         sheet.key = M.FLAT_NAMES[pc] === 'Gb' ? 'F#' : M.FLAT_NAMES[pc]; fields();
       });
@@ -654,6 +682,7 @@
       edit(function () { sheet.left = lh.events.map(function (e) { return {p: e.p ? e.p.slice() : null, d: e.d}; }); });
       toast('The left hand is notes of its own now: click one to change it. Undo (Ctrl Z) goes back to the pattern.');
     }
+    else if (a === 'rhauto') { if (hand === 'n' && ns.some(function (m) { return m.h; })) edit(function () { ns.forEach(function (m) { delete m.h; }); }); }
     else if (a === 'unwrite') { if (sheet.left) { edit(function () { delete sheet.left; }); toast('The left hand follows the chords and the pattern again.'); } }
     else if (a === 'regenbar') {
       var gen = M.accompany(sheet);
@@ -717,6 +746,8 @@
       }
       scope = to; scopeFor = sel; lhPanel();
     }; });
+    document.querySelectorAll('#rhAdd button').forEach(function (b) { b.onclick = function () { b.blur(); setRight(+b.dataset.add); }; });
+    document.querySelectorAll('#rhOn button').forEach(function (b) { b.onclick = function () { b.blur(); setRight((sheet.rh && sheet.rh.add) || 1, b.dataset.on); }; });
     buildKeys(); toggles(); setMode('melody');
     $('music').addEventListener('click', function (e) {
       var g = e.target.closest ? e.target.closest('g.note, g.rest, g.chord') : null;

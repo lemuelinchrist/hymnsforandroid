@@ -129,6 +129,30 @@ test('spelling follows the chord', () => {
   assert.ok(/pname="b" oct="2" accid.ges="f"/.test(mei), 'B flat from the key signature');
 });
 
+test('the right hand: notes of the chord under the melody', () => {
+  const s = song(), fills = () => (M.rightHand(s) || []).map(f => f ? f.map(nm).join('+') : '-').join(' ');
+  assert.strictEqual(M.rightHand(s), null);
+  s.rh = {add: 1, on: 'chord'};        // the nearest note of the chord from a third below: D4 under G4 (G), C5 under E5 (C) ...
+  assert.strictEqual(fills(), '- D4 - - C5 A4 G4 -');
+  s.rh = {add: 1, on: 'beat'};         // every note here starts on a beat, but the upbeat has no chord yet
+  assert.strictEqual(fills(), '- D4 G4 B4 C5 A4 G4 E4');
+  s.rh = {add: 2, on: 'long'};         // two beats or more
+  assert.strictEqual(fills(), '- - - G4+B4 G4+C5 F#4+A4 E4+G4 B3+E4');
+  s.notes[3].h = [67]; s.notes[4].h = [];   // by hand: one note, and none
+  assert.strictEqual(fills(), '- - - G4 - F#4+A4 E4+G4 B3+E4');
+  const mei = M.toMei(s, {right: M.rightHand(s)});
+  assert.ok(mei.includes('<chord xml:id="n3" dur="2"><note xml:id="n3k0" pname="g" oct="4" type="fill"/><note xml:id="n3k1" pname="d" oct="5"/><verse n="1"><syl>praise</syl></verse></chord>'));
+  assert.deepStrictEqual(barSums(mei), [[2], [16], [16], [16], [16]]);
+  assert.strictEqual(M.toMei(s), M.toMei(song()));   // the lead sheet does not know of it
+  assert.deepStrictEqual(M.playList(s).fill.map(f => [f.t, f.d, f.ps.length]), [[10, 8, 1], [26, 8, 2], [34, 16, 2], [50, 16, 2]]);
+  // the left hand stays under the lowest added note
+  s.acc = {pat: '1 5 8 10', rate: 4, low: 48, end: false};
+  const lh = M.accompany(s).events, on = M.onsets(lh), mon = M.onsets(s.notes), f = M.rightHand(s);
+  lh.forEach((e, i) => (e.p || []).forEach(p => s.notes.forEach((n, k) => {
+    if (mon[k] < on[i] + e.d && mon[k] + n.d > on[i]) assert.ok(p < (f[k] ? f[k][0] : n.p), nm(p) + ' under the right hand');
+  })));
+});
+
 test('written-out left hand: cut, replace, tie', () => {
   const s = song(); s.acc = {pat: '1 5 8 5', rate: 2, low: 36};
   const gen = M.accompany(s).events;

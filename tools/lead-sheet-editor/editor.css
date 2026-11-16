@@ -82,6 +82,7 @@ main { display: grid; grid-template-columns: minmax(0, 1fr) 372px; min-height: 0
 #music g.selsoft g.sel, #music g.selsoft g.sel * { fill: var(--sel); stroke: var(--sel); }
 #music g.playing, #music g.playing * { fill: var(--play); stroke: var(--play); }
 #music g.dir.pattern, #music g.dir.pattern * { fill: var(--lh); stroke: none; }
+#music g.note.fill, #music g.note.fill * { fill: var(--lh); stroke: var(--lh); }
 #music g.verse[id^="cv"] { visibility: hidden; }
 #music text.count { fill: var(--accent); stroke: none; font: 600 300px var(--mono); text-anchor: middle; pointer-events: none; }
 #music text.count.held { fill: var(--muted); font-weight: 400; }
@@ -118,8 +119,9 @@ audio { width: 100%; height: 36px; margin-bottom: 8px; }
 .sync { color: var(--muted); font-size: 12px; } .sync span { flex: 1; min-width: 120px; }
 
 /* the left hand's card */
-#lhCard { border-color: color-mix(in srgb, var(--lh) 40%, var(--line)); }
-#lhCard .tabs button.on { background: var(--lh); color: var(--paper); }
+#lhCard, #rhCard { border-color: color-mix(in srgb, var(--lh) 40%, var(--line)); }
+#lhCard .tabs button.on, #rhCard .tabs button.on { background: var(--lh); color: var(--paper); }
+.card p.tip { margin: 9px 0 0; font-size: 12px; }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
 .chips:empty { display: none; }
 .chips button { border-radius: 999px; padding: 3px 12px; font-size: 13px; min-height: 28px; }
@@ -172,6 +174,6 @@ html #keys .k.sound { background: var(--play); border-color: var(--play); }
   main { display: block; } #paperwrap { padding: 0; overflow: visible; } #paper { box-shadow: none; padding: 0; max-width: none; background: #fff; }
   #paper h1 { color: #000; } #music svg { fill: #000; color: #000; }
   #music g.sel, #music g.sel *, #music g.selsoft, #music g.selsoft *, #music g.changed, #music g.changed *, #music g.noted, #music g.noted *,
-  #music g.heard, #music g.heard *, #music g.playing, #music g.playing * { fill: #000; stroke: #000; }
+  #music g.heard, #music g.heard *, #music g.playing, #music g.playing *, #music g.note.fill, #music g.note.fill * { fill: #000; stroke: #000; }
   #music g.dir.pattern { display: none; }
 }

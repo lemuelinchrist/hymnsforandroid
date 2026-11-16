@@ -65,12 +65,13 @@ over them. Read their `message` and note comments (`c`) there, see what they cha
 `leadsheet.history/`, and make your own changes in the file (`server.dump`); the page shows them in blue. What the
 user corrected by ear is a clue like any other: find why the pipeline had it wrong.
 
-The editor also gives the sheet a **left hand** from its chords (the page's "Chords & left hand"; in the file `acc`, a
+The editor also makes a **piano part** from the chords (the page's "Chords & piano"): a left hand (in the file `acc`, a
 pattern such as `{"pat": "1 5 8 5", "rate": 2, "low": 36}`, a note's `lh` for a part of the song, and `left` once it is
-written out as notes: see the README). The logic runs under Node, so a pattern can be checked without the browser:
+written out as notes) and notes of the chord added under the melody (`rh`, such as `{"add": 1, "on": "beat"}`, a note's
+`h` by hand): see the README. The logic runs under Node, so a pattern can be checked without the browser:
 `node -e 'const M=require("./tools/lead-sheet-editor/music.js"), s=JSON.parse(require("fs").readFileSync(process.argv[1])); console.log(M.accompany(s).events.slice(0, 20))' $D/leadsheet.json`.
 Beside `leadsheet.mei` (always the lead sheet alone, the one that goes into the app) the page then writes `piano.mei`
-with the second staff; the app's viewer does not read a second staff yet, so `piano.mei` stays out of `sheetMei/`.
+with both hands; the app's viewer does not read a second staff yet, so `piano.mei` stays out of `sheetMei/`.
 
 **Before the sheet goes into the app** (`app/src/main/assets/sheetMei/<id>.mei`): the editor's `leadsheet.mei` is only the
 music, so make it uniform with the other sheets (the BF473 sheet lacked all of this at first). Compare it with the

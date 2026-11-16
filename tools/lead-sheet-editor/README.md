@@ -1,7 +1,7 @@
 # Lead sheet editor
 
-A small web app to correct a lead sheet (melody, words, chords) by hand and by ear, and to give it a left hand, without
-MuseScore or any other notation program. It was made for the drafts that `tools/audio-transcribe` writes from a
+A small web app to correct a lead sheet (melody, words, chords) by hand and by ear, and to make a piano part of it (a
+left hand from the chords, notes added under the melody), without MuseScore or any other notation program. It was made for the drafts that `tools/audio-transcribe` writes from a
 recording, which always need a last pass by someone who can listen.
 
 It is built for two editors at once: the person in the browser and an agent (or anyone with a text editor) working on
@@ -23,20 +23,21 @@ file may hold hand edits. The page draws with the app's own Verovio (`app/src/ma
 ## The page
 
 - **Top bar**: the song, its title, whether the sheet is saved, Undo / Redo, **Versions** (every save keeps the version
-  before it; any of them can be brought back), **Save as** (Print / PDF, the lead sheet as MEI, the sheet with the left
-  hand as MEI, MIDI), the keys (**?**) and light / dark.
+  before it; any of them can be brought back), **Save as** (Print / PDF, the lead sheet as MEI, the sheet with the piano
+  part as MEI, MIDI), the keys (**?**) and light / dark.
 - **Second bar**: key (− and + move the whole song a semitone, notes and chords), time, upbeat, tempo; on the right what
-  the sheet shows: the beat counting (**1 & 2 &**), the **left hand**'s staff, and its size.
+  the sheet shows: the beat counting (**1 & 2 &**), the **piano part** (the left hand's staff and the notes added to the
+  right hand; off, it is the lead sheet alone), and its size.
 - **Two ways of working**, chosen at the left of the third bar:
   - **Melody** (F1): notes and words. The keys mean notes: ↑ ↓, A–G, 3–7, N, S, T, R, Delete.
-  - **Chords & left hand** (F2): the chords and how they are played. The keys mean chords (A–G types one, 1–7 puts a
-    chord of the key), so the melody cannot be changed by accident. The side panel has the chord builder and the left
-    hand's card.
+  - **Chords & piano** (F2): the chords and how they are played. The keys mean chords (A–G types one, 1–7 puts a
+    chord of the key), so the melody cannot be changed by accident. The side panel has the chord builder and a card
+    for each hand.
 - **The sheet** in the middle, the **side panel** on the right (the chosen note, the left hand, the recording, notes
   between the editors).
 - **Bottom**: the player (Play, Loop, Click, speed, which parts sound, piano or organ tone) and a **keyboard** that shows
-  what sounds at the chosen note: the melody note red, the left hand green, the notes of the chord with a dot. A click
-  on a key sets the chosen note to it.
+  what sounds at the chosen note: the melody note red, the piano part green, the notes of the chord with a dot. A click
+  on a key sets the chosen note to it (in Melody).
 
 ## Guide: correcting a sheet step by step
 
@@ -125,14 +126,14 @@ A long note that crosses a bar line is still one note here: give it its whole le
 4. A note that carries on the syllable before it stays **empty**: just press Space on it.
 5. **Esc** leaves the box.
 
-The **Word** box is in the side panel in both ways of working; in Chords & left hand click into it (Enter there opens
+The **Word** box is in the side panel in both ways of working; in Chords & piano click into it (Enter there opens
 the chord box), and Space and `-` go on from note to note as above.
 
 **+ Verse** adds another line of words under the notes (stanza 2 under stanza 1); the card then has a box per verse.
 
 ### 7. Chords
 
-Go to **Chords & left hand** (F2) and click the note the chord starts on. Then, the fastest way first:
+Go to **Chords & piano** (F2) and click the note the chord starts on. Then, the fastest way first:
 
 - **1 to 7** puts a chord of the key: the number on each **In key** button (in G major 1 = G, 2 = Am, 3 = Bm, 4 = C,
   5 = D, 6 = Em, 7 = D7). A green line under a button means that chord holds most of the melody from here to the next
@@ -150,7 +151,7 @@ A chord can sit on any note or rest. Where it should change under a held note, s
 
 ### 8. The left hand
 
-The chords can be played: the card **Left hand** (in Chords & left hand) chooses how, and a second staff in the bass
+The chords can be played: the card **Left hand** (in Chords & piano) chooses how, and a second staff in the bass
 clef shows it. Nothing is written by hand for this; the staff follows the chords, also when they change later.
 
 | Style | What it plays | Choices |
@@ -194,28 +195,44 @@ chord again; **Shift A–G** or a key of the keyboard adds a note to the chord. 
 left hand: **This bar from the chords again** makes the chosen bars anew, **Back to the pattern** drops the written
 notes. This is the way to a full piano sheet: let the pattern do most of it, then write the rest.
 
-### 9. The head of the sheet
+### 9. The right hand
+
+The melody can carry more than one note: the card **Right hand** (in Chords & piano) adds notes of the chord under it.
+
+- **Melody alone**, **Two notes** (one note added) or **Three notes** (two added).
+- Where: **Where a chord starts** (the lightest: one fuller note with each chord), **On the beat** (the notes that start
+  on a beat, and the long ones), **Long notes** (two beats or more), **Every note**.
+
+The added notes are the nearest notes of the chord from a third below the melody down (never as close as a second,
+never below the F under middle C), so a note with no chord over it yet gets none. They are green on the sheet, they
+sound with the piano part, and the left hand stays under them.
+
+**One note by hand**: click the note and click a key of the keyboard below the melody: that note is added, or taken
+away if it was there. A note set by hand keeps its added notes whatever the card says (`h` in the file);
+**These notes as the choice above says** gives the chosen notes back to the card.
+
+### 10. The head of the sheet
 
 Title, key, time signature and tempo are in the top bars. **Upbeat** is the length of the first, incomplete bar in
 eighth notes (`1` for a single eighth note before the first bar line, `0` when the song starts on beat 1). If every
 bar line sits in the wrong place, the upbeat is what to change, not the notes.
 
-### 10. When something went wrong
+### 11. When something went wrong
 
 **Undo** (Ctrl Z) takes back one change at a time, also a change that came from the file; **Redo** is Ctrl Y.
 **Versions** lists the sheet as it was before each save (the last 200, in the song's `leadsheet.history/` folder): a
 click brings one back, and Undo returns from it.
 
-### 11. Take the sheet out
+### 12. Take the sheet out
 
-- **Print / PDF** prints the sheet as it is on the page, with or without the left hand (choose "Save as PDF" in the
+- **Print / PDF** prints the sheet as it is on the page, with or without the piano part (choose "Save as PDF" in the
   print window).
 - **Lead sheet** downloads the melody, words and chords as MEI, the format the app's sheet viewer reads; **With the
-  left hand** the same with the second staff; **MIDI** what is on the page.
+  piano part** the same with both hands; **MIDI** what is on the page.
 - Nothing needs saving by hand: the sheet is already in `leadsheet.json`, and beside it `leadsheet.mei` and, when it
-  has a left hand, `piano.mei`.
+  has a piano part, `piano.mei`.
 
-### 12. Asking the other editor
+### 13. Asking the other editor
 
 To leave a question on one note, click it and write in **Comment** ("too high?", "is this an eighth?"): the note turns
 orange and the comment is listed under **Notes between us**, where a click on it goes to the note. Longer things go in
@@ -229,11 +246,13 @@ as `key.sig`, chords with a `tstamp`). It is always the lead sheet alone, whatev
 `tools/hymn-midi/make_midi.py <song>/leadsheet.mei out.mid <bpm>` makes the piano MIDI from it (the `generate-midi`
 skill); copying it into the app (`sheetMei/<id>.mei`, the hymn's tune code, `res/raw/m<tune>.mid`) is a separate step.
 
-`piano.mei` is the same music with a second staff (`<staffDef n="2">`, bass clef, in a brace) for the left hand. One MEI
-file can hold both kinds of sheet: the lead sheet is the piano sheet without staff 2, and everything else (bars, words,
-chords, ids) is the same in both. **The app's viewer does not know a second staff yet** (its chords-over-words view and
-its chord editor read every staff as the melody), so `piano.mei` does not go into `sheetMei/` until the viewer has a
-way to leave staff 2 out; until then it is for printing, for MIDI and for other notation programs.
+`piano.mei` is the same music with the piano part: a second staff (`<staffDef n="2">`, bass clef, in a brace) for the
+left hand, and the right hand's added notes as chords with the melody on top (`<note type="fill">` for each added one).
+One MEI file can hold both kinds of sheet: the lead sheet is the piano sheet without staff 2 and without the `fill`
+notes, and everything else (bars, words, chords, ids) is the same in both. **The app's viewer does not know a second
+staff yet** (its chords-over-words view and its chord editor read every staff as the melody), so `piano.mei` does not
+go into `sheetMei/` until the viewer has a way to leave the piano part out; until then it is for printing, for MIDI and
+for other notation programs.
 
 ## Working together on one sheet
 
@@ -245,8 +264,9 @@ way to leave staff 2 out; until then it is for printing, for MIDI and for other 
 - An agent reads `leadsheet.json` (the `message`, each note's `c` comment, the notes themselves), compares it with the
   newest file in `leadsheet.history/` to see what the person changed, and writes its own changes with `server.dump`
   (one note per line, so diffs read as a list of notes). It answers in `message` or in a note's `c`.
-- An agent gives a sheet a left hand by writing `acc` (and a note's `lh`) into the file; `music.js` runs under Node,
-  so `require('./music.js').accompany(sheet)` shows the notes a pattern gives without a browser (see `test_music.js`).
+- An agent gives a sheet a piano part by writing `acc` (and a note's `lh`) and `rh` into the file; `music.js` runs under
+  Node, so `require('./music.js').accompany(sheet)` and `.rightHand(sheet)` show the notes they give without a browser
+  (see `test_music.js`).
 
 ## leadsheet.json
 
@@ -263,6 +283,8 @@ way to leave staff 2 out; until then it is for printing, for MIDI and for other 
 | `ch`, `c`, `e` | chord symbol above the note; a comment; `true` to spell the note the other way (D♭ for C♯) |
 | `acc` | the left hand's pattern for the whole song: `{"pat": "1 5 8 5", "rate": 2, "low": 36, "pedal": true, "end": false, "style": "arp/open"}`. `pat` as in step 8; `rate` the length of a step in sixteenths (0 = one held step); `low` the lowest bass note (MIDI, 36 = C2: the bass is the first such note from there up); `end: false` plays the pattern to the end in place of a held last chord; `style` only tells the page which button to light. No `acc`: no left hand |
 | a note's `lh` | a pattern like `acc` that takes over from this note on; with `"for": "bar"` only to the end of this bar, with `"for": "chord"` to the end of the chord; `{"pat": ""}` is silence |
+| `rh` | notes added to the right hand: `{"add": 1, "on": "beat"}`. `add` 1 or 2 notes of the chord under the melody; `on` which notes get them: `"chord"` (where a chord starts), `"beat"` (on a beat, and long ones), `"long"` (two beats or more), `"all"` |
+| a note's `h` | its added notes set by hand, a list of pitches below the melody (`[]`: none); it goes before `rh` |
 | `left` | a left hand written out, in order from the first note of the song: `{"p": [43, 50], "d": 8}`, `p` a list of pitches or `null`; `tie` as for the melody. While it is there, `acc` and `lh` are not played |
 | `sync` | where the recording is: `[[sixteenths from the first note, seconds], ...]`, places set by ear |
 
@@ -272,7 +294,7 @@ way to leave staff 2 out; until then it is for printing, for MIDI and for other 
 |---|---|
 | `server.py` | the local server: the page, the sheets, their history, the recording |
 | `index.html`, `editor.css` | the page |
-| `music.js` | the logic, with no page in it: keys and chords, bars, MEI, the left hand from the patterns. Also runs under Node |
+| `music.js` | the logic, with no page in it: keys and chords, bars, MEI, the left hand from the patterns, the right hand's added notes. Also runs under Node |
 | `sound.js` | the piano and organ tones and the player (it schedules a little ahead of the clock, so it can loop and stop at once) |
 | `editor.js` | the page's behaviour: what is chosen, the panels, every change as an undo step and a save |
 | `test_music.js` | tests of `music.js`, and of its MEI through the app's Verovio |
@@ -280,7 +302,7 @@ way to leave staff 2 out; until then it is for printing, for MIDI and for other 
 
 ## Limits
 
-One voice in each hand; no triplets, no repeats or endings (write the lines out); the keys with up to six sharps or
+One voice in each hand (the right hand's added notes move with the melody, in its rhythm); no triplets, no repeats or endings (write the lines out); the keys with up to six sharps or
 five flats. A written-out left hand does not follow later changes of the melody's lengths: it keeps its own time. A
 sheet from someone's recording is a derivative of their arrangement: it stays in `temp/` (not tracked) until the owner
 decides what goes into the app.

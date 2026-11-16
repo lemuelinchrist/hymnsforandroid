@@ -190,6 +190,34 @@
     });
   }
 
+  // ---- the right hand: notes of the chord added under the melody
+  // [pitches | null] for every note, or null when the sheet has none. sheet.rh is {"add": 1 | 2, "on": "chord" (where
+  // a chord starts) | "beat" (notes on a beat, and long ones) | "long" (two beats or more) | "all"}; a note's "h" is
+  // its added notes set by hand ([] for none). They are the nearest notes of the chord from a third below the melody
+  // down, never below F3.
+  function rightHand(sheet) {
+    var rh = sheet.rh || null, notes = sheet.notes;
+    if (!(rh && rh.add > 0) && !notes.some(function (n) { return Array.isArray(n.h); })) return null;
+    var on = onsets(notes), off = gridOff(sheet), beat = beatLen(sheet), chord = null, any = false;
+    var out = notes.map(function (n, i) {
+      if (n.ch) chord = chordInfo(n.ch);
+      if (isRest(n)) return null;
+      var ps = null;
+      if (Array.isArray(n.h)) ps = n.h.filter(function (p) { return p < n.p; });
+      else if (rh && rh.add > 0 && chord) {
+        var d = len(n), g = on[i] + off; for (var q = i + 1; tied(notes, q); q++) d += len(notes[q]);
+        var want = rh.on === 'all' ? true : rh.on === 'chord' ? !!n.ch : rh.on === 'long' ? d >= 2 * beat : g % beat === 0 || d >= 2 * beat;
+        if (want) {
+          var pcs = chord.tones.map(function (t) { return mod12(chord.root + t[0]); }); ps = [];
+          for (var p = n.p - 3; p > n.p - 12 && p >= 53 && ps.length < rh.add; p--) if (pcs.indexOf(mod12(p)) >= 0) ps.push(p);
+        }
+      }
+      if (!ps || !ps.length) return null;
+      any = true; return ps.slice().sort(function (a, b) { return a - b; });
+    });
+    return any ? out : null;
+  }
+
   // ---- the left hand from the chords
   // A pattern is steps on a grid of `rate` sixteenths (0: one step, held): "1 5 8 5", "1 c c", "1+5 - - c | c".
   //   1 3 5 7 8 10 12  the chord's notes counted up from the bass (8 the octave, 10 the third above it)
@@ -293,7 +321,7 @@
   // sheet has none. sheet.acc is the pattern of the whole song, a note's "lh" changes it from that note on (or with
   // "for": "bar" / "chord" only until the bar or the chord ends). A pattern is {pat, rate, low, pedal, style}. The
   // upbeat bar stays empty, the last bar is one held chord (unless acc.end is false), and a note that would reach the
-  // melody sounding over it takes its whole figure down an octave: the hands do not cross.
+  // right hand sounding over it takes its whole figure down an octave: the hands do not cross.
   function accompany(sheet) {
     var base = sheet.acc || null, notes = sheet.notes;
     if (!base && !notes.some(function (n) { return n.lh; })) return null;
@@ -320,7 +348,8 @@
     spans.forEach(function (s) { if (s.g > first && s.g < endG) cuts[s.g] = 1; });
     changes.forEach(function (c) { if (c.g > first && c.g < endG) cuts[c.g] = 1; if (c.end > first && c.end < endG) cuts[c.end] = 1; });
     var at = Object.keys(cuts).map(Number).sort(function (x, y) { return x - y; });
-    var mel = []; notes.forEach(function (n, i) { if (!isRest(n)) mel.push([on[i] + off, on[i] + off + len(n), n.p]); });
+    var fills = rightHand(sheet), mel = [];   // the right hand: the melody, or the lowest note added under it
+    notes.forEach(function (n, i) { if (!isRest(n)) mel.push([on[i] + off, on[i] + off + len(n), fills && fills[i] ? fills[i][0] : n.p]); });
     function melLow(g, d) {   // the lowest melody note sounding in [g, g + d)
       var lo = Infinity;
       for (var k = 0; k < mel.length && mel[k][0] < g + d; k++) if (mel[k][1] > g) lo = Math.min(lo, mel[k][2]);
@@ -407,6 +436,9 @@
     var piecesOf = {};   // event index -> its piece ids in order
     bars.forEach(function (b) { b.items.forEach(function (it) { if (it.idx >= 0) (piecesOf[it.idx] = piecesOf[it.idx] || []).push(it.id); }); });
     function spanAt(g) { if (!o.spans) return null; for (var k = o.spans.length - 1; k >= 0; k--) if (o.spans[k].g <= g) return g < o.spans[k].end ? o.spans[k].info : null; return null; }
+    // with o.fill (the right hand's added notes) a melody note is a chord: the added notes below, the melody on top
+    function psOf(idx) { var n = events[idx]; return o.fill && o.fill[idx] && !isRest(n) ? o.fill[idx].concat(pitchesOf(n)) : pitchesOf(n); }
+    var chordOf = []; if (o.fill) { var cc = null; events.forEach(function (n, i) { if (n.ch) cc = chordInfo(n.ch); chordOf[i] = cc; }); }
     return bars.map(function (b, bi) {
       var state = {}, layer = '', extra = '', open = false;
       // 4/4: a half bar of four eighth notes is one beam, else a beam per beat
@@ -426,7 +458,7 @@
         var d = DUR[it.v], attrs = ' xml:id="' + it.id + '" dur="' + d[0] + '"' + (d[1] ? ' dots="1"' : '');
         if (it.rest) layer += '<rest' + attrs + '/>';
         else {
-          var n = events[it.idx], ps = pitchesOf(n), many = ps.length > 1, chord = o.lead ? null : spanAt(bi * bar + it.pos);
+          var n = events[it.idx], ps = psOf(it.idx), many = ps.length > 1, chord = o.lead ? chordOf[it.idx] : spanAt(bi * bar + it.pos);
           var ids = piecesOf[it.idx], first = ids[0] === it.id, at = ids.indexOf(it.id), verses = '';
           if (first && o.lead && n.w) n.w.forEach(function (w, vi) {
             if (!w) return;
@@ -438,16 +470,20 @@
           if (first && o.countLine) verses += '<verse n="' + o.countLine + '" xml:id="cv' + it.idx + '"><syl>.</syl></verse>';   // room for the counting
           var inner = '';
           ps.forEach(function (p, pi) {
-            var s = o.lead ? spell(sheet, p, n.e) : spellInChord(sheet, p, chord), key = s.pname + s.oct, cur = key in state ? state[key] : ka[s.pname], acc = '';
+            var top = o.lead && pi === ps.length - 1;   // the melody note itself
+            var s = top ? spell(sheet, p, n.e) : spellInChord(sheet, p, chord), key = s.pname + s.oct, cur = key in state ? state[key] : ka[s.pname], acc = '';
             if (s.alter !== cur) { acc = ' accid="' + ACCID[s.alter] + '"'; state[key] = s.alter; }
             else if (s.alter) acc = ' accid.ges="' + ACCID_GES[s.alter] + '"';
             var pitch = ' pname="' + s.pname + '" oct="' + s.oct + '"' + acc, me = many ? it.id + 'k' + pi : it.id;
-            if (many) inner += '<note xml:id="' + me + '"' + pitch + '/>';
+            if (many) inner += '<note xml:id="' + me + '"' + pitch + (o.lead && !top ? ' type="fill"' : '') + '/>';
             else layer += '<note' + attrs + pitch + (verses ? '>' + verses + '</note>' : '/>');
             if (at < ids.length - 1) extra += '<tie startid="#' + me + '" endid="#' + ids[at + 1] + (many ? 'k' + pi : '') + '"/>';
-            else if (tied(events, it.idx + 1)) extra += '<tie startid="#' + me + '" endid="#' + piecesOf[it.idx + 1][0] + (many ? 'k' + pi : '') + '"/>';   // "tie": held on from this note
+            else if (tied(events, it.idx + 1) && (top || !o.lead)) {   // "tie": held on from this note
+              var nx = psOf(it.idx + 1), j = nx.indexOf(p);
+              if (j >= 0) extra += '<tie startid="#' + me + '" endid="#' + piecesOf[it.idx + 1][0] + (nx.length > 1 ? 'k' + j : '') + '"/>';
+            }
           });
-          if (many) layer += '<chord' + attrs + '>' + inner + '</chord>';
+          if (many) layer += '<chord' + attrs + '>' + inner + verses + '</chord>';
           // a note without a syllable is sung on the syllable before it: a slur from that note to the last such note
           if (first && hasWords && n.w && n.w[0]) {
             var last = it.idx;
@@ -463,7 +499,8 @@
       return {layer: layer, extra: extra};
     });
   }
-  // The sheet as MEI, in the form of the app's sheets. opt.left: the left hand's events, for a second staff in the
+  // The sheet as MEI, in the form of the app's sheets. opt.right: the right hand's added notes (rightHand), drawn as
+  // chords under the melody; opt.left: the left hand's events, for a second staff in the
   // bass clef; opt.marks: [{t, text}] written over that staff (the page shows where a pattern starts); opt.pedal;
   // opt.countLine: keep a line free under the words (the page writes "1 & 2 &" there, between the staves).
   function toMei(sheet, opt) {
@@ -472,7 +509,7 @@
     var need = left ? Math.max(total(notes), total(left)) : 0;
     var bars = layout(sheet, notes, 'n', need), lbars = left ? layout(sheet, left, 'l', need) : null;
     var nv = 1; notes.forEach(function (n) { if (n.w && n.w.length > nv) nv = n.w.length; });
-    var one = voiceMei(sheet, bars, notes, {lead: true, countLine: opt.countLine ? nv + 1 : 0}), two = left ? voiceMei(sheet, lbars, left, {spans: chordSpans(sheet)}) : null;
+    var one = voiceMei(sheet, bars, notes, {lead: true, countLine: opt.countLine ? nv + 1 : 0, fill: opt.right || null}), two = left ? voiceMei(sheet, lbars, left, {spans: chordSpans(sheet)}) : null;
     var dirs = {}, off = gridOff(sheet);
     function dir(t, text, place, type) {
       var g = t + off, bi = Math.max(0, Math.min(bars.length - 1, Math.floor(g / bar))), b = bars[bi];
@@ -520,9 +557,15 @@
     return held ? '(' + s + ')' : s;
   }
 
-  // ---- what to play: {mel: [{t, d, p, i}], left: [{t, d, ps, i}], pad: [{t, d, ps}], total}, t and d in sixteenths
+  // ---- what to play: {mel: [{t, d, p, i}], fill: [{t, d, ps, i}], left: [{t, d, ps, i}], pad: [{t, d, ps}], total},
+  // t and d in sixteenths
   function playList(sheet) {
-    var notes = sheet.notes, on = onsets(notes), mel = [], left = [], pad = [];
+    var notes = sheet.notes, on = onsets(notes), mel = [], left = [], pad = [], fill = [], fills = rightHand(sheet);
+    if (fills) fills.forEach(function (ps, i) {   // an added note lasts as long as its melody note, ties included, until the next added one
+      if (!ps) return;
+      var d = len(notes[i]); for (var q = i + 1; tied(notes, q) && !fills[q]; q++) d += len(notes[q]);
+      fill.push({t: on[i], d: d, ps: ps, i: i});
+    });
     notes.forEach(function (n, i) {
       if (isRest(n) || tied(notes, i)) return;
       var d = len(n); for (var q = i + 1; tied(notes, q); q++) d += len(notes[q]);
@@ -539,7 +582,7 @@
     }
     var off = gridOff(sheet);
     chordSpans(sheet).forEach(function (s) { if (s.info && s.end > s.g) pad.push({t: Math.max(0, s.g - off), d: s.end - Math.max(off, s.g), ps: chordPitches(s.ch)}); });
-    return {mel: mel, left: left, pad: pad, total: Math.max(total(notes), lh ? total(lh.events) : 0)};
+    return {mel: mel, fill: fill, left: left, pad: pad, total: Math.max(total(notes), lh ? total(lh.events) : 0)};
   }
 
   return {KEYS: KEYS, PC: PC, DUR: DUR, DUR_BUTTONS: DUR_BUTTONS, ROOTS: ROOTS, QUALITIES: QUALITIES, FLAT_NAMES: FLAT_NAMES, SHARP_NAMES: SHARP_NAMES,
@@ -548,6 +591,6 @@
     tonicPc: tonicPc, fifths: fifths, keyAlter: keyAlter, scalePcs: scalePcs, spell: spell, spellInChord: spellInChord, noteName: noteName, keyChords: keyChords,
     barLen: barLen, beatLen: beatLen, gridOff: gridOff, meter: meter, onsets: onsets, total: total, tied: tied, pieces: pieces, layout: layout,
     chordSpans: chordSpans, chordFit: chordFit, parsePattern: parsePattern, patternText: patternText, voicing: voicing, styles: styles,
-    findStyle: findStyle, styleName: styleName, accompany: accompany, leftHand: leftHand, sliceEvents: sliceEvents, replaceRange: replaceRange,
+    findStyle: findStyle, styleName: styleName, rightHand: rightHand, accompany: accompany, leftHand: leftHand, sliceEvents: sliceEvents, replaceRange: replaceRange,
     toMei: toMei, countLabel: countLabel, playList: playList};
 });

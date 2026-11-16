@@ -25,7 +25,7 @@
     <div class="pop" id="saveas">
       <button data-act="print">Print / PDF<small>what is on the page now</small></button>
       <button data-act="mei">Lead sheet<small>MEI, as the app's sheets</small></button>
-      <button data-act="pianomei" id="pianoMei">With the left hand<small>MEI, two staves</small></button>
+      <button data-act="pianomei" id="pianoMei">With the piano part<small>MEI, both hands</small></button>
       <button data-act="midi">MIDI<small>what is on the page now</small></button>
     </div>
   </div>
@@ -43,7 +43,7 @@
   <label>Tempo <input type="number" id="tempo" min="30" max="240"></label>
   <span class="grow"></span>
   <button data-act="counts" id="counts" class="toggle" title="Show or hide the beat counting under the notes">1 &amp; 2 &amp;</button>
-  <button data-act="lhshow" id="lhshow" class="toggle" title="Show or hide the left hand's staff">Left hand</button>
+  <button data-act="lhshow" id="lhshow" class="toggle" title="Show the piano part (the left hand's staff, the notes added to the right hand) or the lead sheet alone">Piano part</button>
   <span class="seg" title="Size of the sheet">
     <button data-act="zoomout">−</button><span id="zoomv">100%</span><button data-act="zoomin">+</button>
   </span>
@@ -52,7 +52,7 @@
 <div id="tools">
   <div class="tabs">
     <button data-mode="melody" title="Notes and words (F1)">Melody</button>
-    <button data-mode="chords" title="Chords and how the left hand plays them (F2)">Chords &amp; left hand</button>
+    <button data-mode="chords" title="Chords, and what both hands make of them (F2)">Chords &amp; piano</button>
   </div>
   <div class="toolset" id="noteTools">
     <div class="group" id="durs"><span>Length</span></div>
@@ -98,6 +98,23 @@
       </div>
       <div class="row mel-only" id="commentRow"><label for="comment">Comment</label><input type="text" id="comment" placeholder="e.g. sounds too high"></div>
       <div class="keys mel-only">Words: <kbd>Space</kbd> next note, <kbd>-</kbd> the word goes on, empty = held from the note before.</div>
+    </div>
+
+    <div class="card chords-only lead-only" id="rhCard">
+      <h2>Right hand <span id="rhState"></span></h2>
+      <div class="tabs small" id="rhAdd">
+        <button data-add="0" title="The melody as it is">Melody alone</button>
+        <button data-add="1" title="One note of the chord under the melody">Two notes</button>
+        <button data-add="2" title="Two notes of the chord under the melody">Three notes</button>
+      </div>
+      <div class="chips" id="rhOn">
+        <button data-on="chord" title="Only on the notes a chord starts on">Where a chord starts</button>
+        <button data-on="beat" title="On the notes that start on a beat, and on long ones">On the beat</button>
+        <button data-on="long" title="On the notes of two beats or more">Long notes</button>
+        <button data-on="all" title="On every note that has a chord over it">Every note</button>
+      </div>
+      <p class="tip" id="rhTip">The added notes come from the chord, under the melody, and are green on the sheet. On one note: a key of the keyboard below the melody adds or removes a note.</p>
+      <div class="row end" id="rhHandRow"><button data-act="rhauto" title="Forget what was set by hand on the chosen notes">These notes as the choice above says</button></div>
     </div>
 
     <div class="card chords-only" id="lhCard">
@@ -175,7 +192,7 @@
     <select id="speed" title="Speed of the playing"><option value="1">Full speed</option><option value="0.75">¾ speed</option><option value="0.5">½ speed</option></select>
     <span class="sep"></span>
     <button data-act="playMel" id="playMel" class="toggle" title="Play or mute the melody">Melody</button>
-    <button data-act="playCh" id="playCh" class="toggle" title="Play or mute the chords (the left hand, when the sheet has one)">Chords</button>
+    <button data-act="playCh" id="playCh" class="toggle" title="Play or mute the chords (the piano part, when the sheet has one)">Chords</button>
     <select id="tone" title="The sound: a piano, or an organ tone that shows every length"><option value="piano">Piano</option><option value="organ">Organ</option></select>
     <span class="grow"></span>
     <span id="where"></span>
@@ -195,7 +212,7 @@
         <p><kbd>Tab</kbd> next bar · <kbd>Shift Tab</kbd> the bar before · <kbd>Home</kbd> <kbd>End</kbd></p>
         <p><kbd>Space</kbd> play / stop · <kbd>L</kbd> loop · <kbd>M</kbd> click · <kbd>P</kbd> the recording from here</p>
         <p><kbd>Ctrl Z</kbd> undo · <kbd>Ctrl Y</kbd> redo · <kbd>Ctrl C</kbd> <kbd>X</kbd> <kbd>V</kbd> copy, cut, paste notes</p>
-        <p><kbd>F1</kbd> Melody · <kbd>F2</kbd> Chords &amp; left hand · <kbd>?</kbd> this page</p>
+        <p><kbd>F1</kbd> Melody · <kbd>F2</kbd> Chords &amp; piano · <kbd>?</kbd> this page</p>
       </div>
       <div>
         <h3>Melody (and a written-out left hand)</h3>
@@ -206,11 +223,12 @@
         <p><kbd>Enter</kbd> words: <kbd>Space</kbd> next note, <kbd>-</kbd> the word goes on · <kbd>H</kbd> chord</p>
       </div>
       <div>
-        <h3>Chords &amp; left hand</h3>
+        <h3>Chords &amp; piano</h3>
         <p><kbd>A</kbd>–<kbd>G</kbd> type a chord (then <kbd>m</kbd>, <kbd>7</kbd>, <kbd>/B</kbd> … and <kbd>Enter</kbd>)</p>
         <p><kbd>1</kbd>–<kbd>7</kbd> a chord of the key, as numbered on its buttons</p>
         <p><kbd>↑</kbd> <kbd>↓</kbd> the chord before, after · <kbd>Del</kbd> removes the chord</p>
         <p>On a written-out left hand: the Melody keys; <kbd>Shift</kbd> <kbd>A</kbd>–<kbd>G</kbd> adds a note to the chord</p>
+        <p>A key of the keyboard below the melody: a note added to the right hand, or taken away</p>
       </div>
     </div>
   </div>
