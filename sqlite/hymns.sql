@@ -18576,7 +18576,7 @@ INSERT INTO hymns VALUES('BF516',NULL,NULL,NULL,'If it is, Lord, Thy desire, the
 INSERT INTO hymns VALUES('BF517',NULL,NULL,NULL,'At that time two men will be in the field,','BF',NULL,NULL,NULL,'517',NULL,NULL,NULL,NULL,'Matthew 24:40-42,Matthew 25:1-13,',NULL,NULL);
 INSERT INTO hymns VALUES('BF518',NULL,NULL,NULL,'Come, leave foolish ways of trying to do good.','BF',NULL,NULL,NULL,'518',NULL,NULL,NULL,NULL,'Galatians 2:16,Galatians 2:19-21,Galatians 3:2-3,Galatians 3:18,Galatians 5:4-6,Galatians 6:18,Hebrews 10:19,Hebrews 12:24,Romans 5:10,',NULL,NULL);
 INSERT INTO hymns VALUES('BF519',NULL,NULL,NULL,'Why does it take us so long','BF',NULL,NULL,NULL,'519',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF520',NULL,NULL,NULL,'Defend me, O Lord,','BF',NULL,NULL,NULL,'520',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('BF520',NULL,NULL,NULL,'Defend me, O Lord,','BF','D Major',NULL,NULL,'520',NULL,'4/4','5513533432653432',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF557',NULL,NULL,NULL,'Beloved, now we are children of God,','BF','F Major',NULL,NULL,'557',NULL,NULL,NULL,NULL,'1 John 3:2,',NULL,NULL);
 INSERT INTO hymns VALUES('BF558',NULL,NULL,NULL,'Trust in the Lord with all of your heart,','BF','F Major',NULL,NULL,'558',NULL,NULL,NULL,NULL,'Proverbs 3:5-6,',NULL,NULL);
 INSERT INTO hymns VALUES('BF559',NULL,NULL,NULL,'Jesus Christ, Jesus Christ,','BF','Db Major',NULL,NULL,'559',NULL,NULL,NULL,NULL,'Revelation 1:5-6,','',NULL);
