@@ -2531,7 +2531,7 @@ INSERT INTO hymns VALUES('BF36','','',NULL,'I thank Thee, Lord, that Thou hast s
 INSERT INTO hymns VALUES('BF37','','',NULL,'Loved with everlasting love,','BF','G Major',NULL,NULL,'37',NULL,'4/4','51122366117655','E284',NULL,NULL,1);
 INSERT INTO hymns VALUES('BF38','','','I''M FOR THE LORD,','I''ve given up the world because','BF',NULL,NULL,NULL,'38',NULL,NULL,NULL,'NS224',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF39','','','OH, MAY A CLEAR, CONTROLLING VISION OF','God has called us for His purpose,','BF',NULL,NULL,NULL,'39',NULL,NULL,NULL,'NS28',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF40','','',NULL,'My Beloved says to me rise up','BF',NULL,NULL,NULL,'40',NULL,NULL,NULL,NULL,NULL,'',NULL);
+INSERT INTO hymns VALUES('BF40','','',NULL,'My Beloved says to me rise up','BF','B Major','Scriptures for Singing',NULL,'40',NULL,'4/4','3171217166432113',NULL,'Song of Songs 2:10-13,','',NULL);
 INSERT INTO hymns VALUES('BF41','','',NULL,'I am the Lord''s! O joy beyond expression,','BF',NULL,NULL,NULL,'41',NULL,NULL,NULL,'E433',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF42','','',NULL,'It is Jehovah''s loving kindness','BF',NULL,NULL,NULL,'42',NULL,NULL,NULL,'NS868',NULL,'',NULL);
 INSERT INTO hymns VALUES('BF43','','',NULL,'What a victory! What a triumph!','BF','Eb Major',NULL,NULL,'43',NULL,'4/4','321543213215565','E1174',NULL,NULL,1);
