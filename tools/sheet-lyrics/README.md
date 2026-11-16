@@ -6,6 +6,7 @@ This folder puts the French words under the notes, without making a second copy 
 ```
 python3 tools/sheet-lyrics/align.py            # all French hymns: writes app/src/main/assets/sheetLyrics/FR<n>.json and FRY<n>.json (French Youth) + review/
 python3 tools/sheet-lyrics/align.py FR10 FR16  # just these
+python3 tools/sheet-lyrics/check_fry_chords.py # rough score per FRY hymn: is the chord over the same word as in the PDF? flags hymns worse than master
 python3 tools/sheet-lyrics/fit_fry_chords.py   # align FRY<n> lyrics to chord placements from the French youth chord hymnal PDF in originals/
 python3 tools/sheet-lyrics/test_french.py      # checks of the syllable splitter
 ```
