@@ -125,6 +125,9 @@ A long note that crosses a bar line is still one note here: give it its whole le
 4. A note that carries on the syllable before it stays **empty**: just press Space on it.
 5. **Esc** leaves the box.
 
+The **Word** box is in the side panel in both ways of working; in Chords & left hand click into it (Enter there opens
+the chord box), and Space and `-` go on from note to note as above.
+
 **+ Verse** adds another line of words under the notes (stanza 2 under stanza 1); the card then has a box per verse.
 
 ### 7. Chords
