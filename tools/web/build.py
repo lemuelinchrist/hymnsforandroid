@@ -38,6 +38,7 @@ RES = os.path.join(ROOT, 'app', 'src', 'main', 'res')
 STRINGS = os.path.join(RES, 'values', 'strings.xml')
 APP_GRADLE = os.path.join(ROOT, 'app', 'build.gradle')
 RAW = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'raw')
+MUSIC = os.path.join(ROOT, 'tools', 'lead-sheet-editor', 'music.js')
 APP_ICON = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'drawable-xhdpi', 'icon.png')
 DIST = os.path.join(HERE, 'dist')
 
@@ -332,6 +333,8 @@ def main():
     os.makedirs(DIST)
     copy_tree(os.path.join(HERE, 'src'), DIST)
     copy_tree(os.path.join(HERE, 'vendor'), os.path.join(DIST, 'vendor'))
+    # the rules of the piano part ("Both hands") are the lead sheet editor's: one file for both
+    shutil.copyfile(MUSIC, os.path.join(DIST, 'music.js'))
 
     groups = read_groups()
     names = read_names()
@@ -357,7 +360,7 @@ def main():
     write(os.path.join(DIST, version['indexFile']), index)
     build_id = short_hash(json.dumps(version, sort_keys=True).encode() + b''.join(
         open(os.path.join(HERE, 'src', n), 'rb').read() for n in sorted(os.listdir(os.path.join(HERE, 'src')))
-    ) + json.dumps([groups, names], sort_keys=True).encode())
+    ) + open(MUSIC, 'rb').read() + json.dumps([groups, names], sort_keys=True).encode())
     version['build'] = build_id
     write(os.path.join(DIST, 'data', 'version.json'), json.dumps(version, indent=1).encode('utf-8'))
 

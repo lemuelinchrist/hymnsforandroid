@@ -3,11 +3,13 @@
 // guitar sheets are derived from the piano MEI (capo from the key, chords moved down by the capo, slash basses
 // dropped, a chord equal to the one before it removed), transposing goes through Verovio, and with the staff
 // hidden the chords are shown over the lyrics. A translation that borrows the sheet gets its own words under the notes
-// (sheetLyrics, applyLyrics below). Chord edits are kept on this device (edits.js).
+// (sheetLyrics, applyLyrics below). Chord edits are kept on this device (edits.js). With "Both hands" a piano part is
+// added to the piano sheet: a left hand made from the chords, notes of the chord under the melody (piano.js).
 import {version} from './db.js';
 import {fetchGzJson} from './files.js';
 import * as Edits from './edits.js';
 import {tr} from './i18n.js';
+import {addPiano} from './piano.js';
 
 const MEI_NS = 'http://www.music-encoding.org/ns/mei';
 const XML_NS = 'http://www.w3.org/XML/1998/namespace';
@@ -277,7 +279,9 @@ export class SheetView {
     this.credit = el('footer', 'sheet-credit');   // where the sheet is from, as in the Android viewer
     root.append(this.head, this.music, this.tail, this.verses, this.credit);
 
-    this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE, original: false};
+    this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE, original: false, hands: false};
+    this.piano = null;             // how the hands play when state.hands is on (piano.js: {lh, rh}); the app sets it
+    this.time = [4, 4];            // the sheet's time signature (of its first whole bar)
     this.editing = false;
     this.selected = null;          // the bar being edited
     this.bars = [];                // the bars of the sheet as the file has them (no edits)
@@ -383,6 +387,8 @@ export class SheetView {
   prepare() {
     const doc = parseXml(this.pristine);
     this.bars = scanBars(doc);
+    const whole = this.bars.find((b) => b.len >= b.count - 1e-6) || this.bars[0];
+    this.time = whole ? [whole.count, whole.unit] : [4, 4];
     // edits that are now in the sheet itself (sent in and put into the sheets): forget them on this device
     const baked = Object.entries(this.edits.bars).filter(([k, e]) => {
       const bar = this.bars[parseInt(k, 10) - 1];
@@ -449,7 +455,7 @@ export class SheetView {
       xml = tk.getMEI();
       tk.setOptions({transpose: ''});
     }
-    const doc = parseXml(xml);
+    let doc = parseXml(xml);
     const fifths = state.shift ? keyFifths(doc) : this.baseFifths;
     const tonic = TONIC[fifths + 7];
     this.steps = LETTERS.indexOf(tonic[0]) - LETTERS.indexOf(TONIC[this.baseFifths + 7][0]);
@@ -479,6 +485,18 @@ export class SheetView {
     this.capo.textContent = capoText;
     this.tail.textContent = tail ? tail.join('   ') : '';
     this.info = {tonic, minor: MINOR[fifths + 7], capo, fifths};
+
+    // both hands: the piano part is made for the sheet as it now is (this key, these chords), and only where there
+    // is a staff to read it from
+    this.handsShown = false;
+    if (state.hands && this.piano && !state.guitar && state.staff && !this.chordsOnly) {
+      try {
+        const both = doc.cloneNode(true), added = addPiano(both, this.piano);   // on a copy: all of it, or the sheet as it was
+        if (added.left + added.right > 0) { doc = both; this.handsShown = true; }
+      } catch (e) {
+        console.error('piano part', e);
+      }
+    }
 
     // ids the clicks can be traced back with: bar-<n> for the bars, chord-<n>-<beat> for the chords
     if (this.editing) {

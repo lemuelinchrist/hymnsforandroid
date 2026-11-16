@@ -47,7 +47,8 @@
   // What a chord symbol means: its root and bass, and its tones as [semitones above the root, letters above the root].
   function chordInfo(s) {
     var p = splitChord(s); if (!p || !p.root) return null;
-    var q = p.quality || '', r = mod12(PC[p.root] + accOf(p.acc));
+    var q = (p.quality || '').trim().replace(/°/g, 'dim').replace(/^\+/, 'aug').replace(/^M(?=7|9|11|13)/, 'maj');   // as the app's sheets print them
+    var r = mod12(PC[p.root] + accOf(p.acc));
     var minor = q.indexOf('m') === 0 && q.indexOf('maj') !== 0, dim = q.indexOf('dim') === 0;
     var third = q.indexOf('sus2') >= 0 ? [2, 1] : q.indexOf('sus') >= 0 ? [5, 3] : (minor || dim) ? [3, 2] : [4, 2];
     var fifth = (dim || q.indexOf('b5') >= 0) ? [6, 4] : (q.indexOf('aug') === 0 || q.indexOf('#5') >= 0 || q === '+') ? [8, 4] : [7, 4];
@@ -71,7 +72,9 @@
 
   // ---- the key
   function tonicPc(sheet) { var k = sheet.key || 'C'; return mod12(PC[k[0]] + accOf(k[1])); }
-  function fifths(sheet) { return FIFTHS[(tonicPc(sheet) + (sheet.mode === 'minor' ? 3 : 0)) % 12]; }
+  function fifths(sheet) {   // sharps (flats negative) of the key signature; a sheet that is not ours gives the number itself
+    return typeof sheet.fifths === 'number' ? sheet.fifths : FIFTHS[(tonicPc(sheet) + (sheet.mode === 'minor' ? 3 : 0)) % 12];
+  }
   function keyAlter(sheet) {   // the key signature: letter -> -1, 0, 1
     var f = fifths(sheet), a = {c: 0, d: 0, e: 0, f: 0, g: 0, a: 0, b: 0}, i;
     for (i = 0; i < f; i++) a['fcgdaeb'[i]] = 1;
@@ -207,15 +210,36 @@
       else if (rh && rh.add > 0 && chord) {
         var d = len(n), g = on[i] + off; for (var q = i + 1; tied(notes, q); q++) d += len(notes[q]);
         var want = rh.on === 'all' ? true : rh.on === 'chord' ? !!n.ch : rh.on === 'long' ? d >= 2 * beat : g % beat === 0 || d >= 2 * beat;
-        if (want) {
-          var pcs = chord.tones.map(function (t) { return mod12(chord.root + t[0]); }); ps = [];
-          for (var p = n.p - 3; p > n.p - 12 && p >= 53 && ps.length < rh.add; p--) if (pcs.indexOf(mod12(p)) >= 0) ps.push(p);
-        }
+        if (want) ps = fillUnder(n.p, chord, rh.add);
       }
       if (!ps || !ps.length) return null;
       any = true; return ps.slice().sort(function (a, b) { return a - b; });
     });
     return any ? out : null;
+  }
+  // the notes added under one melody note: the nearest `add` notes of the chord from a third below it down
+  function fillUnder(p, chord, add) {
+    var pcs = chord.tones.map(function (t) { return mod12(chord.root + t[0]); }), ps = [];
+    for (var q = p - 3; q > p - 12 && q >= 53 && ps.length < add; q--) if (pcs.indexOf(mod12(q)) >= 0) ps.push(q);
+    return ps.sort(function (a, b) { return a - b; });
+  }
+  // Chords at any place in their bars, moved onto the beat as chordSpans does: chords [{g, ch}] in order, bars
+  // [{g, len, beat}], sound [[from, to]] the melody's notes (tied ones as one) -> [{g, ch, info, end}]
+  function chordsOnBeat(chords, bars, sound, endG) {
+    var out = [];
+    chords.forEach(function (c) {
+      var k = 0; while (k < bars.length - 1 && bars[k + 1].g <= c.g + 1e-6) k++;
+      var beat = bars[k].beat, r = (c.g - bars[k].g) % beat, g = c.g;
+      if (r > 1e-6) {
+        var held = sound.some(function (m) { return Math.abs(m[0] - c.g) < 0.01 && m[1] > c.g - r + beat + 0.01; });
+        g = held ? c.g - r + beat : c.g - r;
+      }
+      g = Math.round(g);
+      if (out.length && g <= out[out.length - 1].g) { if (g < out[out.length - 1].g) g = out[out.length - 1].g; out.pop(); }
+      out.push({g: g, ch: c.ch, info: chordInfo(c.ch)});
+    });
+    out.forEach(function (x, i) { x.end = i + 1 < out.length ? out[i + 1].g : Math.max(endG, x.g); });
+    return out;
   }
 
   // ---- the left hand from the chords
@@ -337,6 +361,34 @@
       var sp = spanAt(g), until = n.lh['for'] === 'bar' ? (Math.floor(g / bar) + 1) * bar : n.lh['for'] === 'chord' && sp ? sp.end : Infinity;
       changes.push({g: g, end: until, a: n.lh, i: i});
     });
+    var bars = []; for (var b = 0; b < endG; b += bar) bars.push({g: b, len: bar});
+    var fills = rightHand(sheet), mel = [], last = -1;   // the right hand: the melody, or the lowest note added under it
+    notes.forEach(function (n, i) { if (!isRest(n)) mel.push([on[i] + off, on[i] + off + len(n), fills && fills[i] ? fills[i][0] : n.p]); });
+    for (var i = notes.length - 1; i >= 0; i--) if (!isRest(notes[i]) && !tied(notes, i)) { last = on[i] + off; break; }
+    var out = accompanyOn({bars: bars, first: first, chords: spans, mel: mel, last: last, base: base, changes: changes});
+    var events = [];
+    function push(p, d, ring) {
+      var prev = events[events.length - 1];
+      if (!p && prev && !prev.p) { prev.d += d; return; }
+      var e = {p: p, d: d}; if (ring) e.ring = ring; events.push(e);
+    }
+    if (first) push(null, first - off);   // the upbeat
+    out.events.forEach(function (e) { push(e.p, e.d, e.ring); });
+    return {events: events, marks: out.marks.map(function (m) { return {t: m.g - off, a: m.a, song: m.song}; }), changes: changes};
+  }
+  // The left hand over any music, bar by bar (accompany above gives it a lead sheet; the web app a sheet of the app). tl:
+  //   bars: [{g, len}]              every bar's start and length in sixteenths; g counts from the first bar line
+  //   first                         where the left hand may start: after an upbeat bar
+  //   chords: [{g, info, end}]      on the beat, in order; end is the next chord's g, or the end of the music
+  //   mel: [[from, to, pitch]]      the right hand's lowest note, in order of `from`
+  //   last                          g of the last note struck (its bar is one held chord), or -1
+  //   base, changes: [{g, end, a}]  the pattern of the whole, and the patterns that take over at g (until end)
+  // -> {events: [{g, d, p: [pitches] | null, ring}], marks: [{g, a, song}]}: in order from `first`, none over a bar line
+  function accompanyOn(tl) {
+    var bars = tl.bars, spans = tl.chords, changes = tl.changes || [], base = tl.base || null, first = tl.first || 0, mel = tl.mel;
+    var endG = bars.length ? bars[bars.length - 1].g + bars[bars.length - 1].len : 0;
+    function barAt(g) { var k = 0; while (k < bars.length - 1 && bars[k + 1].g <= g) k++; return k; }
+    function spanAt(g) { for (var k = spans.length - 1; k >= 0; k--) if (spans[k].g <= g) return g < spans[k].end ? spans[k] : null; return null; }
     function patAt(g) {
       var a = base;
       changes.forEach(function (c) { if (c.g <= g && c.end === Infinity) a = c.a; });
@@ -344,36 +396,26 @@
       return a;
     }
     var cuts = {}; cuts[first] = 1;
-    for (var b = first; b < endG; b += bar) cuts[b] = 1;
+    bars.forEach(function (b) { if (b.g > first && b.g < endG) cuts[b.g] = 1; });
     spans.forEach(function (s) { if (s.g > first && s.g < endG) cuts[s.g] = 1; });
     changes.forEach(function (c) { if (c.g > first && c.g < endG) cuts[c.g] = 1; if (c.end > first && c.end < endG) cuts[c.end] = 1; });
     var at = Object.keys(cuts).map(Number).sort(function (x, y) { return x - y; });
-    var fills = rightHand(sheet), mel = [];   // the right hand: the melody, or the lowest note added under it
-    notes.forEach(function (n, i) { if (!isRest(n)) mel.push([on[i] + off, on[i] + off + len(n), fills && fills[i] ? fills[i][0] : n.p]); });
-    function melLow(g, d) {   // the lowest melody note sounding in [g, g + d)
+    function melLow(g, d) {   // the lowest note of the right hand sounding in [g, g + d)
       var lo = Infinity;
       for (var k = 0; k < mel.length && mel[k][0] < g + d; k++) if (mel[k][1] > g) lo = Math.min(lo, mel[k][2]);
       return lo;
     }
-    var lastBar = -1;
-    for (var i = notes.length - 1; i >= 0; i--) if (!isRest(notes[i]) && !tied(notes, i)) { lastBar = Math.floor((on[i] + off) / bar); break; }
-    var events = [], marks = [], lastA = null;
-    function push(p, d, ring) {
-      var prev = events[events.length - 1];
-      if (p && !p.length) p = null;
-      if (!p && prev && !prev.p) { prev.d += d; return; }
-      var e = {p: p, d: d}; if (p && ring > d) e.ring = ring; events.push(e);
-    }
-    if (first) push(null, first - off);   // the upbeat
+    var lastBar = tl.last >= 0 ? barAt(tl.last) : -1, events = [], marks = [], lastA = null;
     at.forEach(function (a, k) {
       var z = k + 1 < at.length ? at[k + 1] : endG, sp = spanAt(a), acc = patAt(a), parts = acc ? parsePattern(acc.pat) : [];
-      if (acc !== lastA) { marks.push({t: a - off, a: acc, song: acc === base}); lastA = acc; }
-      if (!sp || !sp.info || !parts.length) { push(null, z - a); return; }
-      var barStart = Math.floor(a / bar) * bar, fresh = sp.g >= barStart || barStart === first && sp.g < first;
+      if (z <= a) return;
+      if (acc !== lastA) { marks.push({g: a, a: acc, song: acc === base}); lastA = acc; }
+      if (!sp || !sp.info || !parts.length) { events.push({g: a, d: z - a, p: null}); return; }
+      var bi = barAt(a), barStart = bars[bi].g, fresh = sp.g >= barStart || barStart === first && sp.g < first;
       var steps = parts[fresh ? 0 : Math.min(1, parts.length - 1)], rate = acc.rate | 0;
       // what is played when in this stretch: [{toks | null, g, d}]
       var plan = [];
-      if (acc.end !== false && rate && sp === spans[spans.length - 1] && Math.floor(a / bar) >= lastBar && lastBar >= 0) {
+      if (acc.end !== false && rate && sp === spans[spans.length - 1] && bi >= lastBar && lastBar >= 0) {
         var all = ['1', '5']; steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
         plan.push({toks: all, g: a, d: z - a});
       } else if (!rate) plan.push({toks: steps[0].toks || null, g: a, d: z - a});
@@ -399,10 +441,12 @@
       plan.forEach(function (st) {
         var o = [];
         (st.toks || []).forEach(function (t) { v[t].forEach(function (p) { p -= 12 * shift[layer(t)]; if (o.indexOf(p) < 0) o.push(p); }); });
-        push(st.toks ? o.sort(function (x, y) { return x - y; }) : null, st.d, acc.pedal && rate ? z - st.g : 0);
+        var e = {g: st.g, d: st.d, p: o.length ? o.sort(function (x, y) { return x - y; }) : null};
+        if (e.p && acc.pedal && rate && z - st.g > st.d) e.ring = z - st.g;
+        events.push(e);
       });
     });
-    return {events: events, marks: marks, changes: changes};
+    return {events: events, marks: marks};
   }
   // the left hand to draw and play: written out by hand (sheet.left), or made from the patterns
   function leftHand(sheet) {
@@ -458,7 +502,7 @@
         var d = DUR[it.v], attrs = ' xml:id="' + it.id + '" dur="' + d[0] + '"' + (d[1] ? ' dots="1"' : '');
         if (it.rest) layer += '<rest' + attrs + '/>';
         else {
-          var n = events[it.idx], ps = psOf(it.idx), many = ps.length > 1, chord = o.lead ? chordOf[it.idx] : spanAt(bi * bar + it.pos);
+          var n = events[it.idx], ps = psOf(it.idx), many = ps.length > 1, chord = o.lead ? chordOf[it.idx] : o.chordAt ? o.chordAt(it.pos) : spanAt(bi * bar + it.pos);
           var ids = piecesOf[it.idx], first = ids[0] === it.id, at = ids.indexOf(it.id), verses = '';
           if (first && o.lead && n.w) n.w.forEach(function (w, vi) {
             if (!w) return;
@@ -498,6 +542,19 @@
       });
       return {layer: layer, extra: extra};
     });
+  }
+  // One bar of the left hand as MEI, for a sheet that is not ours (the web app adds a staff to the app's sheets):
+  // o = {fifths, time: [count, unit], len (the bar's length in sixteenths), shift (how late an upbeat bar starts in a
+  // whole bar), events: [{p, d}] filling the bar, id (the prefix of the ids), chordAt(pos) -> the chord there, for
+  // the spelling} -> {layer, extra}
+  function barMei(o) {
+    var sheet = {fifths: o.fifths, time: o.time, pickup: 0, notes: []}, bar = barLen(sheet), pos = o.shift || 0, items = [];
+    o.events.forEach(function (e, idx) {
+      pieces(bar, pos, len(e)).forEach(function (v, part) {
+        items.push({id: o.id + idx + (part ? '_' + part : ''), idx: idx, v: v, pos: pos, rest: isRest(e)}); pos += v;
+      });
+    });
+    return voiceMei(sheet, [{len: o.len, items: items}], o.events, {chordAt: o.chordAt})[0];
   }
   // The sheet as MEI, in the form of the app's sheets. opt.right: the right hand's added notes (rightHand), drawn as
   // chords under the melody; opt.left: the left hand's events, for a second staff in the
@@ -591,6 +648,7 @@
     tonicPc: tonicPc, fifths: fifths, keyAlter: keyAlter, scalePcs: scalePcs, spell: spell, spellInChord: spellInChord, noteName: noteName, keyChords: keyChords,
     barLen: barLen, beatLen: beatLen, gridOff: gridOff, meter: meter, onsets: onsets, total: total, tied: tied, pieces: pieces, layout: layout,
     chordSpans: chordSpans, chordFit: chordFit, parsePattern: parsePattern, patternText: patternText, voicing: voicing, styles: styles,
-    findStyle: findStyle, styleName: styleName, rightHand: rightHand, accompany: accompany, leftHand: leftHand, sliceEvents: sliceEvents, replaceRange: replaceRange,
+    findStyle: findStyle, styleName: styleName, rightHand: rightHand, fillUnder: fillUnder, chordsOnBeat: chordsOnBeat,
+    accompany: accompany, accompanyOn: accompanyOn, barMei: barMei, leftHand: leftHand, sliceEvents: sliceEvents, replaceRange: replaceRange,
     toMei: toMei, countLabel: countLabel, playList: playList};
 });
