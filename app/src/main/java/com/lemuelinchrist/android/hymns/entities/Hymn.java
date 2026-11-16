@@ -160,9 +160,25 @@ public class Hymn {
         this.tune = tune;
     }
 
+    /** Returns the R.raw resource id for this hymn's melody, or 0 if no tune or no file exists. */
+    private int getMelodyResourceId() {
+        if (tune == null) return 0;
+        String code = tune.trim().toLowerCase(Locale.ROOT);
+        if (code.isEmpty() || code.equals("0")) return 0;
+        try {
+            return R.raw.class.getDeclaredField("m" + code).getInt(null);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            return 0;
+        }
+    }
+
+    /** Whether a melody file exists in R.raw for this hymn's tune (own or inherited). */
+    public boolean hasMelody() {
+        return getMelodyResourceId() != 0;
+    }
+
     /** Starts the melody; false when there is none (the "not available" toast is shown) or it could not start. */
     public boolean playHymn() {
-        Class<R.raw> rClass = R.raw.class;
         try {
 
             //	we don't want to play another thread while the song is still playing.
@@ -170,13 +186,13 @@ public class Hymn {
                 return true;
             }
 
-            if (tune == null || tune.equals("") || tune.equals("0")) {
+            int resId = getMelodyResourceId();
+            if (resId == 0) {
                 showNotAvailableToast();
                 return false;
             }
 
-            Field field = rClass.getDeclaredField("m" + tune.toLowerCase());
-            mp = MediaPlayer.create(context, field.getInt(null));
+            mp = MediaPlayer.create(context, resId);
             if (mp == null) {
                 // the file exists but cannot be decoded (an empty or broken MIDI)
                 showNotAvailableToast();
@@ -186,10 +202,6 @@ public class Hymn {
             mp.setLooping(true);
             mp.start();
             return true;
-
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-            showNotAvailableToast();
 
         } catch (Exception e) {
             Log.e(this.getClass().getName(),String.valueOf(e.getMessage()));
@@ -319,8 +331,14 @@ public class Hymn {
     }
 
     public boolean hasOwnSheetMusic() {
+        return hasSheetMusic(hymnId);
+    }
+
+    /** Whether sheet music ships for the given hymn ID (`assets/sheetMei/<id>.mei`). */
+    public boolean hasSheetMusic(String id) {
+        if (id == null || id.isEmpty()) return false;
         // sheet music ships as one MEI file per hymn (assets/sheetMei/<hymnId>.mei)
-        try (InputStream ignored = context.getAssets().open("sheetMei/" + hymnId + ".mei")) {
+        try (InputStream ignored = context.getAssets().open("sheetMei/" + id + ".mei")) {
             return true;
         } catch (IOException e) {
             return false;

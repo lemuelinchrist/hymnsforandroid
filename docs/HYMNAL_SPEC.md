@@ -458,12 +458,12 @@ Toggle. Filled heart when the hymn is in Favorites. Stored as in §8.4.
   hymns with a tune had a file (2026-10). Since hymnal.net serves no MIDI any more, MIDI for newer songs is generated from our own sheet by `tools/hymn-midi` (melody as written, generated left hand; 60 files on 2026-11-12). A song transcribed from a recording (BF473) has a tune code made from its own melody: the scale degrees (1-7, relative to its key) of its first 16 notes. Translations get the tune from their parent (§5.1), so they play too.
 - Plays **looped** until stopped. Only one hymn plays at a time. Playback stops when the page changes, the app is
   paused, or the button is tapped again. Icon toggles ▶ / ❚❚.
-- No tune, tune `0`, or no file → toast "Sorry! hymn not available".
+- Hidden when the hymn has no melody file (no tune, tune `0`, or no `res/raw/m<tune>` file). `playHymn()` still shows "Sorry! hymn not available" if called without a file or if playback fails.
 
 ### 7.3 Sheet music
 
-Resolve the sheet (§11.1). If none → toast "Sorry! sheet music not available". Otherwise open the viewer with
-`id=<sheet hymn id>` and `lyrics=<this hymn id>`.
+Resolve the sheet (§11.1). Hidden when none; otherwise open the viewer with
+`id=<sheet hymn id>` and `lyrics=<this hymn id>`. (`SheetMusicActivity` still shows "Sorry! sheet music not available" if the sheet cannot be opened.)
 
 ### 7.4 YouTube (optional; Settings → YouTube Button, a switch, off by default)
 

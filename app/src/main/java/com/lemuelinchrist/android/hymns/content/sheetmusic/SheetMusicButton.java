@@ -7,7 +7,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.content.ContentComponent;
-import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
 /**
@@ -15,10 +14,14 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
  * @since 22/2/2020
  */
 public class SheetMusicButton extends ContentComponent<ImageButton> {
-    private static HymnsDao hymnsDao = null;
+    private final String sheetMusicId;
 
     public SheetMusicButton(final Hymn hymn, Fragment parentFragment, ImageButton imageButton) {
         super(hymn,parentFragment,imageButton);
+        sheetMusicId = getRootMusicSheet();
+        if (sheetMusicId == null) {
+            imageButton.setVisibility(View.GONE);
+        }
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,8 +32,6 @@ public class SheetMusicButton extends ContentComponent<ImageButton> {
     }
 
     public void launchSheetMusic() {
-        String sheetMusicId = getRootMusicSheet();
-
         if (sheetMusicId != null) {
             Intent intent = new Intent(context, SheetMusicActivity.class);
             intent.putExtra("selectedHymnId", sheetMusicId);
@@ -47,16 +48,8 @@ public class SheetMusicButton extends ContentComponent<ImageButton> {
         if (hymn.hasOwnSheetMusic()) {
             return hymn.getHymnId();
 
-        } else if (!hymn.hasOwnTune() && hymn.getParentHymn() != null && !hymn.getParentHymn().isEmpty()) {
-            if (hymnsDao == null) {
-                hymnsDao = new HymnsDao(context);
-            }
-            hymnsDao.open();
-            Hymn parentHymn = hymnsDao.get(hymn.getParentHymn());
-            hymnsDao.close();
-            if (parentHymn.hasOwnSheetMusic()) {
-                return parentHymn.getHymnId();
-            }
+        } else if (!hymn.hasOwnTune() && hymn.hasSheetMusic(hymn.getParentHymn())) {
+            return hymn.getParentHymn();
         }
         return null;
     }

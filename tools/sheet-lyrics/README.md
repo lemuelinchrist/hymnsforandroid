@@ -6,6 +6,8 @@ This folder puts the French words under the notes, without making a second copy 
 ```
 python3 tools/sheet-lyrics/align.py            # all French hymns: writes app/src/main/assets/sheetLyrics/FR<n>.json and FRY<n>.json (French Youth) + review/
 python3 tools/sheet-lyrics/align.py FR10 FR16  # just these
+python3 tools/sheet-lyrics/check_fry_chords.py # rough score per FRY hymn: is the chord over the same word as in the PDF? flags hymns worse than master
+python3 tools/sheet-lyrics/fit_fry_chords.py   # align FRY<n> lyrics to chord placements from the French youth chord hymnal PDF in originals/
 python3 tools/sheet-lyrics/test_french.py      # checks of the syllable splitter
 ```
 
@@ -44,4 +46,4 @@ database. Syllables are joined by `-`, a hyphen that really belongs to the word 
 ends with `_`, two syllables sung on one note are joined with `‿`, and a word that goes on in the next line ends with `-`.
 Every phrase line must use exactly as many notes as the English phrase above it has. When the override puts lines of other French stanzas under the notes (the French book splits the song differently), a line `@sung 2 3` names them, so they are not printed again below the staff. When one French stanza holds more verses than the notes take, the rest goes in a block `== +2.` (plain lines), shown below the staff as verse 2. When a sheet has the same label twice with different music (two choruses), `== (C)#2` is the second one.
 
-`check` in the report means the French fits the notes but its lines do not end where the English phrases end. `hand` means the hymn was fitted by hand in `overrides/` (all 77 that the code could not fit were done that way in v5.9, to be checked by a French speaker; `review/INDEX.md` lists them).
+`check` in the report means the French fits the notes but its lines do not end where the English phrases end. `hand` means the hymn was fitted in `overrides/` (`review/INDEX.md` lists them). For `FRY` (`Cantique des jeunes`), `fit_fry_chords.py` uses the chord placements in the contributor chord PDF (in the git-ignored `originals/` folder) as transposition-invariant anchors against each parent MEI sheet's `<harm>` chords, fits French syllables between chord anchors via `align.py`'s French readings, and writes the resulting `overrides/FRY<n>.txt` files so subsequent `align.py` runs keep the chord alignment without needing the PDF.

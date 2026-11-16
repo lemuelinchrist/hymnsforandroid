@@ -64,7 +64,7 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
         -   `LyricsArea`: the header (category, meter, time, key, tune, verses (as links), author, composer) and the stanzas, including chorus repetition and the two-column layout in landscape (`layout-land/` and `layout-w720dp/stanza_linear_layout.xml`). Colours come from the theme's attributes (the layouts), `style/BookColors` and `style/HymnTextFormatter`; the font from `style/ScriptFont` (Noto Nastaliq Urdu, `res/font/`, for Urdu; the search lists use it too).
         -   `OtherLanguagesSection`: the "OTHER LANGUAGES" number grid under the subject (foldable; the setting `otherLanguagesFolded` is kept for every hymn).
         -   `LinksSection`: the "LISTEN AND LINKS" card at the bottom, built from the `link` table in sections (Recordings, Piano videos, New tunes) of rows (cards in a grid from 600 dp, `R.integer.links_columns`), each with the publisher and the album (`entities/Recording`, `HymnsDao.getRecordings`); a section shows 3 links and "Show N more"; the card hides itself when it has nothing.
-        -   The button bar: `FaveButton`, `PlayButton` (loops `res/raw/m<tune>.mid`), `sheetmusic/SheetMusicButton`, `YoutubeButton` (with `YouTubeSearchLauncher`), `SimilarTuneButton`, `ShareButton` (share the lyrics or a web app link, or copy the lyrics). Each button logs the hymn to history when tapped.
+        -   The button bar: `FaveButton`, `PlayButton` (loops `res/raw/m<tune>.mid`, hidden when the hymn has no melody file), `sheetmusic/SheetMusicButton` (hidden when no sheet resolves), `YoutubeButton` (with `YouTubeSearchLauncher`), `SimilarTuneButton`, `ShareButton` (share the lyrics or a web app link, or copy the lyrics). Each button logs the hymn to history when tapped.
     -   Fires the `onLyricVisible` event when it becomes visible to the user, signaling a page change.
 
 ### 5. `HymnsDao.java` (package `dao`)
@@ -80,7 +80,7 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
 -   **Role:** Data Entities.
 -   **Responsibilities:**
     -   Model the data from the `hymns` and `stanza` tables.
-    -   `Hymn` also holds a few helpers: the related-hymn set (`addRelated`, `getRelatedHymnOf`), chorus/stanza counts, whether a sheet exists (`hasOwnSheetMusic` checks `assets/sheetMei/<id>.mei`), and melody playback (`playHymn`/`stopHymn` with `MediaPlayer`).
+    -   `Hymn` also holds a few helpers: the related-hymn set (`addRelated`, `getRelatedHymnOf`), chorus/stanza counts, whether a sheet exists (`hasOwnSheetMusic` checks `assets/sheetMei/<id>.mei`), whether a melody exists (`hasMelody` checks `res/raw/m<tune>`), and melody playback (`playHymn`/`stopHymn` with `MediaPlayer`).
 
 ### 7. `SearchActivity.java` (package `search`)
 -   **Role:** The Index / Search screen.
