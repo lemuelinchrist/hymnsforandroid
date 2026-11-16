@@ -1,5 +1,6 @@
 // The chord editor: a panel at the bottom of the screen, opened by "Edit chords" on the piano sheet.
-// Pick a bar (tap it on the sheet), a beat in the strip, then build the chord from buttons or type it.
+// Pick a bar (tap it on the sheet), a beat in the strip, then take a chord of the key (the buttons numbered 1 to 7, or
+// those keys; a line under one says it holds the melody there), build one from buttons or type it.
 // Every change goes through SheetView.setBar(), which redraws the sheet and saves it on this device.
 
 import {splitChord} from './sheet.js';
@@ -61,6 +62,7 @@ export function createEditor(view, {onclose}) {
 
   const strip = el('div', 'ce-beats', null, {role: 'group', 'aria-label': tr('Beats')});
   const build = el('div', 'ce-build');
+  const keyRow = el('div', 'ce-row ce-key');
   const rootRow = el('div', 'ce-row');
   const qualRow = el('div', 'ce-row scroll');
   const bassRow = el('div', 'ce-row');
@@ -69,7 +71,7 @@ export function createEditor(view, {onclose}) {
     placeholder: tr('Chord'), 'aria-label': tr('Chord'), enterkeyhint: 'done'});
   const bClear = el('button', 'ce-btn', tr('Remove chord'), {type: 'button'});
   textRow.append(input, bClear);
-  build.append(rootRow, qualRow, bassRow);
+  build.append(keyRow, rootRow, qualRow, bassRow);
   root.append(top, stale, strip, build);
 
   const btn = (label, onclick, cls = '') => {
@@ -89,6 +91,20 @@ export function createEditor(view, {onclose}) {
   const bassSharp = btn('♯', () => edit((p) => { if (p.bass) p.bassAcc = p.bassAcc === '♯' ? '' : '♯'; }), 'note');
   bassRow.append(el('span', 'ce-label', tr('Bass')), bassNone, ...bassBtns, bassFlat, bassSharp);
 
+  // the chords of the key the sheet is shown in, in the order of their numbers: I ii iii IV V vi V7 (in a minor key
+  // i III iv v V V7 VI VII). Minor when the sheet ends on the minor chord of its key signature.
+  function keyChords() {
+    const M = window.LeadSheet, info = view.info || {};
+    if (!M || !info.tonic) return [];
+    let last = '';
+    for (let n = view.bars.length; n >= 1 && !last; n--) { const cs = view.chordsOf(n); if (cs.length) last = cs[cs.length - 1][1]; }
+    const minor = !!info.minor && last.startsWith(info.minor) && /^m(?!aj)/.test(last.slice(info.minor.length));
+    const ascii = (minor ? info.minor : info.tonic).replace('♭', 'b').replace('♯', '#');
+    const k = M.keyChords({key: ascii, mode: minor ? 'minor' : 'major'});
+    return (minor ? k : [k[0], k[1], k[2], k[3], k[4], k[6], k[5]]).map((c) => c.replace(/^([A-G])b/, '$1♭').replace(/^([A-G])#/, '$1♯'));
+  }
+  let inKey = [];
+
   function chordAt(t) {
     const c = view.chordsOf(bar).find(([x]) => Math.abs(x - t) < 1e-3);
     return c ? c[1] : '';
@@ -107,6 +123,15 @@ export function createEditor(view, {onclose}) {
     setChord(beat, compose(p));
   }
 
+  // 1 to 7 put the chord of the key with that number on the chosen beat
+  const onKey = (e) => {
+    if (root.hidden || bar == null || e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    const c = /^[1-8]$/.test(e.key) && inKey[parseInt(e.key, 10) - 1];
+    if (!c) return;
+    e.preventDefault(); e.stopPropagation();
+    setChord(beat, c);
+  };
+  document.addEventListener('keydown', onKey, true);
   input.addEventListener('change', () => { if (bar != null) setChord(beat, cleanChord(input.value)); });
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') input.blur(); });
   bClear.addEventListener('click', () => setChord(beat, ''));
@@ -158,6 +183,16 @@ export function createEditor(view, {onclose}) {
       strip.appendChild(b);
     });
     const cur = chordAt(beat);
+    inKey = keyChords();
+    const fits = view.fit(bar, beat, inKey);
+    keyRow.textContent = '';
+    keyRow.hidden = !inKey.length;
+    keyRow.append(el('span', 'ce-label', tr('In key')), ...inKey.map((c, i) => {
+      const b = el('button', 'ce-btn note' + (fits[i] >= 0.8 ? ' fit' : fits[i] >= 0.5 ? ' fit half' : ''), null, {type: 'button', 'aria-pressed': String(cur === c)});
+      b.append(el('sup', null, String(i + 1)), c);
+      b.addEventListener('click', () => setChord(beat, cur === c ? '' : c));
+      return b;
+    }));
     const p = splitChord(cur) || {root: '', acc: '', quality: '', bass: '', bassAcc: ''};
     ROOTS.forEach((r, i) => { rootBtns[i].setAttribute('aria-pressed', String(p.root === r)); bassBtns[i].setAttribute('aria-pressed', String(p.bass === r)); });
     flat.setAttribute('aria-pressed', String(p.acc === '♭')); sharp.setAttribute('aria-pressed', String(p.acc === '♯'));
@@ -206,6 +241,6 @@ export function createEditor(view, {onclose}) {
       bar = null;
     },
     refresh() { if (!root.hidden) refresh(); },
-    destroy() { ro.disconnect(); root.remove(); document.body.classList.remove('editing-chords'); document.body.style.removeProperty('--editor-h'); },
+    destroy() { ro.disconnect(); document.removeEventListener('keydown', onKey, true); root.remove(); document.body.classList.remove('editing-chords'); document.body.style.removeProperty('--editor-h'); },
   };
 }

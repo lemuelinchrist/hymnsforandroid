@@ -1,7 +1,8 @@
 # Hymns web app (PWA)
 
 The hymns of the Android app as a web app that installs on a phone or tablet and works offline: lyrics in every
-hymnal, search, favorites, each hymn's tune (Play), and the sheet music viewer (piano / guitar, transpose, chords over lyrics, chord editing).
+hymnal, search, favorites, each hymn's tune (Play), and the sheet music viewer (piano / guitar, transpose, chords over lyrics, chord editing,
+a piano part for both hands made from the chords).
 It is the app for iPhone and iPad users, published on GitHub Pages. Design notes: [SPEC.md](SPEC.md).
 
 Everything comes from the Android app's files (`sqlite/hymns.sql` via `hymns.sqlite`, `app/src/main/assets/sheetMei`,
@@ -55,9 +56,36 @@ The names of the books and a new person's first book are read by `build.py` from
 (`app/src/main/res/values-*/strings.xml`), so adding a language there needs a language in `i18n.js` and `strings.js` too.
 A new text: use `tr('English text')` and add its four translations to `strings.js`.
 
+## Both hands
+
+A hymn's sheet is a lead sheet: the melody, the words, the chords. **Both hands** (or `B`) on the piano sheet makes a
+piano part of it: a second staff with a left hand made from the chords, and, if chosen, notes of the chord under the
+melody. Nothing of it is in the sheet files: it is worked out for the sheet as it is shown, so it follows the key
+(transposing) and this device's chord edits, and every hymn that has chords has it.
+
+**Style** (shown while Both hands is on) chooses how the hands play:
+
+- **Left hand**: none, **Strike** (two notes, three notes, open, or the hymn style: root and fifth where the chord
+  starts, third and fifth higher up in the bars it lasts; held, twice a bar or every beat), **Bass + chord** (by the
+  time signature: root and fifth, a waltz ...), **Arpeggio** (open, wide, broken chord, Alberti, rise and hold; in
+  quarters, eighths or sixteenths); an octave **Lower** or **Higher**; **Pedal**.
+- **Right hand**: the melody alone, or two or three notes: where a chord starts, on the beat, on long notes or on
+  every note.
+
+The choice is the device's, for every hymn (Both hands stays on from hymn to hymn, like the zoom); **Only this hymn**
+keeps a choice for one hymn alone. A style is kept by its name, not its notes, so the same arpeggio fits 4/4, 3/4 and 6/8.
+
+The rules are the lead sheet editor's (`tools/lead-sheet-editor/music.js`, which `build.py` copies into the app; its
+README says what a pattern is): the upbeat bar stays empty, a pattern starts again with every chord and every bar, the
+left hand moves on the beat and stays under the right hand, the last bar is one held chord. `src/piano.js` reads the
+bars, the chords and the melody of a sheet and writes the second staff and the added notes into the MEI before Verovio
+draws it. It is not there on the guitar sheet, with the staff hidden, or on a chords-only sheet.
+
 ## Chord edits
 
-On a piano sheet, **Edit chords** (or `E`): tap a bar, pick a beat (half beats too), build or type the chord.
+On a piano sheet, **Edit chords** (or `E`): tap a bar, pick a beat (half beats too), then take a chord of the key
+(the buttons numbered 1 to 7, or those keys; a green line under one says it holds the melody from that beat to the
+bar's next chord), build one from the buttons, or type it. With Both hands on, the left hand follows as the chords change.
 Changed chords are red; **Original chords** (`O`) hides them. Edits are stored in the original key, so transposing,
 the guitar sheet and the chords-over-lyrics view use them.
 
@@ -93,6 +121,7 @@ under an edit.
 node tools/web/tests/e2e.cjs                 # 63 checks in Chromium: search, hymns, sheets, tunes, Android behaviour, offline, phone
 node tools/web/tests/e2e.cjs --sheets 300    # also renders 300 random sheets in four modes each (--sheets all: every one)
 node tools/web/tests/edit.cjs                # 12 checks of the chord editor, saving, export and import
+node tools/web/tests/piano.cjs               # Both hands: 5 checks of the buttons and the panel, then every 12th sheet in five styles (--all: every sheet)
 node tools/web/tests/scripture.cjs          # 10 checks of the Bible references as links (src/scripture.js), also on every reference in the database
 ```
 
@@ -108,6 +137,7 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/sheet.js` | the sheet viewer (ported from the app's `assets/viewer/viewer.js`), translated words, chord edits |
 | `src/player.js` | Play: reads the app's MIDI files (`res/raw/m<tune>.mid`) and plays them looped with a small Web Audio piano |
 | `src/editor.js`, `src/edits.js` | the chord editor panel; edits on the device, export and import |
+| `src/piano.js`, `src/pianopanel.js` | Both hands: the piano part written into a sheet's MEI; the Style panel. The rules are `music.js`, copied by `build.py` from `tools/lead-sheet-editor/` |
 | `src/files.js` | fetching and unpacking the gzipped data files |
 | `src/groups.js` | the hymnals; `build.py` fills them in from `HymnGroup.java` |
 | `src/sw.js`, `src/manifest.webmanifest` | service worker (offline) and install manifest; `build.py` writes the file lists in |

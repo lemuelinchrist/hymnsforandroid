@@ -916,6 +916,19 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
 Full algorithm: `app/src/main/assets/viewer/viewer.js` (~800 lines, no dependencies besides Verovio; the chord
 editor's panel is `editor.js`).
 
+#### 11.3.1 Both hands (the web app; Android to follow)
+
+The sheets are lead sheets. The web app can show a piano part with them (**Both hands**, with **Style**): a left hand
+on a second staff (bass clef, in a brace with the first), made from the chords by a pattern (struck chords, bass and
+chord, arpeggios), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
+made when the sheet is shown, from the sheet as shown (after transposing and after the device's chord edits), and
+written into the MEI before Verovio draws it; the sheet files have none of it. It is only on the piano sheet with the
+staff shown. The choice is kept on the device, for every hymn or for one hymn alone, by the name of the style, so that
+it fits every time signature. The rules (the upbeat bar stays empty; a pattern starts again with every chord and bar;
+chords are moved onto the beat for the left hand; the left hand stays under the right; the last bar is one held chord)
+and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,
+`tools/web/src/piano.js` reads a sheet's bars, chords and melody for it. A native app can run the same file.
+
 ### 11.4 MEI files: what the viewer relies on
 
 One file per hymn, MEI 5.0, generated from LilyPond sources by `tools/svg-to-lilypond/tools/ly_to_mei.py`.

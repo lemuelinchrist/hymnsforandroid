@@ -535,9 +535,18 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 .sheet-music g.bar-selected g.harm text { font-weight: 700; }
 body.editing-chords #view, body.piano-open #view { padding-bottom: calc(var(--editor-h, 280px) + 16px); }
 /* "Style": how the two hands play (pianopanel.js), in the chord editor's clothes */
-.piano-panel .ce-row { margin-bottom: 6px; }
+.piano-panel .ce-row { margin-bottom: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }   /* a row is one line: it scrolls sideways on a phone, so the sheet stays in view */
+.piano-panel .ce-row::-webkit-scrollbar { display: none; }
+.piano-panel .ce-row .ce-btn { flex: none; }
+@media (max-width: 700px) {
+  .piano-panel { padding-top: 8px; }
+  .piano-panel .ce-top { margin-bottom: 6px; }
+  .piano-panel .ce-row { margin-bottom: 4px; }
+  .piano-panel .ce-btn { height: 34px; min-width: 0; padding: 0 10px; font-size: 14px; }
+  .piano-panel .ce-label { width: 4.8em; font-size: 11px; }
+}
 .piano-panel .ce-row[hidden] { display: none; }
-.piano-panel .ce-label { width: 5.2em; }
+.piano-panel .ce-label { width: 6em; white-space: nowrap; }
 .piano-panel .ce-title { text-align: left; }
 .piano-panel .ce-gap { width: 12px; flex: none; }
 body.piano-open .swap-back { display: none; }
@@ -588,6 +597,13 @@ body.piano-open .swap-back { display: none; }
 .ce-label { width: 3.2em; flex: none; font-size: 12px; color: var(--muted); }
 .ce-input { flex: 1; min-width: 0; height: 42px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); color: var(--ink); font: 600 18px var(--ui); }
 .chord-editor.no-bar .ce-build, .chord-editor.no-bar .ce-beats { display: none; }
+/* the chords of the key: their number, and a line under the ones that hold the melody at the chosen beat */
+.ce-key[hidden] { display: none; }
+.ce-key .ce-btn { position: relative; min-width: 52px; padding: 0 8px 0 16px; }
+.ce-key .ce-btn sup { position: absolute; left: 5px; top: 3px; font: 10px var(--ui); color: var(--muted); }
+.ce-key .ce-btn[aria-pressed="true"] sup { color: inherit; }
+.ce-key .ce-btn.fit { box-shadow: inset 0 -3px 0 #2e7d32; }
+.ce-key .ce-btn.fit.half { box-shadow: inset 0 -2px 0 rgba(46, 125, 50, .45); }
 @media (max-width: 600px) {
   .ce-btn { min-width: 38px; height: 40px; padding: 0 8px; font-size: 15px; }
   .ce-btn.note { min-width: 34px; }

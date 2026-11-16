@@ -190,6 +190,14 @@ function el(tag, cls, text) {
 function scanBars(doc) {
   const bars = [];
   let unit = 4, count = 4;
+  // each note's pitch class too (by its own accidental, else the key's: enough for the editor's hint of which chords fit)
+  const fifths = keyFifths(doc), sharp = 'FCGDAEB'.slice(0, Math.max(0, fifths)), flat = 'BEADGCF'.slice(0, Math.max(0, -fifths));
+  const pcOf = (c) => {
+    const l = (c.getAttribute('pname') || '').toUpperCase(), a = c.getAttribute('accid') || c.getAttribute('accid.ges');
+    if (!(l in NAT)) return null;
+    const alt = a ? ({s: 1, f: -1, n: 0, x: 2, ss: 2, ff: -2}[a] || 0) : sharp.includes(l) ? 1 : flat.includes(l) ? -1 : 0;
+    return ((NAT[l] + alt) % 12 + 12) % 12;
+  };
   const scanBar = (m) => {
     const bar = {el: m, unit, count, events: [], len: 0};
     const walk = (e, start, factor) => {
@@ -198,8 +206,9 @@ function scanBars(doc) {
         const name = c.localName;
         if (name === 'note' || name === 'rest' || name === 'space') {
           const dur = parseInt(c.getAttribute('dur') || '4', 10), dots = parseInt(c.getAttribute('dots') || '0', 10);
-          bar.events.push({id: xmlId(c), onset});
-          onset += unit / dur * (2 - Math.pow(0.5, dots)) * factor;
+          const len = unit / dur * (2 - Math.pow(0.5, dots)) * factor;
+          bar.events.push({id: xmlId(c), onset, len, pc: name === 'note' ? pcOf(c) : null});
+          onset += len;
         } else if (name === 'tuplet') {
           onset = walk(c, onset, factor * parseInt(c.getAttribute('numbase') || '2', 10) / parseInt(c.getAttribute('num') || '3', 10));
         } else if (name === 'beam') {
@@ -584,6 +593,28 @@ export class SheetView {
     beats.sort((a, b2) => a - b2);
     return {count: this.bars.length, beats: beats.map((t) => Math.round(t * 1000) / 1000),
       notes: b.events.map((ev) => ev.onset), edited: !!this.edits.bars[bar]};
+  }
+
+  // how much of the melody from a beat of a bar to the bar's next chord (or its end) each chord holds: 0..1 each.
+  // `chords` are in the key being shown; a hint for the editor's chords of the key.
+  fit(bar, beat, chords) {
+    const b = this.bars[bar - 1], M = window.LeadSheet;
+    if (!b || !M) return chords.map(() => 0);
+    const next = this.chordsOf(bar).map(([t]) => t).filter((t) => t > beat + 1e-3).sort((x, y) => x - y)[0] || Infinity;
+    const w = {};
+    let sum = 0;
+    b.events.forEach((ev) => {
+      if (ev.pc == null || ev.onset < beat - 1e-3 || ev.onset >= next - 1e-3) return;
+      const pc = ((ev.pc + this.state.shift) % 12 + 12) % 12;
+      w[pc] = (w[pc] || 0) + ev.len; sum += ev.len;
+    });
+    return chords.map((ch) => {
+      const c = M.chordInfo(ch);
+      if (!c || !sum) return 0;
+      let hit = 0;
+      c.tones.forEach((t) => { hit += w[(c.root + t[0]) % 12] || 0; });
+      return hit / sum;
+    });
   }
 
   toShown(chord) { return this.state.shift ? moveChord(chord, this.steps, this.state.shift, true) : chord; }

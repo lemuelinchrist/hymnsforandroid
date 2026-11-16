@@ -27,7 +27,7 @@ export function pattern(lh, time) {
   const fam = styles(time).find((f) => f.id === lh.family);
   if (!fam) return null;
   const kind = fam.kinds.find((k) => k.id === lh.kind) || fam.kinds[0];
-  const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms[Math.min(fam.id === 'arp' ? 1 : 0, kind.rhythms.length - 1)];
+  const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
   return {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
 }

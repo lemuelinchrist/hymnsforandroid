@@ -120,11 +120,12 @@ the URL (`?v=guitar&t=2&staff=0`), so a link opens the same view.
 | Piano / Guitar | Guitar derives the capo from the key (capo shown above the music), moves chords down by the capo and drops slash basses. This is the same rule as the app. |
 | − Key + | Transposes by a semitone, from −6 to +6. Verovio moves notes, key signature and chord symbols, and the label shows the new key. |
 | Hide / Show staff | Hides the staff and shows chords over the lyrics, reflowed to the width. |
+| Both hands, Style | A piano part made from the chords: a left hand on a second staff and, if chosen, notes of the chord under the melody; Style chooses how the hands play (README, "Both hands"). Only on the piano sheet with the staff shown. |
 | Zoom − / + | The sheet's size (Verovio scale 20–90), remembered. |
 | Reset | Appears after a change and returns to the original key and size. Clicking the key label also returns to the original key. |
 | ⤢ | The sheet-only view (`#/sheet/E8`). |
 
-Piano/guitar, the staff and the zoom are remembered between hymns. Transposition is per hymn and is kept only
+Piano/guitar, the staff, the zoom and Both hands (with its style) are remembered between hymns. Transposition is per hymn and is kept only
 in the URL. (The app opens guitar sheets with the staff hidden. Here the last choice wins, since the web app
 has no separate default-sheet setting.)
 

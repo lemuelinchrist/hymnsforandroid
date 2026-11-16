@@ -322,7 +322,7 @@
       $('lhPat').focus(); $('lhPat').select(); return;
     }
     var fam = M.styles(sheet).filter(function (x) { return x.id === id; })[0], kind = fam.kinds[0];
-    applyStyle(fam, kind, kind.rhythms[id === 'arp' && kind.rhythms.length > 1 ? 1 : 0]);
+    applyStyle(fam, kind, kind.rhythms.filter(function (r) { return r.id === '8'; })[0] || kind.rhythms[0]);   // an arpeggio starts in eighths
   }
   function tweak(fn) {   // change one thing of the pattern shown
     var cur = target() || inEffect(); if (!cur) return;

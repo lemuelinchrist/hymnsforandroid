@@ -252,7 +252,8 @@ One MEI file can hold both kinds of sheet: the lead sheet is the piano sheet wit
 notes, and everything else (bars, words, chords, ids) is the same in both. **The app's viewer does not know a second
 staff yet** (its chords-over-words view and its chord editor read every staff as the melody), so `piano.mei` does not
 go into `sheetMei/` until the viewer has a way to leave the piano part out; until then it is for printing, for MIDI and
-for other notation programs.
+for other notation programs. (The web app has a piano part of its own for every hymn, made from the chords when the
+sheet is shown: "Both hands", `tools/web/README.md`. It does not read `piano.mei`.)
 
 ## Working together on one sheet
 
@@ -294,7 +295,7 @@ for other notation programs.
 |---|---|
 | `server.py` | the local server: the page, the sheets, their history, the recording |
 | `index.html`, `editor.css` | the page |
-| `music.js` | the logic, with no page in it: keys and chords, bars, MEI, the left hand from the patterns, the right hand's added notes. Also runs under Node |
+| `music.js` | the logic, with no page in it: keys and chords, bars, MEI, the left hand from the patterns, the right hand's added notes. Also runs under Node, and in the web app: its "Both hands" makes a piano part for any hymn's sheet with the same patterns (`accompanyOn`, `chordsOnBeat`, `barMei`, `fillUnder`; `tools/web/src/piano.js`), so a change here changes both |
 | `sound.js` | the piano and organ tones and the player (it schedules a little ahead of the clock, so it can loop and stop at once) |
 | `editor.js` | the page's behaviour: what is chosen, the panels, every change as an undo step and a save |
 | `test_music.js` | tests of `music.js`, and of its MEI through the app's Verovio |

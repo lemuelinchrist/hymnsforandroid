@@ -153,6 +153,30 @@ test('the right hand: notes of the chord under the melody', () => {
   })));
 });
 
+test('any music, bar by bar: uneven bars, chords off the beat, the spellings of the app\'s sheets', () => {
+  assert.deepStrictEqual(M.chordInfo('B°7').tones.map(t => t[0]), [0, 3, 6, 9]);
+  assert.deepStrictEqual(M.chordInfo('CM7').tones.map(t => t[0]), [0, 4, 7, 11]);
+  assert.deepStrictEqual(M.chordInfo('C+').tones.map(t => t[0]), [0, 4, 8]);
+  assert.deepStrictEqual(M.chordInfo('C add9').tones.map(t => t[0]), [0, 4, 7]);
+  assert.strictEqual(M.chordInfo('B♭m7/D♭').bass, 1);
+  // an upbeat of a quarter, a bar of 4/4, a bar cut in two as at a repeat (3 quarters + 1), a last bar
+  const bars = [{g: 0, len: 4, beat: 4}, {g: 4, len: 16, beat: 4}, {g: 20, len: 12, beat: 4}, {g: 32, len: 4, beat: 4}, {g: 36, len: 16, beat: 4}];
+  const sound = [[0, 4], [4, 18], [18, 24], [24, 36], [36, 52]];
+  // F comes in an eighth before the bar line on a note held over it: it starts with the bar. G7 sits a sixteenth
+  // after its beat with no note to hold it: it starts on that beat.
+  const chords = M.chordsOnBeat([{g: 4, ch: 'C'}, {g: 18, ch: 'F'}, {g: 33, ch: 'G7'}, {g: 36, ch: 'C'}], bars, sound, 52);
+  assert.deepStrictEqual(chords.map(c => [c.ch, c.g, c.end]), [['C', 4, 20], ['F', 20, 32], ['G7', 32, 36], ['C', 36, 52]]);
+  const lh = M.accompanyOn({bars, first: 4, chords, mel: [[0, 52, 72]], last: 36, base: {pat: '1+5', rate: 0, low: 36}});
+  assert.deepStrictEqual(lh.events.map(e => [e.g, e.d, e.p.map(nm).join('+')]), [[4, 16, 'C2+G2'], [20, 12, 'F2+C3'], [32, 4, 'G2+D3'], [36, 16, 'C2+G2']]);
+  const arp = M.accompanyOn({bars, first: 4, chords, mel: [[0, 52, 72]], last: 36, base: {pat: '1 5 8 5', rate: 2, low: 36}});
+  assert.strictEqual(arp.events.filter(e => e.g >= 20 && e.g < 32).map(e => nm(e.p[0])).join(' '), 'F2 C3 F3 C3 F2 C3');   // the short bar: the pattern cut off
+  assert.strictEqual(arp.events[arp.events.length - 1].p.map(nm).join('+'), 'C2+G2+C3');                                  // the last bar held
+  arp.events.forEach(e => bars.forEach(b => assert.ok(e.g >= b.g + b.len || e.g + e.d <= b.g || (e.g >= b.g && e.g + e.d <= b.g + b.len), 'no note over a bar line')));
+  // one bar as MEI: three quarters in 4/4, one flat
+  const mei = M.barMei({fifths: -1, time: [4, 4], len: 12, shift: 0, events: [{p: [41, 46], d: 12}], id: 'x', chordAt: () => M.chordInfo('B♭/F')});
+  assert.strictEqual(mei.layer, '<chord xml:id="x0" dur="2" dots="1"><note xml:id="x0k0" pname="f" oct="2"/><note xml:id="x0k1" pname="b" oct="2" accid.ges="f"/></chord>');
+});
+
 test('written-out left hand: cut, replace, tie', () => {
   const s = song(); s.acc = {pat: '1 5 8 5', rate: 2, low: 36};
   const gen = M.accompany(s).events;
