@@ -71,7 +71,7 @@ export function createSheetPanel(pane, o) {
     // dark theme only: the sheet on light paper (black on white); remembered like the zoom
     if (isDark()) items.push({icon: 'paper', label: tr('Light paper'), checked: lightPaper(), run: () => { store.set('sheetPaper', lightPaper() ? null : 'light'); paperLook(); }});
     if (!view.chordsOnly) items.push({icon: 'download', label: tr('Save MIDI'), run: () => sp.saveMidi()});
-    popupMenu(bMore, items, 'sheet-menu');
+    bookColour(popupMenu(bMore, items, 'sheet-menu'));
   }
   const exit = o.exit
     ? (o.exit.href
@@ -102,6 +102,13 @@ export function createSheetPanel(pane, o) {
   append(pane, [o.title || null, top, o.note || null, host]);
 
   const view = new SheetView(host);
+  // what is put on the page outside the pane (the panels at the bottom, the ⋯ menu) takes the hymn's book colour too
+  function bookColour(el) {
+    const from = pane.closest('[style*="--gd"]');
+    if (!el || !from) return el;
+    for (const v of ['--gd', '--gn']) el.style.setProperty(v, from.style.getPropertyValue(v));
+    return el;
+  }
   // dark theme: dark paper, or light paper if the reader chose it with the paper button
   function paperLook() {
     const light = isDark() && store.get('sheetPaper', null) === 'light';
@@ -138,7 +145,10 @@ export function createSheetPanel(pane, o) {
   function syncPanel(openIt = false) {
     const wanted = state.hands && !state.guitar && state.staff && !view.chordsOnly && !view.editing && view.renders > 0;
     if (!wanted) { if (panel) panel.show('hidden'); return; }
-    panel = panel || createPianoPanel({get: pianoChoice, set: setPiano, time: () => view.time});
+    if (!panel) {
+      panel = createPianoPanel({get: pianoChoice, set: setPiano, time: () => view.time});
+      bookColour(panel.el);
+    }
     if (openIt) panel.show('open');
     else if (panel.mode === 'hidden') panel.show('peek');
     else panel.refresh();
@@ -152,7 +162,10 @@ export function createSheetPanel(pane, o) {
     if (on && panel) panel.show('hidden');
     if (on) {
       Object.assign(state, {guitar: false, staff: true, original: false});
-      editor = editor || createEditor(view, {onclose: () => setEdit(false)});
+      if (!editor) {
+        editor = createEditor(view, {onclose: () => setEdit(false)});
+        bookColour(editor.el);
+      }
       view.setEditing(true, {guitar: false, staff: true, original: false});
       editor.open();
     } else {

@@ -123,6 +123,7 @@ export function popupMenu(anchor, items, cls = '') {
   document.addEventListener('pointerdown', away, true);
   document.addEventListener('keydown', esc, true);
   menu.querySelector('button').focus();
+  return menu;
 }
 
 export const themeListeners = new Set();

@@ -62,6 +62,8 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
   await test('Both hands opens its panel; ▶ plays at the tune\'s tempo and shades the bar', async () => {
     await page.click('.tb.hands'); await page.waitForTimeout(800);
     assert(await page.locator('.piano-panel .pp-body').isVisible(), 'the panel');
+    const pressed = await page.locator('.piano-panel .ce-btn[aria-pressed="true"]').first().evaluate((e) => getComputedStyle(e).backgroundColor);
+    assert(pressed === 'rgb(0, 153, 204)', 'the panel in the book\'s colour too: ' + pressed);
     await page.click('.piano-panel button:text-is("Done")');
     await page.click('.tb.playsheet'); await page.waitForTimeout(1500);
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'it plays');
@@ -76,6 +78,8 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
     await page.locator('.sheet-music g.measure').nth(2).locator('g.staff').first().click({position: {x: 5, y: 5}, force: true}); await page.waitForTimeout(500);
     const height = await page.locator('.chord-editor:not(.piano-panel)').evaluate((e) => e.offsetHeight);
     assert(height < 220, 'the editor leaves the sheet in view: ' + height + 'px');
+    const done = await page.locator('.chord-editor:not(.piano-panel) .ce-btn.primary').evaluate((e) => getComputedStyle(e).backgroundColor);
+    assert(done === 'rgb(0, 153, 204)', 'the editor in the book\'s colour: ' + done);
     assert(await page.locator('.ce-more').isVisible() && await page.locator('.ce-build').isHidden(), 'More, folded away');
     await page.click('.ce-key .ce-btn:has-text("G")'); await page.waitForTimeout(500);
     const saved = await page.evaluate(() => JSON.parse(window.__bridge.saved.BF500 || '{}'));
