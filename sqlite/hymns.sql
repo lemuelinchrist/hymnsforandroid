@@ -18564,7 +18564,7 @@ INSERT INTO hymns VALUES('BF496',NULL,NULL,NULL,'Don’t give me a secondhand sa
 INSERT INTO hymns VALUES('BF497',NULL,NULL,NULL,'When we live the Godman life','BF','D Major','Experience of Christ',NULL,'497',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF498',NULL,NULL,NULL,'Lord, You are my joy','BF','C Major','Experience of Christ',NULL,'498','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF499',NULL,NULL,NULL,'Blanket me dear Lord','BF','C Major','Experience of Christ',NULL,'499','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF500',NULL,NULL,NULL,'By the rivers of Babylon','BF','D Major','Scriptures for Singing',NULL,'500',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('BF500',NULL,NULL,NULL,'By the rivers of Babylon','BF','D Major','Scriptures for Singing',NULL,'500',NULL,'4/4','5511233423455345',NULL,'Psalms 137:1-6,',NULL,NULL);
 INSERT INTO hymns VALUES('BF502',NULL,NULL,NULL,'For You are my God,','BF','G Major','Experience of Christ',NULL,'502','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF504',NULL,NULL,NULL,'Marvelous grace of our loving Lord,','BF','Bb Major','Praise of the Lord',NULL,'504',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF505',NULL,NULL,NULL,'I love You Lord, so I turn my heart','BF','D Major','Experience of Christ',NULL,'505','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
