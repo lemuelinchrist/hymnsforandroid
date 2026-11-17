@@ -2652,7 +2652,7 @@ INSERT INTO hymns VALUES('BF159','','',NULL,'Therefore the redeemed of the Lord 
 INSERT INTO hymns VALUES('BF160','','','HALLELUJAH! LORD''S WITH US.','Come arise early to feast on the Lord,','BF',NULL,NULL,NULL,'160',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF161','','','BY A TOUCH OF HIS DEAR LOVE,','There are times and times again,','BF',NULL,NULL,NULL,'161',NULL,NULL,NULL,'NS49',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF162','','',NULL,'Fade, fade each earthly joy;','BF','G Major',NULL,NULL,'162',NULL,'4/4','15165461512','E531',NULL,NULL,1);
-INSERT INTO hymns VALUES('BF163','','',NULL,'Has the wine run dry so soon?','BF',NULL,NULL,NULL,'163',NULL,NULL,NULL,NULL,NULL,'SY410,',NULL);
+INSERT INTO hymns VALUES('BF163','','',NULL,'Has the wine run dry so soon?','BF',NULL,'Gospel',NULL,'163',NULL,NULL,NULL,NULL,NULL,'SY410,',NULL);
 INSERT INTO hymns VALUES('BF164','','',NULL,'Out of my bondage, sorrow, and night,','BF','F Major',NULL,NULL,'164',NULL,'4/4','11177712111111121','E1050',NULL,NULL,1);
 INSERT INTO hymns VALUES('BF165','','',NULL,'Art thou hungering for the fullness','BF','C Major',NULL,NULL,'165',NULL,'3/4','5554323443','E641',NULL,NULL,1);
 INSERT INTO hymns VALUES('BF166','','','I LOVE YOU MORE','Are You the One who came from heaven?','BF',NULL,NULL,NULL,'166',NULL,NULL,NULL,'NS52',NULL,NULL,NULL);
@@ -2697,7 +2697,7 @@ INSERT INTO hymns VALUES('BF204','','','JESUS, YOU''RE MY REASON FOR BEING HERE.
 INSERT INTO hymns VALUES('BF205','','',NULL,'Love suffers long. Love is kind; it is not jealous.','BF',NULL,NULL,NULL,'205',NULL,NULL,NULL,'NS279',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF206','','','LORD YOU REVEALED YOURSELF TO ME,','Though I''m blinded by self and flesh','BF',NULL,NULL,NULL,'206',NULL,NULL,NULL,'NS358',NULL,'',NULL);
 INSERT INTO hymns VALUES('BF207','','','LORD, I JUST OPEN UP TO YOU;','Lord Jesus, I love You.','BF',NULL,NULL,NULL,'207',NULL,NULL,NULL,'NS231',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF208','','',NULL,'Touching Jesus is all that really matters.','BF',NULL,NULL,NULL,'208',NULL,NULL,NULL,NULL,NULL,'',NULL);
+INSERT INTO hymns VALUES('BF208','','',NULL,'Touching Jesus is all that really matters.','BF',NULL,'Gospel',NULL,'208',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF209','','',NULL,'Lord, I am continually with Thee,','BF',NULL,NULL,NULL,'209',NULL,NULL,NULL,'NS264',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF210','','',NULL,'Jesus beloved','BF',NULL,'Experience of Christ',NULL,'210','Loving Him',NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF211','','',NULL,'I am the vine you are the branches','BF',NULL,NULL,NULL,'211',NULL,NULL,NULL,'NS123',NULL,NULL,NULL);
@@ -2787,7 +2787,7 @@ INSERT INTO hymns VALUES('BF294','','',NULL,'On your mark, get set, run the race
 INSERT INTO hymns VALUES('BF295','','','MANY THINGS ABOUT TOMORROW,','I don''t know about tomorrow,','BF',NULL,NULL,NULL,'295',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF296','','','IT''S A NEW, LIVING MEETING IN A NEW, LIVING WAY.','It''s a new, living meeting that we''re having today.','BF',NULL,NULL,NULL,'296',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF297','','','OH, CAN WE SAY WE ARE READY, BROTHERS?','When Jesus comes to reward His servants,','BF',NULL,NULL,NULL,'297',NULL,NULL,NULL,NULL,NULL,'',NULL);
-INSERT INTO hymns VALUES('BF298','','',NULL,'There is a bright new life that''s so exciting','BF',NULL,NULL,NULL,'298',NULL,NULL,NULL,NULL,NULL,'',NULL);
+INSERT INTO hymns VALUES('BF298','','',NULL,'There is a bright new life that''s so exciting','BF',NULL,'Gospel',NULL,'298',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF299','','','OH, HE''S THE WONDERFUL SPIRIT IN US!','Now the Triune God has come to dwell within','BF',NULL,NULL,NULL,'299',NULL,NULL,NULL,'E1113',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF300','','','NO, NO, NO, NO, NO,','God has saved me from the world;','BF',NULL,NULL,NULL,'300',NULL,NULL,NULL,'E1127',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF301','','',NULL,'We''re feeding on the living bread,','BF',NULL,NULL,NULL,'301',NULL,NULL,NULL,'E1150',NULL,NULL,NULL);
@@ -18571,10 +18571,10 @@ INSERT INTO hymns VALUES('BF505',NULL,NULL,NULL,'I love You Lord, so I turn my h
 INSERT INTO hymns VALUES('BF506',NULL,NULL,NULL,'I remember concerning you','BF','D Major','Scriptures for Singing',NULL,'506',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF508',NULL,NULL,NULL,'Lord I give my heart again to You,','BF','D Major','Experience of Christ',NULL,'508','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF512',NULL,NULL,NULL,'Lord You’re altogether lovely','BF','D Major','Experience of Christ',NULL,'512','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF514',NULL,NULL,NULL,'Sitting beside a well','BF','C Major',NULL,NULL,'514',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('BF514',NULL,NULL,NULL,'Sitting beside a well','BF','C Major','Gospel',NULL,'514',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF516',NULL,NULL,NULL,'If it is, Lord, Thy desire, then it will be mine as well.','BF',NULL,NULL,NULL,'516',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF517',NULL,NULL,NULL,'At that time two men will be in the field,','BF',NULL,'Scriptures for Singing',NULL,'517',NULL,NULL,NULL,NULL,'Matthew 24:40-42,Matthew 25:1-13,',NULL,NULL);
-INSERT INTO hymns VALUES('BF518',NULL,NULL,NULL,'Come, leave foolish ways of trying to do good.','BF',NULL,NULL,NULL,'518',NULL,NULL,NULL,NULL,'Galatians 2:16,Galatians 2:19-21,Galatians 3:2-3,Galatians 3:18,Galatians 5:4-6,Galatians 6:18,Hebrews 10:19,Hebrews 12:24,Romans 5:10,',NULL,NULL);
+INSERT INTO hymns VALUES('BF518',NULL,NULL,NULL,'Come, leave foolish ways of trying to do good.','BF',NULL,'Gospel',NULL,'518',NULL,NULL,NULL,NULL,'Galatians 2:16,Galatians 2:19-21,Galatians 3:2-3,Galatians 3:18,Galatians 5:4-6,Galatians 6:18,Hebrews 10:19,Hebrews 12:24,Romans 5:10,',NULL,NULL);
 INSERT INTO hymns VALUES('BF519',NULL,NULL,NULL,'Why does it take us so long','BF',NULL,NULL,NULL,'519',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF520',NULL,NULL,NULL,'Defend me, O Lord,','BF','D Major','Experience of Christ',NULL,'520','Loving Him','4/4','5513533432653432',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF557',NULL,NULL,NULL,'Beloved, now we are children of God,','BF','F Major','Scriptures for Singing',NULL,'557',NULL,NULL,NULL,NULL,'1 John 3:2,',NULL,NULL);
