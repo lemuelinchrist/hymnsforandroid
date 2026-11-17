@@ -21,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
 import androidx.webkit.WebViewAssetLoader;
 import androidx.webkit.WebViewClientCompat;
+import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.logbook.ChordEdits;
 import com.lemuelinchrist.android.hymns.style.Theme;
@@ -156,12 +157,25 @@ public class SheetMusicActivity extends AppCompatActivity {
         boolean editable = getResources().getConfiguration().smallestScreenWidthDp >= EDITING_MIN_WIDTH_DP;
         String variant = "guitarSvg".equals(sharedPreferences.getString("sheetMusicType", "pianoSvg")) ? "guitar" : "piano";
         boolean dark = Theme.isNight(this);
+        // the hymn's book colour (of the hymn shown, which may borrow another book's sheet): the viewer's accent
+        String accent = "";
+        try {
+            HymnGroup group = HymnGroup.getHymnGroupFromID(lyricsHymnId != null ? lyricsHymnId : hymnId);
+            accent = "&accent=" + Uri.encode(hex(group.getDayColor())) + "&accentNight=" + Uri.encode(hex(group.getNightColor()));
+        } catch (Exception e) {
+            // an unknown book: the viewer keeps its own accent
+        }
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
                 + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0")
                 + (dark && sharedPreferences.getBoolean(LIGHT_PAPER, false) ? "&paper=light" : "")
+                + accent
                 + (lyricsHymnId != null ? "&lyrics=" + Uri.encode(lyricsHymnId) : "")
                 + (editable ? "&edit=1" : "")
                 + "&lang=" + getString(R.string.ui_language));
+    }
+
+    private static String hex(int color) {
+        return String.format(Locale.ROOT, "#%06x", color & 0xFFFFFF);
     }
 
     private static boolean isViewerPage(Uri url) {

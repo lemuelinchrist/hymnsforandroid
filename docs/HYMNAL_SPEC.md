@@ -910,7 +910,9 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
   sentence end in verse 1 (`. ; ! ? 。 ； ！ ？`, not before 6 syllables) and before an ending or a section label matching
   `chorus|final chorus|refrain|bridge|verse|part N|ending|副`. Other `<dir>` labels (Sisters, D.C. al Fine) become a
   small italic tag in the chord row. Repeats show as `‖:` `:‖`; endings as a boxed `1.`/`2.`. Only verse rows used by
-  a line are drawn. Chords in accent red `#C80000` (dark: `#FF8A80`).
+  a line are drawn. Chords and the pressed buttons are in the hymn's book colour (the app passes the day and the night colour of the hymn
+  shown, `accent` and `accentNight`; the day one on light paper, the night one on dark paper); red `#C80000` (dark:
+  `#FF8A80`) only where no colour is passed.
 
 Full algorithm: `app/src/main/assets/viewer/viewer.js` (~800 lines, no dependencies besides Verovio; the chord
 editor's panel is `editor.js`).

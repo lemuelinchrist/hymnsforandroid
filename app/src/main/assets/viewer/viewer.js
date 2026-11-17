@@ -13,6 +13,12 @@
   var themeDark = params.get('dark') === '1';
   var lightPaper = themeDark && params.get('paper') === 'light';
   document.documentElement.classList.toggle('dark', themeDark && !lightPaper);
+  // the hymn's book colour (the app passes the day and the night one): the night one on dark paper, the day one on light
+  function applyAccent() {
+    var c = params.get(document.documentElement.classList.contains('dark') ? 'accentNight' : 'accent');
+    if (c && /^#[0-9a-f]{6}$/i.test(c)) document.documentElement.style.setProperty('--accent', c);
+  }
+  applyAccent();
 
   var MEI_NS = 'http://www.music-encoding.org/ns/mei';
   var XML_NS = 'http://www.w3.org/XML/1998/namespace';
@@ -693,6 +699,7 @@
   $('bPaper').addEventListener('click', function () {
     lightPaper = !lightPaper;
     document.documentElement.classList.toggle('dark', themeDark && !lightPaper);
+    applyAccent();
     try { if (window.HymnsEdits && window.HymnsEdits.setLightPaper) window.HymnsEdits.setLightPaper(lightPaper); } catch (e) { /* not kept */ }
     updateBar();
   });
