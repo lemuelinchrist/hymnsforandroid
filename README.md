@@ -18,33 +18,28 @@ Hymns For Android is available to download on the Google Play Store:
 Alternatively, you can download the APKs directly from the [GitHub Releases](https://github.com/lemuelinchrist/hymnsforandroid/releases) page.
 
 > [!WARNING]
-> **Important Note for Upgrading Users:**  
-> Starting with version v5.0+, the app is signed using a new, more secure 4096-bit signing key (upgraded from the legacy 1024-bit key). Due to this signature change, you cannot install this version as an in-place upgrade over versions prior to v5.0.  
-> **You must uninstall the old version of the app first** before installing the new release from Google Play or via the APK.
+> **Switching from the APK to the Google Play version?**  
+> Uninstall the APK version first, then install the app from Google Play. Otherwise the installation may fail, because the two versions are signed differently.
 
 ## iPhone, iPad and Computers (Web Version)
 
-The same hymns are also available as a web app for iPhone, iPad and computers:
+The same hymns are also available as an offline web app:
 
 [<img src="docs/web-app-badge.svg" alt="Hymns Web App for iPhone, iPad and computers" height="60">](https://lemuelinchrist.github.io/hymnsforandroid/)
 
 **https://lemuelinchrist.github.io/hymnsforandroid/**
 
-- **iPhone / iPad:** open the link in Safari, tap the **Share** button, then **Add to Home Screen**. It then opens like an app,
-  with its own icon, and works without internet.
-- **Computers:** open the link in any modern browser (Chrome, Edge, Safari, Firefox). Chrome and Edge can also install it as an app.
-- It has all the hymnals, search, favorites, each hymn's tune (Play), and the sheet music for piano and guitar with transposing
-  and a chords-over-lyrics mode. Pianists can also edit the chords of a sheet.
-- Favorites can be moved between the Android app and the web app (Settings → Import/Export Faves on Android, Favorites in the web app).
-- The first visit downloads the hymns (about 10 MB); after that they stay on the device. Updates arrive by themselves.
-
-Each [GitHub Release](https://github.com/lemuelinchrist/hymnsforandroid/releases) also includes a single offline HTML file
-with the lyrics only, for anyone who cannot use the web app.
-
+- **iPhone / iPad:** open the link in Safari, tap **Share**, then **Add to Home Screen**. It works offline after the first visit.
+- **Computers:** open the link in any modern browser.
+- It has all the hymnals, search, favorites, tunes, and sheet music for piano and guitar. Favorites can be moved between the Android app and the web app.
 
 ## Overview
 
-Hymns For Android is a comprehensive digital hymnal application that provides access to a collection of Hymns and Spiritual Songs with lyrics and sheet music for both piano and guitar. The app is designed to be a convenient replacement for traditional hymn books, offering a user-friendly interface and powerful search capabilities.
+**Our mission** is to gather, in one place, the hymns and songs sung by the saints in the Lord's recovery around the world, in many languages, so that every believer can find, sing and share them.
+
+Hymns For Android started as an Android app, but it is no longer only for Android users: it is now for everyone. The same hymns are available on Android, on iPhone and iPad, and on computers through the web app.
+
+It is a digital hymnal with lyrics, sheet music for piano and guitar, and recordings. It is a convenient replacement for traditional hymn books, with a user-friendly interface and powerful search.
 
 ## Features
 
@@ -55,7 +50,7 @@ Hymns For Android is a comprehensive digital hymnal application that provides ac
 - **Material Design UI**: Modern, intuitive user interface
 - **Offline Access**: All hymns available without internet connection
 - **Compatibility**: Works on Android 7.0 (Nougat) and above
-- **iPhone, iPad and computers**: a [web version](https://lemuelinchrist.github.io/hymnsforandroid/) that installs to the home screen and works offline (`tools/web/`); each release also has a single-file lyrics-only version (`tools/ios/`)
+- **iPhone, iPad and computers**: a [web version](https://lemuelinchrist.github.io/hymnsforandroid/) that installs to the home screen and works offline (`tools/web/`)
 
 ## Sheet Music
 

@@ -262,7 +262,7 @@ embellishments, saved on the server so every device sees them.
 
 ## 9. The PWA (Lemuel, 2026-10-20)
 
-The iPhone version was a single offline HTML file with lyrics only (`tools/ios/`). It becomes this app, published so
+The iPhone version used to be a single offline HTML file with lyrics only (since removed). It became this app, published so
 iPhone and iPad users install it from Safari. Decisions:
 
 1. **Same features as the Android app, not the same look.** A better UI is welcome. Kept from Android (see

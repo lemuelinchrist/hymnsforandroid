@@ -27,7 +27,6 @@ The project is divided into three main parts:
 -   `tools/lead-sheet-editor/`: A local web app to correct a lead sheet (notes, lengths, words, chords; plays it, also beside the recording) and to make a piano part of it in the browser (a left hand on a second staff, made from the chords by a pattern: struck chords, bass and chord, arpeggios, which can be written out and changed note by note; notes of the chord added under the melody): `python3 tools/lead-sheet-editor/server.py`, http://localhost:8777/. The sheet is `temp/transcribe/<song>/leadsheet.json` (from `from_musicxml.py`), which the page and an agent both edit; the logic is `music.js` (`node tools/lead-sheet-editor/test_music.js`), which the web app uses too; see its README.
 -   `tools/chord-sheet/`: `make_chord_sheet.py` turns a song's words with `[chords]` (the songbase.life form) into a chords-only sheet (`sheetMei/<id>.mei` marked kind `chords`: the viewers show chords over the words, no staff) and the song's stanzas as JSON, for songs we have no melody for yet; see its docstring and `docs/HYMNAL_SPEC.md` §11.3.
 -   `tools/hymn-midi/`: Makes a simple two-hand piano MIDI (melody as written, generated left hand) from a hymn's sheet (`sheetMei/<id>.mei`) for every tune code that has no `res/raw/m<tune>.mid`, since hymnal.net serves no MIDI any more (`make_missing.py`, `make_midi.py`); see the `generate-midi` skill.
--   `tools/ios/`: Builds `hymnal.html`, a single-file offline lyrics-only web version for iPhone users (`python3 tools/ios/build.py`). Book names/order come from `HymnGroup.java`; see `tools/ios/README.md`.
 -   `docs/`: Contains all supplementary documentation, including the architecture deep-dive, diagrams, database specification, and other notes. `docs/HYMNAL_SPEC.md` is the full functional and data specification (enough to rebuild the app on another platform, e.g. a PWA). Per-version reports (plans, contributor correspondence, decisions) are **not** in this public repo: they are Lemuel's private Claude Docs ("Hymns For Android vX.Y Report"), and `docs/v[0-9]*/` is git-ignored. Contributors' original files go in the git-ignored `databaseProvisioner/src/main/resources/originals/`.
 -   `AGENTS.md`: This file.
 -   `README.md`: The original, human-focused README file.
@@ -94,7 +93,7 @@ The Android app's source code is located in `app/src/main/java/com/lemuelinchris
 -   **Android Studio**: a version that supports Android Gradle Plugin 8.13.
 -   **Android SDK**: compileSdk/targetSdk 36, minSdk 24.
 -   **JDK**: 17.
--   **sqlite3** on the `PATH` (the build runs `:sqlite:importSql`), and **Python 3** for the iOS html (`buildIosHymnal`).
+-   **sqlite3** on the `PATH` (the build runs `:sqlite:importSql`).
 
 ### Building the App
 1.  Open the project in Android Studio.
@@ -111,7 +110,6 @@ There is no CI/CD workflow for this (no `.github/workflows`) — releases are cr
 2. Build the release artifacts: `./gradlew assembleRelease bundleRelease` (no `clean`: it costs about 2 minutes and forces a full rebuild; add it only when a stale build is suspected). This produces:
    - `app/build/outputs/apk/release/HymnsForAndroidvX.Y-PianoAndGuitar.apk`
    - `app/build/outputs/bundle/release/HymnsForAndroidvX.Y-PianoAndGuitar.aab` (for Google Play)
-   - `app/build/outputs/ios/HymnsForAndroidvX.Y-iOS.html` (single-file offline lyrics-only hymnal, built by the `buildIosHymnal` task; no longer attached to releases since v5.6.1, as iPhone users have the web app)
 3. Create the GitHub release with the APK attached, using the `gh` CLI. Tag and title follow the `vX.Y` convention (title is `vX.Y - <short description>`), major.minor only even when `hymnAppVersion` has a patch number (`v5.7.6` → tag `v5.7`); the APK keeps its full-version file name:
    ```shell
    gh release create vX.Y \

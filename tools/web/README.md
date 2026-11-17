@@ -161,5 +161,3 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `build.py`, `serve.py` | the build, and a local server that serves `dist/` the way GitHub Pages does |
 | `dist/` | build output, not in git |
 
-The single-file lyrics-only version (`tools/ios/`, attached to every release) stays as a fallback for anyone who
-cannot use the web app.

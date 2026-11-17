@@ -66,13 +66,12 @@ Everything the app needs at runtime is in the repository. A rebuild does **not**
 | Asset | Location | Format | Count / size | Used for |
 |---|---|---|---|---|
 | Hymn database | `app/src/main/assets/hymns.sqlite` (built from `sqlite/hymns.sql`, see §13) | SQLite 3 | 14,127 hymns, 71,090 stanzas, 674 video links; 18 MB | everything textual |
-| Book list, names, colours, order | `app/src/main/java/.../HymnGroup.java` | Java enum (also parsed by `tools/ios/build.py`) | 31 books | drawer, colours, ID parsing |
+| Book list, names, colours, order | `app/src/main/java/.../HymnGroup.java` | Java enum  | 31 books | drawer, colours, ID parsing |
 | Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 31 | drawer, search list rows, the Languages (Hymn Books) dialog |
 | Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,526 files (one tune is an .mp3); 19 MB | Play button |
 | Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,437 (E 1362, NS 1238, CS 291, CH 243, BF 179, C 124); 45 MB | sheet viewer |
 | Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,446 (Z 755, C 632, ZS 460, FR 239, CS 194, FRY 166): every French and French Youth hymn that has a sheet; about 10 MB | sheet viewer overlay |
 | Sheet viewer (web) | `app/src/main/assets/viewer/` (`index.html`, `viewer.js`, `editor.js`, `viewer.css`, `verovio-toolkit-wasm.js`) | HTML/JS; Verovio 6.3.0 (LGPL-3.0) | 7.3 MB | **reusable as-is in a web build** |
-| Lyrics-only web app | `tools/ios/template.html` + `tools/ios/build.py` | single HTML file with gzipped JSON payload | ~6.5 MB | starting point for a PWA (§14.2) |
 | UI icons | `app/src/main/res/drawable*/` | Material icons (vector/PNG) | — | buttons |
 
 ---
@@ -1053,7 +1052,7 @@ hymn text files (.txt)  ──Groovy Provision*.groovy──►  sqlite/hymns.sq
 hymnal.net pages        ──HymnalNetExtractor───────┘                                          │
                                                                                               importSql (every app build)
                                                                                               ▼
-                                                              app/src/main/assets/hymns.sqlite ──► tools/ios/build.py ──► iOS html
+                                                              app/src/main/assets/hymns.sqlite
 hymnal.net lead-sheet SVGs ──svg-to-lilypond──► .ly (piano) ──ly_to_mei.py──► assets/sheetMei/*.mei
 sheetMei + DB stanzas      ──tools/sheet-lyrics/align.py──► assets/sheetLyrics/*.json
 MIDI per tune (from hymnal.net) ──► res/raw/m<tune>.mid
@@ -1111,12 +1110,11 @@ to `viewer/index.html?...`). Browser history = back stack (§8.2).
 
 The repository already has a PWA built this way: **`tools/web/`** (sql.js over the shipped database, the sheet viewer
 as a module, chord editing, service worker, GitHub Pages). Start there; its `README.md` and `SPEC.md` describe it.
-The older single-file lyrics-only build below is kept as a fallback.
 
-### 14.2.1 The single-file iOS build
+### 14.2.1 Record format of the old single-file build (removed)
 
-`tools/ios/build.py` already turns the DB into a compact JSON array, resolving parent inheritance and related sets.
-Its record format (one array per hymn) is:
+The removed lyrics-only build turned the DB into a compact JSON array, resolving parent inheritance and related sets.
+Its record format (one array per hymn), still a good shape for an export, was:
 
 ```
 [ id, group, no, title, stanzas | 0, parent, meta, related[], hymnalNetPath ]
@@ -1125,16 +1123,11 @@ Its record format (one array per hymn) is:
   related = existing IDs only, own ∪ parent's ∪ parent
 ```
 
-`template.html` implements: book picker with pinned books, search by number / words (accent-folded) / all books,
-favorites, recent, font size, and a hymnal.net link. A PWA can fork both files and add: the two-column layout, colours
-per book (§3.2), the button bar, sheet viewer, MIDI, settings, and a service worker. Note its favorites/recent keys
-(`favs`, `recent` in localStorage) if both should interoperate.
-
 ### 14.3 Data export
 
 Write a build script (Python, like `build.py`) that reads `hymns.sqlite` and emits, per book, the assembled hymns
 (§5.1–5.2 already applied) plus the raw `parent`/`related` for navigation. Keep stanza `no` and text (`<br/>` → `\n`).
-Size check: all books as one gzipped JSON is ~5 MB (the iOS html is that, base64-encoded); per-book files keep
+Size check: all books as one gzipped JSON is ~5 MB; per-book files keep
 first load small.
 
 ### 14.4 Mapping native features to the web

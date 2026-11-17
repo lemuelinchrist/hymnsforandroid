@@ -18,9 +18,10 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
 
 3. **Draft the release notes** in this repo's established style — see `gh release view v5.2` or `gh release view v5.1` for tone/format reference:
    - Emoji section headers (`### 🎉 New`, `### 🐛 Bug Fixes`, `### ✨ Other Improvements`), bullet points, bold lead-ins on each bullet.
-   - A `⚠️ IMPORTANT` callout near the top ONLY if there's a real compatibility break the user must act on (e.g. a signing-key change requiring uninstall-before-install) — don't invent one if there isn't.
-   - In the footer, before the Google Play line, add the iPhone line **with the web app link written out** (like the Play link): `🍎 iPhone and iPad users: use the web app at https://lemuelinchrist.github.io/hymnsforandroid/ — open it in Safari, tap **Share**, then **Add to Home Screen**; after the first visit it works offline.` (Since v5.6.1 the `...-iOS.html` is no longer attached: Lemuel 2026-10-22, the web app replaces it; he wants the link in this footer every release.)
+   - A `⚠️ IMPORTANT` callout near the top ONLY if there's a real compatibility break the user must act on (the APK-to-Google-Play switching warning below is not one: it goes in the footer every time) — don't invent one if there isn't.
+   - In the footer, before the Google Play line, add the iPhone line **with the web app link written out** (like the Play link): `🍎 iPhone and iPad users: use the web app at https://lemuelinchrist.github.io/hymnsforandroid/ — open it in Safari, tap **Share**, then **Add to Home Screen**; after the first visit it works offline.` (Lemuel 2026-10-22: he wants the link in this footer every release.)
    - Close with the Google Play link: `📱 The app is also available on Google Play: https://play.google.com/store/apps/details?id=com.lemuelinchrist.android.hymns` (add a "should be live within about a week" note if the Play Console submission is still pending review — ask the user if unsure).
+   - **Every release**, right after the Google Play line add the switching warning (the same wording as the README's Google Play section; keep the two in step): `⚠️ **Switching from the APK to the Google Play version?** Uninstall the APK version first, then install the app from Google Play. Otherwise the installation may fail, because the two versions are signed differently.` Keep it short; do not explain signing keys or versions.
    - Do not add any "Co-authored-by" line to the release notes body itself — that convention belongs in git commit messages/PR descriptions per the current session's attribution instructions, not release notes.
 
 4. **Show the drafted title and notes to the user for confirmation before proceeding** — this is content a real audience will read; don't publish speculative wording without a check.
@@ -29,7 +30,7 @@ Arguments (optional): $ARGUMENTS — a short description for the release title (
    ```
    ./gradlew assembleRelease bundleRelease
    ```
-   This produces `app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk` and the `.aab` bundle (the `.aab` is for Play Console, not attached to the GitHub release). The build also runs the `buildIosHymnal` task (`app/build/outputs/ios/HymnsForAndroidv<version>-iOS.html`); it is **not attached** to the release any more, so a `buildIosHymnal skipped` warning does not matter.
+   This produces `app/build/outputs/apk/release/HymnsForAndroidv<version>-PianoAndGuitar.apk` and the `.aab` bundle (the `.aab` is for Play Console, not attached to the GitHub release).
 
 6. **Tag and push**:
    ```
