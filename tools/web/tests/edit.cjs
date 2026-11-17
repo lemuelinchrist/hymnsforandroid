@@ -60,7 +60,7 @@ const chordsOf = (page) => page.$$eval('.sheet-music g.harm', (gs) => gs.map((g)
     const before = await chordsOf(page);
 
     await test('Edit chords opens the panel and ids are on bars', async () => {
-      await page.click('button.edit');
+      await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Edit chords")');
       await page.waitForSelector('.chord-editor:not([hidden])');
       assert(await page.$('.sheet-music g.measure[id^="bar-"]'), 'no bar ids in the SVG');
       assert(await page.$('.sheet-music g.harm[id^="chord-"]'), 'no chord ids in the SVG');
@@ -128,7 +128,8 @@ const chordsOf = (page) => page.$$eval('.sheet-music g.harm', (gs) => gs.map((g)
       await open(page2, '#/sheet/E8?v=piano');
       const again = await chordsOf(page2);
       assert(JSON.stringify(again) === JSON.stringify(shown), 'after reload: ' + again.join(' ') + ' vs ' + shown.join(' '));
-      await page2.click('button.orig');
+      await page2.click('.sheet-bar .tb.sheet-more'); await page2.click('.share-menu button:has-text("Original chords")');
+      assert(await page2.locator('.sheet-bar .tb.sheet-more.dot').count() === 1, 'a mark on ⋯ while the original chords are shown');
       await page2.waitForFunction(() => document.querySelectorAll('.sheet-music g.harm.edit').length === 0);
       await page2.keyboard.press('h');
       await page2.waitForSelector('.chart .ch');
@@ -157,7 +158,7 @@ const chordsOf = (page) => page.$$eval('.sheet-music g.harm', (gs) => gs.map((g)
     });
 
     await test('Original bar puts a bar back; no edits left removes the record', async () => {
-      await page.click('button.edit');
+      await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Edit chords")');
       await clickBar(page, 2);
       await page.click('.ce-btn:text-is("Original bar")');
       await page.waitForFunction(() => /Saved/.test(document.querySelector('.ce-status').textContent));

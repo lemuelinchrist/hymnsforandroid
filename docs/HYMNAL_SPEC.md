@@ -932,7 +932,10 @@ and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/mu
 The web app also **plays the sheet**: the hymn header's Play button plays the sheet while it is shown, the tune otherwise; the notes come from the same reading of the sheet (melody with tied notes
 joined, the left hand and the added notes, or the chords softly when Both hands is off), in the order the repeats and endings
 give; the tempo is that of the hymn's tune file, folded into 50 to 160 quarter notes a minute. The elements of the notes that
-sound are marked in the drawn sheet, and the sheet can be saved as a MIDI file.
+sound are marked in the drawn sheet and the bar that sounds is shaded; the page follows the music until the reader scrolls;
+the tempo goes from half to one and a half times the tune's; the sheet can be saved as a MIDI file. In the web app's sheet
+toolbar the controls used most are in front (Piano | Guitar, key, Hide staff, Both hands, zoom, Sheet only for a music
+stand) and the rest (Edit chords, Original chords, original key and size, light paper, Save MIDI) in a ⋯ menu.
 
 ### 11.4 MEI files: what the viewer relies on
 

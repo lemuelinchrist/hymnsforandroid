@@ -106,7 +106,7 @@ sheet side by side.
 - "In other languages" lists every related hymn by language name, so a translation is one tap away.
   Switching keeps the current tab (lyrics or sheet).
 - Footer: author, composer, meter, key, time, then a "Listen and links" card (the Android app's: sections Recordings, Piano videos, New tunes and Search; rows of icon, publisher and album, cards in a grid where the card is 520 px wide or more; 3 links and "Show N more" per section).
-- A chords-only sheet (MEI marked kind `chords`, no melody yet; `tools/chord-sheet`) is always shown as chords over the words: the Staff and Edit chords buttons are hidden.
+- A chords-only sheet (MEI marked kind `chords`, no melody yet; `tools/chord-sheet`) is always shown as chords over the words: the Staff button and Edit chords (in ⋯) are hidden.
 - If there is no sheet (no MEI for the hymn or its parent), the Sheet tab is hidden and the footer says
   there is no sheet music.
 
@@ -122,10 +122,10 @@ the URL (`?v=guitar&t=2&staff=0`), so a link opens the same view.
 | Hide / Show staff | Hides the staff and shows chords over the lyrics, reflowed to the width. |
 | Both hands | A piano part made from the chords: a left hand on a second staff and, if chosen, notes of the chord under the melody. Turning it on opens a panel at the bottom that chooses how the hands play; Done tucks it down to a bar naming the style, which a tap or a drag up opens again (README, "Both hands"). Only on the piano sheet with the staff shown. |
 | Zoom − / + | The sheet's size (Verovio scale 20–90), remembered. |
-| Reset | Appears after a change and returns to the original key and size. Clicking the key label also returns to the original key. |
-| ⤢ | The sheet-only view (`#/sheet/E8`). |
+| ⋯ | The choices used less (README, "The sheet toolbar"): Edit chords, Original chords (once there are edits; a dot on ⋯ while on), Original key and size (after a change; clicking the key label also returns to the original key), Light paper (dark theme), Save MIDI. |
+| ⤢ | The sheet-only view (`#/sheet/E8`), for a music stand; there ✕ goes back to the lyrics. |
 
-| Play (▶) | The hymn header's Play button: while the sheet is shown (its tab, or beside the lyrics) it plays the sheet as shown (key, chord edits, both hands when on) and lights up the notes; tap a note or a bar to play from there; speed, Loop, melody / accompaniment, Save MIDI (README, "Play sheet"). `Space` (the sheet or the tune, as Play), `M` (the sheet). The sheet alone has its own ▶ in the toolbar. |
+| Play (▶) | The hymn header's Play button: while the sheet is shown (its tab, or beside the lyrics) it plays the sheet as shown (key, chord edits, both hands when on) and lights up the notes; shades the bar that sounds and follows it down the page until the reader scrolls; tap a note or a bar to play from there; a row with the tempo (½ to 1½ times), All / Melody / Accompaniment and Loop (README, "Play sheet"). `Space` (the sheet or the tune, as Play), `M` (the sheet). The sheet alone has its own ▶ in the toolbar. |
 
 Piano/guitar, the staff, the zoom and Both hands (with its style) are remembered between hymns. Transposition is per hymn and is kept only
 in the URL. (The app opens guitar sheets with the staff hidden. Here the last choice wins, since the web app

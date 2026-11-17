@@ -1,14 +1,16 @@
-// "Play sheet": plays the sheet as it is shown (its key, this device's chord edits, and the piano part when Both hands
-// is on, else the melody with the chords softly under it), lights up the notes as they sound and follows them down the
-// page. Tap a note to play from there. The notes come from piano.js (scoreOf), the sound from player.js (playScore).
-// The controls are a row under the sheet's toolbar.
+// Plays the sheet as it is shown (its key, this device's chord edits, and the piano part when Both hands is on, else the
+// melody with the chords softly under it), lights up the notes and the bar as they sound and follows them down the page
+// (until the reader scrolls: then it waits for the next Play). Tap a note to play from there. The notes come from
+// piano.js (scoreOf), the sound from player.js (playScore). The controls are a row under the sheet's toolbar.
 
 import * as Player from './player.js';
 import {scoreOf} from './piano.js';
 import {tr} from './i18n.js';
 
-const SPEEDS = [[0.5, '½×'], [0.75, '¾×'], [1, '1×'], [1.25, '1¼×']];
+const MIN_SPEED = 0.5, MAX_SPEED = 1.5;   // of the tune's tempo, by twentieths
 const DEFAULT_BPM = 90;
+// what is heard: everything, the melody alone, or the accompaniment alone (the left hand, or the chords)
+const PARTS = [['all', 'All', true, true], ['mel', 'Melody', true, false], ['acc', 'Accompaniment', false, true]];
 
 function el(tag, cls, text, attrs) {
   const e = document.createElement(tag);
@@ -22,7 +24,9 @@ const param = (id) => id.replace(/_\d+$/, '');   // an element the left hand's n
 // view: the SheetView; tune: the url of the hymn's tune file (its tempo is the sheet's tempo); store: {get, set} for what is
 // kept between hymns; stopTune(): stops the tune's own Play button; onchange(): the toolbar's button follows
 export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
-  const prefs = Object.assign({speed: 1, loop: false, mel: true, acc: true, follow: true}, store.get('sheetPlayer', {}));
+  const prefs = Object.assign({speed: 1, loop: false, mel: true, acc: true}, store.get('sheetPlayer', {}));
+  if (!prefs.mel && !prefs.acc) prefs.mel = prefs.acc = true;
+  prefs.speed = Math.max(MIN_SPEED, Math.min(MAX_SPEED, +prefs.speed || 1));
   const keep = () => store.set('sheetPlayer', prefs);
   const root = el('div', 'sheet-player', null, {role: 'group', 'aria-label': tr('Play the sheet')});
   root.hidden = true;
@@ -30,25 +34,53 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
   const bPlay = el('button', 'tb primary', null, {type: 'button'});
   const bStart = el('button', 'tb icon', null, {type: 'button', title: tr('From the start'), 'aria-label': tr('From the start')});
   bStart.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M6 5h2.4v14H6zM19 5.5v13L9.8 12z"/></svg>';
-  const speed = el('select', 'sp-speed', null, {title: tr('Speed'), 'aria-label': tr('Speed')});
-  SPEEDS.forEach(([v, label]) => speed.appendChild(el('option', null, label, {value: String(v)})));
-  const toggle = (label, title, key) => {
-    const b = el('button', 'tb toggle', label, {type: 'button', title, 'aria-pressed': String(prefs[key])});
-    b.addEventListener('click', () => { prefs[key] = !prefs[key]; keep(); b.setAttribute('aria-pressed', String(prefs[key])); if (key === 'mel' || key === 'acc' || key === 'loop') restart(); });
+  // the tempo: a slider from half to one and a half times the tune's, showing the beats a minute; a double tap is the tune's
+  const speed = el('input', 'sp-speed', null, {type: 'range', min: String(MIN_SPEED), max: String(MAX_SPEED), step: '0.05',
+    title: tr('Tempo (double tap: the tune\'s)'), 'aria-label': tr('Tempo')});
+  const tempoLabel = el('span', 'sp-tempo');
+  const tempoBox = el('label', 'sp-tempo-box');
+  tempoBox.append(tempoLabel, speed);
+  const bLoop = el('button', 'tb toggle', tr('Loop'), {type: 'button', title: tr('Play again and again'), 'aria-pressed': String(prefs.loop)});
+  bLoop.addEventListener('click', () => { prefs.loop = !prefs.loop; keep(); bLoop.setAttribute('aria-pressed', String(prefs.loop)); restart(); });
+  const parts = el('div', 'seg sp-parts', null, {role: 'group', 'aria-label': tr('What is heard')});
+  const partBtns = PARTS.map(([id, label, mel, acc]) => {
+    const b = el('button', 'tb', tr(label), {type: 'button', 'data-part': id,
+      title: id === 'all' ? tr('The melody and the accompaniment') : id === 'mel' ? tr('The melody alone') : tr('The accompaniment alone (the left hand, or the chords)')});
+    b.addEventListener('click', () => { prefs.mel = mel; prefs.acc = acc; keep(); showParts(); restart(); });
+    parts.appendChild(b);
     return b;
-  };
-  const bLoop = toggle(tr('Loop'), tr('Play again and again'), 'loop');
-  const bMel = toggle(tr('Melody'), tr('Play the melody or leave it out'), 'mel');
-  const bAcc = toggle(tr('Accompaniment'), tr('Play the accompaniment (the left hand, or the chords) or leave it out'), 'acc');
-  const bFollow = toggle(tr('Follow'), tr('Scroll the sheet to follow the music'), 'follow');
-  const bSave = el('button', 'tb', tr('Save MIDI'), {type: 'button', title: tr('Save what is on the sheet as a MIDI file')});
-  const where = el('span', 'sp-where');
-  const bClose = el('button', 'tb icon', '✕', {type: 'button', title: tr('Close the player'), 'aria-label': tr('Close the player')});
-  root.append(bPlay, bStart, speed, bLoop, bMel, bAcc, bFollow, bSave, el('span', 'grow'), where, bClose);
+  });
+  const showParts = () => partBtns.forEach((b, i) => b.setAttribute('aria-pressed', String(PARTS[i][2] === prefs.mel && PARTS[i][3] === prefs.acc)));
+  showParts();
+  const where = el('span', 'sp-where', null, {'aria-live': 'off'});
+  const bClose = el('button', 'tb icon close', '✕', {type: 'button', title: tr('Close the player'), 'aria-label': tr('Close the player')});
+  root.append(bPlay, bStart, tempoBox, parts, bLoop, el('span', 'grow'), where, bClose);
   speed.value = String(prefs.speed);
 
   let score = null, scoreXml = '', scoreChoice = '', ctl = null, from = 0, bpm = DEFAULT_BPM, lastRender = -1, tempoFor = null, lastScroll = 0, starting = 0;
-  let shownWhere = '';
+  let shownWhere = '', shownBar = 0, barRender = -1;
+  const showTempo = () => { tempoLabel.textContent = '♩ = ' + Math.round(bpm * prefs.speed); };
+  showTempo();
+
+  // the page follows the music until the reader scrolls it; the next Play follows again
+  let follow = true;
+  const byHand = () => { if (ctl) follow = false; };
+  window.addEventListener('wheel', byHand, {passive: true});
+  window.addEventListener('touchmove', byHand, {passive: true});
+
+  // the bar that sounds, shaded behind the music (an element of the sheet's box, under the drawing)
+  const shade = el('div', 'sp-bar', null, {'aria-hidden': 'true'});
+  shade.hidden = true;
+  view.root.prepend(shade);
+  function shadeBar(bar) {
+    if (bar === shownBar && view.renders === barRender) return;
+    shownBar = bar; barRender = view.renders;
+    const g = bar && view.music.querySelectorAll('g.measure')[bar - 1];
+    if (!g) { shade.hidden = true; return; }
+    const r = g.getBoundingClientRect(), box = view.root.getBoundingClientRect();
+    Object.assign(shade.style, {left: (r.left - box.left) + 'px', top: (r.top - box.top - 4) + 'px', width: r.width + 'px', height: (r.height + 8) + 'px'});
+    shade.hidden = false;
+  }
 
   // the notes of the sheet as it is now; made again only when what it sounds like changed
   const handsOn = () => !!(view.state.hands && view.piano && !view.state.guitar && view.state.staff);
@@ -88,7 +120,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
       if (ids) lit = ids;
       lastRender = view.renders;
       const first = mark(lit);
-      if (first && prefs.follow && ids && Date.now() - lastScroll > 600) {
+      if (first && follow && ids && Date.now() - lastScroll > 600) {
         const r = first.getBoundingClientRect(), room = view.panelHeight || 0;
         if (r.top < 150 || r.bottom > window.innerHeight - room - 60) { lastScroll = Date.now(); first.scrollIntoView({block: 'center', behavior: 'smooth'}); }
       }
@@ -96,14 +128,17 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     if (score) {
       let bar = 1;
       for (const b of score.barAt) { if (b.q > q + 1e-6) break; bar = b.bar; }
-      const text = tr('Bar {0}', bar) + ' · ♩ = ' + Math.round(bpm * prefs.speed);
+      const text = tr('Bar {0}', bar);
       if (text !== shownWhere) { shownWhere = text; where.textContent = text; }
+      shadeBar(bar);
     }
   };
 
   function show(playing) {
     bPlay.textContent = playing ? '■ ' + tr('Stop') : '▶ ' + tr('Play');
     bPlay.setAttribute('aria-pressed', String(playing));
+    where.hidden = !playing;
+    if (!playing) { shade.hidden = true; shownBar = 0; }
     document.body.classList.toggle('sheet-playing', playing);
     if (onchange) onchange();
   }
@@ -114,7 +149,9 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     const mine = ++starting;
     stopTune();
     from = at;
+    follow = true;
     const b = await tempo();
+    showTempo();
     if (mine !== starting) return;                      // another start came meanwhile
     try {
       ctl = Player.playScore(sc, {from, bpm: b, speed: prefs.speed, loop: prefs.loop, mute: {m: !prefs.mel, f: !prefs.mel, l: !prefs.acc, c: !prefs.acc},
@@ -130,17 +167,20 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
 
   bPlay.addEventListener('click', () => { if (ctl) stop(); else { if (from >= (score ? score.length - 0.25 : 0)) from = 0; start().catch(() => {}); } });
   bStart.addEventListener('click', () => { from = 0; if (ctl) { stop(); start(0); } else onFrame(0, null); });
-  speed.addEventListener('change', () => { prefs.speed = parseFloat(speed.value) || 1; keep(); restart(); });
+  speed.addEventListener('input', () => { prefs.speed = parseFloat(speed.value) || 1; showTempo(); });
+  speed.addEventListener('change', () => { keep(); restart(); });
+  speed.addEventListener('dblclick', () => { speed.value = '1'; prefs.speed = 1; showTempo(); keep(); restart(); });
   bClose.addEventListener('click', () => api.close());
-  bSave.addEventListener('click', () => {
+  async function saveMidi() {
     const sc = currentScore();
     if (!sc) return;
+    await tempo();
     const name = (view.shownId || 'sheet') + (view.state.hands ? '-piano' : '') + '.mid';
     const url = URL.createObjectURL(new Blob([Player.toMidi(sc, bpm * prefs.speed, view.title.textContent)], {type: 'audio/midi'}));
     const a = el('a', null, null, {href: url, download: name});
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 2000);
-  });
+  }
 
   // tap a note, or a bar, to play from there (not while editing chords: a tap picks a bar then)
   view.music.addEventListener('click', (e) => {
@@ -173,7 +213,11 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     // the sheet's sound changed (another key, chords, style): go on from the same place with the new notes
     refresh() { if (!score || !stale()) return; if (ctl) restart(); else score = null; },
     available(on) { if (!on && !root.hidden) api.close(); },
-    destroy() { stop(); root.remove(); document.body.classList.remove('sheet-playing'); },
+    saveMidi,
+    destroy() {
+      stop(); root.remove(); shade.remove(); document.body.classList.remove('sheet-playing');
+      window.removeEventListener('wheel', byHand); window.removeEventListener('touchmove', byHand);
+    },
   };
   return api;
 }

@@ -386,6 +386,9 @@ body.sheet-only .swap-back, body.editing-chords .swap-back, .hymn[data-tab="shee
 }
 .transpose .key:disabled { cursor: default; }
 .zoom { display: inline-flex; gap: 2px; }
+/* ⋯: the sheet's other choices (popupMenu); a dot on it while the original chords are shown */
+.sheet-bar .tb.sheet-more { position: relative; }
+.sheet-bar .tb.sheet-more.dot::after { content: ""; position: absolute; top: 3px; right: 3px; width: 8px; height: 8px; border-radius: 50%; background: var(--g); }
 .sheet-from { margin: 10px 16px 0; font-size: 13px; color: var(--muted); }
 .sheet-host { padding: 16px 12px 24px; }
 @media (max-width: 480px) {
@@ -415,7 +418,8 @@ body.sheet-only #view { max-width: 1200px; padding-top: 12px; }
 .sheet-subtitle { font-size: .85em; font-weight: bold; }
 .sheet-capo { font-style: italic; font-weight: bold; font-size: .9em; margin-top: 8px; }
 .sheet-capo:empty { display: none; }
-.sheet-music { min-height: 120px; }
+.sheet { position: relative; }
+.sheet-music { position: relative; min-height: 120px; }   /* drawn over the shaded bar (.sp-bar) */
 .sheet-music svg { display: block; max-width: 100%; height: auto; }
 /* dark mode draws the music in its own colours (it was inverted with a CSS filter: bright hairline staves on near-black):
    notes and text a soft light grey, the staff dimmer so the notes stand out, the thin lines a little thicker (Verovio's
@@ -525,7 +529,6 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 /* ---- chord editing ---- */
 
 .sheet-bar .tb.playsheet[aria-pressed="true"],
-.sheet-bar .tb.edit[aria-pressed="true"], .sheet-bar .tb.orig[aria-pressed="true"],
 .sheet-bar .tb.hands[aria-pressed="true"] { background: var(--g); border-color: var(--g); color: var(--surface); }
 .sheet-music.editing g.measure { cursor: pointer; }
 .sheet-music.editing g.harm, .sheet-music.editing g.note, .sheet-music.editing g.rest { cursor: pointer; }
@@ -617,6 +620,8 @@ body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
   background: color-mix(in srgb, var(--g-soft) 60%, var(--surface));
 }
 .sheet-player[hidden] { display: none; }
+.sheet-player { position: relative; padding-right: 52px; }   /* ✕ in the corner, never on a line of its own */
+.sheet-player > .tb.close { position: absolute; top: 8px; right: 12px; }
 .sheet-player .tb {
   display: inline-flex; align-items: center; justify-content: center; gap: 4px; height: 32px; min-width: 32px; padding: 0 12px;
   border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); color: var(--ink); cursor: pointer; font: 500 14px var(--ui); white-space: nowrap;
@@ -625,17 +630,31 @@ body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
 .sheet-player .tb.toggle[aria-pressed="false"] { opacity: .55; }
 .sheet-player .tb.toggle[aria-pressed="true"] { background: var(--g-soft); border-color: var(--g); color: var(--g); }
 .sheet-player .tb.icon { padding: 0; width: 32px; color: var(--muted); }
-.sheet-player .sp-speed { height: 32px; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); color: var(--ink); padding: 0 8px; font: 14px var(--ui); }
+.sheet-player .sp-tempo-box { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); }
+.sheet-player .sp-tempo { font: 600 14px var(--ui); min-width: 4.2em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sheet-player .sp-speed { width: 110px; accent-color: var(--g); margin: 0; }
+.sheet-player .seg { padding: 2px; }
+.sheet-player .seg .tb { border: 0; height: 26px; color: var(--muted); background: none; }
+.sheet-player .seg .tb[aria-pressed="true"] { background: var(--g); color: var(--surface); }
+/* "Bar 3": for screen readers; the eye has the shaded bar */
+.sheet-player .sp-where { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.sheet-player .sp-where[hidden] { display: none; }
+/* the bar that sounds, shaded behind the music */
+.sp-bar { position: absolute; z-index: 0; border-radius: 6px; pointer-events: none; background: color-mix(in srgb, var(--g) 13%, transparent); transition: left .12s, top .12s, width .12s, height .12s; }
+.sp-bar[hidden] { display: none; }
+.sheet.dark .sp-bar { background: color-mix(in srgb, var(--g) 26%, transparent); }
+@media print { .sp-bar { display: none !important; } }
 .sheet-player .grow { flex: 1; }
-.sheet-player .sp-where { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .sheet-music g.playing, .sheet-music g.playing * { fill: var(--g) !important; stroke: var(--g) !important; color: var(--g) !important; }
 .sheet-music g.playing text, .sheet-music g.playing tspan { stroke: none !important; }
 .sheet.dark .sheet-music g.playing, .sheet.dark .sheet-music g.playing * { fill: color-mix(in srgb, var(--g) 55%, #fff) !important; stroke: color-mix(in srgb, var(--g) 55%, #fff) !important; }
 @media print { .sheet-player { display: none !important; } }
 @media (max-width: 700px) {
-  .sheet-player { gap: 6px; padding: 6px 10px; }
+  .sheet-player { gap: 6px; padding: 6px 48px 6px 10px; }
+  .sheet-player > .tb.close { top: 6px; right: 10px; }
   .sheet-player .tb { height: 30px; padding: 0 9px; font-size: 13px; }
-  .sheet-player .sp-where { flex-basis: 100%; order: 9; }
+  .sheet-player .sp-speed { width: 80px; }
+  .sheet-player .sp-tempo-box { padding: 0 10px; }
 }
 /* the chords of the key: their number, and a line under the ones that hold the melody at the chosen beat */
 .ce-key[hidden] { display: none; }
@@ -846,6 +865,7 @@ body.bars-away .topbar { transform: translateY(-100%); }
 .share-menu { position: fixed; z-index: 60; min-width: 14.5em; padding: 8px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 2px 6px rgba(20, 30, 50, .12), 0 10px 30px rgba(20, 30, 50, .18); display: grid; gap: 2px; }
 .share-menu button { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; padding: 7px 14px 7px 8px; border-radius: 14px; cursor: pointer; font: 500 16px var(--ui); white-space: nowrap; }
 .share-menu button:hover, .share-menu button:focus-visible { background: var(--hover); }
+.share-menu .tick { color: var(--g); margin-left: auto; padding-left: 8px; }
 .share-menu .tile { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--set-tint); color: var(--set-on-tint); }
 @media print { .share-menu { display: none; } }
 /* the Both hands bar belongs to the sheet: not over the lyrics on a phone */

@@ -56,6 +56,14 @@ The names of the books and a new person's first book are read by `build.py` from
 (`app/src/main/res/values-*/strings.xml`), so adding a language there needs a language in `i18n.js` and `strings.js` too.
 A new text: use `tr('English text')` and add its four translations to `strings.js`.
 
+## The sheet toolbar
+
+In front, what is used most: **Piano | Guitar**, the key (**−** and **+**), **Hide staff** (chords over the words: for
+guitarists and for those who read only chords), **Both hands**, the zoom, and **⤢ Sheet only, for a music stand** (the
+sheet alone has ✕ back to the lyrics there). The rest is in **⋯**: **Edit chords** (for players who reharmonize; `E`),
+**Original chords** once the sheet has edits (a dot on ⋯ while it is on; `O`), **Original key and size** after a change,
+**Light paper** in the dark theme, and **Save MIDI**. The menu is the Share menu's (`popupMenu` in `app.js`).
+
 ## Both hands
 
 A hymn's sheet is a lead sheet: the melody, the words, the chords. **Both hands** (or `B`) on the piano sheet makes a
@@ -90,13 +98,16 @@ draws it. It is not there on the guitar sheet, with the staff hidden, or on a ch
 
 The hymn page's **Play** button (▶ in the header, or `Space`; `M` plays the sheet) plays the sheet while the sheet is
 shown (the Sheet music tab, or beside the lyrics on a wide screen) and the tune with the lyrics alone, so there is one
-Play button, and it plays what is in front of you; the sheet alone (⤢) has a ▶ of its own in its toolbar. It plays the
+Play button, and it plays what is in front of you; the sheet alone (Sheet only) has a ▶ of its own in its toolbar. It plays the
 sheet as it is shown: in its key (transposing), with this
 device's chord edits, and, with Both hands on, the piano part, else the melody with the chords softly under it. The notes
-that sound light up and the page follows them; a tap on a note, or on a bar, plays from there. A row under the toolbar has
-Play / Stop, back to the start, the speed (½ to 1¼), Loop, the melody and the accompaniment on or off, Follow, and
-**Save MIDI** (the sheet as a MIDI file: the melody, and the left hand on a track of its own). A change while it plays
-(the key, a chord, a style) goes on from the same place with the new notes.
+that sound light up, the bar that sounds is shaded, and the page follows them until the reader scrolls it by hand (the
+next Play follows again); a tap on a note, or on a bar, plays from there. A row under the toolbar, there from the first
+Play until its ✕, has Play / Stop, back to the start, the **tempo** (a slider showing ♩ = beats a minute, from half to one
+and a half times the tune's, by twentieths; a double tap goes back to the tune's), **All | Melody | Accompaniment** (what is
+heard; the accompaniment is the left hand, or the chords), and Loop. **Save MIDI** (in ⋯) saves the sheet as a MIDI file:
+the melody, and the left hand on a track of its own. A change while it plays (the key, a chord, a style) goes on from the
+same place with the new notes.
 
 The notes are not read from a MIDI file or from Verovio but made from the sheet by `piano.js` (`scoreOf`), the same data that
 draws the second staff, so what is heard is what is drawn: tied notes are one note, the pedal makes a left hand note ring, and
@@ -106,10 +117,10 @@ small Web Audio piano (`player.js`, `playScore`); starting the sheet stops the t
 
 ## Chord edits
 
-On a piano sheet, **Edit chords** (or `E`): tap a bar, pick a beat (half beats too), then take a chord of the key
+On a piano sheet, **Edit chords** (in ⋯, or `E`): tap a bar, pick a beat (half beats too), then take a chord of the key
 (the buttons numbered 1 to 7, or those keys; a green line under one says it holds the melody from that beat to the
 bar's next chord), build one from the buttons, or type it. With Both hands on, the left hand follows as the chords change.
-Changed chords are red; **Original chords** (`O`) hides them. Edits are stored in the original key, so transposing,
+Changed chords are red; **Original chords** (in ⋯, or `O`) hides them. Edits are stored in the original key, so transposing,
 the guitar sheet and the chords-over-lyrics view use them.
 
 They are kept **on the device** (IndexedDB), per sheet. Settings → Chord edits exports them as a file
@@ -144,7 +155,7 @@ under an edit.
 node tools/web/tests/e2e.cjs                 # 63 checks in Chromium: search, hymns, sheets, tunes, Android behaviour, offline, phone
 node tools/web/tests/e2e.cjs --sheets 300    # also renders 300 random sheets in four modes each (--sheets all: every one)
 node tools/web/tests/edit.cjs                # 12 checks of the chord editor, saving, export and import
-node tools/web/tests/piano.cjs               # Both hands and Play sheet: 13 checks of the buttons, the panel and the player, then every 12th sheet in five styles, also what plays and its MIDI file (--all: every sheet)
+node tools/web/tests/piano.cjs               # Both hands and Play sheet: 14 checks of the buttons, the panel and the player, then every 12th sheet in five styles, also what plays and its MIDI file (--all: every sheet)
 node tools/web/tests/scripture.cjs          # 10 checks of the Bible references as links (src/scripture.js), also on every reference in the database
 ```
 

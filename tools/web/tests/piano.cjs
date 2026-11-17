@@ -213,7 +213,7 @@ async function ui(page) {
   });
   await test('an edited chord moves the left hand; 1 to 7 put the chords of the key', async () => {
     const before = await page.locator('.sheet-music').innerHTML();
-    await page.click('.tb.edit'); await settle();
+    await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Edit chords")'); await settle();
     await page.locator('.sheet-music g.measure').nth(1).locator('g.staff').first().click({position: {x: 5, y: 5}, force: true}); await settle();
     const keys = await page.locator('.ce-key .ce-btn').allTextContents();
     assert(keys.join(' ') === '1G 2Am 3Bm 4C 5D 6Em 7D7', 'the chords of G major: ' + keys.join(' '));
@@ -239,11 +239,14 @@ async function ui(page) {
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'it plays: the button says Stop');
     const lit = await page.locator('.sheet-music g.playing').count();
     assert(lit > 0, 'notes are lit while they sound: ' + lit);
-    assert(/Bar \d+ · ♩ = \d+/.test(await page.locator('.sp-where').textContent()), 'the place and the tempo');
+    assert(/^Bar \d+$/.test(await page.locator('.sp-where').textContent()) && /^♩ = \d+$/.test(await page.locator('.sp-tempo').textContent()), 'the place and the tempo');
+    assert(await page.locator('.sp-bar').isVisible(), 'the bar that sounds is shaded');
+    assert(await page.locator('.sp-speed').getAttribute('max') === '1.5', 'the tempo goes up to 1.5 times');
     assert(await page.evaluate(() => document.body.classList.contains('sheet-playing')), 'the bars stay while it plays');
     await page.click('.sheet-player .tb.primary'); await page.waitForTimeout(500);
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Play'), 'stopped: the button says Play');
     assert(await page.locator('.sheet-music g.playing').count() === 0, 'nothing lit after Stop');
+    assert(await page.locator('.sp-bar').isHidden() && await page.locator('.sp-where').isHidden(), 'no bar shaded or named after Stop');
   });
   await test('with Both hands on it plays the piano part too', async () => {
     await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();
@@ -258,11 +261,16 @@ async function ui(page) {
     await page.locator('.sheet-music g.measure').nth(6).locator('g.note .notehead').first().click({force: true}); await page.waitForTimeout(1200);
     const bar = parseInt(/Bar (\d+)/.exec(await page.locator('.sp-where').textContent())[1], 10);
     assert(bar >= 7, 'it plays from the tapped bar, not the start: bar ' + bar);
-    await page.selectOption('.sp-speed', '0.5'); await settle();
-    assert(/♩ = \d+/.test(await page.locator('.sp-where').textContent()), 'still playing at half speed');
+    const full = parseInt((await page.locator('.sp-tempo').textContent()).slice(4), 10);
+    await page.locator('.sp-speed').evaluate((e, v) => { e.value = v; e.dispatchEvent(new Event('input')); e.dispatchEvent(new Event('change')); }, '0.5'); await settle();
+    const half = parseInt((await page.locator('.sp-tempo').textContent()).slice(4), 10);
+    assert(Math.abs(half - full / 2) <= 1, 'half the tempo: ' + half + ' of ' + full);
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'it goes on after a change of speed');
-    await page.click('.sheet-player .tb:text-is("Melody")'); await settle();
-    await page.click('.sheet-player .tb:text-is("Melody")'); await page.selectOption('.sp-speed', '1'); await settle();
+    await page.click('.sp-parts .tb:text-is("Accompaniment")'); await settle();
+    assert(await page.locator('.sp-parts .tb[aria-pressed="true"]').textContent() === 'Accompaniment', 'the accompaniment alone');
+    await page.click('.sp-parts .tb:text-is("All")'); await page.locator('.sp-speed').evaluate((e, v) => { e.value = v; e.dispatchEvent(new Event('input')); e.dispatchEvent(new Event('change')); }, '1.35'); await settle();
+    assert(await page.locator('.sp-speed').inputValue() === '1.35', 'faster than 1¼');
+    await page.locator('.sp-speed').evaluate((e, v) => { e.value = v; e.dispatchEvent(new Event('input')); e.dispatchEvent(new Event('change')); }, '1'); await settle();
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'still playing');
   });
   await test('tapping the empty space of a bar plays from that bar', async () => {
@@ -271,7 +279,7 @@ async function ui(page) {
     await page.mouse.click(r.x + r.width / 2, r.y + 2); await page.waitForTimeout(900);
     const bar = parseInt(/Bar (\d+)/.exec(await page.locator('.sp-where').textContent())[1], 10);
     assert(bar >= 4 && bar <= 5, 'it plays from the bar tapped (the fourth), not the start: bar ' + bar);
-    await page.selectOption('.sp-speed', '1');
+    await page.locator('.sp-speed').evaluate((e, v) => { e.value = v; e.dispatchEvent(new Event('input')); e.dispatchEvent(new Event('change')); }, '1');
   });
   await test('a change to the sheet goes on playing with the new notes: the key, and the style', async () => {
     const before = await page.locator('.sp-where').textContent();
@@ -297,6 +305,17 @@ async function ui(page) {
     });
     assert(level.lead.rms > 0.002 && level.lead.peak < 1, 'the lead sheet: ' + JSON.stringify(level.lead));
     assert(level.piano.rms > level.lead.rms && level.piano.peak < 1, 'the piano part is fuller and does not clip: ' + JSON.stringify(level));
+  });
+  await test('⋯ holds the choices used less; Save MIDI there saves the sheet', async () => {
+    await page.click('.sheet-bar .tb.sheet-more');
+    const items = await page.locator('.share-menu button').allTextContents();
+    assert(items.includes('Edit chords') && items.includes('Save MIDI') && !items.includes('Sheet only, for a music stand'), 'the menu: ' + items.join(', '));
+    const [dl] = await Promise.all([page.waitForEvent('download'), page.click('.share-menu button:has-text("Save MIDI")')]);
+    assert(/^E8.*\.mid$/.test(dl.suggestedFilename()), 'a MIDI file: ' + dl.suggestedFilename());
+    const front = await page.locator('.sheet-bar > .tb:visible, .sheet-bar > div:visible').count();
+    assert(front <= 8, 'a calm toolbar: ' + front + ' controls');
+    assert(await page.locator('.sheet-bar .tb:text-is("Hide staff")').isVisible(), 'Hide staff stays in front');
+    assert(await page.locator('.sheet-bar a[title^="Back to the lyrics"]').isVisible(), 'the sheet alone: ✕ back to the lyrics');
   });
   await test('the hymn page\'s Play button plays the sheet while it is shown, the tune with the lyrics alone; they stop each other', async () => {
     await page.click('.piano-panel button:text-is("Done")').catch(() => {});
