@@ -180,12 +180,8 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   group: "(by Boston, Cambridge, Newton)", "(by ATX YP)"...; 7 are the Hymn CDs albums, the same recordings as Loving the Lord, so not linked twice) plus
   messages and kids' songs (left out). 211 links, label `Joseph's Storehouses` (`2`, `(Instrumental)`) from exact titles (max 2 sung + 1 instrumental per hymn).
   The 301 partial-title videos were transcribed and matched 2026-11-08/09 (about 324 links in all, 113 more in v5.9.4). Only 29 poor transcriptions (mostly instrumentals) and ~300 videos with no title match and no local copy remain, nothing planned.
-- **The Lord's Recovery Hymns - Topic** (UC_Jf1JXNogSSLVq3WJVvpTw, DistroKid, released Oct-Nov 2025; 3 albums, 101 tracks: Sound of the New Man, Instrumental Hymns,
-  Hymns in the Lord's Recovery, the last with four Cebuano titles), English, no captions: matched by exact title 2026-11-17, 34 links, publisher `The Lord's Recovery Hymns`.
-  **New cap rule (Lemuel 2026-11-17), for this channel on: a hymn gets at most 5 sung and 1 instrumental recording in all, piano videos not counted** (existing links count);
-  a track beyond the cap is still recorded in `recordings.tsv` with status `matched` (`lrh_known.tsv`) but not imported. Also held as `matched`: three E hymns that have a New Tune
-  (E543, E432, E156; ask before linking) and the Cebuano title (belongs to a CB hymn). The other 54 tracks (20 prefix matches, 34 with no title match) are for Lemuel to review himself;
-  no audio was downloaded for them (his instruction). Not monitored (Lemuel 2026-11-17: dropped; `lrh_known.tsv` and `recordings.tsv` keep what was seen).
+- **The Lord's Recovery Hymns - Topic** (UC_Jf1JXNogSSLVq3WJVvpTw, 3 albums, 101 tracks) was checked 2026-11-17 and DROPPED entirely (Lemuel): its songs are mostly duplicates of
+  recordings we already have, and the Sound of the New Man album is a partial copy of his own, more complete collection (to be uploaded by him). Nothing is linked and nothing is monitored. Do not offer it again.
 - **Rules that held for the Topic channels**: a number in the title (`Hymn N`, `Hymns N`, `诗歌N`) is reliable; a track titled "- New Tune" belongs to
   the New Tune hymn (e.g. BF345), never to the root hymn, so it is not linked to the root; an instrumental track gets the label `<name> (Instrumental)`
   (max 1 per hymn); sung ones max 2 per hymn per channel; English hymns may carry links from several channels (NYCYPCD + LSM + others).
