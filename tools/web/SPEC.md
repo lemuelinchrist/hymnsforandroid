@@ -37,7 +37,7 @@ Non-goals (for now): editing the melody or lyrics, accounts, copying the Android
 | Hymn database | `app/src/main/assets/hymns.sqlite` (18 MB; 6.7 MB gzipped) | Loaded as-is in the browser with **sql.js** (SQLite compiled to WebAssembly). Same tables, same SQL. |
 | Sheet files | `app/src/main/assets/sheetMei/*.mei` (3,342 files, 44 MB, ~13 KB each) | Fetched one at a time when a sheet is opened. |
 | Renderer | `app/src/main/assets/viewer/verovio-toolkit-wasm.js` (7.3 MB, LGPL, see `VEROVIO-NOTICE.txt`) | Same Verovio build the app uses. Loaded only when the first sheet is opened. |
-| Sheet logic | `app/src/main/assets/viewer/viewer.js` (444 lines) | Ported into a module: MEI loading, transposition through Verovio, the guitar version derived from the piano MEI (capo from the key, chords moved down, slash basses dropped, repeated chords removed; DESIGN.md §10, §19), staff hiding. The rules stay the same so web and app sheets match. |
+| Sheet logic | was `app/src/main/assets/viewer/viewer.js`; since 2026-11-17 the app's viewer runs the web app's `sheet.js` and `sheetpanel.js` (README, "The Android app's sheet viewer") | Ported into a module: MEI loading, transposition through Verovio, the guitar version derived from the piano MEI (capo from the key, chords moved down, slash basses dropped, repeated chords removed; DESIGN.md §10, §19), staff hiding. The rules stay the same so web and app sheets match. |
 | Data rules | `HymnsDao.java`, `SheetMusicButton.java`, `HymnGroup.java` | Re-implemented in JS (§5). |
 
 The web app keeps **no copy** of the database or the MEI files in git. A build script copies them from the app's
@@ -155,13 +155,14 @@ tools/web/                (was svg-to-lilypond/hymnsforweb/ until 2026-10-20)
     app.js           routing (hash URLs), screens, keyboard, localStorage
     db.js            sql.js wrapper: open the DB, get a hymn (with the parent merge), search, browse
     groups.js        hymnal names, colours and order (from HymnGroup.java)
-    sheet.js         viewer.js ported into a class: new SheetView(box).show(id, {guitar, shift, staff, scale})
+    sheet.js         the sheet (once viewer.js) as a class: new SheetView(box).show(id, {guitar, shift, staff, scale})
+    sheetpanel.js    the sheet with its toolbar; the Android app's viewer runs it too (tools/web/android)
   vendor/            sql.js 1.13.0, qrcode.js 1.4.4 (the QR code in Settings → Share the app)
   tests/e2e.cjs      Playwright tests
   dist/              (git-ignored) what gets served
 ```
 
-- **No framework and no bundler.** Plain ES modules, like the app's `viewer.js`.
+- **No framework and no bundler.** Plain ES modules, which the Android app's sheet viewer loads as they are.
 - **No service worker.** On the home network the page is served over plain http from a LAN address, which
   is not a "secure context", so service workers and the Cache API are not available. Instead:
   - The database is stored in **IndexedDB** under its version (`data/version.json`), so it downloads once per

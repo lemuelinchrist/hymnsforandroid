@@ -23,7 +23,8 @@ function sheetPrefs() {
 //   full                    the sheet alone: it has its own Play button
 //   tune                    the url of the hymn's tune file (the sheet is played at its tempo), or null
 //   title, note             elements above and below the toolbar, or null
-//   exit                    {icon, title, href | run}: the toolbar's last button (the sheet alone: back), or null
+//   exit                    {icon, title, href | run, first}: the toolbar's last button (the sheet alone: back), or with
+//                           first its first (the Android viewer's ‹, where Android has its back button), or null
 //   sheetOnly(p)            opens the sheet alone with these settings (the ⤢ button), or null
 //   pinch                   pinching the sheet changes its size (where the page itself does not zoom)
 //   stopTune(), onplay()    the hymn's own Play button: stop its tune; the sheet started or stopped playing
@@ -75,14 +76,16 @@ export function createSheetPanel(pane, o) {
   const exit = o.exit
     ? (o.exit.href
       ? h('a', {class: 'tb icon', href: o.exit.href, title: o.exit.title, 'aria-label': o.exit.title}, icon(o.exit.icon))
-      : btn(icon(o.exit.icon), o.exit.title, o.exit.run, 'icon exit'))
+      : btn(icon(o.exit.icon), o.exit.title, o.exit.run, 'icon exit' + (o.exit.first ? ' exit-first' : '')))
     : null;
   const bSheetOnly = o.sheetOnly
     ? h('a', {class: 'tb icon', href: '#', title: tr('Sheet only, for a music stand'), 'aria-label': tr('Sheet only, for a music stand'),
       onclick: (e) => { e.preventDefault(); o.sheetOnly(sheetParams()); }}, icon('expand'))
     : null;
 
+  const first = o.exit && o.exit.first;
   const bar = h('div', {class: 'sheet-bar', role: 'toolbar', 'aria-label': tr('Sheet music')},
+    first ? exit : null,
     h('div', {class: 'seg'}, bPiano, bGuitar),
     h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
     bStaff,
@@ -92,7 +95,7 @@ export function createSheetPanel(pane, o) {
     full ? bPlay : null,
     bSheetOnly,
     bMore,
-    exit);
+    first ? null : exit);
   // the toolbar and the player's row together (the Android viewer keeps them at the top of the screen)
   const top = h('div', {class: 'sheet-top'}, bar);
   const host = h('div', {class: 'sheet-host'});

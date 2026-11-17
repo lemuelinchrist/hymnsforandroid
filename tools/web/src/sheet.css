@@ -31,6 +31,7 @@
 .zoom { display: inline-flex; gap: 2px; }
 /* ⋯: the sheet's other choices (popupMenu); a dot on it while the original chords are shown */
 .sheet-bar .tb.sheet-more { position: relative; }
+.sheet-bar > .tb.icon.exit-first { order: 0; }   /* the Android viewer's back button stays first, also on a phone */
 .sheet-bar .tb.sheet-more.dot::after { content: ""; position: absolute; top: 3px; right: 3px; width: 8px; height: 8px; border-radius: 50%; background: var(--g); }
 .sheet-from { margin: 10px 16px 0; font-size: 13px; color: var(--muted); }
 .sheet-host { padding: 16px 12px 24px; }
@@ -240,10 +241,28 @@ body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
 .ce-key .ce-btn[aria-pressed="true"] sup { color: inherit; }
 .ce-key .ce-btn.fit { box-shadow: inset 0 -3px 0 #2e7d32; }
 .ce-key .ce-btn.fit.half { box-shadow: inset 0 -2px 0 rgba(46, 125, 50, .45); }
+/* the chords of the key in one line (it scrolls sideways), "More chords" at its end; "Original bar" with the rest */
+.ce-key { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.ce-key::-webkit-scrollbar { display: none; }
+.ce-key .ce-btn { flex: none; }
+.ce-key .ce-label { width: auto; white-space: nowrap; margin-right: 4px; }
+.ce-keyline { display: flex; align-items: center; gap: 6px; }
+.ce-keyline .ce-key { flex: 1; min-width: 0; }
+.ce-btn.ce-more { flex: none; padding: 0 12px; min-width: 0; color: var(--g); white-space: nowrap; }
+.ce-build { margin-top: 6px; }
+.ce-extra { justify-content: flex-end; }
+.ce-top { flex-wrap: nowrap; }
+.ce-title { white-space: nowrap; }
 @media (max-width: 600px) {
+  .chord-editor { padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); }
+  .ce-top { gap: 6px; margin-bottom: 6px; }
+  .ce-title { min-width: 0; }
+  .ce-top .ce-status:not(.error) { display: none; }   /* the bar and the ✎ say it; only a failure is told here */
   .ce-btn { min-width: 38px; height: 40px; padding: 0 8px; font-size: 15px; }
   .ce-btn.note { min-width: 34px; }
   .ce-label { width: 2.6em; }
+  .ce-beats { margin-bottom: 4px; padding-bottom: 4px; }
+  .ce-beat { min-width: 46px; height: 44px; }
 }
 @media print { .chord-editor { display: none !important; } }
 

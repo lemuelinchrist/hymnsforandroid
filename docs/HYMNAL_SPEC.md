@@ -71,7 +71,7 @@ Everything the app needs at runtime is in the repository. A rebuild does **not**
 | Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,527 files (one tune is an .mp3); 19 MB | Play button |
 | Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,437 (E 1362, NS 1238, CS 291, CH 243, BF 179, C 124); 45 MB | sheet viewer |
 | Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,446 (Z 755, C 632, ZS 460, FR 239, CS 194, FRY 166): every French and French Youth hymn that has a sheet; about 10 MB | sheet viewer overlay |
-| Sheet viewer (web) | `app/src/main/assets/viewer/` (`index.html`, `viewer.js`, `editor.js`, `viewer.css`, `verovio-toolkit-wasm.js`) | HTML/JS; Verovio 6.3.0 (LGPL-3.0) | 7.3 MB | **reusable as-is in a web build** |
+| Sheet viewer (web) | `app/src/main/assets/viewer/` (Verovio, `verovio-toolkit-wasm.js`; the page is the web app's sheet code, `tools/web/src` and `tools/web/android`, copied in by `app/build.gradle`) | HTML/JS; Verovio 6.3.0 (LGPL-3.0) | 7.3 MB | **the same code as the web app** |
 | UI icons | `app/src/main/res/drawable*/` | Material icons (vector/PNG) | — | buttons |
 
 ---
@@ -813,7 +813,7 @@ Traditional Chinese or Simplified Chinese; the hymns themselves are always in th
   choices (*Phone's language* by default: the first language of the browser's list that the app has, Traditional for
   zh-Hant/TW/HK/MO, else Simplified); the choice is kept on the device and the screen is written again at once. Its
   texts are in `tools/web/src/strings.js`, keyed by the English text (a text without a translation shows in English;
-  most have the same words as the Android strings, the chord editor's the same as `assets/viewer/strings.js`). The book
+  most have the same words as the Android strings, and the Android app's sheet viewer uses these same texts). The book
   names (the big native name, the translated name and the count under it, the sentences and the labels of inherited
   links) and the book a new person starts in are the Android app's own: `build.py` reads `book_<code>`,
   `language_<code>` and `first_hymn` from `res/values-*/strings.xml`. The page title, the install hint, the keyboard
@@ -839,16 +839,27 @@ lyricsId  = h._id             (passed so a translation can overlay its own words
 
 ### 11.2 Viewer contract
 
-The viewer is a self-contained web page (`assets/viewer/`). Hosts open:
+The viewer (`assets/viewer/`) is the web app's sheet with its toolbar (`tools/web/src/sheetpanel.js` and the modules
+it uses, listed in `tools/web/android/shared.txt`) inside a small page of its own (`tools/web/android`), copied into the
+app at every build; the web app's sheet alone (`#/sheet/E8`) is the same thing. So the two apps have the same sheet
+music features and cannot drift apart. Hosts open:
 
 ```
-viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>][&edit=1][&lang=en|zh-Hant|zh-Hans]
+viewer/index.html?id=<sheetId>&variant=piano|guitar&theme=light|dark|black[&paper=light][&accent=#rrggbb&accentNight=#rrggbb]
+  [&lyrics=<lyricsId>][&tune=m<tune>][&lang=en|zh-Hant|zh-Hans]
 ```
 
-- `lang` is the language of the viewer's own buttons and messages (`assets/viewer/strings.js`, §10.1); English when
+- `lang` is the language of the viewer's own buttons and messages (`tools/web/src/strings.js`, §10.1); English when
   missing. The sheet itself (titles, lyrics, the capo line) follows the hymn.
-- `edit=1` offers chord editing (§11.5). Android passes it when the screen's smallest width is at least 600 dp
-  (tablets, unfolded foldables); on phones the page only shows edits the device already has.
+- `variant` is where it starts (Android's sheet setting); `theme` the app's theme; `accent`, `accentNight` the book's
+  colours; `tune` the hymn's tune file in `res/raw`, served at `/res/raw/<tune>.mid`: the sheet is played at its tempo.
+- The page keeps its own settings (the zoom, the staff, Both hands and its style, light paper) in the WebView's local
+  storage, as the web app does.
+- Chord editing (§11.5) is on every screen: on a phone the editor shows one line for the bar, one for the beats and one
+  for the chords of the key, and folds the rest away (**More**) until asked for.
+- The host gives the page `window.HymnsEdits`: `get(sheet)`, `put(sheet, bars)` (this device's chord edits),
+  `setEditing(on)` (Back closes the editor while it is open), `saveFile(name, base64)` (Save MIDI: the host asks
+  where to save the file, as a WebView does not download).
 
 - It fetches `../sheetMei/<id>.mei` and, if `lyrics` is given and differs from `id`, `../sheetLyrics/<lyrics>.json`
   (a 404 there is fine: no overlay). **Keep this relative folder layout** (`viewer/`, `sheetMei/`, `sheetLyrics/`
@@ -914,12 +925,12 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&dark=0|1[&lyrics=<lyricsId>]
   shown, `accent` and `accentNight`; the day one on light paper, the night one on dark paper); red `#C80000` (dark:
   `#FF8A80`) only where no colour is passed.
 
-Full algorithm: `app/src/main/assets/viewer/viewer.js` (~800 lines, no dependencies besides Verovio; the chord
-editor's panel is `editor.js`).
+Full algorithm: `tools/web/src/sheet.js` (no dependencies besides Verovio; the chord editor's panel is `editor.js`),
+which both apps run.
 
-#### 11.3.1 Both hands (the web app; Android to follow)
+#### 11.3.1 Both hands
 
-The sheets are lead sheets. The web app can show a piano part with them (**Both hands**; turning it on opens a panel at the bottom that chooses the style, and Done tucks it down to a bar
+The sheets are lead sheets. Both apps (the sheet code is shared, §11.2) can show a piano part with them (**Both hands**; turning it on opens a panel at the bottom that chooses the style, and Done tucks it down to a bar
 that names the style and opens it again when tapped or dragged up): a left hand
 on a second staff (bass clef, in a brace with the first), made from the chords by a pattern (struck chords, bass and
 chord, arpeggios), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
@@ -931,12 +942,12 @@ chords are moved onto the beat for the left hand; the left hand stays under the 
 and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,
 `tools/web/src/piano.js` reads a sheet's bars, chords and melody for it. A native app can run the same file.
 
-The web app also **plays the sheet**: the hymn header's Play button plays the sheet while it is shown, the tune otherwise; the notes come from the same reading of the sheet (melody with tied notes
+Both apps also **play the sheet**: the web app's hymn header's Play button plays the sheet while it is shown, the tune otherwise (the Android viewer and the web app's sheet alone have a ▶ in the toolbar); the notes come from the same reading of the sheet (melody with tied notes
 joined, the left hand and the added notes, or the chords softly when Both hands is off), in the order the repeats and endings
 give; the tempo is that of the hymn's tune file, folded into 50 to 160 quarter notes a minute. The elements of the notes that
 sound are marked in the drawn sheet and the bar that sounds is shaded; the page follows the music until the reader scrolls;
-the tempo goes from half to one and a half times the tune's; the sheet can be saved as a MIDI file. In the web app's sheet
-toolbar the controls used most are in front (Piano | Guitar, key, Hide staff, Both hands, zoom, Sheet only for a music
+the tempo goes from half to one and a half times the tune's; the sheet can be saved as a MIDI file. In the sheet
+toolbar (both apps) the controls used most are in front (Piano | Guitar, key, Hide staff, Both hands, zoom, Sheet only for a music
 stand) and the rest (Edit chords, Original chords, original key and size, light paper, Save MIDI) in a ⋯ menu.
 
 ### 11.4 MEI files: what the viewer relies on
@@ -965,12 +976,13 @@ algorithms (they are small) with a different engraver. The WebView route is what
 For a tablet on the piano: the melody and words stay, the chords get passing chords and embellishments. The same
 feature, file format and rules as the web app (`tools/web/README.md`, "Chord edits"), so edits move between the two.
 
-- **Where:** only with `edit=1` (big screens), on the piano sheet with the staff shown. The bar gets **Edit chords**,
-  and **Original chords** (shows the sheet without this device's edits) once the sheet has edits. Choosing Guitar,
-  hiding the staff or Original leaves edit mode. Phones show the edits but cannot edit (no room for the panel).
+- **Where:** every screen, on the piano sheet with the staff shown. The toolbar's ⋯ has **Edit chords**, and
+  **Original chords** (shows the sheet without this device's edits) once the sheet has edits. Choosing Guitar,
+  hiding the staff or Original leaves edit mode. On a phone the panel keeps to three lines (the bar, the beats, the
+  chords of the key) and folds the rest away under **More** (kept open once opened), so the sheet stays in view.
 - **Editing:** a panel at the bottom. Tap a bar on the sheet (a note or chord also picks its beat); a strip shows the
   bar's beats (half beats in 4/4-type meters, plus every note's start); build the chord with buttons (root, ♭/♯,
-  quality, bass) or type it (`bb7/d` is stored as `B♭7/D`); Remove chord, Undo, Original bar, Done, ‹ › for the
+  quality, bass) or type it (`bb7/d` is stored as `B♭7/D`); Remove chord, Undo, Original bar (under More), Done, ‹ › for the
   neighbouring bars. Changed chords are drawn red (light red `#ff8a80` in night mode); the
   selected bar is highlighted. While editing, taps pick bars instead of hiding the bar. Back closes the panel first.
 - **Model:** per sheet `{"<bar>": {"was": [[beat, chord]], "chords": [[beat, chord]]}}`. A bar is the nth `<measure>`
@@ -1011,7 +1023,7 @@ Puts a translation's own words under the borrowed (parent's) sheet without dupli
 }
 ```
 
-Applied before rendering (`applyLyrics` in `viewer.js`), for **verse 1 only** (`verse[@n='1']`):
+Applied before rendering (`applyLyrics` in `tools/web/src/sheet.js`), for **verse 1 only** (`verse[@n='1']`):
 
 - `syl[noteId]` is a string = whole word on that note (no `wordpos`, no `con`);
   `[text, wordpos]` = syllable with `wordpos` i/m/t (`con="d"` for i/m);

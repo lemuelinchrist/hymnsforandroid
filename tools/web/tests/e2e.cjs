@@ -631,6 +631,7 @@ async function search(page, text) {
       assert(await page.locator('.share-menu').count() === 0, 'Escape');
     });
     await test('Play loops the tune and stops on the next hymn (E1)', async () => {
+      await page.setViewportSize({width: 800, height: 900});   // the lyrics alone: Play plays the tune (beside the sheet it plays the sheet)
       await open(page, '#/h/E1');
       await page.click('.hymn-nav .play');
       await page.waitForFunction(async () => (await import('./player.js')).playing() === 'E1');
@@ -638,6 +639,7 @@ async function search(page, text) {
       await page.keyboard.press('ArrowRight');
       await onHymn(page, 'E2');
       assert(await page.evaluate(async () => (await import('./player.js')).playing()) === null, 'still playing');
+      await page.setViewportSize({width: 1400, height: 900});
     });
     await test('every tune file reads as notes, and sounds (not silent, not clipping)', async () => {
       const r = await page.evaluate(async () => {

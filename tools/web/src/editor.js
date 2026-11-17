@@ -1,10 +1,13 @@
 // The chord editor: a panel at the bottom of the screen, opened by "Edit chords" on the piano sheet.
 // Pick a bar (tap it on the sheet), a beat in the strip, then take a chord of the key (the buttons numbered 1 to 7, or
-// those keys; a line under one says it holds the melody there), build one from buttons or type it.
+// those keys; a line under one says it holds the melody there), or with "More chords" build one from buttons or type it.
 // Every change goes through SheetView.setBar(), which redraws the sheet and saves it on this device.
+// It fits a phone: one line for the bar, one for the beats, one for the chords of the key; the rest ("More chords") is
+// folded away there until asked for (and the choice kept), so most of the sheet stays in view.
 
 import {splitChord} from './sheet.js';
 import {tr} from './i18n.js';
+import {store} from './ui.js';
 
 const ROOTS = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 const QUALITIES = [['', 'major'], ['m', 'm'], ['7', '7'], ['maj7', 'maj7'], ['m7', 'm7'], ['6', '6'], ['9', '9'], ['add9', 'add9'],
@@ -58,7 +61,20 @@ export function createEditor(view, {onclose}) {
   const stale = el('div', 'ce-stale');
   stale.hidden = true;
   const top = el('div', 'ce-top');
-  top.append(prev, title, next, el('span', 'grow'), status, bUndo, bRevert, bDone);
+  top.append(prev, title, next, el('span', 'grow'), status, bUndo, bDone);
+  // the rest of the chords: open on a big screen, folded away on a phone until asked for (and then kept so)
+  const bMore = el('button', 'ce-btn ce-more', null, {type: 'button', 'aria-expanded': 'false'});
+  const roomy = () => window.matchMedia('(min-width: 700px) and (min-height: 700px)').matches;
+  let more = store.get('chordEditorMore', null);
+  const showMore = () => {
+    const on = more == null ? roomy() : more;
+    bMore.textContent = (on ? '⌄ ' : '⌃ ') + tr('More');
+    bMore.title = tr('More chords');
+    bMore.setAttribute('aria-expanded', String(on));
+    bMore.hidden = keyRow.hidden;
+    build.hidden = !on && !keyRow.hidden;
+  };
+  bMore.addEventListener('click', () => { more = bMore.getAttribute('aria-expanded') !== 'true'; store.set('chordEditorMore', more); showMore(); });
 
   const strip = el('div', 'ce-beats', null, {role: 'group', 'aria-label': tr('Beats')});
   const build = el('div', 'ce-build');
@@ -67,12 +83,17 @@ export function createEditor(view, {onclose}) {
   const qualRow = el('div', 'ce-row scroll');
   const bassRow = el('div', 'ce-row');
   const textRow = el('div', 'ce-row ce-text');
+  const extraRow = el('div', 'ce-row ce-extra');
   const input = el('input', 'ce-input', null, {type: 'text', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false',
     placeholder: tr('Chord'), 'aria-label': tr('Chord'), enterkeyhint: 'done'});
   const bClear = el('button', 'ce-btn', tr('Remove chord'), {type: 'button'});
   textRow.append(input, bClear);
-  build.append(keyRow, rootRow, qualRow, bassRow);
-  root.append(top, stale, strip, build);
+  extraRow.append(bRevert);
+  build.append(rootRow, qualRow, bassRow, extraRow);
+  // the chords of the key scroll sideways; "More" stays in view beside them
+  const keyLine = el('div', 'ce-keyline');
+  keyLine.append(keyRow, bMore);
+  root.append(top, stale, strip, keyLine, build);
 
   const btn = (label, onclick, cls = '') => {
     const b = el('button', 'ce-btn ' + cls, label, {type: 'button'});
@@ -172,8 +193,8 @@ export function createEditor(view, {onclose}) {
       : tr('The sheet has changed since you edited bar {0}. Check that bar.', bad[0]);
 
     strip.textContent = '';
-    if (!open || !info) { build.hidden = true; strip.hidden = true; return; }
-    build.hidden = false; strip.hidden = false;
+    if (!open || !info) { build.hidden = true; strip.hidden = true; keyRow.hidden = true; bMore.hidden = true; return; }
+    strip.hidden = false;
     const chords = view.chordsOf(bar);
     info.beats.forEach((t) => {
       const here = chords.find(([x]) => Math.abs(x - t) < 1e-3);
@@ -193,6 +214,7 @@ export function createEditor(view, {onclose}) {
       b.addEventListener('click', () => setChord(beat, cur === c ? '' : c));
       return b;
     }));
+    showMore();
     const p = splitChord(cur) || {root: '', acc: '', quality: '', bass: '', bassAcc: ''};
     ROOTS.forEach((r, i) => { rootBtns[i].setAttribute('aria-pressed', String(p.root === r)); bassBtns[i].setAttribute('aria-pressed', String(p.bass === r)); });
     flat.setAttribute('aria-pressed', String(p.acc === '♭')); sharp.setAttribute('aria-pressed', String(p.acc === '♯'));

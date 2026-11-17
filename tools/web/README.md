@@ -125,8 +125,8 @@ the guitar sheet and the chords-over-lyrics view use them.
 
 They are kept **on the device** (IndexedDB), per sheet. Settings → Chord edits exports them as a file
 (`hymns-chord-edits-<date>.json`) and imports such a file on another device (a sheet edited later on this device is
-kept). The Android app exports and imports the same file (Settings → Chord Edits; it edits on tablets and unfolded
-phones), so edits move between the two. The same file is what gets sent in so the chords can go into the sheets for everyone:
+kept). The Android app exports and imports the same file (Settings → Chord Edits; it edits with this same editor, see
+"The Android app's sheet viewer"), so edits move between the two. The same file is what gets sent in so the chords can go into the sheets for everyone:
 
 ```bash
 python3 tools/svg-to-lilypond/tools/chord_edits.py import hymns-chord-edits-<date>.json --dry-run   # what would change
@@ -149,6 +149,28 @@ A bar is the nth `<measure>` of the sheet's MEI file (from 1), a beat the MEI `t
 meter's unit), `chords` replaces the bar's chords, and `was` is what the bar had, to notice when the sheet changes
 under an edit.
 
+On a phone the editor keeps to three lines (the bar with ‹ ›, Undo and Done; the beats; the chords of the key) and
+folds the rest (the letters, ♭ ♯, the kinds of chord, the bass, typing, Original bar) under **More**, so most of the
+sheet stays in view; on a big screen it is open, and either way the reader's choice is kept.
+
+## The Android app's sheet viewer
+
+The Android app shows sheet music with this same code, so the two cannot drift apart: `app/build.gradle` (`copyViewer`)
+copies the files listed in `android/shared.txt` from `src/`, the page around them (`android/`: `index.html`,
+`android.js`, `android.css`) and `music.js` into the app's `assets/viewer` at every build. The page is the sheet alone,
+as `#/sheet/E8` here, with a ‹ back button first. What differs is said in two places:
+
+- `src/host.js`: where the sheet code gets things. The web app gives it its data packs (`app.js`); the Android page
+  fetches `../sheetMei/<id>.mei` and `../sheetLyrics/<id>.json` from the app's assets, keeps chord edits in the app
+  (`window.HymnsEdits`, `ChordEdits.java`, so Settings exports them) and hands Save MIDI's file to the app, which asks
+  where to save it.
+- The options of `createSheetPanel` (`src/sheetpanel.js`): the back button, the ⤢ button (web only), pinching to zoom
+  (Android only), the tune whose tempo the sheet plays at (Android: `res/raw/m<tune>.mid`, served by the app at `/res/raw/`).
+
+The app opens `index.html?id=E8&variant=piano&theme=dark&accent=…&accentNight=…&lyrics=FR8&tune=m123&lang=zh-Hant`
+(`SheetMusicActivity`); see `android/android.js`. A module the sheet code starts to import must be added to
+`android/shared.txt`. `python3 tools/web/tests/android_serve.py` serves the page the way the app does, for a browser.
+
 ## Tests
 
 ```bash
@@ -156,6 +178,7 @@ node tools/web/tests/e2e.cjs                 # 63 checks in Chromium: search, hy
 node tools/web/tests/e2e.cjs --sheets 300    # also renders 300 random sheets in four modes each (--sheets all: every one)
 node tools/web/tests/edit.cjs                # 12 checks of the chord editor, saving, export and import
 node tools/web/tests/piano.cjs               # Both hands and Play sheet: 14 checks of the buttons, the panel and the player, then every 12th sheet in five styles, also what plays and its MIDI file (--all: every sheet)
+node tools/web/tests/android.cjs            # 9 checks of the Android app's sheet viewer, served as the app serves it, on a phone screen
 node tools/web/tests/scripture.cjs          # 10 checks of the Bible references as links (src/scripture.js), also on every reference in the database
 ```
 
@@ -165,10 +188,13 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 
 | | |
 |---|---|
-| `src/index.html`, `app.css` | the page |
+| `src/index.html`, `app.css` | the page (its own parts; `base.css` has the colours and themes, `sheet.css` the sheet music, both shared with the Android viewer) |
 | `src/app.js` | screens and routing (hash URLs), settings, favorites, the hymnal picker |
 | `src/db.js` | the database (sql.js): a hymn with its parent's fields, related hymns, search |
-| `src/sheet.js` | the sheet viewer (ported from the app's `assets/viewer/viewer.js`), translated words, chord edits |
+| `src/sheet.js` | the sheet itself (Verovio), translated words, chord edits; both apps run it |
+| `src/sheetpanel.js` | the sheet with its toolbar, the ⋯ menu, the panels and the player's row; both apps run it |
+| `src/host.js`, `src/ui.js` | what the sheet code gets from the app it runs in; small helpers (elements, icons, the popup menu, what the device keeps) |
+| `android/` | the Android app's sheet viewer page around the shared code; `shared.txt` lists the files it takes from `src/` |
 | `src/player.js` | Play: reads the app's MIDI files (`res/raw/m<tune>.mid`) and plays them looped with a small Web Audio piano |
 | `src/editor.js`, `src/edits.js` | the chord editor panel; edits on the device, export and import |
 | `src/piano.js`, `src/pianopanel.js` | Both hands: the piano part written into a sheet's MEI, and the notes to play (`scoreOf`, `playOrder`); the panel at the bottom that chooses how the hands play. The rules are `music.js`, copied by `build.py` from `tools/lead-sheet-editor/` |

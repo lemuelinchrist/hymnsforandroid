@@ -11,7 +11,7 @@ python3 tools/chord-sheet/make_chord_sheet.py song.txt BF491 "Title" --source "C
 
 - The sheet is one bar per line of the words; each word (or part of a word where a chord changes inside it) is a
   quarter note that only carries the syllable and the chord. Stanzas without chords go in `<back>`.
-- The Android viewer (`assets/viewer/viewer.js`) and the web app (`tools/web/src/sheet.js`) always show such a sheet as
+- Both apps' viewers (the same code, `tools/web/src/sheet.js`) always show such a sheet as
   chords over the words, with the Staff and Edit chords buttons hidden. Piano shows sounding pitch (the capo is
   added), Guitar the capo and shapes; transposing works.
 - It has no tune code and no MIDI. When the melody is written (`tools/lead-sheet-editor`), the real sheet replaces the file.

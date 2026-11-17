@@ -1003,8 +1003,9 @@ It started as an *extra* viewer behind a setting ("New Sheet Music Viewer", off 
   Title, subtitle and number go in `meiHead`; the verse block under the music and any chords printed after the
   last bar go in `<back>` as plain text, so the page lays them out as HTML (system fonts, so CJK renders properly,
   §11.5).
-- `app/src/main/assets/viewer/`: `index.html`, `viewer.css`, `viewer.js`, `verovio-toolkit-wasm.js` (unmodified,
-  npm `verovio` 6.3.0, notice in `VEROVIO-NOTICE.txt`).
+- `app/src/main/assets/viewer/`: `verovio-toolkit-wasm.js` (unmodified, npm `verovio` 6.3.0, notice in
+  `VEROVIO-NOTICE.txt`); the page itself was `index.html`, `viewer.css`, `viewer.js` here until 2026-11-17, and is now
+  the web app's sheet code, copied in at build time (`tools/web/README.md`, "The Android app's sheet viewer").
 - `SheetMusicActivity`: if the setting is on and `sheetMei/<id>.mei` exists, load
   `https://appassets.androidplatform.net/assets/viewer/index.html?id=<id>&variant=piano|guitar&dark=0|1` through
   `WebViewAssetLoader` (androidx.webkit; the page must `fetch` the MEI, which file:// URLs do not allow); otherwise

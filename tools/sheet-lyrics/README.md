@@ -19,7 +19,7 @@ python3 tools/sheet-lyrics/test_french.py      # checks of the syllable splitter
    finds how many notes each English phrase has (from the English stanza in the database), and picks one reading per
    French word so that the French fills exactly those notes. Cheapest combination wins.
 3. The result is `sheetLyrics/FR<n>.json` (named with the hymn's current book code: when a code is renamed, rename these files too; `SheetLyricsFilesTest` checks it): the syllable for each note id, the title, and verses 2, 3... (plain text below
-   the staff, taken from the database as they are). The viewer (`assets/viewer/viewer.js`, `applyLyrics`) swaps them into
+   the staff, taken from the database as they are). The viewer (`tools/web/src/sheet.js`, `applyLyrics`, in both apps) swaps them into
    the English MEI before drawing, when the app opens the sheet from a French hymn (`?lyrics=FR<n>`).
    Hymns with no overlay file just show the English sheet.
 

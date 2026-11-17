@@ -13,6 +13,11 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import android.util.Base64;
+import android.util.Log;
+import java.io.OutputStream;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -37,8 +42,6 @@ import java.util.Locale;
 public class SheetMusicActivity extends AppCompatActivity {
     private static final String MEI_FOLDER = "sheetMei";
     private static final String VIEWER_CLOSE_SCHEME = "hymnsviewer";
-    // chord editing needs room for the sheet and the editor below it: tablets and unfolded phones
-    private static final int EDITING_MIN_WIDTH_DP = 600;
     private WebView webview;
     private SharedPreferences sharedPreferences;
     /** Preference: in the dark theme, show the sheet on light paper (set by the viewer's paper button). */
@@ -46,6 +49,9 @@ public class SheetMusicActivity extends AppCompatActivity {
     private Insets cutout = Insets.NONE;   // the camera cutout's safe insets, in pixels
     private int keyboard = 0;              // the height of the on-screen keyboard, in pixels
     private ChordEdits chordEdits;
+    // Save MIDI: the file the viewer made, kept while the reader chooses where it goes
+    private byte[] pendingFile;
+    private ActivityResultLauncher<String> saveMidiLauncher;
     // while the chord editor is open, Back closes it instead of the sheet
     private final OnBackPressedCallback closeEditorOnBack = new OnBackPressedCallback(false) {
         @Override
@@ -87,10 +93,12 @@ public class SheetMusicActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String selectedHymnId = (String) extras.get("selectedHymnId");
         String lyricsHymnId = (String) extras.get("lyricsHymnId");
+        String tune = (String) extras.get("tune");
 
         webview = findViewById(R.id.sheet_music_image);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         chordEdits = new ChordEdits(this);
+        saveMidiLauncher = registerForActivityResult(new ActivityResultContracts.CreateDocument("audio/midi"), this::writePendingFile);
         getOnBackPressedDispatcher().addCallback(this, closeEditorOnBack);
 
         if (!hasMei(selectedHymnId)) {
@@ -98,7 +106,7 @@ public class SheetMusicActivity extends AppCompatActivity {
             finish();
             return;
         }
-        loadNewViewer(selectedHymnId, lyricsHymnId);
+        loadNewViewer(selectedHymnId, lyricsHymnId, tune);
 
         if(sharedPreferences.getBoolean("keepDisplayOn",false)) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -120,12 +128,15 @@ public class SheetMusicActivity extends AppCompatActivity {
     }
 
     /**
-     * The new viewer (assets/viewer) renders assets/sheetMei/<id>.mei with Verovio to fit the screen width.
-     * Assets are served over https by WebViewAssetLoader, since the page fetches the MEI file.
+     * The viewer (assets/viewer) is the web app's sheet with its toolbar (tools/web/src, copied in by app/build.gradle;
+     * the page around it is tools/web/android): it renders assets/sheetMei/<id>.mei with Verovio to fit the screen
+     * width. Assets are served over https by WebViewAssetLoader, since the page fetches the MEI file, and res/raw for
+     * the tune, whose tempo the sheet is played at.
      */
-    private void loadNewViewer(String hymnId, String lyricsHymnId) {
+    private void loadNewViewer(String hymnId, String lyricsHymnId, String tune) {
         final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
+                .addPathHandler("/res/", new WebViewAssetLoader.ResourcesPathHandler(this))
                 .build();
         webview.setWebViewClient(new WebViewClientCompat() {
             @Override
@@ -153,10 +164,14 @@ public class SheetMusicActivity extends AppCompatActivity {
         });
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setAllowFileAccess(false);
+        // the viewer keeps its settings as the web app does (the zoom, Both hands and its style, light paper)
+        webview.getSettings().setDomStorageEnabled(true);
+        // the sheet is played when the reader presses Play
+        webview.getSettings().setMediaPlaybackRequiresUserGesture(true);
         webview.addJavascriptInterface(new EditsBridge(hymnId), "HymnsEdits");
-        boolean editable = getResources().getConfiguration().smallestScreenWidthDp >= EDITING_MIN_WIDTH_DP;
         String variant = "guitarSvg".equals(sharedPreferences.getString("sheetMusicType", "pianoSvg")) ? "guitar" : "piano";
         boolean dark = Theme.isNight(this);
+        String theme = !dark ? "light" : Theme.isBlack(this) ? "black" : "dark";
         // the hymn's book colour (of the hymn shown, which may borrow another book's sheet): the viewer's accent
         String accent = "";
         try {
@@ -166,11 +181,11 @@ public class SheetMusicActivity extends AppCompatActivity {
             // an unknown book: the viewer keeps its own accent
         }
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/index.html?id="
-                + Uri.encode(hymnId) + "&variant=" + variant + "&dark=" + (dark ? "1" : "0")
+                + Uri.encode(hymnId) + "&variant=" + variant + "&theme=" + theme
                 + (dark && sharedPreferences.getBoolean(LIGHT_PAPER, false) ? "&paper=light" : "")
                 + accent
                 + (lyricsHymnId != null ? "&lyrics=" + Uri.encode(lyricsHymnId) : "")
-                + (editable ? "&edit=1" : "")
+                + (tune != null ? "&tune=" + Uri.encode(tune) : "")
                 + "&lang=" + getString(R.string.ui_language));
     }
 
@@ -209,9 +224,39 @@ public class SheetMusicActivity extends AppCompatActivity {
             sharedPreferences.edit().putBoolean(LIGHT_PAPER, on).apply();
         }
 
+        /** Save MIDI: the sheet as a MIDI file (base64), saved where the reader chooses. */
+        @JavascriptInterface
+        public void saveFile(String name, String base64) {
+            byte[] data;
+            try {
+                data = Base64.decode(base64, Base64.DEFAULT);
+            } catch (IllegalArgumentException e) {
+                return;
+            }
+            String fileName = name != null && name.matches("[\\w.-]{1,80}") ? name : "sheet.mid";
+            runOnUiThread(() -> {
+                pendingFile = data;
+                saveMidiLauncher.launch(fileName);
+            });
+        }
+
         @JavascriptInterface
         public void setEditing(boolean on) {
             runOnUiThread(() -> closeEditorOnBack.setEnabled(on));
+        }
+    }
+
+    private void writePendingFile(Uri uri) {
+        byte[] data = pendingFile;
+        pendingFile = null;
+        if (uri == null || data == null) return;
+        try (OutputStream out = getContentResolver().openOutputStream(uri)) {
+            if (out == null) throw new IOException("no stream");
+            out.write(data);
+            Toast.makeText(this, R.string.midi_saved, Toast.LENGTH_SHORT).show();
+        } catch (IOException | RuntimeException e) {
+            Log.e(getClass().getName(), "Could not save the MIDI file", e);
+            Toast.makeText(this, R.string.file_not_saved_there, Toast.LENGTH_LONG).show();
         }
     }
 
