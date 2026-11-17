@@ -1,0 +1,129 @@
+/* The tokens of both apps' looks (the web app, and the Android app's sheet viewer, which runs the same sheet code):
+   cool light paper like the Android Settings, each hymnal in its own colour (--gd day, --gn night), a dark and a black theme. */
+
+:root {
+  --paper: #f4f6f9;     /* the Android Settings colours (res/values/colors.xml set_*), light theme */
+  --surface: #ffffff;
+  --raised: #ffffff;
+  --ink: #1b1d21;
+  --muted: #5d636c;
+  --line: #e3e6ea;
+  --line-strong: #c9ced5;
+  --hover: #e9edf2;
+  --mark: #ffe58a;
+  --set-primary: #3d577a; --set-tint: #dbe4f0; --set-on-tint: #1f3552;   /* Android Settings (set_primary, set_tint, set_on_tint) */
+  --shadow: 0 1px 2px rgba(20, 30, 50, .06), 0 4px 16px rgba(20, 30, 50, .06);
+  --g: var(--gd, #3D577A);
+  --g-soft: color-mix(in srgb, var(--g) 12%, transparent);
+  --radius: 12px;
+  --ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", "Noto Serif", Georgia, serif;
+  --lyric-scale: 1.12;
+  --top: 60px;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"], :root[data-theme="black"] {
+  --paper: #161412;
+  --surface: #1e1b18;
+  --raised: #252220;
+  --ink: #ece6dc;
+  --muted: #a39a8d;
+  --line: #34302b;
+  --line-strong: #4a443c;
+  --set-primary: #a9c3e6; --set-tint: #2c3e57; --set-on-tint: #d6e3f5;
+  --hover: #2a2622;
+  --mark: #6b5a12;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
+  --g: var(--gn, #B0BEC5);
+  color-scheme: dark;
+}
+
+/* Black: the pre-v5.8 night mode of the Android app, over Dark */
+:root[data-theme="black"] {
+  --paper: #000000;
+  --surface: #000000;
+  --raised: #121212;
+  --ink: #cccccc;
+  --muted: #8f8f8f;
+  --line: #262626;
+  --line-strong: #3a3a3a;
+  --hover: #1a1a1a;
+  --mark: #5a4c0e;
+  --shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="black"]) {
+    --paper: #161412;
+    --surface: #1e1b18;
+    --raised: #252220;
+    --ink: #ece6dc;
+    --muted: #a39a8d;
+    --line: #34302b;
+    --line-strong: #4a443c;
+  --set-primary: #a9c3e6; --set-tint: #2c3e57; --set-on-tint: #d6e3f5;
+    --hover: #2a2622;
+    --mark: #6b5a12;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
+    --g: var(--gn, #B0BEC5);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+[style*="--gd"] { --g: var(--gd); }
+:root[data-theme="dark"] [style*="--gd"], :root[data-theme="black"] [style*="--gd"] { --g: var(--gn); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) [style*="--gd"] { --g: var(--gn); } }
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.5 var(--ui);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+a:not([class]) { color: var(--g); text-underline-offset: 2px; }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { line-height: 1.25; }
+.muted { color: var(--muted); }
+.small { font-size: .85em; }
+.grow { flex: 1; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--g); outline-offset: 2px; border-radius: 6px; }
+kbd {
+  font: 12px/1 var(--ui); padding: 3px 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  border-radius: 5px; color: var(--muted); background: var(--surface);
+}
+mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+.icon { display: inline-flex; line-height: 0; }
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; flex: none;
+  border: 0; border-radius: 50%; background: none; cursor: pointer; color: var(--muted); text-decoration: none;
+}
+.icon-btn:hover { background: var(--hover); color: var(--ink); }
+.icon-btn.disabled { opacity: .3; pointer-events: none; }
+.icon-btn.on { color: #e0a100; }
+.icon-btn.on svg { fill: currentColor; }
+.link { border: 0; background: none; color: var(--muted); cursor: pointer; text-decoration: underline; padding: 0; }
+
+
+.seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 20px; padding: 3px; background: var(--surface); gap: 2px; }
+.seg > * {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 16px; border: 0;
+  background: none; text-decoration: none; cursor: pointer; color: var(--muted); white-space: nowrap; font-size: 14px;
+}
+.seg > *:hover { color: var(--ink); }
+.seg > .on, .seg > [aria-pressed="true"] { background: var(--g); color: var(--surface); }
+.seg .n { font-size: 12px; opacity: .8; font-variant-numeric: tabular-nums; }
+.seg > [aria-disabled="true"] { opacity: .45; pointer-events: none; }
+
+#toast {
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px); opacity: 0; pointer-events: none; z-index: 30;
+  background: var(--ink); color: var(--paper); padding: 10px 18px; border-radius: 20px; font-size: 14px; transition: .2s;
+}
+#toast.show { opacity: 1; transform: translate(-50%, 0); }

@@ -11,99 +11,44 @@ import * as DB from './db.js';
 import {GROUPS, BY_CODE, splitId, langOf, currentCode, currentId, bookName, languageName, bookSubtitle, firstGroup} from './groups.js';
 import {tr, tn, trh, num, lang, LANGS, getChoice, setChoice, applyStatic} from './i18n.js';
 import {parseScripture} from './scripture.js';
-import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE, prefetchAll} from './sheet.js';
-import {createEditor} from './editor.js';
-import {createPianoPanel} from './pianopanel.js';
-import {createSheetPlayer} from './sheetplayer.js';
-import {DEFAULT as PIANO_DEFAULT} from './piano.js';
+import {loadVerovio} from './sheet.js';
+import {createSheetPanel, sheetKeys} from './sheetpanel.js';
+import {setHost} from './host.js';
+import {fetchGzJson} from './files.js';
 import * as Edits from './edits.js';
 import * as Player from './player.js';
+import {h, append, icon, store, toast, isDark, popupMenu, themeListeners} from './ui.js';
+
+// ---- where the sheet code gets its sheets (host.js; the Android app's viewer has its own) ----
+
+// sheets and sheet lyrics come in one file per hymnal (build.py)
+async function fromPack(kind, id) {
+  const g = (/^([A-Z]{1,3})\d/.exec(id) || [])[1];
+  const file = g && DB.version && DB.version[kind][g];
+  if (!file) return null;
+  const pack = await fetchGzJson(file);
+  return pack[id] || null;
+}
+
+setHost({
+  verovio: () => 'verovio/verovio-toolkit-wasm.js' + (DB.version ? '?v=' + DB.version.verovio : ''),
+  mei: async (id) => {
+    const xml = await fromPack('sheets', id);
+    if (!xml) throw new Error('no sheet ' + id);
+    return xml;
+  },
+  lyrics: (id) => fromPack('lyrics', id),
+});
+
+// the hymnals' sheet files, for offline use (the service worker keeps what is fetched)
+function prefetchAll() {
+  const v = DB.version, files = v ? [...Object.values(v.sheets), ...Object.values(v.lyrics)] : [];
+  return Promise.all([loadVerovio(), ...files.map((f) => fetchGzJson(f))]);
+}
 
 // ---- small helpers ----
 
 const $ = (sel, root = document) => root.querySelector(sel);
-
-// h('div', {class: 'x', onclick: f}, child, 'text', [more]) -> element
-function h(tag, attrs, ...children) {
-  const e = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs || {})) {
-    if (v == null || v === false) continue;
-    if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
-    else if (k === 'class') e.className = v;
-    else if (k === 'html') e.innerHTML = v;
-    else if (k === 'style' && typeof v === 'object') Object.assign(e.style, v);
-    else e.setAttribute(k, v === true ? '' : v);
-  }
-  append(e, children);
-  return e;
-}
-
-function append(e, children) {
-  for (const c of children.flat(Infinity)) {
-    if (c == null || c === false) continue;
-    e.appendChild(c instanceof Node ? c : document.createTextNode(String(c)));
-  }
-  return e;
-}
-
-const ICONS = {
-  down: '<path d="M6 9l6 6 6-6"/>',
-  up: '<path d="M6 15l6-6 6 6"/>',
-  prev: '<path d="M15 5l-7 7 7 7"/>',
-  next: '<path d="M9 5l7 7-7 7"/>',
-  search: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/>',
-  star: '<path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8-4.2-4.1 5.9-.9z"/>',
-  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/>',
-  moon: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
-  expand: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>',
-  zoomIn: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8 11h6M11 8v6"/>',
-  zoomOut: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2M8 11h6"/>',
-  print: '<path d="M7 9V3.5h10V9M7 17H4.5V10h15v7H17M7 14h10v6.5H7z"/>',
-  close: '<path d="M6 6l12 12M18 6L6 18"/>',
-  book: '<path d="M4 4.5h6a2 2 0 0 1 2 2V20a1.5 1.5 0 0 0-1.5-1.5H4zM20 4.5h-6a2 2 0 0 0-2 2V20a1.5 1.5 0 0 1 1.5-1.5H20z"/>',
-  reset: '<path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5"/>',
-  paper: '<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/>',
-  keyboard: '<rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/>',
-  textSmaller: '<path d="M3 18l4.5-11L12 18M4.6 14h5.8M15 13h6"/>',
-  textBigger: '<path d="M3 18l4.5-11L12 18M4.6 14h5.8M15 13h6M18 10v6"/>',
-  home: '<path d="M4 11l8-6.5 8 6.5M6 9.5V20h12V9.5"/>',
-  // the Android app's gear (res/drawable/ic_settings_white_48dp.xml), filled
-  settings: '<path fill="currentColor" stroke="none" fill-rule="evenodd" d="M19.1,12.9a2.8,2.8 0,0 0,0.1 -0.9,2.8 2.8,0 0,0 -0.1,-0.9l2.1,-1.6a0.7,0.7 0,0 0,0.1 -0.6L19.4,5.5a0.7,0.7 0,0 0,-0.6 -0.2l-2.4,1a6.5,6.5 0,0 0,-1.6 -0.9l-0.4,-2.6a0.5,0.5 0,0 0,-0.5 -0.4H10.1a0.5,0.5 0,0 0,-0.5 0.4L9.3,5.4a5.6,5.6 0,0 0,-1.7 0.9l-2.4,-1a0.4,0.4 0,0 0,-0.5 0.2l-2,3.4c-0.1,0.2 0,0.4 0.2,0.6l2,1.6a2.8,2.8 0,0 0,-0.1 0.9,2.8 2.8,0 0,0 0.1,0.9L2.8,14.5a0.7,0.7 0,0 0,-0.1 0.6l1.9,3.4a0.7,0.7 0,0 0,0.6 0.2l2.4,-1a6.5,6.5 0,0 0,1.6 0.9l0.4,2.6a0.5,0.5 0,0 0,0.5 0.4h3.8a0.5,0.5 0,0 0,0.5 -0.4l0.3,-2.6a5.6,5.6 0,0 0,1.7 -0.9l2.4,1a0.4,0.4 0,0 0,0.5 -0.2l2,-3.4c0.1,-0.2 0,-0.4 -0.2,-0.6ZM12,15.6A3.6,3.6 0,1 1,15.6 12,3.6 3.6,0 0,1 12,15.6Z"/>',
-  copy: '<rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a1.5 1.5 0 0 0-1.5-1.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/>',
-  share: '<path d="M12 3.5v11M8 7.5l4-4 4 4M5.5 12v6.5a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5V12"/>',
-  // the Share menu's tiles, as the Android app's (res/drawable/ic_set_share.xml, ic_set_link.xml)
-  shareNodes: '<circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="5.5" r="2.6"/><circle cx="18" cy="18.5" r="2.6"/><path d="M8.3 10.8l7.4-4.2M8.3 13.2l7.4 4.2"/>',
-  link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
-  play: '<path d="M8 5.5v13l10.5-6.5z"/>',
-  cloud: '<path d="M7 18.5a4 4 0 0 1-.5-7.97 5.5 5.5 0 0 1 10.6 1.1A3.5 3.5 0 0 1 17 18.5z"/>',
-  piano: '<rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M9.2 5v14M14.8 5v14M7.2 5v7M12 5v7M16.8 5v7"/>',
-  tune: '<path d="M9 18V5.5l10-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>',
-  pause: '<path d="M8.5 5.5v13M15.5 5.5v13"/>',
-  more: '<circle cx="5.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18.5" cy="12" r="1.3" fill="currentColor"/>',
-  edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
-  download: '<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"/>',
-  original: '<path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4.5v4h4"/><path d="M12 8v4l2.5 2"/>',
-  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
-};
-
-function icon(name, label) {
-  return h('span', {class: 'icon', 'aria-hidden': label ? null : 'true', html:
-    `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]}</svg>`});
-}
-
-const store = {
-  get(key, fallback) {
-    try {
-      const v = localStorage.getItem('hfw.' + key);
-      return v == null ? fallback : JSON.parse(v);
-    } catch (e) {
-      return fallback;
-    }
-  },
-  set(key, value) {
-    try { localStorage.setItem('hfw.' + key, JSON.stringify(value)); } catch (e) { /* private mode */ }
-  },
-};
 
 function groupStyle(code) {
   const g = BY_CODE[code];
@@ -112,14 +57,6 @@ function groupStyle(code) {
 
 function chip(code, text) {
   return h('span', {class: 'chip', style: groupStyle(code)}, text || code);
-}
-
-function toast(msg) {
-  const t = $('#toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toast.timer);
-  toast.timer = setTimeout(() => t.classList.remove('show'), 1800);
 }
 
 const wide = window.matchMedia('(min-width: 1080px)');
@@ -162,10 +99,6 @@ function applyTheme() {
   else delete document.documentElement.dataset.theme;
 }
 
-function isDark() {
-  const t = document.documentElement.dataset.theme;
-  return t ? t !== 'light' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-}
 
 // 'light', 'dark', 'black', or null to follow the device
 function setTheme(t) {
@@ -663,31 +596,6 @@ function shareMenu(hymn, anchor) {
   popupMenu(anchor, items.map(([ic, label, fn]) => ({icon: ic, label, run: fn})));
 }
 
-// a small menu under a button (Share, the sheet's ⋯): items {icon, label, run, checked?} (checked: true/false makes it
-// a choice that is on or off, with a tick when on)
-function popupMenu(anchor, items, cls = '') {
-  document.querySelector('.share-menu')?.remove();
-  const menu = h('div', {class: 'share-menu ' + cls, role: 'menu'}, items.map((it) =>
-    h('button', {role: it.checked == null ? 'menuitem' : 'menuitemcheckbox', 'aria-checked': it.checked == null ? null : String(!!it.checked),
-      onclick: () => { close(); it.run(); }}, h('span', {class: 'tile'}, icon(it.icon)), it.label,
-    it.checked ? h('span', {class: 'tick'}, icon('check')) : null)));
-  const close = () => {
-    menu.remove();
-    document.removeEventListener('pointerdown', away, true);
-    document.removeEventListener('keydown', esc, true);
-    anchor.setAttribute('aria-expanded', 'false');
-  };
-  const away = (e) => { if (!menu.contains(e.target) && !anchor.contains(e.target)) close(); };
-  const esc = (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); anchor.focus(); } };
-  document.body.appendChild(menu);
-  const r = anchor.getBoundingClientRect();
-  menu.style.top = (r.bottom + 4) + 'px';
-  menu.style.right = Math.max(8, innerWidth - r.right) + 'px';
-  anchor.setAttribute('aria-expanded', 'true');
-  document.addEventListener('pointerdown', away, true);
-  document.addEventListener('keydown', esc, true);
-  menu.querySelector('button').focus();
-}
 
 async function copyLyrics(hymn) {
   try {
@@ -999,257 +907,29 @@ function sheetScreen(view, hymn) {
   cleanup = () => { sheet.destroy(); keys = {}; };
 }
 
-// ---- the sheet toolbar and view ----
+// ---- the sheet toolbar and view (sheetpanel.js), with the web app's links and URL ----
 
-// remembered between hymns: piano or guitar, the staff, the zoom, both hands. Transposition is per hymn (in the URL only).
-function sheetPrefs() {
-  return Object.assign({guitar: false, staff: true, scale: DEFAULT_SCALE, hands: false}, store.get('sheet', {}));
-}
-
-function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop(), onplay = () => {}}) {
-  const p = route.params;
-  const prefs = sheetPrefs();
-  const state = {
-    guitar: p.has('v') ? p.get('v') === 'guitar' : prefs.guitar,
-    staff: p.has('staff') ? p.get('staff') !== '0' : prefs.staff,
-    shift: Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, parseInt(p.get('t') || '0', 10) || 0)),
-    scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, parseInt(p.get('z') || '', 10) || prefs.scale)),
-    hands: !!prefs.hands,
-  };
-  const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands});
-
-  const btn = (label, title, onclick, cls = '') => h('button', {type: 'button', class: 'tb ' + cls, title, 'aria-label': title, onclick}, label);
-  const bPiano = btn(tr('Piano'), tr('Piano sheet (P)'), () => set({guitar: false}));
-  const bGuitar = btn(tr('Guitar'), tr('Guitar sheet (G)'), () => set({guitar: true}));
-  const bDown = btn('−', tr('Transpose down a semitone (−)'), () => set({shift: state.shift - 1}), 'step');
-  const bUp = btn('+', tr('Transpose up a semitone (+)'), () => set({shift: state.shift + 1}), 'step');
-  const keyLabel = h('button', {type: 'button', class: 'key', title: tr('Back to the original key')}, '…');
-  keyLabel.addEventListener('click', () => set({shift: 0}));
-  const bStaff = btn(tr('Staff'), tr('Show or hide the staff (H)'), () => set({staff: !state.staff}), 'toggle');
-  const bZoomOut = btn(icon('zoomOut'), tr('Smaller (Z)'), () => set({scale: state.scale - 5}), 'icon');
-  const bZoomIn = btn(icon('zoomIn'), tr('Bigger (Shift+Z)'), () => set({scale: state.scale + 5}), 'icon');
-  // both hands: a piano part made from the chords (piano.js); how the hands play is chosen in the panel at the bottom
-  const bHands = btn(tr('Both hands'), tr('A piano part: a left hand made from the chords (B)'), () => set({hands: !state.hands}), 'hands');
-  // play the sheet: the hymn page's own Play button does it while the sheet is shown; the sheet alone has this one
-  const bPlay = btn(icon('play'), tr('Play the sheet as it is shown, with both hands when they are on (M)'), () => sp.toggle(), 'icon playsheet');
-  bPlay.hidden = !full;
-  let sp = null;
-  // the rest, used less, in the ⋯ menu: chord editing (for players who reharmonize), the original chords, the original
-  // key and size, light paper (dark theme), Save MIDI. The sheet alone (for a music stand) keeps its own button.
-  const bMore = btn(icon('more'), tr('More'), () => moreMenu(), 'icon sheet-more');
-  bMore.setAttribute('aria-haspopup', 'menu');
-  bMore.setAttribute('aria-expanded', 'false');
-  const lightPaper = () => store.get('sheetPaper', null) === 'light';
-  function moreMenu() {
-    const items = [];
-    if (!view.chordsOnly) items.push({icon: 'edit', label: view.editing ? tr('Stop editing chords') : tr('Edit chords'), run: () => setEdit(!view.editing)});
-    if (view.hasEdits()) items.push({icon: 'original', label: tr('Original chords'), checked: !!state.original, run: () => set({original: !state.original})});
-    if (state.shift || state.scale !== DEFAULT_SCALE) items.push({icon: 'reset', label: tr('Original key and size'), run: () => set({shift: 0, scale: DEFAULT_SCALE})});
-    // dark theme only: the sheet on light paper (black on white); remembered like the zoom
-    if (isDark()) items.push({icon: 'paper', label: tr('Light paper'), checked: lightPaper(), run: () => { store.set('sheetPaper', lightPaper() ? null : 'light'); paperLook(); }});
-    if (!view.chordsOnly) items.push({icon: 'download', label: tr('Save MIDI'), run: () => sp.saveMidi()});
-    popupMenu(bMore, items, 'sheet-menu');
-  }
-  const other = full
-    ? h('a', {class: 'tb icon', href: href('/h/' + hymn.id), title: tr('Back to the lyrics (Esc)'), 'aria-label': tr('Back to the lyrics')}, icon('close'))
-    : h('a', {class: 'tb icon', href: '#', title: tr('Sheet only, for a music stand'), 'aria-label': tr('Sheet only, for a music stand'),
-      onclick: (e) => { e.preventDefault(); go(href('/sheet/' + hymn.id, sheetParams())); }}, icon('expand'));
-
-  const bar = h('div', {class: 'sheet-bar', role: 'toolbar', 'aria-label': tr('Sheet music')},
-    h('div', {class: 'seg'}, bPiano, bGuitar),
-    h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
-    bStaff,
-    bHands,
-    h('div', {class: 'zoom'}, bZoomOut, bZoomIn),
-    h('span', {class: 'grow'}),
-    full ? bPlay : null,
-    full ? null : other,
-    bMore,
-    full ? other : null);
+function sheetPanel(pane, hymn, {full, stopTune, onplay} = {}) {
   const note = hymn.sheetId !== hymn.id
     ? h('p', {class: 'sheet-from'}, trh('Music of {0} ({1})', h('a', {href: '#/h/' + hymn.sheetId}, hymn.sheetId), BY_CODE[splitId(hymn.sheetId).group].name),
       hymn.lyricsId ? tr(', with the words of {0}', hymn.id) : '')
     : null;
-  const host = h('div', {class: 'sheet-host'});
-  append(pane, [full ? h('div', {class: 'sheet-title-bar'},
-    h('a', {href: href('/h/' + hymn.id)}, chip(hymn.group, hymn.id)), ' ', h('span', null, hymn.first || '')) : null, bar, note, host]);
-
-  const view = new SheetView(host);
-  // dark theme: dark paper, or light paper if the reader chose it with the paper button
-  function paperLook() {
-    const light = isDark() && store.get('sheetPaper', null) === 'light';
-    view.root.classList.toggle('dark', isDark() && !light);
-    view.root.classList.toggle('light-paper', light);
-  }
-  paperLook();
-
-  function sheetParams() {
-    const out = {};
-    if (state.guitar !== false) out.v = 'guitar';
-    if (!state.staff) out.staff = '0';
-    if (state.shift) out.t = state.shift;
-    if (state.scale !== DEFAULT_SCALE) out.z = state.scale;
-    return out;
-  }
-
-  // how the hands play: the device's choice for every hymn, or this hymn's own ("Only this hymn" in the panel)
-  function pianoChoice() {
-    const own = store.get('pianoOf', {})[hymn.sheetId];
-    return {choice: own || store.get('piano', PIANO_DEFAULT), only: !!own};
-  }
-  function setPiano(choice, only) {
-    const all = store.get('pianoOf', {});
-    if (only) all[hymn.sheetId] = choice; else { delete all[hymn.sheetId]; store.set('piano', choice); }
-    store.set('pianoOf', all);
-    view.piano = choice;
-    view.set({});
-  }
-  view.piano = pianoChoice().choice;
-  // the panel is there while Both hands is on with something to play it on (not while editing chords): open when
-  // Both hands was just turned on, else tucked down to its bar
-  let panel = null;
-  function syncPanel(openIt = false) {
-    const wanted = state.hands && !state.guitar && state.staff && !view.chordsOnly && !view.editing && view.renders > 0;
-    if (!wanted) { if (panel) panel.show('hidden'); return; }
-    panel = panel || createPianoPanel({get: pianoChoice, set: setPiano, time: () => view.time});
-    if (openIt) panel.show('open');
-    else if (panel.mode === 'hidden') panel.show('peek');
-    else panel.refresh();
-  }
-
-  // chord editing: only on the piano sheet with the staff shown and the edits in place
-  let editor = null;
-  function setEdit(on) {
-    if (on && view.chordsOnly) return;   // chords over the words only: nothing to edit on a staff
-    document.body.classList.remove('bars-away');
-    if (on && panel) panel.show('hidden');
-    if (on) {
-      Object.assign(state, {guitar: false, staff: true, original: false});
-      editor = editor || createEditor(view, {onclose: () => setEdit(false)});
-      view.setEditing(true, {guitar: false, staff: true, original: false});
-      editor.open();
-    } else {
-      if (editor) editor.close();
-      view.setEditing(false);
-    }
-    keep();
-    updateBar();
-  }
-
-  function set(changes) {
-    if (view.editing && (changes.guitar || changes.staff === false || changes.original)) setEdit(false);
-    const handsOn = changes.hands === true && !state.hands;
-    Object.assign(state, changes);
-    state.shift = Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, state.shift));
-    state.scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, state.scale));
-    keep();
-    view.set(state);
-    updateBar();
-    if (handsOn) syncPanel(true);
-    const params = Object.assign(Object.fromEntries([...route.params].filter(([k]) => !['v', 'staff', 't', 'z'].includes(k))), sheetParams());
-    quietly(href('/' + route.parts[0] + '/' + hymn.id, params));
-  }
-
-  function updateBar(info = view.info) {
-    bPiano.setAttribute('aria-pressed', String(!state.guitar));
-    bGuitar.setAttribute('aria-pressed', String(state.guitar));
-    bStaff.setAttribute('aria-pressed', String(state.staff));
-    bStaff.textContent = state.staff ? tr('Hide staff') : tr('Show staff');
-    bStaff.hidden = !!view.chordsOnly;
-    bPlay.hidden = !full || !!view.chordsOnly;   // a sheet of chords over the words has no notes to play
-    if (sp) {
-      bPlay.replaceChildren(icon(sp.playing ? 'pause' : 'play'));
-      bPlay.setAttribute('aria-pressed', String(sp.playing));
-      sp.available(!view.chordsOnly);
-    }
-    bHands.hidden = !!view.chordsOnly || state.guitar || !state.staff;   // a piano part needs the piano sheet's staff
-    bHands.setAttribute('aria-pressed', String(!!state.hands));
-    bMore.classList.toggle('dot', !!state.original);   // the original chords are shown: a mark on ⋯, where to turn it off
-    bDown.disabled = state.shift <= -MAX_SHIFT;
-    bUp.disabled = state.shift >= MAX_SHIFT;
-    bZoomOut.disabled = state.scale <= MIN_SCALE;
-    bZoomIn.disabled = state.scale >= MAX_SCALE;
-    keyLabel.textContent = info.tonic ? info.tonic + (state.shift ? ' (' + (state.shift > 0 ? '+' : '') + state.shift + ')' : '') : '…';
-    keyLabel.title = !state.shift ? tr('Original key') : state.shift > 0
-      ? tn('Transposed up {0} semitone · click for the original key', 'Transposed up {0} semitones · click for the original key', state.shift)
-      : tn('Transposed down {0} semitone · click for the original key', 'Transposed down {0} semitones · click for the original key', -state.shift);
-    keyLabel.disabled = !state.shift;
-    syncPanel();
-    onplay();
-  }
-  sp = createSheetPlayer(view, {tune: DB.tuneFile(hymn), store, stopTune, onchange: () => updateBar()});
-  bar.after(sp.el);
-  view.onsound = () => sp.refresh();
-  view.onchange = (st, info) => updateBar(info);
-  view.onedited = (kind) => { updateBar(); if (editor) editor.refresh(); };
-  updateBar();
-  view.show(hymn.sheetId, state, hymn.lyricsId);
-
-  const onTheme = paperLook;
-  themeListeners.add(onTheme);
-  const stopHiding = hideBarsOnScroll(pane);
-  return {
-    set, state,
-    setEdit,
-    togglePlay: () => sp.toggle(),
-    get playing() { return !!(sp && sp.playing); },
-    // a sheet with notes on it, drawn: its music can be played
-    get playable() { return view.renders > 0 && !view.chordsOnly; },
-    destroy() { sp.destroy(); if (editor) editor.destroy(); if (panel) panel.destroy(); view.destroy(); themeListeners.delete(onTheme); stopHiding(); },
-  };
+  const title = full ? h('div', {class: 'sheet-title-bar'},
+    h('a', {href: href('/h/' + hymn.id)}, chip(hymn.group, hymn.id)), ' ', h('span', null, hymn.first || '')) : null;
+  return createSheetPanel(pane, {
+    sheetId: hymn.sheetId, lyricsId: hymn.lyricsId, id: hymn.id,
+    params: route.params,
+    // the sheet's settings are in the URL (a link opens the same view); the other parameters (the tab) stay
+    onParams: (sheet) => {
+      const params = Object.assign(Object.fromEntries([...route.params].filter(([k]) => !['v', 'staff', 't', 'z'].includes(k))), sheet);
+      quietly(href('/' + route.parts[0] + '/' + hymn.id, params));
+    },
+    full, tune: DB.tuneFile(hymn), title, note,
+    exit: full ? {icon: 'close', title: tr('Back to the lyrics (Esc)'), href: href('/h/' + hymn.id)} : null,
+    sheetOnly: full ? null : (params) => go(href('/sheet/' + hymn.id, params)),
+    stopTune, onplay,
+  });
 }
-
-// phones, tablets (any touch screen, however big) and short screens: the bars slide away while scrolling down the
-// sheet (more room for the music). Scrolling up does not bring them back (small moves to fit the music would keep
-// uncovering them): a tap on the sheet does, or reaching the top of the page. Not while editing chords.
-const smallScreen = window.matchMedia('(max-width: 1079px), (max-height: 600px), (pointer: coarse)');
-function hideBarsOnScroll(pane) {
-  const body = document.body;
-  const usable = () => smallScreen.matches && pane.offsetParent !== null && !body.classList.contains('editing-chords') && !body.classList.contains('piano-open') && !body.classList.contains('sheet-playing');
-  const away = (on) => {
-    body.classList.toggle('bars-away', on);
-    if (on && !store.get('barsHintShown', false)) { store.set('barsHintShown', true); toast(tr('Tap the sheet to show the toolbar')); }
-  };
-  let lastY = window.scrollY;
-  const onScroll = () => {
-    const y = window.scrollY;
-    if (y <= 40) { body.classList.remove('bars-away'); lastY = y; return; }
-    if (y < lastY) { lastY = y; return; }
-    if (y - lastY < 8) return;
-    lastY = y;
-    if (usable() && !body.classList.contains('bars-away')) away(true);
-  };
-  const onTap = () => {
-    if (!usable()) return;
-    if (body.classList.contains('bars-away')) away(false);
-    else if (window.scrollY > 40) away(true);
-  };
-  const host = pane.querySelector('.sheet-host');
-  window.addEventListener('scroll', onScroll, {passive: true});
-  host.addEventListener('click', onTap);
-  return () => { window.removeEventListener('scroll', onScroll); host.removeEventListener('click', onTap); body.classList.remove('bars-away'); };
-}
-
-function sheetKeys(getSheet) {
-  const with_ = (fn) => () => { const s = getSheet(); if (s) fn(s); };
-  return {
-    p: with_((s) => s.set({guitar: false})),
-    g: with_((s) => s.set({guitar: true})),
-    h: with_((s) => s.set({staff: !s.state.staff})),
-    b: with_((s) => s.set({hands: !s.state.hands})),
-    m: with_((s) => s.togglePlay()),
-    e: with_((s) => s.setEdit(!document.body.classList.contains('editing-chords'))),
-    o: with_((s) => s.set({original: !s.state.original})),
-    '+': with_((s) => s.set({shift: s.state.shift + 1})),
-    '=': with_((s) => s.set({shift: s.state.shift + 1})),
-    '-': with_((s) => s.set({shift: s.state.shift - 1})),
-    '0': with_((s) => s.set({shift: 0})),
-    z: with_((s) => s.set({scale: s.state.scale - 5})),
-    Z: with_((s) => s.set({scale: s.state.scale + 5})),
-  };
-}
-
-const themeListeners = new Set();
 
 // ---- keyboard ----
 

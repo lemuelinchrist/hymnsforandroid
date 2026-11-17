@@ -5,9 +5,9 @@
 // hidden the chords are shown over the lyrics. A translation that borrows the sheet gets its own words under the notes
 // (sheetLyrics, applyLyrics below). Chord edits are kept on this device (edits.js). With "Both hands" a piano part is
 // added to the piano sheet: a left hand made from the chords, notes of the chord under the melody (piano.js).
-import {version} from './db.js';
-import {fetchGzJson} from './files.js';
-import * as Edits from './edits.js';
+// The web app and the Android app's sheet viewer both run this file; where the sheets, the words and the edits come
+// from is the app's (host.js).
+import {host} from './host.js';
 import {tr} from './i18n.js';
 import {addPiano} from './piano.js';
 
@@ -37,7 +37,7 @@ export function loadVerovio() {
   if (!toolkitPromise) {
     toolkitPromise = new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = 'verovio/verovio-toolkit-wasm.js' + (version ? '?v=' + version.verovio : '');
+      s.src = host.verovio();
       s.onerror = () => { toolkitPromise = null; reject(new Error('could not load the music renderer')); };
       s.onload = () => {
         const m = window.verovio.module;
@@ -51,30 +51,8 @@ export function loadVerovio() {
   return toolkitPromise;
 }
 
-// sheets and sheet lyrics come in one file per hymnal (build.py)
-async function fromPack(kind, id) {
-  const g = (/^([A-Z]{1,3})\d/.exec(id) || [])[1];
-  const file = g && version && version[kind][g];
-  if (!file) return null;
-  const pack = await fetchGzJson(file);
-  return pack[id] || null;
-}
-
-async function fetchMei(id) {
-  const xml = await fromPack('sheets', id);
-  if (!xml) throw new Error('no sheet ' + id);
-  return xml;
-}
-
-function fetchLyrics(id) {
-  return id ? fromPack('lyrics', id).catch(() => null) : Promise.resolve(null);
-}
-
-// the hymnals' sheet files, for offline use (the service worker keeps what is fetched)
-export function prefetchAll() {
-  const files = version ? [...Object.values(version.sheets), ...Object.values(version.lyrics)] : [];
-  return Promise.all([loadVerovio(), ...files.map((f) => fetchGzJson(f))]);
-}
+const fetchMei = (id) => host.mei(id);
+const fetchLyrics = (id) => (id ? host.lyrics(id).catch(() => null) : Promise.resolve(null));
 
 // the same sheet with the words of another language (sheetLyrics/<hymn>.json, made by tools/sheet-lyrics/align.py):
 // syllables under the notes (verse 1), the verses below the staff and the title are swapped in before anything else.
@@ -361,7 +339,7 @@ export class SheetView {
     }
     this.lyricsShown = !!overlay;
     this.editsId = sheetId;
-    const saved = await Edits.get(sheetId);
+    const saved = await host.edits.get(sheetId);
     if (token !== this.token) return;
     this.edits = {bars: saved ? saved.bars : {}};
     this.history = [];
@@ -408,7 +386,7 @@ export class SheetView {
     }).map(([k]) => k);
     if (baked.length) {
       for (const k of baked) delete this.edits.bars[k];
-      Edits.put(this.editsId, JSON.parse(JSON.stringify(this.edits.bars))).catch(() => {});
+      host.edits.put(this.editsId, JSON.parse(JSON.stringify(this.edits.bars))).catch(() => {});
     }
     const showEdits = !this.state.original && Object.keys(this.edits.bars).length > 0;
     this.stale = Object.entries(this.edits.bars).filter(([k, e]) => {
@@ -715,7 +693,7 @@ export class SheetView {
     this.save.busy = true;
     this.save.status = 'saving';
     try {
-      await Edits.put(this.editsId, JSON.parse(JSON.stringify(this.edits.bars)));
+      await host.edits.put(this.editsId, JSON.parse(JSON.stringify(this.edits.bars)));
       this.save.status = 'saved';
     } catch (e) {
       this.save.status = 'error';
