@@ -428,7 +428,7 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
   .lk-t2 { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .lk-go { display: none; }
 }
-@media print { .links-card { display: none; } }
+@media print { .links-card, .install { display: none; } }
 .stanza { break-inside: avoid; }
 @media (min-width: 760px) and (max-width: 1079px), (min-width: 640px) and (orientation: landscape) and (max-height: 600px) {
   .lyrics { column-width: 21em; column-gap: 2.5em; }

@@ -31,7 +31,8 @@ Installed apps pick up a new version the next time they are opened with a networ
 ## Install on iPhone / iPad
 
 Open the site in Safari, tap **Share**, then **Add to Home Screen**. The app opens full screen, keeps the hymns on
-the device and works without internet. The home page shows this hint until it is installed.
+the device and works without internet. The home page and every hymn page show this hint (a link from a video opens a hymn, not the home page) until the app is
+installed or the hint is closed; on Android/Chrome it has an Install button.
 
 ## Not for search engines
 
