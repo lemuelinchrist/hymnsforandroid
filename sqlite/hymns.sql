@@ -18599,7 +18599,7 @@ INSERT INTO hymns VALUES('BF575',NULL,NULL,NULL,'This common faith of mine,','BF
 INSERT INTO hymns VALUES('BF576',NULL,NULL,'Hallelujah!!, Hallelujah!!','You are awesome, O God,','BF','E Major','Scriptures for Singing',NULL,'576',NULL,NULL,NULL,NULL,'Psalms 68:35,','',NULL);
 INSERT INTO hymns VALUES('BF577',NULL,NULL,NULL,'Jehovah bless you and keep you;','BF',NULL,'Scriptures for Singing',NULL,'577',NULL,NULL,NULL,NULL,'Numbers 6:24-26,','',NULL);
 INSERT INTO hymns VALUES('BF578',NULL,NULL,NULL,'Let us rise up early for the vineyards;','BF','G Major','Scriptures for Singing',NULL,'578',NULL,NULL,NULL,NULL,'Song of Songs 7:12,','',NULL);
-INSERT INTO hymns VALUES('BF579',NULL,NULL,NULL,'Matthew!','BF','G Major',NULL,NULL,'579',NULL,NULL,NULL,NULL,NULL,'',NULL);
+INSERT INTO hymns VALUES('BF579',NULL,NULL,NULL,'Matthew!','BF','G Major','Ministry Outlines and Excerpts',NULL,'579',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF580',NULL,NULL,'He gets sweeter and sweeter as the days go by','I keep falling in love with Him','BF','D Major',NULL,NULL,'580',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF581',NULL,NULL,NULL,'Oh a drink, a drink, a drink','BF','C Major',NULL,NULL,'581',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF582',NULL,NULL,'Trust in the Lord with all your heart,','When all around you is falling apart,','BF',NULL,NULL,NULL,'582',NULL,NULL,NULL,NULL,NULL,'',NULL);
