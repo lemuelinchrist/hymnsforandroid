@@ -1780,7 +1780,7 @@ INSERT INTO hymns VALUES('C405','','',NULL,'恩主，我愛你，','C','F大調4
 INSERT INTO hymns VALUES('C406','','','安息！安息！','交通何甜美，','C','A大調4/4','經歷基督','10 9 10 9副','406','與祂交通',NULL,' 3332122216','E558',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C407','','',NULL,'救主耶穌，我的太陽，','C','F大調3/4','經歷基督','8888','407','與祂交通',NULL,' 1111712321','E374',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C408','','',NULL,'你名似膏香，','C','降E大調6/8','經歷基督','10 10 10 10','408','與祂交通',NULL,' 3445653453','E556',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('C409','','',NULL,'我有一位好朋友，','C','F大調6/8','經歷基督','76868674','409','與祂交通',NULL,' 511123531332121',NULL,NULL,'I409,Z409,',NULL);
+INSERT INTO hymns VALUES('C409','','',NULL,'我有一位好朋友，','C','F大調6/8','經歷基督','76868674','409','與祂交通',NULL,' 511123531332121',NULL,NULL,'I409,Z409,BF63,',NULL);
 INSERT INTO hymns VALUES('C410','','',NULL,'哦，在榮耀裡的基督，','C','G大調3/4','經歷基督','8787雙','410','與祂交通',NULL,' 513333444452343','E552',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C411','','','近乎，近乎，近乎，','夕陽西沉大地靜，','C','降A大調6/4','經歷基督','77774副','411','與祂交通',NULL,' 11165451116545','E616',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C412','','','摸你，就得生命供應，','恩主，我今憑信摸你，','C','降D大調3/4','經歷基督','8787副','412','與祂交通',NULL,' 334321222344323','E559',NULL,NULL,NULL);
@@ -2554,7 +2554,7 @@ INSERT INTO hymns VALUES('BF59','','',NULL,'I heard the voice of Jesus say,','BF
 INSERT INTO hymns VALUES('BF60','','','AS THIS LIFE FLOWS THROUGH ME,','Christ has come to be life — the processed Divine Trinity.','BF',NULL,NULL,NULL,'60',NULL,NULL,NULL,'NS149',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF61','','',NULL,'O Love, that wilt not let me go,','BF','F Major',NULL,NULL,'61',NULL,'4/4','3333212111651132','E432',NULL,NULL,1);
 INSERT INTO hymns VALUES('BF62','','','I GIVE YOU THE FIRST PLACE IN ALL THINGS BY FAITH;','Loving You Lord''s all I''m living for,','BF',NULL,NULL,NULL,'62',NULL,NULL,NULL,'NS107',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF63','','',NULL,'I have a friend so precious,','BF',NULL,'Experience of Christ',NULL,'63','Loving Him',NULL,NULL,NULL,NULL,'',NULL);
+INSERT INTO hymns VALUES('BF63','','',NULL,'I have a friend so precious,','BF','F Major','Experience of Christ','76868674','63','Fellowship with Him','6/8','511123531332121',NULL,NULL,'C409,',NULL);
 INSERT INTO hymns VALUES('BF64','','',NULL,'God has a dream, this is what He''s wanting;','BF',NULL,NULL,NULL,'64',NULL,NULL,NULL,'NS3',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF65','','',NULL,'To You, dear Lord, I give myself afresh again.','BF',NULL,NULL,NULL,'65',NULL,NULL,NULL,'NS143',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF66','','',NULL,'My song is love unknown,','BF','C Major',NULL,NULL,'66',NULL,'4/4','356321234516','E96',NULL,NULL,1);
