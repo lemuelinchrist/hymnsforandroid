@@ -132,6 +132,9 @@ of every change, in the same commit, not later:
     (it must stay enough to rebuild the app) and, for new or renamed classes, `docs/APP_ARCHITECTURE.md` and section 5 above.
 -   The data changes (a new book or group code, a column, how parents and related hymns are chosen, numbering):
     `docs/database_spec.md`, the group table in `docs/HYMNAL_SPEC.md`, and section 3/4 above.
+-   A new song is added to the database: fill in everything we can in the same change (main category and sub-category for a
+    song without a parent, verse for a scripture song, key, time, tune, author, composer, first lines, related), as the
+    `hymn-provisioning` skill says ("Every new song"); do not leave it for later.
 -   A tool or pipeline changes (provisioning, the web app, the sheet music converter): its README, and the skill in
     `.claude/skills/` that describes it.
 -   A release: the GitHub release notes say what changed for users (section 7).

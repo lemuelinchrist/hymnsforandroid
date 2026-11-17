@@ -241,6 +241,34 @@ apostrophes (’) as in the other hymns, also in "Whate’er" and "Jesus’"; (5
 does; (6) a stanza is `1`, `2` ..., a chorus is `chorus`, a source note is an `end-note`, a second-voice cue a `beginning-note`.
 A song that is a scripture passage gets its references in the `verse` field (next section).
 
+## Every new song: fill in all the information we can (Lemuel, 2026-11-17)
+
+When a song is added to the database (a recording, a review page, a hymnal.net or songbase.life sync, a contributor's file),
+do not leave the metadata empty to fill in "later": on 2026-11-17 it took a whole session to give 115 Be Filled songs without
+a parent their `main_category`. Fill in, in the same change as the song, whatever can be known:
+
+- **`main_category` (and `sub_category` when it is clear)**, only for a song **without a parent** (a song with a parent
+  inherits it, leave it empty). Use the English hymnal's main categories (`select distinct main_category from hymns where
+  hymn_group in ('E','NS')`: Praise of the Lord, Experience of Christ, Gospel, The Church, Longings, Consecration, Comfort in
+  Trials, Encouragement, Scriptures for Singing, ...) with their exact spelling, and look at how E/NS file similar songs
+  (`select main_category, sub_category from hymns where first_stanza_line like '...'`). Special cases: words taken from an
+  outline or an excerpt of the ministry books = **Ministry Outlines and Excerpts**; a song whose words are at least roughly
+  70% a Bible passage (loose is fine) = **Scriptures for Singing**; a banner-style song = **Banner Song**; songs about loving
+  the Lord = **Experience of Christ** with the sub-category **Loving Him** (there is no "Loving the Lord" category); songs for
+  new believers or people who have not decided = **Gospel**. When unsure between two, show Lemuel the lyrics and the
+  options (a markdown file in `temp/`, a checkbox list per song) and apply his picks.
+- **`verse`**: every scripture song, see the next section.
+- **`key`, `time`, `tune`** (the melody code): from the sheet or the page data (`leadsheet-data`), or from the recording
+  (the lead sheet pipeline). Key as the other rows write it (`Eb Major`, `B Major`), time as `4/4`.
+- **`author`, `composer`, `meter`** when the source gives them.
+- **`first_stanza_line`, `first_chorus_line`**, the stanzas in order, and `related` / `parent_hymn` (a translation, or the
+  hymn a New Tune belongs to), `new_tune` for a New Tune.
+
+Check before the commit: `select _id, first_stanza_line from hymns where hymn_group='<group>' and (parent_hymn is null or
+parent_hymn='') and (main_category is null or main_category='')` must list none of the new songs. Rows are changed in
+`sqlite/hymns.sql` as in the one-off fixes section (the `main_category` is the 8th value of the `INSERT INTO hymns` row,
+`sub_category` the 11th), then `:sqlite:importSql` to rebuild and check.
+
 ## A new song that is a scripture verse
 
 When a new song's words look like a Bible passage (e.g. NS "As for me, I will call upon God" = Psalm 55:16-18), look the
