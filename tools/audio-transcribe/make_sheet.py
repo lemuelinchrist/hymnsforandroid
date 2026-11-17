@@ -24,7 +24,7 @@ unit = lambda t: int(round(np.interp(t, beats, bidx) * U))
 raw = sorted(pretty_midi.PrettyMIDI(str(d / 'midi' / f"{cfg['midi']}.mid")).instruments[0].notes, key=lambda n: n.start)
 words = [w for s in json.load(open(d / 'lyrics.json')) for w in s['words'] if re.search(r'\w', w['word'])]
 text = ' '.join(w['word'].strip() for w in words)
-hy = pyphen.Pyphen(lang='en_US')
+from syllabify import syllables as syllables_of
 # word fixes: "history production" -> "His reproduction" (several words may become several)
 fixed = []
 i = 0
@@ -42,7 +42,7 @@ words = fixed
 
 def syllables(w):
     clean = re.sub(r'[^\w\'-]', '', w)
-    return hy.inserted(clean).split('-') if clean else []
+    return syllables_of(clean) if clean else []
 
 NAMES = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
 # a sharp key spells the black keys as sharps (F sharp in G major, not G flat)
@@ -96,10 +96,16 @@ def key_priors(key, mode):
         secondary = {(2, ''), (2, ':7'), (4, ''), (4, ':7'), (9, ''), (9, ':7'), (0, ':7'), (10, '')}
     return [1.0 if ((r - tonic) % 12, q) in diatonic else 0.4 if ((r - tonic) % 12, q) in secondary else -0.5 for _, r, _, q in CH]
 PRIORS = key_priors(cfg['key'], cfg.get('mode', 'major'))
+def add_dominant_7th(chords, key, mode):
+    # a hymn sheet's dominant (V: G in C major) is usually played as V7; the recording hardly tells a triad from a 7th
+    # chord, so every major V gets its 7th (sheet.json "dominant_sevenths": false turns this off)
+    if not cfg.get('dominant_sevenths', True): return chords
+    v = NAMES[((NAMES.index(key) if key in NAMES else 0) + 7) % 12]
+    return [c + ':7' if c == v else c for c in chords]
 def chords_for(first_u, n_halves, melody=(), priors=None):
     priors = priors or PRIORS
     sec_t = lambda u: np.interp(u / U, bidx, beats)
-    score = np.zeros((n_halves, len(CH)))
+    score = np.zeros((n_halves, len(CH))); comp = np.zeros((4, n_halves, len(CH)))   # comp: acc, bass, melody, key (for tuning)
     for h in range(n_halves):
         ua, ub = first_u + h * BAR // 2, first_u + (h + 1) * BAR // 2
         a_, b_ = sec_t(ua), sec_t(ub)
@@ -115,9 +121,13 @@ def chords_for(first_u, n_halves, melody=(), priors=None):
         low = low / (low.sum() + 1e-9)                      # a share of the bass, not its own maximum
         for k, (_, r, t, _) in enumerate(CH):
             tones = t > 0; prior = priors[k]
+            comp[:, h, k] = acc @ t, low[r] * 3 - 0.25, mel[tones].sum() - mel[~tones].sum(), prior
             score[h, k] = (CW['acc'] * (acc @ t) + CW['bass'] * (low[r] * 3 - 0.25)
                            + CW['melody'] * (mel[tones].sum() - mel[~tones].sum()) + CW['key'] * prior
                            - (0.04 if CH[k][0].endswith(':7') else 0))
+            if CH[k][0].endswith(':7') and not cfg.get('chord_sevenths'): score[h, k] = -9   # the chords are found as triads; the dominant gets its 7th afterwards (add_dominant_7th)
+    if os.environ.get('CHORD_DUMP'):
+        n_dump = globals().setdefault('n_dump', [0]); np.savez(f"{os.environ['CHORD_DUMP']}{n_dump[0]}.npz", score=score, comp=comp, first_u=first_u, bar=BAR); n_dump[0] += 1   # for tuning against known chords (tools/audio-transcribe/tune_chords.py)
     if os.environ.get('CHORD_DEBUG'):   # the best three per half bar, to calibrate the weights
         for h in range(n_halves):
             top = np.argsort(-score[h])[:3]
@@ -339,7 +349,7 @@ for sec in cfg['sections']:
     rest = (BAR - (pos - first) % BAR) % BAR
     toks += ['r' + x for x in DUR[rest]] if rest else []
     nh = ((pos + rest - first) // BAR) * 2
-    ch = chords_for(first, nh, [(s_, e_, p_, l_) for s_, e_, p_, l_ in clean], key_priors(*sec_key)); chord_list += ch
+    ch = add_dominant_7th(chords_for(first, nh, [(s_, e_, p_, l_) for s_, e_, p_, l_ in clean], key_priors(*sec_key)), *sec_key); chord_list += ch
     chord_toks.append(' '.join(c.replace(':', '2:') if ':' in c else c + '2' for c in ch))
     toks += ['}'] if sec.get('repeat') else []
     if not sec.get('repeat'): toks += ['\\bar "||"'] if sec is not cfg['sections'][-1] else ['\\bar "|."']

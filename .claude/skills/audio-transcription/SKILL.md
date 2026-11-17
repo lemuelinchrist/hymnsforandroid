@@ -88,6 +88,38 @@ parent's or a neighbour's MEI:
 does all of this (the editor itself now writes `meter.sym` and one element per line): the music from `leadsheet.mei`, the
 subtitle, number and `<back>` stanzas from the parent's sheet, and it prints each bar's length to stderr.
 
+## After the user corrects a sheet: learn from it
+
+When the user has corrected a draft (`leadsheet.json`, the first file in `leadsheet.history/` is the draft), **compare the
+two** before moving on, the way BF500's was: which notes lost or changed (onsets, pitch, octave), which chords. Group the
+differences by cause (the same rule behind many), find the rule in the scripts and fix it, and **measure** the fix on the
+corrected songs in `temp/transcribe/*/` instead of one song: `tune_chords.py` for chords (dump with `CHORD_DUMP`), and for
+notes, run `make_sheet.py` on a copy of the folder and compare the onsets and pitches with the corrected sheet. What came
+out of BF500 is in the README ("What the corrected sheets taught"): triads only, the octave range from the pitches,
+`syllabify.py`.
+
+## Finishing a song: into the app (what BF500 needed, 2026-11-17; do all of it, do not leave it for later)
+
+When the user says the sheet is done ("import the sheet"), do every step in the same change:
+1. **The key the user wants**: they may ask to move the song ("a little too low, set it to D"). Transpose `leadsheet.json` like
+   the editor's **+ / −** does (notes `p`, chords with `M.trChord`, `key`; run it in Node on `music.js`), keep the old file in
+   `leadsheet.history/`, and make the sheet from the transposed one. Then the app's sheet, the tune code and the MIDI all agree.
+2. **The sheet**: `leadsheet.mei` from `M.toMei(sheet)` (the editor writes it on every save; regenerate it after any change
+   made outside the page), the app's header (title, subordinate title = the category, hymn id, `source` Hymns For Android),
+   every bar adds up (only the pickup bar is short) -> `app/src/main/assets/sheetMei/<id>.mei`. A song with no parent has no
+   `<back>`: all stanzas stand under the notes in the one pass.
+3. **The database row** (`hymn-provisioning` "Every new song"): `key`, `time` (4/4), `main_category`, `verse` for a scripture song
+   (BF500: `Psalms 137:1-6,`), and the **tune code**: the scale degrees (1-7, relative to the key's tonic) of the sheet's first
+   16 notes, melisma notes included (BF500: `5511233423455345`); check `select _id from hymns where tune='<code>'` is empty.
+   Edit `app/src/main/assets/hymns.sqlite`, then `cp` it to `sqlite/` and `.dump > hymns.sql`; `git diff sqlite/hymns.sql`
+   shows only that row.
+4. **The MIDI**: `python3 tools/lead-sheet-editor/leadsheet_to_midi.py temp/transcribe/<song>/leadsheet.json out.mid` makes it from
+   `leadsheet.json` (the melody and the left hand the user chose and listened to, at the sheet's tempo, via the editor's own
+   `playList`), not from the sheet's chords with the generic left hand of the `generate-midi` skill. Copy it to
+   `app/src/main/res/raw/m<tune>.mid` (lower case, `cp --update=none`: never overwrite another hymn's tune) and raise the
+   file count in `docs/HYMNAL_SPEC.md`.
+5. Commit your own paths only (`git commit <paths>`), and tell the user the app and the web app need a new build.
+
 ## Reviewing without ears
 
 The model cannot listen, so check the draft against itself:
@@ -178,6 +210,14 @@ for each stanza. It uses neither the words nor their alignment. Read it against 
   on beat 3. `"bar_offset": "auto"` now decides this way and prints `by chord changes` with both numbers; when it
   prints `by held syllables` the harmony did not say, so tell the user the bar lines may be half a bar off. The beat
   tracker's phase differs from stanza to stanza, so the offset number of one stanza is not the next one's.
+- **Chords are plain triads on beats 1 and 3, and they repeat.** Every chord change in six corrected songs fell on beat 1 or
+  3 (so a change at any other place is a mistake), the corrected sheets had no sevenths, but only because the user had not added any: the pipeline
+  finds triads and adds the 7th to the dominant (V) by default (`"dominant_sevenths": false` to turn off); the user adds the
+  rest (a 7th on minor chords is common too), and the progression of one stanza returns in the others (BF489: all 48 half bars, BF500: stanzas
+  1, 2, 4 for 7 of their 8 bars). After the draft, compare the chords of each stanza with the first: where they differ and the
+  melody is the same, take the first stanza's (the editor copies them: Ctrl C / V), and tell the user where a stanza's last
+  line really goes elsewhere (BF500's "To sing the songs of Zion").
+  Known weak spot: a bar whose melody has non-chord tones (D E F over G/F#) comes out as the minor chord of the melody (Dm).
 - **Chords.** `CHORD_DEBUG=1` scores close together and a chord foreign to the key (A7 in G major) with no sign of its
   third in the accompaniment: prefer the key's chord (`"chord_weights": {"key": 0.6}`) and tell the user the chords
   are weak.

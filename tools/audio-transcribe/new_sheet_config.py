@@ -19,8 +19,18 @@ for ln in lines[1:]:
     if ln['start'] - cur[1] >= 4: sections.append(cur); cur = [ln['start'] - 0.7, ln['end']]
     else: cur[1] = ln['end']
 sections.append(cur)
+# the range and octave rule from the tracked pitches: a line that lies inside the written staff (G3-G5 or so) is one
+# singer's line, kept as sung ("octave": "sung"); one that lies below it (men an octave low) or spans more than
+# two octaves is a choir, where the octave is chosen for a smooth line. The fixed range [58, 77] lifted the low G3 of
+# "By the Rivers of Babylon" to G4 (two songs had notes at G3 = 55).
+import numpy as np
+raw = [p.midi for x in music21.converter.parse(str(d / 'midi/melody_crepe.mid')).recurse().notes for p in x.pitches]
+lo, hi = float(np.percentile(raw, 2)), float(np.percentile(raw, 98))
+single = lo >= 54 and hi <= 76
+rng = [int(min(55, lo - 1)), int(max(77, hi + 2))] if single else [58, 77]
 cfg = {'title': a.title, 'midi': 'melody_crepe', 'key': name, 'mode': k.mode, 'beats_per_bar': 4, 'bar_offset': 'auto',
-       'scale': scale, 'range': [58, 77], 'words': {},
+       'scale': scale, 'range': rng, 'words': {},
+       **({'octave': 'sung'} if single else {}),
        'sections': [{'mark': chr(65 + i), 't0': round(s, 1), 't1': round(e + 1.5, 1)} for i, (s, e) in enumerate(sections)]}
 json.dump(cfg, open(d / 'sheet.json', 'w'), indent=1)
 print(f'key {k} (confidence {k.correlationCoefficient:.2f}),', len(sections), 'sections'); print(open(d / 'sheet.json').read())

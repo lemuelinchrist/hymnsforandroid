@@ -101,12 +101,39 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
   minor for the next four) say plainly where the bars are. On the four songs transcribed so far the chord rule finds
   the offset that was checked by ear, each time by a factor of two or more. `BAR_OFFSET_CHECK=1 make_sheet.py D`
   prints the choice and its numbers without making the sheet.
-- **Chords**, one per half bar, weigh four kinds of evidence: the accompaniment's chroma against major, minor and
-  dominant-7 templates; the bass (the bass stem, or the accompaniment's low register when there is no bass player: a
+- **Chords**, one per half bar (so on beats 1 and 3: in six corrected songs every chord change fell there), weigh four
+  kinds of evidence: the accompaniment's chroma against major and minor templates (found as **triads**: scoring
+  sevenths from the recording made G7, C7, E7, D7 out of plain chords; the **dominant (V) then gets its 7th** afterwards,
+  `"dominant_sevenths": false` in `sheet.json` turns that off; other 7ths are added by the user in the editor);
+  the bass (the bass stem, or the accompaniment's low register when there is no bass player: a
   silent stem scaled to its own maximum is only noise); the sung melody (chord tones on the beat count double); and the
   key (the key's own chords, then the secondary dominants; others need clear evidence). A Viterbi pass charges for
   each change, more inside a bar. `CHORD_DEBUG=1 make_sheet.py D` prints the best three per half bar to calibrate.
   The key and melody made the old "Bm" for Cm over B into G7. A slash chord still comes out as its triad.
+
+### What the corrected sheets taught (BF500, 2026-11-17, and five earlier songs)
+
+Comparing the first draft of "By the Rivers of Babylon" with the sheet after the user's corrections, and the chord
+rules with six corrected songs (`tune_chords.py`):
+- **Chords**: the grid was right (changes on beat 1 and 3), the names were not: scored sevenths (G7, C7, E7, D7 where the
+  sheet has G, C, E, D) and minor look-alikes (Am for C, Dm for G). Triads scored better against the corrected sheets
+  (57 % -> 76 % per half bar), **but those sheets had no 7ths because nobody had added any, not because the music has
+  none**: so the pipeline finds triads and then adds the 7th to the dominant only (the user's rule of thumb: a 7th on
+  dominants, possibly on minor chords). The weights hardly matter.
+  A bar of G/F# (melody D E F over it) still comes out as Dm: the melody's non-chord tones pull it; check bars like that.
+  **Repeats**: the chord progression repeats in most hymns (one sheet 100 %, another 88 %), but pooling the evidence of
+  repeated phrases did not raise the accuracy, even with the right period (the errors repeat alike): use the repeats to
+  copy chords across stanzas in the editor (Ctrl C / V) and to see where the draft disagrees with itself.
+- **Octave**: the fixed range [58, 77] lifted the low G3 notes (two songs). `new_sheet_config.py` now measures the tracked
+  pitches: a line inside G3-G5 is one singer (`"octave": "sung"`, range from the pitches); a line below the staff or
+  wider than two octaves keeps the smooth-line rule. Onset+pitch agreement on BF500 went 75 % -> 80 %.
+- **Syllables**: pyphen leaves "rivers", "Jerusalem", "Above" whole and cuts "Baby-lon" short, so a same-pitch syllable
+  pair became one long note and the syllables after it slipped. `syllabify.py` cuts by vowel groups when pyphen finds
+  fewer (ri-vers, Je-ru-sa-lem, A-bove, Ba-by-lon): onset 85 % -> 90 %, onset+pitch 80 % -> 85 %. A curly apostrophe
+  was turned into a space ("Lord s"): fixed.
+- **Still missed**: two sixteenths on one syllable (E F on "and", "us", "re-") come out as one quarter (shorter than
+  `melisma_s`); a verse that has the tune of another verse should be compared with it note by note (the stanza
+  repeats of the skill), and these are where the user's corrections went.
 
 ## Known limits
 
