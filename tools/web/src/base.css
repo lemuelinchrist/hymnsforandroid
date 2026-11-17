@@ -123,7 +123,9 @@ mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1
 .seg > [aria-disabled="true"] { opacity: .45; pointer-events: none; }
 
 #toast {
-  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px); opacity: 0; pointer-events: none; z-index: 30;
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px); opacity: 0; pointer-events: none; z-index: 40;
   background: var(--ink); color: var(--paper); padding: 10px 18px; border-radius: 20px; font-size: 14px; transition: .2s;
 }
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
+/* above the Both hands / chord panel (it sets --editor-h to its height), so "A new version is ready. Reload" stays reachable */
+body.piano-open #toast, body.piano-peek #toast, body.editing-chords #toast { bottom: calc(var(--editor-h, 0px) + 12px); }
