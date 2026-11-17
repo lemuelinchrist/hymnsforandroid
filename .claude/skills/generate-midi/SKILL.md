@@ -42,6 +42,10 @@ check `git diff sqlite/hymns.sql` shows only that row. The sheet goes to `sheetM
 `tools/lead-sheet-editor/`; give it the app's header: title with "(New Tune)", subordinate title = the category line, hymn and parent
 number) and the MIDI to `res/raw/m<code>.mid`. View it with the app's viewer served from `app/src/main/assets` (`/viewer/index.html?id=<id>`).
 
+## A song whose lead sheet was made in the editor
+Use `tools/lead-sheet-editor/leadsheet_to_midi.py <song>/leadsheet.json out.mid` instead: it writes the melody and the left hand the
+user chose in the editor (see the `audio-transcription` skill, "Finishing a song").
+
 ## Limits and traps
 - One style only; hymnal.net's other accompaniments (block chords, oom-pah, broken chords) would need their own left-hand generators from the chord symbols.
 - The left-hand pattern in 3/4 and 6/8 is just the held dyads so far (the beat-4 pattern is 4/4 only); improve it when a listener asks.

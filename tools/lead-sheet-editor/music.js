@@ -261,7 +261,7 @@
   function patternText(parts) {
     return parts.map(function (p) { return p.map(function (s) { return s.hold ? '-' : s.rest ? '.' : s.toks.join('+'); }).join(' '); }).join(' | ');
   }
-  // the pitches of every token for one chord; `low` is the lowest bass note allowed (MIDI, 36 = C2: the bass is the first
+  // the pitches of every token for one chord; `low` is the lowest bass note allowed (MIDI, 40 = E2, the default: lower sounds muddy and distorts on a phone; the bass is the first
   // such note from there up)
   function voicing(c, low, parts) {
     var pcs = c.tones.map(function (t) { return mod12(c.root + t[0]); }), nt = pcs.length;
@@ -272,7 +272,7 @@
       return out;
     }
     function at(lad, d) { return lad[d < 8 ? {1: 0, 3: 1, 5: 2, 7: Math.min(3, nt)}[d] : nt + {8: 0, 10: 1, 12: 2}[d]]; }
-    low = low == null ? 36 : low;
+    low = low == null ? 40 : low;
     var bass = low + mod12(c.bass - low), degs = Object.keys(used).filter(function (t) { return /\d/.test(t); }).map(Number);
     var lad = ladder(bass), out = {};
     degs.forEach(function (d) { out[d] = [at(lad, d)]; });
@@ -283,8 +283,8 @@
   }
   function meter(sheet) { var bar = barLen(sheet), beat = beatLen(sheet); return {bar: bar, beat: beat, beats: Math.round(bar / beat), compound: compound(sheet)}; }
   var ARP = [
-    ['open', 'Open', 'root, fifth, octave', {2: '1 5', 3: '1 5 8', 4: '1 5 8 5', 6: '1 5 8 5 8 5'}, 36],
-    ['wide', 'Wide', 'up to the tenth', {2: '1 5', 3: '1 5 10', 4: '1 5 10 5', 6: '1 5 8 10 8 5', 8: '1 5 8 10 12 10 8 5'}, 36],
+    ['open', 'Open', 'root, fifth, octave', {2: '1 5', 3: '1 5 8', 4: '1 5 8 5', 6: '1 5 8 5 8 5'}, 40],
+    ['wide', 'Wide', 'up to the tenth', {2: '1 5', 3: '1 5 10', 4: '1 5 10 5', 6: '1 5 8 10 8 5', 8: '1 5 8 10 12 10 8 5'}, 40],
     ['broken', 'Broken chord', 'root, third, fifth', {2: '1 5', 3: '1 3 5', 4: '1 3 5 3', 6: '1 3 5 3 5 3'}, 43],
     ['alberti', 'Alberti', 'low, high, middle, high', {2: '1 5', 3: '1 5 3', 4: '1 5 3 5', 6: '1 5 3 5 3 5'}, 43],
     ['rise', 'Rise and hold', 'up, then held', {2: '1 5', 3: '1 5 8', 4: '1 5 8 -', 6: '1 5 8 - - -', 8: '1 5 8 10 - - - -'}, 36]];
@@ -312,10 +312,10 @@
       {id: 'strike', name: 'Strike', hint: 'the chord in one stroke', kinds: [
         strikes('1+5', 41, 'two', 'Two notes', 'root and fifth'),
         strikes('1+3+5', 43, 'three', 'Three notes', 'the whole triad'),
-        strikes('1+5+8', 36, 'open', 'Open', 'root, fifth, octave'),
+        strikes('1+5+8', 40, 'open', 'Open', 'root, fifth, octave'),
         strikes('1+5 | c', 41, 'hymn', 'Hymn', 'low at the chord, higher while it lasts')]},
       {id: 'bass', name: 'Bass + chord', hint: 'a bass note, then the chord', kinds: bc.filter(function (b) { return b[3] >= 1 && b[3] === Math.round(b[3]); }).map(function (b) {
-        return {id: b[0], name: b[1], hint: b[2], rhythms: [{id: 'x', name: '', pat: b[2], rate: b[3], low: 36}]};
+        return {id: b[0], name: b[1], hint: b[2], rhythms: [{id: 'x', name: '', pat: b[2], rate: b[3], low: 40}]};
       })},
       {id: 'arp', name: 'Arpeggio', hint: 'the chord one note at a time', kinds: ARP.map(function (a) {
         return {id: a[0], name: a[1], hint: a[2], rhythms: rates.map(function (r) {
@@ -345,7 +345,8 @@
   // sheet has none. sheet.acc is the pattern of the whole song, a note's "lh" changes it from that note on (or with
   // "for": "bar" / "chord" only until the bar or the chord ends). A pattern is {pat, rate, low, pedal, style}. The
   // upbeat bar stays empty, the last bar is one held chord (unless acc.end is false), and a note that would reach the
-  // right hand sounding over it takes its whole figure down an octave: the hands do not cross.
+  // right hand sounding over it takes its whole figure down an octave: the hands do not cross. Never lower than E2 for the bass figure
+  // (C2 before) or C3 for the chord in the middle (E2 before): a hymn whose melody is low (G3) kept the chords in the muddy low register.
   function accompany(sheet) {
     var base = sheet.acc || null, notes = sheet.notes;
     if (!base && !notes.some(function (n) { return n.lh; })) return null;
@@ -435,7 +436,7 @@
             var lo = melLow(st.g, st.d);
             v[t].forEach(function (p) { p -= 12 * shift[L]; lowest = Math.min(lowest, p); if (p >= lo) hit = true; });
           }); });
-          if (hit && lowest - 12 >= (L === 'fig' ? 24 : 40)) shift[L]++; else break;
+          if (hit && lowest - 12 >= (L === 'fig' ? 36 : 48)) shift[L]++; else break;
         }
       });
       plan.forEach(function (st) {

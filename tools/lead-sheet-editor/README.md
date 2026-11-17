@@ -172,7 +172,7 @@ hand silent there.
 
 **What it does by itself**: the upbeat bar stays empty; a pattern starts again with every chord and every bar; the left
 hand moves on the beat (a chord on a note that comes in early and is held over the beat starts with that beat); and a
-figure that would reach the melody goes down an octave, whole, so the hands do not cross.
+figure that would reach the melody goes down an octave, whole, so the hands do not cross; but never below E2 (the bass) or C3 (the chord in the middle), so a hymn with a low melody does not get a muddy left hand.
 
 **A pattern written by hand.** Every style is a line of text, shown in the **Pattern** box: steps of the same length
 (the list beside it: eighths, quarters ..., or *held* for one step that lasts).
@@ -246,6 +246,9 @@ as `key.sig`, chords with a `tstamp`). It is always the lead sheet alone, whatev
 `tools/hymn-midi/make_midi.py <song>/leadsheet.mei out.mid <bpm>` makes the piano MIDI from it (the `generate-midi`
 skill); copying it into the app (`sheetMei/<id>.mei`, the hymn's tune code, `res/raw/m<tune>.mid`) is a separate step.
 
+`leadsheet_to_midi.py <song>/leadsheet.json out.mid [bpm]` writes the melody and the left hand as a MIDI file (the editor's own
+playback, run under Node; used for a song's `res/raw/m<tune>.mid`).
+
 `piano.mei` is the same music with the piano part: a second staff (`<staffDef n="2">`, bass clef, in a brace) for the
 left hand, and the right hand's added notes as chords with the melody on top (`<note type="fill">` for each added one).
 One MEI file can hold both kinds of sheet: the lead sheet is the piano sheet without staff 2 and without the `fill`
@@ -282,7 +285,7 @@ sheet is shown: "Both hands", `tools/web/README.md`. It does not read `piano.mei
 | `w` | the syllable, one per verse; ends in `-` when the word goes on; `""` = held from the note before |
 | `tie` | `true`: this note is the note before it held on (same pitch): drawn tied, not played again |
 | `ch`, `c`, `e` | chord symbol above the note; a comment; `true` to spell the note the other way (D♭ for C♯) |
-| `acc` | the left hand's pattern for the whole song: `{"pat": "1 5 8 5", "rate": 2, "low": 36, "pedal": true, "end": false, "style": "arp/open"}`. `pat` as in step 8; `rate` the length of a step in sixteenths (0 = one held step); `low` the lowest bass note (MIDI, 36 = C2: the bass is the first such note from there up); `end: false` plays the pattern to the end in place of a held last chord; `style` only tells the page which button to light. No `acc`: no left hand |
+| `acc` | the left hand's pattern for the whole song: `{"pat": "1 5 8 5", "rate": 2, "low": 36, "pedal": true, "end": false, "style": "arp/open"}`. `pat` as in step 8; `rate` the length of a step in sixteenths (0 = one held step); `low` the lowest bass note (MIDI, 40 = E2 is the default: the bass is the first such note from there up; below it the sound is muddy and distorts); `end: false` plays the pattern to the end in place of a held last chord; `style` only tells the page which button to light. No `acc`: no left hand |
 | a note's `lh` | a pattern like `acc` that takes over from this note on; with `"for": "bar"` only to the end of this bar, with `"for": "chord"` to the end of the chord; `{"pat": ""}` is silence |
 | `rh` | notes added to the right hand: `{"add": 1, "on": "beat"}`. `add` 1 or 2 notes of the chord under the melody; `on` which notes get them: `"chord"` (where a chord starts), `"beat"` (on a beat, and long ones), `"long"` (two beats or more), `"all"` |
 | a note's `h` | its added notes set by hand, a list of pitches below the melody (`[]`: none); it goes before `rh` |
