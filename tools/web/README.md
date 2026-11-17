@@ -63,14 +63,19 @@ piano part of it: a second staff with a left hand made from the chords, and, if 
 melody. Nothing of it is in the sheet files: it is worked out for the sheet as it is shown, so it follows the key
 (transposing) and this device's chord edits, and every hymn that has chords has it.
 
-**Style** (shown while Both hands is on) chooses how the hands play:
+Turning Both hands on opens a panel at the bottom of the screen that chooses how the hands play. **Done** tucks it
+down to a slim bar that names the style ("Both hands · Bass + chord · In eighths · Pedal"); a tap on the bar, or a
+drag up, opens it again, and a drag down on the open panel's top tucks it away. There is no toolbar button for it: the bar
+is there whenever Both hands is on (not while editing chords, on the guitar sheet or with the staff hidden), and the next
+hymn starts with it tucked down. Its rows:
 
-- **Left hand**: none, **Strike** (two notes, three notes, open, or the hymn style: root and fifth where the chord
-  starts, third and fifth higher up in the bars it lasts; held, twice a bar or every beat), **Bass + chord** (by the
-  time signature: root and fifth, a waltz ...), **Arpeggio** (open, wide, broken chord, Alberti, rise and hold; in
-  quarters, eighths or sixteenths); an octave **Lower** or **Higher**; **Pedal**.
-- **Right hand**: the melody alone, or two or three notes: where a chord starts, on the beat, on long notes or on
-  every note.
+- **Left hand**: none, **Strike**, **Bass + chord** or **Arpeggio**; then its **Pattern** (Strike: two notes, three
+  notes, open, or the hymn style: root and fifth where the chord starts, third and fifth higher up in the bars it lasts;
+  Bass + chord, by the time signature: root and fifth, bass and chords, slow, in eighths, a waltz ...; Arpeggio: open,
+  wide, broken chord, Alberti, rise and hold), its **Rhythm** where it has more than one (Strike: held, twice a bar or
+  every beat; Arpeggio: quarters, eighths or sixteenths), the **Octave** (Lower or Higher) and **Pedal**.
+- **Right hand**: the melody alone, or two or three notes, and **When**: where a chord starts, on the beat, on long
+  notes or on every note.
 
 The choice is the device's, for every hymn (Both hands stays on from hymn to hymn, like the zoom); **Only this hymn**
 keeps a choice for one hymn alone. A style is kept by its name, not its notes, so the same arpeggio fits 4/4, 3/4 and 6/8.
@@ -83,7 +88,10 @@ draws it. It is not there on the guitar sheet, with the staff hidden, or on a ch
 
 ## Play sheet
 
-**Play sheet** (or `M`; `Space` on the sheet alone) plays the sheet as it is shown: in its key (transposing), with this
+The hymn page's **Play** button (▶ in the header, or `Space`; `M` plays the sheet) plays the sheet while the sheet is
+shown (the Sheet music tab, or beside the lyrics on a wide screen) and the tune with the lyrics alone, so there is one
+Play button, and it plays what is in front of you; the sheet alone (⤢) has a ▶ of its own in its toolbar. It plays the
+sheet as it is shown: in its key (transposing), with this
 device's chord edits, and, with Both hands on, the piano part, else the melody with the chords softly under it. The notes
 that sound light up and the page follows them; a tap on a note, or on a bar, plays from there. A row under the toolbar has
 Play / Stop, back to the start, the speed (½ to 1¼), Loop, the melody and the accompaniment on or off, Follow, and
@@ -136,7 +144,7 @@ under an edit.
 node tools/web/tests/e2e.cjs                 # 63 checks in Chromium: search, hymns, sheets, tunes, Android behaviour, offline, phone
 node tools/web/tests/e2e.cjs --sheets 300    # also renders 300 random sheets in four modes each (--sheets all: every one)
 node tools/web/tests/edit.cjs                # 12 checks of the chord editor, saving, export and import
-node tools/web/tests/piano.cjs               # Both hands and Play sheet: 11 checks of the buttons, the panel and the player, then every 12th sheet in five styles, also what plays and its MIDI file (--all: every sheet)
+node tools/web/tests/piano.cjs               # Both hands and Play sheet: 13 checks of the buttons, the panel and the player, then every 12th sheet in five styles, also what plays and its MIDI file (--all: every sheet)
 node tools/web/tests/scripture.cjs          # 10 checks of the Bible references as links (src/scripture.js), also on every reference in the database
 ```
 
@@ -152,7 +160,7 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/sheet.js` | the sheet viewer (ported from the app's `assets/viewer/viewer.js`), translated words, chord edits |
 | `src/player.js` | Play: reads the app's MIDI files (`res/raw/m<tune>.mid`) and plays them looped with a small Web Audio piano |
 | `src/editor.js`, `src/edits.js` | the chord editor panel; edits on the device, export and import |
-| `src/piano.js`, `src/pianopanel.js` | Both hands: the piano part written into a sheet's MEI, and the notes to play (`scoreOf`, `playOrder`); the Style panel. The rules are `music.js`, copied by `build.py` from `tools/lead-sheet-editor/` |
+| `src/piano.js`, `src/pianopanel.js` | Both hands: the piano part written into a sheet's MEI, and the notes to play (`scoreOf`, `playOrder`); the panel at the bottom that chooses how the hands play. The rules are `music.js`, copied by `build.py` from `tools/lead-sheet-editor/` |
 | `src/sheetplayer.js` | Play sheet: the row of controls, lighting up the notes, tap to play from there |
 | `src/files.js` | fetching and unpacking the gzipped data files |
 | `src/groups.js` | the hymnals; `build.py` fills them in from `HymnGroup.java` |

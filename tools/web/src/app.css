@@ -526,7 +526,7 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 
 .sheet-bar .tb.playsheet[aria-pressed="true"],
 .sheet-bar .tb.edit[aria-pressed="true"], .sheet-bar .tb.orig[aria-pressed="true"],
-.sheet-bar .tb.hands[aria-pressed="true"], .sheet-bar .tb.style[aria-pressed="true"] { background: var(--g); border-color: var(--g); color: var(--surface); }
+.sheet-bar .tb.hands[aria-pressed="true"] { background: var(--g); border-color: var(--g); color: var(--surface); }
 .sheet-music.editing g.measure { cursor: pointer; }
 .sheet-music.editing g.harm, .sheet-music.editing g.note, .sheet-music.editing g.rest { cursor: pointer; }
 .sheet-music g.harm.edit text, .sheet-music g.harm.edit tspan { fill: #b3261e; }
@@ -534,8 +534,21 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 .sheet-music g.bar-selected > g.staff > path { stroke: var(--g); stroke-width: 22px; }
 .sheet.dark .sheet-music g.bar-selected > g.staff > path { stroke: var(--g) !important; stroke-width: 22px; }
 .sheet-music g.bar-selected g.harm text { font-weight: 700; }
-body.editing-chords #view, body.piano-open #view { padding-bottom: calc(var(--editor-h, 280px) + 16px); }
-/* "Style": how the two hands play (pianopanel.js), in the chord editor's clothes */
+body.editing-chords #view, body.piano-open #view, body.piano-peek #view { padding-bottom: calc(var(--editor-h, 280px) + 16px); }
+/* how the two hands play (pianopanel.js), in the chord editor's clothes; tucked down to a slim bar ("peek") after Done */
+.piano-panel .pp-peek, .piano-panel.peek .pp-body { display: none; }
+.piano-panel.peek { padding: 0 0 env(safe-area-inset-bottom); }
+.piano-panel.peek .pp-peek {
+  position: relative; display: flex; align-items: center; gap: 10px; width: 100%; min-height: 48px; padding: 12px 16px 8px;
+  border: 0; background: none; color: var(--ink); font: 14px var(--ui); text-align: left; cursor: pointer; touch-action: none;
+}
+.pp-handle { position: absolute; top: 5px; left: 50%; width: 36px; height: 4px; margin-left: -18px; border-radius: 2px; background: var(--line-strong); }
+.piano-panel .pp-body { position: relative; }
+.pp-grip { top: -6px; cursor: pointer; }
+.piano-panel .pp-body .ce-top { touch-action: none; }
+.pp-title { flex: none; font-size: 15px; }
+.pp-summary { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); }
+.pp-chev { flex: none; color: var(--g); font-size: 18px; line-height: 1; }
 .piano-panel .ce-row { margin-bottom: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }   /* a row is one line: it scrolls sideways on a phone, so the sheet stays in view */
 .piano-panel .ce-row::-webkit-scrollbar { display: none; }
 .piano-panel .ce-row .ce-btn { flex: none; }
@@ -550,7 +563,7 @@ body.editing-chords #view, body.piano-open #view { padding-bottom: calc(var(--ed
 .piano-panel .ce-label { width: 6em; white-space: nowrap; }
 .piano-panel .ce-title { text-align: left; }
 .piano-panel .ce-gap { width: 12px; flex: none; }
-body.piano-open .swap-back { display: none; }
+body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
 
 .chord-editor {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; max-width: 920px; margin: 0 auto;
@@ -835,3 +848,5 @@ body.bars-away .topbar { transform: translateY(-100%); }
 .share-menu button:hover, .share-menu button:focus-visible { background: var(--hover); }
 .share-menu .tile { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--set-tint); color: var(--set-on-tint); }
 @media print { .share-menu { display: none; } }
+/* the Both hands bar belongs to the sheet: not over the lyrics on a phone */
+@media (max-width: 1079px) { body:has(.hymn[data-tab="lyrics"]) .piano-panel { display: none !important; } }

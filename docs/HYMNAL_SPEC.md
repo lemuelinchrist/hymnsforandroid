@@ -917,7 +917,8 @@ editor's panel is `editor.js`).
 
 #### 11.3.1 Both hands (the web app; Android to follow)
 
-The sheets are lead sheets. The web app can show a piano part with them (**Both hands**, with **Style**): a left hand
+The sheets are lead sheets. The web app can show a piano part with them (**Both hands**; turning it on opens a panel at the bottom that chooses the style, and Done tucks it down to a bar
+that names the style and opens it again when tapped or dragged up): a left hand
 on a second staff (bass clef, in a brace with the first), made from the chords by a pattern (struck chords, bass and
 chord, arpeggios), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
 made when the sheet is shown, from the sheet as shown (after transposing and after the device's chord edits), and
@@ -928,7 +929,7 @@ chords are moved onto the beat for the left hand; the left hand stays under the 
 and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,
 `tools/web/src/piano.js` reads a sheet's bars, chords and melody for it. A native app can run the same file.
 
-The web app also **plays the sheet** (Play sheet): the notes come from the same reading of the sheet (melody with tied notes
+The web app also **plays the sheet**: the hymn header's Play button plays the sheet while it is shown, the tune otherwise; the notes come from the same reading of the sheet (melody with tied notes
 joined, the left hand and the added notes, or the chords softly when Both hands is off), in the order the repeats and endings
 give; the tempo is that of the hymn's tune file, folded into 50 to 160 quarter notes a minute. The elements of the notes that
 sound are marked in the drawn sheet, and the sheet can be saved as a MIDI file.

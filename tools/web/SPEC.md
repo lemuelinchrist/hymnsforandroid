@@ -120,12 +120,12 @@ the URL (`?v=guitar&t=2&staff=0`), so a link opens the same view.
 | Piano / Guitar | Guitar derives the capo from the key (capo shown above the music), moves chords down by the capo and drops slash basses. This is the same rule as the app. |
 | − Key + | Transposes by a semitone, from −6 to +6. Verovio moves notes, key signature and chord symbols, and the label shows the new key. |
 | Hide / Show staff | Hides the staff and shows chords over the lyrics, reflowed to the width. |
-| Both hands, Style | A piano part made from the chords: a left hand on a second staff and, if chosen, notes of the chord under the melody; Style chooses how the hands play (README, "Both hands"). Only on the piano sheet with the staff shown. |
+| Both hands | A piano part made from the chords: a left hand on a second staff and, if chosen, notes of the chord under the melody. Turning it on opens a panel at the bottom that chooses how the hands play; Done tucks it down to a bar naming the style, which a tap or a drag up opens again (README, "Both hands"). Only on the piano sheet with the staff shown. |
 | Zoom − / + | The sheet's size (Verovio scale 20–90), remembered. |
 | Reset | Appears after a change and returns to the original key and size. Clicking the key label also returns to the original key. |
 | ⤢ | The sheet-only view (`#/sheet/E8`). |
 
-| Play sheet | Plays the sheet as shown (key, chord edits, both hands when on) and lights up the notes; tap a note or a bar to play from there; speed, Loop, melody / accompaniment, Save MIDI (README, "Play sheet"). `M`, and `Space` on the sheet alone. |
+| Play (▶) | The hymn header's Play button: while the sheet is shown (its tab, or beside the lyrics) it plays the sheet as shown (key, chord edits, both hands when on) and lights up the notes; tap a note or a bar to play from there; speed, Loop, melody / accompaniment, Save MIDI (README, "Play sheet"). `Space` (the sheet or the tune, as Play), `M` (the sheet). The sheet alone has its own ▶ in the toolbar. |
 
 Piano/guitar, the staff, the zoom and Both hands (with its style) are remembered between hymns. Transposition is per hymn and is kept only
 in the URL. (The app opens guitar sheets with the staff hidden. Here the last choice wins, since the web app

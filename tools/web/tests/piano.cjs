@@ -147,16 +147,30 @@ async function ui(page) {
   await openSheet('E8');
   await test('the sheet has one staff, and Both hands adds the left hand under it', async () => {
     assert(await staves() === 1, 'one staff to begin with');
-    assert(await page.locator('.tb.style').isHidden(), 'no Style button yet');
+    assert(await page.locator('.piano-panel').isHidden(), 'no Both hands panel yet');
     await page.click('.tb.hands'); await settle();
     assert(await staves() === 2, 'two staves, got ' + await staves());
     assert(await left() > 10, 'left hand notes');
-    assert(await page.locator('.tb.style').isVisible(), 'the Style button');
+    assert(await page.locator('.piano-panel .pp-body').isVisible(), 'Both hands opens its panel at the bottom');
+    assert(await page.locator('.tb.style').count() === 0, 'no Style button');
+  });
+  await test('Done tucks the panel down to a bar that names the style; a tap opens it again', async () => {
+    await page.click('.piano-panel button:text-is("Done")');
+    assert(await page.locator('.piano-panel .pp-body').isHidden(), 'the choices are put away');
+    assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'the bar stays');
+    const said = await page.locator('.pp-summary').textContent();
+    assert(/Strike/.test(said), 'the bar names the style: ' + said);
+    await page.click('.piano-panel .pp-peek');
+    assert(await page.locator('.piano-panel .pp-body').isVisible(), 'open again');
+    await page.click('.piano-panel button:text-is("Done")');
+    const box = await page.locator('.piano-panel .pp-peek').boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2); await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 2, box.y - 60, {steps: 5}); await page.mouse.up();
+    assert(await page.locator('.piano-panel .pp-body').isVisible(), 'dragged up: open');
   });
   let hymnStyle = 0;
   await test('Style changes how the left hand plays, and the right hand gets notes', async () => {
     hymnStyle = await left();
-    await page.click('.tb.style');
     await pick('Left hand', 'Arpeggio');
     assert(await left() > hymnStyle, 'an arpeggio has more notes than held chords: ' + await left() + ' / ' + hymnStyle);
     assert(await page.locator('.sheet-music g.note.fill').count() === 0, 'the melody alone');
@@ -174,12 +188,13 @@ async function ui(page) {
     await page.click('.piano-panel button:text-is("Only this hymn")'); await settle();
     const here = await left();
     await page.click('.piano-panel button:text-is("Done")');
-    assert(await page.locator('.piano-panel').isHidden(), 'the panel closes');
+    assert(await page.locator('.piano-panel .pp-body').isHidden(), 'the panel tucks down');
     await openSheet('E10');
     assert(await staves() === 2, 'both hands stay on for the next hymn');
     await openSheet('E8');
     assert(await left() === here, 'E8 keeps its own arpeggio: ' + await left() + ' / ' + here);
-    await page.click('.tb.style');
+    assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'another hymn: the panel is tucked down, not open');
+    await page.click('.piano-panel .pp-peek');
     await page.click('.piano-panel button:text-is("Only this hymn")'); await settle();   // back to the device's
     await pick('Left hand', 'Strike'); await pick('', 'Hymn');
     await page.click('.piano-panel button:text-is("Done")');
@@ -208,9 +223,12 @@ async function ui(page) {
     assert(await staves() === 2, 'both hands while editing');
     assert(await page.locator('.sheet-music').innerHTML() !== before, 'the sheet changed');
     await page.click('.chord-editor button:text-is("Undo")'); await settle();
+    assert(await page.locator('.piano-panel').isHidden(), 'no Both hands bar while editing chords');
     await page.click('.chord-editor:not(.piano-panel) button:text-is("Done")'); await settle();
+    assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'the bar again after editing');
     await page.keyboard.press('b'); await settle();
     assert(await staves() === 1, 'B takes the piano part away');
+    assert(await page.locator('.piano-panel').isHidden(), 'and its bar');
   });
   console.log('Play sheet');
   await openSheet('E8');
@@ -261,7 +279,7 @@ async function ui(page) {
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'transposed, still playing');
     assert(await page.locator('.sheet-music g.playing').count() >= 0, 'lights up in the new key');
     await page.keyboard.press('0'); await settle();
-    await page.click('.tb.style'); await settle();
+    if (await page.locator('.piano-panel .pp-peek').isVisible()) { await page.click('.piano-panel .pp-peek'); await settle(); }
     await pick('Left hand', 'Arpeggio');
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'a new style, still playing');
     await page.click('.piano-panel button:text-is("Done")'); await settle();
@@ -280,15 +298,29 @@ async function ui(page) {
     assert(level.lead.rms > 0.002 && level.lead.peak < 1, 'the lead sheet: ' + JSON.stringify(level.lead));
     assert(level.piano.rms > level.lead.rms && level.piano.peak < 1, 'the piano part is fuller and does not clip: ' + JSON.stringify(level));
   });
-  await test('the tune\'s Play button and the sheet stop each other; closing the player stops it', async () => {
+  await test('the hymn page\'s Play button plays the sheet while it is shown, the tune with the lyrics alone; they stop each other', async () => {
+    await page.click('.piano-panel button:text-is("Done")').catch(() => {});
+    await page.setViewportSize({width: 800, height: 900});           // a tablet: one tab at a time
     await page.goto(BASE + '#/h/E8'); await page.waitForSelector('.hymn'); await settle();
-    await page.click('.hymn-nav .icon-btn.play'); await page.waitForTimeout(600);
-    assert(await page.locator('.hymn-nav .icon-btn.play').getAttribute('aria-pressed') === 'true', 'the tune plays');
-    await page.click('.tb.playsheet'); await page.waitForTimeout(1200);
-    assert(await page.locator('.hymn-nav .icon-btn.play').getAttribute('aria-pressed') === 'false', 'the sheet took over: the tune button is off');
-    await page.click('.hymn-nav .icon-btn.play'); await page.waitForTimeout(600);
-    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Play'), 'the tune took over: the sheet stopped');
-    await page.click('.hymn-nav .icon-btn.play'); await page.waitForTimeout(300);
+    const play = page.locator('.hymn-nav .icon-btn.play');
+    assert(await play.getAttribute('title') === 'Play the tune (Space)', 'lyrics: the tune: ' + await play.getAttribute('title'));
+    await play.click(); await page.waitForTimeout(600);
+    assert(await play.getAttribute('aria-pressed') === 'true', 'the tune plays');
+    await page.click('.tabs button[data-tab="sheet"]'); await settle();
+    assert(await play.getAttribute('aria-pressed') === 'true', 'still the tune: the button stops it');
+    await play.click(); await page.waitForTimeout(300);
+    assert(await play.getAttribute('title') === 'Play the sheet (Space)', 'sheet tab: the sheet: ' + await play.getAttribute('title'));
+    await play.click(); await page.waitForTimeout(1200);
+    assert(await page.locator('.sheet-player').isVisible() && (await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'the sheet plays');
+    assert(await play.getAttribute('aria-pressed') === 'true', 'the button shows it plays');
+    assert(await page.locator('.tb.playsheet').isHidden(), 'no Play button of its own in the sheet bar');
+    await play.click(); await page.waitForTimeout(500);
+    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Play') && await play.getAttribute('aria-pressed') === 'false', 'stopped');
+    await page.click('.tabs button[data-tab="lyrics"]'); await settle();
+    await play.click(); await page.waitForTimeout(600);
+    assert(await play.getAttribute('aria-pressed') === 'true' && await play.getAttribute('title') === 'Stop (Space)', 'lyrics again: the tune');
+    await play.click(); await page.waitForTimeout(300);
+    await page.click('.tabs button[data-tab="sheet"]'); await settle();
     await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();
     assert(await page.locator('.sheet-player').isHidden(), 'closed');
   });

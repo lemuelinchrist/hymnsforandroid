@@ -842,23 +842,30 @@ function hymnScreen(view, hymn) {
   let tab = route.params.get('tab') === 'sheet' && hasSheet ? 'sheet' : 'lyrics';
   const fav = favorites().includes(hymn.id);
 
-  // the tune, looped, as in the Android app; it stops when another hymn is opened
+  // Play: while the sheet music is shown (its tab, or beside the lyrics on a wide screen) it plays the sheet as it is shown
+  // (sheetplayer.js); else the tune, looped, as in the Android app. It stops when another hymn is opened.
   const tune = DB.tuneFile(hymn);
-  const playBtn = h('button', {class: 'icon-btn play', title: tune ? tr('Play the tune (Space)') : tr('No tune for this hymn'),
-    'aria-label': tr('Play the tune'), 'aria-pressed': 'false', disabled: tune ? null : true, onclick: () => togglePlay()});
-  const showPlay = (on) => {
-    playBtn.innerHTML = '';
-    playBtn.appendChild(icon(on ? 'pause' : 'play'));
+  const playBtn = h('button', {class: 'icon-btn play', 'aria-pressed': 'false', onclick: () => togglePlay()});
+  const sheetShown = () => !!(sheet && sheet.playable && (tab === 'sheet' || wide.matches));
+  let tunePlaying = false;
+  const showPlay = (on) => { tunePlaying = on; refreshPlay(); };
+  function refreshPlay() {
+    const on = tunePlaying || !!(sheet && sheet.playing), onSheet = sheetShown();
+    playBtn.replaceChildren(icon(on ? 'pause' : 'play'));
     playBtn.setAttribute('aria-pressed', String(on));
-    playBtn.title = on ? tr('Stop (Space)') : tune ? tr('Play the tune (Space)') : tr('No tune for this hymn');
-  };
+    playBtn.disabled = !on && !onSheet && !tune;
+    const label = on ? tr('Stop (Space)') : onSheet ? tr('Play the sheet (Space)') : tune ? tr('Play the tune (Space)') : tr('No tune for this hymn');
+    playBtn.title = label;
+    playBtn.setAttribute('aria-label', label);
+  }
   function togglePlay() {
-    if (!tune) { toast(tr('Sorry, no tune for this hymn')); return; }
     if (Player.playing() === hymn.id) { Player.stop(); showPlay(false); return; }
+    if (sheet && sheet.playing) { sheet.togglePlay(); return; }
+    if (sheetShown()) { sheet.togglePlay(); return; }
+    if (!tune) { toast(tr('Sorry, no tune for this hymn')); return; }
     showPlay(true);
     Player.play(tune, hymn.id).catch(() => { showPlay(false); toast(tr('Could not play the tune')); });
   }
-  showPlay(Player.playing() === hymn.id);
 
   const favBtn = h('button', {class: 'icon-btn' + (fav ? ' on' : ''), title: tr('Favorite (F)'), 'aria-pressed': String(fav),
     onclick: () => { const on = toggleFavorite(hymn.id); favBtn.classList.toggle('on', on); favBtn.setAttribute('aria-pressed', String(on)); }},
@@ -899,7 +906,7 @@ function hymnScreen(view, hymn) {
   let sheet = null;
   function ensureSheet() {
     if (sheet || !hasSheet) return;
-    sheet = sheetPanel(sheetPane, hymn, {full: false, stopTune: () => { Player.stop(); showPlay(false); }});
+    sheet = sheetPanel(sheetPane, hymn, {full: false, stopTune: () => { Player.stop(); showPlay(false); }, onplay: () => refreshPlay()});
   }
   function showTab(t) {
     tab = t;
@@ -910,9 +917,11 @@ function hymnScreen(view, hymn) {
     const params = Object.fromEntries(route.params);
     if (t === 'sheet') params.tab = 'sheet'; else delete params.tab;
     quietly(href('/h/' + hymn.id, params));
+    refreshPlay();
   }
   showTab(tab);
-  const onWide = () => { if (wide.matches) ensureSheet(); };
+  showPlay(Player.playing() === hymn.id);
+  const onWide = () => { if (wide.matches) ensureSheet(); refreshPlay(); };
   wide.addEventListener('change', onWide);
 
   // swipe left or right on the lyrics for the next or previous hymn (phones)
@@ -983,7 +992,7 @@ function sheetPrefs() {
   return Object.assign({guitar: false, staff: true, scale: DEFAULT_SCALE, hands: false}, store.get('sheet', {}));
 }
 
-function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop()}) {
+function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop(), onplay = () => {}}) {
   const p = route.params;
   const prefs = sheetPrefs();
   const state = {
@@ -1005,10 +1014,11 @@ function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop()}) {
   const bStaff = btn(tr('Staff'), tr('Show or hide the staff (H)'), () => set({staff: !state.staff}), 'toggle');
   const bZoomOut = btn(icon('zoomOut'), tr('Smaller (Z)'), () => set({scale: state.scale - 5}), 'icon');
   const bZoomIn = btn(icon('zoomIn'), tr('Bigger (Shift+Z)'), () => set({scale: state.scale + 5}), 'icon');
-  // both hands: a piano part made from the chords (piano.js), and "Style" for how the hands play
+  // both hands: a piano part made from the chords (piano.js); how the hands play is chosen in the panel at the bottom
   const bHands = btn(tr('Both hands'), tr('A piano part: a left hand made from the chords (B)'), () => set({hands: !state.hands}), 'hands');
-  const bStyle = btn(tr('Style'), tr('How the two hands play'), () => setStyle(!(panel && panel.isOpen)), 'style');
-  const bPlay = btn(tr('Play sheet'), tr('Play the sheet as it is shown, with both hands when they are on (M)'), () => sp.toggle(), 'playsheet');
+  // play the sheet: the hymn page's own Play button does it while the sheet is shown; the sheet alone has this one
+  const bPlay = btn(icon('play'), tr('Play the sheet as it is shown, with both hands when they are on (M)'), () => sp.toggle(), 'icon playsheet');
+  bPlay.hidden = !full;
   let sp = null;
   const bEdit = btn(tr('Edit chords'), tr('Edit the chords of the piano sheet (E)'), () => setEdit(!view.editing), 'edit');
   const bOrig = btn(tr('Original chords'), tr('Show the sheet without your chord edits (O)'), () => set({original: !state.original}), 'orig');
@@ -1025,12 +1035,12 @@ function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop()}) {
     h('div', {class: 'seg'}, bPiano, bGuitar),
     h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
     bStaff,
-    bHands, bStyle,
+    bHands,
     bEdit, bOrig,
     h('div', {class: 'zoom'}, bZoomOut, bZoomIn),
     bReset, bPaper,
     h('span', {class: 'grow'}),
-    bPlay,
+    full ? bPlay : null,
     other);
   const note = hymn.sheetId !== hymn.id
     ? h('p', {class: 'sheet-from'}, trh('Music of {0} ({1})', h('a', {href: '#/h/' + hymn.sheetId}, hymn.sheetId), BY_CODE[splitId(hymn.sheetId).group].name),
@@ -1074,14 +1084,16 @@ function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop()}) {
     view.set({});
   }
   view.piano = pianoChoice().choice;
+  // the panel is there while Both hands is on with something to play it on (not while editing chords): open when
+  // Both hands was just turned on, else tucked down to its bar
   let panel = null;
-  function setStyle(on) {
-    if (on) {
-      if (view.editing) setEdit(false);
-      panel = panel || createPianoPanel({get: pianoChoice, set: setPiano, time: () => view.time, onclose: () => setStyle(false)});
-      panel.open();
-    } else if (panel) panel.close();
-    updateBar();
+  function syncPanel(openIt = false) {
+    const wanted = state.hands && !state.guitar && state.staff && !view.chordsOnly && !view.editing && view.renders > 0;
+    if (!wanted) { if (panel) panel.show('hidden'); return; }
+    panel = panel || createPianoPanel({get: pianoChoice, set: setPiano, time: () => view.time});
+    if (openIt) panel.show('open');
+    else if (panel.mode === 'hidden') panel.show('peek');
+    else panel.refresh();
   }
 
   // chord editing: only on the piano sheet with the staff shown and the edits in place
@@ -1089,7 +1101,7 @@ function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop()}) {
   function setEdit(on) {
     if (on && view.chordsOnly) return;   // chords over the words only: nothing to edit on a staff
     document.body.classList.remove('bars-away');
-    if (on && panel) panel.close();
+    if (on && panel) panel.show('hidden');
     if (on) {
       Object.assign(state, {guitar: false, staff: true, original: false});
       editor = editor || createEditor(view, {onclose: () => setEdit(false)});
@@ -1105,13 +1117,14 @@ function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop()}) {
 
   function set(changes) {
     if (view.editing && (changes.guitar || changes.staff === false || changes.original)) setEdit(false);
-    if (panel && (changes.guitar || changes.staff === false || changes.hands === false)) panel.close();   // nothing to style
+    const handsOn = changes.hands === true && !state.hands;
     Object.assign(state, changes);
     state.shift = Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, state.shift));
     state.scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, state.scale));
     keep();
     view.set(state);
     updateBar();
+    if (handsOn) syncPanel(true);
     const params = Object.assign(Object.fromEntries([...route.params].filter(([k]) => !['v', 'staff', 't', 'z'].includes(k))), sheetParams());
     quietly(href('/' + route.parts[0] + '/' + hymn.id, params));
   }
@@ -1122,12 +1135,14 @@ function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop()}) {
     bStaff.setAttribute('aria-pressed', String(state.staff));
     bStaff.textContent = state.staff ? tr('Hide staff') : tr('Show staff');
     bStaff.hidden = bEdit.hidden = !!view.chordsOnly;
-    bPlay.hidden = !!view.chordsOnly;   // a sheet of chords over the words has no notes to play
-    if (sp) { bPlay.setAttribute('aria-pressed', String(sp.playing)); sp.available(!view.chordsOnly); }
+    bPlay.hidden = !full || !!view.chordsOnly;   // a sheet of chords over the words has no notes to play
+    if (sp) {
+      bPlay.replaceChildren(icon(sp.playing ? 'pause' : 'play'));
+      bPlay.setAttribute('aria-pressed', String(sp.playing));
+      sp.available(!view.chordsOnly);
+    }
     bHands.hidden = !!view.chordsOnly || state.guitar || !state.staff;   // a piano part needs the piano sheet's staff
     bHands.setAttribute('aria-pressed', String(!!state.hands));
-    bStyle.hidden = bHands.hidden || !state.hands;
-    bStyle.setAttribute('aria-pressed', String(!!(panel && panel.isOpen)));
     bEdit.setAttribute('aria-pressed', String(view.editing));
     bEdit.textContent = view.editing ? tr('Editing chords') : tr('Edit chords');
     bOrig.hidden = !view.hasEdits();
@@ -1142,6 +1157,8 @@ function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop()}) {
       ? tn('Transposed up {0} semitone · click for the original key', 'Transposed up {0} semitones · click for the original key', state.shift)
       : tn('Transposed down {0} semitone · click for the original key', 'Transposed down {0} semitones · click for the original key', -state.shift);
     keyLabel.disabled = !state.shift;
+    syncPanel();
+    onplay();
   }
   sp = createSheetPlayer(view, {tune: DB.tuneFile(hymn), store, stopTune, onchange: () => updateBar()});
   bar.after(sp.el);
@@ -1158,6 +1175,9 @@ function sheetPanel(pane, hymn, {full, stopTune = () => Player.stop()}) {
     set, state,
     setEdit,
     togglePlay: () => sp.toggle(),
+    get playing() { return !!(sp && sp.playing); },
+    // a sheet with notes on it, drawn: its music can be played
+    get playable() { return view.renders > 0 && !view.chordsOnly; },
     destroy() { sp.destroy(); if (editor) editor.destroy(); if (panel) panel.destroy(); view.destroy(); themeListeners.delete(onTheme); stopHiding(); },
   };
 }
