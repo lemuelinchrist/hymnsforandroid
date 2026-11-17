@@ -185,7 +185,7 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   **New cap rule (Lemuel 2026-11-17), for this channel on: a hymn gets at most 5 sung and 1 instrumental recording in all, piano videos not counted** (existing links count);
   a track beyond the cap is still recorded in `recordings.tsv` with status `matched` (`lrh_known.tsv`) but not imported. Also held as `matched`: three E hymns that have a New Tune
   (E543, E432, E156; ask before linking) and the Cebuano title (belongs to a CB hymn). The other 54 tracks (20 prefix matches, 34 with no title match) are for Lemuel to review himself;
-  no audio was downloaded for them (his instruction). Monitor key `lords-recovery-hymns`.
+  no audio was downloaded for them (his instruction). Not monitored (Lemuel 2026-11-17: dropped; `lrh_known.tsv` and `recordings.tsv` keep what was seen).
 - **Rules that held for the Topic channels**: a number in the title (`Hymn N`, `Hymns N`, `诗歌N`) is reliable; a track titled "- New Tune" belongs to
   the New Tune hymn (e.g. BF345), never to the root hymn, so it is not linked to the root; an instrumental track gets the label `<name> (Instrumental)`
   (max 1 per hymn); sung ones max 2 per hymn per channel; English hymns may carry links from several channels (NYCYPCD + LSM + others).
