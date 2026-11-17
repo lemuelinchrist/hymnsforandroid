@@ -52,6 +52,12 @@ export function setChoice(value) {
   document.documentElement.lang = lang;
 }
 
+// the Android app's sheet viewer: the app says the language (its own setting), nothing is kept
+export function useLanguage(code) {
+  if (LANGS.some(([c]) => c === code)) lang = code;
+  document.documentElement.lang = lang;
+}
+
 export const baseLanguage = () => lang.split('-')[0];
 
 function fill(text, args) {

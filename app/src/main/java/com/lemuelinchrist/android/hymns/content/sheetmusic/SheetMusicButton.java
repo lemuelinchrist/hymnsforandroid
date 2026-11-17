@@ -36,6 +36,7 @@ public class SheetMusicButton extends ContentComponent<ImageButton> {
             Intent intent = new Intent(context, SheetMusicActivity.class);
             intent.putExtra("selectedHymnId", sheetMusicId);
             intent.putExtra("lyricsHymnId", hymn.getHymnId());   // a translation borrows its parent's sheet but may have its own lyrics
+            intent.putExtra("tune", hymn.getMelodyFileName());   // the sheet is played at the tempo of the hymn's tune
             context.startActivity(intent);
         } else {
             Toast.makeText(context, R.string.sorry_sheet_music_not_available, Toast.LENGTH_SHORT).show();

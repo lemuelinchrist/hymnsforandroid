@@ -1,0 +1,326 @@
+// The sheet music with its toolbar: Piano | Guitar, the key, Hide staff, Both hands (and its panel at the bottom), the
+// zoom, the sheet alone, and ⋯ (Edit chords, Original chords, the original key and size, light paper, Save MIDI); the
+// player's row under it. The web app shows it beside the lyrics or alone (#/sheet/E8); the Android app's sheet viewer
+// is this alone (tools/web/android). What differs between the two comes in as options, or through host.js.
+import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE} from './sheet.js';
+import {createEditor} from './editor.js';
+import {createPianoPanel} from './pianopanel.js';
+import {createSheetPlayer} from './sheetplayer.js';
+import {DEFAULT as PIANO_DEFAULT} from './piano.js';
+import * as Player from './player.js';
+import {tr, tn} from './i18n.js';
+import {h, append, icon, store, toast, isDark, popupMenu, themeListeners} from './ui.js';
+
+// remembered between hymns: piano or guitar, the staff, the zoom, both hands. Transposition is per hymn (in the URL only).
+function sheetPrefs() {
+  return Object.assign({guitar: false, staff: true, scale: DEFAULT_SCALE, hands: false}, store.get('sheet', {}));
+}
+
+// pane: the element to fill. o:
+//   sheetId, lyricsId, id   the sheet, the hymn whose words go under it when it is another's (or null), the hymn shown
+//   params                  URLSearchParams with v=guitar, staff=0, t=<shift>, z=<scale> (a link opens the same view)
+//   onParams(p)             the settings changed: {v, staff, t, z} as the URL should now have them
+//   full                    the sheet alone: it has its own Play button
+//   tune                    the url of the hymn's tune file (the sheet is played at its tempo), or null
+//   title, note             elements above and below the toolbar, or null
+//   exit                    {icon, title, href | run, first}: the toolbar's last button (the sheet alone: back), or with
+//                           first its first (the Android viewer's ‹, where Android has its back button), or null
+//   sheetOnly(p)            opens the sheet alone with these settings (the ⤢ button), or null
+//   pinch                   pinching the sheet changes its size (where the page itself does not zoom)
+//   stopTune(), onplay()    the hymn's own Play button: stop its tune; the sheet started or stopped playing
+export function createSheetPanel(pane, o) {
+  const {full = false, stopTune = () => Player.stop(), onplay = () => {}} = o;
+  const p = o.params || new URLSearchParams();
+  const prefs = sheetPrefs();
+  const state = {
+    guitar: p.has('v') ? p.get('v') === 'guitar' : prefs.guitar,
+    staff: p.has('staff') ? p.get('staff') !== '0' : prefs.staff,
+    shift: Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, parseInt(p.get('t') || '0', 10) || 0)),
+    scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, parseInt(p.get('z') || '', 10) || prefs.scale)),
+    hands: !!prefs.hands,
+  };
+  const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands});
+
+  const btn = (label, title, onclick, cls = '') => h('button', {type: 'button', class: 'tb ' + cls, title, 'aria-label': title, onclick}, label);
+  const bPiano = btn(tr('Piano'), tr('Piano sheet (P)'), () => set({guitar: false}));
+  const bGuitar = btn(tr('Guitar'), tr('Guitar sheet (G)'), () => set({guitar: true}));
+  const bDown = btn('−', tr('Transpose down a semitone (−)'), () => set({shift: state.shift - 1}), 'step');
+  const bUp = btn('+', tr('Transpose up a semitone (+)'), () => set({shift: state.shift + 1}), 'step');
+  const keyLabel = h('button', {type: 'button', class: 'key', title: tr('Back to the original key')}, '…');
+  keyLabel.addEventListener('click', () => set({shift: 0}));
+  const bStaff = btn(tr('Staff'), tr('Show or hide the staff (H)'), () => set({staff: !state.staff}), 'toggle');
+  const bZoomOut = btn(icon('zoomOut'), tr('Smaller (Z)'), () => set({scale: state.scale - 5}), 'icon');
+  const bZoomIn = btn(icon('zoomIn'), tr('Bigger (Shift+Z)'), () => set({scale: state.scale + 5}), 'icon');
+  // both hands: a piano part made from the chords (piano.js); how the hands play is chosen in the panel at the bottom
+  const bHands = btn(tr('Both hands'), tr('A piano part: a left hand made from the chords (B)'), () => set({hands: !state.hands}), 'hands');
+  // play the sheet: the hymn page's own Play button does it while the sheet is shown; the sheet alone has this one
+  const bPlay = btn(icon('play'), tr('Play the sheet as it is shown, with both hands when they are on (M)'), () => sp.toggle(), 'icon playsheet');
+  bPlay.hidden = !full;
+  let sp = null;
+  // the rest, used less, in the ⋯ menu: chord editing (for players who reharmonize), the original chords, the original
+  // key and size, light paper (dark theme), Save MIDI. The sheet alone (for a music stand) keeps its own button.
+  const bMore = btn(icon('more'), tr('More'), () => moreMenu(), 'icon sheet-more');
+  bMore.setAttribute('aria-haspopup', 'menu');
+  bMore.setAttribute('aria-expanded', 'false');
+  const lightPaper = () => store.get('sheetPaper', null) === 'light';
+  function moreMenu() {
+    const items = [];
+    if (!view.chordsOnly) items.push({icon: 'edit', label: view.editing ? tr('Stop editing chords') : tr('Edit chords'), run: () => setEdit(!view.editing)});
+    if (view.hasEdits()) items.push({icon: 'original', label: tr('Original chords'), checked: !!state.original, run: () => set({original: !state.original})});
+    if (state.shift || state.scale !== DEFAULT_SCALE) items.push({icon: 'reset', label: tr('Original key and size'), run: () => set({shift: 0, scale: DEFAULT_SCALE})});
+    // dark theme only: the sheet on light paper (black on white); remembered like the zoom
+    if (isDark()) items.push({icon: 'paper', label: tr('Light paper'), checked: lightPaper(), run: () => { store.set('sheetPaper', lightPaper() ? null : 'light'); paperLook(); }});
+    if (!view.chordsOnly) items.push({icon: 'download', label: tr('Save MIDI'), run: () => sp.saveMidi()});
+    bookColour(popupMenu(bMore, items, 'sheet-menu'));
+  }
+  const exit = o.exit
+    ? (o.exit.href
+      ? h('a', {class: 'tb icon', href: o.exit.href, title: o.exit.title, 'aria-label': o.exit.title}, icon(o.exit.icon))
+      : btn(icon(o.exit.icon), o.exit.title, o.exit.run, 'icon exit' + (o.exit.first ? ' exit-first' : '')))
+    : null;
+  const bSheetOnly = o.sheetOnly
+    ? h('a', {class: 'tb icon', href: '#', title: tr('Sheet only, for a music stand'), 'aria-label': tr('Sheet only, for a music stand'),
+      onclick: (e) => { e.preventDefault(); o.sheetOnly(sheetParams()); }}, icon('expand'))
+    : null;
+
+  const first = o.exit && o.exit.first;
+  const bar = h('div', {class: 'sheet-bar', role: 'toolbar', 'aria-label': tr('Sheet music')},
+    first ? exit : null,
+    h('div', {class: 'seg'}, bPiano, bGuitar),
+    h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
+    bStaff,
+    bHands,
+    h('div', {class: 'zoom'}, bZoomOut, bZoomIn),
+    h('span', {class: 'grow'}),
+    full ? bPlay : null,
+    bSheetOnly,
+    bMore,
+    first ? null : exit);
+  // the toolbar and the player's row together (the Android viewer keeps them at the top of the screen)
+  const top = h('div', {class: 'sheet-top'}, bar);
+  const host = h('div', {class: 'sheet-host'});
+  append(pane, [o.title || null, top, o.note || null, host]);
+
+  const view = new SheetView(host);
+  // what is put on the page outside the pane (the panels at the bottom, the ⋯ menu) takes the hymn's book colour too
+  function bookColour(el) {
+    const from = pane.closest('[style*="--gd"]');
+    if (!el || !from) return el;
+    for (const v of ['--gd', '--gn']) el.style.setProperty(v, from.style.getPropertyValue(v));
+    return el;
+  }
+  // dark theme: dark paper, or light paper if the reader chose it with the paper button
+  function paperLook() {
+    const light = isDark() && store.get('sheetPaper', null) === 'light';
+    view.root.classList.toggle('dark', isDark() && !light);
+    view.root.classList.toggle('light-paper', light);
+  }
+  paperLook();
+
+  function sheetParams() {
+    const out = {};
+    if (state.guitar !== false) out.v = 'guitar';
+    if (!state.staff) out.staff = '0';
+    if (state.shift) out.t = state.shift;
+    if (state.scale !== DEFAULT_SCALE) out.z = state.scale;
+    return out;
+  }
+
+  // how the hands play: the device's choice for every hymn, or this hymn's own ("Only this hymn" in the panel)
+  function pianoChoice() {
+    const own = store.get('pianoOf', {})[o.sheetId];
+    return {choice: own || store.get('piano', PIANO_DEFAULT), only: !!own};
+  }
+  function setPiano(choice, only) {
+    const all = store.get('pianoOf', {});
+    if (only) all[o.sheetId] = choice; else { delete all[o.sheetId]; store.set('piano', choice); }
+    store.set('pianoOf', all);
+    view.piano = choice;
+    view.set({});
+  }
+  view.piano = pianoChoice().choice;
+  // the panel is there while Both hands is on with something to play it on (not while editing chords): open when
+  // Both hands was just turned on, else tucked down to its bar
+  let panel = null;
+  function syncPanel(openIt = false) {
+    const wanted = state.hands && !state.guitar && state.staff && !view.chordsOnly && !view.editing && view.renders > 0;
+    if (!wanted) { if (panel) panel.show('hidden'); return; }
+    if (!panel) {
+      panel = createPianoPanel({get: pianoChoice, set: setPiano, time: () => view.time});
+      bookColour(panel.el);
+    }
+    if (openIt) panel.show('open');
+    else if (panel.mode === 'hidden') panel.show('peek');
+    else panel.refresh();
+  }
+
+  // chord editing: only on the piano sheet with the staff shown and the edits in place
+  let editor = null;
+  function setEdit(on) {
+    if (on && view.chordsOnly) return;   // chords over the words only: nothing to edit on a staff
+    document.body.classList.remove('bars-away');
+    if (on && panel) panel.show('hidden');
+    if (on) {
+      Object.assign(state, {guitar: false, staff: true, original: false});
+      if (!editor) {
+        editor = createEditor(view, {onclose: () => setEdit(false)});
+        bookColour(editor.el);
+      }
+      view.setEditing(true, {guitar: false, staff: true, original: false});
+      editor.open();
+    } else {
+      if (editor) editor.close();
+      view.setEditing(false);
+    }
+    keep();
+    updateBar();
+    if (o.onedit) o.onedit(on);
+  }
+
+  function set(changes) {
+    if (view.editing && (changes.guitar || changes.staff === false || changes.original)) setEdit(false);
+    const handsOn = changes.hands === true && !state.hands;
+    Object.assign(state, changes);
+    state.shift = Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, state.shift));
+    state.scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, state.scale));
+    keep();
+    view.set(state);
+    updateBar();
+    if (handsOn) syncPanel(true);
+    if (o.onParams) o.onParams(sheetParams());
+  }
+
+  function updateBar(info = view.info) {
+    bPiano.setAttribute('aria-pressed', String(!state.guitar));
+    bGuitar.setAttribute('aria-pressed', String(state.guitar));
+    bStaff.setAttribute('aria-pressed', String(state.staff));
+    bStaff.textContent = state.staff ? tr('Hide staff') : tr('Show staff');
+    bStaff.hidden = !!view.chordsOnly;
+    bPlay.hidden = !full || !!view.chordsOnly;   // a sheet of chords over the words has no notes to play
+    if (sp) {
+      bPlay.replaceChildren(icon(sp.playing ? 'pause' : 'play'));
+      bPlay.setAttribute('aria-pressed', String(sp.playing));
+      sp.available(!view.chordsOnly);
+    }
+    bHands.hidden = !!view.chordsOnly || state.guitar || !state.staff;   // a piano part needs the piano sheet's staff
+    bHands.setAttribute('aria-pressed', String(!!state.hands));
+    bMore.classList.toggle('dot', !!state.original);   // the original chords are shown: a mark on ⋯, where to turn it off
+    bDown.disabled = state.shift <= -MAX_SHIFT;
+    bUp.disabled = state.shift >= MAX_SHIFT;
+    bZoomOut.disabled = state.scale <= MIN_SCALE;
+    bZoomIn.disabled = state.scale >= MAX_SCALE;
+    keyLabel.textContent = info.tonic ? info.tonic + (state.shift ? ' (' + (state.shift > 0 ? '+' : '') + state.shift + ')' : '') : '…';
+    keyLabel.title = !state.shift ? tr('Original key') : state.shift > 0
+      ? tn('Transposed up {0} semitone · click for the original key', 'Transposed up {0} semitones · click for the original key', state.shift)
+      : tn('Transposed down {0} semitone · click for the original key', 'Transposed down {0} semitones · click for the original key', -state.shift);
+    keyLabel.disabled = !state.shift;
+    syncPanel();
+    onplay();
+  }
+  sp = createSheetPlayer(view, {tune: o.tune || null, store, stopTune, onchange: () => updateBar()});
+  top.appendChild(sp.el);
+  view.onsound = () => sp.refresh();
+  view.onchange = (st, info) => updateBar(info);
+  view.onedited = () => { updateBar(); if (editor) editor.refresh(); };
+  updateBar();
+  view.show(o.sheetId, state, o.lyricsId);
+
+  const onTheme = paperLook;
+  themeListeners.add(onTheme);
+  const stopHiding = hideBarsOnScroll(pane);
+  const stopPinch = o.pinch ? pinchToZoom(host, () => state.scale, (scale) => set({scale})) : () => {};
+  return {
+    set, state,
+    setEdit,
+    get editing() { return !!view.editing; },
+    togglePlay: () => sp.toggle(),
+    get playing() { return !!(sp && sp.playing); },
+    // a sheet with notes on it, drawn: its music can be played
+    get playable() { return view.renders > 0 && !view.chordsOnly; },
+    destroy() {
+      sp.destroy(); if (editor) editor.destroy(); if (panel) panel.destroy(); view.destroy(); themeListeners.delete(onTheme);
+      stopHiding(); stopPinch();
+    },
+  };
+}
+
+// phones, tablets (any touch screen, however big) and short screens: the bars slide away while scrolling down the
+// sheet (more room for the music). Scrolling up does not bring them back (small moves to fit the music would keep
+// uncovering them): a tap on the sheet does, or reaching the top of the page. Not while editing chords.
+const smallScreen = window.matchMedia('(max-width: 1079px), (max-height: 600px), (pointer: coarse)');
+function hideBarsOnScroll(pane) {
+  const body = document.body;
+  const usable = () => smallScreen.matches && pane.offsetParent !== null && !body.classList.contains('editing-chords') && !body.classList.contains('piano-open') && !body.classList.contains('sheet-playing');
+  const away = (on) => {
+    body.classList.toggle('bars-away', on);
+    if (on && !store.get('barsHintShown', false)) { store.set('barsHintShown', true); toast(tr('Tap the sheet to show the toolbar')); }
+  };
+  let lastY = window.scrollY;
+  const onScroll = () => {
+    const y = window.scrollY;
+    if (y <= 40) { body.classList.remove('bars-away'); lastY = y; return; }
+    if (y < lastY) { lastY = y; return; }
+    if (y - lastY < 8) return;
+    lastY = y;
+    if (usable() && !body.classList.contains('bars-away')) away(true);
+  };
+  const onTap = () => {
+    if (!usable()) return;
+    if (body.classList.contains('bars-away')) away(false);
+    else if (window.scrollY > 40) away(true);
+  };
+  const host = pane.querySelector('.sheet-host');
+  window.addEventListener('scroll', onScroll, {passive: true});
+  host.addEventListener('click', onTap);
+  return () => { window.removeEventListener('scroll', onScroll); host.removeEventListener('click', onTap); body.classList.remove('bars-away'); };
+}
+
+// two fingers apart or together: the sheet is drawn again at the new size, so the music reflows instead of running off
+// the screen (where the page itself cannot be zoomed: the Android viewer)
+function pinchToZoom(el, getScale, setScale) {
+  const dist = (t) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+  let pinch = null;
+  const start = (e) => { if (e.touches.length === 2) pinch = {d: dist(e.touches), s: getScale(), f: 1}; };
+  const move = (e) => {
+    if (!pinch || e.touches.length !== 2) return;
+    pinch.f = dist(e.touches) / pinch.d;
+    el.style.transformOrigin = 'center top';
+    el.style.transform = 'scale(' + pinch.f + ')';   // a preview while the fingers move
+    e.preventDefault();
+  };
+  const end = (e) => {
+    if (!pinch || e.touches.length >= 2) return;
+    el.style.transform = '';
+    const scale = Math.round(pinch.s * pinch.f / 5) * 5;
+    pinch = null;
+    if (scale !== getScale()) setScale(scale);
+  };
+  el.addEventListener('touchstart', start, {passive: true});
+  el.addEventListener('touchmove', move, {passive: false});
+  el.addEventListener('touchend', end);
+  el.addEventListener('touchcancel', end);
+  return () => {
+    el.removeEventListener('touchstart', start); el.removeEventListener('touchmove', move);
+    el.removeEventListener('touchend', end); el.removeEventListener('touchcancel', end);
+  };
+}
+
+// the keys of the sheet (a computer, or a tablet with a keyboard)
+export function sheetKeys(getSheet) {
+  const with_ = (fn) => () => { const s = getSheet(); if (s) fn(s); };
+  return {
+    p: with_((s) => s.set({guitar: false})),
+    g: with_((s) => s.set({guitar: true})),
+    h: with_((s) => s.set({staff: !s.state.staff})),
+    b: with_((s) => s.set({hands: !s.state.hands})),
+    m: with_((s) => s.togglePlay()),
+    e: with_((s) => s.setEdit(!document.body.classList.contains('editing-chords'))),
+    o: with_((s) => s.set({original: !s.state.original})),
+    '+': with_((s) => s.set({shift: s.state.shift + 1})),
+    '=': with_((s) => s.set({shift: s.state.shift + 1})),
+    '-': with_((s) => s.set({shift: s.state.shift - 1})),
+    '0': with_((s) => s.set({shift: 0})),
+    z: with_((s) => s.set({scale: s.state.scale - 5})),
+    Z: with_((s) => s.set({scale: s.state.scale + 5})),
+  };
+}

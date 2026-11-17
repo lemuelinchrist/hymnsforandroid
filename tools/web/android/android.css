@@ -1,0 +1,31 @@
+/* The Android app's sheet viewer around the shared sheet (base.css, sheet.css): the sheet alone on the whole screen,
+   edge to edge, the toolbar kept at the top (it slides away while scrolling down, a tap on the sheet brings it back),
+   clear of the camera cutout (--it, --ir, --ib, --il, set by the app) and the chord editor above the on-screen keyboard
+   (--kb). */
+
+:root { --it: 0px; --ir: 0px; --ib: 0px; --il: 0px; --kb: 0px; }
+
+body { min-height: 100vh; background: var(--surface); }
+#view { margin: 0; padding: 0; }
+.sheet-pane { background: var(--surface); border: 0; border-radius: 0; box-shadow: none; }
+
+.sheet-top { position: sticky; top: 0; z-index: 20; transition: transform .2s ease; background: var(--surface); }
+.sheet-top .sheet-bar { padding-top: calc(10px + var(--it)); padding-left: calc(12px + var(--il)); padding-right: calc(12px + var(--ir)); }
+.sheet-top .sheet-player { padding-left: calc(12px + var(--il)); }
+body.bars-away .sheet-top { transform: translateY(-100%); }
+
+.sheet-host { padding: 10px var(--ir) calc(20px + var(--ib)) var(--il); }
+.sheet > :not(.sheet-music), .sheet-music > :not(svg) { padding-inline: 8px; }
+@media (min-width: 600px) { .sheet-host { padding-inline: calc(12px + var(--il)) calc(12px + var(--ir)); } }
+
+/* the panels at the bottom: above the on-screen keyboard and clear of the cutout */
+.chord-editor { bottom: var(--kb); padding-left: calc(12px + var(--il)); padding-right: calc(12px + var(--ir)); }
+body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + var(--kb) + 16px); }
+
+/* phones on their side: slimmer bars */
+@media (orientation: landscape) and (max-height: 500px) {
+  .sheet-bar { gap: 6px; padding-bottom: 6px; }
+  .sheet-top .sheet-bar { padding-top: calc(6px + var(--it)); }
+  .sheet-bar .tb { height: 32px; }
+  .sheet-bar .seg .tb { height: 28px; }
+}

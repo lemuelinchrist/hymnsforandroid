@@ -119,3 +119,23 @@ tasks.configureEach { task ->
 tasks.withType(Test).configureEach {
     inputs.dir('src/main/assets/sheetLyrics')
 }
+
+// The sheet music viewer (assets/viewer) is the web app's sheet with its toolbar: the files of tools/web/src listed in
+// tools/web/android/shared.txt, the page around them (tools/web/android) and music.js (tools/lead-sheet-editor),
+// copied in at every build so the two apps run the same code. Verovio stays in src/main/assets/viewer.
+def viewerAssets = file("$buildDir/generated/viewer-assets")
+def copyViewer = tasks.register('copyViewer', Sync) {
+    def web = rootProject.file('tools/web')
+    def shared = new File(web, 'android/shared.txt').readLines()*.trim().findAll { it && !it.startsWith('#') }
+    inputs.file(new File(web, 'android/shared.txt'))
+    from(new File(web, 'src')) { include shared }
+    from(new File(web, 'android')) { exclude 'shared.txt' }
+    from(rootProject.file('tools/lead-sheet-editor/music.js'))
+    into new File(viewerAssets, 'viewer')
+}
+android.sourceSets.main.assets.srcDirs += viewerAssets
+tasks.configureEach { task ->
+    if (task.name ==~ /(merge|package|generate|lintVital|lint|compress).*Assets.*/ || task.name ==~ /lint.*/) {
+        task.dependsOn(copyViewer)
+    }
+}

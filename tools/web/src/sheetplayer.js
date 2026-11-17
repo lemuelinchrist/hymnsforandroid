@@ -6,6 +6,7 @@
 import * as Player from './player.js';
 import {scoreOf} from './piano.js';
 import {tr} from './i18n.js';
+import {host} from './host.js';
 
 const MIN_SPEED = 0.5, MAX_SPEED = 1.5;   // of the tune's tempo, by twentieths
 const DEFAULT_BPM = 90;
@@ -77,8 +78,11 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     shownBar = bar; barRender = view.renders;
     const g = bar && view.music.querySelectorAll('g.measure')[bar - 1];
     if (!g) { shade.hidden = true; return; }
-    const r = g.getBoundingClientRect(), box = view.root.getBoundingClientRect();
-    Object.assign(shade.style, {left: (r.left - box.left) + 'px', top: (r.top - box.top - 4) + 'px', width: r.width + 'px', height: (r.height + 8) + 'px'});
+    // the staves, the chords and the words of the bar (not the whole measure: some carry marks drawn far above it)
+    const parts = Array.from(g.querySelectorAll('g.staff, g.harm, g.verse')).map((e) => e.getBoundingClientRect()).filter((x) => x.height > 0);
+    const m = g.getBoundingClientRect(), box = view.root.getBoundingClientRect();
+    const top = parts.length ? Math.min(...parts.map((x) => x.top)) : m.top, bottom = parts.length ? Math.max(...parts.map((x) => x.bottom)) : m.bottom;
+    Object.assign(shade.style, {left: (m.left - box.left) + 'px', top: (top - box.top - 4) + 'px', width: m.width + 'px', height: (bottom - top + 8) + 'px'});
     shade.hidden = false;
   }
 
@@ -176,10 +180,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     if (!sc) return;
     await tempo();
     const name = (view.shownId || 'sheet') + (view.state.hands ? '-piano' : '') + '.mid';
-    const url = URL.createObjectURL(new Blob([Player.toMidi(sc, bpm * prefs.speed, view.title.textContent)], {type: 'audio/midi'}));
-    const a = el('a', null, null, {href: url, download: name});
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 2000);
+    host.saveFile(name, 'audio/midi', Player.toMidi(sc, bpm * prefs.speed, view.title.textContent));
   }
 
   // tap a note, or a bar, to play from there (not while editing chords: a tap picks a bar then)

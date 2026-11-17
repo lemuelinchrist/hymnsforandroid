@@ -120,21 +120,23 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
         `AppLocalesMetadataHolderService` in the manifest, and listed for Android 13+ by `generateLocaleConfig`).
         Every text the app shows is in `res/values/strings.xml`, translated in `values-b+zh+Hant` and `values-b+zh+Hans`;
         book names come from `HymnGroup.getDisplayName` (strings `book_<code>`), the first hymn of a new user from
-        `HymnGroup.firstHymn` (the string `first_hymn`), and the sheet viewer's texts from `assets/viewer/strings.js`.
+        `HymnGroup.firstHymn` (the string `first_hymn`), and the sheet viewer's texts from `tools/web/src/strings.js` (the web app's, which the viewer shares).
     -   "About" opens `AboutActivity`: the version, Send feedback (an email) and Source code (a link).
     -   The edits themselves are kept by `logbook/ChordEdits` in `files/chord-edits.json`, in the web app's export format.
 
 ### 10. `SheetMusicActivity.java` (package `content.sheetmusic`)
 -   **Role:** Full-screen sheet music viewer.
 -   **Responsibilities:**
-    -   A `WebView` that loads the web viewer in `assets/viewer/` (Verovio compiled to WebAssembly) through `WebViewAssetLoader`, at `https://appassets.androidplatform.net/assets/viewer/index.html?id=<id>&variant=piano|guitar&dark=0|1&lyrics=<id>`.
-    -   The viewer renders `assets/sheetMei/<id>.mei` to the screen width, derives guitar chords and capo, transposes, and can swap in translated lyrics from `assets/sheetLyrics/<id>.json`. All of that is in `assets/viewer/viewer.js`; see `tools/svg-to-lilypond/DESIGN.md` §19.
+    -   A `WebView` that loads the viewer in `assets/viewer/` (Verovio compiled to WebAssembly) through `WebViewAssetLoader`, at `https://appassets.androidplatform.net/assets/viewer/index.html?id=<id>&variant=piano|guitar&theme=light|dark|black&accent=…&accentNight=…&lyrics=<id>&tune=m<tune>&lang=…`; `/res/` serves the tune file, whose tempo the sheet plays at.
+    -   The viewer is the web app's own sheet code: `app/build.gradle` (`copyViewer`) copies the files of `tools/web/src` listed in `tools/web/android/shared.txt`, the Android page around them (`tools/web/android`: `index.html`, `android.js`, `android.css`) and `tools/lead-sheet-editor/music.js` into `build/generated/viewer-assets/viewer` at every build; Verovio stays in `src/main/assets/viewer`. So the toolbar, Both hands, playing the sheet, chord editing and the rendering (`sheet.js`: guitar chords and capo, transposing, translated lyrics from `assets/sheetLyrics/<id>.json`) are the web app's, and change with it. `tools/web/tests/android.cjs` tries the page as the app serves it.
+    -   The page keeps its settings (zoom, Both hands and its style, light paper) in the WebView's local storage (DOM storage is on).
     -   `SheetMusicButton` picks the sheet: the hymn's own MEI, else its parent's.
     -   The page closes the activity by navigating to `hymnsviewer://close`; the activity passes camera-cutout insets to the page with `setInsets(...)`.
-    -   Chord editing (`docs/HYMNAL_SPEC.md` §11.5): on screens at least 600 dp wide (tablets, unfolded phones) the URL gets
-        `&edit=1` and the page shows Edit chords (the panel is `assets/viewer/editor.js`). The page reads and saves a sheet's
-        edits through `window.HymnsEdits`, the activity's `EditsBridge` over `ChordEdits`; while it edits, Back closes the panel,
-        and `setKeyboard(...)` keeps the panel above the on-screen keyboard. No page other than the viewer may load in the WebView.
+    -   Chord editing (`docs/HYMNAL_SPEC.md` §11.5), on every screen (the panel folds its rarer rows away on a phone): the page
+        reads and saves a sheet's edits through `window.HymnsEdits`, the activity's `EditsBridge` over `ChordEdits`; while it edits,
+        Back closes the panel, and `setKeyboard(...)` keeps the panel above the on-screen keyboard. Save MIDI hands the file to
+        `EditsBridge.saveFile`, and the activity asks where to save it (a WebView does not download). No page other than the
+        viewer may load in the WebView.
 
 ---
 

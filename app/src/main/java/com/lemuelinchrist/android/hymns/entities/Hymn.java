@@ -172,6 +172,11 @@ public class Hymn {
         }
     }
 
+    /** The name of this hymn's melody file in res/raw ("m123"), or null: the sheet viewer plays the sheet at its tempo. */
+    public String getMelodyFileName() {
+        return getMelodyResourceId() == 0 ? null : "m" + tune.trim().toLowerCase(Locale.ROOT);
+    }
+
     /** Whether a melody file exists in R.raw for this hymn's tune (own or inherited). */
     public boolean hasMelody() {
         return getMelodyResourceId() != 0;

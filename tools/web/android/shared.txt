@@ -1,0 +1,16 @@
+# The files of tools/web/src that the Android app's sheet viewer runs (app/build.gradle copies them, with this folder
+# and tools/lead-sheet-editor/music.js, into the app's assets/viewer). A module the sheet code starts to import goes here.
+base.css
+sheet.css
+sheetpanel.js
+sheet.js
+editor.js
+pianopanel.js
+sheetplayer.js
+piano.js
+player.js
+i18n.js
+strings.js
+ui.js
+host.js
+edits.js
