@@ -33,3 +33,6 @@ databaseProvisioner/src/main/resources/originals/
 
 # Local Antigravity customizations (symlinks to .claude/skills and Claude local memory)
 .agents/
+
+# Scratch files (CSV worklists, transcription drafts)
+/temp/
