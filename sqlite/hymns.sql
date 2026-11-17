@@ -2563,8 +2563,8 @@ INSERT INTO hymns VALUES('BF68','','','HALLELUJAH FOR THE BODY!','Oh, the church
 INSERT INTO hymns VALUES('BF70','','','DO COME, OH, DO COME,','Drink! A river pure and clear that''s flowing from the throne;','BF',NULL,NULL,NULL,'70',NULL,NULL,NULL,'E1151',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF71','','','THIS DIVINE ROMANCE','How could a country girl like me','BF',NULL,NULL,NULL,'71',NULL,NULL,NULL,'NS10082',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF72','','',NULL,'He''s the Spirit of Reality','BF',NULL,NULL,NULL,'72',NULL,NULL,NULL,'NS72',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF73','','',NULL,'Marvelous, marvelous,','BF',NULL,NULL,NULL,'73',NULL,NULL,NULL,NULL,NULL,'',NULL);
-INSERT INTO hymns VALUES('BF74','','','FOR THE UNION, MINGLING','Christ is the complete God','BF',NULL,NULL,NULL,'74',NULL,NULL,NULL,NULL,NULL,'',NULL);
+INSERT INTO hymns VALUES('BF73','','',NULL,'Marvelous, marvelous,','BF',NULL,'Praise of the Lord',NULL,'73',NULL,NULL,NULL,NULL,NULL,'',NULL);
+INSERT INTO hymns VALUES('BF74','','','FOR THE UNION, MINGLING','Christ is the complete God','BF',NULL,'Praise of the Lord',NULL,'74',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF75','','',NULL,'Abide in Thee! In that deep love of Thine,','BF',NULL,NULL,NULL,'75',NULL,NULL,NULL,'E563',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF76','','',NULL,'What miracle! What mystery!','BF',NULL,NULL,NULL,'76',NULL,NULL,NULL,'NS151',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF77','','',NULL,'The spirit of the prophet is subject to the prophet:','BF',NULL,NULL,NULL,'77',NULL,NULL,NULL,'NS185',NULL,'',NULL);
@@ -2776,7 +2776,7 @@ INSERT INTO hymns VALUES('BF283','','','LORD, THOU HAST BEEN OUR DWELLING PLACE'
 INSERT INTO hymns VALUES('BF284','','','IT IS LIKE THE PRECIOUS OINTMENT UPON THE HEAD,','Behold how good and how pleasant it is,','BF',NULL,NULL,NULL,'284',NULL,NULL,NULL,'E1339',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF285','','',NULL,'Seek the Lord while He may be found,','BF',NULL,NULL,NULL,'285',NULL,NULL,NULL,'NS261',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF286','','',NULL,'Set your mind on the things that are above,','BF',NULL,NULL,NULL,'286',NULL,NULL,NULL,'NS85',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF287','','','O LET US REJOICE! O LET US REJOICE!','O brothers, sisters, rise up,','BF',NULL,NULL,NULL,'287',NULL,NULL,NULL,NULL,NULL,'',NULL);
+INSERT INTO hymns VALUES('BF287','','','O LET US REJOICE! O LET US REJOICE!','O brothers, sisters, rise up,','BF',NULL,'Praise of the Lord',NULL,'287',NULL,NULL,NULL,NULL,NULL,'',NULL);
 INSERT INTO hymns VALUES('BF288','','','WATER YOU, WATER YOU','From my spirit, when I''m sensing my supply','BF',NULL,NULL,NULL,'288',NULL,NULL,NULL,'NS75',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF289','','','WHAT IS BORN OF SPIRIT IS JUST THE SPIRIT,','Have you found your human spirit?','BF',NULL,NULL,NULL,'289',NULL,NULL,NULL,'NS57',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF290','','',NULL,'Now Christ is the Life-giving Spirit,','BF',NULL,NULL,NULL,'290',NULL,NULL,NULL,'NS103',NULL,NULL,NULL);
@@ -18566,7 +18566,7 @@ INSERT INTO hymns VALUES('BF498',NULL,NULL,NULL,'Lord, You are my joy','BF','C M
 INSERT INTO hymns VALUES('BF499',NULL,NULL,NULL,'Blanket me dear Lord','BF','C Major','Experience of Christ',NULL,'499','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF500',NULL,NULL,NULL,'By the rivers of Babylon','BF','D Major','Scriptures for Singing',NULL,'500',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF502',NULL,NULL,NULL,'For You are my God,','BF','G Major','Experience of Christ',NULL,'502','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF504',NULL,NULL,NULL,'Marvelous grace of our loving Lord,','BF','Bb Major',NULL,NULL,'504',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('BF504',NULL,NULL,NULL,'Marvelous grace of our loving Lord,','BF','Bb Major','Praise of the Lord',NULL,'504',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF505',NULL,NULL,NULL,'I love You Lord, so I turn my heart','BF','D Major','Experience of Christ',NULL,'505','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF506',NULL,NULL,NULL,'I remember concerning you','BF','D Major','Scriptures for Singing',NULL,'506',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF508',NULL,NULL,NULL,'Lord I give my heart again to You,','BF','D Major','Experience of Christ',NULL,'508','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL);
