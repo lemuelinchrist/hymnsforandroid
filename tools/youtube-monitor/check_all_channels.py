@@ -72,6 +72,12 @@ CHANNELS: tuple[ChannelSpec, ...] = (
         known_files=("lovingthelord_known.tsv",),
     ),
     ChannelSpec(
+        key="lords-recovery-hymns",
+        name="The Lord's Recovery Hymns - Topic",
+        topic_channels=("UC_Jf1JXNogSSLVq3WJVvpTw",),
+        known_files=("lrh_known.tsv",),
+    ),
+    ChannelSpec(
         key="josephs",
         name="Joseph's Storehouses",
         handle="JosephsStorehouses",
