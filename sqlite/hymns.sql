@@ -118070,7 +118070,7 @@ INSERT INTO link VALUES(94349,'BF40','youtube','','https://www.youtube.com/watch
 INSERT INTO link VALUES(94350,'E1007','youtube','WASYP','https://www.youtube.com/watch?v=Zg9XObLofio',2,'Washington State Young People',NULL);
 INSERT INTO link VALUES(94351,'E1103','youtube','','https://www.youtube.com/watch?v=N48T4c2OUPo',2,'Day By Day',NULL);
 INSERT INTO link VALUES(94352,'E1151','youtube','','https://www.youtube.com/watch?v=Fnzjm702e0I',3,'O Love, That Wilt Not Let Me Go',NULL);
-INSERT INTO link VALUES(94353,'E1174','youtube','','https://www.youtube.com/watch?v=Mm_BE2eH6uI',2,'Brothers Hymns',NULL);
+INSERT INTO link VALUES(94353,'BF43','youtube','','https://www.youtube.com/watch?v=Mm_BE2eH6uI',1,'Brothers Hymns',NULL);
 INSERT INTO link VALUES(94354,'E1179','youtube','Long Beach','https://www.youtube.com/watch?v=N46X9TlIJMA',2,'Christ Only Always',NULL);
 INSERT INTO link VALUES(94355,'E1193','youtube','Long Beach','https://www.youtube.com/watch?v=lu93Od7S4To',2,'Christ Only Always',NULL);
 INSERT INTO link VALUES(94356,'E1208','youtube','','https://www.youtube.com/watch?v=ar0cUcjvve4',1,'Arlington Students',NULL);
