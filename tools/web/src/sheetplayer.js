@@ -55,7 +55,12 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
   showParts();
   const where = el('span', 'sp-where', null, {'aria-live': 'off'});
   const bClose = el('button', 'tb icon close', '✕', {type: 'button', title: tr('Close the player'), 'aria-label': tr('Close the player')});
-  root.append(bPlay, bStart, tempoBox, parts, bLoop, el('span', 'grow'), where, bClose);
+  // two groups, centered: what plays (Play, from the start, the tempo) and what is heard (All | Melody | Accompaniment, Loop);
+  // on a narrow screen the second sits under the first, each whole
+  const playGroup = el('div', 'sp-group'), hearGroup = el('div', 'sp-group');
+  playGroup.append(bPlay, bStart, tempoBox);
+  hearGroup.append(parts, bLoop);
+  root.append(playGroup, hearGroup, where, bClose);
   speed.value = String(prefs.speed);
 
   let score = null, scoreXml = '', scoreChoice = '', ctl = null, from = 0, bpm = DEFAULT_BPM, lastRender = -1, tempoFor = null, lastScroll = 0, starting = 0;

@@ -210,7 +210,8 @@ body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
   background: color-mix(in srgb, var(--g-soft) 60%, var(--surface));
 }
 .sheet-player[hidden] { display: none; }
-.sheet-player { position: relative; padding-right: 52px; }   /* ✕ in the corner, never on a line of its own */
+.sheet-player { position: relative; justify-content: center; padding: 8px 52px; }   /* centered; ✕ in the corner, never on a line of its own (the same room on the left keeps the middle true) */
+.sheet-player .sp-group { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; }
 .sheet-player > .tb.close { position: absolute; top: 8px; right: 12px; }
 .sheet-player .tb {
   display: inline-flex; align-items: center; justify-content: center; gap: 4px; height: 32px; min-width: 32px; padding: 0 12px;
@@ -234,13 +235,13 @@ body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
 .sp-bar[hidden] { display: none; }
 .sheet.dark .sp-bar { background: color-mix(in srgb, var(--g) 26%, transparent); }
 @media print { .sp-bar { display: none !important; } }
-.sheet-player .grow { flex: 1; }
 .sheet-music g.playing, .sheet-music g.playing * { fill: var(--g) !important; stroke: var(--g) !important; color: var(--g) !important; }
 .sheet-music g.playing text, .sheet-music g.playing tspan { stroke: none !important; }
 .sheet.dark .sheet-music g.playing, .sheet.dark .sheet-music g.playing * { fill: color-mix(in srgb, var(--g) 55%, #fff) !important; stroke: color-mix(in srgb, var(--g) 55%, #fff) !important; }
 @media print { .sheet-player { display: none !important; } }
 @media (max-width: 700px) {
-  .sheet-player { gap: 6px; padding: 6px 48px 6px 10px; }
+  .sheet-player { gap: 6px; padding: 6px 44px; }
+  .sheet-player .sp-group { gap: 6px; }
   .sheet-player > .tb.close { top: 6px; right: 10px; }
   .sheet-player .tb { height: 30px; padding: 0 9px; font-size: 13px; }
   .sheet-player .sp-speed { width: 80px; }
