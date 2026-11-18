@@ -20,6 +20,8 @@ The melody, as far as the pages seen use it (bars between `|`, tokens between sp
   {..}  a triplet
   (break) end of a line; (Chorus) (Verse_2) (Ending) a section starts at the next note;
   (startrepeat) (alt1) (alt2) (endalt) a repeat with endings
+  (.5)  a note with a fermata: the page writes "(." before the digit ("(.5)" ends a slur, "(.3/" is an eighth note);
+  (第一辭) (副歌) the Chinese pages' names of a section: Verse 1, Chorus
 The chords are written as if the key were C, one slot per beat (`-` = no change), and are moved to the key here.
 """
 import argparse
@@ -45,6 +47,8 @@ MAJOR = [0, 2, 4, 5, 7, 9, 11]
 ACC = {'': 0, '#': 1, 'b': -1, '♯': 1, '♭': -1}
 NOTE = re.compile(r'^(\{)?((?:\._)*)([0-7])([#b]?)((?:_\.)*)(\.*)(/*)([()]*)(\})?$')
 SECTION = re.compile(r'^\((Chorus|Verse_(\d+)|Ending|Bridge|Intro|Interlude)\)$')
+CN_DIGITS = {c: i for i, c in enumerate('一二三四五六七八九', 1)}
+CN_SECTION = re.compile(r'^\((?:第([一二三四五六七八九])[辭节節段]|(副歌))\)$')
 
 
 class DataError(ValueError):
@@ -140,11 +144,17 @@ def parse_melody(data, tonic, warnings, marks=None):
                 alt = None
             elif SECTION.match(tok):
                 pending.append(tok[1:-1].replace('_', ' '))
+            elif CN_SECTION.match(tok):
+                m = CN_SECTION.match(tok)
+                pending.append('Chorus' if m.group(2) else 'Verse %d' % CN_DIGITS[m.group(1)])
             elif tok == '-':
                 if not bar['events']:
                     raise DataError('a bar starts with "-": %r' % text)
                 bar['events'][-1]['len'] += F(1, 4)
             else:
+                fermata = tok.startswith('(.') and len(tok) > 2 and tok[2] in '01234567{._'
+                if fermata:
+                    tok = tok[2:]
                 m = NOTE.match(tok)
                 if not m:
                     raise DataError('token %r in %r' % (tok, text))
@@ -153,7 +163,7 @@ def parse_melody(data, tonic, warnings, marks=None):
                 length = F(1, 4) / 2 ** len(slashes)
                 length *= {0: F(1), 1: F(3, 2), 2: F(7, 4)}[len(dots)]
                 e = {'len': length, 'rest': digit == '0', 'open': '(' in parens, 'close': ')' in parens,
-                     'tuplet': tup, 'tup_start': bool(opens), 'tup_end': bool(closes), 'sections': pending}
+                     'tuplet': tup, 'tup_start': bool(opens), 'tup_end': bool(closes), 'sections': pending, 'fermata': fermata}
                 pending = []
                 if digit != '0':
                     e['pitch'] = degree_pitch(tonic, int(digit), ACC[acc], 4 + len(up) // 2 - len(down) // 2)
@@ -172,15 +182,21 @@ def chords_of(data, tonic, n_bars, bar_len, warnings):
     if len(raw) != n_bars:
         warnings.append('%d bars of chords, %d of melody' % (len(raw), n_bars))
     out, last = [], None
+    slot = re.compile(r'^([A-G][#b]?[^/.]*(?:/[A-G][#b]?)?)(\.*)(/*)$')   # a chord, then its length as a note's: . dotted, / half
     for slots in raw:
-        here = []
-        for i, s in enumerate(slots):
-            if s == '-':
+        here, at = [], F(0)
+        for s in slots:
+            if s == '-':                               # no change: another quarter
+                at += F(1, 4)
                 continue
-            c = move_chord(s, tonic)
+            m = slot.match(s)
+            if not m:
+                raise DataError('chord slot %r' % s)
+            c = move_chord(m.group(1), tonic)
             if c != last:
-                here.append((bar_len * i / len(slots), c))
+                here.append((at, c))
             last = c
+            at += F(1, 4) * {0: F(1), 1: F(3, 2), 2: F(7, 4)}[len(m.group(2))] / 2 ** len(m.group(3))
         out.append(here)
     return out + [[]] * (n_bars - len(out))
 
@@ -255,9 +271,35 @@ def guess_cut(core):
     return tuple(b - a for a, b in zip(edges, edges[1:])) if len(groups) > 1 else (len(core),)
 
 
+CJK = re.compile(r'[\u3400-\u9fff\uf900-\ufaff]')
+OPENING = '「『（([“‘《〈【'
+
+
+def cjk_syllables(text):
+    """Chinese words: one syllable per character, as our Chinese sheets write them ("阿" "利" "路、"): a mark after a
+    character stays with it, an opening quote goes with the next one; no hyphens."""
+    out, pre = [], ''
+    for ch in text:
+        if CJK.match(ch):
+            out.append(pre + ch)
+            pre = ''
+        elif ch.isspace():
+            continue
+        elif ch in OPENING or not out:
+            pre += ch
+        else:
+            out[-1] += ch
+    return [(syl, False) for syl in out]
+
+
 def syllables_for(text, want, dictionary, report):
     """The words of `text` cut into exactly `want` syllables if the known cuts allow it.
     -> [(syllable, hyphen after it)]; fewer or more than `want` when nothing fits (reported)."""
+    if CJK.search(text):
+        syls = cjk_syllables(text)
+        if want < 10 ** 6 and len(syls) != want:
+            report.append('%d syllables for %d notes: %s' % (len(syls), want, text[:60]))
+        return syls
     words = []
     for w in text.split():
         pre, core, post = split_word(w)
@@ -332,7 +374,10 @@ def hymn_of(hymn_id):
         lines = [re.sub(r'<[^>]+>', '', l).strip() for l in re.split(r'<br\s*/?>', text)]
         clean.append((no, [l for l in lines if l]))
     number = row[5] if row[4] == 'E' else (row[3][1:] if row[3] and re.fullmatch(r'E\d+', row[3]) else '')
-    return {'first_line': row[0], 'category': ' — '.join(x for x in row[1:3] if x), 'number': number,
+    chinese = row[4] in ('C', 'CS')                    # our Chinese sheets: the number is the hymn's own, a subtitle joins with －
+    if chinese:
+        number = hymn_id
+    return {'first_line': row[0], 'category': ('－' if chinese else ' — ').join(x for x in row[1:3] if x), 'number': number,
             'stanzas': clean}
 
 
@@ -408,6 +453,8 @@ def build_ir(hymn_id, data, hymn, dictionary, warnings, marks=None):
                                     'end': e['tup_end'] and pi == len(parts) - 1}
                 if not e['rest']:
                     ev['letter'], ev['alter'], ev['octave'] = e['pitch'][0], e['pitch'][1], e['pitch'][2] + shift
+                    if e['fermata'] and pi == 0:
+                        ev['fermata'] = 'up'
                     if pi < len(parts) - 1:
                         ev['tie'] = True
                     if pi == 0:

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">主愛長闊高深</title>
+<title type="subordinate">奉獻－主愛激勵</title>
+</titleStmt><pubStmt><identifier type="hymn">C330</identifier><identifier type="number">C330</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1">
+<note xml:id="n1" pname="e" oct="4" dur="4">
+<verse n="1"><syl>主</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+<measure n="2"><staff n="1"><layer n="1">
+<note xml:id="n2" pname="a" oct="4" dur="4">
+<verse n="1"><syl>愛</syl></verse></note>
+<beam>
+<note xml:id="n3" pname="f" oct="4" dur="8">
+<verse n="1"><syl>長</syl></verse></note>
+<note xml:id="n4" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n5" pname="b" oct="4" dur="4">
+<verse n="1"><syl>闊</syl></verse></note>
+<beam>
+<note xml:id="n6" pname="a" oct="4" dur="8">
+<verse n="1"><syl>高</syl></verse></note>
+<note xml:id="n7" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+<slur startid="#n3" endid="#n4"/>
+<slur startid="#n6" endid="#n7"/>
+</measure>
+<measure n="3"><staff n="1"><layer n="1">
+<note xml:id="n8" pname="e" oct="4" dur="2" dots="1">
+<verse n="1"><syl>深，</syl></verse></note>
+<beam>
+<note xml:id="n9" pname="e" oct="4" dur="8">
+<verse n="1"><syl>實</syl></verse></note>
+<note xml:id="n10" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">E♭7/D♭</harm>
+<slur startid="#n9" endid="#n10"/>
+</measure>
+<measure n="4"><staff n="1"><layer n="1">
+<note xml:id="n11" pname="a" oct="4" dur="4">
+<verse n="1"><syl>在</syl></verse></note>
+<beam>
+<note xml:id="n12" pname="f" oct="4" dur="8">
+<verse n="1"><syl>不</syl></verse></note>
+<note xml:id="n13" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n14" pname="b" oct="4" dur="4">
+<verse n="1"><syl>能</syl></verse></note>
+<beam>
+<note xml:id="n15" pname="c" oct="5" dur="8">
+<verse n="1"><syl>推</syl></verse></note>
+<note xml:id="n16" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
+<slur startid="#n12" endid="#n13"/>
+<slur startid="#n15" endid="#n16"/>
+</measure>
+<sb/>
+<measure n="5"><staff n="1"><layer n="1">
+<note xml:id="n17" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>測；</syl></verse></note>
+<note xml:id="n18" pname="e" oct="5" dur="4">
+<verse n="1"><syl>不</syl></verse></note>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
+</measure>
+<measure n="6"><staff n="1"><layer n="1">
+<note xml:id="n19" pname="c" oct="5" dur="4">
+<verse n="1"><syl>然，</syl></verse></note>
+<beam>
+<note xml:id="n20" pname="b" oct="4" dur="8">
+<verse n="1"><syl>像</syl></verse></note>
+<note xml:id="n21" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n22" pname="f" oct="4" dur="4">
+<verse n="1"><syl>我</syl></verse></note>
+<beam>
+<note xml:id="n23" pname="a" oct="4" dur="8">
+<verse n="1"><syl>這</syl></verse></note>
+<note xml:id="n24" pname="c" oct="5" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">D♭</harm>
+<slur startid="#n20" endid="#n21"/>
+<slur startid="#n23" endid="#n24"/>
+</measure>
+<measure n="7"><staff n="1"><layer n="1">
+<note xml:id="n25" pname="b" oct="4" dur="4">
+<verse n="1"><syl>樣</syl></verse></note>
+<beam>
+<note xml:id="n26" pname="a" oct="4" dur="8">
+<verse n="1"><syl>罪</syl></verse></note>
+<note xml:id="n27" pname="f" oct="4" dur="8"/>
+</beam>
+<note xml:id="n28" pname="e" oct="4" dur="4">
+<verse n="1"><syl>人，</syl></verse></note>
+<beam>
+<note xml:id="n29" pname="e" oct="4" dur="8">
+<verse n="1"><syl>怎</syl></verse></note>
+<note xml:id="n30" pname="f" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">B♭7</harm>
+<harm staff="1" tstamp="3" place="above">E♭7</harm>
+<slur startid="#n26" endid="#n27"/>
+<slur startid="#n29" endid="#n30"/>
+</measure>
+<measure n="8"><staff n="1"><layer n="1">
+<note xml:id="n31" pname="a" oct="4" dur="4">
+<verse n="1"><syl>能</syl></verse></note>
+<beam>
+<note xml:id="n32" pname="f" oct="4" dur="8">
+<verse n="1"><syl>滿</syl></verse></note>
+<note xml:id="n33" pname="a" oct="4" dur="8"/>
+</beam>
+<note xml:id="n34" pname="b" oct="4" dur="4">
+<verse n="1"><syl>被</syl></verse></note>
+<beam>
+<note xml:id="n35" pname="c" oct="5" dur="8">
+<verse n="1"><syl>恩</syl></verse></note>
+<note xml:id="n36" pname="b" oct="4" dur="8"/>
+</beam>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭/C</harm>
+<harm staff="1" tstamp="2" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
+<slur startid="#n32" endid="#n33"/>
+<slur startid="#n35" endid="#n36"/>
+</measure>
+<measure n="9" right="end"><staff n="1"><layer n="1">
+<note xml:id="n37" pname="a" oct="4" dur="2" dots="1">
+<verse n="1"><syl>澤。</syl></verse></note>
+<rest xml:id="r38" dur="4"/>
+</layer></staff>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
+</measure>
+</section></score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>我主出了重價，</l><l>買我回來歸祂；</l><l>我今願意背十字架，</l><l>忠心一路跟祂。</l></lg>
+<lg label="3."><l>我今撇下一切，</l><l>為要得著基督；</l><l>生也、死也，想都不屑，</l><l>有何使我回顧？</l></lg>
+<lg label="4."><l>親友、欲好、利名，</l><l>於我夫復何用？</l><l>恩主為我變作苦貧，</l><l>我今為主亦窮。</l></lg>
+<lg label="5."><l>我愛我的救主，</l><l>我求祂的稱是；</l><l>為祂之故，安逸變苦，</l><l>利益變為損失！</l></lg>
+<lg label="6."><l>你是我的安慰，</l><l>我的恩主耶穌！</l><l>除你之外，在天何歸？</l><l>在地何所愛慕？</l></lg>
+<lg label="7."><l>艱苦、反對、飄零，</l><l>我今一起不理；</l><l>只求我主用你愛情，</l><l>繞我靈、魂、身體。</l></lg>
+<lg label="8."><l>主阿，我今求你，</l><l>施恩引導小子，</l><l>立在我旁，常加我力，</l><l>過此黑暗罪世。</l></lg>
+<lg label="9."><l>撒但、世界、肉體，</l><l>時常試探、欺凌；</l><l>你若不加小子能力，</l><l>恐將貽羞你名！</l></lg>
+<lg label="10."><l>現今時候不多，</l><l>求主使我脫塵；</l><l>你一再來，我即唱說：</l><l>阿利路亞！阿們！</l></lg>
+</div>
+</back>
+</music></mei>

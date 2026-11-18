@@ -15,7 +15,8 @@ import org.jsoup.nodes.Document
  *   ./gradlew :databaseProvisioner:runExtractLeadsheetData -Phymns=NS226,NS1166,BF69:h/8773
  *
  * An item is a hymn id, with ":<page>" when the page is not the plain one of its book (NS n = ns/n, E n = h/n,
- * CH n = c/n). A page is saved only when it is the hymn asked for: its canonical address is the page, and its hymn
+ * CH n = c/n). A Chinese hymn's page answers at the site's Chinese address (zh/hymn/ch/n, Chinese Supplement zh/hymn/ts/n), so
+ * give the whole address: C206:https://www.hymnal.net/zh/hymn/ch/206. A page is saved only when it is the hymn asked for: its canonical address is the page, and its hymn
  * code is the tune code we hold (a page fetched too fast answers with another hymn). One page every 15 seconds.
  */
 class ExtractLeadsheetData {
@@ -33,7 +34,7 @@ class ExtractLeadsheetData {
             HymnsEntity hymn = dao.find(id)
             if (hymn == null) throw new IllegalArgumentException("$id is not in the database")
             String page = item.contains(':') ? item.substring(item.indexOf(':') + 1) : defaultPage(hymn)
-            String url = HYMNAL_NET + page
+            String url = page.startsWith('http') ? page : HYMNAL_NET + page
             String json = null
             for (int attempt = 1; attempt <= 3 && json == null; attempt++) {
                 if (attempt > 1) sleep(30000)

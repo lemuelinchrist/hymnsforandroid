@@ -135,6 +135,14 @@ python3 tools/svg-to-lilypond/tools/from_leadsheet_data.py NS226 NS1166 BF69    
   have under that number (NS389 did, now fixed): the fetch only checks the tune code, so compare the title with the
   hymn's first line before converting.
 - NS889's second ending (5 bars) has no words under it: its last line is not placed.
+- A Chinese hymn (C, CS) answers at the site's Chinese address, so give the whole page:
+  `-Phymns=C206:https://www.hymnal.net/zh/hymn/ch/206` (Chinese Supplement `zh/hymn/ts/<n>`). Chinese words are one
+  character per note (a mark after a character stays with it, no hyphens), as our Chinese sheets write them; the title
+  block is the Chinese one (number = the hymn id, subtitle joined with `－`). The page marks a **fermata** as `(.5)`
+  (a note) and its sections as `(第一辭)` (Verse 1) and `(副歌)` (Chorus). A chord slot may carry a length like a note
+  (`C.` dotted, `F/` half, a quarter otherwise), which 6/8 pages use. Done this way: C206, C244, C330, C485, CS401,
+  CS465 (2026-11-18). Their Simplified hymns borrow the sheet and take their words from
+  `python3 tools/sheet-lyrics/align.py --lang zh Z206 Z244 ZS465` (the `--lang zh` matters).
 - Checked on BF69 against hymnal.net's own drawing (same 98 notes, 27 chords, 95 syllables) and on NS1166 and NS226
   against their old SVGs' words. Not handled yet: a key or time change inside a song, 6/8 (never seen in the data).
 
