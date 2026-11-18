@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 public final class HymnSearch {
 
     /** Where a hymn matched, best first; the result list shows a line for why it matched unless it is FIRST. */
-    public enum Where {FIRST, CHORUS, SUBJECT, PEOPLE, MUSIC, LYRICS}
+    public enum Where {FIRST, TITLE, CHORUS, SUBJECT, PEOPLE, MUSIC, LYRICS}
 
     public static final class Result {
         public final String id;
@@ -63,7 +63,7 @@ public final class HymnSearch {
     private static final Pattern HYMN_ID = Pattern.compile("^([A-Za-z]{1,3})\\s*-?\\s*(\\d+)$");
     private static final Pattern NUMBER = Pattern.compile("^#?(\\d+)$");
 
-    private static final List<String> COLUMNS = Arrays.asList("first", "chorus", "subject", "people", "music", "body");
+    private static final List<String> COLUMNS = Arrays.asList("first", "title", "chorus", "subject", "people", "music", "body");
 
     private HymnSearch() {
     }
@@ -143,16 +143,16 @@ public final class HymnSearch {
                 args.add("%" + term + "%");
                 continue;
             }
-            where.append("(first LIKE ? OR chorus LIKE ? OR subject LIKE ? OR people LIKE ? OR music LIKE ?"
+            where.append("(first LIKE ? OR title LIKE ? OR chorus LIKE ? OR subject LIKE ? OR people LIKE ? OR music LIKE ?"
                     + " OR body LIKE ?)");
-            for (int i = 0; i < 6; i++) args.add("%" + term + "%");
+            for (int i = 0; i < 7; i++) args.add("%" + term + "%");
         }
         for (String group : hidden) {
             where.append(" AND grp != ?");
             args.add(group);
         }
 
-        Cursor c = db.rawQuery("SELECT id, grp, no, line, first, chorus, subject, people, music, body FROM search"
+        Cursor c = db.rawQuery("SELECT id, grp, no, line, first, chorus, subject, people, music, body, title FROM search"
                 + " WHERE " + where, args.toArray(new String[0]));
         try {
             while (c.moveToNext()) {
@@ -164,7 +164,7 @@ public final class HymnSearch {
                     continue;
                 }
                 int[] score = score(query, c.getString(4), c.getString(5), c.getString(6), c.getString(7),
-                        c.getString(8), c.getString(9));
+                        c.getString(8), c.getString(9), c.getString(10));
                 results.add(new Result(c.getString(0), group, c.getInt(2), c.getString(3),
                         Where.values()[score[1]], score[0]));
             }
@@ -182,19 +182,22 @@ public final class HymnSearch {
     }
 
     /**
-     * {score, Where}: the first line starts with the words together; has them together; the chorus line has them
+     * {score, Where}: the first line starts with the words together; has them together; the title starts with them, has them together; the chorus line has them
      * together; all words in the first line, then in the chorus line; in the subject, then author/composer, then
      * key/tune; in the lyrics, the words together, then as whole words, then as parts of words.
      */
     static int[] score(Query q, String first, String chorus, String subject, String people, String music,
-                       String body) {
+                       String body, String title) {
         String phrase = q.phrase;
         if (!phrase.isEmpty() && !isShortWord(phrase)) {
             if (first.startsWith(phrase)) return new int[]{100, Where.FIRST.ordinal()};
             if (first.contains(phrase)) return new int[]{90, Where.FIRST.ordinal()};
+            if (title.startsWith(phrase)) return new int[]{95, Where.TITLE.ordinal()};
+            if (title.contains(phrase)) return new int[]{85, Where.TITLE.ordinal()};
             if (chorus.contains(phrase)) return new int[]{80, Where.CHORUS.ordinal()};
         }
         if (hasAll(first, q.terms)) return new int[]{70, Where.FIRST.ordinal()};
+        if (hasAll(title, q.terms)) return new int[]{65, Where.TITLE.ordinal()};
         if (hasAll(chorus, q.terms)) return new int[]{60, Where.CHORUS.ordinal()};
         if (hasAll(subject, q.terms)) return new int[]{50, Where.SUBJECT.ordinal()};
         if (hasAll(people, q.terms)) return new int[]{40, Where.PEOPLE.ordinal()};
@@ -241,7 +244,7 @@ public final class HymnSearch {
         for (String t : terms) {
             if (!isShortWord(t)) continue;
             boolean whole = false;
-            for (int col = 4; col <= 9 && !whole; col++) whole = found(c.getString(col), t);
+            for (int col = 4; col <= 10 && !whole; col++) whole = found(c.getString(col), t);
             if (!whole) return false;
         }
         return true;

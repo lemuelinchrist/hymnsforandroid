@@ -92,6 +92,8 @@ public class SearchResultAdapter extends SearchAdapter {
         Hymn hymn = dao.get(r.id);
         if (hymn == null) return null;
         switch (r.where) {
+            case TITLE:
+                return hymn.getTitle();
             case CHORUS:
                 return hymn.getFirstChorusLine();
             case SUBJECT:

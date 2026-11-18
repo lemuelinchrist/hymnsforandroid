@@ -199,6 +199,15 @@ async function search(page, text) {
         .some((r) => r.id === 'FR1' && r.where === 'people'));
       assert(fr, 'FR1 not found by the author of its parent E7');
     });
+    await test('a title is searched, with a line saying why, and a child finds its parent\'s title: "a higher view"', async () => {
+      const r = await page.evaluate(async () => {
+        const DB = await import('./db.js');
+        const f = DB.search(['a', 'higher', 'view']);
+        return {top: f[0] && f[0].id, where: f[0] && f[0].where, ns: f.some((x) => x.id === 'NS134'),
+                child: DB.hymn('NS134').title, inherited: ['E1', 'BF3'].map((id) => DB.hymn(id).title)};
+      });
+      assert(r.ns && r.where === 'title' && r.child === 'A higher view', JSON.stringify(r));
+    });
     await test('one or two letters only count as a whole word: "c major"', async () => {
       const r = await page.evaluate(async () => {
         const DB = await import('./db.js');

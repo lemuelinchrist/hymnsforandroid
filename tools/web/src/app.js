@@ -398,6 +398,7 @@ function whyLine(r, words) {
   const join = (sep, ...parts) => parts.map((p) => (p || '').trim()).filter(Boolean).join(sep);
   const label = (l, v) => (v || '').trim() ? tr(l, v.trim()) : '';
   switch (r.where) {
+    case 'title': return {text: x.title || ''};
     case 'chorus': return {text: x.chorus || ''};
     case 'subject': return {text: tr('Subject: {0}', join(' – ', x.category, x.subcategory))};
     case 'people': return {text: join(' · ', label('Author: {0}', x.author), label('Composer: {0}', x.composer))};

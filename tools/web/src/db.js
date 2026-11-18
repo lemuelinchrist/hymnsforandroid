@@ -115,7 +115,7 @@ export function hymn(id) {
   const h = {
     id, group: row.hymn_group, no: row.no, parentId: row.parent_hymn || null,
     first: row.first_stanza_line, chorus: row.first_chorus_line,
-    title: row.title || null,   // the hymn's own title when it differs from its first line (never inherited)
+    title: row.title || null,   // its own title, else the parent's (below); null = the first line is the title
     category: row.main_category, subcategory: row.sub_category,
     stanzas: stanzaRows(id), related: relatedIds(row.related), newTune: row.new_tune === 1,   // the hymn's own column, never inherited
   };
@@ -126,6 +126,7 @@ export function hymn(id) {
   h.ownTune = !!parent && row.new_tune === 1 && parent.new_tune !== 1;
   if (parent) {
     for (const f of INHERITED) if (!h[f] && !(h.ownTune && TUNE_FIELDS.includes(f))) h[f] = parent[f];
+    if (!h.title) h.title = (hymn(h.parentId) || {}).title || null;   // the nearest forebear's
     if (!h.category) { h.category = parent.main_category; h.subcategory = parent.sub_category; }
     if (!h.stanzas.length) h.stanzas = stanzaRows(parent._id);
     h.related.push(...relatedIds(parent.related));
@@ -346,17 +347,20 @@ export function found(text, w) {
   return isShortWord(w) ? (' ' + text.replace(/ \| /g, ' ') + ' ').includes(' ' + w + ' ') : text.includes(w);
 }
 
-const COLUMNS = ['first', 'chorus', 'subject', 'people', 'music', 'body'];
+const COLUMNS = ['first', 'title', 'chorus', 'subject', 'people', 'music', 'body'];
 
 // {score, where}: where = the column that shows why the hymn matched (first, chorus, subject, people, music, body)
 function score(words, phrase, r) {
   if (phrase && !isShortWord(phrase)) {
     if (r.first.startsWith(phrase)) return [100, 'first'];
     if (r.first.includes(phrase)) return [90, 'first'];
+    if (r.title.startsWith(phrase)) return [95, 'title'];
+    if (r.title.includes(phrase)) return [85, 'title'];
     if (r.chorus.includes(phrase)) return [80, 'chorus'];
   }
   const all = (text) => !!text && words.every((w) => found(text, w));
   if (all(r.first)) return [70, 'first'];
+  if (all(r.title)) return [65, 'title'];
   if (all(r.chorus)) return [60, 'chorus'];
   if (all(r.subject)) return [50, 'subject'];
   if (all(r.people)) return [40, 'people'];
@@ -375,7 +379,7 @@ export function search(words, phrase = words.join(' '), current = null, limit = 
   const cols = only && COLUMNS.includes(only) ? [only] : COLUMNS;
   const where = words.map(() => '(' + cols.map((c) => 's.' + c + ' like ?').join(' or ') + ')').join(' and ');
   const params = words.flatMap((w) => cols.map(() => '%' + w.replace(/[%_]/g, '') + '%'));
-  const found_ = rows(`select s.id, s.grp, s.first, s.chorus, s.subject, s.people, s.music, s.body, h.no,
+  const found_ = rows(`select s.id, s.grp, s.first, s.title, s.chorus, s.subject, s.people, s.music, s.body, h.no,
                        case when h.new_tune = 1 and coalesce(coalesce(nullif(h.first_stanza_line, ''), h.first_chorus_line), '') != '' then coalesce(nullif(h.first_stanza_line, ''), h.first_chorus_line) || ' (New Tune)' else coalesce(nullif(h.first_stanza_line, ''), h.first_chorus_line) end as line
                        from search s join hymns h on h._id = s.id where ${where}`, params)
     .filter((r) => words.every((w) => !isShortWord(w) || cols.some((c) => found(r[c], w))));

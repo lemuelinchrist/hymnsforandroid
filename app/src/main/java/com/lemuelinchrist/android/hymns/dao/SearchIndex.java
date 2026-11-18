@@ -124,8 +124,8 @@ public final class SearchIndex {
         try {
             target.execSQL("DROP TABLE IF EXISTS search");
             target.execSQL("CREATE TABLE search (id TEXT PRIMARY KEY, grp TEXT, no INTEGER, line TEXT, first TEXT,"
-                    + " chorus TEXT, subject TEXT, people TEXT, music TEXT, body TEXT)");
-            SQLiteStatement insert = target.compileStatement("INSERT INTO search VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    + " chorus TEXT, subject TEXT, people TEXT, music TEXT, body TEXT, title TEXT)");
+            SQLiteStatement insert = target.compileStatement("INSERT INTO search VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             // the stanzas sorted by hymn ID, like the hymns, so the stanzas of each hymn are read alongside it
             Set<String> withStanzas = new HashSet<>();
@@ -160,6 +160,7 @@ public final class SearchIndex {
                     insert.bindString(8, SearchText.norm(h[AUTHOR] + " " + h[COMPOSER]));
                     insert.bindString(9, SearchText.norm(h[TIME] + " " + h[KEY] + " " + h[TUNE] + " " + h[METER]));
                     insert.bindString(10, body.toString());
+                    insert.bindString(11, SearchText.norm(h[TITLE]));
                     insert.executeInsert();
                 }
             } finally {
@@ -190,9 +191,9 @@ public final class SearchIndex {
 
     private static final String[] COLUMNS = {"hymn_group", "no", "first_stanza_line", "first_chorus_line",
             "main_category", "sub_category", "author", "composer", "key", "tune", "parent_hymn", "meter", "time",
-            "ifnull(new_tune, 0)"};
+            "ifnull(new_tune, 0)", "title"};
     private static final int GROUP = 0, NO = 1, FIRST = 2, CHORUS = 3, MAIN_CATEGORY = 4, SUB_CATEGORY = 5,
-            AUTHOR = 6, COMPOSER = 7, KEY = 8, TUNE = 9, PARENT = 10, METER = 11, TIME = 12, NEW_TUNE = 13;
+            AUTHOR = 6, COMPOSER = 7, KEY = 8, TUNE = 9, PARENT = 10, METER = 11, TIME = 12, NEW_TUNE = 13, TITLE = 14;
 
     // every hymn's own columns (never null), sorted by hymn ID
     private static Map<String, String[]> readHymns(SQLiteDatabase source) {
@@ -216,7 +217,7 @@ public final class SearchIndex {
         String parent = h[PARENT];
         for (int depth = 0; !parent.isEmpty() && hymns.containsKey(parent) && depth < 10; depth++) {
             String[] p = hymns.get(parent);
-            for (int field : new int[]{AUTHOR, COMPOSER, KEY, TUNE, METER, TIME}) {
+            for (int field : new int[]{AUTHOR, COMPOSER, KEY, TUNE, METER, TIME, TITLE}) {
                 if (h[field].isEmpty()) h[field] = p[field];
             }
             if (h[MAIN_CATEGORY].isEmpty()) {

@@ -169,7 +169,7 @@ CREATE TABLE "hymns" (
   "verse" TEXT,                         -- Bible references, comma separated
   "related" TEXT,                       -- comma-separated Hymn IDs (same hymn in other books)
   "new_tune" INTEGER,                   -- 1 = a New Tune (hymnal.net's, or a translation of one): the header says "(New Tune)" and lists add it to the first line. NULL for all others
-  "title" TEXT                          -- the hymn's own title when it differs from its first line (NULL = the first line is the title); language-specific, never inherited, no "(New Tune)" text. Not shown in the apps yet
+  "title" TEXT                          -- the hymn's title when it differs from its first line (NULL = the first line is the title); a child without one takes its parent's (§5.1); no "(New Tune)" text. Searched (§9.3), not shown on the page yet
 );
 CREATE TABLE "stanza" (
   "parent_hymn" TEXT NOT NULL,          -- Hymn ID the stanza belongs to (NOT the parent hymn concept)
@@ -245,7 +245,7 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
 
    | Child field empty? | Take from parent |
    |---|---|
-   | author, composer, time, tune, key, meter, verse | same field |
+   | author, composer, time, tune, key, meter, verse, title | same field |
    | main_category | **both** main_category and sub_category |
    | stanzas (none at all) | the parent's stanzas (33 hymns rely on this) |
    | sheet music | — (resolved separately, §11.1) |
@@ -676,25 +676,26 @@ own, so without this their Authors list would be empty.
 Live as you type, about 150 ms after the last key, run off the main thread.
 
 - **What is searched:** a `search` table, one row per hymn, every column in **search form** (§9.5): `first` (first
-  stanza line), `chorus` (first chorus line), `subject` (main + sub category), `people` (author + composer), `music`
+  stanza line), `title` (the title, own or inherited), `chorus` (first chorus line), `subject` (main + sub category), `people` (author + composer), `music`
   (time + key + tune + meter), `body` (all its stanzas joined with ` | `), plus `id`, `grp`, `no` and `line` (the first stanza line as
-  shown, else the chorus line). A hymn with a parent takes the parent's author, composer, key, tune, meter, time, subject and
+  shown, else the chorus line). A hymn with a parent takes the parent's author, composer, key, tune, meter, time, title, subject and
   stanzas where it has none (§5.1), so a translation is found by what its page shows.
 - **Terms:** the query in search form, split into words; text in quotes (`"…"`, `“…”`, `„…“`, `«…»`) is one term, an
   exact phrase. Duplicate terms count once. No word is dropped for being short, but a word of one or two Latin,
   Greek or Cyrillic letters or digits (`c`, `o`, `de`) only counts as a **whole word**, in the search and in the bold:
   as part of a word it is in nearly every hymn (`c major` found 9,055). Chinese, Japanese, Korean, Tamil… text has
   no spaces between words, so there short terms count anywhere.
-- **A hymn matches** when every term is found, anywhere and in any order, in one of its six columns
+- **A hymn matches** when every term is found, anywhere and in any order, in one of its seven columns
   (`column LIKE '%term%'`, so parts of words count). Hidden books (`disableLanguages`) are always left out.
 - **One row per hymn**, best first. `phrase` = the whole query in search form (quotes removed):
 
   | Score | When |
   |---|---|
   | 100 | `first` starts with `phrase` |
+  | 95 / 85 | `title` starts with / contains `phrase` |
   | 90 | `first` contains `phrase` |
   | 80 | `chorus` contains `phrase` |
-  | 70 / 60 | every term in `first` / in `chorus` |
+  | 70 / 65 / 60 | every term in `first` / in `title` / in `chorus` |
   | 50 / 40 / 30 | every term in `subject` / `people` / `music` |
   | 26 | `phrase` in the stanzas as whole words |
   | 23 | every term in the stanzas as a whole word |
@@ -705,7 +706,7 @@ Live as you type, about 150 ms after the last key, run off the main thread.
   All books when the current book has no result; the user's choice is kept while typing and reset when the box is
   emptied. This is how to search only one book (for example only New Songs): search from a hymn of that book.
 - **Row:** `**<ID>** - <line>`, the matched terms in bold. When the hymn did not match on its first line, a second,
-  smaller grey line shows why: the first chorus line, `Subject: <main> – <sub>`, `Author: … · Composer: …`,
+  smaller grey line shows why: the title, the first chorus line, `Subject: <main> – <sub>`, `Author: … · Composer: …`,
   `Key: … · Tune: …`, or the stanza line with the most of the terms (the first one with all of them) other than the
   first line. No second line when it would only repeat the first.
 - **A hymn number or ID typed** (`123`, `#123`, `NS 151`, `ns151`, `e8`; a 1–3 letter book code, optional space or

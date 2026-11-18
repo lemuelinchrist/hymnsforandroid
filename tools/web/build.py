@@ -189,13 +189,13 @@ def build_db(assets):
     # one row per hymn, in search form: the first lines, subject, author and composer, time, key, tune and meter, and all its
     # stanzas. A hymn with a parent takes the parent's author, composer, key, tune, meter, time, subject and stanzas where it has
     # none, as on its page (SearchIndex.build in the app)
-    db.execute('create table search (id text, grp text, first text, chorus text, subject text, people text,'
+    db.execute('create table search (id text, grp text, first text, title text, chorus text, subject text, people text,'
                ' music text, body text)')
     stanzas = {}
     for pid, text in db.execute('select parent_hymn, text from stanza order by parent_hymn, n_order'):
         stanzas.setdefault(pid, []).append(norm(text))
     cols = ['hymn_group', 'first_stanza_line', 'first_chorus_line', 'main_category', 'sub_category', 'author',
-            'composer', 'key', 'tune', 'parent_hymn', 'meter', 'time', 'new_tune']
+            'composer', 'key', 'tune', 'parent_hymn', 'meter', 'time', 'new_tune', 'title']
     hymns = {r[0]: dict(zip(cols, [str(v or '').strip() for v in r[1:]]))
              for r in db.execute('select _id, ' + ', '.join(cols) + ' from hymns')}
 
@@ -205,7 +205,7 @@ def build_db(assets):
         parent, depth = h['parent_hymn'], 0
         while parent in hymns and depth < 10:
             p = hymns[parent]
-            for f in ('author', 'composer', 'key', 'tune', 'meter', 'time'):
+            for f in ('author', 'composer', 'key', 'tune', 'meter', 'time', 'title'):
                 h[f] = h[f] or p[f]
             if not h['main_category']:
                 h['main_category'], h['sub_category'] = p['main_category'], p['sub_category']
@@ -220,10 +220,10 @@ def build_db(assets):
         # a New Tune's first lines end in " (New Tune)" in the search, so it finds them so (the data has no such text)
         tag = ' (New Tune)' if h['new_tune'] == '1' else ''
         first, chorus = [(h[k] + tag) if h[k] else h[k] for k in ('first_stanza_line', 'first_chorus_line')]
-        rows.append((hid, h['hymn_group'], norm(first), norm(chorus),
+        rows.append((hid, h['hymn_group'], norm(first), norm(h['title']), norm(chorus),
                      norm(h['main_category'] + ' ' + h['sub_category']), norm(h['author'] + ' ' + h['composer']),
                      norm(h['time'] + ' ' + h['key'] + ' ' + h['tune'] + ' ' + h['meter']), h['body']))
-    db.executemany('insert into search values (?, ?, ?, ?, ?, ?, ?, ?)', rows)
+    db.executemany('insert into search values (?, ?, ?, ?, ?, ?, ?, ?, ?)', rows)
     groups_in_db = sorted({r[1] for r in rows})
     db.commit()
     db.execute('detach src')

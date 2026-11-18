@@ -342,6 +342,8 @@ public class HymnsDao {
                     hymn.setMainCategory(parentHymn.getMainCategory());
                     hymn.setSubCategory(parentHymn.getSubCategory());
                 }
+                if (isEmpty(hymn.getTitle()))
+                    hymn.setTitle(parentHymn.getTitle());
                 if (isEmpty(hymn.getMeter()))
                     hymn.setMeter(parentHymn.getMeter());
                 if (isEmpty(hymn.getVerse()))
@@ -388,7 +390,7 @@ public class HymnsDao {
         hymn.setVerse(cursor.getString(cursor.getColumnIndex(HymnFields.verse.toString())));
         hymn.addRelated(cursor.getString(cursor.getColumnIndex(HymnFields.related.toString())));
         hymn.setNewTune(cursor.getInt(cursor.getColumnIndex(HymnFields.new_tune.toString())) == 1);
-        hymn.setTitle(cursor.getString(cursor.getColumnIndex(HymnFields.title.toString())));   // its own, never from the parent
+        hymn.setTitle(cursor.getString(cursor.getColumnIndex(HymnFields.title.toString())));
 
         if (hymn.getTune() != null) hymn.setTune(hymn.getTune().trim());
         return hymn;
