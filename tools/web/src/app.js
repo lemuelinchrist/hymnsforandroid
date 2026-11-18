@@ -274,11 +274,14 @@ function notFound(view, what) {
 
 // ---- home ----
 
+// A closed hint comes back after a day (the older 'installHintClosed' choice is no longer read, so it comes back too)
+const INSTALL_HINT_REST = 24 * 60 * 60 * 1000;
+
 // iPhone and iPad: Safari has no install prompt, so say how (until it is installed or the hint is closed)
 function installHint() {
   const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   const installed = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-  if (installed || store.get('installHintClosed', false)) return null;
+  if (installed || Date.now() - store.get('installHintClosedAt', 0) < INSTALL_HINT_REST) return null;
   if (!ios && !deferredInstall) return null;
   const box = h('section', {class: 'install card'},
     h('img', {src: 'icons/apple-touch-icon.png', alt: '', width: 44, height: 44}),
@@ -287,7 +290,7 @@ function installHint() {
       ios ? h('p', null, trh('Tap {0} Share, then {1}. It opens like an app and works without internet.', icon('share'), h('b', null, tr('Add to Home Screen'))))
         : h('p', null, trh('It opens like an app and works without internet. {0}',
           h('button', {class: 'link', onclick: async () => { deferredInstall.prompt(); deferredInstall = null; box.remove(); }}, tr('Install'))))),
-    h('button', {class: 'icon-btn', 'aria-label': tr('Close'), onclick: () => { store.set('installHintClosed', true); box.remove(); }}, icon('close')));
+    h('button', {class: 'icon-btn', 'aria-label': tr('Close'), onclick: () => { store.set('installHintClosedAt', Date.now()); box.remove(); }}, icon('close')));
   return box;
 }
 
@@ -1309,6 +1312,18 @@ function settingsScreen(view) {
           if (!e.target.checked && currentGroup === g.code) setGroup(shownGroups()[0].code);
         }}),
         h('span', {class: 'chip'}, g.code), h('span', {dir: 'auto'}, g.name))))));
+
+  // install (Firefox and others never offer the install prompt, so the way is told here)
+  const standalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  const iosDevice = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (!standalone) {
+    box.appendChild(h('section', {class: 'card settings-card'},
+      h('h2', null, tr('Install the app')),
+      h('p', {class: 'muted small'}, iosDevice
+        ? trh('Tap {0} Share, then {1}. It opens like an app and works without internet.', icon('share'), h('b', null, tr('Add to Home Screen')))
+        : tr('Open your browser’s menu (⋮ or ☰) and tap Install app, Install or Add to Home screen. It opens like an app and works without internet.')),
+      deferredInstall ? h('button', {type: 'button', class: 'btn', onclick: async () => { deferredInstall.prompt(); deferredInstall = null; render(); }}, tr('Install')) : null));
+  }
 
   // chord edits
   const editsCard = h('section', {class: 'card settings-card'}, h('h2', null, tr('Chord edits')));
