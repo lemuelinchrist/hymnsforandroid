@@ -1,4 +1,4 @@
-// The sheet music with its toolbar: Piano | Guitar, the key, Hide staff, Both hands (and its panel at the bottom), the
+// The sheet music with its toolbar: Piano | Guitar, Chords only, the key, Both hands (and its panel at the bottom), the
 // zoom, the sheet alone, and ⋯ (Edit chords, Original chords, the original key and size, light paper, Save MIDI); the
 // player's row under it. The web app shows it beside the lyrics or alone (#/sheet/E8); the Android app's sheet viewer
 // is this alone (tools/web/android). What differs between the two comes in as options, or through host.js.
@@ -42,7 +42,7 @@ export function createSheetPanel(pane, o) {
   const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands});
 
   const btn = (label, title, onclick, cls = '') => h('button', {type: 'button', class: 'tb ' + cls, title, 'aria-label': title, onclick}, label);
-  // on a narrow screen (sheet.css) these three show their icon instead of the words
+  // on a narrow screen (sheet.css) Piano | Guitar show their icons instead of the words (the staff button keeps its words)
   const named = (ic, text) => [icon(ic), h('span', {class: 'lbl'}, text)];
   const bPiano = btn(named('piano', tr('Piano')), tr('Piano sheet (P)'), () => set({guitar: false}), 'pair');
   const bGuitar = btn(named('guitar', tr('Guitar')), tr('Guitar sheet (G)'), () => set({guitar: true}), 'pair');
@@ -50,9 +50,9 @@ export function createSheetPanel(pane, o) {
   const bUp = btn('+', tr('Transpose up a semitone (+)'), () => set({shift: state.shift + 1}), 'step');
   const keyLabel = h('button', {type: 'button', class: 'key', title: tr('Back to the original key')}, '…');
   keyLabel.addEventListener('click', () => set({shift: 0}));
-  const bStaff = btn('', tr('Show or hide the staff (H)'), () => set({staff: !state.staff}), 'toggle pair');
-  const staffLabel = h('span', {class: 'lbl'});
-  bStaff.append(icon('staff'), staffLabel);
+  // "Chords only": the staff hidden, the chords over the words; lit while it is on
+  // (just "Chords" under 400 px, where there is no room for more: sheet.css)
+  const bStaff = btn([h('span', {class: 'full'}, tr('Chords only')), h('span', {class: 'short'}, tr('Chords'))], tr('Show or hide the staff (H)'), () => set({staff: !state.staff}), 'toggle');
   const bZoomOut = btn(icon('zoomOut'), tr('Smaller (Z)'), () => set({scale: state.scale - 5}), 'icon');
   const bZoomIn = btn(icon('zoomIn'), tr('Bigger (Shift+Z)'), () => set({scale: state.scale + 5}), 'icon');
   // both hands: a piano part made from the chords (piano.js); how the hands play is chosen in the panel at the bottom
@@ -199,8 +199,7 @@ export function createSheetPanel(pane, o) {
   function updateBar(info = view.info) {
     bPiano.setAttribute('aria-pressed', String(!state.guitar));
     bGuitar.setAttribute('aria-pressed', String(state.guitar));
-    bStaff.setAttribute('aria-pressed', String(state.staff));
-    staffLabel.textContent = state.staff ? tr('Hide staff') : tr('Show staff');
+    bStaff.setAttribute('aria-pressed', String(!state.staff));
     bStaff.hidden = !!view.chordsOnly;
     bPlay.hidden = !full || !!view.chordsOnly;   // a sheet of chords over the words has no notes to play
     if (sp) {

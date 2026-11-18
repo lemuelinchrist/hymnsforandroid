@@ -57,7 +57,6 @@ export const ICONS = {
   play: '<path d="M8 5.5v13l10.5-6.5z"/>',
   cloud: '<path d="M7 18.5a4 4 0 0 1-.5-7.97 5.5 5.5 0 0 1 10.6 1.1A3.5 3.5 0 0 1 17 18.5z"/>',
   guitar: '<circle cx="8.5" cy="15.5" r="4.5"/><path d="M12 12l7-7M17.5 3.5l3 3"/><circle cx="8.5" cy="15.5" r="1" fill="currentColor"/>',
-  staff: '<path d="M3 6h18M3 9h18M3 12h18M3 15h18M3 18h18"/>',
   piano: '<rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M9.2 5v14M14.8 5v14M7.2 5v7M12 5v7M16.8 5v7"/>',
   tune: '<path d="M9 18V5.5l10-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>',
   pause: '<path d="M8.5 5.5v13M15.5 5.5v13"/>',

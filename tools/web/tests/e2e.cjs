@@ -978,7 +978,7 @@ async function search(page, text) {
       await t.page.goto(BASE + '#/sheet/E8');
       await t.page.waitForSelector('.sheet-bar');
       const bar = await t.page.textContent('.sheet-bar');
-      assert(bar.includes('钢琴') && bar.includes('吉他') && bar.includes('隐藏五线谱') && bar.includes('双手'), 'sheet toolbar: ' + bar);
+      assert(bar.includes('钢琴') && bar.includes('吉他') && bar.includes('只显示和弦') && bar.includes('双手'), 'sheet toolbar: ' + bar);
       await t.ctx.close();
     });
     await test('English stays exactly as it was (a count of one, a count of many)', async () => {

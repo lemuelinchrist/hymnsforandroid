@@ -48,22 +48,25 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
   console.log('The Android sheet viewer');
   let p = await phone(BF500 + '&theme=light&lang=en');
   let page = p.page;
-  await test('the sheet with the toolbar: ‹ back first, Piano | Guitar, key, Hide staff, Both hands, ▶, ⋯', async () => {
+  await test('the sheet with the toolbar: ‹ back first, Piano | Guitar, key, Chords only, Both hands, ▶, ⋯', async () => {
     const bar = await page.locator('.sheet-bar').textContent();
-    assert(/Piano/.test(bar) && /Guitar/.test(bar) && /Hide staff/.test(bar) && /Both hands/.test(bar), 'toolbar: ' + bar);
+    assert(/Piano/.test(bar) && /Guitar/.test(bar) && /Chords only/.test(bar) && /Both hands/.test(bar), 'toolbar: ' + bar);
     assert(await page.locator('.sheet-bar > *:visible').first().getAttribute('title') === 'Back', 'back is first');
     assert(await page.locator('.tb.playsheet').isVisible() && await page.locator('.tb.sheet-more').isVisible(), 'play and more');
     assert((await page.locator('.sheet-no:not(.sheet-spacer)').textContent()).trim() === 'BF500', 'the number');
   });
-  await test('one row on a small phone: the icons for Piano | Guitar and the staff, no zoom and no Both hands', async () => {
+  await test('one row on a small phone: the icons for Piano | Guitar, no zoom and no Both hands', async () => {
     const q = await phone(BF500 + '&theme=light&lang=en', {viewport: {width: 360, height: 740}});
     const r = await q.page.locator('.sheet-bar').evaluate((bar) => {
-      const vis = [...bar.children].filter((e) => e.offsetParent !== null && e.getBoundingClientRect().width > 0);
-      return {tops: [...new Set(vis.map((e) => Math.round(e.getBoundingClientRect().top / 6)))], right: Math.max(...vis.map((e) => e.getBoundingClientRect().right)),
+      const vis = [...bar.children].filter((e) => e.offsetParent !== null && e.getBoundingClientRect().width > 0 && !e.classList.contains('grow'));
+      const fit = vis.every((e) => e.scrollWidth <= e.clientWidth + 1);
+      return {fit, tops: [...new Set(vis.map((e) => Math.round(e.getBoundingClientRect().top)))], right: Math.max(...vis.map((e) => e.getBoundingClientRect().right)),
         names: vis.map((e) => e.className)};
     });
-    assert(r.tops.length === 1, 'one row: ' + JSON.stringify(r));
+    assert(Math.max(...r.tops) - Math.min(...r.tops) <= 4, 'one row: ' + JSON.stringify(r));
     assert(r.right <= 360, 'fits the screen: ' + r.right);
+    assert(r.fit, 'nothing squeezed: ' + JSON.stringify(r));
+    assert(r.right <= 354, 'inside the padding: ' + r.right);
     assert(!r.names.some((n) => /zoom|hands/.test(n)), 'no zoom, no Both hands: ' + r.names);
     assert(await q.page.locator('.sheet-bar .seg .tb .lbl').first().isHidden(), 'Piano | Guitar are icons');
     await q.page.screenshot({path: process.env.SHOT || '/tmp/bar360.png', clip: {x: 0, y: 0, width: 360, height: 120}});

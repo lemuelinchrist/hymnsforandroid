@@ -59,12 +59,12 @@ A new text: use `tr('English text')` and add its four translations to `strings.j
 
 ## The sheet toolbar
 
-In front, what is used most: **Piano | Guitar**, **Hide staff** (chords over the words: for
+In front, what is used most: **Piano | Guitar**, **Chords only** (hides the staff: chords over the words, for
 guitarists and for those who read only chords), the key (**−** and **+**), **Both hands**, the zoom, and **⤢ Sheet only, for a music stand** (the
 sheet alone has ✕ back to the lyrics there). The rest is in **⋯**: **Edit chords** (for players who reharmonize; `E`),
 **Original chords** once the sheet has edits (a dot on ⋯ while it is on; `O`), **Original key and size** after a change,
 **Light paper** in the dark theme, and **Save MIDI**. The menu is the Share menu's (`popupMenu` in `app.js`).
-On a screen up to 480 px wide (a phone) the bar is one row: Piano | Guitar and the staff are icons, the zoom is left out (pinching does it in the Android app) and **Both hands** moves into **⋯**.
+On a screen up to 480 px wide (a phone) the bar is one row: Piano | Guitar are icons (and Chords only reads just "Chords" under 400 px), the zoom is left out (pinching does it in the Android app) and **Both hands** moves into **⋯**.
 
 ## Both hands
 
