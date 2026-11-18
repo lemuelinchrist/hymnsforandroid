@@ -38,26 +38,26 @@
 .sheet-from { margin: 10px 16px 0; font-size: 13px; color: var(--muted); }
 .sheet-host { padding: 16px 12px 24px; }
 @media (pointer: coarse) { .sheet-host { touch-action: pan-x pan-y; } }   /* two fingers are the sheet's own pinch (sheetpanel.js), not the page's zoom */
-@media (max-width: 480px) {
-  .sheet-bar { gap: 4px; padding: 8px 6px; }
-  .sheet-bar .tb { padding: 0 7px; min-width: 0; }
-  /* one row: back, Piano | Guitar and the staff as icons, the key, then play and ⋯ on the right; the zoom (pinching does
-     it) and Both hands (in the ⋯ menu) have no room */
-  .sheet-bar { flex-wrap: nowrap; }
-  .sheet-bar .tb.pair > .icon { display: inline-flex; }
-  .sheet-bar .tb.pair > .lbl { display: none; }
-  .sheet-bar .tb.pair { padding: 0; width: 32px; }
-  .sheet-bar .seg .tb.pair { width: 28px; }
-  .sheet-bar .zoom, .sheet-bar .tb.hands { display: none; }
-  .transpose .tb { width: 24px; }
-  .transpose .key { min-width: 2.2em; }
-  .sheet-bar > * { flex-shrink: 0; }
-  .sheet-host { padding: 12px 6px 20px; }
-}
-@media (max-width: 400px) {
-  .sheet-bar .tb .full { display: none; }
-  .sheet-bar .tb .short { display: inline; }
-}
+/* One row at any width (sheetpanel.js fit()): the bar gives up a little at a time until it fits, and sets data-fit:
+   1 no zoom buttons (Smaller and Bigger move to ⋯), 2 Piano | Guitar as icons, 3 no Both hands (it moves to ⋯),
+   4 the narrowest buttons and "Chords" (a phone), 5 no Chords only button (also in ⋯), 6 nothing more to give up: the bar wraps. */
+.sheet-bar:not([data-fit="6"]) { flex-wrap: nowrap; }
+.sheet-bar:not([data-fit="6"]) > * { flex-shrink: 0; }
+.sheet-bar:not([data-fit="6"]) > .grow { flex-shrink: 1; min-width: 0; }
+.sheet-bar:is([data-fit="1"], [data-fit="2"], [data-fit="3"], [data-fit="4"], [data-fit="5"], [data-fit="6"]) .zoom { display: none; }
+.sheet-bar:is([data-fit="2"], [data-fit="3"], [data-fit="4"], [data-fit="5"], [data-fit="6"]) .seg .tb.pair > .icon { display: inline-flex; }
+.sheet-bar:is([data-fit="2"], [data-fit="3"], [data-fit="4"], [data-fit="5"], [data-fit="6"]) .seg .tb.pair > .lbl { display: none; }
+.sheet-bar:is([data-fit="2"], [data-fit="3"], [data-fit="4"], [data-fit="5"], [data-fit="6"]) .seg .tb.pair { padding: 0; width: 34px; min-width: 0; }
+.sheet-bar:is([data-fit="3"], [data-fit="4"], [data-fit="5"], [data-fit="6"]) .tb.hands { display: none; }
+.sheet-bar:is([data-fit="4"], [data-fit="5"], [data-fit="6"]) { gap: 4px; padding: 8px 6px; }
+.sheet-bar:is([data-fit="4"], [data-fit="5"], [data-fit="6"]) .tb { padding: 0 7px; min-width: 0; }
+.sheet-bar:is([data-fit="4"], [data-fit="5"], [data-fit="6"]) .seg .tb.pair { width: 28px; }
+.sheet-bar:is([data-fit="4"], [data-fit="5"], [data-fit="6"]) .transpose .tb { width: 24px; }
+.sheet-bar:is([data-fit="4"], [data-fit="5"], [data-fit="6"]) .transpose .key { min-width: 2.2em; }
+.sheet-bar:is([data-fit="4"], [data-fit="5"], [data-fit="6"]) .tb .full { display: none; }
+.sheet-bar:is([data-fit="4"], [data-fit="5"], [data-fit="6"]) .tb .short { display: inline; }
+.sheet-bar:is([data-fit="5"], [data-fit="6"]) .tb.toggle { display: none; }
+@media (max-width: 480px) { .sheet-host { padding: 12px 6px 20px; } }
 
 body.sheet-only #view { max-width: 1200px; padding-top: 12px; }
 .sheet-pane.full { border-radius: var(--radius); }

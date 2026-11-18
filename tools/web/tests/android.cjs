@@ -81,6 +81,21 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
     assert(after > before, 'Bigger redraws the sheet larger: ' + before + ' -> ' + after);
     await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Smaller")'); await page.waitForTimeout(1200);
   });
+  await test('one row at every width: the bar gives up the zoom, the words, Both hands, in that order', async () => {
+    const q = await phone(BF500 + '&theme=light&lang=en', {viewport: {width: 800, height: 700}});
+    let last = -1;
+    for (const w of [800, 700, 620, 540, 460, 400, 360, 320]) {
+      await q.page.setViewportSize({width: w, height: 700}); await q.page.waitForTimeout(400);
+      const r = await q.page.locator('.sheet-bar').evaluate((bar) => {
+        const tops = [...bar.children].filter((e) => e.offsetParent !== null && !e.classList.contains('grow')).map((e) => Math.round(e.getBoundingClientRect().top));
+        return {fit: +bar.dataset.fit, rows: Math.max(...tops) - Math.min(...tops), over: bar.scrollWidth > bar.clientWidth};
+      });
+      assert(r.rows <= 4 && !r.over, w + ' px: ' + JSON.stringify(r));
+      assert(r.fit >= last, w + ' px: gives up more as it narrows: ' + JSON.stringify(r)); last = r.fit;
+    }
+    assert(last >= 5, 'the narrow end gave up Both hands and Chords only (in ⋯)');
+    await q.ctx.close();
+  });
   await test('the book\'s colour (Be Filled), from the app', async () => {
     const bg = await page.locator('.sheet-bar .seg .tb[aria-pressed="true"]').evaluate((e) => getComputedStyle(e).backgroundColor);
     assert(bg === 'rgb(0, 153, 204)', 'Piano pressed in the day colour: ' + bg);

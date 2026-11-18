@@ -69,10 +69,11 @@ export function createSheetPanel(pane, o) {
   const lightPaper = () => store.get('sheetPaper', null) === 'light';
   function moreMenu() {
     const items = [];
-    // Both hands has no room in the bar of a narrow screen (sheet.css), so it is here instead
-    if (matchMedia('(max-width: 480px)').matches && !bHands.hidden) items.push({icon: 'piano', label: tr('Both hands'), checked: !!state.hands, run: () => set({hands: !state.hands})});
-    // the zoom buttons are not in the bar of a narrow screen either (pinching does it too)
-    if (matchMedia('(max-width: 480px)').matches) {
+    // what the bar had no room for (fit(), sheet.css) is here instead: Both hands, then the zoom
+    const fit = +bar.dataset.fit || 0;
+    if (fit >= 3 && !bHands.hidden) items.push({icon: 'piano', label: tr('Both hands'), checked: !!state.hands, run: () => set({hands: !state.hands})});
+    if (fit >= 5 && !bStaff.hidden) items.push({icon: 'staff', label: tr('Chords only'), checked: !state.staff, run: () => set({staff: !state.staff})});
+    if (fit >= 1) {
       if (state.scale > MIN_SCALE) items.push({icon: 'zoomOut', label: tr('Smaller'), run: () => set({scale: state.scale - 5})});
       if (state.scale < MAX_SCALE) items.push({icon: 'zoomIn', label: tr('Bigger'), run: () => set({scale: state.scale + 5})});
     }
@@ -226,7 +227,21 @@ export function createSheetPanel(pane, o) {
     keyLabel.disabled = !state.shift;
     syncPanel();
     onplay();
+    fit();   // the key's label and the buttons shown change the width the bar needs
   }
+  // One row at any width: give up a little at a time until the bar fits (the steps are in sheet.css, "data-fit"):
+  // the zoom buttons, the words of Piano | Guitar, Both hands, the narrowest buttons, Chords only; the menu takes over what is dropped
+  function fit() {
+    if (!bar.clientWidth) return;   // not shown (a tab that is not open): the observer calls this again when it is
+    for (let level = 0; level <= 5; level++) {
+      bar.dataset.fit = String(level);
+      if (bar.scrollWidth <= bar.clientWidth) return;
+    }
+    bar.dataset.fit = '6';
+  }
+  const barObserver = new ResizeObserver(fit);
+  barObserver.observe(bar);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   sp = createSheetPlayer(view, {tune: o.tune || null, store, stopTune, onchange: () => updateBar()});
   top.appendChild(sp.el);
   view.onsound = () => sp.refresh();
@@ -249,7 +264,7 @@ export function createSheetPanel(pane, o) {
     get playable() { return view.renders > 0 && !view.chordsOnly; },
     destroy() {
       sp.destroy(); if (editor) editor.destroy(); if (panel) panel.destroy(); view.destroy(); themeListeners.delete(onTheme);
-      stopHiding(); stopPinch();
+      stopHiding(); stopPinch(); barObserver.disconnect();
     },
   };
 }

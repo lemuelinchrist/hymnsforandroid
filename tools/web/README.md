@@ -64,7 +64,11 @@ guitarists and for those who read only chords), the key (**−** and **+**), **B
 sheet alone has ✕ back to the lyrics there). The rest is in **⋯**: **Edit chords** (for players who reharmonize; `E`),
 **Original chords** once the sheet has edits (a dot on ⋯ while it is on; `O`), **Original key and size** after a change,
 **Light paper** in the dark theme, and **Save MIDI**. The menu is the Share menu's (`popupMenu` in `app.js`).
-On a screen up to 480 px wide (a phone) the bar is one row: Piano | Guitar are icons (and Chords only reads just "Chords" under 400 px), the zoom buttons are left out (**Smaller** and **Bigger** are in **⋯**, and two fingers on the sheet change its size on every touch screen, in the web app too) and **Both hands** moves into **⋯**.
+The bar is always one row: when the pane is too narrow it gives up a little at a time (`fit()` in `sheetpanel.js`, the steps in
+`sheet.css` as `data-fit`), in this order: the zoom buttons (**Smaller** and **Bigger** go into **⋯**; two fingers on the sheet
+change its size on every touch screen, in the web app too), the words of Piano | Guitar (icons), **Both hands** (into **⋯**),
+the widest buttons and the words of Chords only (just "Chords"), and last **Chords only** itself (into **⋯**); only below that
+does it wrap.
 
 ## Both hands
 
