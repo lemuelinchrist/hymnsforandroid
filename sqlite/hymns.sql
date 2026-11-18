@@ -117874,7 +117874,7 @@ INSERT INTO link VALUES(94153,'E1017','youtube','','https://www.youtube.com/watc
 INSERT INTO link VALUES(94154,'E1051','youtube','','https://www.youtube.com/watch?v=C3OBQ3Njb6c',3,'God is Love',NULL);
 INSERT INTO link VALUES(94155,'E1057','youtube','','https://www.youtube.com/watch?v=3G3jcFHUgUk',4,'Jesus, Lover of My Soul',NULL);
 INSERT INTO link VALUES(94156,'E1057','youtube','','https://www.youtube.com/watch?v=1tuRwiHtTug',5,'So Immensely',NULL);
-INSERT INTO link VALUES(94157,'E1058','youtube','','https://www.youtube.com/watch?v=Bs-zjiICghY',3,'The Fountain of Life',NULL);
+INSERT INTO link VALUES(94157,'BF546','youtube','','https://www.youtube.com/watch?v=Bs-zjiICghY',1,'The Fountain of Life',NULL);
 INSERT INTO link VALUES(94158,'E1084','youtube','','https://www.youtube.com/watch?v=BR42kZDKZts',2,'Supplement Songs',NULL);
 INSERT INTO link VALUES(94159,'E1085','youtube','','https://www.youtube.com/watch?v=VzWrZIhhj6A',1,'Supplement Songs',NULL);
 INSERT INTO link VALUES(94160,'E1086','youtube','','https://www.youtube.com/watch?v=2FOYr6ph3AM',2,'Supplement Songs',NULL);
