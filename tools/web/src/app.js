@@ -1244,6 +1244,18 @@ function settingsScreen(view) {
   view.appendChild(box);
   box.appendChild(h('h1', {class: 'page-title'}, icon('settings'), tr('Settings')));
 
+  // install (Firefox and others never offer the install prompt, so the way is told here)
+  const standalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  const iosDevice = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (!standalone) {
+    box.appendChild(h('section', {class: 'card settings-card'},
+      h('h2', null, tr('Install the app')),
+      h('p', {class: 'muted small'}, iosDevice
+        ? trh('Tap {0} Share, then {1}. It opens like an app and works without internet.', icon('share'), h('b', null, tr('Add to Home Screen')))
+        : tr('Open your browser’s menu (⋮ or ☰) and tap Install app, Install or Add to Home screen. It opens like an app and works without internet.')),
+      deferredInstall ? h('button', {type: 'button', class: 'btn', onclick: async () => { deferredInstall.prompt(); deferredInstall = null; render(); }}, tr('Install')) : null));
+  }
+
   // display
   // text size: the five Android steps (Small ... XXL) on steps 1-5 of the page's seven (0 and 6 only with the A buttons on a hymn)
   const SIZE_NAMES = ['Small', 'Medium', 'Large', 'Extra Large', 'XXL'];
@@ -1312,18 +1324,6 @@ function settingsScreen(view) {
           if (!e.target.checked && currentGroup === g.code) setGroup(shownGroups()[0].code);
         }}),
         h('span', {class: 'chip'}, g.code), h('span', {dir: 'auto'}, g.name))))));
-
-  // install (Firefox and others never offer the install prompt, so the way is told here)
-  const standalone = navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-  const iosDevice = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  if (!standalone) {
-    box.appendChild(h('section', {class: 'card settings-card'},
-      h('h2', null, tr('Install the app')),
-      h('p', {class: 'muted small'}, iosDevice
-        ? trh('Tap {0} Share, then {1}. It opens like an app and works without internet.', icon('share'), h('b', null, tr('Add to Home Screen')))
-        : tr('Open your browser’s menu (⋮ or ☰) and tap Install app, Install or Add to Home screen. It opens like an app and works without internet.')),
-      deferredInstall ? h('button', {type: 'button', class: 'btn', onclick: async () => { deferredInstall.prompt(); deferredInstall = null; render(); }}, tr('Install')) : null));
-  }
 
   // chord edits
   const editsCard = h('section', {class: 'card settings-card'}, h('h2', null, tr('Chord edits')));
