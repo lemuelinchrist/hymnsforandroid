@@ -296,7 +296,7 @@ function installHint() {
 
 let deferredInstall = null;   // Chrome/Android's install prompt, kept for the hint's Install button
 
-// The same hint at the top of a hymn page: a link from a video or a message opens the hymn, never the home screen. Chrome
+// The same hint at the top of a hymn page (above its number): a link from a video or a message opens the hymn, never the home screen. Chrome
 // fires its install prompt after the page has loaded, so a hint that was not possible yet is added when the prompt arrives.
 function installHintFor(pane) {
   const box = installHint();
@@ -836,10 +836,10 @@ function hymnScreen(view, hymn) {
     h('button', {role: 'tab', 'data-tab': 'sheet', onclick: () => showTab('sheet')}, tr('Sheet music'))) : null;
 
   const lyricsPane = h('section', {class: 'pane lyrics-pane'}, h('div', {class: 'lyrics-box'}, lyricsNode(hymn)), sameTuneNode(hymn), metaNode(hymn), linksNode(hymn));
-  installHintFor(lyricsPane);
   const sheetPane = hasSheet ? h('section', {class: 'pane sheet-pane'}) : null;
   const panes = h('div', {class: 'panes' + (hasSheet ? ' two' : '')}, lyricsPane, sheetPane);
   const page = h('article', {class: 'hymn', style: groupStyle(hymn.group)}, head, tabs, panes, swapBackButton(hymn));
+  installHintFor(page);   // above the hymn number, right under the search bar
   view.appendChild(page);
 
   let sheet = null;

@@ -317,6 +317,7 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 
 .install { display: flex; align-items: center; gap: 14px; padding: 14px 10px 14px 16px; margin: 0 0 8px; }
 .install img { border-radius: 10px; flex: none; }
+.hymn > .install { margin: 8px 0 14px; }   /* on a hymn page: above its number, under the search bar */
 .install > div { flex: 1; }
 .install p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
 .install .icon { vertical-align: -4px; color: var(--g); }
