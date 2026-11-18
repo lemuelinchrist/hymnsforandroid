@@ -37,6 +37,7 @@
 .sheet-bar .tb.sheet-more.dot::after { content: ""; position: absolute; top: 3px; right: 3px; width: 8px; height: 8px; border-radius: 50%; background: var(--g); }
 .sheet-from { margin: 10px 16px 0; font-size: 13px; color: var(--muted); }
 .sheet-host { padding: 16px 12px 24px; }
+@media (pointer: coarse) { .sheet-host { touch-action: pan-x pan-y; } }   /* two fingers are the sheet's own pinch (sheetpanel.js), not the page's zoom */
 @media (max-width: 480px) {
   .sheet-bar { gap: 4px; padding: 8px 6px; }
   .sheet-bar .tb { padding: 0 7px; min-width: 0; }

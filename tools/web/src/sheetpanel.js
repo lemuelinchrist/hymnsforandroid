@@ -71,6 +71,11 @@ export function createSheetPanel(pane, o) {
     const items = [];
     // Both hands has no room in the bar of a narrow screen (sheet.css), so it is here instead
     if (matchMedia('(max-width: 480px)').matches && !bHands.hidden) items.push({icon: 'piano', label: tr('Both hands'), checked: !!state.hands, run: () => set({hands: !state.hands})});
+    // the zoom buttons are not in the bar of a narrow screen either (pinching does it too)
+    if (matchMedia('(max-width: 480px)').matches) {
+      if (state.scale > MIN_SCALE) items.push({icon: 'zoomOut', label: tr('Smaller'), run: () => set({scale: state.scale - 5})});
+      if (state.scale < MAX_SCALE) items.push({icon: 'zoomIn', label: tr('Bigger'), run: () => set({scale: state.scale + 5})});
+    }
     if (!view.chordsOnly) items.push({icon: 'edit', label: view.editing ? tr('Stop editing chords') : tr('Edit chords'), run: () => setEdit(!view.editing)});
     if (view.hasEdits()) items.push({icon: 'original', label: tr('Original chords'), checked: !!state.original, run: () => set({original: !state.original})});
     if (state.shift || state.scale !== DEFAULT_SCALE) items.push({icon: 'reset', label: tr('Original key and size'), run: () => set({shift: 0, scale: DEFAULT_SCALE})});

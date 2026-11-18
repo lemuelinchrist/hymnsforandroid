@@ -72,6 +72,15 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
     await q.page.screenshot({path: process.env.SHOT || '/tmp/bar360.png', clip: {x: 0, y: 0, width: 360, height: 120}});
     await q.ctx.close();
   });
+  await test('no zoom buttons on a phone, so Smaller and Bigger are in the ⋯ menu', async () => {
+    const before = await page.locator('.sheet-music svg').first().evaluate((e) => e.getBoundingClientRect().height);
+    await page.click('.sheet-bar .tb.sheet-more');
+    assert(await page.locator('.share-menu button:has-text("Smaller")').count() === 1 && await page.locator('.share-menu button:has-text("Bigger")').count() === 1, 'the menu has both');
+    await page.click('.share-menu button:has-text("Bigger")'); await page.waitForTimeout(1200);
+    const after = await page.locator('.sheet-music svg').first().evaluate((e) => e.getBoundingClientRect().height);
+    assert(after > before, 'Bigger redraws the sheet larger: ' + before + ' -> ' + after);
+    await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Smaller")'); await page.waitForTimeout(1200);
+  });
   await test('the book\'s colour (Be Filled), from the app', async () => {
     const bg = await page.locator('.sheet-bar .seg .tb[aria-pressed="true"]').evaluate((e) => getComputedStyle(e).backgroundColor);
     assert(bg === 'rgb(0, 153, 204)', 'Piano pressed in the day colour: ' + bg);

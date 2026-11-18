@@ -942,6 +942,7 @@ function sheetPanel(pane, hymn, {full, stopTune, onplay} = {}) {
       quietly(href('/' + route.parts[0] + '/' + hymn.id, params));
     },
     full, tune: DB.tuneFile(hymn), title, note,
+    pinch: matchMedia('(pointer: coarse)').matches,   // a phone or tablet: two fingers on the sheet change its size, not the page's zoom
     exit: full ? {icon: 'close', title: tr('Back to the lyrics (Esc)'), href: href('/h/' + hymn.id)} : null,
     sheetOnly: full ? null : (params) => go(href('/sheet/' + hymn.id, params)),
     stopTune, onplay,

@@ -951,7 +951,7 @@ give; the tempo is that of the hymn's tune file, folded into 50 to 160 quarter n
 sound are marked in the drawn sheet and the bar that sounds is shaded; the page follows the music until the reader scrolls;
 the tempo goes from half to one and a half times the tune's; the sheet can be saved as a MIDI file. In the sheet
 toolbar (both apps) the controls used most are in front (Piano | Guitar, Chords only, key, Both hands, zoom, Sheet only for a music
-stand; on a screen up to 480 px wide one row: Piano | Guitar as icons, the button reading just "Chords" under 400 px, no zoom, Both hands in the ⋯ menu) and the rest (Edit chords, Original chords, original key and size, light paper, Save MIDI) in a ⋯ menu.
+stand; on a screen up to 480 px wide one row: Piano | Guitar as icons, the button reading just "Chords" under 400 px, no zoom buttons (Smaller and Bigger in the ⋯ menu; a two-finger pinch on the sheet changes its size on touch screens), Both hands in the ⋯ menu) and the rest (Edit chords, Original chords, original key and size, light paper, Save MIDI) in a ⋯ menu.
 
 ### 11.4 MEI files: what the viewer relies on
 
