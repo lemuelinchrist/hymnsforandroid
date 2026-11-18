@@ -314,7 +314,7 @@ async function ui(page) {
     assert(/^E8.*\.mid$/.test(dl.suggestedFilename()), 'a MIDI file: ' + dl.suggestedFilename());
     const front = await page.locator('.sheet-bar > .tb:visible, .sheet-bar > div:visible').count();
     assert(front <= 8, 'a calm toolbar: ' + front + ' controls');
-    assert(await page.locator('.sheet-bar .tb:text-is("Hide staff")').isVisible(), 'Hide staff stays in front');
+    assert(await page.locator('.sheet-bar .tb:has(.lbl:text-is("Hide staff"))').isVisible(), 'Hide staff stays in front');
     assert(await page.locator('.sheet-bar a[title^="Back to the lyrics"]').isVisible(), 'the sheet alone: ✕ back to the lyrics');
   });
   await test('the hymn page\'s Play button plays the sheet while it is shown, the tune with the lyrics alone; they stop each other', async () => {

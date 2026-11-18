@@ -950,8 +950,8 @@ joined, the left hand and the added notes, or the chords softly when Both hands 
 give; the tempo is that of the hymn's tune file, folded into 50 to 160 quarter notes a minute. The elements of the notes that
 sound are marked in the drawn sheet and the bar that sounds is shaded; the page follows the music until the reader scrolls;
 the tempo goes from half to one and a half times the tune's; the sheet can be saved as a MIDI file. In the sheet
-toolbar (both apps) the controls used most are in front (Piano | Guitar, key, Hide staff, Both hands, zoom, Sheet only for a music
-stand) and the rest (Edit chords, Original chords, original key and size, light paper, Save MIDI) in a ⋯ menu.
+toolbar (both apps) the controls used most are in front (Piano | Guitar, Hide staff, key, Both hands, zoom, Sheet only for a music
+stand; on a screen up to 480 px wide one row: Piano | Guitar and the staff as icons, no zoom, Both hands in the ⋯ menu) and the rest (Edit chords, Original chords, original key and size, light paper, Save MIDI) in a ⋯ menu.
 
 ### 11.4 MEI files: what the viewer relies on
 

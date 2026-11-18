@@ -152,9 +152,9 @@ const chordsOf = (page) => page.$$eval('.sheet-music g.harm', (gs) => gs.map((g)
     });
 
     await test('guitar view leaves edit mode and still shows the edited chords', async () => {
-      await page.click('.sheet-bar .seg .tb:text-is("Guitar")');
+      await page.click('.sheet-bar .seg .tb[title^="Guitar"]');
       await page.waitForFunction(() => !document.body.classList.contains('editing-chords'));
-      await page.click('.sheet-bar .seg .tb:text-is("Piano")');
+      await page.click('.sheet-bar .seg .tb[title^="Piano"]');
     });
 
     await test('Original bar puts a bar back; no edits left removes the record', async () => {

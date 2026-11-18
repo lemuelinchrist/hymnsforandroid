@@ -119,9 +119,9 @@ the URL (`?v=guitar&t=2&staff=0`), so a link opens the same view.
 |---|---|
 | Piano / Guitar | Guitar derives the capo from the key (capo shown above the music), moves chords down by the capo and drops slash basses. This is the same rule as the app. |
 | − Key + | Transposes by a semitone, from −6 to +6. Verovio moves notes, key signature and chord symbols, and the label shows the new key. |
-| Hide / Show staff | Hides the staff and shows chords over the lyrics, reflowed to the width. |
+| Hide / Show staff | Hides the staff and shows chords over the lyrics, reflowed to the width. Sits right of Piano / Guitar. |
 | Both hands | A piano part made from the chords: a left hand on a second staff and, if chosen, notes of the chord under the melody. Turning it on opens a panel at the bottom that chooses how the hands play; Done tucks it down to a bar naming the style, which a tap or a drag up opens again (README, "Both hands"). Only on the piano sheet with the staff shown. |
-| Zoom − / + | The sheet's size (Verovio scale 20–90), remembered. |
+| Zoom − / + | The sheet's size (Verovio scale 20–90), remembered. Not on a screen up to 480 px wide, where the bar is one row (Piano / Guitar and the staff as icons) and Both hands is in ⋯. |
 | ⋯ | The choices used less (README, "The sheet toolbar"): Edit chords, Original chords (once there are edits; a dot on ⋯ while on), Original key and size (after a change; clicking the key label also returns to the original key), Light paper (dark theme), Save MIDI. |
 | ⤢ | The sheet-only view (`#/sheet/E8`), for a music stand; there ✕ goes back to the lyrics. |
 

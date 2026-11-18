@@ -42,13 +42,17 @@ export function createSheetPanel(pane, o) {
   const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands});
 
   const btn = (label, title, onclick, cls = '') => h('button', {type: 'button', class: 'tb ' + cls, title, 'aria-label': title, onclick}, label);
-  const bPiano = btn(tr('Piano'), tr('Piano sheet (P)'), () => set({guitar: false}));
-  const bGuitar = btn(tr('Guitar'), tr('Guitar sheet (G)'), () => set({guitar: true}));
+  // on a narrow screen (sheet.css) these three show their icon instead of the words
+  const named = (ic, text) => [icon(ic), h('span', {class: 'lbl'}, text)];
+  const bPiano = btn(named('piano', tr('Piano')), tr('Piano sheet (P)'), () => set({guitar: false}), 'pair');
+  const bGuitar = btn(named('guitar', tr('Guitar')), tr('Guitar sheet (G)'), () => set({guitar: true}), 'pair');
   const bDown = btn('−', tr('Transpose down a semitone (−)'), () => set({shift: state.shift - 1}), 'step');
   const bUp = btn('+', tr('Transpose up a semitone (+)'), () => set({shift: state.shift + 1}), 'step');
   const keyLabel = h('button', {type: 'button', class: 'key', title: tr('Back to the original key')}, '…');
   keyLabel.addEventListener('click', () => set({shift: 0}));
-  const bStaff = btn(tr('Staff'), tr('Show or hide the staff (H)'), () => set({staff: !state.staff}), 'toggle');
+  const bStaff = btn('', tr('Show or hide the staff (H)'), () => set({staff: !state.staff}), 'toggle pair');
+  const staffLabel = h('span', {class: 'lbl'});
+  bStaff.append(icon('staff'), staffLabel);
   const bZoomOut = btn(icon('zoomOut'), tr('Smaller (Z)'), () => set({scale: state.scale - 5}), 'icon');
   const bZoomIn = btn(icon('zoomIn'), tr('Bigger (Shift+Z)'), () => set({scale: state.scale + 5}), 'icon');
   // both hands: a piano part made from the chords (piano.js); how the hands play is chosen in the panel at the bottom
@@ -65,6 +69,8 @@ export function createSheetPanel(pane, o) {
   const lightPaper = () => store.get('sheetPaper', null) === 'light';
   function moreMenu() {
     const items = [];
+    // Both hands has no room in the bar of a narrow screen (sheet.css), so it is here instead
+    if (matchMedia('(max-width: 480px)').matches && !bHands.hidden) items.push({icon: 'piano', label: tr('Both hands'), checked: !!state.hands, run: () => set({hands: !state.hands})});
     if (!view.chordsOnly) items.push({icon: 'edit', label: view.editing ? tr('Stop editing chords') : tr('Edit chords'), run: () => setEdit(!view.editing)});
     if (view.hasEdits()) items.push({icon: 'original', label: tr('Original chords'), checked: !!state.original, run: () => set({original: !state.original})});
     if (state.shift || state.scale !== DEFAULT_SCALE) items.push({icon: 'reset', label: tr('Original key and size'), run: () => set({shift: 0, scale: DEFAULT_SCALE})});
@@ -87,8 +93,8 @@ export function createSheetPanel(pane, o) {
   const bar = h('div', {class: 'sheet-bar', role: 'toolbar', 'aria-label': tr('Sheet music')},
     first ? exit : null,
     h('div', {class: 'seg'}, bPiano, bGuitar),
-    h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
     bStaff,
+    h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
     bHands,
     h('div', {class: 'zoom'}, bZoomOut, bZoomIn),
     h('span', {class: 'grow'}),
@@ -194,7 +200,7 @@ export function createSheetPanel(pane, o) {
     bPiano.setAttribute('aria-pressed', String(!state.guitar));
     bGuitar.setAttribute('aria-pressed', String(state.guitar));
     bStaff.setAttribute('aria-pressed', String(state.staff));
-    bStaff.textContent = state.staff ? tr('Hide staff') : tr('Show staff');
+    staffLabel.textContent = state.staff ? tr('Hide staff') : tr('Show staff');
     bStaff.hidden = !!view.chordsOnly;
     bPlay.hidden = !full || !!view.chordsOnly;   // a sheet of chords over the words has no notes to play
     if (sp) {

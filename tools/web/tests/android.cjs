@@ -55,12 +55,26 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
     assert(await page.locator('.tb.playsheet').isVisible() && await page.locator('.tb.sheet-more').isVisible(), 'play and more');
     assert((await page.locator('.sheet-no:not(.sheet-spacer)').textContent()).trim() === 'BF500', 'the number');
   });
+  await test('one row on a small phone: the icons for Piano | Guitar and the staff, no zoom and no Both hands', async () => {
+    const q = await phone(BF500 + '&theme=light&lang=en', {viewport: {width: 360, height: 740}});
+    const r = await q.page.locator('.sheet-bar').evaluate((bar) => {
+      const vis = [...bar.children].filter((e) => e.offsetParent !== null && e.getBoundingClientRect().width > 0);
+      return {tops: [...new Set(vis.map((e) => Math.round(e.getBoundingClientRect().top / 6)))], right: Math.max(...vis.map((e) => e.getBoundingClientRect().right)),
+        names: vis.map((e) => e.className)};
+    });
+    assert(r.tops.length === 1, 'one row: ' + JSON.stringify(r));
+    assert(r.right <= 360, 'fits the screen: ' + r.right);
+    assert(!r.names.some((n) => /zoom|hands/.test(n)), 'no zoom, no Both hands: ' + r.names);
+    assert(await q.page.locator('.sheet-bar .seg .tb .lbl').first().isHidden(), 'Piano | Guitar are icons');
+    await q.page.screenshot({path: process.env.SHOT || '/tmp/bar360.png', clip: {x: 0, y: 0, width: 360, height: 120}});
+    await q.ctx.close();
+  });
   await test('the book\'s colour (Be Filled), from the app', async () => {
     const bg = await page.locator('.sheet-bar .seg .tb[aria-pressed="true"]').evaluate((e) => getComputedStyle(e).backgroundColor);
     assert(bg === 'rgb(0, 153, 204)', 'Piano pressed in the day colour: ' + bg);
   });
   await test('Both hands opens its panel; ▶ plays at the tune\'s tempo and shades the bar', async () => {
-    await page.click('.tb.hands'); await page.waitForTimeout(800);
+    await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Both hands")'); await page.waitForTimeout(800);   // not in the bar on a phone
     assert(await page.locator('.piano-panel .pp-body').isVisible(), 'the panel');
     const pressed = await page.locator('.piano-panel .ce-btn[aria-pressed="true"]').first().evaluate((e) => getComputedStyle(e).backgroundColor);
     assert(pressed === 'rgb(0, 153, 204)', 'the panel in the book\'s colour too: ' + pressed);
@@ -70,7 +84,7 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
     assert(await page.locator('.sp-tempo').textContent() === '♩ = 89', 'the tune\'s tempo: ' + await page.locator('.sp-tempo').textContent());
     assert(await page.locator('.sp-bar').isVisible() && await page.locator('[id^="lh"].playing').count() > 0, 'the bar and the left hand light up');
     await page.click('.tb.playsheet'); await page.waitForTimeout(300);
-    await page.click('.tb.hands'); await page.waitForTimeout(500);
+    await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Both hands")'); await page.waitForTimeout(500);
   });
   await test('chord editing fits a phone: three lines, saved through the app, Back closes it', async () => {
     await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Edit chords")'); await page.waitForTimeout(500);
@@ -121,7 +135,7 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
   await test('a translation\'s own words under the borrowed sheet; the guitar sheet from the app\'s setting', async () => {
     assert((await page.locator('.sheet-no:not(.sheet-spacer)').textContent()).trim() === 'C1', 'the translation\'s number: ' + await page.locator('.sheet-no:not(.sheet-spacer)').textContent());
     assert(/但願榮耀/.test(await page.locator('.sheet-title').textContent()), 'its title');
-    assert(await page.locator('.sheet-bar .seg .tb:text-is("Guitar")').getAttribute('aria-pressed') === 'true', 'guitar');
+    assert(await page.locator('.sheet-bar .seg .tb[title^="Guitar"]').getAttribute('aria-pressed') === 'true', 'guitar');
   });
   await p.ctx.close();
 

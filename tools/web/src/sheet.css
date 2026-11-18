@@ -29,6 +29,7 @@
 }
 .transpose .key:disabled { cursor: default; }
 .zoom { display: inline-flex; gap: 2px; }
+.sheet-bar .tb.pair > .icon { display: none; }
 /* ⋯: the sheet's other choices (popupMenu); a dot on it while the original chords are shown */
 .sheet-bar .tb.sheet-more { position: relative; }
 .sheet-bar > .tb.icon.exit-first { order: 0; }   /* the Android viewer's back button stays first, also on a phone */
@@ -36,14 +37,18 @@
 .sheet-from { margin: 10px 16px 0; font-size: 13px; color: var(--muted); }
 .sheet-host { padding: 16px 12px 24px; }
 @media (max-width: 480px) {
-  .sheet-bar { gap: 6px; padding: 8px; }
+  .sheet-bar { gap: 5px; padding: 8px 6px; }
   .sheet-bar .tb { padding: 0 9px; }
-  .transpose .key { min-width: 4.4em; }
-  /* two tidy rows: Piano/Guitar, key, zoom; then the staff and chord buttons, with the icon buttons on the right */
-  .sheet-bar > * { order: 2; }
-  .sheet-bar > .seg, .sheet-bar > .transpose, .sheet-bar > .zoom { order: 1; }
-  .sheet-bar > .grow { order: 3; }
-  .sheet-bar > .tb.icon { order: 4; }
+  /* one row: back, Piano | Guitar and the staff as icons, the key, then play and ⋯ on the right; the zoom (pinching does
+     it) and Both hands (in the ⋯ menu) have no room */
+  .sheet-bar { flex-wrap: nowrap; }
+  .sheet-bar .tb.pair > .icon { display: inline-flex; }
+  .sheet-bar .tb.pair > .lbl { display: none; }
+  .sheet-bar .tb.pair { padding: 0; width: 32px; }
+  .sheet-bar .seg .tb.pair { width: 30px; }
+  .sheet-bar .zoom, .sheet-bar .tb.hands { display: none; }
+  .transpose .tb { width: 26px; }
+  .transpose .key { min-width: 2.4em; }
   .sheet-host { padding: 12px 6px 20px; }
 }
 
