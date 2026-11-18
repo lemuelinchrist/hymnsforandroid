@@ -318,7 +318,7 @@ async function search(page, text) {
     const rowsOf = (name) => sec(name).locator('.lk-row').evaluateAll((a) => a.map((x) => x.querySelector('.lk-t1').textContent + ' | '
       + (x.querySelector('.lk-t2') ? x.querySelector('.lk-t2').textContent : '') + ' ' + x.getAttribute('href')));
     const heads = () => page.locator('.links-card .lk-head span:first-child').allTextContents();
-    await test('links card: piano videos in order, recordings by publisher and album, the sections E1, E12, E35, C1 have', async () => {
+    await test('links card: piano videos in order, recordings by publisher and album, the sections E1, E12, E37, C1 have', async () => {
       await open(page, '#/h/E1');
       assert((await rowsOf('Piano videos')).join() === '1st tune | Piano video · YouTube https://www.youtube.com/watch?v=xVAb23XLD0s', 'E1: ' + await rowsOf('Piano videos'));
       assert((await rowsOf('Recordings'))[0].startsWith('Living Stream Ministry | The Triune God Has Now Become Our All https://www.youtube.com/watch?v='), 'E1 recording: ' + await rowsOf('Recordings'));
@@ -330,8 +330,8 @@ async function search(page, text) {
       assert((await rowsOf('Piano videos')).length === 1, 'E3 has one video');
       await open(page, '#/h/C1');
       assert((await rowsOf('Piano videos'))[0] === (await (async () => { await open(page, '#/h/E1'); return rowsOf('Piano videos'); })())[0], 'C1 should show E1\'s video');
-      await open(page, '#/h/E35');
-      assert((await heads()).join() === 'Search', 'E35 has only the search section: ' + await heads());
+      await open(page, '#/h/E37');
+      assert((await heads()).join() === 'Search', 'E37 has only the search section: ' + await heads());
     });
     await test('links card: three recordings first, "Show N more" for the rest, an instrumental is tagged (E395)', async () => {
       await open(page, '#/h/E395');
