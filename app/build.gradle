@@ -135,7 +135,7 @@ def copyViewer = tasks.register('copyViewer', Sync) {
 }
 android.sourceSets.main.assets.srcDirs += viewerAssets
 tasks.configureEach { task ->
-    if (task.name ==~ /(merge|package|generate|lintVital|lint|compress).*Assets.*/ || task.name ==~ /lint.*/) {
+    if (task.name ==~ /(merge|package|generate|lintVital|lint|compress).*Assets.*/ || task.name ==~ /(?i).*lint.*/) {
         task.dependsOn(copyViewer)
     }
 }
