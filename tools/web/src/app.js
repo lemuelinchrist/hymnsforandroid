@@ -312,8 +312,7 @@ function homeScreen(view) {
   const list = (ids) => h('ul', {class: 'hymn-list'}, ids.map((id) => hymnRow(DB.hymn(id))));
   const touch = window.matchMedia('(pointer: coarse)').matches;
 
-  view.appendChild(h('div', {class: 'home'},
-    installHint(),
+  const home = h('div', {class: 'home'},
     (recent.length || favs.length) ? null : h('section', {class: 'hero'},   // first-run hint only
       h('h1', null, tr('Hymns')),
       h('p', null, trh('Type a number to open it in {0}, or a few words from any line to search every hymnal.', h('b', null, BY_CODE[currentGroup].name))),
@@ -337,7 +336,9 @@ function homeScreen(view) {
           style: groupStyle(g.code)},
           h('span', {class: 'code'}, g.code),
           h('span', {class: 'name', dir: 'auto'}, g.name),
-          h('span', {class: 'count'}, bookSubtitle(g.code, tn('{0} hymn', '{0} hymns', counts[g.code])))))))));
+          h('span', {class: 'count'}, bookSubtitle(g.code, tn('{0} hymn', '{0} hymns', counts[g.code]))))))));
+  view.appendChild(home);
+  installHintFor(home);   // Chrome may fire its install prompt after this screen is drawn
 }
 
 function hymnRow(hm, extra) {
