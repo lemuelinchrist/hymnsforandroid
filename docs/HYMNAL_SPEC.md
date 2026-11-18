@@ -201,6 +201,7 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
 | Field | Convention / example |
 |---|---|
 | `first_stanza_line` | First line of stanza 1, used as the hymn's **title** in every list. May be empty for chorus-only songs (then use `first_chorus_line`; 1 hymn, `NS802`, has neither). |
+| `title` | The hymn's real title, only when it is not the first line (NS songs, hymns with a name like `It is well`); empty otherwise, and a child takes its parent's. A song's first line is its title in every list; `title` is only searched for now. Sources: the `<title type="main">` of its `sheetMei` file, the recording titles in `tools/youtube-monitor/recordings.tsv`, songbase. |
 | `first_chorus_line` | First chorus line; English data has it in capitals (`ONCE FOR ALL-OH, SINNER, RECEIVE IT;`). |
 | `main_category` / `sub_category` | Subject, e.g. `Blessing of the Trinity` / `His Plan`; Chinese `頌讚三一神` / `祂的計畫`. |
 | `meter` | `8.5.8.3.` (English) or `8583` (Chinese), or `Peculiar Meter.` |

@@ -74,7 +74,7 @@ sheet side by side.
 - The query is read as:
   - `8` → hymn 8 in the current hymnal (opens straight away on Enter).
   - `E8`, `ns151`, `C 206` → that hymn in that hymnal.
-  - Anything else → a search of first lines, chorus lines, subjects, authors, tunes and stanza text. Results update as you type. Each
+  - Anything else → a search of first lines, titles, chorus lines, subjects, authors, tunes and stanza text. Results update as you type. Each
     result shows the hymnal chip in the group colour, the number, the first line and the matching snippet.
 - The hymnal picker remembers the last choice. Group names and colours come from `HymnGroup.java`.
 - **Browse**: a number grid (1…max, with gaps greyed out) and a category tree (`main_category` →
@@ -194,18 +194,18 @@ tools/web/                (was svg-to-lilypond/hymnsforweb/ until 2026-10-20)
    hymn IDs.
 4. **Stanza text** uses `<br/>` line breaks and `n_order` for order. Stanza `no` is a number or `chorus`.
 5. **Search** works like the app's Search tab (`docs/HYMNAL_SPEC.md` §9.3). It runs `LIKE` over a `search` table
-   that `build.py` fills with each hymn's first stanza line, first chorus line, subject, author and composer, key and
+   that `build.py` fills with each hymn's first stanza line, title, first chorus line, subject, author and composer, key and
    tune, and stanzas, in a normal form: no tags, no accents, lower case, punctuation as spaces. A hymn with a parent
-   takes the parent's author, composer, key, tune, subject and stanzas where it has none. `norm()` in `build.py`
+   takes the parent's author, composer, key, tune, title, subject and stanzas where it has none. `norm()` in `build.py`
    and `db.js` must stay identical (and `SearchText.norm` in the app).
    - "senor" finds "Señor", and Greek final sigma matches.
    - Chinese and Japanese match by substring, since there are no spaces.
    - Every word must appear somewhere in the hymn; text in quotes is an exact phrase. A word of one or two Latin,
      Greek or Cyrillic letters only counts as a whole word ("c major").
-   - Sorting: the phrase at the start of the first line, in the first line, in the chorus line; all words in
-     the first line, the chorus line, the subject, the author/composer, the key/tune; then the phrase or whole
+   - Sorting: the phrase at the start of the first line, in the first line, at the start of / in the title, in the chorus line; all words in
+     the first line, the title, the chorus line, the subject, the author/composer, the key/tune; then the phrase or whole
      words in the stanzas, then parts of words. Ties: the current hymnal, the drawer's order, the number.
-   - A result that didn't match on its first line shows why: the chorus line, `Subject: …`, `Author: …`,
+   - A result that didn't match on its first line shows why: the title, the chorus line, `Subject: …`, `Author: …`,
      `Key: … · Tune: …`, or the best stanza line.
    - It takes about 20 ms (no FTS5 in sql.js, and it isn't needed).
 

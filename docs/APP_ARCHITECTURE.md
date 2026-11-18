@@ -87,7 +87,7 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
 -   **Responsibilities:**
     -   A `ViewPager` with 4 tabs, each a `TabFragment` subclass in `search/fragments/`: Hymn Numbers, Search, Favorites, History. The adapters are in `search/searchadapters/` (most extend `HymnCursorAdapter`).
     -   `SearchTabFragment` (the Search tab): with an empty box it lists the current book with the old adapters (`FirstLineChorusAdapter`, `CategoryAdapter`, `AuthorAdapter`, `MusicKeyAdapter`); while typing it runs `HymnSearch` on a background thread and shows `SearchResultAdapter` (one row per hymn, matched words in bold, a "why it matched" line, an optional "Go to <ID>" row).
-    -   `HymnSearch` reads the query (words, quoted phrases, a hymn ID or number), finds and ranks hymns in the `search` table; `SearchText.norm` is the search form shared with the web app. The table is built by `dao/SearchIndex` into its own `search.sqlite`, in the background, once per app version (started by `HymnsActivity`).
+    -   `HymnSearch` reads the query (words, quoted phrases, a hymn ID or number), finds and ranks hymns in the `search` table (first line, title, chorus, subject, author, key/tune, lyrics; a hymn's title is its own or its parent's); `SearchText.norm` is the search form shared with the web app. The table is built by `dao/SearchIndex` into its own `search.sqlite`, in the background, once per app version (started by `HymnsActivity`).
     -   One shared `SearchView`; each tab remembers its own query. The Hymn Numbers tab uses a phone keypad and jumps straight to the typed number on submit; in the Search tab, submit opens a typed hymn ID or number.
     -   Returns the chosen hymn ID to `HymnsActivity` with `setResult`.
 
