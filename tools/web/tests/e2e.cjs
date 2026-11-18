@@ -365,8 +365,8 @@ async function search(page, text) {
       await open(page, '#/h/E12');
       assert(!(await page.locator('.hymn').innerText()).includes('(New Tune)'), 'E12 header');
     });
-    await test('a hymn without sheet music has no Sheet tab and says so (C206)', async () => {
-      await open(page, '#/h/C206');
+    await test('a hymn without sheet music has no Sheet tab and says so (NS1031)', async () => {
+      await open(page, '#/h/NS1031');
       assert(await page.locator('.tabs').count() === 0, 'tabs shown');
       assert(await page.locator('.sheet-pane').count() === 0, 'sheet pane shown');
       assert((await page.textContent('.meta')).includes('No sheet music'), 'no-sheet note');

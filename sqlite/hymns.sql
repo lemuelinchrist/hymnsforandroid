@@ -2292,7 +2292,7 @@ INSERT INTO hymns VALUES('CS326',NULL,NULL,NULL,'哦，是你愛來遇見我們�
 INSERT INTO hymns VALUES('CS327','A brother','Y. J. L.',NULL,'主阿！我愛你，','CS','F大調6/4','主阿，我愛你',NULL,'327',NULL,'3/4','345465321721',NULL,NULL,'ZS327,FRY115,',NULL,NULL);
 INSERT INTO hymns VALUES('CS328','Howard Higashi (1937-1998)','Howard Higashi (1937-1998)',NULL,'怎能鄉村女子如我，','CS','G大調4/4','神聖羅曼史',NULL,'328',NULL,'4/4','3345343211231217','NS10082',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('CS329','John Nelson Darby (1800-1882)',NULL,NULL,'何等喜樂，何等喜樂，','CS','D大調4/4','惟見榮耀裡的基督',NULL,'329',NULL,'4/4','3553255213317337',NULL,NULL,'ZS329,',NULL,'惟見榮耀裡的基督');
-INSERT INTO hymns VALUES('CS401',NULL,NULL,NULL,'生命之主向我吹氣，','CS','e小調3/4','生命之主向我吹氣','特','401',NULL,'3/4','6633717635653423',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('CS401',NULL,NULL,NULL,'生命之主向我吹氣，','CS','e小調3/4','生命之主向我吹氣','特','401',NULL,'3/4','6633717635653423',NULL,NULL,'ZS401,',NULL,NULL);
 INSERT INTO hymns VALUES('CS402',NULL,NULL,NULL,'吸引、吸引，','CS','降B大調4/4','吸引','特','402',NULL,'4/4','534531651567',NULL,NULL,'I1402,ZS402,',NULL,NULL);
 INSERT INTO hymns VALUES('CS403','Adapted',NULL,NULL,'主耶穌！主耶穌！','CS','C大調3/4','主耶穌！我渴慕摸著你',NULL,'403',NULL,'3/4','3521543334565',NULL,NULL,'I1403,ZS403,',NULL,'主耶穌！我渴慕摸著你');
 INSERT INTO hymns VALUES('CS404','Adapted','John Wyeth (1770-1858)',NULL,'可惡世界一直騙我，','CS','降E大調3/4','全心只有主','8.7.8.7.D.','404',NULL,'3/4','321135223565321',NULL,NULL,'I1404,ZS404,',NULL,'全心只有主');
@@ -8235,7 +8235,7 @@ INSERT INTO hymns VALUES('Z481','','','','应当一无罣虑，','Z','降A大调
 INSERT INTO hymns VALUES('Z482','','','天地虽能被焚烧，','神的应许不能废去，','Z','降A大调6/8','鼓励','8686副','482','相信主','','34323215666443','C482','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('Z483','','','','前进！是我口号，','Z','G大调4/4','鼓励','656565双','483','努力向前','','33221555662443326','E663','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('Z484','','','','当向标竿力前！','Z','降B大调6/8','鼓励','6686','484','努力向前','','53721655665653','E662','',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('Z485','','','','靠著恩主全能神，','Z','降D大调4/4','鼓励','第一辞76737773','485','努力向前','','565565515544655',NULL,'','C485,I485,J485,K485,',NULL,NULL);
+INSERT INTO hymns VALUES('Z485','','','','靠著恩主全能神，','Z','降D大调4/4','鼓励','第一辞76737773','485','努力向前','','565565515544655','C485','','',NULL,NULL);
 INSERT INTO hymns VALUES('Z487','','','','灵要操练运用，','Z','D大调4/4','鼓励','6565','487','运用灵','','11265333445','C487','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('Z488','','','仍然当爱，仍然当给，','何必担心一握不释？','Z','降E大调4/4','鼓励','8787双副','488','凭信而给','','33323215332254333321235','C488','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('Z489','','','多又多，多又多，','你曾觉得父爱心？','Z','D大调6/4','鼓励','7676双副','489','更多追求','','1234565535332','E668','',NULL,NULL,NULL);
@@ -8670,7 +8670,7 @@ INSERT INTO hymns VALUES('ZS326','','','','哦，是你爱来遇见我们，','Z
 INSERT INTO hymns VALUES('ZS327','A brother','Y. J. L.','','主阿！我爱你，','ZS','F大调6/4','主阿，我爱你','','327','','3/4','345465321721','CS327','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS328','Howard Higashi (1937-1998)','Howard Higashi (1937-1998)','','怎能乡村女子如我，','ZS','G大调4/4','神圣罗曼史','','328','','4/4','3345343211231217','NS10082','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS329','John Nelson Darby (1800-1882)','','','何等喜乐，何等喜乐，','ZS','D大调4/4','惟见荣耀里的基督','','329','','4/4','3553255213317337','CS329','',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('ZS401','','','','生命之主向我吹气，','ZS','e小调3/4','生命之主向我吹气','特','401','','3/4','6633717635653423',NULL,'',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('ZS401','','','','生命之主向我吹气，','ZS','e小调3/4','生命之主向我吹气','特','401','','3/4','6633717635653423','CS401','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS402','','','','吸引、吸引，','ZS','降B大调4/4','吸引','特','402','','4/4','534531651567','CS402','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS403','Adapted','','','主耶稣！主耶稣！','ZS','C大调3/4','主耶稣！我渴慕摸著你','','403','','3/4','3521543334565','CS403','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS404','Adapted','John Wyeth (1770-1858)','','可恶世界一直骗我，','ZS','降E大调3/4','全心只有主','8.7.8.7.D.','404','','3/4','321135223565321','CS404','',NULL,NULL,NULL);
@@ -28377,7 +28377,7 @@ INSERT INTO stanza VALUES('C484','4','當向標竿力前！<br/>塞耳、啞口�
 INSERT INTO stanza VALUES('C485','1','靠著恩主全能神，<br/>往前走！往前走！<br/>抓住應許憑信心，<br/>往前走！<br/>含地永不再逗遛，<br/>埃及從此丟背後，<br/>就此一去不回頭，<br/>往前走！<br/>',NULL,9770,9770);
 INSERT INTO stanza VALUES('C485','2','雖然後面仇敵追，<br/>往前走！往前走！<br/>雖然前面是深水，<br/>往前走！<br/>深水為你必分開，<br/>仇敵全都必淹埋，<br/>救恩使你必奏凱，<br/>往前走！<br/>',NULL,9771,9771);
 INSERT INTO stanza VALUES('C485','3','白晝雲柱來引導，<br/>往前走！往前走！<br/>黑夜火柱來光照，<br/>往前走！<br/>飢餓，嗎哪必降來，<br/>乾渴，磐石必裂開，<br/>遇敵，尼西必擊敗，<br/>往前走！<br/>',NULL,9772,9772);
-INSERT INTO stanza VALUES('C485','4','曠野道路雖艱險，<br/>往前走！往前走！<br/>跟隨約櫃直往前，<br/>往前走！<br/>往前！直到過約但，<br/>往前！直到進迦南！<br/>往前！n直到在錫安，<br/>往前走！<br/>',NULL,9773,9773);
+INSERT INTO stanza VALUES('C485','4','曠野道路雖艱險，<br/>往前走！往前走！<br/>跟隨約櫃直往前，<br/>往前走！<br/>往前！直到過約但，<br/>往前！直到進迦南！<br/>往前！直到在錫安，<br/>往前走！<br/>',NULL,9773,9773);
 INSERT INTO stanza VALUES('C487','1','靈要操練運用，<br/>魂卻要拒絕；<br/>無論生活行動，<br/>以此為祕訣。<br/>',NULL,9777,9777);
 INSERT INTO stanza VALUES('C487','2','靈要操練運用，<br/>規條要棄絕；<br/>恩膏塗抹順從，<br/>時刻無間歇。<br/>',NULL,9778,9778);
 INSERT INTO stanza VALUES('C487','3','靈要操練運用，<br/>己意要拒絕；<br/>活在生命光中，<br/>讓主作一切。<br/>',NULL,9779,9779);
@@ -60677,7 +60677,7 @@ INSERT INTO stanza VALUES('Z484','4','当向标竿力前！<br/>塞耳、哑口�
 INSERT INTO stanza VALUES('Z485','1','靠着恩主全能神，<br/>往前走！往前走！<br/>抓住应许凭信心，<br/>往前走！<br/>含地永不再逗遛，<br/>埃及从此丢背后，<br/>就此一去不回头，<br/>往前走！<br/>','',56235,9770);
 INSERT INTO stanza VALUES('Z485','2','虽然后面仇敌追，<br/>往前走！往前走！<br/>虽然前面是深水，<br/>往前走！<br/>深水为你必分开，<br/>仇敌全都必淹埋，<br/>救恩使你必奏凯，<br/>往前走！<br/>','',56236,9771);
 INSERT INTO stanza VALUES('Z485','3','白昼云柱来引导，<br/>往前走！往前走！<br/>黑夜火柱来光照，<br/>往前走！<br/>饥饿，吗哪必降来，<br/>干渴，磐石必裂开，<br/>遇敌，尼西必击败，<br/>往前走！<br/>','',56237,9772);
-INSERT INTO stanza VALUES('Z485','4','旷野道路虽艰险，<br/>往前走！往前走！<br/>跟随约柜直往前，<br/>往前走！<br/>往前！直到过约但，<br/>往前！直到进迦南！<br/>往前！n直到在锡安，<br/>往前走！<br/>','',56238,9773);
+INSERT INTO stanza VALUES('Z485','4','旷野道路虽艰险，<br/>往前走！往前走！<br/>跟随约柜直往前，<br/>往前走！<br/>往前！直到过约但，<br/>往前！直到进迦南！<br/>往前！直到在锡安，<br/>往前走！<br/>','',56238,9773);
 INSERT INTO stanza VALUES('Z487','1','灵要操练运用，<br/>魂却要拒绝；<br/>无论生活行动，<br/>以此为秘诀。<br/>','',56242,9777);
 INSERT INTO stanza VALUES('Z487','2','灵要操练运用，<br/>规条要弃绝；<br/>恩膏涂抹顺从，<br/>时刻无间歇。<br/>','',56243,9778);
 INSERT INTO stanza VALUES('Z487','3','灵要操练运用，<br/>己意要拒绝；<br/>活在生命光中，<br/>让主作一切。<br/>','',56244,9779);
