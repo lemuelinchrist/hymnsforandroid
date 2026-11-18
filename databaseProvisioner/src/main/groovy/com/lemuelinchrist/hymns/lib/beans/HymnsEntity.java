@@ -60,6 +60,19 @@ public class HymnsEntity {
     @jakarta.persistence.Column(name = "new_tune")
     private Integer newTune;
 
+    // The hymn's own title when it differs from its first line (null otherwise: the first line is the title). Never inherited.
+    @Basic
+    @jakarta.persistence.Column(name = "title")
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public Integer getNewTune() {
         return newTune;
     }

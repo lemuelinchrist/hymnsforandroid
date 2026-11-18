@@ -247,6 +247,7 @@ When a song is added to the database (a recording, a review page, a hymnal.net o
 do not leave the metadata empty to fill in "later": on 2026-11-17 it took a whole session to give 115 Be Filled songs without
 a parent their `main_category`. Fill in, in the same change as the song, whatever can be known:
 
+- **`title`**, only when the song's title is not its first line (hymnal.net's English hymns use the first line as the title, leave NULL then; NS and many songs have a real one). Take it from the sheet's `<title type="main">` in `sheetMei/<id>.mei` without any "(New Tune)"; own to the hymn, never inherited.
 - **`main_category` (and `sub_category` when it is clear)**, only for a song **without a parent** (a song with a parent
   inherits it, leave it empty). Use the English hymnal's main categories (`select distinct main_category from hymns where
   hymn_group in ('E','NS')`: Praise of the Lord, Experience of Christ, Gospel, The Church, Longings, Consecration, Comfort in

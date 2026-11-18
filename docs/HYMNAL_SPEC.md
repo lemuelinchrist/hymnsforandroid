@@ -168,7 +168,8 @@ CREATE TABLE "hymns" (
   "parent_hymn" TEXT,                   -- Hymn ID this one inherits from (translation -> original)
   "verse" TEXT,                         -- Bible references, comma separated
   "related" TEXT,                       -- comma-separated Hymn IDs (same hymn in other books)
-  "new_tune" INTEGER                    -- 1 = a New Tune (hymnal.net's, or a translation of one): the header says "(New Tune)" and lists add it to the first line. NULL for all others
+  "new_tune" INTEGER,                   -- 1 = a New Tune (hymnal.net's, or a translation of one): the header says "(New Tune)" and lists add it to the first line. NULL for all others
+  "title" TEXT                          -- the hymn's own title when it differs from its first line (NULL = the first line is the title); language-specific, never inherited, no "(New Tune)" text. Not shown in the apps yet
 );
 CREATE TABLE "stanza" (
   "parent_hymn" TEXT NOT NULL,          -- Hymn ID the stanza belongs to (NOT the parent hymn concept)

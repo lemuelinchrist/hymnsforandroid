@@ -119,6 +119,7 @@ The database contains the following tables:
 | `parent_hymn`       | TEXT    | The parent hymn, if any.                          |
 | `verse`             | TEXT    | The scripture verse associated with the hymn.     |
 | `related`           | TEXT    | A comma-separated list of related hymn IDs.       |
+| `title`             | TEXT    | The hymn's own title, only when it differs from its first line (NULL means the first line is the title, as hymnal.net's English hymns have it). Language-specific, so never inherited from the parent; no "(New Tune)" text. Backfilled from the `<title type="main">` of the hymn's `sheetMei` file. |
 | `new_tune`          | INTEGER | 1 for a New Tune (hymnal.net's, another tune for an English hymn, or a translation of one): the hymn page header says "(New Tune)" and the lists add it to the first line (the stored first lines have no such text). NULL for every other hymn, including BF songs that have a tune of their own. Never inherited from the parent. |
 
 ### `stanza`

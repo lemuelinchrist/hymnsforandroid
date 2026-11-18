@@ -115,6 +115,7 @@ export function hymn(id) {
   const h = {
     id, group: row.hymn_group, no: row.no, parentId: row.parent_hymn || null,
     first: row.first_stanza_line, chorus: row.first_chorus_line,
+    title: row.title || null,   // the hymn's own title when it differs from its first line (never inherited)
     category: row.main_category, subcategory: row.sub_category,
     stanzas: stanzaRows(id), related: relatedIds(row.related), newTune: row.new_tune === 1,   // the hymn's own column, never inherited
   };

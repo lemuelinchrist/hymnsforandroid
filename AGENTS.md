@@ -57,6 +57,7 @@ Stores the main metadata for each hymn.
 | `first_stanza_line` | VARCHAR | First line of the first stanza for quick display. |
 | `parent_hymn` | TEXT | ID of the parent hymn for data inheritance. |
 | `related` | TEXT | Comma-separated list of related hymn IDs. |
+| `title` | TEXT | The hymn's own title when it differs from its first line; NULL = the first line is the title. Never inherited. |
 | `new_tune` | INTEGER | 1 = New Tune or a translation of one (header and lists show "(New Tune)"); NULL otherwise. |
 | ... | ... | Other metadata like `author`, `composer`, `key`, `time`, `tune`. |
 

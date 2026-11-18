@@ -22,7 +22,7 @@ public class HymnsDao {
 
     public static enum HymnFields {
         _id, hymn_group, first_stanza_line, first_chorus_line, main_category, sub_category, meter, author,
-        composer, time, key, tune, no, parent_hymn, verse, related, new_tune
+        composer, time, key, tune, no, parent_hymn, verse, related, new_tune, title
     }
 
     public static enum StanzaFields {
@@ -388,6 +388,7 @@ public class HymnsDao {
         hymn.setVerse(cursor.getString(cursor.getColumnIndex(HymnFields.verse.toString())));
         hymn.addRelated(cursor.getString(cursor.getColumnIndex(HymnFields.related.toString())));
         hymn.setNewTune(cursor.getInt(cursor.getColumnIndex(HymnFields.new_tune.toString())) == 1);
+        hymn.setTitle(cursor.getString(cursor.getColumnIndex(HymnFields.title.toString())));   // its own, never from the parent
 
         if (hymn.getTune() != null) hymn.setTune(hymn.getTune().trim());
         return hymn;

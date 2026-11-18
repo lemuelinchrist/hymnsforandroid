@@ -37,6 +37,8 @@ public class Hymn {
     private String parentHymn;
 
     private boolean isNewTune = false;
+    // the hymn's own title when it differs from its first line; null means the first line is the title
+    private String title;
     private boolean ownTune = false;
 
     public String getVerse() {
@@ -307,6 +309,14 @@ public class Hymn {
                 stanzaCount++;
         }
         return stanzaCount;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public boolean isNewTune() {
