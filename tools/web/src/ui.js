@@ -118,7 +118,9 @@ export function popupMenu(anchor, items, cls = '') {
   document.body.appendChild(menu);
   const r = anchor.getBoundingClientRect();
   menu.style.top = (r.bottom + 4) + 'px';
-  menu.style.right = Math.max(8, innerWidth - r.right) + 'px';
+  // the menu's right edge sits under the button's right edge, but never past either side of the screen (the ⋯ can be on the left when the bar wraps)
+  const w = menu.offsetWidth;
+  menu.style.left = Math.max(8, Math.min(r.right - w, innerWidth - w - 8)) + 'px';
   anchor.setAttribute('aria-expanded', 'true');
   document.addEventListener('pointerdown', away, true);
   document.addEventListener('keydown', esc, true);
