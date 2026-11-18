@@ -107,7 +107,8 @@ function setTheme(t) {
   themeListeners.forEach((f) => f());
 }
 
-const LYRIC_SIZES = [0.9, 1, 1.12, 1.25, 1.4, 1.6, 1.85];
+// 0 is Extra Small (the web app only), 1-5 are the Android app's Small ... XXL; 6 is bigger still (the A buttons on a hymn)
+const LYRIC_SIZES = [0.8, 1, 1.12, 1.25, 1.4, 1.6, 1.85];
 let lyricSize = store.get('lyricSize', 2);
 
 function setLyricSize(i) {
@@ -1258,14 +1259,14 @@ function settingsScreen(view) {
   }
 
   // display
-  // text size: the five Android steps (Small ... XXL) on steps 1-5 of the page's seven (0 and 6 only with the A buttons on a hymn)
-  const SIZE_NAMES = ['Small', 'Medium', 'Large', 'Extra Large', 'XXL'];
-  const step = () => Math.max(0, Math.min(4, lyricSize - 1));
+  // text size: Extra Small (the web app's own) and the five Android steps (Small ... XXL) on steps 0-5 of the page's seven (6 only with the A buttons on a hymn)
+  const SIZE_NAMES = ['Extra Small', 'Small', 'Medium', 'Large', 'Extra Large', 'XXL'];
+  const step = () => Math.max(0, Math.min(5, lyricSize));
   const sizeValue = h('span', null, tr(SIZE_NAMES[step()]));
   const sizeSteps = h('div', {class: 'card size-steps', role: 'group', 'aria-label': tr('Text size')}, SIZE_NAMES.map((name, i) =>
-    h('button', {type: 'button', 'aria-label': tr(name), 'aria-pressed': String(i === step()), style: 'font-size:' + (13 + 4 * i) + 'px',
+    h('button', {type: 'button', 'aria-label': tr(name), 'aria-pressed': String(i === step()), style: 'font-size:' + Math.round(10 + 3.6 * i) + 'px',
       onclick: () => {
-        setLyricSize(i + 1);
+        setLyricSize(i);
         sizeValue.textContent = tr(name);
         for (const [j, x] of [...sizeSteps.children].entries()) x.setAttribute('aria-pressed', String(j === i));
       }}, 'A')));
