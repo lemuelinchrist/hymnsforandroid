@@ -238,12 +238,16 @@ body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
 .sheet.dark .sheet-music g.playing, .sheet.dark .sheet-music g.playing * { fill: color-mix(in srgb, var(--g) 55%, #fff) !important; stroke: color-mix(in srgb, var(--g) 55%, #fff) !important; }
 @media print { .sheet-player { display: none !important; } }
 @media (max-width: 700px) {
-  .sheet-player { gap: 6px; padding: 6px 44px; }
-  .sheet-player .sp-group { gap: 6px; }
-  .sheet-player > .tb.close { top: 6px; right: 10px; }
-  .sheet-player .tb { height: 30px; padding: 0 9px; font-size: 13px; }
-  .sheet-player .sp-speed { width: 80px; }
-  .sheet-player .sp-tempo-box { padding: 0 10px; }
+  .sheet-player { gap: 4px 6px; padding: 4px 44px 4px 8px; }
+  .sheet-player .sp-group { gap: 4px; flex-wrap: nowrap; }
+  .sheet-player > .tb.close { top: 4px; right: 8px; }
+  .sheet-player .tb { height: 28px; min-width: 28px; padding: 0 8px; font-size: 13px; }
+  .sheet-player .tb.primary { min-width: 0; }
+  .sheet-player .tb.icon { width: 28px; }
+  .sheet-player .seg .tb { height: 24px; }
+  .sheet-player .sp-speed { width: 56px; }
+  .sheet-player .sp-tempo-box { height: 28px; gap: 6px; padding: 0 8px; }
+  .sheet-player .sp-tempo { font-size: 13px; min-width: 0; }
 }
 /* the chords of the key: their number, and a line under the ones that hold the melody at the chosen beat */
 .ce-key[hidden] { display: none; }
