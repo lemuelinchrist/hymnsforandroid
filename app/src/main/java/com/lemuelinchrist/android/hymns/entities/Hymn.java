@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
+import com.lemuelinchrist.android.hymns.content.sheetmusic.SheetPlayer;
 import android.util.Log;
 import android.widget.Toast;
 import androidx.preference.PreferenceManager;
@@ -184,12 +185,49 @@ public class Hymn {
         return getMelodyResourceId() != 0;
     }
 
+    /**
+     * The sheet the Play button plays in place of the MIDI file: the hymn's own sheet, or its parent's when the hymn has
+     * no tune of its own (as the sheet button picks it), when it has a melody (not a chords-only sheet) and it is
+     * a sheet of ours (it names Hymns For Android as its source) or the hymn has no MIDI file. Null: play the MIDI file.
+     */
+    public String getSheetToPlay() {
+        String id = hasOwnSheetMusic() ? hymnId : (!hasOwnTune() && hasSheetMusic(parentHymn)) ? parentHymn : null;
+        if (id == null) return null;
+        String mei = readSheetHead(id);
+        if (mei == null || mei.contains("type=\"kind\">chords<")) return null;
+        boolean ours = mei.contains("type=\"source\">Hymns For Android<");
+        return ours || !hasMelody() ? id : null;
+    }
+
+    /** The beginning of a sheet's MEI file (its header), or null. */
+    private String readSheetHead(String id) {
+        try (InputStream in = context.getAssets().open("sheetMei/" + id + ".mei")) {
+            byte[] buf = new byte[2048];
+            int n = in.read(buf);
+            return n <= 0 ? null : new String(buf, 0, n, java.nio.charset.StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    /** Whether Play has anything to play: a MIDI file for the tune or a sheet. */
+    public boolean canPlay() {
+        return hasMelody() || getSheetToPlay() != null;
+    }
+
     /** Starts the melody; false when there is none (the "not available" toast is shown) or it could not start. */
     public boolean playHymn() {
         try {
 
             //	we don't want to play another thread while the song is still playing.
             if (mp != null && mp.isPlaying()) {
+                return true;
+            }
+
+            String sheet = getSheetToPlay();
+            if (sheet != null) {
+                // a sheet of ours, or a hymn with no MIDI file: the sheet is played, again and again as the MIDI file is
+                SheetPlayer.get(context).play(sheet);
                 return true;
             }
 
@@ -226,6 +264,7 @@ public class Hymn {
         if (mp != null) {
             mp.stop();
         }
+        SheetPlayer.get(context).stop();
     }
 
     public String getFirstStanzaLine() {

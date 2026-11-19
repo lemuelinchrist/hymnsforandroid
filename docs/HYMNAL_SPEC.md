@@ -459,7 +459,8 @@ Toggle. Filled heart when the hymn is in Favorites. Stored as in §8.4.
   hymns with a tune had a file (2026-10). Since hymnal.net serves no MIDI any more, MIDI for newer songs is generated from our own sheet by `tools/hymn-midi` (melody as written, generated left hand; 60 files on 2026-11-12). A song transcribed from a recording (BF473) has a tune code made from its own melody: the scale degrees (1-7, relative to its key) of its first 16 notes. Translations get the tune from their parent (§5.1), so they play too.
 - Plays **looped** until stopped. Only one hymn plays at a time. Playback stops when the page changes, the app is
   paused, or the button is tapped again. Icon toggles ▶ / ❚❚.
-- Hidden when the hymn has no melody file (no tune, tune `0`, or no `res/raw/m<tune>` file). `playHymn()` still shows "Sorry! hymn not available" if called without a file or if playback fails.
+- **What it plays** (`Hymn.getSheetToPlay()`): the hymn's sheet (its own, or its parent's when it has no tune of its own, as the sheet button picks it) when the sheet has a melody (not a chords-only sheet) and **either** it is a sheet of ours (`<identifier type="source">Hymns For Android</identifier>`: our own rendition wins over any MIDI file) **or** the hymn has no MIDI file. Otherwise the MIDI file `res/raw/m<tune>.mid`. The sheet is played by `SheetPlayer`, a WebView nobody sees (`assets/viewer/play.html`, `tools/web/android/play.js`) that runs the viewer's own player (`scoreOf` + `playScore`): the viewer's saved Both hands choice, this device's chord edits, the tempo the sheet names (`midi.bpm`, else 90), looped like the MIDI file. Its WebView is dropped after two minutes without playing.
+- Hidden when there is neither (`Hymn.canPlay()`: no sheet to play and no melody file: no tune, tune `0`, or no `res/raw/m<tune>` file). `playHymn()` still shows "Sorry! hymn not available" if playback fails.
 
 ### 7.3 Sheet music
 

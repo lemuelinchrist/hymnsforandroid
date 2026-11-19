@@ -259,6 +259,19 @@ function applyEdits(doc, bars, edits) {
   }
 }
 
+// the sheet as it sounds with this device's chord edits (the bars as edits.js keeps them), for playing it without a view
+export function soundDoc(xml, editBars) {
+  const doc = parseXml(xml);
+  if (editBars && Object.keys(editBars).length) applyEdits(doc, scanBars(doc), editBars);
+  return doc;
+}
+
+// the tempo a sheet names for itself (quarter notes a minute; our own sheets: midi.bpm of the score), or 0
+export function bpmOf(doc) {
+  const sd = mei(doc, 'scoreDef')[0];
+  return sd ? Math.round(parseFloat(sd.getAttribute('midi.bpm')) || 0) : 0;
+}
+
 // ---- the view ----
 
 export class SheetView {
@@ -285,6 +298,7 @@ export class SheetView {
 
     this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE, original: false, hands: false};
     this.piano = null;             // how the hands play when state.hands is on (piano.js: {lh, rh}); the app sets it
+    this.baseBpm = 0;              // the tempo the sheet names itself (midi.bpm), 0 when it names none
     this.soundXml = null;          // the MEI as it sounds: in this key, with the edits, without the guitar's changes
     this.renders = 0;              // how many times the music was drawn (the player lights notes up again after one)
     this.onsound = null;
@@ -448,6 +462,7 @@ export class SheetView {
     const back = mei(doc, 'back')[0];
     if (back) back.parentNode.removeChild(back);
     this.baseFifths = keyFifths(doc);
+    this.baseBpm = bpmOf(doc);
     this.baseXml = new XMLSerializer().serializeToString(doc);
   }
 
