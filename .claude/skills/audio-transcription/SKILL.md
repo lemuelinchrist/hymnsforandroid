@@ -120,6 +120,25 @@ When the user says the sheet is done ("import the sheet"), do every step in the 
    file count in `docs/HYMNAL_SPEC.md`.
 5. Commit your own paths only (`git commit <paths>`), and tell the user the app and the web app need a new build.
 
+## Lessons from BF474 (2026-11-19): when the first draft's melody has many mistakes
+
+- **The forced alignment is the weak spot, not the pitch.** Its syllable times can be an eighth or two off, and it cuts held notes
+  short into rests. When the user says "a lot of mistakes in the melody", skip the aligner: run `grid.py` with one time per
+  stanza and `--bars 30` (a stanza of 8 lines is about 29 bars), take the **majority of the stanzas per eighth** (drop a stanza
+  whose beat tracking drifted, and the last one if the recording ends), read the runs of equal pitch, and write the notes of
+  `leadsheet.json` by hand from them. Lines that rhyme musically (1 and 3, 2 and 4) have the same rhythm: use that to settle doubtful notes.
+- **The user's chord tip is a bar-line check:** every chord starts on beat 1 of a bar. After rewriting, check that each `ch` falls on a
+  bar start (`(position - pickup) % 16 == 0`; sixteenths). A note that crosses a bar line is written as two notes, the second with
+  `"tie": true`, so the chord can sit on it.
+- **`leadsheet.json` units:** `d` is in sixteenths (an eighth = 2), `pickup` the first bar's length in sixteenths (0 = none), a rest has
+  `"p": null`, a melisma note `"w": [""]`, a tied one no `w`. Keep the first draft in `leadsheet.history/` before overwriting.
+- **The row may already exist** (a freed id such as BF474 had a row with no key, time or tune): update it, do not insert.
+- **MIDI:** `leadsheet_to_midi.py` needs the venv's python (`pretty_midi`), not the system one.
+- **New files must be `git add`ed** before `git commit <paths>`.
+- **Piano part the user chose:** the left hand is `acc` in `leadsheet.json` (the user calls it "the left hand"; `rh` is notes
+  added to the right hand and is often absent). Pass it to `finish_mei.py` as `family/kind/rhythm` from `acc.style` + `acc.rate`
+  (0 = `held`, 8 = `half`, 4 = `beat`), so the sheet starts with it in Both hands and in the hymn page's Play. The tempo is `sheet.tempo`.
+
 ## Reviewing without ears
 
 The model cannot listen, so check the draft against itself:
