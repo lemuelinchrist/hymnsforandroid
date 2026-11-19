@@ -36,6 +36,8 @@ test('chords: what a symbol means', () => {
   assert.strictEqual(M.chordInfo('N.C.'), null);
   assert.strictEqual(M.trChord('Bb/D', 2), 'C/E');
   assert.strictEqual(M.trChord('G/B', -1, true), 'Gb/Bb');
+  assert.strictEqual(M.symbolic('C#m/G#'), 'C♯m/G♯');   // the app's sheets write ♯ and ♭ (the guitar view moves the chords by them)
+  assert.strictEqual(M.symbolic('Bbmaj7/Eb'), 'B♭maj7/E♭');
   assert.strictEqual(M.trChord('Eb', 7, true), 'Bb');
   assert.strictEqual(M.trChord('C', 1, false), 'C#');
 });

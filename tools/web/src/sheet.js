@@ -22,6 +22,8 @@ const ALT = {'♭': -1, '♯': 1, '𝄫': -2, '𝄪': 2};
 const CHORD = /^([A-G])(𝄫|𝄪|♭|♯)?(.*?)(?:\/([A-G])(𝄫|𝄪|♭|♯)?)?$/;
 const TONIC = ['C♭', 'G♭', 'D♭', 'A♭', 'E♭', 'B♭', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F♯', 'C♯'];   // by fifths + 7
 const MINOR = ['A♭', 'E♭', 'B♭', 'F', 'C', 'G', 'D', 'A', 'E', 'B', 'F♯', 'C♯', 'G♯', 'D♯', 'A♯'];
+// a chord written with # and b (the lead sheet editor's) read as the sheets write it, ♯ and ♭: only the root and the bass
+const symbolic = (t) => (t || '').replace(/^([A-G])([#b])/, (m, l, a) => l + (a === '#' ? '♯' : '♭')).replace(/\/([A-G])([#b])/, (m, l, a) => '/' + l + (a === '#' ? '♯' : '♭'));
 const CJK = /[　-鿿＀-￯]/;
 const SECTION = /^(chorus|final chorus|refrain|bridge|verse|part \d|ending|副)/i;   // labels that start a new line
 const SENTENCE_END = /[.;!?。；！？][”’"')）]*$/;
@@ -122,7 +124,7 @@ function moveNote(letter, alt, steps, semis) {
 
 // a chord moved by an interval; keepBass false drops the slash bass (guitar)
 function moveChord(text, steps, semis, keepBass) {
-  const m = CHORD.exec(text);
+  const m = CHORD.exec(symbolic(text));
   if (!m) return text;                         // a free-text chord (rare): leave it
   let s = moveNote(m[1], ALT[m[2]] || 0, steps, semis) + m[3];
   if (keepBass && m[4]) s += '/' + moveNote(m[4], ALT[m[5]] || 0, steps, semis);
@@ -144,7 +146,7 @@ function keyFifths(doc) {
 
 // "B♭m7/E" -> {root: 'B', acc: '♭', quality: 'm7', bass: 'E', bassAcc: ''}; null when it is not a chord
 export function splitChord(text) {
-  const m = CHORD.exec(text || '');
+  const m = CHORD.exec(symbolic(text));
   return m ? {root: m[1], acc: m[2] || '', quality: m[3], bass: m[4] || '', bassAcc: m[5] || ''} : null;
 }
 

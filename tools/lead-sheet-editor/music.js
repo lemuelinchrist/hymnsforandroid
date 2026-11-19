@@ -37,6 +37,9 @@
     var normAcc = function (a) { return a === '♯' ? '#' : a === '♭' ? 'b' : a; };
     return {root: m[1], acc: normAcc(m[2]), quality: m[3].replace(/♭/g, 'b').replace(/♯/g, '#'), bass: m[4] || '', bassAcc: normAcc(m[5] || '')};
   }
+  function symbolic(ch) {   // the app's sheets write ♯ and ♭ (the viewer moves the chords for the guitar by them)
+    return (ch || '').replace(/^([A-G])([#b])/, function (m, l, a) { return l + (a === '#' ? '♯' : '♭'); }).replace(/\/([A-G])([#b])/, function (m, l, a) { return '/' + l + (a === '#' ? '♯' : '♭'); });
+  }
   function composeChord(p) { return p.root ? p.root + p.acc + p.quality + (p.bass ? '/' + p.bass + p.bassAcc : '') : ''; }
   function trChord(ch, d, flat) {   // `flat` (true/false): spell by the new key; without it, as the chord was written
     return ch.replace(/(^|\/)([A-G])([#b♯♭]?)/g, function (m, pre, l, acc) {
@@ -538,7 +541,7 @@
           }
         }
         if (o.lead && it.idx >= 0 && piecesOf[it.idx][0] === it.id && events[it.idx].ch)
-          extra += '<harm staff="1" place="above" tstamp="' + (1 + (it.pos - (bar - b.len)) / (16 / sheet.time[1])) + '">' + esc(events[it.idx].ch) + '</harm>';   // as the app's sheets (tools/hymn-midi reads tstamp)
+          extra += '<harm staff="1" place="above" tstamp="' + (1 + (it.pos - (bar - b.len)) / (16 / sheet.time[1])) + '">' + esc(symbolic(events[it.idx].ch)) + '</harm>';   // as the app's sheets (tools/hymn-midi reads tstamp)
         if (open && beamable && !withNext) { layer += '</beam>'; open = false; }
       });
       return {layer: layer, extra: extra};
@@ -643,7 +646,7 @@
     return {mel: mel, fill: fill, left: left, pad: pad, total: Math.max(total(notes), lh ? total(lh.events) : 0)};
   }
 
-  return {KEYS: KEYS, PC: PC, DUR: DUR, DUR_BUTTONS: DUR_BUTTONS, ROOTS: ROOTS, QUALITIES: QUALITIES, FLAT_NAMES: FLAT_NAMES, SHARP_NAMES: SHARP_NAMES,
+  return {symbolic: symbolic, KEYS: KEYS, PC: PC, DUR: DUR, DUR_BUTTONS: DUR_BUTTONS, ROOTS: ROOTS, QUALITIES: QUALITIES, FLAT_NAMES: FLAT_NAMES, SHARP_NAMES: SHARP_NAMES,
     mod12: mod12, esc: esc, len: len, isRest: isRest, pitchesOf: pitchesOf, samePitches: samePitches,
     splitChord: splitChord, composeChord: composeChord, trChord: trChord, chordInfo: chordInfo, chordPitches: chordPitches,
     tonicPc: tonicPc, fifths: fifths, keyAlter: keyAlter, scalePcs: scalePcs, spell: spell, spellInChord: spellInChord, noteName: noteName, keyChords: keyChords,

@@ -242,7 +242,7 @@ changes show up blue in the page.
 ## Taking the sheet into the app's tools
 
 Every save also writes `<song>/leadsheet.mei`, the sheet in the form of the app's own sheets (`assets/sheetMei`: key
-as `key.sig`, chords with a `tstamp`). It is always the lead sheet alone, whatever the page shows.
+as `key.sig`, chords with a `tstamp` and written with ♯ and ♭, as the other sheets do: the viewer's guitar view moves them by those signs; the viewer reads `#` and `b` too). It is always the lead sheet alone, whatever the page shows.
 `tools/hymn-midi/make_midi.py <song>/leadsheet.mei out.mid <bpm>` makes the piano MIDI from it (the `generate-midi`
 skill); copying it into the app (`sheetMei/<id>.mei`, the hymn's tune code, `res/raw/m<tune>.mid`) is a separate step.
 
