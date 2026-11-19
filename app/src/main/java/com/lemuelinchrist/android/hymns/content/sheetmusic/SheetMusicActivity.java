@@ -11,6 +11,7 @@ import android.widget.Toast;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -280,6 +281,34 @@ public class SheetMusicActivity extends AppCompatActivity {
         int covered = keyboard == 0 ? 0 : Math.max(0, at[1] + webview.getHeight() - (screenBottom - keyboard));
         float density = getResources().getDisplayMetrics().density;
         webview.evaluateJavascript(String.format(Locale.ROOT, "window.setKeyboard && setKeyboard(%.1f)", covered / density), null);
+    }
+
+    /** Leaving the viewer (Back, Home, another app, the screen off) stops the sheet: a looping sheet must not play on behind the app. */
+    @Override
+    protected void onPause() {
+        if (webview != null) {
+            webview.evaluateJavascript("window.stopPlaying && stopPlaying()", null);
+            webview.onPause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (webview != null) webview.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (webview != null) {
+            // a WebView that is only dropped keeps running (and its audio playing) until the process ends
+            ViewGroup parent = (ViewGroup) webview.getParent();
+            if (parent != null) parent.removeView(webview);
+            webview.destroy();
+            webview = null;
+        }
+        super.onDestroy();
     }
 
     private boolean closeIfRequested(Uri url) {

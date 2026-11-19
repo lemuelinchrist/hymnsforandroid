@@ -14,6 +14,7 @@ import * as Edits from './edits.js';
 import {useLanguage, tr} from './i18n.js';
 import {createSheetPanel, sheetKeys} from './sheetpanel.js';
 import {store} from './ui.js';
+import * as Player from './player.js';
 
 const params = new URLSearchParams(location.search);
 const sheetId = params.get('id');
@@ -71,6 +72,8 @@ const sheet = createSheetPanel(pane, {
 
 // Back while editing chords closes the editor (the app asks)
 window.closeEditor = () => sheet.setEdit(false);
+// the app calls this when the viewer is left (SheetMusicActivity.onPause): nothing keeps playing behind the next screen
+window.stopPlaying = () => Player.stop();
 
 // the camera cutout (CSS pixels): the toolbar and the music keep clear of it
 window.setInsets = (top, right, bottom, left) => {
