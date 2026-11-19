@@ -456,7 +456,7 @@ Toggle. Filled heart when the hymn is in Favorites. Stored as in §8.4.
 ### 7.2 Play melody
 
 - File: `res/raw/m<tune lower-cased>.mid` (e.g. tune `5553216153222` → `m5553216153222.mid`). 8,325 of the 8,353
-  hymns with a tune had a file (2026-10). Since hymnal.net serves no MIDI any more, MIDI for newer songs is generated from our own sheet by `tools/hymn-midi` (melody as written, generated left hand; 60 files on 2026-11-12). A song transcribed from a recording (BF473) has a tune code made from its own melody: the scale degrees (1-7, relative to its key) of its first 16 notes. Translations get the tune from their parent (§5.1), so they play too.
+  hymns with a tune had a file (2026-10). Since hymnal.net serves no MIDI any more, MIDI for newer songs is generated from our own sheet by `tools/hymn-midi` (melody as written, generated left hand; 60 files on 2026-11-12). A song transcribed from a recording (BF473) has a tune code made from its own melody: the scale degrees (1-7, relative to its key) of its first 16 notes (BF500, BF474). Translations get the tune from their parent (§5.1), so they play too.
 - Plays **looped** until stopped. Only one hymn plays at a time. Playback stops when the page changes, the app is
   paused, or the button is tapped again. Icon toggles ▶ / ❚❚.
 - **What it plays** (`Hymn.getSheetToPlay()`): the hymn's sheet (its own, or its parent's when it has no tune of its own, as the sheet button picks it) when the sheet has a melody (not a chords-only sheet) and **either** it is a sheet of ours (`<identifier type="source">Hymns For Android</identifier>`: our own rendition wins over any MIDI file) **or** the hymn has no MIDI file. Otherwise the MIDI file `res/raw/m<tune>.mid`. The sheet is played by `SheetPlayer`, a WebView nobody sees (`assets/viewer/play.html`, `tools/web/android/play.js`) that runs the viewer's own player (`scoreOf` + `playScore`): the viewer's saved Both hands choice, this device's chord edits, the tempo the sheet names (`midi.bpm`, else the tune's MIDI file, else 110), looped like the MIDI file. Its WebView is dropped after two minutes without playing.
@@ -944,7 +944,10 @@ chord, arpeggios), and optionally one or two notes of the chord under each melod
 made when the sheet is shown, from the sheet as shown (after transposing and after the device's chord edits), and
 written into the MEI before Verovio draws it; the sheet files have none of it. It is only on the piano sheet with the
 staff shown. The choice is kept on the device, for every hymn or for one hymn alone, by the name of the style, so that
-it fits every time signature. The rules (the upbeat bar stays empty; a pattern starts again with every chord and bar;
+it fits every time signature. A sheet of ours can name the piano part it starts with, `<identifier type="hands">strike/two/half</identifier>`
+(the style's family/kind/rhythm, optionally followed by `rh=<notes added>:<on>`, e.g. `rh=1:beat`; BF474 has one): the hymn's own
+choice ("Only this hymn") comes first, then this, then the device's choice, and changes made to such a hymn are kept for that hymn.
+The hymn page's Play plays both hands for such a sheet even when the viewer's Both hands is off; the sheet's tempo is its `midi.bpm`. The rules (the upbeat bar stays empty; a pattern starts again with every chord and bar;
 chords are moved onto the beat for the left hand; the left hand stays under the right; the last bar is one held chord)
 and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,
 `tools/web/src/piano.js` reads a sheet's bars, chords and melody for it. A native app can run the same file.
