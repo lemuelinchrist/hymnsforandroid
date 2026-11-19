@@ -36,3 +36,8 @@ databaseProvisioner/src/main/resources/originals/
 
 # Scratch files (CSV worklists, transcription drafts)
 /temp/
+
+# Gradle and IDE output
+build/
+.gradle/
+.idea/
