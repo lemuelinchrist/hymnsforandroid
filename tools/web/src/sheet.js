@@ -272,6 +272,17 @@ export function bpmOf(doc) {
   return sd ? Math.round(parseFloat(sd.getAttribute('midi.bpm')) || 0) : 0;
 }
 
+// the piano part a sheet of ours starts with (<identifier type="hands">strike/two/half rh=1:beat</identifier>: the editor's
+// style family/kind/rhythm, and optionally the notes added to the right hand), as a piano.js choice, or null
+export function handsOf(doc) {
+  for (const id of mei(doc, 'identifier')) {
+    if (id.getAttribute('type') !== 'hands') continue;
+    const m = /^\s*(\w+)\/(\w+)\/(\w+)(?:\/(-?\d))?(?:\s+rh=([012]):(\w+))?\s*$/.exec(id.textContent);
+    if (m) return {lh: {family: m[1], kind: m[2], rhythm: m[3], oct: m[4] ? parseInt(m[4], 10) : 0, pedal: false}, rh: {add: m[5] ? parseInt(m[5], 10) : 0, on: m[6] || 'beat'}};
+  }
+  return null;
+}
+
 // ---- the view ----
 
 export class SheetView {
@@ -299,6 +310,8 @@ export class SheetView {
     this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE, original: false, hands: false};
     this.piano = null;             // how the hands play when state.hands is on (piano.js: {lh, rh}); the app sets it
     this.baseBpm = 0;              // the tempo the sheet names itself (midi.bpm), 0 when it names none
+    this.baseHands = null;         // the piano part the sheet starts with (handsOf), null when it names none
+    this.onSheet = null;           // called when a sheet has been read, before it is drawn
     this.soundXml = null;          // the MEI as it sounds: in this key, with the edits, without the guitar's changes
     this.renders = 0;              // how many times the music was drawn (the player lights notes up again after one)
     this.onsound = null;
@@ -463,6 +476,8 @@ export class SheetView {
     if (back) back.parentNode.removeChild(back);
     this.baseFifths = keyFifths(doc);
     this.baseBpm = bpmOf(doc);
+    this.baseHands = handsOf(doc);
+    if (this.onSheet) this.onSheet();
     this.baseXml = new XMLSerializer().serializeToString(doc);
   }
 

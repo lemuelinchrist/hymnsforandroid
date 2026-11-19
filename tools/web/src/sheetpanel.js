@@ -138,19 +138,22 @@ export function createSheetPanel(pane, o) {
     return out;
   }
 
-  // how the hands play: the device's choice for every hymn, or this hymn's own ("Only this hymn" in the panel)
+  // how the hands play: this hymn's own ("Only this hymn" in the panel), else the one the sheet starts with (a sheet of
+  // ours that names its piano part), else the device's choice for every hymn
   function pianoChoice() {
     const own = store.get('pianoOf', {})[o.sheetId];
-    return {choice: own || store.get('piano', PIANO_DEFAULT), only: !!own};
+    return {choice: own || view.baseHands || store.get('piano', PIANO_DEFAULT), only: !!own};
   }
   function setPiano(choice, only) {
     const all = store.get('pianoOf', {});
-    if (only) all[o.sheetId] = choice; else { delete all[o.sheetId]; store.set('piano', choice); }
+    // a hymn with a piano part of its own keeps what is changed for that hymn (the device's choice would not reach it)
+    if (only || view.baseHands) all[o.sheetId] = choice; else { delete all[o.sheetId]; store.set('piano', choice); }
     store.set('pianoOf', all);
     view.piano = choice;
     view.set({});
   }
   view.piano = pianoChoice().choice;
+  view.onSheet = () => { view.piano = pianoChoice().choice; if (panel) panel.refresh(); };   // the sheet may name its own piano part
   // the panel is there while Both hands is on with something to play it on (not while editing chords): open when
   // Both hands was just turned on, else tucked down to its bar
   let panel = null;

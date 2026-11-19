@@ -84,7 +84,7 @@ parent's or a neighbour's MEI:
 - `<identifier type="source">Hymns For Android</identifier>` in `pubStmt`: the sheet is ours, so the viewer's footer says
   Hymns For Android instead of www.hymnal.net.
 
-`python3 tools/lead-sheet-editor/finish_mei.py leadsheet.mei <id> <parent id> "<title> (New Tune)" > app/src/main/assets/sheetMei/<id>.mei`
+`python3 tools/lead-sheet-editor/finish_mei.py leadsheet.mei <id> <parent id> "<title> (New Tune)" [strike/two/half] > app/src/main/assets/sheetMei/<id>.mei` (the last argument: the piano part the user chose in the editor, from `acc.style` + `acc.rate`, which the sheet then starts with in Both hands and in the hymn page's Play; the tempo is `sheet.tempo`, written as `midi.bpm`)
 does all of this (the editor itself now writes `meter.sym` and one element per line): the music from `leadsheet.mei`, the
 subtitle, number and `<back>` stanzas from the parent's sheet, and it prints each bar's length to stderr.
 

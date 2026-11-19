@@ -18611,7 +18611,7 @@ INSERT INTO hymns VALUES('BF524',NULL,NULL,NULL,'Alone with You, I taste of Your
 INSERT INTO hymns VALUES('BF525',NULL,NULL,'Jehovah, Savior, reach me with Your mercy now today.','A life of failure is all I have at best,','BF','G Major','Consecration',NULL,'525','Yielding to the Lord',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF526',NULL,NULL,NULL,'Blessed is the man who trusts in Jehovah,','BF','G Major','Scriptures for Singing',NULL,'526',NULL,NULL,NULL,NULL,'Jeremiah 17:7-8,',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF527',NULL,NULL,NULL,'How sweet the Name of Jesus sounds','BF',NULL,NULL,NULL,'527',NULL,NULL,NULL,'E66',NULL,NULL,1,NULL);
-INSERT INTO hymns VALUES('BF474',NULL,NULL,NULL,'I have a Friend, whose faithful love','BF',NULL,NULL,NULL,'474',NULL,NULL,NULL,'E156',NULL,NULL,1,NULL);
+INSERT INTO hymns VALUES('BF474',NULL,NULL,NULL,'I have a Friend, whose faithful love','BF','D Major',NULL,NULL,'474',NULL,'4/4','5345123432345322','E156',NULL,NULL,1,NULL);
 CREATE TABLE IF NOT EXISTS "stanza" (
 	 "parent_hymn" TEXT NOT NULL,
 	 "no" TEXT NOT NULL,
