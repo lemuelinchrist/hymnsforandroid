@@ -464,7 +464,6 @@ body.bars-away .topbar { transform: translateY(-100%); }
   .sheet-bar { gap: 6px; padding: 6px 10px; }
   .sheet-bar .tb { height: 32px; }
   .sheet-bar .seg .tb { height: 28px; }
-  .sheet-title-bar { padding-top: 8px; }
 }
 /* phones and tablets (any touch screen): the sheet runs from edge to edge (no card, no side margins);
    only the words keep a small inset. Beside the lyrics (wide screens) it keeps the gap on the lyrics' side. */
