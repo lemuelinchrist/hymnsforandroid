@@ -3,7 +3,7 @@
 <meiHead><fileDesc><titleStmt><title type="main">In Bethany</title>
 </titleStmt><pubStmt><identifier type="hymn">BF490</identifier><identifier type="number"></identifier><identifier type="source">Hymns For Android</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
-<scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<scoreDef midi.bpm="152" key.sig="0" meter.count="4" meter.unit="4" meter.sym="common"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
 <measure n="1" metcon="false"><staff n="1"><layer n="1"><note xml:id="n0" dur="4" pname="c" oct="4"><verse n="1"><syl>And</syl></verse></note><note xml:id="n1" dur="8" pname="c" oct="4"><verse n="1"><syl wordpos="i" con="d">leav</syl></verse></note><note xml:id="n2" dur="4" pname="e" oct="4"><verse n="1"><syl wordpos="t">ing</syl></verse></note><note xml:id="n3" dur="8" pname="e" oct="4"><verse n="1"><syl>them</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">C</harm><tie startid="#n3" endid="#n3_1"/></measure>
 <measure n="2"><staff n="1"><layer n="1"><note xml:id="n3_1" dur="4" pname="e" oct="4"/><note xml:id="n4" dur="4" pname="e" oct="4"><verse n="1"><syl>(He</syl></verse></note><note xml:id="n5" dur="4" dots="1" pname="e" oct="4"><verse n="1"><syl>was</syl></verse></note><note xml:id="n6" dur="8" pname="d" oct="4"><verse n="1"><syl wordpos="i" con="d">re</syl></verse></note></layer></staff></measure>
