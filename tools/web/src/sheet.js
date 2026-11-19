@@ -122,23 +122,26 @@ function moveNote(letter, alt, steps, semis) {
   return nl + SIGN[a];
 }
 
-// the guitar's chord: major, minor and the sevenths (7, m7, maj7) are kept; sus, add, 9/11/13, 6, 5, diminished, augmented
-// and altered chords are made plain (A9 -> A7, Asus2 -> A, Bdim -> Bm, Bm7♭5 -> Bm7)
+// the guitar's chord: major, minor and the sevenths (7, m7, maj7) are kept, sus2 and sus4 become sus; add, 6, 5 and
+// augmented are made plain. Chords that depend on their context are left out, null: diminished and half-diminished (usually
+// passing chords) and the 9, 11 and 13 chords (embellishments); the chord before simply goes on.
 function guitarQuality(q) {
   q = (q || '').replace(/[()]/g, '');
-  if (/^(min|m(?!aj)|-)7[♭b]5|^ø/.test(q)) return 'm7';
-  if (/^(dim|°|o)/.test(q)) return 'm';
+  if (/^(min|m(?!aj)|-)7[♭b]5|^ø|^(dim|°|o)/.test(q)) return null;
+  const sus = /sus/.test(q) ? 'sus' : '';
   q = q.replace(/sus[24]?/g, '').replace(/add\d+/g, '').replace(/^(aug|\+)/, '').replace(/[♭♯b#]\d+/g, '');
-  const m = /^(min|m(?!aj)|-)?(maj|M|Δ)?(\d*)/.exec(q), minor = m[1] ? 'm' : '';
-  if (m[2]) return minor + 'maj7';
-  return +m[3] >= 7 ? minor + '7' : minor;
+  const m = /^(min|m(?!aj)|-)?(maj|M|Δ)?(\d*)/.exec(q), minor = m[1] ? 'm' : '', n = +m[3];
+  if (n >= 9) return null;
+  return minor + (m[2] ? 'maj7' : n === 7 ? '7' : '') + sus;
 }
 
 // a chord moved by an interval; keepBass false is the guitar's: no slash bass, a plainer chord
 function moveChord(text, steps, semis, keepBass) {
   const m = CHORD.exec(symbolic(text));
   if (!m) return text;                         // a free-text chord (rare): leave it
-  let s = moveNote(m[1], ALT[m[2]] || 0, steps, semis) + (keepBass ? m[3] : guitarQuality(m[3]));
+  const quality = keepBass ? m[3] : guitarQuality(m[3]);
+  if (quality === null) return '';             // a chord the guitar leaves out
+  let s = moveNote(m[1], ALT[m[2]] || 0, steps, semis) + quality;
   if (keepBass && m[4]) s += '/' + moveNote(m[4], ALT[m[5]] || 0, steps, semis);
   return s;
 }
@@ -481,11 +484,11 @@ export class SheetView {
       let prev = null;
       for (const h of Array.from(mei(doc, 'harm'))) {
         const t = moveChord(h.textContent, -iv[0], -iv[1], false);
-        if (t === prev) { h.parentNode.removeChild(h); continue; }
+        if (t === prev || t === '') { h.parentNode.removeChild(h); continue; }
         h.textContent = t;
         prev = t;
       }
-      if (tail) tail = tail.map((c) => moveChord(c, -iv[0], -iv[1], false));
+      if (tail) tail = tail.map((c) => moveChord(c, -iv[0], -iv[1], false)).filter(Boolean);
     }
     this.capo.textContent = capoText;
     this.tail.textContent = tail ? tail.join('   ') : '';
