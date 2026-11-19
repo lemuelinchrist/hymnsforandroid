@@ -327,6 +327,9 @@ export async function play(url, key) {
   current = loopMidi(song, key);
 }
 
+// start the audio inside a tap that will play something later (the sheet is still being drawn); iOS needs it
+export function unlock() { audio(); }
+
 export function stop() {
   if (current) current.stop();
   current = null;
