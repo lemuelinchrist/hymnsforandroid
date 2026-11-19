@@ -31,7 +31,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="f" oct="4" dur="1">
-<verse n="1"><syl>“Lord,”</syl></verse></note>
+<verse n="1"><syl eol="1">“Lord,”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
@@ -62,7 +62,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="a" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">nor,”</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">nor,”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
@@ -93,7 +93,7 @@
 <note xml:id="n24" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Him,</syl></verse></note>
 <note xml:id="n25" pname="g" oct="4" dur="4">
-<verse n="1"><syl>“Herr.”</syl></verse></note>
+<verse n="1"><syl eol="1">“Herr.”</syl></verse></note>
 <beam>
 <note xml:id="n26" pname="f" oct="4" dur="8">
 <verse n="1"><syl>They</syl></verse></note>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">where.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">where.</syl></verse></note>
 <rest xml:id="r35" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

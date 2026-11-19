@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="2">
 <verse n="1"><syl>這</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="2">
-<verse n="1"><syl>裡，</syl></verse></note>
+<verse n="1"><syl eol="1">裡，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -53,7 +53,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="c" oct="5" dur="1">
-<verse n="1"><syl>意，</syl></verse></note>
+<verse n="1"><syl eol="1">意，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -81,7 +81,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="2">
 <verse n="1"><syl>恢</syl></verse></note>
 <note xml:id="n23" pname="c" oct="4" dur="2">
-<verse n="1"><syl>復，</syl></verse></note>
+<verse n="1"><syl eol="1">復，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -105,7 +105,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="a" oct="4" dur="1">
-<verse n="1"><syl>起。</syl></verse></note>
+<verse n="1"><syl eol="1">起。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -133,7 +133,7 @@
 <verse n="1"><syl>同</syl></verse></note>
 <note xml:id="n38" pname="e" oct="4" dur="8"/>
 <note xml:id="n39" pname="c" oct="4" dur="2">
-<verse n="1"><syl>苦，</syl></verse></note>
+<verse n="1"><syl eol="1">苦，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <slur startid="#n37" endid="#n38"/>
@@ -158,7 +158,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="b" oct="4" dur="1">
-<verse n="1"><syl>付，</syl></verse></note>
+<verse n="1"><syl eol="1">付，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -186,7 +186,7 @@
 <note xml:id="n53" pname="a" oct="4" dur="2">
 <verse n="1"><syl>花</syl></verse></note>
 <note xml:id="n54" pname="c" oct="4" dur="2">
-<verse n="1"><syl>費，</syl></verse></note>
+<verse n="1"><syl eol="1">費，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -210,7 +210,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="a" oct="4" dur="1">
-<verse n="1"><syl>回。</syl></verse></note>
+<verse n="1"><syl eol="1">回。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -238,7 +238,7 @@
 <verse n="1"><syl>此</syl></verse></note>
 <note xml:id="n69" pname="e" oct="4" dur="8"/>
 <note xml:id="n70" pname="c" oct="4" dur="2">
-<verse n="1"><syl>意，</syl></verse></note>
+<verse n="1"><syl eol="1">意，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <slur startid="#n68" endid="#n69"/>
@@ -263,7 +263,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n77" pname="b" oct="4" dur="1">
-<verse n="1"><syl>依，</syl></verse></note>
+<verse n="1"><syl eol="1">依，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -291,7 +291,7 @@
 <note xml:id="n84" pname="a" oct="4" dur="2">
 <verse n="1"><syl>滿</syl></verse></note>
 <note xml:id="n85" pname="c" oct="4" dur="2">
-<verse n="1"><syl>足，</syl></verse></note>
+<verse n="1"><syl eol="1">足，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -315,7 +315,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n92" pname="a" oct="4" dur="1">
-<verse n="1"><syl>意。</syl></verse></note>
+<verse n="1"><syl eol="1">意。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>

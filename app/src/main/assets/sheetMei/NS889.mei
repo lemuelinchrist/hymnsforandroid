@@ -49,7 +49,7 @@
 <note xml:id="n12" pname="g" oct="4" dur="16">
 <verse n="1"><syl>God’s</syl></verse></note>
 <note xml:id="n13" pname="a" oct="4" dur="16">
-<verse n="1"><syl>heart</syl></verse></note>
+<verse n="1"><syl eol="1">heart</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="a" oct="4" dur="4"/>
 <beam>
@@ -95,7 +95,7 @@
 <note xml:id="n25" pname="f" oct="4" dur="16">
 <verse n="1"><syl wordpos="m" con="d">ter</syl></verse></note>
 <note xml:id="n26" pname="g" oct="4" dur="16">
-<verse n="1"><syl wordpos="t">part.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">part.</syl></verse></note>
 </beam>
 <note xml:id="n27" pname="g" oct="4" dur="4"/>
 <beam>
@@ -150,7 +150,7 @@
 <ending n="1" label="1.">
 <measure n="8" right="rptend"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="f" oct="4" dur="2">
-<verse n="1"><syl>man.</syl></verse></note>
+<verse n="1"><syl eol="1">man.</syl></verse></note>
 <rest xml:id="r42" dur="8"/>
 <note xml:id="n43" pname="b" oct="4" dur="8"/>
 <beam>

@@ -37,7 +37,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>clear,</syl></verse></note>
+<verse n="1"><syl eol="1">clear,</syl></verse></note>
 <rest xml:id="r10" dur="16"/>
 <beam>
 <note xml:id="n11" pname="e" oct="4" dur="16">
@@ -69,7 +69,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 <rest xml:id="r20" dur="8"/>
 <beam>
 <note xml:id="n21" pname="e" oct="4" dur="16">
@@ -108,7 +108,7 @@
 <note xml:id="n31" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ence</syl></verse></note>
 <note xml:id="n32" pname="d" oct="4" dur="8">
-<verse n="1"><syl>dear,</syl></verse></note>
+<verse n="1"><syl eol="1">dear,</syl></verse></note>
 </beam>
 <note xml:id="n33" pname="d" oct="4" dur="4" dots="1"/>
 <beam>
@@ -157,7 +157,7 @@
 <note xml:id="n47" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n48" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>bright.</syl></verse></note>
+<verse n="1"><syl eol="1">bright.</syl></verse></note>
 <note xml:id="n49" pname="e" oct="4" dur="8">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -199,7 +199,7 @@
 <note xml:id="n59" pname="g" oct="4" dur="16"/>
 <note xml:id="n60" pname="g" oct="4" dur="8"/>
 <note xml:id="n61" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ly!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly!</syl></verse></note>
 </beam>
 <note xml:id="n62" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n63" pname="e" oct="4" dur="8">
@@ -242,7 +242,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n73" pname="e" oct="4" dur="8"/>
 <note xml:id="n74" pname="d" oct="4" dur="8">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </beam>
 <note xml:id="n75" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -285,7 +285,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n86" pname="g" oct="4" dur="8"/>
 <note xml:id="n87" pname="f" oct="4" dur="8">
-<verse n="1"><syl>life;</syl></verse></note>
+<verse n="1"><syl eol="1">life;</syl></verse></note>
 </beam>
 <note xml:id="n88" pname="f" oct="4" dur="4"/>
 <beam>
@@ -342,7 +342,7 @@
 <note xml:id="n105" pname="g" oct="4" dur="16"/>
 <note xml:id="n106" pname="g" oct="4" dur="16"/>
 <note xml:id="n107" pname="f" oct="4" dur="16">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 </beam>
 <note xml:id="n108" pname="f" oct="4" dur="4" dots="1"/>
 <beam>
@@ -390,7 +390,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n120" pname="g" oct="4" dur="8"/>
 <note xml:id="n121" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">way;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way;</syl></verse></note>
 </beam>
 <note xml:id="n122" pname="f" oct="4" dur="4"/>
 <beam>
@@ -449,7 +449,7 @@
 <note xml:id="n141" pname="f" oct="4" dur="16"/>
 </beam>
 <note xml:id="n142" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way.</syl></verse></note>
 <beam>
 <note xml:id="n143" pname="e" oct="4" dur="16"/>
 <note xml:id="n144" pname="f" oct="4" dur="16">
@@ -491,7 +491,7 @@
 <note xml:id="n153" pname="e" oct="4" dur="8">
 <verse n="1"><syl>more</syl></verse></note>
 <note xml:id="n154" pname="d" oct="4" dur="8">
-<verse n="1"><syl>life,</syl></verse></note>
+<verse n="1"><syl eol="1">life,</syl></verse></note>
 </beam>
 <note xml:id="n155" pname="d" oct="4" dur="4" dots="1"/>
 <beam>
@@ -539,7 +539,7 @@
 <note xml:id="n168" pname="e" oct="4" dur="8">
 <verse n="1"><syl>with</syl></verse></note>
 <note xml:id="n169" pname="e" oct="4" dur="8">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 </beam>
 <note xml:id="n170" pname="e" oct="4" dur="2"/>
 </layer></staff>

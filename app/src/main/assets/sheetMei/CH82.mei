@@ -34,7 +34,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">sign;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sign;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -71,7 +71,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>find!</syl></verse></note>
+<verse n="1"><syl eol="1">find!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
 </measure>
@@ -104,7 +104,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sign;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sign;</syl></verse></note>
 <note xml:id="n27" pname="g" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -143,7 +143,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>time!</syl></verse></note>
+<verse n="1"><syl eol="1">time!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>

@@ -47,7 +47,7 @@
 <verse n="1"><syl wordpos="t">fied</syl></verse></note>
 </beam>
 <note xml:id="n13" pname="a" oct="4" dur="4">
-<verse n="1"><syl>One,</syl></verse></note>
+<verse n="1"><syl eol="1">One,</syl></verse></note>
 <beam>
 <note xml:id="n14" pname="a" oct="4" dur="8">
 <verse n="1"><syl>There</syl></verse></note>
@@ -85,7 +85,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>thee;</syl></verse></note>
+<verse n="1"><syl eol="1">thee;</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="f" oct="4" dur="8"/>
 <note xml:id="n25" pname="g" oct="4" dur="8">
@@ -127,7 +127,7 @@
 <verse n="1"><syl>be</syl></verse></note>
 </beam>
 <note xml:id="n36" pname="a" oct="4" dur="4">
-<verse n="1"><syl>saved,</syl></verse></note>
+<verse n="1"><syl eol="1">saved,</syl></verse></note>
 <beam>
 <note xml:id="n37" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Un</syl></verse></note>
@@ -164,7 +164,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>tree.</syl></verse></note>
+<verse n="1"><syl eol="1">tree.</syl></verse></note>
 <rest xml:id="r46" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -190,7 +190,7 @@
 <note xml:id="n52" pname="b" oct="4" dur="4" accid.ges="n">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n53" pname="c" oct="5" dur="4">
-<verse n="1"><syl>live!</syl></verse></note>
+<verse n="1"><syl eol="1">live!</syl></verse></note>
 <beam>
 <note xml:id="n54" pname="f" oct="4" dur="8">
 <verse n="1"><syl>There</syl></verse></note>
@@ -217,7 +217,7 @@
 <note xml:id="n60" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>at</syl></verse></note>
 <note xml:id="n61" pname="a" oct="4" dur="16">
-<verse n="1"><syl>the</syl></verse></note>
+<verse n="1"><syl eol="1">the</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -236,7 +236,7 @@
 <verse n="1"><syl wordpos="t">fied</syl></verse></note>
 </beam>
 <note xml:id="n66" pname="a" oct="4" dur="4">
-<verse n="1"><syl>One,</syl></verse></note>
+<verse n="1"><syl eol="1">One,</syl></verse></note>
 <beam>
 <note xml:id="n67" pname="a" oct="4" dur="8">
 <verse n="1"><syl>There</syl></verse></note>
@@ -275,7 +275,7 @@
 </measure>
 <measure n="15" right="end"><staff n="1"><layer n="1">
 <note xml:id="n75" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>thee.</syl></verse></note>
+<verse n="1"><syl eol="1">thee.</syl></verse></note>
 <rest xml:id="r76" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

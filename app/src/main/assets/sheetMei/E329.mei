@@ -25,7 +25,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <note xml:id="n7" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Who</syl></verse></note>
 </layer></staff>
@@ -59,7 +59,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="a" oct="4" dur="1">
-<verse n="1"><syl>Son,</syl></verse></note>
+<verse n="1"><syl eol="1">Son,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -93,7 +93,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
 <note xml:id="n26" pname="a" oct="4" dur="2">
-<verse n="1"><syl>one;</syl></verse></note>
+<verse n="1"><syl eol="1">one;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 <harm staff="1" tstamp="2" place="above">E/G♯</harm>
@@ -120,7 +120,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="d" oct="4" dur="1">
-<verse n="1"><syl>God!</syl></verse></note>
+<verse n="1"><syl eol="1">God!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="2" place="above">G/D</harm>

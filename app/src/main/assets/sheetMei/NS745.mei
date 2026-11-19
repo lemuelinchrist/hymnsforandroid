@@ -25,7 +25,7 @@
 <note xml:id="n6" pname="d" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n7" pname="d" oct="4" dur="4">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <rest xml:id="r8" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -48,7 +48,7 @@
 <note xml:id="n13" pname="a" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">trea</syl></verse></note>
 <note xml:id="n14" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sured,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sured,</syl></verse></note>
 <rest xml:id="r15" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -74,7 +74,7 @@
 <note xml:id="n21" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ming</syl></verse></note>
 <note xml:id="n22" pname="d" oct="4" dur="4">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <rest xml:id="r23" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -97,7 +97,7 @@
 <note xml:id="n28" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">plea</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sure!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure!</syl></verse></note>
 <rest xml:id="r30" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
@@ -122,7 +122,7 @@
 <note xml:id="n35" pname="d" oct="5" dur="8">
 <verse n="1"><syl>art</syl></verse></note>
 <note xml:id="n36" pname="d" oct="5" dur="4" dots="1">
-<verse n="1"><syl>fair!</syl></verse></note>
+<verse n="1"><syl eol="1">fair!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="4" place="above">B♭/D</harm>
@@ -144,7 +144,7 @@
 <note xml:id="n41" pname="a" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">cap</syl></verse></note>
 <note xml:id="n42" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">tured!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tured!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="4" place="above">C7</harm>
@@ -169,7 +169,7 @@
 <note xml:id="n48" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
 <note xml:id="n49" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">more,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">more,</syl></verse></note>
 <rest xml:id="r50" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -192,7 +192,7 @@
 <note xml:id="n55" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="m" con="d">rap</syl></verse></note>
 <note xml:id="n56" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tured!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tured!</syl></verse></note>
 <rest xml:id="r57" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>

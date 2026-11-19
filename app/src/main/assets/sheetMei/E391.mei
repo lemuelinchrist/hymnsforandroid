@@ -35,7 +35,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ior,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ior,</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Pil</syl></verse></note>
@@ -66,7 +66,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="c" oct="5" dur="2">
-<verse n="1"><syl>land;</syl></verse></note>
+<verse n="1"><syl eol="1">land;</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>I</syl></verse></note>
@@ -94,7 +94,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">might</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">y,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">y,</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl>Hold</syl></verse></note>
@@ -125,7 +125,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="c" oct="5" dur="2">
-<verse n="1"><syl>hand;</syl></verse></note>
+<verse n="1"><syl eol="1">hand;</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="e" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Bread</syl></verse></note>
@@ -139,7 +139,7 @@
 <note xml:id="n33" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">heav</syl></verse></note>
 <note xml:id="n34" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">en,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en,</syl></verse></note>
 <beam>
 <note xml:id="n35" pname="e" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Feed</syl></verse></note>
@@ -166,7 +166,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="c" oct="4" dur="2">
-<verse n="1"><syl>more;</syl></verse></note>
+<verse n="1"><syl eol="1">more;</syl></verse></note>
 <beam>
 <note xml:id="n42" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Bread</syl></verse></note>
@@ -180,7 +180,7 @@
 <note xml:id="n44" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">heav</syl></verse></note>
 <note xml:id="n45" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">en,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en,</syl></verse></note>
 <beam>
 <note xml:id="n46" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Feed</syl></verse></note>
@@ -210,7 +210,7 @@
 </measure>
 <measure n="15" right="end"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="e" oct="4" dur="2">
-<verse n="1"><syl>more.</syl></verse></note>
+<verse n="1"><syl eol="1">more.</syl></verse></note>
 <rest xml:id="r53" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

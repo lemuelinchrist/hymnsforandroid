@@ -41,7 +41,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="b" oct="4" dur="1">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="d" oct="5" dur="1">
-<verse n="1"><syl>see;</syl></verse></note>
+<verse n="1"><syl eol="1">see;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">D/C</harm>
@@ -121,7 +121,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="b" oct="4" dur="1">
-<verse n="1"><syl>bread,</syl></verse></note>
+<verse n="1"><syl eol="1">bread,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -161,7 +161,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">trayed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">trayed.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>

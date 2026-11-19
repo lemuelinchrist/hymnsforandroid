@@ -28,7 +28,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>King,</syl></verse></note>
+<verse n="1"><syl eol="1">King,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -57,7 +57,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>sing,</syl></verse></note>
+<verse n="1"><syl eol="1">sing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -74,7 +74,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>praise.</syl></verse></note>
+<verse n="1"><syl eol="1">praise.</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
@@ -93,7 +93,7 @@
 <note xml:id="n24" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">ri</syl></verse></note>
 <note xml:id="n25" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ous,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ous,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -113,7 +113,7 @@
 <note xml:id="n30" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n31" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ous,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ous,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -133,7 +133,7 @@
 <note xml:id="n36" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="t">er</syl></verse></note>
 <note xml:id="n37" pname="c" oct="5" dur="4">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am7</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
@@ -151,7 +151,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="f" oct="4" dur="2">
-<verse n="1"><syl>Days.</syl></verse></note>
+<verse n="1"><syl eol="1">Days.</syl></verse></note>
 <rest xml:id="r42" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

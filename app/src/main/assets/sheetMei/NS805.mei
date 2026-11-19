@@ -30,7 +30,7 @@
 <note xml:id="n6" pname="g" oct="4" dur="2">
 <verse n="1"><syl>for</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="4">
-<verse n="1"><syl>Thee!</syl></verse></note>
+<verse n="1"><syl eol="1">Thee!</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -57,7 +57,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>still.</syl></verse></note>
+<verse n="1"><syl eol="1">still.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -86,7 +86,7 @@
 <note xml:id="n19" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Lov</syl></verse></note>
 <note xml:id="n20" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -112,7 +112,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>fill.</syl></verse></note>
+<verse n="1"><syl eol="1">fill.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n27" endid="#n28"/>
@@ -142,7 +142,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -169,7 +169,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>fill.</syl></verse></note>
+<verse n="1"><syl eol="1">fill.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n39" endid="#n40"/>

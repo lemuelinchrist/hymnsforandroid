@@ -24,7 +24,7 @@
 <note xml:id="n6" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ings</syl></verse></note>
 <note xml:id="n7" pname="a" oct="4" dur="2">
-<verse n="1"><syl>flow,</syl></verse></note>
+<verse n="1"><syl eol="1">flow,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -48,7 +48,7 @@
 <note xml:id="n13" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n14" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">low,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">low,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -76,7 +76,7 @@
 <note xml:id="n20" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ture</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="2">
-<verse n="1"><syl>share,</syl></verse></note>
+<verse n="1"><syl eol="1">share,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="2" place="above">F</harm>
@@ -103,7 +103,7 @@
 <note xml:id="n27" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">dy</syl></verse></note>
 <note xml:id="n28" pname="f" oct="4" dur="2">
-<verse n="1"><syl>are.</syl></verse></note>
+<verse n="1"><syl eol="1">are.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="2" place="above">C7</harm>

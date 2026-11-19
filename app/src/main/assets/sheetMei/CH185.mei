@@ -36,7 +36,7 @@
 <sb/>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>mine,</syl></verse></note>
+<verse n="1"><syl eol="1">mine,</syl></verse></note>
 <beam>
 <note xml:id="n10" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Ev</syl></verse></note>
@@ -71,7 +71,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>line.</syl></verse></note>
+<verse n="1"><syl eol="1">line.</syl></verse></note>
 <beam>
 <note xml:id="n20" pname="e" oct="4" dur="8" dots="1">
 <verse n="1"><syl>All</syl></verse></note>
@@ -102,7 +102,7 @@
 <sb/>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">vine,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vine,</syl></verse></note>
 <beam>
 <note xml:id="n29" pname="c" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Ev</syl></verse></note>
@@ -133,7 +133,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>mine.</syl></verse></note>
+<verse n="1"><syl eol="1">mine.</syl></verse></note>
 <rest xml:id="r38" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

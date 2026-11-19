@@ -75,7 +75,7 @@
 <note xml:id="n21" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n22" pname="f" oct="4" dur="2">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -113,7 +113,7 @@
 <note xml:id="n32" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n33" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">thom,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thom,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -151,7 +151,7 @@
 <note xml:id="n43" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n44" pname="e" oct="4" dur="2">
-<verse n="1"><syl>sea!</syl></verse></note>
+<verse n="1"><syl eol="1">sea!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm7</harm>
 <harm staff="1" tstamp="2" place="above">B♭7</harm>
@@ -191,7 +191,7 @@
 <note xml:id="n54" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n55" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">fer</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fer</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -227,7 +227,7 @@
 <note xml:id="n64" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n65" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">part,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">part,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -265,7 +265,7 @@
 <verse n="1"><syl wordpos="i" con="d">graft</syl></verse></note>
 </beam>
 <note xml:id="n76" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -303,7 +303,7 @@
 <note xml:id="n86" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n87" pname="e" oct="4" dur="2">
-<verse n="1"><syl>part.</syl></verse></note>
+<verse n="1"><syl eol="1">part.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm7</harm>
 <harm staff="1" tstamp="2" place="above">B♭7</harm>

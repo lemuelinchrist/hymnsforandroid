@@ -45,7 +45,7 @@
 <note xml:id="n11" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n12" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
 </layer></staff>
@@ -69,7 +69,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -116,7 +116,7 @@
 <note xml:id="n30" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
 <note xml:id="n31" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ther</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
@@ -141,7 +141,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -180,7 +180,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ther!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther!</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -218,7 +218,7 @@
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">it!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it!</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
@@ -242,7 +242,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>Christ!</syl></verse></note>
+<verse n="1"><syl eol="1">Christ!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <tie startid="#n61" endid="#n62"/>
@@ -299,7 +299,7 @@
 </measure>
 <measure n="37"><staff n="1"><layer n="1">
 <note xml:id="n73" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>God!</syl></verse></note>
+<verse n="1"><syl eol="1">God!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>

@@ -34,7 +34,7 @@
 <note xml:id="n8" pname="f" oct="4" dur="8">
 <verse n="1"><syl>救</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
-<verse n="1"><syl>主，</syl></verse></note>
+<verse n="1"><syl eol="1">主，</syl></verse></note>
 <beam>
 <note xml:id="n10" pname="d" oct="4" dur="8">
 <verse n="1"><syl>你</syl></verse></note>
@@ -63,7 +63,7 @@
 <note xml:id="n17" pname="f" oct="4" dur="8">
 <verse n="1"><syl>救</syl></verse></note>
 <note xml:id="n18" pname="f" oct="4" dur="4">
-<verse n="1"><syl>贖</syl></verse></note>
+<verse n="1"><syl eol="1">贖</syl></verse></note>
 <note xml:id="n19" pname="b" oct="4" dur="4">
 <verse n="1"><syl>我</syl></verse></note>
 </layer></staff>
@@ -86,7 +86,7 @@
 <sb/>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>罪；</syl></verse></note>
+<verse n="1"><syl eol="1">罪；</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="f" oct="4" dur="8">
 <verse n="1"><syl>你</syl></verse></note>
@@ -114,7 +114,7 @@
 <note xml:id="n32" pname="g" oct="4" dur="8">
 <verse n="1"><syl>看</syl></verse></note>
 <note xml:id="n33" pname="g" oct="4" dur="4">
-<verse n="1"><syl>見：</syl></verse></note>
+<verse n="1"><syl eol="1">見：</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="g" oct="4" dur="8">
 <verse n="1"><syl>現</syl></verse></note>
@@ -142,7 +142,7 @@
 <note xml:id="n41" pname="c" oct="5" dur="8">
 <verse n="1"><syl>冠</syl></verse></note>
 <note xml:id="n42" pname="c" oct="5" dur="4">
-<verse n="1"><syl>冕，</syl></verse></note>
+<verse n="1"><syl eol="1">冕，</syl></verse></note>
 <note xml:id="n43" pname="a" oct="4" dur="4">
 <verse n="1"><syl>並</syl></verse></note>
 </layer></staff>
@@ -163,7 +163,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="f" oct="4" dur="4">
-<verse n="1"><syl>位。</syl></verse></note>
+<verse n="1"><syl eol="1">位。</syl></verse></note>
 <note xml:id="n49" pname="b" oct="3" dur="4">
 <verse n="1"><syl>並</syl></verse></note>
 <note xml:id="n50" pname="f" oct="4" dur="4">
@@ -185,7 +185,7 @@
 </measure>
 <measure n="15" right="end"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="b" oct="3" dur="2" dots="1">
-<verse n="1"><syl>位。</syl></verse></note>
+<verse n="1"><syl eol="1">位。</syl></verse></note>
 <rest xml:id="r55" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

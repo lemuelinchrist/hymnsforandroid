@@ -34,7 +34,7 @@
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ful,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ful,</syl></verse></note>
 </layer></staff>
 <tie startid="#n7" endid="#n8"/>
 </measure>
@@ -66,7 +66,7 @@
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
 </beam>
 <note xml:id="n20" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ful,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ful,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <tie startid="#n17" endid="#n18"/>
@@ -100,7 +100,7 @@
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
 </beam>
 <note xml:id="n30" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ful,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ful,</syl></verse></note>
 </layer></staff>
 <tie startid="#n27" endid="#n28"/>
 </measure>
@@ -120,7 +120,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>love!</syl></verse></note>
+<verse n="1"><syl eol="1">love!</syl></verse></note>
 <rest xml:id="r36" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

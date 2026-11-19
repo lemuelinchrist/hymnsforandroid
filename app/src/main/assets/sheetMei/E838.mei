@@ -40,7 +40,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl>dear,</syl></verse></note>
+<verse n="1"><syl eol="1">dear,</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>It</syl></verse></note>
 </layer></staff>
@@ -80,7 +80,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="g" oct="4" dur="2">
-<verse n="1"><syl>real,</syl></verse></note>
+<verse n="1"><syl eol="1">real,</syl></verse></note>
 <note xml:id="n22" pname="c" oct="4" dur="4">
 <verse n="1"><syl>It</syl></verse></note>
 </layer></staff>
@@ -116,7 +116,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="a" oct="4" dur="2">
-<verse n="1"><syl>built,</syl></verse></note>
+<verse n="1"><syl eol="1">built,</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="4">
 <verse n="1"><syl>How</syl></verse></note>
 </layer></staff>
@@ -152,7 +152,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">veal.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">veal.</syl></verse></note>
 <rest xml:id="r41" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

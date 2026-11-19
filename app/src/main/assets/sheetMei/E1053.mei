@@ -40,7 +40,7 @@
 <note xml:id="n10" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">trite</syl></verse></note>
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl>sigh,</syl></verse></note>
+<verse n="1"><syl eol="1">sigh,</syl></verse></note>
 <note xml:id="n12" pname="b" oct="4" dur="4">
 <verse n="1"><syl>A</syl></verse></note>
 </layer></staff>
@@ -70,7 +70,7 @@
 <note xml:id="n19" pname="b" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n20" pname="g" oct="4" dur="2">
-<verse n="1"><syl>cry;</syl></verse></note>
+<verse n="1"><syl eol="1">cry;</syl></verse></note>
 <beam>
 <note xml:id="n21" pname="e" oct="4" dur="8"/>
 <note xml:id="n22" pname="f" oct="4" dur="8">
@@ -105,7 +105,7 @@
 <note xml:id="n29" pname="c" oct="5" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n30" pname="e" oct="5" dur="4" dots="1">
-<verse n="1"><syl>free:</syl></verse></note>
+<verse n="1"><syl eol="1">free:</syl></verse></note>
 <note xml:id="n31" pname="d" oct="5" dur="8"/>
 <note xml:id="n32" pname="c" oct="5" dur="4">
 <verse n="1"><syl>O</syl></verse></note>
@@ -143,7 +143,7 @@
 </measure>
 <measure n="10" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 <note xml:id="n41" pname="g" oct="4" dur="2"/>
 <rest xml:id="r42" dur="4"/>
 </layer></staff>

@@ -34,7 +34,7 @@
 <note xml:id="n9" pname="d" oct="4" dur="2">
 <verse n="1"><syl>sent</syl></verse></note>
 <note xml:id="n10" pname="e" oct="4" dur="2">
-<verse n="1"><syl>Me</syl></verse></note>
+<verse n="1"><syl eol="1">Me</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -66,7 +66,7 @@
 <note xml:id="n19" pname="d" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
 <note xml:id="n20" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -87,7 +87,7 @@
 <note xml:id="n24" pname="g" oct="4" dur="4">
 <verse n="1"><syl>eats</syl></verse></note>
 <note xml:id="n25" pname="b" oct="4" dur="2">
-<verse n="1"><syl>Me,</syl></verse></note>
+<verse n="1"><syl eol="1">Me,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -108,7 +108,7 @@
 <verse n="1"><syl>shall</syl></verse></note>
 <note xml:id="n30" pname="g" oct="4" dur="4"/>
 <note xml:id="n31" pname="f" oct="4" dur="4">
-<verse n="1"><syl>live,</syl></verse></note>
+<verse n="1"><syl eol="1">live,</syl></verse></note>
 <beam>
 <note xml:id="n32" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Shall</syl></verse></note>
@@ -140,7 +140,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="e" oct="4" dur="2">
-<verse n="1"><syl>Me,</syl></verse></note>
+<verse n="1"><syl eol="1">Me,</syl></verse></note>
 <note xml:id="n40" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n41" pname="g" oct="4" dur="8"/>
@@ -172,7 +172,7 @@
 </measure>
 <measure n="12" right="end"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Me.</syl></verse></note>
+<verse n="1"><syl eol="1">Me.</syl></verse></note>
 <rest xml:id="r49" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

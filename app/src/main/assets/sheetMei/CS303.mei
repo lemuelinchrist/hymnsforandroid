@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="d" oct="5" dur="8">
 <verse n="1"><syl>躺</syl></verse></note>
 <note xml:id="n8" pname="d" oct="5" dur="4" dots="1">
-<verse n="1"><syl>臥，</syl></verse></note>
+<verse n="1"><syl eol="1">臥，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -60,7 +60,7 @@
 <verse n="1"><syl>至</syl></verse></note>
 </beam>
 <note xml:id="n17" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>愛，</syl></verse></note>
+<verse n="1"><syl eol="1">愛，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">A</harm>
@@ -89,7 +89,7 @@
 <note xml:id="n24" pname="d" oct="5" dur="8">
 <verse n="1"><syl>不</syl></verse></note>
 <note xml:id="n25" pname="d" oct="5" dur="4" dots="1">
-<verse n="1"><syl>著，</syl></verse></note>
+<verse n="1"><syl eol="1">著，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -112,7 +112,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>行。</syl></verse></note>
+<verse n="1"><syl eol="1">行。</syl></verse></note>
 <rest xml:id="r32" dur="4"/>
 <note xml:id="n33" pname="a" oct="4" dur="8">
 <verse n="1"><syl>弟</syl></verse></note>
@@ -142,7 +142,7 @@
 <note xml:id="n40" pname="f" oct="4" dur="8">
 <verse n="1"><syl>訴</syl></verse></note>
 <note xml:id="n41" pname="d" oct="4" dur="4">
-<verse n="1"><syl>我，</syl></verse></note>
+<verse n="1"><syl eol="1">我，</syl></verse></note>
 <note xml:id="n42" pname="a" oct="4" dur="8">
 <verse n="1"><syl>我</syl></verse></note>
 </layer></staff>
@@ -170,7 +170,7 @@
 <note xml:id="n49" pname="f" oct="4" dur="8">
 <verse n="1"><syl>何</syl></verse></note>
 <note xml:id="n50" pname="d" oct="4" dur="4">
-<verse n="1"><syl>處，</syl></verse></note>
+<verse n="1"><syl eol="1">處，</syl></verse></note>
 <note xml:id="n51" pname="a" oct="4" dur="8">
 <verse n="1"><syl>我</syl></verse></note>
 </layer></staff>
@@ -195,7 +195,7 @@
 <note xml:id="n57" pname="f" oct="4" dur="8">
 <verse n="1"><syl>帶</syl></verse></note>
 <note xml:id="n58" pname="d" oct="5" dur="4">
-<verse n="1"><syl>回，</syl></verse></note>
+<verse n="1"><syl eol="1">回，</syl></verse></note>
 <note xml:id="n59" pname="a" oct="4" dur="8">
 <verse n="1"><syl>再</syl></verse></note>
 </layer></staff>
@@ -224,7 +224,7 @@
 <note xml:id="n66" pname="f" oct="4" dur="4" dots="1">
 <verse n="1"><syl>愛</syl></verse></note>
 <note xml:id="n67" pname="e" oct="4" dur="4">
-<verse n="1"><syl>情。</syl></verse></note>
+<verse n="1"><syl eol="1">情。</syl></verse></note>
 <rest xml:id="r68" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
@@ -254,7 +254,7 @@
 <note xml:id="n75" pname="d" oct="5" dur="8">
 <verse n="1"><syl>引</syl></verse></note>
 <note xml:id="n76" pname="d" oct="5" dur="4" dots="1">
-<verse n="1"><syl>領，</syl></verse></note>
+<verse n="1"><syl eol="1">領，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -285,7 +285,7 @@
 <verse n="1"><syl>交</syl></verse></note>
 </beam>
 <note xml:id="n85" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>通；</syl></verse></note>
+<verse n="1"><syl eol="1">通；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">A</harm>
@@ -314,7 +314,7 @@
 <note xml:id="n92" pname="d" oct="5" dur="8">
 <verse n="1"><syl>身</syl></verse></note>
 <note xml:id="n93" pname="d" oct="5" dur="4" dots="1">
-<verse n="1"><syl>邊，</syl></verse></note>
+<verse n="1"><syl eol="1">邊，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -337,7 +337,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n99" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>離。</syl></verse></note>
+<verse n="1"><syl eol="1">離。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

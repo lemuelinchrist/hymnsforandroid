@@ -46,7 +46,7 @@
 <note xml:id="n11" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">umph</syl></verse></note>
 <note xml:id="n12" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ant,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ant,</syl></verse></note>
 <note xml:id="n13" pname="a" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -91,7 +91,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">cord;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cord;</syl></verse></note>
 <note xml:id="n25" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Lo!</syl></verse></note>
 </layer></staff>
@@ -139,7 +139,7 @@
 <verse n="1"><syl wordpos="m" con="d">might</syl></verse></note>
 <note xml:id="n36" pname="f" oct="4" dur="8"/>
 <note xml:id="n37" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">y;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">y;</syl></verse></note>
 <note xml:id="n38" pname="a" oct="4" dur="4">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
@@ -163,7 +163,7 @@
 <note xml:id="n43" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="t">dore</syl></verse></note>
 <note xml:id="n44" pname="e" oct="4" dur="4">
-<verse n="1"><syl>Him,</syl></verse></note>
+<verse n="1"><syl eol="1">Him,</syl></verse></note>
 <note xml:id="n45" pname="c" oct="5" dur="4">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
@@ -187,7 +187,7 @@
 <note xml:id="n50" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="t">dore</syl></verse></note>
 <note xml:id="n51" pname="b" oct="4" dur="4">
-<verse n="1"><syl>Him,</syl></verse></note>
+<verse n="1"><syl eol="1">Him,</syl></verse></note>
 <note xml:id="n52" pname="c" oct="5" dur="4">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
@@ -211,7 +211,7 @@
 <note xml:id="n57" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="t">dore</syl></verse></note>
 <note xml:id="n58" pname="a" oct="4" dur="4">
-<verse n="1"><syl>Him,</syl></verse></note>
+<verse n="1"><syl eol="1">Him,</syl></verse></note>
 <note xml:id="n59" pname="d" oct="5" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -232,7 +232,7 @@
 </measure>
 <measure n="21" right="end"><staff n="1"><layer n="1">
 <note xml:id="n63" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 <rest xml:id="r64" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>

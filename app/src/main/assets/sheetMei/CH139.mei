@@ -34,7 +34,7 @@
 <note xml:id="n9" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n10" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -65,7 +65,7 @@
 <note xml:id="n19" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n20" pname="a" oct="3" dur="4">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 </measure>
@@ -98,7 +98,7 @@
 <note xml:id="n29" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n30" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
@@ -115,7 +115,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="d" oct="4" dur="1">
-<verse n="1"><syl>time!</syl></verse></note>
+<verse n="1"><syl eol="1">time!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

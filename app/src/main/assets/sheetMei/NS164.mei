@@ -36,7 +36,7 @@
 <note xml:id="n8" pname="f" oct="4" dur="4">
 <verse n="1"><syl>made</syl></verse></note>
 <note xml:id="n9" pname="c" oct="4" dur="2">
-<verse n="1"><syl>for;</syl></verse></note>
+<verse n="1"><syl eol="1">for;</syl></verse></note>
 <beam>
 <note xml:id="n10" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Do</syl></verse></note>
@@ -71,7 +71,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>why?</syl></verse></note>
+<verse n="1"><syl eol="1">why?</syl></verse></note>
 <beam>
 <note xml:id="n19" pname="a" oct="4" dur="8">
 <verse n="1"><syl>What’s</syl></verse></note>
@@ -103,7 +103,7 @@
 <note xml:id="n26" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n27" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing;</syl></verse></note>
 <beam>
 <note xml:id="n28" pname="a" oct="4" dur="8">
 <verse n="1"><syl>What’s</syl></verse></note>
@@ -137,7 +137,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">live?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">live?</syl></verse></note>
 <rest xml:id="r37" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Csus4</harm>
@@ -169,7 +169,7 @@
 <verse n="1"><syl>your</syl></verse></note>
 </beam>
 <note xml:id="n46" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>life?</syl></verse></note>
+<verse n="1"><syl eol="1">life?</syl></verse></note>
 <note xml:id="n47" pname="a" oct="4" dur="8">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
@@ -207,7 +207,7 @@
 <verse n="1"><syl>your</syl></verse></note>
 </beam>
 <note xml:id="n58" pname="f" oct="4" dur="2">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
@@ -238,7 +238,7 @@
 <verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
 </beam>
 <note xml:id="n67" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">in,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in,</syl></verse></note>
 <note xml:id="n68" pname="a" oct="4" dur="8">
 <verse n="1"><syl>A</syl></verse></note>
 </layer></staff>
@@ -266,7 +266,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n75" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Him.</syl></verse></note>
+<verse n="1"><syl eol="1">Him.</syl></verse></note>
 <rest xml:id="r76" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

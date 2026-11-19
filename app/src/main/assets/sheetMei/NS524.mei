@@ -46,7 +46,7 @@
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="8"/>
 <note xml:id="n13" pname="d" oct="4" dur="8">
-<verse n="1"><syl>spend</syl></verse></note>
+<verse n="1"><syl eol="1">spend</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -100,7 +100,7 @@
 <verse n="1"><syl>your</syl></verse></note>
 <note xml:id="n29" pname="d" oct="4" dur="8"/>
 <note xml:id="n30" pname="e" oct="4" dur="8">
-<verse n="1"><syl>souls.</syl></verse></note>
+<verse n="1"><syl eol="1">souls.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -152,7 +152,7 @@
 <note xml:id="n44" pname="d" oct="4" dur="8"/>
 </beam>
 <note xml:id="n45" pname="d" oct="4" dur="2">
-<verse n="1"><syl>spend</syl></verse></note>
+<verse n="1"><syl eol="1">spend</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n42" endid="#n43"/>
@@ -204,7 +204,7 @@
 <verse n="1"><syl>your</syl></verse></note>
 <note xml:id="n60" pname="d" oct="4" dur="8"/>
 <note xml:id="n61" pname="e" oct="4" dur="8">
-<verse n="1"><syl>souls.</syl></verse></note>
+<verse n="1"><syl eol="1">souls.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -280,7 +280,7 @@
 <verse n="1"><syl wordpos="m" con="d">dant</syl></verse></note>
 <note xml:id="n82" pname="a" oct="4" dur="8"/>
 <note xml:id="n83" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
@@ -305,7 +305,7 @@
 </measure>
 <measure n="25"><staff n="1"><layer n="1">
 <note xml:id="n88" pname="f" oct="4" dur="1">
-<verse n="1"><syl>less?</syl></verse></note>
+<verse n="1"><syl eol="1">less?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n88" endid="#n89"/>
@@ -372,7 +372,7 @@
 <verse n="1"><syl wordpos="m" con="d">dant</syl></verse></note>
 <note xml:id="n107" pname="a" oct="4" dur="8"/>
 <note xml:id="n108" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
@@ -401,7 +401,7 @@
 </measure>
 <measure n="33"><staff n="1"><layer n="1">
 <note xml:id="n115" pname="d" oct="4" dur="1">
-<verse n="1"><syl>so!</syl></verse></note>
+<verse n="1"><syl eol="1">so!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n115" endid="#n116"/>

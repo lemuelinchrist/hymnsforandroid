@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="e" oct="4" dur="8">
 <verse n="1"><syl>一</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl>口，</syl></verse></note>
+<verse n="1"><syl eol="1">口，</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="8">
 <verse n="1"><syl>良</syl></verse></note>
 </layer></staff>
@@ -51,7 +51,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>愁，</syl></verse></note>
+<verse n="1"><syl eol="1">愁，</syl></verse></note>
 <rest xml:id="r15" dur="4"/>
 <note xml:id="n16" pname="c" oct="4" dur="8">
 <verse n="1"><syl>不</syl></verse></note>
@@ -77,7 +77,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="8">
 <verse n="1"><syl>難</syl></verse></note>
 <note xml:id="n23" pname="f" oct="4" dur="4">
-<verse n="1"><syl>走，</syl></verse></note>
+<verse n="1"><syl eol="1">走，</syl></verse></note>
 <note xml:id="n24" pname="f" oct="4" dur="8">
 <verse n="1"><syl>冒</syl></verse></note>
 </layer></staff>
@@ -99,7 +99,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>救。</syl></verse></note>
+<verse n="1"><syl eol="1">救。</syl></verse></note>
 <rest xml:id="r30" dur="4"/>
 <note xml:id="n31" pname="f" oct="4" dur="8">
 <verse n="1"><syl>迷</syl></verse></note>
@@ -123,7 +123,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="8">
 <verse n="1"><syl>回</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="4">
-<verse n="1"><syl>頭！</syl></verse></note>
+<verse n="1"><syl eol="1">頭！</syl></verse></note>
 <note xml:id="n39" pname="c" oct="5" dur="8">
 <verse n="1"><syl>前</syl></verse></note>
 </layer></staff>
@@ -154,7 +154,7 @@
 <verse n="1"><syl>猛</syl></verse></note>
 </beam>
 <note xml:id="n48" pname="a" oct="4" dur="4">
-<verse n="1"><syl>獸；</syl></verse></note>
+<verse n="1"><syl eol="1">獸；</syl></verse></note>
 <note xml:id="n49" pname="c" oct="5" dur="8">
 <verse n="1"><syl>火</syl></verse></note>
 </layer></staff>
@@ -186,7 +186,7 @@
 <verse n="1"><syl>逗</syl></verse></note>
 </beam>
 <note xml:id="n58" pname="f" oct="4" dur="4">
-<verse n="1"><syl>遛！</syl></verse></note>
+<verse n="1"><syl eol="1">遛！</syl></verse></note>
 <rest xml:id="r59" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>

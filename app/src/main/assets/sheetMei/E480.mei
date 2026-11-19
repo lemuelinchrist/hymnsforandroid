@@ -47,7 +47,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">or,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">or,</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
@@ -74,7 +74,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="c" oct="5" dur="2">
-<verse n="1"><syl>too,</syl></verse></note>
+<verse n="1"><syl eol="1">too,</syl></verse></note>
 <note xml:id="n18" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">As</syl></verse></note>
 </layer></staff>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="a" oct="4" dur="2">
-<verse n="1"><syl>hour</syl></verse></note>
+<verse n="1"><syl eol="1">hour</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -139,7 +139,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>through.</syl></verse></note>
+<verse n="1"><syl eol="1">through.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

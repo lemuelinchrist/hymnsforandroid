@@ -27,7 +27,7 @@
 <note xml:id="n5" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">hold</syl></verse></note>
 <note xml:id="n6" pname="f" oct="4" dur="4">
-<verse n="1"><syl>Him,</syl></verse></note>
+<verse n="1"><syl eol="1">Him,</syl></verse></note>
 <note xml:id="n7" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Speak</syl></verse></note>
 </layer></staff>
@@ -45,7 +45,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="c" oct="4" dur="2">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <note xml:id="n12" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
 </layer></staff>
@@ -65,7 +65,7 @@
 <note xml:id="n16" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">al</syl></verse></note>
 <note xml:id="n17" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ways,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ways,</syl></verse></note>
 <note xml:id="n18" pname="c" oct="5" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -84,7 +84,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="g" oct="4" dur="2">
-<verse n="1"><syl>Word.</syl></verse></note>
+<verse n="1"><syl eol="1">Word.</syl></verse></note>
 <note xml:id="n23" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Wait</syl></verse></note>
 </layer></staff>
@@ -106,7 +106,7 @@
 <note xml:id="n27" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">pre</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">sence,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sence,</syl></verse></note>
 <note xml:id="n29" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Sub</syl></verse></note>
 </layer></staff>
@@ -124,7 +124,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="f" oct="4" dur="2">
-<verse n="1"><syl>meek,</syl></verse></note>
+<verse n="1"><syl eol="1">meek,</syl></verse></note>
 <note xml:id="n34" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">For</syl></verse></note>
 </layer></staff>
@@ -144,7 +144,7 @@
 <note xml:id="n38" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">noth</syl></verse></note>
 <note xml:id="n39" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 <note xml:id="n40" pname="c" oct="4" dur="4">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
@@ -163,7 +163,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>seek.</syl></verse></note>
+<verse n="1"><syl eol="1">seek.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

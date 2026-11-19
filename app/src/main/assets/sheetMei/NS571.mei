@@ -46,7 +46,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="f" oct="4" dur="1">
-<verse n="1"><syl>good,</syl></verse></note>
+<verse n="1"><syl eol="1">good,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -92,7 +92,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="f" oct="4" dur="1">
-<verse n="1"><syl>good</syl></verse></note>
+<verse n="1"><syl eol="1">good</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -114,7 +114,7 @@
 <note xml:id="n33" pname="c" oct="5" dur="4">
 <verse n="1"><syl>love</syl></verse></note>
 <note xml:id="n34" pname="a" oct="4" dur="4">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="b" oct="4" dur="4">
-<verse n="1"><syl>called</syl></verse></note>
+<verse n="1"><syl eol="1">called</syl></verse></note>
 <note xml:id="n40" pname="a" oct="4" dur="4"/>
 <note xml:id="n41" pname="f" oct="4" dur="4"/>
 <note xml:id="n42" pname="d" oct="4" dur="4"/>
@@ -169,7 +169,7 @@
 <sb/>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">pose.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pose.</syl></verse></note>
 <beam>
 <note xml:id="n51" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Ro</syl></verse></note>

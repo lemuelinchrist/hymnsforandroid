@@ -30,7 +30,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>on!</syl></verse></note>
+<verse n="1"><syl eol="1">on!</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="4"/>
 <note xml:id="n9" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
@@ -58,7 +58,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">fraid;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fraid;</syl></verse></note>
 <note xml:id="n16" pname="c" oct="4" dur="4"/>
 <note xml:id="n17" pname="e" oct="4" dur="8">
 <verse n="1"><syl>He</syl></verse></note>
@@ -88,7 +88,7 @@
 <note xml:id="n24" pname="c" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">kons</syl></verse></note>
 <note xml:id="n25" pname="e" oct="4" dur="4">
-<verse n="1"><syl>thee,</syl></verse></note>
+<verse n="1"><syl eol="1">thee,</syl></verse></note>
 <note xml:id="n26" pname="e" oct="4" dur="8">
 <verse n="1"><syl>On</syl></verse></note>
 </layer></staff>
@@ -115,7 +115,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">mayed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">mayed.</syl></verse></note>
 <note xml:id="n33" pname="a" oct="4" dur="4"/>
 <rest xml:id="r34" dur="8"/>
 </layer></staff>

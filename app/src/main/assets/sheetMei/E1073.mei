@@ -37,7 +37,7 @@
 <note xml:id="n8" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">mys</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">t’ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">t’ry,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -74,7 +74,7 @@
 <note xml:id="n17" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">his</syl></verse></note>
 <note xml:id="n18" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">t’ry!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">t’ry!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/G</harm>
 <harm staff="1" tstamp="2" place="above">E♭</harm>
@@ -117,7 +117,7 @@
 <note xml:id="n27" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">mys</syl></verse></note>
 <note xml:id="n28" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">t’ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">t’ry,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="2" place="above">E♭/B♭</harm>
@@ -152,7 +152,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="e" oct="4" dur="2">
-<verse n="1"><syl>you!</syl></verse></note>
+<verse n="1"><syl eol="1">you!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -192,7 +192,7 @@
 <note xml:id="n43" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n44" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="2" place="above">E♭/B♭</harm>
@@ -232,7 +232,7 @@
 <note xml:id="n52" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n53" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/G</harm>
 <harm staff="1" tstamp="2" place="above">E♭</harm>
@@ -275,7 +275,7 @@
 <note xml:id="n62" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">mys</syl></verse></note>
 <note xml:id="n63" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">t’ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">t’ry,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="2" place="above">E♭/B♭</harm>
@@ -310,7 +310,7 @@
 </measure>
 <measure n="32" right="end"><staff n="1"><layer n="1">
 <note xml:id="n70" pname="e" oct="4" dur="2">
-<verse n="1"><syl>you!</syl></verse></note>
+<verse n="1"><syl eol="1">you!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>

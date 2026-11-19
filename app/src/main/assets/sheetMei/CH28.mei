@@ -21,7 +21,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n5" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>things,</syl></verse></note>
+<verse n="1"><syl eol="1">things,</syl></verse></note>
 <rest xml:id="r6" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
@@ -41,7 +41,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>He—</syl></verse></note>
+<verse n="1"><syl eol="1">He—</syl></verse></note>
 <rest xml:id="r12" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -68,7 +68,7 @@
 <note xml:id="n19" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">at</syl></verse></note>
 <note xml:id="n20" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -88,7 +88,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 <rest xml:id="r26" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

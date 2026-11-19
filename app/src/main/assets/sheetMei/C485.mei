@@ -33,7 +33,7 @@
 <note xml:id="n8" pname="c" oct="5" dur="4">
 <verse n="1"><syl>能</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="2">
-<verse n="1"><syl>神，</syl></verse></note>
+<verse n="1"><syl eol="1">神，</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -52,7 +52,7 @@
 <note xml:id="n14" pname="g" oct="4" dur="4">
 <verse n="1"><syl>前</syl></verse></note>
 <note xml:id="n15" pname="g" oct="4" dur="2">
-<verse n="1"><syl>走！</syl></verse></note>
+<verse n="1"><syl eol="1">走！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -82,7 +82,7 @@
 <note xml:id="n23" pname="c" oct="5" dur="4">
 <verse n="1"><syl>信</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="4">
-<verse n="1"><syl>心，</syl></verse></note>
+<verse n="1"><syl eol="1">心，</syl></verse></note>
 <note xml:id="n25" pname="c" oct="5" dur="4"/>
 </layer></staff>
 <slur startid="#n24" endid="#n25"/>
@@ -97,7 +97,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="g" oct="4" dur="1">
-<verse n="1"><syl>走！</syl></verse></note>
+<verse n="1"><syl eol="1">走！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -123,7 +123,7 @@
 <note xml:id="n35" pname="a" oct="4" dur="4">
 <verse n="1"><syl>逗</syl></verse></note>
 <note xml:id="n36" pname="g" oct="4" dur="4">
-<verse n="1"><syl>遛，</syl></verse></note>
+<verse n="1"><syl eol="1">遛，</syl></verse></note>
 <note xml:id="n37" pname="c" oct="5" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -151,7 +151,7 @@
 <note xml:id="n44" pname="a" oct="4" dur="4">
 <verse n="1"><syl>背</syl></verse></note>
 <note xml:id="n45" pname="g" oct="4" dur="2">
-<verse n="1"><syl>後，</syl></verse></note>
+<verse n="1"><syl eol="1">後，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -181,7 +181,7 @@
 <note xml:id="n53" pname="c" oct="5" dur="4">
 <verse n="1"><syl>回</syl></verse></note>
 <note xml:id="n54" pname="c" oct="5" dur="4">
-<verse n="1"><syl>頭，</syl></verse></note>
+<verse n="1"><syl eol="1">頭，</syl></verse></note>
 <note xml:id="n55" pname="a" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -198,7 +198,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="c" oct="5" dur="1">
-<verse n="1"><syl>走！</syl></verse></note>
+<verse n="1"><syl eol="1">走！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>

@@ -34,7 +34,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>might!</syl></verse></note>
+<verse n="1"><syl eol="1">might!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 </measure>
@@ -66,7 +66,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>right;</syl></verse></note>
+<verse n="1"><syl eol="1">right;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -100,7 +100,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>be</syl></verse></note>
+<verse n="1"><syl eol="1">be</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -135,7 +135,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>

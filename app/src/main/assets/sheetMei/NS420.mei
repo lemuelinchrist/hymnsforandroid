@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="4">
 <verse n="1"><syl>things</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4">
-<verse n="1"><syl>says,</syl></verse></note>
+<verse n="1"><syl eol="1">says,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C/E</harm>
@@ -47,7 +47,7 @@
 <verse n="1"><syl wordpos="i" con="d">quick</syl></verse></note>
 <note xml:id="n14" pname="d" oct="4" dur="8"/>
 <note xml:id="n15" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <slur startid="#n13" endid="#n14"/>
@@ -73,7 +73,7 @@
 <note xml:id="n22" pname="g" oct="4" dur="4">
 <verse n="1"><syl>things</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="4">
-<verse n="1"><syl>says,</syl></verse></note>
+<verse n="1"><syl eol="1">says,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C/E</harm>
@@ -99,7 +99,7 @@
 <verse n="1"><syl wordpos="i" con="d">quick</syl></verse></note>
 <note xml:id="n30" pname="d" oct="4" dur="4"/>
 <note xml:id="n31" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -120,7 +120,7 @@
 <note xml:id="n34" pname="a" oct="4" dur="2">
 <verse n="1"><syl>Come,</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="2">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C/E</harm>
@@ -139,7 +139,7 @@
 <note xml:id="n39" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">quick</syl></verse></note>
 <note xml:id="n40" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ly!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -157,7 +157,7 @@
 <note xml:id="n43" pname="a" oct="4" dur="2">
 <verse n="1"><syl>Come,</syl></verse></note>
 <note xml:id="n44" pname="g" oct="4" dur="2">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C/E</harm>
@@ -182,7 +182,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ly!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly!</syl></verse></note>
 <rest xml:id="r51" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

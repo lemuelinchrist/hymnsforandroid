@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="4">
 <verse n="1"><syl>that</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>He,</syl></verse></note>
+<verse n="1"><syl eol="1">He,</syl></verse></note>
 <note xml:id="n9" pname="c" oct="4" dur="8">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
@@ -61,7 +61,7 @@
 <note xml:id="n17" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ten</syl></verse></note>
 <note xml:id="n18" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Son,</syl></verse></note>
+<verse n="1"><syl eol="1">Son,</syl></verse></note>
 <note xml:id="n19" pname="f" oct="4" dur="8">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -87,7 +87,7 @@
 <note xml:id="n26" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
 <note xml:id="n27" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">to</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">to</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -111,7 +111,7 @@
 <note xml:id="n33" pname="g" oct="4" dur="8">
 <verse n="1"><syl>but</syl></verse></note>
 <note xml:id="n34" pname="f" oct="4" dur="8">
-<verse n="1"><syl>would</syl></verse></note>
+<verse n="1"><syl eol="1">would</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm7</harm>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 <rest xml:id="r40" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

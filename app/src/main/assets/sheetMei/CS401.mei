@@ -33,7 +33,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>氣，</syl></verse></note>
+<verse n="1"><syl eol="1">氣，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <tie startid="#n8" endid="#n9"/>
@@ -71,7 +71,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>啟，</syl></verse></note>
+<verse n="1"><syl eol="1">啟，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -116,7 +116,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>動，</syl></verse></note>
+<verse n="1"><syl eol="1">動，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n29" endid="#n30"/>
@@ -154,7 +154,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>中。</syl></verse></note>
+<verse n="1"><syl eol="1">中。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <tie startid="#n38" endid="#n39"/>

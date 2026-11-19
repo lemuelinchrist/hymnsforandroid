@@ -21,7 +21,7 @@
 <verse n="1"><syl>all</syl></verse></note>
 <note xml:id="n5" pname="g" oct="4" dur="8"/>
 <note xml:id="n6" pname="f" oct="4" dur="2">
-<verse n="1"><syl>things</syl></verse></note>
+<verse n="1"><syl eol="1">things</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">F7</harm>
 <slur startid="#n4" endid="#n5"/>
@@ -55,7 +55,7 @@
 <note xml:id="n15" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n16" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">F</harm>
 </measure>
@@ -75,7 +75,7 @@
 <verse n="1"><syl>all</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="8"/>
 <note xml:id="n22" pname="f" oct="4" dur="4">
-<verse n="1"><syl>things</syl></verse></note>
+<verse n="1"><syl eol="1">things</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -107,7 +107,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="f" oct="4" dur="1">
-<verse n="1"><syl>Him.</syl></verse></note>
+<verse n="1"><syl eol="1">Him.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

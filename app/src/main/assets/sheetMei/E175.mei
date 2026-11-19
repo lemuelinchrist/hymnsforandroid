@@ -22,7 +22,7 @@
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n5" pname="d" oct="4" dur="4"/>
 <note xml:id="n6" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭7</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -45,7 +45,7 @@
 <verse n="1"><syl wordpos="i" con="d">na</syl></verse></note>
 <note xml:id="n12" pname="f" oct="4" dur="4"/>
 <note xml:id="n13" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ture!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ture!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="2" place="above">B♭7</harm>
@@ -85,7 +85,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="f" oct="4" dur="1">
-<verse n="1"><syl>Son!</syl></verse></note>
+<verse n="1"><syl eol="1">Son!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭7</harm>
 </measure>
@@ -107,7 +107,7 @@
 <verse n="1"><syl wordpos="i" con="d">che</syl></verse></note>
 <note xml:id="n27" pname="g" oct="4" dur="4"/>
 <note xml:id="n28" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">rish,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">rish,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">Fm</harm>
@@ -129,7 +129,7 @@
 <verse n="1"><syl wordpos="i" con="d">hon</syl></verse></note>
 <note xml:id="n33" pname="f" oct="4" dur="4"/>
 <note xml:id="n34" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">or,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">or,</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Thou,</syl></verse></note>
 </layer></staff>
@@ -161,7 +161,7 @@
 </measure>
 <measure n="15" right="end"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="e" oct="4" dur="1">
-<verse n="1"><syl>crown!</syl></verse></note>
+<verse n="1"><syl eol="1">crown!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>

@@ -52,7 +52,7 @@
 <beam>
 <note xml:id="n12" pname="e" oct="4" dur="8"/>
 <note xml:id="n13" pname="d" oct="4" dur="8">
-<verse n="1"><syl>faith</syl></verse></note>
+<verse n="1"><syl eol="1">faith</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="d" oct="4" dur="2"/>
 <beam>
@@ -88,7 +88,7 @@
 <beam>
 <note xml:id="n22" pname="a" oct="4" dur="8"/>
 <note xml:id="n23" pname="e" oct="4" dur="8">
-<verse n="1"><syl>God</syl></verse></note>
+<verse n="1"><syl eol="1">God</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="e" oct="4" dur="2"/>
 <beam>
@@ -117,7 +117,7 @@
 <note xml:id="n30" pname="b" oct="4" dur="4"/>
 <beam>
 <note xml:id="n31" pname="a" oct="4" dur="8">
-<verse n="1"><syl>Christ</syl></verse></note>
+<verse n="1"><syl eol="1">Christ</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="8"/>
 </beam>
 <beam>
@@ -160,7 +160,7 @@
 <note xml:id="n44" pname="c" oct="5" dur="8"/>
 </beam>
 <note xml:id="n45" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">broad</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">broad</syl></verse></note>
 <beam>
 <note xml:id="n46" pname="c" oct="5" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
@@ -195,7 +195,7 @@
 <note xml:id="n54" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n55" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it</syl></verse></note>
 <note xml:id="n56" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Which</syl></verse></note>
 <note xml:id="n57" pname="d" oct="4" dur="8">
@@ -229,7 +229,7 @@
 <note xml:id="n63" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">giv</syl></verse></note>
 <note xml:id="n64" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">en</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en</syl></verse></note>
 </beam>
 <note xml:id="n65" pname="e" oct="4" dur="2"/>
 <beam>
@@ -265,7 +265,7 @@
 <measure n="17"><staff n="1"><layer n="1">
 <beam>
 <note xml:id="n73" pname="e" oct="4" dur="8">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 <note xml:id="n74" pname="d" oct="4" dur="8"/>
 </beam>
 <note xml:id="n75" pname="c" oct="4" dur="2" dots="1"/>

@@ -39,7 +39,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>sin?</syl></verse></note>
+<verse n="1"><syl eol="1">sin?</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">in.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>

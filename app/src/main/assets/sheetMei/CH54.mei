@@ -34,7 +34,7 @@
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ful,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ful,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -69,7 +69,7 @@
 <note xml:id="n19" pname="d" oct="4" dur="4">
 <verse n="1"><syl>can</syl></verse></note>
 <note xml:id="n20" pname="e" oct="4" dur="2">
-<verse n="1"><syl>do—</syl></verse></note>
+<verse n="1"><syl eol="1">do—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 <harm staff="1" tstamp="3" place="above">E7</harm>
@@ -110,7 +110,7 @@
 <verse n="1"><syl wordpos="t">ange</syl></verse></note>
 </beam>
 <note xml:id="n32" pname="f" oct="4" dur="2">
-<verse n="1"><syl>too—</syl></verse></note>
+<verse n="1"><syl eol="1">too—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -145,7 +145,7 @@
 <note xml:id="n41" pname="g" oct="4" dur="4">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n42" pname="a" oct="4" dur="2">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E7</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>

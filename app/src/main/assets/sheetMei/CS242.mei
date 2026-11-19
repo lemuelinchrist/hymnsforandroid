@@ -18,7 +18,7 @@
 <note xml:id="n3" pname="a" oct="4" dur="8">
 <verse n="1"><syl>美</syl></verse></note>
 <note xml:id="n4" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>地，</syl></verse></note>
+<verse n="1"><syl eol="1">地，</syl></verse></note>
 <note xml:id="n5" pname="d" oct="4" dur="8">
 <verse n="1"><syl>神</syl></verse></note>
 </layer></staff>
@@ -36,7 +36,7 @@
 <verse n="1"><syl>我</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>們；</syl></verse></note>
+<verse n="1"><syl eol="1">們；</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="8">
 <verse n="1"><syl>基</syl></verse></note>
 </layer></staff>
@@ -66,7 +66,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="a" oct="4" dur="2">
-<verse n="1"><syl>地。</syl></verse></note>
+<verse n="1"><syl eol="1">地。</syl></verse></note>
 <rest xml:id="r19" dur="8"/>
 <beam>
 <note xml:id="n20" pname="a" oct="4" dur="8">
@@ -88,7 +88,7 @@
 <verse n="1"><syl>合</syl></verse></note>
 </beam>
 <note xml:id="n25" pname="a" oct="4" dur="4">
-<verse n="1"><syl>一，</syl></verse></note>
+<verse n="1"><syl eol="1">一，</syl></verse></note>
 <beam>
 <note xml:id="n26" pname="a" oct="4" dur="8"/>
 <note xml:id="n27" pname="d" oct="5" dur="8">
@@ -110,7 +110,7 @@
 <verse n="1"><syl>一</syl></verse></note>
 </beam>
 <note xml:id="n32" pname="a" oct="4" dur="4">
-<verse n="1"><syl>起，</syl></verse></note>
+<verse n="1"><syl eol="1">起，</syl></verse></note>
 <beam>
 <note xml:id="n33" pname="a" oct="4" dur="8"/>
 <note xml:id="n34" pname="a" oct="4" dur="8">
@@ -132,7 +132,7 @@
 <note xml:id="n38" pname="c" oct="5" dur="8">
 <verse n="1"><syl>世</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="8" dots="1">
-<verse n="1"><syl>代，</syl></verse></note>
+<verse n="1"><syl eol="1">代，</syl></verse></note>
 <note xml:id="n40" pname="g" oct="4" dur="16">
 <verse n="1"><syl>世</syl></verse></note>
 </beam>
@@ -154,7 +154,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>棄！</syl></verse></note>
+<verse n="1"><syl eol="1">棄！</syl></verse></note>
 <rest xml:id="r46" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>

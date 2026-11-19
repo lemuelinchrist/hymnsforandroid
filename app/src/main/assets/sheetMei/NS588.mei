@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="t">ver</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>you</syl></verse></note>
+<verse n="1"><syl eol="1">you</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -51,7 +51,7 @@
 <sb/>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl>God;</syl></verse></note>
+<verse n="1"><syl eol="1">God;</syl></verse></note>
 <note xml:id="n17" pname="d" oct="4" dur="4" dots="1"/>
 <note xml:id="n18" pname="e" oct="4" dur="4" dots="1"/>
 <note xml:id="n19" pname="f" oct="4" dur="4" dots="1"/>
@@ -69,7 +69,7 @@
 <note xml:id="n23" pname="f" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="t">trothed</syl></verse></note>
 <note xml:id="n24" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>you</syl></verse></note>
+<verse n="1"><syl eol="1">you</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -81,7 +81,7 @@
 <note xml:id="n27" pname="e" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">hus</syl></verse></note>
 <note xml:id="n28" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">band</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">band</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -94,7 +94,7 @@
 <note xml:id="n31" pname="d" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="t">sent</syl></verse></note>
 <note xml:id="n32" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl>you</syl></verse></note>
+<verse n="1"><syl eol="1">you</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 </measure>
@@ -117,7 +117,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="c" oct="4" dur="1" dots="1">
-<verse n="1"><syl>Christ.</syl></verse></note>
+<verse n="1"><syl eol="1">Christ.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>

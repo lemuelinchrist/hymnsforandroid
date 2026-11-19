@@ -32,7 +32,7 @@
 <note xml:id="n9" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">got</syl></verse></note>
 <note xml:id="n10" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ten,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ten,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="4" place="above">C</harm>
 <slur startid="#n5" endid="#n6"/>
@@ -57,7 +57,7 @@
 <note xml:id="n16" pname="g" oct="4" dur="4">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n17" pname="f" oct="4" dur="2">
-<verse n="1"><syl>be,</syl></verse></note>
+<verse n="1"><syl eol="1">be,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
@@ -90,7 +90,7 @@
 <note xml:id="n26" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">e</syl></verse></note>
 <note xml:id="n27" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ga,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ga,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="4" place="above">C</harm>
 <slur startid="#n22" endid="#n23"/>
@@ -120,7 +120,7 @@
 <note xml:id="n34" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n35" pname="f" oct="4" dur="2">
-<verse n="1"><syl>He,</syl></verse></note>
+<verse n="1"><syl eol="1">He,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="2" place="above">C7</harm>
@@ -148,7 +148,7 @@
 <note xml:id="n42" pname="c" oct="5" dur="4">
 <verse n="1"><syl>have</syl></verse></note>
 <note xml:id="n43" pname="a" oct="4" dur="4">
-<verse n="1"><syl>been,</syl></verse></note>
+<verse n="1"><syl eol="1">been,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -173,7 +173,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="c" oct="5" dur="1">
-<verse n="1"><syl>see,</syl></verse></note>
+<verse n="1"><syl eol="1">see,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -204,7 +204,7 @@
 <note xml:id="n58" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
 <note xml:id="n59" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">more.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">more.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>

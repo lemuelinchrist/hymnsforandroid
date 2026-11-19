@@ -44,7 +44,7 @@
 <note xml:id="n12" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">hun</syl></verse></note>
 <note xml:id="n13" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">gry</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gry</syl></verse></note>
 <note xml:id="n14" pname="d" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -83,7 +83,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">na,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">na,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -110,7 +110,7 @@
 <note xml:id="n33" pname="d" oct="4" dur="4">
 <verse n="1"><syl>known</syl></verse></note>
 <note xml:id="n34" pname="c" oct="4" dur="4">
-<verse n="1"><syl>nor</syl></verse></note>
+<verse n="1"><syl eol="1">nor</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n32" endid="#n33"/>
@@ -139,7 +139,7 @@
 <note xml:id="n43" pname="a" oct="4" dur="4">
 <verse n="1"><syl>known,</syl></verse></note>
 <note xml:id="n44" pname="g" oct="4" dur="4">
-<verse n="1"><syl>so</syl></verse></note>
+<verse n="1"><syl eol="1">so</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n42" endid="#n43"/>
@@ -168,7 +168,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="e" oct="4" dur="8">
-<verse n="1"><syl>know</syl></verse></note>
+<verse n="1"><syl eol="1">know</syl></verse></note>
 <note xml:id="n53" pname="d" oct="4" dur="4" dots="1"/>
 <note xml:id="n54" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -209,7 +209,7 @@
 <note xml:id="n64" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n65" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">lone,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lone,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -246,7 +246,7 @@
 <note xml:id="n74" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n75" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">lone,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lone,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -273,7 +273,7 @@
 <note xml:id="n81" pname="e" oct="5" dur="4" dots="1">
 <verse n="1"><syl>that</syl></verse></note>
 <note xml:id="n82" pname="d" oct="5" dur="8">
-<verse n="1"><syl>man</syl></verse></note>
+<verse n="1"><syl eol="1">man</syl></verse></note>
 <note xml:id="n83" pname="d" oct="5" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -297,7 +297,7 @@
 <verse n="1"><syl wordpos="t">thing</syl></verse></note>
 <note xml:id="n90" pname="c" oct="5" dur="4"/>
 <note xml:id="n91" pname="b" oct="4" dur="4">
-<verse n="1"><syl>that</syl></verse></note>
+<verse n="1"><syl eol="1">that</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n89" endid="#n90"/>
@@ -331,7 +331,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n100" pname="e" oct="4" dur="8">
-<verse n="1"><syl>mouth</syl></verse></note>
+<verse n="1"><syl eol="1">mouth</syl></verse></note>
 <note xml:id="n101" pname="d" oct="4" dur="4" dots="1"/>
 <note xml:id="n102" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -351,7 +351,7 @@
 <note xml:id="n106" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ho</syl></verse></note>
 <note xml:id="n107" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">vah.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vah.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>

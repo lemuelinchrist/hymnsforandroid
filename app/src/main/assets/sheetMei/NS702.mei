@@ -52,7 +52,7 @@
 <verse n="1"><syl>does</syl></verse></note>
 <note xml:id="n14" pname="d" oct="4" dur="8"/>
 <note xml:id="n15" pname="d" oct="4" dur="2">
-<verse n="1"><syl>them,</syl></verse></note>
+<verse n="1"><syl eol="1">them,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n14" endid="#n15"/>
@@ -101,7 +101,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="e" oct="4" dur="1">
-<verse n="1"><syl>man,</syl></verse></note>
+<verse n="1"><syl eol="1">man,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Asus4</harm>
 <tie startid="#n29" endid="#n30"/>
@@ -137,7 +137,7 @@
 <note xml:id="n38" pname="a" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="8">
-<verse n="1"><syl>rock,</syl></verse></note>
+<verse n="1"><syl eol="1">rock,</syl></verse></note>
 </beam>
 <note xml:id="n40" pname="a" oct="4" dur="4"/>
 <beam>
@@ -183,7 +183,7 @@
 <note xml:id="n53" pname="d" oct="4" dur="8"/>
 </beam>
 <note xml:id="n54" pname="d" oct="4" dur="4">
-<verse n="1"><syl>came,</syl></verse></note>
+<verse n="1"><syl eol="1">came,</syl></verse></note>
 <beam>
 <note xml:id="n55" pname="d" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -231,7 +231,7 @@
 <note xml:id="n67" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n68" pname="e" oct="4" dur="2">
-<verse n="1"><syl>house,</syl></verse></note>
+<verse n="1"><syl eol="1">house,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Asus4</harm>
 <tie startid="#n67" endid="#n68"/>
@@ -279,7 +279,7 @@
 <note xml:id="n82" pname="d" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n83" pname="d" oct="4" dur="8">
-<verse n="1"><syl>rock.</syl></verse></note>
+<verse n="1"><syl eol="1">rock.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>

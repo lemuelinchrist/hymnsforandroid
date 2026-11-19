@@ -34,7 +34,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">long,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">long,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/A</harm>
 </measure>
@@ -68,7 +68,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>throng,</syl></verse></note>
+<verse n="1"><syl eol="1">throng,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -101,7 +101,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>strong,</syl></verse></note>
+<verse n="1"><syl eol="1">strong,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/A</harm>
 </measure>
@@ -127,7 +127,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">vine.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vine.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -170,7 +170,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>by,</syl></verse></note>
+<verse n="1"><syl eol="1">by,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 </measure>
@@ -204,7 +204,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>cry.</syl></verse></note>
+<verse n="1"><syl eol="1">cry.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
 </measure>
@@ -245,7 +245,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>nigh,</syl></verse></note>
+<verse n="1"><syl eol="1">nigh,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 </measure>
@@ -271,7 +271,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n68" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">vine.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vine.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n68" endid="#n69"/>

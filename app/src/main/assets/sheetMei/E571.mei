@@ -27,7 +27,7 @@
 <note xml:id="n7" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n8" pname="b" oct="3" dur="4">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -55,7 +55,7 @@
 <note xml:id="n15" pname="g" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n16" pname="f" oct="4" dur="2">
-<verse n="1"><syl>pow’r,</syl></verse></note>
+<verse n="1"><syl eol="1">pow’r,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -82,7 +82,7 @@
 <note xml:id="n23" pname="d" oct="4" dur="4">
 <verse n="1"><syl>trust</syl></verse></note>
 <note xml:id="n24" pname="b" oct="3" dur="4">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -110,7 +110,7 @@
 <note xml:id="n31" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ery</syl></verse></note>
 <note xml:id="n32" pname="f" oct="4" dur="2">
-<verse n="1"><syl>hour;</syl></verse></note>
+<verse n="1"><syl eol="1">hour;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -142,7 +142,7 @@
 <note xml:id="n40" pname="b" oct="4" dur="8"/>
 </beam>
 <note xml:id="n41" pname="c" oct="5" dur="2">
-<verse n="1"><syl>sing,</syl></verse></note>
+<verse n="1"><syl eol="1">sing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -173,7 +173,7 @@
 <note xml:id="n48" pname="c" oct="5" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n49" pname="b" oct="4" dur="2">
-<verse n="1"><syl>King.</syl></verse></note>
+<verse n="1"><syl eol="1">King.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="2" place="above">F7</harm>

@@ -30,7 +30,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n8" pname="e" oct="4" dur="2">
-<verse n="1"><syl>day,</syl></verse></note>
+<verse n="1"><syl eol="1">day,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">G</harm>
@@ -60,7 +60,7 @@
 <note xml:id="n15" pname="c" oct="4" dur="8"/>
 </beam>
 <note xml:id="n16" pname="d" oct="4" dur="2">
-<verse n="1"><syl>way,</syl></verse></note>
+<verse n="1"><syl eol="1">way,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="2" place="above">D/F♯</harm>
@@ -89,7 +89,7 @@
 <note xml:id="n22" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
 <note xml:id="n23" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">earth,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">earth,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">G7/D</harm>
@@ -116,7 +116,7 @@
 <note xml:id="n29" pname="f" oct="4" dur="4" accid="s" accid.ges="s">
 <verse n="1"><syl>its</syl></verse></note>
 <note xml:id="n30" pname="g" oct="4" dur="2">
-<verse n="1"><syl>worth:</syl></verse></note>
+<verse n="1"><syl eol="1">worth:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="2" place="above">D7</harm>
@@ -152,7 +152,7 @@
 <note xml:id="n39" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n40" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">G</harm>
@@ -190,7 +190,7 @@
 </measure>
 <measure n="13" right="end"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="c" oct="5" dur="1">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">F/C</harm>

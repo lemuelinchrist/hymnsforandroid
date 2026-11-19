@@ -39,7 +39,7 @@
 <verse n="1"><syl wordpos="t">en</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl>us</syl></verse></note>
+<verse n="1"><syl eol="1">us</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">F/A</harm>
@@ -77,7 +77,7 @@
 <verse n="1"><syl wordpos="m" con="d">is</syl></verse></note>
 </beam>
 <note xml:id="n22" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">es.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7/E</harm>
 <harm staff="1" tstamp="2" place="above">C7</harm>
@@ -117,7 +117,7 @@
 <verse n="1"><syl>all</syl></verse></note>
 </beam>
 <note xml:id="n33" pname="b" oct="4" dur="2">
-<verse n="1"><syl>three;</syl></verse></note>
+<verse n="1"><syl eol="1">three;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">F7/A</harm>
@@ -155,7 +155,7 @@
 <note xml:id="n43" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n44" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="2" place="above">C7</harm>

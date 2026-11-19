@@ -33,7 +33,7 @@
 <note xml:id="n7" pname="e" oct="4" dur="4">
 <verse n="1"><syl>for</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4">
-<verse n="1"><syl>God!</syl></verse></note>
+<verse n="1"><syl eol="1">God!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <tie startid="#n8" endid="#n9"/>
@@ -74,7 +74,7 @@
 <note xml:id="n17" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n18" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">flame!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">flame!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -115,7 +115,7 @@
 <note xml:id="n27" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ed</syl></verse></note>
 <note xml:id="n28" pname="c" oct="4" dur="4">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="3" place="above">C/G</harm>
@@ -163,7 +163,7 @@
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="a" oct="3" dur="4"/>
 <note xml:id="n39" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Name.</syl></verse></note>
+<verse n="1"><syl eol="1">Name.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>

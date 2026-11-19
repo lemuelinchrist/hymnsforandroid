@@ -37,7 +37,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>scenes,</syl></verse></note>
+<verse n="1"><syl eol="1">scenes,</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -65,7 +65,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">thing.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thing.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 <slur startid="#n16" endid="#n19"/>
@@ -104,7 +104,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Word;</syl></verse></note>
+<verse n="1"><syl eol="1">Word;</syl></verse></note>
 <note xml:id="n28" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Be</syl></verse></note>
 </layer></staff>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="e" oct="4" dur="1">
-<verse n="1"><syl>strong.</syl></verse></note>
+<verse n="1"><syl eol="1">strong.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 <tie startid="#n35" endid="#n36"/>

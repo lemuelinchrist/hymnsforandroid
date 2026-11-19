@@ -42,7 +42,7 @@
 <note xml:id="n10" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">ful</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ness;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭/D</harm>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="f" oct="4" dur="1">
-<verse n="1"><syl>hill;</syl></verse></note>
+<verse n="1"><syl eol="1">hill;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -122,7 +122,7 @@
 <note xml:id="n31" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">still</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ness,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -162,7 +162,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="b" oct="4" dur="1">
-<verse n="1"><syl>will.</syl></verse></note>
+<verse n="1"><syl eol="1">will.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>

@@ -34,7 +34,7 @@
 <note xml:id="n8" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">y,</syl></verse></note>
 <note xml:id="n9" pname="c" oct="4" dur="4">
-<verse n="1"><syl>the</syl></verse></note>
+<verse n="1"><syl eol="1">the</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -56,7 +56,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">tion!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -89,7 +89,7 @@
 <note xml:id="n22" pname="d" oct="4" dur="4">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n23" pname="c" oct="4" dur="4">
-<verse n="1"><syl>thy</syl></verse></note>
+<verse n="1"><syl eol="1">thy</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -111,7 +111,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">tion!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="d" oct="5" dur="2" dots="1">
-<verse n="1"><syl>hear,</syl></verse></note>
+<verse n="1"><syl eol="1">hear,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -155,7 +155,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>near;</syl></verse></note>
+<verse n="1"><syl eol="1">near;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -192,7 +192,7 @@
 </measure>
 <measure n="21" right="end"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">tion!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

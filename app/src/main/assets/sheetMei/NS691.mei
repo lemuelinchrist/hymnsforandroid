@@ -37,7 +37,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="e" oct="4" dur="1">
-<verse n="1"><syl>washed.</syl></verse></note>
+<verse n="1"><syl eol="1">washed.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n10" endid="#n11"/>
@@ -79,7 +79,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="1">
-<verse n="1"><syl>one.</syl></verse></note>
+<verse n="1"><syl eol="1">one.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n23" endid="#n24"/>
@@ -127,7 +127,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="e" oct="4" dur="2">
-<verse n="1"><syl>clean!</syl></verse></note>
+<verse n="1"><syl eol="1">clean!</syl></verse></note>
 <rest xml:id="r39" dur="4"/>
 <note xml:id="n40" pname="c" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
@@ -161,7 +161,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="f" oct="4" dur="1">
-<verse n="1"><syl>keen.</syl></verse></note>
+<verse n="1"><syl eol="1">keen.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n49" endid="#n50"/>
@@ -194,7 +194,7 @@
 <note xml:id="n58" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n59" pname="g" oct="4" dur="2">
-<verse n="1"><syl>Christ!</syl></verse></note>
+<verse n="1"><syl eol="1">Christ!</syl></verse></note>
 </layer></staff>
 <tie startid="#n56" endid="#n57"/>
 <tie startid="#n58" endid="#n59"/>
@@ -217,7 +217,7 @@
 <verse n="1"><syl>us</syl></verse></note>
 <note xml:id="n65" pname="f" oct="4" dur="8"/>
 <note xml:id="n66" pname="e" oct="4" dur="8">
-<verse n="1"><syl>life!</syl></verse></note>
+<verse n="1"><syl eol="1">life!</syl></verse></note>
 </beam>
 <note xml:id="n67" pname="e" oct="4" dur="4"/>
 <beam>
@@ -256,7 +256,7 @@
 </measure>
 <measure n="25"><staff n="1"><layer n="1">
 <note xml:id="n76" pname="b" oct="4" dur="1">
-<verse n="1"><syl>life!</syl></verse></note>
+<verse n="1"><syl eol="1">life!</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -303,7 +303,7 @@
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n90" pname="f" oct="4" dur="8"/>
 <note xml:id="n91" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">tate!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tate!</syl></verse></note>
 </beam>
 <note xml:id="n92" pname="e" oct="4" dur="4"/>
 <beam>
@@ -347,7 +347,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n104" pname="e" oct="4" dur="1">
-<verse n="1"><syl>us!</syl></verse></note>
+<verse n="1"><syl eol="1">us!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n104" endid="#n105"/>

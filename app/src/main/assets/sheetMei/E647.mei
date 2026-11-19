@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">man</syl></verse></note>
 <note xml:id="n8" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">y;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">y;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -49,7 +49,7 @@
 <note xml:id="n14" pname="f" oct="4" dur="4">
 <verse n="1"><syl>are</syl></verse></note>
 <note xml:id="n15" pname="e" oct="4" dur="2">
-<verse n="1"><syl>few;</syl></verse></note>
+<verse n="1"><syl eol="1">few;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭/F</harm>
 <harm staff="1" tstamp="2" place="above">E♭/G</harm>
@@ -76,7 +76,7 @@
 <note xml:id="n22" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ta</syl></verse></note>
 <note xml:id="n23" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭m</harm>
@@ -100,7 +100,7 @@
 <note xml:id="n29" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Him</syl></verse></note>
 <note xml:id="n30" pname="a" oct="4" dur="2">
-<verse n="1"><syl>too.</syl></verse></note>
+<verse n="1"><syl eol="1">too.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>

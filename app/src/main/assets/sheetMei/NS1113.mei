@@ -29,7 +29,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">fore!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fore!</syl></verse></note>
 <note xml:id="n7" pname="e" oct="4" dur="4">
 <verse n="1"><syl>For</syl></verse></note>
 </layer></staff>
@@ -80,7 +80,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">turn.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">turn.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n21" endid="#n22"/>
@@ -115,7 +115,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>filled—</syl></verse></note>
+<verse n="1"><syl eol="1">filled—</syl></verse></note>
 <note xml:id="n31" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">(Un</syl></verse></note>
 </layer></staff>
@@ -140,7 +140,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="f" oct="4" dur="2">
-<verse n="1"><syl>world!)</syl></verse></note>
+<verse n="1"><syl eol="1">world!)</syl></verse></note>
 <note xml:id="n38" pname="g" oct="4" dur="4">
 <verse n="1"><syl>So</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="4">
@@ -161,7 +161,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">turn.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">turn.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n43" endid="#n44"/>

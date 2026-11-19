@@ -37,7 +37,7 @@
 <note xml:id="n9" pname="a" oct="4" dur="4">
 <verse n="1"><syl>man</syl></verse></note>
 <note xml:id="n10" pname="a" oct="4" dur="4">
-<verse n="1"><syl>yet?</syl></verse></note>
+<verse n="1"><syl eol="1">yet?</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Have</syl></verse></note>
@@ -64,7 +64,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>lamp?</syl></verse></note>
+<verse n="1"><syl eol="1">lamp?</syl></verse></note>
 <beam>
 <note xml:id="n18" pname="c" oct="5" dur="8">
 <verse n="1"><syl>Have</syl></verse></note>
@@ -100,7 +100,7 @@
 <note xml:id="n27" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">to</syl></verse></note>
 <note xml:id="n28" pname="f" oct="4" dur="4">
-<verse n="1"><syl>flame?</syl></verse></note>
+<verse n="1"><syl eol="1">flame?</syl></verse></note>
 <beam>
 <note xml:id="n29" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Have</syl></verse></note>
@@ -131,7 +131,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>group?</syl></verse></note>
+<verse n="1"><syl eol="1">group?</syl></verse></note>
 <beam>
 <note xml:id="n37" pname="c" oct="5" dur="8">
 <verse n="1"><label>(C)</label><syl>Have</syl></verse></note>
@@ -162,7 +162,7 @@
 <note xml:id="n43" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">tal</syl></verse></note>
 <note xml:id="n44" pname="f" oct="4" dur="4">
-<verse n="1"><syl>group?</syl></verse></note>
+<verse n="1"><syl eol="1">group?</syl></verse></note>
 <beam>
 <note xml:id="n45" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Have</syl></verse></note>
@@ -193,7 +193,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>lamp?</syl></verse></note>
+<verse n="1"><syl eol="1">lamp?</syl></verse></note>
 <beam>
 <note xml:id="n53" pname="c" oct="5" dur="8">
 <verse n="1"><syl>Have</syl></verse></note>
@@ -229,7 +229,7 @@
 <note xml:id="n62" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">to</syl></verse></note>
 <note xml:id="n63" pname="f" oct="4" dur="4">
-<verse n="1"><syl>flame?</syl></verse></note>
+<verse n="1"><syl eol="1">flame?</syl></verse></note>
 <beam>
 <note xml:id="n64" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Have</syl></verse></note>
@@ -258,7 +258,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>groups?</syl></verse></note>
+<verse n="1"><syl eol="1">groups?</syl></verse></note>
 <rest xml:id="r72" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>

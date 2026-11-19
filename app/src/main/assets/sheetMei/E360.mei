@@ -28,7 +28,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="d" oct="5" dur="1">
-<verse n="1"><syl>Light,</syl></verse></note>
+<verse n="1"><syl eol="1">Light,</syl></verse></note>
 <note xml:id="n7" pname="d" oct="5" dur="2">
 <verse n="1"><syl>Shine</syl></verse></note>
 </layer></staff>
@@ -50,7 +50,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="a" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">in;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in;</syl></verse></note>
 <note xml:id="n13" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Bright</syl></verse></note>
 </layer></staff>
@@ -79,7 +79,7 @@
 <note xml:id="n19" pname="f" oct="4" dur="4">
 <verse n="1"><syl>that’s</syl></verse></note>
 <note xml:id="n20" pname="e" oct="4" dur="2">
-<verse n="1"><syl>bright,</syl></verse></note>
+<verse n="1"><syl eol="1">bright,</syl></verse></note>
 <note xml:id="n21" pname="c" oct="5" dur="2">
 <verse n="1"><syl>Come,</syl></verse></note>
 </layer></staff>
@@ -105,7 +105,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="d" oct="4" dur="1">
-<verse n="1"><syl>sin.</syl></verse></note>
+<verse n="1"><syl eol="1">sin.</syl></verse></note>
 <rest xml:id="r27" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

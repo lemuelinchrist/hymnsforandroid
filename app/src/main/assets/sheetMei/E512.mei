@@ -24,7 +24,7 @@
 <note xml:id="n6" pname="b" oct="4" dur="4">
 <verse n="1"><syl>art</syl></verse></note>
 <note xml:id="n7" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Thou,</syl></verse></note>
+<verse n="1"><syl eol="1">Thou,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -46,7 +46,7 @@
 <note xml:id="n12" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
 <note xml:id="n13" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -71,7 +71,7 @@
 <note xml:id="n19" pname="c" oct="5" dur="4">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n20" pname="b" oct="4" dur="2">
-<verse n="1"><syl>shine,</syl></verse></note>
+<verse n="1"><syl eol="1">shine,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="2" place="above">D/A</harm>
@@ -94,7 +94,7 @@
 <note xml:id="n25" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">nev</syl></verse></note>
 <note xml:id="n26" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">G</harm>
 </measure>
@@ -118,7 +118,7 @@
 <note xml:id="n32" pname="g" oct="4" dur="4">
 <verse n="1"><syl>we</syl></verse></note>
 <note xml:id="n33" pname="a" oct="4" dur="2">
-<verse n="1"><syl>go,</syl></verse></note>
+<verse n="1"><syl eol="1">go,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <harm staff="1" tstamp="2" place="above">C/E</harm>
@@ -150,7 +150,7 @@
 </measure>
 <measure n="13" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="c" oct="4" dur="1">
-<verse n="1"><syl>foe.</syl></verse></note>
+<verse n="1"><syl eol="1">foe.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>

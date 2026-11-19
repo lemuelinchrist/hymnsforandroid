@@ -41,7 +41,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="g" oct="4" dur="1">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="d" oct="4" dur="1">
-<verse n="1"><syl>way,</syl></verse></note>
+<verse n="1"><syl eol="1">way,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -120,7 +120,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="c" oct="5" dur="2">
-<verse n="1"><syl>soul,</syl></verse></note>
+<verse n="1"><syl eol="1">soul,</syl></verse></note>
 <note xml:id="n31" pname="b" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/G</harm>
@@ -163,7 +163,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>

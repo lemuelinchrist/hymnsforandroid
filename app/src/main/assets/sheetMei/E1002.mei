@@ -31,7 +31,7 @@
 </beam>
 <beam>
 <note xml:id="n7" pname="f" oct="4" dur="8">
-<verse n="1"><syl>small—</syl></verse></note>
+<verse n="1"><syl eol="1">small—</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="8"/>
 </beam>
 </layer></staff>
@@ -57,7 +57,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="b" oct="4" dur="4">
-<verse n="1"><syl>no;</syl></verse></note>
+<verse n="1"><syl eol="1">no;</syl></verse></note>
 <rest xml:id="r14" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
@@ -88,7 +88,7 @@
 </beam>
 <beam>
 <note xml:id="n21" pname="f" oct="4" dur="8">
-<verse n="1"><syl>all,</syl></verse></note>
+<verse n="1"><syl eol="1">all,</syl></verse></note>
 <note xml:id="n22" pname="e" oct="4" dur="8"/>
 </beam>
 </layer></staff>
@@ -115,7 +115,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">go.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">go.</syl></verse></note>
 <rest xml:id="r28" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -147,7 +147,7 @@
 <verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
 </beam>
 <note xml:id="n35" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">deed,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">deed,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
@@ -171,7 +171,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="b" oct="4" dur="4">
-<verse n="1"><syl>jot:</syl></verse></note>
+<verse n="1"><syl eol="1">jot:</syl></verse></note>
 <rest xml:id="r41" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭m</harm>
@@ -204,7 +204,7 @@
 </beam>
 <beam>
 <note xml:id="n48" pname="f" oct="4" dur="8">
-<verse n="1"><syl>need—</syl></verse></note>
+<verse n="1"><syl eol="1">need—</syl></verse></note>
 <note xml:id="n49" pname="e" oct="4" dur="8"/>
 </beam>
 </layer></staff>
@@ -232,7 +232,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="a" oct="4" dur="4">
-<verse n="1"><syl>not?</syl></verse></note>
+<verse n="1"><syl eol="1">not?</syl></verse></note>
 <rest xml:id="r55" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>

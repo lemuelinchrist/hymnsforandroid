@@ -20,7 +20,7 @@
 <note xml:id="n5" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
 <note xml:id="n6" pname="d" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">sert,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sert,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">G♭</harm>
@@ -37,7 +37,7 @@
 <verse n="1"><syl wordpos="t">sands</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="e" oct="4" dur="2">
-<verse n="1"><syl>stand</syl></verse></note>
+<verse n="1"><syl eol="1">stand</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -56,7 +56,7 @@
 <note xml:id="n16" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Ka</syl></verse></note>
 <note xml:id="n17" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">desh.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">desh.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">G♭</harm>
@@ -75,7 +75,7 @@
 <verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
 </beam>
 <note xml:id="n23" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">mand,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">mand,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
 <harm staff="1" tstamp="2" place="above">E♭</harm>
@@ -92,7 +92,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n27" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Rock,</syl></verse></note>
+<verse n="1"><syl eol="1">Rock,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭7</harm>
 <harm staff="1" tstamp="3" place="above">D♭</harm>
@@ -109,7 +109,7 @@
 <verse n="1"><syl wordpos="t">ters</syl></verse></note>
 </beam>
 <note xml:id="n32" pname="a" oct="4" dur="2">
-<verse n="1"><syl>flow,</syl></verse></note>
+<verse n="1"><syl eol="1">flow,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♭</harm>
 <harm staff="1" tstamp="3" place="above">D♭</harm>
@@ -126,7 +126,7 @@
 <note xml:id="n36" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">bo</syl></verse></note>
 <note xml:id="n37" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">som</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">som</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭m</harm>
@@ -144,7 +144,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n42" pname="e" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">go.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">go.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
 <harm staff="1" tstamp="3" place="above">A♭7</harm>
@@ -159,7 +159,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n46" pname="a" oct="4" dur="4">
-<verse n="1"><syl>Rock,</syl></verse></note>
+<verse n="1"><syl eol="1">Rock,</syl></verse></note>
 <beam>
 <note xml:id="n47" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Till</syl></verse></note>
@@ -177,7 +177,7 @@
 <note xml:id="n50" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ters</syl></verse></note>
 <note xml:id="n51" pname="d" oct="4" dur="2">
-<verse n="1"><syl>flow.</syl></verse></note>
+<verse n="1"><syl eol="1">flow.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭/A♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭7</harm>
@@ -200,7 +200,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="f" oct="4" dur="2">
-<verse n="1"><syl>Rock,</syl></verse></note>
+<verse n="1"><syl eol="1">Rock,</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
@@ -221,7 +221,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="e" oct="4" dur="2">
-<verse n="1"><syl>flow,</syl></verse></note>
+<verse n="1"><syl eol="1">flow,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -241,7 +241,7 @@
 <note xml:id="n64" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n65" pname="d" oct="5" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it,</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
@@ -262,7 +262,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n70" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">go;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">go;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -283,7 +283,7 @@
 <note xml:id="n74" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">wait</syl></verse></note>
 <note xml:id="n75" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">eth,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">eth,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭/F</harm>
 </measure>
@@ -305,7 +305,7 @@
 </measure>
 <measure n="22"><staff n="1"><layer n="1">
 <note xml:id="n80" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tow,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tow,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭/F</harm>
 </measure>
@@ -325,7 +325,7 @@
 <note xml:id="n84" pname="d" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">ful</syl></verse></note>
 <note xml:id="n85" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭m</harm>
 </measure>
@@ -347,7 +347,7 @@
 </measure>
 <measure n="26" right="end"><staff n="1"><layer n="1">
 <note xml:id="n90" pname="d" oct="4" dur="2">
-<verse n="1"><syl>know.</syl></verse></note>
+<verse n="1"><syl eol="1">know.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 </measure>

@@ -36,7 +36,7 @@
 <note xml:id="n9" pname="e" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">ren</syl></verse></note>
 <note xml:id="n10" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">der</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">der</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n10" endid="#n11"/>
@@ -74,7 +74,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="e" oct="4" dur="1">
-<verse n="1"><syl>be,</syl></verse></note>
+<verse n="1"><syl eol="1">be,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n20" endid="#n21"/>
@@ -113,7 +113,7 @@
 <note xml:id="n30" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n31" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n31" endid="#n32"/>
@@ -151,7 +151,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="c" oct="4" dur="1">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <tie startid="#n41" endid="#n42"/>

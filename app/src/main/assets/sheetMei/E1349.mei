@@ -38,7 +38,7 @@
 <note xml:id="n11" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">kind</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ness,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -73,7 +73,7 @@
 <verse n="1"><syl wordpos="t">y</syl></verse></note>
 </beam>
 <note xml:id="n23" pname="c" oct="4" dur="2">
-<verse n="1"><syl>eve;</syl></verse></note>
+<verse n="1"><syl eol="1">eve;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -112,7 +112,7 @@
 <note xml:id="n34" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">reap</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">Cm</harm>
@@ -148,7 +148,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n46" pname="b" oct="4" dur="2">
-<verse n="1"><syl>sheaves.</syl></verse></note>
+<verse n="1"><syl eol="1">sheaves.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="2" place="above">F7</harm>
@@ -185,7 +185,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n56" pname="f" oct="4" dur="2">
-<verse n="1"><syl>sheaves,</syl></verse></note>
+<verse n="1"><syl eol="1">sheaves,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -220,7 +220,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n67" pname="c" oct="5" dur="2">
-<verse n="1"><syl>sheaves;</syl></verse></note>
+<verse n="1"><syl eol="1">sheaves;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -255,7 +255,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n77" pname="f" oct="4" dur="2">
-<verse n="1"><syl>sheaves,</syl></verse></note>
+<verse n="1"><syl eol="1">sheaves,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭/D</harm>
@@ -291,7 +291,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n88" pname="b" oct="4" dur="2">
-<verse n="1"><syl>sheaves.</syl></verse></note>
+<verse n="1"><syl eol="1">sheaves.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="2" place="above">F7</harm>

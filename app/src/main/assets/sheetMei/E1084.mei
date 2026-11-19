@@ -36,7 +36,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>forth:</syl></verse></note>
+<verse n="1"><syl eol="1">forth:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n9" endid="#n10"/>
@@ -98,7 +98,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus!</syl></verse></note>
 <note xml:id="n23" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
 </layer></staff>
@@ -123,7 +123,7 @@
 <note xml:id="n28" pname="f" oct="4" dur="4">
 <verse n="1"><syl>poured</syl></verse></note>
 <note xml:id="n29" pname="g" oct="4" dur="4">
-<verse n="1"><syl>forth,</syl></verse></note>
+<verse n="1"><syl eol="1">forth,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm7</harm>
 </measure>
@@ -169,7 +169,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>forth.</syl></verse></note>
+<verse n="1"><syl eol="1">forth.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n40" endid="#n41"/>

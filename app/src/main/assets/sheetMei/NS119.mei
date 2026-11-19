@@ -30,7 +30,7 @@
 <note xml:id="n8" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n9" pname="f" oct="4" dur="4">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n11" pname="g" oct="4" dur="8">
@@ -58,7 +58,7 @@
 <note xml:id="n17" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">mov</syl></verse></note>
 <note xml:id="n18" pname="c" oct="5" dur="8">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 <note xml:id="n19" pname="b" oct="4" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
 <note xml:id="n20" pname="a" oct="4" dur="8">
@@ -79,7 +79,7 @@
 <verse n="1"><syl>my</syl></verse></note>
 </beam>
 <note xml:id="n25" pname="g" oct="4" dur="2">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -108,7 +108,7 @@
 <note xml:id="n33" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n34" pname="f" oct="4" dur="4">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <note xml:id="n35" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n36" pname="g" oct="4" dur="8">
@@ -134,7 +134,7 @@
 </beam>
 <beam>
 <note xml:id="n42" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">self</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">self</syl></verse></note>
 <note xml:id="n43" pname="c" oct="5" dur="8">
 <verse n="1"><syl>There</syl></verse></note>
 <note xml:id="n44" pname="b" oct="4" dur="8">
@@ -159,7 +159,7 @@
 </beam>
 <beam>
 <note xml:id="n50" pname="g" oct="4" dur="8">
-<verse n="1"><syl>Love.</syl></verse></note>
+<verse n="1"><syl eol="1">Love.</syl></verse></note>
 <note xml:id="n51" pname="e" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>I’m</syl></verse></note>
 <note xml:id="n52" pname="e" oct="4" dur="8">
@@ -202,7 +202,7 @@
 <verse n="1"><syl wordpos="i" con="d">Per</syl></verse></note>
 </beam>
 <note xml:id="n63" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">son</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">son</syl></verse></note>
 <beam>
 <note xml:id="n64" pname="g" oct="4" dur="8"/>
 <note xml:id="n65" pname="e" oct="4" dur="8">
@@ -231,7 +231,7 @@
 </beam>
 <beam>
 <note xml:id="n72" pname="a" oct="4" dur="8">
-<verse n="1"><syl>strong.</syl></verse></note>
+<verse n="1"><syl eol="1">strong.</syl></verse></note>
 <note xml:id="n73" pname="c" oct="5" dur="8">
 <verse n="1"><syl>He</syl></verse></note>
 <note xml:id="n74" pname="b" oct="4" dur="8">
@@ -252,7 +252,7 @@
 <verse n="1"><syl wordpos="i" con="d">Him</syl></verse></note>
 </beam>
 <note xml:id="n78" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">self</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">self</syl></verse></note>
 <beam>
 <note xml:id="n79" pname="g" oct="4" dur="8"/>
 <note xml:id="n80" pname="e" oct="4" dur="8">
@@ -292,7 +292,7 @@
 <verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
 </beam>
 <note xml:id="n90" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sire</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sire</syl></verse></note>
 <beam>
 <note xml:id="n91" pname="g" oct="4" dur="8"/>
 <note xml:id="n92" pname="e" oct="4" dur="8">
@@ -310,7 +310,7 @@
 <measure n="15"><staff n="1"><layer n="1">
 <beam>
 <note xml:id="n95" pname="f" oct="4" dur="8">
-<verse n="1"><syl>Me;</syl></verse></note>
+<verse n="1"><syl eol="1">Me;</syl></verse></note>
 <note xml:id="n96" pname="f" oct="4" dur="8">
 <verse n="1"><syl>I’m</syl></verse></note>
 <note xml:id="n97" pname="f" oct="4" dur="8">
@@ -334,7 +334,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n103" pname="e" oct="4" dur="1">
-<verse n="1"><syl>you.”</syl></verse></note>
+<verse n="1"><syl eol="1">you.”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>

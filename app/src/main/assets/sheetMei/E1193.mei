@@ -45,7 +45,7 @@
 <note xml:id="n10" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n11" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <slur startid="#n9" endid="#n10"/>
@@ -89,7 +89,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="a" oct="4" dur="2">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n21" endid="#n22"/>
@@ -142,7 +142,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ful!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ful!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 </measure>
@@ -180,7 +180,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ful.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ful.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="2" place="above">G/D</harm>

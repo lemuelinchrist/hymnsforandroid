@@ -43,7 +43,7 @@
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="2"/>
 <note xml:id="n11" pname="e" oct="4" dur="2">
-<verse n="1"><syl>length;</syl></verse></note>
+<verse n="1"><syl eol="1">length;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -87,7 +87,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="e" oct="4" dur="1">
-<verse n="1"><syl>strength;</syl></verse></note>
+<verse n="1"><syl eol="1">strength;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="b" oct="4" dur="2">
-<verse n="1"><syl>soul,</syl></verse></note>
+<verse n="1"><syl eol="1">soul,</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -172,7 +172,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="a" oct="4" dur="1">
-<verse n="1"><syl>roll.</syl></verse></note>
+<verse n="1"><syl eol="1">roll.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -209,7 +209,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="f" oct="4" dur="1">
-<verse n="1"><syl>joy;</syl></verse></note>
+<verse n="1"><syl eol="1">joy;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 </measure>
@@ -250,7 +250,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">joy.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">joy.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

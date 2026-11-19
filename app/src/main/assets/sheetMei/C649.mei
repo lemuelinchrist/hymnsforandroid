@@ -33,7 +33,7 @@
 <note xml:id="n7" pname="b" oct="4" dur="8">
 <verse n="1"><syl>抵</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="8">
-<verse n="1"><syl>敵</syl></verse></note>
+<verse n="1"><syl eol="1">敵</syl></verse></note>
 </beam>
 </layer></staff>
 </measure>
@@ -56,7 +56,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>裔；</syl></verse></note>
+<verse n="1"><syl eol="1">裔；</syl></verse></note>
 <rest xml:id="r14" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -90,7 +90,7 @@
 <note xml:id="n21" pname="b" oct="4" dur="8">
 <verse n="1"><syl>注</syl></verse></note>
 <note xml:id="n22" pname="g" oct="4" dur="8">
-<verse n="1"><syl>意！</syl></verse></note>
+<verse n="1"><syl eol="1">意！</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
@@ -115,7 +115,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>息！</syl></verse></note>
+<verse n="1"><syl eol="1">息！</syl></verse></note>
 <rest xml:id="r28" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -149,7 +149,7 @@
 <note xml:id="n35" pname="b" oct="3" dur="8">
 <verse n="1"><syl>在</syl></verse></note>
 <note xml:id="n36" pname="d" oct="4" dur="8">
-<verse n="1"><syl>世，</syl></verse></note>
+<verse n="1"><syl eol="1">世，</syl></verse></note>
 </beam>
 </layer></staff>
 </measure>
@@ -170,7 +170,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="b" oct="4" dur="2">
-<verse n="1"><syl>戰；</syl></verse></note>
+<verse n="1"><syl eol="1">戰；</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -201,7 +201,7 @@
 <note xml:id="n48" pname="b" oct="4" dur="8">
 <verse n="1"><syl>神</syl></verse></note>
 <note xml:id="n49" pname="a" oct="4" dur="8">
-<verse n="1"><syl>旨，</syl></verse></note>
+<verse n="1"><syl eol="1">旨，</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -226,7 +226,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="g" oct="4" dur="2">
-<verse n="1"><syl>場。</syl></verse></note>
+<verse n="1"><syl eol="1">場。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>

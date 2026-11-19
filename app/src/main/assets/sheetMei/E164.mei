@@ -42,7 +42,7 @@
 <note xml:id="n10" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n11" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">en</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <slur startid="#n9" endid="#n10"/>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="f" oct="4" dur="4">
-<verse n="1"><syl>heart;</syl></verse></note>
+<verse n="1"><syl eol="1">heart;</syl></verse></note>
 <note xml:id="n22" pname="e" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
@@ -128,7 +128,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">en,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en,</syl></verse></note>
 <rest xml:id="r34" dur="4"/>
 <beam>
 <note xml:id="n35" pname="c" oct="5" dur="8">
@@ -161,7 +161,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">part.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">part.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G/D</harm>

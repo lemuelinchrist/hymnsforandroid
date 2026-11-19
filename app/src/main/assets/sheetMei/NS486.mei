@@ -54,7 +54,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="c" oct="4" dur="4">
-<verse n="1"><syl>throne,</syl></verse></note>
+<verse n="1"><syl eol="1">throne,</syl></verse></note>
 <note xml:id="n13" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
@@ -107,7 +107,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="g" oct="4" dur="4">
-<verse n="1"><syl>home;</syl></verse></note>
+<verse n="1"><syl eol="1">home;</syl></verse></note>
 <note xml:id="n26" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -160,7 +160,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">self,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">self,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n38" endid="#n39"/>
@@ -215,7 +215,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="f" oct="4" dur="2">
-<verse n="1"><syl>self.</syl></verse></note>
+<verse n="1"><syl eol="1">self.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n51" endid="#n52"/>
@@ -274,7 +274,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="c" oct="5" dur="4">
-<verse n="1"><syl>bride!</syl></verse></note>
+<verse n="1"><syl eol="1">bride!</syl></verse></note>
 <beam>
 <note xml:id="n66" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Build</syl></verse></note>
@@ -324,7 +324,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n77" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">fied!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fied!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

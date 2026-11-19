@@ -32,7 +32,7 @@
 <verse n="1"><syl>is</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>frail,</syl></verse></note>
+<verse n="1"><syl eol="1">frail,</syl></verse></note>
 <note xml:id="n11" pname="b" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -56,7 +56,7 @@
 <note xml:id="n17" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n18" pname="g" oct="4" dur="4">
-<verse n="1"><syl>gone;</syl></verse></note>
+<verse n="1"><syl eol="1">gone;</syl></verse></note>
 <note xml:id="n19" pname="f" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
@@ -89,7 +89,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>true</syl></verse></note>
+<verse n="1"><syl eol="1">true</syl></verse></note>
 <note xml:id="n30" pname="b" oct="4" dur="8">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -114,7 +114,7 @@
 <note xml:id="n36" pname="a" oct="4" dur="4">
 <verse n="1"><syl>me</syl></verse></note>
 <note xml:id="n37" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>on.</syl></verse></note>
+<verse n="1"><syl eol="1">on.</syl></verse></note>
 <note xml:id="n38" pname="b" oct="4" dur="8">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -146,7 +146,7 @@
 </measure>
 <measure n="11" right="end"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="b" oct="4" dur="1">
-<verse n="1"><syl>on.</syl></verse></note>
+<verse n="1"><syl eol="1">on.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>

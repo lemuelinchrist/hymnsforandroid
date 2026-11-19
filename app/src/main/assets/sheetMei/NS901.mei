@@ -77,7 +77,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 <note xml:id="n22" pname="g" oct="4" dur="4">
@@ -165,7 +165,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">ed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed.</syl></verse></note>
 <note xml:id="n46" pname="c" oct="5" dur="4">
 <verse n="1"><syl>He</syl></verse></note>
 <note xml:id="n47" pname="c" oct="5" dur="4">
@@ -204,7 +204,7 @@
 <note xml:id="n56" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="m" con="d">rat</syl></verse></note>
 <note xml:id="n57" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed.</syl></verse></note>
 <note xml:id="n58" pname="g" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
@@ -246,7 +246,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -296,7 +296,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n84" pname="c" oct="5" dur="2">
-<verse n="1"><syl>need</syl></verse></note>
+<verse n="1"><syl eol="1">need</syl></verse></note>
 <note xml:id="n85" pname="c" oct="5" dur="4">
 <verse n="1"><syl>For</syl></verse></note>
 <note xml:id="n86" pname="c" oct="5" dur="4">
@@ -337,7 +337,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n97" pname="c" oct="5" dur="1">
-<verse n="1"><syl>race.</syl></verse></note>
+<verse n="1"><syl eol="1">race.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n97" endid="#n98"/>

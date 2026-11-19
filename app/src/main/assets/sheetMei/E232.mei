@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">stored,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">stored,</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="4">
 <verse n="1"><syl>We</syl></verse></note>
 </layer></staff>
@@ -59,7 +59,7 @@
 <note xml:id="n16" pname="d" oct="4" dur="8"/>
 </beam>
 <note xml:id="n17" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">dored,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dored,</syl></verse></note>
 <note xml:id="n18" pname="f" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -87,7 +87,7 @@
 <note xml:id="n24" pname="b" oct="4" dur="4">
 <verse n="1"><syl>dear</syl></verse></note>
 <note xml:id="n25" pname="a" oct="4" dur="4">
-<verse n="1"><syl>Lord</syl></verse></note>
+<verse n="1"><syl eol="1">Lord</syl></verse></note>
 <note xml:id="n26" pname="g" oct="4" dur="4" accid="s" accid.ges="s">
 <verse n="1"><syl wordpos="i" con="d">Un</syl></verse></note>
 </layer></staff>
@@ -106,7 +106,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>come.</syl></verse></note>
+<verse n="1"><syl eol="1">come.</syl></verse></note>
 <rest xml:id="r30" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

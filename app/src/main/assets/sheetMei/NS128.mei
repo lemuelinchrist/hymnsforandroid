@@ -46,7 +46,7 @@
 <note xml:id="n12" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">beau</syl></verse></note>
 <note xml:id="n13" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty,</syl></verse></note>
 <note xml:id="n14" pname="f" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -90,7 +90,7 @@
 <note xml:id="n26" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n27" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
@@ -142,7 +142,7 @@
 <note xml:id="n40" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">tract</syl></verse></note>
 <note xml:id="n41" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 <note xml:id="n42" pname="f" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -182,7 +182,7 @@
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 <note xml:id="n54" pname="e" oct="4" dur="8"/>
 <note xml:id="n55" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">day.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>

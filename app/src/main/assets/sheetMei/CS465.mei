@@ -37,7 +37,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="b" oct="3" dur="1">
-<verse n="1"><syl>麗;</syl></verse></note>
+<verse n="1"><syl eol="1">麗;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 </measure>
@@ -73,7 +73,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="g" oct="4" dur="1">
-<verse n="1"><syl>衷。</syl></verse></note>
+<verse n="1"><syl eol="1">衷。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 </measure>
@@ -108,7 +108,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="c" oct="5" dur="1">
-<verse n="1"><syl>息,</syl></verse></note>
+<verse n="1"><syl eol="1">息,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -141,7 +141,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>應?</syl></verse></note>
+<verse n="1"><syl eol="1">應?</syl></verse></note>
 <rest xml:id="r40" dur="4"/>
 </layer></staff>
 </measure>
@@ -182,7 +182,7 @@
 <note xml:id="n50" pname="f" oct="4" dur="16"/>
 </beam>
 <note xml:id="n51" pname="g" oct="4" dur="2">
-<verse n="1"><syl>行;</syl></verse></note>
+<verse n="1"><syl eol="1">行;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 <slur startid="#n49" endid="#n50"/>
@@ -220,7 +220,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="f" oct="4" dur="1">
-<verse n="1"><syl>心。</syl></verse></note>
+<verse n="1"><syl eol="1">心。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
@@ -258,7 +258,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="c" oct="5" dur="1">
-<verse n="1"><syl>意,</syl></verse></note>
+<verse n="1"><syl eol="1">意,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -293,7 +293,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n81" pname="e" oct="4" dur="1">
-<verse n="1"><syl>立。</syl></verse></note>
+<verse n="1"><syl eol="1">立。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 <tie startid="#n81" endid="#n82"/>

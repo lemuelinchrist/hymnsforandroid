@@ -36,7 +36,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>sight,</syl></verse></note>
+<verse n="1"><syl eol="1">sight,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -60,7 +60,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lord</syl></verse></note>
+<verse n="1"><syl eol="1">Lord</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 </measure>
@@ -97,7 +97,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">light,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">light,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -121,7 +121,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Word:</syl></verse></note>
+<verse n="1"><syl eol="1">Word:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="2" place="above">E♭/B♭</harm>

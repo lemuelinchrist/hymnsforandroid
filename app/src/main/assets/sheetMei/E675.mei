@@ -35,7 +35,7 @@
 <note xml:id="n8" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">rious</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
-<verse n="1"><syl>way</syl></verse></note>
+<verse n="1"><syl eol="1">way</syl></verse></note>
 <beam>
 <note xml:id="n10" pname="a" oct="4" dur="8">
 <verse n="1"><syl>His</syl></verse></note>
@@ -71,7 +71,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">form:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">form:</syl></verse></note>
 <note xml:id="n18" pname="a" oct="4" dur="4">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
@@ -100,7 +100,7 @@
 <note xml:id="n25" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n26" pname="e" oct="4" dur="4">
-<verse n="1"><syl>sea,</syl></verse></note>
+<verse n="1"><syl eol="1">sea,</syl></verse></note>
 <note xml:id="n27" pname="d" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>storm.</syl></verse></note>
+<verse n="1"><syl eol="1">storm.</syl></verse></note>
 <rest xml:id="r34" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

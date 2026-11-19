@@ -43,7 +43,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl>set,</syl></verse></note>
+<verse n="1"><syl eol="1">set,</syl></verse></note>
 <note xml:id="n12" pname="d" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="a" oct="4" dur="2">
-<verse n="1"><syl>lay;</syl></verse></note>
+<verse n="1"><syl eol="1">lay;</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="4">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
@@ -160,7 +160,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">way!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way!</syl></verse></note>
 <rest xml:id="r43" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

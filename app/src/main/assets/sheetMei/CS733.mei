@@ -40,7 +40,7 @@
 <note xml:id="n9" pname="d" oct="4" dur="16">
 <verse n="1"><syl>享</syl></verse></note>
 <note xml:id="n10" pname="e" oct="4" dur="16">
-<verse n="1"><syl>受</syl></verse></note>
+<verse n="1"><syl eol="1">受</syl></verse></note>
 </beam>
 </layer></staff>
 </measure>
@@ -70,7 +70,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="b" oct="3" dur="4" dots="1">
-<verse n="1"><syl>督。</syl></verse></note>
+<verse n="1"><syl eol="1">督。</syl></verse></note>
 <note xml:id="n20" pname="f" oct="4" dur="8">
 <verse n="1"><syl>脫</syl></verse></note>
 </layer></staff>
@@ -101,7 +101,7 @@
 </beam>
 <beam>
 <note xml:id="n27" pname="f" oct="4" dur="8">
-<verse n="1"><syl>地，</syl></verse></note>
+<verse n="1"><syl eol="1">地，</syl></verse></note>
 <note xml:id="n28" pname="d" oct="4" dur="16">
 <verse n="1"><syl>以</syl></verse></note>
 <note xml:id="n29" pname="e" oct="4" dur="16">
@@ -134,7 +134,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="b" oct="3" dur="4" dots="1">
-<verse n="1"><syl>的。</syl></verse></note>
+<verse n="1"><syl eol="1">的。</syl></verse></note>
 <note xml:id="n38" pname="d" oct="4" dur="8">
 <verse n="1"><syl>祂</syl></verse></note>
 </layer></staff>
@@ -165,7 +165,7 @@
 </beam>
 <beam>
 <note xml:id="n45" pname="g" oct="4" dur="8">
-<verse n="1"><syl>在</syl></verse></note>
+<verse n="1"><syl eol="1">在</syl></verse></note>
 <note xml:id="n46" pname="d" oct="4" dur="8">
 <verse n="1"><syl>我</syl></verse></note>
 </beam>
@@ -190,7 +190,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="f" oct="4" dur="4">
-<verse n="1"><syl>裡。</syl></verse></note>
+<verse n="1"><syl eol="1">裡。</syl></verse></note>
 <rest xml:id="r52" dur="8"/>
 <note xml:id="n53" pname="f" oct="4" dur="8">
 <verse n="1"><syl>所</syl></verse></note>
@@ -226,7 +226,7 @@
 <note xml:id="n61" pname="d" oct="4" dur="16">
 <verse n="1"><syl>享</syl></verse></note>
 <note xml:id="n62" pname="e" oct="4" dur="16">
-<verse n="1"><syl>受</syl></verse></note>
+<verse n="1"><syl eol="1">受</syl></verse></note>
 </beam>
 </layer></staff>
 </measure>
@@ -257,7 +257,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="b" oct="3" dur="4">
-<verse n="1"><syl>督。</syl></verse></note>
+<verse n="1"><syl eol="1">督。</syl></verse></note>
 <beam>
 <note xml:id="n72" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl>弟</syl></verse></note>
@@ -291,7 +291,7 @@
 <note xml:id="n79" pname="b" oct="4" dur="4">
 <verse n="1"><syl>前</syl></verse></note>
 <note xml:id="n80" pname="f" oct="4" dur="4">
-<verse n="1"><syl>來！</syl></verse></note>
+<verse n="1"><syl eol="1">來！</syl></verse></note>
 </layer></staff>
 <tie startid="#n80" endid="#n81"/>
 </measure>
@@ -329,7 +329,7 @@
 <note xml:id="n89" pname="f" oct="4" dur="4">
 <verse n="1"><syl>所</syl></verse></note>
 <note xml:id="n90" pname="b" oct="4" dur="4">
-<verse n="1"><syl>有；</syl></verse></note>
+<verse n="1"><syl eol="1">有；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n90" endid="#n91"/>
@@ -366,7 +366,7 @@
 <note xml:id="n99" pname="b" oct="4" dur="4">
 <verse n="1"><syl>自</syl></verse></note>
 <note xml:id="n100" pname="f" oct="4" dur="4">
-<verse n="1"><syl>由，</syl></verse></note>
+<verse n="1"><syl eol="1">由，</syl></verse></note>
 </layer></staff>
 <tie startid="#n100" endid="#n101"/>
 </measure>
@@ -405,7 +405,7 @@
 <note xml:id="n109" pname="b" oct="4" dur="4">
 <verse n="1"><syl>享</syl></verse></note>
 <note xml:id="n110" pname="b" oct="4" dur="4">
-<verse n="1"><syl>受。</syl></verse></note>
+<verse n="1"><syl eol="1">受。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n110" endid="#n111"/>
@@ -442,7 +442,7 @@
 <note xml:id="n119" pname="b" oct="4" dur="4">
 <verse n="1"><syl>豐</syl></verse></note>
 <note xml:id="n120" pname="f" oct="4" dur="4">
-<verse n="1"><syl>富，</syl></verse></note>
+<verse n="1"><syl eol="1">富，</syl></verse></note>
 </layer></staff>
 <tie startid="#n120" endid="#n121"/>
 </measure>
@@ -480,7 +480,7 @@
 <note xml:id="n129" pname="f" oct="4" dur="4">
 <verse n="1"><syl>供</syl></verse></note>
 <note xml:id="n130" pname="b" oct="4" dur="4">
-<verse n="1"><syl>應；</syl></verse></note>
+<verse n="1"><syl eol="1">應；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n130" endid="#n131"/>
@@ -517,7 +517,7 @@
 <note xml:id="n139" pname="b" oct="4" dur="4">
 <verse n="1"><syl>享</syl></verse></note>
 <note xml:id="n140" pname="f" oct="4" dur="4">
-<verse n="1"><syl>受，</syl></verse></note>
+<verse n="1"><syl eol="1">受，</syl></verse></note>
 </layer></staff>
 <tie startid="#n140" endid="#n141"/>
 </measure>
@@ -556,7 +556,7 @@
 <note xml:id="n149" pname="b" oct="4" dur="4">
 <verse n="1"><syl>滿</syl></verse></note>
 <note xml:id="n150" pname="b" oct="4" dur="4">
-<verse n="1"><syl>足。</syl></verse></note>
+<verse n="1"><syl eol="1">足。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n150" endid="#n151"/>

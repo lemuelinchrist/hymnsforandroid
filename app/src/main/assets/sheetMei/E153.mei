@@ -45,7 +45,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="b" oct="4" dur="4">
-<verse n="1"><syl>love</syl></verse></note>
+<verse n="1"><syl eol="1">love</syl></verse></note>
 <note xml:id="n12" pname="c" oct="5" dur="4"/>
 <note xml:id="n13" pname="e" oct="4" dur="4">
 <verse n="1"><syl>So</syl></verse></note>
@@ -75,7 +75,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="a" oct="4" dur="4">
-<verse n="1"><syl>free!</syl></verse></note>
+<verse n="1"><syl eol="1">free!</syl></verse></note>
 <note xml:id="n20" pname="g" oct="4" dur="4"/>
 <note xml:id="n21" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Fain</syl></verse></note>
@@ -115,7 +115,7 @@
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="c" oct="5" dur="4"/>
 <note xml:id="n30" pname="b" oct="4" dur="4">
-<verse n="1"><syl>hearts,</syl></verse></note>
+<verse n="1"><syl eol="1">hearts,</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="c" oct="5" dur="8">
 <verse n="1"><syl>Our</syl></verse></note>
@@ -152,7 +152,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">D♭/A♭</harm>

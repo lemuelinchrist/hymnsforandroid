@@ -35,7 +35,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>blest,</syl></verse></note>
+<verse n="1"><syl eol="1">blest,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -66,7 +66,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">trest,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">trest,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -100,7 +100,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Rest,</syl></verse></note>
+<verse n="1"><syl eol="1">Rest,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -125,7 +125,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>come.</syl></verse></note>
+<verse n="1"><syl eol="1">come.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">C/G</harm>

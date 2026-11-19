@@ -38,7 +38,7 @@
 <note xml:id="n8" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <tie startid="#n9" endid="#n10"/>
@@ -72,7 +72,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>lie,</syl></verse></note>
+<verse n="1"><syl eol="1">lie,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -111,7 +111,7 @@
 <note xml:id="n27" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">wa</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ters</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ters</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <tie startid="#n28" endid="#n29"/>
@@ -145,7 +145,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">fy!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fy!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
@@ -207,7 +207,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="g" oct="4" dur="2">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 <beam>
 <note xml:id="n54" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>All</syl></verse></note>
@@ -241,7 +241,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>life;</syl></verse></note>
+<verse n="1"><syl eol="1">life;</syl></verse></note>
 <note xml:id="n63" pname="f" oct="4" dur="8" accid="s" accid.ges="s"/>
 <beam>
 <note xml:id="n64" pname="g" oct="4" dur="8"/>
@@ -307,7 +307,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n81" pname="g" oct="4" dur="2">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 <beam>
 <note xml:id="n82" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>All</syl></verse></note>
@@ -341,7 +341,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n90" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n90" endid="#n91"/>
@@ -400,7 +400,7 @@
 <note xml:id="n103" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
 <note xml:id="n104" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <beam>
 <note xml:id="n105" pname="e" oct="5" dur="8">
@@ -444,7 +444,7 @@
 </measure>
 <measure n="40"><staff n="1"><layer n="1">
 <note xml:id="n115" pname="d" oct="5" dur="2">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <note xml:id="n116" pname="c" oct="5" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -507,7 +507,7 @@
 </measure>
 <measure n="45"><staff n="1"><layer n="1">
 <note xml:id="n132" pname="g" oct="4" dur="2">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 <beam>
 <note xml:id="n133" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>All</syl></verse></note>
@@ -541,7 +541,7 @@
 </measure>
 <measure n="48"><staff n="1"><layer n="1">
 <note xml:id="n141" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
 <tie startid="#n141" endid="#n142"/>

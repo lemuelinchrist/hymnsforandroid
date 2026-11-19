@@ -53,7 +53,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="e" oct="4" dur="2">
-<verse n="1"><syl>One,</syl></verse></note>
+<verse n="1"><syl eol="1">One,</syl></verse></note>
 <beam>
 <note xml:id="n14" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Self</syl></verse></note>
@@ -104,7 +104,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>One;</syl></verse></note>
+<verse n="1"><syl eol="1">One;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -156,7 +156,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>plan,</syl></verse></note>
+<verse n="1"><syl eol="1">plan,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 </measure>
@@ -195,7 +195,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>man.</syl></verse></note>
+<verse n="1"><syl eol="1">man.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n49" endid="#n50"/>
@@ -246,7 +246,7 @@
 <note xml:id="n60" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">ho</syl></verse></note>
 <note xml:id="n61" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">vah,”</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vah,”</syl></verse></note>
 </beam>
 <note xml:id="n62" pname="g" oct="4" dur="4"/>
 <beam>
@@ -286,7 +286,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>You,</syl></verse></note>
+<verse n="1"><syl eol="1">You,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n71" endid="#n72"/>
@@ -328,7 +328,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n81" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n81" endid="#n82"/>

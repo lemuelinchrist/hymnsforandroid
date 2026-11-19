@@ -24,7 +24,7 @@
 <note xml:id="n6" pname="c" oct="5" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n7" pname="b" oct="4" dur="2">
-<verse n="1"><syl>wine,</syl></verse></note>
+<verse n="1"><syl eol="1">wine,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="2" place="above">D/A</harm>
@@ -49,7 +49,7 @@
 <note xml:id="n13" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Him</syl></verse></note>
 <note xml:id="n14" pname="a" oct="4" dur="2">
-<verse n="1"><syl>mine,</syl></verse></note>
+<verse n="1"><syl eol="1">mine,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="2" place="above">G</harm>
@@ -75,7 +75,7 @@
 <note xml:id="n20" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">vine,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vine,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 <harm staff="1" tstamp="3" place="above">Em</harm>
@@ -97,7 +97,7 @@
 <note xml:id="n26" pname="g" oct="4" dur="8">
 <verse n="1"><syl>O</syl></verse></note>
 <note xml:id="n27" pname="g" oct="4" dur="2">
-<verse n="1"><syl>Lord.</syl></verse></note>
+<verse n="1"><syl eol="1">Lord.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>

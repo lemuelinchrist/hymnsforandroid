@@ -43,7 +43,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="e" oct="4" dur="4">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <note xml:id="n11" pname="d" oct="4" dur="4"/>
 <note xml:id="n12" pname="e" oct="4" dur="4">
 <verse n="1"><syl>A</syl></verse></note>
@@ -71,7 +71,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>free,</syl></verse></note>
+<verse n="1"><syl eol="1">free,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n17" endid="#n18"/>
@@ -116,7 +116,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="c" oct="5" dur="4">
-<verse n="1"><syl>blood</syl></verse></note>
+<verse n="1"><syl eol="1">blood</syl></verse></note>
 <note xml:id="n29" pname="b" oct="4" dur="4"/>
 <note xml:id="n30" pname="g" oct="4" dur="4">
 <verse n="1"><syl>So</syl></verse></note>
@@ -149,7 +149,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">F/C</harm>

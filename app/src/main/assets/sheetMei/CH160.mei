@@ -37,7 +37,7 @@
 <note xml:id="n9" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">pur</syl></verse></note>
 <note xml:id="n10" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">posed!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">posed!</syl></verse></note>
 <note xml:id="n11" pname="a" oct="3" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -71,7 +71,7 @@
 <note xml:id="n19" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">pur</syl></verse></note>
 <note xml:id="n20" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">posed!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">posed!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">D7</harm>
@@ -104,7 +104,7 @@
 <note xml:id="n28" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Him</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="4">
-<verse n="1"><syl>back—</syl></verse></note>
+<verse n="1"><syl eol="1">back—</syl></verse></note>
 <note xml:id="n30" pname="a" oct="3" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -139,7 +139,7 @@
 <note xml:id="n38" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">pur</syl></verse></note>
 <note xml:id="n39" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">posed!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">posed!</syl></verse></note>
 <rest xml:id="r40" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>

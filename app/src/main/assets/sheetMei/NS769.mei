@@ -29,7 +29,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">verse;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">verse;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -55,7 +55,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>heart;</syl></verse></note>
+<verse n="1"><syl eol="1">heart;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -88,7 +88,7 @@
 <note xml:id="n22" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n23" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ble,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ble,</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="a" oct="4" dur="4" dots="1"/>
 </layer></staff>
@@ -114,7 +114,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 <note xml:id="n31" pname="c" oct="4" dur="4"/>
 <beam>
 <note xml:id="n32" pname="a" oct="4" dur="16">
@@ -149,7 +149,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
 <note xml:id="n41" pname="d" oct="4" dur="4">
-<verse n="1"><syl>Him,</syl></verse></note>
+<verse n="1"><syl eol="1">Him,</syl></verse></note>
 <beam>
 <note xml:id="n42" pname="a" oct="4" dur="16">
 <verse n="1"><syl>The</syl></verse></note>
@@ -183,7 +183,7 @@
 <verse n="1"><syl wordpos="t">er</syl></verse></note>
 </beam>
 <note xml:id="n51" pname="d" oct="4" dur="4">
-<verse n="1"><syl>strong.</syl></verse></note>
+<verse n="1"><syl eol="1">strong.</syl></verse></note>
 <beam>
 <note xml:id="n52" pname="a" oct="4" dur="16">
 <verse n="1"><syl>The</syl></verse></note>
@@ -218,7 +218,7 @@
 <verse n="1"><syl wordpos="i" con="d">pro</syl></verse></note>
 </beam>
 <note xml:id="n61" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">claims:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">claims:</syl></verse></note>
 <beam>
 <note xml:id="n62" pname="e" oct="4" dur="16"/>
 <note xml:id="n63" pname="d" oct="4" dur="16">
@@ -249,7 +249,7 @@
 <note xml:id="n69" pname="c" oct="4" dur="8">
 <verse n="1"><syl>its</syl></verse></note>
 <note xml:id="n70" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl>song.</syl></verse></note>
+<verse n="1"><syl eol="1">song.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>

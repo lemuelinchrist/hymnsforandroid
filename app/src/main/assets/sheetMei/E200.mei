@@ -39,7 +39,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness</syl></verse></note>
 <note xml:id="n10" pname="c" oct="5" dur="4">
 <verse n="1"><syl>With</syl></verse></note>
 </layer></staff>
@@ -68,7 +68,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="f" oct="4" dur="4">
-<verse n="1"><syl>wings;</syl></verse></note>
+<verse n="1"><syl eol="1">wings;</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="4"/>
 <note xml:id="n19" pname="c" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
@@ -105,7 +105,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="c" oct="4" dur="2">
-<verse n="1"><syl>face</syl></verse></note>
+<verse n="1"><syl eol="1">face</syl></verse></note>
 <note xml:id="n28" pname="c" oct="5" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -135,7 +135,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>brings.</syl></verse></note>
+<verse n="1"><syl eol="1">brings.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n35" endid="#n36"/>

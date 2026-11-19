@@ -23,7 +23,7 @@
 <note xml:id="n5" pname="e" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">pur</syl></verse></note>
 <note xml:id="n6" pname="b" oct="3" dur="4">
-<verse n="1"><syl wordpos="t">pose</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pose</syl></verse></note>
 <rest xml:id="r7" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C♯m</harm>
@@ -45,7 +45,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>man,</syl></verse></note>
+<verse n="1"><syl eol="1">man,</syl></verse></note>
 <rest xml:id="r13" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
@@ -69,7 +69,7 @@
 <note xml:id="n18" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">ves</syl></verse></note>
 <note xml:id="n19" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sel,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sel,</syl></verse></note>
 <note xml:id="n20" pname="e" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B/D♯</harm>
@@ -91,7 +91,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="b" oct="3" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">gain,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain,</syl></verse></note>
 <rest xml:id="r26" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
@@ -115,7 +115,7 @@
 <note xml:id="n31" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">part</syl></verse></note>
 <note xml:id="n32" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E/B</harm>
 <harm staff="1" tstamp="3" place="above">B</harm>
@@ -142,7 +142,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>brim;</syl></verse></note>
+<verse n="1"><syl eol="1">brim;</syl></verse></note>
 <rest xml:id="r40" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
@@ -168,7 +168,7 @@
 <verse n="1"><syl wordpos="t">press</syl></verse></note>
 <note xml:id="n46" pname="c" oct="5" dur="4"/>
 <note xml:id="n47" pname="a" oct="4" dur="4">
-<verse n="1"><syl>Him,</syl></verse></note>
+<verse n="1"><syl eol="1">Him,</syl></verse></note>
 <note xml:id="n48" pname="f" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -191,7 +191,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Him.</syl></verse></note>
+<verse n="1"><syl eol="1">Him.</syl></verse></note>
 <rest xml:id="r54" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>

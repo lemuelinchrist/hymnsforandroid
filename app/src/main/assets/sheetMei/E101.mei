@@ -41,7 +41,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="b" oct="4" dur="2">
-<verse n="1"><syl>cross</syl></verse></note>
+<verse n="1"><syl eol="1">cross</syl></verse></note>
 <note xml:id="n10" pname="b" oct="4" dur="4">
 <verse n="1"><syl>On</syl></verse></note>
 </layer></staff>
@@ -77,7 +77,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="g" oct="4" dur="4">
-<verse n="1"><syl>died,</syl></verse></note>
+<verse n="1"><syl eol="1">died,</syl></verse></note>
 <note xml:id="n19" pname="f" oct="4" dur="4"/>
 <note xml:id="n20" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Our</syl></verse></note>
@@ -117,7 +117,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="b" oct="4" dur="2">
-<verse n="1"><syl>loss,</syl></verse></note>
+<verse n="1"><syl eol="1">loss,</syl></verse></note>
 <note xml:id="n29" pname="e" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -159,7 +159,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="e" oct="4" dur="2">
-<verse n="1"><syl>pride.</syl></verse></note>
+<verse n="1"><syl eol="1">pride.</syl></verse></note>
 <rest xml:id="r39" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

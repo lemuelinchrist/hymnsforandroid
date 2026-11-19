@@ -49,7 +49,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="a" oct="4" dur="2">
-<verse n="1"><syl>are,</syl></verse></note>
+<verse n="1"><syl eol="1">are,</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
@@ -87,7 +87,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="g" oct="4" dur="2">
-<verse n="1"><syl>yes.</syl></verse></note>
+<verse n="1"><syl eol="1">yes.</syl></verse></note>
 <beam>
 <note xml:id="n23" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">There</syl></verse></note>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="a" oct="4" dur="2">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <beam>
 <note xml:id="n35" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
@@ -166,7 +166,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -184,7 +184,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="a" oct="4" dur="2">
-<verse n="1"><syl>yes,</syl></verse></note>
+<verse n="1"><syl eol="1">yes,</syl></verse></note>
 <beam>
 <note xml:id="n48" pname="a" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
@@ -206,7 +206,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">swer,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">swer,</syl></verse></note>
 <beam>
 <note xml:id="n54" pname="b" oct="4" dur="8">
 <verse n="1"><syl>Christ’s</syl></verse></note>
@@ -223,7 +223,7 @@
 <note xml:id="n57" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">fill</syl></verse></note>
 <note xml:id="n58" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ment</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ment</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 </measure>
@@ -259,7 +259,7 @@
 </measure>
 <measure n="23" right="end"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="f" oct="4" dur="2">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 <rest xml:id="r68" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

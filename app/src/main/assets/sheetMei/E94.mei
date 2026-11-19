@@ -33,7 +33,7 @@
 <note xml:id="n8" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>head!</syl></verse></note>
+<verse n="1"><syl eol="1">head!</syl></verse></note>
 <note xml:id="n10" pname="b" oct="4" dur="8">
 <verse n="1"><syl>Our</syl></verse></note>
 </layer></staff>
@@ -56,7 +56,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee;</syl></verse></note>
+<verse n="1"><syl eol="1">Thee;</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Thou</syl></verse></note>
@@ -86,7 +86,7 @@
 <note xml:id="n23" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ner’s</syl></verse></note>
 <note xml:id="n24" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>stead,</syl></verse></note>
+<verse n="1"><syl eol="1">stead,</syl></verse></note>
 <note xml:id="n25" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Didst</syl></verse></note>
 </layer></staff>
@@ -109,7 +109,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <note xml:id="n31" pname="a" oct="4" dur="4">
 <verse n="1"><syl>A</syl></verse></note>
 </layer></staff>
@@ -135,7 +135,7 @@
 <note xml:id="n37" pname="e" oct="5" dur="4">
 <verse n="1"><syl>was</syl></verse></note>
 <note xml:id="n38" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>shed;</syl></verse></note>
+<verse n="1"><syl eol="1">shed;</syl></verse></note>
 <note xml:id="n39" pname="c" oct="5" dur="8">
 <verse n="1"><syl>Now</syl></verse></note>
 </layer></staff>
@@ -157,7 +157,7 @@
 </measure>
 <measure n="13" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <rest xml:id="r45" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

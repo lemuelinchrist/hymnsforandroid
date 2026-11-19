@@ -36,7 +36,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n9" endid="#n10"/>
@@ -80,7 +80,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>prayer.</syl></verse></note>
+<verse n="1"><syl eol="1">prayer.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>
@@ -130,7 +130,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">way</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -160,7 +160,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

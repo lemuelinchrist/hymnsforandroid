@@ -45,7 +45,7 @@
 <note xml:id="n12" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">in.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in.</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="g" oct="4" dur="4" dots="1"/>
 <note xml:id="n15" pname="f" oct="4" dur="8">
@@ -90,7 +90,7 @@
 <note xml:id="n26" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n27" pname="g" oct="4" dur="8">
-<verse n="1"><syl>tide.</syl></verse></note>
+<verse n="1"><syl eol="1">tide.</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n28" pname="g" oct="4" dur="8"/>
@@ -122,7 +122,7 @@
 <note xml:id="n35" pname="c" oct="5" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n36" pname="d" oct="5" dur="8">
-<verse n="1"><syl>Him.</syl></verse></note>
+<verse n="1"><syl eol="1">Him.</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n37" pname="d" oct="5" dur="8"/>
@@ -171,7 +171,7 @@
 </measure>
 <measure n="10" right="end"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">in!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in!</syl></verse></note>
 <rest xml:id="r50" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

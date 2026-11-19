@@ -22,7 +22,7 @@
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n6" pname="b" oct="4" dur="8"/>
 <note xml:id="n7" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 </layer></staff>
 <slur startid="#n5" endid="#n6"/>
 </measure>
@@ -42,7 +42,7 @@
 <note xml:id="n13" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">tin</syl></verse></note>
 <note xml:id="n14" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">y.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">y.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -61,7 +61,7 @@
 <verse n="1"><syl wordpos="i" con="d">mer</syl></verse></note>
 <note xml:id="n20" pname="a" oct="4" dur="8"/>
 <note xml:id="n21" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">cy</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cy</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <slur startid="#n19" endid="#n20"/>
@@ -82,7 +82,7 @@
 <note xml:id="n27" pname="g" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="2">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -103,7 +103,7 @@
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n34" pname="b" oct="4" dur="8"/>
 <note xml:id="n35" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 </layer></staff>
 <slur startid="#n33" endid="#n34"/>
 </measure>
@@ -123,7 +123,7 @@
 <note xml:id="n41" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ed</syl></verse></note>
 <note xml:id="n42" pname="g" oct="4" dur="2">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -143,7 +143,7 @@
 <note xml:id="n48" pname="a" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n49" pname="g" oct="4" dur="2">
-<verse n="1"><syl>Thee</syl></verse></note>
+<verse n="1"><syl eol="1">Thee</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 </measure>
@@ -163,7 +163,7 @@
 <note xml:id="n55" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">neous</syl></verse></note>
 <note xml:id="n56" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <fermata startid="#n56" place="above"/>
@@ -186,7 +186,7 @@
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n62" pname="c" oct="5" dur="8"/>
 <note xml:id="n63" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 </layer></staff>
 <slur startid="#n61" endid="#n62"/>
 </measure>
@@ -207,7 +207,7 @@
 <note xml:id="n69" pname="b" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n70" pname="a" oct="4" dur="2">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -227,7 +227,7 @@
 <verse n="1"><syl wordpos="i" con="d">beau</syl></verse></note>
 <note xml:id="n76" pname="g" oct="4" dur="8"/>
 <note xml:id="n77" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty,</syl></verse></note>
 <note xml:id="n78" pname="f" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -257,7 +257,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="f" oct="4" dur="1">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

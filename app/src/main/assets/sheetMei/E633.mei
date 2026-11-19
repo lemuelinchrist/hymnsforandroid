@@ -41,7 +41,7 @@
 <note xml:id="n10" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
 <note xml:id="n11" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">qu’ror“?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">qu’ror“?</syl></verse></note>
 <beam>
 <note xml:id="n12" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Vic</syl></verse></note>
@@ -75,7 +75,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">round?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">round?</syl></verse></note>
 <rest xml:id="r22" dur="8"/>
 <beam>
 <note xml:id="n23" pname="e" oct="4" dur="8">
@@ -113,7 +113,7 @@
 <note xml:id="n32" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">trod</syl></verse></note>
 <note xml:id="n33" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">den,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">den,</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Since</syl></verse></note>
@@ -153,7 +153,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="a" oct="4" dur="2">
-<verse n="1"><syl>found.</syl></verse></note>
+<verse n="1"><syl eol="1">found.</syl></verse></note>
 <note xml:id="n45" pname="a" oct="4" dur="8"/>
 <rest xml:id="r46" dur="4" dots="1"/>
 </layer></staff>

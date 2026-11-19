@@ -31,7 +31,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="f" oct="4" dur="1">
-<verse n="1"><syl>love,</syl></verse></note>
+<verse n="1"><syl eol="1">love,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <tie startid="#n8" endid="#n9"/>
@@ -66,7 +66,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="d" oct="4" dur="1">
-<verse n="1"><syl>spread.</syl></verse></note>
+<verse n="1"><syl eol="1">spread.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -103,7 +103,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="1">
-<verse n="1"><syl>signs,</syl></verse></note>
+<verse n="1"><syl eol="1">signs,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <tie startid="#n28" endid="#n29"/>
@@ -138,7 +138,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="d" oct="4" dur="1">
-<verse n="1"><syl>fed.</syl></verse></note>
+<verse n="1"><syl eol="1">fed.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7</harm>
 <tie startid="#n38" endid="#n39"/>
@@ -177,7 +177,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="a" oct="4" dur="1">
-<verse n="1"><syl>cup,</syl></verse></note>
+<verse n="1"><syl eol="1">cup,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n48" endid="#n49"/>
@@ -213,7 +213,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="d" oct="4" dur="1">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7</harm>
 <tie startid="#n58" endid="#n59"/>
@@ -252,7 +252,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n68" pname="a" oct="4" dur="1">
-<verse n="1"><syl>full,</syl></verse></note>
+<verse n="1"><syl eol="1">full,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <slur startid="#n68" endid="#n69"/>
@@ -290,7 +290,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n78" pname="c" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ford.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ford.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <tie startid="#n78" endid="#n79"/>

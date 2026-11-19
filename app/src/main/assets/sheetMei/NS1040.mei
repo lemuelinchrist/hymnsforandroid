@@ -35,7 +35,7 @@
 <verse n="1"><syl wordpos="t">it,</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="b" oct="3" dur="4" dots="1">
-<verse n="1"><syl>Lord?</syl></verse></note>
+<verse n="1"><syl eol="1">Lord?</syl></verse></note>
 <note xml:id="n11" pname="b" oct="3" dur="8">
 <verse n="1"><syl>Or</syl></verse></note>
 </layer></staff>
@@ -70,7 +70,7 @@
 <verse n="1"><syl wordpos="t">ence,</syl></verse></note>
 </beam>
 <note xml:id="n20" pname="c" oct="4" dur="2">
-<verse n="1"><syl>Lord?</syl></verse></note>
+<verse n="1"><syl eol="1">Lord?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -104,7 +104,7 @@
 <verse n="1"><syl>art</syl></verse></note>
 </beam>
 <note xml:id="n30" pname="a" oct="3" dur="4" dots="1">
-<verse n="1"><syl>there.</syl></verse></note>
+<verse n="1"><syl eol="1">there.</syl></verse></note>
 <note xml:id="n31" pname="b" oct="3" dur="8">
 <verse n="1"><syl>If</syl></verse></note>
 </layer></staff>
@@ -145,7 +145,7 @@
 <verse n="1"><syl wordpos="t">so</syl></verse></note>
 </beam>
 <note xml:id="n42" pname="b" oct="3" dur="4" dots="1">
-<verse n="1"><syl>there.</syl></verse></note>
+<verse n="1"><syl eol="1">there.</syl></verse></note>
 <note xml:id="n43" pname="f" oct="4" dur="8">
 <verse n="1"><syl>If</syl></verse></note>
 </layer></staff>
@@ -193,7 +193,7 @@
 <note xml:id="n56" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">bound</syl></verse></note>
 <note xml:id="n57" pname="b" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">’ries,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">’ries,</syl></verse></note>
 <note xml:id="n58" pname="b" oct="4" dur="8"/>
 <note xml:id="n59" pname="f" oct="4" dur="8">
 <verse n="1"><syl>E’en</syl></verse></note>
@@ -239,7 +239,7 @@
 <note xml:id="n71" pname="c" oct="5" dur="16"/>
 </beam>
 <note xml:id="n72" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <note xml:id="n73" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Thy</syl></verse></note>
 </layer></staff>
@@ -285,7 +285,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 <note xml:id="n86" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <note xml:id="n87" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Lord,</syl></verse></note>
 </layer></staff>
@@ -309,7 +309,7 @@
 <sb/>
 <measure n="16" right="rptend"><staff n="1"><layer n="1">
 <note xml:id="n92" pname="b" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">where.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">where.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -353,7 +353,7 @@
 </ending>
 <measure n="20" right="end"><staff n="1"><layer n="1">
 <note xml:id="n104" pname="b" oct="4" dur="1">
-<verse n="1"><syl>there.</syl></verse></note>
+<verse n="1"><syl eol="1">there.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>

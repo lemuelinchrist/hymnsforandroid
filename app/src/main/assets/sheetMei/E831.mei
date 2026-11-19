@@ -30,7 +30,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="8">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl>but</syl></verse></note>
+<verse n="1"><syl eol="1">but</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -63,7 +63,7 @@
 <note xml:id="n15" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">liv</syl></verse></note>
 <note xml:id="n16" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing;</syl></verse></note>
 <note xml:id="n17" pname="b" oct="3" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -87,7 +87,7 @@
 <note xml:id="n23" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">eth</syl></verse></note>
 <note xml:id="n24" pname="f" oct="4" dur="4">
-<verse n="1"><syl>them</syl></verse></note>
+<verse n="1"><syl eol="1">them</syl></verse></note>
 <note xml:id="n25" pname="f" oct="4" dur="4">
 <verse n="1"><syl>This</syl></verse></note>
 </layer></staff>
@@ -118,7 +118,7 @@
 <note xml:id="n31" pname="a" oct="4" dur="2" accid="n" accid.ges="n">
 <verse n="1"><syl wordpos="i" con="d">giv</syl></verse></note>
 <note xml:id="n32" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing.</syl></verse></note>
 <note xml:id="n33" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Thus</syl></verse></note>
 </layer></staff>
@@ -147,7 +147,7 @@
 <note xml:id="n39" pname="c" oct="5" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n40" pname="b" oct="4" dur="4">
-<verse n="1"><syl>called</syl></verse></note>
+<verse n="1"><syl eol="1">called</syl></verse></note>
 <note xml:id="n41" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -180,7 +180,7 @@
 <note xml:id="n47" pname="e" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n48" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">it;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it;</syl></verse></note>
 <note xml:id="n49" pname="b" oct="3" dur="4">
 <verse n="1"><syl>’Tis</syl></verse></note>
 </layer></staff>
@@ -205,7 +205,7 @@
 <note xml:id="n55" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">mon</syl></verse></note>
 <note xml:id="n56" pname="f" oct="4" dur="4">
-<verse n="1"><syl>faith</syl></verse></note>
+<verse n="1"><syl eol="1">faith</syl></verse></note>
 <note xml:id="n57" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Which</syl></verse></note>
 </layer></staff>
@@ -237,7 +237,7 @@
 <note xml:id="n63" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">her</syl></verse></note>
 <note xml:id="n64" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">it.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it.</syl></verse></note>
 <rest xml:id="r65" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭7</harm>

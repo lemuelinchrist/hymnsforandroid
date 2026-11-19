@@ -45,7 +45,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="b" oct="4" dur="4">
-<verse n="1"><syl>life,</syl></verse></note>
+<verse n="1"><syl eol="1">life,</syl></verse></note>
 <note xml:id="n11" pname="c" oct="5" dur="4"/>
 <note xml:id="n12" pname="e" oct="4" dur="4">
 <verse n="1"><syl>In</syl></verse></note>
@@ -76,7 +76,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="a" oct="4" dur="4">
-<verse n="1"><syl>joy,</syl></verse></note>
+<verse n="1"><syl eol="1">joy,</syl></verse></note>
 <note xml:id="n19" pname="g" oct="4" dur="4"/>
 <note xml:id="n20" pname="b" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
@@ -116,7 +116,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="c" oct="5" dur="4">
-<verse n="1"><syl>still</syl></verse></note>
+<verse n="1"><syl eol="1">still</syl></verse></note>
 <note xml:id="n29" pname="b" oct="4" dur="4"/>
 <beam>
 <note xml:id="n30" pname="c" oct="5" dur="8">
@@ -151,7 +151,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ploy.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ploy.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">D♭/A♭</harm>

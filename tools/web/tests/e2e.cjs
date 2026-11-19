@@ -480,6 +480,14 @@ async function search(page, text) {
       await page.waitForURL(/#\/h\/E9/);
       await page.waitForSelector('.lyrics');
     });
+    await test('chords only: a line of the words ends where the sheet marks it', async () => {
+      await open(page, '#/h/E142?staff=0');
+      await page.waitForSelector('.chart .cline', {timeout: 60000});
+      const lines = await page.locator('.chart .cline').evaluateAll((ls) => ls.map((l) => l.textContent));
+      assert(lines.length >= 8, 'E142 has 8 lines of words, got ' + lines.length);
+      assert(lines[0].includes('crowns,') && !lines[0].includes('Lamb'), 'first line: ' + lines[0]);
+      await page.evaluate(() => localStorage.removeItem('hfw.sheet'));
+    });
     await test('Chinese guitar sheet uses the Chinese capo label', async () => {
       await open(page, '#/h/C103?v=guitar&staff=0');
       await page.waitForSelector('.chart .cline', {timeout: 60000});

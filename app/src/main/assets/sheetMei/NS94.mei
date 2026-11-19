@@ -35,7 +35,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>sin,</syl></verse></note>
+<verse n="1"><syl eol="1">sin,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -65,7 +65,7 @@
 <verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
 </beam>
 <note xml:id="n19" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">in,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G7</harm>
@@ -99,7 +99,7 @@
 <note xml:id="n28" pname="d" oct="4" dur="8"/>
 </beam>
 <note xml:id="n29" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <slur startid="#n27" endid="#n28"/>
@@ -123,7 +123,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="d" oct="4" dur="1">
-<verse n="1"><syl>Lord.</syl></verse></note>
+<verse n="1"><syl eol="1">Lord.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -186,7 +186,7 @@
 <note xml:id="n54" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n55" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">son;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">son;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G7</harm>
@@ -221,7 +221,7 @@
 <note xml:id="n64" pname="d" oct="4" dur="8"/>
 </beam>
 <note xml:id="n65" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">tion;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <slur startid="#n63" endid="#n64"/>
@@ -246,7 +246,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="c" oct="4" dur="1">
-<verse n="1"><syl>saved.</syl></verse></note>
+<verse n="1"><syl eol="1">saved.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">C7/E</harm>
@@ -279,7 +279,7 @@
 <verse n="1"><syl wordpos="t">cue</syl></verse></note>
 </beam>
 <note xml:id="n81" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us</syl></verse></note>
+<verse n="1"><syl eol="1">us</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -310,7 +310,7 @@
 <verse n="1"><syl wordpos="t">vil</syl></verse></note>
 </beam>
 <note xml:id="n90" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>age,</syl></verse></note>
+<verse n="1"><syl eol="1">age,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -342,7 +342,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
 <note xml:id="n99" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us—</syl></verse></note>
+<verse n="1"><syl eol="1">us—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 </measure>
@@ -365,7 +365,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n106" pname="g" oct="4" dur="1">
-<verse n="1"><syl>all!</syl></verse></note>
+<verse n="1"><syl eol="1">all!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>

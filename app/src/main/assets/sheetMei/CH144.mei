@@ -24,7 +24,7 @@
 <note xml:id="n6" pname="f" oct="4" dur="4">
 <verse n="1"><syl>for</syl></verse></note>
 <note xml:id="n7" pname="a" oct="4" dur="2">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -45,7 +45,7 @@
 <note xml:id="n13" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">wor</syl></verse></note>
 <note xml:id="n14" pname="a" oct="3" dur="2">
-<verse n="1"><syl wordpos="t">ry!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -67,7 +67,7 @@
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n20" pname="f" oct="4" dur="4"/>
 <note xml:id="n21" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 </layer></staff>
 <slur startid="#n19" endid="#n20"/>
 </measure>
@@ -86,7 +86,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="d" oct="4" dur="1">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

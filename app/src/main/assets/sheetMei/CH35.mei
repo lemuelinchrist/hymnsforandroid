@@ -40,7 +40,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>sea,</syl></verse></note>
+<verse n="1"><syl eol="1">sea,</syl></verse></note>
 <note xml:id="n13" pname="b" oct="4" dur="8"/>
 <note xml:id="n14" pname="b" oct="4" dur="2"/>
 </layer></staff>
@@ -75,7 +75,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="a" oct="4" dur="4">
-<verse n="1"><syl>trees,</syl></verse></note>
+<verse n="1"><syl eol="1">trees,</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="a" oct="4" dur="8"/>
 <note xml:id="n25" pname="g" oct="4" dur="8"/>
@@ -122,7 +122,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>free!</syl></verse></note>
+<verse n="1"><syl eol="1">free!</syl></verse></note>
 <note xml:id="n37" pname="f" oct="4" dur="8"/>
 <note xml:id="n38" pname="f" oct="4" dur="2"/>
 </layer></staff>

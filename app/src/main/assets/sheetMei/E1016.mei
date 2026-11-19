@@ -33,7 +33,7 @@
 <note xml:id="n8" pname="d" oct="5" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>care,</syl></verse></note>
+<verse n="1"><syl eol="1">care,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="4" place="above">D</harm>
@@ -62,7 +62,7 @@
 <note xml:id="n16" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">griev</syl></verse></note>
 <note xml:id="n17" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <rest xml:id="r18" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A/C♯</harm>
@@ -96,7 +96,7 @@
 <note xml:id="n26" pname="d" oct="5" dur="8">
 <verse n="1"><syl>might</syl></verse></note>
 <note xml:id="n27" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>share,</syl></verse></note>
+<verse n="1"><syl eol="1">share,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="4" place="above">Bm</harm>
@@ -126,7 +126,7 @@
 <note xml:id="n34" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">ceiv</syl></verse></note>
 <note xml:id="n35" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing.</syl></verse></note>
 <rest xml:id="r36" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -150,7 +150,7 @@
 <note xml:id="n41" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="t">nal</syl></verse></note>
 <note xml:id="n42" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>life!</syl></verse></note>
+<verse n="1"><syl eol="1">life!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -178,7 +178,7 @@
 <note xml:id="n49" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Giv</syl></verse></note>
 <note xml:id="n50" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er:</syl></verse></note>
 <rest xml:id="r51" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -202,7 +202,7 @@
 <note xml:id="n56" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="t">dant</syl></verse></note>
 <note xml:id="n57" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>life!</syl></verse></note>
+<verse n="1"><syl eol="1">life!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <harm staff="1" tstamp="4" place="above">Bm</harm>
@@ -232,7 +232,7 @@
 <note xml:id="n64" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
 <note xml:id="n65" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er!</syl></verse></note>
 <rest xml:id="r66" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

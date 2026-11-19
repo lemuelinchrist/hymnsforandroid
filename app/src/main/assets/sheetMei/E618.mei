@@ -50,7 +50,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="g" oct="4" dur="2">
-<verse n="1"><syl>cross,</syl></verse></note>
+<verse n="1"><syl eol="1">cross,</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -78,7 +78,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>shame,</syl></verse></note>
+<verse n="1"><syl eol="1">shame,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n20" endid="#n21"/>
@@ -129,7 +129,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="g" oct="4" dur="2">
-<verse n="1"><syl>Best</syl></verse></note>
+<verse n="1"><syl eol="1">Best</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="g" oct="4" dur="8">
 <verse n="1"><syl>For</syl></verse></note>
@@ -161,7 +161,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>slain.</syl></verse></note>
+<verse n="1"><syl eol="1">slain.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
 <tie startid="#n42" endid="#n43"/>
@@ -201,7 +201,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>cross,</syl></verse></note>
+<verse n="1"><syl eol="1">cross,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <tie startid="#n52" endid="#n53"/>
@@ -239,7 +239,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>down;</syl></verse></note>
+<verse n="1"><syl eol="1">down;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n62" endid="#n63"/>
@@ -278,7 +278,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>cross,</syl></verse></note>
+<verse n="1"><syl eol="1">cross,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n72" endid="#n73"/>
@@ -316,7 +316,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n82" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>crown.</syl></verse></note>
+<verse n="1"><syl eol="1">crown.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
 <tie startid="#n82" endid="#n83"/>

@@ -37,7 +37,7 @@
 <beam>
 <note xml:id="n8" pname="f" oct="4" dur="8"/>
 <note xml:id="n9" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">est</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">est</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="e" oct="4" dur="2"/>
 <beam>
@@ -62,7 +62,7 @@
 <note xml:id="n16" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">dant</syl></verse></note>
 <note xml:id="n17" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ly;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -104,7 +104,7 @@
 <beam>
 <note xml:id="n26" pname="f" oct="4" dur="8"/>
 <note xml:id="n27" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">est,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">est,</syl></verse></note>
 </beam>
 <note xml:id="n28" pname="e" oct="4" dur="2"/>
 <beam>
@@ -129,7 +129,7 @@
 <note xml:id="n34" pname="e" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n35" pname="e" oct="4" dur="8">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -171,7 +171,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>race,</syl></verse></note>
+<verse n="1"><syl eol="1">race,</syl></verse></note>
 <beam>
 <note xml:id="n44" pname="c" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">There</syl></verse></note>
@@ -200,7 +200,7 @@
 </measure>
 <measure n="15" right="end"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>grace.</syl></verse></note>
+<verse n="1"><syl eol="1">grace.</syl></verse></note>
 <rest xml:id="r52" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

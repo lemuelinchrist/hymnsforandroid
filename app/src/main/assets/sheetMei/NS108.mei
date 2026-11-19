@@ -48,7 +48,7 @@
 <verse n="1"><syl wordpos="m" con="d">joy</syl></verse></note>
 <note xml:id="n14" pname="c" oct="4" dur="8"/>
 <note xml:id="n15" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ment.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ment.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <tie startid="#n14" endid="#n15"/>
@@ -102,7 +102,7 @@
 <note xml:id="n29" pname="c" oct="5" dur="4" dots="1">
 <verse n="1"><syl wordpos="m" con="d">trac</syl></verse></note>
 <note xml:id="n30" pname="b" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">tion.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion.</syl></verse></note>
 <note xml:id="n31" pname="b" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -131,7 +131,7 @@
 <verse n="1"><syl wordpos="t">tured</syl></verse></note>
 </beam>
 <note xml:id="n40" pname="f" oct="4" dur="2">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <tie startid="#n37" endid="#n38"/>
@@ -158,7 +158,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 <note xml:id="n49" pname="e" oct="4" dur="2">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n46" endid="#n47"/>
@@ -210,7 +210,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="e" oct="4" dur="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
@@ -246,7 +246,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n76" pname="g" oct="4" dur="8"/>
 <note xml:id="n77" pname="a" oct="4" dur="8">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
@@ -282,7 +282,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n88" pname="a" oct="4" dur="8"/>
 <note xml:id="n89" pname="b" oct="4" dur="8">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -319,7 +319,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n100" pname="g" oct="4" dur="8"/>
 <note xml:id="n101" pname="f" oct="4" dur="8">
-<verse n="1"><syl>You</syl></verse></note>
+<verse n="1"><syl eol="1">You</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -348,7 +348,7 @@
 <verse n="1"><syl>no</syl></verse></note>
 <note xml:id="n109" pname="a" oct="4" dur="4"/>
 <note xml:id="n110" pname="b" oct="4" dur="4">
-<verse n="1"><syl>more.</syl></verse></note>
+<verse n="1"><syl eol="1">more.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n108" endid="#n109"/>
@@ -383,7 +383,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n121" pname="g" oct="4" dur="8"/>
 <note xml:id="n122" pname="a" oct="4" dur="8">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
@@ -420,7 +420,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n133" pname="a" oct="4" dur="8"/>
 <note xml:id="n134" pname="b" oct="4" dur="8">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -456,7 +456,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n145" pname="g" oct="4" dur="8"/>
 <note xml:id="n146" pname="f" oct="4" dur="8">
-<verse n="1"><syl>You</syl></verse></note>
+<verse n="1"><syl eol="1">You</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -482,7 +482,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n153" pname="e" oct="4" dur="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/E♭</harm>

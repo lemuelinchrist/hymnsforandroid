@@ -45,7 +45,7 @@
 <note xml:id="n13" pname="c" oct="4" dur="8"/>
 </beam>
 <note xml:id="n14" pname="c" oct="4" dur="2">
-<verse n="1"><syl>Thine,</syl></verse></note>
+<verse n="1"><syl eol="1">Thine,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n13" endid="#n14"/>
@@ -89,7 +89,7 @@
 <note xml:id="n27" pname="c" oct="5" dur="8"/>
 </beam>
 <note xml:id="n28" pname="c" oct="5" dur="2">
-<verse n="1"><syl>mine</syl></verse></note>
+<verse n="1"><syl eol="1">mine</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/A</harm>
@@ -132,7 +132,7 @@
 <note xml:id="n40" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n41" pname="a" oct="4" dur="2">
-<verse n="1"><syl>length,</syl></verse></note>
+<verse n="1"><syl eol="1">length,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <tie startid="#n40" endid="#n41"/>
@@ -175,7 +175,7 @@
 <note xml:id="n53" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n54" pname="f" oct="4" dur="2">
-<verse n="1"><syl>strength,</syl></verse></note>
+<verse n="1"><syl eol="1">strength,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n53" endid="#n54"/>
@@ -197,7 +197,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="1">
-<verse n="1"><syl>more.</syl></verse></note>
+<verse n="1"><syl eol="1">more.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

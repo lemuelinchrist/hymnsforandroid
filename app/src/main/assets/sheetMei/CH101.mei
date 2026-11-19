@@ -25,7 +25,7 @@
 <note xml:id="n6" pname="b" oct="4" dur="4">
 <verse n="1"><syl>like</syl></verse></note>
 <note xml:id="n7" pname="d" oct="4" dur="4">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Who</syl></verse></note>
 </layer></staff>
@@ -54,7 +54,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="a" oct="4" dur="4">
-<verse n="1"><syl>heart,</syl></verse></note>
+<verse n="1"><syl eol="1">heart,</syl></verse></note>
 <note xml:id="n17" pname="b" oct="4" dur="4"/>
 <note xml:id="n18" pname="c" oct="5" dur="2"/>
 </layer></staff>
@@ -82,7 +82,7 @@
 <note xml:id="n24" pname="b" oct="4" dur="4">
 <verse n="1"><syl>like</syl></verse></note>
 <note xml:id="n25" pname="d" oct="4" dur="4">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 <note xml:id="n26" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Who</syl></verse></note>
 </layer></staff>
@@ -111,7 +111,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="f" oct="4" dur="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭</harm>
@@ -134,7 +134,7 @@
 <note xml:id="n38" pname="b" oct="4" dur="4">
 <verse n="1"><syl>NO.</syl></verse></note>
 <note xml:id="n39" pname="d" oct="4" dur="4">
-<verse n="1"><syl>NO;</syl></verse></note>
+<verse n="1"><syl eol="1">NO;</syl></verse></note>
 <note xml:id="n40" pname="f" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -161,7 +161,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">filed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">filed.</syl></verse></note>
 <note xml:id="n48" pname="b" oct="4" dur="4"/>
 <note xml:id="n49" pname="c" oct="5" dur="2"/>
 </layer></staff>
@@ -185,7 +185,7 @@
 <note xml:id="n53" pname="b" oct="4" dur="4">
 <verse n="1"><syl>NO.</syl></verse></note>
 <note xml:id="n54" pname="d" oct="4" dur="4">
-<verse n="1"><syl>NO;</syl></verse></note>
+<verse n="1"><syl eol="1">NO;</syl></verse></note>
 <note xml:id="n55" pname="f" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -212,7 +212,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">filed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">filed.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭</harm>

@@ -73,7 +73,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="f" oct="4" dur="1">
-<verse n="1"><syl>them:</syl></verse><verse n="2"><syl>heav’n.</syl></verse></note>
+<verse n="1"><syl eol="1">them:</syl></verse><verse n="2"><syl>heav’n.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
 <harm staff="1" tstamp="3" place="above">B♭7</harm>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>there!</syl></verse><verse n="2"><syl>Him.</syl></verse></note>
+<verse n="1"><syl eol="1">there!</syl></verse><verse n="2"><syl>Him.</syl></verse></note>
 <note xml:id="n42" pname="b" oct="3" dur="4">
 <verse n="2"><syl>Then</syl></verse></note>
 </layer></staff>
@@ -224,7 +224,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">demned!</syl></verse><verse n="2"><syl>Word.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">demned!</syl></verse><verse n="2"><syl>Word.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
 <harm staff="1" tstamp="3" place="above">B♭7</harm>
@@ -302,7 +302,7 @@
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n83" pname="f" oct="4" dur="2"/>
 <note xml:id="n84" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">where.</syl></verse><verse n="2"><syl>earth!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">where.</syl></verse><verse n="2"><syl>earth!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
 <slur startid="#n83" endid="#n84"/>

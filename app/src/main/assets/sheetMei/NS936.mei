@@ -39,7 +39,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="f" oct="4" dur="1">
-<verse n="1"><syl>wise,</syl></verse></note>
+<verse n="1"><syl eol="1">wise,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="f" oct="4" dur="1">
-<verse n="1"><syl>eyes,</syl></verse></note>
+<verse n="1"><syl eol="1">eyes,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -122,7 +122,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="c" oct="4" dur="1">
-<verse n="1"><syl>love,</syl></verse></note>
+<verse n="1"><syl eol="1">love,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -164,7 +164,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="b" oct="3" dur="1">
-<verse n="1"><syl wordpos="t">bove.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bove.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -204,7 +204,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">One—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">One—</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -244,7 +244,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n66" pname="b" oct="4" dur="1">
-<verse n="1"><syl>come!</syl></verse></note>
+<verse n="1"><syl eol="1">come!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>

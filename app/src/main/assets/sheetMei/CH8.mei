@@ -60,7 +60,7 @@
 <verse n="1"><syl>a</syl></verse></note>
 </beam>
 <note xml:id="n17" pname="a" oct="3" dur="4">
-<verse n="1"><syl>boy,)</syl></verse></note>
+<verse n="1"><syl eol="1">boy,)</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -178,7 +178,7 @@
 <note xml:id="n50" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">E</syl></verse></note>
 <note xml:id="n51" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">D</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">D</syl></verse></note>
 <beam>
 <note xml:id="n52" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl>His</syl></verse></note>
@@ -228,7 +228,7 @@
 <verse n="1"><syl wordpos="t">try,</syl></verse></note>
 </beam>
 <note xml:id="n66" pname="d" oct="4" dur="4">
-<verse n="1"><syl>too,</syl></verse></note>
+<verse n="1"><syl eol="1">too,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -269,7 +269,7 @@
 <note xml:id="n77" pname="b" oct="4" dur="16"/>
 </beam>
 <note xml:id="n78" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sen!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sen!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">B7</harm>
@@ -318,7 +318,7 @@
 <verse n="1"><syl wordpos="t">herd</syl></verse></note>
 </beam>
 <note xml:id="n92" pname="d" oct="4" dur="4">
-<verse n="1"><syl>boy:</syl></verse></note>
+<verse n="1"><syl eol="1">boy:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -346,7 +346,7 @@
 </measure>
 <measure n="20" right="end"><staff n="1"><layer n="1">
 <note xml:id="n98" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>one!</syl></verse></note>
+<verse n="1"><syl eol="1">one!</syl></verse></note>
 <rest xml:id="r99" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

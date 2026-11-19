@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="8">
 <verse n="1"><syl>what</syl></verse></note>
 <note xml:id="n8" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>peace!</syl></verse></note>
+<verse n="1"><syl eol="1">peace!</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="4"/>
 <rest xml:id="r10" dur="8"/>
 </layer></staff>
@@ -58,7 +58,7 @@
 <note xml:id="n17" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">er</syl></verse></note>
 <note xml:id="n18" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>cease;</syl></verse></note>
+<verse n="1"><syl eol="1">cease;</syl></verse></note>
 <note xml:id="n19" pname="g" oct="4" dur="4"/>
 <rest xml:id="r20" dur="8"/>
 </layer></staff>
@@ -90,7 +90,7 @@
 <note xml:id="n27" pname="c" oct="5" dur="8">
 <verse n="1"><syl>not</syl></verse></note>
 <note xml:id="n28" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>fear,</syl></verse></note>
+<verse n="1"><syl eol="1">fear,</syl></verse></note>
 <note xml:id="n29" pname="c" oct="5" dur="4"/>
 <rest xml:id="r30" dur="8"/>
 </layer></staff>
@@ -121,7 +121,7 @@
 <note xml:id="n37" pname="f" oct="4" dur="8">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n38" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>near.</syl></verse></note>
+<verse n="1"><syl eol="1">near.</syl></verse></note>
 <note xml:id="n39" pname="e" oct="4" dur="4"/>
 <rest xml:id="r40" dur="8"/>
 </layer></staff>
@@ -154,7 +154,7 @@
 <note xml:id="n47" pname="a" oct="4" dur="8" accid="n" accid.ges="n">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n48" pname="a" oct="4" dur="4" dots="1" accid="f">
-<verse n="1"><syl>more,</syl></verse></note>
+<verse n="1"><syl eol="1">more,</syl></verse></note>
 <note xml:id="n49" pname="a" oct="4" dur="4"/>
 <rest xml:id="r50" dur="8"/>
 </layer></staff>
@@ -184,7 +184,7 @@
 <note xml:id="n57" pname="c" oct="5" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n58" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>o’er;</syl></verse></note>
+<verse n="1"><syl eol="1">o’er;</syl></verse></note>
 <note xml:id="n59" pname="b" oct="4" dur="4"/>
 <rest xml:id="r60" dur="8"/>
 </layer></staff>
@@ -216,7 +216,7 @@
 <note xml:id="n67" pname="b" oct="4" dur="8" accid="n" accid.ges="n">
 <verse n="1"><syl>by</syl></verse></note>
 <note xml:id="n68" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>day,</syl></verse></note>
+<verse n="1"><syl eol="1">day,</syl></verse></note>
 <note xml:id="n69" pname="c" oct="5" dur="4"/>
 <rest xml:id="r70" dur="8"/>
 </layer></staff>
@@ -247,7 +247,7 @@
 <note xml:id="n77" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n78" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way.</syl></verse></note>
 <note xml:id="n79" pname="e" oct="4" dur="4"/>
 <rest xml:id="r80" dur="8"/>
 </layer></staff>

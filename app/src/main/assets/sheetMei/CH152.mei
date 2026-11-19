@@ -20,7 +20,7 @@
 <note xml:id="n5" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">oth</syl></verse></note>
 <note xml:id="n6" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ers,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ers,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -38,7 +38,7 @@
 <note xml:id="n11" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">oth</syl></verse></note>
 <note xml:id="n12" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ers,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ers,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -58,7 +58,7 @@
 <note xml:id="n17" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">oth</syl></verse></note>
 <note xml:id="n18" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ers,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ers,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">Em</harm>
@@ -69,7 +69,7 @@
 <note xml:id="n20" pname="f" oct="4" dur="4">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="2">
-<verse n="1"><syl>glad.</syl></verse></note>
+<verse n="1"><syl eol="1">glad.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am7</harm>
 <harm staff="1" tstamp="2" place="above">D7</harm>

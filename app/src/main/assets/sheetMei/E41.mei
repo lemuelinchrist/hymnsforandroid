@@ -45,7 +45,7 @@
 <note xml:id="n12" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">nal</syl></verse></note>
 <note xml:id="n13" pname="a" oct="4" dur="2">
-<verse n="1"><syl>song:</syl></verse></note>
+<verse n="1"><syl eol="1">song:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -78,7 +78,7 @@
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n22" pname="f" oct="4" dur="8"/>
 <note xml:id="n23" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="d" oct="4" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
@@ -110,7 +110,7 @@
 <note xml:id="n32" pname="e" oct="4" dur="8">
 <verse n="1"><syl>with</syl></verse></note>
 <note xml:id="n33" pname="d" oct="4" dur="8">
-<verse n="1"><syl>our</syl></verse></note>
+<verse n="1"><syl eol="1">our</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -155,7 +155,7 @@
 <note xml:id="n44" pname="e" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n45" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 <beam>
 <note xml:id="n46" pname="f" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>O</syl></verse></note>
@@ -203,7 +203,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n59" pname="a" oct="4" dur="4">
-<verse n="1"><syl>sing,</syl></verse></note>
+<verse n="1"><syl eol="1">sing,</syl></verse></note>
 <beam>
 <note xml:id="n60" pname="a" oct="4" dur="8">
 <verse n="1"><syl>For</syl></verse></note>
@@ -250,7 +250,7 @@
 <verse n="1"><syl wordpos="t">ry</syl></verse></note>
 </beam>
 <note xml:id="n73" pname="e" oct="4" dur="4">
-<verse n="1"><syl>bring.</syl></verse></note>
+<verse n="1"><syl eol="1">bring.</syl></verse></note>
 <beam>
 <note xml:id="n74" pname="a" oct="4" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
@@ -297,7 +297,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n87" pname="a" oct="4" dur="2">
-<verse n="1"><syl>King:</syl></verse></note>
+<verse n="1"><syl eol="1">King:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -329,7 +329,7 @@
 <note xml:id="n95" pname="e" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n96" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>

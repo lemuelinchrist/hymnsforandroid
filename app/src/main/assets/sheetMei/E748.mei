@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
 <note xml:id="n8" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it,</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Put</syl></verse></note>
 <note xml:id="n10" pname="a" oct="4" dur="4">
@@ -82,7 +82,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">self-</syl></verse></note>
 <note xml:id="n23" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">life,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">life,</syl></verse></note>
 <note xml:id="n24" pname="c" oct="5" dur="4">
 <verse n="1"><syl>Walk</syl></verse></note>
 <note xml:id="n25" pname="c" oct="5" dur="4">
@@ -107,7 +107,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="a" oct="4" dur="1">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 <rest xml:id="r31" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>

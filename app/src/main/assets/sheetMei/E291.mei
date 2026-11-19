@@ -37,7 +37,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>heav’n</syl></verse></note>
+<verse n="1"><syl eol="1">heav’n</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="4" place="above">G/D</harm>
@@ -74,7 +74,7 @@
 <verse n="1"><syl>has</syl></verse></note>
 </beam>
 <note xml:id="n20" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>giv’n;</syl></verse></note>
+<verse n="1"><syl eol="1">giv’n;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -112,7 +112,7 @@
 <verse n="1"><syl>I</syl></verse></note>
 </beam>
 <note xml:id="n30" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>see:</syl></verse></note>
+<verse n="1"><syl eol="1">see:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="4" place="above">G/D</harm>
@@ -149,7 +149,7 @@
 <verse n="1"><syl>loves</syl></verse></note>
 </beam>
 <note xml:id="n40" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -184,7 +184,7 @@
 <verse n="1"><syl>loves</syl></verse></note>
 </beam>
 <note xml:id="n49" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">Am</harm>
@@ -214,7 +214,7 @@
 <verse n="1"><syl>loves</syl></verse></note>
 </beam>
 <note xml:id="n57" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7</harm>
 <harm staff="1" tstamp="4" place="above">G</harm>
@@ -247,7 +247,7 @@
 <verse n="1"><syl>loves</syl></verse></note>
 </beam>
 <note xml:id="n66" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">Am</harm>
@@ -271,7 +271,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <note xml:id="n73" pname="g" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

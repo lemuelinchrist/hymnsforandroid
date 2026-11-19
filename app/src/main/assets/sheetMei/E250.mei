@@ -23,7 +23,7 @@
 <note xml:id="n5" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">wa</syl></verse></note>
 <note xml:id="n6" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ter;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -44,7 +44,7 @@
 <note xml:id="n11" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">plete</syl></verse></note>
 <note xml:id="n12" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ly;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -67,7 +67,7 @@
 <note xml:id="n17" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">bar</syl></verse></note>
 <note xml:id="n18" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">riers</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">riers</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
@@ -89,7 +89,7 @@
 <note xml:id="n23" pname="g" oct="4" dur="2">
 <verse n="1"><syl>through</syl></verse></note>
 <note xml:id="n24" pname="f" oct="4" dur="2">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>

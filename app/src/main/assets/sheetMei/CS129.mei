@@ -22,7 +22,7 @@
 <note xml:id="n4" pname="a" oct="4" dur="4">
 <verse n="1"><syl>太</syl></verse></note>
 <note xml:id="n5" pname="a" oct="4" dur="4">
-<verse n="1"><syl>陽，</syl></verse></note>
+<verse n="1"><syl eol="1">陽，</syl></verse></note>
 <beam>
 <note xml:id="n6" pname="a" oct="4" dur="8"/>
 <note xml:id="n7" pname="a" oct="4" dur="8">
@@ -39,7 +39,7 @@
 <note xml:id="n10" pname="f" oct="4" dur="4">
 <verse n="1"><syl>太</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="4">
-<verse n="1"><syl>陽，</syl></verse></note>
+<verse n="1"><syl eol="1">陽，</syl></verse></note>
 <beam>
 <note xml:id="n12" pname="f" oct="4" dur="8"/>
 <note xml:id="n13" pname="f" oct="4" dur="8">
@@ -74,7 +74,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="a" oct="4" dur="2">
-<verse n="1"><syl>亮；</syl></verse></note>
+<verse n="1"><syl eol="1">亮；</syl></verse></note>
 <beam>
 <note xml:id="n23" pname="a" oct="4" dur="8"/>
 <note xml:id="n24" pname="f" oct="4" dur="8">
@@ -111,7 +111,7 @@
 <note xml:id="n33" pname="a" oct="4" dur="4">
 <verse n="1"><syl>天</syl></verse></note>
 <note xml:id="n34" pname="f" oct="4" dur="4">
-<verse n="1"><syl>晴，</syl></verse></note>
+<verse n="1"><syl eol="1">晴，</syl></verse></note>
 <beam>
 <note xml:id="n35" pname="f" oct="4" dur="8"/>
 <note xml:id="n36" pname="c" oct="4" dur="8">
@@ -128,7 +128,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>穌，</syl></verse></note>
+<verse n="1"><syl eol="1">穌，</syl></verse></note>
 <note xml:id="n40" pname="b" oct="4" dur="8">
 <verse n="1"><syl>我</syl></verse></note>
 <note xml:id="n41" pname="g" oct="4" dur="4">
@@ -145,7 +145,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="f" oct="4" dur="2">
-<verse n="1"><syl>陽。</syl></verse></note>
+<verse n="1"><syl eol="1">陽。</syl></verse></note>
 <rest xml:id="r45" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

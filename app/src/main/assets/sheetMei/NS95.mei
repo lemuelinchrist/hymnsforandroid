@@ -33,7 +33,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Christ.</syl></verse></note>
+<verse n="1"><syl eol="1">Christ.</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="f" oct="4" dur="8">
 <verse n="1"><syl>May</syl></verse></note>
@@ -63,7 +63,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="b" oct="4" dur="2">
-<verse n="1"><syl>Him.</syl></verse></note>
+<verse n="1"><syl eol="1">Him.</syl></verse></note>
 <note xml:id="n17" pname="c" oct="5" dur="4"/>
 <beam>
 <note xml:id="n18" pname="c" oct="5" dur="8">
@@ -87,7 +87,7 @@
 <verse n="1"><syl>find</syl></verse></note>
 </beam>
 <note xml:id="n23" pname="d" oct="4" dur="4">
-<verse n="1"><syl>rest</syl></verse></note>
+<verse n="1"><syl eol="1">rest</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Ly</syl></verse></note>
@@ -109,7 +109,7 @@
 <verse n="1"><syl>sweet</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="d" oct="4" dur="4">
-<verse n="1"><syl>breast,</syl></verse></note>
+<verse n="1"><syl eol="1">breast,</syl></verse></note>
 <beam>
 <note xml:id="n30" pname="d" oct="4" dur="8">
 <verse n="1"><syl>May</syl></verse></note>
@@ -140,7 +140,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Christ.</syl></verse></note>
+<verse n="1"><syl eol="1">Christ.</syl></verse></note>
 <rest xml:id="r38" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>

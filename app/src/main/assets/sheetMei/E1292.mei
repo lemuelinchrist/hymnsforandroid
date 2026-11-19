@@ -35,7 +35,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>we,</syl></verse></note>
+<verse n="1"><syl eol="1">we,</syl></verse></note>
 <note xml:id="n9" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl>One</syl></verse></note>
 </layer></staff>
@@ -67,7 +67,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">claim.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">claim.</syl></verse></note>
 <note xml:id="n17" pname="f" oct="4" dur="4" dots="1">
 <verse n="1"><syl>Our</syl></verse></note>
 </layer></staff>
@@ -96,7 +96,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>all,</syl></verse></note>
+<verse n="1"><syl eol="1">all,</syl></verse></note>
 <note xml:id="n25" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl>For</syl></verse></note>
 </layer></staff>
@@ -128,7 +128,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>aim.</syl></verse></note>
+<verse n="1"><syl eol="1">aim.</syl></verse></note>
 <note xml:id="n33" pname="c" oct="5" dur="4" dots="1">
 <verse n="1"><syl>No</syl></verse></note>
 </layer></staff>
@@ -157,7 +157,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="d" oct="5" dur="4" dots="1">
-<verse n="1"><syl>poor,</syl></verse></note>
+<verse n="1"><syl eol="1">poor,</syl></verse></note>
 <note xml:id="n41" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl>We’ve</syl></verse></note>
 </layer></staff>
@@ -187,7 +187,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>sons.</syl></verse></note>
+<verse n="1"><syl eol="1">sons.</syl></verse></note>
 <note xml:id="n49" pname="f" oct="4" dur="4" dots="1">
 <verse n="1"><syl>No</syl></verse></note>
 </layer></staff>
@@ -217,7 +217,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">fore;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fore;</syl></verse></note>
 <note xml:id="n57" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl>Now</syl></verse></note>
 </layer></staff>
@@ -248,7 +248,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>won.</syl></verse></note>
+<verse n="1"><syl eol="1">won.</syl></verse></note>
 <rest xml:id="r65" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

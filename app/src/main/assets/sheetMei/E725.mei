@@ -28,7 +28,7 @@
 <verse n="1"><syl wordpos="t">round</syl></verse></note>
 <note xml:id="n7" pname="a" oct="4" dur="4"/>
 <note xml:id="n8" pname="g" oct="4" dur="2">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -58,7 +58,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>day;</syl></verse></note>
+<verse n="1"><syl eol="1">day;</syl></verse></note>
 <note xml:id="n16" pname="g" oct="4" dur="2"/>
 <note xml:id="n17" pname="e" oct="4" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
@@ -85,7 +85,7 @@
 <verse n="1"><syl>bound</syl></verse></note>
 <note xml:id="n23" pname="a" oct="4" dur="4"/>
 <note xml:id="n24" pname="g" oct="4" dur="2">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <note xml:id="n25" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Can</syl></verse></note>
 </layer></staff>
@@ -112,7 +112,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">way:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way:</syl></verse></note>
 <note xml:id="n32" pname="b" oct="4" dur="2"/>
 <note xml:id="n33" pname="b" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
@@ -141,7 +141,7 @@
 <note xml:id="n40" pname="b" oct="4" dur="4">
 <verse n="1"><syl>are</syl></verse></note>
 <note xml:id="n41" pname="g" oct="4" dur="2">
-<verse n="1"><syl>dear,</syl></verse></note>
+<verse n="1"><syl eol="1">dear,</syl></verse></note>
 <note xml:id="n42" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
 </layer></staff>
@@ -169,7 +169,7 @@
 <note xml:id="n49" pname="f" oct="4" dur="4">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n50" pname="e" oct="4" dur="2">
-<verse n="1"><syl>here.</syl></verse></note>
+<verse n="1"><syl eol="1">here.</syl></verse></note>
 <rest xml:id="r51" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭7</harm>

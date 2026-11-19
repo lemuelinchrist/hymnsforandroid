@@ -39,7 +39,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="f" oct="4" dur="4">
-<verse n="1"><syl>shout,</syl></verse></note>
+<verse n="1"><syl eol="1">shout,</syl></verse></note>
 <beam>
 <note xml:id="n12" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Hal</syl></verse></note>
@@ -66,7 +66,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 <beam>
 <note xml:id="n19" pname="f" oct="4" dur="8">
 <verse n="1"><syl>It’s</syl></verse></note>
@@ -103,7 +103,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="f" oct="4" dur="4">
-<verse n="1"><syl>shout,</syl></verse></note>
+<verse n="1"><syl eol="1">shout,</syl></verse></note>
 <beam>
 <note xml:id="n30" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Hal</syl></verse></note>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 <note xml:id="n37" pname="c" oct="4" dur="4">
 <verse n="1"><syl>We’re</syl></verse></note>
 </layer></staff>
@@ -160,7 +160,7 @@
 <note xml:id="n43" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ri</syl></verse></note>
 <note xml:id="n44" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ous</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ous</syl></verse></note>
 <note xml:id="n45" pname="f" oct="4" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -185,7 +185,7 @@
 <note xml:id="n51" pname="g" oct="4" dur="4">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n52" pname="c" oct="5" dur="4">
-<verse n="1"><syl>us!</syl></verse></note>
+<verse n="1"><syl eol="1">us!</syl></verse></note>
 <note xml:id="n53" pname="c" oct="4" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -217,7 +217,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="1">
-<verse n="1"><syl>us!</syl></verse></note>
+<verse n="1"><syl eol="1">us!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

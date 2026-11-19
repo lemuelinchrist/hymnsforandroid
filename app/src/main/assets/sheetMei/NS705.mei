@@ -50,7 +50,7 @@
 <note xml:id="n13" pname="g" oct="4" dur="8">
 <verse n="1"><syl>for</syl></verse></note>
 <note xml:id="n14" pname="f" oct="4" dur="8">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 </beam>
 <note xml:id="n15" pname="f" oct="4" dur="2"/>
 </layer></staff>
@@ -99,7 +99,7 @@
 <note xml:id="n29" pname="f" oct="4" dur="8">
 <verse n="1"><syl>for</syl></verse></note>
 <note xml:id="n30" pname="c" oct="5" dur="8">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -154,7 +154,7 @@
 <note xml:id="n45" pname="d" oct="5" dur="8">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n46" pname="b" oct="4" dur="8">
-<verse n="1"><syl>God</syl></verse></note>
+<verse n="1"><syl eol="1">God</syl></verse></note>
 </beam>
 <note xml:id="n47" pname="b" oct="4" dur="4" dots="1"/>
 <note xml:id="n48" pname="f" oct="4" dur="8">
@@ -181,7 +181,7 @@
 <note xml:id="n55" pname="c" oct="5" dur="8">
 <verse n="1"><syl>your</syl></verse></note>
 <note xml:id="n56" pname="c" oct="5" dur="8">
-<verse n="1"><syl>needs.</syl></verse></note>
+<verse n="1"><syl eol="1">needs.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -214,7 +214,7 @@
 <note xml:id="n65" pname="b" oct="3" dur="8">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n66" pname="b" oct="3" dur="8">
-<verse n="1"><syl wordpos="t">lieve.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieve.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -245,7 +245,7 @@
 <note xml:id="n72" pname="c" oct="5" dur="8">
 <verse n="1"><syl>see</syl></verse></note>
 <note xml:id="n73" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Him,</syl></verse></note>
+<verse n="1"><syl eol="1">Him,</syl></verse></note>
 <note xml:id="n74" pname="b" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
@@ -284,7 +284,7 @@
 <note xml:id="n86" pname="d" oct="5" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n87" pname="c" oct="5" dur="8">
-<verse n="1"><syl>scenes.</syl></verse></note>
+<verse n="1"><syl eol="1">scenes.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -325,7 +325,7 @@
 <note xml:id="n99" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n100" pname="f" oct="4" dur="2">
-<verse n="1"><syl>now,</syl></verse></note>
+<verse n="1"><syl eol="1">now,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <tie startid="#n99" endid="#n100"/>
@@ -355,7 +355,7 @@
 <note xml:id="n109" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n110" pname="c" oct="5" dur="8">
-<verse n="1"><syl wordpos="t">lieve</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieve</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -397,7 +397,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n122" pname="b" oct="4" dur="1">
-<verse n="1"><syl>Priest.</syl></verse></note>
+<verse n="1"><syl eol="1">Priest.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n122" endid="#n123"/>

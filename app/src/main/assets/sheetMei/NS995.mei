@@ -37,7 +37,7 @@
 <note xml:id="n9" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Bi</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ble</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ble</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n12" pname="f" oct="4" dur="8" dots="1">
@@ -71,7 +71,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n20" pname="g" oct="4" dur="8"/>
 <note xml:id="n21" pname="f" oct="4" dur="2">
-<verse n="1"><syl>Christ</syl></verse></note>
+<verse n="1"><syl eol="1">Christ</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <slur startid="#n19" endid="#n20"/>
@@ -101,7 +101,7 @@
 <note xml:id="n29" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">or</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">der</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">der</syl></verse></note>
 <note xml:id="n31" pname="f" oct="4" dur="4"/>
 <note xml:id="n32" pname="f" oct="4" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
@@ -142,7 +142,7 @@
 <note xml:id="n42" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">na</syl></verse></note>
 <note xml:id="n43" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ture</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ture</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -167,7 +167,7 @@
 <note xml:id="n49" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">God</syl></verse></note>
 <note xml:id="n50" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">head</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">head</syl></verse></note>
 <note xml:id="n51" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n52" pname="a" oct="4" dur="8" dots="1">
@@ -206,7 +206,7 @@
 <note xml:id="n61" pname="g" oct="4" dur="4">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n62" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Christ</syl></verse></note>
+<verse n="1"><syl eol="1">Christ</syl></verse></note>
 <note xml:id="n63" pname="e" oct="4" dur="8">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -245,7 +245,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n73" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">lem.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lem.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

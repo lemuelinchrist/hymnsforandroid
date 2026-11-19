@@ -31,7 +31,7 @@
 <note xml:id="n8" pname="a" oct="4" dur="8">
 <verse n="1"><syl>再</syl></verse></note>
 <note xml:id="n9" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>臨，</syl></verse></note>
+<verse n="1"><syl eol="1">臨，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
@@ -49,7 +49,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>久，</syl></verse></note>
+<verse n="1"><syl eol="1">久，</syl></verse></note>
 <rest xml:id="r14" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
@@ -81,7 +81,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="8">
 <verse n="1"><syl>窮</syl></verse></note>
 <note xml:id="n23" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>盡，</syl></verse></note>
+<verse n="1"><syl eol="1">盡，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">D7/F♯</harm>
@@ -105,7 +105,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>休；</syl></verse></note>
+<verse n="1"><syl eol="1">休；</syl></verse></note>
 <rest xml:id="r30" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -139,7 +139,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="c" oct="5" dur="4">
-<verse n="1"><syl>容，</syl></verse></note>
+<verse n="1"><syl eol="1">容，</syl></verse></note>
 <note xml:id="n40" pname="a" oct="4" dur="4">
 <verse n="1"><syl>聽</syl></verse></note>
 <note xml:id="n41" pname="f" oct="4" dur="4">
@@ -151,7 +151,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>音；</syl></verse></note>
+<verse n="1"><syl eol="1">音；</syl></verse></note>
 <rest xml:id="r44" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -183,7 +183,7 @@
 <note xml:id="n52" pname="a" oct="4" dur="8">
 <verse n="1"><syl>交</syl></verse></note>
 <note xml:id="n53" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>通，</syl></verse></note>
+<verse n="1"><syl eol="1">通，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">D7/F♯</harm>
@@ -207,7 +207,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>親。</syl></verse></note>
+<verse n="1"><syl eol="1">親。</syl></verse></note>
 <rest xml:id="r60" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

@@ -42,7 +42,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="b" oct="4" dur="2">
-<verse n="1"><syl>life,</syl></verse></note>
+<verse n="1"><syl eol="1">life,</syl></verse></note>
 <note xml:id="n10" pname="d" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Di</syl></verse></note>
 </layer></staff>
@@ -71,7 +71,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="e" oct="4" dur="2">
-<verse n="1"><syl>free!</syl></verse></note>
+<verse n="1"><syl eol="1">free!</syl></verse></note>
 <note xml:id="n17" pname="f" oct="4" dur="4">
 <verse n="1"><syl>As</syl></verse></note>
 </layer></staff>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="c" oct="5" dur="2">
-<verse n="1"><syl>out</syl></verse></note>
+<verse n="1"><syl eol="1">out</syl></verse></note>
 <note xml:id="n27" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Un</syl></verse></note>
 </layer></staff>
@@ -139,7 +139,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ty!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="2" place="above">G/D</harm>

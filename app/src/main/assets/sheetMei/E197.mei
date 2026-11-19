@@ -39,7 +39,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="c" oct="4" dur="2">
-<verse n="1"><syl>art;</syl></verse></note>
+<verse n="1"><syl eol="1">art;</syl></verse></note>
 <note xml:id="n10" pname="c" oct="5" dur="4">
 <verse n="1"><syl>Of</syl></verse></note>
 </layer></staff>
@@ -68,7 +68,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee—</syl></verse></note>
+<verse n="1"><syl eol="1">Thee—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <slur startid="#n17" endid="#n18"/>
@@ -109,7 +109,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="c" oct="4" dur="2">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <note xml:id="n28" pname="c" oct="5" dur="4">
 <verse n="1"><syl>Our</syl></verse></note>
 </layer></staff>
@@ -139,7 +139,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>be.</syl></verse></note>
+<verse n="1"><syl eol="1">be.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n35" endid="#n36"/>

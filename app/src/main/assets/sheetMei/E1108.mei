@@ -39,7 +39,7 @@
 <note xml:id="n9" pname="g" oct="4" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n10" pname="e" oct="4" dur="4">
-<verse n="1"><syl>Lord:</syl></verse></note>
+<verse n="1"><syl eol="1">Lord:</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Praise</syl></verse></note>
@@ -70,7 +70,7 @@
 <note xml:id="n18" pname="f" oct="4" dur="4">
 <verse n="1"><syl>us</syl></verse></note>
 <note xml:id="n19" pname="g" oct="4" dur="4">
-<verse n="1"><syl>one.</syl></verse></note>
+<verse n="1"><syl eol="1">one.</syl></verse></note>
 <beam>
 <note xml:id="n20" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Now</syl></verse></note>
@@ -106,7 +106,7 @@
 <note xml:id="n28" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">ac</syl></verse></note>
 <note xml:id="n29" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">cord</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cord</syl></verse></note>
 <beam>
 <note xml:id="n30" pname="f" oct="4" dur="8">
 <verse n="1"><syl>As</syl></verse></note>
@@ -140,7 +140,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>own.</syl></verse></note>
+<verse n="1"><syl eol="1">own.</syl></verse></note>
 <beam>
 <note xml:id="n39" pname="e" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>Eat</syl></verse></note>
@@ -173,7 +173,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="b" oct="4" dur="2">
-<verse n="1"><syl>saints!</syl></verse></note>
+<verse n="1"><syl eol="1">saints!</syl></verse></note>
 <note xml:id="n48" pname="b" oct="4" dur="8"/>
 <rest xml:id="r49" dur="8"/>
 <beam>
@@ -203,7 +203,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">e’er.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">e’er.</syl></verse></note>
 <note xml:id="n57" pname="g" oct="4" dur="8"/>
 <rest xml:id="r58" dur="8"/>
 <beam>
@@ -238,7 +238,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>ground,</syl></verse></note>
+<verse n="1"><syl eol="1">ground,</syl></verse></note>
 <beam>
 <note xml:id="n68" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Eat</syl></verse></note>
@@ -268,7 +268,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n75" pname="d" oct="5" dur="2" dots="1">
-<verse n="1"><syl>there!</syl></verse></note>
+<verse n="1"><syl eol="1">there!</syl></verse></note>
 <rest xml:id="r76" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

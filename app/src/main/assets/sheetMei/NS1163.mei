@@ -42,7 +42,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="e" oct="4" dur="1">
-<verse n="1"><syl>heart,</syl></verse></note>
+<verse n="1"><syl eol="1">heart,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -61,7 +61,7 @@
 <note xml:id="n17" pname="d" oct="4" dur="8">
 <verse n="1"><syl>a</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="8">
-<verse n="1"><syl>part,</syl></verse></note>
+<verse n="1"><syl eol="1">part,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -93,7 +93,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="d" oct="4" dur="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -135,7 +135,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="b" oct="3" dur="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n38" endid="#n39"/>
@@ -178,7 +178,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="d" oct="4" dur="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n51" endid="#n52"/>
@@ -217,7 +217,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="a" oct="4" dur="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n62" endid="#n63"/>
@@ -255,7 +255,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n73" pname="f" oct="4" dur="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n73" endid="#n74"/>
@@ -312,7 +312,7 @@
 </measure>
 <measure n="30"><staff n="1"><layer n="1">
 <note xml:id="n88" pname="b" oct="4" dur="2">
-<verse n="1"><syl>make</syl></verse></note>
+<verse n="1"><syl eol="1">make</syl></verse></note>
 <note xml:id="n89" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Your</syl></verse></note>
 <note xml:id="n90" pname="f" oct="4" dur="4"/>
@@ -332,7 +332,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n94" pname="d" oct="4" dur="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G/D</harm>

@@ -35,7 +35,7 @@
 <note xml:id="n8" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ful</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="8">
-<verse n="1"><syl>love</syl></verse></note>
+<verse n="1"><syl eol="1">love</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="g" oct="4" dur="4"/>
 <note xml:id="n11" pname="g" oct="4" dur="4">
@@ -68,7 +68,7 @@
 <note xml:id="n18" pname="e" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n19" pname="e" oct="4" dur="8">
-<verse n="1"><syl>me:</syl></verse></note>
+<verse n="1"><syl eol="1">me:</syl></verse></note>
 </beam>
 <note xml:id="n20" pname="e" oct="4" dur="4" dots="1"/>
 <note xml:id="n21" pname="d" oct="4" dur="8">
@@ -101,7 +101,7 @@
 <note xml:id="n28" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n29" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">bove,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bove,</syl></verse></note>
 </beam>
 <note xml:id="n30" pname="e" oct="4" dur="4"/>
 <note xml:id="n31" pname="c" oct="4" dur="4">
@@ -137,7 +137,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="d" oct="4" dur="1">
-<verse n="1"><syl>sea;</syl></verse></note>
+<verse n="1"><syl eol="1">sea;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gsus4</harm>
 <tie startid="#n39" endid="#n40"/>
@@ -159,7 +159,7 @@
 <note xml:id="n44" pname="c" oct="5" dur="8">
 <verse n="1"><syl>so</syl></verse></note>
 <note xml:id="n45" pname="d" oct="5" dur="8">
-<verse n="1"><syl>new,</syl></verse></note>
+<verse n="1"><syl eol="1">new,</syl></verse></note>
 </beam>
 <note xml:id="n46" pname="d" oct="5" dur="4"/>
 <note xml:id="n47" pname="c" oct="5" dur="4">
@@ -175,7 +175,7 @@
 <note xml:id="n49" pname="c" oct="5" dur="8">
 <verse n="1"><syl>so</syl></verse></note>
 <note xml:id="n50" pname="b" oct="4" dur="8">
-<verse n="1"><syl>true;</syl></verse></note>
+<verse n="1"><syl eol="1">true;</syl></verse></note>
 </beam>
 <note xml:id="n51" pname="b" oct="4" dur="4"/>
 <note xml:id="n52" pname="g" oct="4" dur="4">
@@ -208,7 +208,7 @@
 <note xml:id="n59" pname="e" oct="4" dur="8">
 <verse n="1"><syl>its</syl></verse></note>
 <note xml:id="n60" pname="e" oct="4" dur="8">
-<verse n="1"><syl>frame,</syl></verse></note>
+<verse n="1"><syl eol="1">frame,</syl></verse></note>
 </beam>
 <note xml:id="n61" pname="e" oct="4" dur="2"/>
 </layer></staff>
@@ -250,7 +250,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n70" pname="c" oct="4" dur="1">
-<verse n="1"><syl>name!</syl></verse></note>
+<verse n="1"><syl eol="1">name!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n70" endid="#n71"/>

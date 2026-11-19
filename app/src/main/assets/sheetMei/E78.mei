@@ -34,7 +34,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="4">
 <verse n="1"><syl>AM”</syl></verse></note>
 <note xml:id="n8" pname="a" oct="4" dur="4">
-<verse n="1"><syl>is,</syl></verse></note>
+<verse n="1"><syl eol="1">is,</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Pre</syl></verse></note>
@@ -63,7 +63,7 @@
 <note xml:id="n15" pname="a" oct="4" dur="4">
 <verse n="1"><syl>full</syl></verse></note>
 <note xml:id="n16" pname="a" oct="4" dur="4">
-<verse n="1"><syl>’tis,</syl></verse></note>
+<verse n="1"><syl eol="1">’tis,</syl></verse></note>
 <beam>
 <note xml:id="n17" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">All-</syl></verse></note>
@@ -94,7 +94,7 @@
 <note xml:id="n23" pname="e" oct="4" dur="4">
 <verse n="1"><syl>too</syl></verse></note>
 <note xml:id="n24" pname="e" oct="4" dur="4">
-<verse n="1"><syl>’tis—</syl></verse></note>
+<verse n="1"><syl eol="1">’tis—</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl>All</syl></verse></note>
@@ -116,7 +116,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="g" oct="4" dur="2">
-<verse n="1"><syl>art!</syl></verse></note>
+<verse n="1"><syl eol="1">art!</syl></verse></note>
 <rest xml:id="r30" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

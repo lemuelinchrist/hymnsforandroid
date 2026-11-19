@@ -26,7 +26,7 @@
 <note xml:id="n6" pname="a" oct="4" dur="8">
 <verse n="1"><syl>make</syl></verse></note>
 <note xml:id="n7" pname="g" oct="4" dur="8">
-<verse n="1"><syl>man</syl></verse></note>
+<verse n="1"><syl eol="1">man</syl></verse></note>
 </beam>
 <note xml:id="n8" pname="g" oct="4" dur="2"/>
 </layer></staff>
@@ -65,7 +65,7 @@
 <note xml:id="n17" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">like</syl></verse></note>
 <note xml:id="n18" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ness.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness.</syl></verse></note>
 </beam>
 <note xml:id="n19" pname="g" oct="4" dur="2"/>
 </layer></staff>
@@ -106,7 +106,7 @@
 <note xml:id="n29" pname="a" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n30" pname="g" oct="4" dur="8">
-<verse n="1"><syl>earth.”</syl></verse></note>
+<verse n="1"><syl eol="1">earth.”</syl></verse></note>
 </beam>
 <note xml:id="n31" pname="g" oct="4" dur="2"/>
 </layer></staff>

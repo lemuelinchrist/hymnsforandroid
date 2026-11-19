@@ -39,7 +39,7 @@
 <note xml:id="n9" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">rich</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n12" pname="c" oct="4" dur="8">
@@ -78,7 +78,7 @@
 <verse n="1"><syl wordpos="m" con="d">ish</syl></verse></note>
 </beam>
 <note xml:id="n22" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="4"/>
 <beam>
 <note xml:id="n24" pname="f" oct="4" dur="8">
@@ -121,7 +121,7 @@
 <note xml:id="n35" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">tual</syl></verse></note>
 <note xml:id="n36" pname="f" oct="4" dur="8">
-<verse n="1"><syl>songs,</syl></verse></note>
+<verse n="1"><syl eol="1">songs,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
@@ -160,7 +160,7 @@
 <note xml:id="n48" pname="e" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n49" pname="f" oct="4" dur="8">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

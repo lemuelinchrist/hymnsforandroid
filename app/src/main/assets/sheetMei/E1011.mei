@@ -27,7 +27,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">oth</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ers,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ers,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C/E</harm>
@@ -45,7 +45,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>loves!</syl></verse></note>
+<verse n="1"><syl eol="1">loves!</syl></verse></note>
 <rest xml:id="r13" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
@@ -73,7 +73,7 @@
 <note xml:id="n20" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">broth</syl></verse></note>
 <note xml:id="n21" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">er’s,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er’s,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -94,7 +94,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>loves!</syl></verse></note>
+<verse n="1"><syl eol="1">loves!</syl></verse></note>
 <rest xml:id="r27" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -123,7 +123,7 @@
 <note xml:id="n34" pname="f" oct="4" dur="4">
 <verse n="1"><syl>leave</syl></verse></note>
 <note xml:id="n35" pname="d" oct="4" dur="4">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7/D</harm>
 <harm staff="1" tstamp="3" place="above">G7/B</harm>
@@ -149,7 +149,7 @@
 <note xml:id="n42" pname="g" oct="4" dur="4">
 <verse n="1"><syl>grieve</syl></verse></note>
 <note xml:id="n43" pname="e" oct="4" dur="4">
-<verse n="1"><syl>us;</syl></verse></note>
+<verse n="1"><syl eol="1">us;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="3" place="above">G7/D</harm>
@@ -176,7 +176,7 @@
 <note xml:id="n50" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="t">ceive</syl></verse></note>
 <note xml:id="n51" pname="a" oct="4" dur="4">
-<verse n="1"><syl>us:</syl></verse></note>
+<verse n="1"><syl eol="1">us:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
@@ -194,7 +194,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>loves!</syl></verse></note>
+<verse n="1"><syl eol="1">loves!</syl></verse></note>
 <rest xml:id="r56" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

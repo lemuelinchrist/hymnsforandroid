@@ -30,7 +30,7 @@
 <note xml:id="n8" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">chil</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">dren,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dren,</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -54,7 +54,7 @@
 <note xml:id="n16" pname="b" oct="3" dur="4">
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 <note xml:id="n17" pname="a" oct="3" dur="2">
-<verse n="1"><syl wordpos="t">day.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="2" place="above">E7</harm>
@@ -89,7 +89,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n27" pname="e" oct="4" dur="2">
-<verse n="1"><syl>do.</syl></verse></note>
+<verse n="1"><syl eol="1">do.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">A7</harm>
@@ -114,7 +114,7 @@
 <note xml:id="n33" pname="b" oct="3" dur="4">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n34" pname="a" oct="3" dur="2">
-<verse n="1"><syl>thru.</syl></verse></note>
+<verse n="1"><syl eol="1">thru.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="2" place="above">E7</harm>
@@ -145,7 +145,7 @@
 <note xml:id="n42" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">chil</syl></verse></note>
 <note xml:id="n43" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">dren,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dren,</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
@@ -169,7 +169,7 @@
 <note xml:id="n50" pname="b" oct="3" dur="4">
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 <note xml:id="n51" pname="a" oct="3" dur="2">
-<verse n="1"><syl wordpos="t">day.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="2" place="above">E7</harm>

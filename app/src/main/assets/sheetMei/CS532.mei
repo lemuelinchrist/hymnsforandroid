@@ -24,7 +24,7 @@
 <note xml:id="n6" pname="b" oct="4" dur="8">
 <verse n="1"><syl>事</syl></verse></note>
 <note xml:id="n7" pname="a" oct="4" dur="4">
-<verse n="1"><syl>實，</syl></verse></note>
+<verse n="1"><syl eol="1">實，</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4">
 <verse n="1"><syl>我</syl></verse></note>
 </layer></staff>
@@ -46,7 +46,7 @@
 <note xml:id="n13" pname="a" oct="4" dur="4" dots="1">
 <verse n="1"><syl>基</syl></verse></note>
 <note xml:id="n14" pname="g" oct="4" dur="8">
-<verse n="1"><syl>業，</syl></verse></note>
+<verse n="1"><syl eol="1">業，</syl></verse></note>
 <note xml:id="n15" pname="f" oct="4" dur="2">
 <verse n="1"><syl>你</syl></verse></note>
 </layer></staff>
@@ -70,7 +70,7 @@
 <note xml:id="n20" pname="c" oct="5" dur="4" dots="1">
 <verse n="1"><syl>無</syl></verse></note>
 <note xml:id="n21" pname="b" oct="4" dur="8">
-<verse n="1"><syl>比，</syl></verse></note>
+<verse n="1"><syl eol="1">比，</syl></verse></note>
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl>無</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="4">
@@ -92,7 +92,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>缺。</syl></verse></note>
+<verse n="1"><syl eol="1">缺。</syl></verse></note>
 <note xml:id="n29" pname="g" oct="4" dur="8">
 <verse n="1"><syl>哦！</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="2">
@@ -111,7 +111,7 @@
 <note xml:id="n33" pname="c" oct="5" dur="8">
 <verse n="1"><syl>成</syl></verse></note>
 <note xml:id="n34" pname="b" oct="4" dur="8">
-<verse n="1"><syl>為</syl></verse></note>
+<verse n="1"><syl eol="1">為</syl></verse></note>
 <note xml:id="n35" pname="a" oct="4" dur="8">
 <verse n="1"><syl>你</syl></verse></note>
 </beam>
@@ -129,7 +129,7 @@
 <note xml:id="n38" pname="b" oct="4" dur="8">
 <verse n="1"><syl>對</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="8">
-<verse n="1"><syl>象，</syl></verse></note>
+<verse n="1"><syl eol="1">象，</syl></verse></note>
 <note xml:id="n40" pname="g" oct="4" dur="8">
 <verse n="1"><syl>將</syl></verse></note>
 </beam>
@@ -156,7 +156,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>顯，</syl></verse></note>
+<verse n="1"><syl eol="1">顯，</syl></verse></note>
 <note xml:id="n47" pname="c" oct="4" dur="8"/>
 <note xml:id="n48" pname="c" oct="4" dur="2">
 <verse n="1"><syl>你</syl></verse></note>
@@ -181,7 +181,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="a" oct="4" dur="2">
-<verse n="1"><syl>讚。</syl></verse></note>
+<verse n="1"><syl eol="1">讚。</syl></verse></note>
 <note xml:id="n54" pname="g" oct="4" dur="4">
 <verse n="1"><syl>哦！</syl></verse></note>
 <rest xml:id="r55" dur="4"/>
@@ -200,7 +200,7 @@
 <note xml:id="n59" pname="b" oct="4" dur="8">
 <verse n="1"><syl>成</syl></verse></note>
 <note xml:id="n60" pname="a" oct="4" dur="8">
-<verse n="1"><syl>為</syl></verse></note>
+<verse n="1"><syl eol="1">為</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -217,7 +217,7 @@
 <note xml:id="n64" pname="a" oct="4" dur="8">
 <verse n="1"><syl>對</syl></verse></note>
 <note xml:id="n65" pname="g" oct="4" dur="8">
-<verse n="1"><syl>象，</syl></verse></note>
+<verse n="1"><syl eol="1">象，</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
@@ -246,7 +246,7 @@
 <verse n="1"><syl>彰</syl></verse></note>
 <note xml:id="n72" pname="c" oct="4" dur="8"/>
 <note xml:id="n73" pname="c" oct="4" dur="2">
-<verse n="1"><syl>顯，</syl></verse></note>
+<verse n="1"><syl eol="1">顯，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">C7</harm>
@@ -276,7 +276,7 @@
 </measure>
 <measure n="21" right="end"><staff n="1"><layer n="1">
 <note xml:id="n80" pname="f" oct="4" dur="1">
-<verse n="1"><syl>讚。</syl></verse></note>
+<verse n="1"><syl eol="1">讚。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

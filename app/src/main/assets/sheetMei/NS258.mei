@@ -36,7 +36,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>born,</syl></verse></note>
+<verse n="1"><syl eol="1">born,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭m</harm>
 <tie startid="#n9" endid="#n10"/>
@@ -73,7 +73,7 @@
 <note xml:id="n17" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">giv</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">en;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -115,7 +115,7 @@
 </beam>
 <beam>
 <note xml:id="n29" pname="c" oct="5" dur="8" dots="1">
-<verse n="1"><syl wordpos="t">on</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">on</syl></verse></note>
 <note xml:id="n30" pname="a" oct="4" dur="16">
 <verse n="1"><syl>His</syl></verse></note>
 </beam>
@@ -131,7 +131,7 @@
 <note xml:id="n32" pname="e" oct="4" dur="16"/>
 </beam>
 <note xml:id="n33" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">der;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">der;</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="e" oct="4" dur="8" dots="1">
 <verse n="1"><syl>And</syl></verse></note>
@@ -168,7 +168,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ful,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ful,</syl></verse></note>
 <beam>
 <note xml:id="n43" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Coun</syl></verse></note>
@@ -199,7 +199,7 @@
 <sb/>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="c" oct="4" dur="2">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <note xml:id="n51" pname="d" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -246,7 +246,7 @@
 <sb/>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n63" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther,</syl></verse></note>
 <beam>
 <note xml:id="n64" pname="e" oct="4" dur="8" dots="1">
 <verse n="1"><syl>And</syl></verse></note>
@@ -274,7 +274,7 @@
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n70" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>He.</syl></verse></note>
+<verse n="1"><syl eol="1">He.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">D♭/A♭</harm>

@@ -48,7 +48,7 @@
 <note xml:id="n13" pname="d" oct="4" dur="8" dots="1" accid="n">
 <verse n="1"><syl wordpos="i" con="d">light!</syl></verse></note>
 <note xml:id="n14" pname="d" oct="4" dur="16">
-<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">⠀</syl></verse></note>
 </beam>
 <note xml:id="n15" pname="a" oct="3" dur="4">
 <verse n="1"><syl wordpos="i" con="d">⠀</syl></verse></note>
@@ -96,7 +96,7 @@
 <verse n="1"><syl>was</syl></verse></note>
 </beam>
 <note xml:id="n28" pname="d" oct="4" dur="2" accid="n">
-<verse n="1"><syl>good.</syl></verse></note>
+<verse n="1"><syl eol="1">good.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -145,7 +145,7 @@
 <verse n="1"><syl wordpos="i" con="d">dark</syl></verse></note>
 <beam>
 <note xml:id="n42" pname="a" oct="3" dur="8" dots="1">
-<verse n="1"><syl wordpos="t">ness—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness—</syl></verse></note>
 <note xml:id="n43" pname="a" oct="3" dur="16">
 <verse n="1"><syl>He</syl></verse></note>
 </beam>
@@ -191,7 +191,7 @@
 <note xml:id="n55" pname="d" oct="4" dur="4" dots="1" accid="n">
 <verse n="1"><syl wordpos="i" con="d">night.</syl></verse></note>
 <note xml:id="n56" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">⠀</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -323,7 +323,7 @@
 <note xml:id="n94" pname="d" oct="4" dur="4" accid="n">
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <note xml:id="n95" pname="a" oct="3" dur="4">
-<verse n="1"><syl wordpos="t">tion—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -355,7 +355,7 @@
 <verse n="1"><syl wordpos="t">⠀</syl></verse></note>
 </beam>
 <note xml:id="n105" pname="d" oct="4" dur="2" accid="n">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>

@@ -32,7 +32,7 @@
 <note xml:id="n9" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl>blood,</syl></verse></note>
+<verse n="1"><syl eol="1">blood,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="4" place="above">G7</harm>
@@ -66,7 +66,7 @@
 <note xml:id="n19" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n20" pname="f" oct="4" dur="2">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm7</harm>
 <harm staff="1" tstamp="3" place="above">G7</harm>
@@ -98,7 +98,7 @@
 <note xml:id="n27" pname="a" oct="4" dur="8">
 <verse n="1"><syl>He</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="8">
-<verse n="1"><syl>trod,</syl></verse></note>
+<verse n="1"><syl eol="1">trod,</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="a" oct="4" dur="2"/>
 </layer></staff>
@@ -131,7 +131,7 @@
 <note xml:id="n37" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n38" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>

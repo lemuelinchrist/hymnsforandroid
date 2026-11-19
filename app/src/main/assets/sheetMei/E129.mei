@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ry</syl></verse></note>
 <note xml:id="n8" pname="b" oct="4" dur="4">
-<verse n="1"><syl>crowned,</syl></verse></note>
+<verse n="1"><syl eol="1">crowned,</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -54,7 +54,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="d" oct="5" dur="2" dots="1">
-<verse n="1"><syl>giv’n:</syl></verse></note>
+<verse n="1"><syl eol="1">giv’n:</syl></verse></note>
 <note xml:id="n15" pname="a" oct="4" dur="4">
 <verse n="1"><syl>No</syl></verse></note>
 </layer></staff>
@@ -81,7 +81,7 @@
 <note xml:id="n21" pname="a" oct="4" dur="4">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n22" pname="f" oct="4" dur="4">
-<verse n="1"><syl>found,</syl></verse></note>
+<verse n="1"><syl eol="1">found,</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="4">
 <verse n="1"><syl>No</syl></verse></note>
 </layer></staff>
@@ -109,7 +109,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>heav’n.</syl></verse></note>
+<verse n="1"><syl eol="1">heav’n.</syl></verse></note>
 <rest xml:id="r30" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

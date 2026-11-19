@@ -51,7 +51,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>way,</syl></verse></note>
+<verse n="1"><syl eol="1">way,</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl>When</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>roll;</syl></verse></note>
+<verse n="1"><syl eol="1">roll;</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">What</syl></verse></note>
 </layer></staff>
@@ -127,7 +127,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="b" oct="4" dur="2">
-<verse n="1"><syl>say,</syl></verse></note>
+<verse n="1"><syl eol="1">say,</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="4">
 <verse n="1"><syl>“It</syl></verse></note>
 <note xml:id="n33" pname="g" oct="4" dur="4">
@@ -162,7 +162,7 @@
 <sb/>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="c" oct="5" dur="2">
-<verse n="1"><syl>soul!”</syl></verse></note>
+<verse n="1"><syl eol="1">soul!”</syl></verse></note>
 <note xml:id="n41" pname="g" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>It</syl></verse></note>
 <note xml:id="n42" pname="g" oct="4" dur="4">
@@ -193,7 +193,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="g" oct="4" dur="1">
-<verse n="1"><syl>soul!</syl></verse></note>
+<verse n="1"><syl eol="1">soul!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -236,7 +236,7 @@
 </measure>
 <measure n="22"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="c" oct="5" dur="1">
-<verse n="1"><syl>soul!</syl></verse></note>
+<verse n="1"><syl eol="1">soul!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>

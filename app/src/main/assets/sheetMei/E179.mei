@@ -28,7 +28,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>high!</syl></verse></note>
+<verse n="1"><syl eol="1">high!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -57,7 +57,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>sky!</syl></verse></note>
+<verse n="1"><syl eol="1">sky!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -73,7 +73,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>name:</syl></verse></note>
+<verse n="1"><syl eol="1">name:</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -93,7 +93,7 @@
 <note xml:id="n24" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">rows</syl></verse></note>
 <note xml:id="n25" pname="f" oct="4" dur="4">
-<verse n="1"><syl>bore;</syl></verse></note>
+<verse n="1"><syl eol="1">bore;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -113,7 +113,7 @@
 <note xml:id="n30" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n31" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">dore,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dore,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -132,7 +132,7 @@
 <note xml:id="n36" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
 <note xml:id="n37" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">more,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">more,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am7</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
@@ -150,7 +150,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="f" oct="4" dur="2">
-<verse n="1"><syl>Lamb!”</syl></verse></note>
+<verse n="1"><syl eol="1">Lamb!”</syl></verse></note>
 <rest xml:id="r42" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

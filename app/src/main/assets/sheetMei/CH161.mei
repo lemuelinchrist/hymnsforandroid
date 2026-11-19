@@ -30,7 +30,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 <beam>
 <note xml:id="n8" pname="a" oct="4" dur="8">
 <verse n="1"><syl>My</syl></verse></note>
@@ -60,7 +60,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Word.</syl></verse></note>
+<verse n="1"><syl eol="1">Word.</syl></verse></note>
 <note xml:id="n16" pname="c" oct="5" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -85,7 +85,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">peo</syl></verse></note>
 <note xml:id="n23" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">ple.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ple.</syl></verse></note>
 <note xml:id="n24" pname="c" oct="5" dur="4">
 <verse n="1"><syl>These</syl></verse></note>
 </layer></staff>
@@ -111,7 +111,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <rest xml:id="r31" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

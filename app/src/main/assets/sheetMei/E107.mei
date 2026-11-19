@@ -28,7 +28,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="g" oct="4" dur="1">
-<verse n="1"><syl>beasts,</syl></verse></note>
+<verse n="1"><syl eol="1">beasts,</syl></verse></note>
 <note xml:id="n7" pname="c" oct="5" dur="2">
 <verse n="1"><syl>On</syl></verse></note>
 </layer></staff>
@@ -51,7 +51,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="g" oct="4" dur="1">
-<verse n="1"><syl>slain,</syl></verse></note>
+<verse n="1"><syl eol="1">slain,</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="2">
 <verse n="1"><syl>Could</syl></verse></note>
 </layer></staff>
@@ -78,7 +78,7 @@
 <note xml:id="n19" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">science</syl></verse></note>
 <note xml:id="n20" pname="c" oct="5" dur="2">
-<verse n="1"><syl>peace,</syl></verse></note>
+<verse n="1"><syl eol="1">peace,</syl></verse></note>
 <note xml:id="n21" pname="b" oct="4" dur="2">
 <verse n="1"><syl>Or</syl></verse></note>
 </layer></staff>
@@ -104,7 +104,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="g" oct="4" dur="1">
-<verse n="1"><syl>stain.</syl></verse></note>
+<verse n="1"><syl eol="1">stain.</syl></verse></note>
 <rest xml:id="r27" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

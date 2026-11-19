@@ -22,7 +22,7 @@
 <note xml:id="n5" pname="b" oct="4" dur="2">
 <verse n="1"><syl>命</syl></verse></note>
 <note xml:id="n6" pname="g" oct="4" dur="4">
-<verse n="1"><syl>者，</syl></verse></note>
+<verse n="1"><syl eol="1">者，</syl></verse></note>
 <rest xml:id="r7" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
@@ -39,7 +39,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>命；</syl></verse></note>
+<verse n="1"><syl eol="1">命；</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="4">
 <verse n="1"><syl>當</syl></verse></note>
 </layer></staff>
@@ -64,7 +64,7 @@
 <note xml:id="n18" pname="g" oct="4" dur="4">
 <verse n="1"><syl>喊</syl></verse></note>
 <note xml:id="n19" pname="c" oct="5" dur="4">
-<verse n="1"><syl>祂，</syl></verse></note>
+<verse n="1"><syl eol="1">祂，</syl></verse></note>
 <note xml:id="n20" pname="c" oct="5" dur="4">
 <verse n="1"><syl>祂</syl></verse></note>
 </layer></staff>
@@ -85,7 +85,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="d" oct="5" dur="1">
-<verse n="1"><syl>靈。</syl></verse></note>
+<verse n="1"><syl eol="1">靈。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -106,7 +106,7 @@
 <note xml:id="n30" pname="b" oct="4" dur="2">
 <verse n="1"><syl>命</syl></verse></note>
 <note xml:id="n31" pname="g" oct="4" dur="4">
-<verse n="1"><syl>者，</syl></verse></note>
+<verse n="1"><syl eol="1">者，</syl></verse></note>
 <rest xml:id="r32" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
@@ -123,7 +123,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>裡；</syl></verse></note>
+<verse n="1"><syl eol="1">裡；</syl></verse></note>
 <note xml:id="n37" pname="g" oct="4" dur="4">
 <verse n="1"><syl>祂</syl></verse></note>
 </layer></staff>
@@ -148,7 +148,7 @@
 <note xml:id="n43" pname="g" oct="4" dur="4">
 <verse n="1"><syl>名</syl></verse></note>
 <note xml:id="n44" pname="c" oct="5" dur="4">
-<verse n="1"><syl>字，</syl></verse></note>
+<verse n="1"><syl eol="1">字，</syl></verse></note>
 <note xml:id="n45" pname="c" oct="5" dur="4">
 <verse n="1"><syl>乃</syl></verse></note>
 </layer></staff>
@@ -170,7 +170,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="c" oct="5" dur="1">
-<verse n="1"><syl>際。</syl></verse></note>
+<verse n="1"><syl eol="1">際。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>

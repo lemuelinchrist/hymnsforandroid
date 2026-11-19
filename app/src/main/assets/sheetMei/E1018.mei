@@ -42,7 +42,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="a" oct="4" dur="4">
-<verse n="1"><syl>sin;</syl></verse></note>
+<verse n="1"><syl eol="1">sin;</syl></verse></note>
 <note xml:id="n12" pname="a" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -71,7 +71,7 @@
 <note xml:id="n18" pname="a" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n19" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sus;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus;</syl></verse></note>
 <note xml:id="n20" pname="c" oct="4" dur="8">
 <verse n="1"><syl>Like</syl></verse></note>
 </layer></staff>
@@ -108,7 +108,7 @@
 <verse n="1"><syl>shone</syl></verse></note>
 </beam>
 <note xml:id="n30" pname="a" oct="4" dur="4">
-<verse n="1"><syl>in,</syl></verse></note>
+<verse n="1"><syl eol="1">in,</syl></verse></note>
 <note xml:id="n31" pname="a" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -136,7 +136,7 @@
 <note xml:id="n37" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">sus.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="4" place="above">F</harm>
@@ -172,7 +172,7 @@
 <verse n="1"><syl>for</syl></verse></note>
 </beam>
 <note xml:id="n47" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>thee;</syl></verse></note>
+<verse n="1"><syl eol="1">thee;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
@@ -206,7 +206,7 @@
 <verse n="1"><syl wordpos="t">on</syl></verse></note>
 </beam>
 <note xml:id="n56" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
@@ -240,7 +240,7 @@
 <verse n="1"><syl>can</syl></verse></note>
 </beam>
 <note xml:id="n65" pname="d" oct="5" dur="4">
-<verse n="1"><syl>see;</syl></verse></note>
+<verse n="1"><syl eol="1">see;</syl></verse></note>
 <note xml:id="n66" pname="d" oct="5" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -270,7 +270,7 @@
 <note xml:id="n72" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n73" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sus.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus.</syl></verse></note>
 <rest xml:id="r74" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm/B♭</harm>

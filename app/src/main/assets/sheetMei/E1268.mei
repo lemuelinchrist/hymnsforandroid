@@ -50,7 +50,7 @@
 <verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">creed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">creed.</syl></verse></note>
 <note xml:id="n15" pname="f" oct="4" dur="8">
 <verse n="1"><syl>So</syl></verse></note>
 </layer></staff>
@@ -94,7 +94,7 @@
 <verse n="1"><syl>no</syl></verse></note>
 </beam>
 <note xml:id="n28" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>heed.</syl></verse></note>
+<verse n="1"><syl eol="1">heed.</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="8">
 <verse n="1"><syl>But</syl></verse></note>
 </layer></staff>
@@ -139,7 +139,7 @@
 <verse n="1"><syl wordpos="i" con="d">o</syl></verse></note>
 </beam>
 <note xml:id="n42" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">bey;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bey;</syl></verse></note>
 <note xml:id="n43" pname="f" oct="4" dur="8">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
@@ -186,7 +186,7 @@
 <verse n="1"><syl>a</syl></verse></note>
 </beam>
 <note xml:id="n56" pname="b" oct="4" dur="4">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 <note xml:id="n57" pname="f" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>Now</syl></verse></note>
 </layer></staff>
@@ -245,7 +245,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>see</syl></verse></note>
+<verse n="1"><syl eol="1">see</syl></verse></note>
 <note xml:id="n72" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -299,7 +299,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n86" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty.</syl></verse></note>
 <rest xml:id="r87" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

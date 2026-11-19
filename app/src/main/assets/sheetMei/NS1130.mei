@@ -27,7 +27,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="a" oct="4" dur="1">
-<verse n="1"><syl>will,</syl></verse></note>
+<verse n="1"><syl eol="1">will,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -84,7 +84,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="c" oct="4" dur="1">
-<verse n="1"><syl>Me,</syl></verse></note>
+<verse n="1"><syl eol="1">Me,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -114,7 +114,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="f" oct="4" dur="1">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 </measure>
@@ -170,7 +170,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">sire.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sire.</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -195,7 +195,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="a" oct="4" dur="1">
-<verse n="1"><syl>will.</syl></verse></note>
+<verse n="1"><syl eol="1">will.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -250,7 +250,7 @@
 <note xml:id="n72" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">sec</syl></verse></note>
 <note xml:id="n73" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ond,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ond,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -284,7 +284,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n83" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">fied</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fied</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 </measure>
@@ -337,7 +337,7 @@
 <note xml:id="n98" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">sus</syl></verse></note>
 <note xml:id="n99" pname="e" oct="4" dur="4">
-<verse n="1"><syl>Christ</syl></verse></note>
+<verse n="1"><syl eol="1">Christ</syl></verse></note>
 <note xml:id="n100" pname="c" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -355,7 +355,7 @@
 <sb/>
 <measure n="33"><staff n="1"><layer n="1">
 <note xml:id="n104" pname="f" oct="4" dur="1">
-<verse n="1"><syl>all,</syl></verse></note>
+<verse n="1"><syl eol="1">all,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -371,7 +371,7 @@
 </measure>
 <measure n="35"><staff n="1"><layer n="1">
 <note xml:id="n108" pname="f" oct="4" dur="1">
-<verse n="1"><syl>all.</syl></verse></note>
+<verse n="1"><syl eol="1">all.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n108" endid="#n109"/>

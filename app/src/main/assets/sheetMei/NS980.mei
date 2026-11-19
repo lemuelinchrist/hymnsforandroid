@@ -56,7 +56,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty</syl></verse></note>
 <rest xml:id="r16" dur="8"/>
 <note xml:id="n17" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
@@ -116,7 +116,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <note xml:id="n34" pname="c" oct="5" dur="4">
 <verse n="1"><syl>God’s</syl></verse></note>
 </layer></staff>
@@ -158,7 +158,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">plete!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">plete!</syl></verse></note>
 <note xml:id="n46" pname="c" oct="4" dur="4">
 <verse n="1"><syl>We</syl></verse></note>
 </layer></staff>
@@ -218,7 +218,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>day,</syl></verse></note>
+<verse n="1"><syl eol="1">day,</syl></verse></note>
 <beam>
 <note xml:id="n63" pname="f" oct="4" dur="8">
 <verse n="1"><syl>God’s</syl></verse></note>
@@ -244,7 +244,7 @@
 </measure>
 <measure n="19" right="end"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">plete.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">plete.</syl></verse></note>
 <rest xml:id="r70" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

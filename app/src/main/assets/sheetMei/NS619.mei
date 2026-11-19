@@ -40,7 +40,7 @@
 <note xml:id="n11" pname="d" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">bro</syl></verse></note>
 <note xml:id="n12" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ken,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ken,</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -78,7 +78,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="c" oct="4" dur="1">
-<verse n="1"><syl>way;</syl></verse></note>
+<verse n="1"><syl eol="1">way;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -117,7 +117,7 @@
 <note xml:id="n34" pname="d" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Da</syl></verse></note>
 <note xml:id="n35" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">vid,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vid,</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -156,7 +156,7 @@
 <sb/>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="a" oct="4" dur="4">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 <note xml:id="n47" pname="f" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>O</syl></verse></note>
 <note xml:id="n48" pname="c" oct="5" dur="4">
@@ -193,7 +193,7 @@
 <note xml:id="n57" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">still</syl></verse></note>
 <note xml:id="n58" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">ness,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/A</harm>
 <tie startid="#n58" endid="#n59"/>
@@ -232,7 +232,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="f" oct="4" dur="1">
-<verse n="1"><syl>age;</syl></verse></note>
+<verse n="1"><syl eol="1">age;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -277,7 +277,7 @@
 <note xml:id="n82" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">splen</syl></verse></note>
 <note xml:id="n83" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">dor!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dor!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -318,7 +318,7 @@
 </measure>
 <measure n="31" right="end"><staff n="1"><layer n="1">
 <note xml:id="n94" pname="b" oct="4" dur="1">
-<verse n="1"><syl>page.</syl></verse></note>
+<verse n="1"><syl eol="1">page.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>

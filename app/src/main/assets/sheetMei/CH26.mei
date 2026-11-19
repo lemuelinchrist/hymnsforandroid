@@ -38,7 +38,7 @@
 <verse n="1"><syl>drawn</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>near!</syl></verse></note>
+<verse n="1"><syl eol="1">near!</syl></verse></note>
 <note xml:id="n13" pname="g" oct="3" dur="8">
 <verse n="1"><syl>For</syl></verse></note>
 </layer></staff>
@@ -76,7 +76,7 @@
 <verse n="1"><syl>and</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="a" oct="3" dur="4" dots="1">
-<verse n="1"><syl>clear.</syl></verse></note>
+<verse n="1"><syl eol="1">clear.</syl></verse></note>
 <note xml:id="n25" pname="b" oct="3" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
 </layer></staff>
@@ -114,7 +114,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n36" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">new.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">new.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -154,7 +154,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n48" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>you:</syl></verse></note>
+<verse n="1"><syl eol="1">you:</syl></verse></note>
 <note xml:id="n49" pname="b" oct="3" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
 </layer></staff>
@@ -193,7 +193,7 @@
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 </beam>
 <note xml:id="n60" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lieve!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieve!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -234,7 +234,7 @@
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 </beam>
 <note xml:id="n72" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">lieve!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieve!</syl></verse></note>
 <note xml:id="n73" pname="b" oct="3" dur="8">
 <verse n="1"><syl wordpos="i" con="d">R</syl></verse></note>
 </layer></staff>
@@ -278,7 +278,7 @@
 <note xml:id="n85" pname="e" oct="4" dur="16">
 <verse n="1"><syl wordpos="m" con="d">V</syl></verse></note>
 <note xml:id="n86" pname="d" oct="4" dur="16">
-<verse n="1"><syl wordpos="t">E!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">E!</syl></verse></note>
 </beam>
 <note xml:id="n87" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -321,7 +321,7 @@
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 </beam>
 <note xml:id="n99" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lieve!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieve!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="2" place="above">D7</harm>

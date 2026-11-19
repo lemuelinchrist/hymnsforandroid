@@ -47,7 +47,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="2">
-<verse n="1"><syl>want;</syl></verse></note>
+<verse n="1"><syl eol="1">want;</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
@@ -74,7 +74,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="c" oct="5" dur="2">
-<verse n="1"><syl>lie</syl></verse></note>
+<verse n="1"><syl eol="1">lie</syl></verse></note>
 <note xml:id="n18" pname="a" oct="4" dur="4">
 <verse n="1"><syl>In</syl></verse></note>
 </layer></staff>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="a" oct="4" dur="2">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -139,7 +139,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>by.</syl></verse></note>
+<verse n="1"><syl eol="1">by.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

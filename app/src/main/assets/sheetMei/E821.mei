@@ -37,7 +37,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="d" oct="4" dur="2">
-<verse n="1"><syl>Christ,</syl></verse></note>
+<verse n="1"><syl eol="1">Christ,</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Him</syl></verse></note>
 </layer></staff>
@@ -79,7 +79,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">press,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">press,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -115,7 +115,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="c" oct="5" dur="2">
-<verse n="1"><syl>doth</syl></verse></note>
+<verse n="1"><syl eol="1">doth</syl></verse></note>
 <note xml:id="n28" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Man’s</syl></verse></note>
 </layer></staff>
@@ -154,7 +154,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">sess.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sess.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

@@ -26,7 +26,7 @@
 <verse n="1"><syl>靈</syl></verse></note>
 </beam>
 <note xml:id="n6" pname="b" oct="4" dur="4">
-<verse n="1"><syl>裡，</syl></verse></note>
+<verse n="1"><syl eol="1">裡，</syl></verse></note>
 <beam>
 <note xml:id="n7" pname="e" oct="4" dur="8">
 <verse n="1"><syl>在</syl></verse></note>
@@ -45,7 +45,7 @@
 <verse n="1"><syl>靈</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="g" oct="4" dur="4">
-<verse n="1"><syl>裡，</syl></verse></note>
+<verse n="1"><syl eol="1">裡，</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="f" oct="4" dur="8">
 <verse n="1"><syl>主</syl></verse></note>
@@ -64,7 +64,7 @@
 <verse n="1"><syl>我</syl></verse></note>
 </beam>
 <note xml:id="n18" pname="a" oct="4" dur="4">
-<verse n="1"><syl>們</syl></verse></note>
+<verse n="1"><syl eol="1">們</syl></verse></note>
 <beam>
 <note xml:id="n19" pname="g" oct="4" dur="8">
 <verse n="1"><syl>何</syl></verse></note>
@@ -86,7 +86,7 @@
 <verse n="1"><syl>奧</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="b" oct="4" dur="4">
-<verse n="1"><syl>祕！</syl></verse></note>
+<verse n="1"><syl eol="1">祕！</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>在</syl></verse></note>
@@ -108,7 +108,7 @@
 <verse n="1"><syl>召</syl></verse></note>
 </beam>
 <note xml:id="n30" pname="b" oct="4" dur="4">
-<verse n="1"><syl>會，</syl></verse></note>
+<verse n="1"><syl eol="1">會，</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="e" oct="4" dur="8">
 <verse n="1"><syl>在</syl></verse></note>
@@ -129,7 +129,7 @@
 <verse n="1"><syl>世</syl></verse></note>
 </beam>
 <note xml:id="n36" pname="g" oct="4" dur="4">
-<verse n="1"><syl>界，</syl></verse></note>
+<verse n="1"><syl eol="1">界，</syl></verse></note>
 <beam>
 <note xml:id="n37" pname="g" oct="4" dur="8">
 <verse n="1"><syl>在</syl></verse></note>
@@ -150,7 +150,7 @@
 <verse n="1"><syl>宗</syl></verse></note>
 </beam>
 <note xml:id="n42" pname="a" oct="4" dur="4" accid="n" accid.ges="n">
-<verse n="1"><syl>教，</syl></verse></note>
+<verse n="1"><syl eol="1">教，</syl></verse></note>
 <beam>
 <note xml:id="n43" pname="b" oct="4" dur="8">
 <verse n="1"><syl>在</syl></verse></note>
@@ -172,7 +172,7 @@
 <verse n="1"><syl>聖</syl></verse></note>
 </beam>
 <note xml:id="n48" pname="b" oct="4" dur="4">
-<verse n="1"><syl>城。</syl></verse></note>
+<verse n="1"><syl eol="1">城。</syl></verse></note>
 <beam>
 <note xml:id="n49" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>在</syl></verse></note>
@@ -200,7 +200,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>裡，</syl></verse></note>
+<verse n="1"><syl eol="1">裡，</syl></verse></note>
 <beam>
 <note xml:id="n55" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl>在</syl></verse></note>
@@ -226,7 +226,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>裡！</syl></verse></note>
+<verse n="1"><syl eol="1">裡！</syl></verse></note>
 <beam>
 <note xml:id="n61" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>撇</syl></verse></note>
@@ -252,7 +252,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n66" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>教，</syl></verse></note>
+<verse n="1"><syl eol="1">教，</syl></verse></note>
 <note xml:id="n67" pname="d" oct="5" dur="4">
 <verse n="1"><syl>豫</syl></verse></note>
 </layer></staff>
@@ -280,7 +280,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>了！</syl></verse></note>
+<verse n="1"><syl eol="1">了！</syl></verse></note>
 <rest xml:id="r75" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

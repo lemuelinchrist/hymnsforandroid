@@ -22,7 +22,7 @@
 <note xml:id="n4" pname="f" oct="4" dur="4">
 <verse n="1"><syl>們</syl></verse></note>
 <note xml:id="n5" pname="f" oct="4" dur="4">
-<verse n="1"><syl>將</syl></verse></note>
+<verse n="1"><syl eol="1">將</syl></verse></note>
 <beam>
 <note xml:id="n6" pname="a" oct="4" dur="8">
 <verse n="1"><syl>昨</syl></verse></note>
@@ -43,7 +43,7 @@
 <verse n="1"><syl>背</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="c" oct="4" dur="4">
-<verse n="1"><syl>後，</syl></verse></note>
+<verse n="1"><syl eol="1">後，</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="c" oct="4" dur="8">
 <verse n="1"><syl>努</syl></verse></note>
@@ -61,7 +61,7 @@
 <note xml:id="n16" pname="f" oct="4" dur="4">
 <verse n="1"><syl>面</syl></verse></note>
 <note xml:id="n17" pname="a" oct="4" dur="4">
-<verse n="1"><syl>前</syl></verse></note>
+<verse n="1"><syl eol="1">前</syl></verse></note>
 <beam>
 <note xml:id="n18" pname="f" oct="4" dur="8">
 <verse n="1"><syl>向</syl></verse></note>
@@ -83,7 +83,7 @@
 <verse n="1"><syl>直</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="g" oct="4" dur="4">
-<verse n="1"><syl>跑！</syl></verse></note>
+<verse n="1"><syl eol="1">跑！</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="a" oct="4" dur="8">
 <verse n="1"><syl>讓</syl></verse></note>
@@ -105,7 +105,7 @@
 <verse n="1"><syl>流</syl></verse></note>
 </beam>
 <note xml:id="n31" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>中</syl></verse></note>
+<verse n="1"><syl eol="1">中</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="8">
 <verse n="1"><syl>跟</syl></verse></note>
 </layer></staff>
@@ -125,7 +125,7 @@
 <verse n="1"><syl>行</syl></verse></note>
 </beam>
 <note xml:id="n37" pname="c" oct="4" dur="4">
-<verse n="1"><syl>動，</syl></verse></note>
+<verse n="1"><syl eol="1">動，</syl></verse></note>
 <beam>
 <note xml:id="n38" pname="c" oct="4" dur="8">
 <verse n="1"><syl>為</syl></verse></note>
@@ -148,7 +148,7 @@
 <verse n="1"><syl>恢</syl></verse></note>
 </beam>
 <note xml:id="n44" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>復</syl></verse></note>
+<verse n="1"><syl eol="1">復</syl></verse></note>
 <note xml:id="n45" pname="d" oct="5" dur="8">
 <verse n="1"><syl>答</syl></verse></note>
 </layer></staff>
@@ -165,7 +165,7 @@
 <verse n="1"><syl>呼</syl></verse></note>
 </beam>
 <note xml:id="n50" pname="f" oct="4" dur="4">
-<verse n="1"><syl>召。</syl></verse></note>
+<verse n="1"><syl eol="1">召。</syl></verse></note>
 <rest xml:id="r51" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>

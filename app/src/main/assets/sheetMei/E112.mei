@@ -49,7 +49,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="b" oct="4" dur="2">
-<verse n="1"><syl>love,</syl></verse></note>
+<verse n="1"><syl eol="1">love,</syl></verse></note>
 <note xml:id="n12" pname="b" oct="4" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -89,7 +89,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">bove!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bove!</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="4">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
@@ -133,7 +133,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="b" oct="4" dur="2">
-<verse n="1"><syl>tree,</syl></verse></note>
+<verse n="1"><syl eol="1">tree,</syl></verse></note>
 <note xml:id="n34" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Ob</syl></verse></note>
 </layer></staff>
@@ -175,7 +175,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="g" oct="4" dur="2">
-<verse n="1"><syl>free.</syl></verse></note>
+<verse n="1"><syl eol="1">free.</syl></verse></note>
 <beam>
 <note xml:id="n45" pname="b" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>Sound</syl></verse></note>
@@ -199,7 +199,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="d" oct="5" dur="2">
-<verse n="1"><syl>praise!</syl></verse></note>
+<verse n="1"><syl eol="1">praise!</syl></verse></note>
 <beam>
 <note xml:id="n51" pname="d" oct="5" dur="8">
 <verse n="1"><syl>All</syl></verse></note>
@@ -222,7 +222,7 @@
 <sb/>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="a" oct="4" dur="2">
-<verse n="1"><syl>done;</syl></verse></note>
+<verse n="1"><syl eol="1">done;</syl></verse></note>
 <beam>
 <note xml:id="n57" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Praise</syl></verse></note>
@@ -246,7 +246,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="c" oct="5" dur="2">
-<verse n="1"><syl>name!</syl></verse></note>
+<verse n="1"><syl eol="1">name!</syl></verse></note>
 <beam>
 <note xml:id="n63" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
@@ -270,7 +270,7 @@
 <sb/>
 <measure n="25"><staff n="1"><layer n="1">
 <note xml:id="n68" pname="b" oct="4" dur="2">
-<verse n="1"><syl>Son.</syl></verse></note>
+<verse n="1"><syl eol="1">Son.</syl></verse></note>
 <note xml:id="n69" pname="d" oct="4" dur="4">
 <verse n="1"><syl>We</syl></verse></note>
 </layer></staff>
@@ -315,7 +315,7 @@
 <sb/>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n79" pname="b" oct="4" dur="2">
-<verse n="1"><syl>Friend;</syl></verse></note>
+<verse n="1"><syl eol="1">Friend;</syl></verse></note>
 <note xml:id="n80" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Our</syl></verse></note>
 </layer></staff>
@@ -356,7 +356,7 @@
 </measure>
 <measure n="33" right="end"><staff n="1"><layer n="1">
 <note xml:id="n90" pname="g" oct="4" dur="2">
-<verse n="1"><syl>end.</syl></verse></note>
+<verse n="1"><syl eol="1">end.</syl></verse></note>
 <rest xml:id="r91" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

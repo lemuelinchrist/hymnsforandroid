@@ -40,7 +40,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">bove,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bove,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -73,7 +73,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="g" oct="4" dur="1">
-<verse n="1"><syl>earth.</syl></verse></note>
+<verse n="1"><syl eol="1">earth.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -114,7 +114,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>life—</syl></verse></note>
+<verse n="1"><syl eol="1">life—</syl></verse></note>
 <note xml:id="n32" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
@@ -141,7 +141,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="f" oct="4" dur="1">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n38" endid="#n39"/>
@@ -190,7 +190,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">pear,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pear,</syl></verse></note>
 <beam>
 <note xml:id="n52" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Then</syl></verse></note>
@@ -221,7 +221,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">pear</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pear</syl></verse></note>
 <beam>
 <note xml:id="n60" pname="g" oct="4" dur="8"/>
 <note xml:id="n61" pname="a" oct="4" dur="8"/>
@@ -258,7 +258,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">RY!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">RY!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

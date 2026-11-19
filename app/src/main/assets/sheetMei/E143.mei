@@ -27,7 +27,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">seat</syl></verse></note>
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/D</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -50,7 +50,7 @@
 <note xml:id="n14" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n15" pname="f" oct="4" dur="2">
-<verse n="1"><syl>One!</syl></verse></note>
+<verse n="1"><syl eol="1">One!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -79,7 +79,7 @@
 <note xml:id="n22" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">plet</syl></verse></note>
 <note xml:id="n23" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ed,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <harm staff="1" tstamp="3" place="above">Gm</harm>
@@ -103,7 +103,7 @@
 <note xml:id="n29" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="t">ners</syl></verse></note>
 <note xml:id="n30" pname="b" oct="4" dur="2">
-<verse n="1"><syl>done.</syl></verse></note>
+<verse n="1"><syl eol="1">done.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -130,7 +130,7 @@
 <note xml:id="n37" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n38" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -154,7 +154,7 @@
 <note xml:id="n44" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="t">al</syl></verse></note>
 <note xml:id="n45" pname="b" oct="4" dur="2">
-<verse n="1"><syl>Son!</syl></verse></note>
+<verse n="1"><syl eol="1">Son!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>

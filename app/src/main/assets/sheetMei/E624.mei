@@ -44,7 +44,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl>God;</syl></verse></note>
+<verse n="1"><syl eol="1">God;</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>No</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">in!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in!</syl></verse></note>
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -121,7 +121,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="a" oct="4" dur="2">
-<verse n="1"><syl>trod,</syl></verse></note>
+<verse n="1"><syl eol="1">trod,</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
 </layer></staff>
@@ -159,7 +159,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="d" oct="4" dur="2">
-<verse n="1"><syl>din.</syl></verse></note>
+<verse n="1"><syl eol="1">din.</syl></verse></note>
 <note xml:id="n42" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Oh,</syl></verse></note>
 </layer></staff>
@@ -198,7 +198,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="a" oct="4" dur="2">
-<verse n="1"><syl>loss,</syl></verse></note>
+<verse n="1"><syl eol="1">loss,</syl></verse></note>
 <note xml:id="n52" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Whom</syl></verse></note>
 </layer></staff>
@@ -234,7 +234,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="d" oct="4" dur="2">
-<verse n="1"><syl>cross.</syl></verse></note>
+<verse n="1"><syl eol="1">cross.</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

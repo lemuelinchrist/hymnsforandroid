@@ -32,7 +32,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>heart,</syl></verse></note>
+<verse n="1"><syl eol="1">heart,</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="4">
 <verse n="1"><syl>For</syl></verse></note>
 </layer></staff>
@@ -63,7 +63,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="g" oct="4" dur="4">
-<verse n="1"><syl>God;</syl></verse></note>
+<verse n="1"><syl eol="1">God;</syl></verse></note>
 <note xml:id="n17" pname="f" oct="4" dur="2"/>
 <note xml:id="n18" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
@@ -103,7 +103,7 @@
 <note xml:id="n27" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n28" pname="c" oct="5" dur="4">
-<verse n="1"><syl>theirs,</syl></verse></note>
+<verse n="1"><syl eol="1">theirs,</syl></verse></note>
 <note xml:id="n29" pname="d" oct="5" dur="4">
 <verse n="1"><syl>Their</syl></verse></note>
 </layer></staff>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">bode.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bode.</syl></verse></note>
 <rest xml:id="r36" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

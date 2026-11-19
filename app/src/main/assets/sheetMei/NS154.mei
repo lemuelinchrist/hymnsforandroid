@@ -34,7 +34,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>deep,</syl></verse></note>
+<verse n="1"><syl eol="1">deep,</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
@@ -70,7 +70,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">sure;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure;</syl></verse></note>
 <note xml:id="n18" pname="e" oct="5" dur="4">
 <verse n="1"><syl>Else</syl></verse></note>
 </layer></staff>
@@ -108,7 +108,7 @@
 <verse n="1"><syl>as</syl></verse></note>
 </beam>
 <note xml:id="n28" pname="e" oct="4" dur="4">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <beam>
 <note xml:id="n29" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Be</syl></verse></note>
@@ -144,7 +144,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">vored.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vored.</syl></verse></note>
 <rest xml:id="r38" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>

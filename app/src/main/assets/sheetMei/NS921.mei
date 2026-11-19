@@ -29,7 +29,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">lieved</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieved</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <beam>
@@ -51,7 +51,7 @@
 <note xml:id="n13" pname="f" oct="4" dur="8">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n14" pname="e" oct="4" dur="8">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 </beam>
 <note xml:id="n15" pname="e" oct="4" dur="2"/>
 </layer></staff>
@@ -65,7 +65,7 @@
 <note xml:id="n17" pname="g" oct="4" dur="8">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n18" pname="f" oct="4" dur="8">
-<verse n="1"><syl>love,</syl></verse></note>
+<verse n="1"><syl eol="1">love,</syl></verse></note>
 </beam>
 <note xml:id="n19" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n20" pname="e" oct="4" dur="8">
@@ -104,7 +104,7 @@
 <note xml:id="n29" pname="f" oct="4" dur="8">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n30" pname="e" oct="4" dur="8">
-<verse n="1"><syl>God</syl></verse></note>
+<verse n="1"><syl eol="1">God</syl></verse></note>
 </beam>
 <note xml:id="n31" pname="e" oct="4" dur="4"/>
 <note xml:id="n32" pname="e" oct="4" dur="4">
@@ -131,7 +131,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>him.</syl></verse></note>
+<verse n="1"><syl eol="1">him.</syl></verse></note>
 <rest xml:id="r39" dur="8"/>
 <note xml:id="n40" pname="b" oct="3" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -157,7 +157,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">lieved</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieved</syl></verse></note>
 <note xml:id="n47" pname="e" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <beam>
@@ -179,7 +179,7 @@
 <note xml:id="n52" pname="f" oct="4" dur="8">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n53" pname="e" oct="4" dur="8">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 </beam>
 <note xml:id="n54" pname="e" oct="4" dur="2"/>
 </layer></staff>
@@ -193,7 +193,7 @@
 <note xml:id="n56" pname="g" oct="4" dur="8">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n57" pname="f" oct="4" dur="8">
-<verse n="1"><syl>love,</syl></verse></note>
+<verse n="1"><syl eol="1">love,</syl></verse></note>
 </beam>
 <note xml:id="n58" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n59" pname="e" oct="4" dur="8">
@@ -232,7 +232,7 @@
 <note xml:id="n68" pname="f" oct="4" dur="8">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n69" pname="e" oct="4" dur="8">
-<verse n="1"><syl>God</syl></verse></note>
+<verse n="1"><syl eol="1">God</syl></verse></note>
 </beam>
 <note xml:id="n70" pname="e" oct="4" dur="4"/>
 <note xml:id="n71" pname="e" oct="4" dur="4">
@@ -259,7 +259,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n77" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>him.</syl></verse></note>
+<verse n="1"><syl eol="1">him.</syl></verse></note>
 <rest xml:id="r78" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>

@@ -44,7 +44,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl>fire,</syl></verse></note>
+<verse n="1"><syl eol="1">fire,</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Come,</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">spire,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">spire,</syl></verse></note>
 <note xml:id="n22" pname="g" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -114,7 +114,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="c" oct="5" dur="2">
-<verse n="1"><syl>blood;</syl></verse></note>
+<verse n="1"><syl eol="1">blood;</syl></verse></note>
 <note xml:id="n29" pname="c" oct="5" dur="4">
 <verse n="1"><syl>Now</syl></verse></note>
 </layer></staff>
@@ -151,7 +151,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">veal,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">veal,</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
 </layer></staff>
@@ -190,7 +190,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="g" oct="4" dur="2">
-<verse n="1"><syl>feel,</syl></verse></note>
+<verse n="1"><syl eol="1">feel,</syl></verse></note>
 <note xml:id="n48" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Since</syl></verse></note>
 </layer></staff>
@@ -218,7 +218,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n54" endid="#n55"/>

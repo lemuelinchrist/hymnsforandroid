@@ -32,7 +32,7 @@
 <beam>
 <note xml:id="n8" pname="c" oct="5" dur="8"/>
 <note xml:id="n9" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">en,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en,</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="f" oct="4" dur="2" dots="1"/>
 </layer></staff>
@@ -66,7 +66,7 @@
 <note xml:id="n18" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">don</syl></verse></note>
 <note xml:id="n19" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">key,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">key,</syl></verse></note>
 </beam>
 <note xml:id="n20" pname="f" oct="4" dur="2"/>
 </layer></staff>
@@ -100,7 +100,7 @@
 <beam>
 <note xml:id="n28" pname="c" oct="5" dur="8"/>
 <note xml:id="n29" pname="f" oct="4" dur="8">
-<verse n="1"><syl>him</syl></verse></note>
+<verse n="1"><syl eol="1">him</syl></verse></note>
 </beam>
 <note xml:id="n30" pname="f" oct="4" dur="2"/>
 <beam>
@@ -136,7 +136,7 @@
 <note xml:id="n39" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ed</syl></verse></note>
 <note xml:id="n40" pname="f" oct="4" dur="8">
-<verse n="1"><syl>son.</syl></verse></note>
+<verse n="1"><syl eol="1">son.</syl></verse></note>
 </beam>
 <note xml:id="n41" pname="f" oct="4" dur="2"/>
 </layer></staff>
@@ -161,7 +161,7 @@
 <note xml:id="n47" pname="c" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n48" pname="d" oct="4" dur="8">
-<verse n="1"><syl>Son</syl></verse></note>
+<verse n="1"><syl eol="1">Son</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -194,7 +194,7 @@
 <note xml:id="n57" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">got</syl></verse></note>
 <note xml:id="n58" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ten</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ten</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -241,7 +241,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="c" oct="4" dur="1">
-<verse n="1"><syl>whom</syl></verse></note>
+<verse n="1"><syl eol="1">whom</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="3" place="above">Cm7</harm>
@@ -259,7 +259,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n76" pname="b" oct="3" dur="1">
-<verse n="1"><syl wordpos="t">pleased.”</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pleased.”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>

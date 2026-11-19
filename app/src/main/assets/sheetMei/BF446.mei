@@ -33,7 +33,7 @@
 <note xml:id="n9" pname="d" oct="4" dur="4">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n10" pname="c" oct="4" dur="4">
-<verse n="1"><syl>Life,</syl></verse></note>
+<verse n="1"><syl eol="1">Life,</syl></verse></note>
 </layer></staff>
 <tie startid="#n10" endid="#n11"/>
 </measure>
@@ -63,7 +63,7 @@
 <note xml:id="n19" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n20" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">bove;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bove;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n20" endid="#n21"/>
@@ -107,7 +107,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="d" oct="4" dur="1">
-<verse n="1"><syl>strife</syl></verse></note>
+<verse n="1"><syl eol="1">strife</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <slur startid="#n32" endid="#n33"/>
@@ -146,7 +146,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="g" oct="4" dur="1">
-<verse n="1"><syl>love;</syl></verse></note>
+<verse n="1"><syl eol="1">love;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Csus4</harm>
 </measure>
@@ -178,7 +178,7 @@
 <note xml:id="n52" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n53" pname="c" oct="4" dur="4">
-<verse n="1"><syl>well,</syl></verse></note>
+<verse n="1"><syl eol="1">well,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n53" endid="#n54"/>
@@ -209,7 +209,7 @@
 <note xml:id="n62" pname="g" oct="4" dur="4">
 <verse n="1"><syl>it</syl></verse></note>
 <note xml:id="n63" pname="f" oct="4" dur="4">
-<verse n="1"><syl>springs.</syl></verse></note>
+<verse n="1"><syl eol="1">springs.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n63" endid="#n64"/>
@@ -249,7 +249,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="d" oct="4" dur="1">
-<verse n="1"><syl>tell</syl></verse></note>
+<verse n="1"><syl eol="1">tell</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <slur startid="#n74" endid="#n75"/>
@@ -288,7 +288,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="c" oct="5" dur="1">
-<verse n="1"><syl>brings.</syl></verse></note>
+<verse n="1"><syl eol="1">brings.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Csus4</harm>
 <tie startid="#n85" endid="#n86"/>
@@ -329,7 +329,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n97" pname="a" oct="4" dur="1">
-<verse n="1"><syl>Life,</syl></verse></note>
+<verse n="1"><syl eol="1">Life,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <slur startid="#n97" endid="#n98"/>
@@ -368,7 +368,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n108" pname="a" oct="4" dur="1">
-<verse n="1"><syl>dry;</syl></verse></note>
+<verse n="1"><syl eol="1">dry;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <slur startid="#n108" endid="#n109"/>
@@ -408,7 +408,7 @@
 </measure>
 <measure n="36"><staff n="1"><layer n="1">
 <note xml:id="n120" pname="c" oct="5" dur="1">
-<verse n="1"><syl wordpos="t">ply,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/A</harm>
 <slur startid="#n120" endid="#n121"/>
@@ -448,7 +448,7 @@
 </measure>
 <measure n="40"><staff n="1"><layer n="1">
 <note xml:id="n132" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Life.</syl></verse></note>
+<verse n="1"><syl eol="1">Life.</syl></verse></note>
 <rest xml:id="r133" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

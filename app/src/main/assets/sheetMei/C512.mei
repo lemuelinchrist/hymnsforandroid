@@ -34,7 +34,7 @@
 <note xml:id="n7" pname="b" oct="4" dur="4">
 <verse n="1"><syl>旅</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl>客，</syl></verse></note>
+<verse n="1"><syl eol="1">客，</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl>跋</syl></verse></note>
@@ -60,7 +60,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="c" oct="4" dur="2">
-<verse n="1"><syl>路；</syl></verse></note>
+<verse n="1"><syl eol="1">路；</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl>雖</syl></verse></note>
@@ -89,7 +89,7 @@
 <note xml:id="n22" pname="b" oct="4" dur="4">
 <verse n="1"><syl>阻</syl></verse></note>
 <note xml:id="n23" pname="f" oct="4" dur="4">
-<verse n="1"><syl>隔，</syl></verse></note>
+<verse n="1"><syl eol="1">隔，</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="g" oct="4" dur="8">
 <verse n="1"><syl>引</syl></verse></note>
@@ -112,7 +112,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="b" oct="4" dur="2">
-<verse n="1"><syl>父。</syl></verse></note>
+<verse n="1"><syl eol="1">父。</syl></verse></note>
 <beam>
 <note xml:id="n29" pname="a" oct="4" dur="8">
 <verse n="1"><syl>途</syl></verse></note>
@@ -140,7 +140,7 @@
 <note xml:id="n35" pname="c" oct="5" dur="4">
 <verse n="1"><syl>籠</syl></verse></note>
 <note xml:id="n36" pname="a" oct="4" dur="4">
-<verse n="1"><syl>罩，</syl></verse></note>
+<verse n="1"><syl eol="1">罩，</syl></verse></note>
 <beam>
 <note xml:id="n37" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl>也</syl></verse></note>
@@ -166,7 +166,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="f" oct="4" dur="4">
-<verse n="1"><syl>擾，</syl></verse></note>
+<verse n="1"><syl eol="1">擾，</syl></verse></note>
 <note xml:id="n44" pname="e" oct="4" dur="4"/>
 <beam>
 <note xml:id="n45" pname="d" oct="4" dur="8" dots="1">
@@ -196,7 +196,7 @@
 <note xml:id="n51" pname="b" oct="4" dur="4">
 <verse n="1"><syl>壓</syl></verse></note>
 <note xml:id="n52" pname="f" oct="4" dur="4">
-<verse n="1"><syl>倒，</syl></verse></note>
+<verse n="1"><syl eol="1">倒，</syl></verse></note>
 <beam>
 <note xml:id="n53" pname="g" oct="4" dur="8">
 <verse n="1"><syl>但</syl></verse></note>
@@ -217,7 +217,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="b" oct="4" dur="2">
-<verse n="1"><syl>道。</syl></verse></note>
+<verse n="1"><syl eol="1">道。</syl></verse></note>
 <rest xml:id="r58" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

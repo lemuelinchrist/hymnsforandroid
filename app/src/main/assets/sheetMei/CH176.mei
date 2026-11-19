@@ -28,7 +28,7 @@
 <note xml:id="n7" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">par</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ents,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ents,</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Chil</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="4">
@@ -51,7 +51,7 @@
 <note xml:id="n15" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">par</syl></verse></note>
 <note xml:id="n16" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ents,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ents,</syl></verse></note>
 <note xml:id="n17" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Chil</syl></verse></note>
 <note xml:id="n18" pname="g" oct="4" dur="4">
@@ -75,7 +75,7 @@
 <note xml:id="n23" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">par</syl></verse></note>
 <note xml:id="n24" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ents,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ents,</syl></verse></note>
 <rest xml:id="r25" dur="4"/>
 <note xml:id="n26" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Your</syl></verse></note>
@@ -97,7 +97,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="f" oct="4" dur="2">
-<verse n="1"><syl>things.</syl></verse></note>
+<verse n="1"><syl eol="1">things.</syl></verse></note>
 <rest xml:id="r32" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

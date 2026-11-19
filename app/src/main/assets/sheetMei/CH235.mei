@@ -46,7 +46,7 @@
 <note xml:id="n11" pname="f" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n12" pname="d" oct="4" dur="2">
-<verse n="1"><syl>fro,</syl></verse></note>
+<verse n="1"><syl eol="1">fro,</syl></verse></note>
 </layer></staff>
 <tie startid="#n9" endid="#n10" lform="dashed"/>
 </measure>
@@ -76,7 +76,7 @@
 <note xml:id="n19" pname="f" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n20" pname="d" oct="4" dur="4">
-<verse n="1"><syl>fro;</syl></verse></note>
+<verse n="1"><syl eol="1">fro;</syl></verse></note>
 <note xml:id="n21" pname="a" oct="3" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -122,7 +122,7 @@
 <verse n="1"><syl wordpos="i" con="d">fro</syl></verse></note>
 <beam>
 <note xml:id="n33" pname="d" oct="4" dur="8" dots="1">
-<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">⠀</syl></verse></note>
 <note xml:id="n34" pname="d" oct="4" dur="16">
 <verse n="1"><syl wordpos="i" con="d">⠀</syl></verse></note>
 </beam>
@@ -151,7 +151,7 @@
 <note xml:id="n40" pname="d" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">earth.</syl></verse></note>
 <note xml:id="n41" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">⠀</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">⠀</syl></verse></note>
 <rest xml:id="r42" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

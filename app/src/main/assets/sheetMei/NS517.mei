@@ -65,7 +65,7 @@
 <note xml:id="n17" pname="b" oct="3" dur="8">
 <verse n="1"><syl wordpos="i" con="d">val</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ue.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ue.</syl></verse></note>
 <note xml:id="n19" pname="e" oct="4" dur="4"/>
 <note xml:id="n20" pname="c" oct="4" dur="8">
 <verse n="1"><syl>Though</syl></verse></note>
@@ -133,7 +133,7 @@
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="d" oct="4" dur="8"/>
 <note xml:id="n39" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl>through.</syl></verse></note>
+<verse n="1"><syl eol="1">through.</syl></verse></note>
 <note xml:id="n40" pname="c" oct="4" dur="4"/>
 <beam>
 <note xml:id="n41" pname="f" oct="4" dur="8">
@@ -205,7 +205,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">tain?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tain?</syl></verse></note>
 <beam>
 <note xml:id="n61" pname="f" oct="4" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
@@ -277,7 +277,7 @@
 <verse n="1"><syl wordpos="i" con="d">mer</syl></verse></note>
 <beam>
 <note xml:id="n81" pname="b" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">cy!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cy!</syl></verse></note>
 <note xml:id="n82" pname="g" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>Fresh</syl></verse></note>
 <note xml:id="n83" pname="c" oct="5" dur="8">
@@ -339,7 +339,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n99" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">deem!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">deem!</syl></verse></note>
 <beam>
 <note xml:id="n100" pname="c" oct="5" dur="8">
 <verse n="1"><syl>Live</syl></verse></note>
@@ -401,7 +401,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n116" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>seen!</syl></verse></note>
+<verse n="1"><syl eol="1">seen!</syl></verse></note>
 <rest xml:id="r117" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

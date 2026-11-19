@@ -25,7 +25,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="a" oct="4" dur="2">
-<verse n="1"><syl>bands</syl></verse></note>
+<verse n="1"><syl eol="1">bands</syl></verse></note>
 <note xml:id="n7" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Of</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
@@ -48,7 +48,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="d" oct="4" dur="8">
-<verse n="1"><syl>man,</syl></verse></note>
+<verse n="1"><syl eol="1">man,</syl></verse></note>
 <note xml:id="n14" pname="c" oct="4" dur="4" dots="1"/>
 <note xml:id="n15" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Go</syl></verse></note>
@@ -80,7 +80,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="d" oct="5" dur="1">
-<verse n="1"><syl wordpos="t">tire;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tire;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <slur startid="#n23" endid="#n24"/>
@@ -107,7 +107,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="a" oct="4" dur="2">
-<verse n="1"><syl>stand</syl></verse></note>
+<verse n="1"><syl eol="1">stand</syl></verse></note>
 <note xml:id="n31" pname="a" oct="4" dur="4">
 <verse n="1"><syl>With</syl></verse></note>
 <note xml:id="n32" pname="c" oct="5" dur="4">
@@ -130,7 +130,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="d" oct="4" dur="2">
-<verse n="1"><syl>plan</syl></verse></note>
+<verse n="1"><syl eol="1">plan</syl></verse></note>
 <note xml:id="n38" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Through</syl></verse></note>
 <note xml:id="n39" pname="d" oct="4" dur="4">
@@ -150,7 +150,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="d" oct="5" dur="2">
-<verse n="1"><syl>Your</syl></verse></note>
+<verse n="1"><syl eol="1">Your</syl></verse></note>
 <note xml:id="n44" pname="c" oct="5" dur="4">
 <verse n="1"><syl>heart’s</syl></verse></note>
 <note xml:id="n45" pname="a" oct="4" dur="4">
@@ -160,7 +160,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">sire.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sire.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <slur startid="#n46" endid="#n47"/>

@@ -37,7 +37,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sphere,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sphere,</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
 <verse n="1"><syl>How</syl></verse></note>
 </layer></staff>
@@ -68,7 +68,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sphere!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sphere!</syl></verse></note>
 </layer></staff>
 <tie startid="#n16" endid="#n17"/>
 </measure>
@@ -106,7 +106,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="g" oct="4" dur="2">
-<verse n="1"><syl>cheer!</syl></verse></note>
+<verse n="1"><syl eol="1">cheer!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n25" endid="#n26"/>
@@ -147,7 +147,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="b" oct="3" dur="2">
-<verse n="1"><syl wordpos="t">sphere!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sphere!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n34" endid="#n35"/>

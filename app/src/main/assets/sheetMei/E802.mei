@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">it,</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4">
-<verse n="1"><syl>Lord;</syl></verse></note>
+<verse n="1"><syl eol="1">Lord;</syl></verse></note>
 <note xml:id="n9" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Now</syl></verse></note>
 </layer></staff>
@@ -57,7 +57,7 @@
 <note xml:id="n15" pname="d" oct="4" dur="4" accid="n" accid.ges="n">
 <verse n="1"><syl wordpos="t">ship</syl></verse></note>
 <note xml:id="n16" pname="e" oct="4" dur="4">
-<verse n="1"><syl>we;</syl></verse></note>
+<verse n="1"><syl eol="1">we;</syl></verse></note>
 <note xml:id="n17" pname="e" oct="4" dur="4">
 <verse n="1"><syl>’Tis</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 <note xml:id="n23" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
 <note xml:id="n24" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">stand,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">stand,</syl></verse></note>
 <note xml:id="n25" pname="c" oct="5" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -109,7 +109,7 @@
 <note xml:id="n31" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">tact</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="4">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 <rest xml:id="r33" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>

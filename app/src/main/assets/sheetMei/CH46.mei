@@ -26,7 +26,7 @@
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
 </beam>
 <note xml:id="n6" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">f’lly,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">f’lly,</syl></verse></note>
 <beam>
 <note xml:id="n7" pname="a" oct="4" dur="8" accid="n">
 <verse n="1"><syl>God</syl></verse></note>
@@ -47,7 +47,7 @@
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">f’lly,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">f’lly,</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="a" oct="4" dur="8">
 <verse n="1"><syl>When</syl></verse></note>
@@ -82,7 +82,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>fine.</syl></verse></note>
+<verse n="1"><syl eol="1">fine.</syl></verse></note>
 <beam>
 <note xml:id="n22" pname="b" oct="3" dur="8">
 <verse n="1"><syl>I’m</syl></verse></note>
@@ -103,7 +103,7 @@
 <verse n="1"><syl wordpos="m" con="d">fect</syl></verse></note>
 </beam>
 <note xml:id="n27" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly,</syl></verse></note>
 <beam>
 <note xml:id="n28" pname="a" oct="4" dur="8" accid="n">
 <verse n="1"><syl>Don’t</syl></verse></note>
@@ -124,7 +124,7 @@
 <verse n="1"><syl wordpos="i" con="d">sir</syl></verse></note>
 </beam>
 <note xml:id="n33" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ee!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ee!</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="a" oct="4" dur="8">
 <verse n="1"><syl>This</syl></verse></note>
@@ -149,7 +149,7 @@
 </beam>
 <beam>
 <note xml:id="n40" pname="d" oct="4" dur="8">
-<verse n="1"><syl>style</syl></verse></note>
+<verse n="1"><syl eol="1">style</syl></verse></note>
 <note xml:id="n41" pname="d" oct="4" dur="8">
 <verse n="1"><syl>A</syl></verse></note>
 <note xml:id="n42" pname="a" oct="4" dur="8">
@@ -163,7 +163,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>while.</syl></verse></note>
+<verse n="1"><syl eol="1">while.</syl></verse></note>
 <rest xml:id="r45" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

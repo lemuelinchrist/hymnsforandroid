@@ -44,7 +44,7 @@
 <note xml:id="n12" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n13" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly</syl></verse></note>
 <beam>
 <note xml:id="n14" pname="a" oct="4" dur="8">
 <verse n="1"><syl>With</syl></verse></note>
@@ -83,7 +83,7 @@
 <note xml:id="n25" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">mo</syl></verse></note>
 <note xml:id="n26" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ny;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ny;</syl></verse></note>
 <beam>
 <note xml:id="n27" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Don’t</syl></verse></note>
@@ -121,7 +121,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n38" pname="b" oct="4" dur="4">
-<verse n="1"><syl>scream—</syl></verse></note>
+<verse n="1"><syl eol="1">scream—</syl></verse></note>
 <beam>
 <note xml:id="n39" pname="b" oct="4" dur="8">
 <verse n="1"><syl>Just</syl></verse></note>
@@ -161,7 +161,7 @@
 <note xml:id="n50" pname="e" oct="4" dur="8">
 <verse n="1"><syl>a</syl></verse></note>
 <note xml:id="n51" pname="d" oct="4" dur="4">
-<verse n="1"><syl>dream!</syl></verse></note>
+<verse n="1"><syl eol="1">dream!</syl></verse></note>
 <beam>
 <note xml:id="n52" pname="a" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>What</syl></verse></note>
@@ -204,7 +204,7 @@
 <note xml:id="n63" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 <note xml:id="n64" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">day!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day!</syl></verse></note>
 <beam>
 <note xml:id="n65" pname="a" oct="4" dur="8">
 <verse n="1"><syl>With</syl></verse></note>
@@ -242,7 +242,7 @@
 <note xml:id="n76" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">dis</syl></verse></note>
 <note xml:id="n77" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">play!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">play!</syl></verse></note>
 <beam>
 <note xml:id="n78" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Eat</syl></verse></note>
@@ -279,7 +279,7 @@
 <note xml:id="n88" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n89" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ly;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly;</syl></verse></note>
 <beam>
 <note xml:id="n90" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Ev</syl></verse></note>

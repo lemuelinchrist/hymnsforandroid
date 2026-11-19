@@ -35,7 +35,7 @@
 <note xml:id="n9" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n10" pname="c" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty,</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="c" oct="4" dur="2"/>
 </layer></staff>
@@ -74,7 +74,7 @@
 <note xml:id="n21" pname="a" oct="4" dur="8">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n22" pname="c" oct="4" dur="8">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 </beam>
 <note xml:id="n23" pname="c" oct="4" dur="2"/>
 </layer></staff>
@@ -114,7 +114,7 @@
 <note xml:id="n33" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">une</syl></verse></note>
 <note xml:id="n34" pname="g" oct="4" dur="8">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n35" pname="g" oct="4" dur="8"/>
@@ -157,7 +157,7 @@
 <note xml:id="n46" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n47" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Christ</syl></verse></note>
+<verse n="1"><syl eol="1">Christ</syl></verse></note>
 <note xml:id="n48" pname="c" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
 </layer></staff>
@@ -188,7 +188,7 @@
 </measure>
 <measure n="10" right="end"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">fold.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fold.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

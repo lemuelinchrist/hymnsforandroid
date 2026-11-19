@@ -27,7 +27,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">voic</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">es</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -51,7 +51,7 @@
 <note xml:id="n14" pname="c" oct="5" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n15" pname="a" oct="4" dur="2">
-<verse n="1"><syl>skies?</syl></verse></note>
+<verse n="1"><syl eol="1">skies?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -78,7 +78,7 @@
 <note xml:id="n22" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">joic</syl></verse></note>
 <note xml:id="n23" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">es,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -104,7 +104,7 @@
 <note xml:id="n29" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">jahs</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="2">
-<verse n="1"><syl>rise.</syl></verse></note>
+<verse n="1"><syl eol="1">rise.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>

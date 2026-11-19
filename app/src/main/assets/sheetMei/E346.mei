@@ -33,7 +33,7 @@
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
 </beam>
 <note xml:id="n8" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">stand</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">stand</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
 <verse n="1"><syl>What</syl></verse></note>
 </layer></staff>
@@ -61,7 +61,7 @@
 <verse n="1"><syl>hath</syl></verse></note>
 </beam>
 <note xml:id="n16" pname="b" oct="4" dur="4">
-<verse n="1"><syl>planned;</syl></verse></note>
+<verse n="1"><syl eol="1">planned;</syl></verse></note>
 <note xml:id="n17" pname="a" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -92,7 +92,7 @@
 <verse n="1"><syl>right</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="c" oct="5" dur="4">
-<verse n="1"><syl>hand</syl></verse></note>
+<verse n="1"><syl eol="1">hand</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="a" oct="4" dur="8"/>
 <note xml:id="n26" pname="f" oct="4" dur="8">
@@ -122,7 +122,7 @@
 <note xml:id="n31" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
 <note xml:id="n32" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ior.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ior.</syl></verse></note>
 <rest xml:id="r33" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

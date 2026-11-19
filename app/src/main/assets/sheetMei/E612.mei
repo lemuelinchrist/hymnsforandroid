@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">D/A</harm>
@@ -50,7 +50,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ply;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -78,7 +78,7 @@
 <note xml:id="n20" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">nit</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ed,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">G/B</harm>
@@ -97,7 +97,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="d" oct="4" dur="1">
-<verse n="1"><syl>nigh.</syl></verse></note>
+<verse n="1"><syl eol="1">nigh.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -126,7 +126,7 @@
 <note xml:id="n32" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">rich</syl></verse></note>
 <note xml:id="n33" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">es</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -146,7 +146,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="e" oct="4" dur="1">
-<verse n="1"><syl>flow;</syl></verse></note>
+<verse n="1"><syl eol="1">flow;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em/G</harm>
 <harm staff="1" tstamp="3" place="above">A7</harm>
@@ -175,7 +175,7 @@
 <note xml:id="n45" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
 <note xml:id="n46" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <harm staff="1" tstamp="3" place="above">G/B</harm>
@@ -193,7 +193,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="d" oct="4" dur="1">
-<verse n="1"><syl>know.</syl></verse></note>
+<verse n="1"><syl eol="1">know.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="2" place="above">G/D</harm>

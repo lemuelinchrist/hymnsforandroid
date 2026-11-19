@@ -40,7 +40,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="d" oct="4" dur="1">
-<verse n="1"><syl>world;</syl></verse></note>
+<verse n="1"><syl eol="1">world;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n10" endid="#n11"/>
@@ -92,7 +92,7 @@
 <note xml:id="n23" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n24" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>means</syl></verse></note>
+<verse n="1"><syl eol="1">means</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n23" endid="#n24"/>
@@ -125,7 +125,7 @@
 <beam>
 <note xml:id="n31" pname="g" oct="4" dur="8"/>
 <note xml:id="n32" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ness,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness,</syl></verse></note>
 </beam>
 <note xml:id="n33" pname="e" oct="4" dur="2"/>
 </layer></staff>
@@ -170,7 +170,7 @@
 <ending n="1" label="1.">
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="b" oct="4" dur="1">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n43" endid="#n44"/>
@@ -192,7 +192,7 @@
 <ending n="2" label="2.">
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="b" oct="4" dur="1">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n48" endid="#n49"/>
@@ -228,7 +228,7 @@
 </measure>
 <measure n="22"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="c" oct="4" dur="1">
-<verse n="1"><syl>world.</syl></verse></note>
+<verse n="1"><syl eol="1">world.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n57" endid="#n58"/>

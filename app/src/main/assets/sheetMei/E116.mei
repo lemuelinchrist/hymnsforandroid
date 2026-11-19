@@ -30,7 +30,7 @@
 <note xml:id="n7" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">tion</syl></verse></note>
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl>is,</syl></verse></note>
+<verse n="1"><syl eol="1">is,</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="8">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -52,7 +52,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Thee!</syl></verse></note>
+<verse n="1"><syl eol="1">Thee!</syl></verse></note>
 <note xml:id="n15" pname="g" oct="4" dur="4"/>
 <note xml:id="n16" pname="b" oct="4" dur="8">
 <verse n="1"><syl>Not</syl></verse></note>
@@ -81,7 +81,7 @@
 <note xml:id="n22" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ceived</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ceived</syl></verse></note>
 <note xml:id="n24" pname="a" oct="4" dur="8">
 <verse n="1"><syl>What</syl></verse></note>
 </layer></staff>
@@ -103,7 +103,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 <note xml:id="n30" pname="e" oct="4" dur="4"/>
 <note xml:id="n31" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Thou</syl></verse></note>
@@ -131,7 +131,7 @@
 <note xml:id="n37" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n38" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ous,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ous,</syl></verse></note>
 <note xml:id="n39" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
 </layer></staff>
@@ -153,7 +153,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>phrase!</syl></verse></note>
+<verse n="1"><syl eol="1">phrase!</syl></verse></note>
 <note xml:id="n45" pname="b" oct="4" dur="4"/>
 <note xml:id="n46" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
@@ -204,7 +204,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>praise!</syl></verse></note>
+<verse n="1"><syl eol="1">praise!</syl></verse></note>
 <note xml:id="n60" pname="e" oct="4" dur="4"/>
 <rest xml:id="r61" dur="8"/>
 </layer></staff>

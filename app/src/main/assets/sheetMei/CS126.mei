@@ -26,7 +26,7 @@
 <verse n="1"><syl>我</syl></verse></note>
 </beam>
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl>裡，</syl></verse></note>
+<verse n="1"><syl eol="1">裡，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -44,7 +44,7 @@
 <verse n="1"><syl>長</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="d" oct="4" dur="2">
-<verse n="1"><syl>大；</syl></verse></note>
+<verse n="1"><syl eol="1">大；</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -68,7 +68,7 @@
 <verse n="1"><syl>我</syl></verse></note>
 </beam>
 <note xml:id="n22" pname="g" oct="4" dur="4">
-<verse n="1"><syl>裡，</syl></verse></note>
+<verse n="1"><syl eol="1">裡，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -99,7 +99,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="a" oct="4" dur="4">
-<verse n="1"><syl>大，</syl></verse></note>
+<verse n="1"><syl eol="1">大，</syl></verse></note>
 <beam>
 <note xml:id="n32" pname="a" oct="4" dur="8">
 <verse n="1"><syl>祂</syl></verse></note>
@@ -120,7 +120,7 @@
 </measure>
 <measure n="6" right="end"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="d" oct="4" dur="1">
-<verse n="1"><syl>大！</syl></verse></note>
+<verse n="1"><syl eol="1">大！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

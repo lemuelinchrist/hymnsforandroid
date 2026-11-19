@@ -33,7 +33,7 @@
 <note xml:id="n9" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">tri</syl></verse></note>
 <note xml:id="n10" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">une,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">une,</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4"/>
 <note xml:id="n12" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
@@ -55,7 +55,7 @@
 <note xml:id="n17" pname="f" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n18" pname="c" oct="4" dur="8">
-<verse n="1"><syl>Son;</syl></verse></note>
+<verse n="1"><syl eol="1">Son;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm7</harm>
@@ -94,7 +94,7 @@
 <note xml:id="n28" pname="c" oct="5" dur="4">
 <verse n="1"><syl>His</syl></verse></note>
 <note xml:id="n29" pname="a" oct="4" dur="8">
-<verse n="1"><syl>plan,</syl></verse></note>
+<verse n="1"><syl eol="1">plan,</syl></verse></note>
 <beam>
 <note xml:id="n30" pname="a" oct="4" dur="8"/>
 <note xml:id="n31" pname="g" oct="4" dur="8"/>
@@ -120,7 +120,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n38" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">come;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">come;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm7</harm>
@@ -159,7 +159,7 @@
 <note xml:id="n48" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ond</syl></verse></note>
 <note xml:id="n49" pname="a" oct="4" dur="8">
-<verse n="1"><syl>One,</syl></verse></note>
+<verse n="1"><syl eol="1">One,</syl></verse></note>
 <note xml:id="n50" pname="a" oct="4" dur="4"/>
 <note xml:id="n51" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Yet,</syl></verse></note>
@@ -181,7 +181,7 @@
 <note xml:id="n56" pname="a" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n57" pname="d" oct="5" dur="8">
-<verse n="1"><syl>same;</syl></verse></note>
+<verse n="1"><syl eol="1">same;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
@@ -216,7 +216,7 @@
 <note xml:id="n66" pname="g" oct="4" dur="4">
 <verse n="1"><syl>One,</syl></verse></note>
 <note xml:id="n67" pname="f" oct="4" dur="8">
-<verse n="1"><syl>and,</syl></verse></note>
+<verse n="1"><syl eol="1">and,</syl></verse></note>
 <note xml:id="n68" pname="f" oct="4" dur="4"/>
 <note xml:id="n69" pname="a" oct="4" dur="4">
 <verse n="1"><syl>We’re</syl></verse></note>
@@ -238,7 +238,7 @@
 <note xml:id="n74" pname="f" oct="4" dur="8">
 <verse n="1"><syl>His</syl></verse></note>
 <note xml:id="n75" pname="f" oct="4" dur="8">
-<verse n="1"><syl>name.</syl></verse></note>
+<verse n="1"><syl eol="1">name.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm7</harm>
@@ -279,7 +279,7 @@
 <note xml:id="n85" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">une</syl></verse></note>
 <note xml:id="n86" pname="a" oct="4" dur="8">
-<verse n="1"><syl>God</syl></verse></note>
+<verse n="1"><syl eol="1">God</syl></verse></note>
 <beam>
 <note xml:id="n87" pname="a" oct="4" dur="8"/>
 <note xml:id="n88" pname="g" oct="4" dur="8"/>
@@ -305,7 +305,7 @@
 <note xml:id="n94" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">o</syl></verse></note>
 <note xml:id="n95" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">my;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">my;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
@@ -345,7 +345,7 @@
 <note xml:id="n105" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n106" pname="a" oct="4" dur="8">
-<verse n="1"><syl>One</syl></verse></note>
+<verse n="1"><syl eol="1">One</syl></verse></note>
 <note xml:id="n107" pname="a" oct="4" dur="4"/>
 <note xml:id="n108" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Flows</syl></verse></note>

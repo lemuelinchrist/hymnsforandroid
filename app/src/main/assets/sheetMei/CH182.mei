@@ -12,7 +12,7 @@
 <note xml:id="n2" pname="d" oct="4" dur="4">
 <verse n="1"><syl>be</syl></verse></note>
 <note xml:id="n3" pname="e" oct="4" dur="4">
-<verse n="1"><syl>proud</syl></verse></note>
+<verse n="1"><syl eol="1">proud</syl></verse></note>
 <note xml:id="n4" pname="c" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -26,7 +26,7 @@
 <note xml:id="n6" pname="d" oct="4" dur="4">
 <verse n="1"><syl>show</syl></verse></note>
 <note xml:id="n7" pname="e" oct="4" dur="4">
-<verse n="1"><syl>off</syl></verse></note>
+<verse n="1"><syl eol="1">off</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -40,7 +40,7 @@
 <note xml:id="n10" pname="f" oct="4" dur="4">
 <verse n="1"><syl>you</syl></verse></note>
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl>do</syl></verse></note>
+<verse n="1"><syl eol="1">do</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -52,7 +52,7 @@
 <note xml:id="n13" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">thing</syl></verse></note>
 <note xml:id="n14" pname="g" oct="4" dur="2">
-<verse n="1"><syl>great.</syl></verse></note>
+<verse n="1"><syl eol="1">great.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="2" place="above">G7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -76,7 +76,7 @@
 <verse n="1"><syl wordpos="t">or</syl></verse></note>
 </beam>
 <note xml:id="n21" pname="c" oct="4" dur="4">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -100,7 +100,7 @@
 <verse n="1"><syl wordpos="t">or</syl></verse></note>
 </beam>
 <note xml:id="n28" pname="c" oct="4" dur="4">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="2" place="above">G7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -112,7 +112,7 @@
 <note xml:id="n30" pname="g" oct="3" dur="4">
 <verse n="1"><syl>should</syl></verse></note>
 <note xml:id="n31" pname="c" oct="4" dur="2">
-<verse n="1"><syl>not</syl></verse></note>
+<verse n="1"><syl eol="1">not</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -124,7 +124,7 @@
 <note xml:id="n33" pname="g" oct="3" dur="4">
 <verse n="1"><syl>this</syl></verse></note>
 <note xml:id="n34" pname="c" oct="4" dur="2">
-<verse n="1"><syl>way.</syl></verse></note>
+<verse n="1"><syl eol="1">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="2" place="above">G7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>

@@ -34,7 +34,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">oint</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ment,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ment,</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Cleans</syl></verse></note>
@@ -62,7 +62,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="a" oct="4" dur="2">
-<verse n="1"><syl>comes;</syl></verse></note>
+<verse n="1"><syl eol="1">comes;</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl>If</syl></verse></note>
@@ -90,7 +90,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">go</syl></verse></note>
 <note xml:id="n23" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">tha,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tha,</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Ne’er</syl></verse></note>
@@ -119,7 +119,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="g" oct="4" dur="2">
-<verse n="1"><syl>come.</syl></verse></note>
+<verse n="1"><syl eol="1">come.</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl>If</syl></verse></note>
@@ -148,7 +148,7 @@
 <note xml:id="n37" pname="c" oct="4" dur="4">
 <verse n="1"><syl>cleansed</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="4">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <beam>
 <note xml:id="n39" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Ne’er</syl></verse></note>
@@ -175,7 +175,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="g" oct="4" dur="2">
-<verse n="1"><syl>know,</syl></verse></note>
+<verse n="1"><syl eol="1">know,</syl></verse></note>
 <beam>
 <note xml:id="n46" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl>If</syl></verse></note>
@@ -205,7 +205,7 @@
 <note xml:id="n52" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">wit</syl></verse></note>
 <note xml:id="n53" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ness,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness,</syl></verse></note>
 <beam>
 <note xml:id="n54" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl>Self-</syl></verse></note>
@@ -234,7 +234,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="2">
-<verse n="1"><syl>go.</syl></verse></note>
+<verse n="1"><syl eol="1">go.</syl></verse></note>
 <beam>
 <note xml:id="n61" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><label>(C)</label><syl>Through</syl></verse></note>
@@ -263,7 +263,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="f" oct="4" dur="2">
-<verse n="1"><syl>pray,</syl></verse></note>
+<verse n="1"><syl eol="1">pray,</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <beam>
 <note xml:id="n68" pname="f" oct="4" dur="8">
@@ -295,7 +295,7 @@
 <sb/>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n75" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">way;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way;</syl></verse></note>
 <beam>
 <note xml:id="n76" pname="c" oct="4" dur="8">
 <verse n="1"><syl>Make</syl></verse></note>
@@ -322,7 +322,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n82" pname="a" oct="4" dur="8">
-<verse n="1"><syl>pay,</syl></verse></note>
+<verse n="1"><syl eol="1">pay,</syl></verse></note>
 <note xml:id="n83" pname="c" oct="5" dur="4" dots="1"/>
 <beam>
 <note xml:id="n84" pname="b" oct="4" dur="8">
@@ -352,7 +352,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n90" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ceive.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ceive.</syl></verse></note>
 <rest xml:id="r91" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

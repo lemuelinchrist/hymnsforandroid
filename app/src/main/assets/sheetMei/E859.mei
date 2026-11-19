@@ -30,7 +30,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>more</syl></verse></note>
+<verse n="1"><syl eol="1">more</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="2"/>
 <note xml:id="n9" pname="d" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
@@ -58,7 +58,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">spread;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">spread;</syl></verse></note>
 <note xml:id="n16" pname="a" oct="4" dur="2"/>
 <note xml:id="n17" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Gen</syl></verse></note>
@@ -91,7 +91,7 @@
 <note xml:id="n26" pname="e" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n27" pname="d" oct="4" dur="2">
-<verse n="1"><syl>free,</syl></verse></note>
+<verse n="1"><syl eol="1">free,</syl></verse></note>
 <note xml:id="n28" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Are</syl></verse></note>
 </layer></staff>
@@ -119,7 +119,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Head.</syl></verse></note>
+<verse n="1"><syl eol="1">Head.</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="2"/>
 <rest xml:id="r36" dur="4"/>
 </layer></staff>

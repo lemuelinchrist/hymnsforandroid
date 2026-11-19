@@ -34,10 +34,10 @@
 <note xml:id="n8" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">den</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="8">
-<verse n="1"><syl>of</syl></verse></note>
+<verse n="1"><syl eol="1">of</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>sin?</syl></verse></note>
+<verse n="1"><syl eol="1">sin?</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="8">
 <verse n="1"><syl>There’s</syl></verse></note>
 </layer></staff>
@@ -64,12 +64,12 @@
 <verse n="1"><syl>power</syl></verse></note>
 <beam>
 <note xml:id="n17" pname="c" oct="5" dur="8" dots="1">
-<verse n="1"><syl>in</syl></verse></note>
+<verse n="1"><syl eol="1">in</syl></verse></note>
 <note xml:id="n18" pname="b" oct="4" dur="16" accid="s" accid.ges="s">
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n19" pname="c" oct="5" dur="2">
-<verse n="1"><syl>blood;</syl></verse></note>
+<verse n="1"><syl eol="1">blood;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="3" place="above">D/A</harm>
@@ -106,7 +106,7 @@
 <verse n="1"><syl wordpos="t">ry</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>win?</syl></verse></note>
+<verse n="1"><syl eol="1">win?</syl></verse></note>
 <note xml:id="n30" pname="a" oct="4" dur="8">
 <verse n="1"><syl>There’s</syl></verse></note>
 </layer></staff>
@@ -137,7 +137,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>blood.</syl></verse></note>
+<verse n="1"><syl eol="1">blood.</syl></verse></note>
 <beam>
 <note xml:id="n38" pname="e" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>There</syl></verse></note>
@@ -172,7 +172,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 </beam>
 <note xml:id="n46" pname="e" oct="4" dur="4">
-<verse n="1"><syl>power,</syl></verse></note>
+<verse n="1"><syl eol="1">power,</syl></verse></note>
 <beam>
 <note xml:id="n47" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>In</syl></verse></note>
@@ -199,7 +199,7 @@
 <sb/>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>Lamb;</syl></verse></note>
+<verse n="1"><syl eol="1">Lamb;</syl></verse></note>
 <beam>
 <note xml:id="n53" pname="e" oct="4" dur="8">
 <verse n="1"><syl>There</syl></verse></note>
@@ -231,7 +231,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 </beam>
 <note xml:id="n61" pname="e" oct="4" dur="4">
-<verse n="1"><syl>power,</syl></verse></note>
+<verse n="1"><syl eol="1">power,</syl></verse></note>
 <beam>
 <note xml:id="n62" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>In</syl></verse></note>
@@ -261,7 +261,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lamb.</syl></verse></note>
+<verse n="1"><syl eol="1">Lamb.</syl></verse></note>
 <rest xml:id="r70" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>

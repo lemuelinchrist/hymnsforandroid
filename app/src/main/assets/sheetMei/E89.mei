@@ -44,7 +44,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="e" oct="4" dur="2">
-<verse n="1"><syl>shone</syl></verse></note>
+<verse n="1"><syl eol="1">shone</syl></verse></note>
 <note xml:id="n12" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
 </layer></staff>
@@ -75,7 +75,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">low!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">low!</syl></verse></note>
 <note xml:id="n20" pname="e" oct="4" dur="4"/>
 <note xml:id="n21" pname="a" oct="4" dur="4">
 <verse n="1"><syl>What</syl></verse></note>
@@ -116,7 +116,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="a" oct="4" dur="2">
-<verse n="1"><syl>all</syl></verse></note>
+<verse n="1"><syl eol="1">all</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
 </layer></staff>
@@ -146,7 +146,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>woe!</syl></verse></note>
+<verse n="1"><syl eol="1">woe!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>
 <tie startid="#n39" endid="#n40"/>

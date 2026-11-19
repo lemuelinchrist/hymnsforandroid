@@ -23,7 +23,7 @@
 <note xml:id="n5" pname="e" oct="4" dur="4">
 <verse n="1"><syl>向</syl></verse></note>
 <note xml:id="n6" pname="d" oct="4" dur="2">
-<verse n="1"><syl>你，</syl></verse></note>
+<verse n="1"><syl eol="1">你，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -55,7 +55,7 @@
 <note xml:id="n14" pname="d" oct="4" dur="4">
 <verse n="1"><syl>無</syl></verse></note>
 <note xml:id="n15" pname="b" oct="3" dur="2">
-<verse n="1"><syl>比；</syl></verse></note>
+<verse n="1"><syl eol="1">比；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -77,7 +77,7 @@
 <note xml:id="n20" pname="e" oct="4" dur="4">
 <verse n="1"><syl>的</syl></verse></note>
 <note xml:id="n21" pname="d" oct="4" dur="2">
-<verse n="1"><syl>心，</syl></verse></note>
+<verse n="1"><syl eol="1">心，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -109,7 +109,7 @@
 <note xml:id="n29" pname="d" oct="4" dur="4" accid.ges="s">
 <verse n="1"><syl>愛</syl></verse></note>
 <note xml:id="n30" pname="e" oct="4" dur="2">
-<verse n="1"><syl>情！</syl></verse></note>
+<verse n="1"><syl eol="1">情！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B7</harm>
 <harm staff="1" tstamp="3" place="above">Em</harm>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="b" oct="4" dur="1">
-<verse n="1"><syl>你，</syl></verse></note>
+<verse n="1"><syl eol="1">你，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 </measure>
@@ -186,7 +186,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="e" oct="4" dur="1">
-<verse n="1"><syl>需。</syl></verse></note>
+<verse n="1"><syl eol="1">需。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 </measure>

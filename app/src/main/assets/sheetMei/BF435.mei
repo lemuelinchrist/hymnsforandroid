@@ -38,7 +38,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>dear,</syl></verse></note>
+<verse n="1"><syl eol="1">dear,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -73,7 +73,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>near;</syl></verse></note>
+<verse n="1"><syl eol="1">near;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">rise</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">rise</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 </measure>
@@ -145,7 +145,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>eyes.</syl></verse></note>
+<verse n="1"><syl eol="1">eyes.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

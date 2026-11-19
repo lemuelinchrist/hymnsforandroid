@@ -53,7 +53,7 @@
 <note xml:id="n15" pname="c" oct="5" dur="4" dots="1" accid="n" accid.ges="n">
 <verse n="1"><syl wordpos="i" con="d">cap</syl></verse></note>
 <note xml:id="n16" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">tive,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tive,</syl></verse></note>
 <note xml:id="n17" pname="a" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D°</harm>
@@ -81,7 +81,7 @@
 <note xml:id="n25" pname="c" oct="4" dur="8">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n26" pname="b" oct="3" dur="8">
-<verse n="1"><syl>God</syl></verse></note>
+<verse n="1"><syl eol="1">God</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F♯7</harm>
@@ -150,7 +150,7 @@
 <verse n="1"><syl wordpos="i" con="d">o</syl></verse></note>
 <note xml:id="n46" pname="a" oct="4" dur="8"/>
 <note xml:id="n47" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">pened,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pened,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D°</harm>
 <tie startid="#n46" endid="#n47"/>
@@ -177,7 +177,7 @@
 <note xml:id="n55" pname="c" oct="4" dur="8">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n56" pname="a" oct="3" dur="8">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B7</harm>
@@ -238,7 +238,7 @@
 <note xml:id="n71" pname="c" oct="5" dur="4" dots="1" accid="n" accid.ges="n">
 <verse n="1"><syl wordpos="i" con="d">vi</syl></verse></note>
 <note xml:id="n72" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">sion,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sion,</syl></verse></note>
 <note xml:id="n73" pname="a" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D°</harm>
@@ -285,7 +285,7 @@
 <note xml:id="n87" pname="f" oct="4" dur="8">
 <verse n="1"><syl>this</syl></verse></note>
 <note xml:id="n88" pname="e" oct="4" dur="8">
-<verse n="1"><syl>age);</syl></verse></note>
+<verse n="1"><syl eol="1">age);</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
@@ -341,7 +341,7 @@
 <note xml:id="n103" pname="c" oct="5" dur="4" dots="1" accid="n" accid.ges="n">
 <verse n="1"><syl wordpos="i" con="d">vi</syl></verse></note>
 <note xml:id="n104" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">sion,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sion,</syl></verse></note>
 <note xml:id="n105" pname="a" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D°</harm>
@@ -369,7 +369,7 @@
 <note xml:id="n113" pname="b" oct="4" dur="8">
 <verse n="1"><syl>dear</syl></verse></note>
 <note xml:id="n114" pname="a" oct="4" dur="8">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B7</harm>

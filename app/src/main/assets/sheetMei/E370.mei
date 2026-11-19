@@ -41,7 +41,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">tide;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tide;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 </measure>
@@ -83,7 +83,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="b" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">bide!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bide!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B/D♯</harm>
 <harm staff="1" tstamp="3" place="above">B</harm>
@@ -124,7 +124,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="f" oct="4" dur="1">
-<verse n="1"><syl>flee,</syl></verse></note>
+<verse n="1"><syl eol="1">flee,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
@@ -166,7 +166,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="e" oct="4" dur="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 <harm staff="1" tstamp="2" place="above">A/E</harm>

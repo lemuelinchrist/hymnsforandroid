@@ -34,7 +34,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="4">
 <verse n="1"><syl>前</syl></verse></note>
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl>來，</syl></verse></note>
+<verse n="1"><syl eol="1">來，</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>由</syl></verse></note>
@@ -63,7 +63,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="d" oct="4" dur="2">
-<verse n="1"><syl>率，</syl></verse></note>
+<verse n="1"><syl eol="1">率，</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="d" oct="5" dur="8" dots="1">
 <verse n="1"><syl>獻</syl></verse></note>
@@ -91,7 +91,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl>敬</syl></verse></note>
 <note xml:id="n23" pname="c" oct="5" dur="4">
-<verse n="1"><syl>拜，</syl></verse></note>
+<verse n="1"><syl eol="1">拜，</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl>並</syl></verse></note>
@@ -120,7 +120,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="f" oct="4" dur="2">
-<verse n="1"><syl>愛。</syl></verse></note>
+<verse n="1"><syl eol="1">愛。</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl>你</syl></verse></note>
@@ -149,7 +149,7 @@
 <note xml:id="n37" pname="c" oct="5" dur="4">
 <verse n="1"><syl>歡</syl></verse></note>
 <note xml:id="n38" pname="b" oct="4" dur="4">
-<verse n="1"><syl>樂，</syl></verse></note>
+<verse n="1"><syl eol="1">樂，</syl></verse></note>
 <beam>
 <note xml:id="n39" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl>永</syl></verse></note>
@@ -206,7 +206,7 @@
 <note xml:id="n52" pname="f" oct="4" dur="4">
 <verse n="1"><syl>又</syl></verse></note>
 <note xml:id="n53" pname="d" oct="4" dur="4">
-<verse n="1"><syl>得，</syl></verse></note>
+<verse n="1"><syl eol="1">得，</syl></verse></note>
 <beam>
 <note xml:id="n54" pname="b" oct="3" dur="8" dots="1">
 <verse n="1"><syl>我</syl></verse></note>
@@ -234,7 +234,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="b" oct="3" dur="2">
-<verse n="1"><syl>眾。</syl></verse></note>
+<verse n="1"><syl eol="1">眾。</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

@@ -48,7 +48,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="a" oct="4" dur="2">
-<verse n="1"><syl>you,</syl></verse></note>
+<verse n="1"><syl eol="1">you,</syl></verse></note>
 <beam>
 <note xml:id="n12" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Love</syl></verse></note>
@@ -91,7 +91,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="e" oct="4" dur="2">
-<verse n="1"><syl>true;</syl></verse></note>
+<verse n="1"><syl eol="1">true;</syl></verse></note>
 <beam>
 <note xml:id="n23" pname="d" oct="5" dur="8">
 <verse n="1"><syl>Why</syl></verse></note>
@@ -136,7 +136,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="d" oct="5" dur="2">
-<verse n="1"><syl>sigh,</syl></verse></note>
+<verse n="1"><syl eol="1">sigh,</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="f" oct="4" dur="8">
 <verse n="1"><syl>When</syl></verse></note>
@@ -177,7 +177,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ply?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>
 <tie startid="#n44" endid="#n45"/>

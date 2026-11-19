@@ -22,7 +22,7 @@
 <note xml:id="n5" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ceive</syl></verse></note>
 <note xml:id="n6" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl>man,</syl></verse></note>
+<verse n="1"><syl eol="1">man,</syl></verse></note>
 <note xml:id="n7" pname="c" oct="4" dur="4"/>
 <note xml:id="n8" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Come</syl></verse></note>
@@ -45,7 +45,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="g" oct="4" dur="1">
-<verse n="1"><syl>them,</syl></verse></note>
+<verse n="1"><syl eol="1">them,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -71,7 +71,7 @@
 <note xml:id="n19" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">sin</syl></verse></note>
 <note xml:id="n20" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ners.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ners.</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="4"/>
 <note xml:id="n22" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Go</syl></verse></note>
@@ -99,7 +99,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>home</syl></verse></note>
+<verse n="1"><syl eol="1">home</syl></verse></note>
 <beam>
 <note xml:id="n29" pname="f" oct="4" dur="8">
 <verse n="1"><syl>On</syl></verse></note>
@@ -126,7 +126,7 @@
 <note xml:id="n35" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">joi</syl></verse></note>
 <note xml:id="n36" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">cing.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cing.</syl></verse></note>
 <note xml:id="n37" pname="c" oct="4" dur="4"/>
 <note xml:id="n38" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Lord,</syl></verse></note>
@@ -147,7 +147,7 @@
 </measure>
 <measure n="12" right="end"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="f" oct="4" dur="1">
-<verse n="1"><syl>home.</syl></verse></note>
+<verse n="1"><syl eol="1">home.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

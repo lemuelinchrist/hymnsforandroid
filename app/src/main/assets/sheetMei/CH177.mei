@@ -21,7 +21,7 @@
 <note xml:id="n5" pname="d" oct="4" dur="16">
 <verse n="1"><syl wordpos="m" con="d">ery</syl></verse></note>
 <note xml:id="n6" pname="a" oct="3" dur="8" dots="1">
-<verse n="1"><syl wordpos="t">thing—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thing—</syl></verse></note>
 <note xml:id="n7" pname="a" oct="3" dur="16">
 <verse n="1"><syl>We</syl></verse></note>
 </beam>
@@ -40,7 +40,7 @@
 <verse n="1"><syl wordpos="t">ery</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="a" oct="4" dur="2">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -73,7 +73,7 @@
 <verse n="1"><syl>His</syl></verse></note>
 </beam>
 <note xml:id="n22" pname="e" oct="4" dur="2">
-<verse n="1"><syl>way?</syl></verse></note>
+<verse n="1"><syl eol="1">way?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E7</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -113,7 +113,7 @@
 <verse n="1"><syl>we</syl></verse></note>
 </beam>
 <note xml:id="n34" pname="a" oct="4" dur="2">
-<verse n="1"><syl>use:</syl></verse></note>
+<verse n="1"><syl eol="1">use:</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -146,7 +146,7 @@
 <verse n="1"><syl>must</syl></verse></note>
 </beam>
 <note xml:id="n44" pname="d" oct="4" dur="2">
-<verse n="1"><syl>choose!</syl></verse></note>
+<verse n="1"><syl eol="1">choose!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>

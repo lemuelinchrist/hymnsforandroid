@@ -52,7 +52,7 @@
 <verse n="1"><syl>His</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="d" oct="4" dur="4">
-<verse n="1"><syl>side,</syl></verse></note>
+<verse n="1"><syl eol="1">side,</syl></verse></note>
 <beam>
 <note xml:id="n15" pname="d" oct="4" dur="8">
 <verse n="1"><syl>When</syl></verse></note>
@@ -91,7 +91,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>see,</syl></verse></note>
+<verse n="1"><syl eol="1">see,</syl></verse></note>
 <beam>
 <note xml:id="n26" pname="b" oct="4" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
@@ -138,7 +138,7 @@
 <verse n="1"><syl>His</syl></verse></note>
 </beam>
 <note xml:id="n39" pname="g" oct="4" dur="4">
-<verse n="1"><syl>Bride,</syl></verse></note>
+<verse n="1"><syl eol="1">Bride,</syl></verse></note>
 <beam>
 <note xml:id="n40" pname="f" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -177,7 +177,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 <beam>
 <note xml:id="n51" pname="b" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>We</syl></verse></note>
@@ -211,7 +211,7 @@
 <note xml:id="n58" pname="g" oct="4" dur="2">
 <verse n="1"><syl>know</syl></verse></note>
 <note xml:id="n59" pname="d" oct="4" dur="4">
-<verse n="1"><syl>Him!</syl></verse></note>
+<verse n="1"><syl eol="1">Him!</syl></verse></note>
 <beam>
 <note xml:id="n60" pname="g" oct="4" dur="8">
 <verse n="1"><syl>When</syl></verse></note>
@@ -249,7 +249,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">fied!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fied!</syl></verse></note>
 <beam>
 <note xml:id="n70" pname="b" oct="4" dur="8">
 <verse n="1"><syl>He</syl></verse></note>
@@ -281,7 +281,7 @@
 <note xml:id="n77" pname="a" oct="4" dur="2">
 <verse n="1"><syl>know</syl></verse></note>
 <note xml:id="n78" pname="e" oct="4" dur="4">
-<verse n="1"><syl>us!</syl></verse></note>
+<verse n="1"><syl eol="1">us!</syl></verse></note>
 <beam>
 <note xml:id="n79" pname="f" oct="4" dur="8">
 <verse n="1"><syl>We’re</syl></verse></note>
@@ -317,7 +317,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n88" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Bride!</syl></verse></note>
+<verse n="1"><syl eol="1">Bride!</syl></verse></note>
 <rest xml:id="r89" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

@@ -54,7 +54,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 <note xml:id="n16" pname="c" oct="4" dur="4">
 <verse n="1"><syl>So</syl></verse></note>
 </layer></staff>
@@ -105,7 +105,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">cise,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cise,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="f" oct="4" dur="1">
-<verse n="1"><syl>word.</syl></verse></note>
+<verse n="1"><syl eol="1">word.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -178,7 +178,7 @@
 <note xml:id="n51" pname="e" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="t">ceive</syl></verse></note>
 <note xml:id="n52" pname="c" oct="4" dur="8">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 <note xml:id="n53" pname="c" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -210,7 +210,7 @@
 <note xml:id="n61" pname="d" oct="4" dur="8">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n62" pname="c" oct="4" dur="8">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 </beam>
 <note xml:id="n63" pname="c" oct="4" dur="4"/>
 <beam>
@@ -265,7 +265,7 @@
 </measure>
 <measure n="22"><staff n="1"><layer n="1">
 <note xml:id="n78" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">cise,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cise,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Csus4</harm>
 </measure>
@@ -289,7 +289,7 @@
 <note xml:id="n84" pname="c" oct="5" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
 <note xml:id="n85" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it</syl></verse></note>
 <note xml:id="n86" pname="a" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -342,7 +342,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n102" pname="f" oct="4" dur="1">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n102" endid="#n103"/>
@@ -381,7 +381,7 @@
 <note xml:id="n113" pname="a" oct="4" dur="8">
 <verse n="1"><syl>by</syl></verse></note>
 <note xml:id="n114" pname="g" oct="4" dur="8">
-<verse n="1"><syl>us</syl></verse></note>
+<verse n="1"><syl eol="1">us</syl></verse></note>
 </beam>
 <note xml:id="n115" pname="g" oct="4" dur="2"/>
 </layer></staff>
@@ -424,7 +424,7 @@
 <note xml:id="n126" pname="a" oct="4" dur="8">
 <verse n="1"><syl>kind</syl></verse></note>
 <note xml:id="n127" pname="c" oct="4" dur="8">
-<verse n="1"><syl>of</syl></verse></note>
+<verse n="1"><syl eol="1">of</syl></verse></note>
 </beam>
 <note xml:id="n128" pname="c" oct="4" dur="2"/>
 </layer></staff>
@@ -490,7 +490,7 @@
 </measure>
 <measure n="45"><staff n="1"><layer n="1">
 <note xml:id="n143" pname="c" oct="5" dur="1">
-<verse n="1"><syl>things</syl></verse></note>
+<verse n="1"><syl eol="1">things</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -516,7 +516,7 @@
 </measure>
 <measure n="47" right="end"><staff n="1"><layer n="1">
 <note xml:id="n150" pname="f" oct="4" dur="1">
-<verse n="1"><syl>way.</syl></verse></note>
+<verse n="1"><syl eol="1">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

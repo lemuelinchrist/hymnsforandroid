@@ -63,7 +63,7 @@
 <note xml:id="n18" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n19" pname="f" oct="4" dur="2">
-<verse n="1"><syl>earth.</syl></verse></note>
+<verse n="1"><syl eol="1">earth.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -122,7 +122,7 @@
 <note xml:id="n36" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n37" pname="e" oct="4" dur="2">
-<verse n="1"><syl>earth.</syl></verse></note>
+<verse n="1"><syl eol="1">earth.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <tie startid="#n36" endid="#n37"/>
@@ -184,7 +184,7 @@
 <note xml:id="n55" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n56" pname="f" oct="4" dur="2">
-<verse n="1"><syl>view.</syl></verse></note>
+<verse n="1"><syl eol="1">view.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <tie startid="#n55" endid="#n56"/>
@@ -250,7 +250,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="d" oct="4" dur="1">
-<verse n="1"><syl>through.</syl></verse></note>
+<verse n="1"><syl eol="1">through.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">G♭/D♭</harm>
@@ -291,7 +291,7 @@
 <note xml:id="n86" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n87" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">dom</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dom</syl></verse></note>
 <note xml:id="n88" pname="a" oct="4" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
 </layer></staff>
@@ -326,7 +326,7 @@
 </measure>
 <measure n="22"><staff n="1"><layer n="1">
 <note xml:id="n97" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>plans;</syl></verse></note>
+<verse n="1"><syl eol="1">plans;</syl></verse></note>
 <rest xml:id="r98" dur="8"/>
 <note xml:id="n99" pname="d" oct="4" dur="8">
 <verse n="1"><syl>He’s</syl></verse></note>
@@ -358,7 +358,7 @@
 <note xml:id="n107" pname="b" oct="4" dur="8"/>
 <note xml:id="n108" pname="b" oct="4" dur="8"/>
 <note xml:id="n109" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">id</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">id</syl></verse></note>
 </beam>
 <note xml:id="n110" pname="a" oct="4" dur="4" dots="1"/>
 <note xml:id="n111" pname="a" oct="4" dur="8">
@@ -395,7 +395,7 @@
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n120" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>man.</syl></verse></note>
+<verse n="1"><syl eol="1">man.</syl></verse></note>
 <rest xml:id="r121" dur="8"/>
 <note xml:id="n122" pname="d" oct="4" dur="8">
 <verse n="1"><syl>It’s</syl></verse></note>
@@ -426,7 +426,7 @@
 <verse n="1"><syl wordpos="i" con="d">teach</syl></verse></note>
 <note xml:id="n131" pname="b" oct="4" dur="8"/>
 <note xml:id="n132" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">es:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es:</syl></verse></note>
 </beam>
 <note xml:id="n133" pname="a" oct="4" dur="4" dots="1"/>
 <note xml:id="n134" pname="a" oct="4" dur="8">
@@ -455,7 +455,7 @@
 <note xml:id="n141" pname="g" oct="4" dur="8">
 <verse n="1"><syl>you</syl></verse></note>
 <note xml:id="n142" pname="a" oct="4" dur="8">
-<verse n="1"><syl>die.”</syl></verse></note>
+<verse n="1"><syl eol="1">die.”</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♭</harm>
@@ -490,7 +490,7 @@
 <note xml:id="n150" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">build</syl></verse></note>
 <note xml:id="n151" pname="d" oct="5" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♭</harm>
 <slur startid="#n151" endid="#n153"/>
@@ -530,7 +530,7 @@
 </measure>
 <measure n="36" right="end"><staff n="1"><layer n="1">
 <note xml:id="n163" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>eyes.</syl></verse></note>
+<verse n="1"><syl eol="1">eyes.</syl></verse></note>
 <rest xml:id="r164" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>

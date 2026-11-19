@@ -49,7 +49,7 @@
 <verse n="1"><syl>our</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>heart</syl></verse></note>
+<verse n="1"><syl eol="1">heart</syl></verse></note>
 <note xml:id="n15" pname="f" oct="4" dur="8">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -92,7 +92,7 @@
 <verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
 </beam>
 <note xml:id="n28" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">part.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">part.</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -137,7 +137,7 @@
 <verse n="1"><syl>its</syl></verse></note>
 </beam>
 <note xml:id="n42" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>need—</syl></verse></note>
+<verse n="1"><syl eol="1">need—</syl></verse></note>
 <note xml:id="n43" pname="f" oct="4" dur="8">
 <verse n="1"><syl>By</syl></verse></note>
 </layer></staff>
@@ -184,7 +184,7 @@
 <verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
 </beam>
 <note xml:id="n56" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">deed!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">deed!</syl></verse></note>
 <note xml:id="n57" pname="f" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>The</syl></verse></note>
 </layer></staff>
@@ -242,7 +242,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 <note xml:id="n72" pname="f" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -297,7 +297,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n86" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty.</syl></verse></note>
 <rest xml:id="r87" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

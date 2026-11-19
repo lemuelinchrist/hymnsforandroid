@@ -27,7 +27,7 @@
 <note xml:id="n6" pname="d" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">kind</syl></verse></note>
 <note xml:id="n7" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
@@ -49,7 +49,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>strong,</syl></verse></note>
+<verse n="1"><syl eol="1">strong,</syl></verse></note>
 <note xml:id="n14" pname="a" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -74,7 +74,7 @@
 <note xml:id="n19" pname="c" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">heav</syl></verse></note>
 <note xml:id="n20" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ens,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ens,</syl></verse></note>
 <note xml:id="n21" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Yet</syl></verse></note>
 </layer></staff>
@@ -96,7 +96,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>long;</syl></verse></note>
+<verse n="1"><syl eol="1">long;</syl></verse></note>
 <note xml:id="n27" pname="d" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -120,7 +120,7 @@
 <note xml:id="n32" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">giv</syl></verse></note>
 <note xml:id="n33" pname="d" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">en</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en</syl></verse></note>
 <note xml:id="n34" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Through</syl></verse></note>
 </layer></staff>
@@ -142,7 +142,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly</syl></verse></note>
 <note xml:id="n40" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
 </layer></staff>
@@ -167,7 +167,7 @@
 <note xml:id="n45" pname="c" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">car</syl></verse></note>
 <note xml:id="n46" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n47" pname="e" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -189,7 +189,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <rest xml:id="r53" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

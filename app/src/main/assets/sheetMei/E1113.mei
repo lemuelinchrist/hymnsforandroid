@@ -40,7 +40,7 @@
 <verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">in</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in</syl></verse></note>
 <beam>
 <note xml:id="n12" pname="a" oct="4" dur="8">
 <verse n="1"><syl>As</syl></verse></note>
@@ -73,7 +73,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 <beam>
 <note xml:id="n21" pname="f" oct="4" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
@@ -109,7 +109,7 @@
 <verse n="1"><syl>with</syl></verse></note>
 </beam>
 <note xml:id="n31" pname="d" oct="5" dur="4">
-<verse n="1"><syl>Him</syl></verse></note>
+<verse n="1"><syl eol="1">Him</syl></verse></note>
 <beam>
 <note xml:id="n32" pname="d" oct="5" dur="8">
 <verse n="1"><syl>As</syl></verse></note>
@@ -140,7 +140,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="a" oct="4" dur="2">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 <beam>
 <note xml:id="n41" pname="a" oct="4" dur="8"/>
 <note xml:id="n42" pname="a" oct="4" dur="8">
@@ -181,7 +181,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <beam>
 <note xml:id="n52" pname="a" oct="4" dur="8">
 <verse n="1"><syl>He’s</syl></verse></note>
@@ -214,7 +214,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us!</syl></verse></note>
+<verse n="1"><syl eol="1">us!</syl></verse></note>
 <beam>
 <note xml:id="n61" pname="a" oct="4" dur="8">
 <verse n="1"><syl>God</syl></verse></note>
@@ -250,7 +250,7 @@
 <verse n="1"><syl wordpos="t">it</syl></verse></note>
 </beam>
 <note xml:id="n71" pname="e" oct="4" dur="4">
-<verse n="1"><syl>now—</syl></verse></note>
+<verse n="1"><syl eol="1">now—</syl></verse></note>
 <beam>
 <note xml:id="n72" pname="c" oct="5" dur="8">
 <verse n="1"><syl>He’s</syl></verse></note>
@@ -282,7 +282,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n80" pname="d" oct="5" dur="2" dots="1">
-<verse n="1"><syl>us!</syl></verse></note>
+<verse n="1"><syl eol="1">us!</syl></verse></note>
 <rest xml:id="r81" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

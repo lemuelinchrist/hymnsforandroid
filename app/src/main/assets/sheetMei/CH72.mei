@@ -14,7 +14,7 @@
 <note xml:id="n3" pname="f" oct="4" dur="4">
 <verse n="1"><syl>your</syl></verse></note>
 <note xml:id="n4" pname="d" oct="4" dur="4">
-<verse n="1"><syl>shoes?</syl></verse></note>
+<verse n="1"><syl eol="1">shoes?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="4">
 <verse n="1"><syl>your</syl></verse></note>
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl>shoes?</syl></verse></note>
+<verse n="1"><syl eol="1">shoes?</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -44,7 +44,7 @@
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl>find</syl></verse></note>
 <note xml:id="n14" pname="a" oct="4" dur="2">
-<verse n="1"><syl>them!</syl></verse></note>
+<verse n="1"><syl eol="1">them!</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -62,7 +62,7 @@
 <note xml:id="n19" pname="f" oct="4" dur="4">
 <verse n="1"><syl>left</syl></verse></note>
 <note xml:id="n20" pname="d" oct="4" dur="4">
-<verse n="1"><syl>them.</syl></verse></note>
+<verse n="1"><syl eol="1">them.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -80,7 +80,7 @@
 <note xml:id="n25" pname="f" oct="4" dur="4">
 <verse n="1"><syl>left</syl></verse></note>
 <note xml:id="n26" pname="d" oct="4" dur="4">
-<verse n="1"><syl>them.</syl></verse></note>
+<verse n="1"><syl eol="1">them.</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
@@ -100,7 +100,7 @@
 <note xml:id="n31" pname="a" oct="3" dur="4">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n32" pname="d" oct="4" dur="2">
-<verse n="1"><syl>that?</syl></verse></note>
+<verse n="1"><syl eol="1">that?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>

@@ -40,7 +40,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="d" oct="4" dur="1">
-<verse n="1"><syl>gain;</syl></verse></note>
+<verse n="1"><syl eol="1">gain;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -80,7 +80,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">tain.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tain.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -117,7 +117,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="c" oct="5" dur="1">
-<verse n="1"><syl>one;</syl></verse></note>
+<verse n="1"><syl eol="1">one;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
 </measure>
@@ -157,7 +157,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>gone.</syl></verse></note>
+<verse n="1"><syl eol="1">gone.</syl></verse></note>
 <rest xml:id="r41" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

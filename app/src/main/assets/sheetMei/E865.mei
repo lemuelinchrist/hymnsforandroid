@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="8">
 <verse n="1"><syl>O</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="4">
 <verse n="1"><syl>We</syl></verse></note>
 </layer></staff>
@@ -52,7 +52,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>here;</syl></verse></note>
+<verse n="1"><syl eol="1">here;</syl></verse></note>
 <note xml:id="n15" pname="b" oct="4" dur="4">
 <verse n="1"><syl>As</syl></verse></note>
 </layer></staff>
@@ -77,7 +77,7 @@
 <note xml:id="n21" pname="f" oct="4" dur="8">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n22" pname="f" oct="4" dur="4">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <note xml:id="n23" pname="f" oct="4" dur="4">
 <verse n="1"><syl>We</syl></verse></note>
 </layer></staff>
@@ -99,7 +99,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>near.</syl></verse></note>
+<verse n="1"><syl eol="1">near.</syl></verse></note>
 <rest xml:id="r29" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>

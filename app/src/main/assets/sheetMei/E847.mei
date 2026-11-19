@@ -34,7 +34,7 @@
 <note xml:id="n8" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">F♯m</harm>
@@ -65,7 +65,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="e" oct="4" dur="1">
-<verse n="1"><syl>be,</syl></verse></note>
+<verse n="1"><syl eol="1">be,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -98,7 +98,7 @@
 <note xml:id="n25" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">pen</syl></verse></note>
 <note xml:id="n26" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">dence</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dence</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">F♯m</harm>
@@ -129,7 +129,7 @@
 </measure>
 <measure n="12" right="end"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="d" oct="4" dur="1">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

@@ -34,7 +34,7 @@
 <note xml:id="n9" pname="b" oct="3" dur="8">
 <verse n="1"><syl wordpos="i" con="d">let</syl></verse></note>
 <note xml:id="n10" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ter.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter.</syl></verse></note>
 </beam>
 <rest xml:id="r11" dur="4"/>
 </layer></staff>
@@ -69,7 +69,7 @@
 <note xml:id="n21" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">bet</syl></verse></note>
 <note xml:id="n22" pname="c" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ter.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter.</syl></verse></note>
 </beam>
 <rest xml:id="r23" dur="4"/>
 </layer></staff>
@@ -94,7 +94,7 @@
 <note xml:id="n29" pname="f" oct="4" dur="8">
 <verse n="1"><syl>on</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="8">
-<verse n="1"><syl>you,</syl></verse></note>
+<verse n="1"><syl eol="1">you,</syl></verse></note>
 </beam>
 <rest xml:id="r31" dur="8"/>
 </layer></staff>
@@ -118,7 +118,7 @@
 <note xml:id="n37" pname="e" oct="4" dur="8">
 <verse n="1"><syl>so</syl></verse></note>
 <note xml:id="n38" pname="e" oct="4" dur="8">
-<verse n="1"><syl>true.</syl></verse></note>
+<verse n="1"><syl eol="1">true.</syl></verse></note>
 </beam>
 <rest xml:id="r39" dur="8"/>
 </layer></staff>
@@ -142,7 +142,7 @@
 <note xml:id="n45" pname="a" oct="3" dur="8">
 <verse n="1"><syl>should</syl></verse></note>
 <note xml:id="n46" pname="a" oct="3" dur="8">
-<verse n="1"><syl>do,</syl></verse></note>
+<verse n="1"><syl eol="1">do,</syl></verse></note>
 <note xml:id="n47" pname="c" oct="4" dur="8">
 <verse n="1"><syl>So</syl></verse></note>
 </beam>
@@ -156,7 +156,7 @@
 <note xml:id="n49" pname="d" oct="4" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n50" pname="c" oct="4" dur="4">
-<verse n="1"><syl>truth.</syl></verse></note>
+<verse n="1"><syl eol="1">truth.</syl></verse></note>
 <rest xml:id="r51" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>

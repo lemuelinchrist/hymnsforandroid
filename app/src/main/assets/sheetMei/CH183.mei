@@ -39,7 +39,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>do.</syl></verse></note>
+<verse n="1"><syl eol="1">do.</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="a" oct="3" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Home</syl></verse></note>
@@ -70,7 +70,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>too.</syl></verse></note>
+<verse n="1"><syl eol="1">too.</syl></verse></note>
 <beam>
 <note xml:id="n20" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Do</syl></verse></note>
@@ -114,7 +114,7 @@
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 </beam>
 <note xml:id="n32" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty.</syl></verse></note>
 <beam>
 <note xml:id="n33" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Don’t</syl></verse></note>
@@ -150,7 +150,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>do.</syl></verse></note>
+<verse n="1"><syl eol="1">do.</syl></verse></note>
 <rest xml:id="r43" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

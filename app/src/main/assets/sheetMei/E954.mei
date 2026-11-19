@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">moun</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tains,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tains,</syl></verse></note>
 <note xml:id="n9" pname="c" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n10" pname="c" oct="4" dur="4">
@@ -56,7 +56,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="f" oct="4" dur="2">
-<verse n="1"><syl>spring,</syl></verse></note>
+<verse n="1"><syl eol="1">spring,</syl></verse></note>
 <note xml:id="n16" pname="d" oct="4" dur="4">
 <verse n="1"><syl>When</syl></verse></note>
 <note xml:id="n17" pname="d" oct="4" dur="4">
@@ -82,7 +82,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">beau</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty</syl></verse></note>
 <note xml:id="n24" pname="a" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n25" pname="b" oct="4" dur="4">
@@ -108,7 +108,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="d" oct="4" dur="2">
-<verse n="1"><syl>King;</syl></verse></note>
+<verse n="1"><syl eol="1">King;</syl></verse></note>
 <note xml:id="n31" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Wear</syl></verse></note>
 <note xml:id="n32" pname="c" oct="4" dur="4">
@@ -133,7 +133,7 @@
 <note xml:id="n37" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">wait</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="4" accid="s" accid.ges="s">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n39" pname="d" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n40" pname="d" oct="4" dur="4">
@@ -157,7 +157,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="b" oct="4" dur="2">
-<verse n="1"><syl>long,</syl></verse></note>
+<verse n="1"><syl eol="1">long,</syl></verse></note>
 <note xml:id="n46" pname="a" oct="4" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
 <note xml:id="n47" pname="g" oct="4" dur="4">
@@ -185,7 +185,7 @@
 <note xml:id="n52" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">break</syl></verse></note>
 <note xml:id="n53" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n54" pname="b" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n55" pname="g" oct="4" dur="4">
@@ -214,7 +214,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="1">
-<verse n="1"><syl>song.</syl></verse></note>
+<verse n="1"><syl eol="1">song.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

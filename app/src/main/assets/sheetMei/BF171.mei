@@ -39,7 +39,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="1">
-<verse n="1"><syl>life,</syl></verse></note>
+<verse n="1"><syl eol="1">life,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 </measure>
@@ -67,7 +67,7 @@
 <note xml:id="n19" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n20" pname="g" oct="4" dur="2">
-<verse n="1"><syl>free!</syl></verse></note>
+<verse n="1"><syl eol="1">free!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <tie startid="#n19" endid="#n20"/>
@@ -113,7 +113,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="g" oct="4" dur="1">
-<verse n="1"><syl>out</syl></verse></note>
+<verse n="1"><syl eol="1">out</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 </measure>
@@ -139,7 +139,7 @@
 <note xml:id="n39" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">ni</syl></verse></note>
 <note xml:id="n40" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ty!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty!</syl></verse></note>
 </beam>
 <note xml:id="n41" pname="g" oct="4" dur="2"/>
 </layer></staff>
@@ -179,7 +179,7 @@
 <note xml:id="n49" pname="f" oct="4" dur="8">
 <verse n="1"><syl>didst</syl></verse></note>
 <note xml:id="n50" pname="f" oct="4" dur="8">
-<verse n="1"><syl>flow</syl></verse></note>
+<verse n="1"><syl eol="1">flow</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n51" pname="f" oct="4" dur="8"/>
@@ -202,7 +202,7 @@
 <verse n="1"><syl wordpos="t">man</syl></verse></note>
 <note xml:id="n57" pname="e" oct="4" dur="8"/>
 <note xml:id="n58" pname="e" oct="4" dur="8">
-<verse n="1"><syl>race;</syl></verse></note>
+<verse n="1"><syl eol="1">race;</syl></verse></note>
 </beam>
 <note xml:id="n59" pname="e" oct="4" dur="4"/>
 <note xml:id="n60" pname="c" oct="4" dur="4">
@@ -236,7 +236,7 @@
 <note xml:id="n66" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">so</syl></verse></note>
 <note xml:id="n67" pname="f" oct="4" dur="8">
-<verse n="1"><syl>flow</syl></verse></note>
+<verse n="1"><syl eol="1">flow</syl></verse></note>
 </beam>
 <note xml:id="n68" pname="f" oct="4" dur="4"/>
 <note xml:id="n69" pname="e" oct="4" dur="4">
@@ -264,7 +264,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n75" pname="c" oct="4" dur="1">
-<verse n="1"><syl>grace.</syl></verse></note>
+<verse n="1"><syl eol="1">grace.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>

@@ -36,7 +36,7 @@
 <note xml:id="n8" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">pur</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">pose,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pose,</syl></verse></note>
 <rest xml:id="r10" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -72,7 +72,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ty;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -107,7 +107,7 @@
 <note xml:id="n27" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">glo</syl></verse></note>
 <note xml:id="n28" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 <rest xml:id="r29" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -143,7 +143,7 @@
 <note xml:id="n37" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">mean</syl></verse></note>
 <note xml:id="n38" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 <rest xml:id="r39" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7</harm>
@@ -184,7 +184,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -224,7 +224,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>

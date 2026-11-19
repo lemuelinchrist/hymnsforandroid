@@ -28,7 +28,7 @@
 <note xml:id="n7" pname="c" oct="4" dur="8">
 <verse n="1"><syl>her</syl></verse></note>
 <note xml:id="n8" pname="d" oct="4" dur="8">
-<verse n="1"><syl>all?</syl></verse></note>
+<verse n="1"><syl eol="1">all?</syl></verse></note>
 </beam>
 <note xml:id="n9" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -61,7 +61,7 @@
 <verse n="1"><syl>Your</syl></verse></note>
 </beam>
 <note xml:id="n18" pname="d" oct="4" dur="4">
-<verse n="1"><syl>call?</syl></verse></note>
+<verse n="1"><syl eol="1">call?</syl></verse></note>
 <beam>
 <note xml:id="n19" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Man</syl></verse></note>
@@ -101,7 +101,7 @@
 <note xml:id="n29" pname="c" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">mo</syl></verse></note>
 <note xml:id="n30" pname="c" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ny;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ny;</syl></verse></note>
 <note xml:id="n31" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Oh</syl></verse></note>
 <note xml:id="n32" pname="e" oct="4" dur="8"/>
@@ -141,7 +141,7 @@
 <verse n="1"><syl>for</syl></verse></note>
 </beam>
 <note xml:id="n43" pname="g" oct="3" dur="2">
-<verse n="1"><syl>Thee?</syl></verse></note>
+<verse n="1"><syl eol="1">Thee?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n43" endid="#n44"/>
@@ -184,7 +184,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </tuplet>
 <note xml:id="n55" pname="d" oct="4" dur="4">
-<verse n="1"><syl>church;</syl></verse></note>
+<verse n="1"><syl eol="1">church;</syl></verse></note>
 <beam>
 <note xml:id="n56" pname="c" oct="5" dur="8">
 <verse n="1"><syl>Count</syl></verse></note>
@@ -223,7 +223,7 @@
 <verse n="1"><syl>as</syl></verse></note>
 </tuplet>
 <note xml:id="n66" pname="g" oct="4" dur="4">
-<verse n="1"><syl>loss;</syl></verse></note>
+<verse n="1"><syl eol="1">loss;</syl></verse></note>
 <beam>
 <note xml:id="n67" pname="c" oct="5" dur="8">
 <verse n="1"><syl>Pay</syl></verse></note>
@@ -258,7 +258,7 @@
 <verse n="1"><syl>gain</syl></verse></note>
 </tuplet>
 <note xml:id="n76" pname="d" oct="5" dur="4">
-<verse n="1"><syl>Christ,</syl></verse></note>
+<verse n="1"><syl eol="1">Christ,</syl></verse></note>
 <beam>
 <note xml:id="n77" pname="c" oct="5" dur="8">
 <verse n="1"><syl>Burn</syl></verse></note>
@@ -296,7 +296,7 @@
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 </tuplet>
 <note xml:id="n87" pname="d" oct="5" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">hind;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">hind;</syl></verse></note>
 <note xml:id="n88" pname="g" oct="4" dur="8">
 <verse n="1"><syl>On</syl></verse></note>
 </layer></staff>
@@ -334,7 +334,7 @@
 <note xml:id="n97" pname="b" oct="4" dur="8">
 <verse n="1"><syl>be</syl></verse></note>
 <note xml:id="n98" pname="c" oct="5" dur="8">
-<verse n="1"><syl>set</syl></verse></note>
+<verse n="1"><syl eol="1">set</syl></verse></note>
 </beam>
 <note xml:id="n99" pname="c" oct="5" dur="4" dots="1"/>
 <note xml:id="n100" pname="c" oct="5" dur="8">
@@ -372,7 +372,7 @@
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 <note xml:id="n110" pname="c" oct="5" dur="16"/>
 <note xml:id="n111" pname="c" oct="5" dur="16">
-<verse n="1"><syl wordpos="t">grets.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">grets.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

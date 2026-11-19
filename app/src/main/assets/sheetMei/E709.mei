@@ -45,7 +45,7 @@
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n12" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>break,</syl></verse></note>
+<verse n="1"><syl eol="1">break,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <harm staff="1" tstamp="4" place="above">A</harm>
@@ -91,7 +91,7 @@
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="a" oct="4" dur="4" dots="1"/>
 <note xml:id="n24" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">wake;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">wake;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="4" place="above">A7</harm>
@@ -134,7 +134,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>low,</syl></verse></note>
+<verse n="1"><syl eol="1">low,</syl></verse></note>
 <note xml:id="n36" pname="f" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -176,7 +176,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>go.</syl></verse></note>
+<verse n="1"><syl eol="1">go.</syl></verse></note>
 <note xml:id="n47" pname="d" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

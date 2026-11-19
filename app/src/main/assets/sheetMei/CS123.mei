@@ -36,7 +36,7 @@
 <note xml:id="n8" pname="b" oct="4" dur="4">
 <verse n="1"><syl>路</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>亞！</syl></verse></note>
+<verse n="1"><syl eol="1">亞！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -72,7 +72,7 @@
 <verse n="1"><syl>裡</syl></verse></note>
 </beam>
 <note xml:id="n19" pname="b" oct="4" dur="4">
-<verse n="1"><syl>面。</syl></verse></note>
+<verse n="1"><syl eol="1">面。</syl></verse></note>
 <beam>
 <note xml:id="n20" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>阿</syl></verse></note>
@@ -103,7 +103,7 @@
 <note xml:id="n27" pname="b" oct="4" dur="4">
 <verse n="1"><syl>路</syl></verse></note>
 <note xml:id="n28" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>亞！</syl></verse></note>
+<verse n="1"><syl eol="1">亞！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>面。</syl></verse></note>
+<verse n="1"><syl eol="1">面。</syl></verse></note>
 <rest xml:id="r36" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

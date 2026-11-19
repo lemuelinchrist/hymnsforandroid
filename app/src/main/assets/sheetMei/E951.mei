@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A/C♯</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -52,7 +52,7 @@
 <note xml:id="n14" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">vail</syl></verse></note>
 <note xml:id="n15" pname="d" oct="4" dur="2">
-<verse n="1"><syl>cease,</syl></verse></note>
+<verse n="1"><syl eol="1">cease,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="2" place="above">A7</harm>
@@ -82,7 +82,7 @@
 <note xml:id="n22" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <note xml:id="n23" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="2" place="above">A7</harm>
@@ -108,7 +108,7 @@
 <note xml:id="n29" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
 <note xml:id="n30" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">crease.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">crease.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E7</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -134,7 +134,7 @@
 <note xml:id="n37" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A/C♯</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -163,7 +163,7 @@
 <note xml:id="n45" pname="e" oct="4" dur="4">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n46" pname="d" oct="4" dur="2">
-<verse n="1"><syl>Peace.</syl></verse></note>
+<verse n="1"><syl eol="1">Peace.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <harm staff="1" tstamp="2" place="above">A7</harm>

@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">brok</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">en—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/G</harm>
@@ -44,7 +44,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="e" oct="4" dur="1">
-<verse n="1"><syl>veil;</syl></verse></note>
+<verse n="1"><syl eol="1">veil;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -70,7 +70,7 @@
 <note xml:id="n19" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">spok</syl></verse></note>
 <note xml:id="n20" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">en—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
@@ -88,7 +88,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="e" oct="4" dur="1">
-<verse n="1"><syl>veil.</syl></verse></note>
+<verse n="1"><syl eol="1">veil.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -115,7 +115,7 @@
 <note xml:id="n31" pname="b" oct="4" dur="4">
 <verse n="1"><syl>bought</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="4">
-<verse n="1"><syl>us;</syl></verse></note>
+<verse n="1"><syl eol="1">us;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/G</harm>
@@ -142,7 +142,7 @@
 <note xml:id="n39" pname="c" oct="5" dur="4">
 <verse n="1"><syl>sought</syl></verse></note>
 <note xml:id="n40" pname="g" oct="4" dur="4">
-<verse n="1"><syl>us;</syl></verse></note>
+<verse n="1"><syl eol="1">us;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="4" place="above">B♭/D</harm>
@@ -169,7 +169,7 @@
 <note xml:id="n47" pname="b" oct="4" dur="4">
 <verse n="1"><syl>brought</syl></verse></note>
 <note xml:id="n48" pname="g" oct="4" dur="4">
-<verse n="1"><syl>us—</syl></verse></note>
+<verse n="1"><syl eol="1">us—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
@@ -187,7 +187,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="e" oct="4" dur="1">
-<verse n="1"><syl>veil.</syl></verse></note>
+<verse n="1"><syl eol="1">veil.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>

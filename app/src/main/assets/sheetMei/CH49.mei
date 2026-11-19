@@ -17,7 +17,7 @@
 <note xml:id="n4" pname="g" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n5" pname="c" oct="4" dur="8">
-<verse n="1"><syl>know</syl></verse></note>
+<verse n="1"><syl eol="1">know</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -39,7 +39,7 @@
 <note xml:id="n11" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">oc</syl></verse></note>
 <note xml:id="n12" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">curred.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">curred.</syl></verse></note>
 </beam>
 </layer></staff>
 <tie startid="#n12" endid="#n13"/>
@@ -69,7 +69,7 @@
 <note xml:id="n20" pname="e" oct="4" dur="8">
 <verse n="1"><syl>we</syl></verse></note>
 <note xml:id="n21" pname="d" oct="4" dur="8">
-<verse n="1"><syl>see</syl></verse></note>
+<verse n="1"><syl eol="1">see</syl></verse></note>
 </beam>
 <note xml:id="n22" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -87,7 +87,7 @@
 <note xml:id="n26" pname="b" oct="3" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n27" pname="c" oct="4" dur="8">
-<verse n="1"><syl>be?</syl></verse></note>
+<verse n="1"><syl eol="1">be?</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
@@ -121,7 +121,7 @@
 <note xml:id="n37" pname="c" oct="4" dur="8"/>
 </beam>
 <note xml:id="n38" pname="c" oct="4" dur="2">
-<verse n="1"><syl>there?</syl></verse></note>
+<verse n="1"><syl eol="1">there?</syl></verse></note>
 </layer></staff>
 <tie startid="#n35" endid="#n36"/>
 <tie startid="#n37" endid="#n38"/>
@@ -146,7 +146,7 @@
 <note xml:id="n46" pname="c" oct="4" dur="8"/>
 </beam>
 <note xml:id="n47" pname="c" oct="4" dur="2">
-<verse n="1"><syl>there?</syl></verse></note>
+<verse n="1"><syl eol="1">there?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n44" endid="#n45"/>
@@ -173,7 +173,7 @@
 <note xml:id="n55" pname="c" oct="4" dur="8"/>
 </beam>
 <note xml:id="n56" pname="c" oct="4" dur="2">
-<verse n="1"><syl>there?</syl></verse></note>
+<verse n="1"><syl eol="1">there?</syl></verse></note>
 </layer></staff>
 <tie startid="#n53" endid="#n54"/>
 <tie startid="#n55" endid="#n56"/>
@@ -189,7 +189,7 @@
 <note xml:id="n60" pname="b" oct="3" dur="8">
 <verse n="1"><syl>with</syl></verse></note>
 <note xml:id="n61" pname="c" oct="4" dur="8">
-<verse n="1"><syl>God?</syl></verse></note>
+<verse n="1"><syl eol="1">God?</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>

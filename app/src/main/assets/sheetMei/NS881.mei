@@ -51,7 +51,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="f" oct="4" dur="1">
-<verse n="1"><syl>mine;</syl></verse></note>
+<verse n="1"><syl eol="1">mine;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -101,7 +101,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ply.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">F7</harm>
@@ -152,7 +152,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">vine,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vine,</syl></verse></note>
 <note xml:id="n46" pname="c" oct="5" dur="4"/>
 <note xml:id="n47" pname="b" oct="4" dur="4"/>
 </layer></staff>
@@ -190,7 +190,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ply!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply!</syl></verse></note>
 <rest xml:id="r55" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

@@ -33,7 +33,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>sin?</syl></verse></note>
+<verse n="1"><syl eol="1">sin?</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Noth</syl></verse></note>
@@ -62,7 +62,7 @@
 <note xml:id="n16" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n17" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sus;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus;</syl></verse></note>
 <beam>
 <note xml:id="n18" pname="g" oct="4" dur="8">
 <verse n="1"><syl>What</syl></verse></note>
@@ -89,7 +89,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">gain?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain?</syl></verse></note>
 <beam>
 <note xml:id="n26" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Noth</syl></verse></note>
@@ -120,7 +120,7 @@
 <note xml:id="n33" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n34" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sus.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus.</syl></verse></note>
 <beam>
 <note xml:id="n35" pname="a" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>Oh!</syl></verse></note>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>flow</syl></verse></note>
+<verse n="1"><syl eol="1">flow</syl></verse></note>
 <beam>
 <note xml:id="n43" pname="a" oct="4" dur="8">
 <verse n="1"><syl>That</syl></verse></note>
@@ -175,7 +175,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="b" oct="4" dur="4">
-<verse n="1"><syl>snow;</syl></verse></note>
+<verse n="1"><syl eol="1">snow;</syl></verse></note>
 <beam>
 <note xml:id="n51" pname="a" oct="4" dur="8"/>
 <note xml:id="n52" pname="f" oct="4" dur="8"/>
@@ -215,7 +215,7 @@
 <note xml:id="n63" pname="c" oct="4" dur="8"/>
 </beam>
 <note xml:id="n64" pname="c" oct="4" dur="2">
-<verse n="1"><syl>know,</syl></verse></note>
+<verse n="1"><syl eol="1">know,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n61" endid="#n62"/>
@@ -258,7 +258,7 @@
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n75" pname="f" oct="4" dur="8"/>
 <note xml:id="n76" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <slur startid="#n74" endid="#n75"/>

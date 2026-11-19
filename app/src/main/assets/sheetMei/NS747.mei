@@ -29,7 +29,7 @@
 </beam>
 <note xml:id="n8" pname="g" oct="4" dur="8"/>
 <note xml:id="n9" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">pose:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pose:</syl></verse></note>
 </layer></staff>
 <tie startid="#n7" endid="#n8"/>
 </measure>
@@ -56,7 +56,7 @@
 </beam>
 <note xml:id="n17" pname="f" oct="4" dur="8"/>
 <note xml:id="n18" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">cus;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cus;</syl></verse></note>
 </layer></staff>
 <tie startid="#n16" endid="#n17"/>
 </measure>
@@ -82,7 +82,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">thing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thing!</syl></verse></note>
 <beam>
 <note xml:id="n26" pname="f" oct="4" dur="8"/>
 <note xml:id="n27" pname="g" oct="4" dur="8"/>
@@ -123,7 +123,7 @@
 </beam>
 <note xml:id="n38" pname="g" oct="4" dur="8"/>
 <note xml:id="n39" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">sure:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure:</syl></verse></note>
 </layer></staff>
 <tie startid="#n37" endid="#n38"/>
 </measure>
@@ -150,7 +150,7 @@
 </beam>
 <note xml:id="n47" pname="f" oct="4" dur="8"/>
 <note xml:id="n48" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">sure,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure,</syl></verse></note>
 </layer></staff>
 <tie startid="#n46" endid="#n47"/>
 </measure>
@@ -178,7 +178,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <tie startid="#n55" endid="#n56"/>
@@ -204,7 +204,7 @@
 <note xml:id="n61" pname="f" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="m" con="d">clu</syl></verse></note>
 <note xml:id="n62" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">sive</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sive</syl></verse></note>
 <note xml:id="n63" pname="e" oct="4" dur="4"/>
 <note xml:id="n64" pname="e" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
@@ -224,7 +224,7 @@
 <note xml:id="n67" pname="e" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="m" con="d">ten</syl></verse></note>
 <note xml:id="n68" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">sive!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sive!</syl></verse></note>
 <note xml:id="n69" pname="d" oct="4" dur="4"/>
 <note xml:id="n70" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Let’s</syl></verse></note>
@@ -255,7 +255,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n77" pname="a" oct="4" dur="1">
-<verse n="1"><syl>Him!</syl></verse></note>
+<verse n="1"><syl eol="1">Him!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <tie startid="#n77" endid="#n78"/>
@@ -281,7 +281,7 @@
 <note xml:id="n83" pname="f" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">coun</syl></verse></note>
 <note xml:id="n84" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">sel,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sel,</syl></verse></note>
 <note xml:id="n85" pname="e" oct="4" dur="4"/>
 <note xml:id="n86" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
@@ -301,7 +301,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n90" pname="d" oct="5" dur="2" dots="1">
-<verse n="1"><syl>will,</syl></verse></note>
+<verse n="1"><syl eol="1">will,</syl></verse></note>
 <note xml:id="n91" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Make</syl></verse></note>
 </layer></staff>
@@ -329,7 +329,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n97" pname="d" oct="4" dur="1">
-<verse n="1"><syl>theme!</syl></verse></note>
+<verse n="1"><syl eol="1">theme!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <tie startid="#n97" endid="#n98"/>

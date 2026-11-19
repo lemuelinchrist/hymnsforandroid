@@ -29,7 +29,7 @@
 <note xml:id="n6" pname="g" oct="4" dur="2" dots="1">
 <verse n="1"><syl wordpos="i" con="d">ves</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sels</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sels</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4">
 <verse n="1"><syl>God’s</syl></verse></note>
 </layer></staff>
@@ -53,7 +53,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>be,</syl></verse></note>
+<verse n="1"><syl eol="1">be,</syl></verse></note>
 <rest xml:id="r14" dur="2"/>
 <note xml:id="n15" pname="c" oct="4" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
@@ -79,7 +79,7 @@
 <note xml:id="n20" pname="d" oct="5" dur="2" dots="1">
 <verse n="1"><syl wordpos="i" con="d">beau</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty</syl></verse></note>
 <note xml:id="n22" pname="g" oct="4" dur="4" accid="s" accid.ges="s">
 <verse n="1"><syl>Thou,</syl></verse></note>
 </layer></staff>
@@ -103,7 +103,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <rest xml:id="r29" dur="2" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>

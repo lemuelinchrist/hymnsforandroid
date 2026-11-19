@@ -43,7 +43,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="d" oct="4" dur="2">
-<verse n="1"><syl>氣，</syl></verse></note>
+<verse n="1"><syl eol="1">氣，</syl></verse></note>
 <note xml:id="n10" pname="d" oct="4" dur="4">
 <verse n="1"><syl>香</syl></verse></note>
 </layer></staff>
@@ -73,7 +73,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="d" oct="5" dur="2">
-<verse n="1"><syl>來；</syl></verse></note>
+<verse n="1"><syl eol="1">來；</syl></verse></note>
 <note xml:id="n17" pname="b" oct="4" dur="4">
 <verse n="1"><syl>但</syl></verse></note>
 </layer></staff>
@@ -119,7 +119,7 @@
 <sb/>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="d" oct="4" dur="2">
-<verse n="1"><syl>體，</syl></verse></note>
+<verse n="1"><syl eol="1">體，</syl></verse></note>
 <note xml:id="n29" pname="d" oct="4" dur="4">
 <verse n="1"><syl>每</syl></verse></note>
 </layer></staff>
@@ -149,7 +149,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>愛。</syl></verse></note>
+<verse n="1"><syl eol="1">愛。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <tie startid="#n35" endid="#n36"/>

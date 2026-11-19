@@ -30,7 +30,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">in</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>us</syl></verse></note>
+<verse n="1"><syl eol="1">us</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n10" pname="f" oct="4" dur="8">
@@ -64,7 +64,7 @@
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="f" oct="4" dur="8"/>
 <note xml:id="n19" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">cealed!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cealed!</syl></verse></note>
 <note xml:id="n20" pname="e" oct="4" dur="4"/>
 <note xml:id="n21" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Through</syl></verse></note>
@@ -98,7 +98,7 @@
 <note xml:id="n28" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">break</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n31" pname="f" oct="4" dur="8">
@@ -131,7 +131,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">vealed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vealed.</syl></verse></note>
 <note xml:id="n40" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Fall</syl></verse></note>
 </layer></staff>
@@ -153,7 +153,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>ground,</syl></verse></note>
+<verse n="1"><syl eol="1">ground,</syl></verse></note>
 <beam>
 <note xml:id="n45" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Let</syl></verse></note>
@@ -181,7 +181,7 @@
 <note xml:id="n51" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ci</syl></verse></note>
 <note xml:id="n52" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">fied,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fied,</syl></verse></note>
 <note xml:id="n53" pname="d" oct="5" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -203,7 +203,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="b" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">bound;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bound;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -230,7 +230,7 @@
 <verse n="1"><syl wordpos="m" con="d">ti</syl></verse></note>
 </beam>
 <note xml:id="n66" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">plied.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">plied.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B7</harm>
 <slur startid="#n62" endid="#n64"/>
@@ -260,7 +260,7 @@
 <note xml:id="n73" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">in</syl></verse></note>
 <note xml:id="n74" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>us</syl></verse></note>
+<verse n="1"><syl eol="1">us</syl></verse></note>
 <note xml:id="n75" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n76" pname="f" oct="4" dur="8">
@@ -293,7 +293,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n84" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">cealed!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cealed!</syl></verse></note>
 <note xml:id="n85" pname="e" oct="4" dur="4" dots="1">
 <verse n="1"><syl>Through</syl></verse></note>
 <note xml:id="n86" pname="e" oct="4" dur="4"/>
@@ -328,7 +328,7 @@
 <note xml:id="n94" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">break</syl></verse></note>
 <note xml:id="n95" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n96" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n97" pname="f" oct="4" dur="8">
@@ -361,7 +361,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n105" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">vealed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vealed.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 </measure>

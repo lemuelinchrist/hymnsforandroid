@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">splen</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">dor!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dor!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -49,7 +49,7 @@
 <note xml:id="n14" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n15" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">bove!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bove!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -76,7 +76,7 @@
 <note xml:id="n22" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">car</syl></verse></note>
 <note xml:id="n23" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">nate,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">nate,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -100,7 +100,7 @@
 <note xml:id="n29" pname="a" oct="4" dur="4">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n30" pname="g" oct="4" dur="2">
-<verse n="1"><syl>love!</syl></verse></note>
+<verse n="1"><syl eol="1">love!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>
 <harm staff="1" tstamp="2" place="above">D7</harm>

@@ -46,7 +46,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="4"/>
 <rest xml:id="r13" dur="8"/>
 </layer></staff>
@@ -94,7 +94,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">dored;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dored;</syl></verse></note>
 <rest xml:id="r25" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -135,7 +135,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>here,</syl></verse></note>
+<verse n="1"><syl eol="1">here,</syl></verse></note>
 <note xml:id="n36" pname="e" oct="4" dur="4"/>
 <rest xml:id="r37" dur="8"/>
 </layer></staff>
@@ -183,7 +183,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>there;</syl></verse></note>
+<verse n="1"><syl eol="1">there;</syl></verse></note>
 <rest xml:id="r50" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -229,7 +229,7 @@
 </measure>
 <measure n="20" right="end"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl>there.</syl></verse></note>
+<verse n="1"><syl eol="1">there.</syl></verse></note>
 <rest xml:id="r63" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

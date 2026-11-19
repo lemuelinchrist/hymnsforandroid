@@ -38,7 +38,7 @@
 <verse n="1"><syl>its</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="g" oct="4" dur="4">
-<verse n="1"><syl>length,</syl></verse></note>
+<verse n="1"><syl eol="1">length,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭maj7</harm>
 <tie startid="#n9" endid="#n10"/>
@@ -75,7 +75,7 @@
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="b" oct="4" dur="4">
-<verse n="1"><syl>strength;</syl></verse></note>
+<verse n="1"><syl eol="1">strength;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭7/D</harm>
@@ -114,7 +114,7 @@
 <verse n="1"><syl>may</syl></verse></note>
 </beam>
 <note xml:id="n36" pname="g" oct="4" dur="4">
-<verse n="1"><syl>gaze,</syl></verse></note>
+<verse n="1"><syl eol="1">gaze,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭maj7</harm>
 <tie startid="#n33" endid="#n34"/>
@@ -159,7 +159,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="e" oct="4" dur="1">
-<verse n="1"><syl>days.</syl></verse></note>
+<verse n="1"><syl eol="1">days.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/E♭</harm>

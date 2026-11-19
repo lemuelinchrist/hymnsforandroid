@@ -30,11 +30,11 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="g" oct="4" dur="4">
-<verse n="1"><syl>我，</syl></verse></note>
+<verse n="1"><syl eol="1">我，</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4">
 <verse n="1"><syl>阿</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
-<verse n="1"><syl>們！</syl></verse></note>
+<verse n="1"><syl eol="1">們！</syl></verse></note>
 <note xml:id="n10" pname="g" oct="4" dur="4">
 <verse n="1"><syl>顯</syl></verse></note>
 </layer></staff>
@@ -60,7 +60,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="d" oct="4" dur="4">
-<verse n="1"><syl>過，</syl></verse></note>
+<verse n="1"><syl eol="1">過，</syl></verse></note>
 <beam>
 <note xml:id="n17" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl>阿</syl></verse></note>
@@ -71,7 +71,7 @@
 <note xml:id="n19" pname="d" oct="4" dur="8">
 <verse n="1"><syl>路</syl></verse></note>
 <note xml:id="n20" pname="d" oct="4" dur="8">
-<verse n="1"><syl>亞！</syl></verse></note>
+<verse n="1"><syl eol="1">亞！</syl></verse></note>
 </beam>
 <note xml:id="n21" pname="c" oct="4" dur="4">
 <verse n="1"><syl>用</syl></verse></note>
@@ -97,7 +97,7 @@
 <note xml:id="n27" pname="g" oct="4" dur="4">
 <verse n="1"><syl>洗</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="4">
-<verse n="1"><syl>濯，</syl></verse></note>
+<verse n="1"><syl eol="1">濯，</syl></verse></note>
 <note xml:id="n29" pname="a" oct="4" dur="4">
 <verse n="1"><syl>使</syl></verse></note>
 </layer></staff>
@@ -123,11 +123,11 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="c" oct="4" dur="4">
-<verse n="1"><syl>沒，</syl></verse></note>
+<verse n="1"><syl eol="1">沒，</syl></verse></note>
 <note xml:id="n36" pname="c" oct="4" dur="4">
 <verse n="1"><syl>阿</syl></verse></note>
 <note xml:id="n37" pname="c" oct="4" dur="4">
-<verse n="1"><syl>們！</syl></verse></note>
+<verse n="1"><syl eol="1">們！</syl></verse></note>
 <rest xml:id="r38" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

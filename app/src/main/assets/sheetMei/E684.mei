@@ -45,7 +45,7 @@
 <verse n="1"><syl wordpos="i" con="d">lan</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="8"/>
 <note xml:id="n13" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">guish;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">guish;</syl></verse></note>
 <rest xml:id="r14" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
@@ -86,7 +86,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>kneel;</syl></verse></note>
+<verse n="1"><syl eol="1">kneel;</syl></verse></note>
 <rest xml:id="r25" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -138,7 +138,7 @@
 <verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
 <note xml:id="n39" pname="f" oct="4" dur="8"/>
 <note xml:id="n40" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">guish,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">guish,</syl></verse></note>
 <rest xml:id="r41" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
@@ -182,7 +182,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="c" oct="4" dur="1">
-<verse n="1"><syl>heal.</syl></verse></note>
+<verse n="1"><syl eol="1">heal.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">F/C</harm>

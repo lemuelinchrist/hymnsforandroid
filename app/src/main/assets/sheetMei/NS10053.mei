@@ -46,7 +46,7 @@
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ceive</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ceive</syl></verse></note>
 <note xml:id="n13" pname="d" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -84,7 +84,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="4">
-<verse n="1"><syl>strength</syl></verse></note>
+<verse n="1"><syl eol="1">strength</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -122,7 +122,7 @@
 <note xml:id="n33" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">bless</syl></verse></note>
 <note xml:id="n34" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ing.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing.</syl></verse></note>
 <note xml:id="n35" pname="c" oct="5" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -154,7 +154,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lamb</syl></verse></note>
+<verse n="1"><syl eol="1">Lamb</syl></verse></note>
 <note xml:id="n43" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Who</syl></verse></note>
 </layer></staff>
@@ -180,7 +180,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ceive</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ceive</syl></verse></note>
 <note xml:id="n50" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -200,7 +200,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">es</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es</syl></verse></note>
 <note xml:id="n56" pname="a" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -222,7 +222,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="f" oct="4" dur="2" dots="1" accid="s" accid.ges="s">
-<verse n="1"><syl>strength</syl></verse></note>
+<verse n="1"><syl eol="1">strength</syl></verse></note>
 <note xml:id="n62" pname="b" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -243,7 +243,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry</syl></verse></note>
 <beam>
 <note xml:id="n68" pname="g" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -268,7 +268,7 @@
 </measure>
 <measure n="22"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="c" oct="5" dur="1">
-<verse n="1"><syl wordpos="t">ing.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>

@@ -49,7 +49,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 </tuplet>
 <note xml:id="n14" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>death—</syl></verse></note>
+<verse n="1"><syl eol="1">death—</syl></verse></note>
 <note xml:id="n15" pname="b" oct="3" dur="8">
 <verse n="1"><syl>Where</syl></verse></note>
 </layer></staff>
@@ -87,7 +87,7 @@
 <note xml:id="n24" pname="g" oct="4" dur="4"/>
 </tuplet>
 <note xml:id="n25" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>breath</syl></verse></note>
+<verse n="1"><syl eol="1">breath</syl></verse></note>
 <note xml:id="n26" pname="e" oct="4" dur="8">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -126,7 +126,7 @@
 <verse n="1"><syl>with</syl></verse></note>
 </tuplet>
 <note xml:id="n36" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <note xml:id="n37" pname="b" oct="3" dur="8">
 <verse n="1"><syl>Your</syl></verse></note>
 </layer></staff>
@@ -157,7 +157,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <beam>
 <note xml:id="n45" pname="g" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>He’s</syl></verse></note>
@@ -183,7 +183,7 @@
 <note xml:id="n50" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
 <note xml:id="n51" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ior,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ior,</syl></verse></note>
 <note xml:id="n52" pname="b" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -204,7 +204,7 @@
 <note xml:id="n56" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n57" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ble,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ble,</syl></verse></note>
 <note xml:id="n58" pname="b" oct="4" dur="4"/>
 <rest xml:id="r59" dur="8"/>
 <note xml:id="n60" pname="e" oct="4" dur="8">
@@ -245,7 +245,7 @@
 <verse n="1"><syl>my</syl></verse></note>
 </tuplet>
 <note xml:id="n70" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Friend—</syl></verse></note>
+<verse n="1"><syl eol="1">Friend—</syl></verse></note>
 <note xml:id="n71" pname="b" oct="3" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -275,7 +275,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n78" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>end.</syl></verse></note>
+<verse n="1"><syl eol="1">end.</syl></verse></note>
 <rest xml:id="r79" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

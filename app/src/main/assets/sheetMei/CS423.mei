@@ -35,7 +35,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>跑！</syl></verse></note>
+<verse n="1"><syl eol="1">跑！</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="4">
 <verse n="1"><syl>標</syl></verse></note>
 </layer></staff>
@@ -57,7 +57,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="f" oct="4" dur="1">
-<verse n="1"><syl>主；</syl></verse></note>
+<verse n="1"><syl eol="1">主；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <tie startid="#n14" endid="#n15"/>
@@ -96,7 +96,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>顧，</syl></verse></note>
+<verse n="1"><syl eol="1">顧，</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="4">
 <verse n="1"><syl>一</syl></verse></note>
 </layer></staff>
@@ -122,7 +122,7 @@
 <sb/>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="c" oct="4" dur="1">
-<verse n="1"><syl>督。</syl></verse></note>
+<verse n="1"><syl eol="1">督。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
@@ -157,7 +157,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="c" oct="5" dur="1">
-<verse n="1"><syl>跑，</syl></verse></note>
+<verse n="1"><syl eol="1">跑，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n38" endid="#n39"/>
@@ -192,7 +192,7 @@
 <note xml:id="n46" pname="e" oct="5" dur="4">
 <verse n="1"><syl>路</syl></verse></note>
 <note xml:id="n47" pname="d" oct="5" dur="4">
-<verse n="1"><syl>亞，</syl></verse></note>
+<verse n="1"><syl eol="1">亞，</syl></verse></note>
 <note xml:id="n48" pname="c" oct="5" dur="4">
 <verse n="1"><syl>要</syl></verse></note>
 <note xml:id="n49" pname="b" oct="4" dur="4">
@@ -215,7 +215,7 @@
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="b" oct="4" dur="1">
-<verse n="1"><syl>跑，</syl></verse></note>
+<verse n="1"><syl eol="1">跑，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n54" endid="#n55"/>
@@ -264,7 +264,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="c" oct="4" dur="1">
-<verse n="1"><syl>督。</syl></verse></note>
+<verse n="1"><syl eol="1">督。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>

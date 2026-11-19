@@ -36,7 +36,7 @@
 <verse n="1"><syl>with</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Him,</syl></verse></note>
+<verse n="1"><syl eol="1">Him,</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="8">
 <verse n="1"><syl>With</syl></verse></note>
 </layer></staff>
@@ -69,7 +69,7 @@
 <verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
 </beam>
 <note xml:id="n20" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">in;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in;</syl></verse></note>
 <note xml:id="n21" pname="f" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -101,7 +101,7 @@
 <note xml:id="n29" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">pen</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">tine,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tine,</syl></verse></note>
 <note xml:id="n31" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Com</syl></verse></note>
 </layer></staff>
@@ -132,7 +132,7 @@
 <note xml:id="n39" pname="d" oct="5" dur="8">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n40" pname="c" oct="5" dur="8">
-<verse n="1"><syl>mine,</syl></verse></note>
+<verse n="1"><syl eol="1">mine,</syl></verse></note>
 <note xml:id="n41" pname="b" oct="4" dur="8">
 <verse n="1"><syl>I</syl></verse></note>
 </beam>
@@ -151,7 +151,7 @@
 </measure>
 <measure n="11" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>fast.</syl></verse></note>
+<verse n="1"><syl eol="1">fast.</syl></verse></note>
 <rest xml:id="r45" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

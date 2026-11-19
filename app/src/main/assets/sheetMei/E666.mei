@@ -27,7 +27,7 @@
 <note xml:id="n6" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">end</syl></verse></note>
 <note xml:id="n7" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">F/A</harm>
@@ -51,7 +51,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="a" oct="4" dur="1">
-<verse n="1"><syl>seek;</syl></verse></note>
+<verse n="1"><syl eol="1">seek;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -77,7 +77,7 @@
 <note xml:id="n19" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">dawn</syl></verse></note>
 <note xml:id="n20" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">F/A</harm>
@@ -99,7 +99,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="f" oct="4" dur="1">
-<verse n="1"><syl>sleep.</syl></verse></note>
+<verse n="1"><syl eol="1">sleep.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -126,7 +126,7 @@
 <verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="8"/>
 <note xml:id="n33" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <slur startid="#n31" endid="#n32"/>
@@ -150,7 +150,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="c" oct="5" dur="1">
-<verse n="1"><syl wordpos="t">tack:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tack:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">C7</harm>
@@ -177,7 +177,7 @@
 <note xml:id="n45" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">wait</syl></verse></note>
 <note xml:id="n46" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
@@ -198,7 +198,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="f" oct="4" dur="1">
-<verse n="1"><syl>slack.</syl></verse></note>
+<verse n="1"><syl eol="1">slack.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

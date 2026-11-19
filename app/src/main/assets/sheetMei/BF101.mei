@@ -39,7 +39,7 @@
 <verse n="1"><syl wordpos="i" con="d">yield</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="8"/>
 <note xml:id="n12" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ed;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <slur startid="#n10" endid="#n11"/>
@@ -74,7 +74,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">lone,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lone,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -112,7 +112,7 @@
 <verse n="1"><syl wordpos="i" con="d">bring</syl></verse></note>
 <note xml:id="n33" pname="f" oct="4" dur="8"/>
 <note xml:id="n34" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <slur startid="#n32" endid="#n33"/>
@@ -150,7 +150,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="c" oct="4" dur="1">
-<verse n="1"><syl>done.”</syl></verse></note>
+<verse n="1"><syl eol="1">done.”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

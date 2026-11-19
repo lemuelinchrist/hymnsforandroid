@@ -42,7 +42,7 @@
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="f" oct="4" dur="4"/>
 <note xml:id="n10" pname="a" oct="4" dur="4">
-<verse n="1"><syl>thorns,</syl></verse></note>
+<verse n="1"><syl eol="1">thorns,</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
@@ -67,7 +67,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>now;</syl></verse></note>
+<verse n="1"><syl eol="1">now;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♭</harm>
 <tie startid="#n16" endid="#n17"/>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">dorns</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dorns</syl></verse></note>
 <note xml:id="n27" pname="a" oct="4" dur="4"/>
 <note xml:id="n28" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
@@ -136,7 +136,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>brow.</syl></verse></note>
+<verse n="1"><syl eol="1">brow.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭/A♭</harm>
 <tie startid="#n33" endid="#n34"/>

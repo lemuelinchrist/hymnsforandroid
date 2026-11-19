@@ -22,7 +22,7 @@
 <verse n="1"><syl>my</syl></verse></note>
 </beam>
 <note xml:id="n6" pname="a" oct="4" dur="4">
-<verse n="1"><syl>heart,</syl></verse></note>
+<verse n="1"><syl eol="1">heart,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -38,7 +38,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">Em</harm>
 </measure>
@@ -59,7 +59,7 @@
 <verse n="1"><syl>my</syl></verse></note>
 </beam>
 <note xml:id="n17" pname="g" oct="4" dur="4">
-<verse n="1"><syl>heart</syl></verse></note>
+<verse n="1"><syl eol="1">heart</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">Em7</harm>
@@ -76,7 +76,7 @@
 <verse n="1"><syl>I</syl></verse></note>
 </beam>
 <note xml:id="n22" pname="f" oct="4" dur="2">
-<verse n="1"><syl>pray;</syl></verse></note>
+<verse n="1"><syl eol="1">pray;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -111,7 +111,7 @@
 <note xml:id="n31" pname="b" oct="3" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ery</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">day</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -137,7 +137,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 <rest xml:id="r40" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

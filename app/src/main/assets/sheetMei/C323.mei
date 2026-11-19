@@ -25,7 +25,7 @@
 <note xml:id="n6" pname="a" oct="4" dur="2" dots="1">
 <verse n="1"><syl>亮，</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="2">
-<verse n="1"><syl>主，</syl></verse></note>
+<verse n="1"><syl eol="1">主，</syl></verse></note>
 <rest xml:id="r8" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
@@ -48,7 +48,7 @@
 <note xml:id="n14" pname="b" oct="4" dur="2" dots="1">
 <verse n="1"><syl>上，</syl></verse></note>
 <note xml:id="n15" pname="g" oct="4" dur="2">
-<verse n="1"><syl>主，</syl></verse></note>
+<verse n="1"><syl eol="1">主，</syl></verse></note>
 <rest xml:id="r16" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -73,7 +73,7 @@
 <note xml:id="n22" pname="d" oct="5" dur="2" dots="1">
 <verse n="1"><syl>光，</syl></verse></note>
 <note xml:id="n23" pname="c" oct="5" dur="2">
-<verse n="1"><syl>主，</syl></verse></note>
+<verse n="1"><syl eol="1">主，</syl></verse></note>
 <rest xml:id="r24" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -95,7 +95,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>內。</syl></verse></note>
+<verse n="1"><syl eol="1">內。</syl></verse></note>
 <note xml:id="n31" pname="e" oct="4" dur="2"/>
 <rest xml:id="r32" dur="4"/>
 </layer></staff>

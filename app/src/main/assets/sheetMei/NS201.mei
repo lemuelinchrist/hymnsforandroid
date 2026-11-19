@@ -28,7 +28,7 @@
 <note xml:id="n8" pname="a" oct="4" dur="16"/>
 </beam>
 <note xml:id="n9" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Lord!”</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!”</syl></verse></note>
 </layer></staff>
 <tie startid="#n8" endid="#n9"/>
 </measure>
@@ -48,7 +48,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">long;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">long;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -75,7 +75,7 @@
 <note xml:id="n23" pname="b" oct="4" dur="16"/>
 </beam>
 <note xml:id="n24" pname="b" oct="4" dur="2">
-<verse n="1"><syl>Lord”</syl></verse></note>
+<verse n="1"><syl eol="1">Lord”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <tie startid="#n23" endid="#n24"/>
@@ -97,7 +97,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="a" oct="4" dur="1">
-<verse n="1"><syl>song.</syl></verse></note>
+<verse n="1"><syl eol="1">song.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -126,7 +126,7 @@
 <note xml:id="n38" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="16">
-<verse n="1"><syl>sky,</syl></verse></note>
+<verse n="1"><syl eol="1">sky,</syl></verse></note>
 </beam>
 <note xml:id="n40" pname="a" oct="4" dur="2"/>
 </layer></staff>
@@ -149,7 +149,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="b" oct="4" dur="1">
-<verse n="1"><syl>trail;</syl></verse></note>
+<verse n="1"><syl eol="1">trail;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -176,7 +176,7 @@
 <note xml:id="n54" pname="c" oct="5" dur="16"/>
 </beam>
 <note xml:id="n55" pname="c" oct="5" dur="2">
-<verse n="1"><syl>Lord“;</syl></verse></note>
+<verse n="1"><syl eol="1">Lord“;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <tie startid="#n54" endid="#n55"/>
@@ -199,7 +199,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="f" oct="4" dur="1">
-<verse n="1"><syl>fail.</syl></verse></note>
+<verse n="1"><syl eol="1">fail.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
@@ -222,7 +222,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="g" oct="4" dur="1">
-<verse n="1"><syl>friend,</syl></verse></note>
+<verse n="1"><syl eol="1">friend,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -243,7 +243,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n73" pname="a" oct="4" dur="1">
-<verse n="1"><syl>friend;</syl></verse></note>
+<verse n="1"><syl eol="1">friend;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -265,7 +265,7 @@
 </measure>
 <measure n="22"><staff n="1"><layer n="1">
 <note xml:id="n79" pname="g" oct="4" dur="1">
-<verse n="1"><syl>Him</syl></verse></note>
+<verse n="1"><syl eol="1">Him</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -286,7 +286,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="a" oct="4" dur="1">
-<verse n="1"><syl>end.</syl></verse></note>
+<verse n="1"><syl eol="1">end.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -315,7 +315,7 @@
 <note xml:id="n93" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n94" pname="a" oct="4" dur="16">
-<verse n="1"><syl>sky,</syl></verse></note>
+<verse n="1"><syl eol="1">sky,</syl></verse></note>
 </beam>
 <note xml:id="n95" pname="a" oct="4" dur="2"/>
 </layer></staff>
@@ -338,7 +338,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n101" pname="b" oct="4" dur="1">
-<verse n="1"><syl>trail;</syl></verse></note>
+<verse n="1"><syl eol="1">trail;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -365,7 +365,7 @@
 <note xml:id="n109" pname="c" oct="5" dur="16"/>
 </beam>
 <note xml:id="n110" pname="c" oct="5" dur="2">
-<verse n="1"><syl>Lord”</syl></verse></note>
+<verse n="1"><syl eol="1">Lord”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <tie startid="#n109" endid="#n110"/>
@@ -388,7 +388,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n116" pname="f" oct="4" dur="1">
-<verse n="1"><syl>fail.</syl></verse></note>
+<verse n="1"><syl eol="1">fail.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

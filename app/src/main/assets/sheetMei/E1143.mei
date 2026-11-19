@@ -43,7 +43,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="d" oct="4" dur="2">
-<verse n="1"><syl>fruit,</syl></verse></note>
+<verse n="1"><syl eol="1">fruit,</syl></verse></note>
 <note xml:id="n10" pname="d" oct="4" dur="4">
 <verse n="1"><syl>With</syl></verse></note>
 </layer></staff>
@@ -73,7 +73,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="d" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">plete.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">plete.</syl></verse></note>
 <note xml:id="n17" pname="b" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -119,7 +119,7 @@
 <sb/>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="d" oct="4" dur="2">
-<verse n="1"><syl>live,</syl></verse></note>
+<verse n="1"><syl eol="1">live,</syl></verse></note>
 <note xml:id="n29" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Was</syl></verse></note>
 </layer></staff>
@@ -149,7 +149,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>eat.</syl></verse></note>
+<verse n="1"><syl eol="1">eat.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <tie startid="#n35" endid="#n36"/>

@@ -39,7 +39,7 @@
 <note xml:id="n10" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">dore</syl></verse></note>
 <note xml:id="n11" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -76,7 +76,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n21" pname="g" oct="4" dur="2">
-<verse n="1"><syl>throne!</syl></verse></note>
+<verse n="1"><syl eol="1">throne!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7</harm>
 <harm staff="1" tstamp="3" place="above">G7</harm>
@@ -113,9 +113,9 @@
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 </beam>
 <note xml:id="n31" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fore</syl></verse></note>
 <note xml:id="n32" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -154,7 +154,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n42" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lone.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lone.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -187,12 +187,12 @@
 <note xml:id="n50" pname="e" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Thou</syl></verse></note>
 <note xml:id="n51" pname="f" oct="4" dur="16">
-<verse n="1"><syl>art</syl></verse></note>
+<verse n="1"><syl eol="1">art</syl></verse></note>
 </beam>
 <note xml:id="n52" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">wor</syl></verse></note>
 <note xml:id="n53" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">thy;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thy;</syl></verse></note>
 <rest xml:id="r54" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -231,7 +231,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n65" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lone!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lone!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>
 <harm staff="1" tstamp="2" place="above">D7</harm>
@@ -269,9 +269,9 @@
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 </beam>
 <note xml:id="n75" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fore</syl></verse></note>
 <note xml:id="n76" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>
@@ -310,7 +310,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n86" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lone!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lone!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>

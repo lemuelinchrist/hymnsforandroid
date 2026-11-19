@@ -34,7 +34,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="e" oct="4" dur="1">
-<verse n="1"><syl>You,</syl></verse></note>
+<verse n="1"><syl eol="1">You,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am/C</harm>
 </measure>
@@ -73,7 +73,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">new.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">new.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 </measure>
@@ -94,7 +94,7 @@
 <note xml:id="n24" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">wa</syl></verse></note>
 <note xml:id="n25" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ter,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 </measure>
@@ -114,7 +114,7 @@
 <note xml:id="n30" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
 <note xml:id="n31" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am/C</harm>
 </measure>
@@ -139,7 +139,7 @@
 <note xml:id="n38" pname="f" oct="4" dur="4">
 <verse n="1"><syl>spreads,</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="4">
-<verse n="1"><syl>and</syl></verse></note>
+<verse n="1"><syl eol="1">and</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/A</harm>
 </measure>
@@ -169,7 +169,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">fest.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fest.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n48" endid="#n49"/>

@@ -38,7 +38,7 @@
 <note xml:id="n10" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl>計</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="8">
-<verse n="1"><syl>畫，</syl></verse></note>
+<verse n="1"><syl eol="1">畫，</syl></verse></note>
 <note xml:id="n12" pname="f" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -74,7 +74,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="g" oct="4" dur="1">
-<verse n="1"><syl>家；</syl></verse></note>
+<verse n="1"><syl eol="1">家；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -98,7 +98,7 @@
 <measure n="11"><staff n="1"><layer n="1">
 <rest xml:id="r28" dur="4"/>
 <note xml:id="n29" pname="d" oct="4" dur="4">
-<verse n="1"><syl>『主，</syl></verse></note>
+<verse n="1"><syl eol="1">『主，</syl></verse></note>
 <note xml:id="n30" pname="d" oct="4" dur="4" dots="1">
 <verse n="1"><syl>得</syl></verse></note>
 <note xml:id="n31" pname="c" oct="4" dur="8">
@@ -129,7 +129,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="g" oct="4" dur="1">
-<verse n="1"><syl>們─</syl></verse></note>
+<verse n="1"><syl eol="1">們─</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -150,7 +150,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="c" oct="4" dur="1">
-<verse n="1"><syl>法！』</syl></verse></note>
+<verse n="1"><syl eol="1">法！』</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="8">
 <verse n="1"><syl>be</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4">
-<verse n="1"><syl>seen</syl></verse></note>
+<verse n="1"><syl eol="1">seen</syl></verse></note>
 <note xml:id="n9" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">With</syl></verse></note>
 </layer></staff>
@@ -55,7 +55,7 @@
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="d" oct="4" dur="4" dots="1"/>
 <note xml:id="n15" pname="d" oct="4" dur="4">
-<verse n="1"><syl>Songs;</syl></verse></note>
+<verse n="1"><syl eol="1">Songs;</syl></verse></note>
 <note xml:id="n16" pname="d" oct="4" dur="8">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
@@ -82,7 +82,7 @@
 <note xml:id="n22" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n23" pname="d" oct="5" dur="4">
-<verse n="1"><syl>ones,</syl></verse></note>
+<verse n="1"><syl eol="1">ones,</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="b" oct="4" dur="16"/>
 <note xml:id="n25" pname="a" oct="4" dur="16">
@@ -110,7 +110,7 @@
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="g" oct="4" dur="4" dots="1"/>
 <note xml:id="n31" pname="g" oct="4" dur="4">
-<verse n="1"><syl>longs!</syl></verse></note>
+<verse n="1"><syl eol="1">longs!</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
