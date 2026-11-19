@@ -915,7 +915,7 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&theme=light|dark|black[&pape
 - **Guitar** (derived from the piano MEI, no separate source):
   - Key → capo by the tonic's pitch class: `CAPO = {C:0, C♯/D♭:1, D:0, D♯/E♭:1, E:2, F:3, F♯/G♭:4, G:0, G♯/A♭:1, A:0, A♯/B♭:3, B:4}`.
   - Capo → interval to move every chord **down**: `{0:[0,0], 1:[1 letter,1 semitone], 2:[1,2], 3:[2,3], 4:[2,4]}`.
-  - Drop slash basses (`C/E` → shapes without bass); remove a chord equal to the previous one.
+  - Drop slash basses (`C/E` → shapes without bass) and make each chord plain: major, minor and the sevenths (`7`, `m7`, `maj7`) stay; `9`/`11`/`13` become the seventh (`A9` → `A7`, `Gmaj9` → `Gmaj7`), `sus2`/`sus4`/`add9`/`6`/`5` and augmented go (`Asus2` → `A`), diminished becomes minor (`Bdim` → `Bm`), `m7♭5` becomes `m7`. Then remove a chord equal to the previous one (so `E` then `E/D♯` is one `E`). The piano sheet keeps every chord as written.
   - Show `(Guitar: Capo N)` or `(Guitar)`; for Chinese sheets (`C…`, `CS…`) `(吉他: Capo N)` / `(吉他)`.
   - After transposing, the capo is recomputed from the new key.
 - **Hide staff (chord chart)**: built from the MEI by the page: each note/rest gets a start beat (meter unit, dots,

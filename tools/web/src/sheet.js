@@ -122,11 +122,23 @@ function moveNote(letter, alt, steps, semis) {
   return nl + SIGN[a];
 }
 
-// a chord moved by an interval; keepBass false drops the slash bass (guitar)
+// the guitar's chord: major, minor and the sevenths (7, m7, maj7) are kept; sus, add, 9/11/13, 6, 5, diminished, augmented
+// and altered chords are made plain (A9 -> A7, Asus2 -> A, Bdim -> Bm, Bm7♭5 -> Bm7)
+function guitarQuality(q) {
+  q = (q || '').replace(/[()]/g, '');
+  if (/^(min|m(?!aj)|-)7[♭b]5|^ø/.test(q)) return 'm7';
+  if (/^(dim|°|o)/.test(q)) return 'm';
+  q = q.replace(/sus[24]?/g, '').replace(/add\d+/g, '').replace(/^(aug|\+)/, '').replace(/[♭♯b#]\d+/g, '');
+  const m = /^(min|m(?!aj)|-)?(maj|M|Δ)?(\d*)/.exec(q), minor = m[1] ? 'm' : '';
+  if (m[2]) return minor + 'maj7';
+  return +m[3] >= 7 ? minor + '7' : minor;
+}
+
+// a chord moved by an interval; keepBass false is the guitar's: no slash bass, a plainer chord
 function moveChord(text, steps, semis, keepBass) {
   const m = CHORD.exec(symbolic(text));
   if (!m) return text;                         // a free-text chord (rare): leave it
-  let s = moveNote(m[1], ALT[m[2]] || 0, steps, semis) + m[3];
+  let s = moveNote(m[1], ALT[m[2]] || 0, steps, semis) + (keepBass ? m[3] : guitarQuality(m[3]));
   if (keepBass && m[4]) s += '/' + moveNote(m[4], ALT[m[5]] || 0, steps, semis);
   return s;
 }
