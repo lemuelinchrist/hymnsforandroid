@@ -9,7 +9,7 @@ import {scoreOf, DEFAULT as PIANO_DEFAULT} from './piano.js';
 import * as Player from './player.js';
 import {store} from './ui.js';
 
-const DEFAULT_BPM = 90;
+const DEFAULT_BPM = 110;   // as sheetplayer.js
 const bridge = window.HymnsPlay;
 let token = 0;
 

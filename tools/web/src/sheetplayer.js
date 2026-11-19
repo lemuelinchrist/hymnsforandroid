@@ -9,7 +9,7 @@ import {tr} from './i18n.js';
 import {host} from './host.js';
 
 const MIN_SPEED = 0.5, MAX_SPEED = 1.5;   // of the tune's tempo, by twentieths
-const DEFAULT_BPM = 90;
+const DEFAULT_BPM = 110;   // hymnal.net's own tunes run 90 to 130 (median 120); the same as the MIDI files we made ourselves
 // what is heard: everything, the melody alone, or the accompaniment alone (the left hand, or the chords)
 const PARTS = [['all', 'All', true, true], ['mel', 'Melody', true, false], ['acc', 'Accompaniment', false, true]];
 

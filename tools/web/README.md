@@ -119,7 +119,7 @@ The notes are not read from a MIDI file or from Verovio but made from the sheet 
 draws the second staff, so what is heard is what is drawn: tied notes are one note, the pedal makes a left hand note ring, and
 repeats and endings are played out (the first ending is left out the second time). The tempo is the one of the hymn's tune
 file, or the `midi.bpm` a sheet of ours names for itself (it comes first), folded into 50 to 160 where a file counts the beat as an eighth. The sound is the Play button's
-small Web Audio piano (`player.js`, `playScore`); starting the sheet stops the tune and the other way round.
+small Web Audio piano (`player.js`, `playScore`); starting the sheet stops the tune and the other way round. A hymn with no tune file but a sheet has an enabled Play: on the lyrics it opens the Sheet tab, waits until the sheet is drawn and plays it (audio is unlocked inside the tap first); with no tempo of its own a sheet plays at 110.
 
 ## Chord edits
 

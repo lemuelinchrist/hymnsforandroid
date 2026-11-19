@@ -792,15 +792,23 @@ function hymnScreen(view, hymn) {
     const on = tunePlaying || !!(sheet && sheet.playing), onSheet = sheetShown();
     playBtn.replaceChildren(icon(on ? 'pause' : 'play'));
     playBtn.setAttribute('aria-pressed', String(on));
-    playBtn.disabled = !on && !onSheet && !tune;
-    const label = on ? tr('Stop (Space)') : onSheet ? tr('Play the sheet (Space)') : tune ? tr('Play the tune (Space)') : tr('No tune for this hymn');
+    playBtn.disabled = !on && !onSheet && !tune && !hasSheet;
+    const label = on ? tr('Stop (Space)') : onSheet ? tr('Play the sheet (Space)') : tune ? tr('Play the tune (Space)') : hasSheet ? tr('Play the sheet (Space)') : tr('No tune for this hymn');
     playBtn.title = label;
     playBtn.setAttribute('aria-label', label);
+  }
+  // Play on the lyrics of a hymn with no tune file: open the sheet, wait until it is drawn, play it
+  async function playSheetFromLyrics() {
+    Player.unlock();
+    showTab('sheet');
+    for (let i = 0; i < 100 && !(sheet && sheet.playable); i++) await new Promise((r) => setTimeout(r, 100));
+    if (sheet && sheet.playable) sheet.togglePlay(); else toast(tr('Sorry, no tune for this hymn'));
   }
   function togglePlay() {
     if (Player.playing() === hymn.id) { Player.stop(); showPlay(false); return; }
     if (sheet && sheet.playing) { sheet.togglePlay(); return; }
     if (sheetShown()) { sheet.togglePlay(); return; }
+    if (!tune && hasSheet) { playSheetFromLyrics(); return; }   // no tune file: the sheet is the tune (it is opened and played)
     if (!tune) { toast(tr('Sorry, no tune for this hymn')); return; }
     showPlay(true);
     Player.play(tune, hymn.id).catch(() => { showPlay(false); toast(tr('Could not play the tune')); });
