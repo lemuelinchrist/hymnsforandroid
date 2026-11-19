@@ -25,12 +25,15 @@ def lyrics(h):
         rows = db.execute(q, (hy[h],)).fetchall()
     return [[n, re.sub(r'<br\s*/?>', '\n', t or '')] for n, t in rows]
 L = {h: v for h in hy if (v := lyrics(h))}
+# optional: SONGBASE=<json> maps video id -> {id,title,lyrics} (songbase.life words with the chords removed), shown on the page
+SB = json.load(open(os.environ['SONGBASE'], encoding='utf-8')) if os.environ.get('SONGBASE') else {}
 rows = []
 if True:
     for r in rows_csv:
         vid = re.search(r'v=([\w-]+)', r['Video']).group(1)
         cands = re.findall(r'\b([A-Z]{1,3}\d+) \(', r['Possible hymns from the title (first line)'])
         rows.append({'v': vid, 't': r['Title'], 'c': cands})
+        if vid in SB: rows[-1]['sb'] = SB[vid]
 html = (here / 'review_template.html').read_text(encoding='utf-8')
 html = html.replace('__ROWS__', json.dumps(rows, ensure_ascii=False)).replace('__LYR__', json.dumps(L, ensure_ascii=False, separators=(',', ':')))
 pathlib.Path(sys.argv[2]).write_text(html, encoding='utf-8')

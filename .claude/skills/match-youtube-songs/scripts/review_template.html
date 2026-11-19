@@ -63,6 +63,7 @@ function render(){
  $('#ttl').textContent=r.t;$('#yt').href='https://www.youtube.com/watch?v='+r.v;$('#vid-id').textContent=r.v;
  let h='';r.c.forEach((c,k)=>h+=card(c,k+1));
  const other=a&&!SPECIAL.includes(a)&&!r.c.includes(a)?a:'';
+ if(r.sb)h+='<div class="card" style="background:#fff8e1"><b>songbase.life has words for this title</b> (#'+r.sb.id+' '+esc(r.sb.title)+')'+(r.sb.note?'<div style="background:#ffd9d9;padding:6px;margin:6px 0"><b>'+esc(r.sb.note)+'</b></div>':'')+' <button id="sbadd" style="background:#fde6f3">Add as a new song with these words</button><pre style="white-space:pre-wrap;font:14px system-ui;max-height:260px;overflow:auto;margin:8px 0 0">'+esc(r.sb.lyrics)+'</pre></div>';
  h+='<div class="card"><b>Another hymn</b> <span class="hint">type an ID (E123, NS45, BF7, CH9) or words from the lyrics</span><input type="text" id="oth" value="'+other+'" placeholder="e.g. NS868 or “jehovah’s lovingkindness”"><div class="res" id="res"></div>'+(other?'<div class="cand sel" style="margin-top:8px"><label><input type="radio" checked data-h="'+other+'"> '+other+'</label><div class="ly">'+lyricsHtml(other)+'</div></div>':'')+'</div>';
  const lab={SKIP:'skipped for now',NOTFOUND:'marked: not in our database',UNAV:'marked: video unavailable',NONEN:'marked: not English',ADD:'marked: add this song to the DB'}[a];
  h+='<div class="card"><button id="nf">Not in our database (N)</button> <button id="un">Video unavailable (U)</button> <button id="skip">Skip for now (S)</button> <button id="ne">Not English (E)</button> <button id="ad" style="background:#fde6f3">Add song to DB (A)</button>'+(lab?' <b>'+lab+'</b>':'')+'<p class="hint" style="margin:8px 0 2px">Note (for a not-in-database song: its name, book or number, so we can add it later)</p><input type="text" id="note" value="'+esc(notes[r.v]||'').replace(/"/g,'&quot;')+'">'+(a==='ADD'?'<p class="hint" style="margin:8px 0 2px"><b>Lyrics to add</b> (paste them here; blank line between stanzas, a line starting with “Chorus” for a chorus)</p><textarea id="lyr" style="height:260px;font:14px system-ui" placeholder="Paste the lyrics here">'+esc(lyr[r.v]||'')+'</textarea>':'')+'</div>';
@@ -71,6 +72,7 @@ function render(){
  const mark=v=>{ans[r.v]=v;save();next()};
  $('#skip').onclick=()=>mark('SKIP');$('#nf').onclick=()=>mark('NOTFOUND');$('#un').onclick=()=>mark('UNAV');$('#ne').onclick=()=>mark('NONEN');
  $('#ad').onclick=()=>{ans[r.v]='ADD';save();render();const t=$('#lyr');if(t)t.focus()};
+ if($('#sbadd'))$('#sbadd').onclick=()=>{ans[r.v]='ADD';if(!(lyr[r.v]||'').trim())lyr[r.v]=r.sb.lyrics;save();render()};
  if($('#lyr'))$('#lyr').oninput=e=>{lyr[r.v]=e.target.value;save()};
  $('#note').oninput=e=>{notes[r.v]=e.target.value;save()};
  $('#oth').oninput=search;if(other)$('#oth').dataset.cur=other;
