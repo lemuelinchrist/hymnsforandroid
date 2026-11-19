@@ -940,8 +940,6 @@ function sheetPanel(pane, hymn, {full, stopTune, onplay} = {}) {
     ? h('p', {class: 'sheet-from'}, trh('Music of {0} ({1})', h('a', {href: '#/h/' + hymn.sheetId}, hymn.sheetId), BY_CODE[splitId(hymn.sheetId).group].name),
       hymn.lyricsId ? tr(', with the words of {0}', hymn.id) : '')
     : null;
-  const title = full ? h('div', {class: 'sheet-title-bar'},
-    h('a', {href: href('/h/' + hymn.id)}, chip(hymn.group, hymn.id)), ' ', h('span', null, hymn.first || '')) : null;
   return createSheetPanel(pane, {
     sheetId: hymn.sheetId, lyricsId: hymn.lyricsId, id: hymn.id,
     params: route.params,
@@ -950,7 +948,7 @@ function sheetPanel(pane, hymn, {full, stopTune, onplay} = {}) {
       const params = Object.assign(Object.fromEntries([...route.params].filter(([k]) => !['v', 'staff', 't', 'z'].includes(k))), sheet);
       quietly(href('/' + route.parts[0] + '/' + hymn.id, params));
     },
-    full, tune: DB.tuneFile(hymn), title, note,
+    full, tune: DB.tuneFile(hymn), note,
     pinch: matchMedia('(pointer: coarse)').matches,   // a phone or tablet: two fingers on the sheet change its size, not the page's zoom
     exit: full ? {icon: 'close', title: tr('Back to the lyrics (Esc)'), href: href('/h/' + hymn.id)} : null,
     sheetOnly: full ? null : (params) => go(href('/sheet/' + hymn.id, params)),

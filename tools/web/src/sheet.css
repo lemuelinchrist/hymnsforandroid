@@ -61,8 +61,6 @@
 
 body.sheet-only #view { max-width: 1200px; padding-top: 12px; }
 .sheet-pane.full { border-radius: var(--radius); }
-.sheet-title-bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px 0; font-family: var(--serif); font-size: 17px; }
-.sheet-title-bar a { text-decoration: none; }
 
 /* the sheet itself (from sheet.js): a printed page, so black on white in light mode */
 .sheet { font-family: "Times New Roman", "Liberation Serif", "Noto Serif", serif; color: var(--ink); }
