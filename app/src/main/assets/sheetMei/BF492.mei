@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="d" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n8" pname="a" oct="4" dur="8">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 </beam>
 </layer></staff>
 <tie startid="#n8" endid="#n9"/>
@@ -60,7 +60,7 @@
 <note xml:id="n17" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">clare;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">clare;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
@@ -92,7 +92,7 @@
 <note xml:id="n27" pname="d" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="8">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -124,7 +124,7 @@
 <note xml:id="n37" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">val</syl></verse></note>
 <note xml:id="n38" pname="e" oct="4" dur="8">
-<verse n="1"><syl>there;</syl></verse></note>
+<verse n="1"><syl eol="1">there;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
@@ -167,7 +167,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>am;</syl></verse></note>
+<verse n="1"><syl eol="1">am;</syl></verse></note>
 <rest xml:id="r51" dur="8"/>
 <note xml:id="n52" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Lord,</syl></verse></note>
@@ -192,7 +192,7 @@
 <note xml:id="n58" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
 <note xml:id="n59" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">flame.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">flame.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

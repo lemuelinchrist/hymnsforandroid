@@ -32,7 +32,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="c" oct="5" dur="4">
-<verse n="1"><syl>church,</syl></verse></note>
+<verse n="1"><syl eol="1">church,</syl></verse></note>
 <note xml:id="n10" pname="a" oct="4" dur="4">
 <verse n="1"><syl>So</syl></verse></note>
 <note xml:id="n11" pname="g" oct="4" dur="4">
@@ -57,7 +57,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="d" oct="4" dur="4">
-<verse n="1"><syl>plan;</syl></verse></note>
+<verse n="1"><syl eol="1">plan;</syl></verse></note>
 <note xml:id="n18" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Or</syl></verse></note>
 <note xml:id="n19" pname="g" oct="4" dur="4">
@@ -82,7 +82,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="g" oct="4" dur="4">
-<verse n="1"><syl>life,</syl></verse></note>
+<verse n="1"><syl eol="1">life,</syl></verse></note>
 <note xml:id="n26" pname="a" oct="4" dur="4">
 <verse n="1"><syl>We’re</syl></verse></note>
 <note xml:id="n27" pname="b" oct="4" dur="4">
@@ -112,7 +112,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="d" oct="5" dur="4">
-<verse n="1"><syl>church.</syl></verse></note>
+<verse n="1"><syl eol="1">church.</syl></verse></note>
 <note xml:id="n35" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Es</syl></verse></note>
 <note xml:id="n36" pname="b" oct="4" dur="4">
@@ -137,7 +137,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="d" oct="5" dur="4">
-<verse n="1"><syl>man,</syl></verse></note>
+<verse n="1"><syl eol="1">man,</syl></verse></note>
 <note xml:id="n43" pname="c" oct="5" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 <note xml:id="n44" pname="b" oct="4" dur="4" dots="1">
@@ -163,7 +163,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">self.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">self.</syl></verse></note>
 <note xml:id="n51" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 <note xml:id="n52" pname="g" oct="4" dur="4">
@@ -187,7 +187,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="d" oct="4" dur="4">
-<verse n="1"><syl>church</syl></verse></note>
+<verse n="1"><syl eol="1">church</syl></verse></note>
 <note xml:id="n59" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Is</syl></verse></note>
 <note xml:id="n60" pname="f" oct="4" dur="4">
@@ -208,7 +208,7 @@
 <note xml:id="n65" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">ex</syl></verse></note>
 <note xml:id="n66" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">pressed.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pressed.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

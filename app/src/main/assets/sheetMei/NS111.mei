@@ -28,7 +28,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">day</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day</syl></verse></note>
 </beam>
 <note xml:id="n9" pname="g" oct="4" dur="4"/>
 <note xml:id="n10" pname="b" oct="4" dur="4">
@@ -68,7 +68,7 @@
 <verse n="1"><syl>and</syl></verse></note>
 </beam>
 <note xml:id="n21" pname="e" oct="4" dur="4">
-<verse n="1"><syl>then</syl></verse></note>
+<verse n="1"><syl eol="1">then</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -116,7 +116,7 @@
 <note xml:id="n35" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n36" pname="a" oct="4" dur="4">
-<verse n="1"><syl>gates</syl></verse></note>
+<verse n="1"><syl eol="1">gates</syl></verse></note>
 <note xml:id="n37" pname="f" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -138,7 +138,7 @@
 <verse n="1"><syl wordpos="t">den</syl></verse></note>
 </beam>
 <note xml:id="n43" pname="e" oct="4" dur="4">
-<verse n="1"><syl>streets;</syl></verse></note>
+<verse n="1"><syl eol="1">streets;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">A7</harm>
@@ -175,7 +175,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>treat</syl></verse></note>
+<verse n="1"><syl eol="1">treat</syl></verse></note>
 <note xml:id="n52" pname="d" oct="4" dur="8">
 <verse n="1"><syl>All</syl></verse></note>
 <note xml:id="n53" pname="d" oct="4" dur="4"/>
@@ -229,7 +229,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n66" pname="d" oct="4" dur="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

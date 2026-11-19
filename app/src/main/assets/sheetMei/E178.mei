@@ -44,7 +44,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl>long</syl></verse></note>
+<verse n="1"><syl eol="1">long</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Their</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">clare!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">clare!</syl></verse></note>
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Of</syl></verse></note>
 </layer></staff>
@@ -121,7 +121,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="a" oct="4" dur="2">
-<verse n="1"><syl>song,</syl></verse></note>
+<verse n="1"><syl eol="1">song,</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="4">
 <verse n="1"><syl>We</syl></verse></note>
 </layer></staff>
@@ -159,7 +159,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">bear:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bear:</syl></verse></note>
 <note xml:id="n42" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Our</syl></verse></note>
 </layer></staff>
@@ -200,7 +200,7 @@
 <note xml:id="n51" pname="a" oct="4" dur="2">
 <verse n="1"><syl>sing</syl></verse></note>
 <note xml:id="n52" pname="b" oct="4" dur="4">
-<verse n="1"><syl>The</syl></verse></note>
+<verse n="1"><syl eol="1">The</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -234,7 +234,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">King.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">King.</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

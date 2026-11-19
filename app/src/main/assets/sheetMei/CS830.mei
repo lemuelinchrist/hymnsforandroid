@@ -18,7 +18,7 @@
 <verse n="1"><syl>的</syl></verse></note>
 </beam>
 <note xml:id="n5" pname="c" oct="5" dur="2">
-<verse n="1"><syl>名，</syl></verse></note>
+<verse n="1"><syl eol="1">名，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -34,7 +34,7 @@
 <verse n="1"><syl>的</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="e" oct="4" dur="2">
-<verse n="1"><syl>名，</syl></verse></note>
+<verse n="1"><syl eol="1">名，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -63,7 +63,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>救！</syl></verse></note>
+<verse n="1"><syl eol="1">救！</syl></verse></note>
 <rest xml:id="r19" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭m</harm>
@@ -82,7 +82,7 @@
 <verse n="1"><syl>的</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="c" oct="5" dur="2">
-<verse n="1"><syl>名，</syl></verse></note>
+<verse n="1"><syl eol="1">名，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -98,7 +98,7 @@
 <verse n="1"><syl>的</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="e" oct="4" dur="2">
-<verse n="1"><syl>名，</syl></verse></note>
+<verse n="1"><syl eol="1">名，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -127,7 +127,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>救！</syl></verse></note>
+<verse n="1"><syl eol="1">救！</syl></verse></note>
 <rest xml:id="r38" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -143,7 +143,7 @@
 <note xml:id="n41" pname="b" oct="4" dur="8">
 <verse n="1"><syl>耶</syl></verse></note>
 <note xml:id="n42" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>穌！</syl></verse></note>
+<verse n="1"><syl eol="1">穌！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/C</harm>
@@ -157,7 +157,7 @@
 <note xml:id="n45" pname="f" oct="4" dur="8">
 <verse n="1"><syl>耶</syl></verse></note>
 <note xml:id="n46" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>穌！</syl></verse></note>
+<verse n="1"><syl eol="1">穌！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -186,7 +186,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>救！</syl></verse></note>
+<verse n="1"><syl eol="1">救！</syl></verse></note>
 <rest xml:id="r55" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭m</harm>
@@ -201,7 +201,7 @@
 <note xml:id="n58" pname="b" oct="4" dur="8">
 <verse n="1"><syl>耶</syl></verse></note>
 <note xml:id="n59" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>穌！</syl></verse></note>
+<verse n="1"><syl eol="1">穌！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -213,7 +213,7 @@
 <note xml:id="n62" pname="f" oct="4" dur="8">
 <verse n="1"><syl>耶</syl></verse></note>
 <note xml:id="n63" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>穌！</syl></verse></note>
+<verse n="1"><syl eol="1">穌！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -243,7 +243,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="a" oct="4" dur="1">
-<verse n="1"><syl>救！</syl></verse></note>
+<verse n="1"><syl eol="1">救！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">D♭/A♭</harm>

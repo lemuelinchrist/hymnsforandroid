@@ -37,7 +37,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">sieged,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sieged,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G/D</harm>
@@ -75,7 +75,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="a" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">sieged;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sieged;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <tie startid="#n21" endid="#n22"/>
@@ -113,7 +113,7 @@
 <note xml:id="n31" pname="a" oct="4" dur="4">
 <verse n="1"><syl>his</syl></verse></note>
 <note xml:id="n32" pname="f" oct="4" dur="4">
-<verse n="1"><syl>hand—</syl></verse></note>
+<verse n="1"><syl eol="1">hand—</syl></verse></note>
 <note xml:id="n33" pname="d" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -137,7 +137,7 @@
 <note xml:id="n39" pname="d" oct="4" dur="4">
 <verse n="1"><syl>so</syl></verse></note>
 <note xml:id="n40" pname="b" oct="3" dur="4">
-<verse n="1"><syl>grand;</syl></verse></note>
+<verse n="1"><syl eol="1">grand;</syl></verse></note>
 <note xml:id="n41" pname="a" oct="3" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">A7</harm>
@@ -175,7 +175,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">sieged.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sieged.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G/D</harm>

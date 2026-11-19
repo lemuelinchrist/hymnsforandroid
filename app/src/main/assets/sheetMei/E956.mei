@@ -37,7 +37,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="a" oct="4" dur="2">
-<verse n="1"><syl>nigh,</syl></verse></note>
+<verse n="1"><syl eol="1">nigh,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭m</harm>
@@ -69,7 +69,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>hear.</syl></verse></note>
+<verse n="1"><syl eol="1">hear.</syl></verse></note>
 <rest xml:id="r21" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -107,7 +107,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n32" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lert</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lert</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭m</harm>
@@ -139,7 +139,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>cheer.</syl></verse></note>
+<verse n="1"><syl eol="1">cheer.</syl></verse></note>
 <rest xml:id="r42" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -173,7 +173,7 @@
 <note xml:id="n50" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n51" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">gain!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="3" place="above">C7</harm>
@@ -203,7 +203,7 @@
 <note xml:id="n59" pname="f" oct="4" dur="4">
 <verse n="1"><syl>shall</syl></verse></note>
 <note xml:id="n60" pname="e" oct="4" dur="4">
-<verse n="1"><syl>reign!</syl></verse></note>
+<verse n="1"><syl eol="1">reign!</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -243,7 +243,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n72" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭/F</harm>
 <harm staff="1" tstamp="3" place="above">D♭</harm>
@@ -277,7 +277,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n81" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">cord.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cord.</syl></verse></note>
 <rest xml:id="r82" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>

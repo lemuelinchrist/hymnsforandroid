@@ -42,7 +42,7 @@
 <note xml:id="n11" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tion!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">C</harm>
 </measure>
@@ -91,7 +91,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="c" oct="5" dur="1">
-<verse n="1"><syl wordpos="t">ty!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -133,7 +133,7 @@
 <note xml:id="n36" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">la</syl></verse></note>
 <note xml:id="n37" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tion—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -174,7 +174,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ty!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

@@ -31,7 +31,7 @@
 <note xml:id="n8" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">mes</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">sage,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sage,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
@@ -51,7 +51,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>claim;</syl></verse></note>
+<verse n="1"><syl eol="1">claim;</syl></verse></note>
 <note xml:id="n15" pname="e" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -84,7 +84,7 @@
 <note xml:id="n23" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
 <note xml:id="n24" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
@@ -109,7 +109,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>same.</syl></verse></note>
+<verse n="1"><syl eol="1">same.</syl></verse></note>
 <note xml:id="n31" pname="b" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -144,7 +144,7 @@
 <verse n="1"><syl wordpos="i" con="d">sin</syl></verse></note>
 <note xml:id="n40" pname="b" oct="4" dur="8"/>
 <note xml:id="n41" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ful,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ful,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -166,7 +166,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>lame;</syl></verse></note>
+<verse n="1"><syl eol="1">lame;</syl></verse></note>
 <note xml:id="n47" pname="e" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -199,7 +199,7 @@
 <note xml:id="n55" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">tem</syl></verse></note>
 <note xml:id="n56" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">pest;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pest;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
@@ -220,7 +220,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>name!</syl></verse></note>
+<verse n="1"><syl eol="1">name!</syl></verse></note>
 <note xml:id="n62" pname="a" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -257,7 +257,7 @@
 <verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
 <note xml:id="n71" pname="a" oct="4" dur="8"/>
 <note xml:id="n72" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
@@ -283,7 +283,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n78" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>same,</syl></verse></note>
+<verse n="1"><syl eol="1">same,</syl></verse></note>
 <note xml:id="n79" pname="b" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭m/D♭</harm>
@@ -317,7 +317,7 @@
 <note xml:id="n88" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">nev</syl></verse></note>
 <note xml:id="n89" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">er!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
@@ -339,7 +339,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n94" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>name,</syl></verse></note>
+<verse n="1"><syl eol="1">name,</syl></verse></note>
 <note xml:id="n95" pname="a" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -364,7 +364,7 @@
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n100" pname="a" oct="4" dur="4" dots="1"/>
 <note xml:id="n101" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>name,</syl></verse></note>
+<verse n="1"><syl eol="1">name,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <tie startid="#n100" endid="#n101"/>
@@ -388,7 +388,7 @@
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n107" pname="b" oct="4" dur="4" dots="1"/>
 <note xml:id="n108" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>name;</syl></verse></note>
+<verse n="1"><syl eol="1">name;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="4" place="above">E♭7/G</harm>
@@ -419,7 +419,7 @@
 <note xml:id="n116" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">nev</syl></verse></note>
 <note xml:id="n117" pname="d" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">er!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="4" place="above">B♭m</harm>
@@ -439,7 +439,7 @@
 </measure>
 <measure n="32" right="end"><staff n="1"><layer n="1">
 <note xml:id="n122" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>name.</syl></verse></note>
+<verse n="1"><syl eol="1">name.</syl></verse></note>
 <note xml:id="n123" pname="a" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>

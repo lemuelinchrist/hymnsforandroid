@@ -33,7 +33,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>soul!</syl></verse></note>
+<verse n="1"><syl eol="1">soul!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <tie startid="#n7" endid="#n8"/>
@@ -66,7 +66,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>till</syl></verse></note>
+<verse n="1"><syl eol="1">till</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n15" endid="#n16"/>
@@ -108,7 +108,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="f" oct="4" dur="2">
-<verse n="1"><syl>more,</syl></verse></note>
+<verse n="1"><syl eol="1">more,</syl></verse></note>
 <note xml:id="n26" pname="a" oct="4" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
 </layer></staff>
@@ -134,7 +134,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>still.</syl></verse></note>
+<verse n="1"><syl eol="1">still.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

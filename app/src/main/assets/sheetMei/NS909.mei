@@ -32,7 +32,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="g" oct="4" dur="2">
-<verse n="1"><syl>tree,</syl></verse></note>
+<verse n="1"><syl eol="1">tree,</syl></verse></note>
 <beam>
 <note xml:id="n10" pname="g" oct="4" dur="8"/>
 <note xml:id="n11" pname="d" oct="4" dur="8">
@@ -66,7 +66,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="d" oct="4" dur="2">
-<verse n="1"><syl>sweet;</syl></verse></note>
+<verse n="1"><syl eol="1">sweet;</syl></verse></note>
 <note xml:id="n20" pname="d" oct="4" dur="4" dots="1"/>
 <note xml:id="n21" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Though</syl></verse></note>
@@ -101,7 +101,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>weep,</syl></verse></note>
+<verse n="1"><syl eol="1">weep,</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Christ</syl></verse></note>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="d" oct="4" dur="1">
-<verse n="1"><syl>sweet!</syl></verse></note>
+<verse n="1"><syl eol="1">sweet!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 </measure>
@@ -162,7 +162,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <beam>
 <note xml:id="n48" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Died</syl></verse></note>
@@ -187,7 +187,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="a" oct="4" dur="2">
-<verse n="1"><syl>sweet;</syl></verse></note>
+<verse n="1"><syl eol="1">sweet;</syl></verse></note>
 <note xml:id="n54" pname="a" oct="4" dur="4" dots="1"/>
 <note xml:id="n55" pname="a" oct="4" dur="8">
 <verse n="1"><syl>God</syl></verse></note>
@@ -222,7 +222,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="c" oct="5" dur="2">
-<verse n="1"><syl>sweet,</syl></verse></note>
+<verse n="1"><syl eol="1">sweet,</syl></verse></note>
 <beam>
 <note xml:id="n65" pname="c" oct="5" dur="8"/>
 <note xml:id="n66" pname="a" oct="4" dur="8">
@@ -253,7 +253,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n73" pname="d" oct="4" dur="1">
-<verse n="1"><syl>sweet.</syl></verse></note>
+<verse n="1"><syl eol="1">sweet.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <tie startid="#n73" endid="#n74"/>

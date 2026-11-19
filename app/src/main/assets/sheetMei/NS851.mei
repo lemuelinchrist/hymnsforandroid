@@ -34,7 +34,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>made,</syl></verse></note>
+<verse n="1"><syl eol="1">made,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -65,7 +65,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>names.</syl></verse></note>
+<verse n="1"><syl eol="1">names.</syl></verse></note>
 <note xml:id="n16" pname="b" oct="4" dur="8"/>
 <note xml:id="n17" pname="a" oct="4" dur="4"/>
 </layer></staff>
@@ -101,7 +101,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>faith;</syl></verse></note>
+<verse n="1"><syl eol="1">faith;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -130,7 +130,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>grace.</syl></verse></note>
+<verse n="1"><syl eol="1">grace.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n32" endid="#n33"/>

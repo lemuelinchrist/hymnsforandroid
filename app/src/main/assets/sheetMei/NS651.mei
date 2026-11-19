@@ -38,7 +38,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl>sin?</syl></verse></note>
+<verse n="1"><syl eol="1">sin?</syl></verse></note>
 <rest xml:id="r11" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -76,7 +76,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>been.</syl></verse></note>
+<verse n="1"><syl eol="1">been.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -113,7 +113,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="c" oct="5" dur="2">
-<verse n="1"><syl>due,</syl></verse></note>
+<verse n="1"><syl eol="1">due,</syl></verse></note>
 <rest xml:id="r32" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/A</harm>
@@ -152,7 +152,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>men.</syl></verse></note>
+<verse n="1"><syl eol="1">men.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -190,7 +190,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="a" oct="4" dur="2">
-<verse n="1"><syl>sin,</syl></verse></note>
+<verse n="1"><syl eol="1">sin,</syl></verse></note>
 <rest xml:id="r54" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -227,7 +227,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">in,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -267,7 +267,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">utes,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">utes,</syl></verse></note>
 <rest xml:id="r75" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
@@ -304,7 +304,7 @@
 </measure>
 <measure n="32" right="end"><staff n="1"><layer n="1">
 <note xml:id="n86" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">in.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

@@ -34,7 +34,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <rest xml:id="r9" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
@@ -61,7 +61,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">heard,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">heard,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n16" endid="#n17"/>
@@ -101,7 +101,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <rest xml:id="r27" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/A</harm>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>word:</syl></verse></note>
+<verse n="1"><syl eol="1">word:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
@@ -169,7 +169,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ver,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ver,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 </measure>
@@ -195,7 +195,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>gone,</syl></verse></note>
+<verse n="1"><syl eol="1">gone,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n51" endid="#n52"/>
@@ -235,7 +235,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 <rest xml:id="r62" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
@@ -262,7 +262,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>won.</syl></verse></note>
+<verse n="1"><syl eol="1">won.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
@@ -304,7 +304,7 @@
 <note xml:id="n78" pname="b" oct="4" dur="4">
 <verse n="1"><syl>O</syl></verse></note>
 <note xml:id="n79" pname="c" oct="5" dur="4">
-<verse n="1"><syl>how</syl></verse></note>
+<verse n="1"><syl eol="1">how</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 </measure>
@@ -326,7 +326,7 @@
 </measure>
 <measure n="39"><staff n="1"><layer n="1">
 <note xml:id="n84" pname="e" oct="5" dur="2" dots="1">
-<verse n="1"><syl>voice,</syl></verse></note>
+<verse n="1"><syl eol="1">voice,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <slur startid="#n84" endid="#n85"/>
@@ -365,7 +365,7 @@
 <note xml:id="n92" pname="g" oct="4" dur="4">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n93" pname="e" oct="4" dur="4">
-<verse n="1"><syl>Thy</syl></verse></note>
+<verse n="1"><syl eol="1">Thy</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 </measure>
@@ -385,7 +385,7 @@
 </measure>
 <measure n="47"><staff n="1"><layer n="1">
 <note xml:id="n97" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">joice.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">joice.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>

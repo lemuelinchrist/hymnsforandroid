@@ -33,7 +33,7 @@
 <note xml:id="n8" pname="f" oct="4" dur="16">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="8" dots="1">
-<verse n="1"><syl>ground,</syl></verse></note>
+<verse n="1"><syl eol="1">ground,</syl></verse></note>
 <note xml:id="n10" pname="e" oct="4" dur="16">
 <verse n="1"><syl wordpos="i" con="d">Hur</syl></verse></note>
 </beam>
@@ -48,7 +48,7 @@
 <verse n="1"><syl wordpos="i" con="d">Hur</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">rah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">rah!</syl></verse></note>
 <beam>
 <note xml:id="n15" pname="d" oct="4" dur="8" dots="1"/>
 <note xml:id="n16" pname="e" oct="4" dur="16">
@@ -81,7 +81,7 @@
 <note xml:id="n23" pname="f" oct="4" dur="16">
 <verse n="1"><syl>came</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="8" dots="1">
-<verse n="1"><syl>on,</syl></verse></note>
+<verse n="1"><syl eol="1">on,</syl></verse></note>
 <note xml:id="n25" pname="a" oct="4" dur="16">
 <verse n="1"><syl wordpos="i" con="d">Hur</syl></verse></note>
 </beam>
@@ -97,7 +97,7 @@
 <verse n="1"><syl wordpos="i" con="d">Hur</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">rah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">rah!</syl></verse></note>
 <beam>
 <note xml:id="n30" pname="g" oct="4" dur="16">
 <verse n="1"><syl>Mike</syl></verse></note>
@@ -132,7 +132,7 @@
 <note xml:id="n38" pname="a" oct="4" dur="16">
 <verse n="1"><syl wordpos="t">y</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="8" dots="1">
-<verse n="1"><syl>day;</syl></verse></note>
+<verse n="1"><syl eol="1">day;</syl></verse></note>
 <note xml:id="n40" pname="f" oct="4" dur="16">
 <verse n="1"><syl>Don’t</syl></verse></note>
 </beam>
@@ -165,7 +165,7 @@
 </beam>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <note xml:id="n48" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">kay.”</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">kay.”</syl></verse></note>
 <beam>
 <note xml:id="n49" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Should</syl></verse></note>
@@ -186,7 +186,7 @@
 <note xml:id="n53" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">flash</syl></verse></note>
 <note xml:id="n54" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">light?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">light?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em/B</harm>
 <harm staff="1" tstamp="2" place="above">D</harm>
@@ -211,7 +211,7 @@
 <verse n="1"><syl>it</syl></verse></note>
 </beam>
 <note xml:id="n60" pname="e" oct="4" dur="4">
-<verse n="1"><syl>mine?</syl></verse></note>
+<verse n="1"><syl eol="1">mine?</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>

@@ -36,7 +36,7 @@
 <note xml:id="n8" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">sil</syl></verse></note>
 <note xml:id="n9" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ver;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ver;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 </measure>
@@ -68,7 +68,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="g" oct="4" dur="1">
-<verse n="1"><syl>gold;</syl></verse></note>
+<verse n="1"><syl eol="1">gold;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -109,7 +109,7 @@
 <note xml:id="n27" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">dia</syl></verse></note>
 <note xml:id="n28" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">monds;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">monds;</syl></verse></note>
 <note xml:id="n29" pname="c" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -144,7 +144,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="f" oct="4" dur="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n38" endid="#n39"/>

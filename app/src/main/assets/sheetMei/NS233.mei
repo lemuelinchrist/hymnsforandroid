@@ -30,7 +30,7 @@
 <note xml:id="n8" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">do</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">go</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">go</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">Em</harm>
@@ -59,7 +59,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="d" oct="4" dur="4">
-<verse n="1"><syl>bunch.</syl></verse></note>
+<verse n="1"><syl eol="1">bunch.</syl></verse></note>
 <rest xml:id="r18" dur="2" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -89,7 +89,7 @@
 <note xml:id="n26" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">cho</syl></verse></note>
 <note xml:id="n27" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">to—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">to—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B7</harm>
 <harm staff="1" tstamp="3" place="above">Em</harm>
@@ -120,7 +120,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>bunch.</syl></verse></note>
+<verse n="1"><syl eol="1">bunch.</syl></verse></note>
 <rest xml:id="r37" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -147,7 +147,7 @@
 <verse n="1"><syl wordpos="i" con="d">mu</syl></verse></note>
 <note xml:id="n44" pname="a" oct="4" dur="4"/>
 <note xml:id="n45" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">chos</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">chos</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">Em</harm>
@@ -171,7 +171,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>da—</syl></verse></note>
+<verse n="1"><syl eol="1">da—</syl></verse></note>
 <note xml:id="n52" pname="a" oct="4" dur="8"/>
 <note xml:id="n53" pname="g" oct="4" dur="2"/>
 </layer></staff>
@@ -203,7 +203,7 @@
 <note xml:id="n61" pname="a" oct="4" dur="4">
 <verse n="1"><syl>so</syl></verse></note>
 <note xml:id="n62" pname="g" oct="4" dur="2">
-<verse n="1"><syl>much.</syl></verse></note>
+<verse n="1"><syl eol="1">much.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B7</harm>
 <harm staff="1" tstamp="3" place="above">Em</harm>
@@ -232,7 +232,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n70" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>bunch.</syl></verse></note>
+<verse n="1"><syl eol="1">bunch.</syl></verse></note>
 <rest xml:id="r71" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

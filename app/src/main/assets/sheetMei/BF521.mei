@@ -35,7 +35,7 @@
 <verse n="1"><syl>me</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="c" oct="4" dur="2">
-<verse n="1"><syl>there,</syl></verse></note>
+<verse n="1"><syl eol="1">there,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
 </measure>
@@ -71,7 +71,7 @@
 <note xml:id="n22" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n23" pname="g" oct="4" dur="2">
-<verse n="1"><syl>there;</syl></verse></note>
+<verse n="1"><syl eol="1">there;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n22" endid="#n23"/>
@@ -106,7 +106,7 @@
 <verse n="1"><syl>hath</syl></verse></note>
 </beam>
 <note xml:id="n34" pname="c" oct="4" dur="2">
-<verse n="1"><syl>trod,</syl></verse></note>
+<verse n="1"><syl eol="1">trod,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
 </measure>
@@ -140,7 +140,7 @@
 <note xml:id="n44" pname="g" oct="4" dur="8">
 <verse n="1"><syl>with</syl></verse></note>
 <note xml:id="n45" pname="g" oct="4" dur="8">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </beam>
 <rest xml:id="r46" dur="8"/>
 <beam>
@@ -177,7 +177,7 @@
 <note xml:id="n56" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n57" pname="g" oct="4" dur="8">
-<verse n="1"><syl>fair!</syl></verse></note>
+<verse n="1"><syl eol="1">fair!</syl></verse></note>
 </beam>
 <note xml:id="n58" pname="g" oct="4" dur="2"/>
 </layer></staff>
@@ -216,7 +216,7 @@
 <note xml:id="n68" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n69" pname="g" oct="4" dur="8">
-<verse n="1"><syl>there.</syl></verse></note>
+<verse n="1"><syl eol="1">there.</syl></verse></note>
 </beam>
 <rest xml:id="r70" dur="8"/>
 <beam>
@@ -253,7 +253,7 @@
 <note xml:id="n80" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n81" pname="g" oct="4" dur="8">
-<verse n="1"><syl>fair!</syl></verse></note>
+<verse n="1"><syl eol="1">fair!</syl></verse></note>
 </beam>
 <note xml:id="n82" pname="g" oct="4" dur="2"/>
 </layer></staff>
@@ -294,7 +294,7 @@
 <note xml:id="n93" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n94" pname="e" oct="4" dur="2">
-<verse n="1"><syl>there.</syl></verse></note>
+<verse n="1"><syl eol="1">there.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n93" endid="#n94"/>

@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">plea</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">sure,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure,</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Fad</syl></verse></note>
 <note xml:id="n10" pname="g" oct="4" dur="8">
@@ -58,7 +58,7 @@
 <note xml:id="n15" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">trea</syl></verse></note>
 <note xml:id="n16" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">sure,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure,</syl></verse></note>
 <note xml:id="n17" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl>But</syl></verse></note>
 <note xml:id="n18" pname="g" oct="4" dur="8">
@@ -86,7 +86,7 @@
 <note xml:id="n23" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">mea</syl></verse></note>
 <note xml:id="n24" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">sure</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure</syl></verse></note>
 <note xml:id="n25" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl>Seek</syl></verse></note>
 <note xml:id="n26" pname="a" oct="4" dur="8">
@@ -97,7 +97,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>first.</syl></verse></note>
+<verse n="1"><syl eol="1">first.</syl></verse></note>
 <note xml:id="n28" pname="d" oct="4" dur="4"/>
 <note xml:id="n29" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl>Seek</syl></verse></note>

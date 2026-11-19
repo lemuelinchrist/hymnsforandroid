@@ -45,7 +45,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sign</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sign</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -84,7 +84,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="e" oct="4" dur="2">
-<verse n="1"><syl>Thine,</syl></verse></note>
+<verse n="1"><syl eol="1">Thine,</syl></verse></note>
 <note xml:id="n22" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">With</syl></verse></note>
 </layer></staff>
@@ -115,7 +115,7 @@
 <sb/>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="c" oct="5" dur="2">
-<verse n="1"><syl>fear;</syl></verse></note>
+<verse n="1"><syl eol="1">fear;</syl></verse></note>
 <note xml:id="n29" pname="c" oct="5" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -152,7 +152,7 @@
 <sb/>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="a" oct="4" dur="2">
-<verse n="1"><syl>eyes,</syl></verse></note>
+<verse n="1"><syl eol="1">eyes,</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Or</syl></verse></note>
 </layer></staff>
@@ -191,7 +191,7 @@
 <sb/>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">prise</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">prise</syl></verse></note>
 <note xml:id="n48" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Trans</syl></verse></note>
 </layer></staff>
@@ -218,7 +218,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>tear.</syl></verse></note>
+<verse n="1"><syl eol="1">tear.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n54" endid="#n55"/>

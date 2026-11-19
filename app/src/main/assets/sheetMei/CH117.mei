@@ -24,7 +24,7 @@
 <note xml:id="n6" pname="a" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n7" pname="g" oct="4" dur="2">
-<verse n="1"><syl>John,</syl></verse></note>
+<verse n="1"><syl eol="1">John,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -55,7 +55,7 @@
 <note xml:id="n15" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">thi</syl></verse></note>
 <note xml:id="n16" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ans,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ans,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -88,7 +88,7 @@
 <note xml:id="n24" pname="e" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">la</syl></verse></note>
 <note xml:id="n25" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">tians,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tians,</syl></verse></note>
 <note xml:id="n26" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Eph</syl></verse></note>
 </layer></staff>
@@ -123,7 +123,7 @@
 <note xml:id="n34" pname="e" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">os</syl></verse></note>
 <note xml:id="n35" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sians,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sians,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G7</harm>
@@ -153,7 +153,7 @@
 <verse n="1"><syl wordpos="m" con="d">ni</syl></verse></note>
 </beam>
 <note xml:id="n44" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ans,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ans,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -178,7 +178,7 @@
 <note xml:id="n50" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">o</syl></verse></note>
 <note xml:id="n51" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">thy,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thy,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -207,7 +207,7 @@
 <note xml:id="n58" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">brews,</syl></verse></note>
 <note xml:id="n59" pname="d" oct="4" dur="2">
-<verse n="1"><syl>James,</syl></verse></note>
+<verse n="1"><syl eol="1">James,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G7</harm>
@@ -230,7 +230,7 @@
 <note xml:id="n64" pname="e" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Pe</syl></verse></note>
 <note xml:id="n65" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ter,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G7</harm>
@@ -252,7 +252,7 @@
 <note xml:id="n70" pname="a" oct="4" dur="2">
 <verse n="1"><syl>Third</syl></verse></note>
 <note xml:id="n71" pname="g" oct="4" dur="2">
-<verse n="1"><syl>John,</syl></verse></note>
+<verse n="1"><syl eol="1">John,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -275,7 +275,7 @@
 <note xml:id="n76" pname="d" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">la</syl></verse></note>
 <note xml:id="n77" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tion.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>

@@ -34,7 +34,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>plan,</syl></verse></note>
+<verse n="1"><syl eol="1">plan,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -75,7 +75,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>man.</syl></verse></note>
+<verse n="1"><syl eol="1">man.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -108,7 +108,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">parts.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">parts.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <tie startid="#n32" endid="#n33"/>
@@ -177,7 +177,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>love?</syl></verse></note>
+<verse n="1"><syl eol="1">love?</syl></verse></note>
 <note xml:id="n45" pname="e" oct="4" dur="8"/>
 <note xml:id="n46" pname="d" oct="4" dur="4"/>
 </layer></staff>
@@ -218,7 +218,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ter?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -257,7 +257,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="f" oct="4" dur="2">
-<verse n="1"><syl>us</syl></verse></note>
+<verse n="1"><syl eol="1">us</syl></verse></note>
 <beam>
 <note xml:id="n68" pname="e" oct="4" dur="8">
 <verse n="1"><syl>From</syl></verse></note>
@@ -302,7 +302,7 @@
 </measure>
 <measure n="32" right="end"><staff n="1"><layer n="1">
 <note xml:id="n79" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ors.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ors.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

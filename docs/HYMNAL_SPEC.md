@@ -921,8 +921,11 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&theme=light|dark|black[&pape
   - After transposing, the capo is recomputed from the new key.
 - **Hide staff (chord chart)**: built from the MEI by the page: each note/rest gets a start beat (meter unit, dots,
   tuplets); each `<harm>` goes over the last note starting at or before its `tstamp`. Lines flow to screen width,
-  wrapping only between words (verse 1 decides word boundaries; CJK has no word gaps). A new line starts after a
-  sentence end in verse 1 (`. ; ! ? 。 ； ！ ？`, not before 6 syllables) and before an ending or a section label matching
+  wrapping only between words (verse 1 decides word boundaries; CJK has no word gaps). A new line starts where the
+  sheet marks the end of a line of the words (`eol="1"` on the last `<syl>` of verse 1, set by
+  `tools/sheet-lines/mark_lines.py`, which aligns the database's stanza 1 and first chorus with the syllables under
+  the notes; a sheet it could not align well enough has no marks); a sheet without marks guesses: after a sentence
+  end in verse 1 (`. ; ! ? 。 ； ！ ？`, not before 6 syllables). A new line also starts before an ending or a section label matching
   `chorus|final chorus|refrain|bridge|verse|part N|ending|副`. Other `<dir>` labels (Sisters, D.C. al Fine) become a
   small italic tag in the chord row. Repeats show as `‖:` `:‖`; endings as a boxed `1.`/`2.`. Only verse rows used by
   a line are drawn. Chords and the pressed buttons are in the hymn's book colour (the app passes the day and the night colour of the hymn

@@ -38,7 +38,7 @@
 <note xml:id="n9" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="4">
-<verse n="1"><syl>lay</syl></verse></note>
+<verse n="1"><syl eol="1">lay</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="f" oct="4" dur="16">
 <verse n="1"><syl>In</syl></verse></note>
@@ -64,7 +64,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>flock,</syl></verse></note>
+<verse n="1"><syl eol="1">flock,</syl></verse></note>
 <rest xml:id="r18" dur="4"/>
 <note xml:id="n19" pname="c" oct="4" dur="8">
 <verse n="1"><syl>But</syl></verse></note>
@@ -94,7 +94,7 @@
 <note xml:id="n26" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n27" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">way,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way,</syl></verse></note>
 <note xml:id="n28" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Far</syl></verse></note>
 </layer></staff>
@@ -121,7 +121,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>dark;</syl></verse></note>
+<verse n="1"><syl eol="1">dark;</syl></verse></note>
 <rest xml:id="r35" dur="4"/>
 <note xml:id="n36" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
@@ -153,7 +153,7 @@
 <note xml:id="n43" pname="a" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n44" pname="f" oct="4" dur="4">
-<verse n="1"><syl>bare,</syl></verse></note>
+<verse n="1"><syl eol="1">bare,</syl></verse></note>
 <note xml:id="n45" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
 </layer></staff>
@@ -192,7 +192,7 @@
 <verse n="1"><syl wordpos="t">erd’s</syl></verse></note>
 </beam>
 <note xml:id="n55" pname="a" oct="4" dur="4">
-<verse n="1"><syl>care.</syl></verse></note>
+<verse n="1"><syl eol="1">care.</syl></verse></note>
 <note xml:id="n56" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
 </layer></staff>
@@ -235,7 +235,7 @@
 <verse n="1"><syl wordpos="t">erd’s</syl></verse></note>
 </beam>
 <note xml:id="n66" pname="f" oct="4" dur="4">
-<verse n="1"><syl>care.</syl></verse></note>
+<verse n="1"><syl eol="1">care.</syl></verse></note>
 <rest xml:id="r67" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

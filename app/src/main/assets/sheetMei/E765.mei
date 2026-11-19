@@ -24,7 +24,7 @@
 <note xml:id="n6" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 <note xml:id="n7" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">pose,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pose,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">D/F♯</harm>
@@ -48,7 +48,7 @@
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ior</syl></verse></note>
 <note xml:id="n14" pname="e" oct="4" dur="2">
-<verse n="1"><syl>say;</syl></verse></note>
+<verse n="1"><syl eol="1">say;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="2" place="above">G</harm>
@@ -74,7 +74,7 @@
 <note xml:id="n20" pname="a" oct="4" dur="4">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n21" pname="d" oct="4" dur="2">
-<verse n="1"><syl>foes:</syl></verse></note>
+<verse n="1"><syl eol="1">foes:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="2" place="above">D/F♯</harm>
@@ -91,7 +91,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="d" oct="4" dur="1">
-<verse n="1"><syl>pray.</syl></verse></note>
+<verse n="1"><syl eol="1">pray.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="2" place="above">G/D</harm>

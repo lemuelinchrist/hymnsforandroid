@@ -52,7 +52,7 @@
 <beam>
 <note xml:id="n14" pname="f" oct="4" dur="8"/>
 <note xml:id="n15" pname="d" oct="4" dur="8">
-<verse n="1"><syl>You;</syl></verse></note>
+<verse n="1"><syl eol="1">You;</syl></verse></note>
 </beam>
 <note xml:id="n16" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -118,7 +118,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 <note xml:id="n36" pname="a" oct="3" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
 </layer></staff>
@@ -161,7 +161,7 @@
 <note xml:id="n48" pname="f" oct="4" dur="8">
 <verse n="1"><syl>my</syl></verse></note>
 <note xml:id="n49" pname="d" oct="4" dur="8">
-<verse n="1"><syl>self,</syl></verse></note>
+<verse n="1"><syl eol="1">self,</syl></verse></note>
 </beam>
 <note xml:id="n50" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -192,7 +192,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">self,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">self,</syl></verse></note>
 <rest xml:id="r58" dur="8"/>
 <beam>
 <note xml:id="n59" pname="d" oct="4" dur="8">
@@ -217,7 +217,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">self.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">self.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -244,7 +244,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="a" oct="4" dur="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n72" endid="#n73"/>
@@ -293,7 +293,7 @@
 </measure>
 <measure n="25"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="a" oct="4" dur="1">
-<verse n="1"><syl>out.</syl></verse></note>
+<verse n="1"><syl eol="1">out.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7/F♯</harm>
 </measure>
@@ -330,7 +330,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n95" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">thing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thing,</syl></verse></note>
 <note xml:id="n96" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
@@ -368,7 +368,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n106" pname="e" oct="4" dur="1">
-<verse n="1"><syl>vine.</syl></verse></note>
+<verse n="1"><syl eol="1">vine.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <tie startid="#n106" endid="#n107"/>

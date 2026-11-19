@@ -37,7 +37,7 @@
 <note xml:id="n9" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">es</syl></verse></note>
 <note xml:id="n10" pname="e" oct="4" dur="4">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="g" oct="4" dur="8">
 <verse n="1"><syl>It</syl></verse></note>
@@ -69,7 +69,7 @@
 <note xml:id="n19" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">es</syl></verse></note>
 <note xml:id="n20" pname="a" oct="4" dur="4">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <beam>
 <note xml:id="n21" pname="a" oct="4" dur="8">
 <verse n="1"><syl>It</syl></verse></note>
@@ -102,7 +102,7 @@
 <note xml:id="n29" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">es</syl></verse></note>
 <note xml:id="n30" pname="e" oct="4" dur="4">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="g" oct="4" dur="8">
 <verse n="1"><syl>With</syl></verse></note>
@@ -127,7 +127,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Christ.</syl></verse></note>
+<verse n="1"><syl eol="1">Christ.</syl></verse></note>
 <rest xml:id="r38" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -152,7 +152,7 @@
 <note xml:id="n43" pname="c" oct="5" dur="4">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n44" pname="a" oct="4" dur="2">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -176,7 +176,7 @@
 <note xml:id="n50" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n51" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">it.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>

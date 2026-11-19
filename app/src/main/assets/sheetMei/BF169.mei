@@ -38,7 +38,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl>blue,</syl></verse></note>
+<verse n="1"><syl eol="1">blue,</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="a" oct="4" dur="8"/>
 <note xml:id="n12" pname="b" oct="4" dur="8"/>
@@ -88,7 +88,7 @@
 <note xml:id="n25" pname="f" oct="4" dur="2"/>
 <beam>
 <note xml:id="n26" pname="f" oct="4" dur="8">
-<verse n="1"><syl>through;</syl></verse></note>
+<verse n="1"><syl eol="1">through;</syl></verse></note>
 <note xml:id="n27" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n28" pname="a" oct="4" dur="4"/>
@@ -135,7 +135,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="a" oct="4" dur="2">
-<verse n="1"><syl>rain,</syl></verse></note>
+<verse n="1"><syl eol="1">rain,</syl></verse></note>
 <beam>
 <note xml:id="n41" pname="g" oct="4" dur="8"/>
 <note xml:id="n42" pname="a" oct="4" dur="8"/>
@@ -187,7 +187,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="f" oct="4" dur="1">
-<verse n="1"><syl>pain.</syl></verse></note>
+<verse n="1"><syl eol="1">pain.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n55" endid="#n56"/>
@@ -232,7 +232,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="c" oct="5" dur="1">
-<verse n="1"><syl>day,</syl></verse></note>
+<verse n="1"><syl eol="1">day,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n67" endid="#n68"/>
@@ -283,7 +283,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n81" pname="c" oct="5" dur="1">
-<verse n="1"><syl>way,</syl></verse></note>
+<verse n="1"><syl eol="1">way,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -322,7 +322,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n92" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">bove,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bove,</syl></verse></note>
 <beam>
 <note xml:id="n93" pname="g" oct="4" dur="8"/>
 <note xml:id="n94" pname="a" oct="4" dur="8"/>
@@ -374,7 +374,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n107" pname="f" oct="4" dur="1">
-<verse n="1"><syl>love.</syl></verse></note>
+<verse n="1"><syl eol="1">love.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n107" endid="#n108"/>

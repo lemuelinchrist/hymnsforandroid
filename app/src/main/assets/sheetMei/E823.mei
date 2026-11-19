@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">da</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Chose</syl></verse></note>
 <note xml:id="n10" pname="b" oct="4" dur="4">
@@ -57,7 +57,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Son,</syl></verse></note>
+<verse n="1"><syl eol="1">Son,</syl></verse></note>
 <note xml:id="n16" pname="g" oct="4" dur="2"/>
 <note xml:id="n17" pname="d" oct="4" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
@@ -85,7 +85,7 @@
 <note xml:id="n23" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">son</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ship,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ship,</syl></verse></note>
 <note xml:id="n25" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Ho</syl></verse></note>
 <note xml:id="n26" pname="b" oct="4" dur="4">
@@ -111,7 +111,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="g" oct="4" dur="1">
-<verse n="1"><syl>one;</syl></verse></note>
+<verse n="1"><syl eol="1">one;</syl></verse></note>
 <note xml:id="n32" pname="d" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>That</syl></verse></note>
 <note xml:id="n33" pname="d" oct="4" dur="4">
@@ -137,7 +137,7 @@
 <note xml:id="n38" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">ses</syl></verse></note>
 <note xml:id="n39" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sion</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sion</syl></verse></note>
 <note xml:id="n40" pname="b" oct="4" dur="4">
 <verse n="1"><syl>With</syl></verse></note>
 <note xml:id="n41" pname="b" oct="4" dur="4">
@@ -162,7 +162,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="d" oct="4" dur="1">
-<verse n="1"><syl>seal,</syl></verse></note>
+<verse n="1"><syl eol="1">seal,</syl></verse></note>
 <note xml:id="n47" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Of</syl></verse></note>
 <note xml:id="n48" pname="g" oct="4" dur="4">
@@ -188,7 +188,7 @@
 <note xml:id="n53" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">earn</syl></verse></note>
 <note xml:id="n54" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">est</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">est</syl></verse></note>
 <note xml:id="n55" pname="g" oct="4" dur="4">
 <verse n="1"><syl>While</syl></verse></note>
 <note xml:id="n56" pname="b" oct="4" dur="4">
@@ -213,7 +213,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">veal.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">veal.</syl></verse></note>
 <rest xml:id="r62" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>

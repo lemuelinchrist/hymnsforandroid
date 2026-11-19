@@ -30,7 +30,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">chang</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">es</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Who</syl></verse></note>
 </layer></staff>
@@ -49,7 +49,7 @@
 <verse n="1"><syl wordpos="t">er</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="e" oct="4" dur="4">
-<verse n="1"><syl>fast,</syl></verse></note>
+<verse n="1"><syl eol="1">fast,</syl></verse></note>
 <beam>
 <note xml:id="n15" pname="e" oct="4" dur="8">
 <verse n="1"><syl>One</syl></verse></note>
@@ -75,7 +75,7 @@
 <note xml:id="n21" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">fu</syl></verse></note>
 <note xml:id="n22" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ture,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ture,</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -93,7 +93,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n28" pname="b" oct="4" dur="4">
-<verse n="1"><syl>past;</syl></verse></note>
+<verse n="1"><syl eol="1">past;</syl></verse></note>
 <beam>
 <note xml:id="n29" pname="a" oct="4" dur="8">
 <verse n="1"><syl>It</syl></verse></note>
@@ -120,7 +120,7 @@
 <note xml:id="n35" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Ag</syl></verse></note>
 <note xml:id="n36" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">es,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es,</syl></verse></note>
 <note xml:id="n37" pname="a" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -136,7 +136,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n41" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>last,</syl></verse></note>
+<verse n="1"><syl eol="1">last,</syl></verse></note>
 <note xml:id="n42" pname="d" oct="5" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -156,7 +156,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>last.</syl></verse></note>
+<verse n="1"><syl eol="1">last.</syl></verse></note>
 <rest xml:id="r47" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -176,7 +176,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n52" pname="c" oct="5" dur="2">
-<verse n="1"><syl>first,</syl></verse></note>
+<verse n="1"><syl eol="1">first,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭7</harm>
@@ -194,7 +194,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n57" pname="e" oct="4" dur="2">
-<verse n="1"><syl>last,</syl></verse></note>
+<verse n="1"><syl eol="1">last,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -213,7 +213,7 @@
 <note xml:id="n62" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">fu</syl></verse></note>
 <note xml:id="n63" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ture,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ture,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/G</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -230,7 +230,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n68" pname="b" oct="4" dur="2">
-<verse n="1"><syl>past;</syl></verse></note>
+<verse n="1"><syl eol="1">past;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭7</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -248,7 +248,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n73" pname="c" oct="5" dur="2">
-<verse n="1"><syl>first,</syl></verse></note>
+<verse n="1"><syl eol="1">first,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭7/C</harm>
@@ -265,7 +265,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n78" pname="f" oct="4" dur="2">
-<verse n="1"><syl>last,</syl></verse></note>
+<verse n="1"><syl eol="1">last,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 </measure>
@@ -283,7 +283,7 @@
 <note xml:id="n83" pname="c" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Ag</syl></verse></note>
 <note xml:id="n84" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">es,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es,</syl></verse></note>
 <note xml:id="n85" pname="d" oct="5" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -301,7 +301,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n89" pname="a" oct="4" dur="4">
-<verse n="1"><syl>last.</syl></verse></note>
+<verse n="1"><syl eol="1">last.</syl></verse></note>
 <rest xml:id="r90" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>

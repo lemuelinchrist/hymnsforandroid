@@ -47,7 +47,7 @@
 <note xml:id="n14" pname="a" oct="4" dur="8">
 <verse n="1"><syl>steep</syl></verse></note>
 <note xml:id="n15" pname="f" oct="4" dur="8">
-<verse n="1"><syl>joys,</syl></verse></note>
+<verse n="1"><syl eol="1">joys,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F♯m</harm>
@@ -99,7 +99,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="a" oct="4" dur="2">
-<verse n="1"><syl>songs.</syl></verse></note>
+<verse n="1"><syl eol="1">songs.</syl></verse></note>
 <note xml:id="n31" pname="a" oct="3" dur="4">
 <verse n="1"><syl>What’s</syl></verse></note>
 <beam>
@@ -139,7 +139,7 @@
 <note xml:id="n42" pname="f" oct="4" dur="8">
 <verse n="1"><syl>all</syl></verse></note>
 <note xml:id="n43" pname="a" oct="4" dur="8">
-<verse n="1"><syl>this?</syl></verse></note>
+<verse n="1"><syl eol="1">this?</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F♯m</harm>
@@ -197,7 +197,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="8">
-<verse n="1"><syl>live.</syl></verse></note>
+<verse n="1"><syl eol="1">live.</syl></verse></note>
 <note xml:id="n61" pname="e" oct="4" dur="4" dots="1"/>
 <note xml:id="n62" pname="d" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>Keep</syl></verse></note>
@@ -232,7 +232,7 @@
 <beam>
 <note xml:id="n71" pname="d" oct="4" dur="8"/>
 <note xml:id="n72" pname="b" oct="4" dur="8">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 </beam>
 </layer></staff>
 <slur startid="#n70" endid="#n71"/>
@@ -288,7 +288,7 @@
 </measure>
 <measure n="25"><staff n="1"><layer n="1">
 <note xml:id="n87" pname="g" oct="4" dur="4">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <note xml:id="n88" pname="f" oct="4" dur="4"/>
 <note xml:id="n89" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Keep</syl></verse></note>
@@ -322,7 +322,7 @@
 <beam>
 <note xml:id="n98" pname="d" oct="4" dur="8"/>
 <note xml:id="n99" pname="b" oct="4" dur="8">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 </beam>
 </layer></staff>
 <slur startid="#n97" endid="#n98"/>
@@ -384,7 +384,7 @@
 <sb/>
 <measure n="34"><staff n="1"><layer n="1">
 <note xml:id="n114" pname="d" oct="4" dur="1">
-<verse n="1"><syl>Christ.</syl></verse></note>
+<verse n="1"><syl eol="1">Christ.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n114" endid="#n115"/>

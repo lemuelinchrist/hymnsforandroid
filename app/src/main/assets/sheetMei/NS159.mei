@@ -38,7 +38,7 @@
 <verse n="1"><syl wordpos="i" con="d">in</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">deed;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">deed;</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Was</syl></verse></note>
@@ -74,7 +74,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 <note xml:id="n21" pname="e" oct="4" dur="4">
-<verse n="1"><syl>wheat.</syl></verse></note>
+<verse n="1"><syl eol="1">wheat.</syl></verse></note>
 <beam>
 <note xml:id="n22" pname="d" oct="4" dur="8">
 <verse n="1"><syl>While</syl></verse></note>
@@ -110,7 +110,7 @@
 <verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
 </beam>
 <note xml:id="n31" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">strained</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">strained</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -149,7 +149,7 @@
 <verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
 </beam>
 <note xml:id="n43" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">in.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭7</harm>
 <harm staff="1" tstamp="3" place="above">D♭</harm>
@@ -187,7 +187,7 @@
 <note xml:id="n52" pname="d" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ra</syl></verse></note>
 <note xml:id="n53" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭7/G♭</harm>
@@ -221,7 +221,7 @@
 <verse n="1"><syl wordpos="m" con="d">ca</syl></verse></note>
 </beam>
 <note xml:id="n63" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion.</syl></verse></note>
 <beam>
 <note xml:id="n64" pname="d" oct="4" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
@@ -256,7 +256,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n73" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Him</syl></verse></note>
+<verse n="1"><syl eol="1">Him</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -292,7 +292,7 @@
 <verse n="1"><syl>with</syl></verse></note>
 </beam>
 <note xml:id="n84" pname="d" oct="4" dur="2">
-<verse n="1"><syl>Him.</syl></verse></note>
+<verse n="1"><syl eol="1">Him.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭7</harm>
 <harm staff="1" tstamp="3" place="above">D♭</harm>

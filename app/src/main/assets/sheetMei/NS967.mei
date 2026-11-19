@@ -58,7 +58,7 @@
 <note xml:id="n15" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n16" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">tion,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion,</syl></verse></note>
 <note xml:id="n17" pname="c" oct="4" dur="8"/>
 </beam>
 <note xml:id="n18" pname="c" oct="4" dur="2"/>
@@ -110,7 +110,7 @@
 <note xml:id="n32" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">fer</syl></verse></note>
 <note xml:id="n33" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ings,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ings,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -151,7 +151,7 @@
 <verse n="1"><syl>His</syl></verse></note>
 <note xml:id="n44" pname="a" oct="4" dur="8"/>
 <note xml:id="n45" pname="g" oct="4" dur="8">
-<verse n="1"><syl>death,</syl></verse></note>
+<verse n="1"><syl eol="1">death,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -185,7 +185,7 @@
 <verse n="1"><syl wordpos="i" con="d">at</syl></verse></note>
 <note xml:id="n54" pname="a" oct="4" dur="8"/>
 <note xml:id="n55" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">tain</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tain</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -244,7 +244,7 @@
 <note xml:id="n71" pname="f" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n72" pname="f" oct="4" dur="8">
-<verse n="1"><syl>dead.</syl></verse></note>
+<verse n="1"><syl eol="1">dead.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

@@ -42,7 +42,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">pure,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pure,</syl></verse></note>
 <beam>
 <note xml:id="n10" pname="g" oct="4" dur="8">
 <verse n="1"><syl>So</syl></verse></note>
@@ -71,7 +71,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <slur startid="#n16" endid="#n17"/>
@@ -111,7 +111,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">scure</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">scure</syl></verse></note>
 <note xml:id="n26" pname="b" oct="4" dur="4"/>
 <note xml:id="n27" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Un</syl></verse></note>
@@ -137,7 +137,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">veals.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">veals.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n32" endid="#n33"/>

@@ -45,7 +45,7 @@
 <note xml:id="n14" pname="d" oct="4" dur="8"/>
 </beam>
 <note xml:id="n15" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tue;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tue;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -81,7 +81,7 @@
 <note xml:id="n24" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">lent</syl></verse></note>
 <note xml:id="n25" pname="e" oct="4" dur="8">
-<verse n="1"><syl>way.</syl></verse></note>
+<verse n="1"><syl eol="1">way.</syl></verse></note>
 </beam>
 <note xml:id="n26" pname="e" oct="4" dur="2"/>
 </layer></staff>
@@ -123,7 +123,7 @@
 <note xml:id="n38" pname="d" oct="4" dur="8"/>
 </beam>
 <note xml:id="n39" pname="d" oct="4" dur="4">
-<verse n="1"><syl>you,</syl></verse></note>
+<verse n="1"><syl eol="1">you,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -158,7 +158,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n48" pname="g" oct="4" dur="8"/>
 <note xml:id="n49" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way.</syl></verse></note>
 </beam>
 <note xml:id="n50" pname="a" oct="4" dur="2"/>
 </layer></staff>
@@ -202,7 +202,7 @@
 <verse n="1"><syl wordpos="m" con="d">ous</syl></verse></note>
 </beam>
 <note xml:id="n63" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">y</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">y</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -237,7 +237,7 @@
 <note xml:id="n73" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n74" pname="f" oct="4" dur="2">
-<verse n="1"><syl>pride?</syl></verse></note>
+<verse n="1"><syl eol="1">pride?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -276,7 +276,7 @@
 <beam>
 <note xml:id="n85" pname="f" oct="4" dur="8"/>
 <note xml:id="n86" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly</syl></verse></note>
 <note xml:id="n87" pname="f" oct="4" dur="8"/>
 <note xml:id="n88" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Three</syl></verse></note>
@@ -295,7 +295,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n91" pname="g" oct="4" dur="4" dots="1"/>
 <note xml:id="n92" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">bide:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bide:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <tie startid="#n90" endid="#n91"/>
@@ -339,7 +339,7 @@
 <note xml:id="n103" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n104" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">lieves,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieves,</syl></verse></note>
 <note xml:id="n105" pname="d" oct="4" dur="8">
 <verse n="1"><syl>But</syl></verse></note>
 </layer></staff>
@@ -380,7 +380,7 @@
 <note xml:id="n116" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n117" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ceive.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ceive.</syl></verse></note>
 <note xml:id="n118" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Of</syl></verse></note>
 </layer></staff>
@@ -421,7 +421,7 @@
 <verse n="1"><syl wordpos="t">take</syl></verse></note>
 <note xml:id="n128" pname="b" oct="4" dur="8"/>
 <note xml:id="n129" pname="g" oct="4" dur="8">
-<verse n="1"><syl>of,</syl></verse></note>
+<verse n="1"><syl eol="1">of,</syl></verse></note>
 </beam>
 <note xml:id="n130" pname="g" oct="4" dur="4" dots="1"/>
 <note xml:id="n131" pname="d" oct="4" dur="8">
@@ -448,7 +448,7 @@
 <note xml:id="n137" pname="g" oct="4" dur="8">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n138" pname="g" oct="4" dur="8">
-<verse n="1"><syl>love.</syl></verse></note>
+<verse n="1"><syl eol="1">love.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>

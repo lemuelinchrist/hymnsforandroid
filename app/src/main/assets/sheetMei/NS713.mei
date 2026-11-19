@@ -46,7 +46,7 @@
 <note xml:id="n11" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">im</syl></verse></note>
 <note xml:id="n12" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">age;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">age;</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl>As</syl></verse></note>
 </layer></staff>
@@ -85,7 +85,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2">
-<verse n="1"><syl>win!</syl></verse></note>
+<verse n="1"><syl eol="1">win!</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Safe</syl></verse></note>
 </layer></staff>
@@ -131,7 +131,7 @@
 <note xml:id="n35" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">ar</syl></verse></note>
 <note xml:id="n36" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">mor,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">mor,</syl></verse></note>
 <note xml:id="n37" pname="c" oct="4" dur="4">
 <verse n="1"><syl>We</syl></verse></note>
 </layer></staff>
@@ -176,7 +176,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="c" oct="4" dur="2">
-<verse n="1"><syl>in!</syl></verse></note>
+<verse n="1"><syl eol="1">in!</syl></verse></note>
 <rest xml:id="r49" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

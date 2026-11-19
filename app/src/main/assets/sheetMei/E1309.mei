@@ -37,7 +37,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>cry,</syl></verse></note>
+<verse n="1"><syl eol="1">cry,</syl></verse></note>
 <note xml:id="n12" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">“Be</syl></verse></note>
 </layer></staff>
@@ -60,7 +60,7 @@
 <note xml:id="n17" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
 <note xml:id="n18" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">eth!”</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">eth!”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -97,7 +97,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>sky,</syl></verse></note>
+<verse n="1"><syl eol="1">sky,</syl></verse></note>
 <note xml:id="n30" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">“Be</syl></verse></note>
 </layer></staff>
@@ -121,7 +121,7 @@
 <note xml:id="n35" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
 <note xml:id="n36" pname="d" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">eth!”</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">eth!”</syl></verse></note>
 <rest xml:id="r37" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -159,7 +159,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n48" pname="b" oct="4" dur="2">
-<verse n="1"><syl>sky;</syl></verse></note>
+<verse n="1"><syl eol="1">sky;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -194,7 +194,7 @@
 <note xml:id="n58" pname="g" oct="4" dur="4">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n59" pname="a" oct="4" dur="2">
-<verse n="1"><syl>nigh.</syl></verse></note>
+<verse n="1"><syl eol="1">nigh.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -231,7 +231,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n70" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>cry,</syl></verse></note>
+<verse n="1"><syl eol="1">cry,</syl></verse></note>
 <note xml:id="n71" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">“Be</syl></verse></note>
 </layer></staff>
@@ -255,7 +255,7 @@
 <note xml:id="n76" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
 <note xml:id="n77" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">eth!”</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">eth!”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>

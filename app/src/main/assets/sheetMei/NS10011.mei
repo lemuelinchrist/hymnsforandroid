@@ -51,7 +51,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="a" oct="4" dur="1">
-<verse n="1"><syl>Son.</syl></verse></note>
+<verse n="1"><syl eol="1">Son.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -85,7 +85,7 @@
 <note xml:id="n23" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n24" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ion,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ion,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <slur startid="#n22" endid="#n23"/>
@@ -111,7 +111,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="d" oct="4" dur="1">
-<verse n="1"><syl>Son.</syl></verse></note>
+<verse n="1"><syl eol="1">Son.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -161,7 +161,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="a" oct="4" dur="1">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -195,7 +195,7 @@
 <note xml:id="n54" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n55" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ners</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ners</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">Bm</harm>
@@ -220,7 +220,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="d" oct="4" dur="1">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -242,7 +242,7 @@
 <note xml:id="n66" pname="c" oct="5" dur="4">
 <verse n="1"><syl>spare</syl></verse></note>
 <note xml:id="n67" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Him,</syl></verse></note>
+<verse n="1"><syl eol="1">Him,</syl></verse></note>
 <beam>
 <note xml:id="n68" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Your</syl></verse></note>
@@ -268,7 +268,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="a" oct="4" dur="1">
-<verse n="1"><syl>Son.</syl></verse></note>
+<verse n="1"><syl eol="1">Son.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -289,7 +289,7 @@
 <note xml:id="n79" pname="d" oct="5" dur="4">
 <verse n="1"><syl>praise</syl></verse></note>
 <note xml:id="n80" pname="d" oct="5" dur="2">
-<verse n="1"><syl>You</syl></verse></note>
+<verse n="1"><syl eol="1">You</syl></verse></note>
 <beam>
 <note xml:id="n81" pname="b" oct="4" dur="8">
 <verse n="1"><syl>For</syl></verse></note>
@@ -310,7 +310,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>One!</syl></verse></note>
+<verse n="1"><syl eol="1">One!</syl></verse></note>
 <rest xml:id="r86" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>

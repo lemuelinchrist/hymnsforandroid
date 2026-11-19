@@ -43,7 +43,7 @@
 <note xml:id="n12" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">on</syl></verse></note>
 <note xml:id="n13" pname="f" oct="4" dur="4">
-<verse n="1"><syl>Me,</syl></verse></note>
+<verse n="1"><syl eol="1">Me,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bsus4</harm>
 </measure>
@@ -77,7 +77,7 @@
 <note xml:id="n23" pname="b" oct="3" dur="4">
 <verse n="1"><syl wordpos="t">ed</syl></verse></note>
 <note xml:id="n24" pname="e" oct="4" dur="4">
-<verse n="1"><syl>Me</syl></verse></note>
+<verse n="1"><syl eol="1">Me</syl></verse></note>
 <rest xml:id="r25" dur="8"/>
 <note xml:id="n26" pname="b" oct="3" dur="8">
 <verse n="1"><syl>To</syl></verse></note>
@@ -108,7 +108,7 @@
 <note xml:id="n34" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">flict</syl></verse></note>
 <note xml:id="n35" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ed;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bsus4</harm>
 </measure>
@@ -176,7 +176,7 @@
 <note xml:id="n56" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n57" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ed,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bsus4</harm>
 <slur startid="#n55" endid="#n56"/>
@@ -213,7 +213,7 @@
 <note xml:id="n68" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">cap</syl></verse></note>
 <note xml:id="n69" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tives,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tives,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A add9</harm>
 </measure>
@@ -262,7 +262,7 @@
 <sb/>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n84" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>those,</syl></verse></note>
+<verse n="1"><syl eol="1">those,</syl></verse></note>
 <beam>
 <note xml:id="n85" pname="g" oct="4" dur="8"/>
 <note xml:id="n86" pname="a" oct="4" dur="8"/>
@@ -293,7 +293,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n94" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>bound;</syl></verse></note>
+<verse n="1"><syl eol="1">bound;</syl></verse></note>
 <rest xml:id="r95" dur="8"/>
 <note xml:id="n96" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">I</syl></verse></note>
@@ -325,7 +325,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n104" pname="e" oct="4" dur="1">
-<verse n="1"><syl>one.</syl></verse></note>
+<verse n="1"><syl eol="1">one.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C♯m7</harm>
 </measure>

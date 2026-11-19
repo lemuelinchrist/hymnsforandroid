@@ -39,7 +39,7 @@
 <note xml:id="n8" pname="b" oct="4" dur="8">
 <verse n="1"><syl>我</syl></verse></note>
 <note xml:id="n9" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>心，</syl></verse></note>
+<verse n="1"><syl eol="1">心，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n9" endid="#n10"/>
@@ -71,7 +71,7 @@
 <measure n="8"><staff n="1"><layer n="1">
 <beam>
 <note xml:id="n16" pname="b" oct="4" dur="8" dots="1">
-<verse n="1"><syl>入，</syl></verse></note>
+<verse n="1"><syl eol="1">入，</syl></verse></note>
 <note xml:id="n17" pname="c" oct="5" dur="16"/>
 </beam>
 <beam>
@@ -118,7 +118,7 @@
 <note xml:id="n28" pname="b" oct="4" dur="8">
 <verse n="1"><syl>我</syl></verse></note>
 <note xml:id="n29" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>心，</syl></verse></note>
+<verse n="1"><syl eol="1">心，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n29" endid="#n30"/>
@@ -149,7 +149,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="g" oct="4" dur="2">
-<verse n="1"><syl>入。</syl></verse></note>
+<verse n="1"><syl eol="1">入。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n36" endid="#n37"/>

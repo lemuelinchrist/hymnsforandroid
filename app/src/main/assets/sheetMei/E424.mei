@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">mains</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">mains</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="2">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -54,7 +54,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="b" oct="4" dur="1">
-<verse n="1"><syl>known;</syl></verse></note>
+<verse n="1"><syl eol="1">known;</syl></verse></note>
 <note xml:id="n15" pname="d" oct="5" dur="2">
 <verse n="1"><syl>A</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 <note xml:id="n21" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ment</syl></verse></note>
 <note xml:id="n22" pname="f" oct="4" dur="2">
-<verse n="1"><syl>reigns,</syl></verse></note>
+<verse n="1"><syl eol="1">reigns,</syl></verse></note>
 <note xml:id="n23" pname="e" oct="4" dur="2">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -106,7 +106,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="a" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">lone.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lone.</syl></verse></note>
 <rest xml:id="r29" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭/A♭</harm>

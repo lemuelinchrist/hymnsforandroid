@@ -27,7 +27,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="f" oct="4" dur="2">
-<verse n="1"><syl>處，</syl></verse></note>
+<verse n="1"><syl eol="1">處，</syl></verse></note>
 <beam>
 <note xml:id="n7" pname="f" oct="4" dur="8">
 <verse n="1"><syl>有</syl></verse></note>
@@ -49,7 +49,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="g" oct="4" dur="2">
-<verse n="1"><syl>流，</syl></verse></note>
+<verse n="1"><syl eol="1">流，</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="g" oct="4" dur="8">
 <verse n="1"><syl>是</syl></verse></note>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>流。</syl></verse></note>
+<verse n="1"><syl eol="1">流。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n21" endid="#n22"/>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="2">
-<verse n="1"><syl>頭，</syl></verse></note>
+<verse n="1"><syl eol="1">頭，</syl></verse></note>
 <beam>
 <note xml:id="n29" pname="f" oct="4" dur="8">
 <verse n="1"><syl>主</syl></verse></note>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="g" oct="4" dur="2">
-<verse n="1"><syl>河，</syl></verse></note>
+<verse n="1"><syl eol="1">河，</syl></verse></note>
 <beam>
 <note xml:id="n35" pname="g" oct="4" dur="8">
 <verse n="1"><syl>靈</syl></verse></note>
@@ -164,7 +164,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>我。</syl></verse></note>
+<verse n="1"><syl eol="1">我。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
 <tie startid="#n43" endid="#n44"/>
@@ -204,7 +204,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>流，</syl></verse></note>
+<verse n="1"><syl eol="1">流，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <tie startid="#n53" endid="#n54"/>
@@ -242,7 +242,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n63" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>留；</syl></verse></note>
+<verse n="1"><syl eol="1">留；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n63" endid="#n64"/>
@@ -281,7 +281,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n73" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>流，</syl></verse></note>
+<verse n="1"><syl eol="1">流，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n73" endid="#n74"/>
@@ -319,7 +319,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n83" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>熟。</syl></verse></note>
+<verse n="1"><syl eol="1">熟。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
 <tie startid="#n83" endid="#n84"/>

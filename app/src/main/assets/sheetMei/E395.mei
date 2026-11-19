@@ -28,7 +28,7 @@
 <note xml:id="n8" pname="g" oct="4" dur="4">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <note xml:id="n10" pname="g" oct="4" dur="4"/>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
@@ -55,7 +55,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">cede;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cede;</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="2"/>
 <rest xml:id="r19" dur="4"/>
 </layer></staff>
@@ -86,7 +86,7 @@
 <note xml:id="n27" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">er</syl></verse></note>
 <note xml:id="n28" pname="f" oct="4" dur="4">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 <note xml:id="n29" pname="g" oct="4" dur="4"/>
 <note xml:id="n30" pname="a" oct="4" dur="4">
 <verse n="1"><syl>From</syl></verse></note>
@@ -114,7 +114,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>freed.</syl></verse></note>
+<verse n="1"><syl eol="1">freed.</syl></verse></note>
 <note xml:id="n37" pname="e" oct="4" dur="4"/>
 <rest xml:id="r38" dur="4"/>
 <note xml:id="n39" pname="b" oct="4" dur="4">
@@ -148,7 +148,7 @@
 <note xml:id="n47" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n48" pname="b" oct="4" dur="2">
-<verse n="1"><syl>might</syl></verse></note>
+<verse n="1"><syl eol="1">might</syl></verse></note>
 <note xml:id="n49" pname="b" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -177,7 +177,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">brace;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">brace;</syl></verse></note>
 <note xml:id="n56" pname="f" oct="4" dur="2"/>
 <rest xml:id="r57" dur="4"/>
 </layer></staff>
@@ -208,7 +208,7 @@
 <note xml:id="n65" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
 <note xml:id="n66" pname="f" oct="4" dur="4">
-<verse n="1"><syl>light,</syl></verse></note>
+<verse n="1"><syl eol="1">light,</syl></verse></note>
 <note xml:id="n67" pname="g" oct="4" dur="4"/>
 <note xml:id="n68" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
@@ -235,7 +235,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">face.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">face.</syl></verse></note>
 <note xml:id="n75" pname="e" oct="4" dur="2"/>
 <rest xml:id="r76" dur="4"/>
 </layer></staff>

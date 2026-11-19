@@ -32,7 +32,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="4">
 <verse n="1"><syl>with</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4">
-<verse n="1"><syl>Christ;</syl></verse></note>
+<verse n="1"><syl eol="1">Christ;</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="f" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -61,7 +61,7 @@
 <note xml:id="n16" pname="b" oct="4" dur="4">
 <verse n="1"><syl>who</syl></verse></note>
 <note xml:id="n17" pname="g" oct="4" dur="4">
-<verse n="1"><syl>live,</syl></verse></note>
+<verse n="1"><syl eol="1">live,</syl></verse></note>
 <beam>
 <note xml:id="n18" pname="a" oct="4" dur="8">
 <verse n="1"><syl>But</syl></verse></note>
@@ -90,7 +90,7 @@
 <note xml:id="n24" pname="f" oct="4" dur="4">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n25" pname="c" oct="4" dur="4">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <beam>
 <note xml:id="n26" pname="f" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -116,7 +116,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>live</syl></verse></note>
+<verse n="1"><syl eol="1">live</syl></verse></note>
 <beam>
 <note xml:id="n33" pname="g" oct="4" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
@@ -145,7 +145,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>faith,</syl></verse></note>
+<verse n="1"><syl eol="1">faith,</syl></verse></note>
 <beam>
 <note xml:id="n41" pname="c" oct="5" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
@@ -171,7 +171,7 @@
 <note xml:id="n47" pname="g" oct="4" dur="4">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n48" pname="f" oct="4" dur="4">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <note xml:id="n49" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Who</syl></verse></note>
 </layer></staff>
@@ -211,7 +211,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="f" oct="4" dur="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

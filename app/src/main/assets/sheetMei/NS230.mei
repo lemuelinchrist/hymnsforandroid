@@ -29,7 +29,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="c" oct="5" dur="1">
-<verse n="1"><syl wordpos="t">day;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">Am</harm>
 </measure>
@@ -57,7 +57,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="f" oct="4" dur="1">
-<verse n="1"><syl>way,</syl></verse></note>
+<verse n="1"><syl eol="1">way,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
@@ -87,7 +87,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>small,</syl></verse></note>
+<verse n="1"><syl eol="1">small,</syl></verse></note>
 <note xml:id="n25" pname="f" oct="4" dur="8"/>
 <note xml:id="n26" pname="d" oct="4" dur="4"/>
 <note xml:id="n27" pname="f" oct="4" dur="4"/>
@@ -120,7 +120,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="f" oct="4" dur="1">
-<verse n="1"><syl>all.</syl></verse></note>
+<verse n="1"><syl eol="1">all.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
@@ -151,7 +151,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="c" oct="5" dur="1">
-<verse n="1"><syl>fly,</syl></verse></note>
+<verse n="1"><syl eol="1">fly,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -180,7 +180,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="f" oct="4" dur="1">
-<verse n="1"><syl>by,</syl></verse></note>
+<verse n="1"><syl eol="1">by,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
@@ -210,7 +210,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">fall,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fall,</syl></verse></note>
 <note xml:id="n60" pname="f" oct="4" dur="8"/>
 <note xml:id="n61" pname="d" oct="4" dur="4"/>
 <note xml:id="n62" pname="f" oct="4" dur="4"/>
@@ -243,7 +243,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n70" pname="f" oct="4" dur="1">
-<verse n="1"><syl>all.</syl></verse></note>
+<verse n="1"><syl eol="1">all.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

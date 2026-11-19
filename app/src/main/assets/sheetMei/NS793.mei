@@ -47,7 +47,7 @@
 <verse n="1"><syl>O</syl></verse></note>
 <note xml:id="n14" pname="f" oct="4" dur="8"/>
 <note xml:id="n15" pname="g" oct="4" dur="8">
-<verse n="1"><syl>Lord;</syl></verse></note>
+<verse n="1"><syl eol="1">Lord;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
@@ -97,7 +97,7 @@
 <verse n="1"><syl>Your</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="8"/>
 <note xml:id="n31" pname="g" oct="4" dur="8">
-<verse n="1"><syl>Word.</syl></verse></note>
+<verse n="1"><syl eol="1">Word.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
@@ -151,7 +151,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="c" oct="4" dur="2">
-<verse n="1"><syl>You;</syl></verse></note>
+<verse n="1"><syl eol="1">You;</syl></verse></note>
 <note xml:id="n47" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Drink</syl></verse></note>
 <note xml:id="n48" pname="e" oct="4" dur="4">
@@ -192,7 +192,7 @@
 <note xml:id="n60" pname="b" oct="3" dur="8">
 <verse n="1"><syl wordpos="t">tered,</syl></verse></note>
 <note xml:id="n61" pname="c" oct="4" dur="8">
-<verse n="1"><syl>too.</syl></verse></note>
+<verse n="1"><syl eol="1">too.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
@@ -249,7 +249,7 @@
 <note xml:id="n75" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">to</syl></verse></note>
 <note xml:id="n76" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ry!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry!</syl></verse></note>
 </beam>
 <note xml:id="n77" pname="g" oct="4" dur="2"/>
 </layer></staff>
@@ -300,7 +300,7 @@
 </measure>
 <measure n="25"><staff n="1"><layer n="1">
 <note xml:id="n91" pname="c" oct="5" dur="1">
-<verse n="1"><syl>eat!</syl></verse></note>
+<verse n="1"><syl eol="1">eat!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 </measure>
@@ -342,7 +342,7 @@
 <note xml:id="n103" pname="g" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n104" pname="g" oct="4" dur="2">
-<verse n="1"><syl>be</syl></verse></note>
+<verse n="1"><syl eol="1">be</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 </measure>
@@ -385,7 +385,7 @@
 </measure>
 <measure n="33" right="end"><staff n="1"><layer n="1">
 <note xml:id="n117" pname="c" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ly!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 </measure>

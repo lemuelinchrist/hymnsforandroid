@@ -35,7 +35,7 @@
 <note xml:id="n8" pname="e" oct="4" dur="4">
 <verse n="1"><syl>our</syl></verse></note>
 <note xml:id="n9" pname="d" oct="4" dur="4">
-<verse n="1"><syl>God</syl></verse></note>
+<verse n="1"><syl eol="1">God</syl></verse></note>
 <note xml:id="n10" pname="b" oct="4" dur="4">
 <verse n="1"><syl>With</syl></verse></note>
 </layer></staff>
@@ -67,7 +67,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">turn;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">turn;</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="2"/>
 <note xml:id="n19" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Our</syl></verse></note>
@@ -102,7 +102,7 @@
 <note xml:id="n26" pname="e" oct="4" dur="4">
 <verse n="1"><syl>will</syl></verse></note>
 <note xml:id="n27" pname="f" oct="4" dur="4">
-<verse n="1"><syl>leave</syl></verse></note>
+<verse n="1"><syl eol="1">leave</syl></verse></note>
 <note xml:id="n28" pname="b" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -130,7 +130,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>mourn.</syl></verse></note>
+<verse n="1"><syl eol="1">mourn.</syl></verse></note>
 <rest xml:id="r35" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

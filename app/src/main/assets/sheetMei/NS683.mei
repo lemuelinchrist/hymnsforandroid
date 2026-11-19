@@ -38,7 +38,7 @@
 <note xml:id="n8" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">na</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">cles,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cles,</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
@@ -59,7 +59,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>seek;</syl></verse></note>
+<verse n="1"><syl eol="1">seek;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n14" endid="#n15"/>
@@ -97,7 +97,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2">
-<verse n="1"><syl>all</syl></verse></note>
+<verse n="1"><syl eol="1">all</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -120,7 +120,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>bring.</syl></verse></note>
+<verse n="1"><syl eol="1">bring.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n29" endid="#n30"/>
@@ -151,7 +151,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ply,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <tie startid="#n36" endid="#n37"/>
@@ -180,7 +180,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">held;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">held;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n43" endid="#n44"/>
@@ -218,7 +218,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">quires</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">quires</syl></verse></note>
 <note xml:id="n53" pname="g" oct="4" dur="4">
 <verse n="1"><syl>An</syl></verse></note>
 </layer></staff>
@@ -241,7 +241,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">gain.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n58" endid="#n59"/>
@@ -277,7 +277,7 @@
 </measure>
 <measure n="37"><staff n="1"><layer n="1">
 <note xml:id="n66" pname="g" oct="4" dur="2">
-<verse n="1"><syl>longs</syl></verse></note>
+<verse n="1"><syl eol="1">longs</syl></verse></note>
 <beam>
 <note xml:id="n67" pname="a" oct="4" dur="8">
 <verse n="1"><syl>For</syl></verse></note>
@@ -303,7 +303,7 @@
 </measure>
 <measure n="40"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lord;</syl></verse></note>
+<verse n="1"><syl eol="1">Lord;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n72" endid="#n73"/>
@@ -340,7 +340,7 @@
 </measure>
 <measure n="46"><staff n="1"><layer n="1">
 <note xml:id="n79" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>out</syl></verse></note>
+<verse n="1"><syl eol="1">out</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>
 </measure>
@@ -354,7 +354,7 @@
 </measure>
 <measure n="48"><staff n="1"><layer n="1">
 <note xml:id="n82" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n82" endid="#n83"/>

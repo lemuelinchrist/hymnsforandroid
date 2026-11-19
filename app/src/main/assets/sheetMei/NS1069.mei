@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="b" oct="4" dur="4">
 <verse n="1"><syl>serve</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl>Him!</syl></verse></note>
+<verse n="1"><syl eol="1">Him!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">B♭/D</harm>
 </measure>
@@ -49,7 +49,7 @@
 <note xml:id="n14" pname="e" oct="4" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n15" pname="d" oct="4" dur="2">
-<verse n="1"><syl>next!</syl></verse></note>
+<verse n="1"><syl eol="1">next!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -75,7 +75,7 @@
 <note xml:id="n22" pname="b" oct="4" dur="4">
 <verse n="1"><syl>serve</syl></verse></note>
 <note xml:id="n23" pname="a" oct="4" dur="4">
-<verse n="1"><syl>Him!</syl></verse></note>
+<verse n="1"><syl eol="1">Him!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">Gm</harm>
 <harm staff="1" tstamp="4" place="above">D</harm>
@@ -103,7 +103,7 @@
 <note xml:id="n30" pname="g" oct="4" dur="4">
 <verse n="1"><syl>knows</syl></verse></note>
 <note xml:id="n31" pname="f" oct="4" dur="2">
-<verse n="1"><syl>best!</syl></verse></note>
+<verse n="1"><syl eol="1">best!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -129,7 +129,7 @@
 <note xml:id="n38" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">hon</syl></verse></note>
 <note xml:id="n39" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">or!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">or!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -153,7 +153,7 @@
 <note xml:id="n45" pname="a" oct="4" dur="4">
 <verse n="1"><syl>so</syl></verse></note>
 <note xml:id="n46" pname="b" oct="4" dur="2">
-<verse n="1"><syl>blessed!</syl></verse></note>
+<verse n="1"><syl eol="1">blessed!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <harm staff="1" tstamp="2" place="above">F7</harm>

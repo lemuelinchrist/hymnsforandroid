@@ -20,7 +20,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n5" pname="d" oct="4" dur="2">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <beam>
 <note xml:id="n6" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Cords</syl></verse></note>
@@ -39,7 +39,7 @@
 <note xml:id="n11" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ed</syl></verse></note>
 <note xml:id="n12" pname="a" oct="4" dur="2">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F♯m</harm>
 <tie startid="#n12" endid="#n13"/>
@@ -66,7 +66,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>forth,</syl></verse></note>
+<verse n="1"><syl eol="1">forth,</syl></verse></note>
 <note xml:id="n21" pname="a" oct="3" dur="8">
 <verse n="1"><syl wordpos="i" con="d">De</syl></verse></note>
 <beam>
@@ -88,7 +88,7 @@
 <note xml:id="n27" pname="a" oct="4" dur="8">
 <verse n="1"><syl>on</syl></verse></note>
 <note xml:id="n28" pname="f" oct="4" dur="2">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n28" endid="#n29"/>
@@ -115,7 +115,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tress</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tress</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <note xml:id="n37" pname="b" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
@@ -132,7 +132,7 @@
 <note xml:id="n41" pname="a" oct="4" dur="8">
 <verse n="1"><syl>His</syl></verse></note>
 <note xml:id="n42" pname="f" oct="4" dur="2">
-<verse n="1"><syl>name.</syl></verse></note>
+<verse n="1"><syl eol="1">name.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n42" endid="#n43"/>
@@ -169,7 +169,7 @@
 <note xml:id="n53" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ed</syl></verse></note>
 <note xml:id="n54" pname="a" oct="4" dur="4">
-<verse n="1"><syl>down</syl></verse></note>
+<verse n="1"><syl eol="1">down</syl></verse></note>
 </tuplet>
 <beam>
 <note xml:id="n55" pname="a" oct="4" dur="8"/>
@@ -193,7 +193,7 @@
 <note xml:id="n60" pname="d" oct="4" dur="8">
 <verse n="1"><syl>His</syl></verse></note>
 <note xml:id="n61" pname="d" oct="4" dur="2">
-<verse n="1"><syl>hand.</syl></verse></note>
+<verse n="1"><syl eol="1">hand.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n61" endid="#n62"/>
@@ -223,7 +223,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>You,</syl></verse></note>
+<verse n="1"><syl eol="1">You,</syl></verse></note>
 <rest xml:id="r70" dur="8"/>
 <note xml:id="n71" pname="a" oct="4" dur="8">
 <verse n="1"><syl>For</syl></verse></note>
@@ -244,7 +244,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n76" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <rest xml:id="r77" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -274,7 +274,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n85" pname="f" oct="4" dur="8"/>
 <note xml:id="n86" pname="a" oct="4" dur="8">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n87" pname="a" oct="4" dur="8"/>
@@ -297,7 +297,7 @@
 <note xml:id="n92" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Your</syl></verse></note>
 <note xml:id="n93" pname="d" oct="4" dur="2">
-<verse n="1"><syl>love.</syl></verse></note>
+<verse n="1"><syl eol="1">love.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n93" endid="#n94"/>

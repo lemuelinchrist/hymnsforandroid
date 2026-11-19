@@ -52,7 +52,7 @@
 <note xml:id="n12" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n13" pname="g" oct="4" dur="4">
-<verse n="1"><syl>此！</syl></verse></note>
+<verse n="1"><syl eol="1">此！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <slur startid="#n11" endid="#n12"/>
@@ -92,7 +92,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="f" oct="4" dur="2">
-<verse n="1"><syl>無！</syl></verse></note>
+<verse n="1"><syl eol="1">無！</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -143,7 +143,7 @@
 <note xml:id="n34" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n35" pname="g" oct="4" dur="4">
-<verse n="1"><syl>時，</syl></verse></note>
+<verse n="1"><syl eol="1">時，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <slur startid="#n33" endid="#n34"/>
@@ -183,7 +183,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="f" oct="4" dur="2">
-<verse n="1"><syl>主。</syl></verse></note>
+<verse n="1"><syl eol="1">主。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -223,7 +223,7 @@
 <note xml:id="n53" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n54" pname="g" oct="4" dur="4">
-<verse n="1"><syl>子，</syl></verse></note>
+<verse n="1"><syl eol="1">子，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <slur startid="#n52" endid="#n53"/>
@@ -254,7 +254,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="g" oct="4" dur="2">
-<verse n="1"><syl>穌；</syl></verse></note>
+<verse n="1"><syl eol="1">穌；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -305,7 +305,7 @@
 <note xml:id="n73" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n74" pname="g" oct="4" dur="4">
-<verse n="1"><syl>字，</syl></verse></note>
+<verse n="1"><syl eol="1">字，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <slur startid="#n72" endid="#n73"/>
@@ -326,7 +326,7 @@
 </beam>
 <beam>
 <note xml:id="n79" pname="f" oct="4" dur="8">
-<verse n="1"><syl>甜，</syl></verse></note>
+<verse n="1"><syl eol="1">甜，</syl></verse></note>
 <note xml:id="n80" pname="g" oct="4" dur="8"/>
 </beam>
 </layer></staff>
@@ -345,7 +345,7 @@
 </measure>
 <measure n="32" right="end"><staff n="1"><layer n="1">
 <note xml:id="n83" pname="f" oct="4" dur="2">
-<verse n="1"><syl>穌。』</syl></verse></note>
+<verse n="1"><syl eol="1">穌。』</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>

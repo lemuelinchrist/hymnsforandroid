@@ -30,7 +30,7 @@
 <note xml:id="n8" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">per</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">fect,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fect,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 </measure>
@@ -51,7 +51,7 @@
 </beam>
 <beam>
 <note xml:id="n16" pname="a" oct="4" dur="8">
-<verse n="1"><syl>soul;</syl></verse></note>
+<verse n="1"><syl eol="1">soul;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭7</harm>
@@ -94,7 +94,7 @@
 <note xml:id="n28" pname="f" oct="4" dur="8">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="2">
-<verse n="1"><syl>sure,</syl></verse></note>
+<verse n="1"><syl eol="1">sure,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 </measure>
@@ -124,7 +124,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">sim</syl></verse></note>
 <note xml:id="n38" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ple.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ple.</syl></verse></note>
 </beam>
 <note xml:id="n39" pname="g" oct="4" dur="2" dots="1"/>
 </layer></staff>
@@ -162,7 +162,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="f" oct="4" dur="4">
-<verse n="1"><syl>gold.</syl></verse></note>
+<verse n="1"><syl eol="1">gold.</syl></verse></note>
 <note xml:id="n50" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Yea,</syl></verse></note>
 <note xml:id="n51" pname="g" oct="4" dur="4">
@@ -185,7 +185,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="b" oct="4" dur="4">
-<verse n="1"><syl>gold:</syl></verse></note>
+<verse n="1"><syl eol="1">gold:</syl></verse></note>
 <beam>
 <note xml:id="n58" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Sweet</syl></verse></note>
@@ -208,7 +208,7 @@
 <verse n="1"><syl wordpos="i" con="d">hon</syl></verse></note>
 <note xml:id="n64" pname="g" oct="4" dur="8"/>
 <note xml:id="n65" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ey</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ey</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm7</harm>
 <slur startid="#n63" endid="#n64"/>
@@ -230,7 +230,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">comb.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">comb.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/E♭</harm>

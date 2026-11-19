@@ -45,7 +45,7 @@
 <verse n="1"><syl wordpos="i" con="d">Per</syl></verse></note>
 <note xml:id="n12" pname="e" oct="4" dur="8"/>
 <note xml:id="n13" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">son—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">son—</syl></verse></note>
 <rest xml:id="r14" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
@@ -92,7 +92,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n28" pname="g" oct="4" dur="8"/>
 <note xml:id="n29" pname="b" oct="4" dur="8">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">pressed</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pressed</syl></verse></note>
 <rest xml:id="r46" dur="4"/>
 <note xml:id="n47" pname="c" oct="4" dur="4">
 <verse n="1"><syl>When</syl></verse></note>
@@ -175,7 +175,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="f" oct="4" dur="1">
-<verse n="1"><syl>comes.</syl></verse></note>
+<verse n="1"><syl eol="1">comes.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 <tie startid="#n53" endid="#n54"/>
@@ -218,7 +218,7 @@
 <note xml:id="n64" pname="a" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">pre</syl></verse></note>
 <note xml:id="n65" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">sent.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sent.</syl></verse></note>
 <note xml:id="n66" pname="g" oct="4" dur="4"/>
 <note xml:id="n67" pname="e" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>So</syl></verse></note>
@@ -305,7 +305,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n91" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
@@ -343,7 +343,7 @@
 </measure>
 <measure n="33"><staff n="1"><layer n="1">
 <note xml:id="n102" pname="e" oct="4" dur="1">
-<verse n="1"><syl>hymns;</syl></verse></note>
+<verse n="1"><syl eol="1">hymns;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C♯m</harm>
 <tie startid="#n102" endid="#n103"/>
@@ -384,7 +384,7 @@
 <note xml:id="n113" pname="e" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n114" pname="b" oct="3" dur="8">
-<verse n="1"><syl>God</syl></verse></note>
+<verse n="1"><syl eol="1">God</syl></verse></note>
 </beam>
 <note xml:id="n115" pname="b" oct="3" dur="4"/>
 <rest xml:id="r116" dur="4"/>
@@ -412,7 +412,7 @@
 <ending n="1.–2" label="1.–2.">
 <measure n="40"><staff n="1"><layer n="1">
 <note xml:id="n121" pname="f" oct="4" dur="1">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 <tie startid="#n121" endid="#n122"/>
@@ -439,7 +439,7 @@
 </measure>
 <measure n="44"><staff n="1"><layer n="1">
 <note xml:id="n128" pname="e" oct="4" dur="1">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </layer></staff>
 <tie startid="#n128" endid="#n129"/>
 </measure>

@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="b" oct="4" dur="4">
 <verse n="1"><syl>my</syl></verse></note>
 <note xml:id="n8" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="8">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -63,7 +63,7 @@
 <note xml:id="n17" pname="e" oct="4" dur="4">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n18" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <note xml:id="n19" pname="d" oct="4" dur="8">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -96,7 +96,7 @@
 <note xml:id="n27" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n28" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>one;</syl></verse></note>
+<verse n="1"><syl eol="1">one;</syl></verse></note>
 <note xml:id="n29" pname="g" oct="4" dur="8">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
@@ -125,7 +125,7 @@
 <note xml:id="n35" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">te</syl></verse></note>
 <note xml:id="n36" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ry!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>

@@ -35,7 +35,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>man,</syl></verse></note>
+<verse n="1"><syl eol="1">man,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -69,7 +69,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>am.</syl></verse></note>
+<verse n="1"><syl eol="1">am.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -104,7 +104,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>scan</syl></verse></note>
+<verse n="1"><syl eol="1">scan</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>am.</syl></verse></note>
+<verse n="1"><syl eol="1">am.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <tie startid="#n29" endid="#n30"/>

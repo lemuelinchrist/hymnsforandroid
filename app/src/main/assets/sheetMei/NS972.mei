@@ -22,7 +22,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n5" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">gan</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gan</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 <beam>
 <note xml:id="n6" pname="g" oct="4" dur="8">
 <verse n="1"><syl>You</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
@@ -51,7 +51,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>man.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
+<verse n="1"><syl eol="1">man.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 <note xml:id="n14" pname="e" oct="4" dur="8">
 <verse n="1"><syl>You</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
@@ -68,7 +68,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="f" oct="4" dur="1">
-<verse n="1"><syl>bride</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
+<verse n="1"><syl eol="1">bride</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -89,7 +89,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="d" oct="4" dur="2">
-<verse n="1"><syl>life.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="d" oct="4" dur="8"/>
 <note xml:id="n26" pname="e" oct="4" dur="8"/>
@@ -123,7 +123,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">way,</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way,</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 <beam>
 <note xml:id="n35" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Un</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
@@ -153,7 +153,7 @@
 <sb/>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="g" oct="4" dur="4">
-<verse n="1"><syl>name.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
+<verse n="1"><syl eol="1">name.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 <rest xml:id="r43" dur="8"/>
 <note xml:id="n44" pname="b" oct="4" dur="8">
 <verse n="1"><syl>O</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
@@ -174,7 +174,7 @@
 <note xml:id="n49" pname="b" oct="4" dur="8">
 <verse n="1"><syl>my</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 <note xml:id="n50" pname="b" oct="4" dur="2">
-<verse n="1"><syl>heart.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n50" endid="#n51"/>
@@ -191,7 +191,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="b" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">vailed.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vailed.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
@@ -211,7 +211,7 @@
 <note xml:id="n59" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">vails.</syl></verse><verse n="2"><syl wordpos="m" con="d">⠀</syl></verse></note>
 <note xml:id="n60" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">⠀</syl></verse><verse n="2"><syl wordpos="t">(Love</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">⠀</syl></verse><verse n="2"><syl wordpos="t">(Love</syl></verse></note>
 <note xml:id="n61" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">⠀</syl></verse><verse n="2"><syl wordpos="i" con="d">pre</syl></verse></note>
 </layer></staff>
@@ -233,7 +233,7 @@
 <verse n="1"><syl wordpos="m" con="d">vails.</syl></verse><verse n="2"><syl wordpos="m" con="d">⠀</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <note xml:id="n66" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">⠀</syl></verse><verse n="2"><syl wordpos="t">(Love</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">⠀</syl></verse><verse n="2"><syl wordpos="t">(Love</syl></verse></note>
 <note xml:id="n67" pname="e" oct="4" dur="4"/>
 <note xml:id="n68" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">⠀</syl></verse><verse n="2"><syl wordpos="i" con="d">pre</syl></verse></note>
@@ -278,7 +278,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n78" pname="c" oct="5" dur="1">
-<verse n="1"><syl>fails.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
+<verse n="1"><syl eol="1">fails.</syl></verse><verse n="2"><syl>⠀</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -296,7 +296,7 @@
 <note xml:id="n82" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">vails.</syl></verse><verse n="2"><syl wordpos="m" con="d">⠀</syl></verse></note>
 <note xml:id="n83" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">⠀</syl></verse><verse n="2"><syl wordpos="t">(Love</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">⠀</syl></verse><verse n="2"><syl wordpos="t">(Love</syl></verse></note>
 <note xml:id="n84" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">⠀</syl></verse><verse n="2"><syl wordpos="i" con="d">pre</syl></verse></note>
 </layer></staff>
@@ -317,7 +317,7 @@
 <verse n="1"><syl wordpos="m" con="d">vails.</syl></verse><verse n="2"><syl wordpos="m" con="d">⠀</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <note xml:id="n89" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">⠀</syl></verse><verse n="2"><syl wordpos="t">(Love</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">⠀</syl></verse><verse n="2"><syl wordpos="t">(Love</syl></verse></note>
 <note xml:id="n90" pname="e" oct="4" dur="4"/>
 <note xml:id="n91" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">⠀</syl></verse><verse n="2"><syl wordpos="i" con="d">pre</syl></verse></note>
@@ -355,7 +355,7 @@
 </measure>
 <measure n="30"><staff n="1"><layer n="1">
 <note xml:id="n100" pname="c" oct="5" dur="2">
-<verse n="1"><syl>hearts.</syl></verse></note>
+<verse n="1"><syl eol="1">hearts.</syl></verse></note>
 <note xml:id="n101" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Love</syl></verse></note>
 <note xml:id="n102" pname="c" oct="5" dur="4">
@@ -365,7 +365,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n103" pname="b" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">vails.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vails.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>

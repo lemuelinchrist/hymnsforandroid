@@ -47,7 +47,7 @@
 <note xml:id="n14" pname="d" oct="4" dur="8">
 <verse n="1"><syl>out</syl></verse></note>
 <note xml:id="n15" pname="c" oct="4" dur="2">
-<verse n="1"><syl>free.</syl></verse></note>
+<verse n="1"><syl eol="1">free.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 </measure>
@@ -102,7 +102,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="f" oct="4" dur="4">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <rest xml:id="r33" dur="8"/>
 <note xml:id="n34" pname="b" oct="3" dur="8">
 <verse n="1"><syl>I</syl></verse></note>
@@ -144,7 +144,7 @@
 <note xml:id="n46" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">ing</syl></verse></note>
 <note xml:id="n47" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 </measure>
@@ -183,7 +183,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="e" oct="4" dur="1">
-<verse n="1"><syl>plea.</syl></verse></note>
+<verse n="1"><syl eol="1">plea.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -231,7 +231,7 @@
 <note xml:id="n73" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">er</syl></verse></note>
 <note xml:id="n74" pname="g" oct="4" dur="2">
-<verse n="1"><syl>leave.</syl></verse></note>
+<verse n="1"><syl eol="1">leave.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -273,7 +273,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n87" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">plete.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">plete.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭sus4</harm>
 </measure>
@@ -320,7 +320,7 @@
 <note xml:id="n101" pname="d" oct="4" dur="8">
 <verse n="1"><syl>out</syl></verse></note>
 <note xml:id="n102" pname="c" oct="4" dur="2">
-<verse n="1"><syl>free.</syl></verse></note>
+<verse n="1"><syl eol="1">free.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 </measure>
@@ -361,7 +361,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n115" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ly!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n115" endid="#n116"/>

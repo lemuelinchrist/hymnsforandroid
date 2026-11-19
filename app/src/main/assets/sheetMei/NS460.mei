@@ -45,7 +45,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly</syl></verse></note>
 <note xml:id="n11" pname="e" oct="4" dur="4"/>
 <note xml:id="n12" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Dis</syl></verse></note>
@@ -87,7 +87,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="a" oct="4" dur="2">
-<verse n="1"><syl>one;</syl></verse></note>
+<verse n="1"><syl eol="1">one;</syl></verse></note>
 <note xml:id="n22" pname="f" oct="4" dur="4">
 <verse n="1"><syl>A</syl></verse></note>
 </layer></staff>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">cal,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cal,</syl></verse></note>
 <note xml:id="n32" pname="c" oct="5" dur="4">
 <verse n="1"><syl>Art</syl></verse></note>
 </layer></staff>

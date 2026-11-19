@@ -40,7 +40,7 @@
 <measure n="4"><staff n="1"><layer n="1">
 <beam>
 <note xml:id="n9" pname="g" oct="4" dur="8" dots="1">
-<verse n="1"><syl>Word?</syl></verse></note>
+<verse n="1"><syl eol="1">Word?</syl></verse></note>
 <note xml:id="n10" pname="a" oct="4" dur="16"/>
 </beam>
 <note xml:id="n11" pname="b" oct="4" dur="2"/>
@@ -82,7 +82,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>glass;</syl></verse></note>
+<verse n="1"><syl eol="1">glass;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -118,7 +118,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ferred</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ferred</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -158,7 +158,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>place,</syl></verse></note>
+<verse n="1"><syl eol="1">place,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -196,7 +196,7 @@
 </measure>
 <measure n="20" right="end"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>grace.</syl></verse></note>
+<verse n="1"><syl eol="1">grace.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>

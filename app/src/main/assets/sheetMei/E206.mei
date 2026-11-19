@@ -28,7 +28,7 @@
 <note xml:id="n6" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">foun</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tain,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tain,</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -49,7 +49,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>life:</syl></verse></note>
+<verse n="1"><syl eol="1">life:</syl></verse></note>
 <note xml:id="n14" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Its</syl></verse></note>
 </layer></staff>
@@ -74,7 +74,7 @@
 <note xml:id="n19" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">tast</syl></verse></note>
 <note xml:id="n20" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ed</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Which</syl></verse></note>
 </layer></staff>
@@ -103,7 +103,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>strife.</syl></verse></note>
+<verse n="1"><syl eol="1">strife.</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>And</syl></verse></note>
 </layer></staff>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">pand;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pand;</syl></verse></note>
 <beam>
 <note xml:id="n42" pname="a" oct="4" dur="8">
 <verse n="1"><syl>His</syl></verse></note>
@@ -176,7 +176,7 @@
 <note xml:id="n48" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">fi</syl></verse></note>
 <note xml:id="n49" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">cient</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cient</syl></verse></note>
 <note xml:id="n50" pname="b" oct="4" dur="4">
 <verse n="1"><syl>As</syl></verse></note>
 </layer></staff>
@@ -198,7 +198,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>planned.</syl></verse></note>
+<verse n="1"><syl eol="1">planned.</syl></verse></note>
 <rest xml:id="r56" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

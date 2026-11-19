@@ -58,7 +58,7 @@
 <verse n="1"><syl>love</syl></verse></note>
 <note xml:id="n17" pname="a" oct="4" dur="8"/>
 <note xml:id="n18" pname="a" oct="4" dur="8">
-<verse n="1"><syl>You,</syl></verse></note>
+<verse n="1"><syl eol="1">You,</syl></verse></note>
 </beam>
 <note xml:id="n19" pname="a" oct="4" dur="2"/>
 </layer></staff>
@@ -121,7 +121,7 @@
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n37" pname="a" oct="4" dur="8"/>
 <note xml:id="n38" pname="a" oct="4" dur="8">
-<verse n="1"><syl>You,</syl></verse></note>
+<verse n="1"><syl eol="1">You,</syl></verse></note>
 </beam>
 <note xml:id="n39" pname="a" oct="4" dur="4"/>
 <beam>
@@ -159,7 +159,7 @@
 <note xml:id="n48" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ter</syl></verse></note>
 <note xml:id="n49" pname="f" oct="4" dur="8">
-<verse n="1"><syl>way,</syl></verse></note>
+<verse n="1"><syl eol="1">way,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
@@ -218,7 +218,7 @@
 <note xml:id="n63" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 <note xml:id="n64" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">day.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -286,7 +286,7 @@
 <verse n="1"><syl>for</syl></verse></note>
 <note xml:id="n85" pname="a" oct="4" dur="8"/>
 <note xml:id="n86" pname="g" oct="4" dur="8">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -360,7 +360,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n109" pname="a" oct="4" dur="8"/>
 <note xml:id="n110" pname="g" oct="4" dur="8">
-<verse n="1"><syl>be.</syl></verse></note>
+<verse n="1"><syl eol="1">be.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -378,7 +378,7 @@
 <note xml:id="n114" pname="d" oct="4" dur="8">
 <verse n="1"><syl>(How</syl></verse></note>
 <note xml:id="n115" pname="f" oct="4" dur="8">
-<verse n="1"><syl>long)</syl></verse></note>
+<verse n="1"><syl eol="1">long)</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

@@ -29,7 +29,7 @@
 <verse n="1"><syl wordpos="i" con="d">con</syl></verse></note>
 </beam>
 <note xml:id="n7" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">fess,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fess,</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Drift</syl></verse></note>
 </layer></staff>
@@ -60,7 +60,7 @@
 <verse n="1"><syl>no</syl></verse></note>
 </beam>
 <note xml:id="n15" pname="e" oct="4" dur="2">
-<verse n="1"><syl>rest.</syl></verse></note>
+<verse n="1"><syl eol="1">rest.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -88,7 +88,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 </beam>
 <note xml:id="n22" pname="f" oct="4" dur="4">
-<verse n="1"><syl>heart</syl></verse></note>
+<verse n="1"><syl eol="1">heart</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Kept</syl></verse></note>
 </layer></staff>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">D/F♯</harm>

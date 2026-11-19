@@ -42,7 +42,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="d" oct="5" dur="4">
-<verse n="1"><syl>Christ,</syl></verse></note>
+<verse n="1"><syl eol="1">Christ,</syl></verse></note>
 <note xml:id="n10" pname="c" oct="5" dur="4"/>
 <note xml:id="n11" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Nor</syl></verse></note>
@@ -73,7 +73,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>word,</syl></verse></note>
+<verse n="1"><syl eol="1">word,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -118,7 +118,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="g" oct="4" dur="2">
-<verse n="1"><syl>love,</syl></verse></note>
+<verse n="1"><syl eol="1">love,</syl></verse></note>
 <note xml:id="n30" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Com</syl></verse></note>
 </layer></staff>
@@ -147,7 +147,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <tie startid="#n36" endid="#n37"/>

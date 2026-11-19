@@ -47,7 +47,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>will;</syl></verse></note>
+<verse n="1"><syl eol="1">will;</syl></verse></note>
 <beam>
 <note xml:id="n12" pname="d" oct="4" dur="8">
 <verse n="1"><syl>But</syl></verse></note>
@@ -76,7 +76,7 @@
 <note xml:id="n19" pname="g" oct="4" dur="4">
 <verse n="1"><syl>not</syl></verse></note>
 <note xml:id="n20" pname="f" oct="4" dur="4">
-<verse n="1"><syl>will,</syl></verse></note>
+<verse n="1"><syl eol="1">will,</syl></verse></note>
 <beam>
 <note xml:id="n21" pname="d" oct="4" dur="8">
 <verse n="1"><syl>This</syl></verse></note>
@@ -97,7 +97,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">tice.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tice.</syl></verse></note>
 <beam>
 <note xml:id="n26" pname="f" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>But</syl></verse></note>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>life</syl></verse></note>
+<verse n="1"><syl eol="1">life</syl></verse></note>
 <note xml:id="n35" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Has</syl></verse></note>
 </layer></staff>
@@ -154,7 +154,7 @@
 <note xml:id="n40" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n41" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">sus</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus</syl></verse></note>
 <beam>
 <note xml:id="n42" pname="a" oct="4" dur="8">
 <verse n="1"><syl>From</syl></verse></note>
@@ -193,7 +193,7 @@
 <ending n="1" label="1.">
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="e" oct="4" dur="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <tie startid="#n51" endid="#n52"/>

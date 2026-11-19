@@ -44,7 +44,7 @@
 <sb/>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="f" oct="4" dur="2">
-<verse n="1"><syl>made.</syl></verse></note>
+<verse n="1"><syl eol="1">made.</syl></verse></note>
 <rest xml:id="r13" dur="8" dots="1"/>
 <note xml:id="n14" pname="f" oct="4" dur="16">
 <verse n="1"><syl>For</syl></verse></note>
@@ -84,7 +84,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="e" oct="4" dur="2">
-<verse n="1"><syl>made.</syl></verse></note>
+<verse n="1"><syl eol="1">made.</syl></verse></note>
 <rest xml:id="r26" dur="8" dots="1"/>
 <note xml:id="n27" pname="g" oct="4" dur="16">
 <verse n="1"><syl>God</syl></verse></note>
@@ -125,7 +125,7 @@
 <verse n="1"><syl wordpos="m" con="d">ful</syl></verse></note>
 <beam>
 <note xml:id="n38" pname="f" oct="4" dur="8" dots="1">
-<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly,</syl></verse></note>
 <note xml:id="n39" pname="g" oct="4" dur="16">
 <verse n="1"><syl>For</syl></verse></note>
 <note xml:id="n40" pname="g" oct="4" dur="8" dots="1">
@@ -164,7 +164,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="c" oct="4" dur="2">
-<verse n="1"><syl>made!</syl></verse></note>
+<verse n="1"><syl eol="1">made!</syl></verse></note>
 <rest xml:id="r51" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

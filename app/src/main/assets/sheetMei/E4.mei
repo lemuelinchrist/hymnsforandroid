@@ -33,7 +33,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">found</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">found</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -65,7 +65,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="f" oct="4" dur="2">
-<verse n="1"><syl>found,</syl></verse></note>
+<verse n="1"><syl eol="1">found,</syl></verse></note>
 <note xml:id="n17" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
 </layer></staff>
@@ -98,7 +98,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>bend;</syl></verse></note>
+<verse n="1"><syl eol="1">bend;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">tend.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tend.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

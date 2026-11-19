@@ -35,7 +35,7 @@
 <note xml:id="n9" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n10" pname="g" oct="4" dur="4">
-<verse n="1"><syl>rain,</syl></verse></note>
+<verse n="1"><syl eol="1">rain,</syl></verse></note>
 <note xml:id="n11" pname="g" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="4">
@@ -67,7 +67,7 @@
 <note xml:id="n19" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n20" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">gain;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain;</syl></verse></note>
 <note xml:id="n21" pname="f" oct="4" dur="4">
 <verse n="1"><syl>So</syl></verse></note>
 <note xml:id="n22" pname="g" oct="4" dur="4">
@@ -98,7 +98,7 @@
 <note xml:id="n29" pname="a" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n30" pname="g" oct="4" dur="4">
-<verse n="1"><syl>free,</syl></verse></note>
+<verse n="1"><syl eol="1">free,</syl></verse></note>
 <note xml:id="n31" pname="g" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="4">
@@ -128,7 +128,7 @@
 <note xml:id="n39" pname="b" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n40" pname="b" oct="4" dur="4">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 <rest xml:id="r41" dur="2" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>

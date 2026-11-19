@@ -28,7 +28,7 @@
 <note xml:id="n7" pname="b" oct="4" dur="2">
 <verse n="1"><syl>人</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="2">
-<verse n="1"><syl>家，</syl></verse></note>
+<verse n="1"><syl eol="1">家，</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -51,7 +51,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>亮，</syl></verse></note>
+<verse n="1"><syl eol="1">亮，</syl></verse></note>
 <rest xml:id="r16" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -79,7 +79,7 @@
 <note xml:id="n23" pname="a" oct="4" dur="2">
 <verse n="1"><syl>無</syl></verse></note>
 <note xml:id="n24" pname="e" oct="4" dur="2">
-<verse n="1"><syl>瑕，</syl></verse></note>
+<verse n="1"><syl eol="1">瑕，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 </measure>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>量；</syl></verse></note>
+<verse n="1"><syl eol="1">量；</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>除</syl></verse></note>
@@ -160,7 +160,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>惘，</syl></verse></note>
+<verse n="1"><syl eol="1">惘，</syl></verse></note>
 <beam>
 <note xml:id="n46" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>我</syl></verse></note>
@@ -188,7 +188,7 @@
 <note xml:id="n51" pname="a" oct="4" dur="8">
 <verse n="1"><syl>心</syl></verse></note>
 <note xml:id="n52" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>房，</syl></verse></note>
+<verse n="1"><syl eol="1">房，</syl></verse></note>
 <rest xml:id="r53" dur="4"/>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <beam>
@@ -218,7 +218,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>亮。</syl></verse></note>
+<verse n="1"><syl eol="1">亮。</syl></verse></note>
 <rest xml:id="r62" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

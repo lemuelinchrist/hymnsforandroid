@@ -51,7 +51,7 @@
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="d" oct="4" dur="8"/>
 <note xml:id="n13" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">cy,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cy,</syl></verse></note>
 <note xml:id="n14" pname="c" oct="4" dur="4" dots="1"/>
 <note xml:id="n15" pname="c" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
@@ -87,7 +87,7 @@
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="a" oct="4" dur="4"/>
 <note xml:id="n23" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ed;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n23" endid="#n24"/>
@@ -141,7 +141,7 @@
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="d" oct="4" dur="8"/>
 <note xml:id="n38" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">cy,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cy,</syl></verse></note>
 <note xml:id="n39" pname="c" oct="4" dur="4" dots="1"/>
 <note xml:id="n40" pname="c" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
@@ -179,7 +179,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="f" oct="4" dur="1">
-<verse n="1"><syl>heart.</syl></verse></note>
+<verse n="1"><syl eol="1">heart.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n49" endid="#n50"/>
@@ -230,7 +230,7 @@
 <sb/>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>will;”</syl></verse></note>
+<verse n="1"><syl eol="1">will;”</syl></verse></note>
 <beam>
 <note xml:id="n62" pname="f" oct="4" dur="8">
 <verse n="1"><syl>So</syl></verse></note>
@@ -266,7 +266,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="a" oct="4" dur="1">
-<verse n="1"><syl>wills,</syl></verse></note>
+<verse n="1"><syl eol="1">wills,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n71" endid="#n72"/>
@@ -316,7 +316,7 @@
 <sb/>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n83" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>will,</syl></verse></note>
+<verse n="1"><syl eol="1">will,</syl></verse></note>
 <beam>
 <note xml:id="n84" pname="f" oct="4" dur="8">
 <verse n="1"><syl>All</syl></verse></note>
@@ -352,7 +352,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n93" pname="f" oct="4" dur="1">
-<verse n="1"><syl>praise.</syl></verse></note>
+<verse n="1"><syl eol="1">praise.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n93" endid="#n94"/>

@@ -40,7 +40,7 @@
 <note xml:id="n10" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Moun</syl></verse></note>
 <note xml:id="n11" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">tain,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tain,</syl></verse></note>
 </beam>
 <rest xml:id="r12" dur="8"/>
 </layer></staff>
@@ -78,7 +78,7 @@
 <verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
 </beam>
 <note xml:id="n22" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">layed?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">layed?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="4" place="above">D</harm>
@@ -120,7 +120,7 @@
 <note xml:id="n32" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
 <note xml:id="n33" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ing;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing;</syl></verse></note>
 </beam>
 <rest xml:id="r34" dur="8"/>
 </layer></staff>
@@ -162,7 +162,7 @@
 <verse n="1"><syl>we’ve</syl></verse></note>
 </beam>
 <note xml:id="n44" pname="g" oct="4" dur="4">
-<verse n="1"><syl>prayed?</syl></verse></note>
+<verse n="1"><syl eol="1">prayed?</syl></verse></note>
 <note xml:id="n45" pname="d" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>Come</syl></verse></note>
 </layer></staff>
@@ -185,7 +185,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="g" oct="4" dur="4">
-<verse n="1"><syl>now;</syl></verse></note>
+<verse n="1"><syl eol="1">now;</syl></verse></note>
 <note xml:id="n50" pname="a" oct="4" dur="8"/>
 <note xml:id="n51" pname="b" oct="4" dur="4" dots="1"/>
 </layer></staff>
@@ -219,7 +219,7 @@
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="d" oct="5" dur="4"/>
 <note xml:id="n59" pname="c" oct="5" dur="8" accid="s" accid.ges="s">
-<verse n="1"><syl>yearn;</syl></verse></note>
+<verse n="1"><syl eol="1">yearn;</syl></verse></note>
 <note xml:id="n60" pname="c" oct="5" dur="4" accid="n"/>
 <rest xml:id="r61" dur="8"/>
 </layer></staff>
@@ -265,7 +265,7 @@
 <note xml:id="n71" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">turn</syl></verse></note>
 <note xml:id="n72" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </beam>
 <rest xml:id="r73" dur="8"/>
 </layer></staff>
@@ -299,7 +299,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n80" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">turn.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">turn.</syl></verse></note>
 <note xml:id="n81" pname="g" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

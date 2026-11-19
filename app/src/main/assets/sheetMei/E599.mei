@@ -31,7 +31,7 @@
 <verse n="1"><syl>not</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="4"/>
 <note xml:id="n10" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>see</syl></verse></note>
+<verse n="1"><syl eol="1">see</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>In</syl></verse></note>
 </layer></staff>
@@ -67,7 +67,7 @@
 <note xml:id="n19" pname="d" oct="4" dur="2">
 <verse n="1"><syl wordpos="t">y</syl></verse></note>
 <note xml:id="n20" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>grace,</syl></verse></note>
+<verse n="1"><syl eol="1">grace,</syl></verse></note>
 <note xml:id="n21" pname="c" oct="4" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
 </layer></staff>
@@ -96,7 +96,7 @@
 <note xml:id="n27" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>face</syl></verse></note>
+<verse n="1"><syl eol="1">face</syl></verse></note>
 <note xml:id="n29" pname="a" oct="4" dur="4">
 <verse n="1"><syl>In</syl></verse></note>
 </layer></staff>
@@ -125,7 +125,7 @@
 <verse n="1"><syl>on</syl></verse></note>
 <note xml:id="n37" pname="e" oct="4" dur="4"/>
 <note xml:id="n38" pname="f" oct="4" dur="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="2" place="above">C7</harm>

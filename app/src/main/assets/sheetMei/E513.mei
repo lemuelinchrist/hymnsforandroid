@@ -23,7 +23,7 @@
 <note xml:id="n5" pname="g" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">bless</syl></verse></note>
 <note xml:id="n6" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
@@ -43,7 +43,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="b" oct="3" dur="4" dots="1">
-<verse n="1"><syl>Lord;</syl></verse></note>
+<verse n="1"><syl eol="1">Lord;</syl></verse></note>
 <note xml:id="n12" pname="b" oct="3" dur="4"/>
 <rest xml:id="r13" dur="8"/>
 </layer></staff>
@@ -67,7 +67,7 @@
 <note xml:id="n18" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">feel</syl></verse></note>
 <note xml:id="n19" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="4" place="above">E♭/G</harm>
@@ -87,7 +87,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Word;</syl></verse></note>
+<verse n="1"><syl eol="1">Word;</syl></verse></note>
 <note xml:id="n25" pname="f" oct="4" dur="4"/>
 <rest xml:id="r26" dur="8"/>
 </layer></staff>
@@ -112,7 +112,7 @@
 <note xml:id="n31" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">want</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ed,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="4" place="above">B♭/F</harm>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>own;</syl></verse></note>
+<verse n="1"><syl eol="1">own;</syl></verse></note>
 <note xml:id="n38" pname="b" oct="4" dur="4"/>
 <rest xml:id="r39" dur="8"/>
 </layer></staff>
@@ -155,7 +155,7 @@
 <note xml:id="n44" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">heal</syl></verse></note>
 <note xml:id="n45" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
@@ -175,7 +175,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">lone.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lone.</syl></verse></note>
 <note xml:id="n51" pname="e" oct="4" dur="4"/>
 <rest xml:id="r52" dur="8"/>
 </layer></staff>
@@ -200,7 +200,7 @@
 <note xml:id="n57" pname="a" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
 <note xml:id="n58" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭m/E♭</harm>
 <harm staff="1" tstamp="4" place="above">E♭</harm>
@@ -224,7 +224,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>sing;</syl></verse></note>
+<verse n="1"><syl eol="1">sing;</syl></verse></note>
 <note xml:id="n65" pname="b" oct="4" dur="4"/>
 <rest xml:id="r66" dur="8"/>
 </layer></staff>
@@ -251,7 +251,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n72" pname="c" oct="5" dur="8"/>
 <note xml:id="n73" pname="b" oct="4" dur="4">
-<verse n="1"><syl>Christ,</syl></verse></note>
+<verse n="1"><syl eol="1">Christ,</syl></verse></note>
 <note xml:id="n74" pname="b" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -276,7 +276,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n79" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">thing.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thing.</syl></verse></note>
 <note xml:id="n80" pname="e" oct="4" dur="4"/>
 <rest xml:id="r81" dur="8"/>
 </layer></staff>

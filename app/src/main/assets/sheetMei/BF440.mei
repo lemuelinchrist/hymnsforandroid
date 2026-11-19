@@ -32,7 +32,7 @@
 <note xml:id="n9" pname="b" oct="3" dur="8"/>
 </beam>
 <note xml:id="n10" pname="a" oct="3" dur="4">
-<verse n="1"><syl wordpos="t">ter,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -61,7 +61,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n18" pname="a" oct="4" dur="2">
-<verse n="1"><syl>throne,</syl></verse></note>
+<verse n="1"><syl eol="1">throne,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -94,7 +94,7 @@
 <note xml:id="n27" pname="b" oct="4" dur="8"/>
 </beam>
 <note xml:id="n28" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -123,7 +123,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n37" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lone.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lone.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em7</harm>
 <harm staff="1" tstamp="3" place="above">A7</harm>
@@ -151,7 +151,7 @@
 <note xml:id="n44" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">wa</syl></verse></note>
 <note xml:id="n45" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ter,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -173,7 +173,7 @@
 <note xml:id="n51" pname="f" oct="4" dur="4">
 <verse n="1"><syl>so</syl></verse></note>
 <note xml:id="n52" pname="e" oct="4" dur="2">
-<verse n="1"><syl>free,</syl></verse></note>
+<verse n="1"><syl eol="1">free,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -199,7 +199,7 @@
 <note xml:id="n59" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
 <note xml:id="n60" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ior,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ior,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -221,7 +221,7 @@
 <note xml:id="n66" pname="f" oct="4" dur="4">
 <verse n="1"><syl>through</syl></verse></note>
 <note xml:id="n67" pname="e" oct="4" dur="2">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>

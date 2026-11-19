@@ -34,7 +34,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>earth,</syl></verse></note>
+<verse n="1"><syl eol="1">earth,</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Pur</syl></verse></note>
 <beam>
@@ -63,7 +63,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>worth—</syl></verse></note>
+<verse n="1"><syl eol="1">worth—</syl></verse></note>
 <note xml:id="n17" pname="g" oct="4" dur="8">
 <verse n="1"><syl>We’ll</syl></verse></note>
 <beam>
@@ -108,7 +108,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>way.</syl></verse></note>
+<verse n="1"><syl eol="1">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
@@ -144,7 +144,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>heart</syl></verse></note>
+<verse n="1"><syl eol="1">heart</syl></verse></note>
 <note xml:id="n39" pname="e" oct="4" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
 <beam>
@@ -173,7 +173,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>part;</syl></verse></note>
+<verse n="1"><syl eol="1">part;</syl></verse></note>
 <note xml:id="n47" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Your</syl></verse></note>
 <beam>
@@ -218,7 +218,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">day.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
@@ -250,7 +250,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="c" oct="4" dur="2">
-<verse n="1"><syl>bow;</syl></verse></note>
+<verse n="1"><syl eol="1">bow;</syl></verse></note>
 <beam>
 <note xml:id="n66" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
@@ -279,7 +279,7 @@
 <sb/>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="c" oct="5" dur="2">
-<verse n="1"><syl>now—</syl></verse></note>
+<verse n="1"><syl eol="1">now—</syl></verse></note>
 <beam>
 <note xml:id="n73" pname="e" oct="5" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
@@ -307,7 +307,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n79" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">day.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭sus4</harm>
 <tie startid="#n79" endid="#n80"/>
@@ -342,7 +342,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n87" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">round,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">round,</syl></verse></note>
 <beam>
 <note xml:id="n88" pname="a" oct="4" dur="8">
 <verse n="1"><syl>With</syl></verse></note>
@@ -371,7 +371,7 @@
 <sb/>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n94" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">bounds,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bounds,</syl></verse></note>
 <beam>
 <note xml:id="n95" pname="e" oct="5" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -406,7 +406,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n103" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>way.</syl></verse></note>
+<verse n="1"><syl eol="1">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
 <tie startid="#n103" endid="#n104"/>

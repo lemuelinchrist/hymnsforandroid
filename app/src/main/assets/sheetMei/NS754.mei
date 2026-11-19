@@ -43,7 +43,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="d" oct="4" dur="1">
-<verse n="1"><syl>couch,</syl></verse></note>
+<verse n="1"><syl eol="1">couch,</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -84,7 +84,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="e" oct="4" dur="1">
-<verse n="1"><syl>saints;</syl></verse></note>
+<verse n="1"><syl eol="1">saints;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 </measure>
@@ -125,7 +125,7 @@
 <note xml:id="n37" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">liv</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ing—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -156,7 +156,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="d" oct="4" dur="1">
-<verse n="1"><syl>saints!</syl></verse></note>
+<verse n="1"><syl eol="1">saints!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n47" endid="#n48"/>
@@ -203,7 +203,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="a" oct="4" dur="1">
-<verse n="1"><syl>Christ,</syl></verse></note>
+<verse n="1"><syl eol="1">Christ,</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -241,7 +241,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="a" oct="4" dur="1">
-<verse n="1"><syl>bright!</syl></verse></note>
+<verse n="1"><syl eol="1">bright!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7</harm>
 </measure>
@@ -279,7 +279,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n82" pname="d" oct="4" dur="1">
-<verse n="1"><syl>life,</syl></verse></note>
+<verse n="1"><syl eol="1">life,</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -309,7 +309,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n91" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">right!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">right!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G/D</harm>

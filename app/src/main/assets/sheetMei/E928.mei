@@ -37,7 +37,7 @@
 <note xml:id="n8" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">bless</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing?</syl></verse></note>
 <beam>
 <note xml:id="n10" pname="f" oct="4" dur="16">
 <verse n="1"><syl>Is</syl></verse></note>
@@ -72,7 +72,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>you?</syl></verse></note>
+<verse n="1"><syl eol="1">you?</syl></verse></note>
 <note xml:id="n19" pname="a" oct="4" dur="4"/>
 <beam>
 <note xml:id="n20" pname="e" oct="4" dur="16">
@@ -110,7 +110,7 @@
 <note xml:id="n28" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ior?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ior?</syl></verse></note>
 <beam>
 <note xml:id="n30" pname="f" oct="4" dur="16">
 <verse n="1"><syl>Are</syl></verse></note>
@@ -144,7 +144,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>do?</syl></verse></note>
+<verse n="1"><syl eol="1">do?</syl></verse></note>
 <note xml:id="n39" pname="a" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -185,7 +185,7 @@
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 </beam>
 <note xml:id="n49" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">day,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 <harm staff="1" tstamp="4" place="above">E</harm>
@@ -221,7 +221,7 @@
 <verse n="1"><syl>I</syl></verse></note>
 </beam>
 <note xml:id="n59" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>pray;</syl></verse></note>
+<verse n="1"><syl eol="1">pray;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B7</harm>
 <harm staff="1" tstamp="4" place="above">E</harm>
@@ -257,7 +257,7 @@
 <note xml:id="n69" pname="a" oct="4" dur="16">
 <verse n="1"><syl wordpos="i" con="d">bless</syl></verse></note>
 <note xml:id="n70" pname="e" oct="4" dur="8" dots="1">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <rest xml:id="r71" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E7</harm>
@@ -294,7 +294,7 @@
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 </beam>
 <note xml:id="n81" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">day.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 <harm staff="1" tstamp="3" place="above">E7</harm>

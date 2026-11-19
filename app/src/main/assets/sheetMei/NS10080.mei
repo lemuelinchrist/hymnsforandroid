@@ -29,7 +29,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="f" oct="4" dur="1">
-<verse n="1"><syl>man.</syl></verse></note>
+<verse n="1"><syl eol="1">man.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="3" place="above">Fm/A♭</harm>
@@ -57,7 +57,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="g" oct="4" dur="1">
-<verse n="1"><syl>plan.</syl></verse></note>
+<verse n="1"><syl eol="1">plan.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
@@ -92,7 +92,7 @@
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">gan—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gan—</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="e" oct="4" dur="8" dots="1">
 <verse n="1"><syl>I’m</syl></verse></note>
@@ -122,7 +122,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="e" oct="4" dur="1">
-<verse n="1"><syl>man.</syl></verse></note>
+<verse n="1"><syl eol="1">man.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
@@ -152,7 +152,7 @@
 <note xml:id="n40" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n41" pname="b" oct="4" dur="16">
-<verse n="1"><syl>the</syl></verse></note>
+<verse n="1"><syl eol="1">the</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -170,7 +170,7 @@
 <verse n="1"><syl>we</syl></verse></note>
 </beam>
 <note xml:id="n46" pname="f" oct="4" dur="2">
-<verse n="1"><syl>see;</syl></verse></note>
+<verse n="1"><syl eol="1">see;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="3" place="above">Fm/A♭</harm>
@@ -196,7 +196,7 @@
 <note xml:id="n53" pname="d" oct="4" dur="16">
 <verse n="1"><syl>has</syl></verse></note>
 <note xml:id="n54" pname="f" oct="4" dur="8" dots="1">
-<verse n="1"><syl>made;</syl></verse></note>
+<verse n="1"><syl eol="1">made;</syl></verse></note>
 <note xml:id="n55" pname="c" oct="5" dur="16">
 <verse n="1"><syl>It’s</syl></verse></note>
 </beam>
@@ -216,7 +216,7 @@
 <verse n="1"><syl>and</syl></verse></note>
 </beam>
 <note xml:id="n60" pname="g" oct="4" dur="2">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
@@ -243,7 +243,7 @@
 <note xml:id="n67" pname="e" oct="4" dur="16">
 <verse n="1"><syl>by</syl></verse></note>
 <note xml:id="n68" pname="g" oct="4" dur="8" dots="1">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <note xml:id="n69" pname="b" oct="4" dur="16">
 <verse n="1"><syl wordpos="i" con="d">Pre</syl></verse></note>
 </beam>
@@ -268,7 +268,7 @@
 <note xml:id="n75" pname="b" oct="4" dur="16">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n76" pname="a" oct="4" dur="8" dots="1">
-<verse n="1"><syl>be;</syl></verse></note>
+<verse n="1"><syl eol="1">be;</syl></verse></note>
 <note xml:id="n77" pname="a" oct="4" dur="16">
 <verse n="1"><syl>He</syl></verse></note>
 </beam>
@@ -285,7 +285,7 @@
 <note xml:id="n80" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>way</syl></verse></note>
 <note xml:id="n81" pname="e" oct="4" dur="16">
-<verse n="1"><syl>back</syl></verse></note>
+<verse n="1"><syl eol="1">back</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n82" pname="f" oct="4" dur="8" dots="1">
@@ -303,7 +303,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n86" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ty.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>

@@ -50,7 +50,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="c" oct="4" dur="2">
-<verse n="1"><syl>live,</syl></verse></note>
+<verse n="1"><syl eol="1">live,</syl></verse></note>
 <note xml:id="n13" pname="c" oct="4" dur="4">
 <verse n="1"><syl>From</syl></verse></note>
 </layer></staff>
@@ -93,7 +93,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2">
-<verse n="1"><syl>art;</syl></verse></note>
+<verse n="1"><syl eol="1">art;</syl></verse></note>
 <note xml:id="n24" pname="c" oct="4" dur="4">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
@@ -137,7 +137,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="c" oct="4" dur="2">
-<verse n="1"><syl>rest</syl></verse></note>
+<verse n="1"><syl eol="1">rest</syl></verse></note>
 <note xml:id="n36" pname="c" oct="4" dur="4">
 <verse n="1"><syl>When</syl></verse></note>
 </layer></staff>
@@ -182,7 +182,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="f" oct="4" dur="2">
-<verse n="1"><syl>part.</syl></verse></note>
+<verse n="1"><syl eol="1">part.</syl></verse></note>
 <beam>
 <note xml:id="n47" pname="e" oct="4" dur="8"/>
 <note xml:id="n48" pname="f" oct="4" dur="8">
@@ -224,7 +224,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="c" oct="4" dur="2">
-<verse n="1"><syl>pain,</syl></verse></note>
+<verse n="1"><syl eol="1">pain,</syl></verse></note>
 <beam>
 <note xml:id="n59" pname="e" oct="4" dur="8"/>
 <note xml:id="n60" pname="f" oct="4" dur="8">
@@ -279,7 +279,7 @@
 <sb/>
 <measure n="25"><staff n="1"><layer n="1">
 <note xml:id="n73" pname="c" oct="5" dur="2">
-<verse n="1"><syl>cheer,</syl></verse></note>
+<verse n="1"><syl eol="1">cheer,</syl></verse></note>
 <note xml:id="n74" pname="d" oct="5" dur="4">
 <verse n="1"><syl>When</syl></verse></note>
 </layer></staff>
@@ -325,7 +325,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="c" oct="4" dur="2">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <note xml:id="n86" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Lord,</syl></verse></note>
 </layer></staff>
@@ -369,7 +369,7 @@
 </measure>
 <measure n="33" right="end"><staff n="1"><layer n="1">
 <note xml:id="n96" pname="f" oct="4" dur="2">
-<verse n="1"><syl>tear.</syl></verse></note>
+<verse n="1"><syl eol="1">tear.</syl></verse></note>
 <rest xml:id="r97" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>

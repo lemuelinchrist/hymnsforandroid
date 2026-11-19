@@ -41,7 +41,7 @@
 <note xml:id="n10" pname="g" oct="4" dur="16"/>
 </beam>
 <note xml:id="n11" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">pen?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pen?</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="4"/>
 <beam>
 <note xml:id="n13" pname="c" oct="4" dur="8" dots="1">
@@ -76,7 +76,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>there?</syl></verse></note>
+<verse n="1"><syl eol="1">there?</syl></verse></note>
 <beam>
 <note xml:id="n22" pname="c" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Did</syl></verse></note>
@@ -109,7 +109,7 @@
 <note xml:id="n30" pname="e" oct="4" dur="4" dots="1">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n31" pname="c" oct="5" dur="2">
-<verse n="1"><syl>sky?</syl></verse><verse n="2"><syl>No!</syl></verse></note>
+<verse n="1"><syl eol="1">sky?</syl></verse><verse n="2"><syl>No!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>there.</syl></verse></note>
+<verse n="1"><syl eol="1">there.</syl></verse></note>
 <rest xml:id="r36" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

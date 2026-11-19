@@ -35,7 +35,7 @@
 <note xml:id="n8" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n9" pname="b" oct="3" dur="2">
-<verse n="1"><syl wordpos="t">it;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <tie startid="#n9" endid="#n10"/>
@@ -67,7 +67,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">day.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <tie startid="#n18" endid="#n19"/>
@@ -104,7 +104,7 @@
 <note xml:id="n27" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n28" pname="b" oct="3" dur="2">
-<verse n="1"><syl wordpos="t">it;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 <tie startid="#n28" endid="#n29"/>
@@ -138,7 +138,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>say—</syl></verse></note>
+<verse n="1"><syl eol="1">say—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="2" place="above">C/G</harm>
@@ -172,7 +172,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">men,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">men,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 </measure>
@@ -206,7 +206,7 @@
 </measure>
 <measure n="25"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 </measure>
@@ -231,7 +231,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">men,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">men,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 </measure>
@@ -263,7 +263,7 @@
 </measure>
 <measure n="33" right="end"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 <rest xml:id="r65" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

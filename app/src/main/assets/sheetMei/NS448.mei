@@ -44,7 +44,7 @@
 <note xml:id="n12" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
 <note xml:id="n13" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -84,7 +84,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="e" oct="4" dur="1">
-<verse n="1"><syl>Lord.</syl></verse></note>
+<verse n="1"><syl eol="1">Lord.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -122,7 +122,7 @@
 <note xml:id="n37" pname="e" oct="4" dur="4">
 <verse n="1"><syl>my</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="8">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <tie startid="#n38" endid="#n39"/>
@@ -175,7 +175,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="d" oct="4" dur="2">
-<verse n="1"><syl>throne.</syl></verse></note>
+<verse n="1"><syl eol="1">throne.</syl></verse></note>
 <note xml:id="n55" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Praise</syl></verse></note>
 <note xml:id="n56" pname="a" oct="4" dur="4">
@@ -201,7 +201,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 <note xml:id="n62" pname="f" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n63" pname="d" oct="4" dur="4">
@@ -225,7 +225,7 @@
 <note xml:id="n68" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
 <note xml:id="n69" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ther</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther</syl></verse></note>
 <note xml:id="n70" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Praise</syl></verse></note>
 <note xml:id="n71" pname="a" oct="4" dur="4">
@@ -242,7 +242,7 @@
 <note xml:id="n74" pname="a" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n75" pname="a" oct="4" dur="8">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -270,7 +270,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n82" pname="e" oct="4" dur="2">
-<verse n="1"><syl>Christ</syl></verse></note>
+<verse n="1"><syl eol="1">Christ</syl></verse></note>
 <note xml:id="n83" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Praise</syl></verse></note>
 <note xml:id="n84" pname="a" oct="4" dur="4">
@@ -294,7 +294,7 @@
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n89" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 <note xml:id="n90" pname="f" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n91" pname="d" oct="4" dur="4">
@@ -317,7 +317,7 @@
 <sb/>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n96" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>breath</syl></verse></note>
+<verse n="1"><syl eol="1">breath</syl></verse></note>
 <note xml:id="n97" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
 <note xml:id="n98" pname="e" oct="4" dur="8">
@@ -360,7 +360,7 @@
 <note xml:id="n110" pname="c" oct="4" dur="4">
 <verse n="1"><syl>breath</syl></verse></note>
 <note xml:id="n111" pname="d" oct="4" dur="8">
-<verse n="1"><syl>now.</syl></verse></note>
+<verse n="1"><syl eol="1">now.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <slur startid="#n109" endid="#n110"/>

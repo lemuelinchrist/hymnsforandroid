@@ -35,7 +35,7 @@
 <note xml:id="n9" pname="g" oct="4" dur="4">
 <verse n="1"><syl>for</syl></verse></note>
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/A</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
@@ -74,7 +74,7 @@
 <note xml:id="n19" pname="a" oct="4" dur="4">
 <verse n="1"><syl>me</syl></verse></note>
 <note xml:id="n20" pname="b" oct="4" dur="2">
-<verse n="1"><syl>free;</syl></verse></note>
+<verse n="1"><syl eol="1">free;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="2" place="above">F</harm>
@@ -113,7 +113,7 @@
 <note xml:id="n29" pname="d" oct="4" dur="4">
 <verse n="1"><syl>saith</syl></verse></note>
 <note xml:id="n30" pname="b" oct="4" dur="2">
-<verse n="1"><syl>He,</syl></verse></note>
+<verse n="1"><syl eol="1">He,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -137,7 +137,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="f" oct="4" dur="1">
-<verse n="1"><syl>life.”</syl></verse></note>
+<verse n="1"><syl eol="1">life.”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>
@@ -178,7 +178,7 @@
 <verse n="1"><syl wordpos="t">to</syl></verse></note>
 </beam>
 <note xml:id="n47" pname="b" oct="4" dur="2">
-<verse n="1"><syl>you;”</syl></verse></note>
+<verse n="1"><syl eol="1">you;”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">F/A</harm>
@@ -216,7 +216,7 @@
 <verse n="1"><syl wordpos="t">er</syl></verse></note>
 </beam>
 <note xml:id="n58" pname="a" oct="4" dur="2">
-<verse n="1"><syl>new!</syl></verse></note>
+<verse n="1"><syl eol="1">new!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7/E</harm>
 <harm staff="1" tstamp="2" place="above">C7</harm>
@@ -254,7 +254,7 @@
 <note xml:id="n67" pname="d" oct="4" dur="4">
 <verse n="1"><syl>’tis</syl></verse></note>
 <note xml:id="n68" pname="b" oct="4" dur="2">
-<verse n="1"><syl>true!—</syl></verse></note>
+<verse n="1"><syl eol="1">true!—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -279,7 +279,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="f" oct="4" dur="1">
-<verse n="1"><syl>life!”</syl></verse></note>
+<verse n="1"><syl eol="1">life!”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

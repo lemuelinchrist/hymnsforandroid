@@ -32,7 +32,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -63,7 +63,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -82,7 +82,7 @@
 <note xml:id="n18" pname="f" oct="4" dur="8">
 <verse n="1"><syl>love</syl></verse></note>
 <note xml:id="n19" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <beam>
 <note xml:id="n20" pname="c" oct="4" dur="8"/>
 <note xml:id="n21" pname="g" oct="3" dur="8">
@@ -104,7 +104,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>faith.</syl></verse></note>
+<verse n="1"><syl eol="1">faith.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -127,7 +127,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>all.</syl></verse></note>
+<verse n="1"><syl eol="1">all.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n30" endid="#n31"/>

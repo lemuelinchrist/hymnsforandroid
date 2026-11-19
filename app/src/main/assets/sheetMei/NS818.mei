@@ -49,7 +49,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="d" oct="4" dur="2">
-<verse n="1"><syl>years,</syl></verse></note>
+<verse n="1"><syl eol="1">years,</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="e" oct="4" dur="8">
 <verse n="1"><syl>So</syl></verse></note>
@@ -92,7 +92,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2">
-<verse n="1"><syl>fears.</syl></verse></note>
+<verse n="1"><syl eol="1">fears.</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 </layer></staff>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="e" oct="4" dur="2">
-<verse n="1"><syl>pray;</syl></verse></note>
+<verse n="1"><syl eol="1">pray;</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="c" oct="4" dur="8">
 <verse n="1"><syl>When</syl></verse></note>
@@ -177,7 +177,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n45" endid="#n46"/>

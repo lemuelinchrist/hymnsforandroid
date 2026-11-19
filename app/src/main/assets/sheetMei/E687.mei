@@ -51,7 +51,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">light,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">light,</syl></verse></note>
 <note xml:id="n14" pname="g" oct="4" dur="4">
 <verse n="1"><syl>On</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>call,</syl></verse></note>
+<verse n="1"><syl eol="1">call,</syl></verse></note>
 <note xml:id="n22" pname="g" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -128,7 +128,7 @@
 <sb/>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="d" oct="4" dur="2">
-<verse n="1"><syl>night,</syl></verse></note>
+<verse n="1"><syl eol="1">night,</syl></verse></note>
 <note xml:id="n33" pname="c" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 <note xml:id="n34" pname="e" oct="4" dur="4"/>
@@ -163,7 +163,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="c" oct="4" dur="1">
-<verse n="1"><syl>all!</syl></verse></note>
+<verse n="1"><syl eol="1">all!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>

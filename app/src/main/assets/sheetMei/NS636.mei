@@ -35,7 +35,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">rav</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">aged</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">aged</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="f" oct="4" dur="8">
 <verse n="1"><syl>By</syl></verse></note>
@@ -64,7 +64,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="b" oct="4" dur="2">
-<verse n="1"><syl>men.</syl></verse></note>
+<verse n="1"><syl eol="1">men.</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="f" oct="4" dur="8">
 <verse n="1"><syl>From</syl></verse></note>
@@ -93,7 +93,7 @@
 <note xml:id="n22" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">va</syl></verse></note>
 <note xml:id="n23" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Men</syl></verse></note>
@@ -122,7 +122,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="b" oct="4" dur="2">
-<verse n="1"><syl>then;</syl></verse></note>
+<verse n="1"><syl eol="1">then;</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="b" oct="4" dur="8">
 <verse n="1"><syl>Our</syl></verse></note>
@@ -151,7 +151,7 @@
 <note xml:id="n37" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">wound</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <beam>
 <note xml:id="n39" pname="b" oct="4" dur="8">
 <verse n="1"><syl>Pain</syl></verse></note>
@@ -180,7 +180,7 @@
 <note xml:id="n45" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">sum</syl></verse></note>
 <note xml:id="n46" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <beam>
 <note xml:id="n47" pname="f" oct="4" dur="8">
 <verse n="1"><syl>’Til</syl></verse></note>
@@ -208,7 +208,7 @@
 <note xml:id="n53" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">mun</syl></verse></note>
 <note xml:id="n54" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 <beam>
 <note xml:id="n55" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Caused</syl></verse></note>
@@ -237,7 +237,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="d" oct="4" dur="2">
-<verse n="1"><syl>birth.</syl></verse></note>
+<verse n="1"><syl eol="1">birth.</syl></verse></note>
 <beam>
 <note xml:id="n62" pname="f" oct="4" dur="8">
 <verse n="1"><syl>From</syl></verse></note>
@@ -265,7 +265,7 @@
 <note xml:id="n68" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">go</syl></verse></note>
 <note xml:id="n69" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tha,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tha,</syl></verse></note>
 <beam>
 <note xml:id="n70" pname="a" oct="4" dur="8">
 <verse n="1"><syl>All</syl></verse></note>
@@ -293,7 +293,7 @@
 </measure>
 <measure n="21" right="end"><staff n="1"><layer n="1">
 <note xml:id="n76" pname="b" oct="4" dur="2">
-<verse n="1"><syl>worth.</syl></verse></note>
+<verse n="1"><syl eol="1">worth.</syl></verse></note>
 <rest xml:id="r77" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
@@ -55,7 +55,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>pow’rs;</syl></verse></note>
+<verse n="1"><syl eol="1">pow’rs;</syl></verse></note>
 <rest xml:id="r16" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -85,7 +85,7 @@
 <note xml:id="n23" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">do</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ings,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ings,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="3" place="above">Cm</harm>
@@ -111,7 +111,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>hours.</syl></verse></note>
+<verse n="1"><syl eol="1">hours.</syl></verse></note>
 <rest xml:id="r32" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -141,7 +141,7 @@
 <note xml:id="n39" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n40" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/G</harm>
 <harm staff="1" tstamp="3" place="above">Cm</harm>
@@ -167,7 +167,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>hours.</syl></verse></note>
+<verse n="1"><syl eol="1">hours.</syl></verse></note>
 <rest xml:id="r48" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -196,7 +196,7 @@
 <note xml:id="n55" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n56" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="3" place="above">Cm</harm>
@@ -222,7 +222,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n63" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>hours.</syl></verse></note>
+<verse n="1"><syl eol="1">hours.</syl></verse></note>
 <rest xml:id="r64" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>

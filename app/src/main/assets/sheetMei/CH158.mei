@@ -22,7 +22,7 @@
 <note xml:id="n5" pname="f" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n6" pname="a" oct="4" dur="4">
-<verse n="1"><syl>bed,</syl></verse></note>
+<verse n="1"><syl eol="1">bed,</syl></verse></note>
 <beam>
 <note xml:id="n7" pname="g" oct="4" dur="8">
 <verse n="1"><syl>It</syl></verse></note>
@@ -60,7 +60,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="b" oct="3" dur="4">
-<verse n="1"><syl>bed.</syl></verse></note>
+<verse n="1"><syl eol="1">bed.</syl></verse></note>
 <beam>
 <note xml:id="n18" pname="e" oct="4" dur="8" dots="1">
 <verse n="1"><syl>(Oh,</syl></verse></note>
@@ -75,7 +75,7 @@
 <note xml:id="n22" pname="c" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">faith</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ful)</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ful)</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
@@ -98,7 +98,7 @@
 <note xml:id="n28" pname="f" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n29" pname="a" oct="4" dur="4">
-<verse n="1"><syl>bed,</syl></verse></note>
+<verse n="1"><syl eol="1">bed,</syl></verse></note>
 <beam>
 <note xml:id="n30" pname="g" oct="4" dur="8">
 <verse n="1"><syl>It</syl></verse></note>
@@ -136,7 +136,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>bed!</syl></verse></note>
+<verse n="1"><syl eol="1">bed!</syl></verse></note>
 <rest xml:id="r41" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>

@@ -45,7 +45,7 @@
 <note xml:id="n12" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 <note xml:id="n13" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">day—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day—</syl></verse></note>
 <beam>
 <note xml:id="n14" pname="a" oct="4" dur="8">
 <verse n="1"><syl>One</syl></verse></note>
@@ -86,7 +86,7 @@
 <note xml:id="n25" pname="f" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n26" pname="e" oct="4" dur="4">
-<verse n="1"><syl>way.</syl></verse></note>
+<verse n="1"><syl eol="1">way.</syl></verse></note>
 <beam>
 <note xml:id="n27" pname="a" oct="4" dur="8">
 <verse n="1"><syl>But</syl></verse></note>
@@ -125,7 +125,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="4">
 <verse n="1"><syl>us</syl></verse></note>
 <note xml:id="n38" pname="b" oct="4" dur="4">
-<verse n="1"><syl>die;</syl></verse></note>
+<verse n="1"><syl eol="1">die;</syl></verse></note>
 <beam>
 <note xml:id="n39" pname="b" oct="4" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
@@ -169,7 +169,7 @@
 <note xml:id="n50" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n51" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">bide.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bide.</syl></verse></note>
 <beam>
 <note xml:id="n52" pname="a" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>Oh,</syl></verse></note>
@@ -213,7 +213,7 @@
 <note xml:id="n63" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n64" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">side.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">side.</syl></verse></note>
 <beam>
 <note xml:id="n65" pname="a" oct="4" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
@@ -254,7 +254,7 @@
 <note xml:id="n76" pname="f" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n77" pname="e" oct="4" dur="4">
-<verse n="1"><syl>die.</syl></verse></note>
+<verse n="1"><syl eol="1">die.</syl></verse></note>
 <beam>
 <note xml:id="n78" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Lord,</syl></verse></note>
@@ -292,7 +292,7 @@
 <note xml:id="n88" pname="a" oct="4" dur="4">
 <verse n="1"><syl>each</syl></verse></note>
 <note xml:id="n89" pname="b" oct="4" dur="4">
-<verse n="1"><syl>day;</syl></verse></note>
+<verse n="1"><syl eol="1">day;</syl></verse></note>
 <beam>
 <note xml:id="n90" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Liv</syl></verse></note>
@@ -338,7 +338,7 @@
 <note xml:id="n101" pname="e" oct="4" dur="8">
 <verse n="1"><syl>we’ll</syl></verse></note>
 <note xml:id="n102" pname="d" oct="4" dur="4">
-<verse n="1"><syl>stay.</syl></verse></note>
+<verse n="1"><syl eol="1">stay.</syl></verse></note>
 <rest xml:id="r103" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

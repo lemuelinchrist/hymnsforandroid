@@ -41,7 +41,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Son?</syl></verse></note>
+<verse n="1"><syl eol="1">Son?</syl></verse></note>
 <rest xml:id="r11" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -82,7 +82,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>won?</syl></verse></note>
+<verse n="1"><syl eol="1">won?</syl></verse></note>
 <rest xml:id="r22" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -122,7 +122,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>thought!</syl></verse></note>
+<verse n="1"><syl eol="1">thought!</syl></verse></note>
 <rest xml:id="r33" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -163,7 +163,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="d" oct="4" dur="1">
-<verse n="1"><syl>brought!</syl></verse></note>
+<verse n="1"><syl eol="1">brought!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

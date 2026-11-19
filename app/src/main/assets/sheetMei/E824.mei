@@ -27,7 +27,7 @@
 <note xml:id="n6" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Bo</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">dy,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dy,</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -49,7 +49,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">place,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">place,</syl></verse></note>
 <note xml:id="n14" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -71,7 +71,7 @@
 <note xml:id="n19" pname="d" oct="5" dur="2">
 <verse n="1"><syl>called</syl></verse></note>
 <note xml:id="n20" pname="c" oct="5" dur="4">
-<verse n="1"><syl>ones,</syl></verse></note>
+<verse n="1"><syl eol="1">ones,</syl></verse></note>
 <note xml:id="n21" pname="b" oct="4" dur="4">
 <verse n="1"><syl>God</syl></verse></note>
 </layer></staff>
@@ -94,7 +94,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>race;</syl></verse></note>
+<verse n="1"><syl eol="1">race;</syl></verse></note>
 <note xml:id="n27" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
 </layer></staff>
@@ -117,7 +117,7 @@
 <note xml:id="n32" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <note xml:id="n33" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion,</syl></verse></note>
 <note xml:id="n34" pname="e" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
 </layer></staff>
@@ -139,7 +139,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>death,</syl></verse></note>
+<verse n="1"><syl eol="1">death,</syl></verse></note>
 <note xml:id="n40" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Her</syl></verse></note>
 </layer></staff>
@@ -162,7 +162,7 @@
 <note xml:id="n45" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">stand</syl></verse></note>
 <note xml:id="n46" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 <note xml:id="n47" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Of</syl></verse></note>
 </layer></staff>
@@ -183,7 +183,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>earth.</syl></verse></note>
+<verse n="1"><syl eol="1">earth.</syl></verse></note>
 <rest xml:id="r53" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

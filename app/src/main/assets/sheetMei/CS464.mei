@@ -31,7 +31,7 @@
 <note xml:id="n8" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n9" pname="d" oct="4" dur="2">
-<verse n="1"><syl>躇，</syl></verse></note>
+<verse n="1"><syl eol="1">躇，</syl></verse></note>
 </layer></staff>
 <slur startid="#n7" endid="#n8"/>
 </measure>
@@ -58,7 +58,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="a" oct="4" dur="1">
-<verse n="1"><syl>糊，</syl></verse></note>
+<verse n="1"><syl eol="1">糊，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -88,7 +88,7 @@
 <note xml:id="n24" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n25" pname="d" oct="4" dur="2">
-<verse n="1"><syl>阻，</syl></verse></note>
+<verse n="1"><syl eol="1">阻，</syl></verse></note>
 </layer></staff>
 <slur startid="#n23" endid="#n24"/>
 </measure>
@@ -114,7 +114,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>主；</syl></verse></note>
+<verse n="1"><syl eol="1">主；</syl></verse></note>
 <beam>
 <note xml:id="n33" pname="d" oct="4" dur="8"/>
 <note xml:id="n34" pname="d" oct="4" dur="8">
@@ -148,7 +148,7 @@
 <note xml:id="n41" pname="g" oct="4" dur="4">
 <verse n="1"><syl>世</syl></verse></note>
 <note xml:id="n42" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>途，</syl></verse></note>
+<verse n="1"><syl eol="1">途，</syl></verse></note>
 <note xml:id="n43" pname="d" oct="4" dur="8">
 <verse n="1"><syl>經</syl></verse></note>
 </layer></staff>
@@ -174,7 +174,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>處，</syl></verse></note>
+<verse n="1"><syl eol="1">處，</syl></verse></note>
 <beam>
 <note xml:id="n50" pname="d" oct="4" dur="8"/>
 <note xml:id="n51" pname="d" oct="4" dur="8">
@@ -208,7 +208,7 @@
 <note xml:id="n58" pname="g" oct="4" dur="4">
 <verse n="1"><syl>酸</syl></verse></note>
 <note xml:id="n59" pname="f" oct="4" dur="2">
-<verse n="1"><syl>醋，</syl></verse></note>
+<verse n="1"><syl eol="1">醋，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
@@ -231,7 +231,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="d" oct="4" dur="1">
-<verse n="1"><syl>負。</syl></verse></note>
+<verse n="1"><syl eol="1">負。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 </measure>

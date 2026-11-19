@@ -39,7 +39,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">hend</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">hend</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -75,7 +75,7 @@
 <sb/>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>own,</syl></verse></note>
+<verse n="1"><syl eol="1">own,</syl></verse></note>
 <note xml:id="n21" pname="f" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -109,7 +109,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>end;</syl></verse></note>
+<verse n="1"><syl eol="1">end;</syl></verse></note>
 <note xml:id="n31" pname="f" oct="4" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
 </layer></staff>
@@ -144,7 +144,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>known</syl></verse></note>
+<verse n="1"><syl eol="1">known</syl></verse></note>
 <note xml:id="n41" pname="a" oct="4" dur="4">
 <verse n="1"><syl>How</syl></verse></note>
 </layer></staff>
@@ -177,7 +177,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">cend,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cend,</syl></verse></note>
 <note xml:id="n51" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Lit</syl></verse></note>
 </layer></staff>
@@ -211,7 +211,7 @@
 </measure>
 <measure n="19" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>stone.</syl></verse></note>
+<verse n="1"><syl eol="1">stone.</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

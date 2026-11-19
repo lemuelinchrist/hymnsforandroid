@@ -31,7 +31,7 @@
 </beam>
 <beam>
 <note xml:id="n8" pname="e" oct="4" dur="8">
-<verse n="1"><syl>day</syl></verse></note>
+<verse n="1"><syl eol="1">day</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="8">
 <verse n="1"><syl>By</syl></verse></note>
 <note xml:id="n10" pname="d" oct="4" dur="8">
@@ -54,7 +54,7 @@
 </beam>
 <beam>
 <note xml:id="n16" pname="f" oct="4" dur="8">
-<verse n="1"><syl>say.</syl></verse></note>
+<verse n="1"><syl eol="1">say.</syl></verse></note>
 <note xml:id="n17" pname="f" oct="4" dur="8">
 <verse n="1"><syl>For</syl></verse></note>
 <note xml:id="n18" pname="f" oct="4" dur="8">
@@ -79,7 +79,7 @@
 </beam>
 <beam>
 <note xml:id="n24" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">gun</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gun</syl></verse></note>
 <note xml:id="n25" pname="d" oct="4" dur="8">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n26" pname="d" oct="4" dur="8">
@@ -102,7 +102,7 @@
 <verse n="1"><syl>I’m</syl></verse></note>
 </beam>
 <note xml:id="n32" pname="e" oct="4" dur="2">
-<verse n="1"><syl>done.</syl></verse></note>
+<verse n="1"><syl eol="1">done.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭7</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>

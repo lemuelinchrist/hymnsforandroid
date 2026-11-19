@@ -31,7 +31,7 @@
 <verse n="1"><syl wordpos="m" con="d">at</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ed—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed—</syl></verse></note>
 <note xml:id="n10" pname="e" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </beam>
@@ -54,7 +54,7 @@
 <note xml:id="n16" pname="a" oct="4" dur="4">
 <verse n="1"><syl>He</syl></verse></note>
 <note xml:id="n17" pname="g" oct="4" dur="2">
-<verse n="1"><syl>made.</syl></verse></note>
+<verse n="1"><syl eol="1">made.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -78,7 +78,7 @@
 <note xml:id="n23" pname="a" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="4">
-<verse n="1"><syl>clouds,</syl></verse></note>
+<verse n="1"><syl eol="1">clouds,</syl></verse></note>
 <note xml:id="n25" pname="e" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -103,7 +103,7 @@
 <note xml:id="n31" pname="b" oct="3" dur="4">
 <verse n="1"><syl>He</syl></verse></note>
 <note xml:id="n32" pname="c" oct="4" dur="2">
-<verse n="1"><syl>laid.</syl></verse></note>
+<verse n="1"><syl eol="1">laid.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -138,7 +138,7 @@
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <note xml:id="n40" pname="b" oct="3" dur="4"/>
 <note xml:id="n41" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tion!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -173,7 +173,7 @@
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <note xml:id="n49" pname="b" oct="3" dur="4"/>
 <note xml:id="n50" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tion!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>

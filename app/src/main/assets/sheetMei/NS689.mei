@@ -21,7 +21,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n5" pname="e" oct="4" dur="1">
-<verse n="1"><syl>veil;</syl></verse></note>
+<verse n="1"><syl eol="1">veil;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
@@ -48,7 +48,7 @@
 <verse n="1"><syl>see</syl></verse></note>
 <note xml:id="n12" pname="f" oct="4" dur="8"/>
 <note xml:id="n13" pname="f" oct="4" dur="2">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -83,7 +83,7 @@
 <note xml:id="n22" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">an</syl></verse></note>
 <note xml:id="n23" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ger,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ger,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/G</harm>
@@ -108,7 +108,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="e" oct="4" dur="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>

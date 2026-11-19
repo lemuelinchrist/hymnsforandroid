@@ -25,7 +25,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">lief,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lief,</syl></verse></note>
 <beam>
 <note xml:id="n7" pname="g" oct="4" dur="8">
 <verse n="1"><syl>My</syl></verse></note>
@@ -50,7 +50,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>near,</syl></verse></note>
+<verse n="1"><syl eol="1">near,</syl></verse></note>
 <note xml:id="n14" pname="c" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -70,7 +70,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">lief</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lief</syl></verse></note>
 <beam>
 <note xml:id="n20" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Will</syl></verse></note>
@@ -95,7 +95,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">pear;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pear;</syl></verse></note>
 <note xml:id="n27" pname="c" oct="4" dur="4">
 <verse n="1"><syl>By</syl></verse></note>
 </layer></staff>
@@ -117,7 +117,7 @@
 <note xml:id="n32" pname="c" oct="5" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">wres</syl></verse></note>
 <note xml:id="n33" pname="b" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">tle,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tle,</syl></verse></note>
 <note xml:id="n34" pname="b" oct="4" dur="4"/>
 <note xml:id="n35" pname="a" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
@@ -140,7 +140,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">form;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">form;</syl></verse></note>
 <beam>
 <note xml:id="n41" pname="f" oct="4" dur="8">
 <verse n="1"><syl>With</syl></verse></note>
@@ -166,7 +166,7 @@
 <note xml:id="n47" pname="c" oct="5" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">ves</syl></verse></note>
 <note xml:id="n48" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">sel,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sel,</syl></verse></note>
 <note xml:id="n49" pname="a" oct="4" dur="4"/>
 <note xml:id="n50" pname="c" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
@@ -193,7 +193,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>storm.</syl></verse></note>
+<verse n="1"><syl eol="1">storm.</syl></verse></note>
 <rest xml:id="r57" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

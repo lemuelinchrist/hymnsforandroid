@@ -23,7 +23,7 @@
 <note xml:id="n5" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n6" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 </measure>
@@ -42,7 +42,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="f" oct="4" dur="1">
-<verse n="1"><syl>yield!</syl></verse></note>
+<verse n="1"><syl eol="1">yield!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -64,7 +64,7 @@
 <note xml:id="n16" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">ar</syl></verse></note>
 <note xml:id="n17" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">mor,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">mor,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">G/B</harm>
@@ -86,7 +86,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">shield!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">shield!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -110,7 +110,7 @@
 <note xml:id="n27" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">va</syl></verse></note>
 <note xml:id="n28" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tion,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -132,7 +132,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="b" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">furled,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">furled,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -154,7 +154,7 @@
 <note xml:id="n38" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">va</syl></verse></note>
 <note xml:id="n39" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="3" place="above">Em</harm>
@@ -177,7 +177,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="g" oct="4" dur="1">
-<verse n="1"><syl>world.</syl></verse></note>
+<verse n="1"><syl eol="1">world.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="2" place="above">C/G</harm>
@@ -202,7 +202,7 @@
 <note xml:id="n49" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n50" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 </measure>
@@ -221,7 +221,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="f" oct="4" dur="1">
-<verse n="1"><syl>yield!</syl></verse></note>
+<verse n="1"><syl eol="1">yield!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -245,7 +245,7 @@
 <note xml:id="n60" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">ar</syl></verse></note>
 <note xml:id="n61" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">mor,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">mor,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="3" place="above">Em</harm>
@@ -268,7 +268,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n66" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">shield!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">shield!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>

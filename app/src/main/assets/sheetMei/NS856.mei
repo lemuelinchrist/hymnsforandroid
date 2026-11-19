@@ -18,7 +18,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n3" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>seems</syl></verse></note>
+<verse n="1"><syl eol="1">seems</syl></verse></note>
 <beam>
 <note xml:id="n4" pname="f" oct="4" dur="8">
 <verse n="1"><syl>That</syl></verse></note>
@@ -42,7 +42,7 @@
 </beam>
 <beam>
 <note xml:id="n11" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">gain.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain.</syl></verse></note>
 <note xml:id="n12" pname="d" oct="4" dur="8">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n13" pname="f" oct="4" dur="8">
@@ -58,7 +58,7 @@
 <sb/>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="d" oct="4" dur="2">
-<verse n="1"><syl>face,</syl></verse></note>
+<verse n="1"><syl eol="1">face,</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="d" oct="4" dur="8"/>
 <note xml:id="n17" pname="d" oct="4" dur="8">
@@ -86,7 +86,7 @@
 <note xml:id="n24" pname="e" oct="4" dur="16"/>
 </beam>
 <note xml:id="n25" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">gain.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain.</syl></verse></note>
 <note xml:id="n26" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
 </layer></staff>
@@ -120,7 +120,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
 <note xml:id="n35" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <note xml:id="n36" pname="d" oct="4" dur="8">
 <verse n="1"><syl>I’m</syl></verse></note>
 </layer></staff>
@@ -154,7 +154,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>learn</syl></verse></note>
+<verse n="1"><syl eol="1">learn</syl></verse></note>
 <beam>
 <note xml:id="n46" pname="e" oct="4" dur="8"/>
 <note xml:id="n47" pname="d" oct="4" dur="8">
@@ -192,7 +192,7 @@
 </measure>
 <measure n="11" right="end"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>turn.</syl></verse></note>
+<verse n="1"><syl eol="1">turn.</syl></verse></note>
 <rest xml:id="r57" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

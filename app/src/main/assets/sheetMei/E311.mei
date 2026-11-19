@@ -35,7 +35,7 @@
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ceived;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ceived;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -69,7 +69,7 @@
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 </beam>
 <note xml:id="n20" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lieved;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieved;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
@@ -102,7 +102,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">base;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">base;</syl></verse></note>
 <note xml:id="n30" pname="b" oct="4" dur="8">
 <verse n="1"><syl>I’m</syl></verse></note>
 </layer></staff>
@@ -132,7 +132,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="4">
 <verse n="1"><syl>by</syl></verse></note>
 <note xml:id="n38" pname="b" oct="4" dur="2">
-<verse n="1"><syl>grace!</syl></verse></note>
+<verse n="1"><syl eol="1">grace!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="2" place="above">F7</harm>
@@ -162,7 +162,7 @@
 <note xml:id="n45" pname="c" oct="4" dur="4">
 <verse n="1"><syl>by</syl></verse></note>
 <note xml:id="n46" pname="d" oct="4" dur="2">
-<verse n="1"><syl>grace!</syl></verse></note>
+<verse n="1"><syl eol="1">grace!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/D</harm>
 <harm staff="1" tstamp="2" place="above">F/C</harm>
@@ -190,7 +190,7 @@
 <note xml:id="n53" pname="c" oct="5" dur="4">
 <verse n="1"><syl>by</syl></verse></note>
 <note xml:id="n54" pname="d" oct="5" dur="2">
-<verse n="1"><syl>grace!</syl></verse></note>
+<verse n="1"><syl eol="1">grace!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="2" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -228,7 +228,7 @@
 <note xml:id="n64" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n65" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 <note xml:id="n66" pname="f" oct="4" dur="8">
 <verse n="1"><syl>I’m</syl></verse></note>
 </layer></staff>
@@ -259,7 +259,7 @@
 <note xml:id="n73" pname="a" oct="4" dur="4">
 <verse n="1"><syl>by</syl></verse></note>
 <note xml:id="n74" pname="b" oct="4" dur="2">
-<verse n="1"><syl>grace!</syl></verse></note>
+<verse n="1"><syl eol="1">grace!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm/E♭</harm>
 <harm staff="1" tstamp="2" place="above">F7</harm>

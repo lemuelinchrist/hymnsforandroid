@@ -30,7 +30,7 @@
 <verse n="1"><syl>so</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="8"/>
 <note xml:id="n9" pname="f" oct="4" dur="8">
-<verse n="1"><syl>poor,</syl></verse></note>
+<verse n="1"><syl eol="1">poor,</syl></verse></note>
 </beam>
 </layer></staff>
 <tie startid="#n7" endid="#n8"/>
@@ -62,7 +62,7 @@
 <note xml:id="n18" pname="c" oct="4" dur="8">
 <verse n="1"><syl>for</syl></verse></note>
 <note xml:id="n19" pname="b" oct="3" dur="8">
-<verse n="1"><syl>more.</syl></verse></note>
+<verse n="1"><syl eol="1">more.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -95,7 +95,7 @@
 <note xml:id="n29" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">rious</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="8">
-<verse n="1"><syl>Christ;</syl></verse></note>
+<verse n="1"><syl eol="1">Christ;</syl></verse></note>
 </beam>
 </layer></staff>
 <tie startid="#n30" endid="#n31"/>
@@ -126,7 +126,7 @@
 <note xml:id="n39" pname="d" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n40" pname="e" oct="4" dur="8">
-<verse n="1"><syl>life!</syl></verse></note>
+<verse n="1"><syl eol="1">life!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -169,7 +169,7 @@
 <verse n="1"><syl wordpos="m" con="d">bi</syl></verse></note>
 <note xml:id="n51" pname="b" oct="4" dur="8"/>
 <note xml:id="n52" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">lee,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lee,</syl></verse></note>
 </beam>
 <note xml:id="n53" pname="f" oct="4" dur="2"/>
 </layer></staff>
@@ -209,7 +209,7 @@
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n64" pname="e" oct="4" dur="8"/>
 <note xml:id="n65" pname="b" oct="4" dur="8">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </beam>
 <note xml:id="n66" pname="b" oct="4" dur="2"/>
 </layer></staff>
@@ -247,7 +247,7 @@
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n76" pname="b" oct="4" dur="8"/>
 <note xml:id="n77" pname="f" oct="4" dur="8">
-<verse n="1"><syl>free</syl></verse></note>
+<verse n="1"><syl eol="1">free</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n78" pname="f" oct="4" dur="8"/>
@@ -275,7 +275,7 @@
 <note xml:id="n85" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n86" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ly!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>

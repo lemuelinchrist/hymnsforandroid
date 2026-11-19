@@ -43,7 +43,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl>Thou,</syl></verse></note>
+<verse n="1"><syl eol="1">Thou,</syl></verse></note>
 <note xml:id="n12" pname="d" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="a" oct="4" dur="2">
-<verse n="1"><syl>AM!</syl></verse></note>
+<verse n="1"><syl eol="1">AM!</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="4">
 <verse n="1"><syl>More</syl></verse></note>
 </layer></staff>
@@ -121,7 +121,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="g" oct="4" dur="4">
-<verse n="1"><syl>are,</syl></verse></note>
+<verse n="1"><syl eol="1">are,</syl></verse></note>
 <note xml:id="n33" pname="f" oct="4" dur="4"/>
 <note xml:id="n34" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
@@ -162,7 +162,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">gan!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gan!</syl></verse></note>
 <rest xml:id="r43" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

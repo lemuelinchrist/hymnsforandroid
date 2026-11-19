@@ -52,7 +52,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n15" pname="b" oct="4" dur="4">
-<verse n="1"><syl>Lord:</syl></verse></note>
+<verse n="1"><syl eol="1">Lord:</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>All</syl></verse></note>
@@ -100,7 +100,7 @@
 <verse n="1"><syl wordpos="i" con="d">af</syl></verse></note>
 </beam>
 <note xml:id="n30" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ford!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ford!</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl>From</syl></verse></note>
@@ -148,7 +148,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n45" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">broad,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">broad,</syl></verse></note>
 <note xml:id="n46" pname="b" oct="4" dur="4">
 <verse n="1"><syl>It’s</syl></verse></note>
 </layer></staff>
@@ -174,7 +174,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 <rest xml:id="r53" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -205,7 +205,7 @@
 <note xml:id="n60" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n61" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 <rest xml:id="r62" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">B♭7</harm>
@@ -233,7 +233,7 @@
 <note xml:id="n69" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n70" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -260,7 +260,7 @@
 <note xml:id="n77" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n78" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 <note xml:id="n79" pname="b" oct="4" dur="4">
 <verse n="1"><syl>It’s</syl></verse></note>
 </layer></staff>
@@ -287,7 +287,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 <rest xml:id="r86" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

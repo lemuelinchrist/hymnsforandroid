@@ -31,7 +31,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="g" oct="4" dur="1">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -58,7 +58,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="f" oct="4" dur="1">
-<verse n="1"><syl>free,</syl></verse></note>
+<verse n="1"><syl eol="1">free,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 </measure>
@@ -86,7 +86,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">side—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">side—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm/A♭</harm>
 </measure>
@@ -120,7 +120,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="e" oct="4" dur="1">
-<verse n="1"><syl>tried.</syl></verse></note>
+<verse n="1"><syl eol="1">tried.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="g" oct="4" dur="1">
-<verse n="1"><syl>had;</syl></verse></note>
+<verse n="1"><syl eol="1">had;</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
@@ -163,7 +163,7 @@
 </beam>
 <beam>
 <note xml:id="n51" pname="b" oct="4" dur="8">
-<verse n="1"><syl>good,</syl></verse></note>
+<verse n="1"><syl eol="1">good,</syl></verse></note>
 <note xml:id="n52" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Some</syl></verse></note>
 <note xml:id="n53" pname="f" oct="4" dur="8">
@@ -176,7 +176,7 @@
 <sb/>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="f" oct="4" dur="1">
-<verse n="1"><syl>bad.</syl></verse></note>
+<verse n="1"><syl eol="1">bad.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 </measure>
@@ -204,7 +204,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">fore</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fore</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm/A♭</harm>
 </measure>
@@ -237,7 +237,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">more.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">more.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -269,7 +269,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n83" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ward</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ward</syl></verse></note>
 <beam>
 <note xml:id="n84" pname="a" oct="4" dur="16"/>
 <note xml:id="n85" pname="g" oct="4" dur="16"/>
@@ -299,7 +299,7 @@
 <note xml:id="n93" pname="a" oct="4" dur="8">
 <verse n="1"><syl>“O</syl></verse></note>
 <note xml:id="n94" pname="e" oct="4" dur="8">
-<verse n="1"><syl>Lord!”</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!”</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -331,7 +331,7 @@
 <note xml:id="n102" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">it</syl></verse></note>
 <note xml:id="n103" pname="g" oct="4" dur="8">
-<verse n="1"><syl>is,</syl></verse></note>
+<verse n="1"><syl eol="1">is,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -368,7 +368,7 @@
 <note xml:id="n114" pname="e" oct="4" dur="8">
 <verse n="1"><syl>with</syl></verse></note>
 <note xml:id="n115" pname="c" oct="4" dur="8">
-<verse n="1"><syl>His.</syl></verse></note>
+<verse n="1"><syl eol="1">His.</syl></verse></note>
 <note xml:id="n116" pname="e" oct="4" dur="8"/>
 </beam>
 </layer></staff>

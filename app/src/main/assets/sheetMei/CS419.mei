@@ -34,7 +34,7 @@
 <note xml:id="n8" pname="c" oct="5" dur="4">
 <verse n="1"><syl>掩</syl></verse></note>
 <note xml:id="n9" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>面，</syl></verse></note>
+<verse n="1"><syl eol="1">面，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n9" endid="#n10"/>
@@ -65,7 +65,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="g" oct="4" dur="1">
-<verse n="1"><syl>路；</syl></verse></note>
+<verse n="1"><syl eol="1">路；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <tie startid="#n17" endid="#n18"/>
@@ -100,7 +100,7 @@
 <note xml:id="n25" pname="c" oct="5" dur="4">
 <verse n="1"><syl>顯</syl></verse></note>
 <note xml:id="n26" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>現，</syl></verse></note>
+<verse n="1"><syl eol="1">現，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n26" endid="#n27"/>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="f" oct="4" dur="1">
-<verse n="1"><syl>途。</syl></verse></note>
+<verse n="1"><syl eol="1">途。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n34" endid="#n35"/>
@@ -166,7 +166,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="c" oct="5" dur="1">
-<verse n="1"><syl>引，</syl></verse></note>
+<verse n="1"><syl eol="1">引，</syl></verse></note>
 </layer></staff>
 <tie startid="#n44" endid="#n45"/>
 </measure>
@@ -197,7 +197,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="g" oct="4" dur="1">
-<verse n="1"><syl>懼；</syl></verse></note>
+<verse n="1"><syl eol="1">懼；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <tie startid="#n53" endid="#n54"/>
@@ -232,7 +232,7 @@
 <note xml:id="n61" pname="c" oct="5" dur="4">
 <verse n="1"><syl>面</syl></verse></note>
 <note xml:id="n62" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>光，</syl></verse></note>
+<verse n="1"><syl eol="1">光，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n62" endid="#n63"/>
@@ -263,7 +263,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n70" pname="f" oct="4" dur="1">
-<verse n="1"><syl>亮。</syl></verse></note>
+<verse n="1"><syl eol="1">亮。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n70" endid="#n71"/>

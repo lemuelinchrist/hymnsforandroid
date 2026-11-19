@@ -45,7 +45,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty</syl></verse></note>
 <note xml:id="n12" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Breathe</syl></verse></note>
 </layer></staff>
@@ -83,7 +83,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="d" oct="4" dur="2">
-<verse n="1"><syl>land—</syl></verse></note>
+<verse n="1"><syl eol="1">land—</syl></verse></note>
 <note xml:id="n22" pname="e" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -124,7 +124,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="b" oct="4" dur="2">
-<verse n="1"><syl>tree</syl></verse></note>
+<verse n="1"><syl eol="1">tree</syl></verse></note>
 <note xml:id="n33" pname="c" oct="5" dur="4">
 <verse n="1"><syl>Shall</syl></verse></note>
 </layer></staff>
@@ -164,7 +164,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="g" oct="4" dur="2">
-<verse n="1"><syl>sand;</syl></verse></note>
+<verse n="1"><syl eol="1">sand;</syl></verse></note>
 <note xml:id="n43" pname="g" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -202,7 +202,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="e" oct="4" dur="2">
-<verse n="1"><syl>flows</syl></verse></note>
+<verse n="1"><syl eol="1">flows</syl></verse></note>
 <note xml:id="n53" pname="e" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -241,7 +241,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n63" pname="c" oct="4" dur="2">
-<verse n="1"><syl>rose.</syl></verse></note>
+<verse n="1"><syl eol="1">rose.</syl></verse></note>
 <rest xml:id="r64" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

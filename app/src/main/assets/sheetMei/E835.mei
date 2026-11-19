@@ -39,7 +39,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">cure;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cure;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -74,7 +74,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">dure;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dure;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -118,7 +118,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">thrown</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thrown</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -154,7 +154,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="d" oct="4" dur="1">
-<verse n="1"><syl>Stone.”</syl></verse></note>
+<verse n="1"><syl eol="1">Stone.”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

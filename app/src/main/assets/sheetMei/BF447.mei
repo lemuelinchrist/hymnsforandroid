@@ -29,7 +29,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="g" oct="4" dur="2">
-<verse n="1"><syl>days,</syl></verse></note>
+<verse n="1"><syl eol="1">days,</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Well</syl></verse></note>
@@ -56,7 +56,7 @@
 <sb/>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">light,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">light,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
@@ -83,7 +83,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2">
-<verse n="1"><syl>rays,</syl></verse></note>
+<verse n="1"><syl eol="1">rays,</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">So</syl></verse></note>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="f" oct="4" dur="2">
-<verse n="1"><syl>night;</syl></verse></note>
+<verse n="1"><syl eol="1">night;</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="g" oct="4" dur="8">
 <verse n="1"><syl>When</syl></verse></note>
@@ -135,7 +135,7 @@
 <sb/>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">rise</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">rise</syl></verse></note>
 <beam>
 <note xml:id="n38" pname="g" oct="4" dur="8">
 <verse n="1"><syl>To</syl></verse></note>
@@ -160,7 +160,7 @@
 </measure>
 <measure n="12" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>skies.</syl></verse></note>
+<verse n="1"><syl eol="1">skies.</syl></verse></note>
 <rest xml:id="r45" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>

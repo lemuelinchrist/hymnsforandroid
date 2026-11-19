@@ -40,7 +40,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee</syl></verse></note>
+<verse n="1"><syl eol="1">Thee</syl></verse></note>
 <note xml:id="n11" pname="e" oct="4" dur="4">
 <verse n="1"><syl>As</syl></verse></note>
 </layer></staff>
@@ -58,7 +58,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="e" oct="4" dur="1">
-<verse n="1"><syl>near,</syl></verse></note>
+<verse n="1"><syl eol="1">near,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -97,7 +97,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty,</syl></verse></note>
 <note xml:id="n25" pname="e" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -115,7 +115,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="e" oct="4" dur="1">
-<verse n="1"><syl>sphere.</syl></verse></note>
+<verse n="1"><syl eol="1">sphere.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -154,7 +154,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>be</syl></verse></note>
+<verse n="1"><syl eol="1">be</syl></verse></note>
 <note xml:id="n39" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Like</syl></verse></note>
 </layer></staff>
@@ -195,7 +195,7 @@
 </measure>
 <measure n="20" right="end"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ly!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly!</syl></verse></note>
 <rest xml:id="r49" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

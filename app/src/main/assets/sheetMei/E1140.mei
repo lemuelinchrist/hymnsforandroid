@@ -36,7 +36,7 @@
 <verse n="1"><syl>with</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Christ;</syl></verse></note>
+<verse n="1"><syl eol="1">Christ;</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Yes,</syl></verse></note>
 </layer></staff>
@@ -69,7 +69,7 @@
 <verse n="1"><syl wordpos="i" con="d">suf</syl></verse></note>
 </beam>
 <note xml:id="n20" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ficed</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ficed</syl></verse></note>
 <note xml:id="n21" pname="f" oct="4" dur="8">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -101,7 +101,7 @@
 <note xml:id="n29" pname="b" oct="4" dur="4">
 <verse n="1"><syl>that</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>He</syl></verse></note>
+<verse n="1"><syl eol="1">He</syl></verse></note>
 <note xml:id="n31" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Him</syl></verse></note>
 </layer></staff>
@@ -151,7 +151,7 @@
 </measure>
 <measure n="11" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 <rest xml:id="r45" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

@@ -30,7 +30,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">se</syl></verse></note>
 <note xml:id="n8" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">cret</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cret</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Of</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="4">
@@ -56,7 +56,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Lord;</syl></verse></note>
+<verse n="1"><syl eol="1">Lord;</syl></verse></note>
 <note xml:id="n16" pname="a" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n17" pname="a" oct="4" dur="4">
@@ -83,7 +83,7 @@
 <note xml:id="n22" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">foun</syl></verse></note>
 <note xml:id="n23" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tain,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tain,</syl></verse></note>
 <note xml:id="n24" pname="f" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n25" pname="d" oct="4" dur="4">
@@ -109,7 +109,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="e" oct="4" dur="2">
-<verse n="1"><syl>word;</syl></verse></note>
+<verse n="1"><syl eol="1">word;</syl></verse></note>
 <note xml:id="n31" pname="a" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="4">
@@ -136,7 +136,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">sweet</syl></verse></note>
 <note xml:id="n38" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness</syl></verse></note>
 <note xml:id="n39" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Of</syl></verse></note>
 <note xml:id="n40" pname="f" oct="4" dur="4">
@@ -161,7 +161,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="a" oct="4" dur="2">
-<verse n="1"><syl>blood;</syl></verse></note>
+<verse n="1"><syl eol="1">blood;</syl></verse></note>
 <note xml:id="n46" pname="a" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n47" pname="g" oct="4" dur="4">
@@ -187,7 +187,7 @@
 <note xml:id="n52" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n53" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 <note xml:id="n54" pname="g" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n55" pname="e" oct="4" dur="4">
@@ -212,7 +212,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="d" oct="4" dur="2">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 <note xml:id="n61" pname="d" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>I’m</syl></verse></note>
 <note xml:id="n62" pname="f" oct="4" dur="4">
@@ -237,7 +237,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="d" oct="4" dur="2">
-<verse n="1"><syl>Lord</syl></verse></note>
+<verse n="1"><syl eol="1">Lord</syl></verse></note>
 <note xml:id="n68" pname="e" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 <note xml:id="n69" pname="f" oct="4" dur="4">
@@ -260,7 +260,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="a" oct="4" dur="2">
-<verse n="1"><syl>word;</syl></verse></note>
+<verse n="1"><syl eol="1">word;</syl></verse></note>
 <note xml:id="n75" pname="a" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n76" pname="a" oct="4" dur="4">
@@ -300,7 +300,7 @@
 <sb/>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="e" oct="4" dur="1">
-<verse n="1"><syl>love.</syl></verse></note>
+<verse n="1"><syl eol="1">love.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E7</harm>
 </measure>
@@ -327,7 +327,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n93" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Lord</syl></verse></note>
+<verse n="1"><syl eol="1">Lord</syl></verse></note>
 <note xml:id="n94" pname="g" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 <note xml:id="n95" pname="f" oct="4" dur="4">
@@ -351,7 +351,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n100" pname="a" oct="4" dur="2">
-<verse n="1"><syl>word,</syl></verse></note>
+<verse n="1"><syl eol="1">word,</syl></verse></note>
 <note xml:id="n101" pname="a" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n102" pname="g" oct="4" dur="4">
@@ -388,7 +388,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n111" pname="d" oct="4" dur="1">
-<verse n="1"><syl>love.</syl></verse></note>
+<verse n="1"><syl eol="1">love.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G/D</harm>

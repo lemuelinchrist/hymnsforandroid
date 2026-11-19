@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="c" oct="4" dur="2">
 <verse n="1"><syl>願</syl></verse></note>
 <note xml:id="n8" pname="b" oct="3" dur="4">
-<verse n="1"><syl>憑，</syl></verse></note>
+<verse n="1"><syl eol="1">憑，</syl></verse></note>
 <note xml:id="n9" pname="b" oct="4" dur="4">
 <verse n="1"><syl>主，</syl></verse></note>
 </layer></staff>
@@ -78,7 +78,7 @@
 <note xml:id="n21" pname="c" oct="4" dur="2">
 <verse n="1"><syl>生</syl></verse></note>
 <note xml:id="n22" pname="b" oct="3" dur="4">
-<verse n="1"><syl>命，</syl></verse></note>
+<verse n="1"><syl eol="1">命，</syl></verse></note>
 <note xml:id="n23" pname="b" oct="3" dur="4">
 <verse n="1"><syl>不</syl></verse></note>
 </layer></staff>
@@ -109,7 +109,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>靈。</syl></verse></note>
+<verse n="1"><syl eol="1">靈。</syl></verse></note>
 <note xml:id="n31" pname="b" oct="4" dur="4">
 <verse n="1"><syl>求</syl></verse></note>
 </layer></staff>
@@ -131,7 +131,7 @@
 <verse n="1"><syl>吸</syl></verse></note>
 <note xml:id="n37" pname="a" oct="4" dur="4" accid="s" accid.ges="s"/>
 <note xml:id="n38" pname="b" oct="4" dur="4">
-<verse n="1"><syl>引，</syl></verse></note>
+<verse n="1"><syl eol="1">引，</syl></verse></note>
 <note xml:id="n39" pname="b" oct="4" dur="4">
 <verse n="1"><syl>使</syl></verse></note>
 </layer></staff>
@@ -153,7 +153,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>親，</syl></verse></note>
+<verse n="1"><syl eol="1">親，</syl></verse></note>
 <note xml:id="n45" pname="b" oct="4" dur="4">
 <verse n="1"><syl>讓</syl></verse></note>
 </layer></staff>
@@ -180,7 +180,7 @@
 <note xml:id="n51" pname="c" oct="4" dur="2">
 <verse n="1"><syl>榮</syl></verse></note>
 <note xml:id="n52" pname="b" oct="3" dur="4">
-<verse n="1"><syl>形，</syl></verse></note>
+<verse n="1"><syl eol="1">形，</syl></verse></note>
 <note xml:id="n53" pname="b" oct="3" dur="4">
 <verse n="1"><syl>緊</syl></verse></note>
 </layer></staff>
@@ -210,7 +210,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>行。</syl></verse></note>
+<verse n="1"><syl eol="1">行。</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>

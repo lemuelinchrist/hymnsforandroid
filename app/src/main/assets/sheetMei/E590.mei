@@ -36,7 +36,7 @@
 <note xml:id="n8" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">on</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 </measure>
@@ -69,7 +69,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>grace,</syl></verse></note>
+<verse n="1"><syl eol="1">grace,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -104,7 +104,7 @@
 <note xml:id="n25" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">lone</syl></verse></note>
 <note xml:id="n26" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ly,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 </measure>
@@ -137,7 +137,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>face!</syl></verse></note>
+<verse n="1"><syl eol="1">face!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

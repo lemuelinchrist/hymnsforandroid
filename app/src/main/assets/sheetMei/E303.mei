@@ -43,7 +43,7 @@
 <note xml:id="n11" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">demp</syl></verse></note>
 <note xml:id="n12" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion;</syl></verse></note>
 <note xml:id="n13" pname="f" oct="4" dur="8">
 <verse n="1"><syl>No</syl></verse></note>
 </layer></staff>
@@ -79,7 +79,7 @@
 <verse n="1"><syl>poor</syl></verse></note>
 </beam>
 <note xml:id="n23" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>soul.</syl></verse></note>
+<verse n="1"><syl eol="1">soul.</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -120,7 +120,7 @@
 <note xml:id="n34" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">da</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion;</syl></verse></note>
 <note xml:id="n36" pname="e" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -157,7 +157,7 @@
 <verse n="1"><syl>me</syl></verse></note>
 </beam>
 <note xml:id="n46" pname="g" oct="4" dur="4">
-<verse n="1"><syl>whole.</syl></verse></note>
+<verse n="1"><syl eol="1">whole.</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <beam>
 <note xml:id="n47" pname="g" oct="4" dur="8">
@@ -196,7 +196,7 @@
 <note xml:id="n55" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">sil</syl></verse></note>
 <note xml:id="n56" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ver;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ver;</syl></verse></note>
 <beam>
 <note xml:id="n57" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl>I</syl></verse></note>
@@ -225,7 +225,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>gold;</syl></verse></note>
+<verse n="1"><syl eol="1">gold;</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <beam>
 <note xml:id="n65" pname="g" oct="4" dur="8">
@@ -261,7 +261,7 @@
 <note xml:id="n73" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n74" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 <beam>
 <note xml:id="n75" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Pre</syl></verse></note>
@@ -287,7 +287,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n81" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">told.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">told.</syl></verse></note>
 <rest xml:id="r82" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

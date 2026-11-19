@@ -21,7 +21,7 @@
 <note xml:id="n5" pname="f" oct="4" dur="4">
 <verse n="1"><syl>free</syl></verse></note>
 <note xml:id="n6" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>will,</syl></verse></note>
+<verse n="1"><syl eol="1">will,</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -38,7 +38,7 @@
 <note xml:id="n11" pname="f" oct="4" dur="4">
 <verse n="1"><syl>free</syl></verse></note>
 <note xml:id="n12" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>will!</syl></verse></note>
+<verse n="1"><syl eol="1">will!</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -77,7 +77,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">sign.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sign.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -106,7 +106,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="e" oct="4" dur="4">
-<verse n="1"><syl>do</syl></verse></note>
+<verse n="1"><syl eol="1">do</syl></verse></note>
 <note xml:id="n35" pname="c" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 <note xml:id="n36" pname="d" oct="4" dur="4">
@@ -129,7 +129,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="e" oct="4" dur="4">
-<verse n="1"><syl>too.</syl></verse></note>
+<verse n="1"><syl eol="1">too.</syl></verse></note>
 <note xml:id="n43" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Oh</syl></verse></note>
 <note xml:id="n44" pname="d" oct="4" dur="4">
@@ -162,7 +162,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="f" oct="4" dur="1">
-<verse n="1"><syl>choice.</syl></verse></note>
+<verse n="1"><syl eol="1">choice.</syl></verse></note>
 </layer></staff>
 </measure>
 </section></score></mdiv></body>

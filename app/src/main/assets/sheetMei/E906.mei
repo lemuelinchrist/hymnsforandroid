@@ -36,7 +36,7 @@
 <note xml:id="n8" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ior?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ior?</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="4"/>
 <note xml:id="n11" pname="c" oct="4" dur="8">
 <verse n="1"><syl>How</syl></verse></note>
@@ -70,7 +70,7 @@
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="c" oct="4" dur="4" dots="1"/>
 <note xml:id="n19" pname="c" oct="4" dur="4">
-<verse n="1"><syl>man?</syl></verse></note>
+<verse n="1"><syl eol="1">man?</syl></verse></note>
 <note xml:id="n20" pname="c" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -101,7 +101,7 @@
 <note xml:id="n27" pname="c" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ble</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ble</syl></verse></note>
 <note xml:id="n29" pname="a" oct="4" dur="4"/>
 <note xml:id="n30" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Is</syl></verse></note>
@@ -135,7 +135,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <note xml:id="n38" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">ble;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ble;</syl></verse></note>
 <note xml:id="n39" pname="c" oct="5" dur="4"/>
 <note xml:id="n40" pname="d" oct="5" dur="8">
 <verse n="1"><syl>Thus</syl></verse></note>
@@ -168,7 +168,7 @@
 </measure>
 <measure n="11" right="end"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>can.</syl></verse></note>
+<verse n="1"><syl eol="1">can.</syl></verse></note>
 <note xml:id="n48" pname="f" oct="4" dur="4"/>
 <rest xml:id="r49" dur="8"/>
 </layer></staff>

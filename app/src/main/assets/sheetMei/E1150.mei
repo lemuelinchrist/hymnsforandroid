@@ -40,7 +40,7 @@
 <note xml:id="n9" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n10" pname="a" oct="4" dur="4">
-<verse n="1"><syl>bread,</syl></verse></note>
+<verse n="1"><syl eol="1">bread,</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="f" oct="4" dur="8">
 <verse n="1"><syl>We’re</syl></verse></note>
@@ -78,7 +78,7 @@
 <beam>
 <note xml:id="n20" pname="g" oct="4" dur="8"/>
 <note xml:id="n21" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">head;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">head;</syl></verse></note>
 <note xml:id="n22" pname="e" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="8"/>
@@ -108,7 +108,7 @@
 <note xml:id="n29" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">sus</syl></verse></note>
 <note xml:id="n30" pname="d" oct="4" dur="4">
-<verse n="1"><syl>said,</syl></verse></note>
+<verse n="1"><syl eol="1">said,</syl></verse></note>
 <note xml:id="n31" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Shall</syl></verse></note>
 </layer></staff>
@@ -140,7 +140,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">gain.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain.</syl></verse></note>
 <beam>
 <note xml:id="n39" pname="e" oct="4" dur="8"/>
 <note xml:id="n40" pname="f" oct="4" dur="8">
@@ -187,7 +187,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n52" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">gain!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain!</syl></verse></note>
 <beam>
 <note xml:id="n53" pname="f" oct="4" dur="8"/>
 <note xml:id="n54" pname="e" oct="4" dur="8">
@@ -235,7 +235,7 @@
 <beam>
 <note xml:id="n66" pname="g" oct="4" dur="8"/>
 <note xml:id="n67" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">gain!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain!</syl></verse></note>
 <note xml:id="n68" pname="e" oct="4" dur="8"/>
 <note xml:id="n69" pname="d" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -265,7 +265,7 @@
 <note xml:id="n75" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">sus</syl></verse></note>
 <note xml:id="n76" pname="d" oct="4" dur="4">
-<verse n="1"><syl>said,</syl></verse></note>
+<verse n="1"><syl eol="1">said,</syl></verse></note>
 <note xml:id="n77" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Shall</syl></verse></note>
 </layer></staff>
@@ -296,7 +296,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n84" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">gain!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain!</syl></verse></note>
 <rest xml:id="r85" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

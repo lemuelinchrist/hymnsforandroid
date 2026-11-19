@@ -43,7 +43,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Christ</syl></verse></note>
+<verse n="1"><syl eol="1">Christ</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -78,7 +78,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n20" pname="a" oct="3" dur="4">
 <verse n="1"><syl>This</syl></verse></note>
 </layer></staff>
@@ -113,7 +113,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>way</syl></verse></note>
+<verse n="1"><syl eol="1">way</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -151,7 +151,7 @@
 <verse n="1"><syl>grace</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="4"/>
 <note xml:id="n39" pname="a" oct="4" dur="4">
-<verse n="1"><syl>to</syl></verse></note>
+<verse n="1"><syl eol="1">to</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <slur startid="#n37" endid="#n38"/>
@@ -175,7 +175,7 @@
 <note xml:id="n44" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">not</syl></verse></note>
 <note xml:id="n45" pname="f" oct="4" dur="4">
-<verse n="1"><syl>be,</syl></verse></note>
+<verse n="1"><syl eol="1">be,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -196,7 +196,7 @@
 <note xml:id="n50" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">not</syl></verse></note>
 <note xml:id="n51" pname="f" oct="4" dur="4">
-<verse n="1"><syl>do,</syl></verse></note>
+<verse n="1"><syl eol="1">do,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -218,7 +218,7 @@
 <note xml:id="n56" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">not</syl></verse></note>
 <note xml:id="n57" pname="f" oct="4" dur="4">
-<verse n="1"><syl>give</syl></verse></note>
+<verse n="1"><syl eol="1">give</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -235,7 +235,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>church.</syl></verse></note>
+<verse n="1"><syl eol="1">church.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

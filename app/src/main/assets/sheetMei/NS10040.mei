@@ -28,7 +28,7 @@
 <verse n="1"><syl wordpos="i" con="d">Bride</syl></verse></note>
 </beam>
 <note xml:id="n8" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">groom,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">groom,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
@@ -54,7 +54,7 @@
 <verse n="1"><syl>how</syl></verse></note>
 </beam>
 <note xml:id="n16" pname="d" oct="4" dur="2">
-<verse n="1"><syl>soon?</syl></verse></note>
+<verse n="1"><syl eol="1">soon?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♯m</harm>
 </measure>
@@ -101,7 +101,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="f" oct="4" dur="1">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
@@ -128,7 +128,7 @@
 <verse n="1"><syl>be</syl></verse></note>
 </beam>
 <note xml:id="n37" pname="f" oct="4" dur="2">
-<verse n="1"><syl>filled</syl></verse></note>
+<verse n="1"><syl eol="1">filled</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
@@ -154,7 +154,7 @@
 <verse n="1"><syl wordpos="t">ery</syl></verse></note>
 </beam>
 <note xml:id="n45" pname="d" oct="4" dur="2">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♯m</harm>
 </measure>
@@ -188,7 +188,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="e" oct="4" dur="1">
-<verse n="1"><syl>way.</syl></verse></note>
+<verse n="1"><syl eol="1">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A/E</harm>
 <tie startid="#n55" endid="#n56"/>
@@ -213,7 +213,7 @@
 <note xml:id="n60" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n61" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B/D♯</harm>
 </measure>
@@ -233,7 +233,7 @@
 <verse n="1"><syl wordpos="i" con="d">Bride</syl></verse></note>
 <note xml:id="n67" pname="c" oct="5" dur="4"/>
 <note xml:id="n68" pname="d" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">groom;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">groom;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♯</harm>
 <slur startid="#n67" endid="#n68"/>
@@ -275,7 +275,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n80" pname="f" oct="4" dur="1">
-<verse n="1"><syl>soon.</syl></verse></note>
+<verse n="1"><syl eol="1">soon.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
@@ -292,7 +292,7 @@
 <note xml:id="n83" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="t">sume</syl></verse></note>
 <note xml:id="n84" pname="f" oct="4" dur="2">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B/D♯</harm>
 </measure>
@@ -314,7 +314,7 @@
 <verse n="1"><syl>me</syl></verse></note>
 <note xml:id="n91" pname="c" oct="5" dur="4"/>
 <note xml:id="n92" pname="d" oct="5" dur="4">
-<verse n="1"><syl>stray,</syl></verse></note>
+<verse n="1"><syl eol="1">stray,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♯</harm>
 <slur startid="#n91" endid="#n92"/>
@@ -348,7 +348,7 @@
 </measure>
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n102" pname="e" oct="4" dur="1">
-<verse n="1"><syl>way.</syl></verse></note>
+<verse n="1"><syl eol="1">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A/E</harm>
 <tie startid="#n102" endid="#n103"/>

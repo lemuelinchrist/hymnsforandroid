@@ -44,7 +44,7 @@
 <verse n="1"><syl wordpos="i" con="d">sup</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ply</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Of</syl></verse></note>
@@ -84,7 +84,7 @@
 <verse n="1"><syl>runs</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="g" oct="4" dur="4">
-<verse n="1"><syl>dry,</syl></verse></note>
+<verse n="1"><syl eol="1">dry,</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="f" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -125,7 +125,7 @@
 <verse n="1"><syl wordpos="i" con="d">sup</syl></verse></note>
 </beam>
 <note xml:id="n36" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ply,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply,</syl></verse></note>
 <beam>
 <note xml:id="n37" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Then</syl></verse></note>
@@ -164,7 +164,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 <beam>
 <note xml:id="n48" pname="a" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl wordpos="i" con="d">Wa</syl></verse></note>
@@ -192,7 +192,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>you,</syl></verse></note>
+<verse n="1"><syl eol="1">you,</syl></verse></note>
 <beam>
 <note xml:id="n54" pname="a" oct="4" dur="8">
 <verse n="1"><syl>From</syl></verse></note>
@@ -228,7 +228,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>you;</syl></verse></note>
+<verse n="1"><syl eol="1">you;</syl></verse></note>
 <beam>
 <note xml:id="n65" pname="a" oct="4" dur="8">
 <verse n="1"><syl>When</syl></verse></note>
@@ -252,7 +252,7 @@
 <verse n="1"><syl wordpos="i" con="d">sup</syl></verse></note>
 </beam>
 <note xml:id="n71" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">ply,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply,</syl></verse></note>
 <beam>
 <note xml:id="n72" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Then</syl></verse></note>
@@ -275,7 +275,7 @@
 <verse n="1"><syl wordpos="m" con="d">ti</syl></verse></note>
 </beam>
 <note xml:id="n78" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">fy,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fy,</syl></verse></note>
 <beam>
 <note xml:id="n79" pname="f" oct="4" dur="8">
 <verse n="1"><syl>I’ll</syl></verse></note>
@@ -313,7 +313,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n89" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>you!</syl></verse></note>
+<verse n="1"><syl eol="1">you!</syl></verse></note>
 <rest xml:id="r90" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

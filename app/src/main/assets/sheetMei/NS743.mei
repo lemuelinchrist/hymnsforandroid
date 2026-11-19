@@ -32,7 +32,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">ten</syl></verse></note>
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tive,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tive,</syl></verse></note>
 <note xml:id="n9" pname="d" oct="4" dur="4"/>
 <beam>
 <note xml:id="n10" pname="c" oct="4" dur="8">
@@ -60,7 +60,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>hear</syl></verse></note>
+<verse n="1"><syl eol="1">hear</syl></verse></note>
 <note xml:id="n17" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -90,7 +90,7 @@
 <note xml:id="n24" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">ser</syl></verse></note>
 <note xml:id="n25" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">vant</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vant</syl></verse></note>
 <note xml:id="n26" pname="d" oct="5" dur="4">
 <verse n="1"><syl>Which</syl></verse></note>
 </layer></staff>
@@ -112,7 +112,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>will.</syl></verse></note>
+<verse n="1"><syl eol="1">will.</syl></verse></note>
 <beam>
 <note xml:id="n32" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
@@ -139,7 +139,7 @@
 <note xml:id="n38" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">proached</syl></verse></note>
 <note xml:id="n39" pname="d" oct="4" dur="4">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 <note xml:id="n40" pname="d" oct="4" dur="4"/>
 <beam>
 <note xml:id="n41" pname="c" oct="4" dur="8">
@@ -167,7 +167,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>prayer.</syl></verse></note>
+<verse n="1"><syl eol="1">prayer.</syl></verse></note>
 <note xml:id="n48" pname="f" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -197,7 +197,7 @@
 <note xml:id="n55" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">wis</syl></verse></note>
 <note xml:id="n56" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">dom;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dom;</syl></verse></note>
 <note xml:id="n57" pname="d" oct="5" dur="4">
 <verse n="1"><syl>Now</syl></verse></note>
 </layer></staff>
@@ -219,7 +219,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>build.</syl></verse></note>
+<verse n="1"><syl eol="1">build.</syl></verse></note>
 <beam>
 <note xml:id="n63" pname="d" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>Let</syl></verse></note>
@@ -241,7 +241,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n68" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>build</syl></verse></note>
+<verse n="1"><syl eol="1">build</syl></verse></note>
 <note xml:id="n69" pname="f" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -270,7 +270,7 @@
 <sb/>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n76" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>work.</syl></verse></note>
+<verse n="1"><syl eol="1">work.</syl></verse></note>
 <note xml:id="n77" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -308,7 +308,7 @@
 <note xml:id="n87" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">pros</syl></verse></note>
 <note xml:id="n88" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">per.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">per.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <slur startid="#n88" endid="#n89"/>
@@ -337,7 +337,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n95" pname="d" oct="5" dur="2" dots="1">
-<verse n="1"><syl>will,</syl></verse></note>
+<verse n="1"><syl eol="1">will,</syl></verse></note>
 <beam>
 <note xml:id="n96" pname="c" oct="5" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
@@ -361,7 +361,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n102" pname="b" oct="4" dur="1">
-<verse n="1"><syl>work.</syl></verse></note>
+<verse n="1"><syl eol="1">work.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>

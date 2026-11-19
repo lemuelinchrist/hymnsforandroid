@@ -46,7 +46,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">turned,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">turned,</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="d" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
@@ -83,7 +83,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>souls;</syl></verse></note>
+<verse n="1"><syl eol="1">souls;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n19" endid="#n20"/>
@@ -124,7 +124,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="d" oct="4" dur="2">
-<verse n="1"><syl>tree</syl></verse></note>
+<verse n="1"><syl eol="1">tree</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>whole.</syl></verse></note>
+<verse n="1"><syl eol="1">whole.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n34" endid="#n35"/>

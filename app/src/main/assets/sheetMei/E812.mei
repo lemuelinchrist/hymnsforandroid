@@ -26,7 +26,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -53,7 +53,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee;</syl></verse></note>
+<verse n="1"><syl eol="1">Thee;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 </measure>
@@ -88,7 +88,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="b" oct="4" dur="2">
-<verse n="1"><syl>drink.</syl></verse></note>
+<verse n="1"><syl eol="1">drink.</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">En</syl></verse></note>
 </layer></staff>
@@ -114,7 +114,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

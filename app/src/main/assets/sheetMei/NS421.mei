@@ -41,7 +41,7 @@
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="e" oct="4" dur="8"/>
 <note xml:id="n10" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">tion?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion?</syl></verse></note>
 <note xml:id="n11" pname="d" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -84,7 +84,7 @@
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="e" oct="4" dur="8"/>
 <note xml:id="n22" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">sion?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sion?</syl></verse></note>
 <note xml:id="n23" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Have</syl></verse></note>
 <note xml:id="n24" pname="b" oct="4" dur="4">
@@ -113,7 +113,7 @@
 <note xml:id="n30" pname="e" oct="4" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n31" pname="d" oct="4" dur="4">
-<verse n="1"><syl>flesh?</syl></verse></note>
+<verse n="1"><syl eol="1">flesh?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -188,7 +188,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="c" oct="4" dur="1">
-<verse n="1"><syl>God?</syl></verse></note>
+<verse n="1"><syl eol="1">God?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n53" endid="#n54"/>
@@ -223,7 +223,7 @@
 <note xml:id="n60" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">moun</syl></verse></note>
 <note xml:id="n61" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">tain?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tain?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n61" endid="#n62"/>
@@ -249,7 +249,7 @@
 <note xml:id="n67" pname="d" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n68" pname="e" oct="4" dur="8">
-<verse n="1"><syl>light?</syl></verse></note>
+<verse n="1"><syl eol="1">light?</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -292,7 +292,7 @@
 <measure n="31"><staff n="1"><layer n="1">
 <note xml:id="n77" pname="c" oct="5" dur="4"/>
 <note xml:id="n78" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">et?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">et?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <tie startid="#n78" endid="#n79"/>
@@ -320,7 +320,7 @@
 </measure>
 <measure n="35"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="c" oct="4" dur="1">
-<verse n="1"><syl>Christ?</syl></verse></note>
+<verse n="1"><syl eol="1">Christ?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n85" endid="#n86"/>

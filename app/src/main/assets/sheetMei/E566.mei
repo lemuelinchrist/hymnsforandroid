@@ -49,7 +49,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>I,</syl></verse></note>
+<verse n="1"><syl eol="1">I,</syl></verse></note>
 <note xml:id="n13" pname="e" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -90,7 +90,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>fly,</syl></verse></note>
+<verse n="1"><syl eol="1">fly,</syl></verse></note>
 <note xml:id="n24" pname="b" oct="4" dur="4">
 <verse n="1"><syl>So</syl></verse></note>
 </layer></staff>
@@ -133,7 +133,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>be,</syl></verse></note>
+<verse n="1"><syl eol="1">be,</syl></verse></note>
 <note xml:id="n36" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Thou</syl></verse></note>
 </layer></staff>
@@ -173,7 +173,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 <rest xml:id="r47" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -211,7 +211,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n56" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 <note xml:id="n57" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Thou</syl></verse></note>
 </layer></staff>
@@ -253,7 +253,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 <rest xml:id="r68" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

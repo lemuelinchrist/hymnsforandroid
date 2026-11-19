@@ -18,7 +18,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n5" pname="a" oct="4" dur="4">
-<verse n="1"><syl>saints,</syl></verse></note>
+<verse n="1"><syl eol="1">saints,</syl></verse></note>
 <rest xml:id="r6" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -32,7 +32,7 @@
 <note xml:id="n9" pname="g" oct="4" dur="8">
 <verse n="1"><syl>am</syl></verse></note>
 <note xml:id="n10" pname="g" oct="4" dur="8">
-<verse n="1"><syl>I!</syl></verse></note>
+<verse n="1"><syl eol="1">I!</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="g" oct="4" dur="4"/>
 <rest xml:id="r12" dur="4"/>
@@ -49,7 +49,7 @@
 <note xml:id="n15" pname="g" oct="4" dur="8">
 <verse n="1"><syl>am</syl></verse></note>
 <note xml:id="n16" pname="g" oct="4" dur="8">
-<verse n="1"><syl>I!</syl></verse></note>
+<verse n="1"><syl eol="1">I!</syl></verse></note>
 </beam>
 <note xml:id="n17" pname="g" oct="4" dur="4"/>
 <rest xml:id="r18" dur="4"/>
@@ -66,7 +66,7 @@
 <note xml:id="n21" pname="a" oct="4" dur="8">
 <verse n="1"><syl>am</syl></verse></note>
 <note xml:id="n22" pname="f" oct="4" dur="8">
-<verse n="1"><syl>I!</syl></verse></note>
+<verse n="1"><syl eol="1">I!</syl></verse></note>
 </beam>
 <note xml:id="n23" pname="f" oct="4" dur="4"/>
 <rest xml:id="r24" dur="4"/>
@@ -88,7 +88,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="a" oct="4" dur="4">
-<verse n="1"><syl>saints,</syl></verse></note>
+<verse n="1"><syl eol="1">saints,</syl></verse></note>
 <rest xml:id="r30" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -103,7 +103,7 @@
 <note xml:id="n33" pname="g" oct="4" dur="8">
 <verse n="1"><syl>am</syl></verse></note>
 <note xml:id="n34" pname="g" oct="4" dur="8">
-<verse n="1"><syl>I!</syl></verse></note>
+<verse n="1"><syl eol="1">I!</syl></verse></note>
 </beam>
 <note xml:id="n35" pname="g" oct="4" dur="4"/>
 <note xml:id="n36" pname="f" oct="4" dur="4">
@@ -128,7 +128,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ny!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ny!</syl></verse></note>
 <rest xml:id="r42" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

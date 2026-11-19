@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">va</syl></verse></note>
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -49,7 +49,7 @@
 <note xml:id="n14" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="t">pened</syl></verse></note>
 <note xml:id="n15" pname="b" oct="4" dur="2">
-<verse n="1"><syl>wide,</syl></verse></note>
+<verse n="1"><syl eol="1">wide,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -75,7 +75,7 @@
 <note xml:id="n22" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">na</syl></verse></note>
 <note xml:id="n23" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
@@ -98,7 +98,7 @@
 <note xml:id="n29" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ed</syl></verse></note>
 <note xml:id="n30" pname="a" oct="4" dur="2">
-<verse n="1"><syl>side.</syl></verse></note>
+<verse n="1"><syl eol="1">side.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -132,7 +132,7 @@
 <note xml:id="n39" pname="b" oct="4" dur="8"/>
 </beam>
 <note xml:id="n40" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tion!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
 <harm staff="1" tstamp="3" place="above">D♭</harm>
@@ -156,7 +156,7 @@
 <note xml:id="n46" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">son</syl></verse></note>
 <note xml:id="n47" pname="a" oct="4" dur="2">
-<verse n="1"><syl>tide.</syl></verse></note>
+<verse n="1"><syl eol="1">tide.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>

@@ -32,7 +32,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Lord</syl></verse></note>
+<verse n="1"><syl eol="1">Lord</syl></verse></note>
 <note xml:id="n10" pname="e" oct="4" dur="8"/>
 <note xml:id="n11" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -87,7 +87,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="e" oct="4" dur="1">
-<verse n="1"><syl>me?</syl></verse></note>
+<verse n="1"><syl eol="1">me?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <tie startid="#n25" endid="#n26"/>
@@ -127,7 +127,7 @@
 <verse n="1"><syl wordpos="m" con="d">va</syl></verse></note>
 <note xml:id="n36" pname="e" oct="4" dur="8"/>
 <note xml:id="n37" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tion,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tion,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">D/A</harm>
@@ -192,7 +192,7 @@
 <scoreDef meter.count="4" meter.unit="4" meter.sym="common"/>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="f" oct="4" dur="1">
-<verse n="1"><syl>Lord.</syl></verse></note>
+<verse n="1"><syl eol="1">Lord.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G/D</harm>

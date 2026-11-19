@@ -38,7 +38,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="e" oct="4" dur="1">
-<verse n="1"><syl>day</syl></verse></note>
+<verse n="1"><syl eol="1">day</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -75,7 +75,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>stay,</syl></verse></note>
+<verse n="1"><syl eol="1">stay,</syl></verse></note>
 <note xml:id="n21" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Lord,</syl></verse></note>
 </layer></staff>
@@ -114,7 +114,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">place</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">place</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">brace.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">brace.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n40" endid="#n41"/>

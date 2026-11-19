@@ -34,7 +34,7 @@
 <note xml:id="n7" pname="d" oct="4" dur="4">
 <verse n="1"><syl>我</syl></verse></note>
 <note xml:id="n8" pname="b" oct="3" dur="4">
-<verse n="1"><syl>們</syl></verse></note>
+<verse n="1"><syl eol="1">們</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>同</syl></verse></note>
@@ -60,7 +60,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="a" oct="4" dur="2">
-<verse n="1"><syl>筵；</syl></verse></note>
+<verse n="1"><syl eol="1">筵；</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>我</syl></verse></note>
@@ -89,7 +89,7 @@
 <note xml:id="n22" pname="d" oct="4" dur="4">
 <verse n="1"><syl>大</syl></verse></note>
 <note xml:id="n23" pname="b" oct="3" dur="4">
-<verse n="1"><syl>恩，</syl></verse></note>
+<verse n="1"><syl eol="1">恩，</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>全</syl></verse></note>
@@ -118,7 +118,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="g" oct="4" dur="2">
-<verse n="1"><syl>念。</syl></verse></note>
+<verse n="1"><syl eol="1">念。</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>桌</syl></verse></note>
@@ -146,7 +146,7 @@
 <note xml:id="n37" pname="d" oct="5" dur="4">
 <verse n="1"><syl>和</syl></verse></note>
 <note xml:id="n38" pname="b" oct="4" dur="4">
-<verse n="1"><syl>杯，</syl></verse></note>
+<verse n="1"><syl eol="1">杯，</syl></verse></note>
 <beam>
 <note xml:id="n39" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>都</syl></verse></note>
@@ -178,7 +178,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="g" oct="4" dur="4">
-<verse n="1"><syl>愛；</syl></verse></note>
+<verse n="1"><syl eol="1">愛；</syl></verse></note>
 <note xml:id="n47" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n48" pname="g" oct="4" dur="8" dots="1">
@@ -210,7 +210,7 @@
 <note xml:id="n54" pname="d" oct="4" dur="4">
 <verse n="1"><syl>恩</syl></verse></note>
 <note xml:id="n55" pname="b" oct="3" dur="4">
-<verse n="1"><syl>惠，</syl></verse></note>
+<verse n="1"><syl eol="1">惠，</syl></verse></note>
 <beam>
 <note xml:id="n56" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>我</syl></verse></note>
@@ -238,7 +238,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="g" oct="4" dur="2">
-<verse n="1"><syl>拜。</syl></verse></note>
+<verse n="1"><syl eol="1">拜。</syl></verse></note>
 <rest xml:id="r63" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

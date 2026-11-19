@@ -58,7 +58,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">cise,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cise,</syl></verse></note>
 <beam>
 <note xml:id="n15" pname="e" oct="4" dur="8" dots="1">
 <verse n="1"><syl>But</syl></verse></note>
@@ -101,7 +101,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="b" oct="4" dur="2">
-<verse n="1"><syl>prize;</syl></verse></note>
+<verse n="1"><syl eol="1">prize;</syl></verse></note>
 <beam>
 <note xml:id="n27" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl>It</syl></verse></note>
@@ -148,7 +148,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="b" oct="4" dur="2">
-<verse n="1"><syl>trained</syl></verse></note>
+<verse n="1"><syl eol="1">trained</syl></verse></note>
 <beam>
 <note xml:id="n40" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>That</syl></verse></note>
@@ -191,7 +191,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tained.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tained.</syl></verse></note>
 <rest xml:id="r52" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>

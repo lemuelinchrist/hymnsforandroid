@@ -47,7 +47,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">vide.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vide.</syl></verse></note>
 <note xml:id="n12" pname="c" oct="5" dur="4">
 <verse n="1"><syl>It</syl></verse></note>
 </layer></staff>
@@ -89,7 +89,7 @@
 <note xml:id="n22" pname="c" oct="5" dur="4">
 <verse n="1"><syl>thy</syl></verse></note>
 <note xml:id="n23" pname="b" oct="4" dur="4">
-<verse n="1"><syl>way;</syl></verse></note>
+<verse n="1"><syl eol="1">way;</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -133,7 +133,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">vide.”</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vide.”</syl></verse></note>
 <beam>
 <note xml:id="n36" pname="f" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>Then</syl></verse></note>
@@ -176,7 +176,7 @@
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">vide;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vide;</syl></verse></note>
 <beam>
 <note xml:id="n47" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Yes,</syl></verse></note>
@@ -233,7 +233,7 @@
 </measure>
 <measure n="21" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">vide.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vide.</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

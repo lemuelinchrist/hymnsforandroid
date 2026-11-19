@@ -29,7 +29,7 @@
 <note xml:id="n6" pname="a" oct="4" dur="8">
 <verse n="1"><syl>come</syl></verse></note>
 <note xml:id="n7" pname="g" oct="4" dur="8">
-<verse n="1"><syl>from,</syl></verse></note>
+<verse n="1"><syl eol="1">from,</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="8">
@@ -49,7 +49,7 @@
 <verse n="1"><syl>would</syl></verse></note>
 </beam>
 <note xml:id="n14" pname="e" oct="4" dur="4">
-<verse n="1"><syl>go.</syl></verse></note>
+<verse n="1"><syl eol="1">go.</syl></verse></note>
 <beam>
 <note xml:id="n15" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Since</syl></verse></note>
@@ -71,7 +71,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n20" pname="b" oct="4" dur="4">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <beam>
 <note xml:id="n21" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Let</syl></verse></note>
@@ -94,7 +94,7 @@
 <verse n="1"><syl wordpos="m" con="d">ful</syl></verse></note>
 </beam>
 <note xml:id="n27" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 <beam>
 <note xml:id="n28" pname="b" oct="3" dur="8">
 <verse n="1"><syl>Things</syl></verse></note>
@@ -118,7 +118,7 @@
 <note xml:id="n33" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">cour</syl></verse></note>
 <note xml:id="n34" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">age</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">age</syl></verse></note>
 <note xml:id="n35" pname="f" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
 <note xml:id="n36" pname="e" oct="4" dur="8">
@@ -140,7 +140,7 @@
 <verse n="1"><syl wordpos="t">what</syl></verse></note>
 </beam>
 <note xml:id="n41" pname="e" oct="4" dur="4">
-<verse n="1"><syl>sad;</syl></verse></note>
+<verse n="1"><syl eol="1">sad;</syl></verse></note>
 <tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">
 <beam>
 <note xml:id="n42" pname="g" oct="4" dur="8">
@@ -169,7 +169,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>go!</syl></verse></note>
+<verse n="1"><syl eol="1">go!</syl></verse></note>
 <beam>
 <note xml:id="n49" pname="g" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -194,7 +194,7 @@
 <sb/>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="b" oct="3" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">dy.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">dy.</syl></verse></note>
 <beam>
 <note xml:id="n56" pname="b" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl wordpos="i" con="d">Wel</syl></verse></note>
@@ -215,7 +215,7 @@
 <verse n="1"><syl>dear</syl></verse></note>
 </beam>
 <note xml:id="n61" pname="b" oct="4" dur="4">
-<verse n="1"><syl>friend,</syl></verse></note>
+<verse n="1"><syl eol="1">friend,</syl></verse></note>
 <beam>
 <note xml:id="n62" pname="b" oct="4" dur="8">
 <verse n="1"><syl>We’re</syl></verse></note>
@@ -238,7 +238,7 @@
 <verse n="1"><syl>have</syl></verse></note>
 </beam>
 <note xml:id="n68" pname="a" oct="4" dur="4">
-<verse n="1"><syl>come,</syl></verse></note>
+<verse n="1"><syl eol="1">come,</syl></verse></note>
 <beam>
 <note xml:id="n69" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Here</syl></verse></note>
@@ -259,7 +259,7 @@
 <note xml:id="n73" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n74" pname="e" oct="4" dur="4">
-<verse n="1"><syl>you,</syl></verse></note>
+<verse n="1"><syl eol="1">you,</syl></verse></note>
 <beam>
 <note xml:id="n75" pname="d" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -281,7 +281,7 @@
 <verse n="1"><syl>you</syl></verse></note>
 </beam>
 <note xml:id="n80" pname="f" oct="4" dur="4">
-<verse n="1"><syl>most.</syl></verse></note>
+<verse n="1"><syl eol="1">most.</syl></verse></note>
 <beam>
 <note xml:id="n81" pname="b" oct="4" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
@@ -304,7 +304,7 @@
 <verse n="1"><syl>you</syl></verse></note>
 </beam>
 <note xml:id="n87" pname="b" oct="4" dur="4">
-<verse n="1"><syl>now,</syl></verse></note>
+<verse n="1"><syl eol="1">now,</syl></verse></note>
 <beam>
 <note xml:id="n88" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Ev</syl></verse></note>
@@ -328,7 +328,7 @@
 <verse n="1"><syl>for</syl></verse></note>
 </beam>
 <note xml:id="n94" pname="e" oct="5" dur="4">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 <beam>
 <note xml:id="n95" pname="e" oct="4" dur="8">
 <verse n="1"><syl>We</syl></verse></note>
@@ -351,7 +351,7 @@
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 </beam>
 <note xml:id="n101" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">turn,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">turn,</syl></verse></note>
 <beam>
 <note xml:id="n102" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Just</syl></verse></note>
@@ -381,7 +381,7 @@
 </measure>
 <measure n="20" right="end"><staff n="1"><layer n="1">
 <note xml:id="n110" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 <rest xml:id="r111" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

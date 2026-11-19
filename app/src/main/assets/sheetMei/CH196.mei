@@ -18,7 +18,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n4" pname="e" oct="4" dur="1">
-<verse n="1"><syl>been,</syl></verse></note>
+<verse n="1"><syl eol="1">been,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 </measure>
@@ -34,7 +34,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="f" oct="4" dur="1">
-<verse n="1"><syl>been</syl></verse></note>
+<verse n="1"><syl eol="1">been</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -71,7 +71,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>day.</syl></verse></note>
+<verse n="1"><syl eol="1">day.</syl></verse></note>
 <rest xml:id="r18" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">fest</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ed,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ed,</syl></verse></note>
 </beam>
 </layer></staff>
 </measure>
@@ -45,7 +45,7 @@
 <note xml:id="n12" pname="g" oct="4" dur="4">
 <verse n="1"><syl>seen</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="4">
-<verse n="1"><syl>and</syl></verse></note>
+<verse n="1"><syl eol="1">and</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -75,7 +75,7 @@
 <note xml:id="n21" pname="e" oct="4" dur="8"/>
 </beam>
 <note xml:id="n22" pname="e" oct="4" dur="4">
-<verse n="1"><syl>you</syl></verse></note>
+<verse n="1"><syl eol="1">you</syl></verse></note>
 <beam>
 <note xml:id="n23" pname="e" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
@@ -117,7 +117,7 @@
 <verse n="1"><syl wordpos="t">ther</syl></verse></note>
 </beam>
 <note xml:id="n34" pname="g" oct="4" dur="4">
-<verse n="1"><syl>and</syl></verse></note>
+<verse n="1"><syl eol="1">and</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -147,7 +147,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <beam>
 <note xml:id="n43" pname="e" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
@@ -186,7 +186,7 @@
 <verse n="1"><syl wordpos="t">ther</syl></verse></note>
 </beam>
 <note xml:id="n54" pname="g" oct="4" dur="4">
-<verse n="1"><syl>and</syl></verse></note>
+<verse n="1"><syl eol="1">and</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -216,7 +216,7 @@
 </measure>
 <measure n="13" right="rptend"><staff n="1"><layer n="1">
 <note xml:id="n62" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 <beam>
 <note xml:id="n63" pname="b" oct="3" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -255,7 +255,7 @@
 </ending>
 <measure n="15" right="end"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 <rest xml:id="r73" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

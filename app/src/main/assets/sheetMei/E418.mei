@@ -37,7 +37,7 @@
 <note xml:id="n8" pname="d" oct="4" dur="8">
 <verse n="1"><syl>may</syl></verse></note>
 <note xml:id="n9" pname="c" oct="4" dur="4">
-<verse n="1"><syl>be</syl></verse></note>
+<verse n="1"><syl eol="1">be</syl></verse></note>
 <note xml:id="n10" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Shel</syl></verse></note>
 </layer></staff>
@@ -68,7 +68,7 @@
 <note xml:id="n17" pname="f" oct="4" dur="8">
 <verse n="1"><syl>on</syl></verse></note>
 <note xml:id="n18" pname="g" oct="4" dur="4">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 <note xml:id="n19" pname="b" oct="4" dur="4">
 <verse n="1"><syl>From</syl></verse></note>
 </layer></staff>
@@ -93,7 +93,7 @@
 <note xml:id="n25" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">as</syl></verse></note>
 <note xml:id="n26" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">pire,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pire,</syl></verse></note>
 <note xml:id="n27" pname="d" oct="5" dur="4">
 <verse n="1"><syl>From</syl></verse></note>
 </layer></staff>
@@ -118,7 +118,7 @@
 <note xml:id="n33" pname="g" oct="4" dur="8">
 <verse n="1"><syl>climb</syl></verse></note>
 <note xml:id="n34" pname="g" oct="4" dur="4">
-<verse n="1"><syl>high’r,</syl></verse></note>
+<verse n="1"><syl eol="1">high’r,</syl></verse></note>
 <note xml:id="n35" pname="c" oct="4" dur="4">
 <verse n="1"><syl>From</syl></verse></note>
 </layer></staff>
@@ -145,7 +145,7 @@
 <note xml:id="n41" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">tain,</syl></verse></note>
 <note xml:id="n42" pname="c" oct="4" dur="4">
-<verse n="1"><syl>free</syl></verse></note>
+<verse n="1"><syl eol="1">free</syl></verse></note>
 <note xml:id="n43" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
 </layer></staff>
@@ -176,7 +176,7 @@
 </measure>
 <measure n="14" right="end"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 <rest xml:id="r51" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>

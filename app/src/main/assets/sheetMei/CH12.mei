@@ -22,7 +22,7 @@
 <note xml:id="n5" pname="g" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n6" pname="b" oct="4" dur="4">
-<verse n="1"><syl>wide,</syl></verse></note>
+<verse n="1"><syl eol="1">wide,</syl></verse></note>
 <beam>
 <note xml:id="n7" pname="a" oct="4" dur="8">
 <verse n="1"><syl>There’s</syl></verse></note>
@@ -54,7 +54,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>wide.</syl></verse></note>
+<verse n="1"><syl eol="1">wide.</syl></verse></note>
 <rest xml:id="r16" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm/E♭</harm>
@@ -78,7 +78,7 @@
 <note xml:id="n21" pname="g" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n22" pname="b" oct="4" dur="4">
-<verse n="1"><syl>wide,</syl></verse></note>
+<verse n="1"><syl eol="1">wide,</syl></verse></note>
 <beam>
 <note xml:id="n23" pname="a" oct="4" dur="8">
 <verse n="1"><syl>There’s</syl></verse></note>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>wide.</syl></verse></note>
+<verse n="1"><syl eol="1">wide.</syl></verse></note>
 <rest xml:id="r32" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

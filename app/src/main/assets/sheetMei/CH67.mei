@@ -27,7 +27,7 @@
 <note xml:id="n6" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <note xml:id="n7" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tor</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tor</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
@@ -44,7 +44,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl>young,</syl></verse></note>
+<verse n="1"><syl eol="1">young,</syl></verse></note>
 <beam>
 <note xml:id="n12" pname="g" oct="4" dur="8">
 <verse n="1"><syl>As</syl></verse></note>
@@ -68,7 +68,7 @@
 <note xml:id="n17" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Scrip</syl></verse></note>
 <note xml:id="n18" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tures</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tures</syl></verse></note>
 <note xml:id="n19" pname="a" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -88,7 +88,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="a" oct="4" dur="2">
-<verse n="1"><syl>truth.</syl></verse></note>
+<verse n="1"><syl eol="1">truth.</syl></verse></note>
 <note xml:id="n24" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
 </layer></staff>
@@ -111,7 +111,7 @@
 <verse n="1"><syl wordpos="m" con="d">a</syl></verse></note>
 <beam>
 <note xml:id="n30" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">tor</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tor</syl></verse></note>
 <note xml:id="n31" pname="b" oct="4" dur="8"/>
 </beam>
 </layer></staff>
@@ -130,7 +130,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="a" oct="4" dur="2">
-<verse n="1"><syl>young,</syl></verse></note>
+<verse n="1"><syl eol="1">young,</syl></verse></note>
 <note xml:id="n36" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Let</syl></verse></note>
 </layer></staff>
@@ -156,7 +156,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="d" oct="5" dur="4">
-<verse n="1"><syl>way</syl></verse></note>
+<verse n="1"><syl eol="1">way</syl></verse></note>
 <note xml:id="n43" pname="b" oct="4" dur="4">
 <verse n="1"><syl>In</syl></verse></note>
 <note xml:id="n44" pname="g" oct="4" dur="4">
@@ -176,7 +176,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>youth.</syl></verse></note>
+<verse n="1"><syl eol="1">youth.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>

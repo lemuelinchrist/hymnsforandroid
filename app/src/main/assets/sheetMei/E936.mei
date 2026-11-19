@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">bu</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ried,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ried,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 <harm staff="1" tstamp="3" place="above">B</harm>
@@ -59,7 +59,7 @@
 <note xml:id="n17" pname="c" oct="4" dur="4">
 <verse n="1"><syl>have</syl></verse></note>
 <note xml:id="n18" pname="b" oct="3" dur="2">
-<verse n="1"><syl>died;</syl></verse></note>
+<verse n="1"><syl eol="1">died;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B/F♯</harm>
 <harm staff="1" tstamp="2" place="above">F♯7</harm>
@@ -86,7 +86,7 @@
 <note xml:id="n25" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">sue</syl></verse></note>
 <note xml:id="n26" pname="c" oct="4" dur="4">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C♯m</harm>
 <harm staff="1" tstamp="3" place="above">F♯7</harm>
@@ -120,7 +120,7 @@
 <note xml:id="n35" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">i</syl></verse></note>
 <note xml:id="n36" pname="b" oct="3" dur="2">
-<verse n="1"><syl wordpos="t">fied.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fied.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F♯7</harm>
 <harm staff="1" tstamp="3" place="above">B</harm>
@@ -144,7 +144,7 @@
 <note xml:id="n42" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="t">en</syl></verse></note>
 <note xml:id="n43" pname="d" oct="5" dur="2">
-<verse n="1"><syl>too,</syl></verse></note>
+<verse n="1"><syl eol="1">too,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
@@ -177,7 +177,7 @@
 <note xml:id="n52" pname="g" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n53" pname="f" oct="4" dur="2">
-<verse n="1"><syl>live;</syl></verse></note>
+<verse n="1"><syl eol="1">live;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F♯/C♯</harm>
 <harm staff="1" tstamp="2" place="above">C♯7</harm>
@@ -209,7 +209,7 @@
 <note xml:id="n61" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">sup</syl></verse></note>
 <note xml:id="n62" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">plies</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">plies</syl></verse></note>
 <note xml:id="n63" pname="f" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -245,7 +245,7 @@
 <note xml:id="n72" pname="b" oct="4" dur="4">
 <verse n="1"><syl>doth</syl></verse></note>
 <note xml:id="n73" pname="a" oct="4" dur="4">
-<verse n="1"><syl>give.</syl></verse></note>
+<verse n="1"><syl eol="1">give.</syl></verse></note>
 <note xml:id="n74" pname="b" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B/F♯</harm>

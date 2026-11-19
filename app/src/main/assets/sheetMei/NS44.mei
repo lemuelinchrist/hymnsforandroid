@@ -29,7 +29,7 @@
 <beam>
 <note xml:id="n7" pname="e" oct="4" dur="8"/>
 <note xml:id="n8" pname="d" oct="4" dur="8">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="8">
 <verse n="1"><syl>You</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="8">
@@ -62,7 +62,7 @@
 <note xml:id="n17" pname="d" oct="4" dur="16"/>
 </beam>
 <note xml:id="n18" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ly.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
@@ -84,7 +84,7 @@
 <note xml:id="n22" pname="d" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">beau</syl></verse></note>
 <note xml:id="n23" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ty</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="a" oct="4" dur="8"/>
 <note xml:id="n25" pname="g" oct="4" dur="8">
@@ -114,7 +114,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="d" oct="4" dur="1">
-<verse n="1"><syl>saints.</syl></verse></note>
+<verse n="1"><syl eol="1">saints.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

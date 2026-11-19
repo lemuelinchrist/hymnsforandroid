@@ -43,7 +43,7 @@
 <note xml:id="n9" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
 <note xml:id="n10" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ior,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ior,</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Were</syl></verse></note>
@@ -81,7 +81,7 @@
 <measure n="5"><staff n="1"><layer n="1">
 <beam>
 <note xml:id="n19" pname="e" oct="4" dur="8" dots="1">
-<verse n="1"><syl>day?</syl></verse></note>
+<verse n="1"><syl eol="1">day?</syl></verse></note>
 <note xml:id="n20" pname="g" oct="4" dur="16"/>
 </beam>
 <note xml:id="n21" pname="b" oct="4" dur="4"/>
@@ -123,7 +123,7 @@
 <note xml:id="n30" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
 <note xml:id="n31" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">fort</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fort</syl></verse></note>
 <beam>
 <note xml:id="n32" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>In</syl></verse></note>
@@ -160,7 +160,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">way?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way?</syl></verse></note>
 <beam>
 <note xml:id="n41" pname="e" oct="5" dur="8" dots="1">
 <verse n="1"><syl>If</syl></verse></note>
@@ -201,7 +201,7 @@
 <note xml:id="n50" pname="b" oct="4" dur="8"/>
 </beam>
 <note xml:id="n51" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ior,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ior,</syl></verse></note>
 <beam>
 <note xml:id="n52" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Would</syl></verse></note>
@@ -241,7 +241,7 @@
 <beam>
 <note xml:id="n60" pname="e" oct="4" dur="8" dots="1"/>
 <note xml:id="n61" pname="g" oct="4" dur="16">
-<verse n="1"><syl>strife?</syl></verse></note>
+<verse n="1"><syl eol="1">strife?</syl></verse></note>
 </beam>
 <note xml:id="n62" pname="b" oct="4" dur="4"/>
 <beam>
@@ -286,7 +286,7 @@
 <note xml:id="n72" pname="b" oct="4" dur="8"/>
 </beam>
 <note xml:id="n73" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 <beam>
 <note xml:id="n74" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>For</syl></verse></note>
@@ -323,7 +323,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n82" pname="e" oct="4" dur="2">
-<verse n="1"><syl>life?</syl></verse></note>
+<verse n="1"><syl eol="1">life?</syl></verse></note>
 <rest xml:id="r83" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>

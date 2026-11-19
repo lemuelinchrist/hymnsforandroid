@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="16"/>
 </beam>
 <note xml:id="n8" pname="g" oct="4" dur="4">
-<verse n="1"><syl>love,</syl></verse></note>
+<verse n="1"><syl eol="1">love,</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em7</harm>
@@ -60,7 +60,7 @@
 <note xml:id="n17" pname="c" oct="4" dur="16"/>
 </beam>
 <note xml:id="n18" pname="d" oct="4" dur="2">
-<verse n="1"><syl>know;</syl></verse></note>
+<verse n="1"><syl eol="1">know;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -91,7 +91,7 @@
 <note xml:id="n26" pname="g" oct="4" dur="16"/>
 </beam>
 <note xml:id="n27" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">bove,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bove,</syl></verse></note>
 <note xml:id="n28" pname="g" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em7</harm>
@@ -122,7 +122,7 @@
 <note xml:id="n36" pname="c" oct="4" dur="16"/>
 </beam>
 <note xml:id="n37" pname="d" oct="4" dur="2">
-<verse n="1"><syl>so.</syl></verse></note>
+<verse n="1"><syl eol="1">so.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -150,7 +150,7 @@
 <note xml:id="n44" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="t">fect</syl></verse></note>
 <note xml:id="n45" pname="c" oct="5" dur="2">
-<verse n="1"><syl>peace!</syl></verse></note>
+<verse n="1"><syl eol="1">peace!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -176,7 +176,7 @@
 <note xml:id="n52" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
 <note xml:id="n53" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">vine!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vine!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -203,7 +203,7 @@
 <note xml:id="n60" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="t">not</syl></verse></note>
 <note xml:id="n61" pname="c" oct="5" dur="2">
-<verse n="1"><syl>cease,</syl></verse></note>
+<verse n="1"><syl eol="1">cease,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -234,7 +234,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n70" pname="c" oct="5" dur="1">
-<verse n="1"><syl>mine.</syl></verse></note>
+<verse n="1"><syl eol="1">mine.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>

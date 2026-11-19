@@ -44,7 +44,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="e" oct="4" dur="2">
-<verse n="1"><syl>last</syl></verse></note>
+<verse n="1"><syl eol="1">last</syl></verse></note>
 <note xml:id="n13" pname="c" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Per</syl></verse></note>
 </layer></staff>
@@ -70,7 +70,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="d" oct="4" dur="1">
-<verse n="1"><syl>son,</syl></verse></note>
+<verse n="1"><syl eol="1">son,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gsus4</harm>
 <tie startid="#n19" endid="#n20"/>
@@ -115,7 +115,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="e" oct="4" dur="2">
-<verse n="1"><syl>things</syl></verse></note>
+<verse n="1"><syl eol="1">things</syl></verse></note>
 <note xml:id="n32" pname="c" oct="4" dur="2">
 <verse n="1"><syl>But</syl></verse></note>
 </layer></staff>
@@ -144,7 +144,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="c" oct="4" dur="1">
-<verse n="1"><syl>done.</syl></verse></note>
+<verse n="1"><syl eol="1">done.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n39" endid="#n40"/>
@@ -187,7 +187,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>sin</syl></verse></note>
+<verse n="1"><syl eol="1">sin</syl></verse></note>
 <note xml:id="n51" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Rich</syl></verse></note>
 </layer></staff>
@@ -213,7 +213,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">bound;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bound;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gsus4</harm>
 <tie startid="#n57" endid="#n58"/>
@@ -257,7 +257,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n68" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>God</syl></verse></note>
+<verse n="1"><syl eol="1">God</syl></verse></note>
 <note xml:id="n69" pname="c" oct="4" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
 </layer></staff>
@@ -286,7 +286,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n76" pname="c" oct="4" dur="1">
-<verse n="1"><syl>found.</syl></verse></note>
+<verse n="1"><syl eol="1">found.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n76" endid="#n77"/>

@@ -24,7 +24,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n5" pname="a" oct="4" dur="1">
-<verse n="1"><syl>You,</syl></verse></note>
+<verse n="1"><syl eol="1">You,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n5" endid="#n6"/>
@@ -66,7 +66,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="1">
-<verse n="1"><syl>do.</syl></verse></note>
+<verse n="1"><syl eol="1">do.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n15" endid="#n16"/>
@@ -103,7 +103,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>life</syl></verse></note>
+<verse n="1"><syl eol="1">life</syl></verse></note>
 <note xml:id="n27" pname="c" oct="5" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -136,7 +136,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="g" oct="4" dur="1">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n36" endid="#n37"/>
@@ -168,7 +168,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="f" oct="4" dur="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n43" endid="#n44"/>

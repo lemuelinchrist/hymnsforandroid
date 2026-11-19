@@ -25,7 +25,7 @@
 <note xml:id="n5" pname="g" oct="4" dur="16" accid="s" accid.ges="s"/>
 </beam>
 <note xml:id="n6" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ness,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <slur startid="#n4" endid="#n5"/>
@@ -43,7 +43,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>loss,</syl></verse></note>
+<verse n="1"><syl eol="1">loss,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
 </measure>
@@ -64,7 +64,7 @@
 <note xml:id="n15" pname="f" oct="4" dur="16"/>
 </beam>
 <note xml:id="n16" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ness</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7/C♯</harm>
 <slur startid="#n14" endid="#n15"/>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>cross;</syl></verse></note>
+<verse n="1"><syl eol="1">cross;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -105,7 +105,7 @@
 <note xml:id="n25" pname="g" oct="4" dur="16" accid="s" accid.ges="s"/>
 </beam>
 <note xml:id="n26" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ter,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <slur startid="#n24" endid="#n25"/>
@@ -123,7 +123,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>fears,</syl></verse></note>
+<verse n="1"><syl eol="1">fears,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 </measure>
@@ -144,7 +144,7 @@
 <note xml:id="n35" pname="a" oct="4" dur="16"/>
 </beam>
 <note xml:id="n36" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">d’ring,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">d’ring,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <slur startid="#n34" endid="#n35"/>
@@ -161,7 +161,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>tears.</syl></verse></note>
+<verse n="1"><syl eol="1">tears.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

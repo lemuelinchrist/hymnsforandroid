@@ -27,7 +27,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <note xml:id="n7" pname="b" oct="4" dur="4">
 <verse n="1"><syl>How</syl></verse></note>
 </layer></staff>
@@ -51,7 +51,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>is;</syl></verse></note>
+<verse n="1"><syl eol="1">is;</syl></verse></note>
 <note xml:id="n13" pname="d" oct="4" dur="4">
 <verse n="1"><syl>A</syl></verse></note>
 </layer></staff>
@@ -72,7 +72,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="f" oct="4" dur="4" accid="s" accid.ges="s">
-<verse n="1"><syl wordpos="t">nant,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">nant,</syl></verse></note>
 <note xml:id="n19" pname="d" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 <note xml:id="n20" pname="d" oct="5" dur="4">
@@ -96,7 +96,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">es;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">es;</syl></verse></note>
 <note xml:id="n25" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">E</syl></verse></note>
 </layer></staff>
@@ -127,7 +127,7 @@
 <note xml:id="n31" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ter</syl></verse></note>
 <note xml:id="n32" pname="f" oct="4" dur="4">
-<verse n="1"><syl>law.</syl></verse></note>
+<verse n="1"><syl eol="1">law.</syl></verse></note>
 <note xml:id="n33" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Of</syl></verse></note>
 </layer></staff>
@@ -162,7 +162,7 @@
 </measure>
 <measure n="15" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">tor.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tor.</syl></verse></note>
 <rest xml:id="r41" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

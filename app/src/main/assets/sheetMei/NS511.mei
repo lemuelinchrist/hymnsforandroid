@@ -47,7 +47,7 @@
 <verse n="1"><syl wordpos="m" con="d">turn</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="8"/>
 <note xml:id="n14" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <slur startid="#n12" endid="#n13"/>
@@ -95,7 +95,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="b" oct="4" dur="1">
-<verse n="1"><syl>Him?</syl></verse></note>
+<verse n="1"><syl eol="1">Him?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -140,7 +140,7 @@
 <verse n="1"><syl wordpos="i" con="d">tak</syl></verse></note>
 <note xml:id="n41" pname="g" oct="4" dur="8"/>
 <note xml:id="n42" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <slur startid="#n40" endid="#n41"/>
@@ -165,7 +165,7 @@
 <note xml:id="n49" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">bold</syl></verse></note>
 <note xml:id="n50" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ness,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -183,7 +183,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">hind!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">hind!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">C/G</harm>
@@ -228,7 +228,7 @@
 <verse n="1"><syl wordpos="i" con="d">pow</syl></verse></note>
 <note xml:id="n68" pname="e" oct="4" dur="8"/>
 <note xml:id="n69" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am7</harm>
 <slur startid="#n67" endid="#n68"/>
@@ -272,7 +272,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n81" pname="b" oct="4" dur="1">
-<verse n="1"><syl>Christ.</syl></verse></note>
+<verse n="1"><syl eol="1">Christ.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -315,7 +315,7 @@
 <note xml:id="n93" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n94" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -357,7 +357,7 @@
 </measure>
 <measure n="32" right="end"><staff n="1"><layer n="1">
 <note xml:id="n107" pname="g" oct="4" dur="1">
-<verse n="1"><syl>spread!</syl></verse></note>
+<verse n="1"><syl eol="1">spread!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>

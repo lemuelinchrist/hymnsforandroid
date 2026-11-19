@@ -27,7 +27,7 @@
 <note xml:id="n7" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">er</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="1">
-<verse n="1"><syl>Name,</syl></verse></note>
+<verse n="1"><syl eol="1">Name,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
 </measure>
@@ -57,7 +57,7 @@
 <note xml:id="n17" pname="a" oct="4" dur="2">
 <verse n="1"><syl>or</syl></verse></note>
 <note xml:id="n18" pname="d" oct="5" dur="1">
-<verse n="1"><syl>sea,</syl></verse></note>
+<verse n="1"><syl eol="1">sea,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="2" place="above">D/F♯</harm>
@@ -91,7 +91,7 @@
 <note xml:id="n27" pname="f" oct="4" dur="2">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n28" pname="e" oct="4" dur="1">
-<verse n="1"><syl>shame,</syl></verse></note>
+<verse n="1"><syl eol="1">shame,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="2" place="above">E7/G♯</harm>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="c" oct="5" dur="1">
-<verse n="1"><syl>Thee.</syl></verse></note>
+<verse n="1"><syl eol="1">Thee.</syl></verse></note>
 <note xml:id="n33" pname="c" oct="5" dur="2" dots="1"/>
 <rest xml:id="r34" dur="4"/>
 </layer></staff>

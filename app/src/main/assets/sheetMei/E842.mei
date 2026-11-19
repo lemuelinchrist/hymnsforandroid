@@ -27,7 +27,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 </measure>
@@ -51,7 +51,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>raise;</syl></verse></note>
+<verse n="1"><syl eol="1">raise;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -86,7 +86,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="a" oct="4" dur="2">
-<verse n="1"><syl>death</syl></verse></note>
+<verse n="1"><syl eol="1">death</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
 </layer></staff>
@@ -111,7 +111,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>praise.</syl></verse></note>
+<verse n="1"><syl eol="1">praise.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">C/G</harm>

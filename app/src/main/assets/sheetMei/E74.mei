@@ -33,7 +33,7 @@
 <note xml:id="n8" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">giv</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">en,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en,</syl></verse></note>
 <note xml:id="n10" pname="b" oct="4" dur="4">
 <verse n="1"><syl>His</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
@@ -59,7 +59,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>tell;</syl></verse></note>
+<verse n="1"><syl eol="1">tell;</syl></verse></note>
 <note xml:id="n18" pname="f" oct="4" dur="4">
 <verse n="1"><syl>For</syl></verse></note>
 <note xml:id="n19" pname="d" oct="4" dur="4">
@@ -87,7 +87,7 @@
 <note xml:id="n25" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Broth</syl></verse></note>
 <note xml:id="n26" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 <note xml:id="n27" pname="c" oct="5" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 <note xml:id="n28" pname="b" oct="4" dur="4">
@@ -142,7 +142,7 @@
 <note xml:id="n42" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">yon</syl></verse></note>
 <note xml:id="n43" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">der,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">der,</syl></verse></note>
 <note xml:id="n44" pname="b" oct="4" dur="2">
 <verse n="1"><syl>Has</syl></verse></note>
 </layer></staff>
@@ -170,7 +170,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="c" oct="5" dur="2">
-<verse n="1"><syl>dwell,</syl></verse></note>
+<verse n="1"><syl eol="1">dwell,</syl></verse></note>
 <rest xml:id="r52" dur="4"/>
 <note xml:id="n53" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">In</syl></verse></note>
@@ -199,7 +199,7 @@
 <note xml:id="n60" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">ev</syl></verse></note>
 <note xml:id="n61" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">er—</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er—</syl></verse></note>
 <note xml:id="n62" pname="c" oct="5" dur="4">
 <verse n="1"><syl>Our</syl></verse></note>
 <note xml:id="n63" pname="b" oct="4" dur="4">
@@ -225,7 +225,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">el.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">el.</syl></verse></note>
 <rest xml:id="r70" dur="2" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>

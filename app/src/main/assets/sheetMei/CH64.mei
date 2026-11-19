@@ -24,7 +24,7 @@
 <note xml:id="n6" pname="e" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n7" pname="d" oct="4" dur="2">
-<verse n="1"><syl>say,</syl></verse></note>
+<verse n="1"><syl eol="1">say,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -44,7 +44,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>seeds.</syl></verse></note>
+<verse n="1"><syl eol="1">seeds.</syl></verse></note>
 <rest xml:id="r13" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -68,7 +68,7 @@
 <note xml:id="n19" pname="e" oct="4" dur="4">
 <verse n="1"><syl>we</syl></verse></note>
 <note xml:id="n20" pname="d" oct="4" dur="2">
-<verse n="1"><syl>sow</syl></verse></note>
+<verse n="1"><syl eol="1">sow</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -88,7 +88,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>grow.</syl></verse></note>
+<verse n="1"><syl eol="1">grow.</syl></verse></note>
 <rest xml:id="r26" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -111,7 +111,7 @@
 <note xml:id="n31" pname="g" oct="4" dur="4">
 <verse n="1"><syl>we</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="2">
-<verse n="1"><syl>say—</syl></verse></note>
+<verse n="1"><syl eol="1">say—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="3" place="above">D7/A</harm>
@@ -149,7 +149,7 @@
 <verse n="1"><syl wordpos="t">ery</syl></verse></note>
 </beam>
 <note xml:id="n43" pname="g" oct="4" dur="2">
-<verse n="1"><syl>day—</syl></verse></note>
+<verse n="1"><syl eol="1">day—</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="3" place="above">D7/A</harm>
@@ -173,7 +173,7 @@
 <note xml:id="n49" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ery</syl></verse></note>
 <note xml:id="n50" pname="d" oct="4" dur="2">
-<verse n="1"><syl>way,</syl></verse></note>
+<verse n="1"><syl eol="1">way,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -193,7 +193,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>seeds.</syl></verse></note>
+<verse n="1"><syl eol="1">seeds.</syl></verse></note>
 <rest xml:id="r56" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

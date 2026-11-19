@@ -49,7 +49,7 @@
 <note xml:id="n11" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">sup</syl></verse></note>
 <note xml:id="n12" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">per:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">per:</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl>By</syl></verse></note>
 </layer></staff>
@@ -88,7 +88,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2">
-<verse n="1"><syl>show.</syl></verse></note>
+<verse n="1"><syl eol="1">show.</syl></verse></note>
 <note xml:id="n24" pname="g" oct="4" dur="4">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
@@ -139,7 +139,7 @@
 <note xml:id="n35" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">fess</syl></verse></note>
 <note xml:id="n36" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n37" pname="c" oct="4" dur="4">
 <verse n="1"><syl>’Tis</syl></verse></note>
 </layer></staff>
@@ -187,7 +187,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="c" oct="4" dur="2">
-<verse n="1"><syl>know.</syl></verse></note>
+<verse n="1"><syl eol="1">know.</syl></verse></note>
 <rest xml:id="r49" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

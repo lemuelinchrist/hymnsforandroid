@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">na</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="16">
-<verse n="1"><syl wordpos="t">ture</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ture</syl></verse></note>
 <note xml:id="n9" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n10" pname="c" oct="5" dur="16">
@@ -51,7 +51,7 @@
 <verse n="1"><syl>like</syl></verse></note>
 </beam>
 <note xml:id="n15" pname="b" oct="4" dur="4">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>He</syl></verse></note>
@@ -79,7 +79,7 @@
 <note xml:id="n23" pname="a" oct="4" dur="16">
 <verse n="1"><syl>that</syl></verse></note>
 <note xml:id="n24" pname="b" oct="4" dur="8" dots="1">
-<verse n="1"><syl>I</syl></verse></note>
+<verse n="1"><syl eol="1">I</syl></verse></note>
 <note xml:id="n25" pname="g" oct="4" dur="16">
 <verse n="1"><syl>from</syl></verse></note>
 </beam>
@@ -98,7 +98,7 @@
 <verse n="1"><syl>be</syl></verse></note>
 </beam>
 <note xml:id="n30" pname="f" oct="4" dur="4">
-<verse n="1"><syl>free,</syl></verse></note>
+<verse n="1"><syl eol="1">free,</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl>He</syl></verse></note>
@@ -125,7 +125,7 @@
 <note xml:id="n37" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="16">
-<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it</syl></verse></note>
 <note xml:id="n39" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>He</syl></verse></note>
 <note xml:id="n40" pname="c" oct="5" dur="16">
@@ -146,7 +146,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
 <note xml:id="n45" pname="b" oct="4" dur="4">
-<verse n="1"><syl>me</syl></verse></note>
+<verse n="1"><syl eol="1">me</syl></verse></note>
 <note xml:id="n46" pname="b" oct="4" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -167,7 +167,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>life.</syl></verse></note>
+<verse n="1"><syl eol="1">life.</syl></verse></note>
 <rest xml:id="r52" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -198,7 +198,7 @@
 <note xml:id="n59" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n60" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">B♭7</harm>
@@ -225,7 +225,7 @@
 <note xml:id="n68" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n69" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -252,7 +252,7 @@
 <note xml:id="n76" pname="d" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">lu</syl></verse></note>
 <note xml:id="n77" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">jah!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">jah!</syl></verse></note>
 <note xml:id="n78" pname="b" oct="4" dur="4">
 <verse n="1"><syl>For</syl></verse></note>
 </layer></staff>
@@ -274,7 +274,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n83" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>life!</syl></verse></note>
+<verse n="1"><syl eol="1">life!</syl></verse></note>
 <rest xml:id="r84" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

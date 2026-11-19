@@ -43,7 +43,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Life;</syl></verse></note>
+<verse n="1"><syl eol="1">Life;</syl></verse></note>
 <note xml:id="n12" pname="f" oct="4" dur="2" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -87,7 +87,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>strife.</syl></verse></note>
+<verse n="1"><syl eol="1">strife.</syl></verse></note>
 <note xml:id="n24" pname="a" oct="4" dur="2" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -133,7 +133,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>meat;</syl></verse></note>
+<verse n="1"><syl eol="1">meat;</syl></verse></note>
 <note xml:id="n36" pname="g" oct="4" dur="2" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Em</harm>
@@ -181,7 +181,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">plete.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">plete.</syl></verse></note>
 <note xml:id="n48" pname="d" oct="4" dur="2" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

@@ -40,7 +40,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="d" oct="4" dur="2">
-<verse n="1"><syl>spear,</syl></verse></note>
+<verse n="1"><syl eol="1">spear,</syl></verse></note>
 <beam>
 <note xml:id="n12" pname="d" oct="4" dur="8"/>
 <note xml:id="n13" pname="d" oct="4" dur="16">
@@ -97,7 +97,7 @@
 <verse n="1"><syl wordpos="m" con="d">ra</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">el,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">el,</syl></verse></note>
 <note xml:id="n32" pname="a" oct="3" dur="8">
 <verse n="1"><syl>Whom</syl></verse></note>
 <note xml:id="n33" pname="d" oct="4" dur="8">
@@ -130,7 +130,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="d" oct="4" dur="2">
-<verse n="1"><syl>day</syl></verse></note>
+<verse n="1"><syl eol="1">day</syl></verse></note>
 <beam>
 <note xml:id="n41" pname="d" oct="4" dur="8"/>
 <note xml:id="n42" pname="d" oct="4" dur="8">
@@ -173,7 +173,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="d" oct="4" dur="2">
-<verse n="1"><syl>hand!</syl></verse></note>
+<verse n="1"><syl eol="1">hand!</syl></verse></note>
 <note xml:id="n54" pname="d" oct="4" dur="8"/>
 <rest xml:id="r55" dur="8"/>
 <rest xml:id="r56" dur="4"/>

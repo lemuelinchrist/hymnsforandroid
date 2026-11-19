@@ -25,7 +25,7 @@
 <note xml:id="n6" pname="b" oct="4" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n7" pname="d" oct="4" dur="4">
-<verse n="1"><syl>world;</syl></verse></note>
+<verse n="1"><syl eol="1">world;</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
 <verse n="1"><syl>I’ll</syl></verse></note>
 </layer></staff>
@@ -53,7 +53,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">more.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">more.</syl></verse></note>
 <note xml:id="n16" pname="b" oct="4" dur="4"/>
 <note xml:id="n17" pname="c" oct="5" dur="2"/>
 </layer></staff>
@@ -81,7 +81,7 @@
 <note xml:id="n23" pname="b" oct="4" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n24" pname="d" oct="4" dur="4">
-<verse n="1"><syl>world;</syl></verse></note>
+<verse n="1"><syl eol="1">world;</syl></verse></note>
 <note xml:id="n25" pname="f" oct="4" dur="4">
 <verse n="1"><syl>I’ll</syl></verse></note>
 </layer></staff>
@@ -109,7 +109,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">more.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">more.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>
@@ -132,7 +132,7 @@
 <note xml:id="n36" pname="b" oct="4" dur="4">
 <verse n="1"><syl>no,</syl></verse></note>
 <note xml:id="n37" pname="d" oct="4" dur="4">
-<verse n="1"><syl>no,</syl></verse></note>
+<verse n="1"><syl eol="1">no,</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="4">
 <verse n="1"><syl>I’ll</syl></verse></note>
 </layer></staff>
@@ -160,7 +160,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">more;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">more;</syl></verse></note>
 <note xml:id="n46" pname="b" oct="4" dur="4"/>
 <note xml:id="n47" pname="c" oct="5" dur="2"/>
 </layer></staff>
@@ -184,7 +184,7 @@
 <note xml:id="n51" pname="b" oct="4" dur="4">
 <verse n="1"><syl>no,</syl></verse></note>
 <note xml:id="n52" pname="d" oct="4" dur="4">
-<verse n="1"><syl>no,</syl></verse></note>
+<verse n="1"><syl eol="1">no,</syl></verse></note>
 <note xml:id="n53" pname="f" oct="4" dur="4">
 <verse n="1"><syl>I’ll</syl></verse></note>
 </layer></staff>
@@ -212,7 +212,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">more.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">more.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

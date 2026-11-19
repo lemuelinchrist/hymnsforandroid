@@ -33,7 +33,7 @@
 <note xml:id="n6" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">i</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">mage;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">mage;</syl></verse></note>
 </beam>
 <note xml:id="n8" pname="f" oct="4" dur="2"/>
 <beam>
@@ -66,7 +66,7 @@
 <note xml:id="n16" pname="c" oct="5" dur="8"/>
 </beam>
 <note xml:id="n17" pname="c" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">mage,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">mage,</syl></verse></note>
 <beam>
 <note xml:id="n18" pname="a" oct="4" dur="8">
 <verse n="1"><syl>To</syl></verse></note>
@@ -96,7 +96,7 @@
 <note xml:id="n25" pname="f" oct="4" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n26" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>earth,</syl></verse></note>
+<verse n="1"><syl eol="1">earth,</syl></verse></note>
 <note xml:id="n27" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -123,7 +123,7 @@
 <note xml:id="n33" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">cond</syl></verse></note>
 <note xml:id="n34" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>birth,</syl></verse></note>
+<verse n="1"><syl eol="1">birth,</syl></verse></note>
 <beam>
 <note xml:id="n35" pname="f" oct="4" dur="8">
 <verse n="1"><syl>We’re</syl></verse></note>
@@ -149,7 +149,7 @@
 <verse n="1"><syl wordpos="m" con="d">ri</syl></verse></note>
 <note xml:id="n42" pname="g" oct="4" dur="8"/>
 <note xml:id="n43" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ous!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ous!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

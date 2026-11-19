@@ -30,7 +30,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>mine,</syl></verse></note>
+<verse n="1"><syl eol="1">mine,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 </measure>
@@ -58,7 +58,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -75,7 +75,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="a" oct="4" dur="4">
-<verse n="1"><syl>see</syl></verse></note>
+<verse n="1"><syl eol="1">see</syl></verse></note>
 <note xml:id="n19" pname="g" oct="4" dur="4"/>
 <note xml:id="n20" pname="g" oct="4" dur="4">
 <verse n="1"><syl>That</syl></verse></note>
@@ -105,7 +105,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">wine</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">wine</syl></verse></note>
 <note xml:id="n27" pname="f" oct="4" dur="4"/>
 <note xml:id="n28" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
@@ -127,7 +127,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>mine.</syl></verse></note>
+<verse n="1"><syl eol="1">mine.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="2" place="above">C/G</harm>

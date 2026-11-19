@@ -18,7 +18,7 @@
 <note xml:id="n3" pname="e" oct="4" dur="8">
 <verse n="1"><syl>no</syl></verse></note>
 <note xml:id="n4" pname="d" oct="4" dur="4" accid="s" accid.ges="s">
-<verse n="1"><syl>scar?</syl></verse></note>
+<verse n="1"><syl eol="1">scar?</syl></verse></note>
 <note xml:id="n5" pname="e" oct="4" dur="4">
 <verse n="1"><syl>No</syl></verse></note>
 </layer></staff>
@@ -52,7 +52,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>hand?</syl></verse></note>
+<verse n="1"><syl eol="1">hand?</syl></verse></note>
 <note xml:id="n15" pname="e" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -77,7 +77,7 @@
 <note xml:id="n21" pname="b" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n22" pname="a" oct="4" dur="4">
-<verse n="1"><syl>land,</syl></verse></note>
+<verse n="1"><syl eol="1">land,</syl></verse></note>
 <note xml:id="n23" pname="a" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -102,7 +102,7 @@
 <note xml:id="n29" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n30" pname="e" oct="4" dur="4">
-<verse n="1"><syl>star,</syl></verse></note>
+<verse n="1"><syl eol="1">star,</syl></verse></note>
 <note xml:id="n31" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Hast</syl></verse></note>
 </layer></staff>
@@ -125,7 +125,7 @@
 </measure>
 <measure n="11" right="end"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>scar?</syl></verse></note>
+<verse n="1"><syl eol="1">scar?</syl></verse></note>
 <rest xml:id="r37" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

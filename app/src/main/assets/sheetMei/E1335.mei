@@ -42,7 +42,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>praised,</syl></verse></note>
+<verse n="1"><syl eol="1">praised,</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="g" oct="4" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
@@ -69,7 +69,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <beam>
 <note xml:id="n18" pname="b" oct="4" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
@@ -102,7 +102,7 @@
 <verse n="1"><syl wordpos="m" con="d">li</syl></verse></note>
 </beam>
 <note xml:id="n26" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ness.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ness.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
@@ -154,7 +154,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="b" oct="4" dur="1">
-<verse n="1"><syl>earth,</syl></verse></note>
+<verse n="1"><syl eol="1">earth,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
@@ -189,7 +189,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n50" pname="b" oct="4" dur="4">
-<verse n="1"><syl>north,</syl></verse></note>
+<verse n="1"><syl eol="1">north,</syl></verse></note>
 <note xml:id="n51" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -215,7 +215,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="f" oct="4" dur="4">
-<verse n="1"><syl>King.</syl></verse></note>
+<verse n="1"><syl eol="1">King.</syl></verse></note>
 <note xml:id="n58" pname="g" oct="4" dur="4"/>
 <note xml:id="n59" pname="a" oct="4" dur="2"/>
 </layer></staff>
@@ -253,7 +253,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n69" pname="b" oct="4" dur="4">
-<verse n="1"><syl>north,</syl></verse></note>
+<verse n="1"><syl eol="1">north,</syl></verse></note>
 <note xml:id="n70" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -279,7 +279,7 @@
 </measure>
 <measure n="20" right="end"><staff n="1"><layer n="1">
 <note xml:id="n76" pname="f" oct="4" dur="1">
-<verse n="1"><syl>King.</syl></verse></note>
+<verse n="1"><syl eol="1">King.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

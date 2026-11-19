@@ -25,7 +25,7 @@
 <note xml:id="n6" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">vine?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vine?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
@@ -49,7 +49,7 @@
 <note xml:id="n13" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">man</syl></verse></note>
 <note xml:id="n14" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">kind?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">kind?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -76,7 +76,7 @@
 <note xml:id="n20" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">un</syl></verse></note>
 <note xml:id="n21" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">clean</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">clean</syl></verse></note>
 <beam>
 <note xml:id="n22" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Of</syl></verse></note>
@@ -105,7 +105,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="1">
-<verse n="1"><syl>stream.</syl></verse></note>
+<verse n="1"><syl eol="1">stream.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

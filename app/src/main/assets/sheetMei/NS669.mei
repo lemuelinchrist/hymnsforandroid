@@ -32,7 +32,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>are,</syl></verse></note>
+<verse n="1"><syl eol="1">are,</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Not</syl></verse></note>
@@ -60,7 +60,7 @@
 <note xml:id="n16" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
 <note xml:id="n17" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">serve.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">serve.</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
@@ -93,7 +93,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">fort</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fort</syl></verse></note>
 <beam>
 <note xml:id="n27" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Or</syl></verse></note>
@@ -123,7 +123,7 @@
 <note xml:id="n35" pname="d" oct="4" dur="4">
 <verse n="1"><syl>own,</syl></verse></note>
 <note xml:id="n36" pname="e" oct="4" dur="4">
-<verse n="1"><syl>but...</syl></verse></note>
+<verse n="1"><syl eol="1">but...</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -184,7 +184,7 @@
 <sb/>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">verse.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">verse.</syl></verse></note>
 <beam>
 <note xml:id="n55" pname="e" oct="4" dur="8">
 <verse n="1"><syl>It</syl></verse></note>
@@ -212,7 +212,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="e" oct="4" dur="1">
-<verse n="1"><syl>last.</syl></verse></note>
+<verse n="1"><syl eol="1">last.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n61" endid="#n62"/>
@@ -279,7 +279,7 @@
 <sb/>
 <measure n="22"><staff n="1"><layer n="1">
 <note xml:id="n81" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>flock.</syl></verse></note>
+<verse n="1"><syl eol="1">flock.</syl></verse></note>
 <beam>
 <note xml:id="n82" pname="e" oct="4" dur="8">
 <verse n="1"><syl>It</syl></verse></note>
@@ -311,7 +311,7 @@
 </measure>
 <measure n="25"><staff n="1"><layer n="1">
 <note xml:id="n90" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>stands.</syl></verse></note>
+<verse n="1"><syl eol="1">stands.</syl></verse></note>
 <beam>
 <note xml:id="n91" pname="e" oct="4" dur="8"/>
 <note xml:id="n92" pname="f" oct="4" dur="8">
@@ -336,7 +336,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n97" pname="d" oct="4" dur="1">
-<verse n="1"><syl>charge.</syl></verse></note>
+<verse n="1"><syl eol="1">charge.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n97" endid="#n98"/>

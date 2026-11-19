@@ -51,7 +51,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -80,7 +80,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm7</harm>
 <slur startid="#n20" endid="#n21"/>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="a" oct="4" dur="2">
-<verse n="1"><syl>day,</syl></verse></note>
+<verse n="1"><syl eol="1">day,</syl></verse></note>
 <beam>
 <note xml:id="n33" pname="g" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
@@ -166,7 +166,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n41" endid="#n42"/>
@@ -202,7 +202,7 @@
 <note xml:id="n48" pname="d" oct="5" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n49" pname="d" oct="5" dur="8">
-<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it,</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n50" pname="d" oct="5" dur="8"/>
@@ -241,7 +241,7 @@
 <verse n="1"><syl>Lord</syl></verse></note>
 </beam>
 <note xml:id="n60" pname="f" oct="4" dur="4">
-<verse n="1"><syl>is,</syl></verse></note>
+<verse n="1"><syl eol="1">is,</syl></verse></note>
 <beam>
 <note xml:id="n61" pname="f" oct="4" dur="8">
 <verse n="1"><syl>There</syl></verse></note>
@@ -278,7 +278,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ty!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm7/B♭</harm>
 <tie startid="#n69" endid="#n70"/>
@@ -330,7 +330,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n82" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <note xml:id="n83" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -361,7 +361,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n90" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
 <tie startid="#n90" endid="#n91"/>

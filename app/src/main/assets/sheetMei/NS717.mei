@@ -44,7 +44,7 @@
 <note xml:id="n11" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">sup</syl></verse></note>
 <note xml:id="n12" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ply.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ply.</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Thus</syl></verse></note>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">late.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">late.</syl></verse></note>
 <beam>
 <note xml:id="n23" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Ev</syl></verse></note>
@@ -124,7 +124,7 @@
 <note xml:id="n34" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n35" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">by.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">by.</syl></verse></note>
 <beam>
 <note xml:id="n36" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Build</syl></verse></note>
@@ -159,7 +159,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>pray.</syl></verse></note>
+<verse n="1"><syl eol="1">pray.</syl></verse></note>
 <beam>
 <note xml:id="n45" pname="f" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl wordpos="i" con="d">Mem</syl></verse></note>
@@ -202,7 +202,7 @@
 <verse n="1"><syl>will</syl></verse></note>
 </beam>
 <note xml:id="n56" pname="e" oct="4" dur="4">
-<verse n="1"><syl>grow,</syl></verse></note>
+<verse n="1"><syl eol="1">grow,</syl></verse></note>
 <beam>
 <note xml:id="n57" pname="e" oct="4" dur="8">
 <verse n="1"><syl>As</syl></verse></note>
@@ -241,7 +241,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>parts.</syl></verse></note>
+<verse n="1"><syl eol="1">parts.</syl></verse></note>
 <beam>
 <note xml:id="n68" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">O</syl></verse></note>
@@ -287,7 +287,7 @@
 <verse n="1"><syl wordpos="i" con="d">bes</syl></verse></note>
 </beam>
 <note xml:id="n81" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">tow</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tow</syl></verse></note>
 <beam>
 <note xml:id="n82" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Through</syl></verse></note>
@@ -323,7 +323,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n91" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>part.</syl></verse></note>
+<verse n="1"><syl eol="1">part.</syl></verse></note>
 <rest xml:id="r92" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Asus4</harm>

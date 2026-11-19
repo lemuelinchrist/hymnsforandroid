@@ -42,7 +42,7 @@
 <verse n="1"><syl>high</syl></verse></note>
 <note xml:id="n11" pname="b" oct="4" dur="4"/>
 <note xml:id="n12" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>peak</syl></verse></note>
+<verse n="1"><syl eol="1">peak</syl></verse></note>
 <note xml:id="n13" pname="f" oct="4" dur="8">
 <verse n="1"><syl>of</syl></verse></note>
 </layer></staff>
@@ -72,7 +72,7 @@
 <note xml:id="n20" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">o</syl></verse></note>
 <note xml:id="n21" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">my,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">my,</syl></verse></note>
 <beam>
 <note xml:id="n22" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">the</syl></verse></note>
@@ -111,7 +111,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 <note xml:id="n33" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Christ,</syl></verse></note>
+<verse n="1"><syl eol="1">Christ,</syl></verse></note>
 <note xml:id="n34" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">ex</syl></verse></note>
 </layer></staff>
@@ -130,7 +130,7 @@
 <note xml:id="n37" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">pray</syl></verse></note>
 <note xml:id="n38" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing;</syl></verse></note>
 <beam>
 <note xml:id="n39" pname="c" oct="4" dur="8">
 <verse n="1"><syl>our</syl></verse></note>
@@ -160,7 +160,7 @@
 <note xml:id="n46" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">com</syl></verse></note>
 <note xml:id="n47" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ers</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ers</syl></verse></note>
 <rest xml:id="r48" dur="8"/>
 <beam>
 <note xml:id="n49" pname="d" oct="4" dur="8">
@@ -200,7 +200,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 <note xml:id="n60" pname="d" oct="4" dur="4">
-<verse n="1"><syl>Christ</syl></verse></note>
+<verse n="1"><syl eol="1">Christ</syl></verse></note>
 <rest xml:id="r61" dur="8"/>
 <note xml:id="n62" pname="d" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
@@ -221,7 +221,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Christ</syl></verse></note>
+<verse n="1"><syl eol="1">Christ</syl></verse></note>
 <beam>
 <note xml:id="n68" pname="e" oct="4" dur="8">
 <verse n="1"><syl>will</syl></verse></note>
@@ -257,7 +257,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n77" pname="e" oct="4" dur="2">
-<verse n="1"><syl>church,</syl></verse></note>
+<verse n="1"><syl eol="1">church,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -291,7 +291,7 @@
 <note xml:id="n87" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n88" pname="d" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">ry</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry</syl></verse></note>
 <beam>
 <note xml:id="n89" pname="c" oct="5" dur="8">
 <verse n="1"><syl>back</syl></verse></note>
@@ -331,7 +331,7 @@
 <verse n="1"><syl>this</syl></verse></note>
 </beam>
 <note xml:id="n100" pname="e" oct="4" dur="4">
-<verse n="1"><syl>earth</syl></verse></note>
+<verse n="1"><syl eol="1">earth</syl></verse></note>
 <beam>
 <note xml:id="n101" pname="a" oct="4" dur="8">
 <verse n="1"><syl>with</syl></verse></note>
@@ -379,7 +379,7 @@
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n112" pname="d" oct="4" dur="1">
-<verse n="1"><syl>age,</syl></verse></note>
+<verse n="1"><syl eol="1">age,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -395,7 +395,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n117" pname="f" oct="4" dur="1">
-<verse n="1"><syl>age.</syl></verse></note>
+<verse n="1"><syl eol="1">age.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n117" endid="#n118"/>

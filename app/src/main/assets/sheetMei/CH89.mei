@@ -27,7 +27,7 @@
 <verse n="1"><syl>too</syl></verse></note>
 </beam>
 <note xml:id="n6" pname="g" oct="4" dur="2">
-<verse n="1"><syl>slow,</syl></verse></note>
+<verse n="1"><syl eol="1">slow,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 </measure>
@@ -43,7 +43,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="d" oct="4" dur="4">
-<verse n="1"><syl>earth.</syl></verse></note>
+<verse n="1"><syl eol="1">earth.</syl></verse></note>
 <note xml:id="n11" pname="c" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
@@ -75,7 +75,7 @@
 <verse n="1"><syl>and</syl></verse></note>
 <beam>
 <note xml:id="n19" pname="f" oct="4" dur="8">
-<verse n="1"><syl>night:</syl></verse></note>
+<verse n="1"><syl eol="1">night:</syl></verse></note>
 <note xml:id="n20" pname="f" oct="4" dur="8"/>
 </beam>
 </layer></staff>
@@ -101,7 +101,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>right.</syl></verse></note>
+<verse n="1"><syl eol="1">right.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -115,7 +115,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>night,</syl></verse></note>
+<verse n="1"><syl eol="1">night,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 </measure>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="f" oct="4" dur="4">
-<verse n="1"><syl>earth.</syl></verse></note>
+<verse n="1"><syl eol="1">earth.</syl></verse></note>
 <note xml:id="n32" pname="e" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
@@ -150,7 +150,7 @@
 <note xml:id="n35" pname="a" oct="4" dur="4">
 <verse n="1"><syl>our</syl></verse></note>
 <note xml:id="n36" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>earth</syl></verse></note>
+<verse n="1"><syl eol="1">earth</syl></verse></note>
 <note xml:id="n37" pname="a" oct="4" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F♯m</harm>
@@ -175,7 +175,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>right.</syl></verse></note>
+<verse n="1"><syl eol="1">right.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -189,7 +189,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>night,</syl></verse></note>
+<verse n="1"><syl eol="1">night,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 </measure>
@@ -209,7 +209,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>earth.</syl></verse></note>
+<verse n="1"><syl eol="1">earth.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 </measure>
@@ -226,7 +226,7 @@
 <note xml:id="n52" pname="f" oct="4" dur="4">
 <verse n="1"><syl>our</syl></verse></note>
 <note xml:id="n53" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>earth</syl></verse></note>
+<verse n="1"><syl eol="1">earth</syl></verse></note>
 <note xml:id="n54" pname="f" oct="4" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F♯m</harm>
@@ -251,7 +251,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>right.</syl></verse></note>
+<verse n="1"><syl eol="1">right.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

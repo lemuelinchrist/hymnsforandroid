@@ -44,7 +44,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="a" oct="4" dur="1">
-<verse n="1"><syl>strife,</syl></verse></note>
+<verse n="1"><syl eol="1">strife,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -87,7 +87,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="c" oct="5" dur="1">
-<verse n="1"><syl>life;</syl></verse></note>
+<verse n="1"><syl eol="1">life;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -109,7 +109,7 @@
 <note xml:id="n27" pname="b" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">long</syl></verse></note>
 <note xml:id="n28" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -130,7 +130,7 @@
 <note xml:id="n33" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">strong</syl></verse></note>
 <note xml:id="n34" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -154,7 +154,7 @@
 <note xml:id="n40" pname="a" oct="4" dur="4">
 <verse n="1"><syl>things</syl></verse></note>
 <note xml:id="n41" pname="c" oct="5" dur="4">
-<verse n="1"><syl>do</syl></verse></note>
+<verse n="1"><syl eol="1">do</syl></verse></note>
 <note xml:id="n42" pname="d" oct="5" dur="4">
 <verse n="1"><syl>Through</syl></verse></note>
 </layer></staff>
@@ -181,7 +181,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="f" oct="4" dur="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

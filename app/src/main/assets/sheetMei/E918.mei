@@ -44,7 +44,7 @@
 <note xml:id="n10" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">fill</syl></verse></note>
 <note xml:id="n11" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -82,7 +82,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="d" oct="4" dur="1">
-<verse n="1"><syl>Light,</syl></verse></note>
+<verse n="1"><syl eol="1">Light,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -124,7 +124,7 @@
 <note xml:id="n31" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">will</syl></verse></note>
 <note xml:id="n32" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -163,7 +163,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="f" oct="4" dur="1">
-<verse n="1"><syl>night.</syl></verse></note>
+<verse n="1"><syl eol="1">night.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -199,7 +199,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="d" oct="5" dur="1">
-<verse n="1"><syl>peace;</syl></verse></note>
+<verse n="1"><syl eol="1">peace;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -241,7 +241,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n63" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lease.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lease.</syl></verse></note>
 <rest xml:id="r64" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

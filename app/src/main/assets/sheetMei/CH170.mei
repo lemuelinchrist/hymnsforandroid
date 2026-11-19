@@ -16,7 +16,7 @@
 <verse n="1"><syl wordpos="i" con="d">pur</syl></verse></note>
 </beam>
 <note xml:id="n4" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">sue</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sue</syl></verse></note>
 <note xml:id="n5" pname="g" oct="4" dur="8">
 <verse n="1"><syl>What’s</syl></verse></note>
 </layer></staff>
@@ -38,7 +38,7 @@
 <note xml:id="n10" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">oth</syl></verse></note>
 <note xml:id="n11" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">er</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="2" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -53,7 +53,7 @@
 <note xml:id="n14" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n15" pname="g" oct="4" dur="2">
-<verse n="1"><syl>all,</syl></verse></note>
+<verse n="1"><syl eol="1">all,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">G</harm>
@@ -74,7 +74,7 @@
 <verse n="1"><syl wordpos="m" con="d">ni</syl></verse></note>
 </beam>
 <note xml:id="n21" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ans</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ans</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="2" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -98,7 +98,7 @@
 <note xml:id="n26" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">teen</syl></verse></note>
 <note xml:id="n27" pname="c" oct="4" dur="2">
-<verse n="1"><syl>“b”.</syl></verse></note>
+<verse n="1"><syl eol="1">“b”.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 <harm staff="1" tstamp="2" place="above">G7</harm>

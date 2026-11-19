@@ -47,7 +47,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl>earth,</syl></verse></note>
+<verse n="1"><syl eol="1">earth,</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -88,7 +88,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="a" oct="4" dur="2">
-<verse n="1"><syl>worth.</syl></verse></note>
+<verse n="1"><syl eol="1">worth.</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="4">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
@@ -133,7 +133,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="a" oct="4" dur="2">
-<verse n="1"><syl>tell</syl></verse></note>
+<verse n="1"><syl eol="1">tell</syl></verse></note>
 <note xml:id="n35" pname="a" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -184,7 +184,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>dwell.</syl></verse></note>
+<verse n="1"><syl eol="1">dwell.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="2" place="above">C/G</harm>

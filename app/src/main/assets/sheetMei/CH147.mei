@@ -38,7 +38,7 @@
 <note xml:id="n9" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">hap</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">pen?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pen?</syl></verse></note>
 <note xml:id="n11" pname="f" oct="4" dur="4"/>
 <beam>
 <note xml:id="n12" pname="b" oct="3" dur="8">
@@ -65,7 +65,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>there?</syl></verse></note>
+<verse n="1"><syl eol="1">there?</syl></verse></note>
 <beam>
 <note xml:id="n19" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Did</syl></verse></note>
@@ -125,7 +125,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="b" oct="3" dur="2" dots="1">
-<verse n="1"><syl>there!</syl></verse></note>
+<verse n="1"><syl eol="1">there!</syl></verse></note>
 <rest xml:id="r36" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

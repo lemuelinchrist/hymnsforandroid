@@ -30,7 +30,7 @@
 </measure>
 <measure n="2" left="rptstart"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="a" oct="4" dur="1">
-<verse n="1"><syl>know;</syl></verse></note>
+<verse n="1"><syl eol="1">know;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
@@ -88,7 +88,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="g" oct="4" dur="1">
-<verse n="1"><syl>know;</syl></verse></note>
+<verse n="1"><syl eol="1">know;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="3" place="above">Gm/B♭</harm>
@@ -108,7 +108,7 @@
 <ending n="1" label="1.">
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="f" oct="4" dur="1">
-<verse n="1"><syl>dwells.</syl></verse></note>
+<verse n="1"><syl eol="1">dwells.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
@@ -179,7 +179,7 @@
 <note xml:id="n46" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
 <note xml:id="n47" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">it;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it;</syl></verse></note>
 <rest xml:id="r48" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -206,7 +206,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>us;</syl></verse></note>
+<verse n="1"><syl eol="1">us;</syl></verse></note>
 <rest xml:id="r56" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
@@ -236,7 +236,7 @@
 <note xml:id="n63" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">spir</syl></verse></note>
 <note xml:id="n64" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">it.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it.</syl></verse></note>
 <rest xml:id="r65" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -263,7 +263,7 @@
 </measure>
 <measure n="19" right="end"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>know.</syl></verse></note>
+<verse n="1"><syl eol="1">know.</syl></verse></note>
 <rest xml:id="r73" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

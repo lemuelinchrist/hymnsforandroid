@@ -35,7 +35,7 @@
 <note xml:id="n7" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Thou</syl></verse></note>
@@ -64,7 +64,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="e" oct="4" dur="2">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Who</syl></verse></note>
@@ -93,7 +93,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">come</syl></verse></note>
 <note xml:id="n23" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ly?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly?</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Who</syl></verse></note>
@@ -123,7 +123,7 @@
 <note xml:id="n30" pname="b" oct="4" dur="4" accid="n" accid.ges="n">
 <verse n="1"><syl wordpos="i" con="d">love</syl></verse></note>
 <note xml:id="n31" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">ly?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly?</syl></verse></note>
 <beam>
 <note xml:id="n32" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Match</syl></verse></note>
@@ -154,7 +154,7 @@
 <note xml:id="n38" pname="e" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">beau</syl></verse></note>
 <note xml:id="n39" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty,</syl></verse></note>
 <beam>
 <note xml:id="n40" pname="a" oct="4" dur="8">
 <verse n="1"><syl>None</syl></verse></note>
@@ -183,7 +183,7 @@
 </measure>
 <measure n="13" right="end"><staff n="1"><layer n="1">
 <note xml:id="n46" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Thee!</syl></verse></note>
+<verse n="1"><syl eol="1">Thee!</syl></verse></note>
 <rest xml:id="r47" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭/A♭</harm>

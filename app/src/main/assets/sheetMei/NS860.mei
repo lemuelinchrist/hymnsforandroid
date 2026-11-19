@@ -50,7 +50,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>King,</syl></verse></note>
+<verse n="1"><syl eol="1">King,</syl></verse></note>
 <note xml:id="n15" pname="g" oct="4" dur="4"/>
 <note xml:id="n16" pname="b" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
@@ -98,7 +98,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">thing;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thing;</syl></verse></note>
 <note xml:id="n30" pname="e" oct="4" dur="4"/>
 <note xml:id="n31" pname="g" oct="4" dur="8">
 <verse n="1"><syl>With</syl></verse></note>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>throne</syl></verse></note>
+<verse n="1"><syl eol="1">throne</syl></verse></note>
 <note xml:id="n45" pname="b" oct="4" dur="4"/>
 <note xml:id="n46" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Al</syl></verse></note>
@@ -199,7 +199,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>home.</syl></verse></note>
+<verse n="1"><syl eol="1">home.</syl></verse></note>
 <note xml:id="n60" pname="e" oct="4" dur="4"/>
 <rest xml:id="r61" dur="8"/>
 </layer></staff>

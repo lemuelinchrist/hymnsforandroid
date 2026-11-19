@@ -39,7 +39,7 @@
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n10" pname="d" oct="4" dur="8"/>
 <note xml:id="n11" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n10" endid="#n11"/>
@@ -75,7 +75,7 @@
 <beam>
 <note xml:id="n19" pname="d" oct="4" dur="8"/>
 <note xml:id="n20" pname="c" oct="4" dur="8">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 </beam>
 <note xml:id="n21" pname="c" oct="4" dur="2" dots="1"/>
 </layer></staff>
@@ -118,7 +118,7 @@
 <note xml:id="n31" pname="f" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">come</syl></verse></note>
 <note xml:id="n32" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ly?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly?</syl></verse></note>
 <note xml:id="n33" pname="d" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -159,7 +159,7 @@
 <note xml:id="n43" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">love</syl></verse></note>
 <note xml:id="n44" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ly?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n44" endid="#n45"/>
@@ -199,7 +199,7 @@
 <note xml:id="n54" pname="f" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">beau</syl></verse></note>
 <note xml:id="n55" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty,</syl></verse></note>
 <note xml:id="n56" pname="d" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -235,7 +235,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="b" oct="3" dur="1">
-<verse n="1"><syl>Thee!</syl></verse></note>
+<verse n="1"><syl eol="1">Thee!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>

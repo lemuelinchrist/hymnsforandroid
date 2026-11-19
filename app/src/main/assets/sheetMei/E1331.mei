@@ -42,7 +42,7 @@
 <sb/>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="d" oct="4" dur="2">
-<verse n="1"><syl>good;</syl></verse></note>
+<verse n="1"><syl eol="1">good;</syl></verse></note>
 <beam>
 <note xml:id="n11" pname="d" oct="4" dur="8"/>
 <note xml:id="n12" pname="d" oct="4" dur="8">
@@ -82,7 +82,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="a" oct="4" dur="2">
-<verse n="1"><syl>good.</syl></verse></note>
+<verse n="1"><syl eol="1">good.</syl></verse></note>
 <beam>
 <note xml:id="n22" pname="a" oct="4" dur="8"/>
 <note xml:id="n23" pname="a" oct="4" dur="8">
@@ -123,7 +123,7 @@
 <sb/>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="g" oct="4" dur="2">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <beam>
 <note xml:id="n33" pname="g" oct="4" dur="8"/>
 <note xml:id="n34" pname="d" oct="4" dur="16">
@@ -164,7 +164,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="d" oct="4" dur="2">
-<verse n="1"><syl>see.</syl></verse></note>
+<verse n="1"><syl eol="1">see.</syl></verse></note>
 <note xml:id="n45" pname="d" oct="4" dur="8"/>
 <rest xml:id="r46" dur="4" dots="1"/>
 </layer></staff>

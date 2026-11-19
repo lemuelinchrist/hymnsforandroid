@@ -45,7 +45,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2">
-<verse n="1"><syl>whole,</syl></verse></note>
+<verse n="1"><syl eol="1">whole,</syl></verse></note>
 <note xml:id="n12" pname="d" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -86,7 +86,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="g" oct="4" dur="2">
-<verse n="1"><syl>soul;</syl></verse></note>
+<verse n="1"><syl eol="1">soul;</syl></verse></note>
 <note xml:id="n23" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Break</syl></verse></note>
 </layer></staff>
@@ -131,7 +131,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="b" oct="4" dur="2">
-<verse n="1"><syl>foe;</syl></verse></note>
+<verse n="1"><syl eol="1">foe;</syl></verse></note>
 <note xml:id="n35" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Now</syl></verse></note>
 </layer></staff>
@@ -168,7 +168,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>snow.</syl></verse></note>
+<verse n="1"><syl eol="1">snow.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -206,7 +206,7 @@
 <sb/>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="d" oct="4" dur="2">
-<verse n="1"><syl>snow;</syl></verse></note>
+<verse n="1"><syl eol="1">snow;</syl></verse></note>
 <note xml:id="n55" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Now</syl></verse></note>
 </layer></staff>
@@ -247,7 +247,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="g" oct="4" dur="2">
-<verse n="1"><syl>snow.</syl></verse></note>
+<verse n="1"><syl eol="1">snow.</syl></verse></note>
 <rest xml:id="r66" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

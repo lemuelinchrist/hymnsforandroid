@@ -32,7 +32,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n9" pname="a" oct="4" dur="2">
-<verse n="1"><syl>feast.</syl></verse></note>
+<verse n="1"><syl eol="1">feast.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 </measure>
@@ -64,7 +64,7 @@
 <verse n="1"><syl>you</syl></verse></note>
 </beam>
 <note xml:id="n19" pname="g" oct="4" dur="2">
-<verse n="1"><syl>need.</syl></verse></note>
+<verse n="1"><syl eol="1">need.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
@@ -95,7 +95,7 @@
 <verse n="1"><syl>feed</syl></verse></note>
 </beam>
 <note xml:id="n28" pname="a" oct="4" dur="4">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 <beam>
 <note xml:id="n29" pname="a" oct="4" dur="8" dots="1"/>
 <note xml:id="n30" pname="a" oct="4" dur="16">
@@ -126,7 +126,7 @@
 <note xml:id="n37" pname="e" oct="4" dur="16">
 <verse n="1"><syl>Him</syl></verse></note>
 <note xml:id="n38" pname="d" oct="4" dur="8" dots="1">
-<verse n="1"><syl>in—</syl></verse></note>
+<verse n="1"><syl eol="1">in—</syl></verse></note>
 <note xml:id="n39" pname="c" oct="4" dur="16" accid="s" accid.ges="s">
 <verse n="1"><syl>That’s</syl></verse></note>
 </beam>
@@ -147,7 +147,7 @@
 </beam>
 <beam>
 <note xml:id="n44" pname="e" oct="4" dur="8" dots="1" accid="n">
-<verse n="1"><syl>do.</syl></verse></note>
+<verse n="1"><syl eol="1">do.</syl></verse></note>
 <note xml:id="n45" pname="e" oct="4" dur="16" accid="f" accid.ges="f">
 <verse n="1"><syl>We’ve</syl></verse></note>
 <note xml:id="n46" pname="d" oct="4" dur="8" dots="1">
@@ -186,7 +186,7 @@
 <verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
 </beam>
 <note xml:id="n56" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">in.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 </measure>
@@ -218,7 +218,7 @@
 <verse n="1"><syl>Him</syl></verse></note>
 </beam>
 <note xml:id="n66" pname="g" oct="4" dur="4">
-<verse n="1"><syl>in.</syl></verse></note>
+<verse n="1"><syl eol="1">in.</syl></verse></note>
 <beam>
 <note xml:id="n67" pname="g" oct="4" dur="8" dots="1"/>
 <note xml:id="n68" pname="c" oct="5" dur="16">
@@ -258,7 +258,7 @@
 </beam>
 <beam>
 <note xml:id="n77" pname="g" oct="4" dur="8" dots="1" accid="n">
-<verse n="1"><syl>learn</syl></verse></note>
+<verse n="1"><syl eol="1">learn</syl></verse></note>
 <note xml:id="n78" pname="f" oct="4" dur="16" accid="s" accid.ges="s">
 <verse n="1"><syl>To</syl></verse></note>
 </beam>
@@ -277,7 +277,7 @@
 <verse n="1"><syl>with</syl></verse></note>
 </beam>
 <note xml:id="n83" pname="a" oct="4" dur="4">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 <beam>
 <note xml:id="n84" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl>Just</syl></verse></note>
@@ -303,7 +303,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n90" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">sus!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus!</syl></verse></note>
 <rest xml:id="r91" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

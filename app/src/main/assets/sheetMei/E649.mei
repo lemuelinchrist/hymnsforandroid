@@ -50,7 +50,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="a" oct="4" dur="2">
-<verse n="1"><syl>throne,</syl></verse></note>
+<verse n="1"><syl eol="1">throne,</syl></verse></note>
 <note xml:id="n12" pname="a" oct="4" dur="4">
 <verse n="1"><syl>From</syl></verse></note>
 </layer></staff>
@@ -92,7 +92,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="e" oct="4" dur="2">
-<verse n="1"><syl>own;</syl></verse></note>
+<verse n="1"><syl eol="1">own;</syl></verse></note>
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl>All</syl></verse></note>
 </layer></staff>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">bove,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bove,</syl></verse></note>
 <note xml:id="n32" pname="b" oct="4" dur="4">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
@@ -174,7 +174,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>love.</syl></verse></note>
+<verse n="1"><syl eol="1">love.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 </measure>
@@ -202,7 +202,7 @@
 <note xml:id="n49" pname="d" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n50" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">lieve;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieve;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭7/F</harm>
 <harm staff="1" tstamp="4" place="above">G♭</harm>
@@ -235,7 +235,7 @@
 <note xml:id="n59" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n60" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">lieve;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieve;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
 <harm staff="1" tstamp="4" place="above">A♭7</harm>
@@ -262,7 +262,7 @@
 <note xml:id="n67" pname="d" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n68" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">lieve;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieve;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭7</harm>
 <harm staff="1" tstamp="4" place="above">G♭</harm>
@@ -297,7 +297,7 @@
 <note xml:id="n77" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 <note xml:id="n78" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">lieve.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lieve.</syl></verse></note>
 <rest xml:id="r79" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭m</harm>

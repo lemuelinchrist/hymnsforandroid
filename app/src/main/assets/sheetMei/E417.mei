@@ -39,7 +39,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Cross,</syl></verse></note>
+<verse n="1"><syl eol="1">Cross,</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>On</syl></verse></note>
 </layer></staff>
@@ -79,7 +79,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">sires.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sires.</syl></verse></note>
 <note xml:id="n21" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Let</syl></verse></note>
 </layer></staff>
@@ -114,7 +114,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">spires</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">spires</syl></verse></note>
 <note xml:id="n31" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Be</syl></verse></note>
 </layer></staff>
@@ -140,7 +140,7 @@
 </measure>
 <measure n="14" right="end"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>dross.</syl></verse></note>
+<verse n="1"><syl eol="1">dross.</syl></verse></note>
 <rest xml:id="r37" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

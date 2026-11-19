@@ -42,7 +42,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>deed</syl></verse></note>
+<verse n="1"><syl eol="1">deed</syl></verse></note>
 <rest xml:id="r12" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -85,7 +85,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="b" oct="4" dur="1">
-<verse n="1"><syl>creed.</syl></verse></note>
+<verse n="1"><syl eol="1">creed.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="c" oct="5" dur="1">
-<verse n="1"><syl wordpos="t">prise;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">prise;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -171,7 +171,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">fies.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fies.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>

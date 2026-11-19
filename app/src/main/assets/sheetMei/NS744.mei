@@ -46,7 +46,7 @@
 <note xml:id="n12" pname="f" oct="4" dur="8"/>
 <note xml:id="n13" pname="g" oct="4" dur="8"/>
 <note xml:id="n14" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther,</syl></verse></note>
 </beam>
 <note xml:id="n15" pname="g" oct="4" dur="4"/>
 <beam>
@@ -74,7 +74,7 @@
 <beam>
 <note xml:id="n21" pname="g" oct="4" dur="8"/>
 <note xml:id="n22" pname="e" oct="4" dur="8">
-<verse n="1"><syl>things,</syl></verse></note>
+<verse n="1"><syl eol="1">things,</syl></verse></note>
 <note xml:id="n23" pname="e" oct="4" dur="8"/>
 <note xml:id="n24" pname="e" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
@@ -97,7 +97,7 @@
 <verse n="1"><syl wordpos="t">to</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Him;</syl></verse></note>
+<verse n="1"><syl eol="1">Him;</syl></verse></note>
 <note xml:id="n30" pname="e" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 </layer></staff>
@@ -126,7 +126,7 @@
 <note xml:id="n36" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">sus</syl></verse></note>
 <note xml:id="n37" pname="e" oct="4" dur="8">
-<verse n="1"><syl>Christ,</syl></verse></note>
+<verse n="1"><syl eol="1">Christ,</syl></verse></note>
 </beam>
 <note xml:id="n38" pname="e" oct="4" dur="4" dots="1"/>
 <note xml:id="n39" pname="e" oct="4" dur="8">
@@ -151,7 +151,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>things,</syl></verse></note>
+<verse n="1"><syl eol="1">things,</syl></verse></note>
 <rest xml:id="r45" dur="8"/>
 <note xml:id="n46" pname="e" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
@@ -174,7 +174,7 @@
 </measure>
 <measure n="11" right="end"><staff n="1"><layer n="1">
 <note xml:id="n51" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>Him.</syl></verse></note>
+<verse n="1"><syl eol="1">Him.</syl></verse></note>
 <rest xml:id="r52" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>

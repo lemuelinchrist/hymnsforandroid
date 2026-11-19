@@ -54,7 +54,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>tent,</syl></verse></note>
+<verse n="1"><syl eol="1">tent,</syl></verse></note>
 <beam>
 <note xml:id="n14" pname="d" oct="4" dur="8">
 <verse n="1"><syl>A</syl></verse></note>
@@ -103,7 +103,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n26" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>went;</syl></verse></note>
+<verse n="1"><syl eol="1">went;</syl></verse></note>
 <note xml:id="n27" pname="a" oct="4" dur="4">
 <verse n="1"><syl>God’s</syl></verse></note>
 </layer></staff>
@@ -150,7 +150,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>birth,</syl></verse></note>
+<verse n="1"><syl eol="1">birth,</syl></verse></note>
 <note xml:id="n40" pname="a" oct="4" dur="4">
 <verse n="1"><syl>No</syl></verse></note>
 </layer></staff>
@@ -196,7 +196,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>earth.</syl></verse></note>
+<verse n="1"><syl eol="1">earth.</syl></verse></note>
 <rest xml:id="r53" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -229,7 +229,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>fair!</syl></verse></note>
+<verse n="1"><syl eol="1">fair!</syl></verse></note>
 <note xml:id="n60" pname="a" oct="4" dur="4">
 <verse n="1"><syl>God’s</syl></verse></note>
 </layer></staff>
@@ -276,7 +276,7 @@
 </measure>
 <measure n="25" right="end"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>there.</syl></verse></note>
+<verse n="1"><syl eol="1">there.</syl></verse></note>
 <rest xml:id="r73" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

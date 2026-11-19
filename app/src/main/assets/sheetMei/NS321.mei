@@ -60,7 +60,7 @@
 <verse n="1"><syl wordpos="m" con="d">o</syl></verse></note>
 </beam>
 <note xml:id="n18" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">my!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">my!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="3" place="above">B</harm>
@@ -124,7 +124,7 @@
 <verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
 </beam>
 <note xml:id="n37" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">y!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">y!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E/B</harm>
 <harm staff="1" tstamp="2" place="above">B7</harm>
@@ -184,7 +184,7 @@
 <verse n="1"><syl>is</syl></verse></note>
 </beam>
 <note xml:id="n55" pname="f" oct="4" dur="2">
-<verse n="1"><syl>He;</syl></verse></note>
+<verse n="1"><syl eol="1">He;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F♯m</harm>
 <harm staff="1" tstamp="3" place="above">B</harm>
@@ -245,7 +245,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n73" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>see.</syl></verse></note>
+<verse n="1"><syl eol="1">see.</syl></verse></note>
 <note xml:id="n74" pname="b" oct="3" dur="8">
 <verse n="1"><label>(C)</label><syl>O</syl></verse></note>
 </layer></staff>
@@ -303,7 +303,7 @@
 <note xml:id="n89" pname="d" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n90" pname="d" oct="4" dur="8">
-<verse n="1"><syl>be,</syl></verse></note>
+<verse n="1"><syl eol="1">be,</syl></verse></note>
 </beam>
 <note xml:id="n91" pname="d" oct="4" dur="2"/>
 </layer></staff>
@@ -358,7 +358,7 @@
 <note xml:id="n106" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n107" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ry!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry!</syl></verse></note>
 </beam>
 <note xml:id="n108" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n109" pname="b" oct="3" dur="8">
@@ -420,7 +420,7 @@
 <note xml:id="n125" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">er</syl></verse></note>
 <note xml:id="n126" pname="b" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">y</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">y</syl></verse></note>
 </beam>
 <note xml:id="n127" pname="b" oct="4" dur="4" dots="1"/>
 <note xml:id="n128" pname="b" oct="4" dur="8">
@@ -486,7 +486,7 @@
 </measure>
 <measure n="33"><staff n="1"><layer n="1">
 <note xml:id="n145" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 <harm staff="1" tstamp="3" place="above">A/E</harm>

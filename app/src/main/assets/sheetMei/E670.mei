@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="2">
 <verse n="1"><syl>with</syl></verse></note>
 <note xml:id="n8" pname="e" oct="4" dur="2">
-<verse n="1"><syl>you,</syl></verse></note>
+<verse n="1"><syl eol="1">you,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/C</harm>
@@ -55,7 +55,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>woe;</syl></verse></note>
+<verse n="1"><syl eol="1">woe;</syl></verse></note>
 <rest xml:id="r16" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/C</harm>
@@ -85,7 +85,7 @@
 <note xml:id="n23" pname="c" oct="5" dur="2">
 <verse n="1"><syl>give</syl></verse></note>
 <note xml:id="n24" pname="a" oct="4" dur="2">
-<verse n="1"><syl>you,</syl></verse></note>
+<verse n="1"><syl eol="1">you,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="3" place="above">A♭/C</harm>
@@ -112,7 +112,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>go.</syl></verse></note>
+<verse n="1"><syl eol="1">go.</syl></verse></note>
 <beam>
 <note xml:id="n32" pname="a" oct="4" dur="8" dots="1">
 <verse n="1"><label>(C)</label><syl wordpos="i" con="d">Pre</syl></verse></note>
@@ -139,7 +139,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>sweet!</syl></verse></note>
+<verse n="1"><syl eol="1">sweet!</syl></verse></note>
 <beam>
 <note xml:id="n38" pname="a" oct="4" dur="8">
 <verse n="1"><syl>Hope</syl></verse></note>
@@ -164,7 +164,7 @@
 <sb/>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>heav’n;</syl></verse></note>
+<verse n="1"><syl eol="1">heav’n;</syl></verse></note>
 <beam>
 <note xml:id="n45" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Pre</syl></verse></note>
@@ -190,7 +190,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="f" oct="4" dur="2">
-<verse n="1"><syl>sweet!</syl></verse></note>
+<verse n="1"><syl eol="1">sweet!</syl></verse></note>
 <note xml:id="n51" pname="a" oct="4" dur="4"/>
 <beam>
 <note xml:id="n52" pname="a" oct="4" dur="8">
@@ -219,7 +219,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>heav’n.</syl></verse></note>
+<verse n="1"><syl eol="1">heav’n.</syl></verse></note>
 <rest xml:id="r59" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>

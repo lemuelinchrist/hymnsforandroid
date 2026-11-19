@@ -42,7 +42,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="f" oct="4" dur="1">
-<verse n="1"><syl>live,</syl></verse></note>
+<verse n="1"><syl eol="1">live,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 </measure>
@@ -85,7 +85,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>live!</syl></verse></note>
+<verse n="1"><syl eol="1">live!</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="f" oct="4" dur="8"/>
 <note xml:id="n26" pname="e" oct="4" dur="8"/>
@@ -120,7 +120,7 @@
 <verse n="1"><syl>will</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="8"/>
 <note xml:id="n36" pname="f" oct="4" dur="8">
-<verse n="1"><syl>know</syl></verse></note>
+<verse n="1"><syl eol="1">know</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -146,7 +146,7 @@
 <note xml:id="n42" pname="b" oct="4" dur="4" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Fa</syl></verse></note>
 <note xml:id="n43" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther,</syl></verse></note>
 <note xml:id="n44" pname="d" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -163,7 +163,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n48" pname="g" oct="4" dur="8"/>
 <note xml:id="n49" pname="a" oct="4" dur="8">
-<verse n="1"><syl>Me,</syl></verse></note>
+<verse n="1"><syl eol="1">Me,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -181,7 +181,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n54" pname="a" oct="4" dur="8"/>
 <note xml:id="n55" pname="g" oct="4" dur="8">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -201,7 +201,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">here!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">here!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

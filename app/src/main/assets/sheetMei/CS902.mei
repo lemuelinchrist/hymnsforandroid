@@ -23,7 +23,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n5" pname="f" oct="4" dur="2">
-<verse n="1"><syl>來─</syl></verse></note>
+<verse n="1"><syl eol="1">來─</syl></verse></note>
 <beam>
 <note xml:id="n6" pname="f" oct="4" dur="8">
 <verse n="1"><syl>今</syl></verse></note>
@@ -45,7 +45,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="a" oct="4" dur="2">
-<verse n="1"><syl>開；</syl></verse></note>
+<verse n="1"><syl eol="1">開；</syl></verse></note>
 <beam>
 <note xml:id="n12" pname="f" oct="4" dur="8">
 <verse n="1"><syl>脫</syl></verse></note>
@@ -69,7 +69,7 @@
 <note xml:id="n17" pname="d" oct="5" dur="4">
 <verse n="1"><syl>纏</syl></verse></note>
 <note xml:id="n18" pname="c" oct="5" dur="4">
-<verse n="1"><syl>累，</syl></verse></note>
+<verse n="1"><syl eol="1">累，</syl></verse></note>
 <note xml:id="n19" pname="a" oct="4" dur="4">
 <verse n="1"><syl>快</syl></verse></note>
 </layer></staff>
@@ -88,7 +88,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2">
-<verse n="1"><syl>怠。</syl></verse></note>
+<verse n="1"><syl eol="1">怠。</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl>主</syl></verse></note>
@@ -118,7 +118,7 @@
 <note xml:id="n30" pname="f" oct="4" dur="4">
 <verse n="1"><syl>要</syl></verse></note>
 <note xml:id="n31" pname="f" oct="4" dur="4">
-<verse n="1"><syl>來！</syl></verse></note>
+<verse n="1"><syl eol="1">來！</syl></verse></note>
 <beam>
 <note xml:id="n32" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl>哦，</syl></verse></note>
@@ -141,7 +141,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="g" oct="4" dur="2">
-<verse n="1"><syl>來！</syl></verse></note>
+<verse n="1"><syl eol="1">來！</syl></verse></note>
 <beam>
 <note xml:id="n38" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl>主</syl></verse></note>
@@ -170,7 +170,7 @@
 <note xml:id="n44" pname="f" oct="4" dur="4">
 <verse n="1"><syl>要</syl></verse></note>
 <note xml:id="n45" pname="f" oct="4" dur="4">
-<verse n="1"><syl>來！</syl></verse></note>
+<verse n="1"><syl eol="1">來！</syl></verse></note>
 <note xml:id="n46" pname="a" oct="4" dur="4">
 <verse n="1"><syl>阿</syl></verse></note>
 </layer></staff>
@@ -189,7 +189,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="f" oct="4" dur="2">
-<verse n="1"><syl>來！</syl></verse></note>
+<verse n="1"><syl eol="1">來！</syl></verse></note>
 <rest xml:id="r51" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

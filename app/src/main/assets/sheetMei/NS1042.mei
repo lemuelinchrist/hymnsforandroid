@@ -52,7 +52,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="f" oct="4" dur="1">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -99,7 +99,7 @@
 <note xml:id="n31" pname="c" oct="5" dur="8" dots="1">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n32" pname="a" oct="4" dur="16">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
@@ -149,7 +149,7 @@
 <note xml:id="n47" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n48" pname="b" oct="4" dur="16">
-<verse n="1"><syl>God.</syl></verse></note>
+<verse n="1"><syl eol="1">God.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -187,7 +187,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n59" pname="g" oct="4" dur="8" dots="1"/>
 <note xml:id="n60" pname="f" oct="4" dur="16">
-<verse n="1"><syl wordpos="t">broad.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">broad.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -242,7 +242,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n75" pname="f" oct="4" dur="1">
-<verse n="1"><syl>God!”</syl></verse></note>
+<verse n="1"><syl eol="1">God!”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

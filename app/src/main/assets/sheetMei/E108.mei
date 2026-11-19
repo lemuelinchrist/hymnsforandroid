@@ -25,7 +25,7 @@
 <note xml:id="n6" pname="b" oct="4" dur="4">
 <verse n="1"><syl>a</syl></verse></note>
 <note xml:id="n7" pname="a" oct="4" dur="2">
-<verse n="1"><syl>name</syl></verse></note>
+<verse n="1"><syl eol="1">name</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -49,7 +49,7 @@
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl>who</syl></verse></note>
 <note xml:id="n14" pname="f" oct="4" dur="2">
-<verse n="1"><syl>came</syl></verse></note>
+<verse n="1"><syl eol="1">came</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="2" place="above">C7</harm>
@@ -75,7 +75,7 @@
 <note xml:id="n20" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 <note xml:id="n21" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">claim!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">claim!</syl></verse></note>
 <beam>
 <note xml:id="n22" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Hal</syl></verse></note>
@@ -106,7 +106,7 @@
 <note xml:id="n28" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Sav</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ior!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ior!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>

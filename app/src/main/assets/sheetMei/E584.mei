@@ -43,7 +43,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>go,</syl></verse></note>
+<verse n="1"><syl eol="1">go,</syl></verse></note>
 <note xml:id="n12" pname="g" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
@@ -85,7 +85,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">low.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">low.</syl></verse></note>
 <note xml:id="n24" pname="e" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -131,7 +131,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>fade;</syl></verse></note>
+<verse n="1"><syl eol="1">fade;</syl></verse></note>
 <note xml:id="n36" pname="g" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -174,7 +174,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">fraid.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fraid.</syl></verse></note>
 <note xml:id="n48" pname="c" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -219,7 +219,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n59" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>know.</syl></verse></note>
+<verse n="1"><syl eol="1">know.</syl></verse></note>
 <note xml:id="n60" pname="g" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -263,7 +263,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="c" oct="4" dur="4" dots="1">
-<verse n="1"><syl>go.</syl></verse></note>
+<verse n="1"><syl eol="1">go.</syl></verse></note>
 <note xml:id="n72" pname="c" oct="4" dur="4" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

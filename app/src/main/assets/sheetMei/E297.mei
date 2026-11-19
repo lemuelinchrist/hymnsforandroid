@@ -35,7 +35,7 @@
 <note xml:id="n8" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">cious</syl></verse></note>
 <note xml:id="n9" pname="d" oct="4" dur="4">
-<verse n="1"><syl>word!</syl></verse></note>
+<verse n="1"><syl eol="1">word!</syl></verse></note>
 <note xml:id="n10" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Con</syl></verse></note>
 </layer></staff>
@@ -66,7 +66,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="f" oct="4" dur="4">
-<verse n="1"><syl>soul!</syl></verse></note>
+<verse n="1"><syl eol="1">soul!</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="2"/>
 <note xml:id="n19" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Thy</syl></verse></note>
@@ -102,7 +102,7 @@
 <note xml:id="n26" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">sus</syl></verse></note>
 <note xml:id="n27" pname="f" oct="4" dur="4">
-<verse n="1"><syl>laid,</syl></verse></note>
+<verse n="1"><syl eol="1">laid,</syl></verse></note>
 <note xml:id="n28" pname="b" oct="4" dur="4">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
@@ -130,7 +130,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>whole.</syl></verse></note>
+<verse n="1"><syl eol="1">whole.</syl></verse></note>
 <rest xml:id="r35" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>

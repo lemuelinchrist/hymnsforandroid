@@ -25,7 +25,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>fierce,</syl></verse></note>
+<verse n="1"><syl eol="1">fierce,</syl></verse></note>
 <note xml:id="n7" pname="c" oct="5" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -47,7 +47,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>more;</syl></verse></note>
+<verse n="1"><syl eol="1">more;</syl></verse></note>
 <note xml:id="n13" pname="f" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -76,7 +76,7 @@
 <note xml:id="n20" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n21" pname="b" oct="4" dur="4">
-<verse n="1"><syl>now</syl></verse></note>
+<verse n="1"><syl eol="1">now</syl></verse></note>
 <note xml:id="n22" pname="e" oct="5" dur="4">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
@@ -100,7 +100,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">fore.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fore.</syl></verse></note>
 <note xml:id="n28" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">The</syl></verse></note>
 </layer></staff>
@@ -123,7 +123,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>hell</syl></verse></note>
+<verse n="1"><syl eol="1">hell</syl></verse></note>
 <note xml:id="n34" pname="c" oct="5" dur="4">
 <verse n="1"><syl>E’en</syl></verse></note>
 </layer></staff>
@@ -145,7 +145,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="d" oct="5" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">comes;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">comes;</syl></verse></note>
 <note xml:id="n40" pname="d" oct="5" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
 </layer></staff>
@@ -172,7 +172,7 @@
 <note xml:id="n46" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 <note xml:id="n47" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">sounds,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sounds,</syl></verse></note>
 <note xml:id="n48" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
 </layer></staff>
@@ -194,7 +194,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="e" oct="4" dur="1">
-<verse n="1"><syl>come!</syl></verse></note>
+<verse n="1"><syl eol="1">come!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>

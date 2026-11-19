@@ -45,7 +45,7 @@
 <note xml:id="n11" pname="f" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n12" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ry,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 <note xml:id="n13" pname="c" oct="4" dur="4">
 <verse n="1"><syl>A</syl></verse></note>
 </layer></staff>
@@ -89,7 +89,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>few;</syl></verse></note>
+<verse n="1"><syl eol="1">few;</syl></verse></note>
 <note xml:id="n24" pname="c" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -135,7 +135,7 @@
 <note xml:id="n35" pname="f" oct="4" dur="2">
 <verse n="1"><syl>o’er</syl></verse></note>
 <note xml:id="n36" pname="c" oct="4" dur="4">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <note xml:id="n37" pname="f" oct="4" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
 </layer></staff>
@@ -180,7 +180,7 @@
 <sb/>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>too!</syl></verse></note>
+<verse n="1"><syl eol="1">too!</syl></verse></note>
 <note xml:id="n48" pname="a" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>For</syl></verse></note>
 </layer></staff>
@@ -203,7 +203,7 @@
 <note xml:id="n52" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">pray</syl></verse></note>
 <note xml:id="n53" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n54" pname="a" oct="4" dur="4">
 <verse n="1"><syl>For</syl></verse></note>
 </layer></staff>
@@ -225,7 +225,7 @@
 <note xml:id="n58" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">pray</syl></verse></note>
 <note xml:id="n59" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n60" pname="f" oct="4" dur="4">
 <verse n="1"><syl>For</syl></verse></note>
 </layer></staff>
@@ -247,7 +247,7 @@
 <note xml:id="n64" pname="c" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">pray</syl></verse></note>
 <note xml:id="n65" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n66" pname="f" oct="4" dur="4">
 <verse n="1"><syl>I’m</syl></verse></note>
 </layer></staff>
@@ -271,7 +271,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="f" oct="4" dur="2">
-<verse n="1"><syl>you.</syl></verse></note>
+<verse n="1"><syl eol="1">you.</syl></verse></note>
 <rest xml:id="r72" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

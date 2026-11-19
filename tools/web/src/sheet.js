@@ -744,8 +744,10 @@ export class SheetView {
   // ---- staff hidden: chords over the lyrics ----
   // Each note or rest gets a start beat; a chord goes over the last note starting at or before its tstamp.
   // The sheet's system breaks were made for a letter page, so they are ignored: the lyrics flow to the box width,
-  // and a new line starts after a sentence ends (verse 1; not before 6 syllables, so "Life! life!" stays together)
-  // and before an ending or a section label like "Chorus".
+  // and a new line starts where the sheet marks the end of a line of the words (eol="1" on the syllable, set by
+  // tools/sheet-lines/mark_lines.py from the database's stanzas); a sheet without marks guesses: after a sentence ends
+  // (verse 1; not before 6 syllables, so "Life! life!" stays together). A new line also starts before an ending or a
+  // section label like "Chorus".
   chartData(doc) {
     let verseCount = 1;
     for (const v of mei(doc, 'verse')) verseCount = Math.max(verseCount, parseInt(v.getAttribute('n') || '1', 10));
@@ -761,6 +763,7 @@ export class SheetView {
     const readUnit = (e) => { if (e.getAttribute('meter.unit')) unit = parseInt(e.getAttribute('meter.unit'), 10); };
 
     const chordsOnly = this.chordsOnly;
+    const marked = !chordsOnly && Array.from(mei(doc, 'syl')).some((y) => y.getAttribute('eol') === '1');
     const measure = (m) => {
       if (chordsOnly) newLine();   // a chords-only sheet has one bar per line of the words
       if (m.getAttribute('left') === 'rptstart') mark('‖:');
@@ -778,7 +781,8 @@ export class SheetView {
               const n = parseInt(v.getAttribute('n') || '1', 10) - 1;
               const lab = mei(v, 'label')[0], syl = mei(v, 'syl')[0];
               if (syl) ev.syl[n] = {text: (lab ? lab.textContent + ' ' : '') + syl.textContent,
-                                    pos: syl.getAttribute('wordpos'), dash: syl.getAttribute('con') === 'd'};
+                                    pos: syl.getAttribute('wordpos'), dash: syl.getAttribute('con') === 'd',
+                                    eol: syl.getAttribute('eol') === '1'};
             });
             events.push(ev);
             if (xmlId(c)) byId[xmlId(c)] = ev;
@@ -813,7 +817,9 @@ export class SheetView {
         if (ev.syl.length || ev.chords.length) line().push(ev);
         const first = ev.syl[0] || ev.syl.filter(Boolean)[0];
         if (first) syllables++;
-        if (first && first.pos !== 'i' && first.pos !== 'm' && SENTENCE_END.test(first.text) && syllables >= 6 && !chordsOnly) newLine();
+        // the end of a line of the words: marked in the sheet (tools/sheet-lines), else guessed from the punctuation
+        if (marked ? ev.syl[0] && ev.syl[0].eol
+          : first && first.pos !== 'i' && first.pos !== 'm' && SENTENCE_END.test(first.text) && syllables >= 6 && !chordsOnly) newLine();
       });
       if (m.getAttribute('right') === 'rptend') mark(':‖');
     };

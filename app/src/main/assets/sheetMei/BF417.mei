@@ -39,7 +39,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">way,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way,</syl></verse></note>
 <rest xml:id="r12" dur="8"/>
 <note xml:id="n13" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">With</syl></verse></note>
@@ -65,7 +65,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="c" oct="4" dur="4">
-<verse n="1"><syl>wall,</syl></verse></note>
+<verse n="1"><syl eol="1">wall,</syl></verse></note>
 <beam>
 <note xml:id="n20" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Where</syl></verse></note>
@@ -98,7 +98,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">fied,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fied,</syl></verse></note>
 <rest xml:id="r30" dur="8"/>
 <note xml:id="n31" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Who</syl></verse></note>
@@ -123,7 +123,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="c" oct="4" dur="1">
-<verse n="1"><syl>all.</syl></verse></note>
+<verse n="1"><syl eol="1">all.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n37" endid="#n38"/>
@@ -167,7 +167,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="c" oct="5" dur="1">
-<verse n="1"><syl>loved,</syl></verse></note>
+<verse n="1"><syl eol="1">loved,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n49" endid="#n50"/>
@@ -210,7 +210,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="c" oct="5" dur="1">
-<verse n="1"><syl>bear;</syl></verse></note>
+<verse n="1"><syl eol="1">bear;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <tie startid="#n61" endid="#n62"/>
@@ -253,7 +253,7 @@
 </measure>
 <measure n="21"><staff n="1"><layer n="1">
 <note xml:id="n73" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>blood,</syl></verse></note>
+<verse n="1"><syl eol="1">blood,</syl></verse></note>
 <note xml:id="n74" pname="d" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -277,7 +277,7 @@
 </measure>
 <measure n="24" right="end"><staff n="1"><layer n="1">
 <note xml:id="n79" pname="c" oct="4" dur="1">
-<verse n="1"><syl>share.</syl></verse></note>
+<verse n="1"><syl eol="1">share.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>

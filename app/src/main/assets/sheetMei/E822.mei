@@ -37,7 +37,7 @@
 <note xml:id="n9" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n10" pname="b" oct="4" dur="4">
-<verse n="1"><syl>Christ,</syl></verse></note>
+<verse n="1"><syl eol="1">Christ,</syl></verse></note>
 <note xml:id="n11" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Christ</syl></verse></note>
 </layer></staff>
@@ -68,7 +68,7 @@
 <note xml:id="n17" pname="e" oct="4" dur="4">
 <verse n="1"><syl>as</syl></verse></note>
 <note xml:id="n18" pname="d" oct="4" dur="4">
-<verse n="1"><syl>light;</syl></verse></note>
+<verse n="1"><syl eol="1">light;</syl></verse></note>
 <note xml:id="n19" pname="d" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -101,7 +101,7 @@
 <note xml:id="n27" pname="a" oct="4" dur="8"/>
 </beam>
 <note xml:id="n28" pname="b" oct="4" dur="4">
-<verse n="1"><syl>shine,</syl></verse></note>
+<verse n="1"><syl eol="1">shine,</syl></verse></note>
 <note xml:id="n29" pname="d" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -135,7 +135,7 @@
 <note xml:id="n36" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ry</syl></verse></note>
 <note xml:id="n37" pname="g" oct="4" dur="4">
-<verse n="1"><syl>bright.</syl></verse></note>
+<verse n="1"><syl eol="1">bright.</syl></verse></note>
 <rest xml:id="r38" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>

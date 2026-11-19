@@ -49,7 +49,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">nal;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">nal;</syl></verse></note>
 <rest xml:id="r13" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -89,7 +89,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>free;</syl></verse></note>
+<verse n="1"><syl eol="1">free;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gsus4</harm>
 <tie startid="#n22" endid="#n23"/>
@@ -139,7 +139,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">er;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 </measure>
@@ -179,7 +179,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>peace!</syl></verse></note>
+<verse n="1"><syl eol="1">peace!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>

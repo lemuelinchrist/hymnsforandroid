@@ -29,7 +29,7 @@
 <note xml:id="n6" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">giv</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">en,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en,</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="4">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
@@ -52,7 +52,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="a" oct="4" dur="2">
-<verse n="1"><syl>eat,</syl></verse></note>
+<verse n="1"><syl eol="1">eat,</syl></verse></note>
 <rest xml:id="r14" dur="4"/>
 <beam>
 <note xml:id="n15" pname="b" oct="4" dur="8">
@@ -82,7 +82,7 @@
 <note xml:id="n21" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">heav</syl></verse></note>
 <note xml:id="n22" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">en,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en,</syl></verse></note>
 <note xml:id="n23" pname="e" oct="4" dur="4">
 <verse n="1"><syl>For</syl></verse></note>
 </layer></staff>
@@ -108,7 +108,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="g" oct="4" dur="2">
-<verse n="1"><syl>meet;</syl></verse></note>
+<verse n="1"><syl eol="1">meet;</syl></verse></note>
 <rest xml:id="r30" dur="4"/>
 <note xml:id="n31" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Give</syl></verse></note>
@@ -136,7 +136,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">pin</syl></verse></note>
 <note xml:id="n38" pname="d" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n39" pname="d" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -161,7 +161,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="b" oct="4" dur="2">
-<verse n="1"><syl>filled;</syl></verse></note>
+<verse n="1"><syl eol="1">filled;</syl></verse></note>
 <rest xml:id="r46" dur="4"/>
 <beam>
 <note xml:id="n47" pname="b" oct="4" dur="8">
@@ -190,7 +190,7 @@
 <note xml:id="n53" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="m" con="d">sign</syl></verse></note>
 <note xml:id="n54" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n55" pname="e" oct="4" dur="4">
 <verse n="1"><syl>Our</syl></verse></note>
 </layer></staff>
@@ -217,7 +217,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>stilled.</syl></verse></note>
+<verse n="1"><syl eol="1">stilled.</syl></verse></note>
 <rest xml:id="r62" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

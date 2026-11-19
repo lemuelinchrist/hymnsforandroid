@@ -46,7 +46,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="a" oct="4" dur="8">
 <verse n="1"><syl>In</syl></verse></note>
@@ -87,7 +87,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <beam>
 <note xml:id="n25" pname="b" oct="3" dur="8">
 <verse n="1"><syl>That</syl></verse></note>
@@ -129,7 +129,7 @@
 <verse n="1"><syl wordpos="m" con="d">ri</syl></verse></note>
 </beam>
 <note xml:id="n36" pname="e" oct="5" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">ous,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ous,</syl></verse></note>
 <beam>
 <note xml:id="n37" pname="e" oct="5" dur="8">
 <verse n="1"><syl>O</syl></verse></note>
@@ -161,7 +161,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="e" oct="4" dur="2">
-<verse n="1"><syl>pray.</syl></verse></note>
+<verse n="1"><syl eol="1">pray.</syl></verse></note>
 <beam>
 <note xml:id="n45" pname="e" oct="4" dur="8"/>
 <note xml:id="n46" pname="b" oct="4" dur="8">
@@ -197,7 +197,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="e" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">day;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day;</syl></verse></note>
 <beam>
 <note xml:id="n55" pname="e" oct="5" dur="8"/>
 <note xml:id="n56" pname="g" oct="4" dur="8">
@@ -230,7 +230,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n63" pname="b" oct="4" dur="2">
-<verse n="1"><syl>way.</syl></verse></note>
+<verse n="1"><syl eol="1">way.</syl></verse></note>
 <beam>
 <note xml:id="n64" pname="b" oct="4" dur="8"/>
 <note xml:id="n65" pname="b" oct="4" dur="8">
@@ -253,7 +253,7 @@
 <verse n="1"><syl wordpos="t">son,</syl></verse></note>
 </beam>
 <note xml:id="n70" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Lord;</syl></verse></note>
+<verse n="1"><syl eol="1">Lord;</syl></verse></note>
 <beam>
 <note xml:id="n71" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Oh,</syl></verse></note>
@@ -274,7 +274,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 <note xml:id="n76" pname="e" oct="5" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">broad.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">broad.</syl></verse></note>
 <beam>
 <note xml:id="n77" pname="e" oct="5" dur="8">
 <verse n="1"><syl>Oh,</syl></verse></note>
@@ -305,7 +305,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n84" pname="e" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">day.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 <note xml:id="n85" pname="e" oct="4" dur="8"/>
 <rest xml:id="r86" dur="4" dots="1"/>
 </layer></staff>

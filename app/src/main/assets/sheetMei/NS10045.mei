@@ -32,7 +32,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="f" oct="4" dur="1">
-<verse n="1"><syl>cry,</syl></verse></note>
+<verse n="1"><syl eol="1">cry,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -62,7 +62,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="a" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">in.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -88,7 +88,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ther,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -112,7 +112,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="d" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ther.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D7</harm>
 </measure>

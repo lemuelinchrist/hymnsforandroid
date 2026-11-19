@@ -40,7 +40,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">folds</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">folds</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -67,7 +67,7 @@
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="e" oct="4" dur="2">
-<verse n="1"><syl>ear;</syl></verse></note>
+<verse n="1"><syl eol="1">ear;</syl></verse></note>
 <note xml:id="n18" pname="e" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -109,7 +109,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n27" pname="g" oct="4" dur="2">
-<verse n="1"><syl>holds</syl></verse></note>
+<verse n="1"><syl eol="1">holds</syl></verse></note>
 <note xml:id="n28" pname="e" oct="4" dur="4">
 <verse n="1"><syl>None</syl></verse></note>
 </layer></staff>
@@ -138,7 +138,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n34" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>dear.</syl></verse></note>
+<verse n="1"><syl eol="1">dear.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="2" place="above">D/A</harm>

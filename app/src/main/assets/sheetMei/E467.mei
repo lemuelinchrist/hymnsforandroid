@@ -29,7 +29,7 @@
 <note xml:id="n6" pname="g" oct="4" dur="2" dots="1">
 <verse n="1"><syl wordpos="i" con="d">spok</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">en,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">en,</syl></verse></note>
 <note xml:id="n8" pname="c" oct="4" dur="4">
 <verse n="1"><syl>This</syl></verse></note>
 </layer></staff>
@@ -52,7 +52,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>made:</syl></verse></note>
+<verse n="1"><syl eol="1">made:</syl></verse></note>
 <rest xml:id="r14" dur="2"/>
 <note xml:id="n15" pname="c" oct="4" dur="4">
 <verse n="1"><syl>I</syl></verse></note>
@@ -79,7 +79,7 @@
 <note xml:id="n20" pname="d" oct="5" dur="2" dots="1">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sus,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus,</syl></verse></note>
 <note xml:id="n22" pname="g" oct="4" dur="4" accid="s" accid.ges="s">
 <verse n="1"><syl>Who</syl></verse></note>
 </layer></staff>
@@ -103,7 +103,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>paid.</syl></verse></note>
+<verse n="1"><syl eol="1">paid.</syl></verse></note>
 <rest xml:id="r29" dur="2" dots="1"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>

@@ -33,7 +33,7 @@
 <note xml:id="n9" pname="e" oct="4" dur="4">
 <verse n="1"><syl>不</syl></verse></note>
 <note xml:id="n10" pname="d" oct="4" dur="2">
-<verse n="1"><syl>辭</syl></verse></note>
+<verse n="1"><syl eol="1">辭</syl></verse></note>
 <note xml:id="n11" pname="d" oct="4" dur="4">
 <verse n="1"><syl>為</syl></verse></note>
 </layer></staff>
@@ -58,7 +58,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>死！</syl></verse></note>
+<verse n="1"><syl eol="1">死！</syl></verse></note>
 <note xml:id="n18" pname="d" oct="4" dur="2"/>
 <note xml:id="n19" pname="d" oct="4" dur="4">
 <verse n="1"><syl>好</syl></verse></note>
@@ -88,7 +88,7 @@
 <note xml:id="n26" pname="c" oct="5" dur="4">
 <verse n="1"><syl>罪</syl></verse></note>
 <note xml:id="n27" pname="c" oct="5" dur="4">
-<verse n="1"><syl>世，</syl></verse></note>
+<verse n="1"><syl eol="1">世，</syl></verse></note>
 <note xml:id="n28" pname="b" oct="4" dur="4"/>
 <note xml:id="n29" pname="a" oct="4" dur="4">
 <verse n="1"><syl>並</syl></verse></note>
@@ -114,7 +114,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n35" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>勢。</syl></verse></note>
+<verse n="1"><syl eol="1">勢。</syl></verse></note>
 <note xml:id="n36" pname="g" oct="4" dur="2"/>
 <rest xml:id="r37" dur="4"/>
 </layer></staff>

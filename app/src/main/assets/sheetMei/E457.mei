@@ -35,7 +35,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n8" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Thee,</syl></verse></note>
+<verse n="1"><syl eol="1">Thee,</syl></verse></note>
 <note xml:id="n9" pname="c" oct="4" dur="8">
 <verse n="1"><syl>Thou</syl></verse></note>
 </layer></staff>
@@ -66,7 +66,7 @@
 <verse n="1"><syl>for</syl></verse></note>
 </beam>
 <note xml:id="n16" pname="g" oct="4" dur="4">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 <note xml:id="n17" pname="c" oct="4" dur="4">
 <verse n="1"><syl>Oh,</syl></verse></note>
 </layer></staff>
@@ -97,7 +97,7 @@
 <verse n="1"><syl wordpos="t">ful</syl></verse></note>
 </beam>
 <note xml:id="n24" pname="b" oct="4" dur="4">
-<verse n="1"><syl>be,</syl></verse></note>
+<verse n="1"><syl eol="1">be,</syl></verse></note>
 <note xml:id="n25" pname="g" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -123,7 +123,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="f" oct="4" dur="2">
-<verse n="1"><syl>God!</syl></verse></note>
+<verse n="1"><syl eol="1">God!</syl></verse></note>
 <note xml:id="n31" pname="c" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>I’ll</syl></verse></note>
 </layer></staff>
@@ -154,7 +154,7 @@
 <verse n="1"><syl>for</syl></verse></note>
 </beam>
 <note xml:id="n38" pname="a" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <note xml:id="n39" pname="c" oct="4" dur="8">
 <verse n="1"><syl>How</syl></verse></note>
 </layer></staff>
@@ -185,7 +185,7 @@
 <verse n="1"><syl>shall</syl></verse></note>
 </beam>
 <note xml:id="n46" pname="g" oct="4" dur="4">
-<verse n="1"><syl>be!</syl></verse></note>
+<verse n="1"><syl eol="1">be!</syl></verse></note>
 <note xml:id="n47" pname="c" oct="4" dur="4">
 <verse n="1"><syl>I’ll</syl></verse></note>
 </layer></staff>
@@ -216,7 +216,7 @@
 <verse n="1"><syl>for</syl></verse></note>
 </beam>
 <note xml:id="n54" pname="b" oct="4" dur="4">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 <note xml:id="n55" pname="g" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -241,7 +241,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="2">
-<verse n="1"><syl>God!</syl></verse></note>
+<verse n="1"><syl eol="1">God!</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>

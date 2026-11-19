@@ -31,7 +31,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>主，</syl></verse></note>
+<verse n="1"><syl eol="1">主，</syl></verse></note>
 <beam>
 <note xml:id="n7" pname="f" oct="4" dur="8">
 <verse n="1"><syl>祂</syl></verse></note>
@@ -51,7 +51,7 @@
 <note xml:id="n11" pname="a" oct="4" dur="8">
 <verse n="1"><syl>復</syl></verse></note>
 <note xml:id="n12" pname="a" oct="4" dur="8">
-<verse n="1"><syl>活，</syl></verse></note>
+<verse n="1"><syl eol="1">活，</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n13" pname="b" oct="4" dur="8">
@@ -69,7 +69,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n17" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>主！</syl></verse></note>
+<verse n="1"><syl eol="1">主！</syl></verse></note>
 <beam>
 <note xml:id="n18" pname="f" oct="4" dur="8">
 <verse n="1"><syl>萬</syl></verse></note>
@@ -90,7 +90,7 @@
 <verse n="1"><syl>屈</syl></verse></note>
 </beam>
 <note xml:id="n23" pname="f" oct="4" dur="4">
-<verse n="1"><syl>服，</syl></verse></note>
+<verse n="1"><syl eol="1">服，</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="g" oct="4" dur="8">
 <verse n="1"><syl>萬</syl></verse></note>
@@ -112,7 +112,7 @@
 <verse n="1"><syl>稱</syl></verse></note>
 </beam>
 <note xml:id="n29" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>呼，</syl></verse></note>
+<verse n="1"><syl eol="1">呼，</syl></verse></note>
 <note xml:id="n30" pname="b" oct="4" dur="8">
 <verse n="1"><syl>耶</syl></verse></note>
 </layer></staff>
@@ -140,7 +140,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>主。</syl></verse></note>
+<verse n="1"><syl eol="1">主。</syl></verse></note>
 <rest xml:id="r38" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

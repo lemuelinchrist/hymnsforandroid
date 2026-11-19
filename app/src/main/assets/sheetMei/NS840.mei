@@ -20,7 +20,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n5" pname="f" oct="4" dur="2">
-<verse n="1"><syl>way</syl></verse></note>
+<verse n="1"><syl eol="1">way</syl></verse></note>
 <note xml:id="n6" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n7" pname="e" oct="4" dur="8">
 <verse n="1"><syl>To</syl></verse></note>
@@ -43,7 +43,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="f" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">day,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day,</syl></verse></note>
 <note xml:id="n13" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n14" pname="f" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="e" oct="4" dur="1">
-<verse n="1"><syl>fears.</syl></verse></note>
+<verse n="1"><syl eol="1">fears.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm7</harm>
 <tie startid="#n23" endid="#n24"/>
@@ -106,7 +106,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="f" oct="4" dur="2">
-<verse n="1"><syl>name,</syl></verse></note>
+<verse n="1"><syl eol="1">name,</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n31" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">With</syl></verse></note>
@@ -129,7 +129,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="f" oct="4" dur="2">
-<verse n="1"><syl>change,</syl></verse></note>
+<verse n="1"><syl eol="1">change,</syl></verse></note>
 <note xml:id="n37" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n38" pname="f" oct="4" dur="8">
 <verse n="1"><syl>A</syl></verse></note>
@@ -167,7 +167,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="g" oct="4" dur="1">
-<verse n="1"><syl>tears.</syl></verse></note>
+<verse n="1"><syl eol="1">tears.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm7</harm>
 <slur startid="#n47" endid="#n48"/>
@@ -197,7 +197,7 @@
 <note xml:id="n54" pname="e" oct="5" dur="8">
 <verse n="1"><syl wordpos="m" con="d">ery</syl></verse></note>
 <note xml:id="n55" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">thing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">thing,</syl></verse></note>
 <note xml:id="n56" pname="c" oct="5" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -218,7 +218,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="f" oct="4" dur="1">
-<verse n="1"><syl>rest;</syl></verse></note>
+<verse n="1"><syl eol="1">rest;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -241,7 +241,7 @@
 <note xml:id="n67" pname="e" oct="5" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n68" pname="c" oct="5" dur="4" dots="1">
-<verse n="1"><syl>You</syl></verse></note>
+<verse n="1"><syl eol="1">You</syl></verse></note>
 <note xml:id="n69" pname="c" oct="5" dur="8">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -263,7 +263,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n74" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>best,</syl></verse></note>
+<verse n="1"><syl eol="1">best,</syl></verse></note>
 <beam>
 <note xml:id="n75" pname="b" oct="4" dur="8"/>
 <note xml:id="n76" pname="b" oct="4" dur="8">
@@ -300,7 +300,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n85" pname="f" oct="4" dur="1">
-<verse n="1"><syl>love</syl></verse></note>
+<verse n="1"><syl eol="1">love</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm7</harm>
 </measure>
@@ -317,7 +317,7 @@
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n90" pname="d" oct="4" dur="1">
-<verse n="1"><syl>know.</syl></verse></note>
+<verse n="1"><syl eol="1">know.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n90" endid="#n91"/>

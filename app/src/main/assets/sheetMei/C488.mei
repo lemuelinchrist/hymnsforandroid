@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="e" oct="4" dur="4">
 <verse n="1"><syl>不</syl></verse></note>
 <note xml:id="n8" pname="b" oct="3" dur="2">
-<verse n="1"><syl>釋？</syl></verse></note>
+<verse n="1"><syl eol="1">釋？</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="g" oct="4" dur="8">
 <verse n="1"><syl>且</syl></verse></note>
@@ -55,7 +55,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>腹；</syl></verse></note>
+<verse n="1"><syl eol="1">腹；</syl></verse></note>
 <rest xml:id="r16" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -82,7 +82,7 @@
 <note xml:id="n23" pname="g" oct="4" dur="4">
 <verse n="1"><syl>度</syl></verse></note>
 <note xml:id="n24" pname="b" oct="4" dur="2">
-<verse n="1"><syl>支，</syl></verse></note>
+<verse n="1"><syl eol="1">支，</syl></verse></note>
 <rest xml:id="r25" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
@@ -109,7 +109,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>枯？</syl></verse></note>
+<verse n="1"><syl eol="1">枯？</syl></verse></note>
 <rest xml:id="r33" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -138,7 +138,7 @@
 <note xml:id="n40" pname="g" oct="4" dur="4">
 <verse n="1"><syl>需</syl></verse></note>
 <note xml:id="n41" pname="f" oct="4" dur="2">
-<verse n="1"><syl>要，</syl></verse></note>
+<verse n="1"><syl eol="1">要，</syl></verse></note>
 <rest xml:id="r42" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -163,7 +163,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>給；</syl></verse></note>
+<verse n="1"><syl eol="1">給；</syl></verse></note>
 <rest xml:id="r50" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -191,7 +191,7 @@
 <note xml:id="n57" pname="a" oct="4" dur="4">
 <verse n="1"><syl>創</syl></verse></note>
 <note xml:id="n58" pname="c" oct="5" dur="2">
-<verse n="1"><syl>造，</syl></verse></note>
+<verse n="1"><syl eol="1">造，</syl></verse></note>
 <rest xml:id="r59" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -217,7 +217,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n66" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>計？</syl></verse></note>
+<verse n="1"><syl eol="1">計？</syl></verse></note>
 <rest xml:id="r67" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -246,7 +246,7 @@
 <note xml:id="n74" pname="c" oct="5" dur="8">
 <verse n="1"><syl>當</syl></verse></note>
 <note xml:id="n75" pname="b" oct="4" dur="4" dots="1">
-<verse n="1"><syl>給，</syl></verse></note>
+<verse n="1"><syl eol="1">給，</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
@@ -270,7 +270,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n82" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>握；</syl></verse></note>
+<verse n="1"><syl eol="1">握；</syl></verse></note>
 <rest xml:id="r83" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
@@ -300,7 +300,7 @@
 <verse n="1"><syl>的</syl></verse></note>
 <note xml:id="n91" pname="c" oct="5" dur="4"/>
 <note xml:id="n92" pname="b" oct="4" dur="2">
-<verse n="1"><syl>給，</syl></verse></note>
+<verse n="1"><syl eol="1">給，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/G</harm>
@@ -325,7 +325,7 @@
 <note xml:id="n98" pname="g" oct="4" dur="4">
 <verse n="1"><syl>倍</syl></verse></note>
 <note xml:id="n99" pname="e" oct="4" dur="2">
-<verse n="1"><syl>多。</syl></verse></note>
+<verse n="1"><syl eol="1">多。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭7</harm>
 <harm staff="1" tstamp="3" place="above">E♭</harm>

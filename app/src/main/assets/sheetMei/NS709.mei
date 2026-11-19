@@ -80,7 +80,7 @@
 <note xml:id="n23" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">giv</syl></verse></note>
 <note xml:id="n24" pname="e" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
@@ -112,7 +112,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="c" oct="4" dur="1">
-<verse n="1"><syl>God;</syl></verse></note>
+<verse n="1"><syl eol="1">God;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n33" endid="#n34"/>
@@ -137,7 +137,7 @@
 <note xml:id="n39" pname="b" oct="3" dur="8">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n40" pname="d" oct="4" dur="8">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 </beam>
 <note xml:id="n41" pname="d" oct="4" dur="4"/>
 <beam>
@@ -177,7 +177,7 @@
 <note xml:id="n51" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">stand</syl></verse></note>
 <note xml:id="n52" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n53" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Will</syl></verse></note>
 <note xml:id="n54" pname="e" oct="4" dur="4"/>
@@ -215,7 +215,7 @@
 <note xml:id="n63" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n64" pname="b" oct="3" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">sus.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n64" endid="#n65"/>
@@ -258,7 +258,7 @@
 <note xml:id="n76" pname="f" oct="4" dur="8"/>
 </beam>
 <note xml:id="n77" pname="f" oct="4" dur="2">
-<verse n="1"><syl>peace</syl></verse></note>
+<verse n="1"><syl eol="1">peace</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n76" endid="#n77"/>
@@ -287,7 +287,7 @@
 <note xml:id="n84" pname="b" oct="3" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n85" pname="b" oct="3" dur="8">
-<verse n="1"><syl>me,</syl></verse></note>
+<verse n="1"><syl eol="1">me,</syl></verse></note>
 </beam>
 <note xml:id="n86" pname="b" oct="3" dur="4"/>
 <beam>
@@ -325,7 +325,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n96" pname="c" oct="5" dur="1">
-<verse n="1"><syl>prayer;</syl></verse></note>
+<verse n="1"><syl eol="1">prayer;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n96" endid="#n97"/>
@@ -365,7 +365,7 @@
 <beam>
 <note xml:id="n107" pname="g" oct="4" dur="8"/>
 <note xml:id="n108" pname="f" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">bles,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bles,</syl></verse></note>
 </beam>
 <note xml:id="n109" pname="f" oct="4" dur="4"/>
 <beam>
@@ -407,7 +407,7 @@
 <note xml:id="n119" pname="b" oct="3" dur="8">
 <verse n="1"><syl wordpos="m" con="d">e</syl></verse></note>
 <note xml:id="n120" pname="b" oct="3" dur="8">
-<verse n="1"><syl wordpos="t">ty,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ty,</syl></verse></note>
 </beam>
 <note xml:id="n121" pname="b" oct="3" dur="4"/>
 <beam>
@@ -430,7 +430,7 @@
 <verse n="1"><syl wordpos="t">ver</syl></verse></note>
 </tuplet>
 <note xml:id="n127" pname="f" oct="4" dur="2">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -455,7 +455,7 @@
 </measure>
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n134" pname="b" oct="3" dur="1">
-<verse n="1"><syl>cares.</syl></verse></note>
+<verse n="1"><syl eol="1">cares.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n134" endid="#n135"/>

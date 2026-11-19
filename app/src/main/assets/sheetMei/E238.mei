@@ -26,7 +26,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="a" oct="4" dur="2">
-<verse n="1"><syl>skies,</syl></verse></note>
+<verse n="1"><syl eol="1">skies,</syl></verse></note>
 <note xml:id="n7" pname="g" oct="4" dur="4"/>
 <note xml:id="n8" pname="f" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
@@ -48,7 +48,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>cries:</syl></verse></note>
+<verse n="1"><syl eol="1">cries:</syl></verse></note>
 <note xml:id="n14" pname="b" oct="4" dur="4">
 <verse n="1"><syl>May</syl></verse></note>
 </layer></staff>
@@ -69,7 +69,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n19" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>praised!</syl></verse></note>
+<verse n="1"><syl eol="1">praised!</syl></verse></note>
 <note xml:id="n20" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
 </layer></staff>
@@ -90,7 +90,7 @@
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>prayer</syl></verse></note>
+<verse n="1"><syl eol="1">prayer</syl></verse></note>
 <note xml:id="n26" pname="f" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">pair:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pair:</syl></verse></note>
 <note xml:id="n32" pname="f" oct="4" dur="4">
 <verse n="1"><syl>May</syl></verse></note>
 </layer></staff>
@@ -135,7 +135,7 @@
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="b" oct="4" dur="1">
-<verse n="1"><syl>praised!</syl></verse></note>
+<verse n="1"><syl eol="1">praised!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
 <tie startid="#n37" endid="#n38"/>

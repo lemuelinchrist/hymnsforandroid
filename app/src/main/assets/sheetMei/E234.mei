@@ -33,7 +33,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="e" oct="4" dur="2">
-<verse n="1"><syl>stall,</syl></verse></note>
+<verse n="1"><syl eol="1">stall,</syl></verse></note>
 <beam>
 <note xml:id="n8" pname="e" oct="4" dur="8">
 <verse n="1"><syl>At</syl></verse></note>
@@ -61,7 +61,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="a" oct="4" dur="2">
-<verse n="1"><syl>fall?</syl></verse></note>
+<verse n="1"><syl eol="1">fall?</syl></verse></note>
 <beam>
 <note xml:id="n15" pname="g" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>’Tis</syl></verse></note>
@@ -91,7 +91,7 @@
 <note xml:id="n21" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">sto</syl></verse></note>
 <note xml:id="n22" pname="a" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ry!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry!</syl></verse></note>
 <beam>
 <note xml:id="n23" pname="f" oct="4" dur="8">
 <verse n="1"><syl>’Tis</syl></verse></note>
@@ -120,7 +120,7 @@
 <note xml:id="n29" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n30" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ry!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ry!</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="g" oct="4" dur="8">
 <verse n="1"><syl>At</syl></verse></note>
@@ -148,7 +148,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="e" oct="4" dur="2">
-<verse n="1"><syl>fall,</syl></verse></note>
+<verse n="1"><syl eol="1">fall,</syl></verse></note>
 <beam>
 <note xml:id="n38" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Crown</syl></verse></note>
@@ -176,7 +176,7 @@
 </measure>
 <measure n="13" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="g" oct="4" dur="2">
-<verse n="1"><syl>all!</syl></verse></note>
+<verse n="1"><syl eol="1">all!</syl></verse></note>
 <rest xml:id="r45" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>

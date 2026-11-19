@@ -25,7 +25,7 @@
 <verse n="1"><syl wordpos="m" con="d">bi</syl></verse></note>
 <note xml:id="n7" pname="e" oct="4" dur="8"/>
 <note xml:id="n8" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">lee?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lee?</syl></verse></note>
 </beam>
 <note xml:id="n9" pname="e" oct="4" dur="2"/>
 </layer></staff>
@@ -51,7 +51,7 @@
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n16" pname="f" oct="4" dur="8"/>
 <note xml:id="n17" pname="f" oct="4" dur="8">
-<verse n="1"><syl>see;</syl></verse></note>
+<verse n="1"><syl eol="1">see;</syl></verse></note>
 </beam>
 <note xml:id="n18" pname="f" oct="4" dur="2"/>
 </layer></staff>
@@ -86,7 +86,7 @@
 <note xml:id="n27" pname="f" oct="4" dur="8">
 <verse n="1"><syl>frees</syl></verse></note>
 <note xml:id="n28" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 <note xml:id="n29" pname="e" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -119,7 +119,7 @@
 <verse n="1"><syl wordpos="i" con="d">with</syl></verse></note>
 <note xml:id="n37" pname="e" oct="4" dur="8"/>
 <note xml:id="n38" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">in?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">in?</syl></verse></note>
 </beam>
 <note xml:id="n39" pname="e" oct="4" dur="2"/>
 </layer></staff>
@@ -145,7 +145,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n46" pname="f" oct="4" dur="8"/>
 <note xml:id="n47" pname="f" oct="4" dur="8">
-<verse n="1"><syl>sin?</syl></verse></note>
+<verse n="1"><syl eol="1">sin?</syl></verse></note>
 </beam>
 <note xml:id="n48" pname="f" oct="4" dur="2"/>
 </layer></staff>
@@ -180,7 +180,7 @@
 <note xml:id="n57" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n58" pname="e" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">sus!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sus!</syl></verse></note>
 <note xml:id="n59" pname="e" oct="4" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -217,7 +217,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n68" pname="g" oct="4" dur="1">
-<verse n="1"><syl>day!</syl></verse></note>
+<verse n="1"><syl eol="1">day!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -249,7 +249,7 @@
 </measure>
 <measure n="23"><staff n="1"><layer n="1">
 <note xml:id="n76" pname="g" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">way!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -281,7 +281,7 @@
 </measure>
 <measure n="27"><staff n="1"><layer n="1">
 <note xml:id="n84" pname="e" oct="5" dur="2">
-<verse n="1"><syl>day...!</syl></verse></note>
+<verse n="1"><syl eol="1">day...!</syl></verse></note>
 <note xml:id="n85" pname="d" oct="5" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E7</harm>
@@ -304,7 +304,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n91" pname="f" oct="4" dur="8"/>
 <note xml:id="n92" pname="e" oct="4" dur="8">
-<verse n="1"><syl>age!</syl></verse></note>
+<verse n="1"><syl eol="1">age!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
@@ -322,7 +322,7 @@
 <verse n="1"><syl>His</syl></verse></note>
 <note xml:id="n97" pname="f" oct="4" dur="8"/>
 <note xml:id="n98" pname="e" oct="4" dur="8">
-<verse n="1"><syl>grace!</syl></verse></note>
+<verse n="1"><syl eol="1">grace!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
@@ -343,7 +343,7 @@
 <note xml:id="n103" pname="d" oct="4" dur="8">
 <verse n="1"><syl wordpos="m" con="d">bi</syl></verse></note>
 <note xml:id="n104" pname="d" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">lee!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">lee!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

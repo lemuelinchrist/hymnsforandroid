@@ -31,7 +31,7 @@
 <note xml:id="n9" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">en</syl></verse></note>
 <note xml:id="n10" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">throned;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">throned;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
@@ -61,7 +61,7 @@
 <note xml:id="n19" pname="f" oct="4" dur="4">
 <verse n="1"><syl>is</syl></verse></note>
 <note xml:id="n20" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>owned,</syl></verse></note>
+<verse n="1"><syl eol="1">owned,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">D♭/A♭</harm>
@@ -93,7 +93,7 @@
 <note xml:id="n29" pname="a" oct="4" dur="4">
 <verse n="1"><syl>our</syl></verse></note>
 <note xml:id="n30" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>call,</syl></verse></note>
+<verse n="1"><syl eol="1">call,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="4" place="above">E♭/G</harm>
@@ -123,7 +123,7 @@
 <note xml:id="n39" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">bove</syl></verse></note>
 <note xml:id="n40" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>all.</syl></verse></note>
+<verse n="1"><syl eol="1">all.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/D</harm>
 <harm staff="1" tstamp="3" place="above">B♭7</harm>
@@ -153,7 +153,7 @@
 <note xml:id="n47" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="t">bove</syl></verse></note>
 <note xml:id="n48" pname="d" oct="5" dur="2" dots="1">
-<verse n="1"><syl>all!</syl></verse></note>
+<verse n="1"><syl eol="1">all!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="4" place="above">E♭7</harm>
@@ -185,7 +185,7 @@
 <note xml:id="n57" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">bove</syl></verse></note>
 <note xml:id="n58" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>all!</syl></verse></note>
+<verse n="1"><syl eol="1">all!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/G</harm>
 <harm staff="1" tstamp="4" place="above">A♭</harm>
@@ -216,7 +216,7 @@
 <note xml:id="n67" pname="a" oct="4" dur="4">
 <verse n="1"><syl>we</syl></verse></note>
 <note xml:id="n68" pname="c" oct="5" dur="2" dots="1">
-<verse n="1"><syl>call,</syl></verse></note>
+<verse n="1"><syl eol="1">call,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
@@ -248,7 +248,7 @@
 <note xml:id="n77" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">bove</syl></verse></note>
 <note xml:id="n78" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>all!</syl></verse></note>
+<verse n="1"><syl eol="1">all!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭7</harm>

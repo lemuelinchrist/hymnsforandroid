@@ -26,7 +26,7 @@
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="a" oct="4" dur="4"/>
 <note xml:id="n7" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ther</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ther</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4">
 <verse n="1"><syl>In</syl></verse></note>
 <note xml:id="n9" pname="a" oct="4" dur="4">
@@ -53,7 +53,7 @@
 <note xml:id="n15" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n16" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">it</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it</syl></verse></note>
 <note xml:id="n17" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Flow</syl></verse></note>
 <note xml:id="n18" pname="g" oct="4" dur="4">
@@ -82,7 +82,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="g" oct="4" dur="1">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
 <tie startid="#n25" endid="#n26"/>
@@ -114,7 +114,7 @@
 <note xml:id="n33" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">teach</syl></verse></note>
 <note xml:id="n34" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Or</syl></verse></note>
 <note xml:id="n36" pname="a" oct="4" dur="4">
@@ -141,7 +141,7 @@
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="b" oct="4" dur="4"/>
 <note xml:id="n43" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">trine,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">trine,</syl></verse></note>
 <note xml:id="n44" pname="f" oct="4" dur="4">
 <verse n="1"><syl>But</syl></verse></note>
 <note xml:id="n45" pname="g" oct="4" dur="4">
@@ -173,7 +173,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n53" pname="f" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ous!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ous!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>

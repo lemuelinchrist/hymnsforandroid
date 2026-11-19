@@ -24,7 +24,7 @@
 <note xml:id="n6" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">sus,</syl></verse></note>
 <note xml:id="n7" pname="f" oct="4" dur="2">
-<verse n="1"><syl>go!</syl></verse></note>
+<verse n="1"><syl eol="1">go!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm7</harm>
 </measure>
@@ -50,7 +50,7 @@
 <note xml:id="n15" pname="f" oct="4" dur="8" accid="s" accid.ges="s">
 <verse n="1"><syl>man</syl></verse></note>
 <note xml:id="n16" pname="g" oct="4" dur="2">
-<verse n="1"><syl>so!</syl></verse></note>
+<verse n="1"><syl eol="1">so!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -73,7 +73,7 @@
 <note xml:id="n22" pname="e" oct="4" dur="4">
 <verse n="1"><syl>a</syl></verse></note>
 <note xml:id="n23" pname="c" oct="4" dur="2">
-<verse n="1"><syl>town;</syl></verse></note>
+<verse n="1"><syl eol="1">town;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -99,7 +99,7 @@
 <verse n="1"><syl>then</syl></verse></note>
 <note xml:id="n31" pname="g" oct="4" dur="8"/>
 <note xml:id="n32" pname="g" oct="4" dur="2">
-<verse n="1"><syl>down!</syl></verse></note>
+<verse n="1"><syl eol="1">down!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">G7</harm>
@@ -128,7 +128,7 @@
 <note xml:id="n40" pname="e" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n41" pname="f" oct="4" dur="2">
-<verse n="1"><syl>sea.</syl></verse></note>
+<verse n="1"><syl eol="1">sea.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Dm7</harm>
 </measure>
@@ -154,7 +154,7 @@
 <note xml:id="n49" pname="f" oct="4" dur="8" accid="s" accid.ges="s">
 <verse n="1"><syl>like</syl></verse></note>
 <note xml:id="n50" pname="g" oct="4" dur="2">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -177,7 +177,7 @@
 <note xml:id="n56" pname="e" oct="4" dur="4">
 <verse n="1"><syl wordpos="m" con="d">try</syl></verse></note>
 <note xml:id="n57" pname="c" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">side,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">side,</syl></verse></note>
 <note xml:id="n58" pname="d" oct="4" dur="4">
 <verse n="1"><syl>You’re</syl></verse></note>
 </layer></staff>
@@ -205,7 +205,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>wide!</syl></verse></note>
+<verse n="1"><syl eol="1">wide!</syl></verse></note>
 <rest xml:id="r66" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>

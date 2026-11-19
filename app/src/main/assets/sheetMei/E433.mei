@@ -41,7 +41,7 @@
 <note xml:id="n10" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="m" con="d">pres</syl></verse></note>
 <note xml:id="n11" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sion,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sion,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -80,7 +80,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="c" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">vine;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vine;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -120,7 +120,7 @@
 <note xml:id="n31" pname="c" oct="5" dur="2">
 <verse n="1"><syl wordpos="i" con="d">whis</syl></verse></note>
 <note xml:id="n32" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">per,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">per,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -153,14 +153,14 @@
 <note xml:id="n40" pname="b" oct="3" dur="2">
 <verse n="1"><syl>thou</syl></verse></note>
 <note xml:id="n41" pname="c" oct="4" dur="2">
-<verse n="1"><syl>art</syl></verse></note>
+<verse n="1"><syl eol="1">art</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="3" place="above">A7</harm>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="d" oct="4" dur="1">
-<verse n="1"><syl>Mine.”</syl></verse></note>
+<verse n="1"><syl eol="1">Mine.”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>

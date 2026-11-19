@@ -49,7 +49,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="b" oct="4" dur="2">
-<verse n="1"><syl>found,</syl></verse></note>
+<verse n="1"><syl eol="1">found,</syl></verse></note>
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Wher</syl></verse></note>
 </layer></staff>
@@ -94,7 +94,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">bound;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">bound;</syl></verse></note>
 <note xml:id="n25" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Let</syl></verse></note>
 </layer></staff>
@@ -138,7 +138,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="b" oct="4" dur="2">
-<verse n="1"><syl>sound:</syl></verse></note>
+<verse n="1"><syl eol="1">sound:</syl></verse></note>
 <note xml:id="n37" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -163,7 +163,7 @@
 <sb/>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="b" oct="4" dur="2">
-<verse n="1"><syl>come!</syl></verse></note>
+<verse n="1"><syl eol="1">come!</syl></verse></note>
 <note xml:id="n43" pname="b" oct="4" dur="4">
 <verse n="1"><label>(C)</label><syl>The</syl></verse></note>
 </layer></staff>
@@ -186,7 +186,7 @@
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="d" oct="5" dur="2">
-<verse n="1"><syl>come,</syl></verse></note>
+<verse n="1"><syl eol="1">come,</syl></verse></note>
 <note xml:id="n49" pname="b" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -208,7 +208,7 @@
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="b" oct="4" dur="2">
-<verse n="1"><syl>come!</syl></verse></note>
+<verse n="1"><syl eol="1">come!</syl></verse></note>
 <note xml:id="n55" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -229,7 +229,7 @@
 </measure>
 <measure n="22"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="d" oct="4" dur="2">
-<verse n="1"><syl>heav’n,</syl></verse></note>
+<verse n="1"><syl eol="1">heav’n,</syl></verse></note>
 <note xml:id="n61" pname="d" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -252,7 +252,7 @@
 <sb/>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n66" pname="c" oct="4" dur="2">
-<verse n="1"><syl>giv’n;</syl></verse></note>
+<verse n="1"><syl eol="1">giv’n;</syl></verse></note>
 <note xml:id="n67" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Oh,</syl></verse></note>
 </layer></staff>
@@ -274,7 +274,7 @@
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n72" pname="f" oct="4" dur="2">
-<verse n="1"><syl>’round,</syl></verse></note>
+<verse n="1"><syl eol="1">’round,</syl></verse></note>
 <note xml:id="n73" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Wher</syl></verse></note>
 </layer></staff>
@@ -296,7 +296,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n78" pname="b" oct="4" dur="2">
-<verse n="1"><syl>found—</syl></verse></note>
+<verse n="1"><syl eol="1">found—</syl></verse></note>
 <note xml:id="n79" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -320,7 +320,7 @@
 </measure>
 <measure n="31" right="end"><staff n="1"><layer n="1">
 <note xml:id="n84" pname="b" oct="4" dur="2">
-<verse n="1"><syl>come!</syl></verse></note>
+<verse n="1"><syl eol="1">come!</syl></verse></note>
 <rest xml:id="r85" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

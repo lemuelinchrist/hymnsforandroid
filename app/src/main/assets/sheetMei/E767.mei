@@ -31,7 +31,7 @@
 <note xml:id="n7" pname="f" oct="4" dur="8">
 <verse n="1"><syl>may</syl></verse></note>
 <note xml:id="n8" pname="f" oct="4" dur="2">
-<verse n="1"><syl>cause</syl></verse></note>
+<verse n="1"><syl eol="1">cause</syl></verse></note>
 <note xml:id="n9" pname="g" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">The</syl></verse></note>
 </layer></staff>
@@ -55,7 +55,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="a" oct="4" dur="2">
-<verse n="1"><syl>flee,</syl></verse></note>
+<verse n="1"><syl eol="1">flee,</syl></verse></note>
 <note xml:id="n15" pname="g" oct="4" dur="2"/>
 <note xml:id="n16" pname="b" oct="4" dur="2">
 <verse n="1"><syl>That</syl></verse></note>
@@ -86,7 +86,7 @@
 <note xml:id="n22" pname="c" oct="5" dur="8">
 <verse n="1"><syl>may</syl></verse></note>
 <note xml:id="n23" pname="c" oct="5" dur="2">
-<verse n="1"><syl>bind,</syl></verse></note>
+<verse n="1"><syl eol="1">bind,</syl></verse></note>
 <note xml:id="n24" pname="f" oct="4" dur="2">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
@@ -111,7 +111,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n29" pname="f" oct="4" dur="1">
-<verse n="1"><syl>free.</syl></verse></note>
+<verse n="1"><syl eol="1">free.</syl></verse></note>
 <rest xml:id="r30" dur="2"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>

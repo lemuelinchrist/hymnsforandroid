@@ -26,7 +26,7 @@
 <note xml:id="n7" pname="a" oct="4" dur="4">
 <verse n="1"><syl>found</syl></verse></note>
 <note xml:id="n8" pname="g" oct="4" dur="4">
-<verse n="1"><syl>it,</syl></verse></note>
+<verse n="1"><syl eol="1">it,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -48,7 +48,7 @@
 <note xml:id="n14" pname="g" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n15" pname="f" oct="4" dur="2">
-<verse n="1"><syl>me;</syl></verse></note>
+<verse n="1"><syl eol="1">me;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -74,7 +74,7 @@
 <note xml:id="n22" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">teach</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -96,7 +96,7 @@
 <note xml:id="n29" pname="g" oct="4" dur="8">
 <verse n="1"><syl>in</syl></verse></note>
 <note xml:id="n30" pname="f" oct="4" dur="2">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -131,7 +131,7 @@
 <note xml:id="n39" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">mov</syl></verse></note>
 <note xml:id="n40" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
@@ -159,7 +159,7 @@
 <verse n="1"><syl wordpos="m" con="d">noint</syl></verse></note>
 <note xml:id="n47" pname="c" oct="4" dur="8"/>
 <note xml:id="n48" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">C7</harm>
@@ -183,7 +183,7 @@
 <note xml:id="n53" pname="a" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">flow</syl></verse></note>
 <note xml:id="n54" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">ing!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing!</syl></verse></note>
 <rest xml:id="r55" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
@@ -200,7 +200,7 @@
 <note xml:id="n59" pname="b" oct="4" dur="8">
 <verse n="1"><syl>see</syl></verse></note>
 <note xml:id="n60" pname="a" oct="4" dur="8">
-<verse n="1"><syl>it!</syl></verse></note>
+<verse n="1"><syl eol="1">it!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -217,7 +217,7 @@
 <note xml:id="n64" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">vealed</syl></verse></note>
 <note xml:id="n65" pname="g" oct="4" dur="8">
-<verse n="1"><syl>it!</syl></verse></note>
+<verse n="1"><syl eol="1">it!</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gm</harm>
@@ -246,7 +246,7 @@
 <verse n="1"><syl wordpos="i" con="d">ev</syl></verse></note>
 <note xml:id="n72" pname="c" oct="4" dur="8"/>
 <note xml:id="n73" pname="c" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">er!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">er!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">C7</harm>
@@ -276,7 +276,7 @@
 </measure>
 <measure n="21" right="end"><staff n="1"><layer n="1">
 <note xml:id="n80" pname="f" oct="4" dur="1">
-<verse n="1"><syl>me!</syl></verse></note>
+<verse n="1"><syl eol="1">me!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

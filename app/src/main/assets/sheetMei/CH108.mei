@@ -32,7 +32,7 @@
 <verse n="1"><syl>love</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="8"/>
 <note xml:id="n10" pname="f" oct="4" dur="8">
-<verse n="1"><syl>me—</syl></verse></note>
+<verse n="1"><syl eol="1">me—</syl></verse></note>
 </beam>
 <note xml:id="n11" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n12" pname="g" oct="3" dur="8">
@@ -74,7 +74,7 @@
 <note xml:id="n22" pname="f" oct="4" dur="8">
 <verse n="1"><syl>our</syl></verse></note>
 <note xml:id="n23" pname="g" oct="4" dur="8">
-<verse n="1"><syl>seats.</syl></verse></note>
+<verse n="1"><syl eol="1">seats.</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n24" pname="g" oct="4" dur="8"/>
@@ -99,7 +99,7 @@
 <note xml:id="n30" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">y</syl></verse></note>
 <note xml:id="n31" pname="g" oct="4" dur="8">
-<verse n="1"><syl>sure</syl></verse></note>
+<verse n="1"><syl eol="1">sure</syl></verse></note>
 </beam>
 <note xml:id="n32" pname="g" oct="4" dur="4"/>
 <beam>
@@ -121,7 +121,7 @@
 <note xml:id="n37" pname="f" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">se</syl></verse></note>
 <note xml:id="n38" pname="a" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">cure;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">cure;</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n39" pname="a" oct="4" dur="8"/>
@@ -161,7 +161,7 @@
 <verse n="1"><syl>love</syl></verse></note>
 <note xml:id="n50" pname="c" oct="4" dur="8"/>
 <note xml:id="n51" pname="c" oct="4" dur="8">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 </beam>
 <note xml:id="n52" pname="c" oct="4" dur="2"/>
 </layer></staff>

@@ -25,7 +25,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n5" pname="b" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">sail,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sail,</syl></verse></note>
 <note xml:id="n6" pname="d" oct="5" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -45,7 +45,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">fright;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">fright;</syl></verse></note>
 <note xml:id="n11" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Though</syl></verse></note>
 </layer></staff>
@@ -64,7 +64,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="f" oct="4" dur="2">
-<verse n="1"><syl>fail,</syl></verse></note>
+<verse n="1"><syl eol="1">fail,</syl></verse></note>
 <note xml:id="n16" pname="g" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -90,7 +90,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">nite,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">nite,</syl></verse></note>
 <note xml:id="n22" pname="f" oct="4" dur="4">
 <verse n="1"><syl>Yet</syl></verse></note>
 </layer></staff>
@@ -110,7 +110,7 @@
 <note xml:id="n26" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">cures</syl></verse></note>
 <note xml:id="n27" pname="e" oct="4" dur="4">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <note xml:id="n28" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">What</syl></verse></note>
 </layer></staff>
@@ -128,7 +128,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n32" pname="d" oct="5" dur="2">
-<verse n="1"><syl wordpos="t">tide:</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tide:</syl></verse></note>
 <note xml:id="n33" pname="d" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -151,7 +151,7 @@
 <note xml:id="n37" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">sures</syl></verse></note>
 <note xml:id="n38" pname="d" oct="4" dur="4">
-<verse n="1"><syl>us,</syl></verse></note>
+<verse n="1"><syl eol="1">us,</syl></verse></note>
 <note xml:id="n39" pname="b" oct="4" dur="4">
 <verse n="1"><syl>“The</syl></verse></note>
 </layer></staff>
@@ -172,7 +172,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">vide.”</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">vide.”</syl></verse></note>
 <rest xml:id="r44" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

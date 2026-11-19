@@ -30,7 +30,7 @@
 <verse n="1"><syl>not</syl></verse></note>
 <note xml:id="n9" pname="e" oct="4" dur="8"/>
 <note xml:id="n10" pname="f" oct="4" dur="8">
-<verse n="1"><syl>pay,</syl></verse></note>
+<verse n="1"><syl eol="1">pay,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -60,7 +60,7 @@
 <verse n="1"><syl>not</syl></verse></note>
 <note xml:id="n19" pname="a" oct="4" dur="8"/>
 <note xml:id="n20" pname="b" oct="4" dur="8">
-<verse n="1"><syl>owe,</syl></verse></note>
+<verse n="1"><syl eol="1">owe,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -83,7 +83,7 @@
 <note xml:id="n25" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">some</syl></verse></note>
 <note xml:id="n26" pname="f" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">one,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">one,</syl></verse></note>
 <rest xml:id="r27" dur="4"/>
 <note xml:id="n28" pname="a" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
@@ -104,7 +104,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">way.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E7</harm>
 </measure>
@@ -132,7 +132,7 @@
 <verse n="1"><syl>new</syl></verse></note>
 <note xml:id="n42" pname="e" oct="4" dur="8"/>
 <note xml:id="n43" pname="f" oct="4" dur="8">
-<verse n="1"><syl>song,</syl></verse></note>
+<verse n="1"><syl eol="1">song,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
@@ -160,7 +160,7 @@
 <verse n="1"><syl>day</syl></verse></note>
 <note xml:id="n51" pname="a" oct="4" dur="8"/>
 <note xml:id="n52" pname="b" oct="4" dur="8">
-<verse n="1"><syl>long,</syl></verse></note>
+<verse n="1"><syl eol="1">long,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
@@ -185,7 +185,7 @@
 <note xml:id="n58" pname="g" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n59" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>debt,</syl></verse></note>
+<verse n="1"><syl eol="1">debt,</syl></verse></note>
 <note xml:id="n60" pname="d" oct="4" dur="8">
 <verse n="1"><syl>That</syl></verse></note>
 </layer></staff>
@@ -207,7 +207,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n65" pname="d" oct="4" dur="1">
-<verse n="1"><syl>pay.</syl></verse></note>
+<verse n="1"><syl eol="1">pay.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G/D</harm>

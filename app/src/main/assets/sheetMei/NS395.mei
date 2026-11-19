@@ -35,7 +35,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ter,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ter,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -76,7 +76,7 @@
 <note xml:id="n22" pname="c" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Gen</syl></verse></note>
 <note xml:id="n23" pname="d" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">tiles,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">tiles,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <slur startid="#n23" endid="#n24"/>
@@ -126,7 +126,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <note xml:id="n37" pname="g" oct="4" dur="4">
 <verse n="1"><syl>a</syl></verse></note>
 </layer></staff>
@@ -164,7 +164,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="a" oct="4" dur="1">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">D♭/A♭</harm>
@@ -201,7 +201,7 @@
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
@@ -248,7 +248,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n71" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ble,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ble,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭7</harm>
 </measure>
@@ -301,7 +301,7 @@
 <note xml:id="n86" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n87" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">it,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 </measure>
@@ -341,7 +341,7 @@
 <note xml:id="n98" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Spir</syl></verse></note>
 <note xml:id="n99" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">it.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">it.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">D♭/A♭</harm>

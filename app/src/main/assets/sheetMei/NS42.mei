@@ -21,7 +21,7 @@
 <verse n="1"><syl>I</syl></verse></note>
 <note xml:id="n6" pname="b" oct="4" dur="8"/>
 <note xml:id="n7" pname="e" oct="4" dur="8">
-<verse n="1"><syl>come;</syl></verse></note>
+<verse n="1"><syl eol="1">come;</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -48,7 +48,7 @@
 <verse n="1"><syl>my</syl></verse></note>
 <note xml:id="n14" pname="b" oct="4" dur="8"/>
 <note xml:id="n15" pname="e" oct="4" dur="8">
-<verse n="1"><syl>pray’r,</syl></verse></note>
+<verse n="1"><syl eol="1">pray’r,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
@@ -74,7 +74,7 @@
 <note xml:id="n21" pname="e" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n22" pname="f" oct="4" dur="8">
-<verse n="1"><syl>You,</syl></verse></note>
+<verse n="1"><syl eol="1">You,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
@@ -98,7 +98,7 @@
 <note xml:id="n28" pname="e" oct="4" dur="8">
 <verse n="1"><syl>love</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="8">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
@@ -139,7 +139,7 @@
 <note xml:id="n39" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">to</syl></verse></note>
 <note xml:id="n40" pname="b" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">day,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
@@ -172,7 +172,7 @@
 <note xml:id="n48" pname="g" oct="4" dur="8"/>
 </beam>
 <note xml:id="n49" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">day;</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">day;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <tie startid="#n48" endid="#n49"/>
@@ -212,7 +212,7 @@
 <note xml:id="n58" pname="f" oct="4" dur="4">
 <verse n="1"><syl>love</syl></verse></note>
 <note xml:id="n59" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl>You.</syl></verse></note>
+<verse n="1"><syl eol="1">You.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/E♭</harm>

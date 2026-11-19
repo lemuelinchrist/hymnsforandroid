@@ -34,7 +34,7 @@
 <note xml:id="n7" pname="g" oct="4" dur="4">
 <verse n="1"><syl>light,</syl></verse></note>
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <beam>
 <note xml:id="n9" pname="g" oct="4" dur="8" dots="1">
 <verse n="1"><syl>In</syl></verse></note>
@@ -61,7 +61,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="a" oct="4" dur="2">
-<verse n="1"><syl>art;</syl></verse></note>
+<verse n="1"><syl eol="1">art;</syl></verse></note>
 <beam>
 <note xml:id="n16" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Love</syl></verse></note>
@@ -91,7 +91,7 @@
 <note xml:id="n22" pname="d" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">lum’n</syl></verse></note>
 <note xml:id="n23" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">ing,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Thou</syl></verse></note>
@@ -120,7 +120,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">part.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">part.</syl></verse></note>
 <beam>
 <note xml:id="n31" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><label>(C)</label><syl>Thou</syl></verse></note>
@@ -146,7 +146,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n36" pname="g" oct="4" dur="2">
-<verse n="1"><syl>light!</syl></verse></note>
+<verse n="1"><syl eol="1">light!</syl></verse></note>
 <beam>
 <note xml:id="n37" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>In</syl></verse></note>
@@ -173,7 +173,7 @@
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="a" oct="4" dur="2">
-<verse n="1"><syl>art;</syl></verse></note>
+<verse n="1"><syl eol="1">art;</syl></verse></note>
 <beam>
 <note xml:id="n44" pname="d" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Love</syl></verse></note>
@@ -203,7 +203,7 @@
 <note xml:id="n50" pname="d" oct="5" dur="4">
 <verse n="1"><syl wordpos="m" con="d">lum’n</syl></verse></note>
 <note xml:id="n51" pname="c" oct="5" dur="4">
-<verse n="1"><syl wordpos="t">ing</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing</syl></verse></note>
 <beam>
 <note xml:id="n52" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Thou</syl></verse></note>
@@ -231,7 +231,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">part.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">part.</syl></verse></note>
 <rest xml:id="r59" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

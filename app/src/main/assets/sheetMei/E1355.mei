@@ -32,7 +32,7 @@
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>sins;</syl></verse></note>
+<verse n="1"><syl eol="1">sins;</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
 </layer></staff>
@@ -61,7 +61,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n16" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl>cast.</syl></verse></note>
+<verse n="1"><syl eol="1">cast.</syl></verse></note>
 <note xml:id="n17" pname="d" oct="4" dur="4">
 <verse n="1"><syl>He’ll</syl></verse></note>
 </layer></staff>
@@ -89,7 +89,7 @@
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="e" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">gain</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">gain</syl></verse></note>
 <note xml:id="n25" pname="c" oct="5" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -118,7 +118,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="g" oct="4" dur="2">
-<verse n="1"><syl>past.</syl></verse></note>
+<verse n="1"><syl eol="1">past.</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="g" oct="4" dur="8"/>
 <note xml:id="n35" pname="a" oct="4" dur="8">
@@ -153,7 +153,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="d" oct="5" dur="4" dots="1">
-<verse n="1"><syl>sins,</syl></verse></note>
+<verse n="1"><syl eol="1">sins,</syl></verse></note>
 <note xml:id="n43" pname="d" oct="5" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
 <beam>
@@ -185,7 +185,7 @@
 <scoreDef meter.count="4" meter.unit="4" meter.sym="common"/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="d" oct="4" dur="2" dots="1">
-<verse n="1"><syl>blown,</syl></verse></note>
+<verse n="1"><syl eol="1">blown,</syl></verse></note>
 <note xml:id="n51" pname="d" oct="4" dur="4">
 <verse n="1"><syl>My</syl></verse></note>
 </layer></staff>
@@ -212,7 +212,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="b" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">way!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">way!</syl></verse></note>
 <note xml:id="n59" pname="c" oct="5" dur="4"/>
 <note xml:id="n60" pname="d" oct="5" dur="4" dots="1"/>
 <note xml:id="n61" pname="d" oct="5" dur="8">
@@ -246,7 +246,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n69" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>known.</syl></verse></note>
+<verse n="1"><syl eol="1">known.</syl></verse></note>
 <rest xml:id="r70" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>

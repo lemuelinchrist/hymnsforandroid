@@ -29,7 +29,7 @@
 <note xml:id="n7" pname="e" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 <note xml:id="n8" pname="d" oct="4" dur="4">
-<verse n="1"><syl>is;</syl></verse></note>
+<verse n="1"><syl eol="1">is;</syl></verse></note>
 <note xml:id="n9" pname="f" oct="4" dur="8">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
@@ -56,7 +56,7 @@
 <note xml:id="n15" pname="e" oct="4" dur="8">
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n16" pname="f" oct="4" dur="4">
-<verse n="1"><syl>God,</syl></verse></note>
+<verse n="1"><syl eol="1">God,</syl></verse></note>
 <note xml:id="n17" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
 </layer></staff>
@@ -86,7 +86,7 @@
 <note xml:id="n24" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">cense</syl></verse></note>
 <note xml:id="n25" pname="f" oct="4" dur="4">
-<verse n="1"><syl>burns</syl></verse></note>
+<verse n="1"><syl eol="1">burns</syl></verse></note>
 <note xml:id="n26" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Of</syl></verse></note>
 </layer></staff>
@@ -110,7 +110,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Lord.</syl></verse></note>
+<verse n="1"><syl eol="1">Lord.</syl></verse></note>
 <note xml:id="n32" pname="d" oct="4" dur="4"/>
 <note xml:id="n33" pname="d" oct="4" dur="8">
 <verse n="1"><label>(C)</label><syl>Let</syl></verse></note>
@@ -135,7 +135,7 @@
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl>burn</syl></verse></note>
+<verse n="1"><syl eol="1">burn</syl></verse></note>
 <note xml:id="n39" pname="d" oct="4" dur="4"/>
 <note xml:id="n40" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Of</syl></verse></note>
@@ -160,7 +160,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Lord;</syl></verse></note>
+<verse n="1"><syl eol="1">Lord;</syl></verse></note>
 <note xml:id="n46" pname="f" oct="4" dur="4"/>
 <note xml:id="n47" pname="a" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
@@ -192,7 +192,7 @@
 <note xml:id="n54" pname="a" oct="4" dur="8">
 <verse n="1"><syl>and</syl></verse></note>
 <note xml:id="n55" pname="f" oct="4" dur="4">
-<verse n="1"><syl>night</syl></verse></note>
+<verse n="1"><syl eol="1">night</syl></verse></note>
 <note xml:id="n56" pname="d" oct="4" dur="8">
 <verse n="1"><syl>Our</syl></verse></note>
 </layer></staff>
@@ -215,7 +215,7 @@
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n61" pname="d" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">poured.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">poured.</syl></verse></note>
 <note xml:id="n62" pname="d" oct="4" dur="4"/>
 <rest xml:id="r63" dur="8"/>
 </layer></staff>

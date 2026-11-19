@@ -43,7 +43,7 @@
 <verse n="1"><syl>至</syl></verse></note>
 </beam>
 <note xml:id="n12" pname="e" oct="4" dur="4">
-<verse n="1"><syl>極，</syl></verse></note>
+<verse n="1"><syl eol="1">極，</syl></verse></note>
 <beam>
 <note xml:id="n13" pname="d" oct="4" dur="8">
 <verse n="1"><syl>所</syl></verse></note>
@@ -79,7 +79,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>疲；</syl></verse></note>
+<verse n="1"><syl eol="1">疲；</syl></verse></note>
 <beam>
 <note xml:id="n23" pname="g" oct="4" dur="8">
 <verse n="1"><syl>但</syl></verse></note>
@@ -117,7 +117,7 @@
 <note xml:id="n32" pname="a" oct="4" dur="4">
 <verse n="1"><syl>放</syl></verse></note>
 <note xml:id="n33" pname="c" oct="5" dur="4">
-<verse n="1"><syl>棄，</syl></verse></note>
+<verse n="1"><syl eol="1">棄，</syl></verse></note>
 <beam>
 <note xml:id="n34" pname="d" oct="5" dur="8">
 <verse n="1"><syl>仍</syl></verse></note>
@@ -153,7 +153,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="e" oct="4" dur="1">
-<verse n="1"><syl>臆。</syl></verse></note>
+<verse n="1"><syl eol="1">臆。</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>

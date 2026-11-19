@@ -21,7 +21,7 @@
 <note xml:id="n5" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">trea</syl></verse></note>
 <note xml:id="n6" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">sure.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure.</syl></verse></note>
 <note xml:id="n7" pname="g" oct="4" dur="8"/>
 <note xml:id="n8" pname="g" oct="4" dur="8">
 <verse n="1"><syl>You’re</syl></verse></note>
@@ -43,7 +43,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n13" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>me.</syl></verse></note>
+<verse n="1"><syl eol="1">me.</syl></verse></note>
 <note xml:id="n14" pname="c" oct="4" dur="8">
 <verse n="1"><syl>I</syl></verse></note>
 </layer></staff>
@@ -65,7 +65,7 @@
 <note xml:id="n19" pname="g" oct="4" dur="8">
 <verse n="1"><syl wordpos="i" con="d">pres</syl></verse></note>
 <note xml:id="n20" pname="g" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">ence.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ence.</syl></verse></note>
 <note xml:id="n21" pname="g" oct="4" dur="8"/>
 <note xml:id="n22" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Your</syl></verse></note>
@@ -88,7 +88,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
 <note xml:id="n27" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl>see</syl></verse></note>
+<verse n="1"><syl eol="1">see</syl></verse></note>
 <note xml:id="n28" pname="c" oct="5" dur="8">
 <verse n="1"><label>(C)</label><syl>This</syl></verse></note>
 </layer></staff>
@@ -112,7 +112,7 @@
 <verse n="1"><syl wordpos="i" con="d">trea</syl></verse></note>
 <note xml:id="n33" pname="g" oct="4" dur="4"/>
 <note xml:id="n34" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">sure,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure,</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
@@ -136,7 +136,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="a" oct="4" dur="2">
-<verse n="1"><syl>Christ.</syl></verse></note>
+<verse n="1"><syl eol="1">Christ.</syl></verse></note>
 <note xml:id="n41" pname="f" oct="4" dur="4" dots="1"/>
 <note xml:id="n42" pname="c" oct="5" dur="8">
 <verse n="1"><syl>This</syl></verse></note>
@@ -162,7 +162,7 @@
 <verse n="1"><syl wordpos="i" con="d">trea</syl></verse></note>
 <note xml:id="n47" pname="g" oct="4" dur="4"/>
 <note xml:id="n48" pname="f" oct="4" dur="4" dots="1">
-<verse n="1"><syl wordpos="t">sure.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">sure.</syl></verse></note>
 <note xml:id="n49" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Your</syl></verse></note>
 </layer></staff>
@@ -185,7 +185,7 @@
 </measure>
 <measure n="12" right="end"><staff n="1"><layer n="1">
 <note xml:id="n54" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">light.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">light.</syl></verse></note>
 <rest xml:id="r55" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>

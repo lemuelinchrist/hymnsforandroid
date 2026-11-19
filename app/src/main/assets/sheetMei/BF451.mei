@@ -46,7 +46,7 @@
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>peace,</syl></verse></note>
+<verse n="1"><syl eol="1">peace,</syl></verse></note>
 <note xml:id="n12" pname="b" oct="3" dur="4">
 <verse n="1"><syl>Nor</syl></verse></note>
 </layer></staff>
@@ -89,7 +89,7 @@
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="b" oct="3" dur="2">
-<verse n="1"><syl>God;</syl></verse></note>
+<verse n="1"><syl eol="1">God;</syl></verse></note>
 <beam>
 <note xml:id="n24" pname="b" oct="3" dur="8"/>
 <note xml:id="n25" pname="e" oct="4" dur="8">
@@ -147,7 +147,7 @@
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="f" oct="4" dur="2">
-<verse n="1"><syl>His—</syl></verse></note>
+<verse n="1"><syl eol="1">His—</syl></verse></note>
 <beam>
 <note xml:id="n40" pname="f" oct="4" dur="8"/>
 <note xml:id="n41" pname="a" oct="4" dur="8">
@@ -191,7 +191,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="b" oct="4" dur="1">
-<verse n="1"><syl>road.</syl></verse></note>
+<verse n="1"><syl eol="1">road.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E</harm>
 <tie startid="#n52" endid="#n53"/>

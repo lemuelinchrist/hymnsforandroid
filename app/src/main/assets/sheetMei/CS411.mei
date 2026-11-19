@@ -34,7 +34,7 @@
 <verse n="1"><syl>仇</syl></verse></note>
 </beam>
 <note xml:id="n10" pname="f" oct="4" dur="4">
-<verse n="1"><syl>敵，</syl></verse></note>
+<verse n="1"><syl eol="1">敵，</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -53,7 +53,7 @@
 <verse n="1"><syl>仇</syl></verse></note>
 </beam>
 <note xml:id="n16" pname="e" oct="4" dur="4">
-<verse n="1"><syl>敵，</syl></verse></note>
+<verse n="1"><syl eol="1">敵，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 </measure>
@@ -73,7 +73,7 @@
 <verse n="1"><syl>仇</syl></verse></note>
 </beam>
 <note xml:id="n22" pname="f" oct="4" dur="4">
-<verse n="1"><syl>敵；</syl></verse></note>
+<verse n="1"><syl eol="1">敵；</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -106,7 +106,7 @@
 <verse n="1"><syl>仇</syl></verse></note>
 </beam>
 <note xml:id="n32" pname="f" oct="4" dur="4">
-<verse n="1"><syl>敵，</syl></verse></note>
+<verse n="1"><syl eol="1">敵，</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
@@ -123,7 +123,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>血。</syl></verse></note>
+<verse n="1"><syl eol="1">血。</syl></verse></note>
 <rest xml:id="r38" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -146,7 +146,7 @@
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="c" oct="5" dur="1">
-<verse n="1"><syl>血，</syl></verse></note>
+<verse n="1"><syl eol="1">血，</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -164,7 +164,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="a" oct="4" dur="2" dots="1">
-<verse n="1"><syl>血。</syl></verse></note>
+<verse n="1"><syl eol="1">血。</syl></verse></note>
 <rest xml:id="r49" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -198,7 +198,7 @@
 <verse n="1"><syl>仇</syl></verse></note>
 </beam>
 <note xml:id="n59" pname="f" oct="4" dur="4">
-<verse n="1"><syl>敵，</syl></verse></note>
+<verse n="1"><syl eol="1">敵，</syl></verse></note>
 </layer></staff>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
@@ -215,7 +215,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>血。</syl></verse></note>
+<verse n="1"><syl eol="1">血。</syl></verse></note>
 <rest xml:id="r65" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>

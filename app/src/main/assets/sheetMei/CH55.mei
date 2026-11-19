@@ -58,7 +58,7 @@
 <beam>
 <note xml:id="n16" pname="a" oct="4" dur="8" dots="1"/>
 <note xml:id="n17" pname="f" oct="4" dur="16">
-<verse n="1"><syl>purr,</syl></verse></note>
+<verse n="1"><syl eol="1">purr,</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F7</harm>
@@ -99,7 +99,7 @@
 <note xml:id="n28" pname="f" oct="4" dur="8" dots="1">
 <verse n="1"><syl>your</syl></verse></note>
 <note xml:id="n29" pname="b" oct="4" dur="16">
-<verse n="1"><syl>toe,</syl></verse></note>
+<verse n="1"><syl eol="1">toe,</syl></verse></note>
 </beam>
 <beam>
 <note xml:id="n30" pname="b" oct="4" dur="8" dots="1"/>
@@ -138,7 +138,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="b" oct="3" dur="2" dots="1">
-<verse n="1"><syl>so.</syl></verse></note>
+<verse n="1"><syl eol="1">so.</syl></verse></note>
 <rest xml:id="r41" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>

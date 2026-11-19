@@ -30,7 +30,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>debt</syl></verse></note>
+<verse n="1"><syl eol="1">debt</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -60,7 +60,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n13" pname="d" oct="4" dur="2">
-<verse n="1"><syl>you,</syl></verse></note>
+<verse n="1"><syl eol="1">you,</syl></verse></note>
 <note xml:id="n14" pname="d" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
@@ -91,7 +91,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl>know,</syl></verse></note>
+<verse n="1"><syl eol="1">know,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -123,7 +123,7 @@
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="g" oct="4" dur="2" dots="1">
-<verse n="1"><syl>them.</syl></verse></note>
+<verse n="1"><syl eol="1">them.</syl></verse></note>
 </layer></staff>
 </measure>
 <sb/>
@@ -159,7 +159,7 @@
 <note xml:id="n37" pname="g" oct="4" dur="2">
 <verse n="1"><syl>tell</syl></verse></note>
 <note xml:id="n38" pname="f" oct="4" dur="4" accid="n" accid.ges="n">
-<verse n="1"><syl>you</syl></verse></note>
+<verse n="1"><syl eol="1">you</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
 </measure>
@@ -189,7 +189,7 @@
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n45" pname="d" oct="4" dur="2">
-<verse n="1"><syl>well!</syl></verse></note>
+<verse n="1"><syl eol="1">well!</syl></verse></note>
 <note xml:id="n46" pname="d" oct="4" dur="4">
 <verse n="1"><syl>Then</syl></verse></note>
 </layer></staff>
@@ -220,7 +220,7 @@
 </measure>
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">ly</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ly</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
@@ -252,7 +252,7 @@
 </measure>
 <measure n="32" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="g" oct="4" dur="2">
-<verse n="1"><syl wordpos="t">ment!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ment!</syl></verse></note>
 <rest xml:id="r61" dur="4"/>
 </layer></staff>
 </measure>

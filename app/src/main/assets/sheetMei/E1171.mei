@@ -26,7 +26,7 @@
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n7" pname="e" oct="4" dur="1">
-<verse n="1"><syl>old</syl></verse></note>
+<verse n="1"><syl eol="1">old</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 </measure>
@@ -50,7 +50,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="f" oct="4" dur="1">
-<verse n="1"><syl>gold;</syl></verse></note>
+<verse n="1"><syl eol="1">gold;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>
@@ -76,7 +76,7 @@
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n21" pname="b" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">hold!</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">hold!</syl></verse></note>
 <beam>
 <note xml:id="n22" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Praise</syl></verse></note>
@@ -97,7 +97,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <note xml:id="n27" pname="f" oct="4" dur="4">
-<verse n="1"><syl>Lord,</syl></verse></note>
+<verse n="1"><syl eol="1">Lord,</syl></verse></note>
 <beam>
 <note xml:id="n28" pname="f" oct="4" dur="8">
 <verse n="1"><syl>praise</syl></verse></note>
@@ -110,7 +110,7 @@
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="f" oct="4" dur="1">
-<verse n="1"><syl>Lord!</syl></verse></note>
+<verse n="1"><syl eol="1">Lord!</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>

@@ -26,7 +26,7 @@
 <note xml:id="n6" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">gos</syl></verse></note>
 <note xml:id="n7" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">pel</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">pel</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">Gm</harm>
 <harm staff="1" tstamp="4" place="above">Cm</harm>
@@ -63,7 +63,7 @@
 <verse n="1"><syl>loved</syl></verse></note>
 <note xml:id="n18" pname="b" oct="4" dur="8"/>
 <note xml:id="n19" pname="b" oct="4" dur="2">
-<verse n="1"><syl>us.</syl></verse></note>
+<verse n="1"><syl eol="1">us.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <slur startid="#n17" endid="#n18"/>
@@ -90,7 +90,7 @@
 <note xml:id="n26" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Mar</syl></verse></note>
 <note xml:id="n27" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">y</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">y</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">Gm</harm>
@@ -123,7 +123,7 @@
 <note xml:id="n36" pname="b" oct="4" dur="8">
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n37" pname="b" oct="4" dur="2">
-<verse n="1"><syl>Lord.</syl></verse></note>
+<verse n="1"><syl eol="1">Lord.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <tie startid="#n37" endid="#n38"/>
@@ -148,7 +148,7 @@
 <note xml:id="n44" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n45" pname="g" oct="4" dur="4">
-<verse n="1"><syl>us</syl></verse></note>
+<verse n="1"><syl eol="1">us</syl></verse></note>
 <note xml:id="n46" pname="b" oct="4" dur="8">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
@@ -167,7 +167,7 @@
 <note xml:id="n50" pname="b" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n51" pname="g" oct="4" dur="4" dots="1">
-<verse n="1"><syl>Him;</syl></verse></note>
+<verse n="1"><syl eol="1">Him;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Cm</harm>
 <harm staff="1" tstamp="3" place="above">Gm</harm>
@@ -192,7 +192,7 @@
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="f" oct="4" dur="2" dots="1">
-<verse n="1"><syl>of</syl></verse></note>
+<verse n="1"><syl eol="1">of</syl></verse></note>
 <note xml:id="n58" pname="g" oct="4" dur="4">
 <verse n="1"><syl>Our</syl></verse></note>
 </layer></staff>
@@ -212,7 +212,7 @@
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n63" pname="e" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">ing.</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">ing.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭/E♭</harm>

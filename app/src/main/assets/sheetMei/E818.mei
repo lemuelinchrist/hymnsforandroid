@@ -41,7 +41,7 @@
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="f" oct="4" dur="1">
-<verse n="1"><syl>God;</syl></verse></note>
+<verse n="1"><syl eol="1">God;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="a" oct="4" dur="1">
-<verse n="1"><syl wordpos="t">shown,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">shown,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
@@ -121,7 +121,7 @@
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="e" oct="4" dur="1">
-<verse n="1"><syl>seen,</syl></verse></note>
+<verse n="1"><syl eol="1">seen,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A/C♯</harm>
 </measure>
@@ -163,7 +163,7 @@
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n41" pname="d" oct="4" dur="1">
-<verse n="1"><syl>known.</syl></verse></note>
+<verse n="1"><syl eol="1">known.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="1.5000" place="above">G/D</harm>

@@ -47,7 +47,7 @@
 <verse n="1"><syl wordpos="i" con="d">for</syl></verse></note>
 </beam>
 <note xml:id="n13" pname="g" oct="4" dur="4">
-<verse n="1"><syl wordpos="t">give,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">give,</syl></verse></note>
 <beam>
 <note xml:id="n14" pname="e" oct="4" dur="8">
 <verse n="1"><syl>Can</syl></verse></note>
@@ -81,7 +81,7 @@
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="e" oct="4" dur="8">
-<verse n="1"><syl wordpos="t">give,</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">give,</syl></verse></note>
 <note xml:id="n24" pname="d" oct="4" dur="4" dots="1"/>
 <note xml:id="n25" pname="d" oct="4" dur="4"/>
 <beam>
@@ -108,7 +108,7 @@
 <verse n="1"><syl wordpos="t">set</syl></verse></note>
 </beam>
 <note xml:id="n32" pname="f" oct="4" dur="4">
-<verse n="1"><syl>you</syl></verse></note>
+<verse n="1"><syl eol="1">you</syl></verse></note>
 <beam>
 <note xml:id="n33" pname="g" oct="4" dur="8">
 <verse n="1"><syl>Says</syl></verse></note>
@@ -133,7 +133,7 @@
 <verse n="1"><syl>you</syl></verse></note>
 </beam>
 <note xml:id="n40" pname="g" oct="4" dur="4">
-<verse n="1"><syl>do?</syl></verse></note>
+<verse n="1"><syl eol="1">do?</syl></verse></note>
 <beam>
 <note xml:id="n41" pname="c" oct="5" dur="8">
 <verse n="1"><syl>Can</syl></verse></note>
@@ -170,7 +170,7 @@
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="c" oct="4" dur="2" dots="1">
-<verse n="1"><syl wordpos="t">give?</syl></verse></note>
+<verse n="1"><syl eol="1" wordpos="t">give?</syl></verse></note>
 <rest xml:id="r51" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
