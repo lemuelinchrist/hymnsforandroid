@@ -332,6 +332,9 @@ export function stop() {
   current = null;
 }
 
+// after stop(): the audio output is let go (a running context keeps its stream open, silent, on Android); play starts it again
+export function rest() { if (ctx && ctx.state === 'running') ctx.suspend(); }
+
 // a tune is cached once played; this fetches them all for offline use
 export function prefetch(urls, onProgress) {
   let done = 0;

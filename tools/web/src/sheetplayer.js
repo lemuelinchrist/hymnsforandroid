@@ -104,6 +104,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
   }
 
   async function tempo() {
+    if (view.baseBpm) { tempoFor = null; return (bpm = view.baseBpm); }   // a sheet of ours names its own tempo (midi.bpm)
     if (tempoFor !== tune) {
       tempoFor = tune; bpm = (await Player.tuneTempo(tune)) || DEFAULT_BPM;
       // some files count the beat as an eighth (250) or a thirty-second (990): a hymn moves at 50 to 160

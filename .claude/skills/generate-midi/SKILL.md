@@ -6,7 +6,7 @@ description: Use when a hymn has a tune code but no melody MIDI in app/src/main/
 # Generate a MIDI from our sheet music
 
 hymnal.net stopped serving `.mid` files in 2026-10 (403; its pages offer MP3 only), so a newly synced hymn gets a tune code but
-no `res/raw/m<tune>.mid`, and the app's Play button shows "Sorry, hymn not available". `tools/hymn-midi/` makes the file ourselves.
+no `res/raw/m<tune>.mid`. **Now the app's Play button plays the hymn's sheet itself when there is no MIDI file** (and always for a sheet of ours: `SheetPlayer`, see `docs/HYMNAL_SPEC.md` §Play button), so a new sheet needs no MIDI any more; this tool is only for a MIDI file you want anyway (`tools/hymn-midi/` makes the file from our sheet).
 
 ## What it makes
 - Input: `app/src/main/assets/sheetMei/<id>.mei`. Our sheets are **a lead sheet**: one staff, the melody and the chord symbols. There is
