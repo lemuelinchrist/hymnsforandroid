@@ -2397,7 +2397,7 @@ INSERT INTO hymns VALUES('CS722',NULL,NULL,NULL,'何等的享受，','CS','G大�
 INSERT INTO hymns VALUES('CS723','Adapted','Herbert Buffum (1879-1939)','又新又活的聚集，','我們今日的聚會','CS','降E大調4/4','又新又活的聚集','特','723',NULL,'4/4','5533321135535',NULL,NULL,'I1723,ZS723,',NULL,'又新又活的聚集');
 INSERT INTO hymns VALUES('CS724','Adapted','Swedish',NULL,'我們是一群有雄心的人，','CS','降E大調3/4','我們是一群有雄心的人','10.9.10.9.D.','724',NULL,'3/4','5565351217',NULL,NULL,'I1724,ZS724,',NULL,NULL);
 INSERT INTO hymns VALUES('CS725',NULL,NULL,NULL,'聽主吹笛，就歡欣鼓舞，','CS','C大調4/4','小孩子與小牛犢','特','725',NULL,'4/4','176532323176543434',NULL,NULL,'I1725,ZS725,',NULL,'小孩子與小牛犢');
-INSERT INTO hymns VALUES('CS726','Adapted','George Job Elvey (1816-1893)',NULL,'我們同聲阿們，','CS','降E大調4/4','召會實際是靈','6.6.8.6.D.','726',NULL,'4/4','111336651432',NULL,NULL,'I1726,ZS726,',NULL,'召會實際是靈');
+INSERT INTO hymns VALUES('CS726','Adapted','George Job Elvey (1816-1893)',NULL,'我們同聲阿們，','CS','E大調4/4','召會實際是靈','6.6.8.6.D.','726',NULL,'4/4','111336651432',NULL,NULL,'I1726,ZS726,',NULL,'召會實際是靈');
 INSERT INTO hymns VALUES('CS727',NULL,NULL,'阿利路亞！榮耀釋放！','基督已經將我釋放，','CS','G大調3/4','我要釋放基督','8.8.8.8. with chorus.','727',NULL,'3/4','5511176666776711',NULL,NULL,'I1727,ZS727,',NULL,'我要釋放基督');
 INSERT INTO hymns VALUES('CS728','Adapted','George Frederick Handel (1685-1759)',NULL,'阿利路亞！何等奧祕，','CS','D大調2/4','讓靈自由','8.6.8.6. with repeat.','728',NULL,'2/4','17654321566771',NULL,NULL,'I1728,ZS728,',NULL,'讓靈自由');
 INSERT INTO hymns VALUES('CS729',NULL,NULL,NULL,'阿利路亞，自由！','CS','G大調3/4','阿利路亞，自由','特','729',NULL,'3/4','556561556561',NULL,NULL,'I1729,ZS729,',NULL,NULL);
@@ -7670,7 +7670,7 @@ INSERT INTO hymns VALUES('NS667',NULL,NULL,'AND THERE IS PEACE LIKE A RIVER,','S
 INSERT INTO hymns VALUES('NS668','S. T. P.','Arranged from Felix Mendelssohn (1809-1847)',NULL,'Live through me, Lord! Though old man’s termination','NS','Eb Major','Experience of Christ','11.10.11.10.','668','Expressing Him','4/4','321543217132',NULL,NULL,'',NULL,NULL);
 INSERT INTO hymns VALUES('NS669','C. C.','C. C.','YOU ARE THE RULER AND THE KING OF THE UNIVERSE.','Lord, You give based on who You are,','NS','D Major','Experience of God',NULL,'669','Obedience to His Will','4/4','32343213234321',NULL,NULL,'',NULL,'You are the Ruler');
 INSERT INTO hymns VALUES('NS670','S. A. W.','S. A. W.','GOD’S LOVING SEEKERS IN THE WORD,','God’s loving seekers will receive,','NS','F Major','The Word of God',NULL,'670','Loving the Word','4/4','12321517164465',NULL,NULL,'',NULL,NULL);
-INSERT INTO hymns VALUES('NS671','L. S.','George Job Elvey (1816-1893)',NULL,'In God’s economy,','NS','Eb Major','Experience of Christ','6.6.8.6.D.','671','As Our Person','4/4','111336651432',NULL,NULL,'',NULL,'One Person and One Way');
+INSERT INTO hymns VALUES('NS671','L. S.','George Job Elvey (1816-1893)',NULL,'In God’s economy,','NS','E Major','Experience of Christ','6.6.8.6.D.','671','As Our Person','4/4','111336651432',NULL,NULL,'',NULL,'One Person and One Way');
 INSERT INTO hymns VALUES('NS672','Norcal colleges','Norcal colleges','SO LET THE WORD OF CHRIST DWELL IN YOU (RICHLY!)','The Word is living, a divine Person—','NS','E Major','The Word of God',NULL,'672','General','4/4','5135334321551353435',NULL,NULL,'',NULL,'Richly!');
 INSERT INTO hymns VALUES('NS673',NULL,NULL,NULL,'PRODUCING OVERCOMERS IS GOD’S MOVE ON EARTH TODAY;','NS','D Minor','Spiritual Warfare',NULL,'673','The Overcomer','4/4','6333232166165356',NULL,NULL,'',NULL,'God’s Move Today');
 INSERT INTO hymns VALUES('NS674','P. J.','T. P.',NULL,'Lord Jesus, I love You.','NS','F Major','Prayer',NULL,'674','For Revival','3/4','53321544432',NULL,NULL,'',NULL,NULL);
@@ -8775,7 +8775,7 @@ INSERT INTO hymns VALUES('ZS722','','','','何等的享受，','ZS','G大调4/4'
 INSERT INTO hymns VALUES('ZS723','Adapted','Herbert Buffum (1879-1939)','又新又活的聚集，','我们今日的聚会','ZS','降E大调4/4','又新又活的聚集','特','723','','4/4','5533321135535','CS723','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS724','Adapted','Swedish','','我们是一群有雄心的人，','ZS','降E大调3/4','我们是一群有雄心的人','10.9.10.9.D.','724','','3/4','5565351217','CS724','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS725','','','','听主吹笛，就欢欣鼓舞，','ZS','C大调4/4','小孩子与小牛犊','特','725','','4/4','176532323176543434','CS725','',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('ZS726','Adapted','George Job Elvey (1816-1893)','','我们同声阿们，','ZS','降E大调4/4','召会实际是灵','6.6.8.6.D.','726','','4/4','111336651432','CS726','',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('ZS726','Adapted','George Job Elvey (1816-1893)','','我们同声阿们，','ZS','E大调4/4','召会实际是灵','6.6.8.6.D.','726','','4/4','111336651432','CS726','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS727','','','阿利路亚！荣耀释放！','基督已经将我释放，','ZS','G大调3/4','我要释放基督','8.8.8.8. with chorus.','727','','3/4','5511176666776711','CS727','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS728','Adapted','George Frederick Handel (1685-1759)','','阿利路亚！何等奥秘，','ZS','D大调2/4','让灵自由','8.6.8.6. with repeat.','728','','2/4','17654321566771','CS728','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('ZS729','','','','阿利路亚，自由！','ZS','G大调3/4','阿利路亚，自由','特','729','','3/4','556561556561','CS729','',NULL,NULL,NULL);
