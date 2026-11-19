@@ -38,10 +38,10 @@
     return {root: m[1], acc: normAcc(m[2]), quality: m[3].replace(/♭/g, 'b').replace(/♯/g, '#'), bass: m[4] || '', bassAcc: normAcc(m[5] || '')};
   }
   function composeChord(p) { return p.root ? p.root + p.acc + p.quality + (p.bass ? '/' + p.bass + p.bassAcc : '') : ''; }
-  function trChord(ch, d) {
+  function trChord(ch, d, flat) {   // `flat` (true/false): spell by the new key; without it, as the chord was written
     return ch.replace(/(^|\/)([A-G])([#b♯♭]?)/g, function (m, pre, l, acc) {
       var pc = mod12(PC[l] + accOf(acc) + d);
-      return pre + (acc === 'b' || acc === '♭' ? FLAT_NAMES : SHARP_NAMES)[pc];
+      return pre + ((typeof flat === 'boolean' ? flat : (acc === 'b' || acc === '♭')) ? FLAT_NAMES : SHARP_NAMES)[pc];
     });
   }
   // What a chord symbol means: its root and bass, and its tones as [semitones above the root, letters above the root].

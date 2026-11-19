@@ -650,7 +650,8 @@
     else if (a === 'trup' || a === 'trdown') {
       edit(function () {
         var d = a === 'trup' ? 1 : -1, pc = M.mod12(M.tonicPc(sheet) + d);
-        sheet.notes.forEach(function (m) { if (m.p != null) m.p += d; delete m.e; if (m.ch) m.ch = M.trChord(m.ch, d); if (m.h) m.h = m.h.map(function (p) { return p + d; }); });
+        var newKey = M.FLAT_NAMES[pc] === 'Gb' ? 'F#' : M.FLAT_NAMES[pc], oldKey = sheet.key, flatKey; sheet.key = newKey; flatKey = M.fifths(sheet) < 0; sheet.key = oldKey;
+        sheet.notes.forEach(function (m) { if (m.p != null) m.p += d; delete m.e; if (m.ch) m.ch = M.trChord(m.ch, d, flatKey); if (m.h) m.h = m.h.map(function (p) { return p + d; }); });
         (sheet.left || []).forEach(function (m) { if (!M.isRest(m)) m.p = M.pitchesOf(m).map(function (p) { return p + d; }); });
         sheet.key = M.FLAT_NAMES[pc] === 'Gb' ? 'F#' : M.FLAT_NAMES[pc]; fields();
       });

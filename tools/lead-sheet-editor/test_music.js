@@ -35,6 +35,9 @@ test('chords: what a symbol means', () => {
   assert.strictEqual(M.chordInfo('G/B').bass, 11);
   assert.strictEqual(M.chordInfo('N.C.'), null);
   assert.strictEqual(M.trChord('Bb/D', 2), 'C/E');
+  assert.strictEqual(M.trChord('G/B', -1, true), 'Gb/Bb');
+  assert.strictEqual(M.trChord('Eb', 7, true), 'Bb');
+  assert.strictEqual(M.trChord('C', 1, false), 'C#');
 });
 
 test('the lead sheet: bars add up, upbeat first', () => {
