@@ -68,7 +68,7 @@ Everything the app needs at runtime is in the repository. A rebuild does **not**
 | Hymn database | `app/src/main/assets/hymns.sqlite` (built from `sqlite/hymns.sql`, see §13) | SQLite 3 | 14,127 hymns, 71,090 stanzas, 674 video links; 18 MB | everything textual |
 | Book list, names, colours, order | `app/src/main/java/.../HymnGroup.java` | Java enum  | 31 books | drawer, colours, ID parsing |
 | Book icons | `app/src/main/res/drawable-xhdpi/<code>.png` (lowercase code: `e.png`, `cs.png` …) | PNG, 364×364 | 31 | drawer, search list rows, the Languages (Hymn Books) dialog |
-| Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,501 files (one tune is an .mp3); 19 MB | Play button |
+| Melodies | `app/src/main/res/raw/m<tune>.mid` | Standard MIDI | 2,502 files (one tune is an .mp3); 19 MB | Play button |
 | Sheet music | `app/src/main/assets/sheetMei/<hymnId>.mei` | MEI 5.0 XML | 3,448 (E 1362, NS 1238, CS 293, CH 243, BF 184, C 128); 45 MB | sheet viewer |
 | Translated sheet lyrics | `app/src/main/assets/sheetLyrics/<hymnId>.json` | JSON (§11.6) | 2,449 (Z 757, C 632, ZS 461, FR 239, CS 194, FRY 166): every French and French Youth hymn that has a sheet; about 10 MB | sheet viewer overlay |
 | Sheet viewer (web) | `app/src/main/assets/viewer/` (Verovio, `verovio-toolkit-wasm.js`; the page is the web app's sheet code, `tools/web/src` and `tools/web/android`, copied in by `app/build.gradle`) | HTML/JS; Verovio 6.3.0 (LGPL-3.0) | 7.3 MB | **the same code as the web app** |
