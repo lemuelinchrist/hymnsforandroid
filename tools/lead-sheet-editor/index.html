@@ -6,7 +6,7 @@
 <title>Lead Sheet Editor</title>
 <link rel="stylesheet" href="/editor.css">
 </head>
-<body class="mode-melody hand-n">
+<body class="hand-n">
 <header id="top">
   <div class="brand" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M9 17.5V5.2l10-2v11.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><ellipse cx="6.3" cy="17.6" rx="3" ry="2.3" fill="currentColor"/><ellipse cx="16.3" cy="15" rx="3" ry="2.3" fill="currentColor"/></svg></div>
   <select id="song" title="The song to work on"></select>
@@ -50,10 +50,6 @@
 </div>
 
 <div id="tools">
-  <div class="tabs">
-    <button data-mode="melody" title="Notes and words (F1)">Melody</button>
-    <button data-mode="chords" title="Chords, and what both hands make of them (F2)">Chords &amp; piano</button>
-  </div>
   <div class="toolset" id="noteTools">
     <div class="group" id="durs"><span>Length</span></div>
     <div class="group"><span>Pitch</span>
@@ -76,9 +72,9 @@
   <div class="toolset" id="chordTools">
     <div class="group"><span>Go to</span>
       <button data-act="prevbar" title="The bar before (Shift Tab)">‹ Bar</button><button data-act="nextbar" title="The next bar (Tab)">Bar ›</button>
-      <button data-act="prevchord" title="The chord before (↑)">‹ Chord</button><button data-act="nextchord" title="The next chord (↓)">Chord ›</button>
+      <button data-act="prevchord" title="The chord before ([)">‹ Chord</button><button data-act="nextchord" title="The next chord (])">Chord ›</button>
     </div>
-    <div class="hint">Type <kbd>A</kbd>–<kbd>G</kbd> for a chord, or <kbd>1</kbd>–<kbd>7</kbd> for a chord of the key · <kbd>Tab</kbd> next bar · <kbd>Del</kbd> removes it</div>
+    <div class="hint"><kbd>H</kbd> types a chord · <kbd>Alt</kbd> <kbd>A</kbd>–<kbd>G</kbd> / <kbd>Alt</kbd> <kbd>1</kbd>–<kbd>7</kbd> a chord of the key · <kbd>[</kbd> <kbd>]</kbd> chord before / after</div>
   </div>
 </div>
 
@@ -91,7 +87,7 @@
       <div id="verses" class="lead-only"></div>
       <div class="row lead-only"><label for="chord">Chord</label><input type="text" id="chord" placeholder="G, Am, D7, G/B" autocomplete="off"><button type="button" id="chordClear" title="Remove the chord">✕</button></div>
       <div class="ce-row lead-only" id="ceKey"></div>
-      <div class="ce-box chords-only lead-only">
+      <div class="ce-box lead-only">
         <div class="ce-row" id="ceRoot"></div>
         <div class="ce-row" id="ceQual"></div>
         <div class="ce-row" id="ceBass"></div>
@@ -100,7 +96,7 @@
       <div class="keys mel-only">Words: <kbd>Space</kbd> next note, <kbd>-</kbd> the word goes on, empty = held from the note before.</div>
     </div>
 
-    <div class="card chords-only lead-only" id="rhCard">
+    <div class="card lead-only" id="rhCard">
       <h2>Right hand <span id="rhState"></span></h2>
       <div class="tabs small" id="rhAdd">
         <button data-add="0" title="The melody as it is">Melody alone</button>
@@ -113,11 +109,11 @@
         <button data-on="long" title="On the notes of two beats or more">Long notes</button>
         <button data-on="all" title="On every note that has a chord over it">Every note</button>
       </div>
-      <p class="tip" id="rhTip">The added notes come from the chord, under the melody, and are green on the sheet. On one note: a key of the keyboard below the melody adds or removes a note.</p>
+      <p class="tip" id="rhTip">The added notes come from the chord, under the melody, and are green on the sheet. On one note: Shift and a key of the keyboard below the melody adds or removes a note.</p>
       <div class="row end" id="rhHandRow"><button data-act="rhauto" title="Forget what was set by hand on the chosen notes">These notes as the choice above says</button></div>
     </div>
 
-    <div class="card chords-only" id="lhCard">
+    <div class="card" id="lhCard">
       <h2>Left hand <span id="lhState"></span></h2>
       <div id="lhPattern">
         <div class="tabs small" id="lhFamily"></div>
@@ -160,21 +156,6 @@
       </div>
     </div>
 
-    <div class="card" id="audiocard" hidden>
-      <h2>The recording</h2>
-      <audio id="audio" controls preload="none"></audio>
-      <div class="row wrap">
-        <button data-act="recfrom" class="primary" title="Play the recording from the chosen note (P)">▶ From this note</button>
-        <select id="recRate" title="Speed of the recording (the pitch stays)"><option value="1">1×</option><option value="0.75">¾×</option><option value="0.5">½×</option></select>
-        <button data-act="follow" id="follow" class="toggle" title="Show in the sheet where the recording is">Follow</button>
-      </div>
-      <div class="row wrap sync">
-        <span id="syncInfo"></span>
-        <button data-act="syncset" title="Pause the recording exactly where the chosen note starts, then press this">This note is here</button>
-        <button data-act="syncclear" id="syncClear" title="Forget the places set">Clear</button>
-      </div>
-    </div>
-
     <div class="card">
       <h2>Notes between us</h2>
       <textarea id="message" placeholder="Write here what to look at; Claude reads and answers here."></textarea>
@@ -198,6 +179,25 @@
     <span id="where"></span>
     <button data-act="keysshow" id="keysshow" class="toggle" title="Show or hide the keyboard">Keyboard</button>
   </div>
+  <div id="audiocard" hidden>
+    <audio id="audio" preload="none"></audio>
+    <div class="recrow">
+      <button data-act="recplay" id="recPlay" class="primary" title="Play or pause the recording where it is">▶</button>
+      <button data-act="recfrom" title="Play the recording from the chosen note (P)">▶ From this note</button>
+      <select id="recRate" title="Speed of the recording (the pitch stays)"><option value="1">1×</option><option value="0.75">¾×</option><option value="0.5">½×</option></select>
+      <button data-act="follow" id="follow" class="toggle" title="Show in the sheet where the recording is">Follow</button>
+      <button data-act="recnote" title="Choose the note the recording is at">Go to this note</button>
+      <span id="recTime">0:00 / 0:00</span>
+      <span class="grow"></span>
+      <span id="syncInfo"></span>
+      <button data-act="syncset" title="Pause the recording exactly where the chosen note starts, then press this">This note is here</button>
+      <button data-act="syncclear" id="syncClear" title="Forget the places set">Clear</button>
+    </div>
+    <div id="recTrack" title="Click or drag to jump in the recording">
+      <input type="range" id="recSeek" min="0" max="1000" value="0" step="1" aria-label="Position in the recording">
+      <div id="recMarks"></div>
+    </div>
+  </div>
   <div id="keys"></div>
 </footer>
 
@@ -212,23 +212,23 @@
         <p><kbd>Tab</kbd> next bar · <kbd>Shift Tab</kbd> the bar before · <kbd>Home</kbd> <kbd>End</kbd></p>
         <p><kbd>Space</kbd> play / stop · <kbd>L</kbd> loop · <kbd>M</kbd> click · <kbd>P</kbd> the recording from here</p>
         <p><kbd>Ctrl Z</kbd> undo · <kbd>Ctrl Y</kbd> redo · <kbd>Ctrl C</kbd> <kbd>X</kbd> <kbd>V</kbd> copy, cut, paste notes</p>
-        <p><kbd>F1</kbd> Melody · <kbd>F2</kbd> Chords &amp; piano · <kbd>?</kbd> this page</p>
+        <p><kbd>?</kbd> this page</p>
       </div>
       <div>
-        <h3>Melody (and a written-out left hand)</h3>
+        <h3>Notes (and a written-out left hand)</h3>
         <p><kbd>↑</kbd> <kbd>↓</kbd> pitch, a step of the key · <kbd>Shift</kbd> a semitone · <kbd>Ctrl</kbd> an octave</p>
         <p><kbd>A</kbd>–<kbd>G</kbd> that note, the nearest one</p>
         <p><kbd>3</kbd> 16th <kbd>4</kbd> 8th <kbd>5</kbd> quarter <kbd>6</kbd> half <kbd>7</kbd> whole · <kbd>.</kbd> dot</p>
         <p><kbd>N</kbd> new note · <kbd>S</kbd> split · <kbd>T</kbd> tie · <kbd>R</kbd> rest · <kbd>Del</kbd> remove</p>
-        <p><kbd>Enter</kbd> words: <kbd>Space</kbd> next note, <kbd>-</kbd> the word goes on · <kbd>H</kbd> chord</p>
+        <p><kbd>Enter</kbd> words: <kbd>Space</kbd> next note, <kbd>-</kbd> the word goes on</p>
       </div>
       <div>
-        <h3>Chords &amp; piano</h3>
-        <p><kbd>A</kbd>–<kbd>G</kbd> type a chord (then <kbd>m</kbd>, <kbd>7</kbd>, <kbd>/B</kbd> … and <kbd>Enter</kbd>)</p>
-        <p><kbd>1</kbd>–<kbd>7</kbd> a chord of the key, as numbered on its buttons</p>
-        <p><kbd>↑</kbd> <kbd>↓</kbd> the chord before, after · <kbd>Del</kbd> removes the chord</p>
+        <h3>Chords &amp; piano (same page, same time)</h3>
+        <p><kbd>H</kbd> type a chord (then <kbd>m</kbd>, <kbd>7</kbd>, <kbd>/B</kbd> … and <kbd>Enter</kbd>) · <kbd>Alt</kbd> <kbd>A</kbd>–<kbd>G</kbd> starts one</p>
+        <p><kbd>Alt</kbd> <kbd>1</kbd>–<kbd>7</kbd> a chord of the key, as numbered on its buttons</p>
+        <p><kbd>[</kbd> <kbd>]</kbd> the chord before, after · <kbd>Alt</kbd> <kbd>Del</kbd> removes the chord</p>
         <p>On a written-out left hand: the Melody keys; <kbd>Shift</kbd> <kbd>A</kbd>–<kbd>G</kbd> adds a note to the chord</p>
-        <p>A key of the keyboard below the melody: a note added to the right hand, or taken away</p>
+        <p><kbd>Shift</kbd> and a key of the keyboard below the melody: a note added to the right hand, or taken away</p>
       </div>
     </div>
   </div>

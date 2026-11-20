@@ -28,16 +28,16 @@ file may hold hand edits. The page draws with the app's own Verovio (`app/src/ma
 - **Second bar**: key (− and + move the whole song a semitone, notes and chords), time, upbeat, tempo; on the right what
   the sheet shows: the beat counting (**1 & 2 &**), the **piano part** (the left hand's staff and the notes added to the
   right hand; off, it is the lead sheet alone), and its size.
-- **Two ways of working**, chosen at the left of the third bar:
-  - **Melody** (F1): notes and words. The keys mean notes: ↑ ↓, A–G, 3–7, N, S, T, R, Delete.
-  - **Chords & piano** (F2): the chords and how they are played. The keys mean chords (A–G types one, 1–7 puts a
-    chord of the key), so the melody cannot be changed by accident. The side panel has the chord builder and a card
-    for each hand.
-- **The sheet** in the middle, the **side panel** on the right (the chosen note, the left hand, the recording, notes
-  between the editors).
-- **Bottom**: the player (Play, Loop, Click, speed, which parts sound, piano or organ tone) and a **keyboard** that shows
+- **One page for everything** (there is no switch between melody and chords): notes, words, chords and the piano part
+  are all at hand at once. The keys mean notes: ↑ ↓, A–G, 3–7, N, S, T, R, Delete. Chords: **H** opens the chord box,
+  **Alt** + A–G starts one, **Alt** + 1–7 puts a chord of the key, **[** and **]** go to the chord before and after,
+  **Alt Delete** removes it. The side panel has the chord builder and a card for each hand.
+- **The sheet** in the middle, the **side panel** on the right (the chosen note, the hands, notes between the editors).
+- **Bottom**: the player, then **the recording** as one bar across the whole width (play / pause, ▶ From this note,
+  speed, Follow, **Go to this note**, and a long slider to jump anywhere in the song: grey lines are the places set by
+  ear, the red one is the chosen note), then the keyboard. The player (Play, Loop, Click, speed, which parts sound, piano or organ tone) and a **keyboard** that shows
   what sounds at the chosen note: the melody note red, the piano part green, the notes of the chord with a dot. A click
-  on a key sets the chosen note to it (in Melody).
+  on a key sets the chosen note to it; Shift and a key below the melody adds or removes a right-hand note.
 
 ## Guide: correcting a sheet step by step
 
@@ -55,7 +55,7 @@ server is not running, or the file was changed at the same moment).
 
 ### 2. Listen and find the wrong note
 
-1. Click a note and press **P** (or **▶ From this note** in **The recording**): the recording plays from that note.
+1. Click a note and press **P** (or **▶ From this note** in the recording bar): the recording plays from that note.
    P again stops it. While it plays, the note it has reached is purple in the sheet (**Follow**), and ½× or ¾× slows it
    down without changing the pitch.
 2. Press **Space** (or **▶ Play**): the sheet plays from the chosen note, and the note being played turns green. Space
@@ -71,7 +71,7 @@ follow a recording that speeds up or slows down. They are kept in the sheet (`sy
 
 ### 3. Fix a wrong pitch
 
-In **Melody**, click the note (it turns red), then:
+Click the note (it turns red), then:
 
 | To do this | Press | Or click |
 |---|---|---|
@@ -126,32 +126,32 @@ A long note that crosses a bar line is still one note here: give it its whole le
 4. A note that carries on the syllable before it stays **empty**: just press Space on it.
 5. **Esc** leaves the box.
 
-The **Word** box is in the side panel in both ways of working; in Chords & piano click into it (Enter there opens
-the chord box), and Space and `-` go on from note to note as above.
+The **Word** box is in the side panel in both ways of working; Enter in it opens
+the chord box, and Space and `-` go on from note to note as above.
 
 **+ Verse** adds another line of words under the notes (stanza 2 under stanza 1); the card then has a box per verse.
 
 ### 7. Chords
 
-Go to **Chords & piano** (F2) and click the note the chord starts on. Then, the fastest way first:
+Click the note the chord starts on. Then, the fastest way first:
 
-- **1 to 7** puts a chord of the key: the number on each **In key** button (in G major 1 = G, 2 = Am, 3 = Bm, 4 = C,
+- **Alt 1 to 7** puts a chord of the key: the number on each **In key** button (in G major 1 = G, 2 = Am, 3 = Bm, 4 = C,
   5 = D, 6 = Em, 7 = D7). A green line under a button means that chord holds most of the melody from here to the next
   chord: a hint for where no chord is known yet, not a rule.
-- **A to G** starts typing one: the chord box opens with the letter, go on with `m`, `7`, `sus4`, `/B` and press Enter.
+- **Alt A to G** (or **H**) starts typing one: the chord box opens with the letter, go on with `m`, `7`, `sus4`, `/B` and press Enter.
 - **Root / Type / Bass**: the same buttons as the app's chord editor (`C`–`B` + `♭`/`♯`, the types `maj`, `m`, `7`,
   `maj7`, `m7`, `6`, `9`, `add9`, `sus4`, `sus2`, `7sus4`, `dim`, `dim7`, `m7b5`, `aug`, and a bass note).
-- **Tab** goes to the next bar (also from the chord box), ↑ ↓ to the chord before and after, **Delete** removes the
+- **Tab** goes to the next bar (also from the chord box), **[** **]** to the chord before and after, **Alt Delete** removes the
   chord of the chosen note.
 
-So a song whose chords change with the bar is: `1` Tab `4` Tab `5` Tab `1` ... In **Melody** the chord box is there too
+So a song whose chords change with the bar is: `1` Tab `4` Tab `5` Tab `1` ... The chord box is always there too
 (**H**), for a chord noticed on the way.
 
 A chord can sit on any note or rest. Where it should change under a held note, split the note and tie the halves (step 5).
 
 ### 8. The left hand
 
-The chords can be played: the card **Left hand** (in Chords & piano) chooses how, and a second staff in the bass
+The chords can be played: the card **Left hand** chooses how, and a second staff in the bass
 clef shows it. Nothing is written by hand for this; the staff follows the chords, also when they change later.
 
 | Style | What it plays | Choices |
@@ -197,7 +197,7 @@ notes. This is the way to a full piano sheet: let the pattern do most of it, the
 
 ### 9. The right hand
 
-The melody can carry more than one note: the card **Right hand** (in Chords & piano) adds notes of the chord under it.
+The melody can carry more than one note: the card **Right hand** adds notes of the chord under it.
 
 - **Melody alone**, **Two notes** (one note added) or **Three notes** (two added).
 - Where: **Where a chord starts** (the lightest: one fuller note with each chord), **On the beat** (the notes that start
