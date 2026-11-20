@@ -282,7 +282,7 @@ Keep the title as the song's first words, do not replace the words with the Reco
 
 ## Tunes and their MIDI file equivalent
 
-> **New hymn without a MIDI?** hymnal.net serves no MIDI any more: use the `generate-midi` skill (`tools/hymn-midi/make_missing.py`) instead of looking for a download.
+> **New hymn without a MIDI?** hymnal.net serves no MIDI any more, and we **do not make one** (2026-11-21): the app plays the hymn's sheet itself when there is no MIDI file. Make the sheet (see `svg-to-lilypond` / `audio-transcription`), not a MIDI.
 
 A hymn's `tune` field (parsed from a `Hymn code Hymnalnet:`/`Hymn code:` line — see the keyword gotcha above) is a numeric melody-shape code, e.g. `1233112353234321`. It is **shared across every hymn that uses that melody, in every language** — that's the entire point of the field: it's how the app finds "hymns with a similar tune" (`HymnsDao.getHymnsWithSimilarTune()` in the app) and how it plays the in-app MIDI preview.
 
