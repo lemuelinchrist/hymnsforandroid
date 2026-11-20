@@ -46,6 +46,37 @@ function prefetchAll() {
   return Promise.all([loadVerovio(), ...files.map((f) => fetchGzJson(f))]);
 }
 
+// every sheet, lyric and tune for offline use. It starts by itself a little after the app is open (background: three tunes
+// at a time, not on a data saver) and the Offline card in Settings shows it and can start it again.
+let offlineRunning = false, offlineText = '', offlineListener = null;
+function offlineSay(text) { offlineText = text; if (offlineListener) offlineListener(); }
+async function offlineDownload(background) {
+  if (offlineRunning) return;
+  offlineRunning = true;
+  offlineSay(tr('Downloading the sheet music…'));
+  try {
+    if (navigator.storage && navigator.storage.persist) await navigator.storage.persist();
+    await prefetchAll();
+    const failed = await Player.prefetch(DB.allTuneFiles(), (f) => offlineSay(tr('Downloading the tunes… {0}%', Math.round(f * 100))), background ? 3 : 8);
+    if (failed) throw new Error(tn('{0} tune could not be fetched', '{0} tunes could not be fetched', failed));
+    store.set('offlineAll', DB.version.build);
+    offlineText = '';
+    offlineSay(tr('All sheet music and tunes are on this device.'));
+  } catch (e) {
+    offlineSay(tr('Download stopped: {0}', e.message));
+  }
+  offlineRunning = false;
+  if (offlineListener) offlineListener();
+}
+
+function offlineInBackground() {
+  if (!('serviceWorker' in navigator) || !window.isSecureContext) return;
+  if (navigator.connection && navigator.connection.saveData) return;
+  navigator.serviceWorker.ready.then(() => setTimeout(() => {
+    if (store.get('offlineAll', null) !== DB.version.build) offlineDownload(true);
+  }, 8000)).catch(() => {});
+}
+
 // ---- small helpers ----
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -1370,25 +1401,16 @@ function settingsScreen(view) {
 
   // offline
   const offlineStatus = h('p', {class: 'muted small'}, '');
-  const offlineBtn = h('button', {class: 'btn', onclick: async () => {
-    offlineBtn.disabled = true;
-    offlineStatus.textContent = tr('Downloading the sheet music…');
-    try {
-      if (navigator.storage && navigator.storage.persist) await navigator.storage.persist();
-      await prefetchAll();
-      const tunes = DB.allTuneFiles();
-      await Player.prefetch(tunes, (f) => { offlineStatus.textContent = tr('Downloading the tunes… {0}%', Math.round(f * 100)); });
-      offlineStatus.textContent = tr('All sheet music and tunes are on this device.');
-      store.set('offlineAll', DB.version.build);
-    } catch (e) {
-      offlineStatus.textContent = tr('Download stopped: {0}', e.message);
-    }
-    offlineBtn.disabled = false;
-  }}, tr('Download all sheet music and tunes'));
+  const offlineBtn = h('button', {class: 'btn', onclick: () => offlineDownload(false)}, tr('Download all sheet music and tunes'));
   const sw = 'serviceWorker' in navigator && window.isSecureContext;
-  offlineStatus.textContent = !sw ? tr('Offline use needs the app’s https address.')
-    : store.get('offlineAll', null) ? tr('Sheet music and tunes were downloaded for offline use.')
-      : tr('The hymns work offline. Sheets and tunes you have opened do too; download all of them here (about 20 MB).');
+  const showOffline = () => {
+    offlineStatus.textContent = !sw ? tr('Offline use needs the app’s https address.') : offlineText
+      || (store.get('offlineAll', null) === (DB.version && DB.version.build) ? tr('All sheet music and tunes are on this device.')
+        : tr('Sheet music and tunes are downloaded in the background (about 30 MB). You can also start it here.'));
+    offlineBtn.disabled = offlineRunning;
+  };
+  offlineListener = showOffline;
+  showOffline();
   box.appendChild(h('section', {class: 'card settings-card'},
     h('h2', null, tr('Offline')), offlineStatus, sw ? h('div', {class: 'row'}, offlineBtn) : null));
 
@@ -1480,6 +1502,7 @@ async function start() {
   render();
   // fetch the music renderer while nothing else is happening, so the first sheet opens sooner
   setTimeout(() => import('./sheet.js').then((m) => m.loadVerovio()).catch(() => {}), 1500);
+  offlineInBackground();
 }
 
 start();

@@ -733,6 +733,20 @@ async function search(page, text) {
       await p.waitForSelector('.sheet-music svg', {timeout: 30000});
       await off.close();
     });
+    await test('everything is downloaded in the background by itself: a sheet of a book never opened and a tune work offline', async () => {
+      const off = await browser.newContext({viewport: {width: 1400, height: 900}});
+      const p = await off.newPage();
+      await open(p, '#/h/E9');
+      await p.waitForFunction(async () => !!(await navigator.serviceWorker.ready).active);
+      await p.waitForFunction(() => Object.keys(localStorage).some((k) => /offlineAll/.test(k)), null, {timeout: 120000});
+      await off.setOffline(true);
+      await p.goto(BASE + '#/h/NS151?tab=sheet');
+      await p.reload();
+      await p.waitForSelector('.sheet-music svg', {timeout: 30000});
+      await open(p, '#/settings');
+      assert((await p.textContent('.settings-card:has(h2:text("Offline"))')).includes('All sheet music and tunes are on this device.'), 'the Offline card says so');
+      await off.close();
+    });
     await ctx.close();
 
     console.log('Phone (390 × 844)');
