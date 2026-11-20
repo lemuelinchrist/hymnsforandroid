@@ -18605,7 +18605,7 @@ INSERT INTO hymns VALUES('BF582',NULL,NULL,'Trust in the Lord with all your hear
 INSERT INTO hymns VALUES('BF583',NULL,NULL,NULL,'The Lord Jehovah desires, desires to','BF','D Major','Banner Song',NULL,'583','2010 Winter - Crystallisation-Study of Isaiah (2) Banner 5',NULL,NULL,NULL,NULL,'',NULL,NULL);
 INSERT INTO hymns VALUES('BF584',NULL,NULL,NULL,'The church as the house of Jehovah,','BF','A Major','Banner Song',NULL,'584','2012 Summer - Crystallisation-Study of the Minor Prophets Banner 3',NULL,NULL,NULL,NULL,'',NULL,NULL);
 INSERT INTO hymns VALUES('BF585',NULL,NULL,NULL,'Christ is everything for God’s building,','BF','B Minor','Banner Song',NULL,'585','2012 Winter - Crystallisation-Study of Daniel & Zechariah Banner 3',NULL,NULL,NULL,NULL,'',NULL,NULL);
-INSERT INTO hymns VALUES('BF522',NULL,NULL,NULL,'Everyone who thirsts,','BF','D Major','Scriptures for Singing',NULL,'522',NULL,NULL,NULL,NULL,'Isaiah 55:1,',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('BF522',NULL,NULL,NULL,'Everyone who thirsts,','BF','D Major','Scriptures for Singing',NULL,'522',NULL,'4/4','1112311665111235',NULL,'Isaiah 55:1,',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF523',NULL,NULL,NULL,'By faith Abraham, being called,','BF',NULL,'Scriptures for Singing',NULL,'523',NULL,NULL,NULL,NULL,'Hebrews 11:8,',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF524',NULL,NULL,NULL,'Alone with You, I taste of Your love,','BF','D Major','Experience of Christ',NULL,'524','Fellowship with Him',NULL,NULL,NULL,NULL,NULL,NULL,'Alone With You');
 INSERT INTO hymns VALUES('BF525',NULL,NULL,'Jehovah, Savior, reach me with Your mercy now today.','A life of failure is all I have at best,','BF','G Major','Consecration',NULL,'525','Yielding to the Lord',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
