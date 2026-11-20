@@ -14,7 +14,7 @@ here = pathlib.Path(__file__).resolve().parent
 root = here.parents[3]
 db = sqlite3.connect(root / 'app/src/main/assets/hymns.sqlite')
 # lyrics of the E, NS, BF, CH hymns (for typing another id) and of every hymn named as a candidate (any language)
-GROUPS = set(os.environ.get('REVIEW_GROUPS', 'E,NS,BF,CH').split(','))
+GROUPS = set(os.environ.get('REVIEW_GROUPS', 'E,NS,BF,CH,T').split(','))
 rows_csv = list(csv.DictReader(open(sys.argv[1], encoding='utf-8-sig', newline='')))
 cand_ids = {c for r in rows_csv for c in re.findall(r'\b([A-Z]{1,3}\d+) \(', r['Possible hymns from the title (first line)'])}
 hy = {h: p for h, g, p in db.execute('select _id,hymn_group,parent_hymn from hymns') if g in GROUPS or h in cand_ids}
