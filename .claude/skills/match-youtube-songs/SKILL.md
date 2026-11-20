@@ -187,6 +187,7 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   (max 1 per hymn); sung ones max 2 per hymn per channel; English hymns may carry links from several channels (NYCYPCD + LSM + others).
   Re-provisioning drops the links: run `runImportNycypcdYoutube` after it. The import renumbers the link row ids, so the raw diff of `sqlite/hymns.sql`
   is huge; check the real one with `grep '^INSERT INTO link ' sqlite/hymns.sql | sed -E "s/^INSERT INTO link VALUES\([0-9]+,//" | sort` against the old file.
+- **Publisher = a group or a locality, never a person** (Lemuel 2026-11-20): a group's name (ATX YP, WASYP, Irvine YP, NWS YP), a place (New Zealand, Long Beach) or the album's own name when it is the only name there is (Arlington Students). An album "(by <person>)" gets no publisher (blank), the church life does not put individuals forward. Write the album without its "(by ...)".
 - **Keep the source of every recording** (Lemuel 2026-11-08): `tools/youtube-monitor/recordings.tsv` has album, channel and publisher of every track, linked or not, so unlinked songs can be linked when their hymn arrives. Add a new channel's rows when importing it (`python3 -I tools/youtube-monitor/build_recordings.py --tracks ...`, see its docstring; without arguments it refreshes the statuses).
 - Review pages for another language: `REVIEW_GROUPS=C,CS python3 scripts/build_review.py ...` so that typing a C/CS id
   under "Another hymn" finds it.
