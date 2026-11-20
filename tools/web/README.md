@@ -208,6 +208,8 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/files.js` | fetching and unpacking the gzipped data files |
 | `src/groups.js` | the hymnals; `build.py` fills them in from `HymnGroup.java` |
 | `src/sw.js`, `src/manifest.webmanifest` | service worker (offline) and install manifest; `build.py` writes the file lists in |
+
+Offline: the service worker keeps the app, database and index on install and every file it fetches (sheets are one pack per book). `app.js` (`offlineDownload`) then fetches the rest (all packs, the renderer, every tune, ~30 MB) in the background about 8 s after start, once per build; Settings → Offline shows it and can start it again.
 | `vendor/` | sql.js 1.13.0 (SQLite in WebAssembly, MIT licence); qrcode.js 1.4.4 (QR Code Generator for JavaScript by Kazuhiko Arase, MIT licence; draws the QR code of Settings → Share the app); Noto Nastaliq Urdu 4.000 (SIL Open Font License), the font of Urdu text (`:lang(ur)` in `app.css`) |
 | `build.py`, `serve.py` | the build, and a local server that serves `dist/` the way GitHub Pages does |
 | `dist/` | build output, not in git |

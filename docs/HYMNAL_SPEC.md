@@ -1178,8 +1178,12 @@ first load small.
 
 ### 14.5 Offline and updates
 
-- Precache the shell, `books.json`, and the user's current book; cache other books, MEI files and MIDI on first use
-  (or offer "Download everything for offline": ~100 MB total, dominated by MEI 45 MB, MIDI 19 MB, Verovio 7 MB).
+- Precache the shell, the database and the search index on install. Sheets and sheet lyrics are one pack per book, so
+  the first sheet opened keeps its whole book. The rest (every pack, the renderer, all tunes, about 30 MB) is downloaded
+  by the app by itself about 8 s after it opens, once per build: tunes three at a time, not when the browser asks for a
+  data saver, and with `navigator.storage.persist()` asked. The Offline card in Settings shows the progress and "All
+  sheet music and tunes are on this device.", and its button starts the download again (eight tunes at a time) if it
+  stopped or a tune could not be fetched. A new build only fetches the files whose hash changed.
 - The Android app refreshes its local DB copy whenever the app version code changes (DB file version = app
   versionCode). The web equivalent: version the data files (content hash in the name) and bump the service-worker
   cache name on each data release. History/favorites MUST survive updates; IDs removed from the data are dropped

@@ -338,18 +338,19 @@ export function stop() {
 // after stop(): the audio output is let go (a running context keeps its stream open, silent, on Android); play starts it again
 export function rest() { if (ctx && ctx.state === 'running') ctx.suspend(); }
 
-// a tune is cached once played; this fetches them all for offline use
-export function prefetch(urls, onProgress) {
-  let done = 0;
+// a tune is cached once played; this fetches them all for offline use. Resolves to the number that could not be fetched.
+export async function prefetch(urls, onProgress, parallel = 8) {
+  let done = 0, failed = 0;
   const queue = urls.slice();
   const worker = async () => {
     while (queue.length) {
       const u = queue.shift();
-      try { await fetch(u); } catch (e) { /* offline: try the rest */ }
+      try { if (!(await fetch(u)).ok) failed++; } catch (e) { failed++; }   // offline: try the rest
       if (onProgress) onProgress(++done / urls.length);
     }
   };
-  return Promise.all(Array.from({length: 8}, worker));
+  await Promise.all(Array.from({length: parallel}, worker));
+  return failed;
 }
 
 // for the tests: the parser, and a tune rendered without a speaker (peak level, seconds)
