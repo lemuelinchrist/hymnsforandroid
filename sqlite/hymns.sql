@@ -18623,7 +18623,7 @@ INSERT INTO hymns VALUES('BF537',NULL,NULL,NULL,'Jesus, Name above all names!','
 INSERT INTO hymns VALUES('BF538',NULL,NULL,NULL,'Little children, love one another;','BF','G Major','Scriptures for Singing',NULL,'538',NULL,NULL,NULL,NULL,'1 John 4:7,11,',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF539',NULL,NULL,NULL,'The Word, the Word, I love the Word of God.','BF','E Major','The Word of God',NULL,'539','Loving the Word',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF540',NULL,NULL,NULL,'Those who wait, wait on Jehovah','BF','B Major','Scriptures for Singing',NULL,'540',NULL,NULL,NULL,NULL,'Isaiah 40:31,',NULL,NULL,'Those who wait (Isaiah 40:31)');
-INSERT INTO hymns VALUES('BF541',NULL,NULL,NULL,'Who is she?','BF','G Major','The Church',NULL,'541','As Christ''s Bride',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('BF541',NULL,NULL,NULL,'Who is she?','BF','A Major','The Church',NULL,'541','As Christ''s Bride','4/4','3455556334432123',NULL,NULL,NULL,NULL,NULL);
 CREATE TABLE IF NOT EXISTS "stanza" (
 	 "parent_hymn" TEXT NOT NULL,
 	 "no" TEXT NOT NULL,
