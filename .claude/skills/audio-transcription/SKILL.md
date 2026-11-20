@@ -103,7 +103,7 @@ out of BF500 is in the README ("What the corrected sheets taught"): triads only,
 When the user says the sheet is done ("import the sheet"), do every step in the same change:
 1. **The key the user wants**: they may ask to move the song ("a little too low, set it to D"). Transpose `leadsheet.json` like
    the editor's **+ / −** does (notes `p`, chords with `M.trChord`, `key`; run it in Node on `music.js`), keep the old file in
-   `leadsheet.history/`, and make the sheet from the transposed one. Then the app's sheet, the tune code and the MIDI all agree.
+   `leadsheet.history/`, and make the sheet from the transposed one. Then the app's sheet and the tune code agree.
 2. **The sheet**: `leadsheet.mei` from `M.toMei(sheet)` (the editor writes it on every save; regenerate it after any change
    made outside the page), the app's header (title, subordinate title = the category, hymn id, `source` Hymns For Android),
    every bar adds up (only the pickup bar is short) -> `app/src/main/assets/sheetMei/<id>.mei`. A song with no parent has no
@@ -113,11 +113,7 @@ When the user says the sheet is done ("import the sheet"), do every step in the 
    16 notes, melisma notes included (BF500: `5511233423455345`); check `select _id from hymns where tune='<code>'` is empty.
    Edit `app/src/main/assets/hymns.sqlite`, then `cp` it to `sqlite/` and `.dump > hymns.sql`; `git diff sqlite/hymns.sql`
    shows only that row.
-4. **The MIDI**: `python3 tools/lead-sheet-editor/leadsheet_to_midi.py temp/transcribe/<song>/leadsheet.json out.mid` makes it from
-   `leadsheet.json` (the melody and the left hand the user chose and listened to, at the sheet's tempo, via the editor's own
-   `playList`), not from the sheet's chords with the generic left hand of the `generate-midi` skill. Copy it to
-   `app/src/main/res/raw/m<tune>.mid` (lower case, `cp --update=none`: never overwrite another hymn's tune) and raise the
-   file count in `docs/HYMNAL_SPEC.md`.
+4. **No MIDI.** **No new MIDI files** (Lemuel, 2026-11-21): the app plays a hymn's sheet itself (`SheetPlayer`, with the left hand the sheet starts with), so a MIDI is not needed and a tune-only MIDI without accompaniment is worse. Never add a `res/raw/m<tune>.mid`; a hymn with no MIDI file falls back to its sheet (a child without a tune of its own plays its parent's sheet). (BF541 and BF522 got one at first; BF541's was removed again.) `leadsheet_to_midi.py` stays only for listening or sharing a draft, never for `res/raw`.
 5. Commit your own paths only (`git commit <paths>`), and tell the user the app and the web app need a new build.
 
 ## Lessons from BF474 (2026-11-19): when the first draft's melody has many mistakes
