@@ -8,7 +8,7 @@
   var tk = null, sheet = null, rev = '', song = '', hintStart = null;
   var sel = 0, anchor = 0;      // the chosen note, and the other end when several are chosen
   var hand = 'n', head = -1;    // 'n' the melody, 'l' a written-out left hand; the chosen note of a left-hand chord (-1: all)
-  var mode = 'melody', scope = 'song', scopeFor = -1;
+  var scope = 'song', scopeFor = -1;
   var undo = [], redo = [], dirty = false, saving = false, saveTimer = null, changed = {};
   var lh = null, rh = null, leadMei = '', pianoMei = '', sentPiano = null, drawnBars = [];
   var ceUi = null, clip = null, toastTimer = null, toldPattern = false, heardIdx = -1;
@@ -142,14 +142,6 @@
     if (!o.quiet) beep(list()[sel]);
   }
   function setHand(h) { hand = h; head = -1; document.body.classList.toggle('hand-l', h === 'l'); document.body.classList.toggle('hand-n', h !== 'l'); }
-  function setMode(m) {
-    mode = m;
-    document.body.classList.toggle('mode-melody', m === 'melody'); document.body.classList.toggle('mode-chords', m === 'chords');
-    document.querySelectorAll('#tools > .tabs button').forEach(function (b) { b.classList.toggle('on', b.dataset.mode === m); });
-    if (m === 'melody' && hand === 'l') { var t = selTime(); setHand('n'); sel = anchor = indexAt(sheet.notes, t); }
-    if (sheet) mark();
-  }
-
   // ---- the side panel
   function keyList() {   // the chords of the key in the order of their numbers: I ii iii IV V vi V7
     var k = M.keyChords(sheet);
@@ -361,6 +353,20 @@
     var n = (sheet.sync || []).length;
     $('syncInfo').textContent = n ? n + (n === 1 ? ' place' : ' places') + ' set by ear' : hintStart != null ? 'The start is taken from the transcription' : 'Not set: the recording is taken to start with the first note';
     $('syncClear').hidden = !n; $('follow').classList.toggle('on', prefs.follow);
+    recBar();
+  }
+  function fmt(s) { s = Math.max(0, Math.round(s || 0)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+  function recBar() {   // the long bar: where the recording is, the places set by ear, the chosen note
+    var au = $('audio'), dur = au.duration || 0, seek = $('recSeek');
+    if (!seek.matches(':active')) seek.value = dur ? Math.round(au.currentTime / dur * 1000) : 0;
+    $('recTime').textContent = fmt(au.currentTime) + ' / ' + fmt(dur);
+    $('recPlay').textContent = au.paused ? '▶' : '❚❚';
+    var box = $('recMarks'), html = '';
+    if (dur && sheet) {
+      syncPoints().forEach(function (p) { if (p[1] > 0 || (sheet.sync || []).length) html += '<i style="left:' + (p[1] / dur * 100) + '%" title="Set by ear"></i>'; });
+      var s = secondsAt(selTime()); if (s >= 0 && s <= dur) html += '<i class="sel" style="left:' + (s / dur * 100) + '%" title="The chosen note"></i>';
+    }
+    box.innerHTML = html;
   }
   function follow() {
     var au = $('audio');
@@ -386,7 +392,7 @@
     }
     box.addEventListener('mousedown', function (e) {
       var k = e.target.closest('.k'); if (!k || !sheet) return;
-      e.preventDefault(); keyPressed(+k.dataset.p);
+      e.preventDefault(); keyPressed(+k.dataset.p, e.shiftKey);
     });
   }
   function keyboard() {
@@ -399,15 +405,15 @@
     if (rh && rh[mi] && (hand === 'n' || t < M.total(sheet.notes))) rh[mi].forEach(function (p) { if (keyEls[p]) keyEls[p].classList.add('left'); });
     if (m && !M.isRest(m) && (hand === 'n' || t < M.total(sheet.notes)) && keyEls[m.p]) keyEls[m.p].classList.add('mel');
   }
-  function keyPressed(p) {
+  function keyPressed(p, shift) {
     var n = list()[sel];
     if (hand === 'l' && n) {
       edit(function () { var ps = M.pitchesOf(n), at = ps.indexOf(p); if (at >= 0) ps.splice(at, 1); else ps.push(p); n.p = ps.length ? ps.sort(function (a, b) { return a - b; }) : null; delete n.tie; head = -1; });
-    } else if (mode === 'melody' && n) edit(function () { n.p = p; delete n.e; delete n.tie; n.w = n.w || ['']; });
-    else if (mode === 'chords' && hand === 'n' && n && !M.isRest(n) && p < n.p) {   // a note added under the melody, by hand
+    } else if (shift && hand === 'n' && n && !M.isRest(n) && p < n.p) {   // a note added under the melody, by hand
       edit(function () { var hs = (rh && rh[sel] ? rh[sel].slice() : []), at = hs.indexOf(p); if (at >= 0) hs.splice(at, 1); else hs.push(p); n.h = hs.sort(function (a, b) { return a - b; }); });
       if (!prefs.left) { prefs.left = true; keep(); render(); }
     }
+    else if (n) edit(function () { n.p = p; delete n.e; delete n.tie; n.w = n.w || ['']; });
     try { S.note(p, S.now(), 0.4, 0.22, prefs.tone); } catch (e) {}
   }
   function light(ps, ms) {
@@ -703,6 +709,10 @@
       try { au.currentTime = Math.max(0, secondsAt(selTime()) - 0.12); } catch (e) {}
       au.play();
     }
+    else if (a === 'recplay') { var au2 = $('audio'); if (au2.paused) { stopPlay(); au2.playbackRate = +$('recRate').value || 1; au2.play(); } else au2.pause(); }
+    else if (a === 'recnote') {
+      var ti = timeAt($('audio').currentTime), ix = indexAt(sheet.notes, Math.max(0, ti)); if (hand !== 'n') setHand('n'); select(ix, {quiet: true});
+    }
     else if (a === 'follow') { prefs.follow = !prefs.follow; keep(); recPanel(); follow(); }
     else if (a === 'syncset') {
       var sec = Math.round($('audio').currentTime * 100) / 100, t = selTime();
@@ -737,7 +747,6 @@
       var b = document.createElement('button'); b.innerHTML = noteIcon(d[0]); b.title = d[1]; b.dataset.d = d[0]; b.onclick = function () { setDur(d[0]); b.blur(); }; $('durs').appendChild(b);
     });
     document.querySelectorAll('button[data-act]').forEach(function (b) { b.onclick = function () { act(b.dataset.act); b.blur(); }; });
-    document.querySelectorAll('button[data-mode]').forEach(function (b) { b.onclick = function () { setMode(b.dataset.mode); b.blur(); }; });
     document.querySelectorAll('#lhScope button').forEach(function (b) { b.onclick = function () {
       var n = hand === 'n' && sheet && sheet.notes[sel], to = b.dataset.scope; b.blur();
       if (n && n.lh) {   // this note already starts a change: the buttons say how far it reaches
@@ -749,7 +758,7 @@
     }; });
     document.querySelectorAll('#rhAdd button').forEach(function (b) { b.onclick = function () { b.blur(); setRight(+b.dataset.add); }; });
     document.querySelectorAll('#rhOn button').forEach(function (b) { b.onclick = function () { b.blur(); setRight((sheet.rh && sheet.rh.add) || 1, b.dataset.on); }; });
-    buildKeys(); toggles(); setMode('melody');
+    buildKeys(); toggles();
     $('music').addEventListener('click', function (e) {
       var g = e.target.closest ? e.target.closest('g.note, g.rest, g.chord') : null;
       if (!g || !sheet) return;
@@ -757,11 +766,9 @@
       if (m[1] === 'n') { if (hand !== 'n') { setHand('n'); anchor = +m[2]; } select(+m[2], {extend: e.shiftKey}); return; }
       if (!(lh && lh.written)) {   // the pattern's notes are not edited one by one: go to the melody note over it
         setHand('n'); select(indexAt(sheet.notes, timeOf(+m[2], lh.events)), {quiet: true});
-        if (mode !== 'chords') setMode('chords');
         if (!toldPattern) { toldPattern = true; toast('The left hand follows the chords and its pattern. To change single notes, "Write it out as notes".'); }
         return;
       }
-      if (mode !== 'chords') setMode('chords');
       var k = m[3] === undefined ? -1 : +m[3], same = hand === 'l' && sel === +m[2] && head === k && !e.shiftKey;
       if (hand !== 'l') { setHand('l'); anchor = +m[2]; }
       select(+m[2], {extend: e.shiftKey, keepHead: true}); head = same ? -1 : k; mark();
@@ -797,7 +804,7 @@
     $('comment').addEventListener('change', function () { var n = sheet.notes[sel], v = $('comment').value.trim(); if (hand === 'n' && n && (n.c || '') !== v) edit(function () { if (v) n.c = v; else delete n.c; }); });
     ['chord', 'comment', 'lhPat'].forEach(function (id) { $(id).addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === 'Escape') $(id).blur();
-      else if (e.key === 'Tab' && id === 'chord' && mode === 'chords') { e.preventDefault(); $(id).blur(); goBar(e.shiftKey ? -1 : 1); }   // on to the next bar's chord
+      else if (e.key === 'Tab' && id === 'chord') { e.preventDefault(); $(id).blur(); goBar(e.shiftKey ? -1 : 1); }   // on to the next bar's chord
     }); });
     // the pattern as text, and how long its steps are
     function ownPattern() {
@@ -829,7 +836,14 @@
     $('speed').addEventListener('change', function () { prefs.speed = +$('speed').value || 1; keep(); if (S.playing()) { stopPlay(); play(); } });
     $('tone').addEventListener('change', function () { prefs.tone = $('tone').value; keep(); });
     $('recRate').addEventListener('change', function () { $('audio').playbackRate = +$('recRate').value || 1; });
-    $('audio').addEventListener('play', function () { stopPlay(); follow(); });
+    $('audio').addEventListener('play', function () { stopPlay(); follow(); recBar(); });
+    ['pause', 'ended', 'timeupdate', 'loadedmetadata', 'durationchange', 'seeked'].forEach(function (ev) { $('audio').addEventListener(ev, recBar); });
+    $('recSeek').addEventListener('input', function () {
+      var au = $('audio'); if (!au.duration) return;
+      try { au.currentTime = $('recSeek').value / 1000 * au.duration; } catch (e) {}
+      recBar();
+    });
+    $('recSeek').addEventListener('change', function () { $('recSeek').blur(); });
     document.addEventListener('change', function (e) { if (e.target.tagName === 'SELECT') e.target.blur(); });   // the keys go to the sheet again
     // menus
     document.querySelectorAll('button[data-menu]').forEach(function (b) {
@@ -846,29 +860,29 @@
       var t = e.target.tagName, k = e.key, ctrl = e.ctrlKey || e.metaKey, done = true;
       if (k === 'Escape') { if (!$('help').hidden) $('help').hidden = true; else if (t !== 'INPUT' && t !== 'TEXTAREA' && sheet) { anchor = sel; head = -1; mark(); } return; }
       if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT' || !sheet) return;
-      var chordKeys = mode === 'chords' && hand === 'n';   // the keys mean chords, not notes
+      var chordKeys = e.altKey && !ctrl && hand === 'n';   // Alt and a key: chords
       if (ctrl && k.toLowerCase() === 'z') act(e.shiftKey ? 'redo' : 'undo');
       else if (ctrl && k.toLowerCase() === 'y') act('redo');
       else if (ctrl && k.toLowerCase() === 'c') copyNotes(false);
       else if (ctrl && k.toLowerCase() === 'x') copyNotes(true);
       else if (ctrl && k.toLowerCase() === 'v') paste();
       else if (ctrl && k.toLowerCase() === 'a') { anchor = 0; sel = list().length - 1; mark(); }
-      else if (k === 'F1') setMode('melody'); else if (k === 'F2') setMode('chords');
       else if (k === '?') act('help');
       else if (k === 'ArrowLeft') select(sel - 1, {extend: e.shiftKey}); else if (k === 'ArrowRight') select(sel + 1, {extend: e.shiftKey});
       else if (k === 'Home') select(0, {extend: e.shiftKey}); else if (k === 'End') select(list().length - 1, {extend: e.shiftKey});
       else if (k === 'Tab') goBar(e.shiftKey ? -1 : 1);
       else if (k === ' ') act('play');
-      else if (ctrl || e.altKey) { if (!chordKeys && k === 'ArrowUp') step(1, 'oct'); else if (!chordKeys && k === 'ArrowDown') step(-1, 'oct'); else done = false; }
-      else if (k === 'l' || k === 'L') act('loop'); else if (k === 'm' || k === 'M') act('metro'); else if (k === 'p' || k === 'P') act('recfrom');
-      else if (chordKeys) {
-        if (k === 'ArrowUp') goChord(-1); else if (k === 'ArrowDown') goChord(1);
-        else if (/^[a-gA-G]$/.test(k)) { $('chord').value = k.toUpperCase(); $('chord').focus(); }
+      else if (chordKeys && (/^[a-gA-G]$/.test(k) || /^[1-8]$/.test(k) || k === 'Delete' || k === 'Backspace' || k === 'Enter')) {
+        e.preventDefault();
+        if (/^[a-gA-G]$/.test(k)) { $('chord').value = k.toUpperCase(); $('chord').focus(); }
         else if (/^[1-8]$/.test(k)) { var kc = keyList(); if (kc[+k - 1]) setChordText(kc[+k - 1]); }
-        else if (k === 'Enter' || k === 'h' || k === 'H') { $('chord').focus(); $('chord').select(); }
-        else if (k === 'Delete' || k === 'Backspace') setChordText('');
-        else done = false;
+        else if (k === 'Enter') { $('chord').focus(); $('chord').select(); }
+        else setChordText('');
       }
+      else if (ctrl) { if (k === 'ArrowUp') step(1, 'oct'); else if (k === 'ArrowDown') step(-1, 'oct'); else done = false; }
+      else if (e.altKey) done = false;
+      else if (k === 'l' || k === 'L') act('loop'); else if (k === 'm' || k === 'M') act('metro'); else if (k === 'p' || k === 'P') act('recfrom');
+      else if (k === '[' && hand === 'n') goChord(-1); else if (k === ']' && hand === 'n') goChord(1);
       else if (k === 'ArrowUp') step(1, e.shiftKey ? 'semi' : ''); else if (k === 'ArrowDown') step(-1, e.shiftKey ? 'semi' : '');
       else if (k >= '3' && k <= '7') setDur({3: 1, 4: 2, 5: 4, 6: 8, 7: 16}[k]);
       else if (k === '.') { var ns = chosen(), map = {2: 3, 3: 2, 4: 6, 6: 4, 8: 12, 12: 8}; if (ns.some(function (x) { return map[x.d]; })) edit(function () { ns.forEach(function (x) { if (map[x.d]) x.d = map[x.d]; }); }); }
@@ -918,7 +932,7 @@
   }
   // for the console and for tests
   window.leadSheet = {mei: function () { return leadMei; }, piano: function () { return pianoMei; }, sheet: function () { return sheet; },
-    select: select, act: act, mode: setMode, state: function () { return {sel: sel, anchor: anchor, hand: hand, head: head, mode: mode, scope: scope}; }};
+    select: select, act: act, state: function () { return {sel: sel, anchor: anchor, hand: hand, head: head, scope: scope}; }};
   // Verovio's runtime may be ready before or after this script runs (it is cached after the first visit): try until it is
   (function boot() {
     try { tk = new verovio.toolkit(); } catch (e) { tk = null; setTimeout(boot, 100); return; }
