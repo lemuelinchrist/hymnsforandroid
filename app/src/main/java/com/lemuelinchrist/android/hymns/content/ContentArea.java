@@ -56,12 +56,14 @@ public class ContentArea extends Fragment {
     private ShareButton shareButton;
     private YoutubeButton youtubeButton;
     private SimilarTuneButton similarTuneButton;
+    private boolean faveNeedsRefresh;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.context = getContext();
+        faveNeedsRefresh = false;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
@@ -116,7 +118,11 @@ public class ContentArea extends Fragment {
         } finally {
             hymnsDao.close();
         }
-        if (hymn == null) return rootView;
+        if (hymn == null) {
+            buttonContainer = rootView.findViewById(getRid("buttonContainer"));
+            if (buttonContainer != null) buttonContainer.setVisibility(View.GONE);
+            return rootView;
+        }
 
         LyricsArea lyricsArea = new LyricsArea(hymn,this,scrollView);
 
@@ -173,17 +179,21 @@ public class ContentArea extends Fragment {
     }
 
     private void onLyricVisible() {
+        if (hymn == null) return;
         for (OnLyricVisibleListener listener : onLyricVisibleLIsteners) {
             listener.onLyricVisible(hymn.getHymnId());
         }
-        if (hymn != null) log();
+        log();
     }
 
     @Override
     public void onResume() {
         Log.d(this.getClass().getSimpleName(), "onResume called on LyricContainer with hymn: " + hymn);
         super.onResume();
-        if (faveButton != null) faveButton.refresh();
+        if (faveNeedsRefresh && faveButton != null) {
+            faveButton.refresh();
+            faveNeedsRefresh = false;
+        }
         if (getUserVisibleHint()) onLyricVisible();
     }
 
@@ -213,6 +223,7 @@ public class ContentArea extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        faveNeedsRefresh = true;
         if (playButton != null) playButton.stop();
     }
 

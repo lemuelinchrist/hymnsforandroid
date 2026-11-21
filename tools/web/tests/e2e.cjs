@@ -813,6 +813,14 @@ async function search(page, text) {
         assert(await p2.evaluate(() => location.hash) === '#/h/E8' && await p2.locator('.lyrics').count() === 1, 'bounced off E8: ' + p2.url());
         await p2.waitForSelector('#toast.show.sticky .toast-link');
         assert((await p2.textContent('#toast')).includes('A new version is ready'), 'toast text: ' + await p2.textContent('#toast'));
+        // another toast briefly overlays it, then the sticky reload prompt returns
+        await p2.keyboard.press('f');
+        await p2.waitForFunction(() => {
+          const t = document.querySelector('#toast');
+          return t && t.classList.contains('show') && !t.classList.contains('sticky') && t.textContent.includes('E8 added to favorites');
+        });
+        await p2.waitForSelector('#toast.show.sticky .toast-link', {timeout: 5000});
+        assert((await p2.textContent('#toast')).includes('A new version is ready'), 'sticky toast did not return: ' + await p2.textContent('#toast'));
         await p2.click('#toast .toast-link');
         await p2.waitForSelector('.lyrics', {timeout: 30000});
         assert(loads >= 2 && await p2.evaluate(() => location.hash) === '#/h/E8', 'reload did not keep E8');

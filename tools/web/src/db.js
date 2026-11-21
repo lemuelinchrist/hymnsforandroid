@@ -107,12 +107,11 @@ const INHERITED = ['author', 'composer', 'time', 'tune', 'sheet_music_link', 'ke
 const TUNE_FIELDS = ['composer', 'time', 'tune', 'sheet_music_link', 'key'];   // not inherited by a New Tune
 
 // A hymn as the app shows it: empty fields, categories, stanzas and sheets come from the parent hymn (and its parents, up the tree; HymnsDao.get).
-export function hymn(id, seen = null) {
+function loadHymn(id, seen, state) {
   id = currentId((id || '').toUpperCase());   // an old code (MY637) finds the hymn under its new one (BUR637)
   if (cache.has(id)) return cache.get(id);
-  const s = seen ? new Set(seen) : new Set();
-  if (s.has(id)) return null;
-  s.add(id);
+  if (seen.has(id)) { state.cut = true; return null; }
+  seen.add(id);
   const row = hymnRow(id);
   if (!row) return null;
   const related = new Set(relatedIds(row.related));
@@ -125,7 +124,8 @@ export function hymn(id, seen = null) {
     stanzas: stanzaRows(id), related: [...related], newTune: row.new_tune === 1,   // the hymn's own column, never inherited
   };
   for (const f of INHERITED) h[f] = row[f];
-  const parent = h.parentId && h.parentId !== id ? hymn(h.parentId, s) : null;
+  const parentId = h.parentId ? currentId(h.parentId.toUpperCase()) : null;
+  const parent = parentId && parentId !== id ? loadHymn(parentId, seen, state) : null;
   // a New Tune of a hymn with another tune keeps its own music: no tune, sheet, piano videos or recordings from the parent
   // (HymnsDao.startsOwnTune); a translation of a New Tune still borrows from it
   h.ownTune = !!parent && row.new_tune === 1 && !parent.newTune;
@@ -142,8 +142,12 @@ export function hymn(id, seen = null) {
   h.sheetId = sheetIds.has(id) ? id : (parent && !h.ownTune ? parent.sheetId : null);
   // a translation that borrows the sheet may have its own words for it (sheetLyrics/<id>.json)
   h.lyricsId = h.sheetId && h.sheetId !== id && lyricIds.has(id) ? id : null;
-  cache.set(id, h);
+  if (!state.cut) cache.set(id, h);
   return h;
+}
+
+export function hymn(id) {
+  return loadHymn(id, new Set(), {cut: false});
 }
 
 // the file of a hymn's tune (its own tune code, else its parent's), as the app's Play button finds it; null if none
