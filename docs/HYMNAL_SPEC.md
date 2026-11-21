@@ -1178,16 +1178,18 @@ first load small.
 
 ### 14.5 Offline and updates
 
-- Precache only the slim core shell (`SHELL`) and `data/version.json` on install. Pre-resolved ~100-hymn shards
-  (`hymns/<dbHash>/<book>-<bucket>.json.gz`, ~24–45 KB) and per-book `counts` in `version.json` let shared hymn links
-  (`#/h/...`) and Home render immediately without waiting for the full SQLite DB (`data/hymns-<hash>.sqlite.gz`,
-  unpacked into IndexedDB) or heavy optional scripts (`LAZY`: sheet viewer/piano/Verovio/WASM/QR); word search and
-  Browse wait inline on the background DB if opened early. Sheets and sheet lyrics are one pack per book, so the first
-  sheet opened keeps its whole book. The rest (full DB, deferred scripts, every pack, Verovio, all tunes, ~30 MB)
-  downloads by itself about 8 s after start once per build: tunes three at a time, not when `saveData` is enabled, and
-  with `navigator.storage.persist()` asked. The Offline card in Settings shows the progress and `"All sheet music and
-  tunes are on this device."`, and its button starts the download again (eight tunes at a time) if it stopped or a tune
-  could not be fetched. A new build only fetches the files whose hash changed.
+- Precache only the slim core shell (`SHELL`) and `data/version.json` on install (on an app update, also refresh any
+  deferred `LAZY` files the previous build already had cached so offline users keep them across updates). Pre-resolved
+  ~100-hymn shards (`hymns/<hash>/<book>-<bucket>.json.gz`, hashed by shard contents covering DB, sheets, sheet lyrics,
+  and tunes; ~24–57 KB) and per-book `counts` in `version.json` let shared hymn links (`#/h/...`) and Home render
+  immediately without waiting for the full SQLite DB (`data/hymns-<hash>.sqlite.gz`, unpacked into IndexedDB) or heavy
+  optional scripts (`LAZY`: sheet viewer/piano/Verovio/WASM/QR); word search and Browse wait inline on the background DB
+  if opened early. Sheets and sheet lyrics are one pack per book, so the first sheet opened keeps its whole book. The
+  rest (full DB, deferred scripts, every pack, Verovio, all tunes, ~30 MB) downloads by itself about 8 s after start once
+  per build: tunes three at a time, not when `saveData` is enabled, and with `navigator.storage.persist()` asked. The
+  Offline card in Settings shows the progress and `"All sheet music and tunes are on this device."`, and its button
+  starts the download again (eight tunes at a time) if it stopped or a tune could not be fetched. A new build only
+  fetches the files whose hash changed.
 - The Android app refreshes its local DB copy whenever the app version code changes (DB file version = app
   versionCode). The web equivalent: version the data files (content hash in the name) and bump the service-worker
   cache name on each data release. History/favorites MUST survive updates; IDs removed from the data are dropped
