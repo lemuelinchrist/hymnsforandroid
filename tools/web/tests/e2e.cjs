@@ -86,12 +86,13 @@ async function search(page, text) {
       assert(n === 30, 'expected 30 hymnals, found ' + n);
     });
     await test('a second visit opens the database from the browser, without downloading it', async () => {
-      await page.waitForTimeout(500);   // the first visit stores it in IndexedDB
+      await page.waitForSelector('body.db-ready', {timeout: 60000});   // wait for background DB + IndexedDB store from visit 1
       const asked = [];
       const onReq = (r) => { if (/hymns-.*\.sqlite/.test(r.url())) asked.push(r.url()); };
       page.on('request', onReq);
       const t = Date.now();
       await open(page, '');
+      await page.waitForSelector('body.db-ready', {timeout: 30000});
       page.off('request', onReq);
       assert(!asked.length, 'the database was downloaded again');
       console.log(`      (ready in ${Date.now() - t} ms)`);
@@ -867,6 +868,7 @@ async function search(page, text) {
     await test('multi-level parent inheritance (FR53 -> C233 -> E1355) and New Tune search isolation (BF484)', async () => {
       const r = await page.evaluate(async () => {
         const DB = await import('./db.js');
+        await DB.whenFull();
         const fr53 = DB.hymn('FR53');
         const fam = DB.family('FR53').map((x) => x.id);
         const tuneMatches = DB.search(['53456515677'], '53456515677', null, 1e6, 'music').map((x) => x.id);
@@ -874,6 +876,225 @@ async function search(page, text) {
       });
       assert(r.sheetId === 'E1355' && r.author === 'Adapted' && r.hasE1355, 'FR53: ' + JSON.stringify(r));
       assert(r.tuneMatches.includes('E383') && !r.tuneMatches.includes('BF484'), 'New Tune BF484 inherited E383 tune: ' + JSON.stringify(r.tuneMatches));
+    });
+    await test('cold shared-link open (#/h/BF522 and #/h/FR53) renders from shard before SQLite downloads', async () => {
+      const fast = await browser.newContext({viewport: {width: 1400, height: 900}});
+      const p = await fast.newPage();
+      let sqliteResolved = false;
+      let releaseSqlite = null;
+      const sqliteGate = new Promise((r) => { releaseSqlite = r; });
+      const seenUrls = [];
+      p.on('pageerror', (e) => errors.push(e.message));
+      p.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+      await p.route(/data\/hymns-.*\.sqlite\.gz/, async (route) => {
+        await sqliteGate;
+        sqliteResolved = true;
+        await route.continue();
+      });
+      p.on('request', (r) => seenUrls.push(r.url()));
+      await p.goto(BASE + '#/h/BF522');
+      await p.waitForSelector('body.ready', {timeout: 15000});
+      await onHymn(p, 'BF522');
+      assert(!sqliteResolved, 'SQLite should not be required before rendering BF522');
+      assert(await p.isHidden('#loading'), '#loading overlay should stay hidden on fast shard load');
+      assert((await p.textContent('.lyrics')).includes('Everyone who thirsts'), 'BF522 lyrics');
+      assert((await p.locator('.links-card .lk-row').count()) >= 3, 'BF522 links card');
+      assert(!(await p.isDisabled('.hymn-nav .play')), 'BF522 Play button enabled from shard');
+      assert(await p.locator('.tabs button[data-tab="sheet"]').count() === 1, 'BF522 Sheet tab present');
+      assert(seenUrls.some((u) => /hymns\/[0-9a-f]+\/BF-5\.json\.gz/.test(u)), 'expected BF-5 shard fetch');
+      assert(!seenUrls.some((u) => /qrcode\.js/.test(u)), 'qrcode.js should not load on hymn page');
+      const vInfo = await p.evaluate(async () => {
+        const DB = await import('./db.js');
+        return {hymnsDir: DB.version.hymnsDir, db: DB.version.db};
+      });
+      assert(/^hymns\/[0-9a-f]{10}$/.test(vInfo.hymnsDir) && vInfo.hymnsDir !== 'hymns/' + vInfo.db,
+        'expected content-hashed hymnsDir distinct from db hash: ' + JSON.stringify(vInfo));
+
+      await p.goto(BASE + '#/h/FR53');
+      await onHymn(p, 'FR53');
+      assert(!sqliteResolved, 'SQLite still held back while rendering cross-book FR53');
+      assert((await p.textContent('.lyrics')).includes('Tous mes péchés Tu pardonnas'), 'FR53 lyrics');
+      assert(await p.locator('.tabs button[data-tab="sheet"]').count() === 1, 'FR53 inherited sheet from E1355');
+      assert(seenUrls.some((u) => /hymns\/[0-9a-f]+\/FR-0\.json\.gz/.test(u)), 'expected FR-0 shard fetch');
+      releaseSqlite();
+      await p.waitForSelector('body.db-ready', {timeout: 60000});
+      await fast.close();
+    });
+    await test('shard data matches full SQLite database for BF522, FR53, E135, C272, E395, BF484, SW10', async () => {
+      const cmp = await browser.newContext({viewport: {width: 1400, height: 900}});
+      const p = await cmp.newPage();
+      p.on('pageerror', (e) => errors.push(e.message));
+      p.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+      let releaseSqlite = null;
+      const gate = new Promise((r) => { releaseSqlite = r; });
+      await p.route(/data\/hymns-.*\.sqlite\.gz/, async (route) => { await gate; await route.continue(); });
+      await p.goto(BASE);
+      await p.waitForSelector('body.ready', {timeout: 15000});
+      const ids = ['BF522', 'FR53', 'E135', 'C272', 'E395', 'BF484', 'SW10'];
+      const canon = (v) => Array.isArray(v) ? v.map(canon)
+        : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, canon(v[k])])) : v;
+      const snap = async (list) => p.evaluate(async (hids) => {
+        const DB = await import('./db.js');
+        const fields = ['id', 'group', 'no', 'parentId', 'first', 'chorus', 'title', 'category', 'subcategory',
+          'author', 'composer', 'time', 'tune', 'key', 'meter', 'verse', 'newTune', 'ownTune',
+          'stanzas', 'related', 'sheetId', 'lyricsId'];
+        const out = {};
+        for (const id of hids) {
+          const h = DB.hymn(id);
+          const clean = {};
+          for (const f of fields) clean[f] = h[f];
+          out[id] = {
+            hymn: clean,
+            tuneFile: DB.tuneFile(h),
+            neighbours: DB.neighbours(id),
+            family: DB.family(id),
+            videos: DB.videos(h),
+            recordings: DB.recordings(h),
+            inheritedLinks: DB.inheritedLinks(h),
+            newTunes: DB.newTunes(h),
+            sameTuneAll: DB.sameTune(id).map((x) => ({id: x.id, group: x.group, no: x.no, first: x.first})),
+            sameTuneNoE: DB.sameTune(id, (g) => g !== 'E').map((x) => ({id: x.id, group: x.group, no: x.no, first: x.first})),
+          };
+        }
+        return out;
+      }, list);
+      await p.evaluate(async (hids) => {
+        const DB = await import('./db.js');
+        if (DB.isFull()) throw new Error('expected !DB.isFull() before releasing gate');
+        await DB.ensureHymns(hids);
+      }, ids);
+      const fromShards = await snap(ids);
+      releaseSqlite();
+      await p.waitForSelector('body.db-ready', {timeout: 60000});
+      const fromDb = await snap(ids);
+      for (const id of ids) {
+        const shardJson = JSON.stringify(canon(fromShards[id]));
+        const dbJson = JSON.stringify(canon(fromDb[id]));
+        assert(shardJson === dbJson,
+          'shard vs db mismatch for ' + id + '\n  shard: ' + shardJson + '\n  db:    ' + dbJson);
+      }
+      await cmp.close();
+    });
+    await test('word search while background SQLite loads shows inline progress then results', async () => {
+      const sr = await browser.newContext({viewport: {width: 1400, height: 900}});
+      const p = await sr.newPage();
+      p.on('pageerror', (e) => errors.push(e.message));
+      p.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+      let releaseSqlite = null;
+      const gate = new Promise((r) => { releaseSqlite = r; });
+      await p.route(/data\/hymns-.*\.sqlite\.gz/, async (route) => { await gate; await route.continue(); });
+      await p.goto(BASE + '#/search?q=amazing%20grace');
+      await p.waitForSelector('.loading-box .loading-msg', {timeout: 15000});
+      assert(await p.isHidden('#loading'), 'full-screen loading should stay hidden');
+      releaseSqlite();
+      await p.waitForSelector('.results a.hymn-row[href="#/h/E313"]', {timeout: 60000});
+      await sr.close();
+    });
+    await test('cold links to invalid/nonexistent IDs show not-found immediately and legacy codes resolve via shard', async () => {
+      const nf = await browser.newContext({viewport: {width: 1400, height: 900}});
+      const p = await nf.newPage();
+      p.on('pageerror', (e) => errors.push(e.message));
+      p.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+      let sqliteResolved = false;
+      let releaseSqlite = null;
+      const gate = new Promise((r) => { releaseSqlite = r; });
+      const seenUrls = [];
+      await p.route(/data\/hymns-.*\.sqlite\.gz/, async (route) => {
+        await gate;
+        sqliteResolved = true;
+        await route.continue();
+      });
+      p.on('request', (r) => seenUrls.push(r.url()));
+      await p.goto(BASE + '#/h/NOTANID');
+      await p.waitForSelector('body.ready', {timeout: 15000});
+      await p.waitForSelector('.empty h2', {timeout: 15000});
+      assert(!sqliteResolved, 'SQLite should not be required for invalid ID NOTANID');
+      assert((await p.textContent('.empty h2')).includes('NOTANID'), 'expected not-found for NOTANID');
+
+      await p.goto(BASE + '#/h/E99999');
+      await p.waitForSelector('.empty h2', {timeout: 15000});
+      assert(!sqliteResolved, 'SQLite should not be required for nonexistent ID E99999');
+      assert((await p.textContent('.empty h2')).includes('E99999'), 'expected not-found for E99999');
+
+      await p.goto(BASE + '#/h/MY637');
+      await onHymn(p, 'BUR637');
+      assert(!sqliteResolved, 'SQLite should not be required for legacy MY637');
+      assert(seenUrls.some((u) => /hymns\/[0-9a-f]+\/BUR-6\.json\.gz/.test(u)), 'expected BUR-6 shard fetch');
+
+      releaseSqlite();
+      await p.waitForSelector('body.db-ready', {timeout: 60000});
+      await nf.close();
+    });
+    await test('app update preserves offline LAZY files (sheet music and SQLite WASM) without a second online load', async () => {
+      const dist = path.join(__dirname, '..', 'dist');
+      const mime = {'.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json',
+        '.svg': 'image/svg+xml', '.png': 'image/png', '.wasm': 'application/wasm', '.webmanifest': 'application/manifest+json',
+        '.gz': 'application/gzip'};
+      const realVersion = JSON.parse(fs.readFileSync(path.join(dist, 'data', 'version.json'), 'utf8'));
+      let v = 1;
+      const srv = http.createServer((req, res) => {
+        const rel = (req.url.split('?')[0].slice(1) || 'index.html');
+        if (rel === 'data/version.json') {
+          const data = Object.assign({}, realVersion);
+          if (v === 2) data.build = 'v2offline';
+          res.writeHead(200, {'Content-Type': 'application/json', 'Cache-Control': 'no-cache'});
+          res.end(JSON.stringify(data));
+          return;
+        }
+        const full = path.join(dist, rel);
+        if (!fs.existsSync(full) || fs.statSync(full).isDirectory()) { res.writeHead(404); res.end(); return; }
+        if (rel === 'sw.js') {
+          let body = fs.readFileSync(full, 'utf8');
+          if (v === 2) body = body.replace(/const BUILD = "[^"]+";/, 'const BUILD = "v2offline";');
+          res.writeHead(200, {'Content-Type': 'application/javascript', 'Cache-Control': 'no-cache'});
+          res.end(body);
+          return;
+        }
+        res.writeHead(200, {'Content-Type': mime[path.extname(full)] || 'application/octet-stream', 'Cache-Control': 'no-cache'});
+        fs.createReadStream(full).pipe(res);
+      });
+      await new Promise((r) => srv.listen(0, '127.0.0.1', r));
+      const base2 = `http://127.0.0.1:${srv.address().port}/`;
+      const swCtx = await browser.newContext({viewport: {width: 1400, height: 900}});
+      try {
+        const p = await swCtx.newPage();
+        p.on('pageerror', (e) => errors.push(e.message));
+        p.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+        await p.goto(base2 + '#/h/E9');
+        await p.waitForSelector('body.ready', {timeout: 30000});
+        await p.waitForFunction(async () => !!(await navigator.serviceWorker.ready).active);
+        await p.waitForFunction(() => Object.keys(localStorage).some((k) => /offlineAll/.test(k)), null, {timeout: 120000});
+
+        v = 2;
+        await p.evaluate(async () => {
+          const reg = await navigator.serviceWorker.getRegistration();
+          const changed = new Promise((r) => navigator.serviceWorker.addEventListener('controllerchange', r, {once: true}));
+          await reg.update();
+          await changed;
+        });
+
+        await swCtx.setOffline(true);
+        await p.goto(base2 + '#/h/NS151?tab=sheet');
+        await p.reload();
+        await p.waitForSelector('body.ready', {timeout: 30000});
+        await p.waitForSelector('body.db-ready', {timeout: 30000});
+        await p.waitForSelector('.sheet-music svg', {timeout: 30000});
+        const check = await p.evaluate(async () => {
+          const keys = (await caches.keys()).filter((k) => k.startsWith('hymns-shell-'));
+          const c = await caches.open('hymns-shell-v2offline');
+          const vJson = await (await caches.match(new URL('data/version.json', location.href).href)).json();
+          const missing = [];
+          for (const f of vJson.lazy) {
+            if (!await c.match(f)) missing.push(f);
+          }
+          return {keys, missing};
+        });
+        assert(check.keys.length === 1 && check.keys[0] === 'hymns-shell-v2offline', 'shell caches: ' + JSON.stringify(check.keys));
+        assert(!check.missing.length, 'missing LAZY files after update: ' + JSON.stringify(check.missing));
+      } finally {
+        await swCtx.close();
+        srv.close();
+      }
     });
     await ctx.close();
 
