@@ -116928,7 +116928,6 @@ INSERT INTO link VALUES(130762,'NS723','youtube','NYCYPCD','https://www.youtube.
 INSERT INTO link VALUES(130763,'BF436','youtube','NYCYPCD','https://www.youtube.com/watch?v=5s3qT87UNMg',1,'How Firm a Foundation',NULL);
 INSERT INTO link VALUES(130764,'NS351','youtube','NYCYPCD','https://www.youtube.com/watch?v=wgaCaGfKcG4',1,'How Lovely Is Thy Dwelling Place',NULL);
 INSERT INTO link VALUES(130765,'NS361','youtube','NYCYPCD','https://www.youtube.com/watch?v=vFYuSANuqnM',1,'Love Unknown',NULL);
-INSERT INTO link VALUES(130766,'NS868','youtube','NYCYPCD','https://www.youtube.com/watch?v=F3wLdTnmi3c',1,NULL,NULL);
 INSERT INTO link VALUES(130767,'NS306','youtube','NYCYPCD','https://www.youtube.com/watch?v=W1uqKXkjSbQ',1,'Higher Ground',NULL);
 INSERT INTO link VALUES(130768,'NS47','youtube','NYCYPCD','https://www.youtube.com/watch?v=IT31L-9lotU',1,'Steal Me Away',NULL);
 INSERT INTO link VALUES(130769,'BF93','youtube','NYCYPCD','https://www.youtube.com/watch?v=hC2VAlYtVo4',1,'I Am the Lord''s',NULL);
