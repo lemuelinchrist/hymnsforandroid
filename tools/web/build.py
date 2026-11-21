@@ -246,6 +246,242 @@ def build_db(assets):
     return {'db': h, 'dbFile': name, 'dbSize': len(data), 'dbGzSize': len(packed), 'hymns': len(rows)}, groups_in_db
 
 
+def split_id(hid, group_order):
+    m = re.match(r'^([A-Z]{1,3})(\d+)$', hid or '')
+    if not m or m.group(1) not in group_order:
+        return None
+    return m.group(1), int(m.group(2))
+
+
+def plain_text(html_text):
+    t = re.sub(r'<!--[\s\S]*?-->', '', html_text or '')
+    t = re.sub(r'<br\s*/?>', '\n', t, flags=re.I)
+    t = re.sub(r'<[^>]*>', '', t)
+    return t.replace('&nbsp;', ' ').replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>').strip()
+
+
+def build_hymn_shards(assets, db_hash, groups, sheet_ids, lyric_ids, tunes):
+    """Pre-resolved ~100-hymn shards (<group>-<bucket>.json.gz) and per-book counts, so opening a shared hymn link
+    or the home screen never waits for the 14 MB SQLite database."""
+    group_order = {g['code']: i for i, g in enumerate(groups)}
+    con = sqlite3.connect(os.path.join(assets, 'hymns.sqlite'))
+    con.row_factory = sqlite3.Row
+    raw = {r['_id']: dict(r) for r in con.execute('select * from hymns')}
+    stanzas = {}
+    for r in con.execute('select parent_hymn, no, text, note from stanza order by parent_hymn, n_order'):
+        stanzas.setdefault(r['parent_hymn'], []).append({'no': r['no'], 'text': r['text'], 'note': r['note']})
+    links = {}
+    for r in con.execute('select hymn_id, kind, label, album, instrumental, url from link order by hymn_id, n_order'):
+        links.setdefault(r['hymn_id'], []).append(dict(r))
+    con.close()
+
+    def related_ids(s):
+        return [x.strip().upper() for x in (s or '').split(',') if x.strip()]
+
+    inherited_fields = ('author', 'composer', 'time', 'tune', 'key', 'meter', 'verse')
+    tune_fields = {'composer', 'time', 'tune', 'key'}
+    resolved = {}
+
+    def resolve(hid, seen):
+        if hid in resolved:
+            return resolved[hid]
+        if hid in seen or hid not in raw:
+            return None
+        row = raw[hid]
+        seen = seen | {hid}
+        own_rel = [r for r in related_ids(row.get('related')) if r != hid]
+        h = {
+            'id': hid, 'group': row['hymn_group'], 'no': row['no'],
+            'parentId': row.get('parent_hymn') or None,
+            'first': row.get('first_stanza_line'), 'chorus': row.get('first_chorus_line'),
+            'title': row.get('title') or None,
+            'category': row.get('main_category'), 'subcategory': row.get('sub_category'),
+            'stanzas': stanzas.get(hid, []), 'related': own_rel,
+            'newTune': row.get('new_tune') == 1,
+        }
+        for f in inherited_fields:
+            h[f] = row.get(f)
+        pid = h['parentId']
+        parent = resolve(pid, seen) if pid and pid != hid else None
+        h['ownTune'] = bool(parent and row.get('new_tune') == 1 and not parent['newTune'])
+        if parent:
+            for f in inherited_fields:
+                if not h[f] and not (h['ownTune'] and f in tune_fields):
+                    h[f] = parent[f]
+            if not h['title']:
+                h['title'] = parent['title'] or None
+            if not h['category']:
+                h['category'], h['subcategory'] = parent['category'], parent['subcategory']
+            if not h['stanzas']:
+                h['stanzas'] = parent['stanzas']
+            rel_set = set(own_rel)
+            rel_list = list(own_rel)
+            for r in parent['related']:
+                if r != hid and r not in rel_set:
+                    rel_set.add(r)
+                    rel_list.append(r)
+            h['related'] = rel_list
+        if not h['first'] and h['stanzas']:
+            h['first'] = plain_text(h['stanzas'][0]['text']).split('\n')[0]
+        h['sheetId'] = hid if hid in sheet_ids else (parent['sheetId'] if parent and not h['ownTune'] else None)
+        h['lyricsId'] = hid if (h['sheetId'] and h['sheetId'] != hid and hid in lyric_ids) else None
+        resolved[hid] = h
+        return h
+
+    for hid in sorted(raw):
+        resolve(hid, set())
+
+    # neighbours, counts, children, raw tune map
+    by_group = {}
+    children = {}
+    by_raw_tune = {}
+    for hid, h in resolved.items():
+        by_group.setdefault(h['group'], []).append(hid)
+        pid = raw[hid].get('parent_hymn')
+        if pid:
+            children.setdefault(pid, []).append(hid)
+        t = (raw[hid].get('tune') or '').strip()
+        if t:
+            by_raw_tune.setdefault(t, []).append((hid, pid))
+
+    counts = {g: len(ids) for g, ids in sorted(by_group.items())}
+    prev_next = {}
+    for g, ids in by_group.items():
+        ids.sort(key=lambda i: int(resolved[i]['no']))
+        for idx, hid in enumerate(ids):
+            prev_next[hid] = (ids[idx - 1] if idx > 0 else None, ids[idx + 1] if idx + 1 < len(ids) else None)
+
+    def get_videos(hid, h):
+        for candidate in [hid, None if h['ownTune'] else h['parentId']]:
+            if not candidate:
+                continue
+            out = [{'url': (x['url'] or '').strip(), 'label': (x['label'] or '').strip()}
+                   for x in links.get(candidate, ()) if x['kind'] == 'piano' and (x['url'] or '').strip()]
+            if out:
+                return out
+        return []
+
+    def get_recordings(hid):
+        recs = [x for x in links.get(hid, ()) if x['kind'] in ('youtube', 'soundcloud') and (x['url'] or '').strip()]
+        recs.sort(key=lambda x: x['kind'], reverse=True)   # youtube before soundcloud, preserving n_order (Python sort is stable)
+        return [{'kind': x['kind'], 'label': (x['label'] or '').strip(), 'album': (x['album'] or '').strip(),
+                 'instrumental': x['instrumental'] == 1, 'url': (x['url'] or '').strip()} for x in recs]
+
+    def get_inherited_links(hid, h, recs):
+        if recs or h['ownTune']:
+            return None
+        pid = h['parentId']
+        for _ in range(5):
+            if not pid or pid == hid:
+                break
+            plist = get_recordings(pid)
+            if plist:
+                return {'from': pid, 'recordings': plist}
+            prow = raw.get(pid)
+            up = prow and prow.get('parent_hymn') and raw.get(prow['parent_hymn'])
+            if prow and prow.get('new_tune') == 1 and up and up.get('new_tune') != 1:
+                return None
+            pid = prow and prow.get('parent_hymn')
+        return None
+
+    def get_new_tunes(hid):
+        nt = [cid for cid in children.get(hid, ()) if raw[cid].get('new_tune') == 1 and raw[cid]['hymn_group'] == 'BF']
+        nt.sort(key=lambda cid: int(raw[cid]['no']))
+        return [{'id': cid, 'recordings': get_recordings(cid)} for cid in nt]
+
+    fam_cache = {}
+
+    def get_family(hid):
+        if hid in fam_cache:
+            return fam_cache[hid]
+        h = resolved[hid]
+        root = hid
+        cur = h
+        for _ in range(10):
+            if not cur or not cur['parentId'] or cur['parentId'] == cur['id']:
+                break
+            root = cur['parentId']
+            cur = resolved.get(root)
+        ids = {root, *h['related']}
+        queue, visited = [root], {root}
+        i = 0
+        while i < len(queue) and i < 200:
+            qid = queue[i]
+            i += 1
+            qrow = raw.get(qid)
+            if qrow:
+                ids.update(related_ids(qrow.get('related')))
+            for cid in children.get(qid, ()):
+                ids.add(cid)
+                if cid not in visited:
+                    visited.add(cid)
+                    queue.append(cid)
+        out = []
+        for fid in ids:
+            sp = split_id(fid, group_order)
+            if sp and fid in resolved:
+                out.append((group_order[sp[0]], sp[1], fid))
+        out.sort()
+        res = [fid for _, _, fid in out]
+        fam_cache[hid] = res
+        return res
+
+    def related_in(root_id, grp):
+        for fid in get_family(root_id):
+            if fid != root_id and resolved[fid]['group'] == grp:
+                return fid
+        return None
+
+    def summary(fid):
+        x = resolved[fid]
+        return {'id': x['id'], 'group': x['group'], 'no': x['no'], 'first': x['first']}
+
+    shards = {}
+    for hid, h in resolved.items():
+        sp = split_id(hid, group_order)
+        if not sp:
+            continue
+        grp, no_int = sp
+        recs = get_recordings(hid)
+        tune_code = (h['tune'] or '').strip()
+        mine = h['parentId'] or hid
+        roots, seen_roots = [], set()
+        if tune_code and tune_code != '0':
+            for r_id, r_parent in by_raw_tune.get(tune_code, ()):
+                root = r_parent or r_id
+                if root != mine and root in resolved and root not in seen_roots:
+                    seen_roots.add(root)
+                    roots.append(root)
+        same_tune = []
+        for root in roots:
+            rsp = split_id(root, group_order)
+            pick = root if (rsp and rsp[0] == grp) else related_in(root, grp)
+            if pick:
+                if pick != hid:
+                    same_tune.append({'d': summary(pick)})
+            else:
+                same_tune.append({'r': root, 'f': [summary(fid) for fid in get_family(root)]})
+
+        pv, nx = prev_next[hid]
+        rec = dict(h)
+        tkey = tune_code.lower()
+        rec['_tuneFile'] = tunes.get(tkey) if (tkey and tkey != '0') else None
+        rec['_prev'], rec['_next'] = pv, nx
+        rec['_family'] = get_family(hid)
+        rec['_videos'] = get_videos(hid, h)
+        rec['_recordings'] = recs
+        rec['_inheritedLinks'] = get_inherited_links(hid, h, recs)
+        rec['_newTunes'] = get_new_tunes(hid)
+        rec['_sameTune'] = same_tune
+        shards.setdefault((grp, no_int // 100), {})[hid] = rec
+
+    hymns_dir = 'hymns/' + db_hash
+    for (grp, bucket), items in sorted(shards.items()):
+        data = json.dumps(items, ensure_ascii=False, separators=(',', ':'), sort_keys=True).encode('utf-8')
+        write(os.path.join(DIST, hymns_dir, '%s-%d.json.gz' % (grp, bucket)), gzip.compress(data, 9, mtime=0))
+    return hymns_dir, len(shards), counts
+
+
 def group_of(hymn_id):
     m = re.match(r'^([A-Z]{1,3})\d', hymn_id)
     return m.group(1) if m else None
@@ -361,9 +597,21 @@ def main():
     build_icons()
 
     version.update({'sheets': sheets, 'lyrics': lyrics, 'app': app_version(), 'built': time.strftime('%Y-%m-%d %H:%M')})
+    hymns_dir, shard_count, counts = build_hymn_shards(args.assets, version['db'], groups, set(sheet_ids), set(lyric_ids), tunes)
+    version['hymnsDir'] = hymns_dir
+    version['counts'] = counts
+    print('shards: %d in %s/' % (shard_count, hymns_dir))
     index = json.dumps({'sheets': sheet_ids, 'lyrics': lyric_ids, 'tunes': tunes}, separators=(',', ':')).encode('utf-8')
     version['indexFile'] = 'data/index-%s.json' % short_hash(index)
     write(os.path.join(DIST, version['indexFile']), index)
+    lazy_files = {'music.js', 'sheet.js', 'sheetpanel.js', 'sheetplayer.js', 'piano.js', 'pianopanel.js', 'editor.js'}
+    all_shell = sorted(os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/')
+                       for r, _, ns in os.walk(DIST) for n in ns
+                       if not re.match(r'(data|sheets|lyrics|hymns|verovio|midi)/', os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/'))
+                       and n != 'sw.js')
+    lazy = [p for p in all_shell if p in lazy_files or p.startswith('vendor/')]
+    shell = [p for p in all_shell if p not in set(lazy)]
+    version['lazy'] = lazy
     build_id = short_hash(json.dumps(version, sort_keys=True).encode() + b''.join(
         open(os.path.join(HERE, 'src', n), 'rb').read() for n in sorted(os.listdir(os.path.join(HERE, 'src')))
     ) + open(MUSIC, 'rb').read() + json.dumps([groups, names], sort_keys=True).encode())
@@ -375,16 +623,14 @@ def main():
     src = open(gpath, encoding='utf-8').read()
     src = src.replace('/*GROUPS*/[]', json.dumps(groups, ensure_ascii=False, indent=1)).replace('/*NAMES*/{}', json.dumps(names, ensure_ascii=False, indent=1))
     write(gpath, src.encode('utf-8'))
-    shell = sorted(os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/')
-                   for r, _, ns in os.walk(DIST) for n in ns
-                   if not re.match(r'(data|sheets|lyrics|verovio|midi)/', os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/'))
-                   and n != 'sw.js')
     data_files = [version['dbFile'], version['indexFile']] + sorted(sheets.values()) + sorted(lyrics.values()) + [
         'verovio/verovio-toolkit-wasm.js?v=' + version['verovio']]
     swpath = os.path.join(DIST, 'sw.js')
     sw = open(swpath, encoding='utf-8').read()
     sw = sw.replace("'/*BUILD*/'", json.dumps(build_id)).replace('/*SHELL*/[]', json.dumps(['./'] + shell, indent=1)) \
-        .replace('/*DATA*/[]', json.dumps(data_files, indent=1))
+        .replace('/*LAZY*/[]', json.dumps(lazy, indent=1)) \
+        .replace('/*DATA*/[]', json.dumps(data_files, indent=1)) \
+        .replace("'/*HYMNS_DIR*/'", json.dumps(hymns_dir))
     write(swpath, sw.encode('utf-8'))
 
     # loose pages that are not part of the app (extra/<folder>/...), published beside it; the service worker leaves them alone
