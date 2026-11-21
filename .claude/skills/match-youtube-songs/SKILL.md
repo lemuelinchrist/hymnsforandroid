@@ -189,7 +189,7 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   Re-provisioning drops the links: run `runImportNycypcdYoutube` after it. The import renumbers the link row ids, so the raw diff of `sqlite/hymns.sql`
   is huge; check the real one with `grep '^INSERT INTO link ' sqlite/hymns.sql | sed -E "s/^INSERT INTO link VALUES\([0-9]+,//" | sort` against the old file.
 - **Publisher = a group or a locality, never a person** (Lemuel 2026-11-20): a group's name (ATX YP, WASYP, Irvine YP, NWS YP), a place (New Zealand, Long Beach) or the album's own name when it is the only name there is (Arlington Students). An album "(by <person>)" gets no publisher (blank), the church life does not put individuals forward. Write the album without its "(by ...)".
-- **Keep the source of every recording** (Lemuel 2026-11-08): `tools/youtube-monitor/recordings.tsv` has album, channel and publisher of every track, linked or not, so unlinked songs can be linked when their hymn arrives. Add a new channel's rows when importing it (`python3 -I tools/youtube-monitor/build_recordings.py --tracks ...`, see its docstring; without arguments it refreshes the statuses).
+- **Keep the source of every recording** (Lemuel 2026-11-08): `tools/youtube-monitor/recordings.tsv` has album, channel and publisher of every track, linked or not, so unlinked songs can be linked when their hymn arrives. The last column is **`language`** (added 2026-11-21: the language it is sung in; `build_recordings.py` fills it once, from Chinese characters / the Taiwan Gospel Book Room channel, else the book of the linked hymn, else English for the English-only channels, else blank, and then keeps it, so a hand-set value stays). Add a new channel's rows when importing it (`python3 -I tools/youtube-monitor/build_recordings.py --tracks ...`, see its docstring; without arguments it refreshes the statuses).
 - Review pages for another language: `REVIEW_GROUPS=C,CS python3 scripts/build_review.py ...` so that typing a C/CS id
   under "Another hymn" finds it.
 
@@ -312,9 +312,9 @@ Find tracks for hymns/songs that have no sung link, then he uploads whole albums
 ## Reviewing the unmatched recordings (Lemuel, 2026-11-21)
 
 The queue is every row of `tools/youtube-monitor/recordings.tsv` with status `unmatched` (Joseph's Storehouses, Melody of Lilies, 臺灣福音書房, HymnsForAndroid), **except**
-kids' songs (兒童..., Children..., Joyful Songs for Children) and the weekly "Message of the Week" talks, which are never linked. Nothing a person already answered is in it
+kids' songs (兒童..., Children..., Joyful Songs for Children), the weekly "Message of the Week" talks, which are never linked, and **every language but English** (`language` column; Lemuel 2026-11-21: English first, the Chinese Taiwan Gospel Book Room rows wait; change `english()` in `build_set.py` to review another language). Nothing a person already answered is in it
 (its status is not `unmatched` any more). Work folder `temp/review-unmatched/` (not versioned; the state is there so a reboot loses nothing). Scripts in `scripts/unmatched/`, run from the work folder:
-1. `gfiles.txt`: `powershell.exe ... Get-ChildItem 'G:\My Drive\Archives\Hymns\Online' -Recurse -File` (paths relative to `Online\`, UTF-8). `songbase_app_data.json`:
+1. `gfiles.txt`: `powershell.exe ... Get-ChildItem 'G:\My Drive\Archives\Hymns\Online' -Recurse -File` (paths relative to `Online\`, UTF-8). `songbase_app_data.json` in the work folder:
    `https://songbase.life/api/v2/app_data` (or `SONGBASE_JSON=`). `python3 build_set.py` -> `set.json` (a local file is used only when the album folder and track title agree).
 2. Copy the local files as `work/in/<video id>.<ext>`, run `tools/audio-transcribe/batch_lyrics.py work` (Demucs + Whisper, resumable; earlier transcripts in
    `temp/josephs_transcribe/local/lyrics/` can be copied to `work/lyrics/`). A recording with no local audio is matched by its title only.

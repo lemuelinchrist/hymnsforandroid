@@ -10,7 +10,8 @@ t.txt: lines `album id|album name|video id|title` (list the albums with topic_al
 New video ids are added (existing rows keep their album/channel). Then every row's status and hymns are recomputed from
 databaseProvisioner/src/main/resources/NycypcdYoutube.txt (linked) and the *_known.tsv files (their status), else `unmatched`.
 Columns: video id, status, hymns, link label, album, album id, channel, publisher/studio (blank when unknown), title, note,
-platform (youtube / soundcloud), url, instrumental (1 or empty).
+platform (youtube / soundcloud), url, instrumental (1 or empty), language (the language the recording is sung in, English name; see guess_language:
+filled once and then kept, so a hand-set value stays; blank = not known yet).
 
 SoundCloud links (Lemuel 2026-11-19, option "mirror"): the database is the source of truth for them (the `link` table, kind
 soundcloud: the youth books' provisioners and links added by hand). Every run rewrites the soundcloud rows of this file from
@@ -23,7 +24,7 @@ R = os.path.dirname(os.path.abspath(__file__)) + "/"
 REPO = os.path.dirname(os.path.dirname(R.rstrip("/")))
 OUT = R + "recordings.tsv"
 HEAD = ["video id", "status", "hymns", "link label", "album / playlist", "album id", "youtube channel", "publisher / studio", "title", "note",
-        "platform", "url", "instrumental"]
+        "platform", "url", "instrumental", "language"]
 DB = REPO + "/app/src/main/assets/hymns.sqlite"
 
 
@@ -31,6 +32,25 @@ def tsv(path):
     for l in open(path, encoding="utf8"):
         if l.strip() and not l.startswith("#"):
             yield l.rstrip("\n").split("\t")
+
+
+GROUP_LANGUAGE = {"E": "English", "NS": "English", "BF": "English", "CH": "English", "C": "Chinese", "CS": "Chinese", "Z": "Chinese", "ZS": "Chinese",
+                  "CB": "Cebuano", "FR": "French", "FRY": "French", "S": "Spanish", "SY": "Spanish", "K": "Korean", "G": "German", "GY": "German",
+                  "J": "Japanese", "I": "Indonesian", "F": "Farsi", "SK": "Slovak", "GK": "Greek", "SW": "Kiswahili", "RUS": "Russian", "BUR": "Burmese",
+                  "TA": "Tamil", "UR": "Urdu", "KI": "Kikuyu", "POR": "Portuguese", "POY": "Portuguese", "POL": "Polish"}   # T (Tagalog) is left out: T10xxx are English songs
+ENGLISH_CHANNELS = ("Joseph's Storehouses", "Melody of Lilies", "Living Stream Ministry - Topic", "Loving the Lord - Topic", "Hymn Singing", "HymnsForAndroid")
+
+
+def guess_language(r):
+    """Chinese when the title or album has Chinese characters or the channel is Taiwan Gospel Book Room's; else the language of the
+    first linked hymn's book; else English for the channels that only sing English; else blank (NYCYPCD and SoundCloud sing many)."""
+    import re
+    if re.search(r"[\u4e00-\u9fff]", r[8] + r[4]) or "Taiwan Gospel" in r[6] or "臺灣福音書房" in r[6] or "召會詩歌" in r[6]: return "Chinese"
+    for h in r[2].split():
+        g = re.match(r"[A-Z]+", h)
+        if g and g.group(0) in GROUP_LANGUAGE: return GROUP_LANGUAGE[g.group(0)]
+    if r[6] in ENGLISH_CHANNELS: return "English"
+    return ""
 
 
 def soundcloud_rows():
@@ -45,7 +65,7 @@ def soundcloud_rows():
         if not path: path, note = "(no url)/" + hymn, "the database row has an empty url"
         user = path.split("/")[0]
         title = path.split("/")[-1].replace("-", " ")
-        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else ""])
+        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", ""])
     return out
 
 
@@ -54,10 +74,10 @@ def main():
     ap.add_argument("--tracks"); ap.add_argument("--channel"); ap.add_argument("--publisher", default="")
     ap.add_argument("--studio-albums", default=""); ap.add_argument("--studio", default="")
     a = ap.parse_args()
-    rows = collections.OrderedDict()
+    rows = collections.OrderedDict(); old_lang = {}
     if os.path.exists(OUT):
         for p in list(csv.reader(open(OUT, encoding="utf8"), delimiter="\t"))[1:]:
-            p += [""] * (len(HEAD) - len(p))
+            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]
             if p[10] != "soundcloud":      # the soundcloud rows are rebuilt from the database below
                 rows[p[0]] = p
     if a.tracks:
@@ -66,7 +86,7 @@ def main():
             aid, al, v, t = l.rstrip("\n").split("|", 3)
             if v not in rows:
                 pub = a.studio if al.lower() in studio else a.publisher
-                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", ""]
+                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", ""]
     linked, label, instr = collections.defaultdict(list), {}, set()
     for p in tsv(REPO + "/databaseProvisioner/src/main/resources/NycypcdYoutube.txt"):
         linked[p[1]].append(p[0]); label.setdefault(p[1], p[2] if len(p) > 2 else "NYCYPCD")
@@ -89,6 +109,8 @@ def main():
         if r[0] in rows and rows[r[0]][10] == "soundcloud":      # the same track linked to several hymns
             rows[r[0]][2] = " ".join(sorted(set(rows[r[0]][2].split() + [r[2]])))
         else: rows[r[0]] = r
+    for v, r in rows.items():
+        r[13] = old_lang.get(v) or r[13] or guess_language(r)
     missing = [v for v in linked if v not in rows]
     out = csv.writer(open(OUT, "w", newline="", encoding="utf8"), delimiter="\t", lineterminator="\n")
     out.writerow(HEAD)

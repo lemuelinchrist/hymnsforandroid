@@ -2,7 +2,7 @@
 Title and sung words against the database and songbase.life (SONGBASE_JSON=<app_data json>, default ./songbase_app_data.json; sb_in_db.json caches
 which songbase songs are already hymns). Run from the work folder."""
 import json, re, sqlite3, collections, difflib, unicodedata, os, pathlib
-R = pathlib.Path(__file__).resolve().parents[4]
+R = pathlib.Path(__file__).resolve().parents[5]
 db = sqlite3.connect(R/'app/src/main/assets/hymns.sqlite')
 S = json.load(open('set.json'))
 par = dict(db.execute('select _id,parent_hymn from hymns')); grp = dict(db.execute('select _id,hymn_group from hymns'))
