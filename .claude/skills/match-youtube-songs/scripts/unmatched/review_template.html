@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unreviewed songs</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:15px/1.45 system-ui,sans-serif;background:#f4f4f6;color:#222}
+header{display:flex;gap:12px;align-items:center;padding:8px 14px;background:#2b3a55;color:#fff;position:sticky;top:0;z-index:5}
+header b{font-size:16px}header .sp{flex:1}
+button{font:inherit;padding:6px 12px;border:1px solid #99a;border-radius:6px;background:#fff;cursor:pointer}
+button.pri{background:#2e7d32;color:#fff;border-color:#2e7d32}button:disabled{opacity:.4}
+#bar{height:5px;background:#556;}#bar i{display:block;height:100%;background:#7bd37f;width:0}
+main{display:grid;grid-template-columns:minmax(420px,1fr) minmax(380px,1fr);gap:14px;padding:14px;align-items:start}
+@media(max-width:900px){main{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 1px 3px #0002}
+.vid{position:relative;padding-top:56.25%;background:#000;border-radius:8px;overflow:hidden}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+h2{margin:10px 0 2px;font-size:18px}.sub{color:#666;font-size:13px}
+.cand{border:2px solid #ddd;border-radius:8px;margin-bottom:10px;background:#fff}
+.cand.sel{border-color:#2e7d32;background:#f1faf1}
+.cand label{display:flex;gap:8px;align-items:center;padding:8px 10px;cursor:pointer;font-weight:600}
+.cand label input{width:20px;height:20px}
+.ly{max-height:46vh;overflow:auto;padding:0 12px 10px 38px;white-space:pre-wrap;font-size:14px}
+.ly p{margin:0 0 9px}.ly small{color:#888;display:block}
+input[type=text]{font:inherit;padding:6px 8px;border:1px solid #99a;border-radius:6px;width:100%}
+.res{max-height:180px;overflow:auto;margin-top:4px}.res div{padding:4px 6px;cursor:pointer;border-bottom:1px solid #eee}.res div:hover{background:#eef}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.chips span{width:26px;height:22px;text-align:center;font-size:11px;line-height:22px;border-radius:4px;background:#ddd;cursor:pointer}
+.chips .done{background:#7bd37f}.chips .skip{background:#ffcf6e}.chips .nf{background:#7fb2f0}.chips .un{background:#e48a8a}.chips .ne{background:#c9a6e8}.chips .ad{background:#f0a0d0}.chips .dp{background:#b0b0b0}.chips .ns{background:#d9a07a}.chips .cur{outline:2px solid #2b3a55}
+textarea{width:100%;height:240px;font:12px monospace}
+.hint{font-size:12px;color:#777}
+</style></head><body>
+<header><b>Unreviewed songs</b><span id="pos"></span><span class="sp"></span><span id="stat"></span>
+<button id="prev">◀ Prev</button><button id="next" class="pri">Next ▶</button><button id="exp">Export</button></header>
+<div id="bar"><i></i></div>
+<main>
+<section class="card"><div class="vid" id="vid"></div><h2 id="ttl"></h2>
+<div class="sub"><a id="yt" target="_blank" rel="noopener">Open on YouTube ↗</a> · <span id="vid-id"></span></div>
+<div class="sub" id="meta"></div>
+<div class="chips" id="chips"></div>
+<p class="hint">Keys: 1–3 choose a candidate · A add song to DB (paste lyrics) · S skip · N not in database · U video unavailable · E not English · D duplicate · X not a song · I instrumental · ← → move. Your answers save in this browser automatically.</p></section>
+<section id="right"></section>
+</main>
+<div id="exportbox" class="card" style="display:none;margin:14px"><b>Export</b> — copy this and paste it back to me (or press Download).
+<p><button id="cp" class="pri">Copy</button> <button id="dl">Download</button></p><textarea id="out" readonly></textarea></div>
+<script>
+const ROWS=__ROWS__, LYR=__LYR__;
+const KEY='review-unmatched'; // one saved state per video list, so a new list does not load an old one's answers
+let ans={};try{ans=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+let notes={};try{notes=JSON.parse(localStorage.getItem(KEY+'-notes')||'{}')}catch(e){}
+let lyr={};try{lyr=JSON.parse(localStorage.getItem(KEY+'-lyr')||'{}')}catch(e){}
+const SPECIAL=['SKIP','NOTFOUND','UNAV','NONEN','ADD','DUP','NOTSONG'];
+let inst={};try{inst=JSON.parse(localStorage.getItem(KEY+'-inst')||'{}')}catch(e){}
+let i=0;try{i=+localStorage.getItem(KEY+'-i')||0}catch(e){}if(!(i>=0&&i<ROWS.length))i=0;
+const $=s=>document.querySelector(s);
+const norm=s=>s.toUpperCase().replace(/\s+/g,'');
+let st=0;const push=()=>{clearTimeout(st);st=setTimeout(()=>fetch('/state',{method:'POST',body:JSON.stringify({ans,notes,lyr,inst,i})}).catch(()=>{}),300)};
+const save=()=>{push();try{localStorage.setItem(KEY,JSON.stringify(ans));localStorage.setItem(KEY+'-i',i);localStorage.setItem(KEY+'-notes',JSON.stringify(notes));localStorage.setItem(KEY+'-lyr',JSON.stringify(lyr));localStorage.setItem(KEY+'-inst',JSON.stringify(inst))}catch(e){}};
+const WEB='https://lemuelinchrist.github.io/hymnsforandroid/#/h/';
+const wl=h=>'<a href="'+WEB+encodeURIComponent(h)+'" target="_blank" rel="noopener">Open '+h+' in the web app ↗</a>';
+function lyricsHtml(h){const L=LYR[h];if(!L)return '<p class="hint">No lyrics in the database for '+h+'.</p>';
+ return L.map(([n,t])=>'<p><small>'+esc(n)+'</small>'+esc(t)+'</p>').join('')}
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function card(h,key){const sel=ans[ROWS[i].v]===h;
+ return '<div class="cand'+(sel?' sel':'')+'"><label><input type="radio" name="pick" '+(sel?'checked':'')+' data-h="'+h+'"> '+(key?'['+key+'] ':'')+h+(LYR[h]?' — '+esc(LYR[h][0][1].split('\n')[0]):'')+'</label><div class="hint" style="padding:0 12px 4px 38px">'+wl(h)+' <span style="color:#777">· existing links and notes</span></div>'+(ROWS[i].ev&&ROWS[i].ev[h]?'<div class="hint" style="padding:0 12px 4px 38px">'+esc(ROWS[i].ev[h])+'</div>':'')+'<div class="ly">'+lyricsHtml(h)+'</div></div>'}
+function render(){
+ const r=ROWS[i],a=ans[r.v];
+ $('#pos').textContent=(i+1)+' / '+ROWS.length;
+ $('#vid').innerHTML='<iframe src="https://www.youtube.com/embed/'+r.v+'" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+ $('#ttl').textContent=r.t;$('#meta').innerHTML=esc((r.alb||'')+' · '+(r.ch||'')+' · best match '+Math.round(r.conf*100)+'%')+(r.w?'<br><i>heard: '+esc(r.w)+'…</i>':'');$('#yt').href='https://www.youtube.com/watch?v='+r.v;$('#vid-id').textContent=r.v;
+
+ let h='<div class="card" style="margin-bottom:10px"><label style="cursor:pointer;font-weight:600"><input type="checkbox" id="inst" '+(inst[r.v]?'checked':'')+' style="width:18px;height:18px;vertical-align:middle"> Instrumental (no singing) <span class="hint">(I)</span></label></div>';r.c.forEach((c,k)=>h+=card(c,k+1));
+ const other=a&&!SPECIAL.includes(a)&&!r.c.includes(a)?a:'';
+ (r.sbs||[]).forEach((s,k)=>{h+='<div class="card" style="background:#fff8e1;margin-bottom:10px"><b>songbase.life #'+s.id+' '+esc(s.title)+'</b> <span class="hint">'+esc(s.ev)+'</span> <button class="sbadd" data-k="'+k+'" style="background:#fde6f3">Add as a new song with these words</button><pre style="white-space:pre-wrap;font:14px system-ui;max-height:220px;overflow:auto;margin:8px 0 0">'+esc(s.lyrics)+'</pre></div>'});
+ h+='<div class="card"><b>Another hymn</b> <span class="hint">type an ID (E123, NS45, BF7, CH9, T10142) or words from the lyrics</span><input type="text" id="oth" value="'+other+'" placeholder="e.g. NS868 or “jehovah’s lovingkindness”"><div class="res" id="res"></div>'+(other?'<div class="cand sel" style="margin-top:8px"><label><input type="radio" checked data-h="'+other+'"> '+other+'</label><div class="hint" style="padding:0 12px 4px 38px">'+wl(other)+'</div><div class="ly">'+lyricsHtml(other)+'</div></div>':'')+'</div>';
+ const lab={SKIP:'skipped for now',NOTFOUND:'marked: not in our database',UNAV:'marked: video unavailable',NONEN:'marked: not English',ADD:'marked: add this song to the DB',DUP:'marked: duplicate',NOTSONG:'marked: not a song'}[a];
+ h+='<div class="card"><button id="nf">Not in our database (N)</button> <button id="un">Video unavailable (U)</button> <button id="skip">Skip for now (S)</button> <button id="ne">Not English (E)</button> <button id="ad" style="background:#fde6f3">Add song to DB (A)</button> <button id="dp">Duplicate (D)</button> <button id="nsg">Not a song (X)</button>'+(lab?' <b>'+lab+'</b>':'')+'<p class="hint" style="margin:8px 0 2px">Note (for a not-in-database song: its name, book or number, so we can add it later)</p><input type="text" id="note" value="'+esc(notes[r.v]||'').replace(/"/g,'&quot;')+'">'+(a==='ADD'?'<p class="hint" style="margin:8px 0 2px"><b>Lyrics to add</b> (paste them here; blank line between stanzas, a line starting with “Chorus” for a chorus)</p><textarea id="lyr" style="height:260px;font:14px system-ui" placeholder="Paste the lyrics here">'+esc(lyr[r.v]||'')+'</textarea>':'')+'</div>';
+ $('#right').innerHTML=h;
+ document.querySelectorAll('input[data-h]').forEach(e=>e.onchange=()=>{ans[r.v]=e.dataset.h;save();render()});
+ const mark=v=>{ans[r.v]=v;save();next()};
+ $('#inst').onchange=e=>{inst[r.v]=e.target.checked;save()};
+ $('#skip').onclick=()=>mark('SKIP');$('#nf').onclick=()=>mark('NOTFOUND');$('#un').onclick=()=>mark('UNAV');$('#ne').onclick=()=>mark('NONEN');$('#dp').onclick=()=>mark('DUP');$('#nsg').onclick=()=>mark('NOTSONG');
+ $('#ad').onclick=()=>{ans[r.v]='ADD';save();render();const t=$('#lyr');if(t)t.focus()};
+ document.querySelectorAll('.sbadd').forEach(b=>b.onclick=()=>{ans[r.v]='ADD';lyr[r.v]=r.sbs[+b.dataset.k].lyrics;notes[r.v]=(notes[r.v]||'')+(notes[r.v]?' ':'')+'songbase #'+r.sbs[+b.dataset.k].id;save();render()});
+ if($('#lyr'))$('#lyr').oninput=e=>{lyr[r.v]=e.target.value;save()};
+ $('#note').oninput=e=>{notes[r.v]=e.target.value;save()};
+ $('#oth').oninput=search;if(other)$('#oth').dataset.cur=other;
+ chips();$('#bar i').style.width=(Object.keys(ans).length/ROWS.length*100)+'%';
+ const V=Object.values(ans),d=V.filter(x=>!SPECIAL.includes(x)).length,nf=V.filter(x=>x==='NOTFOUND').length,un=V.filter(x=>x==='UNAV').length,s=V.filter(x=>x==='SKIP').length,ne=V.filter(x=>x==='NONEN').length,ad=V.filter(x=>x==='ADD').length,dp=V.filter(x=>x==='DUP').length,nsg=V.filter(x=>x==='NOTSONG').length,ni=Object.values(inst).filter(Boolean).length;
+ $('#stat').textContent=d+' chosen, '+nf+' not in db, '+un+' unavailable, '+s+' skipped, '+ne+' not English, '+ad+' to add, '+dp+' duplicates, '+nsg+' not songs, '+ni+' instrumental, '+(ROWS.length-V.length)+' left';
+ $('#prev').disabled=i==0;$('#next').disabled=i==ROWS.length-1;save()}
+function chips(){$('#chips').innerHTML=ROWS.map((r,k)=>'<span data-k="'+k+'" class="'+(ans[r.v]?({SKIP:'skip',NOTFOUND:'nf',UNAV:'un',NONEN:'ne',ADD:'ad',DUP:'dp',NOTSONG:'ns'}[ans[r.v]]||'done'):'')+(k==i?' cur':'')+'">'+(k+1)+'</span>').join('');
+ document.querySelectorAll('#chips span').forEach(e=>e.onclick=()=>{i=+e.dataset.k;render()})}
+let idx=null;
+function search(e){const q=e.target.value.trim(),res=$('#res');if(q.length<2){res.innerHTML='';return}
+ const id=norm(q);if(LYR[id]){res.innerHTML='<div data-h="'+id+'"><b>'+id+'</b> '+esc(LYR[id][0][1].split('\n')[0])+'</div><div class="hint" style="padding:2px 6px">'+wl(id)+'</div>'}
+ else{if(!idx)idx=Object.entries(LYR).map(([h,L])=>[h,L.map(x=>x[1]).join(' ').toLowerCase().replace(/[^\p{L}\p{N} ]+/gu,' ').replace(/\s+/g,' '),L[0][1].split('\n')[0]]);
+  const w=q.toLowerCase().replace(/[^\p{L}\p{N} ]+/gu,' ').trim().split(/\s+/);
+  const m=idx.filter(x=>w.every(t=>x[1].includes(t))).slice(0,15);
+  res.innerHTML=m.map(x=>'<div data-h="'+x[0]+'"><b>'+x[0]+'</b> '+esc(x[2])+'</div>').join('')||'<div class="hint">no match</div>'}
+ res.querySelectorAll('div[data-h]').forEach(d=>d.onclick=()=>{ans[ROWS[i].v]=d.dataset.h;save();render()})}
+function next(){if(i<ROWS.length-1){i++;render();scrollTo(0,0)}else render()}
+$('#next').onclick=next;$('#prev').onclick=()=>{if(i>0){i--;render()}};
+document.addEventListener('keydown',e=>{if((e.target.tagName==='INPUT'&&e.target.type==='text')||e.target.tagName==='TEXTAREA')return;
+ const r=ROWS[i];if(e.key>='1'&&e.key<='9'&&r.c[e.key-1]){ans[r.v]=r.c[e.key-1];save();render()}
+ else if(e.key==='s'||e.key==='S'){ans[r.v]='SKIP';save();next()}
+ else if(e.key==='n'||e.key==='N'){ans[r.v]='NOTFOUND';save();next()}
+ else if(e.key==='u'||e.key==='U'){ans[r.v]='UNAV';save();next()}
+ else if(e.key==='e'||e.key==='E'){ans[r.v]='NONEN';save();next()}
+ else if(e.key==='d'||e.key==='D'){ans[r.v]='DUP';save();next()}
+ else if(e.key==='x'||e.key==='X'){ans[r.v]='NOTSONG';save();next()}
+ else if(e.key==='i'||e.key==='I'){inst[r.v]=!inst[r.v];save();render()}
+ else if(e.key==='a'||e.key==='A'){e.preventDefault();ans[r.v]='ADD';save();render();const t=$('#lyr');if(t)t.focus()}
+ else if(e.key==='ArrowRight')next();else if(e.key==='ArrowLeft'&&i>0){i--;render()}});
+$('#exp').onclick=()=>{const st=a=>!a?'undecided':a==='SKIP'?'skipped':a==='NOTFOUND'?'not in database':a==='UNAV'?'video unavailable':a==='NONEN'?'not english':a==='ADD'?'add to database':a==='DUP'?'duplicate':a==='NOTSONG'?'not a song':'hymn';
+ const t='Video\tTitle\tYour hymn\tStatus\tInstrumental\tNote\tLyrics (lines split by \\n)\n'+ROWS.map(r=>{const a=ans[r.v];return 'https://www.youtube.com/watch?v='+r.v+'\t'+r.t+'\t'+(a&&!SPECIAL.includes(a)?a:'')+'\t'+st(a)+'\t'+(inst[r.v]?'instrumental':'')+'\t'+(notes[r.v]||'').replace(/[\t\n]+/g,' ')+'\t'+(a==='ADD'?(lyr[r.v]||'').trim().replace(/\t/g,' ').replace(/\r?\n/g,'\\n'):'')}).join('\n');
+ $('#exportbox').style.display='block';$('#out').value=t;$('#out').select();scrollTo(0,document.body.scrollHeight)};
+$('#cp').onclick=()=>{$('#out').select();document.execCommand('copy')};
+$('#dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([$('#out').value],{type:'text/tab-separated-values'}));a.download='NYCYPCD_answers.tsv';a.click()};
+fetch('/state').then(r=>r.json()).then(s=>{if(s&&s.ans&&Object.keys(s.ans).length>=Object.keys(ans).length){ans=s.ans;notes=s.notes||{};lyr=s.lyr||{};inst=s.inst||{};if(s.i>=0&&s.i<ROWS.length)i=s.i}render()}).catch(()=>render());
+</script></body></html>
