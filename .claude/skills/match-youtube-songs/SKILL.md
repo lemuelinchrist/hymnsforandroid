@@ -311,6 +311,8 @@ Find tracks for hymns/songs that have no sung link, then he uploads whole albums
 
 ## Reviewing the unmatched recordings (Lemuel, 2026-11-21)
 
+**Closed 2026-11-21 (Lemuel)** after five batches (about 160 links, 41 new BF songs BF586-BF629 from songbase.life with chord sheets): the songs still in the queue were marked `not-in-database` because few matches were left. What stays `unmatched` on purpose are the Message of the Week talks, the kids' songs and the non-English rows. Copies of a recording on another channel are marked `duplicate`, not `not-in-database`, so they are not added twice later. A hymn's audio can be in `/home/lemuel/Hymns` (older folders, e.g. `Hymns Ogg 1`) or `HymnsLibrary/songs` on the `media` host when it is not under `Online`. Before the Gradle import in a checkout that is on another branch, copy master's `hymns.sql`, `NycypcdYoutube.txt` and `tools/youtube-monitor` files into it and run `:sqlite:importSql`, or the import starts from stale data.
+
 The queue is every row of `tools/youtube-monitor/recordings.tsv` with status `unmatched` (Joseph's Storehouses, Melody of Lilies, 臺灣福音書房, HymnsForAndroid), **except**
 kids' songs (兒童..., Children..., Joyful Songs for Children), the weekly "Message of the Week" talks, which are never linked, and **every language but English** (`language` column; Lemuel 2026-11-21: English first, the Chinese Taiwan Gospel Book Room rows wait; change `english()` in `build_set.py` to review another language). Nothing a person already answered is in it
 (its status is not `unmatched` any more). Work folder `temp/review-unmatched/` (not versioned; the state is there so a reboot loses nothing). Scripts in `scripts/unmatched/`, run from the work folder:
