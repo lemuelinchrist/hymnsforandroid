@@ -6572,7 +6572,7 @@ INSERT INTO hymns VALUES('T10314',NULL,NULL,NULL,'Till I went into the sanctuary
 INSERT INTO hymns VALUES('T10315',NULL,NULL,NULL,'It''s a lovely, lovely name,','T',NULL,'LOVING JESUS',NULL,'10315',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10316',NULL,NULL,NULL,'All anxiety and seeking gone,','T',NULL,'LOVING JESUS',NULL,'10316',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10317',NULL,NULL,NULL,'I simply open my heart to Thee,','T',NULL,'LOVING JESUS',NULL,'10317',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO hymns VALUES('T10318',NULL,NULL,NULL,NULL,'T',NULL,NULL,NULL,'10318',NULL,NULL,NULL,'BF630',NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('T10318',NULL,NULL,'Than to be the king of a vast domain,','I’d rather have Jesus than silver or gold,','T',NULL,NULL,NULL,'10318',NULL,NULL,NULL,'BF630',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10319',NULL,NULL,'LOVING AS THE MOMENTS FLY,','Simply loving everyday;','T',NULL,'LOVING JESUS',NULL,'10319',NULL,NULL,NULL,'NS230',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10320',NULL,NULL,NULL,'Immerse me in Thy love,','T',NULL,'LOVING JESUS',NULL,'10320',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('T10321',NULL,NULL,'LORD, WE''VE BEEN DRAWN OFF BY MANY THINGS;','Jesus Lord, You''re our first love;','T',NULL,'LOVING JESUS',NULL,'10321',NULL,NULL,NULL,'NS118',NULL,NULL,NULL,NULL);
@@ -18668,7 +18668,7 @@ INSERT INTO hymns VALUES('BF626',NULL,NULL,'I’ve got a spirit, wonderful spiri
 INSERT INTO hymns VALUES('BF627',NULL,NULL,'I’ve made my choice.','I love the Lord and that’s the fact!','BF','Bb Major','Experience of Christ',NULL,'627','Loving Him',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF628',NULL,NULL,NULL,'O Jehovah, in the morning','BF','A Major','Scriptures for Singing',NULL,'628',NULL,NULL,NULL,NULL,'Psalm 5:3; Isaiah 50:4,',NULL,NULL,'O Jehovah, in the morning (Psalm 5:3; Isaiah 50:4)');
 INSERT INTO hymns VALUES('BF629',NULL,NULL,NULL,'Test yourselves whether you are in the faith;','BF','C Major','Scriptures for Singing',NULL,'629',NULL,NULL,NULL,NULL,'2 Corinthians 13:5,',NULL,NULL,'Test yourselves whether you are in the faith (2 Corinthians 13:5)');
-INSERT INTO hymns VALUES('BF630','Rhea F. Miller','George Beverly Shea','Than to be the king of a vast domain,','I’d rather have Jesus than silver or gold,','BF','Db Major','Experience of Christ',NULL,'630','Loving Him','3/4','1333351166513335',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO hymns VALUES('BF630','Rhea F. Miller','George Beverly Shea','Than to be the king of a vast domain,','I’d rather have Jesus than silver or gold,','BF','Db Major','Experience of Christ',NULL,'630','Loving Him','3/4','1333351165',NULL,NULL,'T10318,',NULL,'I’d Rather Have Jesus');
 CREATE TABLE IF NOT EXISTS "stanza" (
 	 "parent_hymn" TEXT NOT NULL,
 	 "no" TEXT NOT NULL,
