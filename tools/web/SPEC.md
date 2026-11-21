@@ -284,17 +284,13 @@ iPhone and iPad users install it from Safari. Decisions:
 
 How it works now:
 
-- **Static files only.** `build.py` writes hashed, gzipped data files: `data/hymns-<hash>.sqlite.gz` (the database
-  plus the `search` table), `sheets/<group>-<hash>.json.gz` and `lyrics/<group>-<hash>.json.gz` (one pack per hymnal
-  of MEI files and sheet-lyrics overlays), `data/index-<hash>.json` (which hymns have a sheet or an overlay) and
-  `data/version.json` (which files are current). The browser unpacks them (`DecompressionStream`, `files.js`),
-  because GitHub Pages serves `.gz` files as they are. Verovio is plain JS (Pages compresses it on the way).
-- **Service worker** (`sw.js`, file lists written in by `build.py`): the app shell is stored per build; hashed data
-  files are kept once fetched (cache first); `version.json` is network first. When a new build's service worker
-  activates while the app is open, it offers a sticky "Reload" toast without interrupting what is on screen (and reloads
-  automatically only when the app is hidden and idle — not editing chords, playing audio, or downloading). The database
-  is not stored by the service worker: `db.js` keeps it unpacked in IndexedDB. Settings → Offline downloads all sheet
-  packs and tunes in the background once per build (about 30 MB) and asks the browser to keep the storage.
+- **Static files only.** `build.py` writes hashed, gzipped data files:
+  - `hymns/<hash>/<group>-<bucket>.json.gz` (~302 pre-resolved ~100-hymn shards, hashed by shard contents so DB, sheet, lyrics, or MIDI changes invalidate stale shards) and book `counts` inside `data/version.json`, so opening a shared hymn link (e.g. `#/h/BF522`) or the home screen renders immediately (~24–57 KB for a shard) without waiting for SQLite or `sql.js` WASM.
+  - `data/hymns-<hash>.sqlite.gz` (the full database plus the `search` table), `sheets/<group>-<hash>.json.gz` and `lyrics/<group>-<hash>.json.gz` (one pack per hymnal of MEI files and sheet-lyrics overlays), `data/index-<hash>.json` (which hymns have a sheet or an overlay, and tune paths) and `data/version.json` (which files are current). The browser unpacks `.gz` files (`DecompressionStream`, `files.js`), because GitHub Pages serves `.gz` files as they are. Verovio is plain JS (Pages compresses it on the way).
+- **Two-stage boot & service worker** (`sw.js`, `db.js`, `app.js`):
+  - On first visit (SQLite not in IndexedDB yet), `DB.init()` reads `version.json` (~1 KB), renders the home page from `version.counts` or fetches the single ~100-hymn shard (`DB.ensureHymn`) for `#/h/...` / `#/sheet/...`, and starts downloading `vendor/sql-wasm.js`, `sql-wasm.wasm`, and `hymns-<hash>.sqlite.gz` in the background (storing the unpacked DB in IndexedDB asynchronously without blocking render). Word search and Browse show an inline progress card until the background DB finishes.
+  - Only the core shell (`SHELL`) and `data/version.json` are precached on a first install; heavy optional scripts (`LAZY`: sheet viewer, `music.js`, `vendor/*`) load on demand (and `qrcode.js` loads only when opening Settings → Share the app) so they don't compete with the first hymn load. On an app update, `sw.js` `install` also refreshes any `LAZY` files the previous build already had cached so offline sheets and SQLite WASM survive updates without a second online visit. Shards and older caches are cleaned up on `activate`.
+  - When a new build's service worker activates while the app is open, it offers a sticky "Reload" toast without interrupting what is on screen (and reloads automatically only when the app is hidden and idle — not editing chords, playing audio, or downloading). Transient toasts temporarily overlay it and restore the sticky prompt after 1.8 s. Settings → Offline ensures the full SQLite database, `LAZY` assets, all sheet/lyric packs, Verovio, and tunes are stored in the background once per build (about 30 MB) and asks the browser to keep the storage.
 - **Settings → Share the app** (same section on Android): a QR code on the page, drawn as an inline SVG by `qrcode.js`
   (error correction M, black on white in every theme), with a switch **Android | iPhone and all devices**: Android is the
   Google Play page, the other is this web app (`https://lemuelinchrist.github.io/hymnsforandroid/`, with the Add to Home
