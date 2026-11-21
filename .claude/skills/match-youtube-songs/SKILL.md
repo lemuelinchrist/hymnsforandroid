@@ -300,6 +300,7 @@ Scripts in `scripts/` (work in a scratchpad folder):
    **"SoundCloud 1"**, no album, `instrumental` flag where chosen.
    - YouTube: a line `hymn TAB video TAB YouTube 1 TAB (empty album) TAB instrumental` in `NycypcdYoutube.txt` (it must be there: the import deletes every
      youtube row with a label), a row in `recordings.tsv`, then `runImportNycypcdYoutube :sqlite:exportSql`.
+     A line with **no label and no album** is never deleted by the import, so it is added again on every run (NS254 had seven copies on 2026-11-21): always give it a label ("YouTube 1").
    - SoundCloud: the search only gives an internal id: get the permalink with
      `yt-dlp --skip-download --print "%(webpage_url)s | %(title)s" https://api.soundcloud.com/tracks/<id>`; strip `?si=...&utm_...` from pasted links.
      Insert the row by hand (`kind='soundcloud'`, id `SEQ_COUNT+1`, move the `link` counter, `n_order` 1...), run `:sqlite:exportSql` **first**,
