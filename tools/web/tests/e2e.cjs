@@ -4,6 +4,8 @@
 //   node tests/e2e.cjs --sheets 200                   also renders 200 random sheets in every mode
 //   node tests/e2e.cjs --sheets all                   ... or all of them (slow: about half an hour)
 const {spawn, execSync} = require('child_process');
+const fs = require('fs');
+const http = require('http');
 const path = require('path');
 
 function loadPlaywright() {
@@ -335,10 +337,12 @@ async function search(page, text) {
     });
     await test('links card: three recordings first, "Show N more" for the rest, an instrumental is tagged (E395)', async () => {
       await open(page, '#/h/E395');
+      const total = parseInt(await sec('Recordings').locator('.lk-n').textContent(), 10);
+      assert(total >= 5, 'E395 count: ' + total);
       assert((await rowsOf('Recordings')).length === 3 && (await rowsOf('Recordings'))[0].startsWith('NYCYPCD | I Surrender All'), 'E395 first: ' + await rowsOf('Recordings'));
       assert(await page.locator('.links-card .lk-tag').count() === 0, 'the instrumental is behind "Show more"');
       await sec('Recordings').locator('.lk-more').click();
-      assert((await rowsOf('Recordings')).length === 5, 'E395 all: ' + await rowsOf('Recordings'));
+      assert((await rowsOf('Recordings')).length === total, 'E395 all: ' + await rowsOf('Recordings'));
       assert(await sec('Recordings').locator('.lk-tag').allTextContents().then((t) => t.join() === 'Instrumental'), 'one Instrumental tag');
       await sec('Recordings').locator('.lk-more').click();
       assert((await rowsOf('Recordings')).length === 3, 'Show fewer');
@@ -746,6 +750,122 @@ async function search(page, text) {
       await open(p, '#/settings');
       assert((await p.textContent('.settings-card:has(h2:text("Offline"))')).includes('All sheet music and tunes are on this device.'), 'the Offline card says so');
       await off.close();
+    });
+    await test('SW update while opening a recent hymn does not bounce back to Home or auto-reload', async () => {
+      const dist = path.join(__dirname, '..', 'dist');
+      const mime = {'.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json',
+        '.svg': 'image/svg+xml', '.png': 'image/png', '.wasm': 'application/wasm', '.webmanifest': 'application/manifest+json',
+        '.gz': 'application/gzip'};
+      const realVersion = JSON.parse(fs.readFileSync(path.join(dist, 'data', 'version.json'), 'utf8'));
+      let v = 1;
+      const srv = http.createServer((req, res) => {
+        const rel = (req.url.split('?')[0].slice(1) || 'index.html');
+        if (rel === 'data/version.json') {
+          const data = Object.assign({}, realVersion);
+          if (v === 2) { data.db = 'v2testdb'; data.build = 'v2test'; }
+          res.writeHead(200, {'Content-Type': 'application/json', 'Cache-Control': 'no-cache'});
+          res.end(JSON.stringify(data));
+          return;
+        }
+        const full = path.join(dist, rel);
+        if (!fs.existsSync(full) || fs.statSync(full).isDirectory()) { res.writeHead(404); res.end(); return; }
+        if (rel === 'sw.js') {
+          let body = fs.readFileSync(full, 'utf8');
+          if (v === 2) body = body.replace(/const BUILD = "[^"]+";/, 'const BUILD = "v2test";');
+          res.writeHead(200, {'Content-Type': 'application/javascript', 'Cache-Control': 'no-cache'});
+          res.end(body);
+          return;
+        }
+        const send = () => {
+          res.writeHead(200, {'Content-Type': mime[path.extname(full)] || 'application/octet-stream', 'Cache-Control': 'no-cache'});
+          fs.createReadStream(full).pipe(res);
+        };
+        if (v === 2 && rel === 'app.css') setTimeout(send, 1200); else send();
+      });
+      await new Promise((r) => srv.listen(0, '127.0.0.1', r));
+      const base2 = `http://127.0.0.1:${srv.address().port}/`;
+      const swCtx = await browser.newContext({viewport: {width: 1400, height: 900}});
+      try {
+        const p1 = await swCtx.newPage();
+        await p1.goto(base2);
+        await p1.waitForSelector('body.ready', {timeout: 60000});
+        await p1.waitForFunction(async () => !!(await navigator.serviceWorker.ready).active);
+        await p1.goto(base2 + '#/h/E8');
+        await p1.waitForSelector('.lyrics');
+        await p1.close();
+
+        v = 2;
+        const p2 = await swCtx.newPage();
+        let loads = 0;
+        p2.on('load', () => { loads++; });
+        await p2.addInitScript(() => {
+          window.__swChanged = false;
+          navigator.serviceWorker?.addEventListener('controllerchange', () => { window.__swChanged = true; });
+        });
+        await p2.goto(base2);
+        await p2.waitForSelector('body.ready', {timeout: 60000});
+        await p2.waitForSelector('.home-lists a[href="#/h/E8"]');
+        await p2.click('.home-lists a[href="#/h/E8"]');
+        await onHymn(p2, 'E8');
+        await p2.waitForFunction(() => window.__swChanged, null, {timeout: 20000});
+        await p2.waitForTimeout(500);
+        assert(loads === 1, 'unexpected auto-reload: loads=' + loads);
+        assert(await p2.evaluate(() => location.hash) === '#/h/E8' && await p2.locator('.lyrics').count() === 1, 'bounced off E8: ' + p2.url());
+        await p2.waitForSelector('#toast.show.sticky .toast-link');
+        assert((await p2.textContent('#toast')).includes('A new version is ready'), 'toast text: ' + await p2.textContent('#toast'));
+        await p2.click('#toast .toast-link');
+        await p2.waitForSelector('.lyrics', {timeout: 30000});
+        assert(loads >= 2 && await p2.evaluate(() => location.hash) === '#/h/E8', 'reload did not keep E8');
+      } finally {
+        await swCtx.close();
+        srv.close();
+      }
+    });
+    await test('malformed percent-encoding in hash does not break navigation or emit console errors', async () => {
+      await open(page, '#/search?q=100%ZZ');
+      assert(await page.locator('.search').count() === 1, 'search screen did not render');
+    });
+    await test('pressing Enter in the search box from a hymn page stops playing and keeps Back history', async () => {
+      await page.setViewportSize({width: 800, height: 900});
+      await open(page, '#/h/E1');
+      await page.click('.hymn-nav .play');
+      await page.waitForFunction(async () => (await import('./player.js')).playing() === 'E1');
+      await page.fill('#q', 'blessings flow');
+      await page.press('#q', 'Enter');
+      await onHymn(page, 'E8');
+      assert(await page.evaluate(async () => (await import('./player.js')).playing()) === null, 'E1 kept playing');
+      await page.goBack();
+      await page.waitForURL(/#\/search/);
+      await page.goBack();
+      await onHymn(page, 'E1');
+      await page.setViewportSize({width: 1400, height: 900});
+    });
+    await test('removing the last favorite shows the empty state and disables Export', async () => {
+      await page.evaluate(() => localStorage.setItem('hfw.favorites', JSON.stringify(['E8'])));
+      await open(page, '#/favorites');
+      await page.click('.list-card .remove');
+      assert(await page.locator('.list-card').count() === 0, 'empty list card remained');
+      assert(await page.isDisabled('.btn:has-text("Export")'), 'Export stayed enabled');
+    });
+    await test('Settings hidden-books summary updates immediately on toggle', async () => {
+      await open(page, '#/settings');
+      const card = page.locator('.settings-card', {hasText: 'Languages (Hymn Books)'}).first();
+      const before = await card.locator('p').textContent();
+      await page.click('.hymnal-toggle:has(.chip:text-is("S")) input');
+      const after = await card.locator('p').textContent();
+      assert(before !== after && after.includes('Español'), 'summary did not update: ' + after);
+      await page.click('.hymnal-toggle:has(.chip:text-is("S")) input');
+    });
+    await test('multi-level parent inheritance (FR53 -> C233 -> E1355) and New Tune search isolation (BF484)', async () => {
+      const r = await page.evaluate(async () => {
+        const DB = await import('./db.js');
+        const fr53 = DB.hymn('FR53');
+        const fam = DB.family('FR53').map((x) => x.id);
+        const tuneMatches = DB.search(['53456515677'], '53456515677', null, 1e6, 'music').map((x) => x.id);
+        return {sheetId: fr53.sheetId, author: fr53.author, hasE1355: fam.includes('E1355'), tuneMatches};
+      });
+      assert(r.sheetId === 'E1355' && r.author === 'Adapted' && r.hasE1355, 'FR53: ' + JSON.stringify(r));
+      assert(r.tuneMatches.includes('E383') && !r.tuneMatches.includes('BF484'), 'New Tune BF484 inherited E383 tune: ' + JSON.stringify(r.tuneMatches));
     });
     await ctx.close();
 

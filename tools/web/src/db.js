@@ -106,34 +106,40 @@ function relatedIds(s) {
 const INHERITED = ['author', 'composer', 'time', 'tune', 'sheet_music_link', 'key', 'meter', 'verse'];
 const TUNE_FIELDS = ['composer', 'time', 'tune', 'sheet_music_link', 'key'];   // not inherited by a New Tune
 
-// A hymn as the app shows it: empty fields, categories and stanzas come from the parent hymn (HymnsDao.get).
-export function hymn(id) {
+// A hymn as the app shows it: empty fields, categories, stanzas and sheets come from the parent hymn (and its parents, up the tree; HymnsDao.get).
+export function hymn(id, seen = null) {
   id = currentId((id || '').toUpperCase());   // an old code (MY637) finds the hymn under its new one (BUR637)
   if (cache.has(id)) return cache.get(id);
+  const s = seen ? new Set(seen) : new Set();
+  if (s.has(id)) return null;
+  s.add(id);
   const row = hymnRow(id);
   if (!row) return null;
+  const related = new Set(relatedIds(row.related));
+  related.delete(id);
   const h = {
     id, group: row.hymn_group, no: row.no, parentId: row.parent_hymn || null,
     first: row.first_stanza_line, chorus: row.first_chorus_line,
     title: row.title || null,   // its own title, else the parent's (below); null = the first line is the title
     category: row.main_category, subcategory: row.sub_category,
-    stanzas: stanzaRows(id), related: relatedIds(row.related), newTune: row.new_tune === 1,   // the hymn's own column, never inherited
+    stanzas: stanzaRows(id), related: [...related], newTune: row.new_tune === 1,   // the hymn's own column, never inherited
   };
   for (const f of INHERITED) h[f] = row[f];
-  const parent = h.parentId && hymnRow(h.parentId);
+  const parent = h.parentId && h.parentId !== id ? hymn(h.parentId, s) : null;
   // a New Tune of a hymn with another tune keeps its own music: no tune, sheet, piano videos or recordings from the parent
   // (HymnsDao.startsOwnTune); a translation of a New Tune still borrows from it
-  h.ownTune = !!parent && row.new_tune === 1 && parent.new_tune !== 1;
+  h.ownTune = !!parent && row.new_tune === 1 && !parent.newTune;
   if (parent) {
     for (const f of INHERITED) if (!h[f] && !(h.ownTune && TUNE_FIELDS.includes(f))) h[f] = parent[f];
-    if (!h.title) h.title = (hymn(h.parentId) || {}).title || null;   // the nearest forebear's
-    if (!h.category) { h.category = parent.main_category; h.subcategory = parent.sub_category; }
-    if (!h.stanzas.length) h.stanzas = stanzaRows(parent._id);
-    h.related.push(...relatedIds(parent.related));
+    if (!h.title) h.title = parent.title || null;   // the nearest forebear's
+    if (!h.category) { h.category = parent.category; h.subcategory = parent.subcategory; }
+    if (!h.stanzas.length) h.stanzas = parent.stanzas;
+    for (const r of parent.related) if (r !== id) related.add(r);
+    h.related = [...related];
   }
   if (!h.first && h.stanzas.length) h.first = plain(h.stanzas[0].text).split('\n')[0];
-  // the sheet: its own, else its parent's (SheetMusicButton.getRootMusicSheet)
-  h.sheetId = sheetIds.has(id) ? id : (h.parentId && !h.ownTune && sheetIds.has(h.parentId) ? h.parentId : null);
+  // the sheet: its own, else its parent's (or grandparent's; SheetMusicButton.getRootMusicSheet)
+  h.sheetId = sheetIds.has(id) ? id : (parent && !h.ownTune ? parent.sheetId : null);
   // a translation that borrows the sheet may have its own words for it (sheetLyrics/<id>.json)
   h.lyricsId = h.sheetId && h.sheetId !== id && lyricIds.has(id) ? id : null;
   cache.set(id, h);
@@ -241,11 +247,22 @@ export function exists(id) {
 export function family(id) {
   const h = hymn(id);
   if (!h) return [];
-  const root = h.parentId || id;
+  let root = h.id;
+  for (let d = 0, cur = h; d < 10 && cur && cur.parentId && cur.parentId !== cur.id; d++) {
+    root = cur.parentId;
+    cur = hymn(root);
+  }
   const ids = new Set([root, ...h.related]);
-  for (const r of rows('select _id from hymns where parent_hymn = ?', [root])) ids.add(r._id);
-  const rootRow = hymnRow(root);
-  if (rootRow) relatedIds(rootRow.related).forEach((r) => ids.add(r));
+  const queue = [root], visited = new Set(queue);
+  for (let i = 0; i < queue.length && i < 200; i++) {
+    const qid = queue[i];
+    const qrow = hymnRow(qid);
+    if (qrow) relatedIds(qrow.related).forEach((r) => ids.add(r));
+    for (const r of rows('select _id from hymns where parent_hymn = ?', [qid])) {
+      ids.add(r._id);
+      if (!visited.has(r._id)) { visited.add(r._id); queue.push(r._id); }
+    }
+  }
   const out = [];
   for (const fid of ids) {
     const s = splitId(fid);

@@ -204,14 +204,17 @@ public class FavoritesBackup {
         LogBook faveLogBook = new LogBook(activity, FaveButton.FAVE_LOG_BOOK_FILE);
         HymnsDao hymnsDao = new HymnsDao(activity);
         hymnsDao.open();
-        for (String id : candidates) {
-            Hymn hymn = hymnsDao.get(id);
-            if (hymn == null) hymn = hymnsDao.get(id.toUpperCase());
-            if (hymn == null) notInApp++;
-            else if (faveLogBook.contains(hymn.getHymnId())) alreadyFaves++;
-            else newHymns.add(hymn);
+        try {
+            for (String id : candidates) {
+                Hymn hymn = hymnsDao.get(id);
+                if (hymn == null) hymn = hymnsDao.get(id.toUpperCase());
+                if (hymn == null) notInApp++;
+                else if (faveLogBook.contains(hymn.getHymnId())) alreadyFaves++;
+                else newHymns.add(hymn);
+            }
+        } finally {
+            hymnsDao.close();
         }
-        hymnsDao.close();
 
         String notInAppNote = notInApp == 0 ? "" :
                 "\n\n" + activity.getString(R.string.fav_not_in_app, plural(R.plurals.fav_not_in_app_count, notInApp));

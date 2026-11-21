@@ -125,13 +125,12 @@ public final class SearchIndex {
             target.execSQL("DROP TABLE IF EXISTS search");
             target.execSQL("CREATE TABLE search (id TEXT PRIMARY KEY, grp TEXT, no INTEGER, line TEXT, first TEXT,"
                     + " chorus TEXT, subject TEXT, people TEXT, music TEXT, body TEXT, title TEXT)");
-            SQLiteStatement insert = target.compileStatement("INSERT INTO search VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             // the stanzas sorted by hymn ID, like the hymns, so the stanzas of each hymn are read alongside it
             Set<String> withStanzas = new HashSet<>();
-            Cursor stanzas = source.rawQuery("SELECT parent_hymn, text FROM stanza WHERE parent_hymn NOT NULL"
-                    + " ORDER BY parent_hymn, n_order", null);
-            try {
+            try (SQLiteStatement insert = target.compileStatement("INSERT INTO search VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                 Cursor stanzas = source.rawQuery("SELECT parent_hymn, text FROM stanza WHERE parent_hymn NOT NULL"
+                         + " ORDER BY parent_hymn, n_order", null)) {
                 boolean moreStanzas = stanzas.moveToFirst();
                 StringBuilder body = new StringBuilder();
                 for (Map.Entry<String, String[]> hymn : hymns.entrySet()) {
@@ -163,24 +162,23 @@ public final class SearchIndex {
                     insert.bindString(11, SearchText.norm(h[TITLE]));
                     insert.executeInsert();
                 }
-            } finally {
-                stanzas.close();
             }
 
             // a hymn without stanzas shows those of its nearest forebear that has them
-            SQLiteStatement copyBody = target.compileStatement(
-                    "UPDATE search SET body = (SELECT body FROM search WHERE id = ?) WHERE id = ?");
-            for (String id : hymns.keySet()) {
-                if (withStanzas.contains(id)) continue;
-                String from = hymns.get(id)[PARENT];
-                for (int depth = 0; !from.isEmpty() && hymns.containsKey(from) && depth < 10; depth++) {
-                    if (withStanzas.contains(from)) {
-                        copyBody.bindString(1, from);
-                        copyBody.bindString(2, id);
-                        copyBody.executeUpdateDelete();
-                        break;
+            try (SQLiteStatement copyBody = target.compileStatement(
+                    "UPDATE search SET body = (SELECT body FROM search WHERE id = ?) WHERE id = ?")) {
+                for (String id : hymns.keySet()) {
+                    if (withStanzas.contains(id)) continue;
+                    String from = hymns.get(id)[PARENT];
+                    for (int depth = 0; !from.isEmpty() && hymns.containsKey(from) && depth < 10; depth++) {
+                        if (withStanzas.contains(from)) {
+                            copyBody.bindString(1, from);
+                            copyBody.bindString(2, id);
+                            copyBody.executeUpdateDelete();
+                            break;
+                        }
+                        from = hymns.get(from)[PARENT];
                     }
-                    from = hymns.get(from)[PARENT];
                 }
             }
             target.setTransactionSuccessful();
@@ -211,19 +209,26 @@ public final class SearchIndex {
         return hymns;
     }
 
-    // the hymn's columns with the empty ones its parents fill in (the subject comes with its sub-category)
+    // the hymn's columns with the empty ones its parents fill in (the subject comes with its sub-category;
+    // a New Tune of a hymn with another tune does not inherit composer, key, tune or time)
     private static String[] inherited(Map<String, String[]> hymns, String id) {
         String[] h = hymns.get(id).clone();
+        boolean ownTune = false;
+        boolean curNewTune = h[NEW_TUNE].equals("1");
         String parent = h[PARENT];
         for (int depth = 0; !parent.isEmpty() && hymns.containsKey(parent) && depth < 10; depth++) {
             String[] p = hymns.get(parent);
-            for (int field : new int[]{AUTHOR, COMPOSER, KEY, TUNE, METER, TIME, TITLE}) {
+            if (curNewTune && !p[NEW_TUNE].equals("1")) ownTune = true;
+            int[] fields = ownTune ? new int[]{AUTHOR, METER, TITLE}
+                    : new int[]{AUTHOR, COMPOSER, KEY, TUNE, METER, TIME, TITLE};
+            for (int field : fields) {
                 if (h[field].isEmpty()) h[field] = p[field];
             }
             if (h[MAIN_CATEGORY].isEmpty()) {
                 h[MAIN_CATEGORY] = p[MAIN_CATEGORY];
                 h[SUB_CATEGORY] = p[SUB_CATEGORY];
             }
+            curNewTune = p[NEW_TUNE].equals("1");
             parent = p[PARENT];
         }
         return h;

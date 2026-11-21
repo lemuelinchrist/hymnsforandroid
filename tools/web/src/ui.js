@@ -90,10 +90,20 @@ export const store = {
 export function toast(msg) {
   let t = $('#toast');
   if (!t) { t = h('div', {id: 'toast', role: 'status', 'aria-live': 'polite'}); document.body.appendChild(t); }
+  t.classList.remove('sticky');
   t.textContent = msg;
   t.classList.add('show');
   clearTimeout(toast.timer);
   toast.timer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+export function stickyToast(...nodes) {
+  let t = $('#toast');
+  if (!t) { t = h('div', {id: 'toast', role: 'status', 'aria-live': 'polite'}); document.body.appendChild(t); }
+  clearTimeout(toast.timer);
+  t.textContent = '';
+  append(t, nodes);
+  t.classList.add('show', 'sticky');
 }
 
 export function isDark() {

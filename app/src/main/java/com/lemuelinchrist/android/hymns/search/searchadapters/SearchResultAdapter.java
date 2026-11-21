@@ -137,6 +137,7 @@ public class SearchResultAdapter extends SearchAdapter {
         out.append(text);
         String folded = SearchText.fold(text);
         for (String term : terms) {
+            if (term == null || term.isEmpty()) continue;
             boolean wholeOnly = HymnSearch.isShortWord(term);
             for (int i = folded.indexOf(term); i >= 0; i = folded.indexOf(term, i + term.length())) {
                 if (wholeOnly && !wholeWordAt(folded, i, term.length())) continue;

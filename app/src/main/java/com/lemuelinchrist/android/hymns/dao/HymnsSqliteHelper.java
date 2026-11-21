@@ -100,10 +100,15 @@ public class HymnsSqliteHelper extends SQLiteOpenHelper {
     @Override
     public synchronized void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
-        mOpenConnections++;
         if (!db.isReadOnly()) {
             db.execSQL("PRAGMA foreign_keys=ON;");
         }
+    }
+
+    /** Opens the writable database and increments the reference count for {@link #close()}. */
+    public synchronized SQLiteDatabase openWritable() {
+        mOpenConnections++;
+        return getWritableDatabase();
     }
 
     /**
@@ -112,8 +117,7 @@ public class HymnsSqliteHelper extends SQLiteOpenHelper {
      */
     @Override
     public synchronized void close() {
-        mOpenConnections--;
-        if (mOpenConnections == 0) {
+        if (mOpenConnections > 0 && --mOpenConnections == 0) {
             super.close();
         }
     }

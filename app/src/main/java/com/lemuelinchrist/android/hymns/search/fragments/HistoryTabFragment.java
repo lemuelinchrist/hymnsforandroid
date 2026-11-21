@@ -21,7 +21,7 @@ public class HistoryTabFragment extends TabFragment {
 
     @Override
     public void setSearchFilter(String filter) {
-        mRecyclerView.setAdapter(new HistoryAdapter(container.getContext(),R.layout.recyclerview_hymn_list));
+        setAdapter(new HistoryAdapter(container.getContext(),R.layout.recyclerview_hymn_list));
     }
 
     @Override

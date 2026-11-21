@@ -96,4 +96,16 @@ public class HymnsWithParentsTest {
             c.close();
         }
     }
+
+    @Test
+    public void newTuneDoesNotInheritParentsTuneOrKeyOrComposer() {
+        String[] bf484 = row("BF484", "author", "main_category", "tune", "key", "composer");
+        String[] e383 = row("E383", "author", "main_category", "tune");
+        assertEquals(e383[0], bf484[0]);
+        assertEquals(e383[1], bf484[1]);
+        assertNotEquals(e383[2], bf484[2]);
+        assertNull(bf484[2]);
+        assertNull(bf484[3]);
+        assertNull(bf484[4]);
+    }
 }
