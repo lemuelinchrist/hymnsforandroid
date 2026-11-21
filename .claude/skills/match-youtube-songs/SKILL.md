@@ -56,6 +56,7 @@ Pilot done 2026-11-03 on NYCYPCD (UC_1giUVT14MRXyEFtQZgmKQ, 267 songs, official 
    his browser; **Export** gives a TSV (`Video, Title, Your hymn, Status, Note`) to paste back, then import the
    `hymn` rows as in step 7 and document the not-in-database ones. Not an artifact: artifact pages
    cannot embed YouTube. Lemuel found it much easier than the CSV (2026-11-04).
+   **Since 2026-11-21 the standard reviewer is the one in `scripts/unmatched/`** (next section): more answers, the answers saved on the server, a web-app link per suggestion.
 7. **Import** (after his OK; done for NYCYPCD 2026-11-04: `ImportNycypcdYoutube.groovy` reads `NycypcdYoutube.txt`, `hymn id TAB video id`, label NYCYPCD, Gradle `runImportNycypcdYoutube`; copy it for the next channel): a Groovy script in `databaseProvisioner` (like `YoutubePiano`) that saves `LinkEntity`
    rows with `dao.saveLink(hymnId, "youtube", url, order)`, label = album or channel name if wanted; then the usual run
    in one Gradle call (`:sqlite:exportSql`), docs, and the emulator check.
@@ -170,7 +171,7 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   are marked with the studio Hymn CDs in `recordings.tsv` (no official Hymn CDs channel found). The **NYCYPCD English** channel (@nycypcd-english, UCcS0QoAJh3PucoYLQXJG2bg, 280 videos titled like "Drink! A River - H 1151") was checked 2026-11-08 and
   DROPPED: 227 of its 280 titles are tracks we already have. Do not offer it again.
 - **Melody of Lilies** (@MelodyofLilies; Releases tab 23 albums + 11 playlists + 50 videos, 86 unique tracks; mostly the group's own songs, not hymnal hymns), English, a
-  popular Recovery producer: 17 links, label `Melody of Lilies` (2026-11-08): 6 exact titles + 11 confirmed by ear; the other ~50 titles matched no hymn (`melodyoflilies_known.tsv`, `recordings.tsv`).
+  popular Recovery producer: 17 links, label `Melody of Lilies` (2026-11-08): 6 exact titles + 11 confirmed by ear; the other ~50 titles matched no hymn (`melodyoflilies_known.tsv`, `recordings.tsv`). The unmatched ones were reviewed 2026-11-21 (next section): ~25 more links; `recordings.tsv` has the current state.
 - **Hymn Singing** (@hymnsingingLR, UCk5QAUglOYFgfm07VLj5ysQ; 220 videos; playlists Hymns, New Song, Be Filled, New Tune, Tagalog Hymns, Tour of a Lifetime): saints' groups singing
   in meetings (the quality varies; Lemuel judged only the playlist **Hymns**, PL1twdZLXinrqYc3oNlygRE_4A5NEgsZAK, good enough). 38 links, label `Hymn Singing`, album `Hymns` (2026-11-12): the hymns of that playlist
   that had no recording (28 with only a piano video, 10 with no link at all; one video per hymn), from the number and first line in the titles. The playlist videos have **no captions**
@@ -179,7 +180,7 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
 - **Joseph's Storehouses** (@JosephsStorehouses, 994 videos in 63 playlists, 2026-11-08): saints' groups and CDs, not an official publisher (the playlists name the
   group: "(by Boston, Cambridge, Newton)", "(by ATX YP)"...; 7 are the Hymn CDs albums, the same recordings as Loving the Lord, so not linked twice) plus
   messages and kids' songs (left out). 211 links, label `Joseph's Storehouses` (`2`, `(Instrumental)`) from exact titles (max 2 sung + 1 instrumental per hymn).
-  The 301 partial-title videos were transcribed and matched 2026-11-08/09 (about 324 links in all, 113 more in v5.9.4). Only 29 poor transcriptions (mostly instrumentals) and ~300 videos with no title match and no local copy remain, nothing planned.
+  The 301 partial-title videos were transcribed and matched 2026-11-08/09 (about 324 links in all, 113 more in v5.9.4). The rest was reviewed on the review pages 2026-11-19/21 (about 100 more links, 17 new BF songs); what is still `unmatched` in `recordings.tsv` is the queue of "Reviewing the unmatched recordings" below.
 - **The Lord's Recovery Hymns - Topic** (UC_Jf1JXNogSSLVq3WJVvpTw, 3 albums, 101 tracks) was checked 2026-11-17 and DROPPED entirely (Lemuel): its songs are mostly duplicates of
   recordings we already have, and the Sound of the New Man album is a partial copy of his own, more complete collection (to be uploaded by him). Nothing is linked and nothing is monitored. Do not offer it again.
 - **Rules that held for the Topic channels**: a number in the title (`Hymn N`, `Hymns N`, `诗歌N`) is reliable; a track titled "- New Tune" belongs to
@@ -251,26 +252,6 @@ Once all lyrics are in `app/src/main/assets/hymns.sqlite`, `tools/youtube-monito
   - Full run: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --apply`
 - **Quota & safety**: `videos.list` is batched (50 IDs/call), unchanged videos (matching title and description) are skipped, and existing `categoryId`, `tags`, `defaultLanguage`, and `defaultAudioLanguage` are preserved. Each `videos.update` costs 50 quota units (default 10,000/day, so ~146 videos fit in one day). Tested 2026-11-14 on `hwvmdDKP9q4` (`BF169`).
 
-## Updating HymnsForAndroid video titles & descriptions
-
-Once all lyrics are in `app/src/main/assets/hymns.sqlite`, `tools/youtube-monitor/update_descriptions.py` updates the title and description of every `HymnsForAndroid` video in `recordings.tsv`:
-
-- **Environment & credentials** (kept outside the repo, `chmod 600`):
-  - Python venv: `~/.venvs/hymns-yt` (`google-api-python-client`, `google-auth-oauthlib`).
-  - OAuth Desktop client JSON: `~/.config/hymnsforandroid/client_secret.json` (Google Cloud project `HymnsForAndroid-YouTube`, YouTube Data API v3 enabled, app in Testing mode with the channel owner's email under Test users).
-  - Cached OAuth token: `~/.config/hymnsforandroid/youtube_token.json` (scope `youtube.force-ssl`). If re-auth is needed from WSL, `run_local_server(port=0)` prints the `accounts.google.com` URL to open in Windows Chrome.
-- **Format**:
-  - **Title**: appends ` - <ID>` (e.g., `Strength for the Day - BF169`) unless the title already ends with `<ID>` (checked against YouTube's 100-char limit).
-  - **Description** (overwrites existing):
-    - First line: `<ID> Hymn & Sheet Music: https://lemuelinchrist.github.io/hymnsforandroid/#/h/<ID>` if `app/src/main/assets/sheetMei/<ID>.mei` exists, else `<ID> Hymn: https://lemuelinchrist.github.io/hymnsforandroid/#/h/<ID>`.
-    - Stanzas from `hymns.sqlite` (falling back through `parent_hymn`, `<br/>` -> newline, `chorus` -> `Chorus`, omitting labels for `-`/`beginning-note`/`end-note`/`verse`).
-    - Footer: `---` and `Hymns For Android Web App: https://lemuelinchrist.github.io/hymnsforandroid/`.
-- **Commands**:
-  - Dry run: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --video <VIDEO_ID> --show`
-  - Single-video test: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --video <VIDEO_ID> --apply`
-  - Full run: `~/.venvs/hymns-yt/bin/python tools/youtube-monitor/update_descriptions.py --apply`
-- **Quota & safety**: `videos.list` is batched (50 IDs/call), unchanged videos (matching title and description) are skipped, and existing `categoryId`, `tags`, `defaultLanguage`, and `defaultAudioLanguage` are preserved. Each `videos.update` costs 50 quota units (default 10,000/day, so ~146 videos fit in one day). Tested 2026-11-14 on `hwvmdDKP9q4` (`BF169`).
-
 ## Link labels and columns (Lemuel, 2026-11-09)
 A link row has the **publisher** (`label`: who made the recording), the **album** (`album`) and an `instrumental` flag; the card shows the publisher, else the album, never the
 YouTube channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives the group as the publisher and X as the album). `NycypcdYoutube.txt` lines are
@@ -278,6 +259,7 @@ YouTube channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives 
 `python3 -I tools/youtube-monitor/link_meta.py`, which rewrites every line from `recordings.tsv` (and drops a recording of the same title in the same album as one the hymn already has).
 There is no cap on the number of recordings per hymn any more: the card shows 3 and "Show N more". Importing needs the three columns in the DB: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql`.
 NYCYPCD, LSM (written "Living Stream Ministry"), Melody of Lilies and 臺灣福音書房 keep their publisher names.
+**`link_meta.py` is stale since the 2026-11-20 publisher rule (below): it would put back the names of individuals (Ugo Ibe, Crystal Grace Goh, Stephen & Joseph, The Cooleys), drop the group publishers (ATX YP, Irvine YP, NWS YP, New Zealand, Arlington Students) and the label "YouTube 1". Do not run it on the whole file until it is fixed; write the new lines by hand, with the publisher and album as `recordings.tsv` has them.**
 
 ## Finding recordings by hymn number (English hymns with no sung link; Lemuel, 2026-11-14)
 
@@ -326,6 +308,36 @@ Find tracks for hymns/songs that have no sung link, then he uploads whole albums
    (no cap), publisher empty, album = playlist title; ask before linking an E hymn that has a New Tune (BF child) when the tune is unclear.
    Import as in the Link labels section (`hymn TAB video TAB TAB album TAB`).
    Done: Pressing On 1999 and A Joyful Way To Drink (41 links; "If in all I do" is not in the hymnal; Intro/Exit skipped). Titles and descriptions of the 41 videos were updated with `update_descriptions.py` (2026-11-14). Lemuel decided NOT to upload the other albums of the collection (low-quality recordings): do not offer them again.
+
+## Reviewing the unmatched recordings (Lemuel, 2026-11-21)
+
+The queue is every row of `tools/youtube-monitor/recordings.tsv` with status `unmatched` (Joseph's Storehouses, Melody of Lilies, 臺灣福音書房, HymnsForAndroid), **except**
+kids' songs (兒童..., Children..., Joyful Songs for Children) and the weekly "Message of the Week" talks, which are never linked. Nothing a person already answered is in it
+(its status is not `unmatched` any more). Work folder `temp/review-unmatched/` (not versioned; the state is there so a reboot loses nothing). Scripts in `scripts/unmatched/`, run from the work folder:
+1. `gfiles.txt`: `powershell.exe ... Get-ChildItem 'G:\My Drive\Archives\Hymns\Online' -Recurse -File` (paths relative to `Online\`, UTF-8). `songbase_app_data.json`:
+   `https://songbase.life/api/v2/app_data` (or `SONGBASE_JSON=`). `python3 build_set.py` -> `set.json` (a local file is used only when the album folder and track title agree).
+2. Copy the local files as `work/in/<video id>.<ext>`, run `tools/audio-transcribe/batch_lyrics.py work` (Demucs + Whisper, resumable; earlier transcripts in
+   `temp/josephs_transcribe/local/lyrics/` can be copied to `work/lyrics/`). A recording with no local audio is matched by its title only.
+   **A stereo file whose channels are out of phase** (correlation -1) mixes to silence: make a left-channel mono file first (`ffmpeg -af pan=mono|c0=FL`).
+3. `python3 match.py` -> `matched.json`: title (first line, hymn title, "Hymn N", scripture reference vs `verse`) and sung words against the database and songbase.life; a songbase song that is
+   already a hymn (>= 80 % of its word pairs) counts as that hymn. `python3 build_page.py` -> `review.html`, **ordered by confidence** (the easy ones first), then `python3 serve.py`
+   (http://127.0.0.1:8768/review.html). The page saves every answer to `state.json` (`{ans, notes, lyr, inst, i}`; `backups/` every 5 minutes) and reloads it; the Chrome tool can read it at `/state`.
+4. The page: the video, up to 3 database suggestions with their evidence, the lyrics and **a link to the hymn in the web app** (`.../#/h/<id>`: to see its existing links and notes), up to 2 songbase suggestions
+   with *Add as a new song with these words*. Keys: 1-3 pick, **A** add a new song, **S** skip, **N** not in the database, **U** unavailable, **E** not English, **D** duplicate, **X** not a song, **I** instrumental (a tickbox, separate from the answer).
+5. **Applying the answers** (after his OK, in one change):
+   - *a hymn* -> a line in `NycypcdYoutube.txt`: `hymn TAB video TAB publisher TAB album TAB instrumental`. Publisher: Melody of Lilies for its channel; a group named in "(by Group)" (ATX YP); the album's own name when it is the only name (Arlington Students);
+     otherwise empty (never a person, see below); album without "(by ...)". And `recordings.tsv`: status `linked`, hymns, link label (= the publisher), instrumental `1`.
+   - *duplicate* (the hymn already has this recording) -> `recordings.tsv` status `duplicate` + hymn + note, and a `duplicate` line in the channel's `*_known.tsv`; *not a song* -> `not-a-song`; *not in the database* -> `not-in-database`
+     (note the song); *skip* stays `unmatched`. Edit `recordings.tsv` by splitting lines on tabs only: a CSV reader/writer rewrites the quoted titles.
+   - *add a new song* -> the next free `BF` number (`select max(cast(no as int)) from hymns where hymn_group='BF'`), its words and chords from songbase: clean the text by the lyric rules of the `hymn-provisioning` skill (capital per line, curly apostrophes, line-end punctuation; chords as `[C]` inline, a chart with chords above the words must be converted by hand),
+     `tools/chord-sheet/make_chord_sheet.py song.txt BF<n> "<title>" --source "Chords: songbase.life" --mei app/src/main/assets/sheetMei/BF<n>.mei > BF<n>.json` (the guitar chord sheet), then the `hymns` row (key and capo from the JSON, category, `verse` + title "first line (Ref)" for a scripture song,
+     author/composer when songbase credits them, `first_chorus_line`) and the `stanza` rows (`<br/>`-terminated lines, ids from `SEQUENCE`, then move the counter), as in "Every new song" of `hymn-provisioning`; its recording is linked like the rest.
+   - Edit `app/src/main/assets/hymns.sqlite`, run `:sqlite:exportSql` **first**, then `:databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql` (about 4.5 minutes in all, run it in the background and wait for the files); check `pragma integrity_check`,
+     `select max(id) from link/stanza` against `SEQUENCE`, and that the real diff of `hymns.sql` (link ids stripped) is only your rows. Commit, push; the web app and the app need a new deploy/build.
+6. **Clear the queue**: rebuild (`build_set.py`, `match.py`, `build_page.py`) so the finished recordings are gone, and drop their answers from `state.json` (keep a copy in `backups/`); an open browser tab must be reloaded or it will save the old state back.
+
+**Publisher = a group or a locality, never a person**: see the rule below. Lessons of the first run: a title that is a line inside another song scored 0.9 as a "first line" match and was wrong, so a line match is worth at most 0.6;
+a "Part 1:" line at the start of a stanza is a note, not the first line of the song (fixed in NS975, NS970, NS1013, CH224); an `NycypcdYoutube.txt` line without label or album is added again on every import.
 
 ## Traps
 - Titles are song names, not hymn numbers; several hymns share a first line (a hymn and its Be Filled / New Songs copy):
