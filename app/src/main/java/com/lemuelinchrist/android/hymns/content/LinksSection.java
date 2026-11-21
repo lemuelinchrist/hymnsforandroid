@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.content;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -277,17 +278,21 @@ public class LinksSection extends ContentComponent<View> {
     }
 
     private void open(String address) {
+        if (address == null || address.isEmpty()) return;
         if (address.startsWith(HYMN)) {
             HymnSwitcher hymnSwitcher = HymnsActivity.getHymnSwitcher();
             if (hymnSwitcher != null) hymnSwitcher.switchToHymnFromTop(address.substring(HYMN.length()));
         } else {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(address)));
+            try {
+                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(address)));
+            } catch (ActivityNotFoundException ignored) {
+            }
         }
     }
 
     /** The table keeps the watch address of a video; the card has always opened its embed address. */
     private static String embedAddress(String url) {
-        return url.trim().replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/");
+        return url == null ? "" : url.trim().replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/");
     }
 
     private int dividerColor() {

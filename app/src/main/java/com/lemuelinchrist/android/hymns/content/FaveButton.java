@@ -48,4 +48,10 @@ public class FaveButton extends ContentComponent<ImageButton> {
         view.setImageResource(R.drawable.ic_favorite_border_white_48dp);
         faveLogBook.removeAndSave(hymn);
     }
+
+    public void refresh() {
+        faveLogBook = new LogBook(context, FAVE_LOG_BOOK_FILE);
+        faved = faveLogBook.contains(hymn.getHymnId());
+        view.setImageResource(faved ? R.drawable.ic_favorite_white_48dp : R.drawable.ic_favorite_border_white_48dp);
+    }
 }

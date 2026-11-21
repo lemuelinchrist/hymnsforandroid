@@ -48,7 +48,7 @@ public class FavoritesTabFragment extends TabFragment {
     @Override
     public void setSearchFilter(String filter) {
         FavoritesAdapter adapter = new FavoritesAdapter(container.getContext(), R.layout.recyclerview_hymn_list);
-        mRecyclerView.setAdapter(adapter);
+        setAdapter(adapter);
         int count = adapter.getItemCount();
         if (favoritesCount != null) {
             favoritesCount.setText(count == 0 ? getString(R.string.favorites_none)

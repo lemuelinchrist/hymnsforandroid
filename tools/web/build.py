@@ -202,14 +202,20 @@ def build_db(assets):
     def inherited(hid):
         h = dict(hymns[hid])
         body = stanzas.get(hid)
+        own_tune = False
+        cur_new_tune = h['new_tune'] == '1'
         parent, depth = h['parent_hymn'], 0
         while parent in hymns and depth < 10:
             p = hymns[parent]
-            for f in ('author', 'composer', 'key', 'tune', 'meter', 'time', 'title'):
+            if cur_new_tune and p['new_tune'] != '1':
+                own_tune = True
+            fields = ('author', 'meter', 'title') if own_tune else ('author', 'composer', 'key', 'tune', 'meter', 'time', 'title')
+            for f in fields:
                 h[f] = h[f] or p[f]
             if not h['main_category']:
                 h['main_category'], h['sub_category'] = p['main_category'], p['sub_category']
             body = body or stanzas.get(parent)
+            cur_new_tune = p['new_tune'] == '1'
             parent, depth = p['parent_hymn'], depth + 1
         h['body'] = ' | '.join(body or [])
         return h

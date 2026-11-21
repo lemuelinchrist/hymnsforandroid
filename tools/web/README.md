@@ -26,7 +26,8 @@ by hand under **Actions → Web app → Run workflow** (or `gh workflow run web-
 and whenever master has web changes. Only master can deploy to Pages (the github-pages environment's rule).
 Pages must be set to "GitHub Actions" as its source (repository Settings → Pages), once.
 
-Installed apps pick up a new version the next time they are opened with a network (they offer "Reload").
+Installed apps pick up a new version the next time they are opened with a network: when a new build activates while open,
+it offers a sticky "Reload" toast (reloading automatically only when the app is hidden and idle).
 
 ## Install on iPhone / iPad
 

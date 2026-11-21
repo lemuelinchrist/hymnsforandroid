@@ -41,6 +41,7 @@ public class Hymn {
     // the hymn's own title when it differs from its first line; null means the first line is the title
     private String title;
     private boolean ownTune = false;
+    private String ancestorSheetId;
 
     public String getVerse() {
         return verse;
@@ -186,12 +187,13 @@ public class Hymn {
     }
 
     /**
-     * The sheet the Play button plays in place of the MIDI file: the hymn's own sheet, or its parent's when the hymn has
-     * no tune of its own (as the sheet button picks it), when it has a melody (not a chords-only sheet) and it is
-     * a sheet of ours (it names Hymns For Android as its source) or the hymn has no MIDI file. Null: play the MIDI file.
+     * The sheet the Play button plays in place of the MIDI file: the hymn's own sheet, or its parent's/ancestor's when
+     * the hymn has no tune of its own (as the sheet button picks it), when it has a melody (not a chords-only sheet)
+     * and it is a sheet of ours (it names Hymns For Android as its source) or the hymn has no MIDI file. Null: play the
+     * MIDI file.
      */
     public String getSheetToPlay() {
-        String id = hasOwnSheetMusic() ? hymnId : (!hasOwnTune() && hasSheetMusic(parentHymn)) ? parentHymn : null;
+        String id = getRootSheetId();
         if (id == null) return null;
         String mei = readSheetHead(id);
         if (mei == null || mei.contains("type=\"kind\">chords<")) return null;
@@ -200,11 +202,14 @@ public class Hymn {
     }
 
     /** The beginning of a sheet's MEI file (its header), or null. */
-    private String readSheetHead(String id) {
+    protected String readSheetHead(String id) {
         try (InputStream in = context.getAssets().open("sheetMei/" + id + ".mei")) {
             byte[] buf = new byte[2048];
-            int n = in.read(buf);
-            return n <= 0 ? null : new String(buf, 0, n, java.nio.charset.StandardCharsets.UTF_8);
+            int off = 0, r;
+            while (off < buf.length && (r = in.read(buf, off, buf.length - off)) != -1) {
+                off += r;
+            }
+            return off <= 0 ? null : new String(buf, 0, off, java.nio.charset.StandardCharsets.UTF_8);
         } catch (IOException e) {
             return null;
         }
@@ -262,9 +267,14 @@ public class Hymn {
 
     public void stopHymn() {
         if (mp != null) {
-            mp.stop();
+            try {
+                mp.stop();
+            } catch (IllegalStateException ignored) {
+            }
+            mp.release();
+            mp = null;
         }
-        SheetPlayer.get(context).stop();
+        SheetPlayer.stopIfActive();
     }
 
     public String getFirstStanzaLine() {
@@ -375,6 +385,18 @@ public class Hymn {
         this.ownTune = ownTune;
     }
 
+    public void setAncestorSheetId(String ancestorSheetId) {
+        this.ancestorSheetId = ancestorSheetId;
+    }
+
+    /** The sheet ID for this hymn: its own sheet, else its parent's or ancestor's (never past a New Tune boundary). */
+    public String getRootSheetId() {
+        if (hasOwnSheetMusic()) return hymnId;
+        if (!hasOwnTune() && hasSheetMusic(parentHymn)) return parentHymn;
+        if (!hasOwnTune() && hasSheetMusic(ancestorSheetId)) return ancestorSheetId;
+        return null;
+    }
+
     private static boolean isNumeric(String str) {
         try {
             double d = Double.parseDouble(str);
@@ -428,6 +450,11 @@ public class Hymn {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Hymn hymn = (Hymn) o;
-        return hymnId.equals(hymn.hymnId);
+        return Objects.equals(hymnId, hymn.hymnId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(hymnId);
     }
 }

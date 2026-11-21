@@ -40,7 +40,6 @@ public class ContentArea extends Fragment {
 
     private Context context;
     private Hymn hymn;
-    private static HymnsDao hymnsDao = null;
     private static float fontSize;
     private SharedPreferences sharedPreferences;
     private LogBook historyLogBook;
@@ -57,12 +56,14 @@ public class ContentArea extends Fragment {
     private ShareButton shareButton;
     private YoutubeButton youtubeButton;
     private SimilarTuneButton similarTuneButton;
+    private boolean faveNeedsRefresh;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.context = getContext();
+        faveNeedsRefresh = false;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
@@ -76,9 +77,6 @@ public class ContentArea extends Fragment {
             return insets;
         });
 
-        if (hymnsDao == null) {
-            hymnsDao = new HymnsDao(context);
-        }
         Log.d(this.getClass().getSimpleName(), "entering initialization of new LyricContainer!");
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
 
@@ -106,16 +104,25 @@ public class ContentArea extends Fragment {
             hymnId = records.length>0 ? records[0].getHymnId() : HymnGroup.firstHymn(context);
         }
 
+        HymnsDao hymnsDao = new HymnsDao(context);
         hymnsDao.open();
-        hymn = hymnsDao.get(hymnId);
-        if (hymn == null) {
-            // the hymn was removed from the database: forget it and show the default hymn
-            Log.w(this.getClass().getSimpleName(), "hymn " + hymnId + " not found. showing the default hymn");
-            LogBook.removeFromHistoryAndFavorites(context, hymnId);
-            hymnId = HymnGroup.firstHymn(context);
+        try {
             hymn = hymnsDao.get(hymnId);
+            if (hymn == null) {
+                // the hymn was removed from the database: forget it and show the default hymn
+                Log.w(this.getClass().getSimpleName(), "hymn " + hymnId + " not found. showing the default hymn");
+                LogBook.removeFromHistoryAndFavorites(context, hymnId);
+                hymnId = HymnGroup.firstHymn(context);
+                hymn = hymnsDao.get(hymnId);
+            }
+        } finally {
+            hymnsDao.close();
         }
-        hymnsDao.close();
+        if (hymn == null) {
+            buttonContainer = rootView.findViewById(getRid("buttonContainer"));
+            if (buttonContainer != null) buttonContainer.setVisibility(View.GONE);
+            return rootView;
+        }
 
         LyricsArea lyricsArea = new LyricsArea(hymn,this,scrollView);
 
@@ -172,16 +179,21 @@ public class ContentArea extends Fragment {
     }
 
     private void onLyricVisible() {
+        if (hymn == null) return;
         for (OnLyricVisibleListener listener : onLyricVisibleLIsteners) {
             listener.onLyricVisible(hymn.getHymnId());
         }
-        if (hymn != null) log();
+        log();
     }
 
     @Override
     public void onResume() {
         Log.d(this.getClass().getSimpleName(), "onResume called on LyricContainer with hymn: " + hymn);
         super.onResume();
+        if (faveNeedsRefresh && faveButton != null) {
+            faveButton.refresh();
+            faveNeedsRefresh = false;
+        }
         if (getUserVisibleHint()) onLyricVisible();
     }
 
@@ -198,20 +210,21 @@ public class ContentArea extends Fragment {
     }
 
     public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {
-        return hymn.getRelatedHymnOf(selectedHymnGroup);
+        return hymn == null ? null : hymn.getRelatedHymnOf(selectedHymnGroup);
     }
 
     public void log() {
         // No need to log default hymn number since it's the starting point anyway
-        // NOTE: possible null pointer here!
-        if(hymnStack != null && hymnStack.contains(hymn.getHymnId()) && (context == null || !getHymnId().equals(HymnGroup.firstHymn(context))))
+        if (hymn == null || hymnId == null || historyLogBook == null) return;
+        if (hymnStack != null && hymnStack.contains(hymn.getHymnId()) && (context == null || !getHymnId().equals(HymnGroup.firstHymn(context))))
             historyLogBook.log(hymn);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        playButton.stop();
+        faveNeedsRefresh = true;
+        if (playButton != null) playButton.stop();
     }
 
     /** A page that was scrolled earlier (or kept its position) opens at its top again. */

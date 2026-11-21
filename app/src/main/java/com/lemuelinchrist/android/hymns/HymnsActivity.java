@@ -316,7 +316,7 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case SEARCH_REQUEST:
-                if (resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK && data != null && data.getDataString() != null) {
                     try {
                         String rawData = data.getDataString().trim();
                         selectedHymnGroup = HymnGroup.getHymnGroupFromID(rawData);
@@ -390,6 +390,9 @@ public class HymnsActivity extends AppCompatActivity implements OnLyricVisibleLi
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (sharedPreferences != null) {
+            sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+        }
         if (hymnSwitcher == this) {
             hymnSwitcher = null;
         }

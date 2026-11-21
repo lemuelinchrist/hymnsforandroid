@@ -115,7 +115,7 @@ public class LogBook {
         HymnRecord[] hymnRecords = logBook.toArray(new HymnRecord[0]);
         Arrays.sort(hymnRecords);
 
-        if (hymnRecords.length>101) {
+        if (hymnRecords.length > 100) {
             return Arrays.copyOfRange(hymnRecords, 0, 100);
         } else {
             return hymnRecords;

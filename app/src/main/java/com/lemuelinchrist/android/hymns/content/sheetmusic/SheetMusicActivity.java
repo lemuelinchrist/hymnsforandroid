@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.content.sheetmusic;
 
+import android.content.ActivityNotFoundException;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
@@ -57,7 +58,7 @@ public class SheetMusicActivity extends AppCompatActivity {
     private final OnBackPressedCallback closeEditorOnBack = new OnBackPressedCallback(false) {
         @Override
         public void handleOnBackPressed() {
-            webview.evaluateJavascript("window.closeEditor && closeEditor()", null);
+            if (webview != null) webview.evaluateJavascript("window.closeEditor && closeEditor()", null);
         }
     };
 
@@ -92,9 +93,9 @@ public class SheetMusicActivity extends AppCompatActivity {
 
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
-        String selectedHymnId = (String) extras.get("selectedHymnId");
-        String lyricsHymnId = (String) extras.get("lyricsHymnId");
-        String tune = (String) extras.get("tune");
+        String selectedHymnId = extras == null ? null : extras.getString("selectedHymnId");
+        String lyricsHymnId = extras == null ? null : extras.getString("lyricsHymnId");
+        String tune = extras == null ? null : extras.getString("tune");
 
         webview = findViewById(R.id.sheet_music_image);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -102,7 +103,7 @@ public class SheetMusicActivity extends AppCompatActivity {
         saveMidiLauncher = registerForActivityResult(new ActivityResultContracts.CreateDocument("audio/midi"), this::writePendingFile);
         getOnBackPressedDispatcher().addCallback(this, closeEditorOnBack);
 
-        if (!hasMei(selectedHymnId)) {
+        if (selectedHymnId == null || !hasMei(selectedHymnId)) {
             Toast.makeText(this, R.string.sorry_sheet_music_not_available, Toast.LENGTH_SHORT).show();
             finish();
             return;
@@ -236,8 +237,14 @@ public class SheetMusicActivity extends AppCompatActivity {
             }
             String fileName = name != null && name.matches("[\\w.-]{1,80}") ? name : "sheet.mid";
             runOnUiThread(() -> {
+                if (isFinishing() || isDestroyed()) return;
                 pendingFile = data;
-                saveMidiLauncher.launch(fileName);
+                try {
+                    saveMidiLauncher.launch(fileName);
+                } catch (ActivityNotFoundException e) {
+                    pendingFile = null;
+                    Toast.makeText(SheetMusicActivity.this, R.string.file_not_saved_there, Toast.LENGTH_LONG).show();
+                }
             });
         }
 

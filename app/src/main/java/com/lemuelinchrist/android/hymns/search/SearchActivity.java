@@ -85,7 +85,8 @@ public class SearchActivity extends AppCompatActivity  {
 
         // get selected hymn group
         Bundle extras = getIntent().getExtras();
-        selectedHymnGroup = (HymnGroup) extras.get("selectedHymnGroup");
+        selectedHymnGroup = extras == null ? null : (HymnGroup) extras.get("selectedHymnGroup");
+        if (selectedHymnGroup == null) selectedHymnGroup = HymnGroup.getDefaultHymnGroup();
         setTitle(getString(R.string.search_index_title, selectedHymnGroup.getNativeName(this)));
 
 
@@ -144,7 +145,7 @@ public class SearchActivity extends AppCompatActivity  {
         TabFragment.setSelectedHymnGroup(selectedHymnGroup);
 
         // opened from a link in the hymn's details: the Search tab, already searching those words in all books
-        String words = extras.getString(EXTRA_QUERY);
+        String words = extras == null ? null : extras.getString(EXTRA_QUERY);
         if (words != null && savedInstanceState == null) {
             int position = mSearchTabsPagerAdapter.getPositionOf(SearchTabFragment.class);
             mViewPager.setCurrentItem(position, false);
@@ -205,7 +206,13 @@ public class SearchActivity extends AppCompatActivity  {
                 Log.d(this.getClass().getSimpleName(), "Submitted text in the index search");
 
                 if (searchBar.getInputType()==InputType.TYPE_CLASS_PHONE) {
-                    createIntentAndExit(selectedHymnGroup+query);
+                    String trimmed = query == null ? "" : query.trim();
+                    if (trimmed.matches("\\d+")) {
+                        createIntentAndExit(selectedHymnGroup + trimmed);
+                        return true;
+                    }
+                    hideKeyboard();
+                    return true;
                 }
                 // a hymn number or ID typed in the Search tab opens that hymn
                 TabFragment currentTab = getCurrentTab();
@@ -220,9 +227,8 @@ public class SearchActivity extends AppCompatActivity  {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // dont do anything if text is empty, otherwise android will throw weird exceptions.
-                // The Search tab is the exception: an empty box goes back to listing the current book.
-                if (newText.isEmpty() && !(getCurrentTab() instanceof SearchTabFragment)) return false;
+                // ignore empty callback on non-searchable tabs (Favorites / History)
+                if (newText.isEmpty() && !getCurrentTab().canBeSearched()) return false;
 
                 filterListAndSaveQuery(newText);
                 return true;
@@ -270,19 +276,18 @@ public class SearchActivity extends AppCompatActivity  {
     }
 
     private void showKeyboard() {
-        // show keyboard
+        if (searchBar == null) return;
         Log.d(this.getClass().getName(), "Showing Keyboard");
         InputMethodManager imm = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(searchBar, InputMethodManager.SHOW_IMPLICIT);
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        if (imm != null) imm.showSoftInput(searchBar, InputMethodManager.SHOW_IMPLICIT);
     }
 
     private void hideKeyboard() {
-        // hide soft keyboard
+        if (searchBar == null || searchBar.getWindowToken() == null) return;
         Log.d(this.getClass().getName(), "Hiding Keyboard");
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(searchBar.getWindowToken(), 0);
+        if (imm != null) imm.hideSoftInputFromWindow(searchBar.getWindowToken(), 0);
     }
 
     @Override
@@ -310,7 +315,7 @@ public class SearchActivity extends AppCompatActivity  {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getCurrentTab().cleanUp();
+        if (mSearchTabsPagerAdapter != null) mSearchTabsPagerAdapter.cleanUpAll();
     }
 
 
@@ -346,6 +351,12 @@ public class SearchActivity extends AppCompatActivity  {
             return tabs[position];
         }
 
+        public void cleanUpAll() {
+            for (TabFragment tab : tabs) {
+                if (tab != null) tab.cleanUp();
+            }
+        }
+
         public int getPositionOf(Class<? extends TabFragment> tabClass) {
             for (int position = 0; position < tabs.length; position++) {
                 if (tabClass.isInstance(tabs[position])) return position;
@@ -376,14 +387,7 @@ public class SearchActivity extends AppCompatActivity  {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Log.i(this.getClass().getName(), "config changed!!!");
-
-        // Checks whether a hardware keyboard is available
-        if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_NO) {
-            Toast.makeText(this, "keyboard visible", Toast.LENGTH_SHORT).show();
-        } else if (newConfig.keyboardHidden == Configuration.KEYBOARDHIDDEN_YES) {
-            Toast.makeText(this, "keyboard hidden", Toast.LENGTH_SHORT).show();
-        }
+        Log.i(this.getClass().getName(), "config changed");
     }
 
 }

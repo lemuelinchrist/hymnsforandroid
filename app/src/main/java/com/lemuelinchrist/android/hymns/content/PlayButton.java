@@ -47,6 +47,9 @@ public class PlayButton extends ContentComponent<ImageButton> {
     public void stop() {
         isPlaying=false;
         view.setImageResource(R.drawable.ic_play_arrow_white_48dp);
+        if (currentlyPlayingButton == this) {
+            currentlyPlayingButton = null;
+        }
         hymn.stopHymn();
     }
     public static void stopCurrentlyPlayingButton() {
