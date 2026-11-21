@@ -72,11 +72,14 @@ public final class HymnBooksDialog {
     /** Number of hymns in each book, for the second line of each row. Empty if the database can't be read. */
     public static Map<String, Integer> countHymns(Context context) {
         Map<String, Integer> counts = new HashMap<>();
-        try (Cursor cursor = HymnsSqliteHelper.getInstance(context).getReadableDatabase()
+        HymnsSqliteHelper helper = HymnsSqliteHelper.getInstance(context);
+        try (Cursor cursor = helper.openWritable()
                 .rawQuery("select hymn_group, count(*) from hymns group by hymn_group", null)) {
             while (cursor.moveToNext()) counts.put(cursor.getString(0), cursor.getInt(1));
         } catch (Exception e) {
             Log.w(HymnBooksDialog.class.getSimpleName(), "Could not count hymns per book", e);
+        } finally {
+            helper.close();
         }
         return counts;
     }

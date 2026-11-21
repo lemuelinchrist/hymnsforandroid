@@ -86,23 +86,26 @@ public class ChordEditsBackup {
         java.text.DateFormat date = DateFormat.getMediumDateFormat(activity);
         HymnsDao hymnsDao = new HymnsDao(activity);
         hymnsDao.open();
-        for (ChordEdits.Sheet sheet : edited) {
-            View row = LayoutInflater.from(activity).inflate(R.layout.chord_edits_row, rows, false);
-            Hymn hymn = hymnsDao.get(sheet.id);
-            String firstLine = hymn == null || hymn.getFirstStanzaLine() == null ? "" : " – " + hymn.getFirstStanzaLine().trim().replaceAll("[,;:]+$", "");
-            ((TextView) row.findViewById(R.id.chordEditsHymn)).setText(sheet.id + firstLine);
-            ((TextView) row.findViewById(R.id.chordEditsDetail)).setText(
-                    activity.getResources().getQuantityString(R.plurals.chord_edits_bars, sheet.bars, sheet.bars,
-                            date.format(new Date(sheet.updated))));
-            row.setOnClickListener(v -> {
-                dialog.dismiss();
-                Intent intent = new Intent(activity, SheetMusicActivity.class);
-                intent.putExtra("selectedHymnId", sheet.id);
-                activity.startActivity(intent);
-            });
-            rows.addView(row);
+        try {
+            for (ChordEdits.Sheet sheet : edited) {
+                View row = LayoutInflater.from(activity).inflate(R.layout.chord_edits_row, rows, false);
+                Hymn hymn = hymnsDao.get(sheet.id);
+                String firstLine = hymn == null || hymn.getFirstStanzaLine() == null ? "" : " – " + hymn.getFirstStanzaLine().trim().replaceAll("[,;:]+$", "");
+                ((TextView) row.findViewById(R.id.chordEditsHymn)).setText(sheet.id + firstLine);
+                ((TextView) row.findViewById(R.id.chordEditsDetail)).setText(
+                        activity.getResources().getQuantityString(R.plurals.chord_edits_bars, sheet.bars, sheet.bars,
+                                date.format(new Date(sheet.updated))));
+                row.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    Intent intent = new Intent(activity, SheetMusicActivity.class);
+                    intent.putExtra("selectedHymnId", sheet.id);
+                    activity.startActivity(intent);
+                });
+                rows.addView(row);
+            }
+        } finally {
+            hymnsDao.close();
         }
-        hymnsDao.close();
         dialog.show();
     }
 

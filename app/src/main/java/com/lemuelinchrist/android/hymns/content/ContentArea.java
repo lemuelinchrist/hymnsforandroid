@@ -40,7 +40,6 @@ public class ContentArea extends Fragment {
 
     private Context context;
     private Hymn hymn;
-    private static HymnsDao hymnsDao = null;
     private static float fontSize;
     private SharedPreferences sharedPreferences;
     private LogBook historyLogBook;
@@ -76,9 +75,6 @@ public class ContentArea extends Fragment {
             return insets;
         });
 
-        if (hymnsDao == null) {
-            hymnsDao = new HymnsDao(context);
-        }
         Log.d(this.getClass().getSimpleName(), "entering initialization of new LyricContainer!");
         fontSize = Float.parseFloat(sharedPreferences.getString("FontSize", "18f"));
 
@@ -106,16 +102,21 @@ public class ContentArea extends Fragment {
             hymnId = records.length>0 ? records[0].getHymnId() : HymnGroup.firstHymn(context);
         }
 
+        HymnsDao hymnsDao = new HymnsDao(context);
         hymnsDao.open();
-        hymn = hymnsDao.get(hymnId);
-        if (hymn == null) {
-            // the hymn was removed from the database: forget it and show the default hymn
-            Log.w(this.getClass().getSimpleName(), "hymn " + hymnId + " not found. showing the default hymn");
-            LogBook.removeFromHistoryAndFavorites(context, hymnId);
-            hymnId = HymnGroup.firstHymn(context);
+        try {
             hymn = hymnsDao.get(hymnId);
+            if (hymn == null) {
+                // the hymn was removed from the database: forget it and show the default hymn
+                Log.w(this.getClass().getSimpleName(), "hymn " + hymnId + " not found. showing the default hymn");
+                LogBook.removeFromHistoryAndFavorites(context, hymnId);
+                hymnId = HymnGroup.firstHymn(context);
+                hymn = hymnsDao.get(hymnId);
+            }
+        } finally {
+            hymnsDao.close();
         }
-        hymnsDao.close();
+        if (hymn == null) return rootView;
 
         LyricsArea lyricsArea = new LyricsArea(hymn,this,scrollView);
 
@@ -182,6 +183,7 @@ public class ContentArea extends Fragment {
     public void onResume() {
         Log.d(this.getClass().getSimpleName(), "onResume called on LyricContainer with hymn: " + hymn);
         super.onResume();
+        if (faveButton != null) faveButton.refresh();
         if (getUserVisibleHint()) onLyricVisible();
     }
 
@@ -198,20 +200,20 @@ public class ContentArea extends Fragment {
     }
 
     public String getRelatedHymnOf(HymnGroup selectedHymnGroup) {
-        return hymn.getRelatedHymnOf(selectedHymnGroup);
+        return hymn == null ? null : hymn.getRelatedHymnOf(selectedHymnGroup);
     }
 
     public void log() {
         // No need to log default hymn number since it's the starting point anyway
-        // NOTE: possible null pointer here!
-        if(hymnStack != null && hymnStack.contains(hymn.getHymnId()) && (context == null || !getHymnId().equals(HymnGroup.firstHymn(context))))
+        if (hymn == null || hymnId == null || historyLogBook == null) return;
+        if (hymnStack != null && hymnStack.contains(hymn.getHymnId()) && (context == null || !getHymnId().equals(HymnGroup.firstHymn(context))))
             historyLogBook.log(hymn);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        playButton.stop();
+        if (playButton != null) playButton.stop();
     }
 
     /** A page that was scrolled earlier (or kept its position) opens at its top again. */

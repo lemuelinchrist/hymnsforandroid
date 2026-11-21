@@ -265,6 +265,8 @@ export function createSheetPanel(pane, o) {
     get playing() { return !!(sp && sp.playing); },
     // a sheet with notes on it, drawn: its music can be played
     get playable() { return view.renders > 0 && !view.chordsOnly; },
+    get chordsOnly() { return !!view.chordsOnly; },
+    get failed() { return !!view.failed; },
     destroy() {
       sp.destroy(); if (editor) editor.destroy(); if (panel) panel.destroy(); view.destroy(); themeListeners.delete(onTheme);
       stopHiding(); stopPinch(); barObserver.disconnect();

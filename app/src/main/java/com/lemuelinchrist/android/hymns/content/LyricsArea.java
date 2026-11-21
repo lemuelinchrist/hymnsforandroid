@@ -1,5 +1,6 @@
 package com.lemuelinchrist.android.hymns.content;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -136,7 +137,9 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
             ArrayList<Stanza> stanzas = hymn.getStanzas();
             for (Stanza stanza : stanzas) {
                 Log.d(this.getClass().getSimpleName(), "Looping stanza: " + stanza.getNo());
-                if (stanza.getNo().equals("chorus")) {
+                String no = stanza.getNo() == null ? "" : stanza.getNo().trim();
+                String lower = no.toLowerCase(Locale.ROOT);
+                if (lower.equals("chorus")) {
                     if (isNotEmpty(stanza.getNote()))
                         text.append("<i>@@(" + stanza.getNote() + ")@@</i>");
                     if(hymn.getHymnGroup().getTextAlignment()== Gravity.RIGHT) {
@@ -148,14 +151,18 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
                     text.append(chorusText);
                     buildLyricViewAndAttach(text, hymn.getHymnGroup(), false);
                     text = new StringBuilder();
-                } else if (stanza.getNo().contains("note")) {
+                } else if (lower.contains("note") || lower.equals("copyright")) {
                     // notes get their own full-width row, regardless of where they fall in the hymn
-                    text.append("<i>%%" + stanza.getText() + "%%</i>");
+                    String body = stanza.getText() == null ? "" : stanza.getText();
+                    if (Html.fromHtml(body).toString().trim().isEmpty()) continue;
+                    text.append("<i>%%" + body + "%%</i>");
                     buildLyricViewAndAttach(text, hymn.getHymnGroup(), true);
                     text = new StringBuilder();
                 } else {
                     // append stanza
-                    text.append("<b>##" + stanza.getNo() + "##</b><br/>");
+                    if (!no.isEmpty() && !no.equals("-")) {
+                        text.append("<b>##" + no + "##</b><br/>");
+                    }
                     text.append(stanza.getText());
                     buildLyricViewAndAttach(text, hymn.getHymnGroup(), false);
                     text = new StringBuilder();
@@ -345,8 +352,11 @@ public class LyricsArea extends ContentComponent<NestedScrollView> {
     }
 
     private void openWebPage(String text) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(text));
-        context.startActivity(intent);
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(text));
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException ignored) {
+        }
     }
 
     private boolean isNotEmpty(String string) {

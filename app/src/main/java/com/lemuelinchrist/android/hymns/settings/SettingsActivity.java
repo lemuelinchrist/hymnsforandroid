@@ -67,7 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private LinearLayout bookChips;
     private String[] sizeValues, sizeNames, themeValues, themeNames;
-    private SettingsRow booksRow, chordEditsRow;
+    private SettingsRow booksRow, chordEditsRow, themeRow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,9 +177,9 @@ public class SettingsActivity extends AppCompatActivity {
     private void bindTheme() {
         themeValues = getResources().getStringArray(R.array.theme_preference_values);
         themeNames = getResources().getStringArray(R.array.theme_preference);
-        SettingsRow row = findViewById(R.id.themeRow);
-        row.setSummary(themeNames[themeIndex()]);
-        row.setOnClickListener(v -> showThemeDialog());
+        themeRow = findViewById(R.id.themeRow);
+        themeRow.setSummary(themeNames[themeIndex()]);
+        themeRow.setOnClickListener(v -> showThemeDialog());
     }
 
     /** The theme choices as four small pictures with their names, in a popup (the page itself keeps a plain row). */
@@ -209,6 +209,7 @@ public class SettingsActivity extends AppCompatActivity {
                 dialog.dismiss();
                 if (index == themeIndex()) return;
                 prefs.edit().putString(Theme.PREFERENCE, themeValues[index]).commit();
+                themeRow.setSummary(themeNames[index]);
                 // a new choice changes the night mode at once; the open screens are made again in it
                 Theme.apply(this, themeValues[index]);
             });

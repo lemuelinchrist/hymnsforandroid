@@ -14,6 +14,9 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import static org.junit.Assert.*;
 
@@ -42,6 +45,18 @@ public class ButtonAvailabilityTest {
                 return targetId != null && !targetId.isEmpty()
                         && new File("src/main/assets/sheetMei/" + targetId + ".mei").isFile();
             }
+
+            @Override
+            protected String readSheetHead(String targetId) {
+                File f = new File("src/main/assets/sheetMei/" + targetId + ".mei");
+                if (!f.isFile()) return null;
+                try {
+                    byte[] bytes = Files.readAllBytes(f.toPath());
+                    return new String(bytes, 0, Math.min(bytes.length, 2048), StandardCharsets.UTF_8);
+                } catch (IOException e) {
+                    return null;
+                }
+            }
         };
         h.setHymnId(id);
         h.setGroup("E");
@@ -63,8 +78,22 @@ public class ButtonAvailabilityTest {
     @Test
     public void playButtonVisibleWhenMelodyFileExists() {
         ImageButton button = new ImageButton(context);
+        new PlayButton(hymn("E1", "5553216153222", null, false), fragment, button);
+        assertEquals(View.VISIBLE, button.getVisibility());
+    }
+
+    @Test
+    public void playButtonVisibleForSheetWithoutMidiFile() {
+        ImageButton button = new ImageButton(context);
         new PlayButton(hymn("BF520", "5513533432653432", null, false), fragment, button);
         assertEquals(View.VISIBLE, button.getVisibility());
+    }
+
+    @Test
+    public void playButtonHiddenForChordsOnlySheetWithoutMidiFile() {
+        ImageButton button = new ImageButton(context);
+        new PlayButton(hymn("BF537", null, null, false), fragment, button);
+        assertEquals(View.GONE, button.getVisibility());
     }
 
     @Test
@@ -75,12 +104,12 @@ public class ButtonAvailabilityTest {
 
         // New Tune with its own tune ignores its parent's sheet
         ImageButton ownTune = new ImageButton(context);
-        new SheetMusicButton(hymn("E9999", "5513533432653432", "E1", true), fragment, ownTune);
+        new SheetMusicButton(hymn("E9999", "5553216153222", "E1", true), fragment, ownTune);
         assertEquals(View.GONE, ownTune.getVisibility());
     }
 
     @Test
-    public void sheetMusicButtonVisibleForOwnOrParentSheet() {
+    public void sheetMusicButtonVisibleForOwnOrParentOrAncestorSheet() {
         ImageButton own = new ImageButton(context);
         new SheetMusicButton(hymn("BF520", "5513533432653432", null, false), fragment, own);
         assertEquals(View.VISIBLE, own.getVisibility());
@@ -88,5 +117,11 @@ public class ButtonAvailabilityTest {
         ImageButton inherited = new ImageButton(context);
         new SheetMusicButton(hymn("C1", null, "E1", false), fragment, inherited);
         assertEquals(View.VISIBLE, inherited.getVisibility());
+
+        ImageButton grandparent = new ImageButton(context);
+        Hymn fr53 = hymn("FR53", null, "C233", false);
+        fr53.setAncestorSheetId("E1355");
+        new SheetMusicButton(fr53, fragment, grandparent);
+        assertEquals(View.VISIBLE, grandparent.getVisibility());
     }
 }
