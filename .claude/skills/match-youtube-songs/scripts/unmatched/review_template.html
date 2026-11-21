@@ -115,5 +115,5 @@ $('#exp').onclick=()=>{const st=a=>!a?'undecided':a==='SKIP'?'skipped':a==='NOTF
  $('#exportbox').style.display='block';$('#out').value=t;$('#out').select();scrollTo(0,document.body.scrollHeight)};
 $('#cp').onclick=()=>{$('#out').select();document.execCommand('copy')};
 $('#dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([$('#out').value],{type:'text/tab-separated-values'}));a.download='NYCYPCD_answers.tsv';a.click()};
-fetch('/state').then(r=>r.json()).then(s=>{if(s&&s.ans&&Object.keys(s.ans).length>=Object.keys(ans).length){ans=s.ans;notes=s.notes||{};lyr=s.lyr||{};inst=s.inst||{};if(s.i>=0&&s.i<ROWS.length)i=s.i}render()}).catch(()=>render());
+fetch('/state').then(r=>r.json()).then(s=>{if(s&&s.ans){ans=s.ans;notes=s.notes||{};lyr=s.lyr||{};inst=s.inst||{};if(s.i>=0&&s.i<ROWS.length)i=s.i}render()}).catch(()=>render());
 </script></body></html>
