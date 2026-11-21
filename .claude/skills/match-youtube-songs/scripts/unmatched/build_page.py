@@ -1,6 +1,6 @@
 """Step 3: review.html from matched.json, ordered by confidence. Run from the work folder, then `python3 <skill>/scripts/unmatched/serve.py`."""
-import json, re, sqlite3, pathlib, collections
-R = pathlib.Path(__file__).resolve().parents[4]
+import json, re, sqlite3, pathlib, collections, os
+R = pathlib.Path(__file__).resolve().parents[5]
 HERE = pathlib.Path(__file__).resolve().parent
 S = json.load(open('matched.json'))
 db = sqlite3.connect(R/'app/src/main/assets/hymns.sqlite')

@@ -2,11 +2,12 @@
 the messages), each mapped to a local file of Lemuel's collection when the album folder and the track title agree (gfiles.txt: the file list of
 G:\\My Drive\\Archives\\Hymns\\Online, see the match-youtube-songs skill) -> set.json. Run from the work folder (temp/review-unmatched/)."""
 import csv, re, json, os, difflib, unicodedata, pathlib
-R = pathlib.Path(__file__).resolve().parents[4]
+R = pathlib.Path(__file__).resolve().parents[5]
 rows = [x for x in csv.DictReader(open(R/'tools/youtube-monitor/recordings.tsv', encoding='utf-8'), delimiter='\t') if x['status'] == 'unmatched']
 def kids(x): return re.search(r'兒童|性格的培養|Children|Joyful Songs for Children|Songs for Children', x['album / playlist'])
 def msg(x): return x['album / playlist'] == 'Message of the Week' or re.search(r'\([A-Z]\.[A-Z]\.\)$', x['title'])
-keep = [x for x in rows if not kids(x) and not msg(x)]
+def english(x): return x.get('language', '') in ('', 'English')   # only English for now (Lemuel 2026-11-21); the language column is filled by build_recordings.py
+keep = [x for x in rows if not kids(x) and not msg(x) and english(x)]
 def norm(s):
     s = unicodedata.normalize('NFKD', s).lower().replace('’', "'")
     s = re.sub(r"\(by [^)]*\)|\(banner song\)|\(excerpt\)|\(#\d+\)", ' ', s)
