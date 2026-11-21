@@ -1,7 +1,7 @@
 // The hymn database: the app's SQLite file, opened in the browser with sql.js.
 // The file is kept in IndexedDB, so it is downloaded again only when data/version.json says it changed.
 import {BY_CODE, GROUPS, splitId, currentCode, currentId} from './groups.js';
-import {fetchBytes, gunzip} from './files.js';
+import {fetchBytes, fetchGzJson, gunzip, loadScript, cacheDataResponse} from './files.js';
 import {tr} from './i18n.js';
 
 let db = null;
@@ -9,7 +9,14 @@ let sheetIds = new Set();
 let lyricIds = new Set();   // hymns with their own words for a borrowed sheet (sheetLyrics)
 let tunes = {};             // tune code (lower case) -> midi/<hash>.mid, the app's res/raw files
 export let version = null;
-const cache = new Map();   // hymn ID -> merged hymn
+const cache = new Map();        // hymn ID -> merged hymn (from SQLite)
+const shardHymns = new Map();   // hymn ID -> pre-resolved hymn from a shard (before full SQLite opens)
+const missingShards = new Set();
+let initPromise = null;
+let fullPromise = null;
+let savedPromise = Promise.resolve();
+const progressListeners = new Set();
+let lastProgress = 0;
 
 // ---- loading ----
 
@@ -22,6 +29,19 @@ function idb() {
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
   });
+}
+
+async function idbHas(key) {
+  try {
+    const d = await idb();
+    return await new Promise((resolve) => {
+      const req = d.transaction('files').objectStore('files').count(key);
+      req.onsuccess = () => resolve(req.result > 0);
+      req.onerror = () => resolve(false);
+    });
+  } catch (e) {
+    return false;
+  }
 }
 
 async function idbGet(key) {
@@ -48,27 +68,110 @@ async function idbPut(key, value) {
   } catch (e) { /* private mode or storage full: the next visit downloads again */ }
 }
 
-export async function open(onProgress = () => {}) {
-  // the WebAssembly start-up, the version check and the stored database, all at once
-  const sqlReady = window.initSqlJs({locateFile: (f) => 'vendor/' + f});
-  version = await fetch('data/version.json', {cache: 'no-cache'}).then((r) => {
-    if (!r.ok) throw new Error('HTTP ' + r.status + ' for data/version.json');
-    return r.json();
-  });
-  const index = fetch(version.indexFile).then((r) => r.json());
-  const key = 'db-' + version.db;
-  let [SQL, bytes] = await Promise.all([sqlReady, idbGet(key)]);
-  if (!bytes) {
-    bytes = await gunzip(await fetchBytes(version.dbFile, version.dbGzSize, onProgress));
-    await idbPut(key, bytes);
-    clearOld(key);
+// Stage 1 (fast): read data/version.json (counts, shard directory) and check whether this version's SQLite is already in IndexedDB
+export function init() {
+  if (!initPromise) {
+    initPromise = (async () => {
+      const res = await fetch('data/version.json', {cache: 'no-cache'});
+      if (!res.ok) throw new Error('HTTP ' + res.status + ' for data/version.json');
+      cacheDataResponse('data/version.json', res.clone());
+      version = await res.json();
+      const cached = await idbHas('db-' + version.db);
+      return {version, cached};
+    })().catch((e) => { initPromise = null; throw e; });
   }
-  db = new SQL.Database(bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes));
-  const ix = await index;
-  sheetIds = new Set(ix.sheets);
-  lyricIds = new Set(ix.lyrics);
-  tunes = ix.tunes || {};
-  return version;
+  return initPromise;
+}
+
+export const isFull = () => !!db;
+export const whenSaved = () => savedPromise;
+
+export function onFullProgress(fn) {
+  progressListeners.add(fn);
+  if (lastProgress > 0 && !db) fn(lastProgress);
+  return () => progressListeners.delete(fn);
+}
+
+// Stage 2 (background or on-demand for search/browse): load sql.js WASM, unpack SQLite, keep saving to IndexedDB non-blocking
+export function whenFull() {
+  if (db) return Promise.resolve(version);
+  if (!fullPromise) {
+    fullPromise = (async () => {
+      if (!version) await init();
+      const key = 'db-' + version.db;
+      const notify = (f) => {
+        lastProgress = f;
+        for (const fn of progressListeners) fn(f);
+      };
+      const sqlReady = loadScript('vendor/sql-wasm.js').then(() => window.initSqlJs({locateFile: (f) => 'vendor/' + f}));
+      const indexPromise = fetch(version.indexFile).then((r) => {
+        if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + version.indexFile);
+        cacheDataResponse(version.indexFile, r.clone());
+        return r.json();
+      });
+      let [SQL, bytes] = await Promise.all([sqlReady, idbGet(key)]);
+      if (!bytes) {
+        bytes = await gunzip(await fetchBytes(version.dbFile, version.dbGzSize, notify));
+        const u8 = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+        savedPromise = idbPut(key, u8).then(() => clearOld(key));
+      } else {
+        savedPromise = Promise.resolve();
+      }
+      const ix = await indexPromise;
+      const opened = new SQL.Database(bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes));
+      sheetIds = new Set(ix.sheets);
+      lyricIds = new Set(ix.lyrics);
+      tunes = ix.tunes || {};
+      cache.clear();
+      shardHymns.clear();
+      listCache.clear();
+      counts = null;
+      db = opened;
+      lastProgress = 1;
+      notify(1);
+      return version;
+    })().catch((e) => { fullPromise = null; lastProgress = 0; throw e; });
+  }
+  return fullPromise;
+}
+
+export async function openFull(onProgress) {
+  if (db) return version;
+  const unsub = onProgress ? onFullProgress(onProgress) : null;
+  try {
+    return await whenFull();
+  } finally {
+    if (unsub) unsub();
+  }
+}
+
+export async function open(onProgress = () => {}) {
+  await init();
+  return openFull(onProgress);
+}
+
+// Fetch only the ~100-hymn pre-resolved shard containing this hymn (for instant shared links & recent/favorite rows before SQLite opens)
+export async function ensureHymn(rawId) {
+  const id = currentId((rawId || '').toUpperCase());
+  if (!id) return null;
+  if (db) return hymn(id);
+  if (shardHymns.has(id)) return shardHymns.get(id);
+  const s = splitId(id);
+  if (!s || !version || !version.hymnsDir) return null;
+  const url = `${version.hymnsDir}/${s.group}-${Math.floor(parseInt(s.no, 10) / 100)}.json.gz`;
+  if (missingShards.has(url)) return null;
+  try {
+    const items = await fetchGzJson(url);
+    for (const [k, rec] of Object.entries(items)) shardHymns.set(k, rec);
+  } catch (e) {
+    if (/HTTP 404\b/.test(e.message)) { missingShards.add(url); return null; }
+    throw e;
+  }
+  return shardHymns.get(id) || null;
+}
+
+export async function ensureHymns(ids) {
+  await Promise.all([...new Set((ids || []).filter(Boolean))].map((id) => ensureHymn(id).catch(() => null)));
 }
 
 async function clearOld(keep) {
@@ -103,8 +206,8 @@ function relatedIds(s) {
   return (s || '').split(',').map((x) => x.trim().toUpperCase()).filter(Boolean);
 }
 
-const INHERITED = ['author', 'composer', 'time', 'tune', 'sheet_music_link', 'key', 'meter', 'verse'];
-const TUNE_FIELDS = ['composer', 'time', 'tune', 'sheet_music_link', 'key'];   // not inherited by a New Tune
+const INHERITED = ['author', 'composer', 'time', 'tune', 'key', 'meter', 'verse'];
+const TUNE_FIELDS = ['composer', 'time', 'tune', 'key'];   // not inherited by a New Tune
 
 // A hymn as the app shows it: empty fields, categories, stanzas and sheets come from the parent hymn (and its parents, up the tree; HymnsDao.get).
 function loadHymn(id, seen, state) {
@@ -147,11 +250,14 @@ function loadHymn(id, seen, state) {
 }
 
 export function hymn(id) {
+  id = currentId((id || '').toUpperCase());
+  if (!db) return shardHymns.get(id) || null;
   return loadHymn(id, new Set(), {cut: false});
 }
 
 // the file of a hymn's tune (its own tune code, else its parent's), as the app's Play button finds it; null if none
 export function tuneFile(h) {
+  if (!db) return (h && h._tuneFile) || null;
   const t = (h && h.tune || '').trim().toLowerCase();
   return t && t !== '0' ? tunes[t] || null : null;
 }
@@ -163,7 +269,22 @@ export function allTuneFiles() { return [...new Set(Object.values(tunes))]; }
 // The tune code must be the same (the app matched any tune starting with it). `shown(code)` says which hymnals are on.
 export function sameTune(id, shown = () => true) {
   const h = hymn(id);
-  const tune = (h && h.tune || '').trim();
+  if (!h) return [];
+  if (!db) {
+    const out = [];
+    for (const item of h._sameTune || []) {
+      let pick = item.d || null;
+      if (!pick && item.f) {
+        const fam = item.f.filter((f) => shown(f.group));
+        pick = fam.find((f) => f.id === item.r) || fam[0] || null;
+      }
+      if (pick && pick.id !== h.id) out.push(pick);
+    }
+    out.sort((a, b) => (a.group === h.group ? 0 : 1) - (b.group === h.group ? 0 : 1)
+      || BY_CODE[a.group].order - BY_CODE[b.group].order || a.no - b.no);
+    return out;
+  }
+  const tune = (h.tune || '').trim();
   if (!tune || tune === '0') return [];
   const mine = h.parentId || h.id;
   const roots = new Set();
@@ -193,6 +314,7 @@ export function relatedIn(id, group) {
 
 // the piano videos of a hymn (the link table, kind 'piano'), else of its parent: [{url, label}]
 export function videos(hymnObj) {
+  if (!db) return (hymnObj && hymnObj._videos) || [];
   for (const hid of [hymnObj.id, hymnObj.ownTune ? null : hymnObj.parentId]) {
     if (!hid) continue;
     const v = rows("select url, label from link where hymn_id = ? and kind = 'piano' order by n_order", [hid]);
@@ -205,6 +327,7 @@ export function videos(hymnObj) {
 // label is the publisher (empty when unknown), album the album or playlist; a link with neither is one a book's editor chose
 // (the youth books), which the card always shows (HymnsDao.getRecordings)
 export function recordings(hymnObj) {
+  if (!db) return (hymnObj && hymnObj._recordings) || [];
   return rows("select kind, label, album, instrumental, url from link where hymn_id = ? and kind in ('youtube', 'soundcloud')"
     + " order by kind desc, n_order", [hymnObj.id])
     .map((x) => ({kind: x.kind, label: (x.label || '').trim(), album: (x.album || '').trim(), instrumental: x.instrumental === 1,
@@ -214,6 +337,7 @@ export function recordings(hymnObj) {
 // the New Tunes of a hymn (the hymns that have it as parent and are marked new_tune), in number order, each with its own
 // recordings: [{id, recordings}] (HymnsDao.getNewTunes)
 export function newTunes(hymnObj) {
+  if (!db) return (hymnObj && hymnObj._newTunes) || [];
   return rows("select _id as id from hymns where parent_hymn = ? and new_tune = 1 and hymn_group = 'BF' order by cast(no as integer)",
     [hymnObj.id]).map((r) => ({id: r.id, recordings: recordings({id: r.id})}));
 }
@@ -221,6 +345,7 @@ export function newTunes(hymnObj) {
 // A hymn with no recording of its own shows those of the nearest hymn above it that has some (its parent, the parent's
 // parent, ...): {from, recordings}, or null (HymnsDao.getLinkedAncestor)
 export function inheritedLinks(hymnObj) {
+  if (!db) return (hymnObj && hymnObj._inheritedLinks) || null;
   if (recordings(hymnObj).length || hymnObj.ownTune) return null;
   let id = hymnObj.parentId;
   for (let depth = 0; depth < 5 && id && id !== hymnObj.id; depth++) {
@@ -243,7 +368,9 @@ export function languageOf(code) {
 }
 
 export function exists(id) {
-  return !!(id && hymnRow(currentId(id.toUpperCase())));
+  const normId = currentId((id || '').toUpperCase());
+  if (!normId) return false;
+  return db ? !!hymnRow(normId) : shardHymns.has(normId);
 }
 
 // Every version of a hymn: the hymn it comes from, everything that comes from that one, and the related lists.
@@ -251,6 +378,7 @@ export function exists(id) {
 export function family(id) {
   const h = hymn(id);
   if (!h) return [];
+  if (!db) return (h._family || []).map((fid) => ({id: fid, ...splitId(fid)}));
   let root = h.id;
   for (let d = 0, cur = h; d < 10 && cur && cur.parentId && cur.parentId !== cur.id; d++) {
     root = cur.parentId;
@@ -293,6 +421,8 @@ export function list(group) {
 
 export function neighbours(id) {
   const h = hymn(id);
+  if (!h) return {prev: null, next: null};
+  if (!db) return {prev: h._prev || null, next: h._next || null};
   const all = list(h.group);
   const i = all.findIndex((x) => x.id === h.id);
   return {prev: i > 0 ? all[i - 1].id : null, next: i >= 0 && i < all.length - 1 ? all[i + 1].id : null};
@@ -300,6 +430,7 @@ export function neighbours(id) {
 
 let counts = null;
 export function groupCounts() {
+  if (!db) return (version && version.counts) || {};
   if (!counts) {
     counts = {};
     for (const r of rows('select hymn_group as g, count(*) as n from hymns group by hymn_group')) counts[r.g] = r.n;

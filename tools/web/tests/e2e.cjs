@@ -86,12 +86,13 @@ async function search(page, text) {
       assert(n === 30, 'expected 30 hymnals, found ' + n);
     });
     await test('a second visit opens the database from the browser, without downloading it', async () => {
-      await page.waitForTimeout(500);   // the first visit stores it in IndexedDB
+      await page.waitForSelector('body.db-ready', {timeout: 60000});   // wait for background DB + IndexedDB store from visit 1
       const asked = [];
       const onReq = (r) => { if (/hymns-.*\.sqlite/.test(r.url())) asked.push(r.url()); };
       page.on('request', onReq);
       const t = Date.now();
       await open(page, '');
+      await page.waitForSelector('body.db-ready', {timeout: 30000});
       page.off('request', onReq);
       assert(!asked.length, 'the database was downloaded again');
       console.log(`      (ready in ${Date.now() - t} ms)`);
@@ -867,6 +868,7 @@ async function search(page, text) {
     await test('multi-level parent inheritance (FR53 -> C233 -> E1355) and New Tune search isolation (BF484)', async () => {
       const r = await page.evaluate(async () => {
         const DB = await import('./db.js');
+        await DB.whenFull();
         const fr53 = DB.hymn('FR53');
         const fam = DB.family('FR53').map((x) => x.id);
         const tuneMatches = DB.search(['53456515677'], '53456515677', null, 1e6, 'music').map((x) => x.id);
@@ -874,6 +876,113 @@ async function search(page, text) {
       });
       assert(r.sheetId === 'E1355' && r.author === 'Adapted' && r.hasE1355, 'FR53: ' + JSON.stringify(r));
       assert(r.tuneMatches.includes('E383') && !r.tuneMatches.includes('BF484'), 'New Tune BF484 inherited E383 tune: ' + JSON.stringify(r.tuneMatches));
+    });
+    await test('cold shared-link open (#/h/BF522 and #/h/FR53) renders from shard before SQLite downloads', async () => {
+      const fast = await browser.newContext({viewport: {width: 1400, height: 900}});
+      const p = await fast.newPage();
+      let sqliteResolved = false;
+      let releaseSqlite = null;
+      const sqliteGate = new Promise((r) => { releaseSqlite = r; });
+      const seenUrls = [];
+      p.on('pageerror', (e) => errors.push(e.message));
+      p.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+      await p.route(/data\/hymns-.*\.sqlite\.gz/, async (route) => {
+        await sqliteGate;
+        sqliteResolved = true;
+        await route.continue();
+      });
+      p.on('request', (r) => seenUrls.push(r.url()));
+      await p.goto(BASE + '#/h/BF522');
+      await p.waitForSelector('body.ready', {timeout: 15000});
+      await onHymn(p, 'BF522');
+      assert(!sqliteResolved, 'SQLite should not be required before rendering BF522');
+      assert(await p.isHidden('#loading'), '#loading overlay should stay hidden on fast shard load');
+      assert((await p.textContent('.lyrics')).includes('Everyone who thirsts'), 'BF522 lyrics');
+      assert((await p.locator('.links-card .lk-row').count()) >= 3, 'BF522 links card');
+      assert(!(await p.isDisabled('.hymn-nav .play')), 'BF522 Play button enabled from shard');
+      assert(await p.locator('.tabs button[data-tab="sheet"]').count() === 1, 'BF522 Sheet tab present');
+      assert(seenUrls.some((u) => /hymns\/[0-9a-f]+\/BF-5\.json\.gz/.test(u)), 'expected BF-5 shard fetch');
+      assert(!seenUrls.some((u) => /qrcode\.js/.test(u)), 'qrcode.js should not load on hymn page');
+
+      await p.goto(BASE + '#/h/FR53');
+      await onHymn(p, 'FR53');
+      assert(!sqliteResolved, 'SQLite still held back while rendering cross-book FR53');
+      assert((await p.textContent('.lyrics')).includes('Tous mes péchés Tu pardonnas'), 'FR53 lyrics');
+      assert(await p.locator('.tabs button[data-tab="sheet"]').count() === 1, 'FR53 inherited sheet from E1355');
+      assert(seenUrls.some((u) => /hymns\/[0-9a-f]+\/FR-0\.json\.gz/.test(u)), 'expected FR-0 shard fetch');
+      releaseSqlite();
+      await p.waitForSelector('body.db-ready', {timeout: 60000});
+      await fast.close();
+    });
+    await test('shard data matches full SQLite database for BF522, FR53, E135, C272, E395, BF484, SW10', async () => {
+      const cmp = await browser.newContext({viewport: {width: 1400, height: 900}});
+      const p = await cmp.newPage();
+      p.on('pageerror', (e) => errors.push(e.message));
+      p.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+      let releaseSqlite = null;
+      const gate = new Promise((r) => { releaseSqlite = r; });
+      await p.route(/data\/hymns-.*\.sqlite\.gz/, async (route) => { await gate; await route.continue(); });
+      await p.goto(BASE);
+      await p.waitForSelector('body.ready', {timeout: 15000});
+      const ids = ['BF522', 'FR53', 'E135', 'C272', 'E395', 'BF484', 'SW10'];
+      const canon = (v) => Array.isArray(v) ? v.map(canon)
+        : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, canon(v[k])])) : v;
+      const snap = async (list) => p.evaluate(async (hids) => {
+        const DB = await import('./db.js');
+        const fields = ['id', 'group', 'no', 'parentId', 'first', 'chorus', 'title', 'category', 'subcategory',
+          'author', 'composer', 'time', 'tune', 'key', 'meter', 'verse', 'newTune', 'ownTune',
+          'stanzas', 'related', 'sheetId', 'lyricsId'];
+        const out = {};
+        for (const id of hids) {
+          const h = DB.hymn(id);
+          const clean = {};
+          for (const f of fields) clean[f] = h[f];
+          out[id] = {
+            hymn: clean,
+            tuneFile: DB.tuneFile(h),
+            neighbours: DB.neighbours(id),
+            family: DB.family(id),
+            videos: DB.videos(h),
+            recordings: DB.recordings(h),
+            inheritedLinks: DB.inheritedLinks(h),
+            newTunes: DB.newTunes(h),
+            sameTuneAll: DB.sameTune(id).map((x) => ({id: x.id, group: x.group, no: x.no, first: x.first})),
+            sameTuneNoE: DB.sameTune(id, (g) => g !== 'E').map((x) => ({id: x.id, group: x.group, no: x.no, first: x.first})),
+          };
+        }
+        return out;
+      }, list);
+      await p.evaluate(async (hids) => {
+        const DB = await import('./db.js');
+        if (DB.isFull()) throw new Error('expected !DB.isFull() before releasing gate');
+        await DB.ensureHymns(hids);
+      }, ids);
+      const fromShards = await snap(ids);
+      releaseSqlite();
+      await p.waitForSelector('body.db-ready', {timeout: 60000});
+      const fromDb = await snap(ids);
+      for (const id of ids) {
+        const shardJson = JSON.stringify(canon(fromShards[id]));
+        const dbJson = JSON.stringify(canon(fromDb[id]));
+        assert(shardJson === dbJson,
+          'shard vs db mismatch for ' + id + '\n  shard: ' + shardJson + '\n  db:    ' + dbJson);
+      }
+      await cmp.close();
+    });
+    await test('word search while background SQLite loads shows inline progress then results', async () => {
+      const sr = await browser.newContext({viewport: {width: 1400, height: 900}});
+      const p = await sr.newPage();
+      p.on('pageerror', (e) => errors.push(e.message));
+      p.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+      let releaseSqlite = null;
+      const gate = new Promise((r) => { releaseSqlite = r; });
+      await p.route(/data\/hymns-.*\.sqlite\.gz/, async (route) => { await gate; await route.continue(); });
+      await p.goto(BASE + '#/search?q=amazing%20grace');
+      await p.waitForSelector('.loading-box .loading-msg', {timeout: 15000});
+      assert(await p.isHidden('#loading'), 'full-screen loading should stay hidden');
+      releaseSqlite();
+      await p.waitForSelector('.results a.hymn-row[href="#/h/E313"]', {timeout: 60000});
+      await sr.close();
     });
     await ctx.close();
 

@@ -11,10 +11,8 @@ import * as DB from './db.js';
 import {GROUPS, BY_CODE, splitId, langOf, currentCode, currentId, bookName, languageName, bookSubtitle, firstGroup} from './groups.js';
 import {tr, tn, trh, num, lang, LANGS, getChoice, setChoice, applyStatic} from './i18n.js';
 import {parseScripture} from './scripture.js';
-import {loadVerovio} from './sheet.js';
-import {createSheetPanel, sheetKeys} from './sheetpanel.js';
 import {setHost} from './host.js';
-import {fetchGzJson} from './files.js';
+import {fetchGzJson, loadScript, cacheDataResponse} from './files.js';
 import * as Edits from './edits.js';
 import * as Player from './player.js';
 import {h, append, icon, store, toast, stickyToast, isDark, popupMenu, themeListeners} from './ui.js';
@@ -40,22 +38,41 @@ setHost({
   lyrics: (id) => fromPack('lyrics', id),
 });
 
-// the hymnals' sheet files, for offline use (the service worker keeps what is fetched)
-function prefetchAll() {
-  const v = DB.version, files = v ? [...Object.values(v.sheets), ...Object.values(v.lyrics)] : [];
-  return Promise.all([loadVerovio(), ...files.map((f) => fetchGzJson(f))]);
+// the hymnals' sheet files and lazy viewer scripts, for offline use (the service worker keeps what is fetched)
+async function prefetchAll() {
+  const v = DB.version;
+  const files = v ? [...Object.values(v.sheets), ...Object.values(v.lyrics)] : [];
+  const lazy = v && v.lazy ? v.lazy : [];
+  const verovioUrl = v && v.verovio ? 'verovio/verovio-toolkit-wasm.js?v=' + v.verovio : null;
+  const fetchOk = async (url) => {
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + url);
+    return r;
+  };
+  return Promise.all([
+    verovioUrl ? fetchOk(verovioUrl).then((r) => cacheDataResponse(verovioUrl, r)) : null,
+    ...files.map((f) => fetchGzJson(f)),
+    ...lazy.map((f) => fetchOk(f)),
+  ]);
 }
 
-// every sheet, lyric and tune for offline use. It starts by itself a little after the app is open (background: three tunes
-// at a time, not on a data saver) and the Offline card in Settings shows it and can start it again.
+// every sheet, lyric, tune and deferred module for offline use. Starts by itself a little after the app is open
+// (background: three tunes at a time, not on a data saver) and the Offline card in Settings shows progress.
 let offlineRunning = false, offlineText = '', offlineListener = null;
 function offlineSay(text) { offlineText = text; if (offlineListener) offlineListener(); }
 async function offlineDownload(background) {
   if (offlineRunning) return;
   offlineRunning = true;
-  offlineSay(tr('Downloading the sheet music…'));
+  const unsub = DB.onFullProgress((f) => offlineSay(tr('Downloading hymns… {0}%', Math.round(f * 100))));
   try {
     if (navigator.storage && navigator.storage.persist) await navigator.storage.persist();
+    await DB.whenFull();
+    await DB.whenSaved();
+    unsub();
+    offlineSay(tr('Downloading the sheet music…'));
+    if ('serviceWorker' in navigator && window.isSecureContext) {
+      await navigator.serviceWorker.ready.catch(() => {});
+    }
     await prefetchAll();
     const failed = await Player.prefetch(DB.allTuneFiles(), (f) => offlineSay(tr('Downloading the tunes… {0}%', Math.round(f * 100))), background ? 3 : 8);
     if (failed) throw new Error(tn('{0} tune could not be fetched', '{0} tunes could not be fetched', failed));
@@ -63,6 +80,7 @@ async function offlineDownload(background) {
     offlineText = '';
     offlineSay(tr('All sheet music and tunes are on this device.'));
   } catch (e) {
+    unsub();
     offlineSay(tr('Download stopped: {0}', e.message));
   }
   offlineRunning = false;
@@ -206,6 +224,7 @@ function toggleFavorite(id) {
 
 let route = null;      // {parts, params}
 let cleanup = null;    // the current screen's teardown
+let renderSeq = 0;
 
 function parseHash() {
   const hash = location.hash.slice(1) || '/';
@@ -248,7 +267,37 @@ function goBack() {
   else go('#/');
 }
 
-function render() {
+// Inline loading progress card shown when opening Search or Browse while the background SQLite database is still downloading.
+async function waitForFullDb(view, seq) {
+  if (DB.isFull()) return true;
+  const bar = h('div', {class: 'progress-fill', style: 'height:100%;width:0;background:#3D577A;transition:width .2s'});
+  const msg = h('p', {class: 'loading-msg'}, tr('Downloading hymns… {0}%', 0));
+  const box = h('div', {class: 'loading-box', style: 'margin:24px auto'},
+    msg, h('div', {class: 'progress'}, bar),
+    h('p', {class: 'muted small'}, tr('Only the first visit downloads the hymns; after that they open straight from this device, also offline.')));
+  view.appendChild(box);
+  const unsub = DB.onFullProgress((f) => {
+    const pct = Math.round(f * 100);
+    bar.style.width = pct + '%';
+    msg.textContent = tr('Downloading hymns… {0}%', pct);
+  });
+  const prevCleanup = cleanup;
+  cleanup = () => { unsub(); if (prevCleanup) prevCleanup(); };
+  try {
+    await DB.whenFull();
+  } catch (e) {
+    unsub();
+    if (seq === renderSeq) view.replaceChildren(h('div', {class: 'empty'}, h('p', null, tr('Could not load the hymns: {0}', e.message))));
+    return false;
+  }
+  unsub();
+  if (seq !== renderSeq) return false;
+  view.innerHTML = '';
+  return true;
+}
+
+async function render() {
+  const seq = ++renderSeq;
   route = parseHash();
   onInstallPrompt = null;
   if (cleanup) { cleanup(); cleanup = null; }
@@ -258,25 +307,35 @@ function render() {
   document.body.classList.remove('sheet-only');
   const [screen, arg] = route.parts;
   if (screen !== 'h' && screen !== 'sheet') swapBack = null;   // a detour (home, search, settings) ends the back-to-hymn button
+  if (screen !== 'search') $('#q').value = '';
+  shownDepth = depth();
+  $('#backBtn').hidden = !screen || shownDepth === 0;
+  const tab = !screen ? 'home' : ['browse', 'favorites', 'settings'].includes(screen) ? screen : null;
+  $('#favoritesTop').classList.toggle('current', tab === 'favorites');
+  $('#settingsTop').classList.toggle('current', tab === 'settings');
+  window.scrollTo(0, 0);
+
   let title = tr('Hymns');
   try {
     if (!screen) {
-      homeScreen(view);
+      homeScreen(view, seq);
     } else if (screen === 'search') {
-      searchScreen(view, route.params.get('q') || '');
+      await searchScreen(view, route.params.get('q') || '', seq);
       title = tr('Search') + ' · ' + title;
     } else if (screen === 'browse' && (!arg || BY_CODE[arg.toUpperCase()])) {
       const code = arg ? arg.toUpperCase() : currentGroup;
+      if (!DB.isFull() && !await waitForFullDb(view, seq)) return;
       browseScreen(view, code);
       title = BY_CODE[code].name + ' · ' + title;
     } else if (screen === 'favorites') {
-      favoritesScreen(view);
+      await favoritesScreen(view, seq);
       title = tr('Favorites') + ' · ' + title;
     } else if (screen === 'settings') {
-      settingsScreen(view);
+      settingsScreen(view, seq);
       title = tr('Settings') + ' · ' + title;
     } else if ((screen === 'h' || screen === 'sheet') && arg) {
-      const hymn = DB.hymn(arg);
+      const hymn = DB.hymn(arg) || (!DB.isFull() ? await DB.ensureHymn(arg) : null);
+      if (seq !== renderSeq) return;
       if (!hymn) {
         notFound(view, arg);
       } else {
@@ -292,17 +351,11 @@ function render() {
       notFound(view, screen);
     }
   } catch (e) {
+    if (seq !== renderSeq) return;
     console.error(e);
     view.appendChild(h('div', {class: 'empty'}, h('h2', null, tr('Something went wrong')), h('p', null, String(e))));
   }
-  document.title = title;
-  if (screen !== 'search') $('#q').value = '';
-  shownDepth = depth();
-  $('#backBtn').hidden = !screen || shownDepth === 0;
-  const tab = !screen ? 'home' : ['browse', 'favorites', 'settings'].includes(screen) ? screen : null;
-  $('#favoritesTop').classList.toggle('current', tab === 'favorites');
-  $('#settingsTop').classList.toggle('current', tab === 'settings');
-  window.scrollTo(0, 0);
+  if (seq === renderSeq) document.title = title;
 }
 
 function notFound(view, what) {
@@ -347,31 +400,40 @@ function installHintFor(pane) {
   };
 }
 
-function homeScreen(view) {
+function homeScreen(view, seq) {
   const counts = DB.groupCounts();
-  const recent = store.get('recent', []).filter((id) => DB.exists(id)).slice(0, 8);
-  const favs = favorites().filter((id) => DB.exists(id)).slice(0, 8);
-
   const list = (ids) => h('ul', {class: 'hymn-list'}, ids.map((id) => hymnRow(DB.hymn(id))));
   const touch = window.matchMedia('(pointer: coarse)').matches;
+  const listsBox = h('div', {class: 'home-lists'});
+  let hero = null;
 
-  const home = h('div', {class: 'home'},
-    (recent.length || favs.length) ? null : h('section', {class: 'hero'},   // first-run hint only
-      h('h1', null, tr('Hymns')),
-      h('p', null, trh('Type a number to open it in {0}, or a few words from any line to search every hymnal.', h('b', null, BY_CODE[currentGroup].name))),
-      h('div', {class: 'hero-tips'},
-        h('button', {class: 'tip', onclick: () => go('#/h/' + currentGroup + '1')}, currentGroup + ' 1'),
-        h('button', {class: 'tip', onclick: () => searchFor('blessings flow')}, '“blessings flow”'),
-        h('button', {class: 'tip', onclick: () => searchFor('NS 151')}, 'NS 151'),
-        touch ? null : h('button', {class: 'tip', onclick: () => $('#helpDialog').showModal()}, icon('keyboard'), tr('Shortcuts')))),
-    // Favorites always shows (also empty): on phones it is the way to the Favorites page and its import
-    h('div', {class: 'home-lists'},
+  const drawLists = () => {
+    const recent = store.get('recent', []).filter((id) => DB.exists(id)).slice(0, 8);
+    const favs = favorites().filter((id) => DB.exists(id)).slice(0, 8);
+    if (hero) hero.hidden = !!(recent.length || favs.length);
+    listsBox.replaceChildren(
+      // Favorites always shows (also empty): on phones it is the way to the Favorites page and its import
       h('section', {class: 'card'}, h('h2', null, icon('star'), tr('Favorites'),
         h('a', {class: 'link small', href: '#/favorites'}, favs.length ? tr('All') : tr('Import'))),
         favs.length ? list(favs) : h('p', {class: 'muted small home-empty'},
           tr('Tap the star on a hymn to keep it here, or import your favorites from the Android app.'))),
       recent.length ? h('section', {class: 'card'}, h('h2', null, tr('Recently opened'),
-        h('button', {class: 'link small', onclick: () => { store.set('recent', []); render(); }}, tr('Clear'))), list(recent)) : null),
+        h('button', {class: 'link small', onclick: () => { store.set('recent', []); render(); }}, tr('Clear'))), list(recent)) : null);
+  };
+
+  hero = h('section', {class: 'hero'},   // first-run hint only
+    h('h1', null, tr('Hymns')),
+    h('p', null, trh('Type a number to open it in {0}, or a few words from any line to search every hymnal.', h('b', null, BY_CODE[currentGroup].name))),
+    h('div', {class: 'hero-tips'},
+      h('button', {class: 'tip', onclick: () => go('#/h/' + currentGroup + '1')}, currentGroup + ' 1'),
+      h('button', {class: 'tip', onclick: () => searchFor('blessings flow')}, '“blessings flow”'),
+      h('button', {class: 'tip', onclick: () => searchFor('NS 151')}, 'NS 151'),
+      touch ? null : h('button', {class: 'tip', onclick: () => $('#helpDialog').showModal()}, icon('keyboard'), tr('Shortcuts'))));
+  drawLists();
+
+  const home = h('div', {class: 'home'},
+    hero,
+    listsBox,
     h('section', {class: 'hymnals'},
       h('h2', null, tr('Hymnals')),
       h('div', {class: 'hymnal-grid'}, shownGroups().map((g) =>
@@ -382,6 +444,13 @@ function homeScreen(view) {
           h('span', {class: 'count'}, bookSubtitle(g.code, tn('{0} hymn', '{0} hymns', counts[g.code]))))))));
   view.appendChild(home);
   installHintFor(home);   // Chrome may fire its install prompt after this screen is drawn
+
+  if (!DB.isFull()) {
+    const needed = [...store.get('recent', []).slice(0, 8), ...favorites().slice(0, 8)];
+    if (needed.some((id) => !DB.hymn(id))) {
+      DB.ensureHymns(needed).then(() => { if (seq === renderSeq && home.isConnected) drawLists(); });
+    }
+  }
 }
 
 function hymnRow(hm, extra) {
@@ -454,33 +523,43 @@ function whyLine(r, words) {
   }
 }
 
-function searchScreen(view, q) {
+async function searchScreen(view, q, seq) {
   const all = route.params.get('all') === '1';
   const only = ['music', 'people'].includes(route.params.get('in')) ? route.params.get('in') : null;
-  const box = h('div', {class: 'search'});
-  view.appendChild(box);
   // keep what is being typed (a space at the end); the URL has the text trimmed
   if ($('#q').value.trim() !== q) $('#q').value = q;
   const pq = DB.parseQuery(q, currentGroup);
 
   if (pq.id) {
-    const main = DB.hymn(pq.id);
+    const main = DB.hymn(pq.id) || (!DB.isFull() ? await DB.ensureHymn(pq.id) : null);
+    if (seq !== renderSeq) return;
+    const box = h('div', {class: 'search'});
+    view.replaceChildren(box);
     box.appendChild(h('h1', {class: 'results-title'}, main ? tr('Go to {0}', main.id) : tr('No hymn {0}', pq.id)));
     if (main) box.appendChild(h('ul', {class: 'hymn-list big'}, hymnRow(main, h('span', {class: 'enter'}, 'Enter ↵'))));
     if (pq.number) {
-      const no = pq.id.replace(/^\D+/, '');
-      const others = shownGroups().filter((g) => g.code !== currentGroup).map((g) => DB.hymn(g.code + no)).filter(Boolean);
-      if (others.length) {
-        box.appendChild(h('h2', {class: 'results-sub'}, tr('Number {0} in other hymnals', no)));
-        box.appendChild(h('ul', {class: 'hymn-list'}, others.map((o) => hymnRow(o))));
+      if (DB.isFull()) {
+        const no = pq.id.replace(/^\D+/, '');
+        const others = shownGroups().filter((g) => g.code !== currentGroup).map((g) => DB.hymn(g.code + no)).filter(Boolean);
+        if (others.length) {
+          box.appendChild(h('h2', {class: 'results-sub'}, tr('Number {0} in other hymnals', no)));
+          box.appendChild(h('ul', {class: 'hymn-list'}, others.map((o) => hymnRow(o))));
+        }
+      } else {
+        DB.whenFull().then(() => { if (seq === renderSeq) searchScreen(view, q, seq); }, () => {});
       }
     }
     return;
   }
   if (!pq.words.length) {
+    const box = h('div', {class: 'search'});
+    view.replaceChildren(box);
     box.appendChild(h('div', {class: 'empty'}, h('p', null, tr('Type a number or some words.'))));
     return;
   }
+  if (!DB.isFull() && !await waitForFullDb(view, seq)) return;
+  const box = h('div', {class: 'search'});
+  view.appendChild(box);
 
   const t0 = performance.now();
   const found = DB.search(pq.words, pq.phrase, currentGroup, 3000, only).filter((r) => isShown(r.group) || r.group === currentGroup);
@@ -979,12 +1058,35 @@ function sheetScreen(view, hymn) {
 
 // ---- the sheet toolbar and view (sheetpanel.js), with the web app's links and URL ----
 
+let sheetModPromise = null;
+const loadSheetPanel = () => sheetModPromise || (sheetModPromise = Promise.all([loadScript('music.js'), import('./sheetpanel.js')]).then(([, m]) => m));
+
+function sheetKeys(getSheet) {
+  const with_ = (fn) => () => { const s = getSheet(); if (s) fn(s); };
+  return {
+    p: with_((s) => s.set({guitar: false})),
+    g: with_((s) => s.set({guitar: true})),
+    h: with_((s) => s.set({staff: !s.state.staff})),
+    b: with_((s) => s.set({hands: !s.state.hands})),
+    m: with_((s) => s.togglePlay()),
+    e: with_((s) => s.setEdit(!document.body.classList.contains('editing-chords'))),
+    o: with_((s) => s.set({original: !s.state.original})),
+    '+': with_((s) => s.set({shift: (s.state.shift || 0) + 1})),
+    '=': with_((s) => s.set({shift: (s.state.shift || 0) + 1})),
+    '-': with_((s) => s.set({shift: (s.state.shift || 0) - 1})),
+    '0': with_((s) => s.set({shift: 0})),
+    z: with_((s) => s.set({scale: (s.state.scale || 40) - 5})),
+    Z: with_((s) => s.set({scale: (s.state.scale || 40) + 5})),
+  };
+}
+
 function sheetPanel(pane, hymn, {full, stopTune, onplay} = {}) {
   const note = hymn.sheetId !== hymn.id
     ? h('p', {class: 'sheet-from'}, trh('Music of {0} ({1})', h('a', {href: '#/h/' + hymn.sheetId}, hymn.sheetId), BY_CODE[splitId(hymn.sheetId).group].name),
       hymn.lyricsId ? tr(', with the words of {0}', hymn.id) : '')
     : null;
-  return createSheetPanel(pane, {
+  let inner = null, dead = false, failed = false;
+  const opts = {
     sheetId: hymn.sheetId, lyricsId: hymn.lyricsId, id: hymn.id,
     params: route.params,
     // the sheet's settings are in the URL (a link opens the same view); the other parameters (the tab) stay
@@ -997,7 +1099,26 @@ function sheetPanel(pane, hymn, {full, stopTune, onplay} = {}) {
     exit: full ? {icon: 'close', title: tr('Back to the lyrics (Esc)'), href: href('/h/' + hymn.id)} : null,
     sheetOnly: full ? null : (params) => go(href('/sheet/' + hymn.id, params)),
     stopTune, onplay,
+  };
+  loadSheetPanel().then(({createSheetPanel}) => {
+    if (dead || !pane.isConnected) return;
+    inner = createSheetPanel(pane, opts);
+    if (onplay) onplay();
+  }).catch((e) => {
+    failed = true;
+    if (!dead && pane.isConnected) pane.replaceChildren(h('p', {class: 'sheet-status error'}, String(e)));
   });
+  return {
+    get state() { return inner ? inner.state : {}; },
+    get playable() { return inner ? inner.playable : false; },
+    get playing() { return inner ? inner.playing : false; },
+    get chordsOnly() { return inner ? inner.chordsOnly : false; },
+    get failed() { return failed || (inner ? inner.failed : false); },
+    set: (patch) => inner && inner.set(patch),
+    setEdit: (on) => inner && inner.setEdit(on),
+    togglePlay: () => inner && inner.togglePlay(),
+    destroy: () => { dead = true; if (inner) inner.destroy(); },
+  };
 }
 
 // ---- keyboard ----
@@ -1039,7 +1160,7 @@ function setupSearch() {
       const text = q.value.trim();
       if (!text) return;
       const pq = DB.parseQuery(text, currentGroup);
-      if (pq.id && DB.exists(pq.id)) { q.blur(); go('#/h/' + pq.id); return; }
+      if (pq.id && (DB.exists(pq.id) || (!DB.isFull() && splitId(pq.id)))) { q.blur(); go('#/h/' + pq.id); return; }
       if (route.parts[0] !== 'search') {
         go(href('/search', {q: text}));
       } else if (route.params.get('q') !== text) {
@@ -1099,9 +1220,11 @@ function setupKeyboardToggle(q) {
 }
 
 function rerenderSearch() {
+  if (cleanup) { cleanup(); cleanup = null; }
+  const seq = ++renderSeq;
   const view = $('#view');
   view.innerHTML = '';
-  searchScreen(view, route.params.get('q') || '');
+  searchScreen(view, route.params.get('q') || '', seq);
   document.title = tr('Search') + ' · ' + tr('Hymns');
 }
 
@@ -1183,7 +1306,11 @@ async function shareText(text, title) {
   }
 }
 
-function favoritesScreen(view) {
+async function favoritesScreen(view, seq) {
+  if (!DB.isFull()) {
+    await DB.ensureHymns(favorites());
+    if (seq !== renderSeq) return;
+  }
   const favs = favorites().filter((id) => DB.exists(id));
   const box = h('div', {class: 'page'});
   view.appendChild(box);
@@ -1212,9 +1339,10 @@ function favoritesScreen(view) {
         try { area.value = await navigator.clipboard.readText(); } catch (e) { area.focus(); }
       }}, tr('Paste'))),
     area,
-    h('div', {class: 'row'}, h('button', {class: 'btn primary', onclick: () => {
+    h('div', {class: 'row'}, h('button', {class: 'btn primary', onclick: async () => {
+      if (!area.value.trim()) { toast(tr('Paste a list first')); return; }
+      if (!DB.isFull()) await DB.whenFull();
       const n = importFavorites(area.value);
-      if (!n && !area.value.trim()) { toast(tr('Paste a list first')); return; }
       toast(n ? tn('{0} favorite added', '{0} favorites added', n) : tr('Nothing new in that list'));
       render();
     }}, tr('Import')))));
@@ -1274,7 +1402,8 @@ function shareCard() {
   const draw = () => {
     const url = web ? WEB_URL : PLAY_URL;
     const qr = h('div', {class: 'qr'});
-    qr.innerHTML = qrSvg(url);
+    if (window.qrcode) qr.innerHTML = qrSvg(url);
+    else loadScript('vendor/qrcode.js').then(() => { if (qr.isConnected) draw(); }).catch(() => {});
     const seg = h('div', {class: 'seg'}, [[false, 'Android'], [true, tr('iPhone and all devices')]].map(([isWeb, label]) =>
       h('button', {type: 'button', 'aria-pressed': String(web === isWeb), onclick: () => { web = isWeb; draw(); }}, label)));
     const copy = async () => {
@@ -1297,7 +1426,7 @@ function shareCard() {
   return card;
 }
 
-function settingsScreen(view) {
+function settingsScreen(view, seq) {
   const box = h('div', {class: 'page'});
   view.appendChild(box);
   box.appendChild(h('h1', {class: 'page-title'}, icon('settings'), tr('Settings')));
@@ -1415,7 +1544,9 @@ function settingsScreen(view) {
         downloadFile('hymns-chord-edits-' + new Date().toISOString().slice(0, 10) + '.json', JSON.stringify(data, null, 1), 'application/json');
       }}, icon('share'), tr('Export')),
       h('button', {class: 'btn', onclick: () => fileInput.click()}, tr('Import')), fileInput)]);
-  Edits.all().then((list) => {
+  Edits.all().then(async (list) => {
+    if (!DB.isFull() && list.length) await DB.ensureHymns(list.map((r) => r.sheet));
+    if (seq !== renderSeq || !editedList.isConnected) return;
     editsInfo.textContent = list.length ? tn('{0} sheet with edits:', '{0} sheets with edits:', list.length) : tr('No chord edits yet.');
     list.sort((a, b) => b.updated - a.updated);
     for (const r of list) {
@@ -1507,13 +1638,12 @@ async function start() {
   document.addEventListener('visibilitychange', updateWakeLock);
   setupServiceWorker();
 
-  const bar = $('#progress');
+  let cached = false;
   try {
-    await DB.open((f) => {
-      $('#loading').hidden = false;
-      bar.style.width = Math.round(f * 100) + '%';
-      $('#loadingText').textContent = tr('Downloading hymns… {0}%', Math.round(f * 100));
-    });
+    ({cached} = await DB.init());
+    if (cached) {
+      try { await DB.openFull(); } catch (e) { cached = false; }
+    }
   } catch (e) {
     console.error(e);
     $('#loadingText').textContent = tr('Could not load the hymns: {0}', e.message);
@@ -1523,6 +1653,7 @@ async function start() {
   }
   $('#loading').hidden = true;
   document.body.classList.add('ready');
+  if (cached) document.body.classList.add('db-ready');
   if (!isShown(currentGroup) || !DB.groupCounts()[currentGroup]) currentGroup = shownGroups()[0].code;
   setGroup(currentGroup);
   $('#hymnalBtn').addEventListener('click', () => { setupHymnalPicker(); $('#hymnalDialog').showModal(); });
@@ -1534,9 +1665,11 @@ async function start() {
     render();
   });
   updateWakeLock();
-  render();
-  // fetch the music renderer while nothing else is happening, so the first sheet opens sooner
-  setTimeout(() => import('./sheet.js').then((m) => m.loadVerovio()).catch(() => {}), 1500);
+  await render();
+  // On a cold visit, load the full SQLite search/browse DB in the background once the landing view has painted
+  if (!cached) {
+    DB.whenFull().then(() => DB.whenSaved()).then(() => document.body.classList.add('db-ready')).catch(() => {});
+  }
   offlineInBackground();
 }
 

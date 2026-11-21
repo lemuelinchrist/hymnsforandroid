@@ -34,21 +34,39 @@ export const MIN_SCALE = 20, MAX_SCALE = 90, DEFAULT_SCALE = 40;
 // ---- Verovio, loaded once, on the first sheet ----
 
 let toolkitPromise = null;
+let leadSheetPromise = null;
+
+function loadLeadSheet() {
+  if (window.LeadSheet) return Promise.resolve();
+  if (!leadSheetPromise) {
+    leadSheetPromise = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = 'music.js';
+      s.onload = () => resolve();
+      s.onerror = () => { leadSheetPromise = null; reject(new Error('could not load piano rules')); };
+      document.head.appendChild(s);
+    });
+  }
+  return leadSheetPromise;
+}
 
 export function loadVerovio() {
   if (!toolkitPromise) {
-    toolkitPromise = new Promise((resolve, reject) => {
-      const s = document.createElement('script');
-      s.src = host.verovio();
-      s.onerror = () => { toolkitPromise = null; reject(new Error('could not load the music renderer')); };
-      s.onload = () => {
-        const m = window.verovio.module;
-        const done = () => resolve(new window.verovio.toolkit());
-        if (m.calledRun) done();
-        else m.onRuntimeInitialized = done;
-      };
-      document.head.appendChild(s);
-    });
+    toolkitPromise = Promise.all([
+      loadLeadSheet(),
+      new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = host.verovio();
+        s.onerror = () => reject(new Error('could not load the music renderer'));
+        s.onload = () => {
+          const m = window.verovio.module;
+          const done = () => resolve(new window.verovio.toolkit());
+          if (m.calledRun) done();
+          else m.onRuntimeInitialized = done;
+        };
+        document.head.appendChild(s);
+      }),
+    ]).then(([, tk]) => tk).catch((e) => { toolkitPromise = null; throw e; });
   }
   return toolkitPromise;
 }

@@ -32,13 +32,44 @@ export async function gunzip(bytes) {
   return new Uint8Array(await new Response(stream).arrayBuffer());
 }
 
+const scriptPromises = new Map();
+
+// load a non-module browser script once on demand (vendor/sql-wasm.js, vendor/qrcode.js, music.js)
+export function loadScript(url) {
+  if (!scriptPromises.has(url)) {
+    scriptPromises.set(url, new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = url;
+      s.onload = () => resolve();
+      s.onerror = () => { scriptPromises.delete(url); reject(new Error('Could not load ' + url)); };
+      document.head.appendChild(s);
+    }));
+  }
+  return scriptPromises.get(url);
+}
+
+// store a fetched response in the service worker's data cache, so files fetched on the very first visit
+// (before the service worker controls the page) are still available immediately offline
+export async function cacheDataResponse(url, res) {
+  try {
+    if (!('caches' in window) || !res || !res.ok) return;
+    const cache = await caches.open('hymns-data');
+    await cache.put(new URL(url, location.href).href, res);
+  } catch (e) { /* private mode or unsupported */ }
+}
+
 const jsonCache = new Map();
 
 // a gzipped JSON file, kept in memory once read
 export function fetchGzJson(url) {
   if (!jsonCache.has(url)) {
-    jsonCache.set(url, fetchBytes(url).then(gunzip).then((b) => JSON.parse(new TextDecoder().decode(b)))
-      .catch((e) => { jsonCache.delete(url); throw e; }));
+    jsonCache.set(url, (async () => {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status + ' for ' + url);
+      cacheDataResponse(url, res.clone());
+      const bytes = await gunzip(new Uint8Array(await res.arrayBuffer()));
+      return JSON.parse(new TextDecoder().decode(bytes));
+    })().catch((e) => { jsonCache.delete(url); throw e; }));
   }
   return jsonCache.get(url);
 }
