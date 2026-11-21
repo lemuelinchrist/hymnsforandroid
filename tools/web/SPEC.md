@@ -290,9 +290,11 @@ How it works now:
   `data/version.json` (which files are current). The browser unpacks them (`DecompressionStream`, `files.js`),
   because GitHub Pages serves `.gz` files as they are. Verovio is plain JS (Pages compresses it on the way).
 - **Service worker** (`sw.js`, file lists written in by `build.py`): the app shell is stored per build; hashed data
-  files are kept once fetched (cache first); `version.json` is network first. The database is not stored by the
-  service worker: `db.js` keeps it unpacked in IndexedDB. Settings → Offline downloads all sheet packs at once
-  (about 5 MB) and asks the browser to keep the storage.
+  files are kept once fetched (cache first); `version.json` is network first. When a new build's service worker
+  activates while the app is open, it offers a sticky "Reload" toast without interrupting what is on screen (and reloads
+  automatically only when the app is hidden and idle — not editing chords, playing audio, or downloading). The database
+  is not stored by the service worker: `db.js` keeps it unpacked in IndexedDB. Settings → Offline downloads all sheet
+  packs and tunes in the background once per build (about 30 MB) and asks the browser to keep the storage.
 - **Settings → Share the app** (same section on Android): a QR code on the page, drawn as an inline SVG by `qrcode.js`
   (error correction M, black on white in every theme), with a switch **Android | iPhone and all devices**: Android is the
   Google Play page, the other is this web app (`https://lemuelinchrist.github.io/hymnsforandroid/`, with the Add to Home

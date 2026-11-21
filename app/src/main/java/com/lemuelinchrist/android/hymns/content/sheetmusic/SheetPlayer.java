@@ -45,6 +45,13 @@ public final class SheetPlayer {
         return instance;
     }
 
+    /** Stops playback only if a sheet player already exists and is active. */
+    public static synchronized void stopIfActive() {
+        if (instance != null && instance.isPlaying()) {
+            instance.stop();
+        }
+    }
+
     /** Whether the sheet is being played (or is about to). */
     public boolean isPlaying() {
         return wanted != null;

@@ -167,6 +167,13 @@ public class LogBookTest {
         assertEquals(100, logBook.getOrderedRecordList().length);
         assertEquals("E1", logBook.getOrderedRecordList()[0].getHymnId());
         assertEquals(150, logBook.getAllRecords().length);
+
+        context.deleteFile(FILE);
+        List<Hymn> boundary = new ArrayList<>();
+        for (int no = 1; no <= 101; no++) boundary.add(hymn("E" + no));
+        LogBook bBook = new LogBook(context, FILE);
+        bBook.addAll(boundary);
+        assertEquals(100, bBook.getOrderedRecordList().length);
     }
 
     @Test

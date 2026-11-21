@@ -203,6 +203,19 @@ public class HymnSearchTest {
     }
 
     @Test
+    public void newTuneDoesNotFindParentsTuneInSearch() {
+        List<HymnSearch.Result> r = HymnSearch.search(db, HymnSearch.parse("53456515677"), HymnGroup.BF,
+                Collections.<String>emptyList(), "music");
+        boolean foundE383 = false, foundBf484 = false;
+        for (HymnSearch.Result x : r) {
+            if (x.id.equals("E383")) foundE383 = true;
+            if (x.id.equals("BF484")) foundBf484 = true;
+        }
+        assertTrue(foundE383);
+        assertFalse(foundBf484);
+    }
+
+    @Test
     public void foldKeepsEveryCharacterInPlace() {
         String text = "Jésus, ΘΕΟΣ ς Бог";
         String folded = SearchText.fold(text);

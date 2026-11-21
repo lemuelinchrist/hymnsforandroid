@@ -26,16 +26,12 @@ import java.util.List;
  * @since 10/10/2020
  */
 public class SimilarTuneButton extends ContentComponent<ImageButton> {
-    private static HymnsDao hymnsDao;
     private List<Hymn> relatedHymns;
     private ArrayList<String> descriptions=new ArrayList<>();
 
     public SimilarTuneButton(Hymn hymn, Fragment parentFragment, ImageButton imageButton) {
         super(hymn, parentFragment, imageButton);
 
-        if (hymnsDao == null) {
-            hymnsDao = new HymnsDao(context);
-        }
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         if(!sharedPreferences.getBoolean("similarTune",false) || hymn.getTune()==null || hymn.getTune().isEmpty()) {
@@ -45,14 +41,21 @@ public class SimilarTuneButton extends ContentComponent<ImageButton> {
             @Override
             public void onClick(View v) {
                 logToHistory();
+                HymnsDao hymnsDao = new HymnsDao(context);
                 hymnsDao.open();
-                relatedHymns = hymnsDao.getHymnsWithSimilarTune(SimilarTuneButton.this.hymn);
-                hymnsDao.close();
-                if(relatedHymns.size()>1) {
+                try {
+                    relatedHymns = hymnsDao.getHymnsWithSimilarTune(SimilarTuneButton.this.hymn);
+                } finally {
+                    hymnsDao.close();
+                }
+                if(!relatedHymns.isEmpty()) {
                     descriptions = new ArrayList<>();
                     ArrayList<String> hymnIds = new ArrayList<>();
                     for (Hymn relatedHymn : relatedHymns) {
-                        descriptions.add(relatedHymn.getHymnId() + " - " + HymnsDao.tagged(relatedHymn.getFirstStanzaLine(), relatedHymn.isNewTune()));
+                        String line = relatedHymn.getFirstStanzaLine();
+                        if (line == null || line.trim().isEmpty()) line = relatedHymn.getFirstChorusLine();
+                        if (line == null) line = "";
+                        descriptions.add(relatedHymn.getHymnId() + " - " + HymnsDao.tagged(line, relatedHymn.isNewTune()));
                         hymnIds.add(relatedHymn.getHymnId());
                     }
 

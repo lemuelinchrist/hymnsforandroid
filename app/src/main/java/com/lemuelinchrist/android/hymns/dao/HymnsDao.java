@@ -31,6 +31,7 @@ public class HymnsDao {
 
     private SQLiteDatabase database;
     private HymnsSqliteHelper dbHelper;
+    private boolean opened;
 
     public HymnsDao(Context context) {
         this.context = context;
@@ -38,11 +39,17 @@ public class HymnsDao {
     }
 
     public void open() throws SQLException {
-        database = dbHelper.getWritableDatabase();
+        if (!opened) {
+            database = dbHelper.openWritable();
+            opened = true;
+        }
     }
 
     public void close() {
-        dbHelper.close();
+        if (opened) {
+            opened = false;
+            dbHelper.close();
+        }
     }
 
     /** What a list shows for a first line: the line, then " (New Tune)" for a New Tune (the data has no such text). */
@@ -85,10 +92,12 @@ public class HymnsDao {
     }
 
     public ArrayList<String> getArrayByHymnNo(HymnGroup hymnGroup) {
-        Cursor cursor = getByHymnNo(hymnGroup, null);
         ArrayList<String> hymnArray = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            hymnArray.add(cursor.getString(cursor.getColumnIndex(HymnFields.no.toString())).trim());
+        try (Cursor cursor = getByHymnNo(hymnGroup, null)) {
+            int col = cursor.getColumnIndex(HymnFields.no.toString());
+            while (cursor.moveToNext()) {
+                hymnArray.add(cursor.getString(col).trim());
+            }
         }
         return hymnArray;
     }
@@ -104,10 +113,25 @@ public class HymnsDao {
     private static String hymnsWithParents(int generations) {
         StringBuilder sql = new StringBuilder("(select h._id, h.hymn_group, h.no, h.first_stanza_line,"
                 + " h.first_chorus_line, h.new_tune");
-        for (String column : new String[]{"author", "composer", "key", "tune", "main_category"}) {
+        for (String column : new String[]{"author", "main_category"}) {
             sql.append(", coalesce(nullif(h.").append(column).append(", '')");
             for (int g = 1; g <= generations; g++) {
                 sql.append(", nullif(p").append(g).append(".").append(column).append(", '')");
+            }
+            sql.append(") as ").append(column);
+        }
+        // a New Tune of a hymn with another tune keeps its own music: no composer, key or tune from the parent
+        for (String column : new String[]{"composer", "key", "tune"}) {
+            sql.append(", coalesce(nullif(h.").append(column).append(", '')");
+            StringBuilder crossed = new StringBuilder();
+            for (int g = 1; g <= generations; g++) {
+                String child = g == 1 ? "h" : "p" + (g - 1);
+                String p = "p" + g;
+                if (crossed.length() > 0) crossed.append(" or ");
+                crossed.append("(").append(p).append("._id is not null and ifnull(").append(child)
+                        .append(".new_tune, 0) = 1 and ifnull(").append(p).append(".new_tune, 0) != 1)");
+                sql.append(", case when not (").append(crossed).append(") then nullif(")
+                        .append(p).append(".").append(column).append(", '') end");
             }
             sql.append(") as ").append(column);
         }
@@ -264,23 +288,23 @@ public class HymnsDao {
         if(targetHymn.getTune()==null || targetHymn.getTune().isEmpty()) {
             return hymns;
         }
-        Cursor cursor = getByKeyOrTune(targetHymn.getTune());
-        while (cursor.moveToNext()) {
-            String hymnId = cursor.getString(cursor.getColumnIndex("_id"));
-            Hymn hymn  = get(hymnId);
-            // only the current Hymn Group and non Big Hymns can be added to list
-            if(!hymn.getHymnGroup().isBigHymnLanguage() || hymn.getHymnGroup().equals(targetHymn.getHymnGroup())) {
-                if(!hymns.contains(hymn)) {
-                    hymns.add(hymn);
-                }
-            } else {
-                String relatedHymnId = hymn.getRelatedHymnOf(targetHymn.getHymnGroup());
-                if(relatedHymnId!=null) {
-                    hymn = get(relatedHymnId);
+        try (Cursor cursor = getByKeyOrTune(targetHymn.getTune())) {
+            int idCol = cursor.getColumnIndex("_id");
+            while (cursor.moveToNext()) {
+                String hymnId = cursor.getString(idCol);
+                Hymn hymn = get(hymnId);
+                if (hymn == null) continue;
+                // only the current Hymn Group and non Big Hymns can be added to list
+                if(!hymn.getHymnGroup().isBigHymnLanguage() || hymn.getHymnGroup().equals(targetHymn.getHymnGroup())) {
                     if(!hymns.contains(hymn)) {
                         hymns.add(hymn);
                     }
                 } else {
+                    String relatedHymnId = hymn.getRelatedHymnOf(targetHymn.getHymnGroup());
+                    if(relatedHymnId!=null) {
+                        Hymn related = get(relatedHymnId);
+                        if (related != null) hymn = related;
+                    }
                     if(!hymns.contains(hymn)) {
                         hymns.add(hymn);
                     }
@@ -292,14 +316,18 @@ public class HymnsDao {
     }
 
     public Hymn get(String hymnId) {
-        if (hymnId == null) return null;
+        return get(hymnId, 0);
+    }
+
+    private Hymn get(String hymnId, int depth) {
+        if (hymnId == null || depth > 10) return null;
         Cursor cursor = null;
         try {
             Log.i(HymnsDao.class.getName(), "Querying Hymn:" + hymnId);
 
             cursor = database.rawQuery("select * from hymns where _id = ?", new String[]{hymnId});
 
-            cursor.moveToNext();
+            if (!cursor.moveToFirst()) return null;
             Hymn hymn = getHymn(cursor);
 
             cursor.close();
@@ -323,11 +351,12 @@ public class HymnsDao {
             cursor.close();
 
             // *** Get Parent Hymn then Merge!
-            Hymn parentHymn = get(hymn.getParentHymn());
+            Hymn parentHymn = get(hymn.getParentHymn(), depth + 1);
             if (parentHymn != null) {
                 // a New Tune of a hymn with another tune keeps its own music: no composer, time, tune or key from the parent
                 boolean ownTune = hymn.isNewTune() && !parentHymn.isNewTune();
                 hymn.setOwnTune(ownTune);
+                if (!ownTune) hymn.setAncestorSheetId(parentHymn.getRootSheetId());
                 if (isEmpty(hymn.getAuthor()))
                     hymn.setAuthor(parentHymn.getAuthor());
                 if (!ownTune && isEmpty(hymn.getComposer()))

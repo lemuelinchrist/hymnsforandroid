@@ -113,8 +113,8 @@ public class SearchTabFragment extends TabFragment {
     /** Enter: open the hymn whose number or ID was typed. False if there is none. */
     public boolean submit(String typed) {
         String id = HymnSearch.hymnIdOf(typed, selectedHymnGroup);
-        if (id == null || dao.get(id) == null) return false;
-        ((SearchActivity) getActivity()).createIntentAndExit(id);
+        if (id == null || dao == null || dao.get(id) == null) return false;
+        if (getActivity() instanceof SearchActivity) ((SearchActivity) getActivity()).createIntentAndExit(id);
         return true;
     }
 
@@ -131,19 +131,19 @@ public class SearchTabFragment extends TabFragment {
         status.setVisibility(View.GONE);
         switch (browse) {
             case SUBJECTS:
-                mRecyclerView.setAdapter(new CategoryAdapter(container.getContext(),
+                setAdapter(new CategoryAdapter(container.getContext(),
                         dao.getSubjectsOf(selectedHymnGroup), R.layout.recyclerview_hymn_list));
                 break;
             case AUTHORS:
-                mRecyclerView.setAdapter(new AuthorAdapter(container.getContext(),
+                setAdapter(new AuthorAdapter(container.getContext(),
                         dao.getAuthorsOf(selectedHymnGroup), R.layout.recyclerview_hymn_list));
                 break;
             case TUNES:
-                mRecyclerView.setAdapter(new MusicKeyAdapter(container.getContext(),
+                setAdapter(new MusicKeyAdapter(container.getContext(),
                         dao.getTunesOf(selectedHymnGroup), R.layout.recyclerview_hymn_list));
                 break;
             default:
-                mRecyclerView.setAdapter(new FirstLineChorusAdapter(container.getContext(),
+                setAdapter(new FirstLineChorusAdapter(container.getContext(),
                         dao.getFirstLinesOf(selectedHymnGroup), R.layout.recyclerview_hymn_list));
         }
     }
@@ -156,7 +156,7 @@ public class SearchTabFragment extends TabFragment {
         SQLiteDatabase db = SearchIndex.get(requireContext());
         if (db == null) {
             choices.removeAllViews();
-            mRecyclerView.setAdapter(null);
+            setAdapter(null);
             showStatus(getString(R.string.search_preparing));
             SearchIndex.prepare(requireContext(), () -> {
                 if (isAdded() && filter.equals(typed)) search();
@@ -204,7 +204,7 @@ public class SearchTabFragment extends TabFragment {
         List<HymnSearch.Result> shown = all ? results : inBook;
         if (shown.isEmpty() && goTo == null) showStatus(getString(R.string.search_no_hymns));
         else status.setVisibility(View.GONE);
-        mRecyclerView.setAdapter(new SearchResultAdapter(container.getContext(), R.layout.recyclerview_hymn_list,
+        setAdapter(new SearchResultAdapter(container.getContext(), R.layout.recyclerview_hymn_list,
                 goTo, shown, query.terms, dao));
     }
 

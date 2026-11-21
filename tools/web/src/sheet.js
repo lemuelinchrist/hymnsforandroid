@@ -314,6 +314,7 @@ export class SheetView {
     this.onSheet = null;           // called when a sheet has been read, before it is drawn
     this.soundXml = null;          // the MEI as it sounds: in this key, with the edits, without the guitar's changes
     this.renders = 0;              // how many times the music was drawn (the player lights notes up again after one)
+    this.failed = false;
     this.onsound = null;
     this.time = [4, 4];            // the sheet's time signature (of its first whole bar)
     this.editing = false;
@@ -361,12 +362,14 @@ export class SheetView {
     this.shownId = sheetId;
     this.baseXml = null;
     this.meiText = null;
+    this.failed = false;
     this.status(tr('Loading sheet music…'), 'loading');
     let xml, overlay;
     try {
       [this.tk, xml, overlay] = await Promise.all([loadVerovio(), fetchMei(sheetId), fetchLyrics(lyricsId)]);
     } catch (e) {
       if (token === this.token) {
+        this.failed = true;
         const offline = !navigator.onLine || /failed to fetch|network|load failed/i.test(e.message);
         this.status(offline ? tr('This sheet is not on this device yet. Open it once while you are online and it will work offline.')
           : tr('Sheet music could not be loaded ({0}).', e.message), 'error');
@@ -406,6 +409,7 @@ export class SheetView {
       this.build();
       this.render();
     } catch (e) {
+      this.failed = true;
       this.status(tr('Could not render this sheet: {0}', e), 'error');
     }
     if (this.onchange) this.onchange(this.state, this.info);

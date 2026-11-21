@@ -69,7 +69,21 @@ public class OtherLanguagesSection extends ContentComponent<ViewGroup> {
         grid = createGrid(relatedIds);
         view.addView(grid);
         showFolded(sharedPreferences.getBoolean(FOLDED, false));
-        sharedPreferences.registerOnSharedPreferenceChangeListener(foldListener);
+        view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View v) {
+                sharedPreferences.registerOnSharedPreferenceChangeListener(foldListener);
+                showFolded(sharedPreferences.getBoolean(FOLDED, false));
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(View v) {
+                sharedPreferences.unregisterOnSharedPreferenceChangeListener(foldListener);
+            }
+        });
+        if (view.isAttachedToWindow()) {
+            sharedPreferences.registerOnSharedPreferenceChangeListener(foldListener);
+        }
     }
 
     /** Related hymns whose language is known and not switched off in the settings, in the drawer's order. */

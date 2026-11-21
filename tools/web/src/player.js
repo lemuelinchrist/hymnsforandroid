@@ -174,13 +174,6 @@ function loopMidi(song, key) {
   };
 }
 
-function loopAudio(url, key) {
-  const el = new Audio(url);
-  el.loop = true;
-  el.play();
-  return {key, stop() { el.pause(); el.src = ''; }};
-}
-
 export function playing() { return current ? current.key : null; }
 
 // the tempo of a tune's MIDI file in quarter notes a minute (the sheets have none), or 0 when it has none
@@ -319,7 +312,18 @@ export async function play(url, key) {
   audio();                                             // unlock audio inside the tap, before anything is awaited
   const token = current = {key, stop() {}};
   if (/\.mp3$/.test(url)) {
-    current = loopAudio(url, key);
+    const el = new Audio(url);
+    el.loop = true;
+    const ctl = {key, stop() { el.pause(); el.src = ''; }};
+    current = ctl;
+    try {
+      await el.play();
+    } catch (e) {
+      if (current === ctl) current = null;
+      ctl.stop();
+      throw e;
+    }
+    if (current !== ctl) ctl.stop();
     return;
   }
   const song = await loadSong(url);

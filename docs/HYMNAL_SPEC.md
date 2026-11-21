@@ -503,8 +503,8 @@ Hidden when the setting is off or the hymn has no tune. On tap:
    - else if it has a related hymn in the current hymn's book → keep that related hymn instead;
    - else keep the candidate itself (fallback).
    De-duplicate by Hymn ID; remove the current hymn.
-3. If the result has more than one entry → dialog "Go to hymn with similar tune" listing `<ID> - <first stanza line>`;
-   tap opens it. Otherwise toast "Sorry! No Hymn with similar tune available". (See §12 #6 about the threshold.)
+3. If the result has one or more entries → dialog "Go to hymn with similar tune" listing `<ID> - <first stanza line>`;
+   tap opens it. Otherwise toast "Sorry! No Hymn with similar tune available".
 
 ### 7.6 Share
 
@@ -1060,11 +1060,11 @@ Listed so a rebuild chooses on purpose. "Keep" = users rely on it; "Fix" = proba
 | 3 | ~~Subjects/Authors with an empty query list *all* enabled books.~~ | Done in v5.7: the Search tab's lists show the current book (§9.2). |
 | 4 | ~~All Lyrics ignores disabled books.~~ | Done in v5.7: Search leaves hidden books out (§9.3). |
 | 5 | Hymn Numbers' word filter ignores 1–2 letter words after the first; `LIKE` is accent- and (non-ASCII) case-sensitive. | Done for the Search tab in v5.7 (search form, §9.5); Hymn Numbers only matches digits. |
-| 6 | Similar Tune needs **two** other hymns before it shows a list (one match → "No Hymn with similar tune"). | Fix: show the list for ≥1. |
+| 6 | ~~Similar Tune needs **two** other hymns before it shows a list (one match → "No Hymn with similar tune").~~ | Fixed: shows the list for ≥1. |
 | 7 | Similar Tune uses a prefix match on the tune code, so a longer tune starting with the same digits counts as similar. | Decide (exact match is stricter). |
 | 8 | History only records swiped-to hymns if they were opened deliberately or a button was tapped. | Keep (avoids flooding history while browsing). |
 | 9 | ~~Copy keeps `<i>`/`<u>` tags in the clipboard text.~~ | Done in v5.8: Share/Copy strip all markup (§7.6). |
-| 10 | Stanza labels like `copyright`, `chorusverse`, `-` are shown verbatim as the stanza number. | Decide: hide `-`, style `copyright` as a note. |
+| 10 | ~~Stanza labels like `copyright`, `chorusverse`, `-` are shown verbatim as the stanza number.~~ | Fixed for `-` (hidden) and `copyright` (styled as a note when non-empty, skipped when blank). |
 | 11 | The old `tune` table was keyed by **hymn ID**, not tune code (name was misleading). | Done in v5.8.2: it is now the `link` table (hymn_id, kind, label, url, n_order). |
 | 12 | Hymn number submit jumps to `<book><number>` even if absent (falls back to the book's first hymn). | Fix: show "not found". |
 

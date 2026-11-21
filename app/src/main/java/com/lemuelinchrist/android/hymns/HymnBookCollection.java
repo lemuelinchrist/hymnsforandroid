@@ -29,10 +29,10 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     private HashMap<HymnGroup, HymnBookGroup> hymnBooks = new HashMap<>();
     private final ViewPager lyricPager;
     private HymnsDao dao;
-    private HashMap<Integer, ContentArea> registeredFragments = new HashMap<>();
 
     private final HymnsActivity context;
     private HymnBookGroup currentHymnBookGroup;
+    private int switchToken = 0;
     private HymnStack hymnStack = new HymnStack(HymnGroup.DEFAULT_HYMN_NUMBER);
     private boolean hymnStackSeeded = false;
     // the hymn the back-to-hymn button belongs to (the related hymn we switched to), until another hymn is shown
@@ -142,7 +142,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     }
 
     private ContentArea getCurrentHymnLyric() {
-        return currentHymnBookGroup.getLyricContainer(lyricPager.getCurrentItem());
+        return currentHymnBookGroup == null ? null : currentHymnBookGroup.getLyricContainer(lyricPager.getCurrentItem());
     }
 
     public void switchToHymnAndRememberChoice(String hymnNo) {
@@ -218,9 +218,11 @@ public class HymnBookCollection implements OnLyricVisibleListener {
         }
 
 
+        final int token = ++switchToken;
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
+                if (token != switchToken || context.isFinishing() || context.isDestroyed()) return;
                 Log.i(getClass().getName(), "Hymn group switch should have been completed by now. \n" +
                         "position of hymn no: " + currentHymnBookGroup.getPositionOfHymnNo(selectedHymnNumber) +
                         "\n attempting to switch to hymn number: " + selectedHymnNumber);
@@ -230,6 +232,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
                 lyricPager.post(new Runnable() {
                     @Override
                     public void run() {
+                        if (token != switchToken || context.isFinishing() || context.isDestroyed()) return;
                         try {
                             ContentArea shown = getCurrentHymnLyric();
                             if (shown != null) {
@@ -255,8 +258,9 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     }
 
     public void translateTo(HymnGroup selectedHymnGroup) {
-        if (selectedHymnGroup == currentHymnBookGroup.hymnGroup) return;
-        String related = getCurrentHymnLyric().getRelatedHymnOf(selectedHymnGroup);
+        if (currentHymnBookGroup != null && selectedHymnGroup == currentHymnBookGroup.hymnGroup) return;
+        ContentArea cur = getCurrentHymnLyric();
+        String related = cur == null ? null : cur.getRelatedHymnOf(selectedHymnGroup);
         if (related == null) {
             switchToHymn(selectedHymnGroup + "1");
         } else {
@@ -266,7 +270,8 @@ public class HymnBookCollection implements OnLyricVisibleListener {
     }
 
     public void logToHistory() {
-        getCurrentHymnLyric().log();
+        ContentArea cur = getCurrentHymnLyric();
+        if (cur != null) cur.log();
     }
 
     @Override
@@ -300,6 +305,7 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         private ArrayList<String> hymnNumbers;
         private HymnGroup hymnGroup;
+        private final HashMap<Integer, ContentArea> registeredFragments = new HashMap<>();
         ContentArea currentContentArea;
         // while the pager is given this book to open on this page: no other page is made the current one meanwhile
         private int startAt = -1;
@@ -352,7 +358,9 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            registeredFragments.remove(position);
+            if (registeredFragments.get(position) == object) {
+                registeredFragments.remove(position);
+            }
             super.destroyItem(container, position, object);
         }
 

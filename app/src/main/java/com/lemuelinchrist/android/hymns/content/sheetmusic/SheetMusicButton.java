@@ -45,13 +45,6 @@ public class SheetMusicButton extends ContentComponent<ImageButton> {
 
 
     private String getRootMusicSheet() {
-        // not all hymns have their own sheet music, but maybe their parent does (not for a New Tune: the parent's is another tune)
-        if (hymn.hasOwnSheetMusic()) {
-            return hymn.getHymnId();
-
-        } else if (!hymn.hasOwnTune() && hymn.hasSheetMusic(hymn.getParentHymn())) {
-            return hymn.getParentHymn();
-        }
-        return null;
+        return hymn.getRootSheetId();
     }
 }

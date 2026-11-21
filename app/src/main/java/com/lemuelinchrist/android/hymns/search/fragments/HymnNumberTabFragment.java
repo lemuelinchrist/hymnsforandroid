@@ -14,11 +14,11 @@ public class HymnNumberTabFragment extends TabFragment {
         // if user didn't input anything in the search, the default behavior is to list only a certain group of hymns
         if (selectedHymnGroup != null && filter.equals("")) {
             Log.d(this.getClass().getName(), "selectedHymnGroup=" + selectedHymnGroup);
-            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
+            setAdapter(new HymnNumberAdapter(container.getContext(),
                     dao.getByHymnNo(selectedHymnGroup, filter), R.layout.recyclerview_hymn_list));
 
         } else {
-            mRecyclerView.setAdapter(new HymnNumberAdapter(container.getContext(),
+            setAdapter(new HymnNumberAdapter(container.getContext(),
                     dao.getByHymnNo(selectedHymnGroup, filter)
                     , R.layout.recyclerview_hymn_list));
         }

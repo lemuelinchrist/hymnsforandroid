@@ -71,7 +71,7 @@ public abstract class TabFragment extends Fragment {
                 if(dy!=0) {  // this condition is important. Otherwise the keyboard will hide everytime the Recyclerview refreshes which is an undesired behavior
                     // hide soft keyboard
                     InputMethodManager imm = (InputMethodManager) container.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(mRecyclerView.getWindowToken(), 0);
+                    if (imm != null) imm.hideSoftInputFromWindow(mRecyclerView.getWindowToken(), 0);
                 }
             }
         });
@@ -104,6 +104,23 @@ public abstract class TabFragment extends Fragment {
 
     public String getSavedQuery() {
         return savedQuery;
+    }
+
+    /** Replaces the RecyclerView adapter and closes the previous adapter's cursor, if any. */
+    protected void setAdapter(RecyclerView.Adapter<?> adapter) {
+        if (mRecyclerView == null) return;
+        RecyclerView.Adapter<?> previous = mRecyclerView.getAdapter();
+        mRecyclerView.setAdapter(adapter);
+        if (previous instanceof HymnCursorAdapter && previous != adapter) {
+            ((HymnCursorAdapter) previous).changeCursor(null);
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        setAdapter(null);
+        cleanUp();
+        super.onDestroyView();
     }
 
     public void cleanUp() {

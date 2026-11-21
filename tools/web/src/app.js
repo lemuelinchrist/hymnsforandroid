@@ -17,7 +17,7 @@ import {setHost} from './host.js';
 import {fetchGzJson} from './files.js';
 import * as Edits from './edits.js';
 import * as Player from './player.js';
-import {h, append, icon, store, toast, isDark, popupMenu, themeListeners} from './ui.js';
+import {h, append, icon, store, toast, stickyToast, isDark, popupMenu, themeListeners} from './ui.js';
 
 // ---- where the sheet code gets its sheets (host.js; the Android app's viewer has its own) ----
 
@@ -208,7 +208,13 @@ let route = null;      // {parts, params}
 let cleanup = null;    // the current screen's teardown
 
 function parseHash() {
-  const raw = decodeURI(location.hash.slice(1)) || '/';
+  const hash = location.hash.slice(1) || '/';
+  let raw;
+  try {
+    raw = decodeURI(hash);
+  } catch (e) {
+    raw = hash;
+  }
   const i = raw.indexOf('?');
   const path = i < 0 ? raw : raw.slice(0, i);
   return {parts: path.split('/').filter(Boolean), params: new URLSearchParams(i < 0 ? '' : raw.slice(i + 1))};
@@ -244,6 +250,7 @@ function goBack() {
 
 function render() {
   route = parseHash();
+  onInstallPrompt = null;
   if (cleanup) { cleanup(); cleanup = null; }
   const view = $('#view');
   view.innerHTML = '';
@@ -327,16 +334,17 @@ function installHint() {
 }
 
 let deferredInstall = null;   // Chrome/Android's install prompt, kept for the hint's Install button
+let onInstallPrompt = null;
 
 // The same hint at the top of a hymn page (above its number): a link from a video or a message opens the hymn, never the home screen. Chrome
 // fires its install prompt after the page has loaded, so a hint that was not possible yet is added when the prompt arrives.
 function installHintFor(pane) {
   const box = installHint();
   if (box) { pane.prepend(box); return; }
-  window.addEventListener('beforeinstallprompt', () => {
+  onInstallPrompt = () => {
     const late = pane.isConnected && !pane.querySelector('.install') ? installHint() : null;
     if (late) pane.prepend(late);
-  }, {once: true});
+  };
 }
 
 function homeScreen(view) {
@@ -810,6 +818,7 @@ function hymnScreen(view, hymn) {
   const nb = DB.neighbours(hymn.id);
   const hasSheet = !!hymn.sheetId;
   let tab = route.params.get('tab') === 'sheet' && hasSheet ? 'sheet' : 'lyrics';
+  let disposed = false;
   const fav = favorites().includes(hymn.id);
 
   // Play: while the sheet music is shown (its tab, or beside the lyrics on a wide screen) it plays the sheet as it is shown
@@ -832,7 +841,10 @@ function hymnScreen(view, hymn) {
   async function playSheetFromLyrics() {
     Player.unlock();
     showTab('sheet');
-    for (let i = 0; i < 100 && !(sheet && sheet.playable); i++) await new Promise((r) => setTimeout(r, 100));
+    for (let i = 0; i < 100 && !disposed && !(sheet && (sheet.playable || sheet.chordsOnly || sheet.failed)); i++) {
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    if (disposed) return;
     if (sheet && sheet.playable) sheet.togglePlay(); else toast(tr('Sorry, no tune for this hymn'));
   }
   function togglePlay() {
@@ -931,6 +943,7 @@ function hymnScreen(view, hymn) {
     ...sheetKeys(() => { ensureSheet(); if (!wide.matches && tab !== 'sheet') showTab('sheet'); return sheet; }),
   };
   cleanup = () => {
+    disposed = true;
     wide.removeEventListener('change', onWide);
     if (sheet) sheet.destroy();
     Player.stop();
@@ -1027,7 +1040,9 @@ function setupSearch() {
       if (!text) return;
       const pq = DB.parseQuery(text, currentGroup);
       if (pq.id && DB.exists(pq.id)) { q.blur(); go('#/h/' + pq.id); return; }
-      if (route.parts[0] !== 'search' || route.params.get('q') !== text) {
+      if (route.parts[0] !== 'search') {
+        go(href('/search', {q: text}));
+      } else if (route.params.get('q') !== text) {
         quietly(href('/search', {q: text}));
         rerenderSearch();
       }
@@ -1179,7 +1194,11 @@ function favoritesScreen(view) {
     box.appendChild(h('section', {class: 'card list-card'}, h('ul', {class: 'hymn-list'}, favs.map((id) => {
       const row = hymnRow(DB.hymn(id), null);
       row.appendChild(h('button', {class: 'icon-btn remove', title: tr('Remove from favorites'), 'aria-label': tr('Remove {0}', id),
-        onclick: () => { store.set('favorites', favorites().filter((x) => x !== id)); row.remove(); toast(tr('{0} removed', id)); }}, icon('close')));
+        onclick: () => {
+          store.set('favorites', favorites().filter((x) => x !== id));
+          toast(tr('{0} removed', id));
+          if (!favorites().some((x) => DB.exists(x))) render(); else row.remove();
+        }}, icon('close')));
       return row;
     }))));
   }
@@ -1348,19 +1367,25 @@ function settingsScreen(view) {
   // hymnals
   const counts = DB.groupCounts();
   const all = GROUPS.filter((g) => counts[g.code]);
-  const hiddenNames = all.filter((g) => !isShown(g.code)).map((g) => g.name);
-  box.appendChild(h('section', {class: 'card settings-card'},
-    h('h2', null, tr('Languages (Hymn Books)')),
-    h('p', {class: 'muted small'}, tr('Simplify your view by hiding books you don\'t use ({0}). Hidden books leave the lists, search and the “other languages” row.',
+  const booksSummary = h('p', {class: 'muted small'});
+  const updateBooksSummary = () => {
+    const hiddenNames = all.filter((g) => !isShown(g.code)).map((g) => g.name);
+    booksSummary.textContent = tr('Simplify your view by hiding books you don\'t use ({0}). Hidden books leave the lists, search and the “other languages” row.',
       hiddenNames.length
         ? (hiddenNames.length > 3 ? tr('hiding {0} of {1}', hiddenNames.length, all.length) : tr('hiding {0}', hiddenNames.join(listSeparator())))
-        : tr('all {0} shown', all.length))),
+        : tr('all {0} shown', all.length));
+  };
+  updateBooksSummary();
+  box.appendChild(h('section', {class: 'card settings-card'},
+    h('h2', null, tr('Languages (Hymn Books)')),
+    booksSummary,
     h('div', {class: 'hymnal-toggles'}, GROUPS.filter((g) => counts[g.code]).map((g) =>
       h('label', {class: 'hymnal-toggle', style: groupStyle(g.code)},
         h('input', {type: 'checkbox', checked: isShown(g.code) || null, onchange: (e) => {
           if (!e.target.checked && shownGroups().length <= 1) { e.target.checked = true; return; }
           setHidden(g.code, !e.target.checked);
           if (!e.target.checked && currentGroup === g.code) setGroup(shownGroups()[0].code);
+          updateBooksSummary();
         }}),
         h('span', {class: 'chip'}, g.code), h('span', {dir: 'auto'}, g.name))))));
 
@@ -1429,6 +1454,7 @@ function settingsScreen(view) {
     h('p', {class: 'muted small'}, tr('Feedback: '), h('a', {href: 'mailto:hymnsforandroid.support@gmail.com'}, 'hymnsforandroid.support@gmail.com')),
     window.matchMedia('(pointer: coarse)').matches ? null
       : h('p', null, h('button', {class: 'link', onclick: () => $('#helpDialog').showModal()}, tr('Keyboard shortcuts')))));
+  cleanup = () => { offlineListener = null; };
 }
 
 // ---- start ----
@@ -1436,23 +1462,28 @@ function settingsScreen(view) {
 function setupServiceWorker() {
   if (!('serviceWorker' in navigator) || !window.isSecureContext) return;
   const hadController = !!navigator.serviceWorker.controller;
-  const opened = Date.now();
+  let updateReady = false, reloading = false;
+  const canAutoReload = () => document.hidden
+    && !document.body.classList.contains('editing-chords')
+    && !document.body.classList.contains('sheet-playing')
+    && !Player.playing()
+    && !offlineRunning
+    && $('#loading').hidden;
+  const reloadNow = () => { if (reloading) return; reloading = true; location.reload(); };
   navigator.serviceWorker.register('sw.js').then((reg) => {
     // look for a new build when the app comes back to the screen and once an hour, not only when it is opened
     const check = () => reg.update().catch(() => {});
     document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });
     setInterval(check, 60 * 60 * 1000);
   }).catch((e) => console.warn('service worker', e));
-  // a new build took over. Just opened (nothing to lose yet) or out of sight: load it by itself. In use: offer to
-  // reload, so an edit in progress is not lost.
+  document.addEventListener('visibilitychange', () => { if (updateReady && canAutoReload()) reloadNow(); });
+  // a new build took over. Out of sight and idle: load it by itself. While open: offer to reload so nothing
+  // in progress (opening a hymn, editing chords, listening, downloading) is interrupted.
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (!hadController) return;
-    if (document.hidden || Date.now() - opened < 20000) { location.reload(); return; }
-    const t = $('#toast');
-    t.textContent = '';
-    t.appendChild(document.createTextNode(tr('A new version is ready. ')));
-    t.appendChild(h('button', {class: 'link toast-link', onclick: () => location.reload()}, tr('Reload')));
-    t.classList.add('show', 'sticky');
+    updateReady = true;
+    if (canAutoReload()) { reloadNow(); return; }
+    stickyToast(tr('A new version is ready. '), h('button', {class: 'link toast-link', onclick: reloadNow}, tr('Reload')));
   });
 }
 
@@ -1468,7 +1499,11 @@ async function start() {
   $('#favoritesTop').appendChild(icon('star'));
   $('#settingsTop').appendChild(icon('settings'));
   $('#backBtn').addEventListener('click', goBack);
-  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredInstall = e; });
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstall = e;
+    if (onInstallPrompt) { const fn = onInstallPrompt; onInstallPrompt = null; fn(); }
+  });
   document.addEventListener('visibilitychange', updateWakeLock);
   setupServiceWorker();
 
