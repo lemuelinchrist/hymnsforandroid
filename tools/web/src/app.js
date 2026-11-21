@@ -56,6 +56,22 @@ async function prefetchAll() {
   ]);
 }
 
+async function waitForSwController() {
+  if (!('serviceWorker' in navigator) || !window.isSecureContext) return;
+  await navigator.serviceWorker.ready.catch(() => {});
+  if (navigator.serviceWorker.controller) return;
+  await new Promise((resolve) => {
+    let timer;
+    const done = () => {
+      clearTimeout(timer);
+      navigator.serviceWorker.removeEventListener('controllerchange', done);
+      resolve();
+    };
+    navigator.serviceWorker.addEventListener('controllerchange', done, {once: true});
+    timer = setTimeout(done, 5000);
+  });
+}
+
 // every sheet, lyric, tune and deferred module for offline use. Starts by itself a little after the app is open
 // (background: three tunes at a time, not on a data saver) and the Offline card in Settings shows progress.
 let offlineRunning = false, offlineText = '', offlineListener = null;
@@ -70,9 +86,7 @@ async function offlineDownload(background) {
     await DB.whenSaved();
     unsub();
     offlineSay(tr('Downloading the sheet music…'));
-    if ('serviceWorker' in navigator && window.isSecureContext) {
-      await navigator.serviceWorker.ready.catch(() => {});
-    }
+    await waitForSwController();
     await prefetchAll();
     const failed = await Player.prefetch(DB.allTuneFiles(), (f) => offlineSay(tr('Downloading the tunes… {0}%', Math.round(f * 100))), background ? 3 : 8);
     if (failed) throw new Error(tn('{0} tune could not be fetched', '{0} tunes could not be fetched', failed));
@@ -276,21 +290,22 @@ async function waitForFullDb(view, seq) {
     msg, h('div', {class: 'progress'}, bar),
     h('p', {class: 'muted small'}, tr('Only the first visit downloads the hymns; after that they open straight from this device, also offline.')));
   view.appendChild(box);
-  const unsub = DB.onFullProgress((f) => {
+  document.body.classList.add('ready');
+  let unsub = null;
+  unsub = DB.onFullProgress((f) => {
+    if (seq !== renderSeq) { if (unsub) unsub(); return; }
     const pct = Math.round(f * 100);
     bar.style.width = pct + '%';
     msg.textContent = tr('Downloading hymns… {0}%', pct);
   });
-  const prevCleanup = cleanup;
-  cleanup = () => { unsub(); if (prevCleanup) prevCleanup(); };
   try {
     await DB.whenFull();
   } catch (e) {
-    unsub();
     if (seq === renderSeq) view.replaceChildren(h('div', {class: 'empty'}, h('p', null, tr('Could not load the hymns: {0}', e.message))));
     return false;
+  } finally {
+    if (unsub) unsub();
   }
-  unsub();
   if (seq !== renderSeq) return false;
   view.innerHTML = '';
   return true;
@@ -1652,7 +1667,6 @@ async function start() {
     return;
   }
   $('#loading').hidden = true;
-  document.body.classList.add('ready');
   if (cached) document.body.classList.add('db-ready');
   if (!isShown(currentGroup) || !DB.groupCounts()[currentGroup]) currentGroup = shownGroups()[0].code;
   setGroup(currentGroup);
@@ -1666,6 +1680,7 @@ async function start() {
   });
   updateWakeLock();
   await render();
+  document.body.classList.add('ready');
   // On a cold visit, load the full SQLite search/browse DB in the background once the landing view has painted
   if (!cached) {
     DB.whenFull().then(() => DB.whenSaved()).then(() => document.body.classList.add('db-ready')).catch(() => {});

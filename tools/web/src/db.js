@@ -158,7 +158,9 @@ export async function ensureHymn(rawId) {
   if (shardHymns.has(id)) return shardHymns.get(id);
   const s = splitId(id);
   if (!s || !version || !version.hymnsDir) return null;
-  const url = `${version.hymnsDir}/${s.group}-${Math.floor(parseInt(s.no, 10) / 100)}.json.gz`;
+  const bucket = Math.floor(parseInt(s.no, 10) / 100);
+  if (version.shards && !(version.shards[s.group] || []).includes(bucket)) return null;
+  const url = `${version.hymnsDir}/${s.group}-${bucket}.json.gz`;
   if (missingShards.has(url)) return null;
   try {
     const items = await fetchGzJson(url);

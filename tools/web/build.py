@@ -260,7 +260,7 @@ def plain_text(html_text):
     return t.replace('&nbsp;', ' ').replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>').strip()
 
 
-def build_hymn_shards(assets, db_hash, groups, sheet_ids, lyric_ids, tunes):
+def build_hymn_shards(assets, groups, sheet_ids, lyric_ids, tunes):
     """Pre-resolved ~100-hymn shards (<group>-<bucket>.json.gz) and per-book counts, so opening a shared hymn link
     or the home screen never waits for the 14 MB SQLite database."""
     group_order = {g['code']: i for i, g in enumerate(groups)}
@@ -436,10 +436,11 @@ def build_hymn_shards(assets, db_hash, groups, sheet_ids, lyric_ids, tunes):
         x = resolved[fid]
         return {'id': x['id'], 'group': x['group'], 'no': x['no'], 'first': x['first']}
 
-    shards = {}
+    shards, skipped = {}, []
     for hid, h in resolved.items():
         sp = split_id(hid, group_order)
         if not sp:
+            skipped.append(hid)
             continue
         grp, no_int = sp
         recs = get_recordings(hid)
@@ -475,11 +476,25 @@ def build_hymn_shards(assets, db_hash, groups, sheet_ids, lyric_ids, tunes):
         rec['_sameTune'] = same_tune
         shards.setdefault((grp, no_int // 100), {})[hid] = rec
 
-    hymns_dir = 'hymns/' + db_hash
+    if skipped:
+        print('WARNING: %d hymn(s) excluded from shards (unrecognized ID format): %s' % (len(skipped), ', '.join(sorted(skipped)[:20])),
+              file=sys.stderr)
+
+    # Hash serialized shard contents (which encode DB + sheets + lyrics + tunes) so changes to sheets or MIDI
+    # invalidate stale shards even when hymns.sqlite is unchanged.
+    packed_shards = []
+    shard_buckets = {}
+    h_all = hashlib.sha256()
     for (grp, bucket), items in sorted(shards.items()):
         data = json.dumps(items, ensure_ascii=False, separators=(',', ':'), sort_keys=True).encode('utf-8')
-        write(os.path.join(DIST, hymns_dir, '%s-%d.json.gz' % (grp, bucket)), gzip.compress(data, 9, mtime=0))
-    return hymns_dir, len(shards), counts
+        h_all.update(('%s-%d\0' % (grp, bucket)).encode('utf-8'))
+        h_all.update(data)
+        packed_shards.append((grp, bucket, gzip.compress(data, 9, mtime=0)))
+        shard_buckets.setdefault(grp, []).append(bucket)
+    hymns_dir = 'hymns/' + h_all.hexdigest()[:10]
+    for grp, bucket, gz in packed_shards:
+        write(os.path.join(DIST, hymns_dir, '%s-%d.json.gz' % (grp, bucket)), gz)
+    return hymns_dir, shard_buckets, counts
 
 
 def group_of(hymn_id):
@@ -597,10 +612,11 @@ def main():
     build_icons()
 
     version.update({'sheets': sheets, 'lyrics': lyrics, 'app': app_version(), 'built': time.strftime('%Y-%m-%d %H:%M')})
-    hymns_dir, shard_count, counts = build_hymn_shards(args.assets, version['db'], groups, set(sheet_ids), set(lyric_ids), tunes)
+    hymns_dir, shard_buckets, counts = build_hymn_shards(args.assets, groups, set(sheet_ids), set(lyric_ids), tunes)
     version['hymnsDir'] = hymns_dir
     version['counts'] = counts
-    print('shards: %d in %s/' % (shard_count, hymns_dir))
+    version['shards'] = shard_buckets
+    print('shards: %d in %s/' % (sum(len(v) for v in shard_buckets.values()), hymns_dir))
     index = json.dumps({'sheets': sheet_ids, 'lyrics': lyric_ids, 'tunes': tunes}, separators=(',', ':')).encode('utf-8')
     version['indexFile'] = 'data/index-%s.json' % short_hash(index)
     write(os.path.join(DIST, version['indexFile']), index)

@@ -21,7 +21,21 @@ const HYMN_SHARD = /^hymns\/[0-9a-f]{10}\/[A-Z]{1,3}-\d+\.json\.gz$/;
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
-    await (await caches.open(SHELL_CACHE)).addAll(SHELL);
+    const shell = await caches.open(SHELL_CACHE);
+    await shell.addAll(SHELL);
+    // On an update, refresh any LAZY files the previous build already had cached (from Offline download,
+    // SQLite WASM, or sheet music) so offline users keep them across updates without slowing down a first visit.
+    const oldShells = (await caches.keys()).filter((n) => n.startsWith('hymns-shell-') && n !== SHELL_CACHE);
+    if (oldShells.length) {
+      const prev = await Promise.all(oldShells.map((n) => caches.open(n)));
+      const carry = [];
+      for (const f of LAZY) {
+        for (const c of prev) {
+          if (await c.match(f)) { carry.push(f); break; }
+        }
+      }
+      if (carry.length) await shell.addAll(carry);
+    }
     // the version file is stored now (if not already fetched), so offline reload works after the very first visit
     const data = await caches.open(DATA_CACHE);
     await fetch('data/version.json', {cache: 'reload'}).then((r) => {
