@@ -87,22 +87,38 @@ export const store = {
   },
 };
 
-export function toast(msg) {
+let persistent = null;
+
+function toastEl() {
   let t = $('#toast');
   if (!t) { t = h('div', {id: 'toast', role: 'status', 'aria-live': 'polite'}); document.body.appendChild(t); }
+  return t;
+}
+
+export function toast(msg) {
+  const t = toastEl();
   t.classList.remove('sticky');
   t.textContent = msg;
   t.classList.add('show');
   clearTimeout(toast.timer);
-  toast.timer = setTimeout(() => t.classList.remove('show'), 1800);
+  toast.timer = setTimeout(() => {
+    if (persistent) {
+      t.textContent = '';
+      append(t, persistent);
+      t.classList.add('show', 'sticky');
+    } else {
+      t.classList.remove('show');
+    }
+  }, 1800);
 }
 
 export function stickyToast(...nodes) {
-  let t = $('#toast');
-  if (!t) { t = h('div', {id: 'toast', role: 'status', 'aria-live': 'polite'}); document.body.appendChild(t); }
+  const t = toastEl();
   clearTimeout(toast.timer);
+  persistent = nodes.length ? nodes : null;
   t.textContent = '';
-  append(t, nodes);
+  if (!persistent) { t.classList.remove('show', 'sticky'); return; }
+  append(t, persistent);
   t.classList.add('show', 'sticky');
 }
 
