@@ -2690,7 +2690,7 @@ INSERT INTO hymns VALUES('BF196','','','O LORD! AMEN!','Now the Lord is the Spir
 INSERT INTO hymns VALUES('BF197','','','WHITHER SHALL I GO FROM THY SPIRIT?','If I ascend up into the heavens','BF',NULL,NULL,NULL,'197',NULL,NULL,NULL,'NS850',NULL,'',NULL,NULL);
 INSERT INTO hymns VALUES('BF198','','','WE WORK TOGETHER WITH GOD BY A LIFE;','Able to fit','BF',NULL,NULL,NULL,'198',NULL,NULL,NULL,'NS320',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF199','','','SO WHY NOT OPEN UP','The gift of righteousness','BF',NULL,NULL,NULL,'199',NULL,NULL,NULL,'NS102',NULL,NULL,NULL,NULL);
-INSERT INTO hymns VALUES('BF200','','','AND JESUS HOW GREAT YOU ARE.','Since I open my heart to You,','BF',NULL,'Experience of Christ',NULL,'200','Loving Him',NULL,NULL,NULL,NULL,'SY195,',NULL,NULL);
+INSERT INTO hymns VALUES('BF200','','','AND JESUS HOW GREAT YOU ARE.','Since I opened my heart to You,','BF','Eb Major','Experience of Christ',NULL,'200','Loving Him','3/4','5435175651231552',NULL,NULL,'SY195,',NULL,NULL);
 INSERT INTO hymns VALUES('BF201','','',NULL,'Praise the Lord! The God of Glory','BF',NULL,NULL,NULL,'201',NULL,NULL,NULL,'NS225',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF202','','','TO EXPRESS THE LORD, THIS IS HIS DESIRE;','Oh, the life that dwells within me','BF',NULL,'Experience of Christ',NULL,'202',NULL,NULL,NULL,NULL,NULL,'',NULL,NULL);
 INSERT INTO hymns VALUES('BF203','','','EAT THE HIDDEN MANNA —','Oh tell me, what''s the key','BF',NULL,NULL,NULL,'203',NULL,NULL,NULL,'NS842',NULL,'',NULL,NULL);
@@ -32183,7 +32183,7 @@ INSERT INTO stanza VALUES('BF198','chorus','We work together with God by a life,
 INSERT INTO stanza VALUES('BF199','1','The gift of righteousness<br/>Is measured in abundance.<br/>The depth of His love I''ll never understand.<br/>His love reaches me and you<br/>His mercy goes farther too.<br/>The one on the throne of God<br/>Is called the Lamb.<br/>',NULL,14709,14709);
 INSERT INTO stanza VALUES('BF199','chorus','So why not open up<br/>And call his name "O Lord!"<br/>Find your spirit<br/>Where His grace has been outpoured<br/>Call His name; taste His grace<br/>Exercise before His face<br/>He''s longing and yearning,<br/>He''s hoping and waiting,<br/>He''s ever desiring for you to turn to Him.<br/>',NULL,14710,14710);
 INSERT INTO stanza VALUES('BF199','2','He knows your deepest thought<br/>Your every situation<br/>He understands your heart<br/>He knows your history<br/>There''s nothing in His way<br/>He''s just waiting for you to say,<br/>"Lord Jesus, my wandering heart<br/>I give to Thee."<br/>',NULL,14711,14711);
-INSERT INTO stanza VALUES('BF200','1','Since I open my heart to You,<br/>From the first time until now;<br/>I''m realizing more how small I am,<br/>How little I know how much I need<br/>In You to grow.<br/>',NULL,14712,14712);
+INSERT INTO stanza VALUES('BF200','1','Since I opened my heart to You,<br/>From the first time until now;<br/>I''m realizing more how small I am,<br/>How little I know how much I need<br/>In You to grow.<br/>',NULL,14712,14712);
 INSERT INTO stanza VALUES('BF200','chorus','And Jesus how great You are.<br/>O Jesus most excellent by far,<br/>Only You can satisfy;<br/>Lord Your name be magnified,<br/>O Jesus how excellent You are.<br/>',NULL,14713,14713);
 INSERT INTO stanza VALUES('BF200','2','So day by day help me open more,<br/>Lord, dig away all that blocks You.<br/>Drop by drop may Your life in me increase;<br/>Till just You are in view,<br/>I pursue.<br/>',NULL,14714,14714);
 INSERT INTO stanza VALUES('BF201','1','Praise the Lord! The God of Glory<br/>Who appeared to Abraham<br/>Has appeared to us in spirit<br/>For His purpose and His plan!<br/>God of Glory, God of Glory.<br/>Do appear to us today.<br/>Saturate and permeate us<br/>Till You fully have Your way.<br/>',NULL,14715,14715);
@@ -119143,6 +119143,7 @@ INSERT INTO link VALUES(157322,'345465321721','youtube','','https://www.youtube.
 INSERT INTO link VALUES(157323,'12335432343','youtube','','https://www.youtube.com/watch?v=ETUnf2qsBg0',1,'Our God Reigns',1);
 INSERT INTO link VALUES(157324,'556531165131532','youtube','','https://www.youtube.com/watch?v=WCmQEQVXhaQ',1,'Instrumental Hymns',1);
 INSERT INTO link VALUES(157325,'3334332116543','youtube','','https://www.youtube.com/watch?v=7W3tcaUvmq4',1,'God is Love',1);
+INSERT INTO link VALUES(157326,'BF200','youtube',NULL,'https://www.youtube.com/watch?v=bKYQ2Aki-bw',1,NULL,NULL);
 CREATE VIEW "hymns_stanza" AS select * from hymns inner join stanza on hymns._id=stanza.parent_hymn;
 CREATE INDEX stanza_parent_hymn on stanza (parent_hymn,n_order);
 CREATE INDEX hymns_first_lines on hymns (first_stanza_line,first_chorus_line);
