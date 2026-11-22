@@ -252,8 +252,10 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
    | sheet music | — (resolved separately, §11.1) |
 
    **Own tune:** a New Tune whose parent is not one (`new_tune` = 1 on the hymn, not on its parent: a BF New Tune of an English
-   hymn) does **not** take composer, time, tune or key from the parent, nor its sheet music (§11.1), piano videos or recordings
-   in the links card: they are another tune. A translation of a New Tune has the New Tune as parent and borrows from it as usual.
+   hymn), **or a child hymn whose own non-empty `tune` differs from its parent's `tune`** (ignoring prefix-length differences
+   where one code starts with the other), does **not** take composer, time, tune or key from the parent, nor its sheet music
+   (§11.1), piano videos or recordings in the links card: they are another tune. A translation of a New Tune has the New Tune
+   as parent and borrows from it as usual.
 
    The child's own `no`, `first_stanza_line`, `first_chorus_line`, `hymn_group` are never inherited.
 5. Related set (§5.2).
@@ -835,10 +837,13 @@ Hidden state (not user-visible settings): History, Favorites (§8), chord edits 
 ### 11.1 Which sheet to show
 
 ```
-sheetId(h) = h._id            if sheetMei/<h._id>.mei exists
-           = h.parent_hymn    else if parent set, h is not an own-tune New Tune (§5.1), and sheetMei/<parent>.mei exists
+sheetId(h) = h._id              if sheetMei/<h._id>.mei exists
+           = sheetId(parent)    else if parent set and h is not own-tune (§5.1)
+           = bestByTune(h.tune) else if h is own-tune (§5.1) and a sheet with trim(tune) = h.tune exists
+                                (preferring C/CS twin for Z/ZS, then BF with same parent, then C/CS for Chinese
+                                or E/BF/NS/CH for others, tie-broken by hymn number)
            = none
-lyricsId  = h._id             (passed so a translation can overlay its own words)
+lyricsId  = h._id               (passed so a translation can overlay its own words)
 ```
 
 ### 11.2 Viewer contract
