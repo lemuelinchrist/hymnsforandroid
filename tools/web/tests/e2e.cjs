@@ -316,9 +316,9 @@ async function search(page, text) {
         }
       }
     });
-    // the links card: sections (Recordings, Piano videos, New tunes, Search) of rows; a row is {title | second line href}
+    // the links card: sections (Recordings, Instrumental, Piano videos, New tunes, Search) of rows; a row is {title | second line href}
     const sec = (name) => page.locator('.lk-section').filter({has: page.locator('.lk-head span:first-child', {hasText: new RegExp('^' + name + '$')})});
-    const rowsOf = (name) => sec(name).locator('.lk-row').evaluateAll((a) => a.map((x) => x.querySelector('.lk-t1').textContent + ' | '
+    const rowsOf = (name) => sec(name).locator('.lk-row').evaluateAll((a) => a.map((x) => (x.querySelector('.lk-title') || x.querySelector('.lk-t1')).textContent + ' | '
       + (x.querySelector('.lk-t2') ? x.querySelector('.lk-t2').textContent : '') + ' ' + x.getAttribute('href')));
     const heads = () => page.locator('.links-card .lk-head span:first-child').allTextContents();
     await test('links card: piano videos in order, recordings by publisher and album, the sections E1, E12, E37, C1 have', async () => {
@@ -336,17 +336,19 @@ async function search(page, text) {
       await open(page, '#/h/E37');
       assert((await heads()).join() === 'Search', 'E37 has only the search section: ' + await heads());
     });
-    await test('links card: three recordings first, "Show N more" for the rest, an instrumental is tagged (E395)', async () => {
+    await test('links card: three recordings first, "Show N more" for the rest, instrumental in its own section (E395)', async () => {
       await open(page, '#/h/E395');
       const total = parseInt(await sec('Recordings').locator('.lk-n').textContent(), 10);
-      assert(total >= 5, 'E395 count: ' + total);
+      assert(total >= 4, 'E395 count: ' + total);
       assert((await rowsOf('Recordings')).length === 3 && (await rowsOf('Recordings'))[0].startsWith('NYCYPCD | I Surrender All'), 'E395 first: ' + await rowsOf('Recordings'));
-      assert(await page.locator('.links-card .lk-tag').count() === 0, 'the instrumental is behind "Show more"');
+      assert(await sec('Recordings').locator('.lk-tag').count() === 0, 'no instrumental inside Recordings');
       await sec('Recordings').locator('.lk-more').click();
       assert((await rowsOf('Recordings')).length === total, 'E395 all: ' + await rowsOf('Recordings'));
-      assert(await sec('Recordings').locator('.lk-tag').allTextContents().then((t) => t.join() === 'Instrumental'), 'one Instrumental tag');
       await sec('Recordings').locator('.lk-more').click();
       assert((await rowsOf('Recordings')).length === 3, 'Show fewer');
+      const inst = await rowsOf('Instrumental');
+      assert(inst.length === 1 && inst[0].startsWith('Guitar Hymns | YouTube'), 'E395 instrumental: ' + inst);
+      assert(await sec('Instrumental').locator('.lk-tag').allTextContents().then((t) => t.join() === 'Instrumental'), 'one Instrumental tag');
     });
     await test('links card: a youth book editor\'s link has no publisher or album and is always shown (SY110)', async () => {
       await open(page, '#/h/SY110');
