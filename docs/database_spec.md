@@ -148,7 +148,7 @@ Stores the links of a hymn to places outside the app, one row per link. These ar
 | `album`   | TEXT    | `youtube` / `soundcloud`: the album or playlist the recording is from (the card's second line). A recording with neither `label` nor `album` is a link a book's editor chose (the youth books): the card always shows it. |
 | `instrumental` | INTEGER | `youtube` / `soundcloud`: 1 for an instrumental recording, else NULL. |
 
-`ImportNycypcdYoutube.groovy` reads `NycypcdYoutube.txt` (`hymn id`, `video id`, `publisher`, `album`, `instrumental`; tab separated, written by `tools/youtube-monitor/link_meta.py` from `recordings.tsv`) and replaces every `youtube` row that has a publisher or an album, so it can be run again; there is no cap on the recordings per hymn.
+`ImportNycypcdYoutube.groovy` reads `NycypcdYoutube.txt` (`hymn id`, `video id`, `publisher`, `album`, `instrumental`; tab separated, written by `tools/youtube-monitor/link_meta.py` from `recordings.tsv`), sorts each hymn's recordings by `priority` from `tools/youtube-monitor/recordings.tsv` (default 3; then sung before instrumental, then file order), and replaces every `youtube` row that has a publisher or an album, so it can be run again; there is no cap on the recordings per hymn.
 
 `YoutubePiano.groovy` (reads `pianohymns202112.txt`) writes the `piano` rows; the Spanish and German youth provisioners (`ProvisionSpanishSupplement`, `ProvisionGermanYouth`, and the unused French and Slovak ones) write the `youtube` and `soundcloud` rows through `Dao.saveLink`, and `Dao.delete` removes them with their hymn.
 

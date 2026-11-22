@@ -344,13 +344,13 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    else (another language's book names, a chapter the book doesn't have, a part before any book) stays plain text. Only
    the link is made: the Bible text is not copied into the app (it is copyrighted).
 5. **Listen and links card** (below the details; hidden when it has nothing to show): label `LISTEN AND LINKS`, then sections, each with a
-   heading (`RECORDINGS`, `PIANO VIDEOS`, `NEW TUNES`, in capitals) and the number of links on its right; a section with nothing is left out.
-   - **Recordings**: the hymn's own `link` rows of kind `youtube` (first) and `soundcloud`, in `n_order`. A row is a link at least 56 dp tall:
-     a round icon (play for YouTube, music for SoundCloud) in the book's accent colour, a first line, a second line and an arrow `↗`. The first
+   heading (`RECORDINGS`, `INSTRUMENTAL`, `PIANO VIDEOS`, `NEW TUNES`, in capitals) and the number of links on its right; a section with nothing is left out.
+   - **Recordings & Instrumental**: the hymn's own `link` rows of kind `youtube` (first) and `soundcloud`, in `n_order` (imported sorted by recording priority from `recordings.tsv`, then sung before instrumental). Sung recordings go under `RECORDINGS`, and instrumental recordings (`instrumental` = 1) go into their own `INSTRUMENTAL` section right below it (so a hymn with only an instrumental recording shows `INSTRUMENTAL` instead of `RECORDINGS`, never mistaken for a vocal recording). A row is a link at least 56 dp tall:
+     a round icon (play for sung YouTube, cloud/queue-music for SoundCloud, music note for instrumental) in the book's accent colour, a first line, a second line and an arrow `↗`. The first
      line is the **publisher** (`label`: who made the recording: NYCYPCD, Living Stream Ministry, Hymn CDs, the group of a "Playlist (by Group)",
      ...), else the **album** (`album`: the album or playlist), else the platform (`YouTube` / `SoundCloud`); the second line is the album
-     after a publisher, else the platform. The YouTube channel is never shown. An instrumental recording (`instrumental` = 1) has
-     ` · Instrumental` (muted) after its first line. A tap opens the stored `url`. A link with neither a publisher nor an album is one a book's
+     after a publisher, else the platform. The YouTube channel is never shown. An instrumental recording (`instrumental` = 1) also shows an
+     `Instrumental` pill badge (tinted with the book's accent colour) beside its first line so it stays visible even when a long title truncates. A tap opens the stored `url`. A link with neither a publisher nor an album is one a book's
      editor chose (the Spanish and German youth books): it is always shown. A hymn with **no** recording of its own shows those of the nearest
      hymn above it (parent, grandparent, ... up to 5 steps, never past a New Tune whose parent has another tune, §5.1); when that hymn is in another language (`HymnGroup.getLanguage`: English for E/BF/NS/CH,
      Chinese for the four Chinese books, the youth books and supplements in their main language) each first line starts with the language

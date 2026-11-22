@@ -11,7 +11,7 @@ New video ids are added (existing rows keep their album/channel). Then every row
 databaseProvisioner/src/main/resources/NycypcdYoutube.txt (linked) and the *_known.tsv files (their status), else `unmatched`.
 Columns: video id, status, hymns, link label, album, album id, channel, publisher/studio (blank when unknown), title, note,
 platform (youtube / soundcloud), url, instrumental (1 or empty), language (the language the recording is sung in, English name; see guess_language:
-filled once and then kept, so a hand-set value stays; blank = not known yet).
+filled once and then kept, so a hand-set value stays; blank = not known yet), priority (1 = LSM/NYCYPCD/TWGBR, 2 = Melody of Lilies, 3 = others, 5 = low-quality; filled once and kept).
 
 SoundCloud links (Lemuel 2026-11-19, option "mirror"): the database is the source of truth for them (the `link` table, kind
 soundcloud: the youth books' provisioners and links added by hand). Every run rewrites the soundcloud rows of this file from
@@ -24,7 +24,7 @@ R = os.path.dirname(os.path.abspath(__file__)) + "/"
 REPO = os.path.dirname(os.path.dirname(R.rstrip("/")))
 OUT = R + "recordings.tsv"
 HEAD = ["video id", "status", "hymns", "link label", "album / playlist", "album id", "youtube channel", "publisher / studio", "title", "note",
-        "platform", "url", "instrumental", "language"]
+        "platform", "url", "instrumental", "language", "priority"]
 DB = REPO + "/app/src/main/assets/hymns.sqlite"
 
 
@@ -53,6 +53,23 @@ def guess_language(r):
     return ""
 
 
+PRIORITY_1_SOURCES = {
+    "NYCYPCD",
+    "Living Stream Ministry - Topic", "Living Stream Ministry", "LSM", "SoundCloud: livingstreamministry",
+    "Taiwan Gospel Book Room - Topic", "臺灣福音書房 (official channel)", "Taiwan Gospel Book Room", "臺灣福音書房",
+}
+
+
+def default_priority(r):
+    """1 = LSM / NYCYPCD / Taiwan Gospel Book Room, 2 = Melody of Lilies, 3 = everything else."""
+    sources = {r[3].strip(), r[6].strip(), r[7].strip()}
+    if sources & PRIORITY_1_SOURCES:
+        return "1"
+    if "Melody of Lilies" in sources:
+        return "2"
+    return "3"
+
+
 def soundcloud_rows():
     """The database's soundcloud links as rows of this file (empty list when there is no database)."""
     if not os.path.exists(DB): return []
@@ -65,7 +82,7 @@ def soundcloud_rows():
         if not path: path, note = "(no url)/" + hymn, "the database row has an empty url"
         user = path.split("/")[0]
         title = path.split("/")[-1].replace("-", " ")
-        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", ""])
+        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", "", ""])
     return out
 
 
@@ -74,10 +91,10 @@ def main():
     ap.add_argument("--tracks"); ap.add_argument("--channel"); ap.add_argument("--publisher", default="")
     ap.add_argument("--studio-albums", default=""); ap.add_argument("--studio", default="")
     a = ap.parse_args()
-    rows = collections.OrderedDict(); old_lang = {}
+    rows = collections.OrderedDict(); old_lang = {}; old_prio = {}
     if os.path.exists(OUT):
         for p in list(csv.reader(open(OUT, encoding="utf8"), delimiter="\t"))[1:]:
-            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]
+            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]; old_prio[p[0]] = p[14]
             if p[10] != "soundcloud":      # the soundcloud rows are rebuilt from the database below
                 rows[p[0]] = p
     if a.tracks:
@@ -86,7 +103,7 @@ def main():
             aid, al, v, t = l.rstrip("\n").split("|", 3)
             if v not in rows:
                 pub = a.studio if al.lower() in studio else a.publisher
-                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", ""]
+                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", "", ""]
     linked, label, instr = collections.defaultdict(list), {}, set()
     for p in tsv(REPO + "/databaseProvisioner/src/main/resources/NycypcdYoutube.txt"):
         linked[p[1]].append(p[0]); label.setdefault(p[1], p[2] if len(p) > 2 else "NYCYPCD")
@@ -111,6 +128,7 @@ def main():
         else: rows[r[0]] = r
     for v, r in rows.items():
         r[13] = old_lang.get(v) or r[13] or guess_language(r)
+        r[14] = old_prio.get(v) or r[14] or default_priority(r)
     missing = [v for v in linked if v not in rows]
     out = csv.writer(open(OUT, "w", newline="", encoding="utf8"), delimiter="\t", lineterminator="\n")
     out.writerow(HEAD)

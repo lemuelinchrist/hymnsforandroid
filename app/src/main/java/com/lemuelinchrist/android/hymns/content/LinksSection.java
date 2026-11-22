@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
+import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
 import com.lemuelinchrist.android.hymns.HymnGroup;
 import com.lemuelinchrist.android.hymns.HymnSwitcher;
@@ -36,12 +33,13 @@ import java.util.Set;
 
 /**
  * The card at the bottom of a hymn for links that open outside the app (below the details card), in sections:
- * Recordings (the hymn's YouTube and SoundCloud links, or those of the nearest hymn above it that has some), Piano
- * videos (its parent's when it has none) and New tunes (the Be Filled hymns that put another tune to its words, each
- * with its own recordings under it). Every link is a row of at least 56 dp (icon, who made it, which album, an arrow);
- * on windows 600 dp and wider ({@code R.integer.links_columns} above 1: an unfolded foldable, a tablet) the links are
- * cards in a grid. A section shows its first {@link #SHOWN} links and a "Show N more" button; the links a book's editor
- * chose (a {@link Recording#isPinned() pinned} link: the Spanish and German youth books) are always shown.
+ * Recordings (the hymn's sung YouTube and SoundCloud links, or those of the nearest hymn above it that has some),
+ * Instrumental (its instrumental recordings, each with a music-note icon and an Instrumental pill), Piano videos (its
+ * parent's when it has none) and New tunes (the Be Filled hymns that put another tune to its words, each with its own
+ * recordings under it). Every link is a row of at least 56 dp (icon, who made it, which album, an arrow); on windows
+ * 600 dp and wider ({@code R.integer.links_columns} above 1: an unfolded foldable, a tablet) the links are cards in a
+ * grid. A section shows its first {@link #SHOWN} links and a "Show N more" button; the links a book's editor chose
+ * (a {@link Recording#isPinned() pinned} link: the Spanish and German youth books) are always shown.
  * The card hides itself when there is nothing to show.
  */
 public class LinksSection extends ContentComponent<View> {
@@ -59,7 +57,7 @@ public class LinksSection extends ContentComponent<View> {
         @DrawableRes int icon;
         String title;
         String sub;          // null: no second line
-        boolean tag;         // "Instrumental" after the title
+        boolean tag;         // "Instrumental" pill next to the title
         String address;
         boolean pinned;
         List<Item> children = new ArrayList<>();
@@ -67,6 +65,7 @@ public class LinksSection extends ContentComponent<View> {
 
     private ArrayList<String[]> videos = new ArrayList<>();
     private final List<Item> recordings = new ArrayList<>();
+    private final List<Item> instrumentals = new ArrayList<>();
     private final List<Item> tunes = new ArrayList<>();
 
     public LinksSection(Hymn hymn, Fragment parentFragment, View card, float lyricSize) {
@@ -89,6 +88,7 @@ public class LinksSection extends ContentComponent<View> {
     private void load() {
         videos = new ArrayList<>();
         recordings.clear();
+        instrumentals.clear();
         tunes.clear();
         HymnsDao dao = new HymnsDao(context);
         try {
@@ -108,14 +108,18 @@ public class LinksSection extends ContentComponent<View> {
                     }
                 }
             }
-            for (Recording r : own) recordings.add(item(r, language, null));
+            for (Recording r : own) {
+                (r.instrumental ? instrumentals : recordings).add(item(r, language, null));
+            }
             for (String id : dao.getNewTunes(hymn.getHymnId())) {
                 Item tune = new Item();
                 tune.icon = R.drawable.ic_set_tune;
                 tune.title = context.getString(R.string.links_new_tune_title, id);
                 tune.sub = context.getString(R.string.links_new_tune_sub);
                 tune.address = HYMN + id;
-                for (Recording r : dao.getRecordings(id)) tune.children.add(item(r, null, id));
+                ArrayList<Recording> tuneRecs = dao.getRecordings(id);
+                for (Recording r : tuneRecs) if (!r.instrumental) tune.children.add(item(r, null, id));
+                for (Recording r : tuneRecs) if (r.instrumental) tune.children.add(item(r, null, id));
                 tunes.add(tune);
             }
         } catch (Exception e) {
@@ -132,7 +136,8 @@ public class LinksSection extends ContentComponent<View> {
      */
     private Item item(Recording r, String language, String tuneId) {
         Item item = new Item();
-        item.icon = "soundcloud".equals(r.kind) ? R.drawable.ic_queue_music_white_48dp : R.drawable.ic_play_arrow_white_48dp;
+        item.icon = r.instrumental ? R.drawable.ic_set_note
+                : "soundcloud".equals(r.kind) ? R.drawable.ic_queue_music_white_48dp : R.drawable.ic_play_arrow_white_48dp;
         item.title = language == null ? r.title() : context.getString(R.string.links_language_label, language, r.title());
         item.sub = r.subtitle();
         if (tuneId != null) item.sub = item.sub == null ? tuneId : tuneId + " · " + item.sub;
@@ -145,6 +150,7 @@ public class LinksSection extends ContentComponent<View> {
     private void render() {
         list.removeAllViews();
         addSection("rec", context.getString(R.string.links_recordings), recordings);
+        addSection("inst", context.getString(R.string.links_instrumental), instrumentals);
         List<Item> piano = new ArrayList<>();
         for (String[] v : videos) {
             Item item = new Item();
@@ -253,19 +259,23 @@ public class LinksSection extends ContentComponent<View> {
 
     /** The icon, the two lines and the tap of a row or card. */
     private void fill(View row, Item item) {
+        int accent = BookColors.accent(context, hymn.getHymnGroup());
         ImageView icon = row.findViewById(R.id.linkIcon);
         icon.setImageResource(item.icon);
-        icon.setColorFilter(BookColors.accent(context, hymn.getHymnGroup()), PorterDuff.Mode.SRC_IN);
+        icon.setColorFilter(accent, PorterDuff.Mode.SRC_IN);
         TextView title = row.findViewById(R.id.linkTitle);
         title.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
-        SpannableStringBuilder text = new SpannableStringBuilder(item.title);
+        title.setText(item.title);
+        TextView tag = row.findViewById(R.id.linkTag);
         if (item.tag) {
-            int start = text.length();
-            text.append(" · ").append(context.getString(R.string.links_instrumental));
-            text.setSpan(new ForegroundColorSpan(themeColor(R.attr.hymnTextMuted)), start, text.length(),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tag.setText(R.string.links_instrumental);
+            tag.setTextSize(TypedValue.COMPLEX_UNIT_SP, Math.max(10, size - 3));
+            tag.setTextColor(accent);
+            tag.getBackground().mutate().setColorFilter(ColorUtils.setAlphaComponent(accent, 36), PorterDuff.Mode.SRC_IN);
+            tag.setVisibility(View.VISIBLE);
+        } else {
+            tag.setVisibility(View.GONE);
         }
-        title.setText(text);
         TextView sub = row.findViewById(R.id.linkSub);
         sub.setTextSize(TypedValue.COMPLEX_UNIT_SP, size - 2);
         if (item.sub == null) {
