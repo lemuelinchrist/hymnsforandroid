@@ -1646,7 +1646,7 @@ INSERT INTO hymns VALUES('C269','','',NULL,'我如困鹿切慕溪水，','C','�
 INSERT INTO hymns VALUES('C270','','',NULL,'我心所追求乃是神自己，','C','降E大調4/4','羨慕','10 10 10 10','270','神',NULL,' 3521656443','E350',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C271','','',NULL,'全能的神，','C','降A大調4/2','羨慕','10 10 10 10','271','神作生命',NULL,' 53533216165','E351',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C272','','',NULL,'曠野之中為著神！','C','G大調3/4','羨慕','7777','272','神顯於我',NULL,' 117544353542132','E352',NULL,NULL,NULL,NULL);
-INSERT INTO hymns VALUES('C273','','','我眼有淚珠，','神，','C','降A大調6/8','羨慕','10 10 10 10副','273','順服神',NULL,' 3123211765',NULL,NULL,'I273,UR8273,Z273,',NULL,NULL);
+INSERT INTO hymns VALUES('C273','','','我眼有淚珠，','神，你正在重排我的前途，','C','降A大調6/8','羨慕','10 10 10 10副','273','順服神',NULL,' 3123211765',NULL,NULL,'I273,UR8273,Z273,',NULL,NULL);
 INSERT INTO hymns VALUES('C274','','',NULL,'神聖之愛，遠超眾愛，','C','降B大調4/4','羨慕','8787雙','274','基督',NULL,' 55653232176165453','E358',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C275','','',NULL,'親愛主！寶貝主！','C','降A大調3/4','羨慕','668866','275','基督',NULL,' 565176535171765','E1158',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('C276','','','主耶穌，親愛救主，','你若取去我的心愛，','C','降D大調4/4','羨慕','8686副','276','基督',NULL,' 33233434222543',NULL,NULL,'I276,BF231,Z276,UR8276,',NULL,NULL);
@@ -8024,7 +8024,7 @@ INSERT INTO hymns VALUES('Z269','','','','我如困鹿切慕溪水，','Z','降A
 INSERT INTO hymns VALUES('Z270','','','','我心所追求乃是神自己，','Z','降E大调4/4','羡慕','10 10 10 10','270','神','','3521656443','E350','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('Z271','','','','全能的神，','Z','降A大调4/2','羡慕','10 10 10 10','271','神作生命','','53533216165','E351','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('Z272','','','','旷野之中为着神！','Z','G大调3/4','羡慕','7777','272','神显于我','','117544353542132','E352','',NULL,NULL,NULL);
-INSERT INTO hymns VALUES('Z273','','','我眼有泪珠，','神，','Z','降A大调6/8','羡慕','10 10 10 10副','273','顺服神','','3123211765','C273','',NULL,NULL,NULL);
+INSERT INTO hymns VALUES('Z273','','','我眼有泪珠，','神，你正在重排我的前途，','Z','降A大调6/8','羡慕','10 10 10 10副','273','顺服神','','3123211765','C273','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('Z274','','','','神圣之爱，远超众爱，','Z','降B大调4/4','羡慕','8787双','274','基督','','55653232176165453','E358','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('Z275','','','','亲爱主！宝贝主！','Z','降A大调3/4','羡慕','668866','275','基督','','565176535171765','E1158','',NULL,NULL,NULL);
 INSERT INTO hymns VALUES('Z276','','','主耶稣，亲爱救主，','你若取去我的心爱，','Z','降D大调4/4','羡慕','8686副','276','基督','','33233434222543','C276','',NULL,NULL,NULL);
@@ -27243,7 +27243,7 @@ INSERT INTO stanza VALUES('C272','1','曠野之中為著神！<br/>一叢荊棘�
 INSERT INTO stanza VALUES('C272','2','僅是平常的荊棘，<br/>神能在它顯為奇，<br/>神能憑它顯能力，<br/>神能藉它行神蹟。<br/>',NULL,8570,8570);
 INSERT INTO stanza VALUES('C272','3','不是用它作燃料，<br/>乃神自己來燃燒；<br/>神在它身無所要，<br/>僅要藉它顯榮耀。<br/>',NULL,8571,8571);
 INSERT INTO stanza VALUES('C272','4','神藉荊棘來顯現，<br/>無他只見神火焰；<br/>願我如此，藉恩典<br/>使你榮耀顯完全！<br/>',NULL,8572,8572);
-INSERT INTO stanza VALUES('C273','1','神，<br/>你正在重排我的前途，<br/>你也正在拆毀我的建築，<br/>忠心事奉的人日少一日，<br/>誤會增加，<br/>清白逐漸消失。<br/>',NULL,8573,8573);
+INSERT INTO stanza VALUES('C273','1','神，你正在重排我的前途，<br/>你也正在拆毀我的建築，<br/>忠心事奉的人日少一日，<br/>誤會增加，<br/>清白逐漸消失。<br/>',NULL,8573,8573);
 INSERT INTO stanza VALUES('C273','chorus','我眼有淚珠，<br/>看不清你臉面，<br/>好像你話語真實不如前；<br/>你使我減少，<br/>好叫你更加添，<br/>好叫你旨意比前更甘甜。<br/>',NULL,8574,8574);
 INSERT INTO stanza VALUES('C273','2','我幾乎要求你停止你手，<br/>當我覺得我已無力再受；<br/>但你是神，<br/>你怎可以讓步？<br/>求你不要讓步，<br/>等我順服。<br/>',NULL,8575,8575);
 INSERT INTO stanza VALUES('C273','3','如果你的旨意和你喜樂<br/>乃是在乎我負痛苦之軛，<br/>就願我的喜樂乃是在乎<br/>順服你的旨意來受痛苦。<br/>',NULL,8576,8576);
@@ -59539,7 +59539,7 @@ INSERT INTO stanza VALUES('Z272','1','旷野之中为着神！<br/>一丛荆棘�
 INSERT INTO stanza VALUES('Z272','2','仅是平常的荆棘，<br/>神能在它显为奇，<br/>神能凭它显能力，<br/>神能借它行神迹。<br/>','',55035,8570);
 INSERT INTO stanza VALUES('Z272','3','不是用它作燃料，<br/>乃神自己来燃烧；<br/>神在它身无所要，<br/>仅要借它显荣耀。<br/>','',55036,8571);
 INSERT INTO stanza VALUES('Z272','4','神借荆棘来显现，<br/>无他只见神火焰；<br/>愿我如此，借恩典<br/>使你荣耀显完全！<br/>','',55037,8572);
-INSERT INTO stanza VALUES('Z273','1','神，<br/>你正在重排我的前途，<br/>你也正在拆毁我的建筑，<br/>忠心事奉的人日少一日，<br/>误会增加，<br/>清白逐渐消失。<br/>','',55038,8573);
+INSERT INTO stanza VALUES('Z273','1','神，你正在重排我的前途，<br/>你也正在拆毁我的建筑，<br/>忠心事奉的人日少一日，<br/>误会增加，<br/>清白逐渐消失。<br/>','',55038,8573);
 INSERT INTO stanza VALUES('Z273','chorus','我眼有泪珠，<br/>看不清你脸面，<br/>好像你话语真实不如前；<br/>你使我减少，<br/>好叫你更加添，<br/>好叫你旨意比前更甘甜。<br/>','',55039,8574);
 INSERT INTO stanza VALUES('Z273','2','我几乎要求你停止你手，<br/>当我觉得我已无力再受；<br/>但你是神，<br/>你怎可以让步？<br/>求你不要让步，<br/>等我顺服。<br/>','',55040,8575);
 INSERT INTO stanza VALUES('Z273','3','如果你的旨意和你喜乐<br/>乃是在乎我负痛苦之轭，<br/>就愿我的喜乐乃是在乎<br/>顺服你的旨意来受痛苦。<br/>','',55041,8576);
