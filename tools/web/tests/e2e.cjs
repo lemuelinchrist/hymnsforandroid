@@ -765,7 +765,9 @@ async function search(page, text) {
       await p.reload();
       await p.waitForSelector('.sheet-music svg', {timeout: 30000});
       await open(p, '#/settings');
-      assert((await p.textContent('.settings-card:has(h2:text("Offline"))')).includes('All sheet music and tunes are on this device.'), 'the Offline card says so');
+      const offlineCard = p.locator('.settings-card:has(h2:text("Offline"))');
+      assert((await offlineCard.textContent()).includes('All sheet music and tunes are on this device.'), 'the Offline card says so');
+      assert(await offlineCard.locator('button').isHidden(), 'the download button is hidden once everything is on the device');
       await off.close();
     });
     await test('SW update while opening a recent hymn does not bounce back to Home or auto-reload', async () => {

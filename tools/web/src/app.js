@@ -1576,17 +1576,20 @@ function settingsScreen(view, seq) {
   // offline
   const offlineStatus = h('p', {class: 'muted small'}, '');
   const offlineBtn = h('button', {class: 'btn', onclick: () => offlineDownload(false)}, tr('Download all sheet music and tunes'));
+  const offlineRow = h('div', {class: 'row'}, offlineBtn);
   const sw = 'serviceWorker' in navigator && window.isSecureContext;
   const showOffline = () => {
+    const done = store.get('offlineAll', null) === (DB.version && DB.version.build);
     offlineStatus.textContent = !sw ? tr('Offline use needs the app’s https address.') : offlineText
-      || (store.get('offlineAll', null) === (DB.version && DB.version.build) ? tr('All sheet music and tunes are on this device.')
+      || (done ? tr('All sheet music and tunes are on this device.')
         : tr('Sheet music and tunes are downloaded in the background (about 30 MB). You can also start it here.'));
     offlineBtn.disabled = offlineRunning;
+    offlineRow.hidden = !sw || (done && !offlineRunning);
   };
   offlineListener = showOffline;
   showOffline();
   box.appendChild(h('section', {class: 'card settings-card'},
-    h('h2', null, tr('Offline')), offlineStatus, sw ? h('div', {class: 'row'}, offlineBtn) : null));
+    h('h2', null, tr('Offline')), offlineStatus, sw ? offlineRow : null));
 
   // share the app: a QR code for the Google Play page, or for the web app (iPhone and every other device)
   box.appendChild(shareCard());
