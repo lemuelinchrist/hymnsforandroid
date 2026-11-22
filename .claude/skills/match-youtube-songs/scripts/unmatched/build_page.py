@@ -1,6 +1,6 @@
 """Step 3: review.html from matched.json, ordered by confidence. Run from the work folder, then `python3 <skill>/scripts/unmatched/serve.py`."""
 import json, re, sqlite3, pathlib, collections, os
-R = pathlib.Path(__file__).resolve().parents[5]
+R = next(p for p in pathlib.Path(__file__).resolve().parents if (p / 'app/src/main/assets/hymns.sqlite').exists())
 HERE = pathlib.Path(__file__).resolve().parent
 S = json.load(open('matched.json'))
 db = sqlite3.connect(R/'app/src/main/assets/hymns.sqlite')
@@ -17,7 +17,7 @@ def lyrics(h):
 L = {h: v for h in hy if (v := lyrics(h))}
 rows = []
 for o in S:
-    r = {'v': o['id'], 't': o['title'], 'c': [], 'ev': {}, 'sbs': [], 'conf': o['conf'], 'alb': o['album'], 'ch': o['channel'], 'w': o.get('words', '') if o.get('nwords', 0) >= 6 else ''}
+    r = {'v': o['id'], 't': o['title'], 'c': [], 'ev': {}, 'sbs': [], 'conf': o['conf'], 'alb': o['album'], 'ch': o['channel'], 'inst': bool(o.get('inst')), 'w': o.get('words', '') if o.get('nwords', 0) >= 6 else ''}
     for c in o['cands']:
         if c['k'].startswith('SB'):
             s = sb[int(c['k'][2:])]
