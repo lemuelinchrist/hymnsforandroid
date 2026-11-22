@@ -261,6 +261,7 @@ async function ui(page) {
     await page.locator('.sheet-music g.measure').nth(6).locator('g.note .notehead').first().click({force: true}); await page.waitForTimeout(1200);
     const bar = parseInt(/Bar (\d+)/.exec(await page.locator('.sp-where').textContent())[1], 10);
     assert(bar >= 7, 'it plays from the tapped bar, not the start: bar ' + bar);
+    assert(await page.locator('.sp-start-bar').isVisible(), 'the selected start bar is highlighted in red');
     const full = parseInt((await page.locator('.sp-tempo').textContent()).slice(4), 10);
     await page.locator('.sp-speed').evaluate((e, v) => { e.value = v; e.dispatchEvent(new Event('input')); e.dispatchEvent(new Event('change')); }, '0.5'); await settle();
     const half = parseInt((await page.locator('.sp-tempo').textContent()).slice(4), 10);
@@ -273,12 +274,29 @@ async function ui(page) {
     await page.locator('.sp-speed').evaluate((e, v) => { e.value = v; e.dispatchEvent(new Event('input')); e.dispatchEvent(new Event('change')); }, '1'); await settle();
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'still playing');
   });
-  await test('tapping the empty space of a bar plays from that bar', async () => {
+  await test('tapping the empty space of a bar plays from that bar; Stop keeps the red mark and Loop wraps to bar 1', async () => {
     await page.click('.sheet-player .tb.primary'); await settle();   // stop
+    assert(await page.locator('.sp-start-bar').isVisible() && await page.locator('.sp-bar').isHidden(), 'the red start bar stays visible while stopped');
     const r = await page.locator('.sheet-music g.measure').nth(3).boundingBox();
     await page.mouse.click(r.x + r.width / 2, r.y + 2); await page.waitForTimeout(900);
     const bar = parseInt(/Bar (\d+)/.exec(await page.locator('.sp-where').textContent())[1], 10);
     assert(bar >= 4 && bar <= 5, 'it plays from the bar tapped (the fourth), not the start: bar ' + bar);
+    await page.click('.sheet-player .tb.primary'); await settle();   // stop again
+    await page.click('.sheet-player .tb.primary'); await page.waitForTimeout(400);   // Play again starts from bar 4
+    const resumed = parseInt(/Bar (\d+)/.exec(await page.locator('.sp-where').textContent())[1], 10);
+    assert(resumed >= 4 && resumed <= 5, 'Play after Stop resumes from the red start bar: bar ' + resumed);
+    await page.click('.sheet-player .tb.toggle');   // Loop on
+    const lastMeasure = page.locator('.sheet-music g.measure').last();
+    await lastMeasure.scrollIntoViewIfNeeded();
+    const last = await lastMeasure.boundingBox();
+    await page.mouse.click(last.x + last.width / 2, last.y + 2);
+    await page.waitForFunction(() => /^Bar [12]$/.test((document.querySelector('.sp-where') || {}).textContent), null, {timeout: 6000});
+    assert(await page.locator('.sp-start-bar').isVisible(), 'red start bar stays visible after Loop wraps to bar 1');
+    await page.click('.sheet-player .tb.toggle');   // Loop off
+    await page.click('.sheet-player .tb.primary'); await settle();   // stop
+    await page.click('.sheet-player button[title="From the start"]');
+    assert(await page.locator('.sp-start-bar').isHidden(), 'From the start clears the red mark');
+    await page.click('.sheet-player .tb.primary'); await page.waitForTimeout(400);   // playing again for the next test
     await page.locator('.sp-speed').evaluate((e, v) => { e.value = v; e.dispatchEvent(new Event('input')); e.dispatchEvent(new Event('change')); }, '1');
   });
   await test('a change to the sheet goes on playing with the new notes: the key, and the style', async () => {

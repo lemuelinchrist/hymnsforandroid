@@ -213,7 +213,7 @@ export function playScore(score, o) {
   const out = c.createGain();
   out.connect(master);
   const spq = 60 / (o.bpm * (o.speed || 1));            // seconds to a quarter note
-  const from = Math.max(0, Math.min(o.from || 0, score.length - 0.25)), span = Math.max(0.25, score.length - from);
+  const full = Math.max(0.25, score.length), from = Math.max(0, Math.min(o.from || 0, full - 0.25));
   const mute = o.mute || {};
   const evs = score.events.filter((e) => !mute[e.hand]);
   let first = 0;
@@ -223,7 +223,7 @@ export function playScore(score, o) {
   let i = first, lap = 0, stopped = false, timer = null, raf = 0, shown = '';
   const position = () => {
     const q = (c.currentTime - t0) / spq;
-    return q < 0 ? from : o.loop ? from + (q % span) : Math.min(score.length, from + q);
+    return q < 0 ? from : o.loop ? (from + q) % full : Math.min(score.length, from + q);
   };
   const finish = () => control.stop();
   const tick = () => {
@@ -232,10 +232,10 @@ export function playScore(score, o) {
     for (;;) {
       if (i >= evs.length) {
         if (!o.loop || !evs.length) break;
-        if (t0 + (lap + 1) * span * spq > horizon) break;
-        lap++; i = first; continue;
+        if (t0 + ((lap + 1) * full - from) * spq > horizon) break;
+        lap++; i = 0; continue;
       }
-      const e = evs[i], when = t0 + (lap * span + e.q - from) * spq;
+      const e = evs[i], when = t0 + (lap * full + e.q - from) * spq;
       if (when > horizon) break;
       i++;
       if (when < c.currentTime - 0.3) continue;         // the page was suspended: skip what is long past
@@ -243,7 +243,7 @@ export function playScore(score, o) {
       oscs.add(osc);
       osc.onended = () => oscs.delete(osc);
     }
-    if (!o.loop && c.currentTime > t0 + span * spq + 0.4) { finish(); return; }
+    if (!o.loop && c.currentTime > t0 + (full - from) * spq + 0.4) { finish(); return; }
     timer = setTimeout(tick, 200);
   };
   const frame = () => {
