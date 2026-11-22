@@ -30,8 +30,8 @@ window.sheetPlay = async (id) => {
     if (!score || !score.events.length) throw new Error('nothing to play in ' + id);
     if (mine !== token) return;                         // stopped (or another sheet) while loading
     let bpm = bpmOf(doc) || DEFAULT_BPM;
-    while (bpm > 160) bpm /= 2;
-    while (bpm < 50) bpm *= 2;
+    while (bpm > 250) bpm /= 2;
+    while (bpm < 40) bpm *= 2;
     Player.playScore(score, {from: 0, bpm, loop: true, mute: {}});
   } catch (e) {
     console.error(e);
