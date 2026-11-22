@@ -43,7 +43,7 @@ textarea{width:100%;height:240px;font:12px monospace}
 <p><button id="cp" class="pri">Copy</button> <button id="dl">Download</button></p><textarea id="out" readonly></textarea></div>
 <script>
 const ROWS=__ROWS__, LYR=__LYR__;
-const KEY='review-unmatched'; // one saved state per video list, so a new list does not load an old one's answers
+const KEY='review-unmatched-twgbr-zanmei'; // one saved state per video list, so a new list does not load an old one's answers
 let ans={};try{ans=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 let notes={};try{notes=JSON.parse(localStorage.getItem(KEY+'-notes')||'{}')}catch(e){}
 let lyr={};try{lyr=JSON.parse(localStorage.getItem(KEY+'-lyr')||'{}')}catch(e){}
@@ -115,5 +115,5 @@ $('#exp').onclick=()=>{const st=a=>!a?'undecided':a==='SKIP'?'skipped':a==='NOTF
  $('#exportbox').style.display='block';$('#out').value=t;$('#out').select();scrollTo(0,document.body.scrollHeight)};
 $('#cp').onclick=()=>{$('#out').select();document.execCommand('copy')};
 $('#dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([$('#out').value],{type:'text/tab-separated-values'}));a.download='NYCYPCD_answers.tsv';a.click()};
-fetch('/state').then(r=>r.json()).then(s=>{if(s&&s.ans){ans=s.ans;notes=s.notes||{};lyr=s.lyr||{};inst=s.inst||{};if(s.i>=0&&s.i<ROWS.length)i=s.i}render()}).catch(()=>render());
+fetch('/state').then(r=>r.json()).then(s=>{if(s&&s.ans){ans=s.ans;notes=s.notes||{};lyr=s.lyr||{};inst=s.inst||{};if(s.i>=0&&s.i<ROWS.length)i=s.i}ROWS.forEach(r=>{if(r.inst&&inst[r.v]===undefined)inst[r.v]=true});render()}).catch(()=>{ROWS.forEach(r=>{if(r.inst&&inst[r.v]===undefined)inst[r.v]=true});render()});
 </script></body></html>
