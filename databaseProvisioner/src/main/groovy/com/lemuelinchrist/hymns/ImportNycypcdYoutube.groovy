@@ -52,7 +52,7 @@ class ImportNycypcdYoutube {
             if (dao.find(hymnId) == null) throw new Exception("Hymn $hymnId does not exist")
             String vid = parts[1].trim()
             int prio = priorities.containsKey(vid) ? priorities[vid] : 3
-            boolean inst = parts.length > 4 && parts[4].trim() == "instrumental"
+            boolean inst = parts.length > 4 && parts[4].trim() in ["instrumental", "1"]
             entries << [hymnId: hymnId, vid: vid, parts: parts, prio: prio, inst: inst ? 1 : 0, idx: idx++]
         }
 
