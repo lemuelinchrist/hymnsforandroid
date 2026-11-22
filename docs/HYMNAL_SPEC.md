@@ -181,9 +181,9 @@ CREATE TABLE "stanza" (
 );
 CREATE TABLE "link" (                   -- links of a hymn to places outside the app (piano videos, and the YouTube and SoundCloud links of the youth books)
   "id" INTEGER NOT NULL PRIMARY KEY,
-  "hymn_id" TEXT NOT NULL,              -- a HYMN ID (not a tune code), e.g. 'E8'
-  "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune), 'youtube' or 'soundcloud' (a recording of this hymn; a hymn with none of its own shows those of the hymn above it, see the links card)
-  "label" TEXT,                         -- piano: the text shown ('1st tune', 'Alt tune: 295', 'New tune' ...); youtube/soundcloud: the PUBLISHER of the recording ('NYCYPCD', 'Hymn CDs'; empty when unknown, never the channel)
+  "hymn_id" TEXT NOT NULL,              -- a HYMN ID for piano / sung links (e.g. 'E8'), or a trimmed tune code for instrumental=1 links (e.g. '113355666653')
+  "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune), 'youtube' or 'soundcloud' (a sung recording of this hymn/parent, or an instrumental of its tune)
+  "label" TEXT,                         -- piano: the text shown ('1st tune', 'Alt tune: 295', 'New tune' ...); youtube/soundcloud: the PUBLISHER of the recording ('NYCYPCD', 'TWGBR', 'Hymn CDs'; empty when unknown, never the channel)
   "url" TEXT NOT NULL,                  -- the whole address, e.g. 'https://www.youtube.com/watch?v=DL6lgn78DcU'
   "n_order" INTEGER,                    -- order among the hymn's links of that kind, from 1
   "album" TEXT,                         -- youtube/soundcloud: the album or playlist the recording is from
@@ -345,22 +345,22 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    the link is made: the Bible text is not copied into the app (it is copyrighted).
 5. **Listen and links card** (below the details; hidden when it has nothing to show): label `LISTEN AND LINKS`, then sections, each with a
    heading (`RECORDINGS`, `INSTRUMENTAL`, `PIANO VIDEOS`, `NEW TUNES`, in capitals) and the number of links on its right; a section with nothing is left out.
-   - **Recordings & Instrumental**: the hymn's own `link` rows of kind `youtube` (first) and `soundcloud`, in `n_order` (imported sorted by recording priority from `recordings.tsv`, then sung before instrumental). Sung recordings go under `RECORDINGS`, and instrumental recordings (`instrumental` = 1) go into their own `INSTRUMENTAL` section right below it (so a hymn with only an instrumental recording shows `INSTRUMENTAL` instead of `RECORDINGS`, never mistaken for a vocal recording). A row is a link at least 56 dp tall:
+   - **Recordings & Instrumental**: `link` rows of kind `youtube` (first) and `soundcloud`, in `n_order` (imported sorted by recording priority from `recordings.tsv`). Sung recordings (`instrumental` IS NULL/0) are keyed by `hymn_id` and shown under `RECORDINGS`; universal instrumental recordings (`instrumental` = 1) are keyed in `link.hymn_id` by the trimmed **tune code** and shown in their own `INSTRUMENTAL` section right below `RECORDINGS` for every hymn across all languages sharing that tune (so a hymn with only an instrumental recording shows `INSTRUMENTAL` instead of `RECORDINGS`, never mistaken for a vocal recording). A row is a link at least 56 dp tall:
      a round icon (play for sung YouTube, cloud/queue-music for SoundCloud, music note for instrumental) in the book's accent colour, a first line, a second line and an arrow `↗`. The first
-     line is the **publisher** (`label`: who made the recording: NYCYPCD, Living Stream Ministry, Hymn CDs, the group of a "Playlist (by Group)",
+     line is the **publisher** (`label`: who made the recording: NYCYPCD, Living Stream Ministry, TWGBR, Hymn CDs, the group of a "Playlist (by Group)",
      ...), else the **album** (`album`: the album or playlist), else the platform (`YouTube` / `SoundCloud`); the second line is the album
      after a publisher, else the platform. The YouTube channel is never shown. An instrumental recording (`instrumental` = 1) also shows an
      `Instrumental` pill badge (tinted with the book's accent colour) beside its first line so it stays visible even when a long title truncates. A tap opens the stored `url`. A link with neither a publisher nor an album is one a book's
-     editor chose (the Spanish and German youth books): it is always shown. A hymn with **no** recording of its own shows those of the nearest
+     editor chose (the Spanish and German youth books): it is always shown. A hymn with **no** sung recording of its own shows those of the nearest
      hymn above it (parent, grandparent, ... up to 5 steps, never past a New Tune whose parent has another tune, §5.1); when that hymn is in another language (`HymnGroup.getLanguage`: English for E/BF/NS/CH,
-     Chinese for the four Chinese books, the youth books and supplements in their main language) each first line starts with the language
-     (`English – NYCYPCD`) so it is not taken for a recording in the hymn's own; a hymn with any recording of its own gets nothing inherited.
+     Chinese for the four Chinese books, the youth books and supplements in their main language) each sung first line starts with the language
+     (`English – NYCYPCD`) so it is not taken for a recording in the hymn's own; a hymn with any sung recording of its own gets nothing inherited. Tune-keyed instrumentals never carry a language prefix (they are language-neutral).
    - **Piano videos**: `link` rows of kind `piano` where `hymn_id` is this hymn, else its parent (never for an own-tune New Tune, §5.1) (`n_order`): the label (`1st tune`) over
      `Piano video · YouTube`. A tap opens the url with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/` (the web
      app opens the watch address as it is).
    - **New tunes**: the hymns whose `parent_hymn` is this hymn, `hymn_group` `BF` and `new_tune` = 1, in number order: a row `BF94 · New tune` /
      `Same words, another tune · opens in the app` (arrow `›`; a tap opens that hymn in the app), and under it, indented, that tune's own
-     recordings (first line as above, second line `BF94 · <album>`). A New Tune itself, or a hymn with none, has no such section.
+     sung recordings and its tune-keyed instrumentals (first line as above, second line `BF94 · <album>`). A New Tune itself, or a hymn with none, has no such section.
    - **Showing more**: a section shows its first 3 links (a New Tune with its recordings counts as one) and a button `Show N more`, which
      becomes `Show fewer`; the links of a book's editor do not count and are always shown. Nothing is dropped for being the 4th: every known
      recording of the hymn is linked (the import no longer caps them), and a recording of the same title in the same album twice is one

@@ -56,7 +56,7 @@ def guess_language(r):
 PRIORITY_1_SOURCES = {
     "NYCYPCD",
     "Living Stream Ministry - Topic", "Living Stream Ministry", "LSM", "SoundCloud: livingstreamministry",
-    "Taiwan Gospel Book Room - Topic", "臺灣福音書房 (official channel)", "Taiwan Gospel Book Room", "臺灣福音書房",
+    "Taiwan Gospel Book Room - Topic", "臺灣福音書房 (official channel)", "Taiwan Gospel Book Room", "臺灣福音書房", "TWGBR",
 }
 
 
@@ -95,16 +95,19 @@ def is_unlinked_instrumental(r):
     return False
 
 
-def soundcloud_rows():
+def soundcloud_rows(old_hymns=None):
     """The database's soundcloud links as rows of this file (empty list when there is no database)."""
     if not os.path.exists(DB): return []
     import sqlite3, re
     out = []
+    old_hymns = old_hymns or {}
     for hymn, label, album, url, inst in sqlite3.connect(DB).execute(
             "select hymn_id, label, album, url, instrumental from link where kind='soundcloud' order by hymn_id, n_order"):
         path = re.sub(r"^https?://(www\.)?soundcloud\.com/", "", url).split("?")[0].strip("/")
         note = ""
         if not path: path, note = "(no url)/" + hymn, "the database row has an empty url"
+        if inst == 1 and path in old_hymns and old_hymns[path]:
+            hymn = old_hymns[path]
         user = path.split("/")[0]
         title = path.split("/")[-1].replace("-", " ")
         out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", "", ""])
@@ -116,10 +119,10 @@ def main():
     ap.add_argument("--tracks"); ap.add_argument("--channel"); ap.add_argument("--publisher", default="")
     ap.add_argument("--studio-albums", default=""); ap.add_argument("--studio", default="")
     a = ap.parse_args()
-    rows = collections.OrderedDict(); old_lang = {}; old_prio = {}; old_inst = {}
+    rows = collections.OrderedDict(); old_lang = {}; old_prio = {}; old_inst = {}; old_hymns = {}
     if os.path.exists(OUT):
         for p in list(csv.reader(open(OUT, encoding="utf8"), delimiter="\t"))[1:]:
-            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]; old_prio[p[0]] = p[14]; old_inst[p[0]] = p[12]
+            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]; old_prio[p[0]] = p[14]; old_inst[p[0]] = p[12]; old_hymns[p[0]] = p[2]
             if p[10] != "soundcloud":      # the soundcloud rows are rebuilt from the database below
                 rows[p[0]] = p
     if a.tracks:
@@ -150,7 +153,7 @@ def main():
             r[9] = ""
         is_inst = (v in instr) if v in linked else (note_inst or old_inst.get(v) == "1" or is_unlinked_instrumental(r))
         r[10], r[11], r[12] = "youtube", "https://www.youtube.com/watch?v=" + v, "1" if is_inst else ""
-    sc = soundcloud_rows()
+    sc = soundcloud_rows(old_hymns)
     for r in sc:
         if r[0] in rows and rows[r[0]][10] == "soundcloud":      # the same track linked to several hymns
             rows[r[0]][2] = " ".join(sorted(set(rows[r[0]][2].split() + [r[2]])))

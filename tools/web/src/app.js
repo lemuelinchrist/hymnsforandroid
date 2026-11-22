@@ -800,21 +800,20 @@ function linksNode(hymn) {
   const up = DB.inheritedLinks(hymn);
   const language = up && (languageName(splitId(up.from).group) || DB.languageOf(splitId(up.from).group));
   const foreign = up && DB.languageOf(splitId(up.from).group) !== DB.languageOf(hymn.group);
-  const recItem = (r, tuneId) => {
+  const recItem = (r, tuneId, useForeign = true) => {
     const title = r.label || r.album || platform(r.kind);
     const sub = r.label ? (r.album || platform(r.kind)) : (r.album ? platform(r.kind) : null);
     return {icon: r.instrumental ? 'note' : (r.kind === 'soundcloud' ? 'cloud' : 'play'),
-      title: !tuneId && foreign ? language + ' – ' + title : title,
+      title: !tuneId && useForeign && foreign ? language + ' – ' + title : title,
       sub: tuneId ? (sub ? tuneId + ' · ' + sub : tuneId) : sub, tag: r.instrumental, href: r.url, pinned: !r.label && !r.album, kids: []};
   };
-  const allRecs = up ? up.recordings : DB.recordings(hymn);
-  const own = allRecs.filter((r) => !r.instrumental).map((r) => recItem(r));
-  const inst = allRecs.filter((r) => r.instrumental).map((r) => recItem(r));
+  const own = (up ? up.recordings : DB.recordings(hymn)).map((r) => recItem(r, null, true));
+  const inst = DB.instrumentals(hymn).map((r) => recItem(r, null, false));
   const piano = DB.videos(hymn).map((v) => ({icon: 'piano', title: v.label || tr('Video'), sub: tr('Piano video · YouTube'),
     href: v.url, kids: []}));
   const tunes = DB.newTunes(hymn).map((t) => ({icon: 'tune', title: tr('{0} · New tune', t.id),
     sub: tr('Same words, another tune · opens in the app'), href: '#/h/' + t.id, inApp: true,
-    kids: [...t.recordings.filter((r) => !r.instrumental), ...t.recordings.filter((r) => r.instrumental)].map((r) => recItem(r, t.id))}));
+    kids: t.recordings.map((r) => recItem(r, t.id, false))}));
   const find = [
     {icon: 'search', title: 'YouTube', sub: tr('Search for this hymn'), href: youtubeSearchUrl(hymn), kids: []},
     {icon: 'search', title: 'SoundCloud', sub: tr('Search for this hymn'), href: soundcloudSearchUrl(hymn), kids: []},

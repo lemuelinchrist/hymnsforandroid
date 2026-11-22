@@ -8,18 +8,51 @@ import com.lemuelinchrist.hymns.lib.beans.LinkEntity
  * NycypcdYoutube.txt: one recording per line, tab separated: hymn id, video id, publisher, album, "instrumental" or empty.
  * The publisher (label) is who made the recording, the album its album or playlist; either may be empty, never the YouTube
  * channel (tools/youtube-monitor/link_meta.py fills them from recordings.tsv). A line with only two columns is a recording
- * of the NYCYPCD channel. A hymn's recordings get order 1, 2, ... sorted by priority (from recordings.tsv, default 3),
- * then sung before instrumental, then file order.
+ * of the NYCYPCD channel. Sung recordings are stored under the hymn id; instrumental recordings are resolved to the hymn's
+ * trimmed tune code (or accept a raw tune code directly) and deduplicated per (tune, video id), so every hymn sharing the
+ * same melody across all languages shows them. Order per target key (hymn id or tune code): 1, 2, ... sorted by priority
+ * (from recordings.tsv, default 3), then sung before instrumental, then file order.
  * It starts by deleting every youtube row that has a publisher or an album (the rows of a book's editor have neither and
  * stay), so it can be run again.
  */
 class ImportNycypcdYoutube {
+
+    /** Resolves a hymn id (walking parent_hymn, stopping at own-tune boundary) or raw tune code to its trimmed tune code. */
+    static String resolveTune(Dao dao, String hymnOrTune, Closure<Set<String>> lazyTunes) {
+        def cur = dao.find(hymnOrTune)
+        if (cur == null) {
+            if (lazyTunes().contains(hymnOrTune)) return hymnOrTune
+            throw new Exception("Hymn or tune '$hymnOrTune' does not exist")
+        }
+        for (int depth = 0; depth < 6 && cur != null; depth++) {
+            String t = cur.tune?.trim()
+            if (t && t != "0") return t
+            if (!cur.parentHymn) break
+            def parent = dao.find(cur.parentHymn)
+            if (parent == null) break
+            if (cur.newTune == 1 && parent.newTune != 1) break
+            cur = parent
+        }
+        throw new Exception("Hymn '$hymnOrTune' has no tune code")
+    }
 
     static void main(String[] args) {
         def resource = ImportNycypcdYoutube.class.getResource("/NycypcdYoutube.txt")
         if (resource == null) throw new Exception("Resource not found!")
         Dao dao = new Dao()
         dao.deleteImportedRecordings()
+
+        Set<String> allTunesCache = null
+        Closure<Set<String>> lazyTunes = {
+            if (allTunesCache == null) {
+                allTunesCache = new HashSet<>()
+                dao.findAll("h.tune is not null and h.tune <> ''").each { h ->
+                    String t = h.tune?.trim()
+                    if (t && t != "0") allTunesCache.add(t)
+                }
+            }
+            return allTunesCache
+        }
 
         def priorities = [:]
         def recFile = [new File("../tools/youtube-monitor/recordings.tsv"), new File("tools/youtube-monitor/recordings.tsv")].find { it.exists() }
@@ -49,11 +82,17 @@ class ImportNycypcdYoutube {
             if (line.trim().isEmpty() || line.startsWith("#")) return
             def parts = line.split("\t", -1)
             String hymnId = parts[0].trim()
-            if (dao.find(hymnId) == null) throw new Exception("Hymn $hymnId does not exist")
             String vid = parts[1].trim()
             int prio = priorities.containsKey(vid) ? priorities[vid] : 3
             boolean inst = parts.length > 4 && parts[4].trim() in ["instrumental", "1"]
-            entries << [hymnId: hymnId, vid: vid, parts: parts, prio: prio, inst: inst ? 1 : 0, idx: idx++]
+            String targetKey
+            if (inst) {
+                targetKey = resolveTune(dao, hymnId, lazyTunes)
+            } else {
+                if (dao.find(hymnId) == null) throw new Exception("Hymn $hymnId does not exist")
+                targetKey = hymnId
+            }
+            entries << [targetKey: targetKey, vid: vid, parts: parts, prio: prio, inst: inst ? 1 : 0, idx: idx++]
         }
 
         entries.sort { a, b ->
@@ -61,13 +100,15 @@ class ImportNycypcdYoutube {
         }
 
         def order = [:]
+        Set<String> seenInst = new HashSet<>()
         int saved = 0
         entries.each { e ->
+            if (e.inst == 1 && !seenInst.add("${e.targetKey}\t${e.vid}")) return
             def parts = e.parts
-            int n = (order[e.hymnId] ?: 0) + 1
-            order[e.hymnId] = n
+            int n = (order[e.targetKey] ?: 0) + 1
+            order[e.targetKey] = n
             LinkEntity link = new LinkEntity()
-            link.setHymnId(e.hymnId)
+            link.setHymnId(e.targetKey)
             link.setKind("youtube")
             link.setLabel(parts.length > 2 ? parts[2].trim() : "NYCYPCD")
             link.setAlbum(parts.length > 3 && parts[3].trim() ? parts[3].trim() : null)
@@ -77,6 +118,6 @@ class ImportNycypcdYoutube {
             dao.save(link)
             saved++
         }
-        println "Recordings saved: $saved for ${order.size()} hymns"
+        println "Recordings saved: $saved for ${order.size()} targets"
     }
 }
