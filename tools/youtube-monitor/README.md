@@ -30,10 +30,10 @@ arrives. The database keeps the publisher (`label`), the album and the instrumen
 add its rows here with `build_recordings.py` (the album names come from `topic_albums.py` and `yt-dlp --flat-playlist`, or the Releases tab for NYCYPCD).
 Loving the Lord - Topic: the albums that Joseph's Storehouses lists as "(by Hymn CDs)" are marked with the studio Hymn CDs.
 
-**One file for all links (Lemuel 2026-11-19).** The last three columns are `platform` (`youtube` or `soundcloud`), `url` and
-`instrumental`. The SoundCloud links are a **mirror of the database** (the `link` table, kind `soundcloud`, written by the
+**One file for all links (Lemuel 2026-11-19).** The last columns are `platform` (`youtube` or `soundcloud`), `url`,
+`instrumental`, `language` and `priority` (`1` = LSM, NYCYPCD, or `TWGBR` / 臺灣福音書房; `2` = Melody of Lilies; `3` = everything else; `5` = low-quality albums set by hand; filled once and kept by `build_recordings.py`, and read by `ImportNycypcdYoutube.groovy` to order each hymn's sung recordings and each tune code's instrumental recordings with lower numbers first). The SoundCloud links are a **mirror of the database** (the `link` table, kind `soundcloud`, written by the
 youth books' provisioners or added by hand): every run of `build_recordings.py` rewrites the `soundcloud` rows from
-`app/src/main/assets/hymns.sqlite`, so change a SoundCloud link in the database (and export it), never in this file. Their
+`app/src/main/assets/hymns.sqlite`, so change a SoundCloud link in the database (and export it), never in this file (tune-keyed instrumental SoundCloud rows preserve their existing hymn ID in `recordings.tsv`). Their
 `video id` is the URL path (`user/track`), status is always `linked`, channel `SoundCloud: <user>`; one track linked to several hymns is one row
 with all the hymns. A row whose database `url` is empty is keyed `(no url)/<hymn>` and says so in the note (SY244 and SY247 on 2026-11-19).
 The scripts that read this file ignore the soundcloud rows because they look up YouTube video ids, channels and album ids

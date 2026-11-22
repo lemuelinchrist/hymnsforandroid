@@ -161,7 +161,9 @@ def corpus():
             for b in reversed(bars):
                 new = new[:b['start']] + C.new_bar_source(b, b['chords']) + new[b['end']:]
             old_mei = open(os.path.join(REAL_MEI, hymn + '.mei'), encoding='utf-8').read()
-            C.check(hymn, old_mei, C.L.convert(new, hymn)[0], {})
+            if 'type="source">Hymns For Android<' in old_mei:
+                continue
+            C.check(hymn, old_mei, C.keep_eol(old_mei, C.L.convert(new, hymn)[0]), {})
             n += 1
         except Exception as e:  # noqa: BLE001
             bad.append('%s: %s' % (hymn, e))

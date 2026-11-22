@@ -154,14 +154,14 @@ Tracks have no captions: match by title. Links go in `NycypcdYoutube.txt` with t
 accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`.
 
 - **LSM** (Living Stream Ministry - Topic, UCrr3HofwiRkJBR-WgUixRlQ), English: 193 links, label `LSM` (2026-11-07), `lsm_known.tsv`.
-- **臺灣福音書房** (Taiwan Gospel Book Room - Topic, UCYE5AHiolvE8tj-LYgPuzig, some albums under UCZolsL-QScygLdBTc36TbUQ),
-  Chinese, 70 albums: 293 sung links (labels `臺灣福音書房`, `臺灣福音書房 2`) and 103 instrumental (`臺灣福音書房 (Instrumental)`)
-  on C/CS hymns (2026-11-07), `tgb_known.tsv`; 9 more on 2026-11-08 (405 in all, see the official channel below). Lessons: many titles are Simplified Chinese (convert with OpenCC `s2t` before comparing
+- **臺灣福音書房 (TWGBR)** (Taiwan Gospel Book Room - Topic, UCYE5AHiolvE8tj-LYgPuzig, some albums under UCZolsL-QScygLdBTc36TbUQ),
+  Chinese, 70 albums: 293 sung links (publisher label `TWGBR`) and 159 instrumental (`TWGBR`, 讚美詩集 1–13 / Hymns of Praise 2)
+  on C/CS hymns (2026-11-07/22), `tgb_known.tsv`; 9 more on 2026-11-08 (see the official channel below). Lessons: many titles are Simplified Chinese (convert with OpenCC `s2t` before comparing
   with the Traditional C/CS lines) and many carry the number, `（诗歌227）` = C227, `（补充本839）` = CS839 (reliable even when
-  the title is a subject, not the first line). 讚美詩集 / Hymns of Praise is an instrumental series: label it. Children's series (兒童教材詩歌集, 兒童詩歌, 性格的培養詩歌集) are left out: the songs are
-  simplified for children. Limit per Chinese hymn (Lemuel 2026-11-07): at most 2 sung recordings + 1 instrumental; a second sung one gets its own label so the links card does not show the same label twice. The official channel 臺灣福音書房
+  the title is a subject, not the first line). 讚美詩集 / Hymns of Praise is an instrumental series: mark `instrumental`. Children's series (兒童教材詩歌集, 兒童詩歌, 性格的培養詩歌集) are left out: the songs are
+  simplified for children. The official channel 臺灣福音書房
   (UCW4K7RJzb3bhrBgbhT2OBLA) is mostly messages and training videos (615 videos). Done 2026-11-08: the 5 plain hymn videos with the number
-  in the title are linked (label `臺灣福音書房`); 4 of the 12 "唱詩人選輯" tracks (the hymn's title is inside the hymn, not its first line)
+  in the title are linked (label `TWGBR`); 4 of the 12 "唱詩人選輯" tracks (the hymn's title is inside the hymn, not its first line)
   were confirmed by ear and linked, 8 were rejected; the 39 kids' action-song videos of regular hymns are NOT linked (children sing them)
   but saved in `tools/youtube-monitor/tgb_kids_series.tsv` for later.
 - **Loving the Lord - Topic** (UCF0V197WENYJAGHzYRFbUog), English, 11 albums, 265 tracks: 139 links, label `Loving the Lord` (`... 2` for a second
@@ -189,7 +189,7 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   Re-provisioning drops the links: run `runImportNycypcdYoutube` after it. The import renumbers the link row ids, so the raw diff of `sqlite/hymns.sql`
   is huge; check the real one with `grep '^INSERT INTO link ' sqlite/hymns.sql | sed -E "s/^INSERT INTO link VALUES\([0-9]+,//" | sort` against the old file.
 - **Publisher = a group or a locality, never a person** (Lemuel 2026-11-20): a group's name (ATX YP, WASYP, Irvine YP, NWS YP), a place (New Zealand, Long Beach) or the album's own name when it is the only name there is (Arlington Students). An album "(by <person>)" gets no publisher (blank), the church life does not put individuals forward. Write the album without its "(by ...)".
-- **Keep the source of every recording** (Lemuel 2026-11-08): `tools/youtube-monitor/recordings.tsv` has album, channel and publisher of every track, linked or not, so unlinked songs can be linked when their hymn arrives. The last column is **`language`** (added 2026-11-21: the language it is sung in; `build_recordings.py` fills it once, from Chinese characters / the Taiwan Gospel Book Room channel, else the book of the linked hymn, else English for the English-only channels, else blank, and then keeps it, so a hand-set value stays). Add a new channel's rows when importing it (`python3 -I tools/youtube-monitor/build_recordings.py --tracks ...`, see its docstring; without arguments it refreshes the statuses).
+- **Keep the source of every recording** (Lemuel 2026-11-08): `tools/youtube-monitor/recordings.tsv` has album, channel and publisher of every track, linked or not, so unlinked songs can be linked when their hymn arrives. The last two columns are **`language`** (added 2026-11-21: the language it is sung in; `build_recordings.py` fills it once, from Chinese characters / the Taiwan Gospel Book Room channel, else the book of the linked hymn, else English for the English-only channels, else blank, and then keeps it, so a hand-set value stays) and **`priority`** (added 2026-11-22: `1` = LSM, NYCYPCD, or `TWGBR`; `2` = Melody of Lilies; `3` = everything else; `5` = low-quality albums set by hand; filled once and kept by `build_recordings.py`, and read by `ImportNycypcdYoutube.groovy` to order each hymn's sung recordings and each tune code's instrumental recordings). `ImportNycypcdYoutube.groovy` keeps `NycypcdYoutube.txt` human-readable by hymn id while storing instrumental rows (`instrumental = 1`) in `link.hymn_id` under the hymn's trimmed `tune` code so they appear universally across all languages sharing that melody. Add a new channel's rows when importing it (`python3 -I tools/youtube-monitor/build_recordings.py --tracks ...`, see its docstring; without arguments it refreshes the statuses).
 - Review pages for another language: `REVIEW_GROUPS=C,CS python3 scripts/build_review.py ...` so that typing a C/CS id
   under "Another hymn" finds it.
 
@@ -257,8 +257,8 @@ A link row has the **publisher** (`label`: who made the recording), the **album*
 YouTube channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives the group as the publisher and X as the album). `NycypcdYoutube.txt` lines are
 `hymn id TAB video id TAB publisher TAB album TAB instrumental`; write a new line as `hymn TAB video` or with the placeholder publisher "Joseph's Storehouses", then run
 `python3 -I tools/youtube-monitor/link_meta.py`, which rewrites every line from `recordings.tsv` (and drops a recording of the same title in the same album as one the hymn already has).
-There is no cap on the number of recordings per hymn any more: the card shows 3 and "Show N more". Importing needs the three columns in the DB: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql`.
-NYCYPCD, LSM (written "Living Stream Ministry"), Melody of Lilies and 臺灣福音書房 keep their publisher names.
+There is no cap on the number of sung recordings per hymn any more: the card shows 3 and "Show N more". For instrumental recordings, `ImportNycypcdYoutube.groovy` keeps only the single highest-priority instrumental recording per tune code in `hymns.sqlite` (leaving all matched instrumentals preserved in `NycypcdYoutube.txt` and `recordings.tsv`). Importing needs the three columns in the DB: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql`.
+NYCYPCD, LSM (written "Living Stream Ministry"), Melody of Lilies and `TWGBR` (Taiwan Gospel Book Room) keep their publisher names.
 **`link_meta.py` is stale since the 2026-11-20 publisher rule (below): it would put back the names of individuals (Ugo Ibe, Crystal Grace Goh, Stephen & Joseph, The Cooleys), drop the group publishers (ATX YP, Irvine YP, NWS YP, New Zealand, Arlington Students) and the label "YouTube 1". Do not run it on the whole file until it is fixed; write the new lines by hand, with the publisher and album as `recordings.tsv` has them.**
 
 ## Finding recordings by hymn number (English hymns with no sung link; Lemuel, 2026-11-14)

@@ -784,7 +784,8 @@ function metaNode(hymn) {
 }
 
 // the card under the details for links that open outside the app (the Android app's "Listen and links" card), in sections:
-// Recordings (the hymn's YouTube and SoundCloud links, or those of the nearest hymn above it that has some), Piano videos
+// Recordings (the hymn's sung YouTube and SoundCloud links, or those of the nearest hymn above it that has some),
+// Instrumental (its instrumental recordings, each with a music-note icon and an Instrumental pill), Piano videos
 // (its parent's when it has none), New tunes (the Be Filled hymns with another tune for its words, each with its own
 // recordings under it) and Search (YouTube and SoundCloud). A link is a row of at least 56 px (icon, who made it, which
 // album, an arrow); where the card is wide (a tablet, an unfolded phone) the links are cards in a grid (app.css). A section
@@ -799,18 +800,20 @@ function linksNode(hymn) {
   const up = DB.inheritedLinks(hymn);
   const language = up && (languageName(splitId(up.from).group) || DB.languageOf(splitId(up.from).group));
   const foreign = up && DB.languageOf(splitId(up.from).group) !== DB.languageOf(hymn.group);
-  const recItem = (r, tuneId) => {
+  const recItem = (r, tuneId, useForeign = true) => {
     const title = r.label || r.album || platform(r.kind);
     const sub = r.label ? (r.album || platform(r.kind)) : (r.album ? platform(r.kind) : null);
-    return {icon: r.kind === 'soundcloud' ? 'cloud' : 'play', title: !tuneId && foreign ? language + ' – ' + title : title,
+    return {icon: r.instrumental ? 'note' : (r.kind === 'soundcloud' ? 'cloud' : 'play'),
+      title: !tuneId && useForeign && foreign ? language + ' – ' + title : title,
       sub: tuneId ? (sub ? tuneId + ' · ' + sub : tuneId) : sub, tag: r.instrumental, href: r.url, pinned: !r.label && !r.album, kids: []};
   };
-  const own = (up ? up.recordings : DB.recordings(hymn)).map((r) => recItem(r));
+  const own = (up ? up.recordings : DB.recordings(hymn)).map((r) => recItem(r, null, true));
+  const inst = DB.instrumentals(hymn).map((r) => recItem(r, null, false));
   const piano = DB.videos(hymn).map((v) => ({icon: 'piano', title: v.label || tr('Video'), sub: tr('Piano video · YouTube'),
     href: v.url, kids: []}));
   const tunes = DB.newTunes(hymn).map((t) => ({icon: 'tune', title: tr('{0} · New tune', t.id),
     sub: tr('Same words, another tune · opens in the app'), href: '#/h/' + t.id, inApp: true,
-    kids: t.recordings.map((r) => recItem(r, t.id))}));
+    kids: t.recordings.map((r) => recItem(r, t.id, false))}));
   const find = [
     {icon: 'search', title: 'YouTube', sub: tr('Search for this hymn'), href: youtubeSearchUrl(hymn), kids: []},
     {icon: 'search', title: 'SoundCloud', sub: tr('Search for this hymn'), href: soundcloudSearchUrl(hymn), kids: []},
@@ -819,7 +822,7 @@ function linksNode(hymn) {
     target: it.inApp ? null : '_blank', rel: it.inApp ? null : 'noopener'},
   h('span', {class: 'lk-ic'}, icon(it.icon)),
   h('span', {class: 'lk-t'},
-    h('span', {class: 'lk-t1'}, it.title, it.tag ? h('span', {class: 'lk-tag'}, tr('Instrumental')) : null),
+    h('span', {class: 'lk-t1'}, h('span', {class: 'lk-title'}, it.title), it.tag ? h('span', {class: 'lk-tag'}, tr('Instrumental')) : null),
     it.sub ? h('span', {class: 'lk-t2'}, it.sub) : null),
   h('span', {class: 'lk-go', 'aria-hidden': 'true'}, it.inApp ? '›' : '↗'));
   const section = (key, title, items) => {
@@ -842,8 +845,8 @@ function linksNode(hymn) {
   // every hymn has the search section, so the card is on every hymn page
   return h('section', {class: 'card links-card'},
     h('h2', null, tr('Listen and links')),
-    section('rec', tr('Recordings'), own), section('piano', tr('Piano videos'), piano),
-    section('tunes', tr('New tunes'), tunes), section('search', tr('Search'), find));
+    section('rec', tr('Recordings'), own), section('inst', tr('Instrumental'), inst),
+    section('piano', tr('Piano videos'), piano), section('tunes', tr('New tunes'), tunes), section('search', tr('Search'), find));
 }
 
 function familyNode(hymn) {
@@ -1573,17 +1576,20 @@ function settingsScreen(view, seq) {
   // offline
   const offlineStatus = h('p', {class: 'muted small'}, '');
   const offlineBtn = h('button', {class: 'btn', onclick: () => offlineDownload(false)}, tr('Download all sheet music and tunes'));
+  const offlineRow = h('div', {class: 'row'}, offlineBtn);
   const sw = 'serviceWorker' in navigator && window.isSecureContext;
   const showOffline = () => {
+    const done = store.get('offlineAll', null) === (DB.version && DB.version.build);
     offlineStatus.textContent = !sw ? tr('Offline use needs the app’s https address.') : offlineText
-      || (store.get('offlineAll', null) === (DB.version && DB.version.build) ? tr('All sheet music and tunes are on this device.')
+      || (done ? tr('All sheet music and tunes are on this device.')
         : tr('Sheet music and tunes are downloaded in the background (about 30 MB). You can also start it here.'));
     offlineBtn.disabled = offlineRunning;
+    offlineRow.hidden = !sw || (done && !offlineRunning);
   };
   offlineListener = showOffline;
   showOffline();
   box.appendChild(h('section', {class: 'card settings-card'},
-    h('h2', null, tr('Offline')), offlineStatus, sw ? h('div', {class: 'row'}, offlineBtn) : null));
+    h('h2', null, tr('Offline')), offlineStatus, sw ? offlineRow : null));
 
   // share the app: a QR code for the Google Play page, or for the web app (iPhone and every other device)
   box.appendChild(shareCard());

@@ -1,11 +1,119 @@
 // Plays a hymn's tune, as the Android app's Play button does: the app's MIDI file for the hymn's tune code
 // (res/raw/m<tune>.mid), looped until stopped. Browsers cannot play MIDI, so the file is read here and played with
-// Web Audio: a small synthesized piano (a few harmonics, a brightness that fades, a decay that is longer for low
-// notes). No samples, so nothing more to download and it works offline. One tune is an MP3; that one plays as audio.
+// Web Audio: Salamander Grand Piano (Yamaha C5, CC-BY 3.0 by Alexander Holm) sampled every minor 3rd from A1 to C7
+// (vendor/piano/*.mp3, lazy-cached offline), with velocity-sensitive warmth, smooth damper release, a subtle room tail,
+// and a tiny synthesized fallback while samples load or if unavailable. One tune is an MP3; that one plays as audio.
 
 let ctx = null, master = null;
 let current = null;                       // {key, stop()}
 const files = new Map();                  // url -> Promise of the parsed song
+
+// ---- multi-sampled acoustic grand piano (Salamander Yamaha C5) ----
+
+const SAMPLES = [
+  [33, 'A1'], [36, 'C2'], [39, 'Ds2'], [42, 'Fs2'],
+  [45, 'A2'], [48, 'C3'], [51, 'Ds3'], [54, 'Fs3'],
+  [57, 'A3'], [60, 'C4'], [63, 'Ds4'], [66, 'Fs4'],
+  [69, 'A4'], [72, 'C5'], [75, 'Ds5'], [78, 'Fs5'],
+  [81, 'A5'], [84, 'C6'], [87, 'Ds6'], [90, 'Fs6'],
+  [93, 'A6'], [96, 'C7'],
+];
+// Stage 1 core tier (5 samples, ~355 KB): loads first so slow mobile data starts playing grand piano almost immediately;
+// Stage 2 loads the remaining 17 samples quietly in the background and upgrades subsequent notes seamlessly.
+const CORE_MIDIS = new Set([36, 48, 60, 72, 84]);
+const CORE_SAMPLES = SAMPLES.filter(([m]) => CORE_MIDIS.has(m));
+const EXTRA_SAMPLES = SAMPLES.filter(([m]) => !CORE_MIDIS.has(m));
+const rawSamples = new Map();             // midi -> Promise<ArrayBuffer | null>
+const decodedByCtx = new WeakMap();       // BaseAudioContext -> {map: Map<midi, AudioBuffer>, pending: Set<number>, core: Promise|null, full: Promise|null}
+
+function sampleUrl(name) {
+  return new URL('vendor/piano/' + name + '.mp3', import.meta.url).href;
+}
+
+function fetchSample(midi, name) {
+  if (!rawSamples.has(midi)) {
+    const p = fetch(sampleUrl(name))
+      .then((r) => (r.ok ? r.arrayBuffer() : null))
+      .catch(() => null)
+      .then((buf) => { if (!buf) rawSamples.delete(midi); return buf; });   // retry next Play if user was offline
+    rawSamples.set(midi, p);
+  }
+  return rawSamples.get(midi);
+}
+
+function loadPiano(c, {all = false} = {}) {
+  let state = decodedByCtx.get(c);
+  if (!state) { state = {map: new Map(), pending: new Set(), core: null, full: null}; decodedByCtx.set(c, state); }
+  const loadList = (list) => Promise.all(list.map(async ([midi, name]) => {
+    if (state.map.has(midi) || state.pending.has(midi)) return;
+    state.pending.add(midi);
+    try {
+      const raw = await fetchSample(midi, name);
+      if (raw) state.map.set(midi, await c.decodeAudioData(raw.slice(0)));
+    } catch (e) { /* synth fallback covers missing samples */ }
+    finally { state.pending.delete(midi); }
+  })).then(() => state.map);
+
+  const coreMissing = CORE_SAMPLES.some(([m]) => !state.map.has(m));
+  if (!state.core || (coreMissing && !CORE_SAMPLES.some(([m]) => state.pending.has(m)))) {
+    state.core = loadList(CORE_SAMPLES);
+  }
+  const extraMissing = EXTRA_SAMPLES.some(([m]) => !state.map.has(m));
+  if (!state.full || (extraMissing && !EXTRA_SAMPLES.some(([m]) => state.pending.has(m)))) {
+    state.full = state.core.then(() => loadList(EXTRA_SAMPLES));
+  }
+  return all ? state.full : state.core;
+}
+
+function nearestSample(map, note) {
+  if (!map || !map.size) return null;
+  let bestMidi = -1, bestDist = Infinity, bestBuf = null;
+  for (const [m, buf] of map) {
+    const d = Math.abs(note - m);
+    if (d < bestDist) { bestDist = d; bestMidi = m; bestBuf = buf; }
+  }
+  return bestBuf ? {midi: bestMidi, buf: bestBuf} : null;
+}
+
+// Lightweight stereo room impulse response (~0.95s exponentially decaying filtered noise) so close-mic'd piano samples
+// sit in a warm, natural acoustic space without needing an audio file.
+function createRoomIR(c) {
+  const rate = c.sampleRate, len = Math.floor(rate * 0.95);
+  const ir = c.createBuffer(2, len, rate);
+  for (let ch = 0; ch < 2; ch++) {
+    const d = ir.getChannelData(ch);
+    let seed = (ch + 1) * 0x51f15e, lp = 0;
+    for (let i = 0; i < len; i++) {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      const white = (seed / 0x7fffffff) - 1;
+      const t = i / len;
+      lp = lp * 0.72 + white * 0.28;                     // warm wood/room damping
+      const env = Math.pow(1 - t, 3.2) * (i < rate * 0.012 ? i / (rate * 0.012) : 1);
+      d[i] = lp * env * 0.55;
+    }
+  }
+  return ir;
+}
+
+function makeBus(c) {
+  const comp = c.createDynamicsCompressor();
+  comp.threshold.value = -10;
+  comp.ratio.value = 4;
+  comp.attack.value = 0.004;
+  comp.release.value = 0.18;
+  const bus = c.createGain();
+  bus.gain.value = 0.85;
+  bus.connect(comp).connect(c.destination);
+  // Subtle room send (dry stays crisp; ~15% warm acoustic tail)
+  try {
+    const conv = c.createConvolver();
+    conv.buffer = createRoomIR(c);
+    const wet = c.createGain();
+    wet.gain.value = 0.15;
+    bus.connect(conv).connect(wet).connect(comp);
+  } catch (e) { /* fallback: dry only */ }
+  return bus;
+}
 
 function audio() {
   if (!ctx) {
@@ -13,14 +121,10 @@ function audio() {
     try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) { /* older Safari */ }
     // 'playback': a larger audio buffer. The default (low latency) makes tablets and phones crackle when many notes sound
     ctx = new (window.AudioContext || window.webkitAudioContext)({latencyHint: 'playback'});
-    const comp = ctx.createDynamicsCompressor();
-    comp.threshold.value = -18;
-    comp.ratio.value = 4;
-    master = ctx.createGain();
-    master.gain.value = 0.5;
-    master.connect(comp).connect(ctx.destination);
+    master = makeBus(ctx);
   }
   if (ctx.state === 'suspended') ctx.resume();
+  loadPiano(ctx);
   return ctx;
 }
 
@@ -68,10 +172,13 @@ function parseMidi(buf) {
   events.sort((x, y) => x.tick - y.tick || (x.type === 'tempo' ? -1 : 0) - (y.type === 'tempo' ? -1 : 0));
   let tempo = 500000, lastTick = 0, sec = 0;
   const open = new Map(), notes = [];
+  let firstTick = Infinity, lastNoteTick = 0;
   for (const e of events) {
     sec += (e.tick - lastTick) * tempo / div / 1e6;
     lastTick = e.tick;
     if (e.type === 'tempo') { tempo = e.tempo; continue; }
+    if (e.type === 'on' && e.tick < firstTick) firstTick = e.tick;
+    if (e.tick > lastNoteTick) lastNoteTick = e.tick;
     const k = e.ch * 128 + e.note;
     if (e.type === 'on') {
       if (open.has(k)) { const n = open.get(k); n.dur = sec - n.t; }
@@ -86,8 +193,24 @@ function parseMidi(buf) {
   const start = notes.length ? notes[0].t : 0;
   for (const n of notes) n.t -= start;                 // no silence before the first note
   const length = notes.reduce((m, n) => Math.max(m, n.t + n.dur), 0);
-  const first = events.find((e) => e.type === 'tempo');
-  return {notes, length, tempo: first ? first.tempo : 500000};     // tempo: microseconds to a quarter note
+  // dominant tempo across the sounding notes (ignoring tick-0 lead-in and trailing skip tempos)
+  let mainTempo = 500000;
+  const spans = new Map();
+  let cur = 500000, pos = firstTick < lastNoteTick ? firstTick : 0;
+  for (const e of events) {
+    if (e.type !== 'tempo') continue;
+    if (e.tick <= pos) cur = e.tempo;
+    else if (e.tick < lastNoteTick) {
+      spans.set(cur, (spans.get(cur) || 0) + (e.tick - pos));
+      pos = e.tick;
+      cur = e.tempo;
+    }
+  }
+  if (lastNoteTick > pos) spans.set(cur, (spans.get(cur) || 0) + (lastNoteTick - pos));
+  let best = 0;
+  for (const [us, ticks] of spans) if (ticks > best) { best = ticks; mainTempo = us; }
+  if (!best) mainTempo = cur;
+  return {notes, length, tempo: mainTempo};     // tempo: microseconds to a quarter note
 }
 
 // ---- the piano ----
@@ -101,7 +224,7 @@ function pianoWave(c) {
   return wave;
 }
 
-function playNote(c, out, n, at) {
+function playSynthNote(c, out, n, at) {
   const freq = 440 * Math.pow(2, (n.note - 69) / 12);
   const vel = n.vel / 127;
   const osc = c.createOscillator();
@@ -125,6 +248,39 @@ function playNote(c, out, n, at) {
   osc.start(at);
   osc.stop(end + 0.6);
   return osc;
+}
+
+function playNote(c, out, n, at, bufs) {
+  const map = bufs || (decodedByCtx.get(c) && decodedByCtx.get(c).map);
+  const hit = nearestSample(map, n.note);
+  if (!hit) return playSynthNote(c, out, n, at);
+
+  const vel = Math.max(0.05, Math.min(1, n.vel / 127));
+  const freq = 440 * Math.pow(2, (n.note - 69) / 12);
+  const src = c.createBufferSource();
+  src.buffer = hit.buf;
+  src.playbackRate.value = Math.pow(2, (n.note - hit.midi) / 12);
+
+  // Velocity-responsive warmth: soft notes (left hand, pads) get a mellower felt-hammer roll-off; loud notes stay open
+  const filter = c.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.Q.value = 0.5;
+  const cutoff = Math.min(18000, Math.max(freq * 2.4, 900 + Math.pow(vel, 1.7) * 16500));
+  filter.frequency.setValueAtTime(cutoff, at);
+
+  const g = c.createGain();
+  const level = 1.45 * Math.pow(vel, 1.35) * (n.note < 48 ? 0.88 : 1);
+  const end = at + n.dur;
+  const relTau = 0.075 + 0.085 * Math.max(0, Math.min(1, (76 - n.note) / 40));   // treble damps faster, bass rings warmer
+  g.gain.setValueAtTime(0.0001, at);
+  g.gain.linearRampToValueAtTime(level, at + 0.004);
+  g.gain.setValueAtTime(level, Math.max(at + 0.005, end));
+  g.gain.setTargetAtTime(0.0001, end, relTau);
+
+  src.connect(filter).connect(g).connect(out);
+  src.start(at);
+  src.stop(end + relTau * 5.5 + 0.08);
+  return src;
 }
 
 // ---- playing a tune, looped ----
@@ -176,7 +332,7 @@ function loopMidi(song, key) {
 
 export function playing() { return current ? current.key : null; }
 
-// the tempo of a tune's MIDI file in quarter notes a minute (the sheets have none), or 0 when it has none
+// the tempo of a tune's MIDI file in quarter notes a minute (fallback when a sheet has no midi.bpm), or 0 when it has none
 export async function tuneTempo(url) {
   if (!url || /\.mp3$/.test(url)) return 0;
   try { return Math.round(60e6 / (await loadSong(url)).tempo); } catch (e) { return 0; }
@@ -194,17 +350,18 @@ export function playScore(score, o) {
   const out = c.createGain();
   out.connect(master);
   const spq = 60 / (o.bpm * (o.speed || 1));            // seconds to a quarter note
-  const from = Math.max(0, Math.min(o.from || 0, score.length - 0.25)), span = Math.max(0.25, score.length - from);
+  const full = Math.max(0.25, score.length), from = Math.max(0, Math.min(o.from || 0, full - 0.25));
   const mute = o.mute || {};
   const evs = score.events.filter((e) => !mute[e.hand]);
   let first = 0;
   while (first < evs.length && evs[first].q < from - 1e-6) first++;
-  const t0 = c.currentTime + 0.12;                      // when `from` sounds, the first time through
+  const t0Ref = {t0: 0, started: false};
   const oscs = new Set();
   let i = first, lap = 0, stopped = false, timer = null, raf = 0, shown = '';
   const position = () => {
-    const q = (c.currentTime - t0) / spq;
-    return q < 0 ? from : o.loop ? from + (q % span) : Math.min(score.length, from + q);
+    if (!t0Ref.started) return from;
+    const q = (c.currentTime - t0Ref.t0) / spq;
+    return q < 0 ? from : o.loop ? (from + q) % full : Math.min(score.length, from + q);
   };
   const finish = () => control.stop();
   const tick = () => {
@@ -213,10 +370,10 @@ export function playScore(score, o) {
     for (;;) {
       if (i >= evs.length) {
         if (!o.loop || !evs.length) break;
-        if (t0 + (lap + 1) * span * spq > horizon) break;
-        lap++; i = first; continue;
+        if (t0Ref.t0 + ((lap + 1) * full - from) * spq > horizon) break;
+        lap++; i = 0; continue;
       }
-      const e = evs[i], when = t0 + (lap * span + e.q - from) * spq;
+      const e = evs[i], when = t0Ref.t0 + (lap * full + e.q - from) * spq + (e.off || 0);
       if (when > horizon) break;
       i++;
       if (when < c.currentTime - 0.3) continue;         // the page was suspended: skip what is long past
@@ -224,7 +381,7 @@ export function playScore(score, o) {
       oscs.add(osc);
       osc.onended = () => oscs.delete(osc);
     }
-    if (!o.loop && c.currentTime > t0 + span * spq + 0.4) { finish(); return; }
+    if (!o.loop && c.currentTime > t0Ref.t0 + (full - from) * spq + 0.4) { finish(); return; }
     timer = setTimeout(tick, 200);
   };
   const frame = () => {
@@ -252,26 +409,30 @@ export function playScore(score, o) {
     },
   };
   current = control;
-  tick();
-  frame();
+  const begin = () => {
+    if (stopped) return;
+    t0Ref.t0 = c.currentTime + 0.1;
+    t0Ref.started = true;
+    tick();
+    frame();
+  };
+  const state = decodedByCtx.get(c);
+  if (state && CORE_SAMPLES.every(([m]) => state.map.has(m))) { loadPiano(c); begin(); }
+  else Promise.race([loadPiano(c), new Promise((r) => setTimeout(r, 1500))]).then(begin);
   return control;
 }
 
 // for the tests: a score rendered without a speaker (peak level, how loud on the whole, how many seconds long)
 export async function renderScoreForTest(score, bpm, seconds = 10) {
-  const c = new OfflineAudioContext(1, 44100 * seconds, 44100);
-  const comp = c.createDynamicsCompressor();
-  comp.threshold.value = -18;
-  comp.ratio.value = 4;
-  const g = c.createGain();
-  g.gain.value = 0.5;
-  g.connect(comp).connect(c.destination);
+  const c = new OfflineAudioContext(2, 44100 * seconds, 44100);
+  const g = makeBus(c);
+  const bufs = await loadPiano(c, {all: true});
   const spq = 60 / bpm;
-  for (const e of score.events) if (e.q * spq < seconds) playNote(c, g, {note: e.note, vel: e.vel, dur: Math.max(0.08, e.d * spq * 0.97)}, e.q * spq + 0.05);
+  for (const e of score.events) if (e.q * spq < seconds) playNote(c, g, {note: e.note, vel: e.vel, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(0.01, e.q * spq + 0.05 + (e.off || 0)), bufs);
   const data = (await c.startRendering()).getChannelData(0);
   let peak = 0, sum = 0;
   for (const v of data) { peak = Math.max(peak, Math.abs(v)); sum += v * v; }
-  return {peak, rms: Math.sqrt(sum / data.length), notes: score.events.length};
+  return {peak, rms: Math.sqrt(sum / data.length), notes: score.events.length, sampled: bufs.size};
 }
 
 // a score as a standard MIDI file (format 1: the melody and the notes added to it on one track, the left hand and the
@@ -288,8 +449,10 @@ export function toMidi(score, bpm, title = '') {
     if (tempo) { const us = Math.round(60e6 / bpm); vlq(0, t); t.push(0xff, 0x51, 3, (us >> 16) & 0xff, (us >> 8) & 0xff, us & 0xff); vlq(0, t); t.push(0xff, 0x58, 4, 4, 2, 24, 8); }
     vlq(0, t); t.push(0xc0 | ch, 0);                                  // acoustic grand piano
     const list = [];
+    const tps = bpm / 60 * DIV;
     for (const e of events) {
-      const on = Math.round(e.q * DIV), off = Math.max(on + 1, Math.round((e.q + e.d * 0.97) * DIV));
+      const shift = Math.round((e.off || 0) * tps);
+      const on = Math.max(0, Math.round(e.q * DIV) + shift), off = Math.max(on + 1, Math.round((e.q + e.d * 0.97) * DIV));
       list.push([on, 1, 0x90 | ch, e.note, Math.max(1, Math.min(127, e.vel))], [off, 0, 0x80 | ch, e.note, 0]);
     }
     list.sort((a, b) => a[0] - b[0] || a[1] - b[1]);                  // an off before an on at the same tick
@@ -326,7 +489,7 @@ export async function play(url, key) {
     if (current !== ctl) ctl.stop();
     return;
   }
-  const song = await loadSong(url);
+  const [song] = await Promise.all([loadSong(url), Promise.race([loadPiano(audio()), new Promise((r) => setTimeout(r, 1500))])]);
   if (current !== token) return;                       // stopped (or another tune) while loading
   current = loopMidi(song, key);
 }
@@ -360,19 +523,15 @@ export async function prefetch(urls, onProgress, parallel = 8) {
 // for the tests: the parser, and a tune rendered without a speaker (peak level, seconds)
 export async function renderForTest(url, seconds = 8, withSamples = false) {
   const song = parseMidi(await (await fetch(url)).arrayBuffer());
-  const c = new OfflineAudioContext(1, 44100 * seconds, 44100);
-  const comp = c.createDynamicsCompressor();
-  comp.threshold.value = -18;
-  comp.ratio.value = 4;
-  const g = c.createGain();
-  g.gain.value = 0.5;
-  g.connect(comp).connect(c.destination);
-  for (const n of song.notes) if (n.t < seconds) playNote(c, g, n, n.t + 0.05);
+  const c = new OfflineAudioContext(2, 44100 * seconds, 44100);
+  const g = makeBus(c);
+  const bufs = await loadPiano(c, {all: true});
+  for (const n of song.notes) if (n.t < seconds) playNote(c, g, n, n.t + 0.05, bufs);
   const buf = await c.startRendering();
   const data = buf.getChannelData(0);
   let peak = 0, sum = 0;
   for (const v of data) { peak = Math.max(peak, Math.abs(v)); sum += v * v; }
-  return {notes: song.notes.length, length: song.length, peak, rms: Math.sqrt(sum / data.length), samples: withSamples ? Array.from(data) : undefined};
+  return {notes: song.notes.length, length: song.length, peak, rms: Math.sqrt(sum / data.length), sampled: bufs.size, samples: withSamples ? Array.from(data) : undefined};
 }
 
 export {parseMidi};

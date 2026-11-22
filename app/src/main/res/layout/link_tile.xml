@@ -20,12 +20,29 @@
             android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:orientation="vertical">
-        <TextView
-                android:id="@+id/linkTitle"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:maxLines="1" android:ellipsize="end"
-                android:textColor="?attr/hymnText"
-                android:textStyle="bold"/>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+            <TextView
+                    android:id="@+id/linkTitle"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLines="1" android:ellipsize="end"
+                    android:textColor="?attr/hymnText"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:id="@+id/linkTag"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:paddingLeft="7dp" android:paddingRight="7dp"
+                    android:paddingTop="1dp" android:paddingBottom="1dp"
+                    android:background="@drawable/link_tag_bg"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:visibility="gone"/>
+        </LinearLayout>
         <TextView
                 android:id="@+id/linkSub"
                 android:layout_width="match_parent" android:layout_height="wrap_content"

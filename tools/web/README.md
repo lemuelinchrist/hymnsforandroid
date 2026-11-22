@@ -109,7 +109,7 @@ Play button, and it plays what is in front of you; the sheet alone (Sheet only) 
 sheet as it is shown: in its key (transposing), with this
 device's chord edits, and, with Both hands on, the piano part, else the melody with the chords softly under it. The notes
 that sound light up, the bar that sounds is shaded, and the page follows them until the reader scrolls it by hand (the
-next Play follows again); a tap on a note, or on a bar, plays from there. A row under the toolbar, there from the first
+next Play follows again); a tap on a note, or on a bar, highlights that start measure in red and plays from there (stopping and pressing Play starts from the red measure again until "From the start" or ✕ clears it, while Loop wraps back to the beginning of the sheet on subsequent passes). A row under the toolbar, there from the first
 Play until its ✕, has Play / Stop, back to the start, the **tempo** (a slider showing ♩ = beats a minute, from half to one
 and a half times the tune's, by twentieths; a double tap goes back to the tune's), **All | Melody | Accompaniment** (what is
 heard; the accompaniment is the left hand, or the chords), and Loop. **Save MIDI** (in ⋯) saves the sheet as a MIDI file:
@@ -118,8 +118,8 @@ same place with the new notes.
 
 The notes are not read from a MIDI file or from Verovio but made from the sheet by `piano.js` (`scoreOf`), the same data that
 draws the second staff, so what is heard is what is drawn: tied notes are one note, the pedal makes a left hand note ring, and
-repeats and endings are played out (the first ending is left out the second time). The tempo is the one of the hymn's tune
-file, or the `midi.bpm` a sheet of ours names for itself (it comes first), folded into 50 to 160 where a file counts the beat as an eighth. The sound is the Play button's
+repeats and endings are played out (the first ending is left out the second time). The tempo is the sheet's `scoreDef/@midi.bpm`
+(set from `\tempo`, `leadsheetData` `verseBpm`, the dominant sounding tempo of the hymn's MIDI file adjusted for 2×/½× beat-unit differences, or the lead-sheet editor), falling back to the tune's MIDI file (`parseMidi` dominant sounding tempo). The sound is the Play button's
 small Web Audio piano (`player.js`, `playScore`); starting the sheet stops the tune and the other way round. A hymn with no tune file but a sheet has an enabled Play: on the lyrics it opens the Sheet tab, waits until the sheet is drawn and plays it (audio is unlocked inside the tap first); with no tempo of its own a sheet plays at 110.
 
 ## Chord edits
@@ -202,7 +202,7 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/sheetpanel.js` | the sheet with its toolbar, the ⋯ menu, the panels and the player's row; both apps run it |
 | `src/host.js`, `src/ui.js` | what the sheet code gets from the app it runs in; small helpers (elements, icons, the popup menu, what the device keeps) |
 | `android/` | the Android app's sheet viewer page around the shared code; `shared.txt` lists the files it takes from `src/` |
-| `src/player.js` | Play: reads the app's MIDI files (`res/raw/m<tune>.mid`) and plays them looped with a small Web Audio piano |
+| `src/player.js` | Play: reads the app's MIDI files (`res/raw/m<tune>.mid`) and plays them (and sheets) with Web Audio using multi-sampled Salamander Grand Piano MP3s (`vendor/piano/`) and a synthesized fallback |
 | `src/editor.js`, `src/edits.js` | the chord editor panel; edits on the device, export and import |
 | `src/piano.js`, `src/pianopanel.js` | Both hands: the piano part written into a sheet's MEI, and the notes to play (`scoreOf`, `playOrder`); the panel at the bottom that chooses how the hands play. The rules are `music.js`, copied by `build.py` from `tools/lead-sheet-editor/` |
 | `src/sheetplayer.js` | Play sheet: the row of controls, lighting up the notes, tap to play from there |
@@ -211,7 +211,7 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/sw.js`, `src/manifest.webmanifest` | service worker (offline) and install manifest; `build.py` writes the file lists in |
 
 Offline: the service worker precaches only the core shell (`SHELL`) and `data/version.json` on install (plus refreshing any `LAZY` entries already cached from a previous build) so first-visit shared hymn links open from a single ~24–57 KB content-hashed pre-resolved shard (`hymns/<hash>/<group>-<bucket>.json.gz`) without waiting for the 14 MB SQLite database, `sql-wasm.wasm`, sheet modules, or `qrcode.js`. The full SQLite database downloads in the background (kept in IndexedDB; word search and Browse show inline progress if opened before it finishes), and `app.js` (`offlineDownload`) then fetches the deferred scripts (`LAZY`), all sheet/lyric packs, Verovio, and every tune (~30 MB total) in the background about 8 s after start, once per build; Settings → Offline shows it and can start it again.
-| `vendor/` | sql.js 1.13.0 (SQLite in WebAssembly, MIT licence); qrcode.js 1.4.4 (QR Code Generator for JavaScript by Kazuhiko Arase, MIT licence; draws the QR code of Settings → Share the app); Noto Nastaliq Urdu 4.000 (SIL Open Font License), the font of Urdu text (`:lang(ur)` in `app.css`) |
+| `vendor/` | sql.js 1.13.0 (SQLite in WebAssembly, MIT licence); qrcode.js 1.4.4 (QR Code Generator for JavaScript by Kazuhiko Arase, MIT licence; draws the QR code of Settings → Share the app); Noto Nastaliq Urdu 4.000 (SIL Open Font License), the font of Urdu text (`:lang(ur)` in `app.css`); `piano/` — Salamander Grand Piano (Yamaha C5, by Alexander Holm, CC-BY 3.0), 22 compact MP3 samples (`A1`–`C7`, every minor 3rd) |
 | `build.py`, `serve.py` | the build, and a local server that serves `dist/` the way GitHub Pages does |
 | `dist/` | build output, not in git |
 

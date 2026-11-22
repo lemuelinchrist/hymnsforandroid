@@ -597,14 +597,75 @@ def label_to_stanza(label):
 
 
 # ------------------------------------------------------------------ one hymn
+def tunes_differ(a, b):
+    ta, tb = (a or '').strip(), (b or '').strip()
+    if not ta or ta == '0' or not tb or tb == '0':
+        return False
+    return ta != tb and not ta.startswith(tb) and not tb.startswith(ta)
+
+
+def find_sheet_by_tune(c, hid, grp, no, pid, tune):
+    t = (tune or '').strip()
+    if not t or t == '0':
+        return None
+    twin_id = ('C' + str(no)) if grp == 'Z' else (('CS' + str(no)) if grp == 'ZS' else None)
+    is_zh = grp in ('C', 'CS', 'Z', 'ZS')
+    best, best_key = None, None
+    for cid, cgrp, cno_s, cpid in c.execute(
+            "select _id, hymn_group, no, parent_hymn from hymns where trim(tune) = ? and _id != ?", (t, hid)):
+        if not os.path.exists(os.path.join(MEI, cid + '.mei')):
+            continue
+        if cid == twin_id:
+            rank = 0
+        elif cgrp == 'BF' and pid and cpid == pid:
+            rank = 1
+        elif is_zh:
+            rank = 2 if cgrp in ('C', 'CS') else (3 if cgrp == 'BF' else (4 if cgrp == 'E' else (5 if cgrp == 'NS' else 6)))
+        else:
+            rank = 2 if cgrp == 'E' else (3 if cgrp == 'BF' else (4 if cgrp == 'NS' else (5 if cgrp == 'CH' else (6 if cgrp in ('C', 'CS') else 7))))
+        try:
+            cno = int(cno_s)
+        except Exception:
+            cno = 10**9
+        key = (rank, cno)
+        if best_key is None or key < best_key:
+            best_key, best = key, cid
+    return best
+
+
+def sheet_source(c, hid):
+    """Same sheet-borrowing rule as HymnsDao.get / tools/web/build.py: parent's sheet unless ownTune, else same-tune sheet."""
+    row = c.execute("select hymn_group, no, parent_hymn, tune, new_tune from hymns where _id=?", (hid,)).fetchone()
+    if not row:
+        return None, 'hymn not in database'
+    grp, no, pid, tune, nt = row
+    if not pid:
+        return None, 'no parent hymn to borrow the sheet from'
+    prow = c.execute("select tune, new_tune from hymns where _id=?", (pid,)).fetchone()
+    ptune, pnt = (prow[0], prow[1]) if prow else (None, None)
+    own_tune = (nt == 1 and pnt != 1) or tunes_differ(tune, ptune)
+    if own_tune:
+        src = find_sheet_by_tune(c, hid, grp, no, pid, tune)
+        if not src:
+            return None, 'own tune (%s) differs from %s and no matching sheet exists' % ((tune or '').strip(), pid)
+        return src, None
+    # walk up to parent (or grandparent) with a sheet
+    cur, seen = pid, {hid}
+    while cur and cur not in seen:
+        seen.add(cur)
+        if os.path.exists(os.path.join(MEI, cur + '.mei')):
+            return cur, None
+        nxt = c.execute("select parent_hymn from hymns where _id=?", (cur,)).fetchone()
+        cur = nxt[0] if nxt else None
+    return None, 'the parent hymn %s has no sheet' % pid
+
+
 def build(c, hid):
     row = c.execute("select parent_hymn,first_stanza_line from hymns where _id=?", (hid,)).fetchone()
-    parent = row[0]
+    parent, err = sheet_source(c, hid)
     if not parent:
-        return None, 'no English hymn to borrow the sheet from', None
+        return None, err, None
     path = os.path.join(MEI, parent + '.mei')
-    if not os.path.exists(path):
-        return None, 'the English hymn %s has no sheet' % parent, None
     segs = segments(mei_slots(path))
     en = db_stanzas(c, parent)
     fr = db_stanzas(c, hid)
@@ -900,7 +961,7 @@ def main():
             if isinstance(problems, str):
                 rows.append((hid, 'no-sheet', '', problems))
                 continue
-            parent = c.execute("select parent_hymn from hymns where _id=?", (hid,)).fetchone()[0]
+            parent = sheet_source(c, hid)[0] or ''
             rows.append((hid, 'needs-review', parent, ' | '.join(problems)))
             if review:
                 title = (c.execute("select first_stanza_line from hymns where _id=?", (hid,)).fetchone()[0] or '')

@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'idea'
 
-def hymnAppVersion = "v5.10.11"
+def hymnAppVersion = "v5.11"
 def autoVersionCode = ((System.currentTimeMillis() - 1704067200000L) / 60000).toInteger()
 
 
@@ -130,6 +130,7 @@ def copyViewer = tasks.register('copyViewer', Sync) {
     inputs.file(new File(web, 'android/shared.txt'))
     from(new File(web, 'src')) { include shared }
     from(new File(web, 'android')) { exclude 'shared.txt' }
+    from(new File(web, 'vendor/piano')) { include '*.mp3'; into 'vendor/piano' }
     from(rootProject.file('tools/lead-sheet-editor/music.js'))
     into new File(viewerAssets, 'viewer')
 }

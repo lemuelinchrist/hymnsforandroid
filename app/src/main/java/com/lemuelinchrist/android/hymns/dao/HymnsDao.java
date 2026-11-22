@@ -211,13 +211,13 @@ public class HymnsDao {
     }
 
     /**
-     * The YouTube and SoundCloud recordings of a hymn itself (not its parent's), YouTube first, in order.
-     * The link table has the publisher in {@code label}, the album in {@code album} and {@code instrumental} (1 or NULL).
+     * Sung YouTube and SoundCloud recordings of a hymn itself (not its parent's), YouTube first, in order.
+     * The link table has the publisher in {@code label}, the album in {@code album} and {@code instrumental} (NULL/0 for sung).
      */
     public ArrayList<Recording> getRecordings(String hymnId) {
         ArrayList<Recording> recordings = new ArrayList<>();
         try (Cursor cursor = database.rawQuery("select kind, label, album, instrumental, url from link where hymn_id = ?"
-                + " and kind in ('youtube', 'soundcloud') order by kind desc, n_order", new String[]{hymnId})) {
+                + " and kind in ('youtube', 'soundcloud') and ifnull(instrumental, 0) = 0 order by kind desc, n_order", new String[]{hymnId})) {
             while (cursor.moveToNext()) {
                 recordings.add(new Recording(cursor.getString(0), cursor.getString(1), cursor.getString(2),
                         cursor.getInt(3) == 1, cursor.getString(4)));
@@ -226,6 +226,27 @@ public class HymnsDao {
             // none then
         }
         return recordings;
+    }
+
+    /**
+     * Universal instrumental recordings for a tune code (YouTube first, then SoundCloud, in {@code n_order}).
+     * Instrumental links are keyed by trimmed tune code in {@code link.hymn_id}, shared across all languages.
+     */
+    public ArrayList<Recording> getInstrumentals(String tune) {
+        ArrayList<Recording> instrumentals = new ArrayList<>();
+        if (tune == null) return instrumentals;
+        String t = tune.trim();
+        if (t.isEmpty() || "0".equals(t)) return instrumentals;
+        try (Cursor cursor = database.rawQuery("select kind, label, album, instrumental, url from link where hymn_id = ?"
+                + " and kind in ('youtube', 'soundcloud') and instrumental = 1 order by kind desc, n_order", new String[]{t})) {
+            while (cursor.moveToNext()) {
+                instrumentals.add(new Recording(cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                        cursor.getInt(3) == 1, cursor.getString(4)));
+            }
+        } catch (Exception e) {
+            // none then
+        }
+        return instrumentals;
     }
 
     /** The ids of the New Tunes of a hymn (the hymns that have it as parent and are marked new_tune), in number order. */
@@ -250,21 +271,98 @@ public class HymnsDao {
     }
 
     /**
-     * True for a New Tune whose parent is not one (a BF New Tune of an English hymn): its tune, sheet music, piano videos and
-     * recordings are its own and never come from the parent, which has another tune. A translation of a New Tune is
-     * marked new_tune too, but its parent is the New Tune, so it still borrows from it.
+     * True for a New Tune whose parent is not one (a BF New Tune of an English hymn), or a child hymn whose own tune
+     * differs from its parent's tune: its tune, sheet music, piano videos and recordings never come from the parent,
+     * which has another tune. A translation of a New Tune is marked new_tune too, but its parent is the New Tune, so
+     * it still borrows from it.
      */
     public boolean startsOwnTune(String hymnId) {
-        try (Cursor cursor = database.rawQuery("select h.new_tune = 1 and p._id is not null and ifnull(p.new_tune, 0) != 1"
-                + " from hymns h left join hymns p on p._id = h.parent_hymn where h._id = ?", new String[]{hymnId})) {
+        try (Cursor cursor = database.rawQuery(
+                "select (h.new_tune = 1 and p._id is not null and ifnull(p.new_tune, 0) != 1)"
+                        + " or (p._id is not null"
+                        + " and trim(ifnull(h.tune, '')) not in ('', '0')"
+                        + " and trim(ifnull(p.tune, '')) not in ('', '0')"
+                        + " and trim(h.tune) != trim(p.tune)"
+                        + " and trim(h.tune) not like trim(p.tune) || '%'"
+                        + " and trim(p.tune) not like trim(h.tune) || '%')"
+                        + " from hymns h left join hymns p on p._id = h.parent_hymn where h._id = ?",
+                new String[]{hymnId})) {
             return cursor.moveToFirst() && cursor.getInt(0) == 1;
         } catch (Exception e) {
             return false;
         }
     }
 
+    /** Whether two non-empty tune codes represent different melodies (ignoring prefix-length differences). */
+    private static boolean tunesDiffer(String a, String b) {
+        String ta = a == null ? "" : a.trim();
+        String tb = b == null ? "" : b.trim();
+        if (ta.isEmpty() || ta.equals("0") || tb.isEmpty() || tb.equals("0")) return false;
+        return !ta.equals(tb) && !ta.startsWith(tb) && !tb.startsWith(ta);
+    }
+
     /**
-     * The nearest hymn above this one (its parent, the parent's parent, ...) that has YouTube or SoundCloud links of its
+     * Finds the best existing sheet matching {@code hymn}'s own tune code (used when {@code ownTune} is true and the
+     * hymn has no own sheet). Preference: Traditional Chinese twin (C/CS for Z/ZS) -> BF New Tune of the same parent
+     * -> Chinese sheet for Chinese hymns, or E/BF/NS/CH/C/CS for others, breaking ties by hymn number.
+     */
+    private String findSheetByTune(Hymn hymn) {
+        String tune = hymn.getTune();
+        if (isEmpty(tune) || "0".equals(tune)) return null;
+        String grp = hymn.getGroup();
+        String twinId = "Z".equals(grp) ? "C" + hymn.getNo() : ("ZS".equals(grp) ? "CS" + hymn.getNo() : null);
+        boolean isChinese = "C".equals(grp) || "CS".equals(grp) || "Z".equals(grp) || "ZS".equals(grp);
+        String parentId = hymn.getParentHymn();
+        String bestId = null;
+        int bestRank = Integer.MAX_VALUE;
+        int bestNo = Integer.MAX_VALUE;
+        try (Cursor cursor = database.rawQuery(
+                "select _id, hymn_group, no, parent_hymn from hymns where trim(tune) = ? and _id != ?",
+                new String[]{tune, hymn.getHymnId()})) {
+            while (cursor.moveToNext()) {
+                String cid = cursor.getString(0);
+                if (!hymn.hasSheetMusic(cid)) continue;
+                String cgrp = cursor.getString(1);
+                String cnoStr = cursor.getString(2);
+                String cparent = cursor.getString(3);
+                int rank;
+                if (cid.equals(twinId)) {
+                    rank = 0;
+                } else if ("BF".equals(cgrp) && !isEmpty(parentId) && parentId.equals(cparent)) {
+                    rank = 1;
+                } else if (isChinese) {
+                    if ("C".equals(cgrp) || "CS".equals(cgrp)) rank = 2;
+                    else if ("BF".equals(cgrp)) rank = 3;
+                    else if ("E".equals(cgrp)) rank = 4;
+                    else if ("NS".equals(cgrp)) rank = 5;
+                    else rank = 6;
+                } else {
+                    if ("E".equals(cgrp)) rank = 2;
+                    else if ("BF".equals(cgrp)) rank = 3;
+                    else if ("NS".equals(cgrp)) rank = 4;
+                    else if ("CH".equals(cgrp)) rank = 5;
+                    else if ("C".equals(cgrp) || "CS".equals(cgrp)) rank = 6;
+                    else rank = 7;
+                }
+                int cno = Integer.MAX_VALUE;
+                try {
+                    cno = Integer.parseInt(cnoStr);
+                } catch (Exception ignored) {
+                }
+                if (rank < bestRank || (rank == bestRank && cno < bestNo)) {
+                    bestRank = rank;
+                    bestNo = cno;
+                    bestId = cid;
+                }
+            }
+        } catch (Exception e) {
+            Log.e(HymnsDao.class.getName(), "Error finding sheet by tune for " + hymn.getHymnId(), e);
+        }
+        return bestId;
+    }
+
+    /**
+     * The nearest hymn above this one (its parent, the parent's parent, ...) that has sung YouTube or SoundCloud links of its
      * own, or null. A hymn with no such links of its own shows that hymn's. The search stops at a New Tune
      * ({@link #startsOwnTune}): the hymns above it sing another tune.
      */
@@ -272,7 +370,8 @@ public class HymnsDao {
         String id = parentId;
         for (int depth = 0; depth < 5 && id != null && !id.isEmpty(); depth++) {
             try (Cursor cursor = database.rawQuery(
-                    "select 1 from link where hymn_id = ? and kind in ('youtube', 'soundcloud') limit 1", new String[]{id})) {
+                    "select 1 from link where hymn_id = ? and kind in ('youtube', 'soundcloud') and ifnull(instrumental, 0) = 0 limit 1",
+                    new String[]{id})) {
                 if (cursor.moveToFirst()) return id;
             }
             if (startsOwnTune(id)) return null;
@@ -353,10 +452,15 @@ public class HymnsDao {
             // *** Get Parent Hymn then Merge!
             Hymn parentHymn = get(hymn.getParentHymn(), depth + 1);
             if (parentHymn != null) {
-                // a New Tune of a hymn with another tune keeps its own music: no composer, time, tune or key from the parent
-                boolean ownTune = hymn.isNewTune() && !parentHymn.isNewTune();
+                // a New Tune or translation with a different tune keeps its own music: no composer, time, tune or key from the parent
+                boolean ownTune = (hymn.isNewTune() && !parentHymn.isNewTune())
+                        || tunesDiffer(hymn.getTune(), parentHymn.getTune());
                 hymn.setOwnTune(ownTune);
-                if (!ownTune) hymn.setAncestorSheetId(parentHymn.getRootSheetId());
+                if (!ownTune) {
+                    hymn.setAncestorSheetId(parentHymn.getRootSheetId());
+                } else if (!hymn.hasOwnSheetMusic()) {
+                    hymn.setTuneSheetId(findSheetByTune(hymn));
+                }
                 if (isEmpty(hymn.getAuthor()))
                     hymn.setAuthor(parentHymn.getAuthor());
                 if (!ownTune && isEmpty(hymn.getComposer()))

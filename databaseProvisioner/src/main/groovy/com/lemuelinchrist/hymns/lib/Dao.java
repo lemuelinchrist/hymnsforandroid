@@ -140,6 +140,15 @@ public class Dao {
         em.getTransaction().commit();
     }
 
+    /** Trimmed tune codes that already have a non-imported instrumental link (e.g. SoundCloud). */
+    public Set<String> existingInstrumentalTunes() {
+        Set<String> tunes = new HashSet<>();
+        for (Object o : em.createNativeQuery("select distinct hymn_id from link where instrumental = 1").getResultList()) {
+            if (o != null) tunes.add(o.toString().trim());
+        }
+        return tunes;
+    }
+
     public void addRelatedHymn(String parentHymn, String relatedToAdd) {
         if (parentHymn == null || parentHymn.isEmpty()) {
             System.out.println("Warning! no parent hymn! exiting");

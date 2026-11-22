@@ -181,9 +181,9 @@ CREATE TABLE "stanza" (
 );
 CREATE TABLE "link" (                   -- links of a hymn to places outside the app (piano videos, and the YouTube and SoundCloud links of the youth books)
   "id" INTEGER NOT NULL PRIMARY KEY,
-  "hymn_id" TEXT NOT NULL,              -- a HYMN ID (not a tune code), e.g. 'E8'
-  "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune), 'youtube' or 'soundcloud' (a recording of this hymn; a hymn with none of its own shows those of the hymn above it, see the links card)
-  "label" TEXT,                         -- piano: the text shown ('1st tune', 'Alt tune: 295', 'New tune' ...); youtube/soundcloud: the PUBLISHER of the recording ('NYCYPCD', 'Hymn CDs'; empty when unknown, never the channel)
+  "hymn_id" TEXT NOT NULL,              -- a HYMN ID for piano / sung links (e.g. 'E8'), or a trimmed tune code for instrumental=1 links (e.g. '113355666653')
+  "kind" TEXT NOT NULL,                 -- 'piano' (a piano video of the hymn's tune), 'youtube' or 'soundcloud' (a sung recording of this hymn/parent, or an instrumental of its tune)
+  "label" TEXT,                         -- piano: the text shown ('1st tune', 'Alt tune: 295', 'New tune' ...); youtube/soundcloud: the PUBLISHER of the recording ('NYCYPCD', 'TWGBR', 'Hymn CDs'; empty when unknown, never the channel)
   "url" TEXT NOT NULL,                  -- the whole address, e.g. 'https://www.youtube.com/watch?v=DL6lgn78DcU'
   "n_order" INTEGER,                    -- order among the hymn's links of that kind, from 1
   "album" TEXT,                         -- youtube/soundcloud: the album or playlist the recording is from
@@ -252,8 +252,10 @@ CREATE VIEW "hymns_stanza" AS SELECT * FROM hymns INNER JOIN stanza ON hymns._id
    | sheet music | — (resolved separately, §11.1) |
 
    **Own tune:** a New Tune whose parent is not one (`new_tune` = 1 on the hymn, not on its parent: a BF New Tune of an English
-   hymn) does **not** take composer, time, tune or key from the parent, nor its sheet music (§11.1), piano videos or recordings
-   in the links card: they are another tune. A translation of a New Tune has the New Tune as parent and borrows from it as usual.
+   hymn), **or a child hymn whose own non-empty `tune` differs from its parent's `tune`** (ignoring prefix-length differences
+   where one code starts with the other), does **not** take composer, time, tune or key from the parent, nor its sheet music
+   (§11.1), piano videos or recordings in the links card: they are another tune. A translation of a New Tune has the New Tune
+   as parent and borrows from it as usual.
 
    The child's own `no`, `first_stanza_line`, `first_chorus_line`, `hymn_group` are never inherited.
 5. Related set (§5.2).
@@ -344,26 +346,26 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    else (another language's book names, a chapter the book doesn't have, a part before any book) stays plain text. Only
    the link is made: the Bible text is not copied into the app (it is copyrighted).
 5. **Listen and links card** (below the details; hidden when it has nothing to show): label `LISTEN AND LINKS`, then sections, each with a
-   heading (`RECORDINGS`, `PIANO VIDEOS`, `NEW TUNES`, in capitals) and the number of links on its right; a section with nothing is left out.
-   - **Recordings**: the hymn's own `link` rows of kind `youtube` (first) and `soundcloud`, in `n_order`. A row is a link at least 56 dp tall:
-     a round icon (play for YouTube, music for SoundCloud) in the book's accent colour, a first line, a second line and an arrow `↗`. The first
-     line is the **publisher** (`label`: who made the recording: NYCYPCD, Living Stream Ministry, Hymn CDs, the group of a "Playlist (by Group)",
+   heading (`RECORDINGS`, `INSTRUMENTAL`, `PIANO VIDEOS`, `NEW TUNES`, in capitals) and the number of links on its right; a section with nothing is left out.
+   - **Recordings & Instrumental**: `link` rows of kind `youtube` (first) and `soundcloud`, in `n_order` (imported sorted by recording priority from `recordings.tsv`). Sung recordings (`instrumental` IS NULL/0) are keyed by `hymn_id` and shown under `RECORDINGS`; universal instrumental recordings (`instrumental` = 1) are keyed in `link.hymn_id` by the trimmed **tune code**, capped at **one per tune code** on import (keeping the single highest-priority match, while all matched instrumentals stay preserved in `NycypcdYoutube.txt` and `recordings.tsv`), and shown in their own `INSTRUMENTAL` section right below `RECORDINGS` for every hymn across all languages sharing that tune (so a hymn with only an instrumental recording shows `INSTRUMENTAL` instead of `RECORDINGS`, never mistaken for a vocal recording). A row is a link at least 56 dp tall:
+     a round icon (play for sung YouTube, cloud/queue-music for SoundCloud, music note for instrumental) in the book's accent colour, a first line, a second line and an arrow `↗`. The first
+     line is the **publisher** (`label`: who made the recording: NYCYPCD, Living Stream Ministry, TWGBR, Hymn CDs, the group of a "Playlist (by Group)",
      ...), else the **album** (`album`: the album or playlist), else the platform (`YouTube` / `SoundCloud`); the second line is the album
-     after a publisher, else the platform. The YouTube channel is never shown. An instrumental recording (`instrumental` = 1) has
-     ` · Instrumental` (muted) after its first line. A tap opens the stored `url`. A link with neither a publisher nor an album is one a book's
-     editor chose (the Spanish and German youth books): it is always shown. A hymn with **no** recording of its own shows those of the nearest
+     after a publisher, else the platform. The YouTube channel is never shown. An instrumental recording (`instrumental` = 1) also shows an
+     `Instrumental` pill badge (tinted with the book's accent colour) beside its first line so it stays visible even when a long title truncates. A tap opens the stored `url`. A link with neither a publisher nor an album is one a book's
+     editor chose (the Spanish and German youth books): it is always shown. A hymn with **no** sung recording of its own shows those of the nearest
      hymn above it (parent, grandparent, ... up to 5 steps, never past a New Tune whose parent has another tune, §5.1); when that hymn is in another language (`HymnGroup.getLanguage`: English for E/BF/NS/CH,
-     Chinese for the four Chinese books, the youth books and supplements in their main language) each first line starts with the language
-     (`English – NYCYPCD`) so it is not taken for a recording in the hymn's own; a hymn with any recording of its own gets nothing inherited.
+     Chinese for the four Chinese books, the youth books and supplements in their main language) each sung first line starts with the language
+     (`English – NYCYPCD`) so it is not taken for a recording in the hymn's own; a hymn with any sung recording of its own gets nothing inherited. Tune-keyed instrumentals never carry a language prefix (they are language-neutral).
    - **Piano videos**: `link` rows of kind `piano` where `hymn_id` is this hymn, else its parent (never for an own-tune New Tune, §5.1) (`n_order`): the label (`1st tune`) over
      `Piano video · YouTube`. A tap opens the url with `https://www.youtube.com/watch?v=` replaced by `https://www.youtube.com/embed/` (the web
      app opens the watch address as it is).
    - **New tunes**: the hymns whose `parent_hymn` is this hymn, `hymn_group` `BF` and `new_tune` = 1, in number order: a row `BF94 · New tune` /
      `Same words, another tune · opens in the app` (arrow `›`; a tap opens that hymn in the app), and under it, indented, that tune's own
-     recordings (first line as above, second line `BF94 · <album>`). A New Tune itself, or a hymn with none, has no such section.
+     sung recordings and its tune-keyed instrumentals (first line as above, second line `BF94 · <album>`). A New Tune itself, or a hymn with none, has no such section.
    - **Showing more**: a section shows its first 3 links (a New Tune with its recordings counts as one) and a button `Show N more`, which
      becomes `Show fewer`; the links of a book's editor do not count and are always shown. Nothing is dropped for being the 4th: every known
-     recording of the hymn is linked (the import no longer caps them), and a recording of the same title in the same album twice is one
+     sung recording of the hymn is linked (the import no longer caps sung recordings), while instrumental recordings are capped at one (highest priority) per tune code on import (all matched instrumentals stay preserved in `NycypcdYoutube.txt` and `recordings.tsv`); a recording of the same title in the same album twice is one
      (a re-upload; `link_meta.py` keeps the first).
    - **Wide windows**: where the window is 600 dp wide or more (an unfolded foldable, a tablet; `values-w600dp`/`w840dp` `links_columns` = 2 or 3)
      the links are cards in a grid (icon, publisher, the album on up to two lines) instead of rows, a New Tune's recordings following it.
@@ -459,7 +461,7 @@ Toggle. Filled heart when the hymn is in Favorites. Stored as in §8.4.
   hymns with a tune had a file (2026-10). Since hymnal.net serves no MIDI any more, MIDI for newer songs is generated from our own sheet by `tools/hymn-midi` (melody as written, generated left hand; 60 files on 2026-11-12). A song transcribed from a recording (BF473) has a tune code made from its own melody: the scale degrees (1-7, relative to its key) of its first 16 notes (BF500, BF474). Translations get the tune from their parent (§5.1), so they play too.
 - Plays **looped** until stopped. Only one hymn plays at a time. Playback stops when the page changes, the app is
   paused, or the button is tapped again. Icon toggles ▶ / ❚❚.
-- **What it plays** (`Hymn.getSheetToPlay()`): the hymn's sheet (its own, or its parent's when it has no tune of its own, as the sheet button picks it) when the sheet has a melody (not a chords-only sheet) and **either** it is a sheet of ours (`<identifier type="source">Hymns For Android</identifier>`: our own rendition wins over any MIDI file) **or** the hymn has no MIDI file. Otherwise the MIDI file `res/raw/m<tune>.mid`. The sheet is played by `SheetPlayer`, a WebView nobody sees (`assets/viewer/play.html`, `tools/web/android/play.js`) that runs the viewer's own player (`scoreOf` + `playScore`): the viewer's saved Both hands choice, this device's chord edits, the tempo the sheet names (`midi.bpm`, else the tune's MIDI file, else 110), looped like the MIDI file. Its WebView is dropped after two minutes without playing.
+- **What it plays** (`Hymn.getSheetToPlay()`): the hymn's sheet (its own, or its parent's when it has no tune of its own, as the sheet button picks it) when the sheet has a melody (not a chords-only sheet) and **either** it is a sheet of ours (`<identifier type="source">Hymns For Android</identifier>`: our own rendition wins over any MIDI file) **or** the hymn has no MIDI file. Otherwise the MIDI file `res/raw/m<tune>.mid`. The sheet is played by `SheetPlayer`, a WebView nobody sees (`assets/viewer/play.html`, `tools/web/android/play.js`) that runs the viewer's own player (`scoreOf` + `playScore`): the viewer's saved Both hands choice, this device's chord edits, the tempo the sheet names (`midi.bpm`, else 110), looped like the MIDI file. Its WebView is dropped after two minutes without playing.
 - Hidden when there is neither (`Hymn.canPlay()`: no sheet to play and no melody file: no tune, tune `0`, or no `res/raw/m<tune>` file). `playHymn()` still shows "Sorry! hymn not available" if playback fails.
 
 ### 7.3 Sheet music
@@ -835,10 +837,13 @@ Hidden state (not user-visible settings): History, Favorites (§8), chord edits 
 ### 11.1 Which sheet to show
 
 ```
-sheetId(h) = h._id            if sheetMei/<h._id>.mei exists
-           = h.parent_hymn    else if parent set, h is not an own-tune New Tune (§5.1), and sheetMei/<parent>.mei exists
+sheetId(h) = h._id              if sheetMei/<h._id>.mei exists
+           = sheetId(parent)    else if parent set and h is not own-tune (§5.1)
+           = bestByTune(h.tune) else if h is own-tune (§5.1) and a sheet with trim(tune) = h.tune exists
+                                (preferring C/CS twin for Z/ZS, then BF with same parent, then C/CS for Chinese
+                                or E/BF/NS/CH for others, tie-broken by hymn number)
            = none
-lyricsId  = h._id             (passed so a translation can overlay its own words)
+lyricsId  = h._id               (passed so a translation can overlay its own words)
 ```
 
 ### 11.2 Viewer contract
@@ -940,7 +945,7 @@ which both apps run.
 The sheets are lead sheets. Both apps (the sheet code is shared, §11.2) can show a piano part with them (**Both hands**; turning it on opens a panel at the bottom that chooses the style, and Done tucks it down to a bar
 that names the style and opens it again when tapped or dragged up): a left hand
 on a second staff (bass clef, in a brace with the first), made from the chords by a pattern (struck chords, bass and
-chord, arpeggios), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
+chord, arpeggios including full-bar Flowing/Ballad arches with warm 9ths and bass sustain, and Dynamic styles: melody-responsive Adaptive, Rolled harp chords, contemporary Pulse, diatonic Walking bass, and smooth voice-led Chorale), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
 made when the sheet is shown, from the sheet as shown (after transposing and after the device's chord edits), and
 written into the MEI before Verovio draws it; the sheet files have none of it. It is only on the piano sheet with the
 staff shown. The choice is kept on the device, for every hymn or for one hymn alone, by the name of the style, so that
@@ -952,10 +957,10 @@ chords are moved onto the beat for the left hand; the left hand stays under the 
 and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,
 `tools/web/src/piano.js` reads a sheet's bars, chords and melody for it. A native app can run the same file.
 
-Both apps also **play the sheet**: the web app's hymn header's Play button plays the sheet while it is shown, the tune otherwise (the Android viewer and the web app's sheet alone have a ▶ in the toolbar); the notes come from the same reading of the sheet (melody with tied notes
+Both apps also **play the sheet** with multi-sampled Salamander Grand Piano audio (`vendor/piano/*.mp3`, 22 minor-3rd samples `A1`–`C7`, loaded progressively in two stages with an automatic oscillator fallback), expressive metrical/contour dynamics, clean pedal lifts, and subtle chord rolling: the web app's hymn header's Play button plays the sheet while it is shown, the tune otherwise (the Android viewer and the web app's sheet alone have a ▶ in the toolbar); the notes come from the same reading of the sheet (melody with tied notes
 joined, the left hand and the added notes, or the chords softly when Both hands is off), in the order the repeats and endings
-give; the tempo is that of the hymn's tune file, folded into 50 to 160 quarter notes a minute. The elements of the notes that
-sound are marked in the drawn sheet and the bar that sounds is shaded; the page follows the music until the reader scrolls;
+give; the tempo is the sheet's `scoreDef/@midi.bpm` (computed by `ly_to_mei.py` from the dominant sounding tempo of the hymn's MIDI file and adjusted for 2×/½× beat-unit differences, or from `leadsheetData/<id>.json` `verseBpm`, or set by the lead-sheet editor), falling back to the tune's MIDI file (`parseMidi` dominant sounding tempo) or 110. The elements of the notes that
+sound are marked in the drawn sheet and the bar that sounds is shaded; tapping a measure or note highlights that starting measure in red (kept across Stop/Play until "From the start" or closing) and starts there, while Loop wraps back to the beginning of the sheet on subsequent passes; the page follows the music until the reader scrolls;
 the tempo goes from half to one and a half times the tune's; the sheet can be saved as a MIDI file. In the sheet
 toolbar (both apps) the controls used most are in front (Piano | Guitar, Chords only, key, Both hands, zoom, Sheet only for a music
 stand; always one row: when the bar is too narrow it gives up, in this order, the zoom buttons (Smaller and Bigger go into the ⋯ menu; a two-finger pinch on the sheet changes its size on touch screens), the words of Piano | Guitar (icons), Both hands (into ⋯), the widest buttons and the words of Chords only ("Chords"), and Chords only itself (into ⋯); it wraps only below that) and the rest (Edit chords, Original chords, original key and size, light paper, Save MIDI) in a ⋯ menu.
@@ -968,7 +973,7 @@ One file per hymn, MEI 5.0, generated from LilyPond sources by `tools/svg-to-lil
 |---|---|
 | `meiHead//title[@type='main']`, `[@type='subordinate']` | title, subtitle (category) |
 | `meiHead//identifier[@type='hymn']`, `[@type='number']` | Hymn ID, printed number |
-| `scoreDef/@key.sig` (`4f`, `1s`, `0`), `@meter.count/@meter.unit` | key (fifths), time |
+| `scoreDef/@key.sig` (`4f`, `1s`, `0`), `@meter.count/@meter.unit`, `@midi.bpm` | key (fifths), time, quarter-note tempo |
 | `measure/staff/layer/note[@xml:id]` with `verse[@n]/syl[@wordpos,@con]` and `label` | melody; lyric syllables per verse under the staff (`wordpos` i/m/t, `con="d"` dash, `"u"` extender) |
 | `measure/harm[@tstamp]` | chord symbol text using `♭ ♯` (e.g. `A♭`, `C/E`) |
 | `dir[@startid]` | text labels (Chorus, Sisters, D.C. al Fine) |

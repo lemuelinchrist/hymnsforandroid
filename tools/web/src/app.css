@@ -410,15 +410,16 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 .lk-row { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 2px; color: inherit; text-decoration: none; border-top: 1px solid var(--line); min-width: 0; }
 .lk-list > .lk-row:first-child { border-top: 0; }
 .lk-row:hover { background: var(--hover); }
-.lk-ic, .lk-more, .lk-tag { --hover: var(--line); }
+.lk-ic, .lk-more { --hover: var(--line); }
 .lk-row.child { padding-left: 44px; min-height: 50px; border-top-style: dashed; }
 .lk-ic { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--hover); color: var(--g); }
 .lk-ic .icon svg { width: 16px; height: 16px; }
 .lk-row.child .lk-ic { width: 26px; height: 26px; }
 .lk-t { display: grid; min-width: 0; flex: 1; }
-.lk-t1 { font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lk-t1 { display: flex; align-items: center; gap: 6px; min-width: 0; font-weight: 600; color: var(--ink); }
+.lk-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .lk-t2 { font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.lk-tag { margin-left: 6px; padding: 1px 7px; border-radius: 999px; font: 500 11px var(--ui); background: var(--hover); color: var(--muted); vertical-align: 1px; }
+.lk-tag { flex: none; padding: 1px 7px; border-radius: 999px; font: 600 11px/1.3 var(--ui); background: var(--g-soft); color: var(--g); }
 .lk-go { color: var(--muted); flex: none; font-size: 15px; }
 .lk-more { display: block; width: 100%; min-height: 44px; margin-top: 6px; border: 0; border-radius: 8px; cursor: pointer; font: 600 14px var(--ui); background: var(--hover); color: var(--g); }
 @container (min-width: 520px) {

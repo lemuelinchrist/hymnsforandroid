@@ -18,7 +18,7 @@ import csv, re, sys, pathlib, collections
 HERE = pathlib.Path(__file__).resolve().parent
 TXT = HERE.parents[1] / 'databaseProvisioner/src/main/resources/NycypcdYoutube.txt'
 CHANNELS = ("Joseph's Storehouses", 'Loving the Lord - Topic')
-NAMES = {'LSM': 'Living Stream Ministry'}
+NAMES = {'LSM': 'Living Stream Ministry', '臺灣福音書房': 'TWGBR'}
 
 def norm(s): return re.sub(r'[^a-z0-9]+', '', (s or '').lower())
 

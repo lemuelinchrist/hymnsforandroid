@@ -11,20 +11,20 @@ New video ids are added (existing rows keep their album/channel). Then every row
 databaseProvisioner/src/main/resources/NycypcdYoutube.txt (linked) and the *_known.tsv files (their status), else `unmatched`.
 Columns: video id, status, hymns, link label, album, album id, channel, publisher/studio (blank when unknown), title, note,
 platform (youtube / soundcloud), url, instrumental (1 or empty), language (the language the recording is sung in, English name; see guess_language:
-filled once and then kept, so a hand-set value stays; blank = not known yet).
+filled once and then kept, so a hand-set value stays; blank = not known yet), priority (1 = LSM/NYCYPCD/TWGBR, 2 = Melody of Lilies, 3 = others, 5 = low-quality; filled once and kept).
 
 SoundCloud links (Lemuel 2026-11-19, option "mirror"): the database is the source of truth for them (the `link` table, kind
 soundcloud: the youth books' provisioners and links added by hand). Every run rewrites the soundcloud rows of this file from
 app/src/main/assets/hymns.sqlite, so edit the database (and export it), never those rows. Their `video id` is the URL path
 (`user/track`, the key of the row), status is always `linked`, channel `SoundCloud: <user>`, title the track part of the path.
 """
-import argparse, collections, csv, os
+import argparse, collections, csv, os, re
 
 R = os.path.dirname(os.path.abspath(__file__)) + "/"
 REPO = os.path.dirname(os.path.dirname(R.rstrip("/")))
 OUT = R + "recordings.tsv"
 HEAD = ["video id", "status", "hymns", "link label", "album / playlist", "album id", "youtube channel", "publisher / studio", "title", "note",
-        "platform", "url", "instrumental", "language"]
+        "platform", "url", "instrumental", "language", "priority"]
 DB = REPO + "/app/src/main/assets/hymns.sqlite"
 
 
@@ -53,19 +53,64 @@ def guess_language(r):
     return ""
 
 
-def soundcloud_rows():
+PRIORITY_1_SOURCES = {
+    "NYCYPCD",
+    "Living Stream Ministry - Topic", "Living Stream Ministry", "LSM", "SoundCloud: livingstreamministry",
+    "Taiwan Gospel Book Room - Topic", "臺灣福音書房 (official channel)", "Taiwan Gospel Book Room", "臺灣福音書房", "TWGBR",
+}
+
+
+def default_priority(r):
+    """1 = LSM / NYCYPCD / Taiwan Gospel Book Room, 2 = Melody of Lilies, 3 = everything else."""
+    sources = {r[3].strip(), r[6].strip(), r[7].strip()}
+    if sources & PRIORITY_1_SOURCES:
+        return "1"
+    if "Melody of Lilies" in sources:
+        return "2"
+    return "3"
+
+
+UNLINKED_INSTRUMENTAL_ALBUMS = {
+    "Instrumental Hymns",
+    "Instrumental Hymns (by Zack Miner)",
+    "Sweet Feast of Love Divine - Instrumental",
+    "Sweet Feast Of Love Divine (by Hymn CDs)",
+    "Hymns of Praise 2",
+    "Acoustic Hymns (by Andy Nguyen)",
+}
+UNLINKED_INSTRUMENTAL_VIDEOS = {"BCV2sRBFNPo", "fQpMHjyqY3o", "hODiKfKvUUI"}
+
+
+def is_unlinked_instrumental(r):
+    """True when an unlinked recording's album, title, or note shows it is instrumental."""
+    album, title, note = r[4].strip(), r[8].strip(), r[9].strip()
+    if r[0] in UNLINKED_INSTRUMENTAL_VIDEOS:
+        return True
+    if album in UNLINKED_INSTRUMENTAL_ALBUMS or album.startswith("讚美詩集"):
+        return True
+    if re.search(r"\((?:instrumental\.?|instr\.?)\)|^instrumental$", title, re.I):
+        return True
+    if re.search(r"\binstrumental\b|\binstr\.", note, re.I):
+        return True
+    return False
+
+
+def soundcloud_rows(old_hymns=None):
     """The database's soundcloud links as rows of this file (empty list when there is no database)."""
     if not os.path.exists(DB): return []
     import sqlite3, re
     out = []
+    old_hymns = old_hymns or {}
     for hymn, label, album, url, inst in sqlite3.connect(DB).execute(
             "select hymn_id, label, album, url, instrumental from link where kind='soundcloud' order by hymn_id, n_order"):
         path = re.sub(r"^https?://(www\.)?soundcloud\.com/", "", url).split("?")[0].strip("/")
         note = ""
         if not path: path, note = "(no url)/" + hymn, "the database row has an empty url"
+        if inst == 1 and path in old_hymns and old_hymns[path]:
+            hymn = old_hymns[path]
         user = path.split("/")[0]
         title = path.split("/")[-1].replace("-", " ")
-        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", ""])
+        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", "", ""])
     return out
 
 
@@ -74,10 +119,10 @@ def main():
     ap.add_argument("--tracks"); ap.add_argument("--channel"); ap.add_argument("--publisher", default="")
     ap.add_argument("--studio-albums", default=""); ap.add_argument("--studio", default="")
     a = ap.parse_args()
-    rows = collections.OrderedDict(); old_lang = {}
+    rows = collections.OrderedDict(); old_lang = {}; old_prio = {}; old_inst = {}; old_hymns = {}
     if os.path.exists(OUT):
         for p in list(csv.reader(open(OUT, encoding="utf8"), delimiter="\t"))[1:]:
-            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]
+            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]; old_prio[p[0]] = p[14]; old_inst[p[0]] = p[12]; old_hymns[p[0]] = p[2]
             if p[10] != "soundcloud":      # the soundcloud rows are rebuilt from the database below
                 rows[p[0]] = p
     if a.tracks:
@@ -86,11 +131,11 @@ def main():
             aid, al, v, t = l.rstrip("\n").split("|", 3)
             if v not in rows:
                 pub = a.studio if al.lower() in studio else a.publisher
-                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", ""]
+                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", "", ""]
     linked, label, instr = collections.defaultdict(list), {}, set()
     for p in tsv(REPO + "/databaseProvisioner/src/main/resources/NycypcdYoutube.txt"):
         linked[p[1]].append(p[0]); label.setdefault(p[1], p[2] if len(p) > 2 else "NYCYPCD")
-        if len(p) > 4 and p[4].strip() == "instrumental": instr.add(p[1])
+        if len(p) > 4 and p[4].strip() in ("instrumental", "1"): instr.add(p[1])
     known = {}
     for f in ("nycypcd_known", "lsm_known", "tgb_known", "lovingthelord_known", "melodyoflilies_known", "josephs_known", "hymnsinging_known"):
         for p in tsv(R + f + ".tsv"):
@@ -103,14 +148,19 @@ def main():
         r[3] = label.get(v, "")
         if v in known:
             r[9] = known[v][1]
-        r[10], r[11], r[12] = "youtube", "https://www.youtube.com/watch?v=" + v, "1" if v in instr else ""
-    sc = soundcloud_rows()
+        note_inst = r[9].strip().lower() == "instrumental"
+        if note_inst:
+            r[9] = ""
+        is_inst = (v in instr) if v in linked else (note_inst or old_inst.get(v) == "1" or is_unlinked_instrumental(r))
+        r[10], r[11], r[12] = "youtube", "https://www.youtube.com/watch?v=" + v, "1" if is_inst else ""
+    sc = soundcloud_rows(old_hymns)
     for r in sc:
         if r[0] in rows and rows[r[0]][10] == "soundcloud":      # the same track linked to several hymns
             rows[r[0]][2] = " ".join(sorted(set(rows[r[0]][2].split() + [r[2]])))
         else: rows[r[0]] = r
     for v, r in rows.items():
         r[13] = old_lang.get(v) or r[13] or guess_language(r)
+        r[14] = old_prio.get(v) or r[14] or default_priority(r)
     missing = [v for v in linked if v not in rows]
     out = csv.writer(open(OUT, "w", newline="", encoding="utf8"), delimiter="\t", lineterminator="\n")
     out.writerow(HEAD)

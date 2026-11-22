@@ -12,9 +12,11 @@ Windows binary directly, and it only accepts **Windows-style paths**, not WSL's
 
 ## Setup
 
+**CRITICAL WSL rule**: calling Windows `.exe` binaries (`adb.exe`, `emulator.exe`, `powershell.exe`, `tasklist.exe`) from a WSL command runner can hang indefinitely waiting on PTY stdin or inherited daemon pipes (especially when `adb.exe` auto-starts the Windows adb server daemon). **Always close stdin with `</dev/null` and wrap every Windows `.exe` call in `timeout`** (e.g. `timeout 15` for queries/taps, `timeout 30` for `screencap`/`pull`, `timeout 60` for `install`):
+
 ```bash
 ADB=/mnt/c/Users/lemue/AppData/Local/Android/Sdk/platform-tools/adb.exe
-$ADB devices   # confirm an emulator is attached, e.g. "emulator-5554  device"
+timeout 15 "$ADB" devices </dev/null   # confirm an emulator is attached, e.g. "emulator-5554  device"
 ```
 
 Keep a scratch dir on the Windows side for screenshots/APKs, since `adb pull`/`push`
@@ -30,25 +32,53 @@ just type the `C:\...` form directly. Device-side paths (`/sdcard/...`) are alwa
 Linux-style regardless.
 
 ```bash
-# WRONG - adb.exe can't stat a /mnt/c path
+# WRONG - adb.exe can't stat a /mnt/c path, and without </dev/null it may hang
 $ADB install -r /mnt/c/Users/.../app-debug.apk
 
 # RIGHT
-$ADB install -r "$(wslpath -w /mnt/c/Users/.../app-debug.apk)"
+timeout 60 "$ADB" install -r "$(wslpath -w /mnt/c/Users/.../app-debug.apk)" </dev/null
+```
+
+## Starting the emulator from WSL
+
+If `timeout 15 "$ADB" devices </dev/null` shows no attached emulator, do not ask the user or invoke `emulator.exe` directly in the shell — launch it detached via PowerShell `Start-Process` so it never inherits WSL's stdout/stderr pipes:
+
+```bash
+# List available AVDs if needed (Pixel_9_Android16, Pixel_9_Pro_XL, Medium_Tablet; default phone is Pixel_9_Android16)
+timeout 10 /mnt/c/Users/lemue/AppData/Local/Android/Sdk/emulator/emulator.exe -list-avds </dev/null
+
+# Launch Pixel_9_Android16 detached on Windows
+timeout 10 /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command \
+  'Start-Process -FilePath "C:\Users\lemue\AppData\Local\Android\Sdk\emulator\emulator.exe" -ArgumentList "-avd","Pixel_9_Android16"' </dev/null
+
+# Confirm the emulator process spawned
+timeout 5 /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -NoProfile -Command \
+  'Get-Process emulator,qemu* -ErrorAction SilentlyContinue | Format-Table Id,ProcessName' </dev/null
+```
+
+Then wait until `emulator-5554` appears and `sys.boot_completed` outputs `1` (usually a few seconds with Quick Boot; check periodically with `schedule` if still booting rather than using a blocking wait without timeout), unlock the screen, and confirm responsiveness:
+
+```bash
+timeout 10 "$ADB" devices </dev/null
+timeout 10 "$ADB" shell getprop sys.boot_completed </dev/null   # ready when "1"
+timeout 10 "$ADB" shell input keyevent 82 </dev/null           # unlock if locked
+timeout 10 "$ADB" shell wm size </dev/null
 ```
 
 ## Build and install
 
 ```bash
 cd /mnt/c/Users/lemue/IdeaProjects/hymnsforandroid
-./gradlew :app:assembleDebug -q
+JAVA_HOME=/home/lemue/.jdk ./gradlew :app:assembleDebug -q
 APK=$(find app/build/outputs/apk/debug -name '*.apk')
-$ADB install -r "$(wslpath -w "$APK")"
+timeout 60 "$ADB" install -r "$(wslpath -w "$APK")" </dev/null
 ```
+
+(When verifying a release build, install an already-built APK under `app/build/outputs/apk/release/` directly instead of rebuilding.)
 
 **Signature mismatch**: if the emulator has a release-signed build installed (e.g. from
 a previous Play Store internal-testing push) and you install a differently-signed debug
-build, you get:
+build (or vice versa), you get:
 
 ```
 INSTALL_FAILED_UPDATE_INCOMPATIBLE: ...signatures do not match newer version...
@@ -58,17 +88,17 @@ This is the same "uninstall before installing" situation documented for Victor's
 manual testing. On the emulator it's safe to just uninstall and reinstall:
 
 ```bash
-$ADB uninstall com.lemuelinchrist.android.hymns
-$ADB install -r "$(wslpath -w "$APK")"
+timeout 30 "$ADB" uninstall com.lemuelinchrist.android.hymns </dev/null
+timeout 60 "$ADB" install -r "$(wslpath -w "$APK")" </dev/null
 ```
 
 ## Launch and screenshot
 
 ```bash
-$ADB shell am start -n com.lemuelinchrist.android.hymns/.HymnsActivity
+timeout 15 "$ADB" shell am start -n com.lemuelinchrist.android.hymns/.HymnsActivity </dev/null
 sleep 2
-$ADB shell screencap -p /sdcard/screen.png
-$ADB pull /sdcard/screen.png "C:\Users\lemue\AppData\Local\Temp\claude_test\screen.png"
+timeout 30 "$ADB" shell screencap -p /sdcard/screen.png </dev/null
+timeout 30 "$ADB" pull /sdcard/screen.png "C:\Users\lemue\AppData\Local\Temp\claude_test\screen.png" </dev/null
 ```
 
 Then view it with the Read tool at the **WSL path**:
@@ -86,17 +116,17 @@ common cause of a tap silently landing on the wrong widget. Device resolution/de
 can be checked directly:
 
 ```bash
-$ADB shell wm size      # e.g. Physical size: 1344x2992
-$ADB shell wm density   # e.g. Physical density: 480
+timeout 10 "$ADB" shell wm size </dev/null      # e.g. Physical size: 1344x2992
+timeout 10 "$ADB" shell wm density </dev/null   # e.g. Physical density: 480
 ```
 
 ## Driving the UI
 
 ```bash
-$ADB shell input tap <x> <y>
-$ADB shell input text "422"                 # types into a focused text field
-$ADB shell input keyevent 4                 # back button
-$ADB shell input swipe <x1> <y1> <x2> <y2> <duration_ms>   # scroll/drag
+timeout 15 "$ADB" shell input tap <x> <y> </dev/null
+timeout 15 "$ADB" shell input text "422" </dev/null         # types into a focused text field
+timeout 15 "$ADB" shell input keyevent 4 </dev/null         # back button
+timeout 15 "$ADB" shell input swipe <x1> <y1> <x2> <y2> <duration_ms> </dev/null   # scroll/drag
 ```
 
 Swipe direction is "finger movement," same as a real touch: swiping from a high y to a
