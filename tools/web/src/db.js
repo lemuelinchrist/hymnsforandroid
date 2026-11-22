@@ -325,23 +325,37 @@ export function videos(hymnObj) {
   return [];
 }
 
-// the recordings of a hymn itself (YouTube first, then SoundCloud, in order): [{kind, label, album, instrumental, url}].
-// label is the publisher (empty when unknown), album the album or playlist; a link with neither is one a book's editor chose
-// (the youth books), which the card always shows (HymnsDao.getRecordings)
+// Sung YouTube and SoundCloud recordings of a hymn itself (YouTube first, then SoundCloud, in order):
+// [{kind, label, album, instrumental, url}]. label is the publisher (empty when unknown), album the album or playlist;
+// a link with neither is one a book's editor chose (the youth books), which the card always shows (HymnsDao.getRecordings)
 export function recordings(hymnObj) {
   if (!db) return (hymnObj && hymnObj._recordings) || [];
   return rows("select kind, label, album, instrumental, url from link where hymn_id = ? and kind in ('youtube', 'soundcloud')"
-    + " order by kind desc, n_order", [hymnObj.id])
+    + " and ifnull(instrumental, 0) = 0 order by kind desc, n_order", [hymnObj.id])
     .map((x) => ({kind: x.kind, label: (x.label || '').trim(), album: (x.album || '').trim(), instrumental: x.instrumental === 1,
       url: (x.url || '').trim()})).filter((x) => x.url);
 }
 
-// the New Tunes of a hymn (the hymns that have it as parent and are marked new_tune), in number order, each with its own
-// recordings: [{id, recordings}] (HymnsDao.getNewTunes)
+// Universal instrumental recordings keyed by the hymn's trimmed tune code (shared across all languages; HymnsDao.getInstrumentals)
+export function instrumentals(hymnObj) {
+  if (!db) return (hymnObj && hymnObj._instrumentals) || [];
+  const tune = (hymnObj && hymnObj.tune || '').trim();
+  if (!tune || tune === '0') return [];
+  return rows("select kind, label, album, instrumental, url from link where hymn_id = ? and kind in ('youtube', 'soundcloud')"
+    + " and instrumental = 1 order by kind desc, n_order", [tune])
+    .map((x) => ({kind: x.kind, label: (x.label || '').trim(), album: (x.album || '').trim(), instrumental: x.instrumental === 1,
+      url: (x.url || '').trim()})).filter((x) => x.url);
+}
+
+// the New Tunes of a hymn (the hymns that have it as parent and are marked new_tune), in number order, each with its sung
+// recordings and tune-keyed instrumentals: [{id, recordings}] (HymnsDao.getNewTunes)
 export function newTunes(hymnObj) {
   if (!db) return (hymnObj && hymnObj._newTunes) || [];
-  return rows("select _id as id from hymns where parent_hymn = ? and new_tune = 1 and hymn_group = 'BF' order by cast(no as integer)",
-    [hymnObj.id]).map((r) => ({id: r.id, recordings: recordings({id: r.id})}));
+  return rows("select _id as id, tune from hymns where parent_hymn = ? and new_tune = 1 and hymn_group = 'BF' order by cast(no as integer)",
+    [hymnObj.id]).map((r) => {
+    const nt = hymn(r.id) || r;
+    return {id: r.id, recordings: [...recordings({id: r.id}), ...instrumentals({tune: nt.tune})]};
+  });
 }
 
 // A hymn with no recording of its own shows those of the nearest hymn above it that has some (its parent, the parent's

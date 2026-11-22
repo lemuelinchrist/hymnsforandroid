@@ -109,7 +109,10 @@ public class LinksSection extends ContentComponent<View> {
                 }
             }
             for (Recording r : own) {
-                (r.instrumental ? instrumentals : recordings).add(item(r, language, null));
+                recordings.add(item(r, language, null));
+            }
+            for (Recording r : dao.getInstrumentals(hymn.getTune())) {
+                instrumentals.add(item(r, null, null));
             }
             for (String id : dao.getNewTunes(hymn.getHymnId())) {
                 Item tune = new Item();
@@ -117,9 +120,9 @@ public class LinksSection extends ContentComponent<View> {
                 tune.title = context.getString(R.string.links_new_tune_title, id);
                 tune.sub = context.getString(R.string.links_new_tune_sub);
                 tune.address = HYMN + id;
-                ArrayList<Recording> tuneRecs = dao.getRecordings(id);
-                for (Recording r : tuneRecs) if (!r.instrumental) tune.children.add(item(r, null, id));
-                for (Recording r : tuneRecs) if (r.instrumental) tune.children.add(item(r, null, id));
+                for (Recording r : dao.getRecordings(id)) tune.children.add(item(r, null, id));
+                Hymn nt = dao.get(id);
+                for (Recording r : dao.getInstrumentals(nt != null ? nt.getTune() : null)) tune.children.add(item(r, null, id));
                 tunes.add(tune);
             }
         } catch (Exception e) {

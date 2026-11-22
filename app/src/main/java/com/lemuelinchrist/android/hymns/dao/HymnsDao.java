@@ -211,13 +211,13 @@ public class HymnsDao {
     }
 
     /**
-     * The YouTube and SoundCloud recordings of a hymn itself (not its parent's), YouTube first, in order.
-     * The link table has the publisher in {@code label}, the album in {@code album} and {@code instrumental} (1 or NULL).
+     * Sung YouTube and SoundCloud recordings of a hymn itself (not its parent's), YouTube first, in order.
+     * The link table has the publisher in {@code label}, the album in {@code album} and {@code instrumental} (NULL/0 for sung).
      */
     public ArrayList<Recording> getRecordings(String hymnId) {
         ArrayList<Recording> recordings = new ArrayList<>();
         try (Cursor cursor = database.rawQuery("select kind, label, album, instrumental, url from link where hymn_id = ?"
-                + " and kind in ('youtube', 'soundcloud') order by kind desc, n_order", new String[]{hymnId})) {
+                + " and kind in ('youtube', 'soundcloud') and ifnull(instrumental, 0) = 0 order by kind desc, n_order", new String[]{hymnId})) {
             while (cursor.moveToNext()) {
                 recordings.add(new Recording(cursor.getString(0), cursor.getString(1), cursor.getString(2),
                         cursor.getInt(3) == 1, cursor.getString(4)));
@@ -226,6 +226,27 @@ public class HymnsDao {
             // none then
         }
         return recordings;
+    }
+
+    /**
+     * Universal instrumental recordings for a tune code (YouTube first, then SoundCloud, in {@code n_order}).
+     * Instrumental links are keyed by trimmed tune code in {@code link.hymn_id}, shared across all languages.
+     */
+    public ArrayList<Recording> getInstrumentals(String tune) {
+        ArrayList<Recording> instrumentals = new ArrayList<>();
+        if (tune == null) return instrumentals;
+        String t = tune.trim();
+        if (t.isEmpty() || "0".equals(t)) return instrumentals;
+        try (Cursor cursor = database.rawQuery("select kind, label, album, instrumental, url from link where hymn_id = ?"
+                + " and kind in ('youtube', 'soundcloud') and instrumental = 1 order by kind desc, n_order", new String[]{t})) {
+            while (cursor.moveToNext()) {
+                instrumentals.add(new Recording(cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                        cursor.getInt(3) == 1, cursor.getString(4)));
+            }
+        } catch (Exception e) {
+            // none then
+        }
+        return instrumentals;
     }
 
     /** The ids of the New Tunes of a hymn (the hymns that have it as parent and are marked new_tune), in number order. */
@@ -264,7 +285,7 @@ public class HymnsDao {
     }
 
     /**
-     * The nearest hymn above this one (its parent, the parent's parent, ...) that has YouTube or SoundCloud links of its
+     * The nearest hymn above this one (its parent, the parent's parent, ...) that has sung YouTube or SoundCloud links of its
      * own, or null. A hymn with no such links of its own shows that hymn's. The search stops at a New Tune
      * ({@link #startsOwnTune}): the hymns above it sing another tune.
      */
@@ -272,7 +293,8 @@ public class HymnsDao {
         String id = parentId;
         for (int depth = 0; depth < 5 && id != null && !id.isEmpty(); depth++) {
             try (Cursor cursor = database.rawQuery(
-                    "select 1 from link where hymn_id = ? and kind in ('youtube', 'soundcloud') limit 1", new String[]{id})) {
+                    "select 1 from link where hymn_id = ? and kind in ('youtube', 'soundcloud') and ifnull(instrumental, 0) = 0 limit 1",
+                    new String[]{id})) {
                 if (cursor.moveToFirst()) return id;
             }
             if (startsOwnTune(id)) return null;

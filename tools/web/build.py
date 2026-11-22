@@ -362,10 +362,18 @@ def build_hymn_shards(assets, groups, sheet_ids, lyric_ids, tunes):
         return []
 
     def get_recordings(hid):
-        recs = [x for x in links.get(hid, ()) if x['kind'] in ('youtube', 'soundcloud') and (x['url'] or '').strip()]
+        recs = [x for x in links.get(hid, ()) if x['kind'] in ('youtube', 'soundcloud') and x['instrumental'] != 1 and (x['url'] or '').strip()]
         recs.sort(key=lambda x: x['kind'], reverse=True)   # youtube before soundcloud, preserving n_order (Python sort is stable)
         return [{'kind': x['kind'], 'label': (x['label'] or '').strip(), 'album': (x['album'] or '').strip(),
                  'instrumental': x['instrumental'] == 1, 'url': (x['url'] or '').strip()} for x in recs]
+
+    def get_instrumentals(tune_code):
+        if not tune_code or tune_code == '0':
+            return []
+        recs = [x for x in links.get(tune_code, ()) if x['kind'] in ('youtube', 'soundcloud') and x['instrumental'] == 1 and (x['url'] or '').strip()]
+        recs.sort(key=lambda x: x['kind'], reverse=True)
+        return [{'kind': x['kind'], 'label': (x['label'] or '').strip(), 'album': (x['album'] or '').strip(),
+                 'instrumental': True, 'url': (x['url'] or '').strip()} for x in recs]
 
     def get_inherited_links(hid, h, recs):
         if recs or h['ownTune']:
@@ -387,7 +395,7 @@ def build_hymn_shards(assets, groups, sheet_ids, lyric_ids, tunes):
     def get_new_tunes(hid):
         nt = [cid for cid in children.get(hid, ()) if raw[cid].get('new_tune') == 1 and raw[cid]['hymn_group'] == 'BF']
         nt.sort(key=lambda cid: int(raw[cid]['no']))
-        return [{'id': cid, 'recordings': get_recordings(cid)} for cid in nt]
+        return [{'id': cid, 'recordings': get_recordings(cid) + get_instrumentals((resolved[cid]['tune'] or '').strip())} for cid in nt]
 
     fam_cache = {}
 
@@ -471,6 +479,7 @@ def build_hymn_shards(assets, groups, sheet_ids, lyric_ids, tunes):
         rec['_family'] = get_family(hid)
         rec['_videos'] = get_videos(hid, h)
         rec['_recordings'] = recs
+        rec['_instrumentals'] = get_instrumentals(tune_code)
         rec['_inheritedLinks'] = get_inherited_links(hid, h, recs)
         rec['_newTunes'] = get_new_tunes(hid)
         rec['_sameTune'] = same_tune
