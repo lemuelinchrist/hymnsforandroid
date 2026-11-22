@@ -336,7 +336,7 @@ async function search(page, text) {
       await open(page, '#/h/E37');
       assert((await heads()).join() === 'Search', 'E37 has only the search section: ' + await heads());
     });
-    await test('links card: three recordings first, "Show N more" for the rest, universal tune-based instrumentals (E395, E1, C1, S1, FR53, C4)', async () => {
+    await test('links card: three recordings first, "Show N more" for the rest, universal tune-based instrumentals (E395, E4, E1, C1, S1, FR53, C4)', async () => {
       await open(page, '#/h/E395');
       const total = parseInt(await sec('Recordings').locator('.lk-n').textContent(), 10);
       assert(total >= 4, 'E395 count: ' + total);
@@ -347,8 +347,11 @@ async function search(page, text) {
       await sec('Recordings').locator('.lk-more').click();
       assert((await rowsOf('Recordings')).length === 3, 'Show fewer');
       const inst = await rowsOf('Instrumental');
-      assert(inst.length === 2 && inst[0].startsWith('TWGBR | 讚美詩集 (六)') && inst[1].startsWith('Guitar Hymns | YouTube'), 'E395 instrumental: ' + inst);
-      assert(await sec('Instrumental').locator('.lk-tag').allTextContents().then((t) => t.join() === 'Instrumental,Instrumental'), 'two Instrumental tags');
+      assert(inst.length === 1 && inst[0].startsWith('TWGBR | 讚美詩集 (六)'), 'E395 instrumental: ' + inst);
+      assert(await sec('Instrumental').locator('.lk-tag').allTextContents().then((t) => t.join() === 'Instrumental'), 'one Instrumental tag');
+      await open(page, '#/h/E4');
+      const e4Inst = await rowsOf('Instrumental');
+      assert(e4Inst.length === 1 && e4Inst[0].startsWith('TWGBR | 讚美詩集 (七)'), 'E4 single instrumental: ' + e4Inst);
       await open(page, '#/h/E1');
       assert((await rowsOf('Instrumental'))[0].startsWith('TWGBR | Hymns of Praise 2'), 'E1 shares C1 tune instrumental: ' + await rowsOf('Instrumental'));
       await open(page, '#/h/C1');

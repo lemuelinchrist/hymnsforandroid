@@ -9,8 +9,9 @@ import com.lemuelinchrist.hymns.lib.beans.LinkEntity
  * The publisher (label) is who made the recording, the album its album or playlist; either may be empty, never the YouTube
  * channel (tools/youtube-monitor/link_meta.py fills them from recordings.tsv). A line with only two columns is a recording
  * of the NYCYPCD channel. Sung recordings are stored under the hymn id; instrumental recordings are resolved to the hymn's
- * trimmed tune code (or accept a raw tune code directly) and deduplicated per (tune, video id), so every hymn sharing the
- * same melody across all languages shows them. Order per target key (hymn id or tune code): 1, 2, ... sorted by priority
+ * trimmed tune code (or accept a raw tune code directly) and capped at one per tune code (the single highest-priority match;
+ * any non-imported instrumental already on that tune counts toward the cap, while all matched recordings remain preserved
+ * in NycypcdYoutube.txt and recordings.tsv). Order per target key (hymn id or tune code): 1, 2, ... sorted by priority
  * (from recordings.tsv, default 3), then sung before instrumental, then file order.
  * It starts by deleting every youtube row that has a publisher or an album (the rows of a book's editor have neither and
  * stay), so it can be run again.
@@ -100,10 +101,10 @@ class ImportNycypcdYoutube {
         }
 
         def order = [:]
-        Set<String> seenInst = new HashSet<>()
+        Set<String> seenInstTune = new HashSet<>(dao.existingInstrumentalTunes())
         int saved = 0
         entries.each { e ->
-            if (e.inst == 1 && !seenInst.add("${e.targetKey}\t${e.vid}")) return
+            if (e.inst == 1 && !seenInstTune.add(e.targetKey)) return
             def parts = e.parts
             int n = (order[e.targetKey] ?: 0) + 1
             order[e.targetKey] = n
