@@ -109,7 +109,7 @@ Play button, and it plays what is in front of you; the sheet alone (Sheet only) 
 sheet as it is shown: in its key (transposing), with this
 device's chord edits, and, with Both hands on, the piano part, else the melody with the chords softly under it. The notes
 that sound light up, the bar that sounds is shaded, and the page follows them until the reader scrolls it by hand (the
-next Play follows again); a tap on a note, or on a bar, plays from there. A row under the toolbar, there from the first
+next Play follows again); a tap on a note, or on a bar, highlights that start measure in red and plays from there (stopping and pressing Play starts from the red measure again until "From the start" or ✕ clears it, while Loop wraps back to the beginning of the sheet on subsequent passes). A row under the toolbar, there from the first
 Play until its ✕, has Play / Stop, back to the start, the **tempo** (a slider showing ♩ = beats a minute, from half to one
 and a half times the tune's, by twentieths; a double tap goes back to the tune's), **All | Melody | Accompaniment** (what is
 heard; the accompaniment is the left hand, or the chords), and Loop. **Save MIDI** (in ⋯) saves the sheet as a MIDI file:

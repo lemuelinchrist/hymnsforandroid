@@ -64,7 +64,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
   speed.value = String(prefs.speed);
 
   let score = null, scoreXml = '', scoreChoice = '', ctl = null, from = 0, bpm = DEFAULT_BPM, lastRender = -1, tempoFor = null, lastScroll = 0, starting = 0;
-  let shownWhere = '', shownBar = 0, barRender = -1;
+  let shownWhere = '', shownBar = 0, barRender = -1, shownStartBar = 0, startRender = -1;
   const showTempo = () => { tempoLabel.textContent = '♩ = ' + Math.round(bpm * prefs.speed); };
   showTempo();
 
@@ -74,22 +74,43 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
   window.addEventListener('wheel', byHand, {passive: true});
   window.addEventListener('touchmove', byHand, {passive: true});
 
-  // the bar that sounds, shaded behind the music (an element of the sheet's box, under the drawing)
+  // the selected start measure (red, stays visible while stopped) and the bar that sounds, shaded behind the music
+  const startShade = el('div', 'sp-start-bar', null, {'aria-hidden': 'true'});
   const shade = el('div', 'sp-bar', null, {'aria-hidden': 'true'});
+  startShade.hidden = true;
   shade.hidden = true;
-  view.root.prepend(shade);
-  function shadeBar(bar) {
-    if (bar === shownBar && view.renders === barRender) return;
-    shownBar = bar; barRender = view.renders;
+  view.root.prepend(startShade, shade);
+  function placeBar(boxEl, bar) {
     const g = bar && view.music.querySelectorAll('g.measure')[bar - 1];
-    if (!g) { shade.hidden = true; return; }
+    if (!g) { boxEl.hidden = true; return; }
     // the staves, the chords and the words of the bar (not the whole measure: some carry marks drawn far above it)
     const parts = Array.from(g.querySelectorAll('g.staff, g.harm, g.verse')).map((e) => e.getBoundingClientRect()).filter((x) => x.height > 0);
     const m = g.getBoundingClientRect(), box = view.root.getBoundingClientRect();
     const top = parts.length ? Math.min(...parts.map((x) => x.top)) : m.top, bottom = parts.length ? Math.max(...parts.map((x) => x.bottom)) : m.bottom;
-    Object.assign(shade.style, {left: (m.left - box.left) + 'px', top: (top - box.top - 4) + 'px', width: m.width + 'px', height: (bottom - top + 8) + 'px'});
-    shade.hidden = false;
+    Object.assign(boxEl.style, {left: (m.left - box.left) + 'px', top: (top - box.top - 4) + 'px', width: m.width + 'px', height: (bottom - top + 8) + 'px'});
+    boxEl.hidden = false;
   }
+  function shadeBar(bar) {
+    if (bar === shownBar && view.renders === barRender) return;
+    shownBar = bar; barRender = view.renders;
+    placeBar(shade, bar);
+  }
+  function barOf(q) {
+    const sc = score || currentScore();
+    if (!sc) return 0;
+    let bar = 1;
+    for (const b of sc.barAt) { if (b.q > q + 1e-6) break; bar = b.bar; }
+    return bar;
+  }
+  function showStartBar(force = false) {
+    if (root.hidden || from <= 0) { startShade.hidden = true; shownStartBar = 0; return; }
+    const bar = barOf(from);
+    if (!force && bar === shownStartBar && view.renders === startRender) return;
+    shownStartBar = bar; startRender = view.renders;
+    placeBar(startShade, bar);
+  }
+  const musicObserver = new MutationObserver(() => { if (!root.hidden) showStartBar(true); });
+  musicObserver.observe(view.music, {childList: true});
 
   // the notes of the sheet as it is now; made again only when what it sounds like changed
   const handsOn = () => !!(view.state.hands && view.piano && !view.state.guitar && view.state.staff);
@@ -141,6 +162,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
       const text = tr('Bar {0}', bar);
       if (text !== shownWhere) { shownWhere = text; where.textContent = text; }
       shadeBar(bar);
+      showStartBar();
     }
   };
 
@@ -158,13 +180,13 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     if (!sc || !sc.events.length) return;
     const mine = ++starting;
     stopTune();
-    from = at;
+    showStartBar();
     follow = true;
     const b = await tempo();
     showTempo();
     if (mine !== starting) return;                      // another start came meanwhile
     try {
-      ctl = Player.playScore(sc, {from, bpm: b, speed: prefs.speed, loop: prefs.loop, mute: {m: !prefs.mel, f: !prefs.mel, l: !prefs.acc, c: !prefs.acc},
+      ctl = Player.playScore(sc, {from: at, bpm: b, speed: prefs.speed, loop: prefs.loop, mute: {m: !prefs.mel, f: !prefs.mel, l: !prefs.acc, c: !prefs.acc},
         onFrame, onEnd: () => { ctl = null; lit = []; show(false); mark(null); }});
       show(true);
     } catch (e) {
@@ -175,8 +197,14 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
   function stop() { starting++; if (ctl) { const c = ctl; ctl = null; c.stop(); } }
   function restart() { if (ctl) { const q = ctl.position(); stop(); start(q); } }
 
-  bPlay.addEventListener('click', () => { if (ctl) stop(); else { if (from >= (score ? score.length - 0.25 : 0)) from = 0; start().catch(() => {}); } });
-  bStart.addEventListener('click', () => { from = 0; if (ctl) { stop(); start(0); } else onFrame(0, null); });
+  bPlay.addEventListener('click', () => {
+    if (ctl) stop();
+    else {
+      if (from >= (score ? score.length - 0.25 : 0)) { from = 0; showStartBar(); }
+      start(from).catch(() => {});
+    }
+  });
+  bStart.addEventListener('click', () => { from = 0; showStartBar(); if (ctl) { stop(); start(0); } else onFrame(0, null); });
   speed.addEventListener('input', () => { prefs.speed = parseFloat(speed.value) || 1; showTempo(); });
   speed.addEventListener('change', () => { keep(); restart(); });
   speed.addEventListener('dblclick', () => { speed.value = '1'; prefs.speed = 1; showTempo(); keep(); restart(); });
@@ -205,6 +233,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     }
     if (q == null) return;
     from = q;
+    showStartBar();
     if (ctl) { stop(); start(from); } else start(from).catch(() => {});
   });
 
@@ -216,13 +245,14 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     toggle() {
       if (root.hidden) { root.hidden = false; show(false); bPlay.click(); } else if (ctl) stop(); else bPlay.click();
     },
-    close() { stop(); root.hidden = true; from = 0; show(false); },
+    close() { stop(); root.hidden = true; from = 0; showStartBar(); show(false); },
     // the sheet's sound changed (another key, chords, style): go on from the same place with the new notes
     refresh() { if (!score || !stale()) return; if (ctl) restart(); else score = null; },
     available(on) { if (!on && !root.hidden) api.close(); },
     saveMidi,
     destroy() {
-      stop(); root.remove(); shade.remove(); document.body.classList.remove('sheet-playing');
+      stop(); root.remove(); startShade.remove(); shade.remove(); musicObserver.disconnect();
+      document.body.classList.remove('sheet-playing');
       window.removeEventListener('wheel', byHand); window.removeEventListener('touchmove', byHand);
     },
   };
