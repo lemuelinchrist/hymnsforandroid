@@ -15,15 +15,26 @@ usage:
   python3 tools/ly_to_mei.py --render HYMN... [--width 1000]     MEI -> SVG via verovio (python package) for a look
 """
 import argparse
+import json
 import os
 import re
+import sqlite3
+import struct
 import sys
 from fractions import Fraction as F
 from xml.sax.saxutils import escape
 
 HERE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
+DB_PATH = os.path.join(ROOT, 'app', 'src', 'main', 'assets', 'hymns.sqlite')
+SNAPSHOT_DB = os.path.join(HERE, 'build', 'hymns_snapshot.sqlite')
+RAW_DIR = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'raw')
+LEADSHEET_DIR = os.path.join(ROOT, 'databaseProvisioner', 'data', 'leadsheetData')
 sys.path.insert(0, os.path.dirname(__file__))
 from guitar_from_piano import block, parse_note  # noqa: E402
+
+_TUNES = None
+_MIDIS = {}
 
 NOTE = r'[a-g](?:isis|eses|is|es|s)?'
 NOTE_TOK = re.compile(r"^(%s|r|s|R)([',]*)(\d+|\\breve)?(\.*)((?:[~\[\]()]|\\\(|\\\))*)$" % NOTE)
@@ -267,6 +278,7 @@ def parse_melody(body):
             if nxt.startswith('"'):
                 i += 1
             else:
+                m['tempo'] = (int(nxt), int(toks[i + 3]))
                 i += 3
         elif t.startswith('^\\markup') or t.startswith('-\\markup'):
             ev = m['events'][-1] if m['events'] and m['events'][-1]['kind'] in ('note', 'rest') else None
@@ -467,11 +479,232 @@ def mei_dur(ev):
     return 'breve' if d == '\\breve' else d
 
 
+def _load_tunes():
+    global _TUNES
+    if _TUNES is not None:
+        return _TUNES
+    _TUNES = {}
+    path = DB_PATH if os.path.exists(DB_PATH) else SNAPSHOT_DB
+    if not os.path.exists(path):
+        return _TUNES
+    con = sqlite3.connect(path)
+    by_id = {r[0]: ((r[1] or '').strip(), r[2]) for r in con.execute('SELECT _id, tune, parent_hymn FROM hymns')}
+    con.close()
+    for hid in by_id:
+        cur = hid
+        for _ in range(5):
+            if cur not in by_id:
+                break
+            t, p = by_id[cur]
+            if t and t != '0':
+                _TUNES[hid] = t
+                break
+            cur = p
+    return _TUNES
+
+
+def midi_bpm_and_quarters(tune_code):
+    """Dominant quarter-note BPM across sounding notes and MIDI quarter-note span, or None."""
+    if not tune_code:
+        return None
+    key = tune_code.lower()
+    if key in _MIDIS:
+        return _MIDIS[key]
+    path = os.path.join(RAW_DIR, 'm%s.mid' % key)
+    if not os.path.exists(path):
+        _MIDIS[key] = None
+        return None
+    data = open(path, 'rb').read()
+    if len(data) < 14 or data[:4] != b'MThd':
+        _MIDIS[key] = None
+        return None
+    ntrk, div = struct.unpack('>HH', data[10:14])
+    if (div & 0x8000) or div == 0:
+        _MIDIS[key] = None
+        return None
+    p = 8 + struct.unpack('>I', data[4:8])[0]
+    events = []
+    for _ in range(ntrk):
+        if p + 8 > len(data) or data[p:p + 4] != b'MTrk':
+            break
+        end = min(len(data), p + 8 + struct.unpack('>I', data[p + 4:p + 8])[0])
+        p += 8
+        tick = 0
+        status = 0
+        while p < end:
+            v = 0
+            while p < end:
+                b = data[p]
+                p += 1
+                v = (v << 7) | (b & 0x7f)
+                if not (b & 0x80):
+                    break
+            tick += v
+            if p >= end:
+                break
+            st = data[p]
+            if st & 0x80:
+                p += 1
+            else:
+                st = status
+            if st == 0xff:
+                if p >= end:
+                    break
+                tp = data[p]
+                p += 1
+                ln = 0
+                while p < end:
+                    b = data[p]
+                    p += 1
+                    ln = (ln << 7) | (b & 0x7f)
+                    if not (b & 0x80):
+                        break
+                if tp == 0x51 and ln == 3 and p + 3 <= end:
+                    us = (data[p] << 16) | (data[p + 1] << 8) | data[p + 2]
+                    if us > 0:
+                        events.append((tick, 0, 'tempo', us))
+                if tp == 0x2f:
+                    p = end
+                    break
+                p += ln
+            elif st in (0xf0, 0xf7):
+                ln = 0
+                while p < end:
+                    b = data[p]
+                    p += 1
+                    ln = (ln << 7) | (b & 0x7f)
+                    if not (b & 0x80):
+                        break
+                p += ln
+            else:
+                status = st
+                hi = st & 0xf0
+                ch = st & 0x0f
+                if hi in (0xc0, 0xd0):
+                    p += 1
+                else:
+                    if p + 2 > end:
+                        break
+                    a, b = data[p], data[p + 1]
+                    p += 2
+                    if ch == 9:
+                        continue
+                    if hi == 0x90 and b > 0:
+                        events.append((tick, 1, 'on', a))
+                    elif hi in (0x80, 0x90):
+                        events.append((tick, 1, 'off', a))
+        p = end
+    events.sort()
+    ons = [tk for tk, _, tp, _ in events if tp == 'on']
+    offs = [tk for tk, _, tp, _ in events if tp in ('on', 'off')]
+    if not ons:
+        _MIDIS[key] = None
+        return None
+    fn, ln = min(ons), max(offs)
+    spans = {}
+    cur_us = 500000
+    pos = fn
+    for tk, _, tp, us in events:
+        if tp != 'tempo':
+            continue
+        if tk <= fn:
+            cur_us = us
+        elif tk < ln:
+            spans[cur_us] = spans.get(cur_us, 0) + (tk - pos)
+            pos = tk
+            cur_us = us
+    if ln > pos:
+        spans[cur_us] = spans.get(cur_us, 0) + (ln - pos)
+    best_us = max(spans.items(), key=lambda x: x[1])[0] if spans else cur_us
+    res = (60e6 / best_us, (ln - fn) / div)
+    _MIDIS[key] = res
+    return res
+
+
+def doc_quarters(doc):
+    """Played and raw quarter-note lengths of the parsed .ly document (same repeat logic as piano.js playOrder)."""
+    bars = []
+    cur_ending = 0
+    rpt_start_next = False
+    for m in doc['measures']:
+        for v in m.get('volta', []):
+            if v is None:
+                cur_ending = 0
+            else:
+                vm = re.match(r'\d+', v)
+                cur_ending = int(vm.group(0)) if vm else 1
+        q = float(4 * sum((e['len'] for e in m['events'] if e['kind'] in ('note', 'rest', 'space')), F(0)))
+        rptstart = rpt_start_next
+        rpt_start_next = bool(m.get('rpt_start_after'))
+        rptend = m.get('end_bar') == ':|.'
+        bars.append((q, rptstart, rptend, cur_ending))
+    order = []
+    start, repeating, prev_ending, i, guard = 0, False, 0, 0, 0
+    done = set()
+    while i < len(bars) and guard < len(bars) * 4 + 10:
+        guard += 1
+        q, rptstart, rptend, ending = bars[i]
+        if rptstart:
+            start = i
+        if repeating and ending == 1:
+            i += 1
+            continue
+        if repeating and ending == 0 and prev_ending >= 2:
+            repeating = False
+            start = i
+        order.append(i)
+        prev_ending = ending
+        if rptend and i not in done:
+            done.add(i)
+            repeating = True
+            i = start
+            continue
+        if rptend:
+            repeating = False
+            start = i + 1
+        i += 1
+    return sum(bars[idx][0] for idx in order), sum(b[0] for b in bars)
+
+
+def hymn_bpm(doc, hymn):
+    """Quarter-note BPM for the sheet: explicit \\tempo, leadsheetData verseBpm, or the tune's MIDI file."""
+    for m in doc['measures']:
+        if m.get('tempo'):
+            dur, bpm = m['tempo']
+            return int(round(bpm * 4 / dur))
+    ls_path = os.path.join(LEADSHEET_DIR, hymn + '.json')
+    if os.path.exists(ls_path):
+        d = json.load(open(ls_path, encoding='utf-8'))
+        val = d.get('verseBpm') or d.get('tempo')
+        if val:
+            return int(round(val))
+    tune = _load_tunes().get(hymn, '')
+    res = midi_bpm_and_quarters(tune)
+    if res:
+        bpm, mq = res
+        sq_play, sq_raw = doc_quarters(doc)
+        if mq > 0 and sq_play > 0:
+            r, r_raw = sq_play / mq, sq_raw / mq
+            if abs(r - 1.0) <= 0.18 or abs(r_raw - 1.0) <= 0.18:
+                while bpm > 255:
+                    bpm /= 2
+            elif 1.8 <= r_raw <= 2.2 and bpm <= 105:
+                bpm *= 2
+            elif (0.45 <= r <= 0.55 or 0.45 <= r_raw <= 0.55) and bpm >= 160:
+                bpm /= 2
+            elif bpm > 255:
+                while bpm > 180:
+                    bpm /= 2
+        return int(round(bpm))
+    return 0
+
+
 def build_mei(doc, hymn):
     ids = Ids()
     g = doc['glob']
     fifths = key_sig(*g['key'])
     num, den = g['time']
+    bpm = hymn_bpm(doc, hymn)
     measures, harm = doc['measures'], doc['harm']
     tail = []
     if harm and len(harm) == len(measures) + 1:          # chords printed after the staff ends (DESIGN.md §18)
@@ -505,8 +738,9 @@ def build_mei(doc, hymn):
     w('</titleStmt><pubStmt><identifier type="hymn">%s</identifier><identifier type="number">%s</identifier>'
       '</pubStmt></fileDesc></meiHead>' % (escape(hymn), escape(doc['header']['opus'])))
     w('<music><body><mdiv><score>')
-    w('<scoreDef key.sig="%s" %s><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp>'
-      '</scoreDef>' % ('0' if fifths == 0 else '%d%s' % (abs(fifths), 's' if fifths > 0 else 'f'), meter_attrs(num, den)))
+    w('<scoreDef key.sig="%s" %s%s><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp>'
+      '</scoreDef>' % ('0' if fifths == 0 else '%d%s' % (abs(fifths), 's' if fifths > 0 else 'f'), meter_attrs(num, den),
+                      ' midi.bpm="%d"' % bpm if bpm else ''))
     w('<section>')
 
     alt_key = key_alter(fifths)
@@ -689,13 +923,16 @@ def convert(text, hymn):
 def one(args):
     path, out_dir = args
     hymn = os.path.basename(path)[:-3]
+    out_path = os.path.join(out_dir, hymn + '.mei')
+    if os.path.exists(out_path) and 'type="source">Hymns For Android<' in open(out_path, encoding='utf-8').read():
+        return hymn, 'OK', ''
     try:
         mei, doc = convert(open(path, encoding='utf-8').read(), hymn)
     except Exception as e:  # noqa: BLE001
         return hymn, 'FAIL', '%s: %s' % (type(e).__name__, e)
     notes = sum(1 for m in doc['measures'] for e in m['events'] if e['kind'] == 'note')
     over = [len(v) - notes for v in doc['verses'] if len(v) != notes]
-    open(os.path.join(out_dir, hymn + '.mei'), 'w', encoding='utf-8').write(mei)
+    open(out_path, 'w', encoding='utf-8').write(mei)
     return hymn, 'OK', 'syllables-notes %s' % over if over else ''
 
 

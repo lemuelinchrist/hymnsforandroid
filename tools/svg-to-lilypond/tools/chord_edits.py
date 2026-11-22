@@ -252,6 +252,31 @@ def fmt(chords):
     return ' '.join('%s@%s' % (t, float(b) if F(b).denominator != 1 else int(b)) for b, t in chords) or '(no chords)'
 
 
+NOTE_BLOCK = re.compile(r'<note\b[^>]*\bxml:id="([^"]+)"[^>]*?(?<!/)>(?:(?!</note>).)*?</note>', re.S)
+
+
+def keep_eol(old_mei, mei):
+    """Preserve eol="1" line-break marks from `old_mei` (set by mark_lines.py) when regenerating MEI."""
+    ends = {
+        m.group(1)
+        for m in NOTE_BLOCK.finditer(old_mei)
+        if re.search(r'<verse\b[^>]*\bn="1"[^>]*>(?:(?!</verse>).)*?<syl\b[^>]*\beol="1"', m.group(0), re.S)
+    }
+    if not ends:
+        return mei
+
+    def put(m):
+        if m.group(1) not in ends:
+            return m.group(0)
+        note = m.group(0)
+        v = re.search(r'<verse\b[^>]*\bn="1"[^>]*>.*?</verse>', note, re.S)
+        if not v or ' eol="1"' in v.group(0):
+            return note
+        return note[:v.start()] + re.sub(r'<syl\b', '<syl eol="1"', v.group(0), count=1) + note[v.end():]
+
+    return NOTE_BLOCK.sub(put, mei)
+
+
 def write_sheet(hymn, text, bars, steps):
     """Change the .ly, write the MEI again and check it: the edited bars have exactly the new chords, every other bar and
     every note id is as before."""
@@ -263,7 +288,7 @@ def write_sheet(hymn, text, bars, steps):
             continue
         bar = bars[n - 1]
         new = new[:bar['start']] + new_bar_source(bar, want) + new[bar['end']:]
-    mei = L.convert(new, hymn)[0]
+    mei = keep_eol(old_mei, L.convert(new, hymn)[0])
     check(hymn, old_mei, mei, {n: want for n, action, want in steps if action == 'apply'})
     with open(os.path.join(LY_DIR, hymn + '.ly'), 'w', encoding='utf-8') as f:
         f.write(new)

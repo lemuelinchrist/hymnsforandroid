@@ -459,7 +459,7 @@ Toggle. Filled heart when the hymn is in Favorites. Stored as in §8.4.
   hymns with a tune had a file (2026-10). Since hymnal.net serves no MIDI any more, MIDI for newer songs is generated from our own sheet by `tools/hymn-midi` (melody as written, generated left hand; 60 files on 2026-11-12). A song transcribed from a recording (BF473) has a tune code made from its own melody: the scale degrees (1-7, relative to its key) of its first 16 notes (BF500, BF474). Translations get the tune from their parent (§5.1), so they play too.
 - Plays **looped** until stopped. Only one hymn plays at a time. Playback stops when the page changes, the app is
   paused, or the button is tapped again. Icon toggles ▶ / ❚❚.
-- **What it plays** (`Hymn.getSheetToPlay()`): the hymn's sheet (its own, or its parent's when it has no tune of its own, as the sheet button picks it) when the sheet has a melody (not a chords-only sheet) and **either** it is a sheet of ours (`<identifier type="source">Hymns For Android</identifier>`: our own rendition wins over any MIDI file) **or** the hymn has no MIDI file. Otherwise the MIDI file `res/raw/m<tune>.mid`. The sheet is played by `SheetPlayer`, a WebView nobody sees (`assets/viewer/play.html`, `tools/web/android/play.js`) that runs the viewer's own player (`scoreOf` + `playScore`): the viewer's saved Both hands choice, this device's chord edits, the tempo the sheet names (`midi.bpm`, else the tune's MIDI file, else 110), looped like the MIDI file. Its WebView is dropped after two minutes without playing.
+- **What it plays** (`Hymn.getSheetToPlay()`): the hymn's sheet (its own, or its parent's when it has no tune of its own, as the sheet button picks it) when the sheet has a melody (not a chords-only sheet) and **either** it is a sheet of ours (`<identifier type="source">Hymns For Android</identifier>`: our own rendition wins over any MIDI file) **or** the hymn has no MIDI file. Otherwise the MIDI file `res/raw/m<tune>.mid`. The sheet is played by `SheetPlayer`, a WebView nobody sees (`assets/viewer/play.html`, `tools/web/android/play.js`) that runs the viewer's own player (`scoreOf` + `playScore`): the viewer's saved Both hands choice, this device's chord edits, the tempo the sheet names (`midi.bpm`, else 110), looped like the MIDI file. Its WebView is dropped after two minutes without playing.
 - Hidden when there is neither (`Hymn.canPlay()`: no sheet to play and no melody file: no tune, tune `0`, or no `res/raw/m<tune>` file). `playHymn()` still shows "Sorry! hymn not available" if playback fails.
 
 ### 7.3 Sheet music
@@ -954,7 +954,7 @@ and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/mu
 
 Both apps also **play the sheet**: the web app's hymn header's Play button plays the sheet while it is shown, the tune otherwise (the Android viewer and the web app's sheet alone have a ▶ in the toolbar); the notes come from the same reading of the sheet (melody with tied notes
 joined, the left hand and the added notes, or the chords softly when Both hands is off), in the order the repeats and endings
-give; the tempo is that of the hymn's tune file, folded into 50 to 160 quarter notes a minute. The elements of the notes that
+give; the tempo is the sheet's `scoreDef/@midi.bpm` (computed by `ly_to_mei.py` from the dominant sounding tempo of the hymn's MIDI file and adjusted for 2×/½× beat-unit differences, or from `leadsheetData/<id>.json` `verseBpm`, or set by the lead-sheet editor), falling back to the tune's MIDI file (`parseMidi` dominant sounding tempo) or 110. The elements of the notes that
 sound are marked in the drawn sheet and the bar that sounds is shaded; the page follows the music until the reader scrolls;
 the tempo goes from half to one and a half times the tune's; the sheet can be saved as a MIDI file. In the sheet
 toolbar (both apps) the controls used most are in front (Piano | Guitar, Chords only, key, Both hands, zoom, Sheet only for a music
@@ -968,7 +968,7 @@ One file per hymn, MEI 5.0, generated from LilyPond sources by `tools/svg-to-lil
 |---|---|
 | `meiHead//title[@type='main']`, `[@type='subordinate']` | title, subtitle (category) |
 | `meiHead//identifier[@type='hymn']`, `[@type='number']` | Hymn ID, printed number |
-| `scoreDef/@key.sig` (`4f`, `1s`, `0`), `@meter.count/@meter.unit` | key (fifths), time |
+| `scoreDef/@key.sig` (`4f`, `1s`, `0`), `@meter.count/@meter.unit`, `@midi.bpm` | key (fifths), time, quarter-note tempo |
 | `measure/staff/layer/note[@xml:id]` with `verse[@n]/syl[@wordpos,@con]` and `label` | melody; lyric syllables per verse under the staff (`wordpos` i/m/t, `con="d"` dash, `"u"` extender) |
 | `measure/harm[@tstamp]` | chord symbol text using `♭ ♯` (e.g. `A♭`, `C/E`) |
 | `dir[@startid]` | text labels (Chorus, Sisters, D.C. al Fine) |

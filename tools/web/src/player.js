@@ -68,10 +68,13 @@ function parseMidi(buf) {
   events.sort((x, y) => x.tick - y.tick || (x.type === 'tempo' ? -1 : 0) - (y.type === 'tempo' ? -1 : 0));
   let tempo = 500000, lastTick = 0, sec = 0;
   const open = new Map(), notes = [];
+  let firstTick = Infinity, lastNoteTick = 0;
   for (const e of events) {
     sec += (e.tick - lastTick) * tempo / div / 1e6;
     lastTick = e.tick;
     if (e.type === 'tempo') { tempo = e.tempo; continue; }
+    if (e.type === 'on' && e.tick < firstTick) firstTick = e.tick;
+    if (e.tick > lastNoteTick) lastNoteTick = e.tick;
     const k = e.ch * 128 + e.note;
     if (e.type === 'on') {
       if (open.has(k)) { const n = open.get(k); n.dur = sec - n.t; }
@@ -86,8 +89,24 @@ function parseMidi(buf) {
   const start = notes.length ? notes[0].t : 0;
   for (const n of notes) n.t -= start;                 // no silence before the first note
   const length = notes.reduce((m, n) => Math.max(m, n.t + n.dur), 0);
-  const first = events.find((e) => e.type === 'tempo');
-  return {notes, length, tempo: first ? first.tempo : 500000};     // tempo: microseconds to a quarter note
+  // dominant tempo across the sounding notes (ignoring tick-0 lead-in and trailing skip tempos)
+  let mainTempo = 500000;
+  const spans = new Map();
+  let cur = 500000, pos = firstTick < lastNoteTick ? firstTick : 0;
+  for (const e of events) {
+    if (e.type !== 'tempo') continue;
+    if (e.tick <= pos) cur = e.tempo;
+    else if (e.tick < lastNoteTick) {
+      spans.set(cur, (spans.get(cur) || 0) + (e.tick - pos));
+      pos = e.tick;
+      cur = e.tempo;
+    }
+  }
+  if (lastNoteTick > pos) spans.set(cur, (spans.get(cur) || 0) + (lastNoteTick - pos));
+  let best = 0;
+  for (const [us, ticks] of spans) if (ticks > best) { best = ticks; mainTempo = us; }
+  if (!best) mainTempo = cur;
+  return {notes, length, tempo: mainTempo};     // tempo: microseconds to a quarter note
 }
 
 // ---- the piano ----
@@ -176,7 +195,7 @@ function loopMidi(song, key) {
 
 export function playing() { return current ? current.key : null; }
 
-// the tempo of a tune's MIDI file in quarter notes a minute (the sheets have none), or 0 when it has none
+// the tempo of a tune's MIDI file in quarter notes a minute (fallback when a sheet has no midi.bpm), or 0 when it has none
 export async function tuneTempo(url) {
   if (!url || /\.mp3$/.test(url)) return 0;
   try { return Math.round(60e6 / (await loadSong(url)).tempo); } catch (e) { return 0; }
