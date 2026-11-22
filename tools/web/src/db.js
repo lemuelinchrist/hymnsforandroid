@@ -211,6 +211,31 @@ function relatedIds(s) {
 const INHERITED = ['author', 'composer', 'time', 'tune', 'key', 'meter', 'verse'];
 const TUNE_FIELDS = ['composer', 'time', 'tune', 'key'];   // not inherited by a New Tune
 
+function tunesDiffer(a, b) {
+  const ta = (a || '').trim(), tb = (b || '').trim();
+  if (!ta || ta === '0' || !tb || tb === '0') return false;
+  return ta !== tb && !ta.startsWith(tb) && !tb.startsWith(ta);
+}
+
+function findSheetByTune(h) {
+  const tune = (h.tune || '').trim();
+  if (!tune || tune === '0') return null;
+  const twinId = h.group === 'Z' ? 'C' + h.no : (h.group === 'ZS' ? 'CS' + h.no : null);
+  const isZh = h.group === 'C' || h.group === 'CS' || h.group === 'Z' || h.group === 'ZS';
+  let best = null, bestRank = Infinity, bestNo = Infinity;
+  for (const r of rows('select _id, hymn_group, no, parent_hymn from hymns where trim(tune) = ? and _id != ?', [tune, h.id])) {
+    if (!sheetIds.has(r._id)) continue;
+    let rank;
+    if (r._id === twinId) rank = 0;
+    else if (r.hymn_group === 'BF' && h.parentId && r.parent_hymn === h.parentId) rank = 1;
+    else if (isZh) rank = (r.hymn_group === 'C' || r.hymn_group === 'CS') ? 2 : r.hymn_group === 'BF' ? 3 : r.hymn_group === 'E' ? 4 : r.hymn_group === 'NS' ? 5 : 6;
+    else rank = r.hymn_group === 'E' ? 2 : r.hymn_group === 'BF' ? 3 : r.hymn_group === 'NS' ? 4 : r.hymn_group === 'CH' ? 5 : (r.hymn_group === 'C' || r.hymn_group === 'CS') ? 6 : 7;
+    const n = Number(r.no) || Infinity;
+    if (rank < bestRank || (rank === bestRank && n < bestNo)) { bestRank = rank; bestNo = n; best = r._id; }
+  }
+  return best;
+}
+
 // A hymn as the app shows it: empty fields, categories, stanzas and sheets come from the parent hymn (and its parents, up the tree; HymnsDao.get).
 function loadHymn(id, seen, state) {
   id = currentId((id || '').toUpperCase());   // an old code (MY637) finds the hymn under its new one (BUR637)
@@ -231,9 +256,9 @@ function loadHymn(id, seen, state) {
   for (const f of INHERITED) h[f] = row[f];
   const parentId = h.parentId ? currentId(h.parentId.toUpperCase()) : null;
   const parent = parentId && parentId !== id ? loadHymn(parentId, seen, state) : null;
-  // a New Tune of a hymn with another tune keeps its own music: no tune, sheet, piano videos or recordings from the parent
+  // a New Tune or translation with a different tune keeps its own music: no tune, sheet, piano videos or recordings from the parent
   // (HymnsDao.startsOwnTune); a translation of a New Tune still borrows from it
-  h.ownTune = !!parent && row.new_tune === 1 && !parent.newTune;
+  h.ownTune = !!parent && ((row.new_tune === 1 && !parent.newTune) || tunesDiffer(h.tune, parent.tune));
   if (parent) {
     for (const f of INHERITED) if (!h[f] && !(h.ownTune && TUNE_FIELDS.includes(f))) h[f] = parent[f];
     if (!h.title) h.title = parent.title || null;   // the nearest forebear's
@@ -243,8 +268,8 @@ function loadHymn(id, seen, state) {
     h.related = [...related];
   }
   if (!h.first && h.stanzas.length) h.first = plain(h.stanzas[0].text).split('\n')[0];
-  // the sheet: its own, else its parent's (or grandparent's; SheetMusicButton.getRootMusicSheet)
-  h.sheetId = sheetIds.has(id) ? id : (parent && !h.ownTune ? parent.sheetId : null);
+  // the sheet: its own, else its parent's (or grandparent's; SheetMusicButton.getRootMusicSheet), else a same-tune sheet
+  h.sheetId = sheetIds.has(id) ? id : (parent && !h.ownTune ? parent.sheetId : (h.ownTune ? findSheetByTune(h) : null));
   // a translation that borrows the sheet may have its own words for it (sheetLyrics/<id>.json)
   h.lyricsId = h.sheetId && h.sheetId !== id && lyricIds.has(id) ? id : null;
   if (!state.cut) cache.set(id, h);

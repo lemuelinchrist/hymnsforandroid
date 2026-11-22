@@ -282,6 +282,52 @@ def build_hymn_shards(assets, groups, sheet_ids, lyric_ids, tunes):
     tune_fields = {'composer', 'time', 'tune', 'key'}
     resolved = {}
 
+    def tunes_differ(a, b):
+        ta, tb = (a or '').strip(), (b or '').strip()
+        if not ta or ta == '0' or not tb or tb == '0':
+            return False
+        return ta != tb and not ta.startswith(tb) and not tb.startswith(ta)
+
+    sheets_by_tune = {}
+    for hid, row in raw.items():
+        if hid in sheet_ids:
+            t = (row.get('tune') or '').strip()
+            if t and t != '0':
+                sheets_by_tune.setdefault(t, []).append(hid)
+
+    def find_sheet_by_tune(h):
+        t = (h.get('tune') or '').strip()
+        cands = sheets_by_tune.get(t) if (t and t != '0') else None
+        if not cands:
+            return None
+        grp = h['group']
+        twin_id = ('C' + str(h['no'])) if grp == 'Z' else (('CS' + str(h['no'])) if grp == 'ZS' else None)
+        is_zh = grp in ('C', 'CS', 'Z', 'ZS')
+        pid = h['parentId']
+        best, best_key = None, None
+        for cid in cands:
+            if cid == h['id']:
+                continue
+            crow = raw[cid]
+            cgrp = crow['hymn_group']
+            if cid == twin_id:
+                rank = 0
+            elif cgrp == 'BF' and pid and crow.get('parent_hymn') == pid:
+                rank = 1
+            elif is_zh:
+                rank = 2 if cgrp in ('C', 'CS') else (3 if cgrp == 'BF' else (4 if cgrp == 'E' else (5 if cgrp == 'NS' else 6)))
+            else:
+                rank = 2 if cgrp == 'E' else (3 if cgrp == 'BF' else (4 if cgrp == 'NS' else (5 if cgrp == 'CH' else (6 if cgrp in ('C', 'CS') else 7))))
+            try:
+                cno = int(crow['no'])
+            except Exception:
+                cno = 10**9
+            key = (rank, cno)
+            if best_key is None or key < best_key:
+                best_key = key
+                best = cid
+        return best
+
     def resolve(hid, seen):
         if hid in resolved:
             return resolved[hid]
@@ -303,7 +349,8 @@ def build_hymn_shards(assets, groups, sheet_ids, lyric_ids, tunes):
             h[f] = row.get(f)
         pid = h['parentId']
         parent = resolve(pid, seen) if pid and pid != hid else None
-        h['ownTune'] = bool(parent and row.get('new_tune') == 1 and not parent['newTune'])
+        h['ownTune'] = bool(parent and ((row.get('new_tune') == 1 and not parent['newTune'])
+                                        or tunes_differ(h['tune'], parent['tune'])))
         if parent:
             for f in inherited_fields:
                 if not h[f] and not (h['ownTune'] and f in tune_fields):
@@ -323,7 +370,14 @@ def build_hymn_shards(assets, groups, sheet_ids, lyric_ids, tunes):
             h['related'] = rel_list
         if not h['first'] and h['stanzas']:
             h['first'] = plain_text(h['stanzas'][0]['text']).split('\n')[0]
-        h['sheetId'] = hid if hid in sheet_ids else (parent['sheetId'] if parent and not h['ownTune'] else None)
+        if hid in sheet_ids:
+            h['sheetId'] = hid
+        elif parent and not h['ownTune']:
+            h['sheetId'] = parent['sheetId']
+        elif h['ownTune']:
+            h['sheetId'] = find_sheet_by_tune(h)
+        else:
+            h['sheetId'] = None
         h['lyricsId'] = hid if (h['sheetId'] and h['sheetId'] != hid and hid in lyric_ids) else None
         resolved[hid] = h
         return h

@@ -42,6 +42,7 @@ public class Hymn {
     private String title;
     private boolean ownTune = false;
     private String ancestorSheetId;
+    private String tuneSheetId;
 
     public String getVerse() {
         return verse;
@@ -376,7 +377,7 @@ public class Hymn {
         isNewTune = newTune;
     }
 
-    /** A New Tune whose parent has another tune: its music (tune, sheet, piano videos, recordings) is never the parent's. */
+    /** A New Tune or translation whose tune differs from its parent's: its music (tune, sheet, piano videos, recordings) is never the parent's. */
     public boolean hasOwnTune() {
         return ownTune;
     }
@@ -389,11 +390,16 @@ public class Hymn {
         this.ancestorSheetId = ancestorSheetId;
     }
 
-    /** The sheet ID for this hymn: its own sheet, else its parent's or ancestor's (never past a New Tune boundary). */
+    public void setTuneSheetId(String tuneSheetId) {
+        this.tuneSheetId = tuneSheetId;
+    }
+
+    /** The sheet ID for this hymn: its own sheet, else its parent's or ancestor's (never past an own-tune boundary), else a sheet with the same tune. */
     public String getRootSheetId() {
         if (hasOwnSheetMusic()) return hymnId;
         if (!hasOwnTune() && hasSheetMusic(parentHymn)) return parentHymn;
         if (!hasOwnTune() && hasSheetMusic(ancestorSheetId)) return ancestorSheetId;
+        if (hasOwnTune() && hasSheetMusic(tuneSheetId)) return tuneSheetId;
         return null;
     }
 
