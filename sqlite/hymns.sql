@@ -65058,7 +65058,7 @@ INSERT INTO stanza VALUES('I109','2','Puji, puji, Kristus bangkit!<br/>Puji Kris
 INSERT INTO stanza VALUES('I109','3','Puji, puji, Kristus t''rangkat!<br/>Puji Kristus terangkat!<br/>Lampaui semua penguasa,<br/>sandang nama terhormat!<br/>Pegang kuasa atas s''gala,<br/>musuh sungkur duli-Nya!<br/>',NULL,60562,3);
 INSERT INTO stanza VALUES('I109','4','Haleluya, Kristus menang!<br/>Haleluya, Dia menang!<br/>Haleluya, Kristus bangkit!<br/>Haleluya, Dia bangkit!<br/>Haleluya, Kristus t''rangkat!<br/>Haleluya, Dia t''rangkat!<br/>',NULL,60563,4);
 INSERT INTO stanza VALUES('I110','1','Dengar, suara menggelegar,<br/>junjung tinggi Sang Domba;<br/>Laksaan saleh beresonan,<br/>hamonis pun tak hingga.<br/>',NULL,60564,1);
-INSERT INTO stanza VALUES('I110','2','Tiap penjuri puji Domba,<br/>genap surga bergita;<br/>Se-mua mulut nyanyi riang,<br/>penuh luap pujian.<br/>',NULL,60565,2);
+INSERT INTO stanza VALUES('I110','2','Tiap penjuru puji Domba,<br/>genap surga bergita;<br/>Se-mua mulut nyanyi riang,<br/>penuh luap pujian.<br/>',NULL,60565,2);
 INSERT INTO stanza VALUES('I110','3','Wangi syukur p''ri ukupan,<br/>membubung pada Bapa;<br/>Se-mua lutut sembah Putra,<br/>memujilah serempak.<br/>',NULL,60566,3);
 INSERT INTO stanza VALUES('I110','4','Terang Putra menyatakan,<br/>mulia Bapa sepenuh;<br/>Hikmat Bapa ''nyatakan jua,<br/>Sang Putra sama agung.<br/>',NULL,60567,4);
 INSERT INTO stanza VALUES('I110','5','Roh Kudus ''nembus segala,<br/>kaum surga selaras;<br/>kelilingi Domba Suci,<br/>memuji Dia Sang Kekal.<br/>',NULL,60568,5);
