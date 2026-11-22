@@ -95,6 +95,7 @@
     var pc = mod12(p), letter = -1;
     if (c.slash && pc === c.bass) letter = c.bassLetter;
     else for (var i = 0; i < c.tones.length; i++) if (mod12(c.root + c.tones[i][0]) === pc) { letter = (c.rootLetter + c.tones[i][1]) % 7; break; }
+    if (letter < 0 && mod12(c.root + 2) === pc) letter = (c.rootLetter + 1) % 7;   // warm 9th / 2nd above the root
     if (letter < 0) return spell(sheet, p);
     var alter = mod12(pc - NATURAL[letter] + 6) - 6;
     if (alter < -2 || alter > 2) return spell(sheet, p);
@@ -247,15 +248,16 @@
 
   // ---- the left hand from the chords
   // A pattern is steps on a grid of `rate` sixteenths (0: one step, held): "1 5 8 5", "1 c c", "1+5 - - c | c".
-  //   1 3 5 7 8 10 12  the chord's notes counted up from the bass (8 the octave, 10 the third above it)
-  //   c  C             the chord in the middle of the keyboard: c two notes (third + fifth or seventh), C all of them
-  //   a+b              together;  -  the step before goes on;  .  silence
-  //   A | B            A in the bar where the chord starts, B in the bars it goes on in
+  //   1 3 5 7 8 9 10 12  the chord's notes counted up from the bass (8 the octave, 9 warm ninth, 10 third above octave)
+  //   c  C               the chord in the middle of the keyboard: c two notes (third + fifth or seventh), C all of them
+  //   w                  a smooth walking/connecting bass step leading into the next chord's bass
+  //   a+b                together;  -  the step before goes on;  .  silence
+  //   A | B              A in the bar where the chord starts, B in the bars it goes on in
   function parsePattern(str) {
     var parts = String(str || '').split('|').map(function (part) {
       return part.trim().split(/\s+/).filter(Boolean).map(function (st) {
         if (st === '-' || st === '_') return {hold: true};
-        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|10|12|c|C)$/.test(x); });
+        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|9|10|12|c|C|w)$/.test(x); });
         return toks.length ? {toks: toks} : {rest: true};
       });
     }).filter(function (p) { return p.length; });
@@ -264,9 +266,40 @@
   function patternText(parts) {
     return parts.map(function (p) { return p.map(function (s) { return s.hold ? '-' : s.rest ? '.' : s.toks.join('+'); }).join(' '); }).join(' | ');
   }
+  // Smooth walking/connecting bass pitch leading from chord `c` (at `bass`) into `next` chord's bass.
+  function walkPitch(c, next, bass, lad, low) {
+    var fallback = lad[2] || (bass + 7);
+    if (!next || !next.info) return fallback;
+    var nBase = low + mod12(next.info.bass - low), target = nBase;
+    [nBase - 12, nBase, nBase + 12].forEach(function (cand) {
+      if (cand >= Math.max(36, low - 4) && Math.abs(cand - bass) < Math.abs(target - bass)) target = cand;
+    });
+    if (mod12(target) === mod12(bass)) return fallback;
+    var diff = target - bass, pcs = c.tones.map(function (t) { return mod12(c.root + t[0]); });
+    var thirdIv = c.tones[1] ? c.tones[1][0] : 4;
+    // 1. Classic stepwise passing tone on a 3rd/4th drop or rise (always diatonic: C->B->A, G->F#->E, Am->G->F, F->G->Am)
+    if (diff === -3 && thirdIv === 4) return bass - 1;
+    if (diff === 3 && thirdIv === 3) return bass + 2;
+    if (diff === -4 && thirdIv === 3) return bass - 2;
+    if (diff === 4 && thirdIv === 4) return bass + 2;
+    // 2. A tone of the current chord that sits 1 or 2 semitones away from the next bass (e.g. C->E->F, G->B->C, D->F#->G)
+    var best = null, bestScore = Infinity;
+    for (var step = -2; step <= 2; step++) {
+      if (!step) continue;
+      var cand = target + step;
+      if (cand < 36 || cand > 62 || mod12(cand) === mod12(bass)) continue;
+      if (pcs.indexOf(mod12(cand)) < 0) continue;
+      var between = (diff > 0 && cand > bass && cand < target) || (diff < 0 && cand < bass && cand > target);
+      var score = (between ? 0 : 6) + Math.abs(step) + Math.abs(cand - bass) * 0.25;
+      if (score < bestScore) { bestScore = score; best = cand; }
+    }
+    if (best != null) return best;
+    return fallback;
+  }
   // the pitches of every token for one chord; `low` is the lowest bass note allowed (MIDI, 40 = E2, the default: lower sounds muddy and distorts on a phone; the bass is the first
-  // such note from there up)
-  function voicing(c, low, parts) {
+  // such note from there up). `opt`: {next, prevMid, smooth} for walking bass (`w`) and smooth voice-leading (`c`, `C`).
+  function voicing(c, low, parts, opt) {
+    opt = opt || {};
     var pcs = c.tones.map(function (t) { return mod12(c.root + t[0]); }), nt = pcs.length;
     var used = {}; parts.forEach(function (p) { p.forEach(function (s) { (s.toks || []).forEach(function (t) { used[t] = true; }); }); });
     function ladder(bass) {   // the chord's notes upwards from the bass
@@ -274,35 +307,75 @@
       while (out.length < nt + 4) { p++; if (pcs.indexOf(mod12(p)) >= 0) out.push(p); }
       return out;
     }
-    function at(lad, d) { return lad[d < 8 ? {1: 0, 3: 1, 5: 2, 7: Math.min(3, nt)}[d] : nt + {8: 0, 10: 1, 12: 2}[d]]; }
+    function at(lad, d) {
+      if (d === 9) {
+        var isDim = c.tones[2] && c.tones[2][0] === 6;
+        if (isDim) return lad[nt];   // avoid clashing 9th on diminished/half-diminished chords
+        var oct = lad[nt], ninth = oct + mod12(c.root + 2 - oct);
+        return ninth <= oct + 4 ? ninth : oct + 2;
+      }
+      return lad[d < 8 ? {1: 0, 3: 1, 5: 2, 7: Math.min(3, nt)}[d] : nt + {8: 0, 10: 1, 12: 2}[d]];
+    }
     low = low == null ? 40 : low;
     var bass = low + mod12(c.bass - low), degs = Object.keys(used).filter(function (t) { return /\d/.test(t); }).map(Number);
     var lad = ladder(bass), out = {};
     degs.forEach(function (d) { out[d] = [at(lad, d)]; });
-    function middle(ivs) { return ivs.map(function (iv) { return 52 + mod12(c.root + iv - 52); }).sort(function (a, b) { return a - b; }); }   // E3..D#4
+    if (used.w) out.w = [walkPitch(c, opt.next, bass, lad, low)];
+    function middle(ivs) {
+      if (!opt.smooth) return ivs.map(function (iv) { return 52 + mod12(c.root + iv - 52); }).sort(function (a, b) { return a - b; });   // E3..D#4
+      // Smooth voice-leading: pick the compact inversion closest to prevMid (default A3 = 57), staying in [50..65]
+      var target = opt.prevMid != null ? opt.prevMid : 57;
+      var uniq = [];
+      ivs.forEach(function (iv) { var pc = mod12(c.root + iv); if (uniq.indexOf(pc) < 0) uniq.push(pc); });
+      var best = null, bestCost = Infinity;
+      for (var lo = 48; lo <= 58; lo++) {
+        var cand = uniq.map(function (pc) { return lo + mod12(pc - lo); }).sort(function (a, b) { return a - b; });
+        if (cand[0] < 48 || cand[cand.length - 1] > 66) continue;
+        var avg = cand.reduce(function (s, x) { return s + x; }, 0) / cand.length;
+        var cost = Math.abs(avg - target) + (cand[cand.length - 1] - cand[0]) * 0.15;
+        if (cost < bestCost) { bestCost = cost; best = cand; }
+      }
+      return best || ivs.map(function (iv) { return 52 + mod12(c.root + iv - 52); }).sort(function (a, b) { return a - b; });
+    }
     if (used.c) out.c = middle([c.tones[1][0], c.tones[c.seventh ? 3 : 2][0]]);
     if (used.C) out.C = middle(c.tones.map(function (t) { return t[0]; }));
     return out;
   }
   function meter(sheet) { var bar = barLen(sheet), beat = beatLen(sheet); return {bar: bar, beat: beat, beats: Math.round(bar / beat), compound: compound(sheet)}; }
+  // [id, name, hint, {steps: pat}, low, extra]
   var ARP = [
-    ['open', 'Open', 'root, fifth, octave', {2: '1 5', 3: '1 5 8', 4: '1 5 8 5', 6: '1 5 8 5 8 5'}, 40],
-    ['wide', 'Wide', 'up to the tenth', {2: '1 5', 3: '1 5 10', 4: '1 5 10 5', 6: '1 5 8 10 8 5', 8: '1 5 8 10 12 10 8 5'}, 40],
-    ['broken', 'Broken chord', 'root, third, fifth', {2: '1 5', 3: '1 3 5', 4: '1 3 5 3', 6: '1 3 5 3 5 3'}, 43],
-    ['alberti', 'Alberti', 'low, high, middle, high', {2: '1 5', 3: '1 5 3', 4: '1 5 3 5', 6: '1 5 3 5 3 5'}, 43],
-    ['rise', 'Rise and hold', 'up, then held', {2: '1 5', 3: '1 5 8', 4: '1 5 8 -', 6: '1 5 8 - - -', 8: '1 5 8 10 - - - -'}, 36]];
+    ['flowing', 'Flowing', 'full-bar arch with warm 9th', {
+      2: '1 5', 3: '1 5 9', 4: '1 5 8 9', 6: '1 5 8 9 10 8 | 1 5 8 10 8 5',
+      8: '1 5 8 9 10 - 8 5 | 1 5 8 - 9 8 5 -'}, 38, {bassRing: true, shortPat: '1 5 8 9'}],
+    ['ballad', 'Ballad', 'breathing syncopated arpeggio', {
+      2: '1 5', 3: '1 5 8', 4: '1 5 8 -', 6: '1 5 8 - 10 8 | 1 5 8 - 9 8',
+      8: '1 5 8 - 10 8 5 - | 1 5 8 - 9 8 5 -'}, 38, {bassRing: true, shortPat: '1 5 8 -'}],
+    ['open', 'Open', 'root, fifth, octave', {
+      2: '1 5', 3: '1 5 8', 4: '1 5 8 5', 6: '1 5 8 5 8 5',
+      8: '1 5 8 5 10 5 8 5 | 1 5 8 5 9 5 8 5'}, 40, {bassRing: true, shortPat: '1 5 8 5'}],
+    ['wide', 'Wide', 'up to the tenth', {
+      2: '1 5', 3: '1 5 10', 4: '1 5 10 5', 6: '1 5 8 10 8 5',
+      8: '1 5 8 10 12 10 8 5'}, 40, {bassRing: true, shortPat: '1 5 10 5'}],
+    ['broken', 'Broken chord', 'root, third, fifth', {
+      2: '1 5', 3: '1 3 5', 4: '1 3 5 3', 6: '1 3 5 3 5 3',
+      8: '1 3 5 8 5 3 5 3'}, 43, {bassRing: true, shortPat: '1 3 5 3'}],
+    ['alberti', 'Alberti', 'low, high, middle, high', {
+      2: '1 5', 3: '1 5 3', 4: '1 5 3 5', 6: '1 5 3 5 3 5'}, 43, {bassRing: true}],
+    ['rise', 'Rise and hold', 'up, then held', {
+      2: '1 5', 3: '1 5 8', 4: '1 5 8 -', 6: '1 5 8 - - -',
+      8: '1 5 8 10 - - - -'}, 36, {bassRing: true}]];
   function arpPattern(shape, steps) {
     var t = shape[3];
     if (t[steps]) return t[steps];
     if (steps % 3 === 0) return steps % 6 === 0 ? t[6] : t[3];
-    return steps === 2 ? t[2] : steps % 8 === 0 && t[8] && steps > 8 ? t[8] : t[4];
+    return steps === 2 ? t[2] : steps % 8 === 0 && t[8] ? t[8] : t[4];
   }
-  // The styles the page offers, for this sheet's time signature. Each choice is {id, name, pat, rate, low}.
+  // The styles the page offers, for this sheet's time signature. Each choice is {id, name, pat, rate, low, ...}.
   function styles(sheet) {
     var m = meter(sheet), beat = m.beat, n = m.beats, half = n % 2 === 0 && n > 2 ? m.bar / 2 : 0;
-    function strikes(pat, low, id, name, hint) {
+    function strikes(pat, low, id, name, hint, extra) {
       var rh = [[0, 'held', 'Held']]; if (half) rh.push([half, 'half', 'Twice a bar']); rh.push([beat, 'beat', 'Every beat']);
-      return {id: id, name: name, hint: hint, rhythms: rh.map(function (r) { return {id: r[1], name: r[2], pat: pat, rate: r[0], low: low}; })};
+      return {id: id, name: name, hint: hint, rhythms: rh.map(function (r) { return Object.assign({id: r[1], name: r[2], pat: pat, rate: r[0], low: low}, extra || {}); })};
     }
     var bc;
     if (m.compound) bc = [['bcc', 'Bass, chord, chord', '1 c c', 2], ['long', 'Bass and chord', '1 - - c - -', 2], ['alt', 'Root and fifth', '1 c c 5 c c', 2]];
@@ -311,6 +384,20 @@
     else bc = [['alt', 'Root and fifth', '1 c 5 c', beat], ['bcc', 'Bass and chords', '1 c c c', beat], ['slow', 'Slow', '1 - c -', beat], ['pulse', 'In eighths', '1 - c - 5 - c -', beat / 2]];
     var rates = m.compound ? [[2, '8', 'Eighths'], [1, '16', 'Sixteenths']] : [[beat, '4', beat === 4 ? 'Quarters' : 'On the beat'], [beat / 2, '8', beat === 4 ? 'Eighths' : 'Twice a beat'], [beat / 4, '16', beat === 4 ? 'Sixteenths' : 'Four a beat']];
     rates = rates.filter(function (r) { return r[0] >= 1 && r[0] === Math.round(r[0]); });
+    var eighth = m.compound ? 2 : Math.max(1, Math.round(beat / 2));
+    var pulsePat = m.compound ? '1 - 5 c - 5 | 1 - c 5 - c' : n === 3 ? '1 - - c - 5 | 1 - c - 5 -' : n === 2 ? '1 - 5 c' : '1 - - 5 8 - c - | 1 - - 5 c - 8 -';
+    var adaptCalm = m.compound ? '1 - - 5 - -' : n === 3 ? '1 - 5 - c -' : n === 2 ? '1 - 5 -' : '1 - - - 5 - 8 - | 1 - - - c - 5 -';
+    var adaptFill = m.compound ? '1 5 8 10 8 5' : n === 3 ? '1 5 8 9 10 8' : n === 2 ? '1 5 8 9' : '1 5 8 9 10 - 8 5';
+    var walkQ = m.compound ? '1 5 w' : n === 3 ? '1 5 w' : n === 2 ? '1 w' : '1 5 8 w';
+    var walkE = m.compound ? '1 - 5 8 - w' : n === 3 ? '1 - 5 - w -' : n === 2 ? '1 5 8 w' : '1 - 5 - 8 - w -';
+    var walkRhythms = m.compound
+      ? [{id: '8', name: 'Eighths', pat: walkE, rate: 2, low: 38, bassRing: true, shortPat: '1 - w'}]
+      : [{id: '4', name: beat === 4 ? 'Quarters' : 'On the beat', pat: walkQ, rate: beat, low: 38, shortPat: '1 w'},
+         {id: '8', name: beat === 4 ? 'Eighths' : 'Twice a beat', pat: walkE, rate: eighth, low: 38, bassRing: true, shortPat: '1 - w -'}];
+    var rolledRhythms = [{id: 'held', name: 'Held', pat: '1+5+8+10', rate: 0, low: 38, roll: 0.032}];
+    if (half) rolledRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+5+8+10', rate: half, low: 38, roll: 0.028});
+    var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+C', rate: 0, low: 40, smooth: true}];
+    if (half) choraleRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+C', rate: half, low: 40, smooth: true});
     return [
       {id: 'strike', name: 'Strike', hint: 'the chord in one stroke', kinds: [
         strikes('1+5', 41, 'two', 'Two notes', 'root and fifth'),
@@ -318,13 +405,25 @@
         strikes('1+5+8', 40, 'open', 'Open', 'root, fifth, octave'),
         strikes('1+5 | c', 41, 'hymn', 'Hymn', 'low at the chord, higher while it lasts')]},
       {id: 'bass', name: 'Bass + chord', hint: 'a bass note, then the chord', kinds: bc.filter(function (b) { return b[3] >= 1 && b[3] === Math.round(b[3]); }).map(function (b) {
-        return {id: b[0], name: b[1], hint: b[2], rhythms: [{id: 'x', name: '', pat: b[2], rate: b[3], low: 40}]};
+        return {id: b[0], name: b[1], hint: b[2], rhythms: [{id: 'x', name: '', pat: b[2], rate: b[3], low: 40, smooth: true}]};
       })},
       {id: 'arp', name: 'Arpeggio', hint: 'the chord one note at a time', kinds: ARP.map(function (a) {
         return {id: a[0], name: a[1], hint: a[2], rhythms: rates.map(function (r) {
-          return {id: r[1], name: r[2], pat: arpPattern(a, Math.round(m.bar / r[0])), rate: r[0], low: a[4]};
+          var steps = Math.round(m.bar / r[0]), extra = a[5] || {};
+          var item = {id: r[1], name: r[2], pat: arpPattern(a, steps), rate: r[0], low: a[4]};
+          if (extra.bassRing) item.bassRing = true;
+          if (extra.shortPat && steps >= 8) item.shortPat = extra.shortPat;
+          return item;
         })};
-      })}];
+      })},
+      {id: 'dynamic', name: 'Dynamic', hint: 'musical patterns that breathe and move', kinds: [
+        {id: 'adaptive', name: 'Adaptive', hint: 'calm under singing, blooms on held notes', rhythms: [
+          {id: '8', name: '', pat: adaptCalm, fillPat: adaptFill, shortPat: '1 5 8 5', rate: eighth, low: 38, bassRing: true, adaptive: true, smooth: true}]},
+        {id: 'rolled', name: 'Rolled', hint: 'soft upward harp-like chords', rhythms: rolledRhythms},
+        {id: 'pulse', name: 'Pulse', hint: 'modern ballad groove with breath', rhythms: [
+          {id: '8', name: '', pat: pulsePat, shortPat: '1 - 5 c', rate: eighth, low: 38, bassRing: true, smooth: true}]},
+        {id: 'walking', name: 'Walking', hint: 'bass steps smoothly into each chord', rhythms: walkRhythms},
+        {id: 'chorale', name: 'Chorale', hint: 'smooth voice-led hymn chords', rhythms: choraleRhythms}]}];
   }
   // which style a pattern is: {family, kind, rhythm} (indices into styles()), by its "style" hint or by its pattern
   function findStyle(sheet, a) {
@@ -341,7 +440,7 @@
     if (!a || !a.pat) return 'No left hand';
     var f = findStyle(sheet, a); if (!f) return a.pat;
     var st = styles(sheet), fam = st[f.family], k = fam.kinds[f.kind], r = k.rhythms[f.rhythm];
-    return fam.id === 'bass' ? k.name : fam.name + ': ' + k.name.toLowerCase() + (r.name ? ', ' + r.name.toLowerCase() : '');
+    return (fam.id === 'bass' || !r.name) ? k.name : fam.name + ': ' + k.name.toLowerCase() + ', ' + r.name.toLowerCase();
   }
 
   // The left hand the patterns give: {events: [{p: [pitches] | null, d, ring}], marks: [{t, text}]}, or null when the
@@ -409,19 +508,39 @@
       for (var k = 0; k < mel.length && mel[k][0] < g + d; k++) if (mel[k][1] > g) lo = Math.min(lo, mel[k][2]);
       return lo;
     }
-    var lastBar = tl.last >= 0 ? barAt(tl.last) : -1, events = [], marks = [], lastA = null;
+    var lastBar = tl.last >= 0 ? barAt(tl.last) : -1, events = [], marks = [], lastA = null, prevMid = null;
+    // Detect whether the melody holds a long note or rests during the second half of [a, z) — ideal space for an adaptive fill
+    function melSpacious(a, z) {
+      var lenSpan = z - a;
+      if (lenSpan < 8) return false;
+      var mid = a + Math.floor(lenSpan / 2), onsetsInSecondHalf = 0, onsetsTotal = 0;
+      for (var k = 0; k < mel.length && mel[k][0] < z; k++) {
+        if (mel[k][0] >= a && mel[k][0] < z) {
+          onsetsTotal++;
+          if (mel[k][0] >= mid) onsetsInSecondHalf++;
+        }
+      }
+      return onsetsTotal <= 2 && onsetsInSecondHalf === 0;
+    }
     at.forEach(function (a, k) {
       var z = k + 1 < at.length ? at[k + 1] : endG, sp = spanAt(a), acc = patAt(a), parts = acc ? parsePattern(acc.pat) : [];
       if (z <= a) return;
       if (acc !== lastA) { marks.push({g: a, a: acc, song: acc === base}); lastA = acc; }
       if (!sp || !sp.info || !parts.length) { events.push({g: a, d: z - a, p: null}); return; }
-      var bi = barAt(a), barStart = bars[bi].g, fresh = sp.g >= barStart || barStart === first && sp.g < first;
-      var steps = parts[fresh ? 0 : Math.min(1, parts.length - 1)], rate = acc.rate | 0;
+      var bi = barAt(a), barStart = bars[bi].g, barL = bars[bi].len, fresh = sp.g >= barStart || barStart === first && sp.g < first;
+      var rate = acc.rate | 0, useParts = parts;
+      // Short-chord adaptation (e.g. 2-beat chord in 4/4) and melody-responsive adaptive fills
+      if (rate && acc.shortPat && (z - a) <= barL / 2) {
+        var spParts = parsePattern(acc.shortPat); if (spParts.length) useParts = spParts;
+      } else if (rate && acc.adaptive && acc.fillPat && melSpacious(a, z)) {
+        var fpParts = parsePattern(acc.fillPat); if (fpParts.length) useParts = fpParts;
+      }
+      var steps = useParts[fresh ? 0 : Math.min(1, useParts.length - 1)];
       // what is played when in this stretch: [{toks | null, g, d}]
-      var plan = [];
-      if (acc.end !== false && rate && sp === spans[spans.length - 1] && bi >= lastBar && lastBar >= 0) {
+      var plan = [], isEnding = acc.end !== false && rate && sp === spans[spans.length - 1] && bi >= lastBar && lastBar >= 0;
+      if (isEnding) {
         var all = ['1', '5']; steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
-        plan.push({toks: all, g: a, d: z - a});
+        plan.push({toks: all, g: a, d: z - a, ending: true});
       } else if (!rate) plan.push({toks: steps[0].toks || null, g: a, d: z - a});
       else for (var t = a, q = 0; t < z; t += rate, q++) {
         var s = steps[q % steps.length], d = Math.min(rate, z - t), last = plan[plan.length - 1];
@@ -429,8 +548,11 @@
       }
       // the figure counted up from the bass and the chord in the middle each go down an octave, whole, where one of
       // their notes would reach the melody
-      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '10', '12', 'c', 'C']}]]), shift = {fig: 0, mid: 0};
-      function layer(t) { return /\d/.test(t) ? 'fig' : 'mid'; }
+      var spIdx = spans.indexOf(sp), nextSp = spIdx >= 0 && spIdx + 1 < spans.length ? spans[spIdx + 1] : null;
+      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 'w']}]],
+        {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth});
+      var shift = {fig: 0, mid: 0};
+      function layer(t) { return /[\dw]/.test(t) ? 'fig' : 'mid'; }
       ['fig', 'mid'].forEach(function (L) {
         for (var n = 0; n < 2; n++) {
           var hit = false, lowest = Infinity;
@@ -442,11 +564,24 @@
           if (hit && lowest - 12 >= (L === 'fig' ? 36 : 48)) shift[L]++; else break;
         }
       });
-      plan.forEach(function (st) {
+      // Update smooth voice-leading anchor from the middle chord actually used in this stretch
+      if (acc.smooth) {
+        var midNotes = v.C || v.c;
+        if (midNotes && midNotes.length) {
+          prevMid = midNotes.reduce(function (s, p) { return s + (p - 12 * shift.mid); }, 0) / midNotes.length;
+        }
+      }
+      plan.forEach(function (st, pi) {
         var o = [];
         (st.toks || []).forEach(function (t) { v[t].forEach(function (p) { p -= 12 * shift[layer(t)]; if (o.indexOf(p) < 0) o.push(p); }); });
         var e = {g: st.g, d: st.d, p: o.length ? o.sort(function (x, y) { return x - y; }) : null};
-        if (e.p && acc.pedal && rate && z - st.g > st.d) e.ring = z - st.g;
+        if (e.p) {
+          if (acc.pedal && rate && z - st.g > st.d) e.ring = z - st.g;
+          else if (acc.bassRing && rate && pi === 0 && (st.toks || []).indexOf('1') >= 0 && z - st.g > st.d) e.ring = z - st.g;
+          if (st.ending) e.roll = 0.032;
+          else if (acc.roll && e.p.length > 1) e.roll = acc.roll;
+          if (pi === 0 && fresh) e.fresh = true;
+        }
         events.push(e);
       });
     });

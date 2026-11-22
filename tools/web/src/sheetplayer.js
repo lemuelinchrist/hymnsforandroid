@@ -179,6 +179,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     const sc = currentScore();
     if (!sc || !sc.events.length) return;
     const mine = ++starting;
+    Player.unlock();                                    // unlock audio in the tap and begin loading piano samples
     stopTune();
     showStartBar();
     follow = true;

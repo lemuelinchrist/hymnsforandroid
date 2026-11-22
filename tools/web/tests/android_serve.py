@@ -26,6 +26,8 @@ SHARED = [l.strip() for l in open(os.path.join(WEB, 'android', 'shared.txt'), en
 
 def resolve(path):
     parts = [p for p in posixpath.normpath(urllib.parse.unquote(path)).split('/') if p and p != '..']
+    if parts[:4] == ['assets', 'viewer', 'vendor', 'piano'] and len(parts) == 5:
+        return os.path.join(WEB, 'vendor', 'piano', parts[4])
     if parts[:2] == ['assets', 'viewer'] and len(parts) == 3:
         name = parts[2]
         if name in SHARED:
@@ -47,7 +49,7 @@ def resolve(path):
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     extensions_map = {**http.server.SimpleHTTPRequestHandler.extensions_map, '.js': 'text/javascript', '.mei': 'application/xml',
-                      '.mid': 'audio/midi', '.wasm': 'application/wasm'}
+                      '.mid': 'audio/midi', '.mp3': 'audio/mpeg', '.wasm': 'application/wasm'}
 
     def translate_path(self, path):
         return resolve(path.split('?', 1)[0]) or os.path.join(HERE, '__missing__')

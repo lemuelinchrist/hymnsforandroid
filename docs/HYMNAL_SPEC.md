@@ -945,7 +945,7 @@ which both apps run.
 The sheets are lead sheets. Both apps (the sheet code is shared, §11.2) can show a piano part with them (**Both hands**; turning it on opens a panel at the bottom that chooses the style, and Done tucks it down to a bar
 that names the style and opens it again when tapped or dragged up): a left hand
 on a second staff (bass clef, in a brace with the first), made from the chords by a pattern (struck chords, bass and
-chord, arpeggios), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
+chord, arpeggios including full-bar Flowing/Ballad arches with warm 9ths and bass sustain, and Dynamic styles: melody-responsive Adaptive, Rolled harp chords, contemporary Pulse, diatonic Walking bass, and smooth voice-led Chorale), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
 made when the sheet is shown, from the sheet as shown (after transposing and after the device's chord edits), and
 written into the MEI before Verovio draws it; the sheet files have none of it. It is only on the piano sheet with the
 staff shown. The choice is kept on the device, for every hymn or for one hymn alone, by the name of the style, so that
@@ -957,7 +957,7 @@ chords are moved onto the beat for the left hand; the left hand stays under the 
 and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,
 `tools/web/src/piano.js` reads a sheet's bars, chords and melody for it. A native app can run the same file.
 
-Both apps also **play the sheet**: the web app's hymn header's Play button plays the sheet while it is shown, the tune otherwise (the Android viewer and the web app's sheet alone have a ▶ in the toolbar); the notes come from the same reading of the sheet (melody with tied notes
+Both apps also **play the sheet** with multi-sampled Salamander Grand Piano audio (`vendor/piano/*.mp3`, 22 minor-3rd samples `A1`–`C7`, loaded progressively in two stages with an automatic oscillator fallback), expressive metrical/contour dynamics, clean pedal lifts, and subtle chord rolling: the web app's hymn header's Play button plays the sheet while it is shown, the tune otherwise (the Android viewer and the web app's sheet alone have a ▶ in the toolbar); the notes come from the same reading of the sheet (melody with tied notes
 joined, the left hand and the added notes, or the chords softly when Both hands is off), in the order the repeats and endings
 give; the tempo is the sheet's `scoreDef/@midi.bpm` (computed by `ly_to_mei.py` from the dominant sounding tempo of the hymn's MIDI file and adjusted for 2×/½× beat-unit differences, or from `leadsheetData/<id>.json` `verseBpm`, or set by the lead-sheet editor), falling back to the tune's MIDI file (`parseMidi` dominant sounding tempo) or 110. The elements of the notes that
 sound are marked in the drawn sheet and the bar that sounds is shaded; tapping a measure or note highlights that starting measure in red (kept across Stop/Play until "From the start" or closing) and starts there, while Loop wraps back to the beginning of the sheet on subsequent passes; the page follows the music until the reader scrolls;

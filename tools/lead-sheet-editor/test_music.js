@@ -207,6 +207,30 @@ test('what is played', () => {
   assert.deepStrictEqual(pl.pad.map(c => c.t), [2, 18, 26, 34]);
 });
 
+test('dynamic accompaniment: 9th, walking bass, smooth voice-leading, short chords, bassRing, adaptive fills', () => {
+  // 9th token (warm add9 above octave) + bassRing
+  const s = song(); s.acc = {pat: '1 5 8 9 10 - 8 5', shortPat: '1 5 8 9', rate: 2, low: 38, bassRing: true};
+  const lh = M.accompany(s);
+  assert.ok(lh.events[1].ring > lh.events[1].d, 'beat-1 bass rings under the arpeggio');
+  // In bar 2 (G major), 9th above G3 (55) is A3 (57)
+  assert.strictEqual(nm(lh.events[4].p[0]), 'A3', '9th of G is A3');
+  // Walking bass: G -> C steps through B; C -> D steps through E
+  const sw = song(); sw.acc = {pat: '1 5 8 w', shortPat: '1 w', rate: 4, low: 38};
+  const wlh = M.accompany(sw);
+  assert.strictEqual(nm(wlh.events[4].p[0]), 'B2', 'G -> C walks through B2');
+  // Adaptive: calm when melody moves (bar 1 has 3 notes), blooms into fill when melody holds (bar 3 is a whole note)
+  const sa = song();
+  sa.acc = {pat: '1 - - - 5 - 8 -', fillPat: '1 5 8 9 10 - 8 5', shortPat: '1 5 8 5', rate: 2, low: 38, adaptive: true, bassRing: true};
+  const alh = M.accompany(sa);
+  const bar1 = alh.events.filter((e, i) => { const t = M.onsets(alh.events)[i]; return t >= 2 && t < 18; });
+  const bar3 = alh.events.filter((e, i) => { const t = M.onsets(alh.events)[i]; return t >= 34 && t < 50; });
+  assert.ok(bar1.length < bar3.length, 'adaptive plays fewer notes under moving melody (' + bar1.length + ') than under held whole note (' + bar3.length + ')');
+  // Smooth Chorale keeps middle voices compact across chord changes
+  const sc = song(); sc.acc = {pat: '1+C', rate: 0, low: 40, smooth: true};
+  const clh = M.accompany(sc);
+  assert.ok(clh.events[1].p.length >= 3, 'chorale produces full voicing');
+});
+
 // the app's Verovio takes it all
 const vfile = path.join(__dirname, '../../app/src/main/assets/viewer/verovio-toolkit-wasm.js');
 if (!fs.existsSync(vfile)) { console.log(count + ' tests passed (Verovio not found: its test is left out)'); return; }

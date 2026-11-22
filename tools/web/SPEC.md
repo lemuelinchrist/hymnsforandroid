@@ -300,9 +300,8 @@ How it works now:
   colours from `DISPLAY` in `build.py`. A new language needs no change here.
 - **Translated words under a borrowed sheet** (`sheetLyrics`, ported from the app's `viewer.js`): FR, FY, C, CS, Z, ZS.
 - **Icons** from the Android app's icon (the serif H on dark grey), full tile, so iOS rounds it like any app.
-- **Play** (`player.js`, 2026-10-20): the app's tune files (`res/raw/m<tune>.mid`, published as `midi/<hash>.mid`,
-  the hymn's tune or its parent's) read in JS and played looped with Web Audio: a synthesized piano (a harmonic
-  wave, a lowpass that closes as the note decays, longer decay for low notes), no samples. Stops when another hymn is
+- **Play** (`player.js`, 2026-10-20; upgraded to multi-sampled piano 2026-11-22): the app's tune files (`res/raw/m<tune>.mid`, published as `midi/<hash>.mid`,
+  the hymn's tune or its parent's) read in JS and played looped with Web Audio using 22 Salamander Grand Piano MP3 samples (`vendor/piano/`, `A1`–`C7` every minor 3rd, CC-BY 3.0 by Alexander Holm, lazy-cached offline) with velocity-sensitive lowpass warmth, pitch-scaled damper release, a subtle procedural stereo room tail, and a lightweight synthesized fallback while loading or if offline without cache. Stops when another hymn is
   opened. iPhone: `navigator.audioSession.type = 'playback'` so the silent switch does not mute it.
   The `AudioContext` uses `latencyHint: 'playback'` and notes are made 2.5 s ahead by a 400 ms timer (not the whole
   tune at once), so tablets do not crackle (2026-10-31). 3 of the app's

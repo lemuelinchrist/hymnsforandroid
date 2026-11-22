@@ -28,8 +28,10 @@ export function pattern(lh, time) {
   if (!fam) return null;
   const kind = fam.kinds.find((k) => k.id === lh.kind) || fam.kinds[0];
   const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
-  return {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
+  const out = {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
+  for (const k of ['shortPat', 'fillPat', 'bassRing', 'adaptive', 'roll', 'smooth']) if (r[k] != null) out[k] = r[k];
+  return out;
 }
 
 function keySig(e, was) {
@@ -287,30 +289,61 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
   const barIndex = (g) => { let k = 0; while (k < bars.length - 1 && bars[k + 1].g <= g + 1e-6) k++; return k; };
   const put = (bi, e) => per[bi].push(e);
 
-  // the melody, a tied note one note; the notes added under it go with it
+  // the melody, a tied note one note; the notes added under it go with it — shaped gently by beat & length
   let prev = null;
   notes.forEach((n) => {
-    const bi = bars.indexOf(n.bar);
+    const bi = bars.indexOf(n.bar), b = n.bar;
     if (n.tiedTo && prev && prev.note === n.p && Math.abs(prev.g + prev.dg - n.g) < 0.01) {
       prev.dg += n.d; prev.ids.push(xmlId(n.el));
       if (prev.fillEvents) prev.fillEvents.forEach((f) => { f.dg += n.d; });
       return;
     }
-    const ev = {g: n.g, dg: n.d, note: n.p, vel: 100, hand: 'm', ids: [xmlId(n.el)].filter(Boolean)};
+    const pos = n.g - b.g, onDownbeat = pos < 0.01, onBeat = Math.abs(pos % b.beat) < 0.01;
+    const melVel = onDownbeat ? 103 : onBeat ? 98 : n.d >= b.beat ? 96 : 90;
+    const ev = {g: n.g, dg: n.d, note: n.p, vel: melVel, hand: 'm', ids: [xmlId(n.el)].filter(Boolean)};
     put(bi, ev);
     if (n.fill) {
-      ev.fillEvents = n.fill.map((p) => ({g: n.g, dg: n.d, note: p, vel: 72, hand: 'f', ids: []}));
+      const fillRoll = n.fill.length >= 2 ? 0.01 : 0;
+      if (fillRoll) ev.off = n.fill.length * fillRoll;   // melody on top blooms cleanly out of the chord
+      ev.fillEvents = n.fill.map((p, fi) => ({g: n.g, dg: n.d, note: p, vel: Math.round(melVel * 0.64) - (n.fill.length - 1 - fi) * 3,
+        off: fi * fillRoll, hand: 'f', ids: []}));
       ev.fillEvents.forEach((f) => put(bi, f));
     }
     prev = ev;
   });
 
-  // the left hand, or the chords softly in its place
+  // the left hand, or the chords softly in its place — metrical weighting, arpeggio contour, gentle chord rolls & clean pedal lifts
   if (left) {
     bars.forEach((b, bi) => {
-      left.filter((e) => e.g >= b.g - 1e-6 && e.g < b.g + b.len - 1e-6).forEach((e, k) => {
+      const barEvs = left.filter((e) => e.g >= b.g - 1e-6 && e.g < b.g + b.len - 1e-6);
+      const pitches = barEvs.filter((e) => e.p).map((e) => e.p[0]);
+      const loP = pitches.length ? Math.min(...pitches) : 40, hiP = pitches.length ? Math.max(...pitches) : 60, spanP = Math.max(1, hiP - loP);
+      barEvs.forEach((e, k) => {
         if (!e.p) return;
-        e.p.forEach((p) => put(bi, {g: e.g, dg: e.ring || e.d, note: p, vel: 64, hand: 'l', ids: ['lh' + bi + 'n' + k]}));
+        const pos = e.g - b.g, onDownbeat = pos < 0.01, onHalf = b.nominal >= 12 && Math.abs(pos - b.nominal / 2) < 0.01;
+        const onBeat = Math.abs(pos % b.beat) < 0.01;
+        // Metrical base velocity: grounded beat 1, warm beat 3, light weak beats, feathered offbeat arpeggio notes
+        let baseVel = onDownbeat ? 72 : onHalf ? 62 : onBeat ? 54 : 47;
+        if (e.fresh) baseVel += 4;
+        // Single-note moving lines (arpeggios / walking) get a natural pitch-contour swell and subtle human groove
+        const single = e.p.length === 1;
+        let microOff = 0;
+        if (single && !onDownbeat) {
+          const prevP = k > 0 && barEvs[k - 1].p ? barEvs[k - 1].p[0] : e.p[0];
+          const rising = e.p[0] > prevP;
+          const rel = (e.p[0] - loP) / spanP;
+          baseVel += Math.round((rising ? 5 : -3) + rel * 4);
+          microOff = onBeat ? 0.002 : (rising ? 0.005 : 0.003);
+        }
+        const roll = e.roll || (e.p.length > 1 ? 0.012 : 0);
+        // Clean pedal lift right before the next chord/bar so harmonies stay clear
+        const ringDur = e.ring ? Math.max(e.d, e.ring - 0.35) : e.d;
+        e.p.forEach((p, pi) => {
+          const voiceAdj = e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
+          const vel = Math.max(34, Math.min(86, baseVel + voiceAdj));
+          const off = roll ? pi * roll : microOff;
+          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', ids: ['lh' + bi + 'n' + k]});
+        });
       });
     });
   } else {
@@ -319,7 +352,7 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
       const pitches = M.chordPitches(c.ch);
       bars.forEach((b, bi) => {
         const from = Math.max(b.g, c.g), to = Math.min(b.g + b.len, c.end);
-        if (to - from > 1e-6) pitches.forEach((p, k) => put(bi, {g: from, dg: to - from, note: p, vel: k ? 38 : 48, hand: 'c', ids: []}));
+        if (to - from > 1e-6) pitches.forEach((p, k) => put(bi, {g: from, dg: to - from, note: p, vel: k ? 38 : 48, off: k * 0.01, hand: 'c', ids: []}));
       });
     });
   }
@@ -333,6 +366,7 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
     per[bi].forEach((e) => {
       const q = (at + e.g - b.g) / 4;
       const out = {q, d: e.dg / 4, note: e.note, vel: e.vel, hand: e.hand, ids: e.ids};
+      if (e.off) out.off = e.off;
       events.push(out);
       e.ids.forEach((id) => { if (!(id in idQ)) idQ[id] = q; });
     });

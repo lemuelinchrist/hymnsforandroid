@@ -1,16 +1,70 @@
-// The editor's sound: a small piano-like voice (or a plain organ tone, which shows lengths better) and a player that
-// schedules a list of events a little ahead of the clock, so it can loop, stop at once and follow the tempo.
+// The editor's sound: Salamander Grand Piano (Yamaha C5, CC-BY 3.0 by Alexander Holm) served from /piano/*.mp3,
+// with a small synthesized fallback while loading and a plain organ tone (which shows lengths clearly), plus a player
+// that schedules events a little ahead of the clock, so it can loop, stop at once and follow the tempo.
 (function () {
   'use strict';
-  var ac = null, out = null, wave = null, live = [];
+  var SAMPLES = [
+    [33, 'A1'], [36, 'C2'], [39, 'Ds2'], [42, 'Fs2'],
+    [45, 'A2'], [48, 'C3'], [51, 'Ds3'], [54, 'Fs3'],
+    [57, 'A3'], [60, 'C4'], [63, 'Ds4'], [66, 'Fs4'],
+    [69, 'A4'], [72, 'C5'], [75, 'Ds5'], [78, 'Fs5'],
+    [81, 'A5'], [84, 'C6'], [87, 'Ds6'], [90, 'Fs6'],
+    [93, 'A6'], [96, 'C7']
+  ];
+  var ac = null, out = null, wave = null, live = [], bufs = {}, loading = null, loaded = false;
+
+  function createRoomIR(c) {
+    var rate = c.sampleRate, len = Math.floor(rate * 0.95), ir = c.createBuffer(2, len, rate);
+    for (var ch = 0; ch < 2; ch++) {
+      var d = ir.getChannelData(ch), seed = (ch + 1) * 0x51f15e, lp = 0;
+      for (var i = 0; i < len; i++) {
+        seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+        var white = (seed / 0x7fffffff) - 1, t = i / len;
+        lp = lp * 0.72 + white * 0.28;
+        var env = Math.pow(1 - t, 3.2) * (i < rate * 0.012 ? i / (rate * 0.012) : 1);
+        d[i] = lp * env * 0.55;
+      }
+    }
+    return ir;
+  }
+
+  function loadSamples() {
+    if (loading || !ac) return loading;
+    loading = Promise.all(SAMPLES.map(function (s) {
+      return fetch('/piano/' + s[1] + '.mp3')
+        .then(function (r) { return r.ok ? r.arrayBuffer() : null; })
+        .then(function (raw) { return raw ? ac.decodeAudioData(raw) : null; })
+        .then(function (buf) { if (buf) bufs[s[0]] = buf; })
+        .catch(function () {});
+    })).then(function () { loaded = true; });
+    return loading;
+  }
+
+  function nearestSample(p) {
+    var best = null, bestDist = Infinity;
+    for (var i = 0; i < SAMPLES.length; i++) {
+      var m = SAMPLES[i][0], b = bufs[m];
+      if (!b) continue;
+      var d = Math.abs(p - m);
+      if (d < bestDist) { bestDist = d; best = {midi: m, buf: b}; }
+    }
+    return best;
+  }
+
   function ctx() {
     if (!ac) {
       ac = new (window.AudioContext || window.webkitAudioContext)();
-      var comp = ac.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 4; comp.attack.value = 0.003; comp.release.value = 0.2;
+      var comp = ac.createDynamicsCompressor(); comp.threshold.value = -10; comp.ratio.value = 4; comp.attack.value = 0.004; comp.release.value = 0.18;
       out = ac.createGain(); out.gain.value = 0.9; out.connect(comp); comp.connect(ac.destination);
-      // a few harmonics of a struck string
+      try {
+        var conv = ac.createConvolver(); conv.buffer = createRoomIR(ac);
+        var wet = ac.createGain(); wet.gain.value = 0.14;
+        out.connect(conv); conv.connect(wet); wet.connect(comp);
+      } catch (e) {}
+      // fallback harmonics while samples load
       var re = new Float32Array([0, 0, 0, 0, 0, 0, 0, 0, 0]), im = new Float32Array([0, 1, 0.52, 0.28, 0.14, 0.09, 0.05, 0.03, 0.015]);
       wave = ac.createPeriodicWave(re, im);
+      loadSamples();
     }
     if (ac.state === 'suspended') ac.resume();
     return ac;
@@ -18,24 +72,49 @@
   // one note: pitch (MIDI), start (context time), length (seconds), loudness 0..1, voice 'piano' | 'organ' | 'soft'
   function note(p, t, dur, vel, voice) {
     ctx();
-    var o = ac.createOscillator(), g = ac.createGain(), v = vel == null ? 0.25 : vel, end;
-    o.frequency.value = 440 * Math.pow(2, (p - 69) / 12);
+    var v = vel == null ? 0.25 : vel, g = ac.createGain(), src, end;
     if (voice === 'organ' || voice === 'soft') {
-      o.type = voice === 'soft' ? 'sine' : 'triangle';
+      src = ac.createOscillator();
+      src.frequency.value = 440 * Math.pow(2, (p - 69) / 12);
+      src.type = voice === 'soft' ? 'sine' : 'triangle';
       g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + 0.015);
       g.gain.setValueAtTime(v, t + Math.max(0.02, dur - 0.04)); g.gain.linearRampToValueAtTime(0, t + dur);
       end = t + dur + 0.02;
+      src.connect(g); g.connect(out);
     } else {
-      o.setPeriodicWave(wave);
-      var ring = Math.max(0.5, 2.6 - (p - 36) * 0.03);   // low strings ring longer
-      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v * 1.5, t + 0.006);
-      g.gain.setTargetAtTime(v * 0.5, t + 0.006, 0.09); g.gain.setTargetAtTime(0.0001, t + 0.25, ring);
-      g.gain.cancelScheduledValues(t + Math.max(0.03, dur)); g.gain.setTargetAtTime(0, t + Math.max(0.03, dur), 0.06);   // the key is let go
-      end = t + Math.max(0.03, dur) + 0.4;
+      var hit = nearestSample(p);
+      if (hit) {
+        src = ac.createBufferSource();
+        src.buffer = hit.buf;
+        src.playbackRate.value = Math.pow(2, (p - hit.midi) / 12);
+        var norm = Math.max(0.1, Math.min(1, v / 0.28));
+        var freq = 440 * Math.pow(2, (p - 69) / 12);
+        var flt = ac.createBiquadFilter(); flt.type = 'lowpass'; flt.Q.value = 0.5;
+        flt.frequency.setValueAtTime(Math.min(18000, Math.max(freq * 2.4, 900 + Math.pow(norm, 1.7) * 16500)), t);
+        var level = 1.45 * Math.pow(norm, 1.3) * (p < 48 ? 0.88 : 1);
+        var relEnd = t + Math.max(0.04, dur);
+        var relTau = 0.075 + 0.085 * Math.max(0, Math.min(1, (76 - p) / 40));
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.linearRampToValueAtTime(level, t + 0.004);
+        g.gain.setValueAtTime(level, Math.max(t + 0.005, relEnd));
+        g.gain.setTargetAtTime(0.0001, relEnd, relTau);
+        end = relEnd + relTau * 5.5 + 0.08;
+        src.connect(flt); flt.connect(g); g.connect(out);
+      } else {
+        src = ac.createOscillator();
+        src.frequency.value = 440 * Math.pow(2, (p - 69) / 12);
+        src.setPeriodicWave(wave);
+        var ring = Math.max(0.5, 2.6 - (p - 36) * 0.03);   // low strings ring longer
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v * 1.5, t + 0.006);
+        g.gain.setTargetAtTime(v * 0.5, t + 0.006, 0.09); g.gain.setTargetAtTime(0.0001, t + 0.25, ring);
+        g.gain.cancelScheduledValues(t + Math.max(0.03, dur)); g.gain.setTargetAtTime(0, t + Math.max(0.03, dur), 0.06);
+        end = t + Math.max(0.03, dur) + 0.4;
+        src.connect(g); g.connect(out);
+      }
     }
-    o.connect(g); g.connect(out); o.start(t); o.stop(end);
-    var h = {o: o, g: g}; live.push(h);
-    o.onended = function () { var i = live.indexOf(h); if (i >= 0) live.splice(i, 1); try { g.disconnect(); } catch (e) {} };
+    src.start(t); src.stop(end);
+    var h = {o: src, g: g}; live.push(h);
+    src.onended = function () { var i = live.indexOf(h); if (i >= 0) live.splice(i, 1); try { g.disconnect(); } catch (e) {} };
     return h;
   }
   function click(t, strong) {
@@ -62,7 +141,7 @@
   function play(o) {
     stop(true); ctx();
     var r = run = {marks: [], onEnd: o.onEnd}, events = o.events, span = Math.max(1, o.to - o.from);
-    var base = ac.currentTime + 0.08, lap = 0, k = 0;
+    var base = 0, lap = 0, k = 0;
     while (k < events.length && events[k].t < o.from) k++;
     var first = k;
     function tick() {
@@ -82,7 +161,13 @@
         k++;
       }
     }
-    r.timer = setInterval(tick, 25); tick();
+    function begin() {
+      if (run !== r) return;
+      base = ac.currentTime + 0.08;
+      r.timer = setInterval(tick, 25); tick();
+    }
+    if (loaded || !loading) begin();
+    else Promise.race([loading, new Promise(function (res) { setTimeout(res, 1200); })]).then(begin);
     return r;
   }
   window.LeadSound = {ctx: ctx, note: note, click: click, hush: hush, play: play, stop: stop, playing: function () { return !!run; },

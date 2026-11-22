@@ -14,6 +14,7 @@ from urllib.parse import urlparse, parse_qs
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 VEROVIO = REPO / 'app/src/main/assets/viewer/verovio-toolkit-wasm.js'
+PIANO = REPO / 'tools/web/vendor/piano'
 AUDIO = ('source.mp3', 'source.ogg', 'source.m4a', 'source.wav')
 PAGE = {'/': 'index.html', '/index.html': 'index.html', '/editor.js': 'editor.js', '/music.js': 'music.js', '/sound.js': 'sound.js',
         '/editor.css': 'editor.css'}
@@ -69,7 +70,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', TYPES.get(path.suffix, 'application/octet-stream'))
         self.send_header('Accept-Ranges', 'bytes'); self.send_header('Content-Length', str(end - start + 1))
         if m: self.send_header('Content-Range', f'bytes {start}-{end}/{size}')
-        self.send_header('Cache-Control', 'max-age=86400' if path == VEROVIO else 'no-store')
+        self.send_header('Cache-Control', 'max-age=86400' if path == VEROVIO or path.parent == PIANO else 'no-store')
         self.end_headers()
         with open(path, 'rb') as f:
             f.seek(start); left = end - start + 1
@@ -84,6 +85,10 @@ class Handler(BaseHTTPRequestHandler):
         u = urlparse(self.path); q = parse_qs(u.query)
         if u.path in PAGE: return self.file(HERE / PAGE[u.path])
         if u.path == '/verovio.js': return self.file(VEROVIO)
+        if u.path.startswith('/piano/'):
+            name = u.path[7:]
+            if re.fullmatch(r'[A-G]s?\d\.mp3', name): return self.file(PIANO / name)
+            return self.send(404, {'error': 'not found'})
         if u.path == '/api/list':
             songs = []
             for d in sorted(self.root.iterdir()):
