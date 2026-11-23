@@ -10,7 +10,7 @@ every group are looked at, so a Spanish or Portuguese title finds the Spanish or
 copy are collapsed to the root hymn (parent_hymn); a translation keeps its own id. out.tsv: video id, album, title, confidence, action, hymns the recording
 would go on, those of them that already have an NYCYPCD link, and the groups the title matched (the language: E/NS/BF/CH
 are English, S Spanish, POR/POY Portuguese, ...). Action: `import` (exact title, one hymn, no link yet), `duplicate` (that
-hymn already has a link: drop it and mark it in nycypcd_known.tsv) or `review` (partial, none, or several hymns).
+hymn already has a link: drop it and mark it `duplicate` in recordings.tsv) or `review` (partial, none, or several hymns).
 Reads the app database (app/src/main/assets/hymns.sqlite: run `./gradlew :sqlite:importSql` first).
 """
 import collections, csv, json, os, re, sqlite3, sys, unicodedata

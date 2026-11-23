@@ -3,10 +3,8 @@
 
 Supports both regular channels (via yt-dlp --flat-playlist on /videos,
 /releases, /playlists) and "- Topic" channels (via topic_albums.py + yt-dlp).
-A video is considered accounted for if its ID appears in:
-  - databaseProvisioner/src/main/resources/NycypcdYoutube.txt
-  - the channel's *_known.tsv / tgb_kids_series.tsv files
-  - tools/youtube-monitor/recordings.tsv (unless --no-recordings is passed)
+A video is considered accounted for if it has a row in tools/youtube-monitor/recordings.tsv (the one file
+for every recording we know: linked, duplicate, not-a-song, unmatched ...).
 
 Exit code: 0 = no new videos, 1 = new videos found, 2 = listing error.
 """
@@ -26,7 +24,6 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
-MATCHED = REPO / "databaseProvisioner" / "src" / "main" / "resources" / "NycypcdYoutube.txt"
 RECORDINGS = HERE / "recordings.tsv"
 TOPIC_ALBUMS = HERE / "topic_albums.py"
 
@@ -39,7 +36,6 @@ class ChannelSpec:
     handle: str | None = None
     tabs: tuple[str, ...] = ("videos",)
     topic_channels: tuple[str, ...] = ()
-    known_files: tuple[str, ...] = ()
     releases_cache: str | None = None
 
 
@@ -50,47 +46,40 @@ CHANNELS: tuple[ChannelSpec, ...] = (
         channel_id="UC_1giUVT14MRXyEFtQZgmKQ",
         handle="NYCYPCD",
         tabs=("videos", "releases"),
-        known_files=("nycypcd_known.tsv",),
         releases_cache="nycypcd_releases.tsv",
     ),
     ChannelSpec(
         key="lsm",
         name="Living Stream Ministry - Topic",
         topic_channels=("UCrr3HofwiRkJBR-WgUixRlQ",),
-        known_files=("lsm_known.tsv",),
     ),
     ChannelSpec(
         key="tgb-topic",
         name="Taiwan Gospel Book Room - Topic",
         topic_channels=("UCYE5AHiolvE8tj-LYgPuzig", "UCZolsL-QScygLdBTc36TbUQ"),
-        known_files=("tgb_known.tsv",),
     ),
     ChannelSpec(
         key="loving-the-lord",
         name="Loving the Lord - Topic",
         topic_channels=("UCF0V197WENYJAGHzYRFbUog",),
-        known_files=("lovingthelord_known.tsv",),
     ),
     ChannelSpec(
         key="josephs",
         name="Joseph's Storehouses",
         handle="JosephsStorehouses",
         tabs=("videos",),
-        known_files=("josephs_known.tsv",),
     ),
     ChannelSpec(
         key="melody-of-lilies",
         name="Melody of Lilies",
         handle="MelodyofLilies",
         tabs=("videos", "releases", "playlists"),
-        known_files=("melodyoflilies_known.tsv",),
     ),
     ChannelSpec(
         key="tgb-official",
         name="臺灣福音書房 (official channel)",
         channel_id="UCW4K7RJzb3bhrBgbhT2OBLA",
         tabs=("videos",),
-        known_files=("tgb_known.tsv", "tgb_kids_series.tsv"),
     ),
     ChannelSpec(
         key="hymnsforandroid",
@@ -98,7 +87,6 @@ CHANNELS: tuple[ChannelSpec, ...] = (
         channel_id="UCoUeyvqjfW8WCCFi7xgTWhA",
         handle="HymnsForAndroid",
         tabs=("videos",),
-        known_files=(),
     ),
 )
 
@@ -279,11 +267,6 @@ def main() -> int:
     ap.add_argument("--list", action="store_true", help="List channel keys and exit.")
     ap.add_argument("--ytdlp", help="Path to yt-dlp binary.")
     ap.add_argument(
-        "--no-recordings",
-        action="store_true",
-        help="Do not treat recordings.tsv entries as already seen.",
-    )
-    ap.add_argument(
         "--refresh-albums",
         action="store_true",
         help="Re-list already-cached Topic/Release albums.",
@@ -313,7 +296,6 @@ def main() -> int:
         selected = list(CHANNELS)
 
     ytdlp = find_ytdlp(args.ytdlp)
-    matched_ids = {r[1] for r in read_tsv(MATCHED) if len(r) >= 2}
     rec_video_ids, rec_album_ids = load_recordings_index()
 
     report: dict[str, dict] = {}
@@ -321,15 +303,7 @@ def main() -> int:
     any_error = False
 
     for spec in selected:
-        known_ids: set[str] = set()
-        for kf in spec.known_files:
-            for r in read_tsv(HERE / kf):
-                if r:
-                    known_ids.add(r[0])
-
-        accounted = set(matched_ids) | known_ids
-        if not args.no_recordings:
-            accounted |= rec_video_ids
+        accounted = set(rec_video_ids)
 
         try:
             videos, failures = fetch_channel_videos(

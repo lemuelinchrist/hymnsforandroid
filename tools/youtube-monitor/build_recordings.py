@@ -7,11 +7,18 @@
 
 t.txt: lines `album id|album name|video id|title` (list the albums with topic_albums.py, each with
 `yt-dlp --flat-playlist --print "%(playlist_id)s|%(playlist_title)s|%(id)s|%(title)s" <playlist url>`).
-New video ids are added (existing rows keep their album/channel). Then every row's status and hymns are recomputed from
-databaseProvisioner/src/main/resources/NycypcdYoutube.txt (linked) and the *_known.tsv files (their status), else `unmatched`.
+New video ids are added with status `unmatched` (existing rows keep everything). Since 2026-11-23 this file is the one source of truth: the
+status (`linked`, `unmatched`, `duplicate`, `not-in-database`, `other-language`, `pending-translation`, `not-a-song`, `kids-series`, `unavailable`, `new-tune`),
+the hymns and the link label of a row are edited here by hand (or by the skills) and kept by this script; the database importer
+(databaseProvisioner ImportNycypcdYoutube) reads the `linked` rows. The old NycypcdYoutube.txt and *_known.tsv files are no longer read.
 Columns: video id, status, hymns, link label, album, album id, channel, publisher/studio (blank when unknown), title, note,
 platform (youtube / soundcloud), url, instrumental (1 or empty), language (the language the recording is sung in, English name; see guess_language:
-filled once and then kept, so a hand-set value stays; blank = not known yet), priority (1 = LSM/NYCYPCD/TWGBR, 2 = Melody of Lilies, 3 = others, 5 = low-quality; filled once and kept).
+filled once and then kept, so a hand-set value stays; blank = not known yet), priority (1 = LSM/NYCYPCD/TWGBR, 2 = Melody of Lilies, 3 = others, 5 = low-quality; filled once and kept),
+link order (a number: the position among the links of a hymn when priority and sung/instrumental tie, set once from the old
+NycypcdYoutube.txt and kept; blank = after the numbered ones, in file order),
+soundcloud url (Lemuel 2026-11-23: the SoundCloud track that is the same recording as this YouTube row, the same album and title; kept as it is, blank =
+none found; a soundcloud row has its own url there). A track that only SoundCloud has is a row with platform soundcloud and status `unmatched`
+(video id = the URL path): it is kept by this script until the database links it, and then becomes a normal linked soundcloud row.
 
 SoundCloud links (Lemuel 2026-11-19, option "mirror"): the database is the source of truth for them (the `link` table, kind
 soundcloud: the youth books' provisioners and links added by hand). Every run rewrites the soundcloud rows of this file from
@@ -24,8 +31,8 @@ R = os.path.dirname(os.path.abspath(__file__)) + "/"
 REPO = os.path.dirname(os.path.dirname(R.rstrip("/")))
 OUT = R + "recordings.tsv"
 HEAD = ["video id", "status", "hymns", "link label", "album / playlist", "album id", "youtube channel", "publisher / studio", "title", "note",
-        "platform", "url", "instrumental", "language", "priority"]
-DB = REPO + "/app/src/main/assets/hymns.sqlite"
+        "platform", "url", "instrumental", "language", "priority", "soundcloud url", "link order"]
+DB = os.environ.get("HYMNS_DB") or REPO + "/app/src/main/assets/hymns.sqlite"
 
 
 def tsv(path):
@@ -110,7 +117,7 @@ def soundcloud_rows(old_hymns=None):
             hymn = old_hymns[path]
         user = path.split("/")[0]
         title = path.split("/")[-1].replace("-", " ")
-        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", "", ""])
+        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", "", "", url, ""])
     return out
 
 
@@ -119,11 +126,11 @@ def main():
     ap.add_argument("--tracks"); ap.add_argument("--channel"); ap.add_argument("--publisher", default="")
     ap.add_argument("--studio-albums", default=""); ap.add_argument("--studio", default="")
     a = ap.parse_args()
-    rows = collections.OrderedDict(); old_lang = {}; old_prio = {}; old_inst = {}; old_hymns = {}
+    rows = collections.OrderedDict(); old_lang = {}; old_prio = {}; old_inst = {}; old_hymns = {}; old_order = {}
     if os.path.exists(OUT):
         for p in list(csv.reader(open(OUT, encoding="utf8"), delimiter="\t"))[1:]:
-            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]; old_prio[p[0]] = p[14]; old_inst[p[0]] = p[12]; old_hymns[p[0]] = p[2]
-            if p[10] != "soundcloud":      # the soundcloud rows are rebuilt from the database below
+            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]; old_prio[p[0]] = p[14]; old_inst[p[0]] = p[12]; old_hymns[p[0]] = p[2]; old_order[p[0]] = p[16]
+            if p[10] != "soundcloud" or p[1] == "unmatched":      # the linked soundcloud rows are rebuilt from the database below; the unmatched ones are kept
                 rows[p[0]] = p
     if a.tracks:
         studio = {x.strip().lower() for x in a.studio_albums.split(",") if x.strip()}
@@ -131,44 +138,29 @@ def main():
             aid, al, v, t = l.rstrip("\n").split("|", 3)
             if v not in rows:
                 pub = a.studio if al.lower() in studio else a.publisher
-                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", "", ""]
-    linked, label, instr = collections.defaultdict(list), {}, set()
-    for p in tsv(REPO + "/databaseProvisioner/src/main/resources/NycypcdYoutube.txt"):
-        linked[p[1]].append(p[0]); label.setdefault(p[1], p[2] if len(p) > 2 else "NYCYPCD")
-        if len(p) > 4 and p[4].strip() in ("instrumental", "1"): instr.add(p[1])
-    known = {}
-    for f in ("nycypcd_known", "lsm_known", "tgb_known", "lovingthelord_known", "melodyoflilies_known", "josephs_known", "hymnsinging_known"):
-        for p in tsv(R + f + ".tsv"):
-            known[p[0]] = (p[1], " ".join(p[2:]))
-    for p in tsv(R + "tgb_kids_series.tsv"):  # videoId, hymn, title, has-link
-        known.setdefault(p[0], ("kids-series", p[1] + " (official channel)"))
+                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", "", "", "", ""]
     for v, r in rows.items():
-        r[1] = "linked" if v in linked else (known[v][0] if v in known else "unmatched")
-        r[2] = " ".join(sorted(set(linked.get(v, []))))
-        r[3] = label.get(v, "")
-        if v in known:
-            r[9] = known[v][1]
+        if r[10] == "soundcloud": continue      # unmatched soundcloud rows: kept as they are
+        if not r[1]: r[1] = "unmatched"         # a new row; status, hymns, link label and note of the others are the file's own
         note_inst = r[9].strip().lower() == "instrumental"
         if note_inst:
             r[9] = ""
-        is_inst = (v in instr) if v in linked else (note_inst or old_inst.get(v) == "1" or is_unlinked_instrumental(r))
+        is_inst = r[12] == "1" or note_inst or (r[1] != "linked" and is_unlinked_instrumental(r))
         r[10], r[11], r[12] = "youtube", "https://www.youtube.com/watch?v=" + v, "1" if is_inst else ""
     sc = soundcloud_rows(old_hymns)
     for r in sc:
-        if r[0] in rows and rows[r[0]][10] == "soundcloud":      # the same track linked to several hymns
+        if r[0] in rows and rows[r[0]][10] == "soundcloud" and rows[r[0]][1] == "linked":      # the same track linked to several hymns
             rows[r[0]][2] = " ".join(sorted(set(rows[r[0]][2].split() + [r[2]])))
         else: rows[r[0]] = r
     for v, r in rows.items():
         r[13] = old_lang.get(v) or r[13] or guess_language(r)
         r[14] = old_prio.get(v) or r[14] or default_priority(r)
-    missing = [v for v in linked if v not in rows]
+        r[16] = old_order.get(v) or r[16]
     out = csv.writer(open(OUT, "w", newline="", encoding="utf8"), delimiter="\t", lineterminator="\n")
     out.writerow(HEAD)
     for r in rows.values():
         out.writerow(r)
     print(len(rows), "rows;", dict(collections.Counter(r[1] for r in rows.values())), "; soundcloud:", len(sc))
-    if missing:
-        print("linked videos with no row (add their channel's tracks):", missing[:20], len(missing))
 
 
 if __name__ == "__main__":

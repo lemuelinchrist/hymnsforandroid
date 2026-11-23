@@ -1,20 +1,20 @@
 # YouTube channel monitor
 
+**`recordings.tsv` is the one file** (Lemuel 2026-11-23): the database import, the checkers and the download scripts all read it. The status, hymns, link label and note of a row are edited in this file by hand (or by the match-youtube-songs skill) and kept by `build_recordings.py`. `NycypcdYoutube.txt`, the `*_known.tsv` files and `link_meta.py` are gone.
+
 `check_channel.py` compares the NYCYPCD channel (the recordings linked to hymns) with what the hymnal has accounted for,
 so a new album or a missed song shows up. It lists the channel with `yt-dlp --flat-playlist` (one request; install
-`yt-dlp` in a venv, it is not installed system-wide) and reads `NycypcdYoutube.txt` (matched to a hymn) and
-`nycypcd_known.tsv` (songs not in the database, unavailable videos, non-songs).
+`yt-dlp` in a venv, it is not installed system-wide) and reads `recordings.tsv` (status `linked` = matched to a hymn; the other statuses are songs not in the database, unavailable videos, non-songs, duplicates).
 
     python3 tools/youtube-monitor/check_channel.py --releases --ytdlp /path/to/venv/bin/yt-dlp
 
 `--releases` also lists the Releases tab (albums in many languages, audio-only uploads that are not in the Videos tab) and
-caches its tracks in `nycypcd_releases.tsv`; without it only the Videos tab is checked. `NycypcdYoutube.txt` has, per line, `hymn`, `video`, `publisher`, `album`, `instrumental` (the card shows the publisher, else the album, never the channel;
-`link_meta.py` fills the columns from `recordings.tsv` and drops a recording of the same title in the same album twice). Statuses in `nycypcd_known.tsv`: `not-in-database`,
+caches its tracks in `nycypcd_releases.tsv`; without it only the Videos tab is checked. The link card shows the publisher (`link label`), else the album, never the channel. Statuses in `recordings.tsv`: `linked`, `not-in-database`,
 `unavailable`, `duplicate` (hymn already had a link), `other-language`, `pending-translation` (see `nycypcd_pending_translations.tsv`), `not-a-song`.
 `match_titles.py` matches the NEW ones to hymns by title (see its header).
 
 Exit 0 = all accounted for, 1 = new videos listed, 2 = channel not listable. New videos go through the
-`match-youtube-songs` skill; after the review add them to `NycypcdYoutube.txt` or `nycypcd_known.tsv`.
+`match-youtube-songs` skill; after the review give them their status in `recordings.tsv`.
 
 To check **all 8 monitored channels** (NYCYPCD, the three `- Topic` channels, Joseph's Storehouses, Melody of Lilies, 臺灣福音書房 official, and HymnsForAndroid; excluding Hymn Singing):
 
@@ -23,7 +23,7 @@ To check **all 8 monitored channels** (NYCYPCD, the three `- Topic` channels, Jo
 ## recordings.tsv: where every recording came from
 
 `recordings.tsv` has one row per track or video of the channels we looked at (2,082 rows, 2026-11-08): video id, status
-(`linked`, a status of the `*_known.tsv` files, `kids-series`, or `unmatched`), the hymns it is linked to, the link label,
+(`linked`, `duplicate`, `not-in-database`, `other-language`, `pending-translation`, `not-a-song`, `kids-series`, `unavailable`, `new-tune` or `unmatched`), the hymns it is linked to, the link label,
 the album or playlist (name and id), the YouTube channel, the publisher or studio (blank when unknown), the title and a note.
 The titles of its NYCYPCD and other clean rows are also a source for the `hymns.title` column (a title is stored only when it differs from the first line; titles like `Hymn 313` are cleaned first). It also lists the tracks that are NOT linked, including songs not in the hymnal yet, so that they can be linked when the hymn
 arrives. The database keeps the publisher (`label`), the album and the instrumental flag; this file is the record of the source (the channel). When a new channel or album is imported,
@@ -36,6 +36,7 @@ youth books' provisioners or added by hand): every run of `build_recordings.py` 
 `app/src/main/assets/hymns.sqlite`, so change a SoundCloud link in the database (and export it), never in this file (tune-keyed instrumental SoundCloud rows preserve their existing hymn ID in `recordings.tsv`). Their
 `video id` is the URL path (`user/track`), status is always `linked`, channel `SoundCloud: <user>`; one track linked to several hymns is one row
 with all the hymns. A row whose database `url` is empty is keyed `(no url)/<hymn>` and says so in the note (SY244 and SY247 on 2026-11-19).
+**SoundCloud twins (Lemuel 2026-11-23).** The last column, `soundcloud url`, holds the SoundCloud track that is the same recording as a YouTube row (blank = none found); build_recordings.py keeps it. The rule: a track counts as the same recording only when it is in the same album (a SoundCloud set with the album's name, or a pair Lemuel confirmed, for example "Supplement Songs" = "Supplement Songs, Vol. 1 | Brothers in Dallas") and has the same title, ignoring case, punctuation, a trailing " / group", a hymn-number prefix and verse abbreviations (Matt = Matthew); inside a confirmed album a title that starts the same or has the same words in another order also counts. The same title in another album never counts: NYCYPCD records its own versions of songs. Melody of Lilies is one artist on both sites and SoundCloud only groups its singles, so there the title plus the length (YouTube runs up to 12 seconds longer) decide. A SoundCloud track with no YouTube twin is a row with `platform` soundcloud and status `unmatched` (video id = URL path, note "on SoundCloud only"): inside the album when YouTube has the album, otherwise before the database's soundcloud rows at the end of the file. Such rows stay until the database links them. Accounts matched: hymnstream (Joseph's Storehouses), livingstreamministry, nycypcd, melodyoflilies.
 The scripts that read this file ignore the soundcloud rows because they look up YouTube video ids, channels and album ids
 (`link_meta.py`, `check_all_channels.py`, `update_descriptions.py`, `download_albums.py` on the media host: keep it that way).
 
