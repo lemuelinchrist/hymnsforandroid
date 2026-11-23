@@ -253,7 +253,8 @@
   //   t                  the tenor: one note of the chord in the middle, moving as little as it can, and rather the
   //                      chord's third or fifth than a note the bass or the melody already has (a hymnal's left hand)
   //   w                  a smooth walking/connecting bass step leading into the next chord's bass
-  //   D U                a guitar strum (guitarShape): D down, every string; U up, the top four strings
+  //   D U K              a guitar strum (guitarShape): D down, every string; U up, the top four strings; K a chuck, the
+  //                      top four strings struck and damped at once (a percussive beat)
   //   T A g b e          a guitar's strings picked: T the bass (thumb), A the string above it (the other bass), g b e the
   //                      G, B and high E strings
   //   a+b                together;  -  the step before goes on;  .  silence
@@ -262,7 +263,7 @@
     var parts = String(str || '').split('|').map(function (part) {
       return part.trim().split(/\s+/).filter(Boolean).map(function (st) {
         if (st === '-' || st === '_') return {hold: true};
-        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|9|10|12|c|C|t|w|D|U|T|A|g|b|e)$/.test(x); });
+        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|9|10|12|c|C|t|w|D|U|K|T|A|g|b|e)$/.test(x); });
         return toks.length ? {toks: toks} : {rest: true};
       });
     }).filter(function (p) { return p.length; });
@@ -346,9 +347,9 @@
     if (used.c) out.c = middle([c.tones[1][0], c.tones[c.seventh ? 3 : 2][0]]);
     if (used.C) out.C = middle(c.tones.map(function (t) { return t[0]; }));
     if (used.t) out.t = [tenor()];
-    if (used.D || used.U || used.T || used.A || used.g || used.b || used.e) {
+    if (used.D || used.U || used.K || used.T || used.A || used.g || used.b || used.e) {
       var gs = guitarShape(c), on = gs.filter(function (p) { return p != null; });
-      out.D = on; out.U = on.slice(-4); out.T = [on[0]]; out.A = [on[1] != null ? on[1] : on[0]];
+      out.D = on; out.U = out.K = on.slice(-4); out.T = [on[0]]; out.A = [on[1] != null ? on[1] : on[0]];
       ['g', 'b', 'e'].forEach(function (k, i) { var p = gs[3 + i]; out[k] = [p != null ? p : on[on.length - 1]]; });
     }
     return out;
@@ -432,24 +433,40 @@
     // guitar strums and picking, by the time signature: [id, name, hint, pattern, shortPat]
     var GUITAR = m.compound ? [
       ['folk', 'Folk strum', 'down, down, up', 'D D U D D U', 'D D U'],
+      ['pop', 'Pop', 'with a muted chuck', 'D - U K - U', 'D - U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - - D - -', 'D - -'],
+      ['driving', 'Driving', 'down and up all the way', 'D U U D U U', 'D U U'],
       ['ballad', 'Ballad', 'slow and open', 'D - - D - U', 'D - U'],
-      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b A b g', 'T g b']]
+      ['country', 'Country', 'bass, then strums, the other bass', 'T D U A D U', 'T D U'],
+      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b A b g', 'T g b'],
+      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T b e b g b', 'T b e']]
       : n === 3 ? [
       ['folk', 'Folk strum', 'down, then down-up', 'D - D U D U', 'D - D U'],
+      ['pop', 'Pop', 'with a muted chuck', 'D - K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D -', 'D - D -'],
+      ['driving', 'Driving', 'down and up all the way', 'D U D U D U', 'D U D U'],
       ['ballad', 'Ballad', 'bass, then strums', 'T - D - D -', 'T - D -'],
-      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b e b g', 'T g b e']]
+      ['country', 'Country', 'bass, then strums, the other bass', 'T - D U D U | A - D U D U', 'T - D U'],
+      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b e b g', 'T g b e'],
+      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b g e g', 'T g b g']]
       : n === 2 ? [
       ['folk', 'Folk strum', 'down, down-up', 'D - D U', 'D U'],
+      ['pop', 'Pop', 'with a muted chuck', 'D U K U', 'D U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D -', 'D -'],
+      ['driving', 'Driving', 'down and up all the way', 'D U D U', 'D U'],
       ['ballad', 'Ballad', 'slow and open', 'D - - U', 'D -'],
-      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T e A b', 'T e']]
+      ['country', 'Country', 'bass, strum, the other bass, strum', 'T D A D', 'T D'],
+      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T e A b', 'T e'],
+      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b e', 'T g']]
       : [
       ['folk', 'Folk strum', 'down, down-up, up-down-up', 'D - D U - U D U', 'D - D U'],
+      ['pop', 'Pop', 'with a muted chuck on beat 3', 'D - D U K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D - D -', 'D - D -'],
+      ['driving', 'Driving', 'down and up all the way', 'D U D U D U D U', 'D U D U'],
       ['ballad', 'Ballad', 'slow and open', 'D - - - D - D U', 'D - D U'],
-      ['pick', 'Fingerpicking', 'thumb on the beat, strings between', 'T e A b T e A b', 'T e A b']];
+      ['country', 'Country', 'bass, strum, the other bass, strum', 'T - D U A - D U', 'T - D U'],
+      ['pick', 'Fingerpicking', 'thumb on the beat, strings between', 'T e A b T e A b', 'T e A b'],
+      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b g e g b g', 'T g b g']];
     var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+t', rate: 0, low: 40, passing: true}];
     if (half) choraleRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+t', rate: half, low: 40, passing: true});
     return [
@@ -607,7 +624,7 @@
       // their notes would reach the melody
       var spIdx = spans.indexOf(sp), nextSp = spIdx >= 0 && spIdx + 1 < spans.length ? spans[spIdx + 1] : null;
       var under = melLow(a, z - a);
-      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w', 'D', 'U', 'T', 'A', 'g', 'b', 'e']}]],
+      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w', 'D', 'U', 'K', 'T', 'A', 'g', 'b', 'e']}]],
         {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth, prevTen: prevTen, under: under === Infinity ? null : under, mel: melPc(a)});
       var shift = {fig: 0, mid: 0};
       function layer(t) { return /[\dw]/.test(t) ? 'fig' : 'mid'; }
@@ -643,6 +660,7 @@
             e.inst = 'guitar';
             if (e.p.length > 1 && !st.ending) e.roll = acc.roll || 0.012;
             if ((st.toks || []).length === 1 && st.toks[0] === 'U') e.up = true;
+            if ((st.toks || []).indexOf('K') >= 0) { e.mute = true; e.roll = 0.004; }
           }
           if (pi === 0 && fresh) e.fresh = true;
           if (acc.passing && e.p.length === 2 || st.ending) { e.span = sp; e.pass = acc.passing === 2 ? 2 : acc.passing ? 1 : 0; }

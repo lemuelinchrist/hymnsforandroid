@@ -369,7 +369,7 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
           const voiceAdj = e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
           const vel = Math.max(34, Math.min(86, baseVel + voiceAdj));
           const off = roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff;
-          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', inst: e.inst, ids: ['lh' + bi + 'n' + k]});
+          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', inst: e.inst, mute: e.mute, ids: ['lh' + bi + 'n' + k]});
         });
       });
     });
@@ -395,6 +395,7 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
       const out = {q, d: e.dg / 4, note: e.note, vel: e.vel, hand: e.hand, ids: e.ids};
       if (e.off) out.off = e.off;
       if (e.inst) out.inst = e.inst;
+      if (e.mute) out.mute = true;
       events.push(out);
       e.ids.forEach((id) => { if (!(id in idQ)) idQ[id] = q; });
     });

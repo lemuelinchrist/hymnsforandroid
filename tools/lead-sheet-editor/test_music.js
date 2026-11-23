@@ -261,7 +261,7 @@ test('guitar: open shapes, strums down and up, picking', () => {
   assert.deepStrictEqual(['C', 'G', 'D', 'A', 'E', 'Am', 'Em', 'Dm', 'G/B', 'D/F#', 'B7'].map(fr),
     ['x32010', '320003', 'xx0232', 'x02220', '022100', 'x02210', '022000', 'xx0231', 'x20003', '200232', 'x21202']);
   const st = M.styles({time: [4, 4]}).find((f) => f.id === 'guitar');
-  assert.deepStrictEqual(st.kinds.map((k) => k.id), ['folk', 'steady', 'ballad', 'pick']);
+  assert.deepStrictEqual(st.kinds.map((k) => k.id), ['folk', 'pop', 'steady', 'driving', 'ballad', 'country', 'pick', 'arp']);
   const g = (kind) => {
     const r = st.kinds.find((k) => k.id === kind).rhythms[0];
     return M.accompanyOn({bars: [{g: 0, len: 16}, {g: 16, len: 16}], first: 0, chords: [{g: 0, end: 32, info: M.chordInfo('G')}],
@@ -272,6 +272,9 @@ test('guitar: open shapes, strums down and up, picking', () => {
   assert.ok(folk.every((e) => e.inst === 'guitar'), 'a guitar plays it');
   assert.strictEqual(show(folk.slice(0, 3)), 'G2+B2+D3+G3+B3+G4/4 G2+B2+D3+G3+B3+G4/2 D3+G3+B3+G4/4', 'down: six strings; up: the top four');
   assert.strictEqual(show(g('pick').slice(0, 4)), 'G2/2 G4/2 B2/2 B3/2', 'thumb, high E, the other bass, B string');
+  const pop = g('pop');
+  assert.deepStrictEqual(pop.slice(0, 6).map((e) => e.mute ? 'K' : e.up ? 'U' : 'D'), ['D', 'D', 'U', 'K', 'U', 'D'], 'D - D U K U D U: the chuck on beat 3');
+  assert.strictEqual(show(g('country').slice(0, 4)), 'G2/4 G2+B2+D3+G3+B3+G4/2 D3+G3+B3+G4/2 B2/4', 'boom-chick: bass, strum, up, the other bass');
   assert.strictEqual(show(g('pick').slice(-1)), 'G2+B2+D3+G3+B3+G4/16', 'the last bar: one strum');
 });
 

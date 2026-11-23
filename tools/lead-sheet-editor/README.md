@@ -159,7 +159,7 @@ clef shows it. Nothing is written by hand for this; the staff follows the chords
 | **Strike** | the chord in one stroke | Two notes (root and fifth), Three notes (the triad), Open (root, fifth, octave), Hymn (root and fifth where the chord starts, third and fifth higher up in the bars it lasts); Held, Twice a bar, Every beat |
 | **Bass + chord** | a bass note, then the chord | by the time signature: Root and fifth, Bass and chords, Slow, In eighths; in three, Waltz |
 | **Arpeggio** | the chord one note at a time (bass rings underneath) | Flowing (full-bar arch with warm 9th), Ballad (syncopated breathing), Open, Wide (to the tenth), Broken chord, Alberti, Rise and hold; in quarters, eighths or sixteenths |
-| **Guitar** | strummed or picked like a guitar (the open shapes of the first frets) | Folk strum, Steady, Ballad, Fingerpicking, by the time signature; the web app plays it on a guitar sound |
+| **Guitar** | strummed or picked like a guitar (the open shapes of the first frets) | Folk strum, Pop (a muted chuck), Steady, Driving, Ballad, Country (boom-chick), Fingerpicking, Ballad picking, by the time signature; the web app plays it on a guitar sound |
 | **Dynamic** | musical patterns that breathe and move | Adaptive (calm while the melody moves; from the beat where the melody holds a note or rests to the end of the chord, at least half a bar, an arpeggio fill), Rolled (soft upward harp-like chords), Pulse (contemporary ballad groove), Walking (bass steps smoothly into each chord), Chorale (bass and tenor, as in a hymnal: where one of them leaps a third into the next chord it walks through the note of the key between on the last beat (`passing: 2`, the web app's More walking: both voices, a fourth in two steps, and the bass to another note of a long chord, or of one under a held melody note, halfway); with Two notes in the right hand it is four-part harmony) |
 | **Own** | a pattern typed by hand | see below |
 
@@ -184,7 +184,7 @@ figure that would reach the melody goes down an octave, whole, so the hands do n
 | `1` `3` `5` `7` `8` `9` `10` `12` | the notes of the chord counted up from the bass: `8` is the octave, `9` the warm ninth above it, `10` the third above it |
 | `c` `C` | the chord in the middle of the keyboard: `c` two notes (the third with the fifth, or with the seventh), `C` all of them |
 | `w` | a smooth walking/connecting bass step leading into the next chord's bass |
-| `D` `U` | a guitar strum: `D` down over every string of the chord's guitar shape, `U` up over the top four |
+| `D` `U` `K` | a guitar strum: `D` down over every string of the chord's guitar shape, `U` up over the top four, `K` a chuck (the top four struck and damped at once) |
 | `T` `A` `g` `b` `e` | a guitar's strings picked: `T` the bass (thumb), `A` the string above it, `g` `b` `e` the G, B and high E strings |
 | `t` | the tenor: one note of the chord under the right hand, moving as little as it can, rather the third or fifth than the bass's or the melody's note (Chorale is `1+t`: bass and tenor, as a hymnal's left hand) |
 | `1+5` | together |

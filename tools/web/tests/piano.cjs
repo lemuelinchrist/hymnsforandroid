@@ -43,6 +43,8 @@ async function inPage({file, step, only}) {
     ['chorale', {lh: {family: 'dynamic', kind: 'chorale', rhythm: 'held'}, rh: {add: 1, on: 'beat'}}],
     ['guitar', {lh: {family: 'guitar', kind: 'folk', rhythm: '8'}, rh: {add: 0}}],
     ['picking', {lh: {family: 'guitar', kind: 'pick', rhythm: '8'}, rh: {add: 1, on: 'chord'}}],
+    ['country', {lh: {family: 'guitar', kind: 'country', rhythm: '8'}, rh: {add: 0}}],
+    ['pop', {lh: {family: 'guitar', kind: 'pop', rhythm: '8'}, rh: {add: 0}}],
     ['right only', {lh: null, rh: {add: 2, on: 'long'}}],
   ];
   // a layer's length in sixteenths, and the pitches sounding at each time

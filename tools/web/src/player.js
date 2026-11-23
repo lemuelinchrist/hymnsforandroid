@@ -318,15 +318,15 @@ function playGuitar(c, out, n, at) {
   src.buffer = guitarBuffer(c, n.note);
   const body = c.createBiquadFilter();                   // the wooden body: a little warmth low down
   body.type = 'peaking'; body.frequency.value = 180; body.Q.value = 0.8; body.gain.value = 4;
-  const tone = c.createBiquadFilter();                   // harder strums are brighter
+  const tone = c.createBiquadFilter();                   // harder strums are brighter; a chuck (mute) is dull and short
   tone.type = 'lowpass'; tone.Q.value = 0.4;
-  tone.frequency.value = 2200 + 5200 * Math.pow(vel, 1.3);
+  tone.frequency.value = n.mute ? 1500 : 2200 + 5200 * Math.pow(vel, 1.3);
   const g = c.createGain();
-  const level = 0.42 * Math.pow(vel, 1.2), end = at + n.dur;
+  const level = 0.42 * Math.pow(vel, 1.2) * (n.mute ? 0.9 : 1), end = at + (n.mute ? Math.min(n.dur, 0.035) : n.dur);
   g.gain.setValueAtTime(0.0001, at);
   g.gain.linearRampToValueAtTime(level, at + 0.002);
   g.gain.setValueAtTime(level, Math.max(at + 0.003, end));
-  g.gain.setTargetAtTime(0.0001, end, 0.07);             // the next strum damps it
+  g.gain.setTargetAtTime(0.0001, end, n.mute ? 0.025 : 0.07);   // the next strum damps it; a chuck at once
   src.connect(body).connect(tone).connect(g).connect(out);
   src.start(at);
   src.stop(Math.min(at + 3.2, end + 0.45));
@@ -428,7 +428,7 @@ export function playScore(score, o) {
       if (when > horizon) break;
       i++;
       if (when < c.currentTime - 0.3) continue;         // the page was suspended: skip what is long past
-      const osc = playAny(c, out, {note: e.note, vel: e.vel, inst: e.inst, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(when, c.currentTime));
+      const osc = playAny(c, out, {note: e.note, vel: e.vel, inst: e.inst, mute: e.mute, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(when, c.currentTime));
       oscs.add(osc);
       osc.onended = () => oscs.delete(osc);
     }
@@ -479,7 +479,7 @@ export async function renderScoreForTest(score, bpm, seconds = 10) {
   const g = makeBus(c);
   const bufs = await loadPiano(c, {all: true});
   const spq = 60 / bpm;
-  for (const e of score.events) if (e.q * spq < seconds) playAny(c, g, {note: e.note, vel: e.vel, inst: e.inst, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(0.01, e.q * spq + 0.05 + (e.off || 0)), bufs);
+  for (const e of score.events) if (e.q * spq < seconds) playAny(c, g, {note: e.note, vel: e.vel, inst: e.inst, mute: e.mute, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(0.01, e.q * spq + 0.05 + (e.off || 0)), bufs);
   const data = (await c.startRendering()).getChannelData(0);
   let peak = 0, sum = 0;
   for (const v of data) { peak = Math.max(peak, Math.abs(v)); sum += v * v; }
