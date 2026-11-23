@@ -225,10 +225,17 @@ test('dynamic accompaniment: 9th, walking bass, smooth voice-leading, short chor
   const bar1 = alh.events.filter((e, i) => { const t = M.onsets(alh.events)[i]; return t >= 2 && t < 18; });
   const bar3 = alh.events.filter((e, i) => { const t = M.onsets(alh.events)[i]; return t >= 34 && t < 50; });
   assert.ok(bar1.length < bar3.length, 'adaptive plays fewer notes under moving melody (' + bar1.length + ') than under held whole note (' + bar3.length + ')');
-  // Smooth Chorale keeps middle voices compact across chord changes
-  const sc = song(); sc.acc = {pat: '1+C', rate: 0, low: 40, smooth: true};
-  const clh = M.accompany(sc);
-  assert.ok(clh.events[1].p.length >= 3, 'chorale produces full voicing');
+  // Adaptive blooms from where the melody holds: bar 2 is C (beats 1-2) and D (3-4), one half note each: too short;
+  // a bar of quarters then a half note blooms from beat 3 with the late fill, the calm bass held before it
+  const sl = song(); sl.notes = [{p: 62, d: 2}, {p: 67, d: 4, ch: 'G'}, {p: 71, d: 4}, {p: 74, d: 8}, {p: 72, d: 16, ch: 'C'}, {p: 71, d: 16}];
+  sl.acc = {pat: '1 - - - 5 - 8 -', fillPat: '1 5 8 9 10 - 8 5', latePat: '5 8 10 8', rate: 2, low: 40, adaptive: true};
+  const ll = M.accompany(sl).events, lon = M.onsets(ll);
+  assert.strictEqual(show(ll.filter((e, i) => lon[i] >= 2 && lon[i] < 18)), 'G2/8 D3/2 G3/2 B3/2 G3/2', 'calm to beat 3, then the late fill');
+  // Chorale: the left hand is the bass and one tenor note under the right hand, the chord's third or fifth
+  const sc = song(); sc.acc = {pat: '1+t', rate: 0, low: 40};
+  const clh = M.accompany(sc).events;
+  assert.ok(clh.filter((e) => e.p).every((e) => e.p.length === 2), 'bass and tenor: ' + show(clh));
+  assert.strictEqual(show(clh.slice(1, 2)), 'G2+B3/16', 'G: the tenor is the third');
 });
 
 // the app's Verovio takes it all

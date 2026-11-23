@@ -159,7 +159,7 @@ async function ui(page) {
     assert(await page.locator('.piano-panel .pp-body').isHidden(), 'the choices are put away');
     assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'the bar stays');
     const said = await page.locator('.pp-summary').textContent();
-    assert(/Strike/.test(said), 'the bar names the style: ' + said);
+    assert(/Plain/.test(said), 'the bar names the style: ' + said);
     await page.click('.piano-panel .pp-peek');
     assert(await page.locator('.piano-panel .pp-body').isVisible(), 'open again');
     await page.click('.piano-panel button:text-is("Done")');
@@ -169,35 +169,48 @@ async function ui(page) {
     assert(await page.locator('.piano-panel .pp-body').isVisible(), 'dragged up: open');
   });
   let hymnStyle = 0;
-  await test('Style changes how the left hand plays, and the right hand gets notes', async () => {
+  await test('a preset changes how the left hand plays, and the right hand gets notes', async () => {
     hymnStyle = await left();
-    await pick('Left hand', 'Arpeggio');
-    assert(await left() > hymnStyle, 'an arpeggio has more notes than held chords: ' + await left() + ' / ' + hymnStyle);
+    assert(await page.locator('.piano-panel .ce-row', {hasText: 'When'}).isHidden(), 'no When row in the simple panel');
+    assert(await page.locator('.piano-panel button:text-is("Three notes")').count() === 0, 'no Three notes in the simple panel');
+    await pick('Style', 'Flowing');
+    assert(await left() > hymnStyle, 'Flowing has more notes than Plain: ' + await left() + ' / ' + hymnStyle);
     assert(await page.locator('.sheet-music g.note.fill').count() === 0, 'the melody alone');
-    await pick('Right hand', 'Two notes');
-    assert(await page.locator('.sheet-music g.note.fill').count() > 10, 'notes added under the melody');
+    await pick('Style', 'Chorale');
+    assert(await page.locator('.sheet-music g.note.fill').count() > 5, 'Chorale adds a note under the melody');
     await pick('Right hand', 'Melody alone');
+    assert(await page.locator('.sheet-music g.note.fill').count() === 0, 'and it can be taken off');
+    await page.click('.piano-panel button:text-is("Advanced")'); await settle();
+    await pick('Left hand', 'Arpeggio');
+    await pick('Right hand', 'Three notes');
+    assert(await page.locator('.sheet-music g.note.fill').count() > 10, 'notes added under the melody');
     await pick('Left hand', 'No left hand');
     assert(await staves() === 1, 'no left hand, no second staff');
-    await pick('Left hand', 'Strike');
-    await pick('', 'Hymn');
-    assert(await left() === hymnStyle, 'the hymn style again');
+    await page.click('.piano-panel button:text-is("Advanced")'); await settle();
+    assert(await page.locator('.piano-panel button:text-is("Custom")').count() === 1, 'not a preset: Custom');
+    await pick('Style', 'Plain');
+    assert(await left() === hymnStyle, 'Plain again');
   });
-  await test('the choice is the device\'s for every hymn, or this hymn\'s alone', async () => {
-    await pick('Left hand', 'Arpeggio');
-    await page.click('.piano-panel button:text-is("Only this hymn")'); await settle();
+  await test('a change is this hymn\'s own; Use for all hymns makes it the device\'s', async () => {
+    assert(await page.locator('.piano-panel button:text-is("Use for all hymns")').isDisabled(), 'Plain is already the device\'s');
+    await pick('Style', 'Flowing');
     const here = await left();
     await page.click('.piano-panel button:text-is("Done")');
-    assert(await page.locator('.piano-panel .pp-body').isHidden(), 'the panel tucks down');
     await openSheet('E10');
     assert(await staves() === 2, 'both hands stay on for the next hymn');
+    assert(/Plain/.test(await page.locator('.pp-summary').textContent()), 'E10 plays the device\'s Plain');
     await openSheet('E8');
-    assert(await left() === here, 'E8 keeps its own arpeggio: ' + await left() + ' / ' + here);
+    assert(await left() === here, 'E8 keeps its own Flowing: ' + await left() + ' / ' + here);
     assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'another hymn: the panel is tucked down, not open');
     await page.click('.piano-panel .pp-peek');
-    await page.click('.piano-panel button:text-is("Only this hymn")'); await settle();   // back to the device's
-    await pick('Left hand', 'Strike'); await pick('', 'Hymn');
+    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
+    await openSheet('E10');
+    assert(/Flowing/.test(await page.locator('.pp-summary').textContent()), 'now E10 plays Flowing too');
+    await page.click('.piano-panel .pp-peek');
+    await pick('Style', 'Plain');
+    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
     await page.click('.piano-panel button:text-is("Done")');
+    await openSheet('E8');
   });
   await test('it follows the key, and is not there on the guitar sheet or with the staff hidden', async () => {
     await page.keyboard.press('+'); await settle();
@@ -306,7 +319,7 @@ async function ui(page) {
     assert(await page.locator('.sheet-music g.playing').count() >= 0, 'lights up in the new key');
     await page.keyboard.press('0'); await settle();
     if (await page.locator('.piano-panel .pp-peek').isVisible()) { await page.click('.piano-panel .pp-peek'); await settle(); }
-    await pick('Left hand', 'Arpeggio');
+    await pick('Style', 'Flowing');
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'a new style, still playing');
     await page.click('.piano-panel button:text-is("Done")'); await settle();
   });

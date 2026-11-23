@@ -214,7 +214,7 @@
   var RH_ON = {chord: 'where a chord starts', beat: 'on the beat', long: 'on long notes', all: 'on every note'};
   function rhPanel() {
     if (!sheet) return;
-    var r = sheet.rh || {add: 0}, add = r.add | 0, on = r.on || 'beat';
+    var r = sheet.rh || {add: 0}, add = r.add | 0, on = r.on || 'chord';
     document.querySelectorAll('#rhAdd button').forEach(function (b) { b.classList.toggle('on', +b.dataset.add === add); });
     document.querySelectorAll('#rhOn button').forEach(function (b) { b.classList.toggle('on', b.dataset.on === on); });
     $('rhOn').style.display = add ? '' : 'none';
@@ -222,7 +222,7 @@
     $('rhHandRow').style.display = hand === 'n' && chosen().some(function (n) { return Array.isArray(n.h); }) ? '' : 'none';
   }
   function setRight(add, on) {
-    edit(function () { if (add) sheet.rh = {add: add, on: on || (sheet.rh && sheet.rh.on) || 'beat'}; else delete sheet.rh; });
+    edit(function () { if (add) sheet.rh = {add: add, on: on || (sheet.rh && sheet.rh.on) || 'chord'}; else delete sheet.rh; });
     if (!prefs.left && add) { prefs.left = true; keep(); render(); }
     if (add) audition();
   }
@@ -303,7 +303,7 @@
   }
   function applyStyle(fam, kind, r) {
     var cur = target() || inEffect() || {}, a = {pat: r.pat, rate: r.rate, low: r.low, style: fam.id + '/' + kind.id};
-    ['shortPat', 'fillPat', 'bassRing', 'adaptive', 'roll', 'smooth'].forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
+    ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth'].forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
     if (cur.pedal && r.rate) a.pedal = true;
     if (cur.end === false) a.end = false;
     setPattern(a);

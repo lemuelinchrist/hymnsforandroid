@@ -1,10 +1,12 @@
 // How the two hands play when "Both hands" is on (piano.js): a sheet at the bottom of the screen, in the chord editor's
 // clothes. It opens when Both hands is turned on; Done tucks it down to a slim bar that names the style (a tap or a drag
-// up opens it again); it is gone while Both hands is off. A choice is the device's for every hymn, or with "Only this
-// hymn" this hymn's own.
+// up opens it again); it is gone while Both hands is off. It shows the presets (piano.js PRESETS) and the right hand,
+// Melody alone or Two notes; Advanced shows every choice instead (kept on the device). A change is this hymn's own;
+// "Use for all hymns" makes the choice the device's, which every hymn without its own plays.
 
-import {styles, pattern, DEFAULT} from './piano.js';
+import {styles, pattern, DEFAULT, PRESETS, presetChoice, presetOf} from './piano.js';
 import {tr} from './i18n.js';
+import {store} from './ui.js';
 
 const ADD = [[0, 'Melody alone'], [1, 'Two notes'], [2, 'Three notes']];
 const ON = [['chord', 'Where a chord starts'], ['beat', 'On the beat'], ['long', 'Long notes'], ['all', 'Every note']];
@@ -17,8 +19,9 @@ function el(tag, cls, text, attrs) {
   return e;
 }
 
-// get() -> {choice, only}; set(choice, only); time() -> the sheet's time signature, [4, 4]
-export function createPianoPanel({get, set, time}) {
+// get() -> {choice, usual: the device's choice}; set(choice): this hymn's; setUsual(choice): for every hymn;
+// time() -> the sheet's time signature, [4, 4]
+export function createPianoPanel({get, set, setUsual, time}) {
   const root = el('section', 'chord-editor piano-panel', null, {'aria-label': tr('How the two hands play')});
   // the bar it tucks down to: a handle, what plays now, and a chevron; a tap or a drag up opens the panel
   const peek = el('button', 'pp-peek', null, {type: 'button', 'aria-expanded': 'false', title: tr('How the two hands play')});
@@ -26,14 +29,17 @@ export function createPianoPanel({get, set, time}) {
   peek.append(el('span', 'pp-handle', null, {'aria-hidden': 'true'}), el('strong', 'pp-title', tr('Both hands')), summary,
     el('span', 'pp-chev', '⌃', {'aria-hidden': 'true'}));
   const grip = el('div', 'pp-handle pp-grip', null, {'aria-hidden': 'true'});
-  const bOnly = el('button', 'ce-btn', tr('Only this hymn'), {type: 'button', title: tr('Keep this choice for this hymn alone')});
+  const bAdv = el('button', 'ce-btn', tr('Advanced'), {type: 'button', title: tr('All the choices')});
+  const bAll = el('button', 'ce-btn', tr('Use for all hymns'), {type: 'button', title: tr('Play every hymn this way, unless it has its own')});
   const bDone = el('button', 'ce-btn primary', tr('Done'), {type: 'button'});
   const top = el('div', 'ce-top');
-  top.append(el('strong', 'ce-title', tr('Both hands')), el('span', 'grow'), bOnly, bDone);
+  top.append(el('strong', 'ce-title', tr('Both hands')), el('span', 'grow'), bAdv, bAll, bDone);
+  const presetRow = el('div', 'ce-row');
   const famRow = el('div', 'ce-row'), kindRow = el('div', 'ce-row'), rhythmRow = el('div', 'ce-row'), octRow = el('div', 'ce-row');
   const addRow = el('div', 'ce-row'), onRow = el('div', 'ce-row');
   const body = el('div', 'pp-body');
-  body.append(grip, top, famRow, kindRow, rhythmRow, octRow, addRow, onRow);
+  body.append(grip, top, presetRow, famRow, kindRow, rhythmRow, octRow, addRow, onRow);
+  let advanced = !!store.get('pianoAdvanced', false);
   root.append(peek, body);
 
   const btn = (label, pressed, onclick, cls = '') => {
@@ -41,20 +47,36 @@ export function createPianoPanel({get, set, time}) {
     b.addEventListener('click', onclick);
     return b;
   };
-  const change = (fn, only) => {
-    const cur = get(), choice = JSON.parse(JSON.stringify(cur.choice || DEFAULT));
-    choice.rh = choice.rh || {add: 0, on: 'beat'};
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  const change = (fn) => {
+    const choice = JSON.parse(JSON.stringify(get().choice || DEFAULT));
+    choice.rh = choice.rh || {add: 0, on: 'chord'};
     if (fn) fn(choice);
-    set(choice, only === undefined ? cur.only : only);
+    set(choice);
     refresh();
   };
 
   function refresh() {
-    const {choice, only} = get(), lh = choice.lh || null, rh = choice.rh || {add: 0, on: 'beat'};
-    const all = styles(time()), cur = pattern(lh, time());
-    bOnly.setAttribute('aria-pressed', String(only));
-    for (const r of [famRow, kindRow, rhythmRow, octRow, addRow, onRow]) r.textContent = '';
+    const {choice, usual} = get(), lh = choice.lh || null, rh = choice.rh || {add: 0, on: 'chord'};
+    const all = styles(time()), cur = pattern(lh, time()), preset = presetOf(choice, time());
+    bAdv.setAttribute('aria-pressed', String(advanced));
+    bAll.disabled = same(choice, usual);
+    for (const r of [presetRow, famRow, kindRow, rhythmRow, octRow, addRow, onRow]) r.textContent = '';
     const said = [];
+    presetRow.hidden = advanced;
+    for (const r of [famRow, kindRow, rhythmRow, octRow, onRow]) r.hidden = !advanced;
+    if (!advanced) {
+      presetRow.append(el('span', 'ce-label', tr('Style')), ...PRESETS.map((p) => btn(tr(p.name), preset === p, () => change((c) => {
+        const n = presetChoice(p); c.lh = n.lh; c.rh = n.rh;
+      }))));
+      if (!preset) presetRow.append(btn(tr('Custom'), true, () => { advanced = true; store.set('pianoAdvanced', true); refresh(); }));
+      addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.slice(0, 2).map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh = {add: n, on: 'chord'}; }))));
+      said.push(preset ? tr(preset.name) : tr('Custom'));
+      if (rh.add) said.push(tr(ADD[rh.add][1]));
+      summary.textContent = said.join(' · ');
+      setHeight();
+      return;
+    }
     famRow.append(el('span', 'ce-label', tr('Left hand')),
       btn(tr('No left hand'), !cur, () => change((c) => { c.lh = null; })),
       ...all.map((f) => btn(tr(f.name), cur && cur.family === f.id, () => change((c) => {
@@ -122,7 +144,8 @@ export function createPianoPanel({get, set, time}) {
   window.addEventListener('pointerup', onUp);
   peek.addEventListener('click', () => show('open'));
   grip.addEventListener('click', () => show('peek'));
-  bOnly.addEventListener('click', () => change(null, !get().only));
+  bAdv.addEventListener('click', () => { advanced = !advanced; store.set('pianoAdvanced', advanced); refresh(); });
+  bAll.addEventListener('click', () => { setUsual(get().choice); refresh(); });
   bDone.addEventListener('click', () => show('peek'));
 
   document.body.appendChild(root);

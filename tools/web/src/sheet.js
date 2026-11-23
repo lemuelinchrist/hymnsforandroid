@@ -296,7 +296,7 @@ export function handsOf(doc) {
   for (const id of mei(doc, 'identifier')) {
     if (id.getAttribute('type') !== 'hands') continue;
     const m = /^\s*(\w+)\/(\w+)\/(\w+)(?:\/(-?\d))?(?:\s+rh=([012]):(\w+))?\s*$/.exec(id.textContent);
-    if (m) return {lh: {family: m[1], kind: m[2], rhythm: m[3], oct: m[4] ? parseInt(m[4], 10) : 0, pedal: false}, rh: {add: m[5] ? parseInt(m[5], 10) : 0, on: m[6] || 'beat'}};
+    if (m) return {lh: {family: m[1], kind: m[2], rhythm: m[3], oct: m[4] ? parseInt(m[4], 10) : 0, pedal: false}, rh: {add: m[5] ? parseInt(m[5], 10) : 0, on: m[6] || 'chord'}};
   }
   return null;
 }
