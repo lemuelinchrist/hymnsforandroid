@@ -295,5 +295,24 @@ const verovio = require(vfile);
       assert.ok(svg.includes('id="l1"') && svg.includes('con pedale'));
     })));
   });
+  test('voice2 emits layer 2 only in non-rest measures and works with accompaniment', () => {
+    const s = song();
+    // 1 bar of rest (pickup 2 + bar 1 = 18), then a low response in bar 2
+    s.voice2 = [{p: null, d: 18, hide: true}, {p: 58, d: 4, w: ['(echo)']}, {p: 56, d: 4, w: ['back']}, {p: null, d: 8, hide: true}];
+    s.rh = {add: 1, on: 'all'};
+    s.acc = {pat: '1 5 8 5', rate: 2, low: 48};
+    const rh = M.rightHand(s), lh = M.accompany(s);
+    assert.ok(rh && rh[1] && rh[1].length === 1, 'bar 1 still gets right-hand fill');
+    const mei = M.toMei(s, {left: lh.events, right: rh});
+    assert.strictEqual(mei.split('<layer n="2">').length, 2, 'only one measure has layer 2');
+    assert.ok(mei.includes('<space ') && mei.includes('id="v1"') && mei.includes('<verse n="2"><syl>(echo)</syl></verse>'), 'hidden rest emits space, v-prefixed ids and verse 2');
+    assert.strictEqual(M.playList(s).v2.length, 2, 'playList includes voice2');
+    const r = M.replaceRange(s.voice2, 14, 18, [{p: 60, d: 4, w: ['hi']}]);
+    assert.deepStrictEqual(r[2], {p: 58, d: 4, w: ['(echo)']}, 'replaceRange preserves voice2 lyrics and scalar pitch');
+    assert.strictEqual(r[0].hide, true, 'replaceRange preserves hidden rests');
+    assert.ok(tk.loadData(mei), 'Verovio loads voice2 + Both hands');
+    const svg = tk.renderToSVG(1);
+    assert.ok(svg.includes('id="v1"') && svg.includes('id="l1"'));
+  });
   console.log(count + ' tests passed');
 })();

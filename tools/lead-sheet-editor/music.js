@@ -206,6 +206,12 @@
     var rh = sheet.rh || null, notes = sheet.notes;
     if (!(rh && rh.add > 0) && !notes.some(function (n) { return Array.isArray(n.h); })) return null;
     var on = onsets(notes), off = gridOff(sheet), beat = beatLen(sheet), chord = null, any = false;
+    var v2 = sheet.voice2 && sheet.voice2.length ? sheet.voice2 : null, v2on = v2 ? onsets(v2) : null;
+    function hasV2At(t, d) {
+      if (!v2) return false;
+      for (var j = 0; j < v2.length; j++) if (!isRest(v2[j]) && v2on[j] < t + d && v2on[j] + len(v2[j]) > t) return true;
+      return false;
+    }
     var out = notes.map(function (n, i) {
       if (n.ch) chord = chordInfo(n.ch);
       if (isRest(n)) return null;
@@ -214,7 +220,7 @@
       else if (rh && rh.add > 0 && chord) {
         var d = len(n), g = on[i] + off; for (var q = i + 1; tied(notes, q); q++) d += len(notes[q]);
         var want = rh.on === 'all' ? true : rh.on === 'chord' ? !!n.ch : rh.on === 'long' ? d >= 2 * beat : g % beat === 0 || d >= 2 * beat;
-        if (want) ps = fillUnder(n.p, chord, rh.add);
+        if (want && !hasV2At(on[i], d)) ps = fillUnder(n.p, chord, rh.add);
       }
       if (!ps || !ps.length) return null;
       any = true; return ps.slice().sort(function (a, b) { return a - b; });
@@ -539,9 +545,15 @@
       changes.push({g: g, end: until, a: n.lh, i: i});
     });
     var bars = [], fx = fifths(sheet); for (var b = 0; b < endG; b += bar) bars.push({g: b, len: bar, beat: beat, fifths: fx});
-    var fills = rightHand(sheet), mel = [], last = -1;   // the right hand: the melody, or the lowest note added under it
+    var fills = rightHand(sheet), mel = [], last = -1;   // the right hand: the melody (and voice2), or the lowest note added under it
     notes.forEach(function (n, i) { if (!isRest(n)) mel.push([on[i] + off, on[i] + off + len(n), fills && fills[i] ? fills[i][0] : n.p]); });
     for (var i = notes.length - 1; i >= 0; i--) if (!isRest(notes[i]) && !tied(notes, i)) { last = on[i] + off; break; }
+    if (sheet.voice2 && sheet.voice2.length) {
+      var v2 = sheet.voice2, v2on = onsets(v2);
+      v2.forEach(function (n, i) { if (!isRest(n)) mel.push([v2on[i] + off, v2on[i] + off + len(n), n.p]); });
+      for (var j = v2.length - 1; j >= 0; j--) if (!isRest(v2[j]) && !tied(v2, j)) { last = Math.max(last, v2on[j] + off); break; }
+      mel.sort(function (a, b) { return a[0] - b[0]; });
+    }
     var out = accompanyOn({bars: bars, first: first, chords: spans, mel: mel, last: last, base: base, changes: changes});
     var events = [];
     function push(p, d, ring) {
@@ -764,8 +776,11 @@
     events.forEach(function (e) {
       var s = t, z = t + len(e); t = z;
       if (z <= a || s >= b) return;
-      var c = {p: isRest(e) ? null : pitchesOf(e), d: Math.min(z, b) - Math.max(s, a)};
+      var c = {p: isRest(e) ? null : (Array.isArray(e.p) ? e.p.slice() : e.p), d: Math.min(z, b) - Math.max(s, a)};
       if (!isRest(e) && (s < a || e.tie)) c.tie = true;
+      if (!isRest(e) && s >= a && e.w) c.w = e.w.slice();
+      if (!isRest(e) && e.e) c.e = true;
+      if (isRest(e) && e.hide) c.hide = true;
       out.push(c);
     });
     return out;
@@ -805,7 +820,7 @@
         var withNext = beamable && next && !next.rest && next.v < 4 && group(next) === g;
         if (beamable && withNext && !withPrev) { layer += '<beam>'; open = true; }
         var d = DUR[it.v], attrs = ' xml:id="' + it.id + '" dur="' + d[0] + '"' + (d[1] ? ' dots="1"' : '');
-        if (it.rest) layer += '<rest' + attrs + '/>';
+        if (it.rest) layer += '<' + (it.idx >= 0 && events[it.idx] && events[it.idx].hide ? 'space' : 'rest') + attrs + '/>';
         else {
           var n = events[it.idx], ps = psOf(it.idx), many = ps.length > 1, chord = o.lead ? chordOf[it.idx] : o.chordAt ? o.chordAt(it.pos) : spanAt(bi * bar + it.pos);
           var ids = piecesOf[it.idx], first = ids[0] === it.id, at = ids.indexOf(it.id), verses = '';
@@ -814,7 +829,7 @@
             var goes = /-$/.test(w), text = w.replace(/-$/, ''), before = false;
             for (var j = it.idx - 1; j >= 0; j--) { var pw = events[j].w && events[j].w[vi]; if (pw) { before = /-$/.test(pw); break; } }
             var wp = goes ? (before ? 'm' : 'i') : (before ? 't' : '');
-            verses += '<verse n="' + (vi + 1) + '"><syl' + (wp ? ' wordpos="' + wp + '"' : '') + (goes ? ' con="d"' : '') + '>' + esc(text) + '</syl></verse>';
+            verses += '<verse n="' + (vi + 1 + (o.verseOffset || 0)) + '"><syl' + (wp ? ' wordpos="' + wp + '"' : '') + (goes ? ' con="d"' : '') + '>' + esc(text) + '</syl></verse>';
           });
           if (first && o.countLine) verses += '<verse n="' + o.countLine + '" xml:id="cv' + it.idx + '"><syl>.</syl></verse>';   // room for the counting
           var inner = '';
@@ -841,7 +856,7 @@
             if (slurred) extra += '<slur startid="#' + it.id + '" endid="#' + piecesOf[last][0] + '"/>';
           }
         }
-        if (o.lead && it.idx >= 0 && piecesOf[it.idx][0] === it.id && events[it.idx].ch)
+        if (o.lead && !o.voice2 && it.idx >= 0 && piecesOf[it.idx][0] === it.id && events[it.idx].ch)
           extra += '<harm staff="1" place="above" tstamp="' + (1 + (it.pos - (bar - b.len)) / (16 / sheet.time[1])) + '">' + esc(symbolic(events[it.idx].ch)) + '</harm>';   // as the app's sheets (tools/hymn-midi reads tstamp)
         if (open && beamable && !withNext) { layer += '</beam>'; open = false; }
       });
@@ -867,11 +882,14 @@
   // opt.countLine: keep a line free under the words (the page writes "1 & 2 &" there, between the staves).
   function toMei(sheet, opt) {
     opt = opt || {};
-    var notes = sheet.notes, left = opt.left && opt.left.length ? opt.left : null, f = fifths(sheet), bar = barLen(sheet);
-    var need = left ? Math.max(total(notes), total(left)) : 0;
-    var bars = layout(sheet, notes, 'n', need), lbars = left ? layout(sheet, left, 'l', need) : null;
+    var notes = sheet.notes, v2 = sheet.voice2 && sheet.voice2.length ? sheet.voice2 : null, left = opt.left && opt.left.length ? opt.left : null, f = fifths(sheet), bar = barLen(sheet);
+    var need = (left || v2) ? Math.max(total(notes), left ? total(left) : 0, v2 ? total(v2) : 0) : 0;
+    var bars = layout(sheet, notes, 'n', need), v2bars = v2 ? layout(sheet, v2, 'v', need) : null, lbars = left ? layout(sheet, left, 'l', need) : null;
     var nv = 1; notes.forEach(function (n) { if (n.w && n.w.length > nv) nv = n.w.length; });
-    var one = voiceMei(sheet, bars, notes, {lead: true, countLine: opt.countLine ? nv + 1 : 0, fill: opt.right || null}), two = left ? voiceMei(sheet, lbars, left, {spans: chordSpans(sheet)}) : null;
+    var nv2 = 0; if (v2) { nv2 = 1; v2.forEach(function (n) { if (n.w && n.w.length > nv2) nv2 = n.w.length; }); }
+    var one = voiceMei(sheet, bars, notes, {lead: true, countLine: opt.countLine ? nv + nv2 + 1 : 0, fill: opt.right || null});
+    var v2m = v2 ? voiceMei(sheet, v2bars, v2, {lead: true, voice2: true, verseOffset: nv}) : null;
+    var two = left ? voiceMei(sheet, lbars, left, {spans: chordSpans(sheet)}) : null;
     var dirs = {}, off = gridOff(sheet);
     function dir(t, text, place, type) {
       var g = t + off, bi = Math.max(0, Math.min(bars.length - 1, Math.floor(g / bar))), b = bars[bi];
@@ -889,9 +907,10 @@
       (left ? '<staffGrp symbol="brace" bar.thru="true"><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/><staffDef n="2" lines="5" clef.shape="F" clef.line="4"/></staffGrp>'
         : '<staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp>') + '</scoreDef>\n<section>\n';
     bars.forEach(function (b, bi) {
+      var hasV2 = v2bars && v2bars[bi].items.some(function (it) { return !it.rest; });
       x += '<measure n="' + (bi + 1) + '"' + (b.len < bar ? ' metcon="false"' : '') + (bi === bars.length - 1 ? ' right="end"' : '') +
-        '><staff n="1"><layer n="1">' + one[bi].layer + '</layer></staff>' +
-        (two ? '<staff n="2"><layer n="1">' + two[bi].layer + '</layer></staff>' : '') + one[bi].extra + (two ? two[bi].extra + (dirs[bi] || '') : '') + '</measure>\n';
+        '><staff n="1"><layer n="1">' + one[bi].layer + '</layer>' + (hasV2 ? '<layer n="2">' + v2m[bi].layer + '</layer>' : '') + '</staff>' +
+        (two ? '<staff n="2"><layer n="1">' + two[bi].layer + '</layer></staff>' : '') + one[bi].extra + (hasV2 ? v2m[bi].extra : '') + (two ? two[bi].extra + (dirs[bi] || '') : '') + '</measure>\n';
     });
     return x + '</section>\n</score></mdiv></body></music></mei>';
   }
@@ -933,6 +952,15 @@
       var d = len(n); for (var q = i + 1; tied(notes, q); q++) d += len(notes[q]);
       mel.push({t: on[i], d: d, p: n.p, i: i});
     });
+    var v2 = [], v2n = sheet.voice2 && sheet.voice2.length ? sheet.voice2 : null;
+    if (v2n) {
+      var vo = onsets(v2n);
+      v2n.forEach(function (n, i) {
+        if (isRest(n) || tied(v2n, i)) return;
+        var d = len(n); for (var q = i + 1; tied(v2n, q); q++) d += len(v2n[q]);
+        v2.push({t: vo[i], d: d, p: n.p, i: i});
+      });
+    }
     var lh = leftHand(sheet);
     if (lh) {
       var lo = onsets(lh.events);
@@ -944,7 +972,7 @@
     }
     var off = gridOff(sheet);
     chordSpans(sheet).forEach(function (s) { if (s.info && s.end > s.g) pad.push({t: Math.max(0, s.g - off), d: s.end - Math.max(off, s.g), ps: chordPitches(s.ch)}); });
-    return {mel: mel, fill: fill, left: left, pad: pad, total: Math.max(total(notes), lh ? total(lh.events) : 0)};
+    return {mel: mel, v2: v2, fill: fill, left: left, pad: pad, total: Math.max(total(notes), v2n ? total(v2n) : 0, lh ? total(lh.events) : 0)};
   }
 
   return {guitarShape: guitarShape, symbolic: symbolic, KEYS: KEYS, PC: PC, DUR: DUR, DUR_BUTTONS: DUR_BUTTONS, ROOTS: ROOTS, QUALITIES: QUALITIES, FLAT_NAMES: FLAT_NAMES, SHARP_NAMES: SHARP_NAMES,

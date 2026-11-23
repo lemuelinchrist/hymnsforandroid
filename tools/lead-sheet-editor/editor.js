@@ -7,7 +7,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var tk = null, sheet = null, rev = '', song = '', hintStart = null;
   var sel = 0, anchor = 0;      // the chosen note, and the other end when several are chosen
-  var hand = 'n', head = -1;    // 'n' the melody, 'l' a written-out left hand; the chosen note of a left-hand chord (-1: all)
+  var hand = 'n', head = -1;    // 'n' the melody, 'v' voice 2 (layer 2), 'l' a written-out left hand; the chosen note of a left-hand chord (-1: all)
   var scope = 'song', scopeFor = -1;
   var undo = [], redo = [], dirty = false, saving = false, saveTimer = null, changed = {};
   var lh = null, rh = null, leadMei = '', pianoMei = '', sentPiano = null, drawnBars = [];
@@ -19,7 +19,7 @@
   function copy(x) { return JSON.parse(JSON.stringify(x)); }
 
   // ---- what is chosen
-  function list() { return hand === 'l' && sheet.left ? sheet.left : sheet.notes; }
+  function list() { return hand === 'l' && sheet.left ? sheet.left : hand === 'v' && sheet.voice2 ? sheet.voice2 : sheet.notes; }
   function lo() { return Math.min(sel, anchor); }
   function hi() { return Math.max(sel, anchor); }
   function chosen() { return list().slice(lo(), hi() + 1); }
@@ -33,7 +33,7 @@
   }
   function verseCount() { var nv = 1; sheet.notes.forEach(function (n) { if (n.w && n.w.length > nv) nv = n.w.length; }); return nv; }
   function eventName(n, i) {
-    if (M.isRest(n)) return 'Rest';
+    if (M.isRest(n)) return n.hide ? 'Rest (hidden)' : 'Rest';
     var s = M.pitchesOf(n).map(function (p) { return M.noteName(sheet, p, hand === 'n' && n.e); }).join(' + ');
     if (hand === 'n' && rh && rh[i]) s += ' (with ' + rh[i].map(function (p) { return M.noteName(sheet, p); }).reverse().join(', ') + ')';
     return s;
@@ -51,6 +51,7 @@
     $('heading').textContent = sheet.title || '';
     lh = M.leftHand(sheet); rh = M.rightHand(sheet);
     if (hand === 'l' && !(lh && lh.written)) { hand = 'n'; head = -1; }
+    if (hand === 'v' && !(sheet.voice2 && sheet.voice2.length)) { hand = 'n'; head = -1; }
     sel = clamp(sel, 0, Math.max(0, list().length - 1)); anchor = clamp(anchor, 0, Math.max(0, list().length - 1));
     var piano = !!(lh || rh), show = piano && prefs.left, left = lh ? lh.events : null;   // the piano part: either hand has more than the lead sheet
     var pedal = !!(lh && !lh.written && ((sheet.acc && sheet.acc.pedal) || sheet.notes.some(function (n) { return n.lh && n.lh.pedal; })));
@@ -70,7 +71,7 @@
       if (prefs.counts) drawCounts();
     } catch (e) { $('music').textContent = 'Could not draw the sheet: ' + e; return; }
     document.body.classList.toggle('lh-written', !!(lh && lh.written));
-    document.body.classList.toggle('hand-l', hand === 'l'); document.body.classList.toggle('hand-n', hand !== 'l');
+    document.body.classList.toggle('hand-l', hand === 'l'); document.body.classList.toggle('hand-v', hand === 'v'); document.body.classList.toggle('hand-n', hand === 'n');
     $('pianoMei').disabled = !piano; $('lhshow').disabled = !piano; $('lhshow').classList.toggle('on', show);
     $('playCh').textContent = piano ? 'Piano part' : 'Chords';
     mark();
@@ -141,7 +142,7 @@
     mark(); reveal(els(hand, sel)[0]);
     if (!o.quiet) beep(list()[sel]);
   }
-  function setHand(h) { hand = h; head = -1; document.body.classList.toggle('hand-l', h === 'l'); document.body.classList.toggle('hand-n', h !== 'l'); }
+  function setHand(h) { hand = h; head = -1; document.body.classList.toggle('hand-l', h === 'l'); document.body.classList.toggle('hand-v', h === 'v'); document.body.classList.toggle('hand-n', h === 'n'); }
   // ---- the side panel
   function keyList() {   // the chords of the key in the order of their numbers: I ii iii IV V vi V7
     var k = M.keyChords(sheet);
@@ -149,16 +150,29 @@
   }
   function panel() {
     var a = list(), n = a[sel];
-    $('noteTitle').textContent = hand === 'l' ? 'Left hand' : 'Chosen note';
+    $('noteTitle').textContent = hand === 'l' ? 'Left hand' : hand === 'v' ? 'Voice 2' : 'Chosen note';
     if (!n) { $('what').textContent = 'Click a note'; lhPanel(); rhPanel(); recPanel(); return; }
     var pl = place(timeOf(sel, a)), many = hi() - lo() + 1;
     $('what').innerHTML = (many > 1 ? many + ' notes chosen' : M.esc(eventName(n, sel)) + ', ' + durName(n.d)) +
-      '<small>bar ' + pl.bar + ', beat ' + pl.beat + ' · ' + (hand === 'l' ? 'left hand ' : 'note ') + (sel + 1) + ' of ' + a.length + '</small>';
+      '<small>bar ' + pl.bar + ', beat ' + pl.beat + ' · ' + (hand === 'l' ? 'left hand ' : hand === 'v' ? 'voice 2 ' : 'note ') + (sel + 1) + ' of ' + a.length + '</small>';
     $('where').textContent = 'Bar ' + pl.bar + ' · beat ' + pl.beat;
+    if (hand === 'v') {
+      var box2 = $('verses');
+      if (box2.children.length !== 1 || box2.dataset.forHand !== 'v') {
+        box2.innerHTML = '<div class="row"><label>Voice 2</label><input type="text" data-verse="0" autocomplete="off"></div>';
+        box2.dataset.forHand = 'v';
+      }
+      var inp2 = box2.querySelector('input');
+      if (inp2) {
+        var val2 = (n.w && n.w[0]) || '';
+        if (document.activeElement !== inp2 || inp2.dataset.for !== String(sel)) inp2.value = val2;
+        inp2.dataset.for = String(sel); inp2.disabled = n.p == null;
+      }
+    }
     if (hand === 'n') {
       var nv = verseCount(), box = $('verses');
-      if (box.children.length !== nv) {
-        box.innerHTML = '';
+      if (box.children.length !== nv || box.dataset.forHand !== 'n') {
+        box.innerHTML = ''; box.dataset.forHand = 'n';
         for (var v = 0; v < nv; v++) {
           var row = document.createElement('div'); row.className = 'row';
           row.innerHTML = '<label>' + (nv > 1 ? 'Verse ' + (v + 1) : 'Word') + '</label><input type="text" data-verse="' + v + '" autocomplete="off">';
@@ -448,7 +462,7 @@
         else status('Not saved: ' + (r.j.error || r.code), 'warn');
       }).catch(function () { saving = false; dirty = true; status('Not saved: is the server running?', 'warn'); });
   }
-  function tidy(s) { s.time = s.time || [4, 4]; s.notes = s.notes || []; s.pickup = s.pickup || 0; if (!Array.isArray(s.left) || !s.left.length) delete s.left; return s; }
+  function tidy(s) { s.time = s.time || [4, 4]; s.notes = s.notes || []; s.pickup = s.pickup || 0; if (!Array.isArray(s.left) || !s.left.length) delete s.left; if (!Array.isArray(s.voice2) || !s.voice2.length) delete s.voice2; return s; }
   function load(keepSel, why) {
     return fetch('/api/sheet' + q()).then(function (r) { return r.json(); }).then(function (j) {
       if (!j.sheet) { status(j.error || 'No sheet', 'warn'); return; }
@@ -495,6 +509,9 @@
     pl.mel.forEach(function (m) {
       ev.push({t: m.t, d: m.d, show: !quiet, hand: 'n', i: m.i, ps: [m.p], fire: function (when, sec) { if (prefs.mel) S.note(m.p, when, sec * 0.96, 0.26, tone); }});
     });
+    (pl.v2 || []).forEach(function (m) {
+      ev.push({t: m.t, d: m.d, show: !quiet, hand: 'v', i: m.i, ps: [m.p], fire: function (when, sec) { if (prefs.mel) S.note(m.p, when, sec * 0.96, 0.23, tone); }});
+    });
     if (prefs.acc) {
       pl.fill.forEach(function (f) {
         ev.push({t: f.t, d: f.d, fire: function (when, sec) { f.ps.forEach(function (p) { S.note(p, when, sec * 0.96, 0.14, tone); }); if (prefs.keys && !quiet) setTimeout(function () { light(f.ps, sec * 900); }, Math.max(0, (when - S.now()) * 1000)); }});
@@ -521,13 +538,13 @@
         if (prefs.keys) light(e.ps, e.d * unit() / prefs.speed * 900);
       },
       onEnd: function () {
-        document.querySelectorAll('#music .playing').forEach(function (x) { x.classList.remove('playing', 'hn', 'hl'); });
+        document.querySelectorAll('#music .playing').forEach(function (x) { x.classList.remove('playing', 'hn', 'hv', 'hl'); });
         $('play').textContent = '▶ Play'; $('play').classList.remove('sounding');
       }});
   }
   function play() {
     if (S.playing()) { stopPlay(); return; }
-    var a = list(), many = hi() > lo(), from = timeOf(lo(), a), end = Math.max(M.total(sheet.notes), lh ? M.total(lh.events) : 0);   // lh: the left hand may go on longer
+    var a = list(), many = hi() > lo(), from = timeOf(lo(), a), end = Math.max(M.total(sheet.notes), sheet.voice2 ? M.total(sheet.voice2) : 0, lh ? M.total(lh.events) : 0);   // lh: the left hand may go on longer
     if (!$('audio').paused) $('audio').pause();
     if (prefs.loop) {
       if (many) startPlay(from, timeOf(hi() + 1, a), true);
@@ -621,12 +638,19 @@
     var L = list(), n = L[sel], ns = chosen();
     if (a === 'up') step(1); else if (a === 'down') step(-1); else if (a === 'sharp') step(1, 'semi'); else if (a === 'flat') step(-1, 'semi');
     else if (a === 'octup') step(1, 'oct'); else if (a === 'octdown') step(-1, 'oct');
-    else if (a === 'enh') { if (hand === 'n' && ns.length) edit(function () { ns.forEach(function (m) { if (m.p == null) return; if (m.e) delete m.e; else m.e = true; }); }); }
+    else if (a === 'enh') { if (hand !== 'l' && ns.length) edit(function () { ns.forEach(function (m) { if (m.p == null) return; if (m.e) delete m.e; else m.e = true; }); }); }
     else if (a === 'rest') {
       if (ns.length) edit(function () { ns.forEach(function (m) {
-        if (M.isRest(m)) { m.p = m.was || (hand === 'l' ? [48] : near()); delete m.was; if (hand === 'n') m.w = m.w || ['']; }
+        if (M.isRest(m)) { m.p = m.was || (hand === 'l' ? [48] : near()); delete m.was; delete m.hide; if (hand !== 'l') m.w = m.w || ['']; }
         else { m.was = m.p; m.p = null; delete m.tie; }
       }); });
+    }
+    else if (a === 'hiderest') {
+      var rs = ns.filter(M.isRest);
+      if (rs.length) edit(function () {
+        var allHidden = rs.every(function (m) { return m.hide; });
+        rs.forEach(function (m) { if (allHidden) delete m.hide; else m.hide = true; });
+      });
     }
     else if (a === 'before' || a === 'after') {
       edit(function () {
@@ -639,7 +663,7 @@
       var b = L[sel - 1];
       if (n && !M.isRest(n) && b && !M.isRest(b)) edit(function () {
         if (n.tie) delete n.tie;
-        else { n.tie = true; n.p = hand === 'l' ? M.pitchesOf(b) : b.p; delete n.e; if (b.e) n.e = true; if (hand === 'n') n.w = (n.w || ['']).map(function () { return ''; }); }
+        else { n.tie = true; n.p = hand === 'l' ? M.pitchesOf(b) : b.p; delete n.e; if (b.e) n.e = true; if (hand !== 'l') n.w = (n.w || ['']).map(function () { return ''; }); }
       });
     }
     else if (a === 'split') { if (n && n.d > 1) edit(function () { var h = Math.floor(n.d / 2), m = blank(n); m.d = n.d - h; if (M.isRest(n)) m.p = null; L.splice(sel + 1, 0, m); n.d = h; anchor = sel; }); }
@@ -650,6 +674,7 @@
         if (hand === 'l' && ns.length === 1 && head >= 0 && ps.length > 1) { ps.splice(head, 1); n.p = ps; head = -1; return; }   // one note of a chord
         L.splice(lo(), ns.length); sel = anchor = clamp(lo(), 0, Math.max(0, L.length - 1)); head = -1;
         if (hand === 'l' && !L.length) delete sheet.left;
+        if (hand === 'v' && (!L.length || L.every(M.isRest))) { delete sheet.voice2; setHand('n'); sel = anchor = 0; }
       });
     }
     else if (a === 'undo') { if (undo.length) { redo.push(JSON.stringify(sheet)); sheet = tidy(JSON.parse(undo.pop())); changed = {}; fields(); touch(); } }
@@ -659,11 +684,21 @@
         var d = a === 'trup' ? 1 : -1, pc = M.mod12(M.tonicPc(sheet) + d);
         var newKey = M.FLAT_NAMES[pc] === 'Gb' ? 'F#' : M.FLAT_NAMES[pc], oldKey = sheet.key, flatKey; sheet.key = newKey; flatKey = M.fifths(sheet) < 0; sheet.key = oldKey;
         sheet.notes.forEach(function (m) { if (m.p != null) m.p += d; delete m.e; if (m.ch) m.ch = M.trChord(m.ch, d, flatKey); if (m.h) m.h = m.h.map(function (p) { return p + d; }); });
+        (sheet.voice2 || []).forEach(function (m) { if (m.p != null) m.p += d; delete m.e; });
         (sheet.left || []).forEach(function (m) { if (!M.isRest(m)) m.p = M.pitchesOf(m).map(function (p) { return p + d; }); });
         sheet.key = M.FLAT_NAMES[pc] === 'Gb' ? 'F#' : M.FLAT_NAMES[pc]; fields();
       });
     }
     else if (a === 'verse') edit(function () { var nv = verseCount(); sheet.notes.forEach(function (m) { if (m.p != null) { m.w = m.w || ['']; while (m.w.length <= nv) m.w.push(''); } }); });
+    else if (a === 'voice2') {
+      if (hand === 'v') { setHand('n'); sel = anchor = indexAt(sheet.notes, timeOf(sel, sheet.voice2 || [])); mark(); return; }
+      var t0 = timeOf(lo(), sheet.notes), d0 = n ? n.d : 4, p0 = n && n.p != null ? n.p - 3 : 60, tot = M.total(sheet.notes);
+      edit(function () {
+        if (!sheet.voice2 || !sheet.voice2.length) sheet.voice2 = [{p: null, d: Math.max(tot, t0 + d0)}];
+        sheet.voice2 = M.replaceRange(sheet.voice2, t0, t0 + d0, [{p: p0, d: d0, w: ['']}]);
+        setHand('v'); sel = anchor = indexAt(sheet.voice2, t0);
+      });
+    }
     else if (a === 'counts') { prefs.counts = !prefs.counts; keep(); toggles(); render(); }
     else if (a === 'lhshow') { prefs.left = !prefs.left; keep(); render(); }
     else if (a === 'zoomin' || a === 'zoomout') { prefs.zoom = clamp(Math.round((prefs.zoom + (a === 'zoomin' ? 0.1 : -0.1)) * 10) / 10, 0.6, 1.8); keep(); toggles(); render(); }
@@ -763,8 +798,9 @@
     $('music').addEventListener('click', function (e) {
       var g = e.target.closest ? e.target.closest('g.note, g.rest, g.chord') : null;
       if (!g || !sheet) return;
-      var m = /^([nl])(\d+)(?:_\d+)?(?:k(\d+))?$/.exec(g.id); if (!m) return;
+      var m = /^([nlv])(\d+)(?:_\d+)?(?:k(\d+))?$/.exec(g.id); if (!m) return;
       if (m[1] === 'n') { if (hand !== 'n') { setHand('n'); anchor = +m[2]; } select(+m[2], {extend: e.shiftKey}); return; }
+      if (m[1] === 'v') { if (hand !== 'v') { setHand('v'); anchor = +m[2]; } select(+m[2], {extend: e.shiftKey}); return; }
       if (!(lh && lh.written)) {   // the pattern's notes are not edited one by one: go to the melody note over it
         setHand('n'); select(indexAt(sheet.notes, timeOf(+m[2], lh.events)), {quiet: true});
         if (!toldPattern) { toldPattern = true; toast('The left hand follows the chords and its pattern. To change single notes, "Write it out as notes".'); }
@@ -819,7 +855,7 @@
     $('lhPat').addEventListener('change', ownPattern); $('lhRate').addEventListener('change', ownPattern);
     // words: Space or Enter goes to the next note, "-" marks that the word goes on and goes to the next note
     function commitWord(inp) {
-      var i = +inp.dataset.for, v = +inp.dataset.verse, n = sheet.notes[i], val = inp.value.trim();
+      var i = +inp.dataset.for, v = +inp.dataset.verse, arr = hand === 'v' ? (sheet.voice2 || []) : sheet.notes, n = arr[i], val = inp.value.trim();
       if (!n || n.p == null || ((n.w && n.w[v]) || '') === val) return;
       edit(function () { n.w = n.w || ['']; while (n.w.length <= v) n.w.push(''); n.w[v] = val; });
     }
@@ -830,9 +866,9 @@
       if (e.key !== ' ' && e.key !== 'Enter' && e.key !== '-') return;
       e.preventDefault();
       if (e.key === '-' && inp.value.trim()) inp.value = inp.value.trim().replace(/-$/, '') + '-';
-      var v = inp.dataset.verse; commitWord(inp);
-      var j = sel + 1; while (j < sheet.notes.length && sheet.notes[j].p == null) j++;
-      if (j < sheet.notes.length) { select(j, {quiet: true}); var nx = $('verses').querySelector('input[data-verse="' + v + '"]'); nx.value = (sheet.notes[j].w && sheet.notes[j].w[v]) || ''; nx.focus(); nx.select(); }
+      var v = inp.dataset.verse, arr = hand === 'v' ? (sheet.voice2 || []) : sheet.notes; commitWord(inp);
+      var j = sel + 1; while (j < arr.length && arr[j].p == null) j++;
+      if (j < arr.length) { select(j, {quiet: true}); var nx = $('verses').querySelector('input[data-verse="' + v + '"]'); nx.value = (arr[j].w && arr[j].w[v]) || ''; nx.focus(); nx.select(); }
     });
     $('speed').addEventListener('change', function () { prefs.speed = +$('speed').value || 1; keep(); if (S.playing()) { stopPlay(); play(); } });
     $('tone').addEventListener('change', function () { prefs.tone = $('tone').value; keep(); });
