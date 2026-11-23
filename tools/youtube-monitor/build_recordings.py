@@ -12,6 +12,8 @@ databaseProvisioner/src/main/resources/NycypcdYoutube.txt (linked) and the *_kno
 Columns: video id, status, hymns, link label, album, album id, channel, publisher/studio (blank when unknown), title, note,
 platform (youtube / soundcloud), url, instrumental (1 or empty), language (the language the recording is sung in, English name; see guess_language:
 filled once and then kept, so a hand-set value stays; blank = not known yet), priority (1 = LSM/NYCYPCD/TWGBR, 2 = Melody of Lilies, 3 = others, 5 = low-quality; filled once and kept),
+link order (a number: the position among the links of a hymn when priority and sung/instrumental tie, set once from the old
+NycypcdYoutube.txt and kept; blank = after the numbered ones, in file order),
 soundcloud url (Lemuel 2026-11-23: the SoundCloud track that is the same recording as this YouTube row, the same album and title; kept as it is, blank =
 none found; a soundcloud row has its own url there). A track that only SoundCloud has is a row with platform soundcloud and status `unmatched`
 (video id = the URL path): it is kept by this script until the database links it, and then becomes a normal linked soundcloud row.
@@ -27,7 +29,7 @@ R = os.path.dirname(os.path.abspath(__file__)) + "/"
 REPO = os.path.dirname(os.path.dirname(R.rstrip("/")))
 OUT = R + "recordings.tsv"
 HEAD = ["video id", "status", "hymns", "link label", "album / playlist", "album id", "youtube channel", "publisher / studio", "title", "note",
-        "platform", "url", "instrumental", "language", "priority", "soundcloud url"]
+        "platform", "url", "instrumental", "language", "priority", "soundcloud url", "link order"]
 DB = os.environ.get("HYMNS_DB") or REPO + "/app/src/main/assets/hymns.sqlite"
 
 
@@ -113,7 +115,7 @@ def soundcloud_rows(old_hymns=None):
             hymn = old_hymns[path]
         user = path.split("/")[0]
         title = path.split("/")[-1].replace("-", " ")
-        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", "", "", url])
+        out.append([path, "linked", hymn, label or "", album or "", "", "SoundCloud: " + user, "", title, note, "soundcloud", url, "1" if inst else "", "", "", url, ""])
     return out
 
 
@@ -122,10 +124,10 @@ def main():
     ap.add_argument("--tracks"); ap.add_argument("--channel"); ap.add_argument("--publisher", default="")
     ap.add_argument("--studio-albums", default=""); ap.add_argument("--studio", default="")
     a = ap.parse_args()
-    rows = collections.OrderedDict(); old_lang = {}; old_prio = {}; old_inst = {}; old_hymns = {}
+    rows = collections.OrderedDict(); old_lang = {}; old_prio = {}; old_inst = {}; old_hymns = {}; old_order = {}
     if os.path.exists(OUT):
         for p in list(csv.reader(open(OUT, encoding="utf8"), delimiter="\t"))[1:]:
-            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]; old_prio[p[0]] = p[14]; old_inst[p[0]] = p[12]; old_hymns[p[0]] = p[2]
+            p += [""] * (len(HEAD) - len(p)); old_lang[p[0]] = p[13]; old_prio[p[0]] = p[14]; old_inst[p[0]] = p[12]; old_hymns[p[0]] = p[2]; old_order[p[0]] = p[16]
             if p[10] != "soundcloud" or p[1] == "unmatched":      # the linked soundcloud rows are rebuilt from the database below; the unmatched ones are kept
                 rows[p[0]] = p
     if a.tracks:
@@ -134,7 +136,7 @@ def main():
             aid, al, v, t = l.rstrip("\n").split("|", 3)
             if v not in rows:
                 pub = a.studio if al.lower() in studio else a.publisher
-                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", "", "", ""]
+                rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", "", "", "", ""]
     linked, label, instr = collections.defaultdict(list), {}, set()
     for p in tsv(REPO + "/databaseProvisioner/src/main/resources/NycypcdYoutube.txt"):
         linked[p[1]].append(p[0]); label.setdefault(p[1], p[2] if len(p) > 2 else "NYCYPCD")
@@ -165,6 +167,7 @@ def main():
     for v, r in rows.items():
         r[13] = old_lang.get(v) or r[13] or guess_language(r)
         r[14] = old_prio.get(v) or r[14] or default_priority(r)
+        r[16] = old_order.get(v) or r[16]
     missing = [v for v in linked if v not in rows]
     out = csv.writer(open(OUT, "w", newline="", encoding="utf8"), delimiter="\t", lineterminator="\n")
     out.writerow(HEAD)
