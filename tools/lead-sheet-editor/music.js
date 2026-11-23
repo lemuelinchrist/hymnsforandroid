@@ -410,8 +410,8 @@
          {id: '8', name: beat === 4 ? 'Eighths' : 'Twice a beat', pat: walkE, rate: eighth, low: 40, bassRing: true, shortPat: '1 - w -'}];
     var rolledRhythms = [{id: 'held', name: 'Held', pat: '1+5+8+10', rate: 0, low: 40, roll: 0.032}];
     if (half) rolledRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+5+8+10', rate: half, low: 40, roll: 0.028});
-    var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+t', rate: 0, low: 40}];
-    if (half) choraleRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+t', rate: half, low: 40});
+    var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+t', rate: 0, low: 40, passing: true}];
+    if (half) choraleRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+t', rate: half, low: 40, passing: true});
     return [
       {id: 'strike', name: 'Strike', hint: 'the chord in one stroke', kinds: [
         strikes('1+5', 41, 'two', 'Two notes', 'root and fifth'),
@@ -478,7 +478,7 @@
       var sp = spanAt(g), until = n.lh['for'] === 'bar' ? (Math.floor(g / bar) + 1) * bar : n.lh['for'] === 'chord' && sp ? sp.end : Infinity;
       changes.push({g: g, end: until, a: n.lh, i: i});
     });
-    var bars = []; for (var b = 0; b < endG; b += bar) bars.push({g: b, len: bar});
+    var bars = [], fx = fifths(sheet); for (var b = 0; b < endG; b += bar) bars.push({g: b, len: bar, beat: beat, fifths: fx});
     var fills = rightHand(sheet), mel = [], last = -1;   // the right hand: the melody, or the lowest note added under it
     notes.forEach(function (n, i) { if (!isRest(n)) mel.push([on[i] + off, on[i] + off + len(n), fills && fills[i] ? fills[i][0] : n.p]); });
     for (var i = notes.length - 1; i >= 0; i--) if (!isRest(notes[i]) && !tied(notes, i)) { last = on[i] + off; break; }
@@ -494,7 +494,8 @@
     return {events: events, marks: out.marks.map(function (m) { return {t: m.g - off, a: m.a, song: m.song}; }), changes: changes};
   }
   // The left hand over any music, bar by bar (accompany above gives it a lead sheet; the web app a sheet of the app). tl:
-  //   bars: [{g, len}]              every bar's start and length in sixteenths; g counts from the first bar line
+  //   bars: [{g, len, beat, fifths}] every bar's start and length in sixteenths (g counts from the first bar line), its
+  //                                 beat and key signature (both optional: for passing notes)
   //   first                         where the left hand may start: after an upbeat bar
   //   chords: [{g, info, end}]      on the beat, in order; end is the next chord's g, or the end of the music
   //   mel: [[from, to, pitch]]      the right hand's lowest note, in order of `from`
@@ -596,11 +597,43 @@
           if (st.ending) e.roll = 0.032;
           else if (acc.roll && e.p.length > 1) e.roll = acc.roll;
           if (pi === 0 && fresh) e.fresh = true;
+          if (acc.passing && e.p.length === 2 || st.ending) { e.span = sp; e.pass = !!acc.passing; }
         }
         events.push(e);
       });
     });
+    passingNotes(events, bars, barAt, mel);
     return {events: events, marks: marks};
+  }
+  // Passing notes, as a hymnal's lower voices walk (Chorale, `passing`): where the bass, or else the tenor, leaps a third
+  // into the next chord, the last beat of the chord before takes the note of the key between (C B A, G A B). Not where
+  // the chord lasts less than two beats, where that note would sit a semitone from the melody, or where the key is not
+  // known (a bar's `fifths`). One voice at a change, so it stays a sprinkle.
+  function passingNotes(events, bars, barAt, mel) {
+    function melAt(g) { for (var k = mel.length - 1; k >= 0; k--) if (mel[k][0] <= g + 0.01) return g < mel[k][1] ? mel[k][2] : null; return null; }
+    for (var i = 0; i + 1 < events.length; i++) {
+      var e = events[i], f = events[i + 1];
+      if (!e.pass || !f.span || !f.p || e.span === f.span || f.g !== f.span.g || e.g + e.d !== f.g) continue;
+      var bar = bars[barAt(e.g)], beat = bar.beat || 4;
+      if (bar.fifths == null || e.d < 2 * beat || e.span.end - e.span.g < 2 * beat) continue;
+      var tonic = mod12(bar.fifths * 7), scale = [0, 2, 4, 5, 7, 9, 11].map(function (x) { return (tonic + x) % 12; });
+      var t = e.g + e.d - beat, m = melAt(t), done = null;
+      for (var v = 0; v < 2 && !done; v++) {
+        if (v === 1 && f.p.length !== 2) break;
+        var a = e.p[v], b = f.p[v], diff = b - a, dir = diff > 0 ? 1 : -1;
+        if (Math.abs(diff) !== 3 && Math.abs(diff) !== 4) continue;
+        var cand = [1, 2, 3].map(function (k) { return a + dir * k; }).filter(function (x) { return x !== b && scale.indexOf(mod12(x)) >= 0; });
+        if (cand.length !== 1) continue;
+        var x = cand[0], clash = m != null && [1, 11].indexOf(mod12(m - x)) >= 0;
+        if (clash || x < 36 || (v === 1 && m != null && x >= m)) continue;
+        done = e.p.slice(); done[v] = x;
+      }
+      if (!done) continue;
+      e.d -= beat; delete e.ring;
+      events.splice(i + 1, 0, {g: t, d: beat, p: done.sort(function (p, q) { return p - q; })});
+      i++;
+    }
+    events.forEach(function (e) { delete e.span; delete e.pass; });
   }
   // the left hand to draw and play: written out by hand (sheet.left), or made from the patterns
   function leftHand(sheet) {

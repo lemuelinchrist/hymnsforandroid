@@ -85,10 +85,11 @@ is there whenever Both hands is on (not while editing chords, on the guitar shee
 hymn starts with it tucked down. It shows two rows:
 
 - **Style**, a preset named by what it is for: **Plain** (the default: Strike, hymn style, twice a bar), **Chorale**
-  (bass and tenor, with Two notes: four-part harmony as in a hymnal), **Flowing** (Dynamic, Adaptive), **Gentle**
+  (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
+  harmony as in a hymnal), **Flowing** (Dynamic, Adaptive), **Gentle**
   (Dynamic, Rolled), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
   Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
-- **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts).
+- **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
 
 **Advanced** (remembered on the device) shows every choice instead:
 

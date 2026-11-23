@@ -15,27 +15,27 @@ const ACCID = {'-2': 'ff', '-1': 'f', '0': 'n', '1': 's', '2': 'x'}, ACCID_GES =
 export const DEFAULT = {lh: {family: 'strike', kind: 'hymn', rhythm: 'half', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}};
 
 // The panel's simple choices: a style of music.js by what it is for, and the right hand that goes with it (which can
-// be changed: Melody alone or Two notes, added where a chord starts). The first is DEFAULT.
+// be changed: Melody alone or Two notes, added where a chord starts, or for Chorale on the beat). The first is DEFAULT.
 export const PRESETS = [
   {id: 'plain', name: 'Plain', lh: ['strike', 'hymn', 'half'], add: 0},
-  {id: 'chorale', name: 'Chorale', lh: ['dynamic', 'chorale', 'half'], add: 1},
+  {id: 'chorale', name: 'Chorale', lh: ['dynamic', 'chorale', 'half'], add: 1, on: 'beat'},
   {id: 'flowing', name: 'Flowing', lh: ['dynamic', 'adaptive', '8'], add: 0},
   {id: 'gentle', name: 'Gentle', lh: ['dynamic', 'rolled', 'held'], add: 0},
   {id: 'lively', name: 'Lively', lh: ['dynamic', 'pulse', '8'], add: 1},
   {id: 'walking', name: 'Walking', lh: ['dynamic', 'walking', '4'], add: 0},
 ];
 export function presetChoice(p) {
-  return {lh: {family: p.lh[0], kind: p.lh[1], rhythm: p.lh[2], oct: 0, pedal: false}, rh: {add: p.add, on: 'chord'}};
+  return {lh: {family: p.lh[0], kind: p.lh[1], rhythm: p.lh[2], oct: 0, pedal: false}, rh: {add: p.add, on: p.on || 'chord'}};
 }
 // the preset a choice is, in this time signature (the right hand may be either of the simple ones), or null: Custom
 export function presetOf(choice, time) {
   const rh = (choice && choice.rh) || {add: 0};
-  if (rh.add > 1 || (rh.add === 1 && rh.on !== 'chord')) return null;
+  if (rh.add > 1) return null;
   const cur = choice && pattern(choice.lh, time);
   if (!cur || cur.pedal || (choice.lh.oct || 0) !== 0) return null;
   return PRESETS.find((p) => {
     const q = pattern(presetChoice(p).lh, time);
-    return q && q.family === cur.family && q.kind === cur.kind && q.rhythm === cur.rhythm;
+    return q && q.family === cur.family && q.kind === cur.kind && q.rhythm === cur.rhythm && (rh.add === 0 || rh.on === (p.on || 'chord'));
   }) || null;
 }
 
@@ -55,7 +55,7 @@ export function pattern(lh, time) {
   const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
   const out = {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
-  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth']) if (r[k] != null) out[k] = r[k];
+  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing']) if (r[k] != null) out[k] = r[k];
   return out;
 }
 
@@ -198,7 +198,7 @@ function analyse(doc, choice) {
   let left = null;
   if (base && M.parsePattern(base.pat).length) {
     const mel = notes.map((n) => [n.g, n.g + n.d, n.fill ? n.fill[0] : n.p]);
-    left = M.accompanyOn({bars: bars.map((b) => ({g: b.g, len: b.len})), first, chords, mel, last, base}).events;
+    left = M.accompanyOn({bars: bars.map((b) => ({g: b.g, len: b.len, beat: b.beat, fifths: b.fifths})), first, chords, mel, last, base}).events;
   }
   return {M, bars, notes, harms, chords, left, upbeat, first, endG, base};
 }

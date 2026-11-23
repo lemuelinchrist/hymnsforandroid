@@ -945,10 +945,10 @@ which both apps run.
 The sheets are lead sheets. Both apps (the sheet code is shared, §11.2) can show a piano part with them (**Both hands**; turning it on opens a panel at the bottom that chooses the style, and Done tucks it down to a bar
 that names the style and opens it again when tapped or dragged up): a left hand
 on a second staff (bass clef, in a brace with the first), made from the chords by a pattern (struck chords, bass and
-chord, arpeggios including full-bar Flowing/Ballad arches with warm 9ths and bass sustain, and Dynamic styles: Adaptive, calm while the melody moves and an arpeggio fill from where it holds a note or rests; Rolled harp chords, contemporary Pulse, diatonic Walking bass, and Chorale, the bass and one tenor note as in a hymnal), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
+chord, arpeggios including full-bar Flowing/Ballad arches with warm 9ths and bass sustain, and Dynamic styles: Adaptive, calm while the melody moves and an arpeggio fill from where it holds a note or rests; Rolled harp chords, contemporary Pulse, diatonic Walking bass, and Chorale, the bass and one tenor note as in a hymnal, which walk through the note of the key between where one leaps a third into the next chord), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
 made when the sheet is shown, from the sheet as shown (after transposing and after the device's chord edits), and
 written into the MEI before Verovio draws it; the sheet files have none of it. It is only on the piano sheet with the
-staff shown. The panel offers presets (Plain, the default: Strike, hymn style, twice a bar; Chorale; Flowing; Gentle; Lively;
+staff shown. The panel offers presets (Plain, the default: Strike, hymn style, twice a bar; Chorale, with two notes on the beat in the right hand; Flowing; Gentle; Lively;
 Walking) and the right hand (melody alone or two notes, added where a chord starts); Advanced shows every choice. A change
 is kept on the device for that hymn alone; "Use for all hymns" makes it the device's choice for every hymn without its own. It is kept by the name of the style, so that
 it fits every time signature. A sheet of ours can name the piano part it starts with, `<identifier type="hands">strike/two/half</identifier>`

@@ -70,7 +70,7 @@ export function createPianoPanel({get, set, setUsual, time}) {
         const n = presetChoice(p); c.lh = n.lh; c.rh = n.rh;
       }))));
       if (!preset) presetRow.append(btn(tr('Custom'), true, () => { advanced = true; store.set('pianoAdvanced', true); refresh(); }));
-      addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.slice(0, 2).map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh = {add: n, on: 'chord'}; }))));
+      addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.slice(0, 2).map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh = {add: n, on: (preset && preset.on) || 'chord'}; }))));
       said.push(preset ? tr(preset.name) : tr('Custom'));
       if (rh.add) said.push(tr(ADD[rh.add][1]));
       summary.textContent = said.join(' · ');

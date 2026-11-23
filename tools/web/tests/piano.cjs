@@ -40,6 +40,7 @@ async function inPage({file, step, only}) {
     ['arpeggio', {lh: {family: 'arp', kind: 'open', rhythm: '8'}, rh: {add: 1, on: 'beat'}}],
     ['bass', {lh: {family: 'bass', kind: 'alt', rhythm: ''}, rh: {add: 2, on: 'all'}}],
     ['wide', {lh: {family: 'arp', kind: 'wide', rhythm: '16', pedal: true, oct: 1}, rh: {add: 1, on: 'chord'}}],
+    ['chorale', {lh: {family: 'dynamic', kind: 'chorale', rhythm: 'held'}, rh: {add: 1, on: 'beat'}}],
     ['right only', {lh: null, rh: {add: 2, on: 'long'}}],
   ];
   // a layer's length in sixteenths, and the pitches sounding at each time

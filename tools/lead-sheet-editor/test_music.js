@@ -236,6 +236,11 @@ test('dynamic accompaniment: 9th, walking bass, smooth voice-leading, short chor
   const clh = M.accompany(sc).events;
   assert.ok(clh.filter((e) => e.p).every((e) => e.p.length === 2), 'bass and tenor: ' + show(clh));
   assert.strictEqual(show(clh.slice(1, 2)), 'G2+B3/16', 'G: the tenor is the third');
+  // and walks like a hymnal's lower voices: a bass leaping a third takes the note of the key between on the last beat
+  const sp = song(); sp.notes = [{p: 62, d: 2}, {p: 71, d: 16, ch: 'G'}, {p: 72, d: 16, ch: 'Em'}, {p: 67, d: 16, ch: 'G'}];
+  sp.acc = {pat: '1+t', rate: 0, low: 40, passing: true};
+  const pl2 = show(M.accompany(sp).events);
+  assert.strictEqual(pl2, 'r/2 G2+D3/12 F#2+D3/4 E2+G3/12 F#2+G3/4 G2+B3/16', 'G to Em and back: the bass walks G F# E F# G');
 });
 
 // the app's Verovio takes it all
