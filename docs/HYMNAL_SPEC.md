@@ -945,13 +945,15 @@ which both apps run.
 The sheets are lead sheets. Both apps (the sheet code is shared, §11.2) can show a piano part with them (**Both hands**; turning it on opens a panel at the bottom that chooses the style, and Done tucks it down to a bar
 that names the style and opens it again when tapped or dragged up): a left hand
 on a second staff (bass clef, in a brace with the first), made from the chords by a pattern (struck chords, bass and
-chord, arpeggios including full-bar Flowing/Ballad arches with warm 9ths and bass sustain, and Dynamic styles: melody-responsive Adaptive, Rolled harp chords, contemporary Pulse, diatonic Walking bass, and smooth voice-led Chorale), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
+chord, arpeggios including full-bar Flowing/Ballad arches with warm 9ths and bass sustain, and Dynamic styles: Adaptive, calm while the melody moves and an arpeggio fill from where it holds a note or rests; Rolled harp chords, contemporary Pulse, diatonic Walking bass, and Chorale, the bass and one tenor note as in a hymnal), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
 made when the sheet is shown, from the sheet as shown (after transposing and after the device's chord edits), and
 written into the MEI before Verovio draws it; the sheet files have none of it. It is only on the piano sheet with the
-staff shown. The choice is kept on the device, for every hymn or for one hymn alone, by the name of the style, so that
+staff shown. The panel offers presets (Plain, the default: Strike, hymn style, twice a bar; Chorale; Flowing; Gentle; Lively;
+Walking) and the right hand (melody alone or two notes, added where a chord starts); Advanced shows every choice. A change
+is kept on the device for that hymn alone; "Use for all hymns" makes it the device's choice for every hymn without its own. It is kept by the name of the style, so that
 it fits every time signature. A sheet of ours can name the piano part it starts with, `<identifier type="hands">strike/two/half</identifier>`
 (the style's family/kind/rhythm, optionally followed by `rh=<notes added>:<on>`, e.g. `rh=1:beat`; BF474 has one): the hymn's own
-choice ("Only this hymn") comes first, then this, then the device's choice, and changes made to such a hymn are kept for that hymn.
+choice comes first, then this, then the device's choice, and changes made to such a hymn are kept for that hymn.
 The hymn page's Play plays both hands for such a sheet even when the viewer's Both hands is off; the sheet's tempo is its `midi.bpm`. The rules (the upbeat bar stays empty; a pattern starts again with every chord and bar;
 chords are moved onto the beat for the left hand; the left hand stays under the right; the last bar is one held chord)
 and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,

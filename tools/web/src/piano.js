@@ -12,7 +12,32 @@ const STEP = {c: 0, d: 2, e: 4, f: 5, g: 7, a: 9, b: 11};
 const ACC = {s: 1, f: -1, n: 0, x: 2, ss: 2, ff: -2};
 const ACCID = {'-2': 'ff', '-1': 'f', '0': 'n', '1': 's', '2': 'x'}, ACCID_GES = {'-2': 'ff', '-1': 'f', '1': 's', '2': 'ss'};
 
-export const DEFAULT = {lh: {family: 'strike', kind: 'hymn', rhythm: 'held', oct: 0, pedal: false}, rh: {add: 0, on: 'beat'}};
+export const DEFAULT = {lh: {family: 'strike', kind: 'hymn', rhythm: 'half', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}};
+
+// The panel's simple choices: a style of music.js by what it is for, and the right hand that goes with it (which can
+// be changed: Melody alone or Two notes, added where a chord starts). The first is DEFAULT.
+export const PRESETS = [
+  {id: 'plain', name: 'Plain', lh: ['strike', 'hymn', 'half'], add: 0},
+  {id: 'chorale', name: 'Chorale', lh: ['dynamic', 'chorale', 'half'], add: 1},
+  {id: 'flowing', name: 'Flowing', lh: ['dynamic', 'adaptive', '8'], add: 0},
+  {id: 'gentle', name: 'Gentle', lh: ['dynamic', 'rolled', 'held'], add: 0},
+  {id: 'lively', name: 'Lively', lh: ['dynamic', 'pulse', '8'], add: 1},
+  {id: 'walking', name: 'Walking', lh: ['dynamic', 'walking', '4'], add: 0},
+];
+export function presetChoice(p) {
+  return {lh: {family: p.lh[0], kind: p.lh[1], rhythm: p.lh[2], oct: 0, pedal: false}, rh: {add: p.add, on: 'chord'}};
+}
+// the preset a choice is, in this time signature (the right hand may be either of the simple ones), or null: Custom
+export function presetOf(choice, time) {
+  const rh = (choice && choice.rh) || {add: 0};
+  if (rh.add > 1 || (rh.add === 1 && rh.on !== 'chord')) return null;
+  const cur = choice && pattern(choice.lh, time);
+  if (!cur || cur.pedal || (choice.lh.oct || 0) !== 0) return null;
+  return PRESETS.find((p) => {
+    const q = pattern(presetChoice(p).lh, time);
+    return q && q.family === cur.family && q.kind === cur.kind && q.rhythm === cur.rhythm;
+  }) || null;
+}
 
 const lib = () => window.LeadSheet;
 const kids = (e) => Array.prototype.filter.call(e.childNodes, (n) => n.nodeType === 1);
@@ -30,7 +55,7 @@ export function pattern(lh, time) {
   const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
   const out = {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
-  for (const k of ['shortPat', 'fillPat', 'bassRing', 'adaptive', 'roll', 'smooth']) if (r[k] != null) out[k] = r[k];
+  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth']) if (r[k] != null) out[k] = r[k];
   return out;
 }
 

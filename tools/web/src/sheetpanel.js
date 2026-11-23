@@ -138,19 +138,24 @@ export function createSheetPanel(pane, o) {
     return out;
   }
 
-  // how the hands play: this hymn's own ("Only this hymn" in the panel), else the one the sheet starts with (a sheet of
-  // ours that names its piano part), else the device's choice for every hymn
+  // how the hands play: this hymn's own (a change in the panel), else the one the sheet starts with (a sheet of ours
+  // that names its piano part), else the device's choice for every hymn ("Use for all hymns")
   function pianoChoice() {
-    const own = store.get('pianoOf', {})[o.sheetId];
-    return {choice: own || view.baseHands || store.get('piano', PIANO_DEFAULT), only: !!own};
+    const own = store.get('pianoOf', {})[o.sheetId], usual = store.get('piano', PIANO_DEFAULT);
+    return {choice: own || view.baseHands || usual, usual};
   }
-  function setPiano(choice, only) {
+  function keepOwn(choice) {
     const all = store.get('pianoOf', {});
-    // a hymn with a piano part of its own keeps what is changed for that hymn (the device's choice would not reach it)
-    if (only || view.baseHands) all[o.sheetId] = choice; else { delete all[o.sheetId]; store.set('piano', choice); }
+    // the same as what the hymn plays without one: none of its own, so that it follows the device's choice
+    if (JSON.stringify(choice) === JSON.stringify(view.baseHands || store.get('piano', PIANO_DEFAULT))) delete all[o.sheetId];
+    else all[o.sheetId] = choice;
     store.set('pianoOf', all);
     view.piano = choice;
     view.set({});
+  }
+  function setUsual(choice) {
+    store.set('piano', choice);
+    keepOwn(choice);
   }
   view.piano = pianoChoice().choice;
   view.onSheet = () => { view.piano = pianoChoice().choice; if (panel) panel.refresh(); };   // the sheet may name its own piano part
@@ -161,7 +166,7 @@ export function createSheetPanel(pane, o) {
     const wanted = state.hands && !state.guitar && state.staff && !view.chordsOnly && !view.editing && view.renders > 0;
     if (!wanted) { if (panel) panel.show('hidden'); return; }
     if (!panel) {
-      panel = createPianoPanel({get: pianoChoice, set: setPiano, time: () => view.time});
+      panel = createPianoPanel({get: pianoChoice, set: keepOwn, setUsual, time: () => view.time});
       bookColour(panel.el);
     }
     if (openIt) panel.show('open');

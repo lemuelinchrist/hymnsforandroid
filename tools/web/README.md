@@ -82,18 +82,27 @@ Turning Both hands on opens a panel at the bottom of the screen that chooses how
 down to a slim bar that names the style ("Both hands · Bass + chord · In eighths · Pedal"); a tap on the bar, or a
 drag up, opens it again, and a drag down on the open panel's top tucks it away. There is no toolbar button for it: the bar
 is there whenever Both hands is on (not while editing chords, on the guitar sheet or with the staff hidden), and the next
-hymn starts with it tucked down. Its rows:
+hymn starts with it tucked down. It shows two rows:
 
-- **Left hand**: none, **Strike**, **Bass + chord** or **Arpeggio**; then its **Pattern** (Strike: two notes, three
+- **Style**, a preset named by what it is for: **Plain** (the default: Strike, hymn style, twice a bar), **Chorale**
+  (bass and tenor, with Two notes: four-part harmony as in a hymnal), **Flowing** (Dynamic, Adaptive), **Gentle**
+  (Dynamic, Rolled), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
+  Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
+- **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts).
+
+**Advanced** (remembered on the device) shows every choice instead:
+
+- **Left hand**: none, **Strike**, **Bass + chord**, **Arpeggio** or **Dynamic**; then its **Pattern** (Strike: two notes, three
   notes, open, or the hymn style: root and fifth where the chord starts, third and fifth higher up in the bars it lasts;
   Bass + chord, by the time signature: root and fifth, bass and chords, slow, in eighths, a waltz ...; Arpeggio: open,
-  wide, broken chord, Alberti, rise and hold), its **Rhythm** where it has more than one (Strike: held, twice a bar or
+  wide, broken chord, Alberti, rise and hold; Dynamic: adaptive, rolled, pulse, walking, chorale), its **Rhythm** where it has more than one (Strike: held, twice a bar or
   every beat; Arpeggio: quarters, eighths or sixteenths), the **Octave** (Lower or Higher) and **Pedal**.
-- **Right hand**: the melody alone, or two or three notes, and **When**: where a chord starts, on the beat, on long
+- **Right hand**: the melody alone, or two or three notes, and **When**: where a chord starts (the default), on the beat, on long
   notes or on every note.
 
-The choice is the device's, for every hymn (Both hands stays on from hymn to hymn, like the zoom); **Only this hymn**
-keeps a choice for one hymn alone. A style is kept by its name, not its notes, so the same arpeggio fits 4/4, 3/4 and 6/8.
+A change is this hymn's own; **Use for all hymns** makes the choice the device's, which every hymn without a choice of
+its own plays (a hymn whose choice becomes the same as the device's drops its own, and follows the device's from then
+on). Both hands stays on from hymn to hymn, like the zoom. A style is kept by its name, not its notes, so the same arpeggio fits 4/4, 3/4 and 6/8.
 
 The rules are the lead sheet editor's (`tools/lead-sheet-editor/music.js`, which `build.py` copies into the app; its
 README says what a pattern is): the upbeat bar stays empty, a pattern starts again with every chord and every bar, the
