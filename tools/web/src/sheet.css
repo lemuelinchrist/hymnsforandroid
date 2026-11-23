@@ -155,6 +155,18 @@ body.editing-chords #view, body.piano-open #view, body.piano-peek #view { paddin
 .piano-panel .ce-title { text-align: left; }
 .piano-panel .ce-gap { width: 12px; flex: none; }
 body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
+.pp-switch {
+  display: inline-flex; align-items: center; gap: 8px; flex: none; height: 42px; padding: 0 6px; border: 0; background: none;
+  color: var(--ink); font: 500 16px var(--ui); cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+.pp-switch:disabled { opacity: .35; cursor: default; }
+.pp-track { position: relative; flex: none; width: 46px; height: 28px; border-radius: 14px; background: var(--line-strong); transition: background .18s; }
+.pp-knob { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .35); transition: transform .18s; }
+.pp-switch[aria-checked="true"] .pp-track { background: var(--g); }
+.pp-switch[aria-checked="true"] .pp-knob { transform: translateX(18px); }
+.pp-switch:focus-visible .pp-track { outline: 2px solid var(--g); outline-offset: 2px; }
+@media (max-width: 700px) { .pp-switch { height: 34px; font-size: 14px; } }
+@media (prefers-reduced-motion: reduce) { .pp-track, .pp-knob { transition: none; } }
 
 .chord-editor {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; max-width: 920px; margin: 0 auto;

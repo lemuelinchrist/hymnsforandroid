@@ -597,7 +597,7 @@
           if (st.ending) e.roll = 0.032;
           else if (acc.roll && e.p.length > 1) e.roll = acc.roll;
           if (pi === 0 && fresh) e.fresh = true;
-          if (acc.passing && e.p.length === 2 || st.ending) { e.span = sp; e.pass = !!acc.passing; }
+          if (acc.passing && e.p.length === 2 || st.ending) { e.span = sp; e.pass = acc.passing === 2 ? 2 : acc.passing ? 1 : 0; }
         }
         events.push(e);
       });
@@ -608,30 +608,80 @@
   // Passing notes, as a hymnal's lower voices walk (Chorale, `passing`): where the bass, or else the tenor, leaps a third
   // into the next chord, the last beat of the chord before takes the note of the key between (C B A, G A B). Not where
   // the chord lasts less than two beats, where that note would sit a semitone from the melody, or where the key is not
-  // known (a bar's `fifths`). One voice at a change, so it stays a sprinkle.
+  // known (a bar's `fifths`). One voice at a change, so it stays a sprinkle. `passing: 2` (More walking) walks more:
+  // both voices at a change, a fourth in two steps (C D E F: the last two beats, or two halves of the last beat), and in
+  // a chord of four beats or more the bass goes to another note of the chord halfway, towards the next chord's bass.
   function passingNotes(events, bars, barAt, mel) {
     function melAt(g) { for (var k = mel.length - 1; k >= 0; k--) if (mel[k][0] <= g + 0.01) return g < mel[k][1] ? mel[k][2] : null; return null; }
-    for (var i = 0; i + 1 < events.length; i++) {
-      var e = events[i], f = events[i + 1];
-      if (!e.pass || !f.span || !f.p || e.span === f.span || f.g !== f.span.g || e.g + e.d !== f.g) continue;
-      var bar = bars[barAt(e.g)], beat = bar.beat || 4;
-      if (bar.fifths == null || e.d < 2 * beat || e.span.end - e.span.g < 2 * beat) continue;
-      var tonic = mod12(bar.fifths * 7), scale = [0, 2, 4, 5, 7, 9, 11].map(function (x) { return (tonic + x) % 12; });
-      var t = e.g + e.d - beat, m = melAt(t), done = null;
-      for (var v = 0; v < 2 && !done; v++) {
-        if (v === 1 && f.p.length !== 2) break;
-        var a = e.p[v], b = f.p[v], diff = b - a, dir = diff > 0 ? 1 : -1;
-        if (Math.abs(diff) !== 3 && Math.abs(diff) !== 4) continue;
-        var cand = [1, 2, 3].map(function (k) { return a + dir * k; }).filter(function (x) { return x !== b && scale.indexOf(mod12(x)) >= 0; });
-        if (cand.length !== 1) continue;
-        var x = cand[0], clash = m != null && [1, 11].indexOf(mod12(m - x)) >= 0;
-        if (clash || x < 36 || (v === 1 && m != null && x >= m)) continue;
-        done = e.p.slice(); done[v] = x;
+    function clashes(x, t, d) {   // a semitone (or major seventh) from a melody note sounding in [t, t + d)
+      for (var k = 0; k < mel.length && mel[k][0] < t + d; k++) if (mel[k][1] > t && [1, 11].indexOf(mod12(mel[k][2] - x)) >= 0) return true;
+      return false;
+    }
+    function melLowIn(t, d) { var lo = Infinity; for (var k = 0; k < mel.length && mel[k][0] < t + d; k++) if (mel[k][1] > t) lo = Math.min(lo, mel[k][2]); return lo; }
+    function nextChord(i) { var sp = events[i].span; for (var j = i + 1; j < events.length; j++) { var f = events[j]; if (f.span !== sp) return f.p && f.span && f.g === f.span.g ? f : null; } return null; }
+    function split(i, at) {   // events[i] in two at `at`, the same notes
+      var e = events[i]; if (at <= e.g || at >= e.g + e.d) return;
+      var f = {g: at, d: e.g + e.d - at, p: e.p.slice(), span: e.span, pass: e.pass};
+      e.d = at - e.g; delete e.ring; events.splice(i + 1, 0, f);
+    }
+    // the bass halfway through a long chord (More walking)
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      if (e.pass !== 2 || !e.span || !e.p || e.span.g !== e.g) continue;
+      var S = e.span, beat = bars[barAt(S.g)].beat || 4, len = S.end - S.g, last = i;
+      while (last + 1 < events.length && events[last + 1].span === S) last++;
+      var f = nextChord(last);
+      if (len < 4 * beat || !f || !S.info) continue;
+      var mid = S.g + beat * Math.floor(len / beat / 2), bass = e.p[0], nb = f.p[0], top = Infinity, best = null, bestCost = Infinity;
+      for (var k = i; k <= last; k++) if (events[k].p) top = Math.min(top, events[k].p[1]);
+      var pcs = S.info.tones.map(function (t) { return mod12(S.info.root + t[0]); });
+      for (var q = Math.max(36, bass - 9); q <= bass + 9 && q < top - 2; q++) {
+        if (pcs.indexOf(mod12(q)) < 0 || mod12(q) === mod12(bass) || q === nb || Math.abs(q - nb) > 5 || clashes(q, mid, S.end - mid)) continue;
+        var cost = Math.abs(Math.abs(q - nb) - 2) * 2 + Math.abs(q - bass) * 0.25;
+        if (cost < bestCost) { bestCost = cost; best = q; }
       }
-      if (!done) continue;
-      e.d -= beat; delete e.ring;
-      events.splice(i + 1, 0, {g: t, d: beat, p: done.sort(function (p, q) { return p - q; })});
-      i++;
+      if (best == null) continue;
+      for (var k2 = i; k2 <= last; k2++) if (events[k2].g < mid && events[k2].g + events[k2].d > mid) { split(k2, mid); last++; break; }
+      for (var k3 = i; k3 <= last; k3++) if (events[k3].g >= mid && events[k3].p) { events[k3].p[0] = best; delete events[k3].ring; }
+      i = last;
+    }
+    // the passing notes into the next chord
+    for (var j = 0; j + 1 < events.length; j++) {
+      var a = events[j], b = events[j + 1];
+      if (!a.pass || !b.span || !b.p || a.span === b.span || b.g !== b.span.g || a.g + a.d !== b.g) continue;
+      var bar = bars[barAt(a.g)], bt = bar.beat || 4, more = a.pass === 2;
+      if (bar.fifths == null || a.d < 2 * bt || a.span.end - a.span.g < 2 * bt) continue;
+      var tonic = mod12(bar.fifths * 7), scale = [0, 2, 4, 5, 7, 9, 11].map(function (x) { return (tonic + x) % 12; });
+      var end = a.g + a.d, walks = [];
+      for (var v = 0; v < 2; v++) {
+        if (walks.length && !more) break;
+        if (v === 1 && b.p.length !== 2) break;
+        var from = a.p[v], to = b.p[v], diff = to - from, dir = diff > 0 ? 1 : -1, size = Math.abs(diff);
+        var steps = [1, 2, 3, 4].map(function (k) { return from + dir * k; }).filter(function (x) { return dir * (to - x) > 0 && scale.indexOf(mod12(x)) >= 0; });
+        var notes = null;
+        if ((size === 3 || size === 4) && steps.length === 1) notes = [{t: end - bt, d: bt, x: steps[0]}];
+        else if (more && size === 5 && steps.length === 2) {
+          if (a.d >= 3 * bt) notes = [{t: end - 2 * bt, d: bt, x: steps[0]}, {t: end - bt, d: bt, x: steps[1]}];
+          else if (bt % 2 === 0) notes = [{t: end - bt, d: bt / 2, x: steps[0]}, {t: end - bt / 2, d: bt / 2, x: steps[1]}];
+        }
+        if (!notes || notes.some(function (n) { return n.x < 36 || clashes(n.x, n.t, n.d) || (v === 1 && n.x >= melLowIn(n.t, n.d)); })) continue;
+        walks.push({v: v, notes: notes});
+      }
+      if (!walks.length) continue;
+      var cuts = [a.g, end];
+      walks.forEach(function (w) { w.notes.forEach(function (n) { cuts.push(n.t, n.t + n.d); }); });
+      cuts = cuts.filter(function (c, k) { return cuts.indexOf(c) === k; }).sort(function (x, y) { return x - y; });
+      var segs = [];
+      for (var c = 0; c + 1 < cuts.length; c++) {
+        var t0 = cuts[c], p = a.p.slice();
+        walks.forEach(function (w) { w.notes.forEach(function (n) { if (n.t <= t0 && t0 < n.t + n.d) p[w.v] = n.x; }); });
+        if (p[0] >= p[1]) { segs = null; break; }
+        segs.push({g: t0, d: cuts[c + 1] - t0, p: p});
+      }
+      if (!segs) continue;
+      a.d = segs[0].d; delete a.ring;
+      events.splice.apply(events, [j + 1, 0].concat(segs.slice(1)));
+      j += segs.length - 1;
     }
     events.forEach(function (e) { delete e.span; delete e.pass; });
   }

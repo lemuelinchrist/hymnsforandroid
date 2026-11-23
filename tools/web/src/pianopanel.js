@@ -29,16 +29,25 @@ export function createPianoPanel({get, set, setUsual, time}) {
   peek.append(el('span', 'pp-handle', null, {'aria-hidden': 'true'}), el('strong', 'pp-title', tr('Both hands')), summary,
     el('span', 'pp-chev', '⌃', {'aria-hidden': 'true'}));
   const grip = el('div', 'pp-handle pp-grip', null, {'aria-hidden': 'true'});
-  const bAdv = el('button', 'ce-btn', tr('Advanced'), {type: 'button', title: tr('All the choices')});
+  // an on/off choice: a switch, its label beside it
+  const toggle = (label, on, onclick, title) => {
+    const b = el('button', 'pp-switch', null, {type: 'button', role: 'switch', 'aria-checked': String(!!on)});
+    if (title) b.title = title;
+    b.append(el('span', 'pp-track', null, {'aria-hidden': 'true'}), el('span', 'pp-switch-label', label));
+    b.firstChild.append(el('span', 'pp-knob'));
+    if (onclick) b.addEventListener('click', onclick);
+    return b;
+  };
+  const bAdv = toggle(tr('Advanced'), false, null, tr('All the choices'));
   const bAll = el('button', 'ce-btn', tr('Use for all hymns'), {type: 'button', title: tr('Play every hymn this way, unless it has its own')});
   const bDone = el('button', 'ce-btn primary', tr('Done'), {type: 'button'});
   const top = el('div', 'ce-top');
   top.append(el('strong', 'ce-title', tr('Both hands')), el('span', 'grow'), bAdv, bAll, bDone);
-  const presetRow = el('div', 'ce-row');
+  const presetRow = el('div', 'ce-row'), walkRow = el('div', 'ce-row');
   const famRow = el('div', 'ce-row'), kindRow = el('div', 'ce-row'), rhythmRow = el('div', 'ce-row'), octRow = el('div', 'ce-row');
   const addRow = el('div', 'ce-row'), onRow = el('div', 'ce-row');
   const body = el('div', 'pp-body');
-  body.append(grip, top, presetRow, famRow, kindRow, rhythmRow, octRow, addRow, onRow);
+  body.append(grip, top, presetRow, famRow, kindRow, rhythmRow, octRow, addRow, onRow, walkRow);
   let advanced = !!store.get('pianoAdvanced', false);
   root.append(peek, body);
 
@@ -59,20 +68,26 @@ export function createPianoPanel({get, set, setUsual, time}) {
   function refresh() {
     const {choice, usual} = get(), lh = choice.lh || null, rh = choice.rh || {add: 0, on: 'chord'};
     const all = styles(time()), cur = pattern(lh, time()), preset = presetOf(choice, time());
-    bAdv.setAttribute('aria-pressed', String(advanced));
+    bAdv.setAttribute('aria-checked', String(advanced));
     bAll.disabled = same(choice, usual);
-    for (const r of [presetRow, famRow, kindRow, rhythmRow, octRow, addRow, onRow]) r.textContent = '';
+    for (const r of [presetRow, famRow, kindRow, rhythmRow, octRow, addRow, onRow, walkRow]) r.textContent = '';
     const said = [];
+    // More walking: Chorale's bass and tenor walk more (only there)
+    const walks = !!(cur && cur.passing);
+    walkRow.hidden = !walks;
+    if (walks) walkRow.append(el('span', 'ce-label'), toggle(tr('More walking'), !!lh.walk, () => change((c) => { if (c.lh.walk) delete c.lh.walk; else c.lh.walk = true; }),
+      tr('The bass and the tenor walk between the chords more often')));
     presetRow.hidden = advanced;
     for (const r of [famRow, kindRow, rhythmRow, octRow, onRow]) r.hidden = !advanced;
     if (!advanced) {
       presetRow.append(el('span', 'ce-label', tr('Style')), ...PRESETS.map((p) => btn(tr(p.name), preset === p, () => change((c) => {
-        const n = presetChoice(p); c.lh = n.lh; c.rh = n.rh;
+        const n = presetChoice(p); if (c.lh && c.lh.walk) n.lh.walk = true; c.lh = n.lh; c.rh = n.rh;
       }))));
       if (!preset) presetRow.append(btn(tr('Custom'), true, () => { advanced = true; store.set('pianoAdvanced', true); refresh(); }));
       addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.slice(0, 2).map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh = {add: n, on: (preset && preset.on) || 'chord'}; }))));
       said.push(preset ? tr(preset.name) : tr('Custom'));
       if (rh.add) said.push(tr(ADD[rh.add][1]));
+      if (walks && lh.walk) said.push(tr('More walking'));
       summary.textContent = said.join(' · ');
       setHeight();
       return;
@@ -80,7 +95,9 @@ export function createPianoPanel({get, set, setUsual, time}) {
     famRow.append(el('span', 'ce-label', tr('Left hand')),
       btn(tr('No left hand'), !cur, () => change((c) => { c.lh = null; })),
       ...all.map((f) => btn(tr(f.name), cur && cur.family === f.id, () => change((c) => {
+        const walk = !!(c.lh && c.lh.walk);
         c.lh = {family: f.id, kind: f.kinds[0].id, rhythm: '', oct: (c.lh && c.lh.oct) || 0, pedal: !!(c.lh && c.lh.pedal)};
+        if (walk) c.lh.walk = true;
       }))));
     kindRow.hidden = octRow.hidden = !cur;
     rhythmRow.hidden = true;
@@ -98,11 +115,12 @@ export function createPianoPanel({get, set, setUsual, time}) {
       const lower = btn(tr('Lower'), oct < 0, () => change((c) => { c.lh.oct = Math.max(-1, (c.lh.oct || 0) - 1); }));
       const higher = btn(tr('Higher'), oct > 0, () => change((c) => { c.lh.oct = Math.min(1, (c.lh.oct || 0) + 1); }));
       lower.disabled = oct <= -1; higher.disabled = oct >= 1;
-      const pedal = btn(tr('Pedal'), cur.pedal, () => change((c) => { c.lh.pedal = !c.lh.pedal; }));
+      const pedal = toggle(tr('Pedal'), cur.pedal, () => change((c) => { c.lh.pedal = !c.lh.pedal; }));
       pedal.disabled = !cur.rate;
       octRow.append(el('span', 'ce-label', tr('Octave')), lower, higher, el('span', 'ce-gap'), pedal);
       if (oct) said.push(tr(oct < 0 ? 'Lower' : 'Higher'));
       if (cur.pedal && cur.rate) said.push(tr('Pedal'));
+      if (walks && lh.walk) said.push(tr('More walking'));
     } else said.push(tr('No left hand'));
     addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh.add = n; }))));
     onRow.hidden = !rh.add;

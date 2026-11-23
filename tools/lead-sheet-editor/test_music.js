@@ -241,6 +241,14 @@ test('dynamic accompaniment: 9th, walking bass, smooth voice-leading, short chor
   sp.acc = {pat: '1+t', rate: 0, low: 40, passing: true};
   const pl2 = show(M.accompany(sp).events);
   assert.strictEqual(pl2, 'r/2 G2+D3/12 F#2+D3/4 E2+G3/12 F#2+G3/4 G2+B3/16', 'G to Em and back: the bass walks G F# E F# G');
+  // More walking (passing: 2): halfway through a bar-long chord the bass goes to another note of it, towards the next
+  // bass, and walks on from there: G B | C, and a fourth in two steps; never to a note a leap away from the next bass
+  const sm = song(); sm.key = 'G'; sm.notes = [{p: 71, d: 4, ch: 'G'}, {p: 74, d: 4}, {p: 71, d: 4}, {p: 67, d: 4}, {p: 72, d: 16, ch: 'C'},
+    {p: 69, d: 16, ch: 'Am'}, {p: 67, d: 16, ch: 'D'}, {p: 67, d: 16, ch: 'G'}];
+  sm.pickup = 0; sm.acc = {pat: '1+t', rate: 0, low: 40, passing: 2};
+  const mb = M.accompany(sm).events.map((e) => e.p[0]), ml = mb.map(nm);
+  assert.deepStrictEqual(ml.slice(0, 3), ['G2', 'B2', 'C3'], 'G B | C: ' + ml);
+  assert.ok(mb.every((p, i) => i === 0 || Math.abs(p - mb[i - 1]) <= 7), 'no leap wider than a fifth: ' + ml);
 });
 
 // the app's Verovio takes it all
