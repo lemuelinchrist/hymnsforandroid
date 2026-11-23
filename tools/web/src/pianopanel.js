@@ -43,11 +43,11 @@ export function createPianoPanel({get, set, setUsual, time}) {
   const bDone = el('button', 'ce-btn primary', tr('Done'), {type: 'button'});
   const top = el('div', 'ce-top');
   top.append(el('strong', 'ce-title', tr('Both hands')), el('span', 'grow'), bAdv, bAll, bDone);
-  const presetRow = el('div', 'ce-row'), walkRow = el('div', 'ce-row');
+  const presetRow = el('div', 'ce-row'), walkRow = el('div', 'ce-row'), strumRow = el('div', 'ce-row');
   const famRow = el('div', 'ce-row'), kindRow = el('div', 'ce-row'), rhythmRow = el('div', 'ce-row'), octRow = el('div', 'ce-row');
   const addRow = el('div', 'ce-row'), onRow = el('div', 'ce-row');
   const body = el('div', 'pp-body');
-  body.append(grip, top, presetRow, famRow, kindRow, rhythmRow, octRow, walkRow, addRow, onRow);
+  body.append(grip, top, presetRow, strumRow, famRow, kindRow, rhythmRow, octRow, walkRow, addRow, onRow);
   let advanced = !!store.get('pianoAdvanced', false);
   root.append(peek, body);
 
@@ -70,7 +70,7 @@ export function createPianoPanel({get, set, setUsual, time}) {
     const all = styles(time()), cur = pattern(lh, time()), preset = presetOf(choice, time());
     bAdv.setAttribute('aria-checked', String(advanced));
     bAll.disabled = same(choice, usual);
-    for (const r of [presetRow, famRow, kindRow, rhythmRow, octRow, addRow, onRow, walkRow]) r.textContent = '';
+    for (const r of [presetRow, strumRow, famRow, kindRow, rhythmRow, octRow, addRow, onRow, walkRow]) r.textContent = '';
     const said = [];
     // More walking: Chorale's bass and tenor walk more (only there)
     const walks = !!(cur && cur.passing);
@@ -78,14 +78,22 @@ export function createPianoPanel({get, set, setUsual, time}) {
     if (walks) walkRow.append(el('span', 'ce-label'), toggle(tr('More walking'), !!lh.walk, () => change((c) => { if (c.lh.walk) delete c.lh.walk; else c.lh.walk = true; }),
       tr('The bass and the tenor walk between the chords more often')));
     presetRow.hidden = advanced;
+    strumRow.hidden = advanced || !cur || cur.family !== 'guitar';
     for (const r of [famRow, kindRow, rhythmRow, octRow, onRow]) r.hidden = !advanced;
     if (!advanced) {
       presetRow.append(el('span', 'ce-label', tr('Style')), ...PRESETS.map((p) => btn(tr(p.name), preset === p, () => change((c) => {
+        if (p.anyKind && c.lh && c.lh.family === p.lh[0]) return;   // already a guitar: the Strum row chooses which
         const n = presetChoice(p); if (c.lh && c.lh.walk) n.lh.walk = true; c.lh = n.lh; c.rh = n.rh;
       }))));
       if (!preset) presetRow.append(btn(tr('Custom'), true, () => { advanced = true; store.set('pianoAdvanced', true); refresh(); }));
       addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.slice(0, 2).map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh = {add: n, on: (preset && preset.on) || 'chord'}; }))));
+      if (!strumRow.hidden) {
+        const fam = all.find((f) => f.id === 'guitar');
+        strumRow.append(el('span', 'ce-label', tr('Strum')), ...fam.kinds.map((k) => btn(tr(k.name), k.id === cur.kind, () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; }), '')));
+        fam.kinds.forEach((k, i) => { strumRow.children[i + 1].title = tr(k.hint); });
+      }
       said.push(preset ? tr(preset.name) : tr('Custom'));
+      if (preset && preset.anyKind) said.push(tr(all.find((f) => f.id === cur.family).kinds.find((k) => k.id === cur.kind).name));
       if (rh.add) said.push(tr(ADD[rh.add][1]));
       if (walks && lh.walk) said.push(tr('More walking'));
       summary.textContent = said.join(' · ');

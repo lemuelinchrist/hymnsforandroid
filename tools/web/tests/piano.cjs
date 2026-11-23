@@ -41,6 +41,8 @@ async function inPage({file, step, only}) {
     ['bass', {lh: {family: 'bass', kind: 'alt', rhythm: ''}, rh: {add: 2, on: 'all'}}],
     ['wide', {lh: {family: 'arp', kind: 'wide', rhythm: '16', pedal: true, oct: 1}, rh: {add: 1, on: 'chord'}}],
     ['chorale', {lh: {family: 'dynamic', kind: 'chorale', rhythm: 'held'}, rh: {add: 1, on: 'beat'}}],
+    ['guitar', {lh: {family: 'guitar', kind: 'folk', rhythm: '8'}, rh: {add: 0}}],
+    ['picking', {lh: {family: 'guitar', kind: 'pick', rhythm: '8'}, rh: {add: 1, on: 'chord'}}],
     ['right only', {lh: null, rh: {add: 2, on: 'long'}}],
   ];
   // a layer's length in sixteenths, and the pitches sounding at each time
@@ -178,7 +180,15 @@ async function ui(page) {
     assert(await page.locator('.piano-panel .pp-switch', {hasText: 'More walking'}).isHidden(), 'More walking is only for Chorale');
     assert(await left() > hymnStyle, 'Flowing has more notes than Plain: ' + await left() + ' / ' + hymnStyle);
     assert(await page.locator('.sheet-music g.note.fill').count() === 0, 'the melody alone');
+    await pick('Style', 'Guitar');
+    const strum = page.locator('.piano-panel .ce-row', {hasText: 'Strum'});
+    assert(await strum.isVisible(), 'Guitar shows the Strum row');
+    const folk = await left();
+    await pick('Strum', 'Fingerpicking');
+    assert(await left() !== folk && /Fingerpicking/.test(await page.locator('.pp-summary').textContent()), 'picking plays other notes, and the bar says so');
+    assert(await page.locator('.piano-panel .ce-row button:text-is("Guitar")').getAttribute('aria-pressed') === 'true', 'still the Guitar preset');
     await pick('Style', 'Chorale');
+    assert(await strum.isHidden(), 'no Strum row for Chorale');
     assert(await page.locator('.sheet-music g.note.fill').count() > 5, 'Chorale adds a note under the melody');
     const sw = page.locator('.piano-panel .pp-switch', {hasText: 'More walking'});
     assert(await sw.isVisible() && await sw.getAttribute('aria-checked') === 'false', 'Chorale shows More walking, off');
@@ -337,7 +347,9 @@ async function ui(page) {
       const {scoreOf} = await import('./piano.js'), {renderScoreForTest} = await import('./player.js'), {fetchGzJson} = await import('./files.js');
       const v = await (await fetch('data/version.json')).json(), pack = await fetchGzJson(v.sheets.E);
       const xml = pack.E8.replace(/<back>[\s\S]*<\/back>/, ''), out = {};
-      for (const [name, hands, choice] of [['lead', false, null], ['piano', true, {lh: {family: 'arp', kind: 'open', rhythm: '8'}, rh: {add: 2, on: 'beat'}}]]) {
+      for (const [name, hands, choice] of [['lead', false, null], ['piano', true, {lh: {family: 'arp', kind: 'open', rhythm: '8'}, rh: {add: 2, on: 'beat'}}],
+        ['guitar', true, {lh: {family: 'guitar', kind: 'folk', rhythm: '8'}, rh: {add: 0}}]]) {
+        out[name + 'Guitar'] = scoreOf(new DOMParser().parseFromString(xml, 'application/xml'), choice, {hands}).events.filter((e) => e.inst === 'guitar').length;
         const sc = scoreOf(new DOMParser().parseFromString(xml, 'application/xml'), choice, {hands});
         out[name] = await renderScoreForTest(sc, 100, 8);
       }
@@ -345,6 +357,8 @@ async function ui(page) {
     });
     assert(level.lead.rms > 0.002 && level.lead.peak < 1, 'the lead sheet: ' + JSON.stringify(level.lead));
     assert(level.piano.rms > level.lead.rms && level.piano.peak < 1, 'the piano part is fuller and does not clip: ' + JSON.stringify(level));
+    assert(level.guitarGuitar > 50 && level.pianoGuitar === 0, 'Guitar strums on the guitar, the piano part does not: ' + JSON.stringify(level));
+    assert(level.guitar.rms > level.lead.rms && level.guitar.peak < 1, 'the guitar sounds and does not clip: ' + JSON.stringify(level.guitar));
   });
   await test('⋯ holds the choices used less; Save MIDI there saves the sheet', async () => {
     await page.click('.sheet-bar .tb.sheet-more');

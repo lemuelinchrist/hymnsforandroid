@@ -256,6 +256,25 @@ test('dynamic accompaniment: 9th, walking bass, smooth voice-leading, short chor
   assert.deepStrictEqual(hb.slice(0, 3), ['G2', 'B2', 'C3'], 'the held G walks G B C, the moving C does not: ' + hb);
 });
 
+test('guitar: open shapes, strums down and up, picking', () => {
+  const fr = (c) => M.guitarShape(M.chordInfo(c)).map((p, i) => p == null ? 'x' : p - [40, 45, 50, 55, 59, 64][i]).join('');
+  assert.deepStrictEqual(['C', 'G', 'D', 'A', 'E', 'Am', 'Em', 'Dm', 'G/B', 'D/F#', 'B7'].map(fr),
+    ['x32010', '320003', 'xx0232', 'x02220', '022100', 'x02210', '022000', 'xx0231', 'x20003', '200232', 'x21202']);
+  const st = M.styles({time: [4, 4]}).find((f) => f.id === 'guitar');
+  assert.deepStrictEqual(st.kinds.map((k) => k.id), ['folk', 'steady', 'ballad', 'pick']);
+  const g = (kind) => {
+    const r = st.kinds.find((k) => k.id === kind).rhythms[0];
+    return M.accompanyOn({bars: [{g: 0, len: 16}, {g: 16, len: 16}], first: 0, chords: [{g: 0, end: 32, info: M.chordInfo('G')}],
+      mel: [[0, 32, 71]], last: 16, base: r}).events;
+  };
+  const folk = g('folk');
+  assert.deepStrictEqual(folk.slice(0, 6).map((e) => (e.up ? 'U' : 'D') + e.d), ['D4', 'D2', 'U4', 'U2', 'D2', 'U2'], 'D - D U - U D U');
+  assert.ok(folk.every((e) => e.inst === 'guitar'), 'a guitar plays it');
+  assert.strictEqual(show(folk.slice(0, 3)), 'G2+B2+D3+G3+B3+G4/4 G2+B2+D3+G3+B3+G4/2 D3+G3+B3+G4/4', 'down: six strings; up: the top four');
+  assert.strictEqual(show(g('pick').slice(0, 4)), 'G2/2 G4/2 B2/2 B3/2', 'thumb, high E, the other bass, B string');
+  assert.strictEqual(show(g('pick').slice(-1)), 'G2+B2+D3+G3+B3+G4/16', 'the last bar: one strum');
+});
+
 // the app's Verovio takes it all
 const vfile = path.join(__dirname, '../../app/src/main/assets/viewer/verovio-toolkit-wasm.js');
 if (!fs.existsSync(vfile)) { console.log(count + ' tests passed (Verovio not found: its test is left out)'); return; }

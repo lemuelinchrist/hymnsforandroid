@@ -86,19 +86,25 @@ hymn starts with it tucked down. It shows two rows:
 
 - **Style**, a preset named by what it is for: **Plain** (the default: Strike, hymn style, twice a bar), **Chorale**
   (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
-  harmony as in a hymnal), **Flowing** (Dynamic, Adaptive), **Gentle**
-  (Dynamic, Rolled), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
+  harmony as in a hymnal), **Flowing** (Dynamic, Adaptive), **Guitar**
+  (strummed or picked, with a **Strum** row under Style: Folk strum, Steady, Ballad, Fingerpicking), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
   Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
 - **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
 - **More walking** (a switch under Style, only with Chorale, in Advanced too): both lower voices may walk at a change, a
   fourth is walked in two steps, and in a chord of a bar or more, or of two or three beats while the melody holds one note
   through it, the bass moves to another note of it halfway, towards the next bass.
 
+**Guitar** plays the chords as a guitar does in the first frets (the open shapes: C x32010, G 320003, D xx0232; a slash
+chord's bass on the lowest string that has it), strummed down over every string or up over the top four, lighter, or
+picked (thumb on the basses, the G, B and high E strings between), by the time signature. It sounds as a guitar: a
+plucked string made in the browser (`player.js`, Karplus-Strong), nothing to download; the melody stays on the piano.
+It is meant for listening to strums more than for playing on the piano.
+
 Advanced, Pedal and More walking are switches (`role="switch"`), the other choices buttons.
 
 **Advanced** (a switch, remembered on the device) shows every choice instead:
 
-- **Left hand**: none, **Strike**, **Bass + chord**, **Arpeggio** or **Dynamic**; then its **Pattern** (Strike: two notes, three
+- **Left hand**: none, **Strike**, **Bass + chord**, **Arpeggio**, **Guitar** or **Dynamic**; then its **Pattern** (Strike: two notes, three
   notes, open, or the hymn style: root and fifth where the chord starts, third and fifth higher up in the bars it lasts;
   Bass + chord, by the time signature: root and fifth, bass and chords, slow, in eighths, a waltz ...; Arpeggio: open,
   wide, broken chord, Alberti, rise and hold; Dynamic: adaptive, rolled, pulse, walking, chorale), its **Rhythm** where it has more than one (Strike: held, twice a bar or

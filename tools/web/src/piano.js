@@ -20,7 +20,7 @@ export const PRESETS = [
   {id: 'plain', name: 'Plain', lh: ['strike', 'hymn', 'half'], add: 0},
   {id: 'chorale', name: 'Chorale', lh: ['dynamic', 'chorale', 'half'], add: 1, on: 'beat'},
   {id: 'flowing', name: 'Flowing', lh: ['dynamic', 'adaptive', '8'], add: 0},
-  {id: 'gentle', name: 'Gentle', lh: ['dynamic', 'rolled', 'held'], add: 0},
+  {id: 'guitar', name: 'Guitar', lh: ['guitar', 'folk', '8'], add: 0, anyKind: true},   // any strum: the panel's Strum row
   {id: 'lively', name: 'Lively', lh: ['dynamic', 'pulse', '8'], add: 1},
   {id: 'walking', name: 'Walking', lh: ['dynamic', 'walking', '4'], add: 0},
 ];
@@ -35,7 +35,7 @@ export function presetOf(choice, time) {
   if (!cur || cur.pedal || (choice.lh.oct || 0) !== 0) return null;
   return PRESETS.find((p) => {
     const q = pattern(presetChoice(p).lh, time);
-    return q && q.family === cur.family && q.kind === cur.kind && q.rhythm === cur.rhythm && (rh.add === 0 || rh.on === (p.on || 'chord'));
+    return q && q.family === cur.family && (p.anyKind || (q.kind === cur.kind && q.rhythm === cur.rhythm)) && (rh.add === 0 || rh.on === (p.on || 'chord'));
   }) || null;
 }
 
@@ -55,7 +55,7 @@ export function pattern(lh, time) {
   const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
   const out = {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
-  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing']) if (r[k] != null) out[k] = r[k];
+  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar']) if (r[k] != null) out[k] = r[k];
   if (out.passing && lh.walk) out.passing = 2;   // More walking (Chorale)
   return out;
 }
@@ -362,13 +362,14 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
           microOff = onBeat ? 0.002 : (rising ? 0.005 : 0.003);
         }
         const roll = e.roll || (e.p.length > 1 ? 0.012 : 0);
+        if (e.up) baseVel -= 9;   // a guitar's up strum: lighter, from the top string down
         // Clean pedal lift right before the next chord/bar so harmonies stay clear
         const ringDur = e.ring ? Math.max(e.d, e.ring - 0.35) : e.d;
         e.p.forEach((p, pi) => {
-          const voiceAdj = e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
+          const voiceAdj = e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
           const vel = Math.max(34, Math.min(86, baseVel + voiceAdj));
-          const off = roll ? pi * roll : microOff;
-          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', ids: ['lh' + bi + 'n' + k]});
+          const off = roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff;
+          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', inst: e.inst, ids: ['lh' + bi + 'n' + k]});
         });
       });
     });
@@ -393,6 +394,7 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
       const q = (at + e.g - b.g) / 4;
       const out = {q, d: e.dg / 4, note: e.note, vel: e.vel, hand: e.hand, ids: e.ids};
       if (e.off) out.off = e.off;
+      if (e.inst) out.inst = e.inst;
       events.push(out);
       e.ids.forEach((id) => { if (!(id in idQ)) idQ[id] = q; });
     });

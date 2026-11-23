@@ -283,6 +283,57 @@ function playNote(c, out, n, at, bufs) {
   return src;
 }
 
+// ---- a guitar for the left hand's strums (piano.js marks those notes inst: 'guitar') ----
+// A plucked string made in the browser (Karplus-Strong): a short burst of noise goes round a delay line of one period,
+// averaged with itself each time, so the high partials die first, as on a string. One buffer per note and audio context,
+// made when first needed (a few ms); nothing to download.
+const guitarByCtx = new WeakMap();
+function guitarBuffer(c, note) {
+  let m = guitarByCtx.get(c);
+  if (!m) guitarByCtx.set(c, m = new Map());
+  if (m.has(note)) return m.get(note);
+  const sr = c.sampleRate, f = 440 * Math.pow(2, (note - 69) / 12), len = Math.floor(sr * 3.2);
+  const buf = c.createBuffer(1, len, sr), y = buf.getChannelData(0);
+  const n = Math.max(2, Math.round(sr / f - 0.5));      // the averaging adds half a sample to the loop
+  const t60 = 1.6 + 3.2 * Math.max(0, Math.min(1, (76 - note) / 36));   // low strings ring longer
+  const rho = Math.min(0.9995, Math.pow(0.001, 1 / (f * t60)));
+  let seed = note * 7919 + 17, prev = 0, mean = 0;
+  for (let i = 0; i < n; i++) {                          // the pluck: noise, a little softened (a pick, not a hammer)
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    prev = prev * 0.45 + ((seed / 0x7fffffff) * 2 - 1) * 0.55;
+    y[i] = prev; mean += prev / n;
+  }
+  for (let i = 0; i < n; i++) y[i] -= mean;
+  for (let i = n; i < len; i++) y[i] = rho * 0.5 * (y[i - n] + y[i - n - 1 < 0 ? 0 : i - n - 1]);
+  let peak = 0;
+  for (let i = 0; i < len; i++) peak = Math.max(peak, Math.abs(y[i]));
+  if (peak > 0) for (let i = 0; i < len; i++) y[i] *= 0.9 / peak;
+  m.set(note, buf);
+  return buf;
+}
+
+function playGuitar(c, out, n, at) {
+  const vel = Math.max(0.05, Math.min(1, n.vel / 127));
+  const src = c.createBufferSource();
+  src.buffer = guitarBuffer(c, n.note);
+  const body = c.createBiquadFilter();                   // the wooden body: a little warmth low down
+  body.type = 'peaking'; body.frequency.value = 180; body.Q.value = 0.8; body.gain.value = 4;
+  const tone = c.createBiquadFilter();                   // harder strums are brighter
+  tone.type = 'lowpass'; tone.Q.value = 0.4;
+  tone.frequency.value = 2200 + 5200 * Math.pow(vel, 1.3);
+  const g = c.createGain();
+  const level = 0.42 * Math.pow(vel, 1.2), end = at + n.dur;
+  g.gain.setValueAtTime(0.0001, at);
+  g.gain.linearRampToValueAtTime(level, at + 0.002);
+  g.gain.setValueAtTime(level, Math.max(at + 0.003, end));
+  g.gain.setTargetAtTime(0.0001, end, 0.07);             // the next strum damps it
+  src.connect(body).connect(tone).connect(g).connect(out);
+  src.start(at);
+  src.stop(Math.min(at + 3.2, end + 0.45));
+  return src;
+}
+const playAny = (c, out, n, at, bufs) => n.inst === 'guitar' ? playGuitar(c, out, n, at) : playNote(c, out, n, at, bufs);
+
 // ---- playing a tune, looped ----
 
 async function loadSong(url) {
@@ -377,7 +428,7 @@ export function playScore(score, o) {
       if (when > horizon) break;
       i++;
       if (when < c.currentTime - 0.3) continue;         // the page was suspended: skip what is long past
-      const osc = playNote(c, out, {note: e.note, vel: e.vel, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(when, c.currentTime));
+      const osc = playAny(c, out, {note: e.note, vel: e.vel, inst: e.inst, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(when, c.currentTime));
       oscs.add(osc);
       osc.onended = () => oscs.delete(osc);
     }
@@ -428,7 +479,7 @@ export async function renderScoreForTest(score, bpm, seconds = 10) {
   const g = makeBus(c);
   const bufs = await loadPiano(c, {all: true});
   const spq = 60 / bpm;
-  for (const e of score.events) if (e.q * spq < seconds) playNote(c, g, {note: e.note, vel: e.vel, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(0.01, e.q * spq + 0.05 + (e.off || 0)), bufs);
+  for (const e of score.events) if (e.q * spq < seconds) playAny(c, g, {note: e.note, vel: e.vel, inst: e.inst, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(0.01, e.q * spq + 0.05 + (e.off || 0)), bufs);
   const data = (await c.startRendering()).getChannelData(0);
   let peak = 0, sum = 0;
   for (const v of data) { peak = Math.max(peak, Math.abs(v)); sum += v * v; }

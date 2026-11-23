@@ -253,13 +253,16 @@
   //   t                  the tenor: one note of the chord in the middle, moving as little as it can, and rather the
   //                      chord's third or fifth than a note the bass or the melody already has (a hymnal's left hand)
   //   w                  a smooth walking/connecting bass step leading into the next chord's bass
+  //   D U                a guitar strum (guitarShape): D down, every string; U up, the top four strings
+  //   T A g b e          a guitar's strings picked: T the bass (thumb), A the string above it (the other bass), g b e the
+  //                      G, B and high E strings
   //   a+b                together;  -  the step before goes on;  .  silence
   //   A | B              A in the bar where the chord starts, B in the bars it goes on in
   function parsePattern(str) {
     var parts = String(str || '').split('|').map(function (part) {
       return part.trim().split(/\s+/).filter(Boolean).map(function (st) {
         if (st === '-' || st === '_') return {hold: true};
-        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|9|10|12|c|C|t|w)$/.test(x); });
+        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|9|10|12|c|C|t|w|D|U|T|A|g|b|e)$/.test(x); });
         return toks.length ? {toks: toks} : {rest: true};
       });
     }).filter(function (p) { return p.length; });
@@ -343,6 +346,11 @@
     if (used.c) out.c = middle([c.tones[1][0], c.tones[c.seventh ? 3 : 2][0]]);
     if (used.C) out.C = middle(c.tones.map(function (t) { return t[0]; }));
     if (used.t) out.t = [tenor()];
+    if (used.D || used.U || used.T || used.A || used.g || used.b || used.e) {
+      var gs = guitarShape(c), on = gs.filter(function (p) { return p != null; });
+      out.D = on; out.U = on.slice(-4); out.T = [on[0]]; out.A = [on[1] != null ? on[1] : on[0]];
+      ['g', 'b', 'e'].forEach(function (k, i) { var p = gs[3 + i]; out[k] = [p != null ? p : on[on.length - 1]]; });
+    }
     return out;
     function tenor() {
       var prev = opt.prevTen != null ? opt.prevTen : 55, top = Math.min(64, (opt.under != null ? opt.under : 99) - 1), best = null, bestCost = Infinity;
@@ -353,6 +361,17 @@
       }
       return best != null ? best : lad[1] < 48 ? lad[1] + 12 : lad[1];
     }
+  }
+  // A chord as a guitar plays it in the first frets: the bass (the chord's, or the slash note) on the lowest string that
+  // has it within four frets, the strings under it silent, every other string on its lowest fret that is a note of the
+  // chord. This gives the open shapes guitarists use (C x32010, G 320003, D xx0232, Am x02210). -> six pitches or null.
+  var STRINGS = [40, 45, 50, 55, 59, 64];
+  function guitarShape(c) {
+    var pcs = c.tones.map(function (t) { return mod12(c.root + t[0]); }), out = [null, null, null, null, null, null], low = -1;
+    for (var k = 0; k < 4 && low < 0; k++) { var f0 = mod12(c.bass - STRINGS[k]); if (f0 <= 4) { out[k] = STRINGS[k] + f0; low = k; } }
+    if (low < 0) { low = 0; out[0] = 40 + mod12(c.bass - 40); }   // nowhere in the first frets: the low E string, higher up
+    for (var s = low + 1; s < 6; s++) for (var f = 0; f <= 4; f++) if (pcs.indexOf(mod12(STRINGS[s] + f)) >= 0) { out[s] = STRINGS[s] + f; break; }
+    return out;
   }
   function meter(sheet) { var bar = barLen(sheet), beat = beatLen(sheet); return {bar: bar, beat: beat, beats: Math.round(bar / beat), compound: compound(sheet)}; }
   // [id, name, hint, {steps: pat}, low, extra]
@@ -410,6 +429,27 @@
          {id: '8', name: beat === 4 ? 'Eighths' : 'Twice a beat', pat: walkE, rate: eighth, low: 40, bassRing: true, shortPat: '1 - w -'}];
     var rolledRhythms = [{id: 'held', name: 'Held', pat: '1+5+8+10', rate: 0, low: 40, roll: 0.032}];
     if (half) rolledRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+5+8+10', rate: half, low: 40, roll: 0.028});
+    // guitar strums and picking, by the time signature: [id, name, hint, pattern, shortPat]
+    var GUITAR = m.compound ? [
+      ['folk', 'Folk strum', 'down, down, up', 'D D U D D U', 'D D U'],
+      ['steady', 'Steady', 'a strum on each beat', 'D - - D - -', 'D - -'],
+      ['ballad', 'Ballad', 'slow and open', 'D - - D - U', 'D - U'],
+      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b A b g', 'T g b']]
+      : n === 3 ? [
+      ['folk', 'Folk strum', 'down, then down-up', 'D - D U D U', 'D - D U'],
+      ['steady', 'Steady', 'a strum on each beat', 'D - D - D -', 'D - D -'],
+      ['ballad', 'Ballad', 'bass, then strums', 'T - D - D -', 'T - D -'],
+      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b e b g', 'T g b e']]
+      : n === 2 ? [
+      ['folk', 'Folk strum', 'down, down-up', 'D - D U', 'D U'],
+      ['steady', 'Steady', 'a strum on each beat', 'D - D -', 'D -'],
+      ['ballad', 'Ballad', 'slow and open', 'D - - U', 'D -'],
+      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T e A b', 'T e']]
+      : [
+      ['folk', 'Folk strum', 'down, down-up, up-down-up', 'D - D U - U D U', 'D - D U'],
+      ['steady', 'Steady', 'a strum on each beat', 'D - D - D - D -', 'D - D -'],
+      ['ballad', 'Ballad', 'slow and open', 'D - - - D - D U', 'D - D U'],
+      ['pick', 'Fingerpicking', 'thumb on the beat, strings between', 'T e A b T e A b', 'T e A b']];
     var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+t', rate: 0, low: 40, passing: true}];
     if (half) choraleRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+t', rate: half, low: 40, passing: true});
     return [
@@ -429,6 +469,9 @@
           if (extra.shortPat && steps >= 8) item.shortPat = extra.shortPat;
           return item;
         })};
+      })},
+      {id: 'guitar', name: 'Guitar', hint: 'strummed or picked like a guitar', kinds: GUITAR.map(function (gk) {
+        return {id: gk[0], name: gk[1], hint: gk[2], rhythms: [{id: '8', name: '', pat: gk[3], shortPat: gk[4], rate: eighth, low: 40, guitar: true}]};
       })},
       {id: 'dynamic', name: 'Dynamic', hint: 'musical patterns that breathe and move', kinds: [
         {id: 'adaptive', name: 'Adaptive', hint: 'calm under singing, blooms on held notes', rhythms: [
@@ -552,7 +595,7 @@
       // what is played when in this stretch: [{toks | null, g, d}]
       var plan = [], isEnding = acc.end !== false && rate && sp === spans[spans.length - 1] && bi >= lastBar && lastBar >= 0;
       if (isEnding) {
-        var all = ['1', '5']; steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378t]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
+        var all = acc.guitar ? ['D'] : ['1', '5']; if (!acc.guitar) steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378t]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
         plan.push({toks: all, g: a, d: z - a, ending: true});
       } else if (!rate) plan.push({toks: steps[0].toks || null, g: a, d: z - a});
       else for (var t = a, q = 0; t < z; t += rate, q++) {
@@ -564,11 +607,11 @@
       // their notes would reach the melody
       var spIdx = spans.indexOf(sp), nextSp = spIdx >= 0 && spIdx + 1 < spans.length ? spans[spIdx + 1] : null;
       var under = melLow(a, z - a);
-      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w']}]],
+      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w', 'D', 'U', 'T', 'A', 'g', 'b', 'e']}]],
         {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth, prevTen: prevTen, under: under === Infinity ? null : under, mel: melPc(a)});
       var shift = {fig: 0, mid: 0};
       function layer(t) { return /[\dw]/.test(t) ? 'fig' : 'mid'; }
-      ['fig', 'mid'].forEach(function (L) {
+      if (!acc.guitar) ['fig', 'mid'].forEach(function (L) {   // a guitar stays where its strings are
         for (var n = 0; n < 2; n++) {
           var hit = false, lowest = Infinity;
           plan.forEach(function (st) { (st.toks || []).forEach(function (t) {
@@ -596,6 +639,11 @@
           else if (acc.bassRing && rate && pi === 0 && (st.toks || []).indexOf('1') >= 0 && z - st.g > st.d) e.ring = z - st.g;
           if (st.ending) e.roll = 0.032;
           else if (acc.roll && e.p.length > 1) e.roll = acc.roll;
+          if (acc.guitar) {   // strummed: down from the bass, up (U alone) from the top string, a little lighter
+            e.inst = 'guitar';
+            if (e.p.length > 1 && !st.ending) e.roll = acc.roll || 0.012;
+            if ((st.toks || []).length === 1 && st.toks[0] === 'U') e.up = true;
+          }
           if (pi === 0 && fresh) e.fresh = true;
           if (acc.passing && e.p.length === 2 || st.ending) { e.span = sp; e.pass = acc.passing === 2 ? 2 : acc.passing ? 1 : 0; }
         }
@@ -881,7 +929,7 @@
     return {mel: mel, fill: fill, left: left, pad: pad, total: Math.max(total(notes), lh ? total(lh.events) : 0)};
   }
 
-  return {symbolic: symbolic, KEYS: KEYS, PC: PC, DUR: DUR, DUR_BUTTONS: DUR_BUTTONS, ROOTS: ROOTS, QUALITIES: QUALITIES, FLAT_NAMES: FLAT_NAMES, SHARP_NAMES: SHARP_NAMES,
+  return {guitarShape: guitarShape, symbolic: symbolic, KEYS: KEYS, PC: PC, DUR: DUR, DUR_BUTTONS: DUR_BUTTONS, ROOTS: ROOTS, QUALITIES: QUALITIES, FLAT_NAMES: FLAT_NAMES, SHARP_NAMES: SHARP_NAMES,
     mod12: mod12, esc: esc, len: len, isRest: isRest, pitchesOf: pitchesOf, samePitches: samePitches,
     splitChord: splitChord, composeChord: composeChord, trChord: trChord, chordInfo: chordInfo, chordPitches: chordPitches,
     tonicPc: tonicPc, fifths: fifths, keyAlter: keyAlter, scalePcs: scalePcs, spell: spell, spellInChord: spellInChord, noteName: noteName, keyChords: keyChords,
