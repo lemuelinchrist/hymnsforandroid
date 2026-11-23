@@ -47,7 +47,7 @@ export function createPianoPanel({get, set, setUsual, time}) {
   const famRow = el('div', 'ce-row'), kindRow = el('div', 'ce-row'), rhythmRow = el('div', 'ce-row'), octRow = el('div', 'ce-row');
   const addRow = el('div', 'ce-row'), onRow = el('div', 'ce-row');
   const body = el('div', 'pp-body');
-  body.append(grip, top, presetRow, famRow, kindRow, rhythmRow, octRow, addRow, onRow, walkRow);
+  body.append(grip, top, presetRow, famRow, kindRow, rhythmRow, octRow, walkRow, addRow, onRow);
   let advanced = !!store.get('pianoAdvanced', false);
   root.append(peek, body);
 

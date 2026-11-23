@@ -90,8 +90,9 @@ hymn starts with it tucked down. It shows two rows:
   (Dynamic, Rolled), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
   Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
 - **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
-- **More walking** (a switch, only with Chorale, in Advanced too): both lower voices may walk at a change, a fourth is
-  walked in two steps, and in a chord of a bar or more the bass moves to another note of it halfway, towards the next bass.
+- **More walking** (a switch under Style, only with Chorale, in Advanced too): both lower voices may walk at a change, a
+  fourth is walked in two steps, and in a chord of a bar or more, or of two or three beats while the melody holds one note
+  through it, the bass moves to another note of it halfway, towards the next bass.
 
 Advanced, Pedal and More walking are switches (`role="switch"`), the other choices buttons.
 

@@ -610,7 +610,8 @@
   // the chord lasts less than two beats, where that note would sit a semitone from the melody, or where the key is not
   // known (a bar's `fifths`). One voice at a change, so it stays a sprinkle. `passing: 2` (More walking) walks more:
   // both voices at a change, a fourth in two steps (C D E F: the last two beats, or two halves of the last beat), and in
-  // a chord of four beats or more the bass goes to another note of the chord halfway, towards the next chord's bass.
+  // a chord of four beats or more, or of two or three while the melody holds one note through it (a held "throne"), the
+  // bass goes to another note of the chord halfway (on a beat), towards the next chord's bass.
   function passingNotes(events, bars, barAt, mel) {
     function melAt(g) { for (var k = mel.length - 1; k >= 0; k--) if (mel[k][0] <= g + 0.01) return g < mel[k][1] ? mel[k][2] : null; return null; }
     function clashes(x, t, d) {   // a semitone (or major seventh) from a melody note sounding in [t, t + d)
@@ -631,7 +632,8 @@
       var S = e.span, beat = bars[barAt(S.g)].beat || 4, len = S.end - S.g, last = i;
       while (last + 1 < events.length && events[last + 1].span === S) last++;
       var f = nextChord(last);
-      if (len < 4 * beat || !f || !S.info) continue;
+      var holds = !mel.some(function (n) { return n[0] > S.g + 0.01 && n[0] < S.end - 0.01; });   // the melody holds one note through it
+      if (len < 2 * beat || (len < 4 * beat && !holds) || !f || !S.info) continue;
       var mid = S.g + beat * Math.floor(len / beat / 2), bass = e.p[0], nb = f.p[0], top = Infinity, best = null, bestCost = Infinity;
       for (var k = i; k <= last; k++) if (events[k].p) top = Math.min(top, events[k].p[1]);
       var pcs = S.info.tones.map(function (t) { return mod12(S.info.root + t[0]); });

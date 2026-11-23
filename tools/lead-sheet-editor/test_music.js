@@ -249,6 +249,11 @@ test('dynamic accompaniment: 9th, walking bass, smooth voice-leading, short chor
   const mb = M.accompany(sm).events.map((e) => e.p[0]), ml = mb.map(nm);
   assert.deepStrictEqual(ml.slice(0, 3), ['G2', 'B2', 'C3'], 'G B | C: ' + ml);
   assert.ok(mb.every((p, i) => i === 0 || Math.abs(p - mb[i - 1]) <= 7), 'no leap wider than a fifth: ' + ml);
+  // a chord of two beats moves halfway too, but only while the melody holds one note through it (a held "throne")
+  const sh = song(); sh.pickup = 0; sh.notes = [{p: 71, d: 8, ch: 'G'}, {p: 72, d: 4, ch: 'C'}, {p: 72, d: 4}, {p: 67, d: 16, ch: 'G'}];
+  sh.acc = {pat: '1+t', rate: 0, low: 40, passing: 2};
+  const hb = M.accompany(sh).events.map((e) => nm(e.p[0]));
+  assert.deepStrictEqual(hb.slice(0, 3), ['G2', 'B2', 'C3'], 'the held G walks G B C, the moving C does not: ' + hb);
 });
 
 // the app's Verovio takes it all
