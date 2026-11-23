@@ -7,8 +7,10 @@
 
 t.txt: lines `album id|album name|video id|title` (list the albums with topic_albums.py, each with
 `yt-dlp --flat-playlist --print "%(playlist_id)s|%(playlist_title)s|%(id)s|%(title)s" <playlist url>`).
-New video ids are added (existing rows keep their album/channel). Then every row's status and hymns are recomputed from
-databaseProvisioner/src/main/resources/NycypcdYoutube.txt (linked) and the *_known.tsv files (their status), else `unmatched`.
+New video ids are added with status `unmatched` (existing rows keep everything). Since 2026-11-23 this file is the one source of truth: the
+status (`linked`, `unmatched`, `duplicate`, `not-in-database`, `other-language`, `pending-translation`, `not-a-song`, `kids-series`, `unavailable`, `new-tune`),
+the hymns and the link label of a row are edited here by hand (or by the skills) and kept by this script; the database importer
+(databaseProvisioner ImportNycypcdYoutube) reads the `linked` rows. The old NycypcdYoutube.txt and *_known.tsv files are no longer read.
 Columns: video id, status, hymns, link label, album, album id, channel, publisher/studio (blank when unknown), title, note,
 platform (youtube / soundcloud), url, instrumental (1 or empty), language (the language the recording is sung in, English name; see guess_language:
 filled once and then kept, so a hand-set value stays; blank = not known yet), priority (1 = LSM/NYCYPCD/TWGBR, 2 = Melody of Lilies, 3 = others, 5 = low-quality; filled once and kept),
@@ -137,27 +139,13 @@ def main():
             if v not in rows:
                 pub = a.studio if al.lower() in studio else a.publisher
                 rows[v] = [v, "", "", "", al, aid, a.channel, pub, t, "", "youtube", "", "", "", "", "", ""]
-    linked, label, instr = collections.defaultdict(list), {}, set()
-    for p in tsv(REPO + "/databaseProvisioner/src/main/resources/NycypcdYoutube.txt"):
-        linked[p[1]].append(p[0]); label.setdefault(p[1], p[2] if len(p) > 2 else "NYCYPCD")
-        if len(p) > 4 and p[4].strip() in ("instrumental", "1"): instr.add(p[1])
-    known = {}
-    for f in ("nycypcd_known", "lsm_known", "tgb_known", "lovingthelord_known", "melodyoflilies_known", "josephs_known", "hymnsinging_known"):
-        for p in tsv(R + f + ".tsv"):
-            known[p[0]] = (p[1], " ".join(p[2:]))
-    for p in tsv(R + "tgb_kids_series.tsv"):  # videoId, hymn, title, has-link
-        known.setdefault(p[0], ("kids-series", p[1] + " (official channel)"))
     for v, r in rows.items():
         if r[10] == "soundcloud": continue      # unmatched soundcloud rows: kept as they are
-        r[1] = "linked" if v in linked else (known[v][0] if v in known else "unmatched")
-        r[2] = " ".join(sorted(set(linked.get(v, []))))
-        r[3] = label.get(v, "")
-        if v in known:
-            r[9] = known[v][1]
+        if not r[1]: r[1] = "unmatched"         # a new row; status, hymns, link label and note of the others are the file's own
         note_inst = r[9].strip().lower() == "instrumental"
         if note_inst:
             r[9] = ""
-        is_inst = (v in instr) if v in linked else (note_inst or old_inst.get(v) == "1" or is_unlinked_instrumental(r))
+        is_inst = r[12] == "1" or note_inst or (r[1] != "linked" and is_unlinked_instrumental(r))
         r[10], r[11], r[12] = "youtube", "https://www.youtube.com/watch?v=" + v, "1" if is_inst else ""
     sc = soundcloud_rows(old_hymns)
     for r in sc:
@@ -168,14 +156,11 @@ def main():
         r[13] = old_lang.get(v) or r[13] or guess_language(r)
         r[14] = old_prio.get(v) or r[14] or default_priority(r)
         r[16] = old_order.get(v) or r[16]
-    missing = [v for v in linked if v not in rows]
     out = csv.writer(open(OUT, "w", newline="", encoding="utf8"), delimiter="\t", lineterminator="\n")
     out.writerow(HEAD)
     for r in rows.values():
         out.writerow(r)
     print(len(rows), "rows;", dict(collections.Counter(r[1] for r in rows.values())), "; soundcloud:", len(sc))
-    if missing:
-        print("linked videos with no row (add their channel's tracks):", missing[:20], len(missing))
 
 
 if __name__ == "__main__":

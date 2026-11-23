@@ -2,16 +2,16 @@
 """Check a YouTube channel for videos the hymnal has not accounted for yet.
 
 Lists every video of the channel (yt-dlp, flat, one request) and compares it with
-  * the matched recordings (databaseProvisioner/src/main/resources/NycypcdYoutube.txt: hymn id TAB video id), and
-  * the known leftovers (nycypcd_known.tsv: songs not in the database, unavailable videos, non-songs).
+  * the matched recordings (recordings.tsv: rows with status `linked`), and
+  * the known leftovers (recordings.tsv: every other status except `unmatched`: songs not in the database, unavailable videos, non-songs, duplicates).
 Anything else is new (a new album or a song we missed): run the match-youtube-songs skill on it.
 
   python3 tools/youtube-monitor/check_channel.py [--ytdlp PATH] [--videos videos.txt] [--json out.json]
 
 With --releases it also lists the channel's Releases tab (albums, auto-generated audio uploads in every language,
 not in the Videos tab) and every track of every album, cached in nycypcd_releases.tsv (album id, album, video id, track,
-seconds), with a pause between albums. Releases tracks count as accounted for once they are in NycypcdYoutube.txt or
-nycypcd_known.tsv, like videos.
+seconds), with a pause between albums. Releases tracks count as accounted for once they have a row in recordings.tsv with a
+status other than `unmatched`, like videos.
 
 Exit code 0 = everything accounted for, 1 = new or unaccounted videos, 2 = could not list the channel.
 --videos reads a saved list (lines "id|title|duration") instead of calling yt-dlp.
@@ -21,8 +21,7 @@ import argparse, os, shutil, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
 CHANNEL = "UC_1giUVT14MRXyEFtQZgmKQ"  # NYCYPCD, linked from nycypcd.org
-MATCHED = os.path.join(REPO, "databaseProvisioner/src/main/resources/NycypcdYoutube.txt")
-KNOWN = os.path.join(HERE, "nycypcd_known.tsv")
+RECORDINGS = os.path.join(HERE, "recordings.tsv")
 
 
 def tsv(path):
@@ -104,8 +103,10 @@ def main():
             channel.setdefault(r[2], (f"[{r[1]}] {r[3]}", r[4] if len(r) > 4 else ""))
         print(f"releases: {len(set(r[0] for r in tracks))} albums, {len(set(r[2] for r in tracks))} distinct tracks")
 
-    matched = {r[1]: r[0] for r in tsv(MATCHED) if len(r) >= 2}
-    known = {r[0]: (r[1], r[2] if len(r) > 2 else "") for r in tsv(KNOWN)}
+    import csv
+    rec = [r + [""] * (17 - len(r)) for r in list(csv.reader(open(RECORDINGS, encoding="utf8"), delimiter="\t"))[1:] if r and r[10] == "youtube" and r[6] == "NYCYPCD"]
+    matched = {r[0]: r[2] for r in rec if r[1] == "linked"}
+    known = {r[0]: (r[1], r[9]) for r in rec if r[1] not in ("linked", "unmatched")}
 
     on_matched = [v for v in channel if v in matched]
     on_known = [v for v in channel if v in known and v not in matched]
@@ -123,7 +124,6 @@ def main():
         print(f"  accounted for but no longer on the channel: {len(gone)}")
         for v in gone:
             print(f"    {v}  {matched.get(v) or known[v][1]}")
-    dups = len(matched) - len(set(matched.values()))
     if a.json:
         import json
         json.dump({"channel": len(channel), "new": [{"id": v, "title": channel[v][0]} for v in new],

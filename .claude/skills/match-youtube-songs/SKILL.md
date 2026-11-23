@@ -57,7 +57,7 @@ Pilot done 2026-11-03 on NYCYPCD (UC_1giUVT14MRXyEFtQZgmKQ, 267 songs, official 
    `hymn` rows as in step 7 and document the not-in-database ones. Not an artifact: artifact pages
    cannot embed YouTube. Lemuel found it much easier than the CSV (2026-11-04).
    **Since 2026-11-21 the standard reviewer is the one in `scripts/unmatched/`** (next section): more answers, the answers saved on the server, a web-app link per suggestion.
-7. **Import** (after his OK; done for NYCYPCD 2026-11-04: `ImportNycypcdYoutube.groovy` reads `NycypcdYoutube.txt`, `hymn id TAB video id`, label NYCYPCD, Gradle `runImportNycypcdYoutube`; copy it for the next channel): a Groovy script in `databaseProvisioner` (like `YoutubePiano`) that saves `LinkEntity`
+7. **Import** (after his OK; done for NYCYPCD 2026-11-04: `ImportNycypcdYoutube.groovy` reads the `linked` rows of `tools/youtube-monitor/recordings.tsv` (hymns, link label, album, instrumental), Gradle `runImportNycypcdYoutube`; copy it for the next channel): a Groovy script in `databaseProvisioner` (like `YoutubePiano`) that saves `LinkEntity`
    rows with `dao.saveLink(hymnId, "youtube", url, order)`, label = album or channel name if wanted; then the usual run
    in one Gradle call (`:sqlite:exportSql`), docs, and the emulator check.
 
@@ -76,14 +76,13 @@ what is new. Run it whenever you want to know whether NYCYPCD released something
 - **The RSS feed does not work** (404). The script uses `yt-dlp --flat-playlist` on the `/videos` and `/releases` tabs;
   `--releases` lists each album with a 4 s pause and caches the tracks in `tools/youtube-monitor/nycypcd_releases.tsv`
   (resumable; delete it to refresh).
-- **What counts as accounted for** (the script prints the rest as NEW, exit code 1): the video ids in
-  `databaseProvisioner/src/main/resources/NycypcdYoutube.txt` (`hymn id TAB video id`, matched; a third column is the
-  link's own label instead of NYCYPCD, e.g. `NS10052  oRP-lXV_b9o  Howard Higashi`, the composer's own recording) and
-  those in `tools/youtube-monitor/nycypcd_known.tsv` with a status: `not-in-database` (song to add to the hymnal later),
+- **What counts as accounted for** (the script prints the rest as NEW, exit code 1): the video ids that have a row in
+  `tools/youtube-monitor/recordings.tsv` with a status other than `unmatched`. `linked` rows are the ones imported into the database (`hymns`, and `link label` = the
+  link's own label, e.g. a row with hymn NS10052 and label `Howard Higashi`, the composer's own recording); the other statuses are: `not-in-database` (song to add to the hymnal later),
   `unavailable`, `duplicate` (dropped because its hymn already had a link, kept here so it is never reviewed again),
   `other-language` (skipped until that language is added), `pending-translation` (a recording in another language whose
   title matches a translated hymn exactly: listed in `nycypcd_pending_translations.tsv`, not imported until the translators have
-  checked it), `not-a-song`.
+  checked it), `not-a-song`. Edit the status, hymns, link label and note in `recordings.tsv` itself (split lines on tabs only).
 - **Official channel**: checked 2026-11-05: nycypcd.org links to `youtube.com/user/nycypcd`, which is channel
   `UC_1giUVT14MRXyEFtQZgmKQ` (@NYCYPCD), whose videos point back to nycypcd.org ("Buy the CD").
 
@@ -101,9 +100,9 @@ what is new. Run it whenever you want to know whether NYCYPCD released something
    when an old position was saved). Lemuel reads **Export** (or the answers can be read from the page's `ans`, `notes` and `ROWS`
    variables with the Chrome tool, from a new tab group: the earlier session's tabs are invisible).
 4. Apply his answers:
-   - a hymn that **has no NYCYPCD link yet**: add `hymn id TAB video id` to `NycypcdYoutube.txt`; several videos for one hymn
-     are fine (order 1, 2, ...), give a recording by someone else its own label in a third column;
-   - a hymn that **already has a link**: drop the new one and record the video id in `nycypcd_known.tsv` as `duplicate`, so
+   - a hymn that **has no NYCYPCD link yet**: in `recordings.tsv` set the row's status `linked`, `hymns` and `link label` (NYCYPCD, or the maker for a recording by someone else); several videos for one
+     hymn are fine (their order follows `priority`, then `link order`, then file order);
+   - a hymn that **already has a link**: set the row's status `duplicate` (with the hymn and a note), so
      the next sync does not ask again (unless Lemuel says to keep both, as for the composer's own recording);
    - *not in our database* -> `not-in-database` (note the song to add later); *unavailable* -> `unavailable`; skipped ones
      (other language) -> `other-language`.
@@ -115,7 +114,7 @@ what is new. Run it whenever you want to know whether NYCYPCD released something
    `hymns.sqlite` is lost). **Any link you insert yourself** (a SoundCloud link, a one-off video) takes `SEQ_COUNT + 1` as its id
    and then sets `SEQ_COUNT` to it, in the same step, before `:sqlite:exportSql`.
    Check `select count(*) from link where kind='youtube' and label='NYCYPCD'` and `pragma integrity_check`, run the checker
-   again (the new ones must be gone from NEW) and commit `NycypcdYoutube.txt`, `nycypcd_known.tsv` and `sqlite/hymns.sql`.
+   again (the new ones must be gone from NEW) and commit `recordings.tsv` and `sqlite/hymns.sql`.
 6. In the app the hymn page's "LISTEN AND LINKS" card shows each link by its label; two links with the same label read
    "NYCYPCD ↗ · NYCYPCD ↗", so give a second recording a distinct label.
 
@@ -128,7 +127,7 @@ Status 2026-11-08: NYCYPCD has 371 links (the monitor lists what is still NEW); 
     ~/.venvs/hymns-yt/bin/python tools/youtube-monitor/check_all_channels.py [--channel <key>] [--json out.json]
 
 - Regular channels are listed with `yt-dlp --flat-playlist` (`/videos`, plus `/releases` / `/playlists` where configured); `- Topic` channels use `topic_albums.py` + `yt-dlp`, skipping immutable `OLAK5uy_` albums already in `recordings.tsv` (pass `--refresh-albums` to re-list them).
-- Accounted-for IDs come from `NycypcdYoutube.txt`, each channel's `*_known.tsv` / `tgb_kids_series.tsv`, and `recordings.tsv` (so previously-seen `unmatched` videos are not re-reported; pass `--no-recordings` to include them). Exit 0 = no new videos, 1 = new videos found, 2 = listing error. Use `--list` to see the channel keys.
+- Accounted-for IDs are the videos that have a row in `recordings.tsv`, whatever its status (so previously-seen `unmatched` videos are not re-reported). Exit 0 = no new videos, 1 = new videos found, 2 = listing error. Use `--list` to see the channel keys.
 
 ### Checking all monitored channels (except Hymn Singing)
 
@@ -137,7 +136,7 @@ Status 2026-11-08: NYCYPCD has 371 links (the monitor lists what is still NEW); 
     ~/.venvs/hymns-yt/bin/python tools/youtube-monitor/check_all_channels.py [--channel <key>] [--json out.json]
 
 - Regular channels are listed with `yt-dlp --flat-playlist` (`/videos`, plus `/releases` / `/playlists` where configured); `- Topic` channels use `topic_albums.py` + `yt-dlp`, skipping immutable `OLAK5uy_` albums already in `recordings.tsv` (pass `--refresh-albums` to re-list them).
-- Accounted-for IDs come from `NycypcdYoutube.txt`, each channel's `*_known.tsv` / `tgb_kids_series.tsv`, and `recordings.tsv` (so previously-seen `unmatched` videos are not re-reported; pass `--no-recordings` to include them). Exit 0 = no new videos, 1 = new videos found, 2 = listing error. Use `--list` to see the channel keys.
+- Accounted-for IDs are the videos that have a row in `recordings.tsv`, whatever its status (so previously-seen `unmatched` videos are not re-reported). Exit 0 = no new videos, 1 = new videos found, 2 = listing error. Use `--list` to see the channel keys.
 
 ## SoundCloud links
 
@@ -150,20 +149,20 @@ then move the counter), `label` = the publisher, `album` if known, and `n_order`
 
 A publisher's "- Topic" channel (auto-generated music) has no Videos/Releases/Playlists tab for yt-dlp. List its albums
 with `python3 -I tools/youtube-monitor/topic_albums.py <channel id>`, then each album with `yt-dlp --flat-playlist`.
-Tracks have no captions: match by title. Links go in `NycypcdYoutube.txt` with the label in the third column; what is
-accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`.
+Tracks have no captions: match by title. Links are rows of `recordings.tsv` with status `linked` and the label in `link label`; what is
+accounted for but not linked gets its status there (`duplicate`, `not-in-database`, ...).
 
-- **LSM** (Living Stream Ministry - Topic, UCrr3HofwiRkJBR-WgUixRlQ), English: 193 links, label `LSM` (2026-11-07), `lsm_known.tsv`.
+- **LSM** (Living Stream Ministry - Topic, UCrr3HofwiRkJBR-WgUixRlQ), English: 193 links, label `LSM` (2026-11-07).
 - **臺灣福音書房 (TWGBR)** (Taiwan Gospel Book Room - Topic, UCYE5AHiolvE8tj-LYgPuzig, some albums under UCZolsL-QScygLdBTc36TbUQ),
   Chinese, 70 albums: 293 sung links (publisher label `TWGBR`) and 159 instrumental (`TWGBR`, 讚美詩集 1–13 / Hymns of Praise 2)
-  on C/CS hymns (2026-11-07/22), `tgb_known.tsv`; 9 more on 2026-11-08 (see the official channel below). Lessons: many titles are Simplified Chinese (convert with OpenCC `s2t` before comparing
+  on C/CS hymns (2026-11-07/22), statuses in `recordings.tsv`; 9 more on 2026-11-08 (see the official channel below). Lessons: many titles are Simplified Chinese (convert with OpenCC `s2t` before comparing
   with the Traditional C/CS lines) and many carry the number, `（诗歌227）` = C227, `（补充本839）` = CS839 (reliable even when
   the title is a subject, not the first line). 讚美詩集 / Hymns of Praise is an instrumental series: mark `instrumental`. Children's series (兒童教材詩歌集, 兒童詩歌, 性格的培養詩歌集) are left out: the songs are
   simplified for children. The official channel 臺灣福音書房
   (UCW4K7RJzb3bhrBgbhT2OBLA) is mostly messages and training videos (615 videos). Done 2026-11-08: the 5 plain hymn videos with the number
   in the title are linked (label `TWGBR`); 4 of the 12 "唱詩人選輯" tracks (the hymn's title is inside the hymn, not its first line)
   were confirmed by ear and linked, 8 were rejected; the 39 kids' action-song videos of regular hymns are NOT linked (children sing them)
-  but saved in `tools/youtube-monitor/tgb_kids_series.tsv` for later.
+  but kept in `recordings.tsv` with status `kids-series` for later.
 - **Loving the Lord - Topic** (UCF0V197WENYJAGHzYRFbUog), English, 11 albums, 265 tracks: 139 links, label `Loving the Lord` (`... 2` for a second
   sung one, `(Instrumental)`), 2026-11-08, from titles with the number ("(Hymn 1151)", "Hymns 251", "- Hymn 166") and exact first lines;
   71 uncertain titles went to a review page (reviewed; only the 4 albums Joseph's Storehouses does not have). YouTube's metadata says "℗ Loving the Lord"; the 7 of its 11 albums that
@@ -171,12 +170,12 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   are marked with the studio Hymn CDs in `recordings.tsv` (no official Hymn CDs channel found). The **NYCYPCD English** channel (@nycypcd-english, UCcS0QoAJh3PucoYLQXJG2bg, 280 videos titled like "Drink! A River - H 1151") was checked 2026-11-08 and
   DROPPED: 227 of its 280 titles are tracks we already have. Do not offer it again.
 - **Melody of Lilies** (@MelodyofLilies; Releases tab 23 albums + 11 playlists + 50 videos, 86 unique tracks; mostly the group's own songs, not hymnal hymns), English, a
-  popular Recovery producer: 17 links, label `Melody of Lilies` (2026-11-08): 6 exact titles + 11 confirmed by ear; the other ~50 titles matched no hymn (`melodyoflilies_known.tsv`, `recordings.tsv`). The unmatched ones were reviewed 2026-11-21 (next section): ~25 more links; `recordings.tsv` has the current state.
+  popular Recovery producer: 17 links, label `Melody of Lilies` (2026-11-08): 6 exact titles + 11 confirmed by ear; the other ~50 titles matched no hymn (`recordings.tsv`). The unmatched ones were reviewed 2026-11-21 (next section): ~25 more links; `recordings.tsv` has the current state.
 - **Hymn Singing** (@hymnsingingLR, UCk5QAUglOYFgfm07VLj5ysQ; 220 videos; playlists Hymns, New Song, Be Filled, New Tune, Tagalog Hymns, Tour of a Lifetime): saints' groups singing
   in meetings (the quality varies; Lemuel judged only the playlist **Hymns**, PL1twdZLXinrqYc3oNlygRE_4A5NEgsZAK, good enough). 38 links, label `Hymn Singing`, album `Hymns` (2026-11-12): the hymns of that playlist
   that had no recording (28 with only a piano video, 10 with no link at all; one video per hymn), from the number and first line in the titles. The playlist videos have **no captions**
   (not even automatic ones), so the caption check cannot run; the other playlists have captions and a subject title ("NS 750 - Pathway of Life"): 19 were confirmed by agy, then dropped
-  as Lemuel scoped the run to the Hymns playlist. A title's number can be wrong (NS 697 is NS897, NS 378 is E378). `hymnsinging_known.tsv` holds the two duplicate videos. "No links" means no sung recording: a piano video alone does not count.
+  as Lemuel scoped the run to the Hymns playlist. A title's number can be wrong (NS 697 is NS897, NS 378 is E378). The two duplicate videos have status `duplicate` in `recordings.tsv`. "No links" means no sung recording: a piano video alone does not count.
 - **Joseph's Storehouses** (@JosephsStorehouses, 994 videos in 63 playlists, 2026-11-08): saints' groups and CDs, not an official publisher (the playlists name the
   group: "(by Boston, Cambridge, Newton)", "(by ATX YP)"...; 7 are the Hymn CDs albums, the same recordings as Loving the Lord, so not linked twice) plus
   messages and kids' songs (left out). 211 links, label `Joseph's Storehouses` (`2`, `(Instrumental)`) from exact titles (max 2 sung + 1 instrumental per hymn).
@@ -189,7 +188,7 @@ accounted for but not linked goes in `tools/youtube-monitor/<channel>_known.tsv`
   Re-provisioning drops the links: run `runImportNycypcdYoutube` after it. The import renumbers the link row ids, so the raw diff of `sqlite/hymns.sql`
   is huge; check the real one with `grep '^INSERT INTO link ' sqlite/hymns.sql | sed -E "s/^INSERT INTO link VALUES\([0-9]+,//" | sort` against the old file.
 - **Publisher = whoever YouTube or SoundCloud names for the album**: a group (ATX YP, WASYP, Irvine YP, NWS YP), a place (New Zealand, Long Beach), a person (Ugo Ibe, Crystal Grace Goh, The Cooleys), or the album's own name when it is the only name there is (Arlington Students). An album "(by <name>)" gets that name as publisher; write the album without its "(by ...)". A SoundCloud set "Album | Name" gives Name as the publisher. When only a SoundCloud handle is available (@zachminer), use the handle as it is; do not guess a real name.
-- **Keep the source of every recording** (Lemuel 2026-11-08): `tools/youtube-monitor/recordings.tsv` has album, channel and publisher of every track, linked or not, so unlinked songs can be linked when their hymn arrives. The last two columns are **`language`** (added 2026-11-21: the language it is sung in; `build_recordings.py` fills it once, from Chinese characters / the Taiwan Gospel Book Room channel, else the book of the linked hymn, else English for the English-only channels, else blank, and then keeps it, so a hand-set value stays) and **`priority`** (added 2026-11-22: `1` = LSM, NYCYPCD, or `TWGBR`; `2` = Melody of Lilies; `3` = everything else; `5` = low-quality albums set by hand; filled once and kept by `build_recordings.py`, and read by `ImportNycypcdYoutube.groovy` to order each hymn's sung recordings and each tune code's instrumental recordings). `ImportNycypcdYoutube.groovy` keeps `NycypcdYoutube.txt` human-readable by hymn id while storing instrumental rows (`instrumental = 1`) in `link.hymn_id` under the hymn's trimmed `tune` code so they appear universally across all languages sharing that melody. Add a new channel's rows when importing it (`python3 -I tools/youtube-monitor/build_recordings.py --tracks ...`, see its docstring; without arguments it refreshes the statuses).
+- **Keep the source of every recording** (Lemuel 2026-11-08): `tools/youtube-monitor/recordings.tsv` has album, channel and publisher of every track, linked or not, so unlinked songs can be linked when their hymn arrives. The last two columns are **`language`** (added 2026-11-21: the language it is sung in; `build_recordings.py` fills it once, from Chinese characters / the Taiwan Gospel Book Room channel, else the book of the linked hymn, else English for the English-only channels, else blank, and then keeps it, so a hand-set value stays) and **`priority`** (added 2026-11-22: `1` = LSM, NYCYPCD, or `TWGBR`; `2` = Melody of Lilies; `3` = everything else; `5` = low-quality albums set by hand; filled once and kept by `build_recordings.py`, and read by `ImportNycypcdYoutube.groovy` to order each hymn's sung recordings and each tune code's instrumental recordings). `ImportNycypcdYoutube.groovy` keeps `recordings.tsv` human-readable by hymn id while storing instrumental rows (`instrumental = 1`) in `link.hymn_id` under the hymn's trimmed `tune` code so they appear universally across all languages sharing that melody. Add a new channel's rows when importing it (`python3 -I tools/youtube-monitor/build_recordings.py --tracks ...`, see its docstring; without arguments it refreshes the statuses).
 - Review pages for another language: `REVIEW_GROUPS=C,CS python3 scripts/build_review.py ...` so that typing a C/CS id
   under "Another hymn" finds it.
 
@@ -207,7 +206,7 @@ is probably not in the hymnal. Hold back titles with "New Tune" / "Alternate Tun
 - **Albums that are not online at all** (2026-11-10): Lemuel uploads them to his own channel (HymnsForAndroid). Make one video per track (a still card
   with the album title, Joseph's Storehouses style: 1920x1080, ffmpeg `-loop 1 -i card.png -i track.ogg -tune stillimage -shortest`), he uploads them,
   then in Studio each gets its title (no track number), the album playlist, "not made for kids" and Public. Link with the publisher = the group
-  (e.g. `Irvine YP`) and album = the album name, in `NycypcdYoutube.txt` and `recordings.tsv` (channel `HymnsForAndroid`). First: "Strength For the Day -
+  (e.g. `Irvine YP`) and album = the album name, in `recordings.tsv` (channel `HymnsForAndroid`). First: "Strength For the Day -
   Irvine YP July 1999", 13 links. YouTube allows only a few uploads a day until the channel's identity is verified.
   - Each album gets its **own card colour** (Lemuel 2026-11-10), so the playlists look different. White Georgia Italic title on a coloured
     1080x1080 square centred on black. The output files carry **no track-number prefix** (he wants the file name to be the YouTube title); keep the
@@ -254,12 +253,10 @@ Once all lyrics are in `app/src/main/assets/hymns.sqlite`, `tools/youtube-monito
 
 ## Link labels and columns (Lemuel, 2026-11-09)
 A link row has the **publisher** (`label`: who made the recording), the **album** (`album`) and an `instrumental` flag; the card shows the publisher, else the album, never the
-YouTube channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives the group as the publisher and X as the album). `NycypcdYoutube.txt` lines are
-`hymn id TAB video id TAB publisher TAB album TAB instrumental`; write a new line as `hymn TAB video` or with the placeholder publisher "Joseph's Storehouses", then run
-`python3 -I tools/youtube-monitor/link_meta.py`, which rewrites every line from `recordings.tsv` (and drops a recording of the same title in the same album as one the hymn already has).
-There is no cap on the number of sung recordings per hymn any more: the card shows 3 and "Show N more". For instrumental recordings, `ImportNycypcdYoutube.groovy` keeps only the single highest-priority instrumental recording per tune code in `hymns.sqlite` (leaving all matched instrumentals preserved in `NycypcdYoutube.txt` and `recordings.tsv`). Importing needs the three columns in the DB: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql`.
+YouTube channel (so not "Joseph's Storehouses"; a playlist "X (by Group)" gives the group as the publisher and X as the album). The database link takes its label from the row's `link label`, its album from `album / playlist` without a trailing "(by ...)", and the instrumental flag from `instrumental`; the importer skips a row that has neither a label nor an album (a link added by hand).
+There is no cap on the number of sung recordings per hymn any more: the card shows 3 and "Show N more". For instrumental recordings, `ImportNycypcdYoutube.groovy` keeps only the single highest-priority instrumental recording per tune code in `hymns.sqlite` (leaving all matched instrumentals preserved in `recordings.tsv`). Importing needs the three columns in the DB: `JAVA_HOME=/home/lemue/.jdk ./gradlew :databaseProvisioner:runImportNycypcdYoutube :sqlite:exportSql`.
 NYCYPCD, LSM (written "Living Stream Ministry"), Melody of Lilies and `TWGBR` (Taiwan Gospel Book Room) keep their publisher names.
-**`link_meta.py` may drop the group publishers (ATX YP, Irvine YP, NWS YP, New Zealand, Arlington Students) and the label "YouTube 1". Check a dry run before running it on the whole file; otherwise write the new lines by hand, with the publisher and album as `recordings.tsv` has them.**
+
 
 ## Finding recordings by hymn number (English hymns with no sung link; Lemuel, 2026-11-14)
 
@@ -280,9 +277,8 @@ Scripts in `scripts/` (work in a scratchpad folder):
    reading them ("Cookie/query string data"), so he pastes the export.
 4. **Import** the answers: a one-off recording without album or playlist is labelled **"YouTube 1", "YouTube 2"** (per hymn, in his order) or
    **"SoundCloud 1"**, no album, `instrumental` flag where chosen.
-   - YouTube: a line `hymn TAB video TAB YouTube 1 TAB (empty album) TAB instrumental` in `NycypcdYoutube.txt` (it must be there: the import deletes every
-     youtube row with a label), a row in `recordings.tsv`, then `runImportNycypcdYoutube :sqlite:exportSql`.
-     A line with **no label and no album** is never deleted by the import, so it is added again on every run (NS254 had seven copies on 2026-11-21): always give it a label ("YouTube 1").
+   - YouTube: the row in `recordings.tsv` with status `linked`, `hymns`, `link label` "YouTube 1", an empty album and `instrumental` where chosen, then `runImportNycypcdYoutube :sqlite:exportSql`.
+     A row with **no label and no album** is skipped by the importer (it counts as a link added by hand, which the import never deletes): always give it a label ("YouTube 1").
    - SoundCloud: the search only gives an internal id: get the permalink with
      `yt-dlp --skip-download --print "%(webpage_url)s | %(title)s" https://api.soundcloud.com/tracks/<id>`; strip `?si=...&utm_...` from pasted links.
      Insert the row by hand (`kind='soundcloud'`, id `SEQ_COUNT+1`, move the `link` counter, `n_order` 1...), run `:sqlite:exportSql` **first**,
@@ -311,7 +307,7 @@ Find tracks for hymns/songs that have no sung link, then he uploads whole albums
 
 ## Reviewing the unmatched recordings (Lemuel, 2026-11-21)
 
-**Closed 2026-11-21 (Lemuel)** after five batches (about 160 links, 41 new BF songs BF586-BF629 from songbase.life with chord sheets): the songs still in the queue were marked `not-in-database` because few matches were left. What stays `unmatched` on purpose are the Message of the Week talks, the kids' songs and the non-English rows. Copies of a recording on another channel are marked `duplicate`, not `not-in-database`, so they are not added twice later. A hymn's audio can be in `/home/lemuel/Hymns` (older folders, e.g. `Hymns Ogg 1`) or `HymnsLibrary/songs` on the `media` host when it is not under `Online`. Before the Gradle import in a checkout that is on another branch, copy master's `hymns.sql`, `NycypcdYoutube.txt` and `tools/youtube-monitor` files into it and run `:sqlite:importSql`, or the import starts from stale data.
+**Closed 2026-11-21 (Lemuel)** after five batches (about 160 links, 41 new BF songs BF586-BF629 from songbase.life with chord sheets): the songs still in the queue were marked `not-in-database` because few matches were left. What stays `unmatched` on purpose are the Message of the Week talks, the kids' songs and the non-English rows. Copies of a recording on another channel are marked `duplicate`, not `not-in-database`, so they are not added twice later. A hymn's audio can be in `/home/lemuel/Hymns` (older folders, e.g. `Hymns Ogg 1`) or `HymnsLibrary/songs` on the `media` host when it is not under `Online`. Before the Gradle import in a checkout that is on another branch, copy master's `hymns.sql` and `tools/youtube-monitor` files into it and run `:sqlite:importSql`, or the import starts from stale data.
 
 The queue is every row of `tools/youtube-monitor/recordings.tsv` with status `unmatched` (Joseph's Storehouses, Melody of Lilies, 臺灣福音書房, HymnsForAndroid), **except**
 kids' songs (兒童..., Children..., Joyful Songs for Children), the weekly "Message of the Week" talks, which are never linked, and **every language but English** (`language` column; Lemuel 2026-11-21: English first, the Chinese Taiwan Gospel Book Room rows wait; change `english()` in `build_set.py` to review another language). Nothing a person already answered is in it
@@ -327,9 +323,9 @@ kids' songs (兒童..., Children..., Joyful Songs for Children), the weekly "Mes
 4. The page: the video, up to 3 database suggestions with their evidence, the lyrics and **a link to the hymn in the web app** (`.../#/h/<id>`: to see its existing links and notes), up to 2 songbase suggestions
    with *Add as a new song with these words*. Keys: 1-3 pick, **A** add a new song, **S** skip, **N** not in the database, **U** unavailable, **E** not English, **D** duplicate, **X** not a song, **I** instrumental (a tickbox, separate from the answer).
 5. **Applying the answers** (after his OK, in one change):
-   - *a hymn* -> a line in `NycypcdYoutube.txt`: `hymn TAB video TAB publisher TAB album TAB instrumental`. Publisher: Melody of Lilies for its channel; a group named in "(by Group)" (ATX YP); the album's own name when it is the only name (Arlington Students);
-     a name in "(by Name)" (group or person); album without "(by ...)". And `recordings.tsv`: status `linked`, hymns, link label (= the publisher), instrumental `1`.
-   - *duplicate* (the hymn already has this recording) -> `recordings.tsv` status `duplicate` + hymn + note, and a `duplicate` line in the channel's `*_known.tsv`; *not a song* -> `not-a-song`; *not in the database* -> `not-in-database`
+   - *a hymn* -> the row in `recordings.tsv`: status `linked`, `hymns`, `link label` (= the publisher), album without "(by ...)", `instrumental`. Publisher: Melody of Lilies for its channel; a group named in "(by Group)" (ATX YP); the album's own name when it is the only name (Arlington Students);
+     a name in "(by Name)" (group or person); album without "(by ...)".
+   - *duplicate* (the hymn already has this recording) -> `recordings.tsv` status `duplicate` + hymn + note, and *not a song* -> `not-a-song`; *not in the database* -> `not-in-database`
      (note the song); *skip* stays `unmatched`. Edit `recordings.tsv` by splitting lines on tabs only: a CSV reader/writer rewrites the quoted titles.
    - *add a new song* -> the next free `BF` number (`select max(cast(no as int)) from hymns where hymn_group='BF'`), its words and chords from songbase: clean the text by the lyric rules of the `hymn-provisioning` skill (capital per line, curly apostrophes, line-end punctuation; chords as `[C]` inline, a chart with chords above the words must be converted by hand),
      `tools/chord-sheet/make_chord_sheet.py song.txt BF<n> "<title>" --source "Chords: songbase.life" --mei app/src/main/assets/sheetMei/BF<n>.mei > BF<n>.json` (the guitar chord sheet), then the `hymns` row (key and capo from the JSON, category, `verse` + title "first line (Ref)" for a scripture song,
@@ -339,7 +335,7 @@ kids' songs (兒童..., Children..., Joyful Songs for Children), the weekly "Mes
 6. **Clear the queue**: rebuild (`build_set.py`, `match.py`, `build_page.py`) so the finished recordings are gone, and drop their answers from `state.json` (keep a copy in `backups/`); an open browser tab must be reloaded or it will save the old state back.
 
 **Publisher = as YouTube and SoundCloud credit it**: see the rule above. Lessons of the first run: a title that is a line inside another song scored 0.9 as a "first line" match and was wrong, so a line match is worth at most 0.6;
-a "Part 1:" line at the start of a stanza is a note, not the first line of the song (fixed in NS975, NS970, NS1013, CH224); an `NycypcdYoutube.txt` line without label or album is added again on every import.
+a "Part 1:" line at the start of a stanza is a note, not the first line of the song (fixed in NS975, NS970, NS1013, CH224); a `recordings.tsv` row without label or album is skipped by the import (it counts as a link added by hand).
 
 ## Traps
 - Titles are song names, not hymn numbers; several hymns share a first line (a hymn and its Be Filled / New Songs copy):

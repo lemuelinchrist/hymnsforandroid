@@ -1,20 +1,20 @@
 # YouTube channel monitor
 
+**`recordings.tsv` is the one file** (Lemuel 2026-11-23): the database import, the checkers and the download scripts all read it. The status, hymns, link label and note of a row are edited in this file by hand (or by the match-youtube-songs skill) and kept by `build_recordings.py`. `NycypcdYoutube.txt`, the `*_known.tsv` files and `link_meta.py` are gone.
+
 `check_channel.py` compares the NYCYPCD channel (the recordings linked to hymns) with what the hymnal has accounted for,
 so a new album or a missed song shows up. It lists the channel with `yt-dlp --flat-playlist` (one request; install
-`yt-dlp` in a venv, it is not installed system-wide) and reads `NycypcdYoutube.txt` (matched to a hymn) and
-`nycypcd_known.tsv` (songs not in the database, unavailable videos, non-songs).
+`yt-dlp` in a venv, it is not installed system-wide) and reads `recordings.tsv` (status `linked` = matched to a hymn; the other statuses are songs not in the database, unavailable videos, non-songs, duplicates).
 
     python3 tools/youtube-monitor/check_channel.py --releases --ytdlp /path/to/venv/bin/yt-dlp
 
 `--releases` also lists the Releases tab (albums in many languages, audio-only uploads that are not in the Videos tab) and
-caches its tracks in `nycypcd_releases.tsv`; without it only the Videos tab is checked. `NycypcdYoutube.txt` has, per line, `hymn`, `video`, `publisher`, `album`, `instrumental` (the card shows the publisher, else the album, never the channel;
-`link_meta.py` fills the columns from `recordings.tsv` and drops a recording of the same title in the same album twice). Statuses in `nycypcd_known.tsv`: `not-in-database`,
+caches its tracks in `nycypcd_releases.tsv`; without it only the Videos tab is checked. The link card shows the publisher (`link label`), else the album, never the channel. Statuses in `recordings.tsv`: `linked`, `not-in-database`,
 `unavailable`, `duplicate` (hymn already had a link), `other-language`, `pending-translation` (see `nycypcd_pending_translations.tsv`), `not-a-song`.
 `match_titles.py` matches the NEW ones to hymns by title (see its header).
 
 Exit 0 = all accounted for, 1 = new videos listed, 2 = channel not listable. New videos go through the
-`match-youtube-songs` skill; after the review add them to `NycypcdYoutube.txt` or `nycypcd_known.tsv`.
+`match-youtube-songs` skill; after the review give them their status in `recordings.tsv`.
 
 To check **all 8 monitored channels** (NYCYPCD, the three `- Topic` channels, Joseph's Storehouses, Melody of Lilies, 臺灣福音書房 official, and HymnsForAndroid; excluding Hymn Singing):
 
@@ -23,7 +23,7 @@ To check **all 8 monitored channels** (NYCYPCD, the three `- Topic` channels, Jo
 ## recordings.tsv: where every recording came from
 
 `recordings.tsv` has one row per track or video of the channels we looked at (2,082 rows, 2026-11-08): video id, status
-(`linked`, a status of the `*_known.tsv` files, `kids-series`, or `unmatched`), the hymns it is linked to, the link label,
+(`linked`, `duplicate`, `not-in-database`, `other-language`, `pending-translation`, `not-a-song`, `kids-series`, `unavailable`, `new-tune` or `unmatched`), the hymns it is linked to, the link label,
 the album or playlist (name and id), the YouTube channel, the publisher or studio (blank when unknown), the title and a note.
 The titles of its NYCYPCD and other clean rows are also a source for the `hymns.title` column (a title is stored only when it differs from the first line; titles like `Hymn 313` are cleaned first). It also lists the tracks that are NOT linked, including songs not in the hymnal yet, so that they can be linked when the hymn
 arrives. The database keeps the publisher (`label`), the album and the instrumental flag; this file is the record of the source (the channel). When a new channel or album is imported,
