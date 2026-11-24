@@ -1173,3 +1173,8 @@ Python 3.12 with fontTools/numpy/Pillow.
   hands is on. The piano sheet's Both hands default style is now **Flowing** (was Plain; Both hands itself is still
   off by default; saved choices are kept); the guitar sheet's strumming is unchanged (on, folk). 15 NS hymns have no sheet on hymnal.net (NS196, 215, 260,
   274, 346, 10061, 10064, 10068, 10072, 10073, 10083-10085, 10087, 1031 has a tune but none).
+- 2026-11-24 (media): web app, **Play on the lyrics of a hymn with no tune file** (NS, BF, CH since their MIDI files went)
+  now plays the sheet unseen (`playSheetHidden` in `tools/web/src/app.js`, the same as the Android app's `play.js`): guitar
+  folk strum by default, the piano part when the sheet names one or the sheet's Both hands is on; if it cannot, it opens
+  the sheet tab and plays it as before. On a wide screen, where the sheet is shown beside the lyrics, Play still plays the
+  sheet as shown. Written without a browser on this host: **not tested, not pushed or deployed.**

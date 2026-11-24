@@ -11,7 +11,7 @@ import * as DB from './db.js';
 import {GROUPS, BY_CODE, splitId, langOf, currentCode, currentId, bookName, languageName, bookSubtitle, firstGroup} from './groups.js';
 import {tr, tn, trh, num, lang, LANGS, getChoice, setChoice, applyStatic} from './i18n.js';
 import {parseScripture} from './scripture.js';
-import {setHost} from './host.js';
+import {setHost, host} from './host.js';
 import {fetchGzJson, loadScript, cacheDataResponse} from './files.js';
 import * as Edits from './edits.js';
 import * as Player from './player.js';
@@ -923,8 +923,8 @@ function hymnScreen(view, hymn) {
   const tune = DB.tuneFile(hymn);
   const playBtn = h('button', {class: 'icon-btn play', 'aria-pressed': 'false', onclick: () => togglePlay()});
   const sheetShown = () => !!(sheet && sheet.playable && (tab === 'sheet' || wide.matches));
-  let tunePlaying = false;
-  const showPlay = (on) => { tunePlaying = on; refreshPlay(); };
+  let tunePlaying = false, hiddenToken = null;   // hiddenToken: the lyrics' Play is playing the sheet unseen (playSheetHidden)
+  const showPlay = (on) => { tunePlaying = on; if (!on) hiddenToken = null; refreshPlay(); };
   function refreshPlay() {
     const on = tunePlaying || !!(sheet && sheet.playing), onSheet = sheetShown();
     playBtn.replaceChildren(icon(on ? 'pause' : 'play'));
@@ -944,11 +944,45 @@ function hymnScreen(view, hymn) {
     if (disposed) return;
     if (sheet && sheet.playable) sheet.togglePlay(); else toast(tr('Sorry, no tune for this hymn'));
   }
+  // Play on the lyrics of a hymn with no tune file, without opening the sheet (as the Android app's hidden sheet player,
+  // android/play.js): the melody with a guitar's folk strum by default (the guitar sheet's Strumming choice: this hymn's
+  // own, else the device's), or the piano part when the sheet names one or the sheet's Both hands is on. If the sheet
+  // cannot be read here, the sheet is opened and played as before.
+  async function playSheetHidden() {
+    Player.unlock();
+    const mine = hiddenToken = {};
+    showPlay(true);
+    try {
+      await loadSheetPanel();   // also loads music.js, which scoreOf needs
+      const [S, P] = await Promise.all([import('./sheet.js'), import('./piano.js')]);
+      const [xml, saved] = await Promise.all([host.mei(hymn.sheetId), host.edits.get(hymn.sheetId).catch(() => null)]);
+      const doc = S.soundDoc(xml, saved && saved.bars);
+      const named = S.handsOf(doc), id = hymn.sheetId;
+      const piano = !!store.get('sheet', {}).hands || !!named;
+      const choice = piano
+        ? (store.get(P.SAVED.handsOf, {})[id] || named || store.get(P.SAVED.hands, P.DEFAULT))
+        : P.strumChoice(store.get(P.SAVED.strumOf, {})[id] || store.get(P.SAVED.strum, P.STRUM_DEFAULT), S.capoOf(doc));
+      const score = P.scoreOf(doc, choice, {hands: true});
+      if (!score || !score.events.length) throw new Error('nothing to play in ' + id);
+      let bpm = S.bpmOf(doc) || 110;
+      while (bpm > 250) bpm /= 2;
+      while (bpm < 40) bpm *= 2;
+      if (disposed || hiddenToken !== mine) return;   // stopped (or left the hymn) while loading
+      Player.playScore(score, {from: 0, bpm, loop: true, mute: {}});
+    } catch (e) {
+      console.error(e);
+      if (hiddenToken !== mine) return;
+      hiddenToken = null;
+      showPlay(false);
+      playSheetFromLyrics();
+    }
+  }
   function togglePlay() {
+    if (hiddenToken) { hiddenToken = null; Player.stop(); showPlay(false); return; }
     if (Player.playing() === hymn.id) { Player.stop(); showPlay(false); return; }
     if (sheet && sheet.playing) { sheet.togglePlay(); return; }
     if (sheetShown()) { sheet.togglePlay(); return; }
-    if (!tune && hasSheet) { playSheetFromLyrics(); return; }   // no tune file: the sheet is the tune (it is opened and played)
+    if (!tune && hasSheet) { playSheetHidden(); return; }   // no tune file: the sheet is the tune (played from the lyrics)
     if (!tune) { toast(tr('Sorry, no tune for this hymn')); return; }
     showPlay(true);
     Player.play(tune, hymn.id).catch(() => { showPlay(false); toast(tr('Could not play the tune')); });
