@@ -278,6 +278,13 @@ test('guitar: open shapes, strums down and up, picking', () => {
   assert.strictEqual(show(g('pick').slice(-1)), 'G2+B2+D3+G3+B3+G4/16', 'the last bar: one strum');
 });
 
+test('guitar with a capo: the guitar sheet\'s shape, above the capo, no slash bass', () => {
+  const fr = (c, capo) => M.guitarShape(M.chordInfo(c), capo).map((p, i) => p == null ? 'x' : p - [40, 45, 50, 55, 59, 64][i] - capo).join('');
+  // E with capo 4: the guitar sheet shows C, played x32010 above the fourth fret, sounding E
+  assert.deepStrictEqual([['E', 4], ['B', 4], ['Ab', 1], ['E/G#', 4], ['C', 0]].map(([c, k]) => fr(c, k)), ['x32010', '320003', '320003', 'x32010', 'x32010']);
+  assert.strictEqual(M.guitarShape(M.chordInfo('E'), 4)[1], 52, 'the C shape four frets higher: C3 on the A string sounds E3');
+});
+
 // the app's Verovio takes it all
 const vfile = path.join(__dirname, '../../app/src/main/assets/viewer/verovio-toolkit-wasm.js');
 if (!fs.existsSync(vfile)) { console.log(count + ' tests passed (Verovio not found: its test is left out)'); return; }

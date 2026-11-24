@@ -3,8 +3,9 @@
 // (transposed, with this device's chord edits), by the rules of the lead sheet editor (tools/lead-sheet-editor), whose
 // music.js build.py copies into the app (window.LeadSheet).
 //
-// A choice is {lh: {family, kind, rhythm, oct, pedal, walk} | null, rh: {add: 0 | 1 | 2, on: 'chord' | 'beat' | 'long' | 'all'}}:
+// A choice is {lh: {family, kind, rhythm, oct, pedal, walk, tone, capo} | null, rh: {add: 0 | 1 | 2, on: 'chord' | 'beat' | 'long' | 'all'}}:
 // the names of a style of music.js, so that it fits every time signature (an arpeggio in 3/4 is not the one in 4/4).
+// tone is the guitar's (GUITAR_TONES; none: warm); capo is set for the guitar sheet's strumming (strumChoice).
 
 const MEI_NS = 'http://www.music-encoding.org/ns/mei';
 const XML_NS = 'http://www.w3.org/XML/1998/namespace';
@@ -39,6 +40,16 @@ export function presetOf(choice, time) {
   }) || null;
 }
 
+// the guitar's tones (player.js GUITAR_TONES), as the panels offer them; warm is the usual one
+export const TONES = [['bright', 'Bright'], ['warm', 'Warm'], ['mellow', 'Mellow'], ['soft', 'Soft']];
+export const STRUM_DEFAULT = {kind: 'folk', tone: 'warm'};
+// The guitar sheet's strumming ({kind, tone}) as a choice to play: a guitar's strums only (the melody is the sheet's),
+// in the shapes of the chords the guitar sheet shows, above its capo
+export function strumChoice(strum, capo) {
+  const s = Object.assign({}, STRUM_DEFAULT, strum || {});
+  return {lh: {family: 'guitar', kind: s.kind, rhythm: '', oct: 0, pedal: false, tone: s.tone, capo: capo | 0}, rh: {add: 0, on: 'chord'}};
+}
+
 const lib = () => window.LeadSheet;
 const kids = (e) => Array.prototype.filter.call(e.childNodes, (n) => n.nodeType === 1);
 const xmlId = (e) => e.getAttributeNS(XML_NS, 'id') || e.getAttribute('xml:id');
@@ -57,6 +68,7 @@ export function pattern(lh, time) {
     family: fam.id, kind: kind.id, rhythm: r.id};
   for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar']) if (r[k] != null) out[k] = r[k];
   if (out.passing && lh.walk) out.passing = 2;   // More walking (Chorale)
+  if (out.guitar && lh.capo != null) out.capo = lh.capo;
   return out;
 }
 
@@ -342,6 +354,7 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
   });
 
   // the left hand, or the chords softly in its place — metrical weighting, arpeggio contour, gentle chord rolls & clean pedal lifts
+  const tone = (choice && choice.lh && choice.lh.tone) || 'warm';
   if (left) {
     bars.forEach((b, bi) => {
       const barEvs = left.filter((e) => e.g >= b.g - 1e-6 && e.g < b.g + b.len - 1e-6);
@@ -372,7 +385,7 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
           const voiceAdj = e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
           const vel = Math.max(34, Math.min(86, baseVel + voiceAdj));
           const off = roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff;
-          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', inst: e.inst, mute: e.mute, ids: ['lh' + bi + 'n' + k]});
+          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', inst: e.inst, mute: e.mute, tone: e.inst ? tone : undefined, ids: ['lh' + bi + 'n' + k]});
         });
       });
     });
@@ -399,6 +412,7 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
       if (e.off) out.off = e.off;
       if (e.inst) out.inst = e.inst;
       if (e.mute) out.mute = true;
+      if (e.tone) out.tone = e.tone;
       events.push(out);
       e.ids.forEach((id) => { if (!(id in idQ)) idQ[id] = q; });
     });

@@ -101,9 +101,19 @@ hymn starts with it tucked down. It shows two rows:
 
 **Guitar** plays the chords as a guitar does in the first frets (the open shapes: C x32010, G 320003, D xx0232; a slash
 chord's bass on the lowest string that has it), strummed down over every string or up over the top four, lighter, with a muted chuck (Pop), or
-picked (thumb on the basses, the G, B and high E strings between), by the time signature. It sounds as a guitar: a
-plucked string made in the browser (`player.js`, Karplus-Strong), nothing to download; the melody stays on the piano.
-It is meant for listening to strums more than for playing on the piano.
+picked (thumb on the basses, the G, B and high E strings between), by the time signature. It sounds as a guitar:
+FluidR3 GM's steel-string acoustic guitar (`vendor/guitar/`, 13 MP3s, about 270 KB, loaded when a sheet first strums
+and cached offline like the piano), in a **Tone** chosen in Advanced: Bright (the samples as they are), Warm (the
+default: the pick's edge rounded), Mellow, Soft (no pick click). `player.js` GUITAR_TONES: a low-pass that opens with
+harder strums, a high-shelf cut above 3 kHz, a slower attack, a little body. While the samples load, or without them,
+a plucked string made in the browser (Karplus-Strong) plays. The melody stays on the piano. A listening page compared
+six sample sets by ear before FluidR3 steel and Warm were chosen.
+
+**Strumming** (the guitar sheet): in Both hands' place on the toolbar, a guitar strums the chords when the sheet plays
+(`piano.js` strumChoice: the guitar kinds, the tone, and the guitar sheet's capo, so the shapes are those of the chords
+the guitar sheet shows, played above the capo). Its panel (`pianopanel.js` createStrumPanel, the same sheet at the
+bottom as Both hands', `.pp-panel`) has only Strum and Tone, and "Use for all hymns": kept per hymn in `strumOf`, for
+every hymn in `strum`. Nothing is added to the sheet.
 
 Advanced, Pedal and More walking are switches (`role="switch"`), the other choices buttons.
 
@@ -237,7 +247,7 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/sw.js`, `src/manifest.webmanifest` | service worker (offline) and install manifest; `build.py` writes the file lists in |
 
 Offline: the service worker precaches only the core shell (`SHELL`) and `data/version.json` on install (plus refreshing any `LAZY` entries already cached from a previous build) so first-visit shared hymn links open from a single ~24–57 KB content-hashed pre-resolved shard (`hymns/<hash>/<group>-<bucket>.json.gz`) without waiting for the 14 MB SQLite database, `sql-wasm.wasm`, sheet modules, or `qrcode.js`. The full SQLite database downloads in the background (kept in IndexedDB; word search and Browse show inline progress if opened before it finishes), and `app.js` (`offlineDownload`) then fetches the deferred scripts (`LAZY`), all sheet/lyric packs, Verovio, and every tune (~30 MB total) in the background about 8 s after start, once per build; Settings → Offline shows it and can start it again.
-| `vendor/` | sql.js 1.13.0 (SQLite in WebAssembly, MIT licence); qrcode.js 1.4.4 (QR Code Generator for JavaScript by Kazuhiko Arase, MIT licence; draws the QR code of Settings → Share the app); Noto Nastaliq Urdu 4.000 (SIL Open Font License), the font of Urdu text (`:lang(ur)` in `app.css`); `piano/` — Salamander Grand Piano (Yamaha C5, by Alexander Holm, CC-BY 3.0), 22 compact MP3 samples (`A1`–`C7`, every minor 3rd) |
+| `vendor/` | sql.js 1.13.0 (SQLite in WebAssembly, MIT licence); qrcode.js 1.4.4 (QR Code Generator for JavaScript by Kazuhiko Arase, MIT licence; draws the QR code of Settings → Share the app); Noto Nastaliq Urdu 4.000 (SIL Open Font License), the font of Urdu text (`:lang(ur)` in `app.css`); `piano/` — Salamander Grand Piano (Yamaha C5, by Alexander Holm, CC-BY 3.0), 22 compact MP3 samples (`A1`–`C7`, every minor 3rd); `guitar/` — FluidR3 GM acoustic guitar (steel), by Frank Wen, CC-BY 3.0, as rendered by midi-js-soundfonts, 13 MP3s (`E2`–`E5`, every minor 3rd; `LICENSE.txt`) |
 | `build.py`, `serve.py` | the build, and a local server that serves `dist/` the way GitHub Pages does |
 | `dist/` | build output, not in git |
 

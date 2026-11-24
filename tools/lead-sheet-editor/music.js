@@ -354,7 +354,7 @@
     if (used.C) out.C = middle(c.tones.map(function (t) { return t[0]; }));
     if (used.t) out.t = [tenor()];
     if (used.D || used.U || used.K || used.T || used.A || used.g || used.b || used.e) {
-      var gs = guitarShape(c), on = gs.filter(function (p) { return p != null; });
+      var gs = guitarShape(c, opt.capo), on = gs.filter(function (p) { return p != null; });
       out.D = on; out.U = out.K = on.slice(-4); out.T = [on[0]]; out.A = [on[1] != null ? on[1] : on[0]];
       ['g', 'b', 'e'].forEach(function (k, i) { var p = gs[3 + i]; out[k] = [p != null ? p : on[on.length - 1]]; });
     }
@@ -372,13 +372,16 @@
   // A chord as a guitar plays it in the first frets: the bass (the chord's, or the slash note) on the lowest string that
   // has it within four frets, the strings under it silent, every other string on its lowest fret that is a note of the
   // chord. This gives the open shapes guitarists use (C x32010, G 320003, D xx0232, Am x02210). -> six pitches or null.
+  // With a capo (the guitar sheet's: a number, 0 for none) the shape is the one of the chord the guitar sheet shows,
+  // a capo's frets lower, played above the capo, and the bass is the chord's root (the guitar sheet has no slash basses).
   var STRINGS = [40, 45, 50, 55, 59, 64];
-  function guitarShape(c) {
-    var pcs = c.tones.map(function (t) { return mod12(c.root + t[0]); }), out = [null, null, null, null, null, null], low = -1;
-    for (var k = 0; k < 4 && low < 0; k++) { var f0 = mod12(c.bass - STRINGS[k]); if (f0 <= 4) { out[k] = STRINGS[k] + f0; low = k; } }
-    if (low < 0) { low = 0; out[0] = 40 + mod12(c.bass - 40); }   // nowhere in the first frets: the low E string, higher up
+  function guitarShape(c, capo) {
+    var cp = capo | 0, root = c.root - cp, bass = (capo != null ? c.root : c.bass) - cp;
+    var pcs = c.tones.map(function (t) { return mod12(root + t[0]); }), out = [null, null, null, null, null, null], low = -1;
+    for (var k = 0; k < 4 && low < 0; k++) { var f0 = mod12(bass - STRINGS[k]); if (f0 <= 4) { out[k] = STRINGS[k] + f0; low = k; } }
+    if (low < 0) { low = 0; out[0] = 40 + mod12(bass - 40); }   // nowhere in the first frets: the low E string, higher up
     for (var s = low + 1; s < 6; s++) for (var f = 0; f <= 4; f++) if (pcs.indexOf(mod12(STRINGS[s] + f)) >= 0) { out[s] = STRINGS[s] + f; break; }
-    return out;
+    return out.map(function (p) { return p == null ? null : p + cp; });
   }
   function meter(sheet) { var bar = barLen(sheet), beat = beatLen(sheet); return {bar: bar, beat: beat, beats: Math.round(bar / beat), compound: compound(sheet)}; }
   // [id, name, hint, {steps: pat}, low, extra]
@@ -637,7 +640,7 @@
       var spIdx = spans.indexOf(sp), nextSp = spIdx >= 0 && spIdx + 1 < spans.length ? spans[spIdx + 1] : null;
       var under = melLow(a, z - a);
       var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w', 'D', 'U', 'K', 'T', 'A', 'g', 'b', 'e']}]],
-        {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth, prevTen: prevTen, under: under === Infinity ? null : under, mel: melPc(a)});
+        {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth, prevTen: prevTen, under: under === Infinity ? null : under, mel: melPc(a), capo: acc.capo});
       var shift = {fig: 0, mid: 0};
       function layer(t) { return /[\dw]/.test(t) ? 'fig' : 'mid'; }
       if (!acc.guitar) ['fig', 'mid'].forEach(function (L) {   // a guitar stays where its strings are
