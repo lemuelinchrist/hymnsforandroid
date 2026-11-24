@@ -257,8 +257,11 @@ async function ui(page) {
     await page.keyboard.press('g'); await settle();
     const bStrum = page.locator('.tb.hands.strum'), sp = page.locator('.strum-panel');
     assert(await bStrum.isVisible() && await page.locator('.tb.hands:not(.strum)').isHidden(), 'Strumming in the place of Both hands');
+    assert(await bStrum.getAttribute('aria-pressed') === 'true' && await sp.locator('.pp-peek').isVisible(), 'on to begin with: the guitar sheet plays on a guitar, its bar at the bottom');
     await bStrum.click(); await settle();
-    assert(await sp.locator('.pp-body').isVisible() && await page.locator('.piano-panel').isHidden(), 'its own panel opens, not the piano\'s');
+    assert(await bStrum.getAttribute('aria-pressed') === 'false' && await sp.isHidden(), 'it can be turned off');
+    await bStrum.click(); await settle();
+    assert(await sp.locator('.pp-body').isVisible() && await page.locator('.piano-panel').isHidden(), 'on again: its own panel opens, not the piano\'s');
     const rows = await sp.locator('.ce-row .ce-label').allTextContents();
     assert(rows.join(',') === 'Strum,Tone', 'only the strum and the tone: ' + rows);
     assert(await sp.locator('.ce-row', {hasText: 'Tone'}).locator('button:text-is("Warm")').getAttribute('aria-pressed') === 'true', 'Warm to begin with');

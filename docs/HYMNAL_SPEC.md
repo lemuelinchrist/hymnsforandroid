@@ -956,7 +956,8 @@ it fits every time signature. A sheet of ours can name the piano part it starts 
 (the style's family/kind/rhythm, optionally followed by `rh=<notes added>:<on>`, e.g. `rh=1:beat`; BF474 has one): the hymn's own
 choice comes first, then this, then the device's choice, and changes made to such a hymn are kept for that hymn.
 On the guitar sheet, **Strumming** takes Both hands' place in the toolbar (B toggles whichever is shown): a guitar
-strums the chords when the sheet plays, with the staff or Chords only; nothing is added to the sheet. Its own panel at
+strums the chords when the sheet plays, with the staff or Chords only; nothing is added to the sheet. It is on until
+turned off (remembered on the device), so the guitar sheet plays on a guitar. Its own panel at
 the bottom (opened when it is turned on, tucked down to a bar after Done, like Both hands') has only two rows, Strum (the
 eight guitar strums) and Tone (Bright, Warm, Mellow, Soft; Warm by default), and "Use for all hymns": a change is that
 hymn's own (`strumOf`), the device's choice is `strum`. The strums use the shapes of the chords the guitar sheet shows

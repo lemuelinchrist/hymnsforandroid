@@ -109,7 +109,7 @@ harder strums, a high-shelf cut above 3 kHz, a slower attack, a little body. Whi
 a plucked string made in the browser (Karplus-Strong) plays. The melody stays on the piano. A listening page compared
 six sample sets by ear before FluidR3 steel and Warm were chosen.
 
-**Strumming** (the guitar sheet): in Both hands' place on the toolbar, a guitar strums the chords when the sheet plays
+**Strumming** (the guitar sheet): in Both hands' place on the toolbar, on until turned off (`sheet.strumming`), a guitar strums the chords when the sheet plays
 (`piano.js` strumChoice: the guitar kinds, the tone, and the guitar sheet's capo, so the shapes are those of the chords
 the guitar sheet shows, played above the capo). Its panel (`pianopanel.js` createStrumPanel, the same sheet at the
 bottom as Both hands', `.pp-panel`) has only Strum and Tone, and "Use for all hymns": kept per hymn in `strumOf`, for

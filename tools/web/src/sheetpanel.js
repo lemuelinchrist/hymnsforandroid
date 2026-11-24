@@ -13,9 +13,11 @@ import * as Player from './player.js';
 import {tr, tn} from './i18n.js';
 import {h, append, icon, store, toast, isDark, popupMenu, themeListeners} from './ui.js';
 
-// remembered between hymns: piano or guitar, the staff, the zoom, both hands, strumming. Transposition is per hymn (in the URL only).
+// remembered between hymns: piano or guitar, the staff, the zoom, both hands, strumming (on unless turned off: the
+// guitar sheet plays on a guitar; kept as `strumming`, as the first days' `strum` was saved off for everyone).
+// Transposition is per hymn (in the URL only).
 function sheetPrefs() {
-  return Object.assign({guitar: false, staff: true, scale: DEFAULT_SCALE, hands: false, strum: false}, store.get('sheet', {}));
+  return Object.assign({guitar: false, staff: true, scale: DEFAULT_SCALE, hands: false, strumming: true}, store.get('sheet', {}));
 }
 
 // pane: the element to fill. o:
@@ -40,9 +42,9 @@ export function createSheetPanel(pane, o) {
     shift: Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, parseInt(p.get('t') || '0', 10) || 0)),
     scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, parseInt(p.get('z') || '', 10) || prefs.scale)),
     hands: !!prefs.hands,
-    strum: !!prefs.strum,
+    strum: prefs.strumming !== false,
   };
-  const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands, strum: state.strum});
+  const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands, strumming: state.strum});
 
   const btn = (label, title, onclick, cls = '') => h('button', {type: 'button', class: 'tb ' + cls, title, 'aria-label': title, onclick}, label);
   // on a narrow screen (sheet.css) Piano | Guitar show their icons instead of the words (the staff button keeps its words)
