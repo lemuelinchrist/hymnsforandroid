@@ -1178,3 +1178,7 @@ Python 3.12 with fontTools/numpy/Pillow.
   folk strum by default, the piano part when the sheet names one or the sheet's Both hands is on; if it cannot, it opens
   the sheet tab and plays it as before. On a wide screen, where the sheet is shown beside the lyrics, Play still plays the
   sheet as shown. Written without a browser on this host: **not tested, not pushed or deployed.**
+- 2026-11-24 (media): web app fix: **553 NS, BF and CH hymns still played a MIDI** because their tune code is one of the 520
+  files kept for other books (`tuneFile` found it). `tools/web/build.py` (`SHEET_ONLY_GROUPS`, the shards' `_tuneFile`) and
+  `db.js` `tuneFile` now give no tune file to a hymn of NS, BF or CH that has a sheet, as the Android `playsSheetOnly`. After the
+  build, all 2,099 shard records of the three books have no tune file. Not yet deployed.

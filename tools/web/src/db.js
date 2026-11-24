@@ -285,6 +285,7 @@ export function hymn(id) {
 // the file of a hymn's tune (its own tune code, else its parent's), as the app's Play button finds it; null if none
 export function tuneFile(h) {
   if (!db) return (h && h._tuneFile) || null;
+  if (h && /^(NS|BF|CH)$/.test(h.group) && h.sheetId) return null;   // these books play their sheet, whatever tune file is kept for other books
   const t = (h && h.tune || '').trim().toLowerCase();
   return t && t !== '0' ? tunes[t] || null : null;
 }

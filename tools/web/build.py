@@ -37,6 +37,8 @@ ENUM = os.path.join(ROOT, 'app', 'src', 'main', 'java', 'com', 'lemuelinchrist',
 RES = os.path.join(ROOT, 'app', 'src', 'main', 'res')
 STRINGS = os.path.join(RES, 'values', 'strings.xml')
 APP_GRADLE = os.path.join(ROOT, 'app', 'build.gradle')
+# the books whose MIDI files are deprecated: their Play button plays the sheet (a shared tune file stays for other books)
+SHEET_ONLY_GROUPS = ('NS', 'BF', 'CH')
 RAW = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'raw')
 MUSIC = os.path.join(ROOT, 'tools', 'lead-sheet-editor', 'music.js')
 APP_ICON = os.path.join(ROOT, 'app', 'src', 'main', 'res', 'drawable-xhdpi', 'icon.png')
@@ -529,6 +531,8 @@ def build_hymn_shards(assets, groups, sheet_ids, lyric_ids, tunes):
         rec = dict(h)
         tkey = tune_code.lower()
         rec['_tuneFile'] = tunes.get(tkey) if (tkey and tkey != '0') else None
+        if rec.get('group') in SHEET_ONLY_GROUPS and rec.get('sheetId'):
+            rec['_tuneFile'] = None   # New Songs, Be Filled and Children's play their sheet, never a MIDI file (2026-11-24)
         rec['_prev'], rec['_next'] = pv, nx
         rec['_family'] = get_family(hid)
         rec['_videos'] = get_videos(hid, h)
