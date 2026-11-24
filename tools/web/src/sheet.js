@@ -287,6 +287,9 @@ export function soundDoc(xml, editBars) {
 }
 
 // the tempo a sheet names for itself (quarter notes a minute; our own sheets: midi.bpm of the score), or 0
+// the capo the guitar sheet of this sheet's key shows (0-4)
+export function capoOf(doc) { return CAPO[fifthsPc(keyFifths(doc))]; }
+
 export function bpmOf(doc) {
   const sd = mei(doc, 'scoreDef')[0];
   return sd ? Math.round(parseFloat(sd.getAttribute('midi.bpm')) || 0) : 0;

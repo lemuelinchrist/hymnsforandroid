@@ -1166,7 +1166,10 @@ Python 3.12 with fontTools/numpy/Pillow.
   they stay in git history); the 520 shared with E, C, S ... hymns stay. Tune codes were kept as hymnal.net has them,
   except two fixes in `sqlite/hymns.sql`: **NS10087** tune cleared (it had NS39's code, whose melody is another song;
   hymnal.net has no sheet for it either) and **NS851** `7117211611771343` (it shared NS859's `71172116117713432`, whose
-  E-flat 3/4 MIDI is NS859's tune). Also: the default accompaniment of Both hands is now the Guitar preset's folk strum
-  (`tools/web/src/piano.js` DEFAULT; it was Plain). Not yet decided: Both hands itself is still off by default, so Play
-  of a sheet plays the melody alone until it is turned on. 15 NS hymns have no sheet on hymnal.net (NS196, 215, 260,
+  E-flat 3/4 MIDI is NS859's tune). Also: **the Play button of the lyrics view** (`tools/web/android/play.js`, the hidden
+  SheetPlayer) now plays the melody with a guitar's **folk strum** (Warm tone, in the shapes above the sheet's capo,
+  `capoOf` in sheet.js) by default, as the guitar sheet's Strumming does, and follows the viewer's saved strum choice
+  (this hymn's own, else the device's). It plays a piano part instead only when the sheet names one or the viewer's Both
+  hands is on. The viewer's own defaults are unchanged (piano sheet: Both hands off, Plain when on; guitar sheet:
+  strumming on, folk). 15 NS hymns have no sheet on hymnal.net (NS196, 215, 260,
   274, 346, 10061, 10064, 10068, 10072, 10073, 10083-10085, 10087, 1031 has a tune but none).
