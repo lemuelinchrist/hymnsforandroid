@@ -135,6 +135,21 @@ When the user says the sheet is done ("import the sheet"), do every step in the 
   added to the right hand and is often absent). Pass it to `finish_mei.py` as `family/kind/rhythm` from `acc.style` + `acc.rate`
   (0 = `held`, 8 = `half`, 4 = `beat`), so the sheet starts with it in Both hands and in the hymn page's Play. The tempo is `sheet.tempo`.
 
+## Lessons from BF155 (2026-11-24): a waltz, a lost note, stanzas that do not fit one tune
+
+- **Find the metre before trusting the draft.** Print each syllable's position in tracked beats: lines of 12 beats with the
+  syllables on every third beat are 3/4 (`"beats_per_bar": 3`; chords then come one per bar), not 4/4.
+- **CREPE can lose a held note where the choir sings in parts** (confidence under 0.5: "so" was D♯5 in every chorus, written
+  C♯5). Check held notes with low confidence against a CQT of the vocals stem with the harmonics folded (a pitch's own bin
+  plus its octave and twelfth): it showed D♯5 in all four passes.
+- **A low note may be real.** Before calling A3/G♯3 an octave error, look for its fundamental and third harmonic (A3 with
+  E5) in the vocals stem; the stanza really went down to G♯3.
+- **A line after a breath:** its `start` in `lines` must be before the breath ends, or the aligner's window starts too
+  late and puts the first syllable on the next note ("Who" on B3 after a breath came out on the A4 of "loves").
+- **Stanzas with different syllable counts** (BF155: 23, 32, 30, each with its own turns of the tune) cannot share one
+  line of notes: write stanza 1 and the chorus, use the other passes as checks where the words line up, and ask the
+  user how the other stanzas go on the sheet.
+
 ## Reviewing without ears
 
 The model cannot listen, so check the draft against itself:

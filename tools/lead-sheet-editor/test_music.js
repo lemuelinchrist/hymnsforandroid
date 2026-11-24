@@ -256,6 +256,39 @@ test('dynamic accompaniment: 9th, walking bass, smooth voice-leading, short chor
   assert.deepStrictEqual(hb.slice(0, 3), ['G2', 'B2', 'C3'], 'the held G walks G B C, the moving C does not: ' + hb);
 });
 
+test('Adaptive (Flowing): figures picked from a few, a beat before the bass, takes', () => {
+  // 16 bars of 4/4: chords of two beats and of a bar, a melody of quarters, a half note and held notes
+  const bars = [], chords = [], mel = [], names = ['G', 'C', 'D', 'Em', 'Am', 'D7'];
+  for (let b = 0; b < 16; b++) bars.push({g: b * 16, len: 16, beat: 4});
+  let g = 0, k = 0;
+  while (g < 256) {
+    const len = [8, 16, 8, 8, 16][k % 5]; chords.push({g, end: Math.min(256, g + len), info: M.chordInfo(names[k % names.length])}); g += len; k++;
+  }
+  const pitches = [71, 74, 72, 69, 67, 71, 72, 74];
+  for (let q = 0, t = 0; t < 256; q++) { const d = q % 4 === 3 ? 8 : q % 7 === 5 ? 16 : 4; mel.push([t, Math.min(256, t + d), pitches[q % 8]]); t += d; }
+  const rh = M.styles({time: [4, 4]}).find((f) => f.id === 'dynamic').kinds.find((x) => x.id === 'adaptive').rhythms[0];
+  const run = (seed) => M.accompanyOn({bars, first: 0, chords, mel, last: 240, base: Object.assign({}, rh, {seed})}).events;
+  const text = (ev) => show(ev);
+  assert.strictEqual(text(run(0)), text(run(0)), 'the same take plays the same notes');
+  assert.notStrictEqual(text(run(0)), text(run(1)), 'another take plays other notes');
+  assert.notStrictEqual(text(run(1)), text(run(2)), 'and another');
+  for (const seed of [0, 1, 2, 3, 4, 5]) {
+    const ev = run(seed).filter((e) => e.p);
+    ev.forEach((e, i) => {   // never an eighth, then a leap down of a fifth or more
+      const nx = ev[i + 1];
+      if (nx && nx.g - e.g <= 2) assert.ok(Math.min(...nx.p) > Math.max(...e.p) - 7, 'take ' + seed + ' at ' + e.g + ': ' + show([e, nx]));
+    });
+    assert.ok(ev.some((e) => e.p.length > 1 && e.g < 240), 'take ' + seed + ' presses two notes together now and then');
+  }
+  // in 6/8 and 9/8 a short chord is the bass alone: no fifth in eighths before the next bass
+  const c68 = M.styles({time: [6, 8]}).find((f) => f.id === 'dynamic').kinds.find((x) => x.id === 'adaptive').rhythms[0];
+  const lh68 = M.accompanyOn({bars: [{g: 0, len: 12, beat: 6}, {g: 12, len: 12, beat: 6}], first: 0,
+    chords: [{g: 0, end: 6, info: M.chordInfo('G')}, {g: 6, end: 12, info: M.chordInfo('C')}, {g: 12, end: 24, info: M.chordInfo('G')}],
+    mel: [[0, 6, 71], [6, 12, 72], [12, 24, 71]], last: 12, base: c68}).events.filter((e) => e.p);
+  assert.deepStrictEqual(lh68.slice(0, 2).map((e) => e.p.length), [1, 1], 'a short chord in 6/8: the bass alone');
+  assert.strictEqual(lh68[0].d, 6, '... held for the beat');
+});
+
 test('guitar: open shapes, strums down and up, picking', () => {
   const fr = (c) => M.guitarShape(M.chordInfo(c)).map((p, i) => p == null ? 'x' : p - [40, 45, 50, 55, 59, 64][i]).join('');
   assert.deepStrictEqual(['C', 'G', 'D', 'A', 'E', 'Am', 'Em', 'Dm', 'G/B', 'D/F#', 'B7'].map(fr),

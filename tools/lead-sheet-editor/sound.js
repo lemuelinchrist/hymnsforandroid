@@ -1,4 +1,5 @@
-// The editor's sound: Salamander Grand Piano (Yamaha C5, CC-BY 3.0 by Alexander Holm) served from /piano/*.mp3,
+// The editor's sound: Salamander Grand Piano (Yamaha C5, CC-BY 3.0 by Alexander Holm) served from /piano/*.mp3 and the
+// strums' steel-string guitar from /guitar/*.mp3,
 // with a small synthesized fallback while loading and a plain organ tone (which shows lengths clearly), plus a player
 // that schedules events a little ahead of the clock, so it can loop, stop at once and follow the tempo.
 (function () {
@@ -40,6 +41,46 @@
     return loading;
   }
 
+  // The guitar of the strums: FluidR3 GM's steel-string guitar (Frank Wen, CC-BY 3.0) served from /guitar/*.mp3, one
+  // sample every minor third from E2 to E5, loaded with the piano; the same settings as the web app's 'warm' tone
+  // (tools/web/src/player.js). Until they are there the piano plays the strum.
+  var GSAMPLES = [[40, 'E2'], [43, 'G2'], [46, 'Bb2'], [49, 'Db3'], [52, 'E3'], [55, 'G3'], [58, 'Bb3'], [61, 'Db4'],
+    [64, 'E4'], [67, 'G4'], [70, 'Bb4'], [73, 'Db5'], [76, 'E5']], gbufs = {};
+  function loadGuitar() {
+    return Promise.all(GSAMPLES.map(function (s) {
+      return fetch('/guitar/' + s[1] + '.mp3')
+        .then(function (r) { return r.ok ? r.arrayBuffer() : null; })
+        .then(function (raw) { return raw ? ac.decodeAudioData(raw) : null; })
+        .then(function (buf) { if (buf) gbufs[s[0]] = buf; })
+        .catch(function () {});
+    }));
+  }
+  function nearestGuitar(p) {
+    var best = null, bestDist = Infinity;
+    GSAMPLES.forEach(function (s) { var b = gbufs[s[0]], d = Math.abs(p - s[0]); if (b && d < bestDist) { bestDist = d; best = {midi: s[0], buf: b}; } });
+    return best;
+  }
+  // one guitar string: pitch, start, length (s), loudness 0..1 (a harder strum is brighter), o.mute = a chuck
+  function guitar(p, t, dur, vel, o) {
+    var hit = nearestGuitar(p);
+    if (!hit) return note(p, t, dur, vel * 0.55, 'piano');
+    var mute = !!(o && o.mute), v = Math.max(0.05, Math.min(1, vel));
+    var src = ac.createBufferSource(); src.buffer = hit.buf; src.playbackRate.value = Math.pow(2, (p - hit.midi) / 12);
+    var body = ac.createBiquadFilter(); body.type = 'peaking'; body.frequency.value = 200; body.Q.value = 0.8; body.gain.value = 2;
+    var shelf = ac.createBiquadFilter(); shelf.type = 'highshelf'; shelf.frequency.value = 3000; shelf.gain.value = -4;
+    var tone = ac.createBiquadFilter(); tone.type = 'lowpass'; tone.Q.value = 0.4;
+    tone.frequency.value = mute ? 1200 : 2200 + 4200 * Math.pow(v, 1.3);
+    var g = ac.createGain(), level = 0.42 * Math.pow(v, 1.2) * 4.8 * (mute ? 0.9 : 1) * Math.pow(10, 4 / 60);
+    var end = t + (mute ? Math.min(dur, 0.035) : dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(level, t + 0.004);
+    g.gain.setValueAtTime(level, Math.max(t + 0.005, end)); g.gain.setTargetAtTime(0.0001, end, mute ? 0.025 : 0.07);
+    src.connect(body); body.connect(shelf); shelf.connect(tone); tone.connect(g); g.connect(out);
+    src.start(t); src.stop(end + 0.45);
+    var h = {o: src, g: g}; live.push(h);
+    src.onended = function () { var i = live.indexOf(h); if (i >= 0) live.splice(i, 1); try { g.disconnect(); } catch (e) {} };
+    return h;
+  }
+
   function nearestSample(p) {
     var best = null, bestDist = Infinity;
     for (var i = 0; i < SAMPLES.length; i++) {
@@ -64,7 +105,7 @@
       // fallback harmonics while samples load
       var re = new Float32Array([0, 0, 0, 0, 0, 0, 0, 0, 0]), im = new Float32Array([0, 1, 0.52, 0.28, 0.14, 0.09, 0.05, 0.03, 0.015]);
       wave = ac.createPeriodicWave(re, im);
-      loadSamples();
+      loadSamples(); loadGuitar();
     }
     if (ac.state === 'suspended') ac.resume();
     return ac;
@@ -170,6 +211,6 @@
     else Promise.race([loading, new Promise(function (res) { setTimeout(res, 1200); })]).then(begin);
     return r;
   }
-  window.LeadSound = {ctx: ctx, note: note, click: click, hush: hush, play: play, stop: stop, playing: function () { return !!run; },
+  window.LeadSound = {ctx: ctx, note: note, guitar: guitar, click: click, hush: hush, play: play, stop: stop, playing: function () { return !!run; },
     now: function () { return ctx().currentTime; }};
 })();

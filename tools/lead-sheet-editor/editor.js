@@ -317,7 +317,7 @@
   }
   function applyStyle(fam, kind, r) {
     var cur = target() || inEffect() || {}, a = {pat: r.pat, rate: r.rate, low: r.low, style: fam.id + '/' + kind.id};
-    ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing'].forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
+    ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar'].forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
     if (cur.pedal && r.rate) a.pedal = true;
     if (cur.end === false) a.end = false;
     setPattern(a);
@@ -517,7 +517,12 @@
         ev.push({t: f.t, d: f.d, fire: function (when, sec) { f.ps.forEach(function (p) { S.note(p, when, sec * 0.96, 0.14, tone); }); if (prefs.keys && !quiet) setTimeout(function () { light(f.ps, sec * 900); }, Math.max(0, (when - S.now()) * 1000)); }});
       });
       pl.left.forEach(function (l) {
-        ev.push({t: l.t, d: l.d, show: !quiet, hand: 'l', i: l.i, ps: l.ps, fire: function (when, sec) { l.ps.forEach(function (p) { S.note(p, when, sec * 0.98, 0.16, tone); }); }});
+        ev.push({t: l.t, d: l.d, show: !quiet, hand: 'l', i: l.i, ps: l.ps, fire: function (when, sec) {
+          if (l.inst === 'guitar') {   // a strum: the strings one after the other (down from the bass, up from the top), as the web app plays it
+            var roll = l.roll || (l.ps.length > 1 ? 0.012 : 0), vel = (l.up ? 0.45 : 0.55);
+            l.ps.forEach(function (p, pi) { S.guitar(p, when + (l.up ? l.ps.length - 1 - pi : pi) * roll, sec * 0.98, vel, {mute: l.mute}); });
+          } else l.ps.forEach(function (p) { S.note(p, when, sec * 0.98, 0.16, tone); });
+        }});
       });
       if (!pl.left.length && !pl.fill.length) pl.pad.forEach(function (c) {
         ev.push({t: c.t, d: c.d, fire: function (when, sec) { c.ps.forEach(function (p, i) { S.note(p, when, Math.max(0.05, sec - 0.03), i === 0 ? 0.11 : 0.065, 'soft'); }); }});

@@ -88,13 +88,19 @@ drag up, opens it again, and a drag down on the open panel's top tucks it away. 
 is there whenever Both hands is on (not while editing chords, on the guitar sheet or with the staff hidden), and the next
 hymn starts with it tucked down. It shows two rows:
 
-- **Style**, a preset named by what it is for: **Plain** (the default: Strike, hymn style, twice a bar), **Chorale**
+- **Style**, a preset named by what it is for: **Plain** (Strike, hymn style, twice a bar), **Chorale**
   (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
-  harmony as in a hymnal), **Flowing** (Dynamic, Adaptive), **Guitar**
+  harmony as in a hymnal), **Flowing** (the default: Dynamic, Adaptive), **Guitar**
   (strummed or picked, with a **Strum** row under Style: Folk strum, Pop, Steady, Driving, Ballad, Country, Fingerpicking,
   Ballad picking), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
   Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
 - **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
+- **Shuffle** (a row under Style, only where the style varies its figures: Flowing, in Advanced too): Flowing's left hand takes,
+  for each chord, one of a few figures (`music.js` `adaptVary`: quarter-note and eighth-note runs, held notes and pressed
+  chords) by a random number made from the song and the hymn's take. Shuffle picks another take (`lh.seed`, kept for the
+  hymn in `handsByHymn`, never for "Use for all hymns"), so the notes change but are the same every time the song plays;
+  **Original** brings the hymn's own take back. Every figure holds its last note for at least a beat before the next
+  chord's bass: eighths never run up and then leap straight down.
 - **More walking** (a switch under Style, only with Chorale, in Advanced too): both lower voices may walk at a change, a
   fourth is walked in two steps, and in a chord of a bar or more, or of two or three beats while the melody holds one note
   through it, the bass moves to another note of it halfway, towards the next bass.

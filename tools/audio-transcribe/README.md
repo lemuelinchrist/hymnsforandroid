@@ -45,7 +45,7 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
 | `title` | title on the sheet |
 | `midi` | the melody to use (`melody_crepe`) |
 | `key`, `mode` | LilyPond key, e.g. `"c"`, `"minor"`; `"ees"`, `"major"` |
-| `beats_per_bar`, `bar_offset` | 4 for 4/4; `bar_offset` `"auto"` (see below; it prints its choice) or the tracked beat the bars start on (0-3), to overrule it |
+| `beats_per_bar`, `bar_offset` | 4 for 4/4, 3 for 3/4 (then one chord per bar); `bar_offset` `"auto"` (see below; it prints its choice) or the tracked beat the bars start on (0-3), to overrule it |
 | `chord_weights` | overrides the chord evidence weights: `acc`, `bass`, `melody`, `key`, `change`, `change_mid_bar` (see `make_sheet.py`) |
 | `scale` | pitch classes allowed (0 = C); a note outside moves to the nearest one (sliding singers). Minor keys keep the leading tone |
 | `range` | MIDI range of the written melody (58-77 = B♭3-F5): every note's octave is chosen inside it, the line moving smoothly |
@@ -101,7 +101,8 @@ Checking: `show.py D [first bar] [last bar]` prints the sheet bar by bar (note, 
   minor for the next four) say plainly where the bars are. On the four songs transcribed so far the chord rule finds
   the offset that was checked by ear, each time by a factor of two or more. `BAR_OFFSET_CHECK=1 make_sheet.py D`
   prints the choice and its numbers without making the sheet.
-- **Chords**, one per half bar (so on beats 1 and 3: in six corrected songs every chord change fell there), weigh four
+- **Chords**, one per half bar (so on beats 1 and 3: in six corrected songs every chord change fell there; in 3/4 one per
+  bar, as halves of a bar of three would put changes on beat 2½), weigh four
   kinds of evidence: the accompaniment's chroma against major and minor templates (found as **triads**: scoring
   sevenths from the recording made G7, C7, E7, D7 out of plain chords; the **dominant (V) then gets its 7th** afterwards,
   `"dominant_sevenths": false` in `sheet.json` turns that off; other 7ths are added by the user in the editor);
@@ -134,6 +135,13 @@ rules with six corrected songs (`tune_chords.py`):
 - **Still missed**: two sixteenths on one syllable (E F on "and", "us", "re-") come out as one quarter (shorter than
   `melisma_s`); a verse that has the tune of another verse should be compared with it note by note (the stanza
   repeats of the skill), and these are where the user's corrections went.
+
+- **Triple time.** The beat tracker finds beats, not the metre, and `new_sheet_config.py` writes 4/4. When the lines
+  last 12 beats and the syllables fall every third beat (BF155, "O Tide of love": lines four bars of 3/4, a chorus that
+  starts three beats after a 4/4 grid would have it), set `"beats_per_bar": 3`.
+- **Sections and the empty bar.** python-ly writes the `||` bar line between two sections as a bar of its own with no
+  notes; `make_sheet.py` removes it from the MusicXML (it gave a bar of rest before the second section and put every
+  chord after it a bar early).
 
 ## Known limits
 

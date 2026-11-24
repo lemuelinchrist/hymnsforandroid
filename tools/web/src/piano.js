@@ -3,9 +3,11 @@
 // (transposed, with this device's chord edits), by the rules of the lead sheet editor (tools/lead-sheet-editor), whose
 // music.js build.py copies into the app (window.LeadSheet).
 //
-// A choice is {lh: {family, kind, rhythm, oct, pedal, walk, tone, capo} | null, rh: {add: 0 | 1 | 2, on: 'chord' | 'beat' | 'long' | 'all'}}:
+// A choice is {lh: {family, kind, rhythm, oct, pedal, walk, tone, capo, seed} | null, rh: {add: 0 | 1 | 2, on: 'chord' | 'beat' | 'long' | 'all'}}:
 // the names of a style of music.js, so that it fits every time signature (an arpeggio in 3/4 is not the one in 4/4).
-// tone is the guitar's (GUITAR_TONES; none: warm); capo is set for the guitar sheet's strumming (strumChoice).
+// tone is the guitar's (GUITAR_TONES; none: warm); capo is set for the guitar sheet's strumming (strumChoice); seed is the
+// take of a style that varies its figures (Adaptive; Shuffle in the panel): none is the hymn's own, another number plays
+// the figures in another order, the same notes every time.
 
 const MEI_NS = 'http://www.music-encoding.org/ns/mei';
 const XML_NS = 'http://www.w3.org/XML/1998/namespace';
@@ -76,7 +78,8 @@ export function pattern(lh, time) {
   const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
   const out = {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
-  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar']) if (r[k] != null) out[k] = r[k];
+  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'settle', 'vary']) if (r[k] != null) out[k] = r[k];
+  if (out.vary && lh.seed) out.seed = lh.seed;   // the take (Shuffle)
   if (out.passing && lh.walk) out.passing = 2;   // More walking (Chorale)
   if (out.guitar && lh.capo != null) out.capo = lh.capo;
   return out;
