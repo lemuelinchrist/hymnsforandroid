@@ -19,6 +19,9 @@ It prints, per section, the syllables and any lost; show.py prints the result ba
 import json, os, sys, pathlib, subprocess, re, numpy as np, pretty_midi, pyphen
 d = pathlib.Path(sys.argv[1]); cfg = json.load(open(d / 'sheet.json'))
 beats = np.load(d / 'beats.npy'); bidx = np.arange(len(beats)); U = 2
+# chords per bar: two (on beats 1 and 3) in 4/4 and 2/4, one in 3/4 (a waltz holds its chord for the bar; halves of
+# 1.5 beats put changes on beat 2.5)
+HPB = 2 if cfg['beats_per_bar'] % 2 == 0 else 1
 BAR = cfg['beats_per_bar'] * U   # OFF (where the bars start) is set after the chords' set-up: it may be found
 unit = lambda t: int(round(np.interp(t, beats, bidx) * U))
 raw = sorted(pretty_midi.PrettyMIDI(str(d / 'midi' / f"{cfg['midi']}.mid")).instruments[0].notes, key=lambda n: n.start)
@@ -107,7 +110,7 @@ def chords_for(first_u, n_halves, melody=(), priors=None):
     sec_t = lambda u: np.interp(u / U, bidx, beats)
     score = np.zeros((n_halves, len(CH))); comp = np.zeros((4, n_halves, len(CH)))   # comp: acc, bass, melody, key (for tuning)
     for h in range(n_halves):
-        ua, ub = first_u + h * BAR // 2, first_u + (h + 1) * BAR // 2
+        ua, ub = first_u + h * BAR // HPB, first_u + (h + 1) * BAR // HPB
         a_, b_ = sec_t(ua), sec_t(ub)
         m = (C['t'] >= a_) & (C['t'] < b_)
         # the melody in this half bar: duration of each pitch class, a note starting on a beat counts double
@@ -131,11 +134,11 @@ def chords_for(first_u, n_halves, melody=(), priors=None):
     if os.environ.get('CHORD_DEBUG'):   # the best three per half bar, to calibrate the weights
         for h in range(n_halves):
             top = np.argsort(-score[h])[:3]
-            print(f'  bar {h // 2 + 1}{"ab"[h % 2]}', '  '.join(f'{CH[k][0]} {score[h, k]:.2f}' for k in top))
+            print(f'  bar {h // HPB + 1}{"ab"[h % HPB] if HPB > 1 else ""}', '  '.join(f'{CH[k][0]} {score[h, k]:.2f}' for k in top))
     # Viterbi: staying is free, a change costs more inside a bar than on the bar line
     best = score[0].copy(); back = np.zeros((n_halves, len(CH)), int)
     for h in range(1, n_halves):
-        cost = CW['change'] + (CW['change_mid_bar'] if h % 2 else 0)
+        cost = CW['change'] + (CW['change_mid_bar'] if h % HPB else 0)
         stay = best; move = best.max() - cost
         back[h] = np.where(stay >= move, np.arange(len(CH)), best.argmax())
         best = np.maximum(stay, move) + score[h]
@@ -348,9 +351,10 @@ for sec in cfg['sections']:
         pos = e
     rest = (BAR - (pos - first) % BAR) % BAR
     toks += ['r' + x for x in DUR[rest]] if rest else []
-    nh = ((pos + rest - first) // BAR) * 2
+    nh = ((pos + rest - first) // BAR) * HPB
     ch = add_dominant_7th(chords_for(first, nh, [(s_, e_, p_, l_) for s_, e_, p_, l_ in clean], key_priors(*sec_key)), *sec_key); chord_list += ch
-    chord_toks.append(' '.join(c.replace(':', '2:') if ':' in c else c + '2' for c in ch))
+    cd = {1: '4', 2: '2', 3: '2.', 4: '1', 6: '1.'}[cfg['beats_per_bar'] // HPB]   # a chord's length in LilyPond
+    chord_toks.append(' '.join(c.replace(':', cd + ':') if ':' in c else c + cd for c in ch))
     toks += ['}'] if sec.get('repeat') else []
     if not sec.get('repeat'): toks += ['\\bar "||"'] if sec is not cfg['sections'][-1] else ['\\bar "|."']
     music.append(' '.join(toks))
@@ -382,6 +386,25 @@ import music21
 # the converter makes a part of the chord names too: give it the melody alone
 (d / 'melody_only.ly').write_text(ly.replace('  \\new ChordNames { \\set chordChanges = ##t \\harmonies }\n', ''))
 subprocess.run([str(pathlib.Path(sys.executable).parent / 'ly'), 'musicxml', '-o', str(d / 'sheet.musicxml'), str(d / 'melody_only.ly')], capture_output=True)
+# python-ly writes a \bar "||" that falls on a bar line (between two sections) as a measure of its own with no notes:
+# music21 would fill it with a bar of rest and every chord after it would sit a bar early. Its bar line goes to the
+# measure before, and the measures are numbered again.
+xml = (d / 'sheet.musicxml').read_text()
+kept = []
+for m in re.finditer(r'<measure number="\d+"[^>]*>.*?</measure>', xml, flags=re.S):
+    body = m.group(0)
+    if '<note' not in body and kept:
+        bl = re.search(r'<barline.*?</barline>', body, flags=re.S)
+        if bl: kept[-1] = (kept[-1][0], re.sub(r'(\s*)</measure>$', r'\1  ' + bl.group(0).replace('\n', '\n  ') + r'\1</measure>', kept[-1][1]) if '<barline location="right"' not in kept[-1][1] else kept[-1][1])
+        kept.append((m.span(), None)); continue
+    kept.append((m.span(), body))
+out, last = [], 0
+for n, ((a_, b_), body) in enumerate(kept):
+    out.append(xml[last:a_]); last = b_
+    if body is not None: out.append(body)
+out.append(xml[last:]); xml = ''.join(out)
+cnt = iter(range(1, 10000)); xml = re.sub(r'<measure number="\d+"', lambda _: f'<measure number="{next(cnt)}"', xml)
+(d / 'sheet.musicxml').write_text(xml)
 score = music21.converter.parse(str(d / 'sheet.musicxml'))
 score.metadata = music21.metadata.Metadata(title=cfg['title'])
 it = iter(lyr); prev = False
@@ -394,7 +417,7 @@ for n in score.recurse().notes:
     n.addLyric(txt, applyRaw=True)
     n.lyrics[0].syllabic = ('middle' if prev else 'begin') if cont else ('end' if prev else 'single')
     prev = cont
-# chords as chord symbols, two per measure
+# chords as chord symbols, HPB per measure
 from music21 import harmony
 def sym(c):
     root, _, q = c.partition(':'); r = root[0].upper() + {'es': '-', 'is': '#', 's': '-'}.get(root[1:], '') if len(root) > 1 else root.upper()
@@ -402,9 +425,9 @@ def sym(c):
     return r + {'': '', 'm': 'm', '7': '7'}[q]
 last = None
 for i, meas in enumerate(score.parts[0].getElementsByClass('Measure')):
-    for h in range(2):
-        k = 2 * i + h
+    for h in range(HPB):
+        k = HPB * i + h
         if k < len(chord_list) and chord_list[k] != last:
-            meas.insert(h * cfg['beats_per_bar'] / 2, harmony.ChordSymbol(sym(chord_list[k]))); last = chord_list[k]
+            meas.insert(h * cfg['beats_per_bar'] / HPB, harmony.ChordSymbol(sym(chord_list[k]))); last = chord_list[k]
 score.write('musicxml', str(d / 'sheet.musicxml'))
 for f in (d / 'sheet.musicxml~',): f.unlink(missing_ok=True)
