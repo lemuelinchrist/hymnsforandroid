@@ -1182,3 +1182,6 @@ Python 3.12 with fontTools/numpy/Pillow.
   files kept for other books (`tuneFile` found it). `tools/web/build.py` (`SHEET_ONLY_GROUPS`, the shards' `_tuneFile`) and
   `db.js` `tuneFile` now give no tune file to a hymn of NS, BF or CH that has a sheet, as the Android `playsSheetOnly`. After the
   build, all 2,099 shard records of the three books have no tune file. Not yet deployed.
+- 2026-11-24 (media): the 1,041 removed MIDI files are **archived, not deleted**, in `archive/midi/` (7.5 MB, with `README.md` and
+  `INDEX.tsv`; nothing under `archive/` is packaged or deployed). Rule (Lemuel): a tune file that any other book uses, an
+  English hymn above all, is never removed (none of the 1,041 has an English hymn's tune code: checked).
