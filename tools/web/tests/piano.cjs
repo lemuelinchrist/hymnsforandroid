@@ -373,6 +373,23 @@ async function ui(page) {
     assert(await page.locator('.sheet-bar .tb.toggle').isVisible(), 'Chords only stays in front');
     assert(await page.locator('.sheet-bar a[title^="Back to the lyrics"]').isVisible(), 'the sheet alone: ✕ back to the lyrics');
   });
+  await test('⋯ Print prints the sheet alone, cut into pages, and puts it back for the screen after', async () => {
+    await page.evaluate(() => { window.__printed = 0; window.print = () => { window.__printed++; }; });
+    const before = await page.locator('.sheet-music svg').count();
+    await page.click('.sheet-bar .tb.sheet-more');
+    await page.click('.share-menu button:has-text("Print")');
+    assert(await page.evaluate(() => window.__printed) === 1, 'the print dialog opens');
+    assert(await page.evaluate(() => document.documentElement.classList.contains('print-sheet')), 'only the sheet prints');
+    await page.emulateMedia({media: 'print'});
+    assert(await page.locator('.sheet-bar').isHidden() && await page.locator('.sheet-title').isVisible(), 'no toolbar on paper, the title is');
+    const heights = await page.$$eval('.sheet-music svg', (s) => s.map((e) => e.getBoundingClientRect().height));
+    assert(heights.length >= 1 && Math.max(...heights) <= 1000, 'pages that fit a sheet of paper: ' + heights.map(Math.round).join(', '));
+    await page.emulateMedia({media: 'screen'});
+    await page.evaluate(() => dispatchEvent(new Event('afterprint')));
+    await page.waitForTimeout(200);
+    assert(!await page.evaluate(() => document.documentElement.classList.contains('print-sheet') || !!document.querySelector('.print-path')), 'the page is back');
+    assert(await page.locator('.sheet-music svg').count() === before, 'laid out for the screen again');
+  });
   await test('the hymn page\'s Play button plays the sheet while it is shown, the tune with the lyrics alone; they stop each other', async () => {
     await page.click('.piano-panel button:text-is("Done")').catch(() => {});
     await page.setViewportSize({width: 800, height: 900});           // a tablet: one tab at a time

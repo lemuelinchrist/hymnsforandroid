@@ -64,7 +64,11 @@ In front, what is used most: **Piano | Guitar**, **Chords only** (hides the staf
 guitarists and for those who read only chords), the key (**−** and **+**), **Both hands**, the zoom, and **⤢ Sheet only, for a music stand** (the
 sheet alone has ✕ back to the lyrics there). The rest is in **⋯**: **Edit chords** (for players who reharmonize; `E`),
 **Original chords** once the sheet has edits (a dot on ⋯ while it is on; `O`), **Original key and size** after a change,
-**Light paper** in the dark theme, and **Save MIDI**. The menu is the Share menu's (`popupMenu` in `app.js`).
+**Light paper** in the dark theme, **Print** and **Save MIDI**. **Print** prints the sheet alone as it is shown (the key, Chords only, Both hands, edited
+chords), black on white: `sheet.js` lays the music out a page wide in page-high pieces that fit A4 and Letter, so no
+line of music is cut between pages (it does so for the browser's own printing too), and `sheet.css` leaves the rest of
+the page out (`html.print-sheet`). The hymn page has no print button of its own (the browser's Print still gives the
+lyrics, then the sheet). The menu is the Share menu's (`popupMenu` in `app.js`).
 The bar is always one row: when the pane is too narrow it gives up a little at a time (`fit()` in `sheetpanel.js`, the steps in
 `sheet.css` as `data-fit`), in this order: the zoom buttons (**Smaller** and **Bigger** go into **⋯**; two fingers on the sheet
 change its size on every touch screen, in the web app too), the words of Piano | Guitar (icons), **Both hands** (into **⋯**),
@@ -192,7 +196,7 @@ as `#/sheet/E8` here, with a ‹ back button first. What differs is said in two 
 - `src/host.js`: where the sheet code gets things. The web app gives it its data packs (`app.js`); the Android page
   fetches `../sheetMei/<id>.mei` and `../sheetLyrics/<id>.json` from the app's assets, keeps chord edits in the app
   (`window.HymnsEdits`, `ChordEdits.java`, so Settings exports them) and hands Save MIDI's file to the app, which asks
-  where to save it.
+  where to save it, and Print's page to Android's printing (`host.print`; a WebView has no `window.print`).
 - The options of `createSheetPanel` (`src/sheetpanel.js`): the back button, the ⤢ button (web only), pinching to zoom
   (Android only), the tune whose tempo the sheet plays at (Android: `res/raw/m<tune>.mid`, served by the app at `/res/raw/`).
 

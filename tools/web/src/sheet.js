@@ -30,6 +30,8 @@ const SENTENCE_END = /[.;!?。；！？][”’"')）]*$/;
 
 export const MAX_SHIFT = 6;
 export const MIN_SCALE = 20, MAX_SCALE = 90, DEFAULT_SCALE = 40;
+// a printed page's music in CSS pixels: A4 and Letter less 12 mm margins (703 x 1032, 726 x 965), less the title
+const PRINT_WIDTH = 700, PRINT_HEIGHT = 860;
 
 // ---- Verovio, loaded once, on the first sheet ----
 
@@ -353,16 +355,32 @@ export class SheetView {
     // re-lay out when the box changes width (window resize, side panel opened)
     this.resizeObserver = new ResizeObserver(() => {
       const w = this.music.clientWidth;
-      if (!this.tk || !this.meiText || Math.abs(w - this.width) < 2) return;
+      if (!this.tk || !this.meiText || this.printing || Math.abs(w - this.width) < 2) return;
       clearTimeout(this.resizeTimer);
       this.resizeTimer = setTimeout(() => this.render(), 120);
     });
     this.resizeObserver.observe(this.music);
     this.music.addEventListener('click', (e) => this.click(e));
+    // printing (Print in ⋯, or the browser's own): the music laid out for paper while it prints, then for the screen again
+    this.printing = false;
+    this.onBeforePrint = () => this.setPrinting(true);
+    this.onAfterPrint = () => this.setPrinting(false);
+    addEventListener('beforeprint', this.onBeforePrint);
+    addEventListener('afterprint', this.onAfterPrint);
+  }
+
+  // Paper: a page's width whatever the screen's, at the reader's size but never smaller than the usual one, cut into
+  // pages (Verovio's) that fit an A4 or Letter page with the title above the first, so no line of music is cut in two
+  setPrinting(on) {
+    if (this.printing === !!on) return;
+    this.printing = !!on;
+    if (this.tk && this.meiText) this.render();
   }
 
   destroy() {
     this.resizeObserver.disconnect();
+    removeEventListener('beforeprint', this.onBeforePrint);
+    removeEventListener('afterprint', this.onAfterPrint);
     this.token++;
     this.flush();
   }
@@ -575,15 +593,15 @@ export class SheetView {
   render() {
     if (!this.meiText) return;
     this.renders++;
-    const width = this.music.clientWidth;
-    this.width = width;
+    const width = this.printing ? PRINT_WIDTH : this.music.clientWidth;
+    if (!this.printing) this.width = width;
     const chart = !this.state.staff || this.chordsOnly;
     this.root.classList.toggle('chart-mode', chart);
     if (chart) { this.renderChart(); return; }
-    const scale = this.state.scale;
+    const scale = this.printing ? Math.max(DEFAULT_SCALE, this.state.scale) : this.state.scale;
     this.tk.setOptions({
       pageWidth: Math.max(400, Math.round(width * 100 / scale)),
-      pageHeight: 60000,
+      pageHeight: this.printing ? Math.round(PRINT_HEIGHT * 100 / scale) : 60000,
       adjustPageHeight: true,
       scale,
       breaks: 'auto',

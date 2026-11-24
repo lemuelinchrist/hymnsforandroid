@@ -868,7 +868,8 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&theme=light|dark|black[&pape
   for the chords of the key, and folds the rest away (**More**) until asked for.
 - The host gives the page `window.HymnsEdits`: `get(sheet)`, `put(sheet, bars)` (this device's chord edits),
   `setEditing(on)` (Back closes the editor while it is open), `saveFile(name, base64)` (Save MIDI: the host asks
-  where to save the file, as a WebView does not download).
+  where to save the file, as a WebView does not download), `print(title)` (Print: the host prints the page as it now is
+  with the system's printing and calls `window.afterPrint()` when the job is done or cancelled).
 
 - It fetches `../sheetMei/<id>.mei` and, if `lyrics` is given and differs from `id`, `../sheetLyrics/<lyrics>.json`
   (a 404 there is fine: no overlay). **Keep this relative folder layout** (`viewer/`, `sheetMei/`, `sheetLyrics/`
@@ -965,7 +966,7 @@ give; the tempo is the sheet's `scoreDef/@midi.bpm` (computed by `ly_to_mei.py` 
 sound are marked in the drawn sheet and the bar that sounds is shaded; tapping a measure or note highlights that starting measure in red (kept across Stop/Play until "From the start" or closing) and starts there, while Loop wraps back to the beginning of the sheet on subsequent passes; the page follows the music until the reader scrolls;
 the tempo goes from half to one and a half times the tune's; the sheet can be saved as a MIDI file. In the sheet
 toolbar (both apps) the controls used most are in front (Piano | Guitar, Chords only, key, Both hands, zoom, Sheet only for a music
-stand; always one row: when the bar is too narrow it gives up, in this order, the zoom buttons (Smaller and Bigger go into the ⋯ menu; a two-finger pinch on the sheet changes its size on touch screens), the words of Piano | Guitar (icons), Both hands (into ⋯), the widest buttons and the words of Chords only ("Chords"), and Chords only itself (into ⋯); it wraps only below that) and the rest (Edit chords, Original chords, original key and size, light paper, Save MIDI) in a ⋯ menu.
+stand; always one row: when the bar is too narrow it gives up, in this order, the zoom buttons (Smaller and Bigger go into the ⋯ menu; a two-finger pinch on the sheet changes its size on touch screens), the words of Piano | Guitar (icons), Both hands (into ⋯), the widest buttons and the words of Chords only ("Chords"), and Chords only itself (into ⋯); it wraps only below that) and the rest (Edit chords, Original chords, original key and size, light paper, Print, Save MIDI) in a ⋯ menu. Print prints the sheet alone as shown (key, Chords only, Both hands, edited chords), black on white, laid out a page wide and cut into page-high pieces so no line of music is split between pages; the web app's hymn page has no print button of its own.
 
 ### 11.4 MEI files: what the viewer relies on
 

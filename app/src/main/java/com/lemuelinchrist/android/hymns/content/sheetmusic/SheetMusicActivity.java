@@ -5,6 +5,12 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CancellationSignal;
+import android.os.ParcelFileDescriptor;
+import android.print.PageRange;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -244,6 +250,52 @@ public class SheetMusicActivity extends AppCompatActivity {
                 } catch (ActivityNotFoundException e) {
                     pendingFile = null;
                     Toast.makeText(SheetMusicActivity.this, R.string.file_not_saved_there, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
+        /**
+         * Print in the viewer's menu: the page as it is now (the viewer has laid it out for paper and hidden the rest)
+         * goes to Android's printing; when the job is done or cancelled the viewer is told (window.afterPrint) and
+         * shows the sheet for the screen again.
+         */
+        @JavascriptInterface
+        public void print(String title) {
+            String job = title != null && !title.trim().isEmpty() ? title.trim() : getString(R.string.app_name);
+            runOnUiThread(() -> {
+                if (webview == null || isFinishing() || isDestroyed()) return;
+                WebView page = webview;
+                PrintDocumentAdapter inner = page.createPrintDocumentAdapter(job);
+                PrintDocumentAdapter adapter = new PrintDocumentAdapter() {
+                    @Override
+                    public void onStart() {
+                        inner.onStart();
+                    }
+
+                    @Override
+                    public void onLayout(PrintAttributes oldAttributes, PrintAttributes newAttributes, CancellationSignal cancel,
+                                         LayoutResultCallback callback, Bundle extras) {
+                        inner.onLayout(oldAttributes, newAttributes, cancel, callback, extras);
+                    }
+
+                    @Override
+                    public void onWrite(PageRange[] pages, ParcelFileDescriptor destination, CancellationSignal cancel,
+                                        WriteResultCallback callback) {
+                        inner.onWrite(pages, destination, cancel, callback);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        inner.onFinish();
+                        page.evaluateJavascript("window.afterPrint && window.afterPrint()", null);
+                    }
+                };
+                try {
+                    PrintManager printManager = (PrintManager) getSystemService(PRINT_SERVICE);
+                    printManager.print(job, adapter, new PrintAttributes.Builder().build());
+                } catch (RuntimeException e) {
+                    Log.e(getClass().getName(), "Could not print the sheet", e);
+                    page.evaluateJavascript("window.afterPrint && window.afterPrint()", null);
                 }
             });
         }

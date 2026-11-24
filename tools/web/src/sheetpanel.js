@@ -1,5 +1,5 @@
 // The sheet music with its toolbar: Piano | Guitar, Chords only, the key, Both hands (and its panel at the bottom), the
-// zoom, the sheet alone, and ⋯ (Edit chords, Original chords, the original key and size, light paper, Save MIDI); the
+// zoom, the sheet alone, and ⋯ (Edit chords, Original chords, the original key and size, light paper, Print, Save MIDI); the
 // player's row under it. The web app shows it beside the lyrics or alone (#/sheet/E8); the Android app's sheet viewer
 // is this alone (tools/web/android). What differs between the two comes in as options, or through host.js.
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE} from './sheet.js';
@@ -7,6 +7,7 @@ import {createEditor} from './editor.js';
 import {createPianoPanel} from './pianopanel.js';
 import {createSheetPlayer} from './sheetplayer.js';
 import {DEFAULT as PIANO_DEFAULT} from './piano.js';
+import {host as appHost} from './host.js';
 import * as Player from './player.js';
 import {tr, tn} from './i18n.js';
 import {h, append, icon, store, toast, isDark, popupMenu, themeListeners} from './ui.js';
@@ -82,8 +83,25 @@ export function createSheetPanel(pane, o) {
     if (state.shift || state.scale !== DEFAULT_SCALE) items.push({icon: 'reset', label: tr('Original key and size'), run: () => set({shift: 0, scale: DEFAULT_SCALE})});
     // dark theme only: the sheet on light paper (black on white); remembered like the zoom
     if (isDark()) items.push({icon: 'paper', label: tr('Light paper'), checked: lightPaper(), run: () => { store.set('sheetPaper', lightPaper() ? null : 'light'); paperLook(); }});
+    items.push({icon: 'print', label: tr('Print'), run: printSheet});
     if (!view.chordsOnly) items.push({icon: 'download', label: tr('Save MIDI'), run: () => sp.saveMidi()});
     bookColour(popupMenu(bMore, items, 'sheet-menu'));
+  }
+  // Print: the sheet alone as it is shown (the key, Chords only, Both hands, the edited chords), black on white, laid
+  // out for paper (sheet.js); the rest of the page is left out while it prints (html.print-sheet, sheet.css)
+  function printSheet() {
+    const path = [];
+    for (let e = view.root; e && e !== document.body; e = e.parentElement) { e.classList.add('print-path'); path.push(e); }
+    document.documentElement.classList.add('print-sheet');
+    view.setPrinting(true);
+    let over = false;
+    appHost.print(view.title.textContent || document.title, () => {
+      if (over) return;
+      over = true;
+      document.documentElement.classList.remove('print-sheet');
+      for (const e of path) e.classList.remove('print-path');
+      view.setPrinting(false);
+    });
   }
   const exit = o.exit
     ? (o.exit.href
