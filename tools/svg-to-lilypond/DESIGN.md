@@ -1158,3 +1158,15 @@ Python 3.12 with fontTools/numpy/Pillow.
   render in Verovio), viewer page with Verovio in the WebView, guitar derived in JS, setting "New Sheet Music Viewer".
 
 > **Since v5.6** the SVGs live in `svg-to-lilypond/svg/{pianoSvg,guitarSvg}` and are no longer bundled in the app: the app ships only `app/src/main/assets/sheetMei/*.mei` (rendered by the viewer). Paths above that say `app/src/main/assets/pianoSvg` mean this folder.
+- 2026-11-24 (media, Lemuel's request): **MIDI files of New Songs, Be Filled and the Children's Hymnal deprecated.**
+  `Hymn.getSheetToPlay()` now returns the sheet for a hymn of group NS, BF or CH whenever it has a melody sheet
+  (`playsSheetOnly`), whatever MIDI file exists. 1,878 hymns of the three books (2,099 in all; the rest have no tune code
+  or, NS1031, no sheet) all have a melody sheet, and every one of those sheets carries `midi.bpm`. 1,041 MIDI files that
+  no hymn of another book uses (translations included, by inherited tune) were removed from `res/raw` (1,459 left;
+  they stay in git history); the 520 shared with E, C, S ... hymns stay. Tune codes were kept as hymnal.net has them,
+  except two fixes in `sqlite/hymns.sql`: **NS10087** tune cleared (it had NS39's code, whose melody is another song;
+  hymnal.net has no sheet for it either) and **NS851** `7117211611771343` (it shared NS859's `71172116117713432`, whose
+  E-flat 3/4 MIDI is NS859's tune). Also: the default accompaniment of Both hands is now the Guitar preset's folk strum
+  (`tools/web/src/piano.js` DEFAULT; it was Plain). Not yet decided: Both hands itself is still off by default, so Play
+  of a sheet plays the melody alone until it is turned on. 15 NS hymns have no sheet on hymnal.net (NS196, 215, 260,
+  274, 346, 10061, 10064, 10068, 10072, 10073, 10083-10085, 10087, 1031 has a tune but none).

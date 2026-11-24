@@ -13,10 +13,11 @@ const STEP = {c: 0, d: 2, e: 4, f: 5, g: 7, a: 9, b: 11};
 const ACC = {s: 1, f: -1, n: 0, x: 2, ss: 2, ff: -2};
 const ACCID = {'-2': 'ff', '-1': 'f', '0': 'n', '1': 's', '2': 'x'}, ACCID_GES = {'-2': 'ff', '-1': 'f', '1': 's', '2': 'ss'};
 
-export const DEFAULT = {lh: {family: 'strike', kind: 'hymn', rhythm: 'half', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}};
+// The default accompaniment is the Guitar preset's folk strum (2026-11-24; it was Plain, the strike hymn style).
+export const DEFAULT = {lh: {family: 'guitar', kind: 'folk', rhythm: '8', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}};
 
 // The panel's simple choices: a style of music.js by what it is for, and the right hand that goes with it (which can
-// be changed: Melody alone or Two notes, added where a chord starts, or for Chorale on the beat). The first is DEFAULT.
+// be changed: Melody alone or Two notes, added where a chord starts, or for Chorale on the beat). The default is Guitar's folk strum.
 export const PRESETS = [
   {id: 'plain', name: 'Plain', lh: ['strike', 'hymn', 'half'], add: 0},
   {id: 'chorale', name: 'Chorale', lh: ['dynamic', 'chorale', 'half'], add: 1, on: 'beat'},

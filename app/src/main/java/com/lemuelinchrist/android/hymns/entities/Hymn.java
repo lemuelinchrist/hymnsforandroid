@@ -199,7 +199,19 @@ public class Hymn {
         String mei = readSheetHead(id);
         if (mei == null || mei.contains("type=\"kind\">chords<")) return null;
         boolean ours = mei.contains("type=\"source\">Hymns For Android<");
-        return ours || !hasMelody() ? id : null;
+        return ours || !hasMelody() || playsSheetOnly() ? id : null;
+    }
+
+    /**
+     * New Songs, Be Filled and the Children's Hymnal play their sheet, never a MIDI file (2026-11-24: their MIDI files
+     * are deprecated; the ones no other hymn uses are removed). The tune of a translation of one of them is still the
+     * hymn's own file, which stays while a hymn of another book uses it.
+     */
+    private boolean playsSheetOnly() {
+        String g = getGroup();
+        if (g == null) return false;
+        g = g.trim().toUpperCase(Locale.ROOT);
+        return g.equals("NS") || g.equals("BF") || g.equals("CH");
     }
 
     /** The beginning of a sheet's MEI file (its header), or null. */
