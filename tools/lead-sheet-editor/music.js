@@ -429,8 +429,17 @@
     var eighth = m.compound ? 2 : Math.max(1, Math.round(beat / 2));
     var pulsePat = m.compound ? '1 - 5 c - 5 | 1 - c 5 - c' : n === 3 ? '1 - - c - 5 | 1 - c - 5 -' : n === 2 ? '1 - 5 c' : '1 - - 5 8 - c - | 1 - - 5 c - 8 -';
     var adaptCalm = m.compound ? '1 - - 5 - -' : n === 3 ? '1 - 5 - c -' : n === 2 ? '1 - 5 -' : '1 - - - 5 - 8 - | 1 - - - c - 5 -';
-    var adaptFill = m.compound ? '1 5 8 10 8 5' : n === 3 ? '1 5 8 9 10 8' : n === 2 ? '1 5 8 9' : '1 5 8 9 10 - 8 5';
-    var adaptLate = m.compound ? '5 8 10' : '5 8 10 8';
+    var adaptFill = m.compound ? '1 5 8 10 - -' : n === 3 ? '1 5 8 - 10 -' : n === 2 ? '1 5 8 -' : '1 5 8 - 10 - - -';
+    var adaptLate = m.compound ? '8 10 -' : '5 8 10 -';
+    // Adaptive picks, for each stretch, one of a few figures for its situation (accompanyOn, `vary`): a short chord
+    // (half a bar or less), a fill from the beat where the melody holds, the late fill after it, the first bar of a
+    // chord (calm), and a bar where the chord goes on (cont). `c` presses two notes of the chord together. Every
+    // figure ends on a held note (`settle` also holds the last note for a beat, see accompanyOn), so a run of eighths
+    // never leaps straight from a high note to the bass of the next chord
+    var adaptVary = m.compound ? {short: ['1 - 5', '1 - -'], fill: ['1 5 8 10 - -', '1 - 5 c - -', '1 5 8 c - -', '1 - - 5 - -'], late: ['8 - -', 'c - -', '10 - -'], calm: ['1 - - 5 - -', '1 - - c - -'], cont: ['1 - - c - -', '1 - - 5 - -']}
+      : n === 3 ? {short: ['1 - 5 8', '1 - c -'], fill: ['1 5 8 - 10 -', '1 5 8 - c -', '1 - c - 5 -', '1 - 5 - 10 -'], late: ['5 8 10 -', '8 - 10 -', 'c - 8 -'], calm: ['1 - 5 - c -', '1 - c - c -', '1 - c - 5 -'], cont: ['1 - c - 5 -', '1 - 5 - c -']}
+      : n === 2 ? {short: ['1 -'], fill: ['1 5 8 -', '1 - c -', '1 - 10 -'], late: ['8 -', 'c -'], calm: ['1 - 5 -', '1 - c -'], cont: ['1 - c -', '1 - 5 -']}
+      : {short: ['1 5 8 -', '1 - c -', '1 - 5 -', '1 - 8 -'], fill: ['1 5 8 - 10 - - -', '1 5 8 10 - - c -', '1 - 5 - 8 - 10 -', '1 5 8 - c - 5 -'], late: ['5 8 10 -', '8 - 10 -', 'c - 8 -', 'c - 10 -'], calm: ['1 - - - 5 - 8 -', '1 - - - c - 5 -', '1 - 5 - c - - -'], cont: ['1 - - - c - 5 -', '1 - c - - - 5 -', '1 - - - 5 - 8 -']};
     var walkQ = m.compound ? '1 5 w' : n === 3 ? '1 5 w' : n === 2 ? '1 w' : '1 5 8 w';
     var walkE = m.compound ? '1 - 5 8 - w' : n === 3 ? '1 - 5 - w -' : n === 2 ? '1 5 8 w' : '1 - 5 - 8 - w -';
     var walkRhythms = m.compound
@@ -500,8 +509,8 @@
         return {id: gk[0], name: gk[1], hint: gk[2], rhythms: [{id: '8', name: '', pat: gk[3], shortPat: gk[4], rate: eighth, low: 40, guitar: true}]};
       })},
       {id: 'dynamic', name: 'Dynamic', hint: 'musical patterns that breathe and move', kinds: [
-        {id: 'adaptive', name: 'Adaptive', hint: 'calm under singing, blooms on held notes', rhythms: [
-          {id: '8', name: '', pat: adaptCalm, fillPat: adaptFill, latePat: adaptLate, shortPat: '1 5 8 5', rate: eighth, low: 40, bassRing: true, adaptive: true, smooth: true}]},
+        {id: 'adaptive', name: 'Adaptive', hint: 'calm under singing, blooms on held notes, a different figure each time', rhythms: [
+          {id: '8', name: '', pat: adaptCalm, fillPat: adaptFill, latePat: adaptLate, shortPat: m.compound ? '1 - 5' : '1 5 8 -', rate: eighth, low: 40, bassRing: true, adaptive: true, smooth: true, settle: true, vary: adaptVary}]},
         {id: 'rolled', name: 'Rolled', hint: 'soft upward harp-like chords', rhythms: rolledRhythms},
         {id: 'pulse', name: 'Pulse', hint: 'modern ballad groove with breath', rhythms: [
           {id: '8', name: '', pat: pulsePat, shortPat: '1 - 5 c', rate: eighth, low: 40, bassRing: true, smooth: true}]},
@@ -599,6 +608,16 @@
       return lo;
     }
     var lastBar = tl.last >= 0 ? barAt(tl.last) : -1, events = [], marks = [], lastA = null, prevMid = null, prevTen = null;
+    // Varied (`vary`): each stretch takes one of the style's figures for its situation by a random number made from the
+    // song and from acc.seed (the take; 0 is the song's own, another number is another take), so the same notes play
+    // every time; half the time a stretch keeps the figure it took last time, so a figure carries on for a while
+    var songSeed = spans.length * 7919 + Math.round(endG) * 131 + mel.length * 17, lastPick = {};
+    function rnd(x) { x = (x + 0x6D2B79F5) | 0; x = Math.imul(x ^ (x >>> 15), x | 1); x ^= x + Math.imul(x ^ (x >>> 7), x | 61); return ((x ^ (x >>> 14)) >>> 0) / 4294967296; }
+    function varyPick(kind, n, a, seed) {
+      var base = songSeed + seed * 104729 + Math.round(a) * 977 + kind.charCodeAt(0) * 31, prev = lastPick[kind];
+      var k = prev != null && prev < n && rnd(base) < 0.5 ? prev : Math.floor(rnd(base ^ 0x5bd1e995) * n);
+      lastPick[kind] = k; return k;
+    }
     // Adaptive: where in [a, z) the melody stops moving (its last note starts, or it rests) and holds on to z, on the grid
     // of `rate` from a; -1 when it moves until less than half a bar (at least 6 sixteenths) is left: no room to bloom
     function holdFrom(a, z, rate, barL) {
@@ -623,6 +642,14 @@
         if (bloom === a) { var fpParts = parsePattern(acc.fillPat); if (fpParts.length) useParts = fpParts; }
         else { var lp = parsePattern(acc.latePat || acc.fillPat); lateSteps = lp.length ? lp[0] : null; }
       }
+      if (acc.vary && rate) {
+        var kind = acc.shortPat && (z - a) <= barL / 2 ? 'short' : bloom === a ? 'fill' : bloom > a ? 'late' : fresh ? 'calm' : 'cont';
+        var vl = acc.vary[kind];
+        if (vl && vl.length) {
+          var vp = parsePattern(vl[varyPick(kind, vl.length, a, acc.seed | 0)]);
+          if (vp.length) { if (kind === 'late') lateSteps = vp[0]; else useParts = [vp[0], vp[0]]; }
+        }
+      }
       var steps = useParts[fresh ? 0 : Math.min(1, useParts.length - 1)];
       // what is played when in this stretch: [{toks | null, g, d}]
       var plan = [], isEnding = acc.end !== false && rate && sp === spans[spans.length - 1] && bi >= lastBar && lastBar >= 0;
@@ -634,6 +661,14 @@
         if (lateSteps && t === bloom) { steps = lateSteps; q = 0; }
         var s = steps[q % steps.length], d = Math.min(rate, z - t), last = plan[plan.length - 1];
         if (s.hold && last && last.toks) last.d += d; else plan.push({toks: s.toks || null, g: t, d: d});
+      }
+      // settle: the last beat of the stretch holds the note before it, so the hand has a beat to go back to the bass
+      if (acc.settle && rate && !isEnding) {
+        var beatL = bars[bi].beat || rate * 2, lastBeat = z - beatL + 0.01;
+        for (var pk = plan.length - 1; pk > 0; pk--) {
+          var stp = plan[pk];
+          if (stp.g > lastBeat && stp.toks) { plan[pk - 1].d += stp.d; plan.splice(pk, 1); }
+        }
       }
       // the figure counted up from the bass and the chord in the middle each go down an octave, whole, where one of
       // their notes would reach the melody
@@ -970,7 +1005,7 @@
       lh.events.forEach(function (e, i) {
         if (isRest(e) || tied(lh.events, i)) return;
         var d = len(e); for (var q = i + 1; tied(lh.events, q); q++) d += len(lh.events[q]);
-        left.push({t: lo[i], d: e.ring || d, ps: pitchesOf(e), i: i});
+        left.push({t: lo[i], d: e.ring || d, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll});
       });
     }
     var off = gridOff(sheet);

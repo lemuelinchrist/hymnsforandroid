@@ -15,6 +15,7 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 VEROVIO = REPO / 'app/src/main/assets/viewer/verovio-toolkit-wasm.js'
 PIANO = REPO / 'tools/web/vendor/piano'
+GUITAR = REPO / 'tools/web/vendor/guitar'
 AUDIO = ('source.mp3', 'source.ogg', 'source.m4a', 'source.wav')
 PAGE = {'/': 'index.html', '/index.html': 'index.html', '/editor.js': 'editor.js', '/music.js': 'music.js', '/sound.js': 'sound.js',
         '/editor.css': 'editor.css'}
@@ -88,6 +89,10 @@ class Handler(BaseHTTPRequestHandler):
         if u.path.startswith('/piano/'):
             name = u.path[7:]
             if re.fullmatch(r'[A-G]s?\d\.mp3', name): return self.file(PIANO / name)
+            return self.send(404, {'error': 'not found'})
+        if u.path.startswith('/guitar/'):
+            name = u.path[8:]
+            if re.fullmatch(r'[A-G]b?\d\.mp3', name): return self.file(GUITAR / name)
             return self.send(404, {'error': 'not found'})
         if u.path == '/api/list':
             songs = []
