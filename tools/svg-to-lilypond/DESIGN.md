@@ -1170,6 +1170,6 @@ Python 3.12 with fontTools/numpy/Pillow.
   SheetPlayer) now plays the melody with a guitar's **folk strum** (Warm tone, in the shapes above the sheet's capo,
   `capoOf` in sheet.js) by default, as the guitar sheet's Strumming does, and follows the viewer's saved strum choice
   (this hymn's own, else the device's). It plays a piano part instead only when the sheet names one or the viewer's Both
-  hands is on. The viewer's own defaults are unchanged (piano sheet: Both hands off, Plain when on; guitar sheet:
-  strumming on, folk). 15 NS hymns have no sheet on hymnal.net (NS196, 215, 260,
+  hands is on. The piano sheet's Both hands default style is now **Flowing** (was Plain; Both hands itself is still
+  off by default; saved choices are kept); the guitar sheet's strumming is unchanged (on, folk). 15 NS hymns have no sheet on hymnal.net (NS196, 215, 260,
   274, 346, 10061, 10064, 10068, 10072, 10073, 10083-10085, 10087, 1031 has a tune but none).
