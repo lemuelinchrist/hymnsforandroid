@@ -629,6 +629,7 @@
     function melPc(g) { for (var k = mel.length - 1; k >= 0; k--) if (mel[k][0] <= g + 0.01) return g < mel[k][1] ? mod12(mel[k][2]) : null; return null; }
     at.forEach(function (a, k) {
       var z = k + 1 < at.length ? at[k + 1] : endG, sp = spanAt(a), acc = patAt(a), parts = acc ? parsePattern(acc.pat) : [];
+      if (acc && !acc.guitar && /^guitar\//.test(acc.style || '')) acc = Object.assign({}, acc, {guitar: true});   // a saved pattern knows its style, not the flag
       if (z <= a) return;
       if (acc !== lastA) { marks.push({g: a, a: acc, song: acc === base}); lastA = acc; }
       if (!sp || !sp.info || !parts.length) { events.push({g: a, d: z - a, p: null}); return; }

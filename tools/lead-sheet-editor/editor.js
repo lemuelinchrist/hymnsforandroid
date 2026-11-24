@@ -317,7 +317,7 @@
   }
   function applyStyle(fam, kind, r) {
     var cur = target() || inEffect() || {}, a = {pat: r.pat, rate: r.rate, low: r.low, style: fam.id + '/' + kind.id};
-    ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing'].forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
+    ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar'].forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
     if (cur.pedal && r.rate) a.pedal = true;
     if (cur.end === false) a.end = false;
     setPattern(a);
