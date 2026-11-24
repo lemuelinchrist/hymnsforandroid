@@ -568,13 +568,15 @@
     }
     var out = accompanyOn({bars: bars, first: first, chords: spans, mel: mel, last: last, base: base, changes: changes});
     var events = [];
-    function push(p, d, ring) {
+    function push(p, d, ring, src) {
       var prev = events[events.length - 1];
       if (!p && prev && !prev.p) { prev.d += d; return; }
-      var e = {p: p, d: d}; if (ring) e.ring = ring; events.push(e);
+      var e = {p: p, d: d}; if (ring) e.ring = ring;
+      if (src && src.inst) { e.inst = src.inst; if (src.mute) e.mute = true; if (src.up) e.up = true; if (src.roll) e.roll = src.roll; }   // a guitar strum (played by the page, not written in the sheet)
+      events.push(e);
     }
     if (first) push(null, first - off);   // the upbeat
-    out.events.forEach(function (e) { push(e.p, e.d, e.ring); });
+    out.events.forEach(function (e) { push(e.p, e.d, e.ring, e); });
     return {events: events, marks: out.marks.map(function (m) { return {t: m.g - off, a: m.a, song: m.song}; }), changes: changes};
   }
   // The left hand over any music, bar by bar (accompany above gives it a lead sheet; the web app a sheet of the app). tl:
