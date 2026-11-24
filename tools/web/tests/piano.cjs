@@ -4,6 +4,7 @@
 //   python3 tools/web/build.py && node tools/web/tests/piano.cjs            every 12th sheet (about half a minute)
 //   node tools/web/tests/piano.cjs --all                                    all of them (a few minutes)
 //   node tools/web/tests/piano.cjs --only E8,NS151                          these, with what was added
+//   node tools/web/tests/piano.cjs --ui                                     only the buttons, the panel and the player (about a minute)
 const {spawn, execSync} = require('child_process');
 const path = require('path');
 
@@ -16,7 +17,7 @@ const {chromium} = loadPlaywright();
 const PORT = parseInt(process.env.PORT || '8798', 10), BASE = `http://127.0.0.1:${PORT}/`;
 const args = process.argv.slice(2);
 const only = args.includes('--only') ? args[args.indexOf('--only') + 1].split(',') : null;
-const step = args.includes('--all') || only ? 1 : 12;
+const step = args.includes('--all') || only ? 1 : 12, uiOnly = args.includes('--ui');
 
 async function waitForServer() {
   for (let i = 0; i < 50; i++) {
@@ -164,7 +165,7 @@ async function ui(page) {
     assert(await page.locator('.piano-panel .pp-body').isHidden(), 'the choices are put away');
     assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'the bar stays');
     const said = await page.locator('.piano-panel .pp-summary').textContent();
-    assert(/Plain/.test(said), 'the bar names the style: ' + said);
+    assert(/Flowing/.test(said), 'the bar names the style, Flowing to begin with: ' + said);
     await page.click('.piano-panel .pp-peek');
     assert(await page.locator('.piano-panel .pp-body').isVisible(), 'open again');
     await page.click('.piano-panel button:text-is("Done")');
@@ -175,6 +176,9 @@ async function ui(page) {
   });
   let hymnStyle = 0;
   await test('a preset changes how the left hand plays, and the right hand gets notes', async () => {
+    // the device's choice is Flowing until it is changed: here it becomes Plain, which the tests below start from
+    await pick('Style', 'Plain');
+    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
     hymnStyle = await left();
     assert(await page.locator('.piano-panel .ce-row', {hasText: 'When'}).isHidden(), 'no When row in the simple panel');
     assert(await page.locator('.piano-panel button:text-is("Three notes")').count() === 0, 'no Three notes in the simple panel');
@@ -240,6 +244,45 @@ async function ui(page) {
     await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
     await page.click('.piano-panel button:text-is("Done")');
     await openSheet('E8');
+  });
+  await test('Shuffle plays the left hand in another order for this hymn; Original brings the first back; Use for all hymns does not carry it', async () => {
+    // what the left hand draws: its own elements (ids like left()'s), their glyphs, places and lines. Verovio gives glyphs and
+    // stems new random names whenever it draws, some of them starting with "lh" too
+    const sig = () => page.evaluate(() => {
+      const t = Array.from(document.querySelectorAll('.sheet-music [id^="lh"]')).filter((e) => /^lh\d+(n\d+(_\d+)?(k\d+)?|r)$/.test(e.id)).map((e) => e.id +
+        Array.from(e.querySelectorAll('use, path')).map((n) => (n.getAttribute('xlink:href') || '').replace(/-[a-z0-9]+$/, '') + (n.getAttribute('transform') || '') + (n.getAttribute('d') || '')).join(',')).join('|');
+      let h = 0; for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0; return h;
+    });
+    const own = () => page.evaluate(() => (JSON.parse(localStorage.getItem('hfw.handsByHymn') || '{}').E8 || {}).lh);
+    await page.click('.piano-panel .pp-peek');
+    await pick('Style', 'Flowing');
+    const shuffle = page.locator('.piano-panel .ce-row button:text-is("Shuffle")'), original = page.locator('.piano-panel .ce-row button:text-is("Original")');
+    assert(await shuffle.isVisible(), 'Flowing shows Shuffle');
+    assert(await original.count() === 0, 'no Original before a shuffle');
+    const first = await sig();
+    await shuffle.click(); await settle();
+    const second = await sig();
+    assert(second !== first, 'another order plays other notes');
+    assert(await original.isVisible() && /Shuffled/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'Original appears and the bar says Shuffled');
+    assert((await own() || {}).seed > 0, 'the take is kept for the hymn');
+    await page.reload(); await page.waitForSelector('.sheet-music svg'); await settle();
+    await page.click('.piano-panel .pp-peek'); await settle();   // open again, as it was when the notes were drawn the first time
+    assert(await sig() === second, 'the same notes after a reload');
+    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
+    const all = await page.evaluate(() => JSON.parse(localStorage.getItem('hfw.handsForAll')).lh);
+    assert(all.kind === 'adaptive' && all.seed === undefined, 'the device\'s choice is Flowing without the take');
+    assert((await own() || {}).seed > 0, 'the hymn keeps its take');
+    await openSheet('E10');
+    await page.click('.piano-panel .pp-peek');
+    assert(await page.locator('.piano-panel .ce-row button:text-is("Original")').count() === 0, 'another hymn starts on its own take');
+    await openSheet('E8');
+    await page.click('.piano-panel .pp-peek');
+    await original.click(); await settle();
+    assert(await sig() === first && await original.count() === 0, 'Original plays the first notes again');
+    assert(!(await page.locator('.piano-panel .pp-summary').textContent()).includes('Shuffled'), 'and the bar no longer says Shuffled');
+    await pick('Style', 'Plain');
+    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
+    await page.click('.piano-panel button:text-is("Done")');
   });
   await test('choices kept under the old names (one hymn\'s style carried to every hymn) are forgotten', async () => {
     await page.evaluate(() => {
@@ -484,6 +527,7 @@ async function ui(page) {
     const version = await (await fetch(BASE + 'data/version.json')).json();
     const total = {sheets: 0, runs: 0, left: 0, right: 0, midi: 0, repeats: 0};
     for (const [group, file] of Object.entries(version.sheets)) {
+      if (uiOnly) break;
       if (only && !only.some((id) => id.replace(/\d+$/, '') === group)) continue;
       const t = Date.now(), r = await page.evaluate(inPage, {file, step, only});
       for (const k of Object.keys(total)) total[k] += r[k];

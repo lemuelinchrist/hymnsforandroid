@@ -5,7 +5,7 @@
 // is this alone (tools/web/android). What differs between the two comes in as options, or through host.js.
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE} from './sheet.js';
 import {createEditor} from './editor.js';
-import {createPianoPanel, createStrumPanel} from './pianopanel.js';
+import {createPianoPanel, createStrumPanel, withoutTake} from './pianopanel.js';
 import {createSheetPlayer} from './sheetplayer.js';
 import {DEFAULT as PIANO_DEFAULT, STRUM_DEFAULT, SAVED, forgetOldChoices} from './piano.js';
 import {host as appHost} from './host.js';
@@ -182,7 +182,7 @@ export function createSheetPanel(pane, o) {
     view.set({});
   }
   function setUsual(choice) {
-    store.set(SAVED.hands, choice);
+    store.set(SAVED.hands, withoutTake(choice));   // the take (Shuffle) stays with this hymn
     keepOwn(choice);
   }
   view.piano = pianoChoice().choice;
