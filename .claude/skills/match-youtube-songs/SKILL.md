@@ -226,8 +226,8 @@ is probably not in the hymnal. Hold back titles with "New Tune" / "Alternate Tun
   by Lemuel). New BF numbers fill the free numbers above 435 first (left by removed duplicates), lowest first; BF385-400 is left alone.
   Edit `app/src/main/assets/hymns.sqlite`, run `:sqlite:exportSql` **before** `runImportNycypcdYoutube` (it starts with `importSql`, which rebuilds
   the database from `hymns.sql` and drops unexported edits).
-- **Downloading audio from YouTube without being blocked**: the lowest-quality audio only (`-f worstaudio`, 1-2 MB), ONE process, a random 30-90 s pause, `timeout 120`,
-  stop (or sleep an hour) after 4 failures in a row, resume by skipping files that exist. About 1 song per minute worked without a single error. For hundreds of songs
+- **Downloading audio from YouTube at a gentle rate**: the smallest audio stream only (`-f worstaudio`, 1-2 MB), one process at a time, a short pause (30-90 s) between files, `timeout 120`,
+  stop (or wait an hour) after 4 failures in a row, resume by skipping files that exist. About 1 song per minute ran without a single error. For hundreds of songs
   hand it to the always-on `media` host (brief `~/joseph/TASK.md`, script `~/joseph/dl.sh`; skill media-resident-agent-setup) and `rsync` the files back.
 - Do not `pkill -f` a pattern that occurs in your own command line (it kills your shell, exit 144).
 
