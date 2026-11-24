@@ -236,6 +236,53 @@ test('dynamic accompaniment: 9th, walking bass, smooth voice-leading, short chor
   const clh = M.accompany(sc).events;
   assert.ok(clh.filter((e) => e.p).every((e) => e.p.length === 2), 'bass and tenor: ' + show(clh));
   assert.strictEqual(show(clh.slice(1, 2)), 'G2+B3/16', 'G: the tenor is the third');
+  // and walks like a hymnal's lower voices: a bass leaping a third takes the note of the key between on the last beat
+  const sp = song(); sp.notes = [{p: 62, d: 2}, {p: 71, d: 16, ch: 'G'}, {p: 72, d: 16, ch: 'Em'}, {p: 67, d: 16, ch: 'G'}];
+  sp.acc = {pat: '1+t', rate: 0, low: 40, passing: true};
+  const pl2 = show(M.accompany(sp).events);
+  assert.strictEqual(pl2, 'r/2 G2+D3/12 F#2+D3/4 E2+G3/12 F#2+G3/4 G2+B3/16', 'G to Em and back: the bass walks G F# E F# G');
+  // More walking (passing: 2): halfway through a bar-long chord the bass goes to another note of it, towards the next
+  // bass, and walks on from there: G B | C, and a fourth in two steps; never to a note a leap away from the next bass
+  const sm = song(); sm.key = 'G'; sm.notes = [{p: 71, d: 4, ch: 'G'}, {p: 74, d: 4}, {p: 71, d: 4}, {p: 67, d: 4}, {p: 72, d: 16, ch: 'C'},
+    {p: 69, d: 16, ch: 'Am'}, {p: 67, d: 16, ch: 'D'}, {p: 67, d: 16, ch: 'G'}];
+  sm.pickup = 0; sm.acc = {pat: '1+t', rate: 0, low: 40, passing: 2};
+  const mb = M.accompany(sm).events.map((e) => e.p[0]), ml = mb.map(nm);
+  assert.deepStrictEqual(ml.slice(0, 3), ['G2', 'B2', 'C3'], 'G B | C: ' + ml);
+  assert.ok(mb.every((p, i) => i === 0 || Math.abs(p - mb[i - 1]) <= 7), 'no leap wider than a fifth: ' + ml);
+  // a chord of two beats moves halfway too, but only while the melody holds one note through it (a held "throne")
+  const sh = song(); sh.pickup = 0; sh.notes = [{p: 71, d: 8, ch: 'G'}, {p: 72, d: 4, ch: 'C'}, {p: 72, d: 4}, {p: 67, d: 16, ch: 'G'}];
+  sh.acc = {pat: '1+t', rate: 0, low: 40, passing: 2};
+  const hb = M.accompany(sh).events.map((e) => nm(e.p[0]));
+  assert.deepStrictEqual(hb.slice(0, 3), ['G2', 'B2', 'C3'], 'the held G walks G B C, the moving C does not: ' + hb);
+});
+
+test('guitar: open shapes, strums down and up, picking', () => {
+  const fr = (c) => M.guitarShape(M.chordInfo(c)).map((p, i) => p == null ? 'x' : p - [40, 45, 50, 55, 59, 64][i]).join('');
+  assert.deepStrictEqual(['C', 'G', 'D', 'A', 'E', 'Am', 'Em', 'Dm', 'G/B', 'D/F#', 'B7'].map(fr),
+    ['x32010', '320003', 'xx0232', 'x02220', '022100', 'x02210', '022000', 'xx0231', 'x20003', '200232', 'x21202']);
+  const st = M.styles({time: [4, 4]}).find((f) => f.id === 'guitar');
+  assert.deepStrictEqual(st.kinds.map((k) => k.id), ['folk', 'pop', 'steady', 'driving', 'ballad', 'country', 'pick', 'arp']);
+  const g = (kind) => {
+    const r = st.kinds.find((k) => k.id === kind).rhythms[0];
+    return M.accompanyOn({bars: [{g: 0, len: 16}, {g: 16, len: 16}], first: 0, chords: [{g: 0, end: 32, info: M.chordInfo('G')}],
+      mel: [[0, 32, 71]], last: 16, base: r}).events;
+  };
+  const folk = g('folk');
+  assert.deepStrictEqual(folk.slice(0, 6).map((e) => (e.up ? 'U' : 'D') + e.d), ['D4', 'D2', 'U4', 'U2', 'D2', 'U2'], 'D - D U - U D U');
+  assert.ok(folk.every((e) => e.inst === 'guitar'), 'a guitar plays it');
+  assert.strictEqual(show(folk.slice(0, 3)), 'G2+B2+D3+G3+B3+G4/4 G2+B2+D3+G3+B3+G4/2 D3+G3+B3+G4/4', 'down: six strings; up: the top four');
+  assert.strictEqual(show(g('pick').slice(0, 4)), 'G2/2 G4/2 B2/2 B3/2', 'thumb, high E, the other bass, B string');
+  const pop = g('pop');
+  assert.deepStrictEqual(pop.slice(0, 6).map((e) => e.mute ? 'K' : e.up ? 'U' : 'D'), ['D', 'D', 'U', 'K', 'U', 'D'], 'D - D U K U D U: the chuck on beat 3');
+  assert.strictEqual(show(g('country').slice(0, 4)), 'G2/4 G2+B2+D3+G3+B3+G4/2 D3+G3+B3+G4/2 B2/4', 'boom-chick: bass, strum, up, the other bass');
+  assert.strictEqual(show(g('pick').slice(-1)), 'G2+B2+D3+G3+B3+G4/16', 'the last bar: one strum');
+});
+
+test('guitar with a capo: the guitar sheet\'s shape, above the capo, no slash bass', () => {
+  const fr = (c, capo) => M.guitarShape(M.chordInfo(c), capo).map((p, i) => p == null ? 'x' : p - [40, 45, 50, 55, 59, 64][i] - capo).join('');
+  // E with capo 4: the guitar sheet shows C, played x32010 above the fourth fret, sounding E
+  assert.deepStrictEqual([['E', 4], ['B', 4], ['Ab', 1], ['E/G#', 4], ['C', 0]].map(([c, k]) => fr(c, k)), ['x32010', '320003', '320003', 'x32010', 'x32010']);
+  assert.strictEqual(M.guitarShape(M.chordInfo('E'), 4)[1], 52, 'the C shape four frets higher: C3 on the A string sounds E3');
 });
 
 // the app's Verovio takes it all
@@ -254,6 +301,25 @@ const verovio = require(vfile);
       const svg = tk.renderToSVG(1);
       assert.ok(svg.includes('id="l1"') && svg.includes('con pedale'));
     })));
+  });
+  test('voice2 emits layer 2 only in non-rest measures and works with accompaniment', () => {
+    const s = song();
+    // 1 bar of rest (pickup 2 + bar 1 = 18), then a low response in bar 2
+    s.voice2 = [{p: null, d: 18, hide: true}, {p: 58, d: 4, w: ['(echo)']}, {p: 56, d: 4, w: ['back']}, {p: null, d: 8, hide: true}];
+    s.rh = {add: 1, on: 'all'};
+    s.acc = {pat: '1 5 8 5', rate: 2, low: 48};
+    const rh = M.rightHand(s), lh = M.accompany(s);
+    assert.ok(rh && rh[1] && rh[1].length === 1, 'bar 1 still gets right-hand fill');
+    const mei = M.toMei(s, {left: lh.events, right: rh});
+    assert.strictEqual(mei.split('<layer n="2">').length, 2, 'only one measure has layer 2');
+    assert.ok(mei.includes('<space ') && mei.includes('id="v1"') && mei.includes('<verse n="2"><syl>(echo)</syl></verse>'), 'hidden rest emits space, v-prefixed ids and verse 2');
+    assert.strictEqual(M.playList(s).v2.length, 2, 'playList includes voice2');
+    const r = M.replaceRange(s.voice2, 14, 18, [{p: 60, d: 4, w: ['hi']}]);
+    assert.deepStrictEqual(r[2], {p: 58, d: 4, w: ['(echo)']}, 'replaceRange preserves voice2 lyrics and scalar pitch');
+    assert.strictEqual(r[0].hide, true, 'replaceRange preserves hidden rests');
+    assert.ok(tk.loadData(mei), 'Verovio loads voice2 + Both hands');
+    const svg = tk.renderToSVG(1);
+    assert.ok(svg.includes('id="v1"') && svg.includes('id="l1"'));
   });
   console.log(count + ' tests passed');
 })();

@@ -131,6 +131,7 @@ def copyViewer = tasks.register('copyViewer', Sync) {
     from(new File(web, 'src')) { include shared }
     from(new File(web, 'android')) { exclude 'shared.txt' }
     from(new File(web, 'vendor/piano')) { include '*.mp3'; into 'vendor/piano' }
+    from(new File(web, 'vendor/guitar')) { include '*.mp3'; into 'vendor/guitar' }
     from(rootProject.file('tools/lead-sheet-editor/music.js'))
     into new File(viewerAssets, 'viewer')
 }

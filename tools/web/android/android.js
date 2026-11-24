@@ -7,7 +7,7 @@
 //   accent, accentNight  the book's day and night colours (#rrggbb)
 //   tune=m123        the hymn's tune (res/raw/m123.mid): the sheet plays at its tempo
 //   lang=zh-Hant     the app's language
-// and gives it window.HymnsEdits (this device's chord edits, ChordEdits.java). It calls setInsets (the camera cutout)
+// and gives it window.HymnsEdits (this device's chord edits, ChordEdits.java; Save MIDI; Print). It calls setInsets (the camera cutout)
 // and setKeyboard (the on-screen keyboard) on the page, and closeEditor when Back is pressed while editing chords.
 import {setHost} from './host.js';
 import * as Edits from './edits.js';
@@ -52,6 +52,11 @@ setHost({
     const u8 = new Uint8Array(bytes.buffer || bytes);
     for (let i = 0; i < u8.length; i += 0x8000) bin += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
     bridge.saveFile(name, btoa(bin));
+  }} : {}),
+  // Print: the app hands the page to Android's printing (a WebView has no window.print), and says when it is over
+  ...(bridge && bridge.print ? {print: (title, done) => {
+    window.afterPrint = () => { window.afterPrint = null; done(); };
+    bridge.print(title || '');
   }} : {}),
 });
 

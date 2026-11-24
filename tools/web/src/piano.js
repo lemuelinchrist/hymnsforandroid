@@ -3,8 +3,9 @@
 // (transposed, with this device's chord edits), by the rules of the lead sheet editor (tools/lead-sheet-editor), whose
 // music.js build.py copies into the app (window.LeadSheet).
 //
-// A choice is {lh: {family, kind, rhythm, oct, pedal} | null, rh: {add: 0 | 1 | 2, on: 'chord' | 'beat' | 'long' | 'all'}}:
+// A choice is {lh: {family, kind, rhythm, oct, pedal, walk, tone, capo} | null, rh: {add: 0 | 1 | 2, on: 'chord' | 'beat' | 'long' | 'all'}}:
 // the names of a style of music.js, so that it fits every time signature (an arpeggio in 3/4 is not the one in 4/4).
+// tone is the guitar's (GUITAR_TONES; none: warm); capo is set for the guitar sheet's strumming (strumChoice).
 
 const MEI_NS = 'http://www.music-encoding.org/ns/mei';
 const XML_NS = 'http://www.w3.org/XML/1998/namespace';
@@ -15,28 +16,47 @@ const ACCID = {'-2': 'ff', '-1': 'f', '0': 'n', '1': 's', '2': 'x'}, ACCID_GES =
 export const DEFAULT = {lh: {family: 'strike', kind: 'hymn', rhythm: 'half', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}};
 
 // The panel's simple choices: a style of music.js by what it is for, and the right hand that goes with it (which can
-// be changed: Melody alone or Two notes, added where a chord starts). The first is DEFAULT.
+// be changed: Melody alone or Two notes, added where a chord starts, or for Chorale on the beat). The first is DEFAULT.
 export const PRESETS = [
   {id: 'plain', name: 'Plain', lh: ['strike', 'hymn', 'half'], add: 0},
-  {id: 'chorale', name: 'Chorale', lh: ['dynamic', 'chorale', 'half'], add: 1},
+  {id: 'chorale', name: 'Chorale', lh: ['dynamic', 'chorale', 'half'], add: 1, on: 'beat'},
   {id: 'flowing', name: 'Flowing', lh: ['dynamic', 'adaptive', '8'], add: 0},
-  {id: 'gentle', name: 'Gentle', lh: ['dynamic', 'rolled', 'held'], add: 0},
+  {id: 'guitar', name: 'Guitar', lh: ['guitar', 'folk', '8'], add: 0, anyKind: true},   // any strum: the panel's Strum row
   {id: 'lively', name: 'Lively', lh: ['dynamic', 'pulse', '8'], add: 1},
   {id: 'walking', name: 'Walking', lh: ['dynamic', 'walking', '4'], add: 0},
 ];
 export function presetChoice(p) {
-  return {lh: {family: p.lh[0], kind: p.lh[1], rhythm: p.lh[2], oct: 0, pedal: false}, rh: {add: p.add, on: 'chord'}};
+  return {lh: {family: p.lh[0], kind: p.lh[1], rhythm: p.lh[2], oct: 0, pedal: false}, rh: {add: p.add, on: p.on || 'chord'}};
 }
 // the preset a choice is, in this time signature (the right hand may be either of the simple ones), or null: Custom
 export function presetOf(choice, time) {
   const rh = (choice && choice.rh) || {add: 0};
-  if (rh.add > 1 || (rh.add === 1 && rh.on !== 'chord')) return null;
+  if (rh.add > 1) return null;
   const cur = choice && pattern(choice.lh, time);
   if (!cur || cur.pedal || (choice.lh.oct || 0) !== 0) return null;
   return PRESETS.find((p) => {
     const q = pattern(presetChoice(p).lh, time);
-    return q && q.family === cur.family && q.kind === cur.kind && q.rhythm === cur.rhythm;
+    return q && q.family === cur.family && (p.anyKind || (q.kind === cur.kind && q.rhythm === cur.rhythm)) && (rh.add === 0 || rh.on === (p.on || 'chord'));
   }) || null;
+}
+
+// the guitar's tones (player.js GUITAR_TONES), as the panels offer them; warm is the usual one
+export const TONES = [['bright', 'Bright'], ['warm', 'Warm'], ['mellow', 'Mellow'], ['soft', 'Soft']];
+export const STRUM_DEFAULT = {kind: 'folk', tone: 'warm'};
+
+// Where the choices are kept on the device (ui.js store): a hymn's own, and the one for every hymn ("Use for all
+// hymns"). Until 2026-11-24 they were `pianoOf`, `piano`, `strumOf` and `strum`; before the panel made a change the
+// hymn's own, every change was kept as `piano`, the choice for every hymn, so devices carried one hymn's style to the
+// next. Those are forgotten (forgetOldChoices), so every device starts again from the defaults.
+export const SAVED = {handsOf: 'handsByHymn', hands: 'handsForAll', strumOf: 'strumByHymn', strum: 'strumForAll'};
+export function forgetOldChoices() {
+  try { for (const k of ['piano', 'pianoOf', 'strum', 'strumOf']) localStorage.removeItem('hfw.' + k); } catch (e) { /* no storage */ }
+}
+// The guitar sheet's strumming ({kind, tone}) as a choice to play: a guitar's strums only (the melody is the sheet's),
+// in the shapes of the chords the guitar sheet shows, above its capo
+export function strumChoice(strum, capo) {
+  const s = Object.assign({}, STRUM_DEFAULT, strum || {});
+  return {lh: {family: 'guitar', kind: s.kind, rhythm: '', oct: 0, pedal: false, tone: s.tone, capo: capo | 0}, rh: {add: 0, on: 'chord'}};
 }
 
 const lib = () => window.LeadSheet;
@@ -55,7 +75,9 @@ export function pattern(lh, time) {
   const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
   const out = {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
-  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth']) if (r[k] != null) out[k] = r[k];
+  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar']) if (r[k] != null) out[k] = r[k];
+  if (out.passing && lh.walk) out.passing = 2;   // More walking (Chorale)
+  if (out.guitar && lh.capo != null) out.capo = lh.capo;
   return out;
 }
 
@@ -96,7 +118,7 @@ function readBars(doc) {
     bar.rptend = m.getAttribute('right') === 'rptend';
     const staff = kids(m).find((c) => c.localName === 'staff');
     let end = 0;
-    const walk = (e, start, factor) => {
+    const walk = (e, start, factor, layerN) => {
       let at = start;
       kids(e).forEach((c) => {
         const name = c.localName;
@@ -108,17 +130,17 @@ function readBars(doc) {
             const alter = acc.sounding != null ? acc.sounding : acc.written != null ? acc.written : key in state ? state[key] : ka[pname];
             if (acc.written != null) state[key] = acc.written;
             const tie = c.getAttribute('tie') || '';
-            bar.notes.push({el: c, g: g + at, d, p: 12 * (oct + 1) + STEP[pname] + alter, alter, written: acc.written != null, key, pname,
+            bar.notes.push({el: c, g: g + at, d, p: 12 * (oct + 1) + STEP[pname] + alter, alter, written: acc.written != null, key, pname, layer: layerN,
               tiedTo: tiedTo.has(xmlId(c)) || tie === 'm' || tie === 't'});
           }
           at += d;
         } else if (name === 'mRest' || name === 'mSpace') at += nominal;
-        else if (name === 'tuplet') at = walk(c, at, factor * parseInt(c.getAttribute('numbase') || '2', 10) / parseInt(c.getAttribute('num') || '3', 10));
-        else if (name === 'beam' || name === 'layer') at = walk(c, at, factor);
+        else if (name === 'tuplet') at = walk(c, at, factor * parseInt(c.getAttribute('numbase') || '2', 10) / parseInt(c.getAttribute('num') || '3', 10), layerN);
+        else if (name === 'beam' || name === 'layer') at = walk(c, at, factor, layerN);
       });
       return at;
     };
-    if (staff) kids(staff).forEach((layer) => { if (layer.localName === 'layer') end = Math.max(end, walk(layer, 0, 1)); });
+    if (staff) kids(staff).forEach((layer) => { if (layer.localName === 'layer') end = Math.max(end, walk(layer, 0, 1, parseInt(layer.getAttribute('n') || '1', 10))); });
     bar.len = Math.round(end) || nominal;
     kids(m).forEach((c) => {
       if (c.localName === 'harm') bar.harms.push({g: g + (parseFloat(c.getAttribute('tstamp') || '1') - 1) * per, ch: c.textContent.trim()});
@@ -165,25 +187,28 @@ function analyse(doc, choice) {
   const first = upbeat ? bars[0].len : 0;
   const whole = bars.find((x) => x.len >= x.nominal) || bars[0];
 
-  // the melody: every note, and the notes as they sound (a tied note goes on in the one before it)
+  // the melody: every note, and the notes as they sound (a tied note goes on in the one before it, per layer)
   const notes = [].concat(...bars.map((b) => b.notes.map((n) => Object.assign(n, {bar: b}))));
-  const sound = [];
+  const sound = [], prevSound = {};
   let last = -1;
   notes.forEach((n) => {
-    const prev = sound[sound.length - 1];
+    const prev = prevSound[n.layer || 1];
     if (n.tiedTo && prev && Math.abs(prev[1] - n.g) < 0.01) prev[1] = n.g + n.d;
-    else { sound.push([n.g, n.g + n.d]); last = n.g; }
+    else { const s = [n.g, n.g + n.d]; sound.push(s); prevSound[n.layer || 1] = s; last = Math.max(last, n.g); }
   });
+  sound.sort((a, b) => a[0] - b[0]);
   const harms = [].concat(...bars.map((b) => b.harms)).sort((a, b) => a.g - b.g);
   const chords = M.chordsOnBeat(harms, bars, sound, endG);
 
-  // the right hand: notes of the chord under the melody
+  // the right hand: notes of the chord under the melody (layer 1 only, skipping where a second voice already sounds)
   const rh = choice.rh && choice.rh.add > 0 ? choice.rh : null;
   if (rh) {
+    const v2Notes = notes.filter((n) => (n.layer || 1) > 1);
+    const hasV2At = (g, d) => v2Notes.some((v) => v.g < g + d - 0.01 && v.g + v.d > g + 0.01);
     let k = -1, info = null;
-    notes.forEach((n) => {
+    notes.filter((n) => (n.layer || 1) === 1).forEach((n) => {
       while (k + 1 < harms.length && harms[k + 1].g <= n.g + 0.01) { k++; info = M.chordInfo(harms[k].ch); }
-      if (!info) return;
+      if (!info || hasV2At(n.g, n.d)) return;
       const onChord = k >= 0 && Math.abs(harms[k].g - n.g) < 0.01, long = n.d >= 2 * n.bar.beat - 0.01;
       const onBeat = Math.abs(((n.g - n.bar.g) % n.bar.beat)) < 0.01;
       const want = rh.on === 'all' ? true : rh.on === 'chord' ? onChord : rh.on === 'long' ? long : onBeat || long;
@@ -197,8 +222,8 @@ function analyse(doc, choice) {
   const base = pattern(choice.lh, [whole.count, whole.unit]);
   let left = null;
   if (base && M.parsePattern(base.pat).length) {
-    const mel = notes.map((n) => [n.g, n.g + n.d, n.fill ? n.fill[0] : n.p]);
-    left = M.accompanyOn({bars: bars.map((b) => ({g: b.g, len: b.len})), first, chords, mel, last, base}).events;
+    const mel = notes.map((n) => [n.g, n.g + n.d, n.fill ? n.fill[0] : n.p]).sort((a, b) => a[0] - b[0]);
+    left = M.accompanyOn({bars: bars.map((b) => ({g: b.g, len: b.len, beat: b.beat, fifths: b.fifths})), first, chords, mel, last, base}).events;
   }
   return {M, bars, notes, harms, chords, left, upbeat, first, endG, base};
 }
@@ -314,17 +339,17 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
   const barIndex = (g) => { let k = 0; while (k < bars.length - 1 && bars[k + 1].g <= g + 1e-6) k++; return k; };
   const put = (bi, e) => per[bi].push(e);
 
-  // the melody, a tied note one note; the notes added under it go with it — shaped gently by beat & length
-  let prev = null;
+  // the melody, a tied note one note (per layer); the notes added under it go with it — shaped gently by beat & length
+  const prevByLayer = {};
   notes.forEach((n) => {
-    const bi = bars.indexOf(n.bar), b = n.bar;
+    const bi = bars.indexOf(n.bar), b = n.bar, ly = n.layer || 1, prev = prevByLayer[ly];
     if (n.tiedTo && prev && prev.note === n.p && Math.abs(prev.g + prev.dg - n.g) < 0.01) {
       prev.dg += n.d; prev.ids.push(xmlId(n.el));
       if (prev.fillEvents) prev.fillEvents.forEach((f) => { f.dg += n.d; });
       return;
     }
     const pos = n.g - b.g, onDownbeat = pos < 0.01, onBeat = Math.abs(pos % b.beat) < 0.01;
-    const melVel = onDownbeat ? 103 : onBeat ? 98 : n.d >= b.beat ? 96 : 90;
+    const melVel = (onDownbeat ? 103 : onBeat ? 98 : n.d >= b.beat ? 96 : 90) - (ly > 1 ? 6 : 0);
     const ev = {g: n.g, dg: n.d, note: n.p, vel: melVel, hand: 'm', ids: [xmlId(n.el)].filter(Boolean)};
     put(bi, ev);
     if (n.fill) {
@@ -334,10 +359,11 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
         off: fi * fillRoll, hand: 'f', ids: []}));
       ev.fillEvents.forEach((f) => put(bi, f));
     }
-    prev = ev;
+    prevByLayer[ly] = ev;
   });
 
   // the left hand, or the chords softly in its place — metrical weighting, arpeggio contour, gentle chord rolls & clean pedal lifts
+  const tone = (choice && choice.lh && choice.lh.tone) || 'warm';
   if (left) {
     bars.forEach((b, bi) => {
       const barEvs = left.filter((e) => e.g >= b.g - 1e-6 && e.g < b.g + b.len - 1e-6);
@@ -361,13 +387,14 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
           microOff = onBeat ? 0.002 : (rising ? 0.005 : 0.003);
         }
         const roll = e.roll || (e.p.length > 1 ? 0.012 : 0);
+        if (e.up) baseVel -= 9;   // a guitar's up strum: lighter, from the top string down
         // Clean pedal lift right before the next chord/bar so harmonies stay clear
         const ringDur = e.ring ? Math.max(e.d, e.ring - 0.35) : e.d;
         e.p.forEach((p, pi) => {
-          const voiceAdj = e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
+          const voiceAdj = e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
           const vel = Math.max(34, Math.min(86, baseVel + voiceAdj));
-          const off = roll ? pi * roll : microOff;
-          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', ids: ['lh' + bi + 'n' + k]});
+          const off = roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff;
+          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', inst: e.inst, mute: e.mute, tone: e.inst ? tone : undefined, ids: ['lh' + bi + 'n' + k]});
         });
       });
     });
@@ -392,6 +419,9 @@ export function scoreOf(doc, choice, {hands = false} = {}) {
       const q = (at + e.g - b.g) / 4;
       const out = {q, d: e.dg / 4, note: e.note, vel: e.vel, hand: e.hand, ids: e.ids};
       if (e.off) out.off = e.off;
+      if (e.inst) out.inst = e.inst;
+      if (e.mute) out.mute = true;
+      if (e.tone) out.tone = e.tone;
       events.push(out);
       e.ids.forEach((id) => { if (!(id in idQ)) idQ[id] = q; });
     });

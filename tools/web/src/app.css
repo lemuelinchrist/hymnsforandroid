@@ -493,4 +493,4 @@ body.bars-away .topbar { transform: translateY(-100%); }
 @container (min-width: 44.5em) { .lyrics { width: auto; max-width: none; margin-inline: 0; } }
 
 /* the Both hands bar belongs to the sheet: not over the lyrics on a phone */
-@media (max-width: 1079px) { body:has(.hymn[data-tab="lyrics"]) .piano-panel { display: none !important; } }
+@media (max-width: 1079px) { body:has(.hymn[data-tab="lyrics"]) .pp-panel { display: none !important; } }

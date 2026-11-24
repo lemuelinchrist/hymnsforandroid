@@ -117,9 +117,9 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
     await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Edit chords")'); await page.waitForTimeout(500);
     assert(await page.evaluate(() => window.__bridge.editing) === true, 'the app knows (Back closes the editor)');
     await page.locator('.sheet-music g.measure').nth(2).locator('g.staff').first().click({position: {x: 5, y: 5}, force: true}); await page.waitForTimeout(500);
-    const height = await page.locator('.chord-editor:not(.piano-panel)').evaluate((e) => e.offsetHeight);
+    const height = await page.locator('.chord-editor:not(.pp-panel)').evaluate((e) => e.offsetHeight);
     assert(height < 220, 'the editor leaves the sheet in view: ' + height + 'px');
-    const done = await page.locator('.chord-editor:not(.piano-panel) .ce-btn.primary').evaluate((e) => getComputedStyle(e).backgroundColor);
+    const done = await page.locator('.chord-editor:not(.pp-panel) .ce-btn.primary').evaluate((e) => getComputedStyle(e).backgroundColor);
     assert(done === 'rgb(0, 153, 204)', 'the editor in the book\'s colour: ' + done);
     assert(await page.locator('.ce-more').isVisible() && await page.locator('.ce-build').isHidden(), 'More, folded away');
     await page.click('.ce-key .ce-btn:has-text("G")'); await page.waitForTimeout(500);
@@ -131,7 +131,7 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
     assert(await page.evaluate(() => !window.__bridge.saved.BF500), 'the original bar again: nothing kept');
     await page.click('.ce-more');
     await page.evaluate(() => window.closeEditor()); await page.waitForTimeout(300);
-    assert(await page.locator('.chord-editor:not(.piano-panel)').isHidden() && await page.evaluate(() => window.__bridge.editing) === false, 'closed');
+    assert(await page.locator('.chord-editor:not(.pp-panel)').isHidden() && await page.evaluate(() => window.__bridge.editing) === false, 'closed');
   });
   await test('Save MIDI hands the file to the app (a WebView does not download)', async () => {
     await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Save MIDI")'); await page.waitForTimeout(800);

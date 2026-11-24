@@ -40,6 +40,11 @@ async function inPage({file, step, only}) {
     ['arpeggio', {lh: {family: 'arp', kind: 'open', rhythm: '8'}, rh: {add: 1, on: 'beat'}}],
     ['bass', {lh: {family: 'bass', kind: 'alt', rhythm: ''}, rh: {add: 2, on: 'all'}}],
     ['wide', {lh: {family: 'arp', kind: 'wide', rhythm: '16', pedal: true, oct: 1}, rh: {add: 1, on: 'chord'}}],
+    ['chorale', {lh: {family: 'dynamic', kind: 'chorale', rhythm: 'held'}, rh: {add: 1, on: 'beat'}}],
+    ['guitar', {lh: {family: 'guitar', kind: 'folk', rhythm: '8'}, rh: {add: 0}}],
+    ['picking', {lh: {family: 'guitar', kind: 'pick', rhythm: '8'}, rh: {add: 1, on: 'chord'}}],
+    ['country', {lh: {family: 'guitar', kind: 'country', rhythm: '8'}, rh: {add: 0}}],
+    ['pop', {lh: {family: 'guitar', kind: 'pop', rhythm: '8'}, rh: {add: 0}}],
     ['right only', {lh: null, rh: {add: 2, on: 'long'}}],
   ];
   // a layer's length in sixteenths, and the pitches sounding at each time
@@ -148,7 +153,7 @@ async function ui(page) {
   await test('the sheet has one staff, and Both hands adds the left hand under it', async () => {
     assert(await staves() === 1, 'one staff to begin with');
     assert(await page.locator('.piano-panel').isHidden(), 'no Both hands panel yet');
-    await page.click('.tb.hands'); await settle();
+    await page.click('.tb.hands:not(.strum)'); await settle();
     assert(await staves() === 2, 'two staves, got ' + await staves());
     assert(await left() > 10, 'left hand notes');
     assert(await page.locator('.piano-panel .pp-body').isVisible(), 'Both hands opens its panel at the bottom');
@@ -158,7 +163,7 @@ async function ui(page) {
     await page.click('.piano-panel button:text-is("Done")');
     assert(await page.locator('.piano-panel .pp-body').isHidden(), 'the choices are put away');
     assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'the bar stays');
-    const said = await page.locator('.pp-summary').textContent();
+    const said = await page.locator('.piano-panel .pp-summary').textContent();
     assert(/Plain/.test(said), 'the bar names the style: ' + said);
     await page.click('.piano-panel .pp-peek');
     assert(await page.locator('.piano-panel .pp-body').isVisible(), 'open again');
@@ -174,19 +179,43 @@ async function ui(page) {
     assert(await page.locator('.piano-panel .ce-row', {hasText: 'When'}).isHidden(), 'no When row in the simple panel');
     assert(await page.locator('.piano-panel button:text-is("Three notes")').count() === 0, 'no Three notes in the simple panel');
     await pick('Style', 'Flowing');
+    assert(await page.locator('.piano-panel .pp-switch', {hasText: 'More walking'}).isHidden(), 'More walking is only for Chorale');
     assert(await left() > hymnStyle, 'Flowing has more notes than Plain: ' + await left() + ' / ' + hymnStyle);
     assert(await page.locator('.sheet-music g.note.fill').count() === 0, 'the melody alone');
+    await pick('Style', 'Guitar');
+    const strum = page.locator('.piano-panel .ce-row', {hasText: 'Strum'});
+    assert(await strum.isVisible(), 'Guitar shows the Strum row');
+    const folk = await left();
+    await pick('Strum', 'Fingerpicking');
+    assert(await left() !== folk && /Fingerpicking/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'picking plays other notes, and the bar says so');
+    assert(await page.locator('.piano-panel .ce-row button:text-is("Guitar")').getAttribute('aria-pressed') === 'true', 'still the Guitar preset');
+    assert(await page.locator('.piano-panel .ce-row', {hasText: 'Tone'}).isHidden(), 'the simple panel has no Tone row');
+    await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
+    const tone = page.locator('.piano-panel .ce-row', {hasText: 'Tone'});
+    assert(await tone.isVisible() && await tone.locator('button:text-is("Warm")').getAttribute('aria-pressed') === 'true', 'Advanced: the guitar\'s Tone, Warm to begin with');
+    await pick('Tone', 'Mellow');
+    assert(await tone.locator('button:text-is("Mellow")').getAttribute('aria-pressed') === 'true', 'Mellow chosen');
+    await pick('Tone', 'Warm');
+    await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
     await pick('Style', 'Chorale');
+    assert(await strum.isHidden(), 'no Strum row for Chorale');
     assert(await page.locator('.sheet-music g.note.fill').count() > 5, 'Chorale adds a note under the melody');
+    const sw = page.locator('.piano-panel .pp-switch', {hasText: 'More walking'});
+    assert(await sw.isVisible() && await sw.getAttribute('aria-checked') === 'false', 'Chorale shows More walking, off');
+    const plainWalk = await left();
+    await sw.click(); await settle();
+    assert(await sw.getAttribute('aria-checked') === 'true', 'the switch turns on');
+    assert(await left() > plainWalk, 'more notes in the left hand: ' + await left() + ' / ' + plainWalk);
+    await sw.click(); await settle();
     await pick('Right hand', 'Melody alone');
     assert(await page.locator('.sheet-music g.note.fill').count() === 0, 'and it can be taken off');
-    await page.click('.piano-panel button:text-is("Advanced")'); await settle();
+    await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
     await pick('Left hand', 'Arpeggio');
     await pick('Right hand', 'Three notes');
     assert(await page.locator('.sheet-music g.note.fill').count() > 10, 'notes added under the melody');
     await pick('Left hand', 'No left hand');
     assert(await staves() === 1, 'no left hand, no second staff');
-    await page.click('.piano-panel button:text-is("Advanced")'); await settle();
+    await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
     assert(await page.locator('.piano-panel button:text-is("Custom")').count() === 1, 'not a preset: Custom');
     await pick('Style', 'Plain');
     assert(await left() === hymnStyle, 'Plain again');
@@ -198,31 +227,74 @@ async function ui(page) {
     await page.click('.piano-panel button:text-is("Done")');
     await openSheet('E10');
     assert(await staves() === 2, 'both hands stay on for the next hymn');
-    assert(/Plain/.test(await page.locator('.pp-summary').textContent()), 'E10 plays the device\'s Plain');
+    assert(/Plain/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'E10 plays the device\'s Plain');
     await openSheet('E8');
     assert(await left() === here, 'E8 keeps its own Flowing: ' + await left() + ' / ' + here);
     assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'another hymn: the panel is tucked down, not open');
     await page.click('.piano-panel .pp-peek');
     await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
     await openSheet('E10');
-    assert(/Flowing/.test(await page.locator('.pp-summary').textContent()), 'now E10 plays Flowing too');
+    assert(/Flowing/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'now E10 plays Flowing too');
     await page.click('.piano-panel .pp-peek');
     await pick('Style', 'Plain');
     await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
     await page.click('.piano-panel button:text-is("Done")');
     await openSheet('E8');
   });
+  await test('choices kept under the old names (one hymn\'s style carried to every hymn) are forgotten', async () => {
+    await page.evaluate(() => {
+      localStorage.setItem('hfw.piano', JSON.stringify({lh: {family: 'dynamic', kind: 'adaptive', rhythm: '8', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}}));
+      localStorage.setItem('hfw.pianoOf', JSON.stringify({E8: {lh: {family: 'dynamic', kind: 'walking', rhythm: '4', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}}}));
+      localStorage.setItem('hfw.strum', JSON.stringify({kind: 'pop', tone: 'soft'}));
+    });
+    await page.reload(); await page.waitForSelector('.sheet-music svg'); await settle();
+    assert(/Plain/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'E8 plays Plain, not the old choices: ' + await page.locator('.piano-panel .pp-summary').textContent());
+    assert(await page.evaluate(() => ['piano', 'pianoOf', 'strum', 'strumOf'].every((k) => localStorage.getItem('hfw.' + k) === null)), 'the old keys are gone');
+  });
   await test('it follows the key, and is not there on the guitar sheet or with the staff hidden', async () => {
     await page.keyboard.press('+'); await settle();
     assert(await staves() === 2 && await left() === hymnStyle, 'transposed: still two staves');
     await page.keyboard.press('0'); await settle();
     await page.keyboard.press('g'); await settle();
-    assert(await page.locator('.tb.hands').isHidden(), 'no Both hands on the guitar sheet');
+    assert(await page.locator('.tb.hands:not(.strum)').isHidden(), 'no Both hands on the guitar sheet');
     await page.keyboard.press('p'); await settle();
     assert(await staves() === 2, 'back on the piano sheet');
     await page.keyboard.press('h'); await settle();
-    assert(await page.locator('.tb.hands').isHidden() && await page.locator('.sheet-music .chart').count() === 1, 'chords over the words: no hands');
+    assert(await page.locator('.tb.hands:not(.strum)').isHidden() && await page.locator('.sheet-music .chart').count() === 1, 'chords over the words: no hands');
     await page.keyboard.press('h'); await settle();
+  });
+  await test('the guitar sheet: Strumming opens its own panel, the strum and the tone; a guitar strums above the capo', async () => {
+    await page.keyboard.press('g'); await settle();
+    const bStrum = page.locator('.tb.hands.strum'), sp = page.locator('.strum-panel');
+    assert(await bStrum.isVisible() && await page.locator('.tb.hands:not(.strum)').isHidden(), 'Strumming in the place of Both hands');
+    assert(await bStrum.getAttribute('aria-pressed') === 'true' && await sp.locator('.pp-peek').isVisible(), 'on to begin with: the guitar sheet plays on a guitar, its bar at the bottom');
+    await bStrum.click(); await settle();
+    assert(await bStrum.getAttribute('aria-pressed') === 'false' && await sp.isHidden(), 'it can be turned off');
+    await bStrum.click(); await settle();
+    assert(await sp.locator('.pp-body').isVisible() && await page.locator('.piano-panel').isHidden(), 'on again: its own panel opens, not the piano\'s');
+    const rows = await sp.locator('.ce-row .ce-label').allTextContents();
+    assert(rows.join(',') === 'Strum,Tone', 'only the strum and the tone: ' + rows);
+    assert(await sp.locator('.ce-row', {hasText: 'Tone'}).locator('button:text-is("Warm")').getAttribute('aria-pressed') === 'true', 'Warm to begin with');
+    assert(await sp.locator('button:text-is("Use for all hymns")').isDisabled(), 'the device\'s already');
+    await sp.locator('.ce-row', {hasText: 'Strum'}).locator('button:text-is("Pop")').click();
+    await sp.locator('.ce-row', {hasText: 'Tone'}).locator('button:text-is("Soft")').click();
+    await sp.locator('button:text-is("Done")').click();
+    assert(/Pop · Soft/.test(await sp.locator('.pp-summary').textContent()), 'the bar says it: ' + await sp.locator('.pp-summary').textContent());
+    assert(await page.evaluate(() => JSON.stringify(JSON.parse(localStorage.getItem('hfw.strumByHymn') || '{}').E8)) === JSON.stringify({kind: 'pop', tone: 'soft'}), 'E8\'s own');
+    const heard = await page.evaluate(async () => {
+      const {scoreOf, strumChoice} = await import('./piano.js'), {renderScoreForTest} = await import('./player.js'), {fetchGzJson} = await import('./files.js');
+      const v = await (await fetch('data/version.json')).json(), pack = await fetchGzJson(v.sheets.E);
+      const xml = pack.E8.replace(/<back>[\s\S]*<\/back>/, '');
+      const sc = scoreOf(new DOMParser().parseFromString(xml, 'application/xml'), strumChoice({kind: 'pop', tone: 'soft'}, 3), {hands: true});
+      const g = sc.events.filter((e) => e.inst === 'guitar');
+      return {n: g.length, tones: [...new Set(g.map((e) => e.tone))], mutes: g.filter((e) => e.mute).length, sound: await renderScoreForTest(sc, 100, 6)};
+    });
+    assert(heard.n > 50 && heard.tones.join() === 'soft' && heard.mutes > 5, 'Pop strums in the Soft tone, with its chucks: ' + JSON.stringify(heard));
+    assert(heard.sound.guitar === 13 && heard.sound.rms > 0.002 && heard.sound.peak < 1, 'on the sampled guitar, not clipping: ' + JSON.stringify(heard.sound));
+    await bStrum.click(); await settle();
+    assert(await sp.isHidden(), 'Strumming off: no panel');
+    await page.keyboard.press('p'); await settle();
+    assert(await page.locator('.piano-panel').isVisible(), 'back on the piano sheet: Both hands\' panel again');
   });
   await test('an edited chord moves the left hand; 1 to 7 put the chords of the key', async () => {
     const before = await page.locator('.sheet-music').innerHTML();
@@ -237,7 +309,7 @@ async function ui(page) {
     assert(await page.locator('.sheet-music').innerHTML() !== before, 'the sheet changed');
     await page.click('.chord-editor button:text-is("Undo")'); await settle();
     assert(await page.locator('.piano-panel').isHidden(), 'no Both hands bar while editing chords');
-    await page.click('.chord-editor:not(.piano-panel) button:text-is("Done")'); await settle();
+    await page.click('.chord-editor:not(.pp-panel) button:text-is("Done")'); await settle();
     assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'the bar again after editing');
     await page.keyboard.press('b'); await settle();
     assert(await staves() === 1, 'B takes the piano part away');
@@ -263,8 +335,8 @@ async function ui(page) {
   });
   await test('with Both hands on it plays the piano part too', async () => {
     await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();
-    assert(await page.locator('.tb.hands').getAttribute('aria-pressed') === 'false', 'Both hands is off here');
-    await page.click('.tb.hands'); await settle();
+    assert(await page.locator('.tb.hands:not(.strum)').getAttribute('aria-pressed') === 'false', 'Both hands is off here');
+    await page.click('.tb.hands:not(.strum)'); await settle();
     await page.click('.tb.playsheet'); await page.waitForTimeout(1300);
     assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'it plays');
     assert(await page.locator('[id^="lh"].playing').count() > 0, 'the left hand lights up too');
@@ -328,7 +400,9 @@ async function ui(page) {
       const {scoreOf} = await import('./piano.js'), {renderScoreForTest} = await import('./player.js'), {fetchGzJson} = await import('./files.js');
       const v = await (await fetch('data/version.json')).json(), pack = await fetchGzJson(v.sheets.E);
       const xml = pack.E8.replace(/<back>[\s\S]*<\/back>/, ''), out = {};
-      for (const [name, hands, choice] of [['lead', false, null], ['piano', true, {lh: {family: 'arp', kind: 'open', rhythm: '8'}, rh: {add: 2, on: 'beat'}}]]) {
+      for (const [name, hands, choice] of [['lead', false, null], ['piano', true, {lh: {family: 'arp', kind: 'open', rhythm: '8'}, rh: {add: 2, on: 'beat'}}],
+        ['guitar', true, {lh: {family: 'guitar', kind: 'folk', rhythm: '8'}, rh: {add: 0}}]]) {
+        out[name + 'Guitar'] = scoreOf(new DOMParser().parseFromString(xml, 'application/xml'), choice, {hands}).events.filter((e) => e.inst === 'guitar').length;
         const sc = scoreOf(new DOMParser().parseFromString(xml, 'application/xml'), choice, {hands});
         out[name] = await renderScoreForTest(sc, 100, 8);
       }
@@ -336,6 +410,8 @@ async function ui(page) {
     });
     assert(level.lead.rms > 0.002 && level.lead.peak < 1, 'the lead sheet: ' + JSON.stringify(level.lead));
     assert(level.piano.rms > level.lead.rms && level.piano.peak < 1, 'the piano part is fuller and does not clip: ' + JSON.stringify(level));
+    assert(level.guitarGuitar > 50 && level.pianoGuitar === 0, 'Guitar strums on the guitar, the piano part does not: ' + JSON.stringify(level));
+    assert(level.guitar.rms > level.lead.rms && level.guitar.peak < 1, 'the guitar sounds and does not clip: ' + JSON.stringify(level.guitar));
   });
   await test('⋯ holds the choices used less; Save MIDI there saves the sheet', async () => {
     await page.click('.sheet-bar .tb.sheet-more');
@@ -347,6 +423,23 @@ async function ui(page) {
     assert(front <= 8, 'a calm toolbar: ' + front + ' controls');
     assert(await page.locator('.sheet-bar .tb.toggle').isVisible(), 'Chords only stays in front');
     assert(await page.locator('.sheet-bar a[title^="Back to the lyrics"]').isVisible(), 'the sheet alone: ✕ back to the lyrics');
+  });
+  await test('⋯ Print prints the sheet alone, cut into pages, and puts it back for the screen after', async () => {
+    await page.evaluate(() => { window.__printed = 0; window.print = () => { window.__printed++; }; });
+    const before = await page.locator('.sheet-music svg').count();
+    await page.click('.sheet-bar .tb.sheet-more');
+    await page.click('.share-menu button:has-text("Print")');
+    assert(await page.evaluate(() => window.__printed) === 1, 'the print dialog opens');
+    assert(await page.evaluate(() => document.documentElement.classList.contains('print-sheet')), 'only the sheet prints');
+    await page.emulateMedia({media: 'print'});
+    assert(await page.locator('.sheet-bar').isHidden() && await page.locator('.sheet-title').isVisible(), 'no toolbar on paper, the title is');
+    const heights = await page.$$eval('.sheet-music svg', (s) => s.map((e) => e.getBoundingClientRect().height));
+    assert(heights.length >= 1 && Math.max(...heights) <= 1000, 'pages that fit a sheet of paper: ' + heights.map(Math.round).join(', '));
+    await page.emulateMedia({media: 'screen'});
+    await page.evaluate(() => dispatchEvent(new Event('afterprint')));
+    await page.waitForTimeout(200);
+    assert(!await page.evaluate(() => document.documentElement.classList.contains('print-sheet') || !!document.querySelector('.print-path')), 'the page is back');
+    assert(await page.locator('.sheet-music svg').count() === before, 'laid out for the screen again');
   });
   await test('the hymn page\'s Play button plays the sheet while it is shown, the tune with the lyrics alone; they stop each other', async () => {
     await page.click('.piano-panel button:text-is("Done")').catch(() => {});

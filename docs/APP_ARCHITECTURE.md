@@ -135,7 +135,8 @@ Before any screen opens, `HymnsApplication` sets the night mode from the Theme s
     -   Chord editing (`docs/HYMNAL_SPEC.md` §11.5), on every screen (the panel folds its rarer rows away on a phone): the page
         reads and saves a sheet's edits through `window.HymnsEdits`, the activity's `EditsBridge` over `ChordEdits`; while it edits,
         Back closes the panel, and `setKeyboard(...)` keeps the panel above the on-screen keyboard. Save MIDI hands the file to
-        `EditsBridge.saveFile`, and the activity asks where to save it (a WebView does not download). No page other than the
+        `EditsBridge.saveFile`, and the activity asks where to save it (a WebView does not download). Print calls `EditsBridge.print`, which hands
+        the WebView's `createPrintDocumentAdapter` to `PrintManager` and calls the page's `afterPrint()` when the job is over. No page other than the
         viewer may load in the WebView.
 
 ---

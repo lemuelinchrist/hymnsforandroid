@@ -3,6 +3,7 @@
 // Web Audio: Salamander Grand Piano (Yamaha C5, CC-BY 3.0 by Alexander Holm) sampled every minor 3rd from A1 to C7
 // (vendor/piano/*.mp3, lazy-cached offline), with velocity-sensitive warmth, smooth damper release, a subtle room tail,
 // and a tiny synthesized fallback while samples load or if unavailable. One tune is an MP3; that one plays as audio.
+// The sheet's guitar strums play on a sampled steel-string guitar (FluidR3 GM, vendor/guitar) in the tone chosen.
 
 let ctx = null, master = null;
 let current = null;                       // {key, stop()}
@@ -283,6 +284,122 @@ function playNote(c, out, n, at, bufs) {
   return src;
 }
 
+// ---- a guitar for the strums (piano.js marks those notes inst: 'guitar', with the tone chosen) ----
+// FluidR3 GM's steel-string acoustic guitar (Frank Wen, CC-BY 3.0; vendor/guitar/*.mp3) sampled every minor 3rd from
+// E2 to E5, loaded when a sheet first plays a guitar part (then cached offline like the piano). Until they are there, or
+// if they cannot be had, the plucked string below plays instead.
+const GUITAR_SAMPLES = [[40, 'E2'], [43, 'G2'], [46, 'Bb2'], [49, 'Db3'], [52, 'E3'], [55, 'G3'], [58, 'Bb3'], [61, 'Db4'],
+  [64, 'E4'], [67, 'G4'], [70, 'Bb4'], [73, 'Db5'], [76, 'E5']];
+const GUITAR_LEVEL = 4.8;   // the samples are quiet: this makes them as loud as the plucked string (measured, RMS)
+// The tone: how far up the highs reach (a low-pass that opens with harder strums), a cut of the pick's brightness above
+// 3 kHz, how soft the attack is (the pick's click), a little warmth from the body. Warm is the usual; Bright is the
+// samples as they are. What the filters take away is given back a little, so a softer tone is not just quieter.
+export const GUITAR_TONES = {
+  bright: {lp: 3000, span: 9000, shelf: 0, attack: 0.002, body: 0},
+  warm: {lp: 2200, span: 4200, shelf: -4, attack: 0.004, body: 2},
+  mellow: {lp: 1600, span: 2600, shelf: -7, attack: 0.007, body: 3},
+  soft: {lp: 1200, span: 1700, shelf: -10, attack: 0.012, body: 3},
+};
+const guitarRaw = new Map();             // midi -> Promise<ArrayBuffer | null>
+const guitarDecoded = new WeakMap();     // BaseAudioContext -> {map: Map<midi, AudioBuffer>, ready: Promise | null}
+function loadGuitar(c) {
+  let state = guitarDecoded.get(c);
+  if (!state) { state = {map: new Map(), ready: null}; guitarDecoded.set(c, state); }
+  if (!state.ready || state.map.size < GUITAR_SAMPLES.length) {
+    state.ready = Promise.all(GUITAR_SAMPLES.map(async ([midi, name]) => {
+      if (state.map.has(midi)) return;
+      if (!guitarRaw.has(midi)) {
+        guitarRaw.set(midi, fetch(new URL('vendor/guitar/' + name + '.mp3', import.meta.url).href)
+          .then((r) => (r.ok ? r.arrayBuffer() : null)).catch(() => null)
+          .then((b) => { if (!b) guitarRaw.delete(midi); return b; }));   // offline: try again next time
+      }
+      try {
+        const raw = await guitarRaw.get(midi);
+        if (raw) state.map.set(midi, await c.decodeAudioData(raw.slice(0)));
+      } catch (e) { /* the plucked string plays it */ }
+    })).then(() => state.map);
+  }
+  return state.ready;
+}
+
+function playSampledGuitar(c, out, n, at, hit) {
+  const T = GUITAR_TONES[n.tone] || GUITAR_TONES.warm;
+  const vel = Math.max(0.05, Math.min(1, n.vel / 127));
+  const src = c.createBufferSource();
+  src.buffer = hit.buf;
+  src.playbackRate.value = Math.pow(2, (n.note - hit.midi) / 12);
+  const body = c.createBiquadFilter();
+  body.type = 'peaking'; body.frequency.value = 200; body.Q.value = 0.8; body.gain.value = T.body;
+  const shelf = c.createBiquadFilter();
+  shelf.type = 'highshelf'; shelf.frequency.value = 3000; shelf.gain.value = T.shelf;
+  const tone = c.createBiquadFilter();                   // harder strums are brighter; a chuck (mute) is dull and short
+  tone.type = 'lowpass'; tone.Q.value = 0.4;
+  tone.frequency.value = n.mute ? 1200 : T.lp + T.span * Math.pow(vel, 1.3);
+  const g = c.createGain();
+  const level = 0.42 * Math.pow(vel, 1.2) * GUITAR_LEVEL * (n.mute ? 0.9 : 1) * Math.pow(10, -T.shelf / 60);
+  const end = at + (n.mute ? Math.min(n.dur, 0.035) : n.dur);
+  g.gain.setValueAtTime(0.0001, at);
+  g.gain.linearRampToValueAtTime(level, at + T.attack);
+  g.gain.setValueAtTime(level, Math.max(at + T.attack + 0.001, end));
+  g.gain.setTargetAtTime(0.0001, end, n.mute ? 0.025 : 0.07);   // the next strum damps it; a chuck at once
+  src.connect(body).connect(shelf).connect(tone).connect(g).connect(out);
+  src.start(at);
+  src.stop(end + 0.45);
+  return src;
+}
+
+// A plucked string made in the browser (Karplus-Strong): a short burst of noise goes round a delay line of one period,
+// averaged with itself each time, so the high partials die first, as on a string. One buffer per note and audio context,
+// made when first needed (a few ms); nothing to download.
+const guitarByCtx = new WeakMap();
+function guitarBuffer(c, note) {
+  let m = guitarByCtx.get(c);
+  if (!m) guitarByCtx.set(c, m = new Map());
+  if (m.has(note)) return m.get(note);
+  const sr = c.sampleRate, f = 440 * Math.pow(2, (note - 69) / 12), len = Math.floor(sr * 3.2);
+  const buf = c.createBuffer(1, len, sr), y = buf.getChannelData(0);
+  const n = Math.max(2, Math.round(sr / f - 0.5));      // the averaging adds half a sample to the loop
+  const t60 = 1.6 + 3.2 * Math.max(0, Math.min(1, (76 - note) / 36));   // low strings ring longer
+  const rho = Math.min(0.9995, Math.pow(0.001, 1 / (f * t60)));
+  let seed = note * 7919 + 17, prev = 0, mean = 0;
+  for (let i = 0; i < n; i++) {                          // the pluck: noise, a little softened (a pick, not a hammer)
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    prev = prev * 0.45 + ((seed / 0x7fffffff) * 2 - 1) * 0.55;
+    y[i] = prev; mean += prev / n;
+  }
+  for (let i = 0; i < n; i++) y[i] -= mean;
+  for (let i = n; i < len; i++) y[i] = rho * 0.5 * (y[i - n] + y[i - n - 1 < 0 ? 0 : i - n - 1]);
+  let peak = 0;
+  for (let i = 0; i < len; i++) peak = Math.max(peak, Math.abs(y[i]));
+  if (peak > 0) for (let i = 0; i < len; i++) y[i] *= 0.9 / peak;
+  m.set(note, buf);
+  return buf;
+}
+
+function playGuitar(c, out, n, at) {
+  const state = guitarDecoded.get(c), hit = state && nearestSample(state.map, n.note);
+  if (hit) return playSampledGuitar(c, out, n, at, hit);
+  const vel = Math.max(0.05, Math.min(1, n.vel / 127));
+  const src = c.createBufferSource();
+  src.buffer = guitarBuffer(c, n.note);
+  const body = c.createBiquadFilter();                   // the wooden body: a little warmth low down
+  body.type = 'peaking'; body.frequency.value = 180; body.Q.value = 0.8; body.gain.value = 4;
+  const tone = c.createBiquadFilter();                   // harder strums are brighter; a chuck (mute) is dull and short
+  tone.type = 'lowpass'; tone.Q.value = 0.4;
+  tone.frequency.value = n.mute ? 1500 : 2200 + 5200 * Math.pow(vel, 1.3);
+  const g = c.createGain();
+  const level = 0.42 * Math.pow(vel, 1.2) * (n.mute ? 0.9 : 1), end = at + (n.mute ? Math.min(n.dur, 0.035) : n.dur);
+  g.gain.setValueAtTime(0.0001, at);
+  g.gain.linearRampToValueAtTime(level, at + 0.002);
+  g.gain.setValueAtTime(level, Math.max(at + 0.003, end));
+  g.gain.setTargetAtTime(0.0001, end, n.mute ? 0.025 : 0.07);   // the next strum damps it; a chuck at once
+  src.connect(body).connect(tone).connect(g).connect(out);
+  src.start(at);
+  src.stop(Math.min(at + 3.2, end + 0.45));
+  return src;
+}
+const playAny = (c, out, n, at, bufs) => n.inst === 'guitar' ? playGuitar(c, out, n, at) : playNote(c, out, n, at, bufs);
+
 // ---- playing a tune, looped ----
 
 async function loadSong(url) {
@@ -377,7 +494,7 @@ export function playScore(score, o) {
       if (when > horizon) break;
       i++;
       if (when < c.currentTime - 0.3) continue;         // the page was suspended: skip what is long past
-      const osc = playNote(c, out, {note: e.note, vel: e.vel, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(when, c.currentTime));
+      const osc = playAny(c, out, {note: e.note, vel: e.vel, inst: e.inst, mute: e.mute, tone: e.tone, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(when, c.currentTime));
       oscs.add(osc);
       osc.onended = () => oscs.delete(osc);
     }
@@ -416,9 +533,11 @@ export function playScore(score, o) {
     tick();
     frame();
   };
-  const state = decodedByCtx.get(c);
-  if (state && CORE_SAMPLES.every(([m]) => state.map.has(m))) { loadPiano(c); begin(); }
-  else Promise.race([loadPiano(c), new Promise((r) => setTimeout(r, 1500))]).then(begin);
+  // the samples it needs first (the piano's core, the guitar's when it strums), or at most 1.5 s of waiting for them
+  const state = decodedByCtx.get(c), strums = evs.some((e) => e.inst === 'guitar');
+  const gState = guitarDecoded.get(c), gReady = !strums || (gState && gState.map.size === GUITAR_SAMPLES.length);
+  if (state && CORE_SAMPLES.every(([m]) => state.map.has(m)) && gReady) { loadPiano(c); begin(); }
+  else Promise.race([Promise.all([loadPiano(c), strums ? loadGuitar(c) : null]), new Promise((r) => setTimeout(r, 1500))]).then(begin);
   return control;
 }
 
@@ -428,11 +547,12 @@ export async function renderScoreForTest(score, bpm, seconds = 10) {
   const g = makeBus(c);
   const bufs = await loadPiano(c, {all: true});
   const spq = 60 / bpm;
-  for (const e of score.events) if (e.q * spq < seconds) playNote(c, g, {note: e.note, vel: e.vel, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(0.01, e.q * spq + 0.05 + (e.off || 0)), bufs);
+  const guitar = score.events.some((e) => e.inst === 'guitar') ? await loadGuitar(c) : new Map();
+  for (const e of score.events) if (e.q * spq < seconds) playAny(c, g, {note: e.note, vel: e.vel, inst: e.inst, mute: e.mute, tone: e.tone, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(0.01, e.q * spq + 0.05 + (e.off || 0)), bufs);
   const data = (await c.startRendering()).getChannelData(0);
   let peak = 0, sum = 0;
   for (const v of data) { peak = Math.max(peak, Math.abs(v)); sum += v * v; }
-  return {peak, rms: Math.sqrt(sum / data.length), notes: score.events.length, sampled: bufs.size};
+  return {peak, rms: Math.sqrt(sum / data.length), notes: score.events.length, sampled: bufs.size, guitar: guitar.size};
 }
 
 // a score as a standard MIDI file (format 1: the melody and the notes added to it on one track, the left hand and the

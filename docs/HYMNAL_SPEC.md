@@ -868,7 +868,8 @@ viewer/index.html?id=<sheetId>&variant=piano|guitar&theme=light|dark|black[&pape
   for the chords of the key, and folds the rest away (**More**) until asked for.
 - The host gives the page `window.HymnsEdits`: `get(sheet)`, `put(sheet, bars)` (this device's chord edits),
   `setEditing(on)` (Back closes the editor while it is open), `saveFile(name, base64)` (Save MIDI: the host asks
-  where to save the file, as a WebView does not download).
+  where to save the file, as a WebView does not download), `print(title)` (Print: the host prints the page as it now is
+  with the system's printing and calls `window.afterPrint()` when the job is done or cancelled).
 
 - It fetches `../sheetMei/<id>.mei` and, if `lyrics` is given and differs from `id`, `../sheetLyrics/<lyrics>.json`
   (a 404 there is fine: no overlay). **Keep this relative folder layout** (`viewer/`, `sheetMei/`, `sheetLyrics/`
@@ -945,15 +946,24 @@ which both apps run.
 The sheets are lead sheets. Both apps (the sheet code is shared, §11.2) can show a piano part with them (**Both hands**; turning it on opens a panel at the bottom that chooses the style, and Done tucks it down to a bar
 that names the style and opens it again when tapped or dragged up): a left hand
 on a second staff (bass clef, in a brace with the first), made from the chords by a pattern (struck chords, bass and
-chord, arpeggios including full-bar Flowing/Ballad arches with warm 9ths and bass sustain, and Dynamic styles: Adaptive, calm while the melody moves and an arpeggio fill from where it holds a note or rests; Rolled harp chords, contemporary Pulse, diatonic Walking bass, and Chorale, the bass and one tenor note as in a hymnal), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
+chord, arpeggios including full-bar Flowing/Ballad arches with warm 9ths and bass sustain, Guitar (the chord as a guitar's open shape in the first frets, strummed down over six strings or up over four, or fingerpicked; played on a sampled steel-string guitar, FluidR3 GM, CC BY 3.0, in a tone chosen under Advanced: Bright, Warm (the default), Mellow or Soft; a plucked string made in the browser plays while the samples load), and Dynamic styles: Adaptive, calm while the melody moves and an arpeggio fill from where it holds a note or rests; Rolled harp chords, contemporary Pulse, diatonic Walking bass, and Chorale, the bass and one tenor note as in a hymnal, which walk through the note of the key between where one leaps a third into the next chord; a More walking switch, shown only for Chorale, lets both walk, walks a fourth in two steps and moves the bass to another note of a chord that lasts a bar, or under a held melody note), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
 made when the sheet is shown, from the sheet as shown (after transposing and after the device's chord edits), and
 written into the MEI before Verovio draws it; the sheet files have none of it. It is only on the piano sheet with the
-staff shown. The panel offers presets (Plain, the default: Strike, hymn style, twice a bar; Chorale; Flowing; Gentle; Lively;
+staff shown. The panel offers presets (Plain, the default: Strike, hymn style, twice a bar; Chorale, with two notes on the beat in the right hand; Flowing; Guitar, with a Strum row: folk strum, pop, steady, driving, ballad, country, fingerpicking, ballad picking; Lively;
 Walking) and the right hand (melody alone or two notes, added where a chord starts); Advanced shows every choice. A change
 is kept on the device for that hymn alone; "Use for all hymns" makes it the device's choice for every hymn without its own. It is kept by the name of the style, so that
 it fits every time signature. A sheet of ours can name the piano part it starts with, `<identifier type="hands">strike/two/half</identifier>`
 (the style's family/kind/rhythm, optionally followed by `rh=<notes added>:<on>`, e.g. `rh=1:beat`; BF474 has one): the hymn's own
 choice comes first, then this, then the device's choice, and changes made to such a hymn are kept for that hymn.
+On the guitar sheet, **Strumming** takes Both hands' place in the toolbar (B toggles whichever is shown): a guitar
+strums the chords when the sheet plays, with the staff or Chords only; nothing is added to the sheet. It is on until
+turned off (remembered on the device), so the guitar sheet plays on a guitar. Its own panel at
+the bottom (opened when it is turned on, tucked down to a bar after Done, like Both hands') has only two rows, Strum (the
+eight guitar strums) and Tone (Bright, Warm, Mellow, Soft; Warm by default), and "Use for all hymns": a change is that
+hymn's own (`strumByHymn`), the device's choice is `strumForAll` (Both hands': `handsByHymn`, `handsForAll`). Choices
+saved under the earlier names (`piano`, `pianoOf`, `strum`, `strumOf`) are deleted, so every device starts from the
+defaults: before a change became the hymn's own, every change was kept for every hymn. The strums use the shapes of the chords the guitar sheet shows
+(no slash basses), played above its capo, so they sound in the sheet's key as a guitarist with the capo would play them.
 The hymn page's Play plays both hands for such a sheet even when the viewer's Both hands is off; the sheet's tempo is its `midi.bpm`. The rules (the upbeat bar stays empty; a pattern starts again with every chord and bar;
 chords are moved onto the beat for the left hand; the left hand stays under the right; the last bar is one held chord)
 and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,
@@ -965,7 +975,7 @@ give; the tempo is the sheet's `scoreDef/@midi.bpm` (computed by `ly_to_mei.py` 
 sound are marked in the drawn sheet and the bar that sounds is shaded; tapping a measure or note highlights that starting measure in red (kept across Stop/Play until "From the start" or closing) and starts there, while Loop wraps back to the beginning of the sheet on subsequent passes; the page follows the music until the reader scrolls;
 the tempo goes from half to one and a half times the tune's; the sheet can be saved as a MIDI file. In the sheet
 toolbar (both apps) the controls used most are in front (Piano | Guitar, Chords only, key, Both hands, zoom, Sheet only for a music
-stand; always one row: when the bar is too narrow it gives up, in this order, the zoom buttons (Smaller and Bigger go into the ⋯ menu; a two-finger pinch on the sheet changes its size on touch screens), the words of Piano | Guitar (icons), Both hands (into ⋯), the widest buttons and the words of Chords only ("Chords"), and Chords only itself (into ⋯); it wraps only below that) and the rest (Edit chords, Original chords, original key and size, light paper, Save MIDI) in a ⋯ menu.
+stand; always one row: when the bar is too narrow it gives up, in this order, the zoom buttons (Smaller and Bigger go into the ⋯ menu; a two-finger pinch on the sheet changes its size on touch screens), the words of Piano | Guitar (icons), Both hands (into ⋯), the widest buttons and the words of Chords only ("Chords"), and Chords only itself (into ⋯); it wraps only below that) and the rest (Edit chords, Original chords, original key and size, light paper, Print, Save MIDI) in a ⋯ menu. Print prints the sheet alone as shown (key, Chords only, Both hands, edited chords), black on white, laid out a page wide and cut into page-high pieces so no line of music is split between pages; the web app's hymn page has no print button of its own.
 
 ### 11.4 MEI files: what the viewer relies on
 

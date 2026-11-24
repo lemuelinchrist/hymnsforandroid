@@ -5,7 +5,7 @@
 // choice (the two share this page's origin, so its saved settings; a sheet that names its piano part plays it), this device's chord edits (HymnsPlay.edits), the
 // tempo the sheet names (midi.bpm). The hymn page's Play button loops, as it does for a MIDI file.
 import {soundDoc, bpmOf, handsOf} from './sheet.js';
-import {scoreOf, DEFAULT as PIANO_DEFAULT} from './piano.js';
+import {scoreOf, DEFAULT as PIANO_DEFAULT, SAVED} from './piano.js';
 import * as Player from './player.js';
 import {store} from './ui.js';
 
@@ -25,7 +25,7 @@ window.sheetPlay = async (id) => {
     const doc = soundDoc(xml, edits);
     const named = handsOf(doc);   // a sheet of ours may name its piano part: then it plays both hands
     const hands = !!store.get('sheet', {}).hands || !!named;
-    const choice = store.get('pianoOf', {})[id] || named || store.get('piano', PIANO_DEFAULT);
+    const choice = store.get(SAVED.handsOf, {})[id] || named || store.get(SAVED.hands, PIANO_DEFAULT);
     const score = scoreOf(doc, choice, {hands});
     if (!score || !score.events.length) throw new Error('nothing to play in ' + id);
     if (mine !== token) return;                         // stopped (or another sheet) while loading

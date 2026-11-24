@@ -24,8 +24,8 @@ TYPES = {'.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=u
 
 def dump(sheet):
     """One note per line, so that a diff of two versions reads as a list of changed notes (also the left hand's, "left")."""
-    rows = [k for k in ('left', 'notes') if k == 'notes' or sheet.get(k)]
-    head = {k: v for k, v in sheet.items() if k not in ('left', 'notes')}
+    rows = [k for k in ('voice2', 'left', 'notes') if k == 'notes' or sheet.get(k)]
+    head = {k: v for k, v in sheet.items() if k not in ('voice2', 'left', 'notes')}
     out = json.dumps(head, ensure_ascii=False, indent=1)[:-2] if head else '{'
     for i, k in enumerate(rows):
         body = ',\n  '.join(json.dumps(n, ensure_ascii=False) for n in sheet.get(k, []))

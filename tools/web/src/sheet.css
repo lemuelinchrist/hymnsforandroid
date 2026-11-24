@@ -127,34 +127,46 @@ body.sheet-only #view { max-width: 1200px; padding-top: 12px; }
 .sheet-music g.bar-selected g.harm text { font-weight: 700; }
 body.editing-chords #view, body.piano-open #view, body.piano-peek #view { padding-bottom: calc(var(--editor-h, 280px) + 16px); }
 /* how the two hands play (pianopanel.js), in the chord editor's clothes; tucked down to a slim bar ("peek") after Done */
-.piano-panel .pp-peek, .piano-panel.peek .pp-body { display: none; }
-.piano-panel.peek { padding: 0 0 env(safe-area-inset-bottom); }
-.piano-panel.peek .pp-peek {
+.pp-panel .pp-peek, .pp-panel.peek .pp-body { display: none; }
+.pp-panel.peek { padding: 0 0 env(safe-area-inset-bottom); }
+.pp-panel.peek .pp-peek {
   position: relative; display: flex; align-items: center; gap: 10px; width: 100%; min-height: 48px; padding: 12px 16px 8px;
   border: 0; background: none; color: var(--ink); font: 14px var(--ui); text-align: left; cursor: pointer; touch-action: none;
 }
 .pp-handle { position: absolute; top: 5px; left: 50%; width: 36px; height: 4px; margin-left: -18px; border-radius: 2px; background: var(--line-strong); }
-.piano-panel .pp-body { position: relative; }
+.pp-panel .pp-body { position: relative; }
 .pp-grip { top: -6px; cursor: pointer; }
-.piano-panel .pp-body .ce-top { touch-action: none; }
+.pp-panel .pp-body .ce-top { touch-action: none; }
 .pp-title { flex: none; font-size: 15px; }
 .pp-summary { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); }
 .pp-chev { flex: none; color: var(--g); font-size: 18px; line-height: 1; }
-.piano-panel .ce-row { margin-bottom: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }   /* a row is one line: it scrolls sideways on a phone, so the sheet stays in view */
-.piano-panel .ce-row::-webkit-scrollbar { display: none; }
-.piano-panel .ce-row .ce-btn { flex: none; }
+.pp-panel .ce-row { margin-bottom: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }   /* a row is one line: it scrolls sideways on a phone, so the sheet stays in view */
+.pp-panel .ce-row::-webkit-scrollbar { display: none; }
+.pp-panel .ce-row .ce-btn { flex: none; }
 @media (max-width: 700px) {
-  .piano-panel { padding-top: 8px; }
-  .piano-panel .ce-top { margin-bottom: 6px; }
-  .piano-panel .ce-row { margin-bottom: 4px; }
-  .piano-panel .ce-btn { height: 34px; min-width: 0; padding: 0 10px; font-size: 14px; }
-  .piano-panel .ce-label { width: 4.8em; font-size: 11px; }
+  .pp-panel { padding-top: 8px; }
+  .pp-panel .ce-top { margin-bottom: 6px; }
+  .pp-panel .ce-row { margin-bottom: 4px; }
+  .pp-panel .ce-btn { height: 34px; min-width: 0; padding: 0 10px; font-size: 14px; }
+  .pp-panel .ce-label { width: 4.8em; font-size: 11px; }
 }
-.piano-panel .ce-row[hidden] { display: none; }
-.piano-panel .ce-label { width: 6em; white-space: nowrap; }
-.piano-panel .ce-title { text-align: left; }
-.piano-panel .ce-gap { width: 12px; flex: none; }
+.pp-panel .ce-row[hidden] { display: none; }
+.pp-panel .ce-label { width: 6em; white-space: nowrap; }
+.pp-panel .ce-title { text-align: left; }
+.pp-panel .ce-gap { width: 12px; flex: none; }
 body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
+.pp-switch {
+  display: inline-flex; align-items: center; gap: 8px; flex: none; height: 42px; padding: 0 6px; border: 0; background: none;
+  color: var(--ink); font: 500 16px var(--ui); cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+.pp-switch:disabled { opacity: .35; cursor: default; }
+.pp-track { position: relative; flex: none; width: 46px; height: 28px; border-radius: 14px; background: var(--line-strong); transition: background .18s; }
+.pp-knob { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .35); transition: transform .18s; }
+.pp-switch[aria-checked="true"] .pp-track { background: var(--g); }
+.pp-switch[aria-checked="true"] .pp-knob { transform: translateX(18px); }
+.pp-switch:focus-visible .pp-track { outline: 2px solid var(--g); outline-offset: 2px; }
+@media (max-width: 700px) { .pp-switch { height: 34px; font-size: 14px; } }
+@media (prefers-reduced-motion: reduce) { .pp-track, .pp-knob { transition: none; } }
 
 .chord-editor {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; max-width: 920px; margin: 0 auto;
@@ -291,3 +303,19 @@ body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
 .share-menu .tick { color: var(--g); margin-left: auto; padding-left: 8px; }
 .share-menu .tile { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--set-tint); color: var(--set-on-tint); }
 @media print { .share-menu { display: none; } }
+
+/* ---- printing (Print in ⋯, sheetpanel.js): the sheet alone, black on white, on pages of its own size (sheet.js lays
+   the music out in page-high pieces, none cut in two) ---- */
+@page { margin: 12mm; }
+@media print {
+  :root, :root[data-theme] { --paper: #fff; --surface: #fff; --ink: #000; --muted: #444; --line: #bbb; }
+  html, body { background: #fff !important; }
+  .sheet, .sheet-pane { color: #000 !important; background: #fff !important; }
+  .sheet.dark { --s-ink: #000; --s-staff: #000; --s-rule: #000; }
+  .sheet-music svg { break-inside: avoid; }
+  html.print-sheet body :not(.print-path, .print-path.sheet *) { display: none !important; }
+  html.print-sheet .print-path { display: block !important; position: static !important; margin: 0 !important; padding: 0 !important;
+    border: 0 !important; box-shadow: none !important; max-width: none !important; max-height: none !important;
+    overflow: visible !important; transform: none !important; break-before: auto !important; }
+  html.print-sheet .sheet-music { min-height: 0; }
+}

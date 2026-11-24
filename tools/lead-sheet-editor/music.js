@@ -206,6 +206,12 @@
     var rh = sheet.rh || null, notes = sheet.notes;
     if (!(rh && rh.add > 0) && !notes.some(function (n) { return Array.isArray(n.h); })) return null;
     var on = onsets(notes), off = gridOff(sheet), beat = beatLen(sheet), chord = null, any = false;
+    var v2 = sheet.voice2 && sheet.voice2.length ? sheet.voice2 : null, v2on = v2 ? onsets(v2) : null;
+    function hasV2At(t, d) {
+      if (!v2) return false;
+      for (var j = 0; j < v2.length; j++) if (!isRest(v2[j]) && v2on[j] < t + d && v2on[j] + len(v2[j]) > t) return true;
+      return false;
+    }
     var out = notes.map(function (n, i) {
       if (n.ch) chord = chordInfo(n.ch);
       if (isRest(n)) return null;
@@ -214,7 +220,7 @@
       else if (rh && rh.add > 0 && chord) {
         var d = len(n), g = on[i] + off; for (var q = i + 1; tied(notes, q); q++) d += len(notes[q]);
         var want = rh.on === 'all' ? true : rh.on === 'chord' ? !!n.ch : rh.on === 'long' ? d >= 2 * beat : g % beat === 0 || d >= 2 * beat;
-        if (want) ps = fillUnder(n.p, chord, rh.add);
+        if (want && !hasV2At(on[i], d)) ps = fillUnder(n.p, chord, rh.add);
       }
       if (!ps || !ps.length) return null;
       any = true; return ps.slice().sort(function (a, b) { return a - b; });
@@ -253,13 +259,17 @@
   //   t                  the tenor: one note of the chord in the middle, moving as little as it can, and rather the
   //                      chord's third or fifth than a note the bass or the melody already has (a hymnal's left hand)
   //   w                  a smooth walking/connecting bass step leading into the next chord's bass
+  //   D U K              a guitar strum (guitarShape): D down, every string; U up, the top four strings; K a chuck, the
+  //                      top four strings struck and damped at once (a percussive beat)
+  //   T A g b e          a guitar's strings picked: T the bass (thumb), A the string above it (the other bass), g b e the
+  //                      G, B and high E strings
   //   a+b                together;  -  the step before goes on;  .  silence
   //   A | B              A in the bar where the chord starts, B in the bars it goes on in
   function parsePattern(str) {
     var parts = String(str || '').split('|').map(function (part) {
       return part.trim().split(/\s+/).filter(Boolean).map(function (st) {
         if (st === '-' || st === '_') return {hold: true};
-        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|9|10|12|c|C|t|w)$/.test(x); });
+        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|9|10|12|c|C|t|w|D|U|K|T|A|g|b|e)$/.test(x); });
         return toks.length ? {toks: toks} : {rest: true};
       });
     }).filter(function (p) { return p.length; });
@@ -343,6 +353,11 @@
     if (used.c) out.c = middle([c.tones[1][0], c.tones[c.seventh ? 3 : 2][0]]);
     if (used.C) out.C = middle(c.tones.map(function (t) { return t[0]; }));
     if (used.t) out.t = [tenor()];
+    if (used.D || used.U || used.K || used.T || used.A || used.g || used.b || used.e) {
+      var gs = guitarShape(c, opt.capo), on = gs.filter(function (p) { return p != null; });
+      out.D = on; out.U = out.K = on.slice(-4); out.T = [on[0]]; out.A = [on[1] != null ? on[1] : on[0]];
+      ['g', 'b', 'e'].forEach(function (k, i) { var p = gs[3 + i]; out[k] = [p != null ? p : on[on.length - 1]]; });
+    }
     return out;
     function tenor() {
       var prev = opt.prevTen != null ? opt.prevTen : 55, top = Math.min(64, (opt.under != null ? opt.under : 99) - 1), best = null, bestCost = Infinity;
@@ -353,6 +368,20 @@
       }
       return best != null ? best : lad[1] < 48 ? lad[1] + 12 : lad[1];
     }
+  }
+  // A chord as a guitar plays it in the first frets: the bass (the chord's, or the slash note) on the lowest string that
+  // has it within four frets, the strings under it silent, every other string on its lowest fret that is a note of the
+  // chord. This gives the open shapes guitarists use (C x32010, G 320003, D xx0232, Am x02210). -> six pitches or null.
+  // With a capo (the guitar sheet's: a number, 0 for none) the shape is the one of the chord the guitar sheet shows,
+  // a capo's frets lower, played above the capo, and the bass is the chord's root (the guitar sheet has no slash basses).
+  var STRINGS = [40, 45, 50, 55, 59, 64];
+  function guitarShape(c, capo) {
+    var cp = capo | 0, root = c.root - cp, bass = (capo != null ? c.root : c.bass) - cp;
+    var pcs = c.tones.map(function (t) { return mod12(root + t[0]); }), out = [null, null, null, null, null, null], low = -1;
+    for (var k = 0; k < 4 && low < 0; k++) { var f0 = mod12(bass - STRINGS[k]); if (f0 <= 4) { out[k] = STRINGS[k] + f0; low = k; } }
+    if (low < 0) { low = 0; out[0] = 40 + mod12(bass - 40); }   // nowhere in the first frets: the low E string, higher up
+    for (var s = low + 1; s < 6; s++) for (var f = 0; f <= 4; f++) if (pcs.indexOf(mod12(STRINGS[s] + f)) >= 0) { out[s] = STRINGS[s] + f; break; }
+    return out.map(function (p) { return p == null ? null : p + cp; });
   }
   function meter(sheet) { var bar = barLen(sheet), beat = beatLen(sheet); return {bar: bar, beat: beat, beats: Math.round(bar / beat), compound: compound(sheet)}; }
   // [id, name, hint, {steps: pat}, low, extra]
@@ -410,8 +439,45 @@
          {id: '8', name: beat === 4 ? 'Eighths' : 'Twice a beat', pat: walkE, rate: eighth, low: 40, bassRing: true, shortPat: '1 - w -'}];
     var rolledRhythms = [{id: 'held', name: 'Held', pat: '1+5+8+10', rate: 0, low: 40, roll: 0.032}];
     if (half) rolledRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+5+8+10', rate: half, low: 40, roll: 0.028});
-    var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+t', rate: 0, low: 40}];
-    if (half) choraleRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+t', rate: half, low: 40});
+    // guitar strums and picking, by the time signature: [id, name, hint, pattern, shortPat]
+    var GUITAR = m.compound ? [
+      ['folk', 'Folk strum', 'down, down, up', 'D D U D D U', 'D D U'],
+      ['pop', 'Pop', 'with a muted chuck', 'D - U K - U', 'D - U'],
+      ['steady', 'Steady', 'a strum on each beat', 'D - - D - -', 'D - -'],
+      ['driving', 'Driving', 'down and up all the way', 'D U U D U U', 'D U U'],
+      ['ballad', 'Ballad', 'slow and open', 'D - - D - U', 'D - U'],
+      ['country', 'Country', 'bass, then strums, the other bass', 'T D U A D U', 'T D U'],
+      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b A b g', 'T g b'],
+      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T b e b g b', 'T b e']]
+      : n === 3 ? [
+      ['folk', 'Folk strum', 'down, then down-up', 'D - D U D U', 'D - D U'],
+      ['pop', 'Pop', 'with a muted chuck', 'D - K U D U', 'D - K U'],
+      ['steady', 'Steady', 'a strum on each beat', 'D - D - D -', 'D - D -'],
+      ['driving', 'Driving', 'down and up all the way', 'D U D U D U', 'D U D U'],
+      ['ballad', 'Ballad', 'bass, then strums', 'T - D - D -', 'T - D -'],
+      ['country', 'Country', 'bass, then strums, the other bass', 'T - D U D U | A - D U D U', 'T - D U'],
+      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b e b g', 'T g b e'],
+      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b g e g', 'T g b g']]
+      : n === 2 ? [
+      ['folk', 'Folk strum', 'down, down-up', 'D - D U', 'D U'],
+      ['pop', 'Pop', 'with a muted chuck', 'D U K U', 'D U'],
+      ['steady', 'Steady', 'a strum on each beat', 'D - D -', 'D -'],
+      ['driving', 'Driving', 'down and up all the way', 'D U D U', 'D U'],
+      ['ballad', 'Ballad', 'slow and open', 'D - - U', 'D -'],
+      ['country', 'Country', 'bass, strum, the other bass, strum', 'T D A D', 'T D'],
+      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T e A b', 'T e'],
+      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b e', 'T g']]
+      : [
+      ['folk', 'Folk strum', 'down, down-up, up-down-up', 'D - D U - U D U', 'D - D U'],
+      ['pop', 'Pop', 'with a muted chuck on beat 3', 'D - D U K U D U', 'D - K U'],
+      ['steady', 'Steady', 'a strum on each beat', 'D - D - D - D -', 'D - D -'],
+      ['driving', 'Driving', 'down and up all the way', 'D U D U D U D U', 'D U D U'],
+      ['ballad', 'Ballad', 'slow and open', 'D - - - D - D U', 'D - D U'],
+      ['country', 'Country', 'bass, strum, the other bass, strum', 'T - D U A - D U', 'T - D U'],
+      ['pick', 'Fingerpicking', 'thumb on the beat, strings between', 'T e A b T e A b', 'T e A b'],
+      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b g e g b g', 'T g b g']];
+    var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+t', rate: 0, low: 40, passing: true}];
+    if (half) choraleRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+t', rate: half, low: 40, passing: true});
     return [
       {id: 'strike', name: 'Strike', hint: 'the chord in one stroke', kinds: [
         strikes('1+5', 41, 'two', 'Two notes', 'root and fifth'),
@@ -429,6 +495,9 @@
           if (extra.shortPat && steps >= 8) item.shortPat = extra.shortPat;
           return item;
         })};
+      })},
+      {id: 'guitar', name: 'Guitar', hint: 'strummed or picked like a guitar', kinds: GUITAR.map(function (gk) {
+        return {id: gk[0], name: gk[1], hint: gk[2], rhythms: [{id: '8', name: '', pat: gk[3], shortPat: gk[4], rate: eighth, low: 40, guitar: true}]};
       })},
       {id: 'dynamic', name: 'Dynamic', hint: 'musical patterns that breathe and move', kinds: [
         {id: 'adaptive', name: 'Adaptive', hint: 'calm under singing, blooms on held notes', rhythms: [
@@ -478,10 +547,16 @@
       var sp = spanAt(g), until = n.lh['for'] === 'bar' ? (Math.floor(g / bar) + 1) * bar : n.lh['for'] === 'chord' && sp ? sp.end : Infinity;
       changes.push({g: g, end: until, a: n.lh, i: i});
     });
-    var bars = []; for (var b = 0; b < endG; b += bar) bars.push({g: b, len: bar});
-    var fills = rightHand(sheet), mel = [], last = -1;   // the right hand: the melody, or the lowest note added under it
+    var bars = [], fx = fifths(sheet); for (var b = 0; b < endG; b += bar) bars.push({g: b, len: bar, beat: beat, fifths: fx});
+    var fills = rightHand(sheet), mel = [], last = -1;   // the right hand: the melody (and voice2), or the lowest note added under it
     notes.forEach(function (n, i) { if (!isRest(n)) mel.push([on[i] + off, on[i] + off + len(n), fills && fills[i] ? fills[i][0] : n.p]); });
     for (var i = notes.length - 1; i >= 0; i--) if (!isRest(notes[i]) && !tied(notes, i)) { last = on[i] + off; break; }
+    if (sheet.voice2 && sheet.voice2.length) {
+      var v2 = sheet.voice2, v2on = onsets(v2);
+      v2.forEach(function (n, i) { if (!isRest(n)) mel.push([v2on[i] + off, v2on[i] + off + len(n), n.p]); });
+      for (var j = v2.length - 1; j >= 0; j--) if (!isRest(v2[j]) && !tied(v2, j)) { last = Math.max(last, v2on[j] + off); break; }
+      mel.sort(function (a, b) { return a[0] - b[0]; });
+    }
     var out = accompanyOn({bars: bars, first: first, chords: spans, mel: mel, last: last, base: base, changes: changes});
     var events = [];
     function push(p, d, ring) {
@@ -494,7 +569,8 @@
     return {events: events, marks: out.marks.map(function (m) { return {t: m.g - off, a: m.a, song: m.song}; }), changes: changes};
   }
   // The left hand over any music, bar by bar (accompany above gives it a lead sheet; the web app a sheet of the app). tl:
-  //   bars: [{g, len}]              every bar's start and length in sixteenths; g counts from the first bar line
+  //   bars: [{g, len, beat, fifths}] every bar's start and length in sixteenths (g counts from the first bar line), its
+  //                                 beat and key signature (both optional: for passing notes)
   //   first                         where the left hand may start: after an upbeat bar
   //   chords: [{g, info, end}]      on the beat, in order; end is the next chord's g, or the end of the music
   //   mel: [[from, to, pitch]]      the right hand's lowest note, in order of `from`
@@ -551,7 +627,7 @@
       // what is played when in this stretch: [{toks | null, g, d}]
       var plan = [], isEnding = acc.end !== false && rate && sp === spans[spans.length - 1] && bi >= lastBar && lastBar >= 0;
       if (isEnding) {
-        var all = ['1', '5']; steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378t]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
+        var all = acc.guitar ? ['D'] : ['1', '5']; if (!acc.guitar) steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378t]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
         plan.push({toks: all, g: a, d: z - a, ending: true});
       } else if (!rate) plan.push({toks: steps[0].toks || null, g: a, d: z - a});
       else for (var t = a, q = 0; t < z; t += rate, q++) {
@@ -563,11 +639,11 @@
       // their notes would reach the melody
       var spIdx = spans.indexOf(sp), nextSp = spIdx >= 0 && spIdx + 1 < spans.length ? spans[spIdx + 1] : null;
       var under = melLow(a, z - a);
-      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w']}]],
-        {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth, prevTen: prevTen, under: under === Infinity ? null : under, mel: melPc(a)});
+      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w', 'D', 'U', 'K', 'T', 'A', 'g', 'b', 'e']}]],
+        {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth, prevTen: prevTen, under: under === Infinity ? null : under, mel: melPc(a), capo: acc.capo});
       var shift = {fig: 0, mid: 0};
       function layer(t) { return /[\dw]/.test(t) ? 'fig' : 'mid'; }
-      ['fig', 'mid'].forEach(function (L) {
+      if (!acc.guitar) ['fig', 'mid'].forEach(function (L) {   // a guitar stays where its strings are
         for (var n = 0; n < 2; n++) {
           var hit = false, lowest = Infinity;
           plan.forEach(function (st) { (st.toks || []).forEach(function (t) {
@@ -595,12 +671,102 @@
           else if (acc.bassRing && rate && pi === 0 && (st.toks || []).indexOf('1') >= 0 && z - st.g > st.d) e.ring = z - st.g;
           if (st.ending) e.roll = 0.032;
           else if (acc.roll && e.p.length > 1) e.roll = acc.roll;
+          if (acc.guitar) {   // strummed: down from the bass, up (U alone) from the top string, a little lighter
+            e.inst = 'guitar';
+            if (e.p.length > 1 && !st.ending) e.roll = acc.roll || 0.012;
+            if ((st.toks || []).length === 1 && st.toks[0] === 'U') e.up = true;
+            if ((st.toks || []).indexOf('K') >= 0) { e.mute = true; e.roll = 0.004; }
+          }
           if (pi === 0 && fresh) e.fresh = true;
+          if (acc.passing && e.p.length === 2 || st.ending) { e.span = sp; e.pass = acc.passing === 2 ? 2 : acc.passing ? 1 : 0; }
         }
         events.push(e);
       });
     });
+    passingNotes(events, bars, barAt, mel);
     return {events: events, marks: marks};
+  }
+  // Passing notes, as a hymnal's lower voices walk (Chorale, `passing`): where the bass, or else the tenor, leaps a third
+  // into the next chord, the last beat of the chord before takes the note of the key between (C B A, G A B). Not where
+  // the chord lasts less than two beats, where that note would sit a semitone from the melody, or where the key is not
+  // known (a bar's `fifths`). One voice at a change, so it stays a sprinkle. `passing: 2` (More walking) walks more:
+  // both voices at a change, a fourth in two steps (C D E F: the last two beats, or two halves of the last beat), and in
+  // a chord of four beats or more, or of two or three while the melody holds one note through it (a held "throne"), the
+  // bass goes to another note of the chord halfway (on a beat), towards the next chord's bass.
+  function passingNotes(events, bars, barAt, mel) {
+    function melAt(g) { for (var k = mel.length - 1; k >= 0; k--) if (mel[k][0] <= g + 0.01) return g < mel[k][1] ? mel[k][2] : null; return null; }
+    function clashes(x, t, d) {   // a semitone (or major seventh) from a melody note sounding in [t, t + d)
+      for (var k = 0; k < mel.length && mel[k][0] < t + d; k++) if (mel[k][1] > t && [1, 11].indexOf(mod12(mel[k][2] - x)) >= 0) return true;
+      return false;
+    }
+    function melLowIn(t, d) { var lo = Infinity; for (var k = 0; k < mel.length && mel[k][0] < t + d; k++) if (mel[k][1] > t) lo = Math.min(lo, mel[k][2]); return lo; }
+    function nextChord(i) { var sp = events[i].span; for (var j = i + 1; j < events.length; j++) { var f = events[j]; if (f.span !== sp) return f.p && f.span && f.g === f.span.g ? f : null; } return null; }
+    function split(i, at) {   // events[i] in two at `at`, the same notes
+      var e = events[i]; if (at <= e.g || at >= e.g + e.d) return;
+      var f = {g: at, d: e.g + e.d - at, p: e.p.slice(), span: e.span, pass: e.pass};
+      e.d = at - e.g; delete e.ring; events.splice(i + 1, 0, f);
+    }
+    // the bass halfway through a long chord (More walking)
+    for (var i = 0; i < events.length; i++) {
+      var e = events[i];
+      if (e.pass !== 2 || !e.span || !e.p || e.span.g !== e.g) continue;
+      var S = e.span, beat = bars[barAt(S.g)].beat || 4, len = S.end - S.g, last = i;
+      while (last + 1 < events.length && events[last + 1].span === S) last++;
+      var f = nextChord(last);
+      var holds = !mel.some(function (n) { return n[0] > S.g + 0.01 && n[0] < S.end - 0.01; });   // the melody holds one note through it
+      if (len < 2 * beat || (len < 4 * beat && !holds) || !f || !S.info) continue;
+      var mid = S.g + beat * Math.floor(len / beat / 2), bass = e.p[0], nb = f.p[0], top = Infinity, best = null, bestCost = Infinity;
+      for (var k = i; k <= last; k++) if (events[k].p) top = Math.min(top, events[k].p[1]);
+      var pcs = S.info.tones.map(function (t) { return mod12(S.info.root + t[0]); });
+      for (var q = Math.max(36, bass - 9); q <= bass + 9 && q < top - 2; q++) {
+        if (pcs.indexOf(mod12(q)) < 0 || mod12(q) === mod12(bass) || q === nb || Math.abs(q - nb) > 5 || clashes(q, mid, S.end - mid)) continue;
+        var cost = Math.abs(Math.abs(q - nb) - 2) * 2 + Math.abs(q - bass) * 0.25;
+        if (cost < bestCost) { bestCost = cost; best = q; }
+      }
+      if (best == null) continue;
+      for (var k2 = i; k2 <= last; k2++) if (events[k2].g < mid && events[k2].g + events[k2].d > mid) { split(k2, mid); last++; break; }
+      for (var k3 = i; k3 <= last; k3++) if (events[k3].g >= mid && events[k3].p) { events[k3].p[0] = best; delete events[k3].ring; }
+      i = last;
+    }
+    // the passing notes into the next chord
+    for (var j = 0; j + 1 < events.length; j++) {
+      var a = events[j], b = events[j + 1];
+      if (!a.pass || !b.span || !b.p || a.span === b.span || b.g !== b.span.g || a.g + a.d !== b.g) continue;
+      var bar = bars[barAt(a.g)], bt = bar.beat || 4, more = a.pass === 2;
+      if (bar.fifths == null || a.d < 2 * bt || a.span.end - a.span.g < 2 * bt) continue;
+      var tonic = mod12(bar.fifths * 7), scale = [0, 2, 4, 5, 7, 9, 11].map(function (x) { return (tonic + x) % 12; });
+      var end = a.g + a.d, walks = [];
+      for (var v = 0; v < 2; v++) {
+        if (walks.length && !more) break;
+        if (v === 1 && b.p.length !== 2) break;
+        var from = a.p[v], to = b.p[v], diff = to - from, dir = diff > 0 ? 1 : -1, size = Math.abs(diff);
+        var steps = [1, 2, 3, 4].map(function (k) { return from + dir * k; }).filter(function (x) { return dir * (to - x) > 0 && scale.indexOf(mod12(x)) >= 0; });
+        var notes = null;
+        if ((size === 3 || size === 4) && steps.length === 1) notes = [{t: end - bt, d: bt, x: steps[0]}];
+        else if (more && size === 5 && steps.length === 2) {
+          if (a.d >= 3 * bt) notes = [{t: end - 2 * bt, d: bt, x: steps[0]}, {t: end - bt, d: bt, x: steps[1]}];
+          else if (bt % 2 === 0) notes = [{t: end - bt, d: bt / 2, x: steps[0]}, {t: end - bt / 2, d: bt / 2, x: steps[1]}];
+        }
+        if (!notes || notes.some(function (n) { return n.x < 36 || clashes(n.x, n.t, n.d) || (v === 1 && n.x >= melLowIn(n.t, n.d)); })) continue;
+        walks.push({v: v, notes: notes});
+      }
+      if (!walks.length) continue;
+      var cuts = [a.g, end];
+      walks.forEach(function (w) { w.notes.forEach(function (n) { cuts.push(n.t, n.t + n.d); }); });
+      cuts = cuts.filter(function (c, k) { return cuts.indexOf(c) === k; }).sort(function (x, y) { return x - y; });
+      var segs = [];
+      for (var c = 0; c + 1 < cuts.length; c++) {
+        var t0 = cuts[c], p = a.p.slice();
+        walks.forEach(function (w) { w.notes.forEach(function (n) { if (n.t <= t0 && t0 < n.t + n.d) p[w.v] = n.x; }); });
+        if (p[0] >= p[1]) { segs = null; break; }
+        segs.push({g: t0, d: cuts[c + 1] - t0, p: p});
+      }
+      if (!segs) continue;
+      a.d = segs[0].d; delete a.ring;
+      events.splice.apply(events, [j + 1, 0].concat(segs.slice(1)));
+      j += segs.length - 1;
+    }
+    events.forEach(function (e) { delete e.span; delete e.pass; });
   }
   // the left hand to draw and play: written out by hand (sheet.left), or made from the patterns
   function leftHand(sheet) {
@@ -613,8 +779,11 @@
     events.forEach(function (e) {
       var s = t, z = t + len(e); t = z;
       if (z <= a || s >= b) return;
-      var c = {p: isRest(e) ? null : pitchesOf(e), d: Math.min(z, b) - Math.max(s, a)};
+      var c = {p: isRest(e) ? null : (Array.isArray(e.p) ? e.p.slice() : e.p), d: Math.min(z, b) - Math.max(s, a)};
       if (!isRest(e) && (s < a || e.tie)) c.tie = true;
+      if (!isRest(e) && s >= a && e.w) c.w = e.w.slice();
+      if (!isRest(e) && e.e) c.e = true;
+      if (isRest(e) && e.hide) c.hide = true;
       out.push(c);
     });
     return out;
@@ -654,7 +823,7 @@
         var withNext = beamable && next && !next.rest && next.v < 4 && group(next) === g;
         if (beamable && withNext && !withPrev) { layer += '<beam>'; open = true; }
         var d = DUR[it.v], attrs = ' xml:id="' + it.id + '" dur="' + d[0] + '"' + (d[1] ? ' dots="1"' : '');
-        if (it.rest) layer += '<rest' + attrs + '/>';
+        if (it.rest) layer += '<' + (it.idx >= 0 && events[it.idx] && events[it.idx].hide ? 'space' : 'rest') + attrs + '/>';
         else {
           var n = events[it.idx], ps = psOf(it.idx), many = ps.length > 1, chord = o.lead ? chordOf[it.idx] : o.chordAt ? o.chordAt(it.pos) : spanAt(bi * bar + it.pos);
           var ids = piecesOf[it.idx], first = ids[0] === it.id, at = ids.indexOf(it.id), verses = '';
@@ -663,7 +832,7 @@
             var goes = /-$/.test(w), text = w.replace(/-$/, ''), before = false;
             for (var j = it.idx - 1; j >= 0; j--) { var pw = events[j].w && events[j].w[vi]; if (pw) { before = /-$/.test(pw); break; } }
             var wp = goes ? (before ? 'm' : 'i') : (before ? 't' : '');
-            verses += '<verse n="' + (vi + 1) + '"><syl' + (wp ? ' wordpos="' + wp + '"' : '') + (goes ? ' con="d"' : '') + '>' + esc(text) + '</syl></verse>';
+            verses += '<verse n="' + (vi + 1 + (o.verseOffset || 0)) + '"><syl' + (wp ? ' wordpos="' + wp + '"' : '') + (goes ? ' con="d"' : '') + '>' + esc(text) + '</syl></verse>';
           });
           if (first && o.countLine) verses += '<verse n="' + o.countLine + '" xml:id="cv' + it.idx + '"><syl>.</syl></verse>';   // room for the counting
           var inner = '';
@@ -690,7 +859,7 @@
             if (slurred) extra += '<slur startid="#' + it.id + '" endid="#' + piecesOf[last][0] + '"/>';
           }
         }
-        if (o.lead && it.idx >= 0 && piecesOf[it.idx][0] === it.id && events[it.idx].ch)
+        if (o.lead && !o.voice2 && it.idx >= 0 && piecesOf[it.idx][0] === it.id && events[it.idx].ch)
           extra += '<harm staff="1" place="above" tstamp="' + (1 + (it.pos - (bar - b.len)) / (16 / sheet.time[1])) + '">' + esc(symbolic(events[it.idx].ch)) + '</harm>';   // as the app's sheets (tools/hymn-midi reads tstamp)
         if (open && beamable && !withNext) { layer += '</beam>'; open = false; }
       });
@@ -716,11 +885,14 @@
   // opt.countLine: keep a line free under the words (the page writes "1 & 2 &" there, between the staves).
   function toMei(sheet, opt) {
     opt = opt || {};
-    var notes = sheet.notes, left = opt.left && opt.left.length ? opt.left : null, f = fifths(sheet), bar = barLen(sheet);
-    var need = left ? Math.max(total(notes), total(left)) : 0;
-    var bars = layout(sheet, notes, 'n', need), lbars = left ? layout(sheet, left, 'l', need) : null;
+    var notes = sheet.notes, v2 = sheet.voice2 && sheet.voice2.length ? sheet.voice2 : null, left = opt.left && opt.left.length ? opt.left : null, f = fifths(sheet), bar = barLen(sheet);
+    var need = (left || v2) ? Math.max(total(notes), left ? total(left) : 0, v2 ? total(v2) : 0) : 0;
+    var bars = layout(sheet, notes, 'n', need), v2bars = v2 ? layout(sheet, v2, 'v', need) : null, lbars = left ? layout(sheet, left, 'l', need) : null;
     var nv = 1; notes.forEach(function (n) { if (n.w && n.w.length > nv) nv = n.w.length; });
-    var one = voiceMei(sheet, bars, notes, {lead: true, countLine: opt.countLine ? nv + 1 : 0, fill: opt.right || null}), two = left ? voiceMei(sheet, lbars, left, {spans: chordSpans(sheet)}) : null;
+    var nv2 = 0; if (v2) { nv2 = 1; v2.forEach(function (n) { if (n.w && n.w.length > nv2) nv2 = n.w.length; }); }
+    var one = voiceMei(sheet, bars, notes, {lead: true, countLine: opt.countLine ? nv + nv2 + 1 : 0, fill: opt.right || null});
+    var v2m = v2 ? voiceMei(sheet, v2bars, v2, {lead: true, voice2: true, verseOffset: nv}) : null;
+    var two = left ? voiceMei(sheet, lbars, left, {spans: chordSpans(sheet)}) : null;
     var dirs = {}, off = gridOff(sheet);
     function dir(t, text, place, type) {
       var g = t + off, bi = Math.max(0, Math.min(bars.length - 1, Math.floor(g / bar))), b = bars[bi];
@@ -738,9 +910,10 @@
       (left ? '<staffGrp symbol="brace" bar.thru="true"><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/><staffDef n="2" lines="5" clef.shape="F" clef.line="4"/></staffGrp>'
         : '<staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp>') + '</scoreDef>\n<section>\n';
     bars.forEach(function (b, bi) {
+      var hasV2 = v2bars && v2bars[bi].items.some(function (it) { return !it.rest; });
       x += '<measure n="' + (bi + 1) + '"' + (b.len < bar ? ' metcon="false"' : '') + (bi === bars.length - 1 ? ' right="end"' : '') +
-        '><staff n="1"><layer n="1">' + one[bi].layer + '</layer></staff>' +
-        (two ? '<staff n="2"><layer n="1">' + two[bi].layer + '</layer></staff>' : '') + one[bi].extra + (two ? two[bi].extra + (dirs[bi] || '') : '') + '</measure>\n';
+        '><staff n="1"><layer n="1">' + one[bi].layer + '</layer>' + (hasV2 ? '<layer n="2">' + v2m[bi].layer + '</layer>' : '') + '</staff>' +
+        (two ? '<staff n="2"><layer n="1">' + two[bi].layer + '</layer></staff>' : '') + one[bi].extra + (hasV2 ? v2m[bi].extra : '') + (two ? two[bi].extra + (dirs[bi] || '') : '') + '</measure>\n';
     });
     return x + '</section>\n</score></mdiv></body></music></mei>';
   }
@@ -782,6 +955,15 @@
       var d = len(n); for (var q = i + 1; tied(notes, q); q++) d += len(notes[q]);
       mel.push({t: on[i], d: d, p: n.p, i: i});
     });
+    var v2 = [], v2n = sheet.voice2 && sheet.voice2.length ? sheet.voice2 : null;
+    if (v2n) {
+      var vo = onsets(v2n);
+      v2n.forEach(function (n, i) {
+        if (isRest(n) || tied(v2n, i)) return;
+        var d = len(n); for (var q = i + 1; tied(v2n, q); q++) d += len(v2n[q]);
+        v2.push({t: vo[i], d: d, p: n.p, i: i});
+      });
+    }
     var lh = leftHand(sheet);
     if (lh) {
       var lo = onsets(lh.events);
@@ -793,10 +975,10 @@
     }
     var off = gridOff(sheet);
     chordSpans(sheet).forEach(function (s) { if (s.info && s.end > s.g) pad.push({t: Math.max(0, s.g - off), d: s.end - Math.max(off, s.g), ps: chordPitches(s.ch)}); });
-    return {mel: mel, fill: fill, left: left, pad: pad, total: Math.max(total(notes), lh ? total(lh.events) : 0)};
+    return {mel: mel, v2: v2, fill: fill, left: left, pad: pad, total: Math.max(total(notes), v2n ? total(v2n) : 0, lh ? total(lh.events) : 0)};
   }
 
-  return {symbolic: symbolic, KEYS: KEYS, PC: PC, DUR: DUR, DUR_BUTTONS: DUR_BUTTONS, ROOTS: ROOTS, QUALITIES: QUALITIES, FLAT_NAMES: FLAT_NAMES, SHARP_NAMES: SHARP_NAMES,
+  return {guitarShape: guitarShape, symbolic: symbolic, KEYS: KEYS, PC: PC, DUR: DUR, DUR_BUTTONS: DUR_BUTTONS, ROOTS: ROOTS, QUALITIES: QUALITIES, FLAT_NAMES: FLAT_NAMES, SHARP_NAMES: SHARP_NAMES,
     mod12: mod12, esc: esc, len: len, isRest: isRest, pitchesOf: pitchesOf, samePitches: samePitches,
     splitChord: splitChord, composeChord: composeChord, trChord: trChord, chordInfo: chordInfo, chordPitches: chordPitches,
     tonicPc: tonicPc, fifths: fifths, keyAlter: keyAlter, scalePcs: scalePcs, spell: spell, spellInChord: spellInChord, noteName: noteName, keyChords: keyChords,

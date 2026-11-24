@@ -64,7 +64,11 @@ In front, what is used most: **Piano | Guitar**, **Chords only** (hides the staf
 guitarists and for those who read only chords), the key (**−** and **+**), **Both hands**, the zoom, and **⤢ Sheet only, for a music stand** (the
 sheet alone has ✕ back to the lyrics there). The rest is in **⋯**: **Edit chords** (for players who reharmonize; `E`),
 **Original chords** once the sheet has edits (a dot on ⋯ while it is on; `O`), **Original key and size** after a change,
-**Light paper** in the dark theme, and **Save MIDI**. The menu is the Share menu's (`popupMenu` in `app.js`).
+**Light paper** in the dark theme, **Print** and **Save MIDI**. **Print** prints the sheet alone as it is shown (the key, Chords only, Both hands, edited
+chords), black on white: `sheet.js` lays the music out a page wide in page-high pieces that fit A4 and Letter, so no
+line of music is cut between pages (it does so for the browser's own printing too), and `sheet.css` leaves the rest of
+the page out (`html.print-sheet`). The hymn page has no print button of its own (the browser's Print still gives the
+lyrics, then the sheet). The menu is the Share menu's (`popupMenu` in `app.js`).
 The bar is always one row: when the pane is too narrow it gives up a little at a time (`fit()` in `sheetpanel.js`, the steps in
 `sheet.css` as `data-fit`), in this order: the zoom buttons (**Smaller** and **Bigger** go into **⋯**; two fingers on the sheet
 change its size on every touch screen, in the web app too), the words of Piano | Guitar (icons), **Both hands** (into **⋯**),
@@ -85,14 +89,39 @@ is there whenever Both hands is on (not while editing chords, on the guitar shee
 hymn starts with it tucked down. It shows two rows:
 
 - **Style**, a preset named by what it is for: **Plain** (the default: Strike, hymn style, twice a bar), **Chorale**
-  (bass and tenor, with Two notes: four-part harmony as in a hymnal), **Flowing** (Dynamic, Adaptive), **Gentle**
-  (Dynamic, Rolled), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
+  (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
+  harmony as in a hymnal), **Flowing** (Dynamic, Adaptive), **Guitar**
+  (strummed or picked, with a **Strum** row under Style: Folk strum, Pop, Steady, Driving, Ballad, Country, Fingerpicking,
+  Ballad picking), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
   Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
-- **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts).
+- **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
+- **More walking** (a switch under Style, only with Chorale, in Advanced too): both lower voices may walk at a change, a
+  fourth is walked in two steps, and in a chord of a bar or more, or of two or three beats while the melody holds one note
+  through it, the bass moves to another note of it halfway, towards the next bass.
 
-**Advanced** (remembered on the device) shows every choice instead:
+**Guitar** plays the chords as a guitar does in the first frets (the open shapes: C x32010, G 320003, D xx0232; a slash
+chord's bass on the lowest string that has it), strummed down over every string or up over the top four, lighter, with a muted chuck (Pop), or
+picked (thumb on the basses, the G, B and high E strings between), by the time signature. It sounds as a guitar:
+FluidR3 GM's steel-string acoustic guitar (`vendor/guitar/`, 13 MP3s, about 270 KB, loaded when a sheet first strums
+and cached offline like the piano), in a **Tone** chosen in Advanced: Bright (the samples as they are), Warm (the
+default: the pick's edge rounded), Mellow, Soft (no pick click). `player.js` GUITAR_TONES: a low-pass that opens with
+harder strums, a high-shelf cut above 3 kHz, a slower attack, a little body. While the samples load, or without them,
+a plucked string made in the browser (Karplus-Strong) plays. The melody stays on the piano. A listening page compared
+six sample sets by ear before FluidR3 steel and Warm were chosen.
 
-- **Left hand**: none, **Strike**, **Bass + chord**, **Arpeggio** or **Dynamic**; then its **Pattern** (Strike: two notes, three
+**Strumming** (the guitar sheet): in Both hands' place on the toolbar, on until turned off (`sheet.strumming`), a guitar strums the chords when the sheet plays
+(`piano.js` strumChoice: the guitar kinds, the tone, and the guitar sheet's capo, so the shapes are those of the chords
+the guitar sheet shows, played above the capo). Its panel (`pianopanel.js` createStrumPanel, the same sheet at the
+bottom as Both hands', `.pp-panel`) has only Strum and Tone, and "Use for all hymns": kept per hymn in `strumByHymn`, for
+every hymn in `strumForAll` (Both hands': `handsByHymn`, `handsForAll`; `piano.js` SAVED). The names before
+2026-11-24 (`piano`, `pianoOf`, `strum`, `strumOf`) are deleted when the sheet loads: devices used before a change
+became the hymn's own kept every change for every hymn, so they start again from the defaults. Nothing is added to the sheet.
+
+Advanced, Pedal and More walking are switches (`role="switch"`), the other choices buttons.
+
+**Advanced** (a switch, remembered on the device) shows every choice instead:
+
+- **Left hand**: none, **Strike**, **Bass + chord**, **Arpeggio**, **Guitar** or **Dynamic**; then its **Pattern** (Strike: two notes, three
   notes, open, or the hymn style: root and fifth where the chord starts, third and fifth higher up in the bars it lasts;
   Bass + chord, by the time signature: root and fifth, bass and chords, slow, in eighths, a waltz ...; Arpeggio: open,
   wide, broken chord, Alberti, rise and hold; Dynamic: adaptive, rolled, pulse, walking, chorale), its **Rhythm** where it has more than one (Strike: held, twice a bar or
@@ -179,7 +208,7 @@ as `#/sheet/E8` here, with a ‹ back button first. What differs is said in two 
 - `src/host.js`: where the sheet code gets things. The web app gives it its data packs (`app.js`); the Android page
   fetches `../sheetMei/<id>.mei` and `../sheetLyrics/<id>.json` from the app's assets, keeps chord edits in the app
   (`window.HymnsEdits`, `ChordEdits.java`, so Settings exports them) and hands Save MIDI's file to the app, which asks
-  where to save it.
+  where to save it, and Print's page to Android's printing (`host.print`; a WebView has no `window.print`).
 - The options of `createSheetPanel` (`src/sheetpanel.js`): the back button, the ⤢ button (web only), pinching to zoom
   (Android only), the tune whose tempo the sheet plays at (Android: `res/raw/m<tune>.mid`, served by the app at `/res/raw/`).
 
@@ -220,7 +249,7 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/sw.js`, `src/manifest.webmanifest` | service worker (offline) and install manifest; `build.py` writes the file lists in |
 
 Offline: the service worker precaches only the core shell (`SHELL`) and `data/version.json` on install (plus refreshing any `LAZY` entries already cached from a previous build) so first-visit shared hymn links open from a single ~24–57 KB content-hashed pre-resolved shard (`hymns/<hash>/<group>-<bucket>.json.gz`) without waiting for the 14 MB SQLite database, `sql-wasm.wasm`, sheet modules, or `qrcode.js`. The full SQLite database downloads in the background (kept in IndexedDB; word search and Browse show inline progress if opened before it finishes), and `app.js` (`offlineDownload`) then fetches the deferred scripts (`LAZY`), all sheet/lyric packs, Verovio, and every tune (~30 MB total) in the background about 8 s after start, once per build; Settings → Offline shows it and can start it again.
-| `vendor/` | sql.js 1.13.0 (SQLite in WebAssembly, MIT licence); qrcode.js 1.4.4 (QR Code Generator for JavaScript by Kazuhiko Arase, MIT licence; draws the QR code of Settings → Share the app); Noto Nastaliq Urdu 4.000 (SIL Open Font License), the font of Urdu text (`:lang(ur)` in `app.css`); `piano/` — Salamander Grand Piano (Yamaha C5, by Alexander Holm, CC-BY 3.0), 22 compact MP3 samples (`A1`–`C7`, every minor 3rd) |
+| `vendor/` | sql.js 1.13.0 (SQLite in WebAssembly, MIT licence); qrcode.js 1.4.4 (QR Code Generator for JavaScript by Kazuhiko Arase, MIT licence; draws the QR code of Settings → Share the app); Noto Nastaliq Urdu 4.000 (SIL Open Font License), the font of Urdu text (`:lang(ur)` in `app.css`); `piano/` — Salamander Grand Piano (Yamaha C5, by Alexander Holm, CC-BY 3.0), 22 compact MP3 samples (`A1`–`C7`, every minor 3rd); `guitar/` — FluidR3 GM acoustic guitar (steel), by Frank Wen, CC-BY 3.0, as rendered by midi-js-soundfonts, 13 MP3s (`E2`–`E5`, every minor 3rd; `LICENSE.txt`) |
 | `build.py`, `serve.py` | the build, and a local server that serves `dist/` the way GitHub Pages does |
 | `dist/` | build output, not in git |
 

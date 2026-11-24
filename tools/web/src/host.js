@@ -5,6 +5,8 @@
 //   lyrics(id)       the words of another language for a sheet (sheetLyrics: a promise of the JSON text's object, or null)
 //   edits            this device's chord edits: get(sheet) -> {bars} | null, put(sheet, bars) (promises; edits.js by default)
 //   saveFile(name, type, bytes)   gives the reader a file (Save MIDI); by default the browser downloads it
+//   print(title, done)   prints the page as it is now (Print in ⋯), calls done() when printing is over; by default the
+//                        browser's print dialog
 import * as Edits from './edits.js';
 
 export const host = {
@@ -18,6 +20,11 @@ export const host = {
     a.href = url; a.download = name;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 2000);
+  },
+  print: (title, done) => {
+    const after = () => { removeEventListener('afterprint', after); done(); };
+    addEventListener('afterprint', after);
+    window.print();
   },
 };
 

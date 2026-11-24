@@ -4,7 +4,7 @@
 // piano.js (scoreOf), the sound from player.js (playScore). The controls are a row under the sheet's toolbar.
 
 import * as Player from './player.js';
-import {scoreOf} from './piano.js';
+import {scoreOf, strumChoice} from './piano.js';
 import {tr} from './i18n.js';
 import {host} from './host.js';
 
@@ -113,13 +113,17 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
   musicObserver.observe(view.music, {childList: true});
 
   // the notes of the sheet as it is now; made again only when what it sounds like changed
+  // with Both hands (the piano sheet) or Strumming (the guitar sheet: in the shapes of its chords, above its capo)
   const handsOn = () => !!(view.state.hands && view.piano && !view.state.guitar && view.state.staff);
-  const choiceNow = () => JSON.stringify(handsOn() ? view.piano : null);
+  const strumOn = () => !!(view.state.strum && view.state.guitar && view.strum);
+  const accompaniment = () => (handsOn() ? view.piano : strumOn() ? strumChoice(view.strum, view.info.capo) : null);
+  const choiceNow = () => JSON.stringify(accompaniment());
   const stale = () => !score || scoreXml !== view.soundXml || scoreChoice !== choiceNow();
   function currentScore() {
     if (!stale()) return score;
     const doc = new DOMParser().parseFromString(view.soundXml, 'application/xml');
-    score = scoreOf(doc, view.piano, {hands: handsOn()});
+    const with_ = accompaniment();
+    score = scoreOf(doc, with_ || view.piano, {hands: !!with_});
     scoreXml = view.soundXml; scoreChoice = choiceNow();
     return score;
   }

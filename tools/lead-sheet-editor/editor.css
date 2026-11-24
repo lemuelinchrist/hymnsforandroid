@@ -65,6 +65,8 @@ kbd { background: var(--raised); border: 1px solid var(--line); border-bottom-wi
 #durs svg { display: block; }
 .hint { color: var(--muted); font-size: 12px; }
 body.hand-l #chordTools, body.hand-l .mel-only, body.hand-l .lead-only { display: none !important; }
+body.hand-v #chordTools, body.hand-v .lead-only, body.hand-v #commentRow { display: none !important; }
+body.hand-v #verses { display: block !important; }
 
 /* ---- the sheet and the side panel */
 main { display: grid; grid-template-columns: minmax(0, 1fr) 372px; min-height: 0; }

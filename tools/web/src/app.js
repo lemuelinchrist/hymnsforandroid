@@ -972,7 +972,6 @@ function hymnScreen(view, hymn) {
       playBtn,
       h('button', {class: 'icon-btn share', title: tr('Share (C copies the lyrics)'), 'aria-label': tr('Share'), 'aria-haspopup': 'menu', 'aria-expanded': 'false',
         onclick: (e) => shareMenu(hymn, e.currentTarget)}, icon('share')),
-      h('button', {class: 'icon-btn print', title: tr('Print'), onclick: () => window.print()}, icon('print')),
       favBtn),
     hymn.category || hymn.newTune ? h('p', {class: 'category', dir: g.rtl ? 'rtl' : null, lang: langOf(hymn.group)},
       hymn.category ? h('span', {class: 'cat-main'}, hymn.category) : null,
