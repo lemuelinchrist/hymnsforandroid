@@ -241,6 +241,16 @@ async function ui(page) {
     await page.click('.piano-panel button:text-is("Done")');
     await openSheet('E8');
   });
+  await test('choices kept under the old names (one hymn\'s style carried to every hymn) are forgotten', async () => {
+    await page.evaluate(() => {
+      localStorage.setItem('hfw.piano', JSON.stringify({lh: {family: 'dynamic', kind: 'adaptive', rhythm: '8', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}}));
+      localStorage.setItem('hfw.pianoOf', JSON.stringify({E8: {lh: {family: 'dynamic', kind: 'walking', rhythm: '4', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}}}));
+      localStorage.setItem('hfw.strum', JSON.stringify({kind: 'pop', tone: 'soft'}));
+    });
+    await page.reload(); await page.waitForSelector('.sheet-music svg'); await settle();
+    assert(/Plain/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'E8 plays Plain, not the old choices: ' + await page.locator('.piano-panel .pp-summary').textContent());
+    assert(await page.evaluate(() => ['piano', 'pianoOf', 'strum', 'strumOf'].every((k) => localStorage.getItem('hfw.' + k) === null)), 'the old keys are gone');
+  });
   await test('it follows the key, and is not there on the guitar sheet or with the staff hidden', async () => {
     await page.keyboard.press('+'); await settle();
     assert(await staves() === 2 && await left() === hymnStyle, 'transposed: still two staves');
@@ -270,7 +280,7 @@ async function ui(page) {
     await sp.locator('.ce-row', {hasText: 'Tone'}).locator('button:text-is("Soft")').click();
     await sp.locator('button:text-is("Done")').click();
     assert(/Pop · Soft/.test(await sp.locator('.pp-summary').textContent()), 'the bar says it: ' + await sp.locator('.pp-summary').textContent());
-    assert(await page.evaluate(() => JSON.stringify(JSON.parse(localStorage.getItem('hfw.strumOf') || '{}').E8)) === JSON.stringify({kind: 'pop', tone: 'soft'}), 'E8\'s own');
+    assert(await page.evaluate(() => JSON.stringify(JSON.parse(localStorage.getItem('hfw.strumByHymn') || '{}').E8)) === JSON.stringify({kind: 'pop', tone: 'soft'}), 'E8\'s own');
     const heard = await page.evaluate(async () => {
       const {scoreOf, strumChoice} = await import('./piano.js'), {renderScoreForTest} = await import('./player.js'), {fetchGzJson} = await import('./files.js');
       const v = await (await fetch('data/version.json')).json(), pack = await fetchGzJson(v.sheets.E);

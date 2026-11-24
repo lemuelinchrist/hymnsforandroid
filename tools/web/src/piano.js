@@ -43,6 +43,15 @@ export function presetOf(choice, time) {
 // the guitar's tones (player.js GUITAR_TONES), as the panels offer them; warm is the usual one
 export const TONES = [['bright', 'Bright'], ['warm', 'Warm'], ['mellow', 'Mellow'], ['soft', 'Soft']];
 export const STRUM_DEFAULT = {kind: 'folk', tone: 'warm'};
+
+// Where the choices are kept on the device (ui.js store): a hymn's own, and the one for every hymn ("Use for all
+// hymns"). Until 2026-11-24 they were `pianoOf`, `piano`, `strumOf` and `strum`; before the panel made a change the
+// hymn's own, every change was kept as `piano`, the choice for every hymn, so devices carried one hymn's style to the
+// next. Those are forgotten (forgetOldChoices), so every device starts again from the defaults.
+export const SAVED = {handsOf: 'handsByHymn', hands: 'handsForAll', strumOf: 'strumByHymn', strum: 'strumForAll'};
+export function forgetOldChoices() {
+  try { for (const k of ['piano', 'pianoOf', 'strum', 'strumOf']) localStorage.removeItem('hfw.' + k); } catch (e) { /* no storage */ }
+}
 // The guitar sheet's strumming ({kind, tone}) as a choice to play: a guitar's strums only (the melody is the sheet's),
 // in the shapes of the chords the guitar sheet shows, above its capo
 export function strumChoice(strum, capo) {

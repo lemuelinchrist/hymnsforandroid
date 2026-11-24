@@ -7,11 +7,13 @@ import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE} from './sheet
 import {createEditor} from './editor.js';
 import {createPianoPanel, createStrumPanel} from './pianopanel.js';
 import {createSheetPlayer} from './sheetplayer.js';
-import {DEFAULT as PIANO_DEFAULT, STRUM_DEFAULT} from './piano.js';
+import {DEFAULT as PIANO_DEFAULT, STRUM_DEFAULT, SAVED, forgetOldChoices} from './piano.js';
 import {host as appHost} from './host.js';
 import * as Player from './player.js';
 import {tr, tn} from './i18n.js';
 import {h, append, icon, store, toast, isDark, popupMenu, themeListeners} from './ui.js';
+
+forgetOldChoices();   // the choices kept under their old names (piano.js SAVED)
 
 // remembered between hymns: piano or guitar, the staff, the zoom, both hands, strumming (on unless turned off: the
 // guitar sheet plays on a guitar; kept as `strumming`, as the first days' `strum` was saved off for everyone).
@@ -167,20 +169,20 @@ export function createSheetPanel(pane, o) {
   // how the hands play: this hymn's own (a change in the panel), else the one the sheet starts with (a sheet of ours
   // that names its piano part), else the device's choice for every hymn ("Use for all hymns")
   function pianoChoice() {
-    const own = store.get('pianoOf', {})[o.sheetId], usual = store.get('piano', PIANO_DEFAULT);
+    const own = store.get(SAVED.handsOf, {})[o.sheetId], usual = store.get(SAVED.hands, PIANO_DEFAULT);
     return {choice: own || view.baseHands || usual, usual};
   }
   function keepOwn(choice) {
-    const all = store.get('pianoOf', {});
+    const all = store.get(SAVED.handsOf, {});
     // the same as what the hymn plays without one: none of its own, so that it follows the device's choice
-    if (JSON.stringify(choice) === JSON.stringify(view.baseHands || store.get('piano', PIANO_DEFAULT))) delete all[o.sheetId];
+    if (JSON.stringify(choice) === JSON.stringify(view.baseHands || store.get(SAVED.hands, PIANO_DEFAULT))) delete all[o.sheetId];
     else all[o.sheetId] = choice;
-    store.set('pianoOf', all);
+    store.set(SAVED.handsOf, all);
     view.piano = choice;
     view.set({});
   }
   function setUsual(choice) {
-    store.set('piano', choice);
+    store.set(SAVED.hands, choice);
     keepOwn(choice);
   }
   view.piano = pianoChoice().choice;
@@ -188,19 +190,19 @@ export function createSheetPanel(pane, o) {
 
   // how the guitar strums on the guitar sheet ({kind, tone}): this hymn's own, else the device's
   function strumPick() {
-    const own = store.get('strumOf', {})[o.sheetId], usual = store.get('strum', STRUM_DEFAULT);
+    const own = store.get(SAVED.strumOf, {})[o.sheetId], usual = store.get(SAVED.strum, STRUM_DEFAULT);
     return {choice: own || usual, usual};
   }
   function keepStrum(choice) {
-    const all = store.get('strumOf', {});
-    if (JSON.stringify(choice) === JSON.stringify(store.get('strum', STRUM_DEFAULT))) delete all[o.sheetId];
+    const all = store.get(SAVED.strumOf, {});
+    if (JSON.stringify(choice) === JSON.stringify(store.get(SAVED.strum, STRUM_DEFAULT))) delete all[o.sheetId];
     else all[o.sheetId] = choice;
-    store.set('strumOf', all);
+    store.set(SAVED.strumOf, all);
     view.strum = choice;
     if (sp) sp.refresh();   // nothing on the sheet changes: only what is heard
   }
   function setStrumUsual(choice) {
-    store.set('strum', choice);
+    store.set(SAVED.strum, choice);
     keepStrum(choice);
   }
   view.strum = strumPick().choice;

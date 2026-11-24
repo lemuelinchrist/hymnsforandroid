@@ -112,8 +112,10 @@ six sample sets by ear before FluidR3 steel and Warm were chosen.
 **Strumming** (the guitar sheet): in Both hands' place on the toolbar, on until turned off (`sheet.strumming`), a guitar strums the chords when the sheet plays
 (`piano.js` strumChoice: the guitar kinds, the tone, and the guitar sheet's capo, so the shapes are those of the chords
 the guitar sheet shows, played above the capo). Its panel (`pianopanel.js` createStrumPanel, the same sheet at the
-bottom as Both hands', `.pp-panel`) has only Strum and Tone, and "Use for all hymns": kept per hymn in `strumOf`, for
-every hymn in `strum`. Nothing is added to the sheet.
+bottom as Both hands', `.pp-panel`) has only Strum and Tone, and "Use for all hymns": kept per hymn in `strumByHymn`, for
+every hymn in `strumForAll` (Both hands': `handsByHymn`, `handsForAll`; `piano.js` SAVED). The names before
+2026-11-24 (`piano`, `pianoOf`, `strum`, `strumOf`) are deleted when the sheet loads: devices used before a change
+became the hymn's own kept every change for every hymn, so they start again from the defaults. Nothing is added to the sheet.
 
 Advanced, Pedal and More walking are switches (`role="switch"`), the other choices buttons.
 
