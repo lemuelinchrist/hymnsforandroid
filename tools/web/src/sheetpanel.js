@@ -173,6 +173,7 @@ export function createSheetPanel(pane, o) {
     return {choice: own || view.baseHands || usual, usual};
   }
   function keepOwn(choice) {
+    if (!state.hands) set({hands: true});   // chosen while playing without Both hands: a style is only heard with the piano part
     const all = store.get(SAVED.handsOf, {});
     // the same as what the hymn plays without one: none of its own, so that it follows the device's choice
     if (JSON.stringify(choice) === JSON.stringify(view.baseHands || store.get(SAVED.hands, PIANO_DEFAULT))) delete all[o.sheetId];
@@ -212,7 +213,8 @@ export function createSheetPanel(pane, o) {
   let panel = null, strumPanel = null;
   function syncPanel(openIt = false) {
     const ready = !view.chordsOnly && !view.editing && view.renders > 0;
-    const wantPiano = ready && state.hands && !state.guitar && state.staff, wantStrum = ready && state.strum && state.guitar;
+    // the piano sheet's Style panel: while Both hands is on, and while the sheet plays (then it is the slim bar)
+    const wantPiano = ready && (state.hands || (sp && sp.playing)) && !state.guitar && state.staff, wantStrum = ready && state.strum && state.guitar;
     if (!wantPiano && panel) panel.show('hidden');
     if (!wantStrum && strumPanel) strumPanel.show('hidden');
     if (wantPiano && !panel) {

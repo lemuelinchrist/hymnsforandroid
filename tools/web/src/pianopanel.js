@@ -1,6 +1,6 @@
-// How the two hands play when "Both hands" is on (piano.js): a sheet at the bottom of the screen, in the chord editor's
-// clothes. It opens when Both hands is turned on; Done tucks it down to a slim bar that names the style (a tap or a drag
-// up opens it again); it is gone while Both hands is off. It shows the presets (piano.js PRESETS) and the right hand,
+// How the two hands play (piano.js), the "Style" panel: a sheet at the bottom of the screen, in the chord editor's
+// clothes. It opens when Both hands is turned on, and is there (as the slim bar) while the sheet plays; Done tucks it down to a slim bar that names the style (a tap or a drag
+// up opens it again); it is gone when neither Both hands nor playing needs it. It shows the presets (piano.js PRESETS) and the right hand,
 // Melody alone or Two notes; Advanced shows every choice instead (kept on the device). A change is this hymn's own;
 // "Use for all hymns" makes the choice the device's, which every hymn without its own plays.
 // The guitar sheet's Strumming has a panel of the same kind (createStrumPanel): only the strum and the tone.
@@ -120,7 +120,7 @@ export function createPianoPanel({get, set, setUsual, time}) {
   const famRow = el('div', 'ce-row'), kindRow = el('div', 'ce-row'), rhythmRow = el('div', 'ce-row'), octRow = el('div', 'ce-row');
   const toneRow = el('div', 'ce-row'), addRow = el('div', 'ce-row'), onRow = el('div', 'ce-row');
   let advanced = !!store.get('pianoAdvanced', false);
-  const panel = sheetPanel({cls: 'piano-panel', title: tr('Both hands'), label: tr('How the two hands play'), extra: [bAdv],
+  const panel = sheetPanel({cls: 'piano-panel', title: tr('Style'), label: tr('How the two hands play'), extra: [bAdv],
     rows: [presetRow, strumRow, famRow, kindRow, rhythmRow, octRow, toneRow, walkRow, shuffleRow, addRow, onRow],
     refresh: (bAll) => refresh(bAll), onAll: () => setUsual(get().choice)});
   const change = (fn) => {

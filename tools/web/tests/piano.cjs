@@ -402,6 +402,24 @@ async function ui(page) {
     assert(await page.locator('[id^="lh"].playing').count() > 0, 'the left hand lights up too');
     await page.click('.sheet-player .tb.primary'); await settle();
   });
+  await test('the Style panel is there while the sheet plays, even without Both hands; choosing a style then turns Both hands on', async () => {
+    const hands = page.locator('.tb.hands:not(.strum)'), panel = page.locator('.piano-panel');
+    await hands.click(); await settle();                // off again
+    assert(await hands.getAttribute('aria-pressed') === 'false' && await panel.isHidden(), 'Both hands off: no panel');
+    await page.click('.tb.playsheet'); await page.waitForTimeout(1200);
+    assert(await panel.isVisible() && await panel.locator('.pp-peek').isVisible(), 'playing: the slim bar is there');
+    assert(/^Style/.test(await panel.locator('.pp-title').textContent()), 'named Style: ' + await panel.locator('.pp-title').textContent());
+    assert(await hands.getAttribute('aria-pressed') === 'false', 'still without Both hands');
+    await page.click('.sheet-player .tb.primary'); await settle();
+    assert(await panel.isHidden(), 'stopped: the bar goes again');
+    await page.click('.tb.playsheet'); await page.waitForTimeout(1200);
+    await panel.locator('.pp-peek').click(); await settle();
+    await pick('', 'Plain');
+    assert(await hands.getAttribute('aria-pressed') === 'true', 'a style chosen while playing turns Both hands on');
+    assert(await panel.isVisible(), 'and the panel stays');
+    await page.click('.sheet-player .tb.primary'); await settle();
+    assert(await panel.isVisible(), 'Both hands is on: the panel stays after Stop');
+  });
   await test('tapping a note plays from there; the speed and the parts can be changed while it plays', async () => {
     await page.locator('.sheet-music g.measure').nth(6).locator('g.note .notehead').first().click({force: true}); await page.waitForTimeout(1200);
     const bar = parseInt(/Bar (\d+)/.exec(await page.locator('.sp-where').textContent())[1], 10);
