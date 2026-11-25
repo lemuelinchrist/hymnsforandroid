@@ -15,11 +15,10 @@ import {h, append, icon, store, toast, isDark, popupMenu, themeListeners} from '
 
 forgetOldChoices();   // the choices kept under their old names (piano.js SAVED)
 
-// remembered between hymns: piano or guitar, the staff, the zoom, both hands, strumming (on unless turned off: the
-// guitar sheet plays on a guitar; kept as `strumming`, as the first days' `strum` was saved off for everyone).
+// remembered between hymns: piano or guitar, the staff, the zoom, both hands (the guitar sheet always plays strummed, on a guitar).
 // Transposition is per hymn (in the URL only).
 function sheetPrefs() {
-  return Object.assign({guitar: false, staff: true, scale: DEFAULT_SCALE, hands: false, strumming: true}, store.get('sheet', {}));
+  return Object.assign({guitar: false, staff: true, scale: DEFAULT_SCALE, hands: false}, store.get('sheet', {}));
 }
 
 // pane: the element to fill. o:
@@ -44,9 +43,8 @@ export function createSheetPanel(pane, o) {
     shift: Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, parseInt(p.get('t') || '0', 10) || 0)),
     scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, parseInt(p.get('z') || '', 10) || prefs.scale)),
     hands: !!prefs.hands,
-    strum: prefs.strumming !== false,
   };
-  const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands, strumming: state.strum});
+  const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands});
 
   const btn = (label, title, onclick, cls = '') => h('button', {type: 'button', class: 'tb ' + cls, title, 'aria-label': title, onclick}, label);
   // on a narrow screen (sheet.css) Piano | Guitar show their icons instead of the words (the staff button keeps its words)
@@ -64,8 +62,6 @@ export function createSheetPanel(pane, o) {
   const bZoomIn = btn(icon('zoomIn'), tr('Bigger (Shift+Z)'), () => set({scale: state.scale + 5}), 'icon');
   // both hands: a piano part made from the chords (piano.js); how the hands play is chosen in the panel at the bottom
   const bHands = btn(tr('Both hands'), tr('A piano part: a left hand made from the chords (B)'), () => set({hands: !state.hands}), 'hands');
-  // the guitar sheet's own: a guitar strums the chords when the sheet plays; the strum and the tone in its panel
-  const bStrum = btn(tr('Strumming'), tr('A guitar strums the chords when the sheet plays (B)'), () => set({strum: !state.strum}), 'hands strum');
   // play the sheet: the hymn page's own Play button does it while the sheet is shown; the sheet alone has this one
   const bPlay = btn(icon('play'), tr('Play the sheet as it is shown, with both hands when they are on (M)'), () => sp.toggle(), 'icon playsheet');
   bPlay.hidden = !full;
@@ -81,7 +77,6 @@ export function createSheetPanel(pane, o) {
     // what the bar had no room for (fit(), sheet.css) is here instead: Both hands, then the zoom
     const fit = +bar.dataset.fit || 0;
     if (fit >= 3 && !bHands.hidden) items.push({icon: 'piano', label: tr('Both hands'), checked: !!state.hands, run: () => set({hands: !state.hands})});
-    if (fit >= 3 && !bStrum.hidden) items.push({icon: 'guitar', label: tr('Strumming'), checked: !!state.strum, run: () => set({strum: !state.strum})});
     if (fit >= 5 && !bStaff.hidden) items.push({icon: 'staff', label: tr('Chords only'), checked: !state.staff, run: () => set({staff: !state.staff})});
     if (fit >= 1) {
       if (state.scale > MIN_SCALE) items.push({icon: 'zoomOut', label: tr('Smaller'), run: () => set({scale: state.scale - 5})});
@@ -129,7 +124,6 @@ export function createSheetPanel(pane, o) {
     bStaff,
     h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
     bHands,
-    bStrum,
     h('div', {class: 'zoom'}, bZoomOut, bZoomIn),
     h('span', {class: 'grow'}),
     full ? bPlay : null,
@@ -208,13 +202,14 @@ export function createSheetPanel(pane, o) {
   }
   view.strum = strumPick().choice;
 
-  // a panel is there while Both hands (the piano sheet with its staff) or Strumming (the guitar sheet) is on, with
-  // something to play it on (not while editing chords): open when it was just turned on, else tucked down to its bar
+  // The Style panel (piano sheet) is there while Both hands is on; both panels (the piano's Style, the guitar's
+  // Strumming) are there while the sheet plays, and go at Stop. Pressing Play opens the panel (not on a restart of
+  // the same play: another speed, key or style). There is no Strumming switch: the guitar sheet plays with it.
   let panel = null, strumPanel = null;
   function syncPanel(openIt = false) {
     const ready = !view.chordsOnly && !view.editing && view.renders > 0;
-    // the piano sheet's Style panel: while Both hands is on, and while the sheet plays (then it is the slim bar)
-    const wantPiano = ready && (state.hands || (sp && sp.playing)) && !state.guitar && state.staff, wantStrum = ready && state.strum && state.guitar;
+    const playing = !!(sp && sp.playing);
+    const wantPiano = ready && (state.hands || playing) && !state.guitar && state.staff, wantStrum = ready && playing && state.guitar;
     if (!wantPiano && panel) panel.show('hidden');
     if (!wantStrum && strumPanel) strumPanel.show('hidden');
     if (wantPiano && !panel) {
@@ -257,7 +252,7 @@ export function createSheetPanel(pane, o) {
 
   function set(changes) {
     if (view.editing && (changes.guitar || changes.staff === false || changes.original)) setEdit(false);
-    const handsOn = (changes.hands === true && !state.hands) || (changes.strum === true && !state.strum);
+    const handsOn = changes.hands === true && !state.hands;
     Object.assign(state, changes);
     state.shift = Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, state.shift));
     state.scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, state.scale));
@@ -268,7 +263,7 @@ export function createSheetPanel(pane, o) {
     if (o.onParams) o.onParams(sheetParams());
   }
 
-  function updateBar(info = view.info) {
+  function updateBar(info = view.info, started = false) {
     bPiano.setAttribute('aria-pressed', String(!state.guitar));
     bGuitar.setAttribute('aria-pressed', String(state.guitar));
     bStaff.setAttribute('aria-pressed', String(!state.staff));
@@ -281,8 +276,6 @@ export function createSheetPanel(pane, o) {
     }
     bHands.hidden = !!view.chordsOnly || state.guitar || !state.staff;   // a piano part needs the piano sheet's staff
     bHands.setAttribute('aria-pressed', String(!!state.hands));
-    bStrum.hidden = !!view.chordsOnly || !state.guitar;   // the guitar sheet's (with the staff or Chords only)
-    bStrum.setAttribute('aria-pressed', String(!!state.strum));
     bMore.classList.toggle('dot', !!state.original);   // the original chords are shown: a mark on ⋯, where to turn it off
     bDown.disabled = state.shift <= -MAX_SHIFT;
     bUp.disabled = state.shift >= MAX_SHIFT;
@@ -293,7 +286,7 @@ export function createSheetPanel(pane, o) {
       ? tn('Transposed up {0} semitone · click for the original key', 'Transposed up {0} semitones · click for the original key', state.shift)
       : tn('Transposed down {0} semitone · click for the original key', 'Transposed down {0} semitones · click for the original key', -state.shift);
     keyLabel.disabled = !state.shift;
-    syncPanel();
+    syncPanel(started);
     onplay();
     fit();   // the key's label and the buttons shown change the width the bar needs
   }
@@ -310,7 +303,7 @@ export function createSheetPanel(pane, o) {
   const barObserver = new ResizeObserver(fit);
   barObserver.observe(bar);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
-  sp = createSheetPlayer(view, {tune: o.tune || null, store, stopTune, onchange: () => updateBar()});
+  sp = createSheetPlayer(view, {tune: o.tune || null, store, stopTune, onchange: (i) => updateBar(view.info, !!(i && i.started))});
   top.appendChild(sp.el);
   view.onsound = () => sp.refresh();
   view.onchange = (st, info) => updateBar(info);
@@ -407,7 +400,7 @@ export function sheetKeys(getSheet) {
     p: with_((s) => s.set({guitar: false})),
     g: with_((s) => s.set({guitar: true})),
     h: with_((s) => s.set({staff: !s.state.staff})),
-    b: with_((s) => s.set(s.state.guitar ? {strum: !s.state.strum} : {hands: !s.state.hands})),
+    b: with_((s) => { if (!s.state.guitar) s.set({hands: !s.state.hands}); }),
     m: with_((s) => s.togglePlay()),
     e: with_((s) => s.setEdit(!document.body.classList.contains('editing-chords'))),
     o: with_((s) => s.set({original: !s.state.original})),

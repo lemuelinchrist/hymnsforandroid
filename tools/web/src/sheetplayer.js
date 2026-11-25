@@ -115,7 +115,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
   // the notes of the sheet as it is now; made again only when what it sounds like changed
   // with Both hands (the piano sheet) or Strumming (the guitar sheet: in the shapes of its chords, above its capo)
   const handsOn = () => !!(view.state.hands && view.piano && !view.state.guitar && view.state.staff);
-  const strumOn = () => !!(view.state.strum && view.state.guitar && view.strum);
+  const strumOn = () => !!(view.state.guitar && view.strum);   // the guitar sheet always plays strummed
   const accompaniment = () => (handsOn() ? view.piano : strumOn() ? strumChoice(view.strum, view.info.capo) : null);
   const choiceNow = () => JSON.stringify([accompaniment(), prefs.loop]);   // looped, the last bar does not end the song
   const stale = () => !score || scoreXml !== view.soundXml || scoreChoice !== choiceNow();
@@ -170,16 +170,16 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     }
   };
 
-  function show(playing) {
+  function show(playing, started = false) {
     bPlay.textContent = playing ? '■ ' + tr('Stop') : '▶ ' + tr('Play');
     bPlay.setAttribute('aria-pressed', String(playing));
     where.hidden = !playing;
     if (!playing) { shade.hidden = true; shownBar = 0; }
     document.body.classList.toggle('sheet-playing', playing);
-    if (onchange) onchange();
+    if (onchange) onchange({started: playing && started});   // started: pressed Play, not a restart of the same play
   }
 
-  async function start(at = from) {
+  async function start(at = from, again = false) {
     const sc = currentScore();
     if (!sc || !sc.events.length) return;
     const mine = ++starting;
@@ -193,14 +193,18 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     try {
       ctl = Player.playScore(sc, {from: at, bpm: b, speed: prefs.speed, loop: prefs.loop, mute: {m: !prefs.mel, f: !prefs.mel, l: !prefs.acc, c: !prefs.acc},
         onFrame, onEnd: () => { ctl = null; lit = []; show(false); mark(null); }});
-      show(true);
+      show(true, !again);
     } catch (e) {
       show(false);
       throw e;
     }
   }
   function stop() { starting++; if (ctl) { const c = ctl; ctl = null; c.stop(); } }
-  function restart() { if (ctl) { const q = ctl.position(); stop(); start(q); } }
+  // play again from q (another speed, key or style; a tap): the same play going on, so it still counts as playing in
+  // the gap between the old notes stopping and the new ones starting (the Style panel stays; the button does not flicker)
+  let gap = 0;
+  function again(q) { gap++; stop(); start(q, true).catch(() => {}).finally(() => { gap--; }); }
+  function restart() { if (ctl) again(ctl.position()); }
 
   bPlay.addEventListener('click', () => {
     if (ctl) stop();
@@ -209,7 +213,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
       start(from).catch(() => {});
     }
   });
-  bStart.addEventListener('click', () => { from = 0; showStartBar(); if (ctl) { stop(); start(0); } else onFrame(0, null); });
+  bStart.addEventListener('click', () => { from = 0; showStartBar(); if (ctl) again(0); else onFrame(0, null); });
   speed.addEventListener('input', () => { prefs.speed = parseFloat(speed.value) || 1; showTempo(); });
   speed.addEventListener('change', () => { keep(); restart(); });
   speed.addEventListener('dblclick', () => { speed.value = '1'; prefs.speed = 1; showTempo(); keep(); restart(); });
@@ -239,13 +243,13 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     if (q == null) return;
     from = q;
     showStartBar();
-    if (ctl) { stop(); start(from); } else start(from).catch(() => {});
+    if (ctl) again(from); else start(from).catch(() => {});
   });
 
   const api = {
     el: root,
     get open() { return !root.hidden; },
-    get playing() { return !!ctl; },
+    get playing() { return !!ctl || gap > 0; },
     // show the row and play from the start (or from where a tap left it)
     toggle() {
       if (root.hidden) { root.hidden = false; show(false); bPlay.click(); } else if (ctl) stop(); else bPlay.click();

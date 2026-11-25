@@ -148,7 +148,7 @@ export function createPianoPanel({get, set, setUsual, time}) {
     const varies = !!(cur && cur.vary);
     shuffleRow.hidden = !varies;
     if (varies) {
-      const shuffle = btn(tr('Shuffle'), false, () => change((c) => { c.lh.seed = 1 + Math.floor(Math.random() * 99999); }));
+      const shuffle = btn(tr('Shuffle Style'), false, () => change((c) => { c.lh.seed = 1 + Math.floor(Math.random() * 99999); }));
       shuffle.title = tr('Play the left hand in another order');
       shuffleRow.append(el('span', 'ce-label'), shuffle);
       if (lh.seed) {

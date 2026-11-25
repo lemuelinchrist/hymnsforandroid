@@ -256,8 +256,8 @@ async function ui(page) {
     const own = () => page.evaluate(() => (JSON.parse(localStorage.getItem('hfw.handsByHymn') || '{}').E8 || {}).lh);
     await page.click('.piano-panel .pp-peek');
     await pick('Style', 'Flowing');
-    const shuffle = page.locator('.piano-panel .ce-row button:text-is("Shuffle")'), original = page.locator('.piano-panel .ce-row button:text-is("Original")');
-    assert(await shuffle.isVisible(), 'Flowing shows Shuffle');
+    const shuffle = page.locator('.piano-panel .ce-row button:text-is("Shuffle Style")'), original = page.locator('.piano-panel .ce-row button:text-is("Original")');
+    assert(await shuffle.isVisible(), 'Flowing shows Shuffle Style');
     assert(await original.count() === 0, 'no Original before a shuffle');
     const first = await sig();
     await shuffle.click(); await settle();
@@ -306,15 +306,18 @@ async function ui(page) {
     assert(await page.locator('.tb.hands:not(.strum)').isHidden() && await page.locator('.sheet-music .chart').count() === 1, 'chords over the words: no hands');
     await page.keyboard.press('h'); await settle();
   });
-  await test('the guitar sheet: Strumming opens its own panel, the strum and the tone; a guitar strums above the capo', async () => {
+  await test('the guitar sheet: no Strumming switch; Play opens its panel (the strum and the tone), Stop takes it away; a guitar strums above the capo', async () => {
     await page.keyboard.press('g'); await settle();
-    const bStrum = page.locator('.tb.hands.strum'), sp = page.locator('.strum-panel');
-    assert(await bStrum.isVisible() && await page.locator('.tb.hands:not(.strum)').isHidden(), 'Strumming in the place of Both hands');
-    assert(await bStrum.getAttribute('aria-pressed') === 'true' && await sp.locator('.pp-peek').isVisible(), 'on to begin with: the guitar sheet plays on a guitar, its bar at the bottom');
-    await bStrum.click(); await settle();
-    assert(await bStrum.getAttribute('aria-pressed') === 'false' && await sp.isHidden(), 'it can be turned off');
-    await bStrum.click(); await settle();
-    assert(await sp.locator('.pp-body').isVisible() && await page.locator('.piano-panel').isHidden(), 'on again: its own panel opens, not the piano\'s');
+    const sp = page.locator('.strum-panel');
+    assert(await page.locator('.tb.hands').isHidden(), 'no Strumming (and no Both hands) button on the guitar sheet');
+    assert(await sp.isHidden(), 'no panel before Play');
+    await page.click('.tb.playsheet'); await page.waitForTimeout(1200);
+    assert(await sp.locator('.pp-body').isVisible() && await page.locator('.piano-panel').isHidden(), 'Play: its own panel opens, not the piano\'s');
+    assert(await page.locator('[id^="lh"].playing, .sheet-music .playing').count() >= 0, 'plays');
+    await page.click('.sheet-player .tb.primary'); await settle();
+    assert(await sp.isHidden(), 'Stop: the panel goes');
+    await page.click('.tb.playsheet'); await page.waitForTimeout(1200);
+    assert(await sp.locator('.pp-body').isVisible(), 'Play again: open again');
     const rows = await sp.locator('.ce-row .ce-label').allTextContents();
     assert(rows.join(',') === 'Strum,Tone', 'only the strum and the tone: ' + rows);
     assert(await sp.locator('.ce-row', {hasText: 'Tone'}).locator('button:text-is("Warm")').getAttribute('aria-pressed') === 'true', 'Warm to begin with');
@@ -338,10 +341,11 @@ async function ui(page) {
     assert(heard.n > 50 && heard.tones.join() === 'soft' && heard.mutes > 5, 'Pop strums in the Soft tone, with its chucks: ' + JSON.stringify(heard));
     assert(heard.melody > 20 && heard.melodyOnGuitar === heard.melody && heard.pianoMelodyOnGuitar === 0, 'the melody is on the guitar, in its tone, only with Strumming: ' + JSON.stringify(heard));
     assert(heard.sound.guitar === 13 && heard.sound.rms > 0.002 && heard.sound.peak < 1, 'on the sampled guitar, not clipping: ' + JSON.stringify(heard.sound));
-    await bStrum.click(); await settle();
-    assert(await sp.isHidden(), 'Strumming off: no panel');
+    assert(await sp.locator('.pp-peek').isVisible(), 'the panel (tucked by Done) is there while it plays');
+    await page.click('.sheet-player .tb.primary'); await settle();
     await page.keyboard.press('p'); await settle();
-    assert(await page.locator('.piano-panel').isVisible(), 'back on the piano sheet: Both hands\' panel again');
+    assert(await page.locator('.piano-panel').isVisible() && await sp.isHidden(), 'back on the piano sheet: Both hands\' panel, not the Strumming one');
+    await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();   // the player row away again
   });
   await test('played round and round, the last bar goes on with the pattern instead of one closing strike', async () => {
     const r = await page.evaluate(async () => {
@@ -411,16 +415,15 @@ async function ui(page) {
     await hands.click(); await settle();                // off again
     assert(await hands.getAttribute('aria-pressed') === 'false' && await panel.isHidden(), 'Both hands off: no panel');
     await page.click('.tb.playsheet'); await page.waitForTimeout(1200);
-    assert(await panel.isVisible() && await panel.locator('.pp-peek').isVisible(), 'playing: the slim bar is there');
+    assert(await panel.locator('.pp-body').isVisible(), 'Play opens the panel');
     assert(/^Style/.test(await panel.locator('.pp-title').textContent()), 'named Style: ' + await panel.locator('.pp-title').textContent());
     assert(await hands.getAttribute('aria-pressed') === 'false', 'still without Both hands');
     await page.click('.sheet-player .tb.primary'); await settle();
     assert(await panel.isHidden(), 'stopped: the bar goes again');
     await page.click('.tb.playsheet'); await page.waitForTimeout(1200);
-    await panel.locator('.pp-peek').click(); await settle();
     await pick('', 'Plain');
     assert(await hands.getAttribute('aria-pressed') === 'true', 'a style chosen while playing turns Both hands on');
-    assert(await panel.isVisible(), 'and the panel stays');
+    assert(await panel.locator('.pp-body').isVisible(), 'and the panel stays open (the play goes on with the new style)');
     await page.click('.sheet-player .tb.primary'); await settle();
     assert(await panel.isVisible(), 'Both hands is on: the panel stays after Stop');
   });

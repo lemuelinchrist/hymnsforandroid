@@ -86,7 +86,8 @@ Turning Both hands on opens a panel at the bottom of the screen that chooses how
 down to a slim bar that names the style ("Both hands · Bass + chord · In eighths · Pedal"); a tap on the bar, or a
 drag up, opens it again, and a drag down on the open panel's top tucks it away. There is no toolbar button for it: the bar
 is there whenever Both hands is on (not while editing chords, on the guitar sheet or with the staff hidden), and the next
-hymn starts with it tucked down. It shows two rows:
+hymn starts with it tucked down. It is named **Style**; it is also there, open, while the sheet plays with Both hands
+off (choosing a style then turns Both hands on), and goes at Stop. It shows two rows:
 
 - **Style**, a preset named by what it is for: **Plain** (Strike, hymn style, twice a bar), **Chorale**
   (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
@@ -95,9 +96,9 @@ hymn starts with it tucked down. It shows two rows:
   Ballad picking), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
   Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
 - **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
-- **Shuffle** (a row under Style, only where the style varies its figures: Flowing, in Advanced too): Flowing's left hand takes,
+- **Shuffle Style** (a row under Style, only where the style varies its figures: Flowing, in Advanced too): Flowing's left hand takes,
   for each chord, one of a few figures (`music.js` `adaptVary`: quarter-note and eighth-note runs, held notes and pressed
-  chords) by a random number made from the song and the hymn's take. Shuffle picks another take (`lh.seed`, kept for the
+  chords) by a random number made from the song and the hymn's take. Shuffle Style picks another take (`lh.seed`, kept for the
   hymn in `handsByHymn`, never for "Use for all hymns"), so the notes change but are the same every time the song plays;
   **Original** brings the hymn's own take back. Every figure holds its last note for at least a beat before the next
   chord's bass: eighths never run up and then leap straight down.
@@ -115,7 +116,7 @@ harder strums, a high-shelf cut above 3 kHz, a slower attack, a little body. Whi
 a plucked string made in the browser (Karplus-Strong) plays. The melody stays on the piano. A listening page compared
 six sample sets by ear before FluidR3 steel and Warm were chosen.
 
-**Strumming** (the guitar sheet): in Both hands' place on the toolbar, on until turned off (`sheet.strumming`), a guitar strums the chords when the sheet plays
+**Strumming** (the guitar sheet): there is no switch for it; the guitar sheet always plays strummed, on a guitar (the melody too), and its panel opens when Play is pressed and goes at Stop (the piano sheet's Style panel the same, besides being there while Both hands is on). A guitar strums the chords when the sheet plays
 (`piano.js` strumChoice: the guitar kinds, the tone, and the guitar sheet's capo, so the shapes are those of the chords
 the guitar sheet shows, played above the capo). Its panel (`pianopanel.js` createStrumPanel, the same sheet at the
 bottom as Both hands', `.pp-panel`) has only Strum and Tone, and "Use for all hymns": kept per hymn in `strumByHymn`, for
