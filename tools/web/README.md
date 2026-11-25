@@ -91,7 +91,7 @@ hymn starts with it tucked down. It shows two rows:
 - **Style**, a preset named by what it is for: **Plain** (Strike, hymn style, twice a bar), **Chorale**
   (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
   harmony as in a hymnal), **Flowing** (the default: Dynamic, Adaptive), **Guitar**
-  (strummed or picked, with a **Strum** row under Style: Folk strum, Pop, Steady, Driving, Ballad, Country, Fingerpicking,
+  (strummed or picked, with a **Strum** row under Style: Folk strum, Pop, Steady, Country, Fingerpicking,
   Ballad picking), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
   Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
 - **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
