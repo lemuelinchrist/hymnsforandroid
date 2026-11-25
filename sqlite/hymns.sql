@@ -2646,7 +2646,7 @@ INSERT INTO hymns VALUES('BF151','','',NULL,'God the Creator became a God-man.',
 INSERT INTO hymns VALUES('BF152','','','CAPTIVATED BY HIS BEAUTY,','Hast thou heard Him, seen Him, known Him?','BF','A Major',NULL,NULL,'152',NULL,'4/4','33556716','E437',NULL,NULL,1,NULL);
 INSERT INTO hymns VALUES('BF153','','','A SINGLE EYE		(WITH PLAITS OF GOLD,','Attracted by Your love, Lord','BF','C Major','Experience of Christ',NULL,'153','Loving Him','4/4','3333552344431344',NULL,NULL,'',NULL,NULL);
 INSERT INTO hymns VALUES('BF154','','',NULL,'Kissed with the kisses of Your mouth, so intimate and sweet','BF','D Major','Experience of Christ',NULL,'154','Loving Him','4/4','3334312356713253',NULL,NULL,'',NULL,NULL);
-INSERT INTO hymns VALUES('BF155','','','YOU''RE SO ATTRACTING','O Tide of love','BF',NULL,'Experience of Christ',NULL,'155','Loving Him',NULL,NULL,NULL,NULL,'',NULL,NULL);
+INSERT INTO hymns VALUES('BF155','','','YOU''RE SO ATTRACTING','O Tide of love','BF','D Major','Experience of Christ',NULL,'155','Loving Him','6/4','3214277123321427',NULL,NULL,'',NULL,NULL);
 INSERT INTO hymns VALUES('BF156','','',NULL,'A lover of Christ should be one','BF',NULL,NULL,NULL,'156',NULL,NULL,NULL,'NS10077',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF158','','',NULL,'In the church of Jesus there is love for you,','BF','D Major',NULL,NULL,'158',NULL,'3/4','12316116555356453','E1278',NULL,NULL,1,NULL);
 INSERT INTO hymns VALUES('BF159','','',NULL,'Therefore the redeemed of the Lord shall return,','BF',NULL,NULL,NULL,'159',NULL,NULL,NULL,'E1341',NULL,NULL,NULL,NULL);

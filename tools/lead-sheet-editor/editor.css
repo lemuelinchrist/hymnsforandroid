@@ -75,6 +75,7 @@ main { display: grid; grid-template-columns: minmax(0, 1fr) 372px; min-height: 0
 #paper h1 { text-align: center; font: 600 23px Georgia, "Iowan Old Style", serif; margin: 0 0 6px; }
 #music svg { display: block; width: 100%; height: auto; fill: var(--sheet-ink); color: var(--sheet-ink); }
 #music g.note, #music g.rest, #music g.chord { cursor: pointer; }
+#music g .hit { fill: transparent !important; stroke: none !important; pointer-events: all; }
 #music g.noted, #music g.noted * { fill: var(--note); stroke: var(--note); }
 #music g.changed, #music g.changed * { fill: var(--changed); stroke: var(--changed); }
 #music g.heard, #music g.heard * { fill: var(--heard); stroke: var(--heard); }
