@@ -68,13 +68,25 @@
       tk.loadData(shown);
       var html = ''; for (var p = 1; p <= tk.getPageCount(); p++) html += tk.renderToSVG(p);
       $('music').innerHTML = html;
-      if (prefs.counts) drawCounts();
+      drawHits(); if (prefs.counts) drawCounts();
     } catch (e) { $('music').textContent = 'Could not draw the sheet: ' + e; return; }
     document.body.classList.toggle('lh-written', !!(lh && lh.written));
     document.body.classList.toggle('hand-l', hand === 'l'); document.body.classList.toggle('hand-v', hand === 'v'); document.body.classList.toggle('hand-n', hand === 'n');
     $('pianoMei').disabled = !piano; $('lhshow').disabled = !piano; $('lhshow').classList.toggle('on', show);
     $('playCh').textContent = piano ? 'Piano part' : 'Chords';
     mark();
+  }
+  function drawHits() {
+    var ns = 'http://www.w3.org/2000/svg';
+    // a generous, invisible target round every note, rest and chord symbol: the drawn glyphs alone are small to hit
+    document.querySelectorAll('#music g.note, #music g.rest, #music g.chord').forEach(function (g) {
+      var nh = g.querySelector('.notehead') || g, box, st = g.querySelector('.stem');
+      try { box = nh.getBBox(); if (st) { var sb = st.getBBox(); box = {x: box.x, y: Math.min(box.y, sb.y), width: box.width, height: Math.max(box.y + box.height, sb.y + sb.height) - Math.min(box.y, sb.y)}; } } catch (e) { return; }
+      var padX = g.classList.contains('chord') ? 60 : 110, padY = g.classList.contains('chord') ? 60 : 140, r = document.createElementNS(ns, 'rect');
+      r.setAttribute('class', 'hit'); r.setAttribute('x', String(Math.round(box.x - padX))); r.setAttribute('y', String(Math.round(box.y - padY)));
+      r.setAttribute('width', String(Math.round(box.width + 2 * padX))); r.setAttribute('height', String(Math.round(box.height + 2 * padY)));
+      g.appendChild(r);
+    });
   }
   // "1 & 2 &" under the melody: under the words, or under the upper staff
   function drawCounts() {
@@ -100,15 +112,6 @@
       inner.setAttribute('overflow', 'visible');
       var vb = (inner.getAttribute('viewBox') || '').split(/\s+/).map(Number);
       if (vb.length === 4 && maxY + 250 > vb[3]) inner.setAttribute('viewBox', vb[0] + ' ' + vb[1] + ' ' + vb[2] + ' ' + (maxY + 250));
-    });
-    // a generous, invisible target round every note, rest and chord symbol: the drawn glyphs alone are small to hit
-    document.querySelectorAll('#music g.note, #music g.rest, #music g.chord').forEach(function (g) {
-      var nh = g.querySelector('.notehead') || g, box, st = g.querySelector('.stem');
-      try { box = nh.getBBox(); if (st) { var sb = st.getBBox(); box = {x: box.x, y: Math.min(box.y, sb.y), width: box.width, height: Math.max(box.y + box.height, sb.y + sb.height) - Math.min(box.y, sb.y)}; } } catch (e) { return; }
-      var padX = g.classList.contains('chord') ? 60 : 110, padY = g.classList.contains('chord') ? 60 : 140, r = document.createElementNS(ns, 'rect');
-      r.setAttribute('class', 'hit'); r.setAttribute('x', String(Math.round(box.x - padX))); r.setAttribute('y', String(Math.round(box.y - padY)));
-      r.setAttribute('width', String(Math.round(box.width + 2 * padX))); r.setAttribute('height', String(Math.round(box.height + 2 * padY)));
-      g.appendChild(r);
     });
     drawnBars.forEach(function (b) {
       b.items.forEach(function (it) {
