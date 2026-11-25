@@ -95,8 +95,10 @@ body.sheet-only #view { max-width: 1200px; padding-top: 12px; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .sheet-tail { text-align: center; font-family: var(--ui); font-size: .85em; margin-top: .5em; }
 .sheet-tail:empty { display: none; }
-.sheet-verses { display: flex; flex-wrap: wrap; gap: .9em 2.5em; justify-content: center; margin-top: 1em; font-size: .95em; }
-.sheet-stanza { display: flex; gap: .4em; max-width: 100%; }
+/* stanzas in up to two columns (one on a narrow phone, two on a wide screen and on paper), filled top to bottom;
+   inside a column they all start at the same left edge (a centred flex row centred each stanza on its own) */
+.sheet-verses { display: block; column-count: 2; column-width: 17em; column-gap: 2.5em; margin-top: 1em; font-size: .95em; }
+.sheet-stanza { display: flex; gap: .4em; max-width: 100%; break-inside: avoid; margin-bottom: .9em; }
 .sheet-credit { text-align: center; color: var(--muted); font-size: .75em; margin-top: 2em; font-family: sans-serif; }
 .sheet-stanza .label { font-weight: bold; min-width: 1.2em; text-align: right; }
 .sheet-stanza .lines div { line-height: 1.35; }
