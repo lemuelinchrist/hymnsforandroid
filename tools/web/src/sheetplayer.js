@@ -117,13 +117,13 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
   const handsOn = () => !!(view.state.hands && view.piano && !view.state.guitar && view.state.staff);
   const strumOn = () => !!(view.state.strum && view.state.guitar && view.strum);
   const accompaniment = () => (handsOn() ? view.piano : strumOn() ? strumChoice(view.strum, view.info.capo) : null);
-  const choiceNow = () => JSON.stringify(accompaniment());
+  const choiceNow = () => JSON.stringify([accompaniment(), prefs.loop]);   // looped, the last bar does not end the song
   const stale = () => !score || scoreXml !== view.soundXml || scoreChoice !== choiceNow();
   function currentScore() {
     if (!stale()) return score;
     const doc = new DOMParser().parseFromString(view.soundXml, 'application/xml');
     const with_ = accompaniment();
-    score = scoreOf(doc, with_ || view.piano, {hands: !!with_});
+    score = scoreOf(doc, with_ || view.piano, {hands: !!with_, loop: prefs.loop});
     scoreXml = view.soundXml; scoreChoice = choiceNow();
     return score;
   }

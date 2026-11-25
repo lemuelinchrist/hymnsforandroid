@@ -339,6 +339,23 @@ async function ui(page) {
     await page.keyboard.press('p'); await settle();
     assert(await page.locator('.piano-panel').isVisible(), 'back on the piano sheet: Both hands\' panel again');
   });
+  await test('played round and round, the last bar goes on with the pattern instead of one closing strike', async () => {
+    const r = await page.evaluate(async () => {
+      const {scoreOf, strumChoice, DEFAULT} = await import('./piano.js'), {fetchGzJson} = await import('./files.js');
+      const v = await (await fetch('data/version.json')).json(), pack = await fetchGzJson(v.sheets.E);
+      const doc = () => new DOMParser().parseFromString(pack.E8.replace(/<back>[\s\S]*<\/back>/, ''), 'application/xml');
+      const onsets = (sc) => {
+        const from = sc.barAt[sc.barAt.length - 1].q;
+        return new Set(sc.events.filter((e) => e.hand === 'l' && e.q >= from - 1e-6).map((e) => e.q.toFixed(4))).size;
+      };
+      const out = {};
+      for (const [name, choice] of [['guitar', strumChoice({kind: 'folk', tone: 'warm'}, 0)], ['flowing', DEFAULT]]) {
+        out[name] = [onsets(scoreOf(doc(), choice, {hands: true})), onsets(scoreOf(doc(), choice, {hands: true, loop: true}))];
+      }
+      return out;
+    });
+    for (const k of Object.keys(r)) assert(r[k][0] === 1 && r[k][1] > 1, k + ': one strike at the end, several when looped: ' + JSON.stringify(r[k]));
+  });
   await test('an edited chord moves the left hand; 1 to 7 put the chords of the key', async () => {
     const before = await page.locator('.sheet-music').innerHTML();
     await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Edit chords")'); await settle();

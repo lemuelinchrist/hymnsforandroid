@@ -183,7 +183,7 @@ export function timeOf(doc) {
 // Reads a sheet and works out the piano part for a choice (null parts when it has none): the bars, the melody's
 // notes with the notes added under them, the chords on the beat, the left hand's events. addPiano writes it into the
 // sheet, scoreOf makes the notes to play from it.
-function analyse(doc, choice) {
+function analyse(doc, choice, loop = false) {
   const M = lib(), bars = readBars(doc);
   if (!M || !bars.length) return null;
   const endG = bars[bars.length - 1].g + bars[bars.length - 1].len;
@@ -224,6 +224,7 @@ function analyse(doc, choice) {
 
   // the left hand
   const base = pattern(choice.lh, [whole.count, whole.unit]);
+  if (base && loop) base.end = false;   // played round again: the last bar goes on with the pattern, no closing strike
   let left = null;
   if (base && M.parsePattern(base.pat).length) {
     const mel = notes.map((n) => [n.g, n.g + n.d, n.fill ? n.fill[0] : n.p]).sort((a, b) => a[0] - b[0]);
@@ -332,11 +333,12 @@ export function playOrder(bars) {
 }
 
 // What a sheet sounds like, for its state as shown: {events, length, order, bars, idQ, barAt}. `choice` is how the hands
-// play, `hands` whether the piano part is on (else the melody, and the chords softly under it). Positions and lengths
+// play, `hands` whether the piano part is on (else the melody, and the chords softly under it), `loop` that it is played
+// round and round (the last bar then goes on with the pattern instead of ending on one held chord). Positions and lengths
 // are in quarter notes. An event is {q, d, note, vel, hand: 'm' melody | 'f' notes added to it | 'l' left hand | 'c' chord,
 // ids: the elements of the sheet that light up while it sounds}.
-export function scoreOf(doc, choice, {hands = false} = {}) {
-  const A = analyse(doc, hands && choice ? choice : {lh: null, rh: {add: 0}});
+export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
+  const A = analyse(doc, hands && choice ? choice : {lh: null, rh: {add: 0}}, loop);
   if (!A) return null;
   const {M, bars, notes, chords, left} = A;
   const per = bars.map(() => []);
