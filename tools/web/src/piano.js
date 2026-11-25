@@ -344,6 +344,9 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
   const per = bars.map(() => []);
   const barIndex = (g) => { let k = 0; while (k < bars.length - 1 && bars[k + 1].g <= g + 1e-6) k++; return k; };
   const put = (bi, e) => per[bi].push(e);
+  // Strumming on the guitar sheet: the melody is played on the guitar too, in the tone chosen (not on the piano)
+  const guitarMelody = !!(hands && choice && choice.lh && choice.lh.family === 'guitar');
+  const melodyTone = (choice && choice.lh && choice.lh.tone) || 'warm';
 
   // the melody, a tied note one note (per layer); the notes added under it go with it — shaped gently by beat & length
   const prevByLayer = {};
@@ -357,6 +360,7 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
     const pos = n.g - b.g, onDownbeat = pos < 0.01, onBeat = Math.abs(pos % b.beat) < 0.01;
     const melVel = (onDownbeat ? 103 : onBeat ? 98 : n.d >= b.beat ? 96 : 90) - (ly > 1 ? 6 : 0);
     const ev = {g: n.g, dg: n.d, note: n.p, vel: melVel, hand: 'm', ids: [xmlId(n.el)].filter(Boolean)};
+    if (guitarMelody) { ev.inst = 'guitar'; ev.tone = melodyTone; ev.vel = Math.min(127, Math.round(melVel * 1.2)); }   // one string against a six-string strum: a little more, so the tune leads
     put(bi, ev);
     if (n.fill) {
       const fillRoll = n.fill.length >= 2 ? 0.01 : 0;

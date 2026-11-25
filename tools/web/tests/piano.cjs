@@ -330,9 +330,13 @@ async function ui(page) {
       const xml = pack.E8.replace(/<back>[\s\S]*<\/back>/, '');
       const sc = scoreOf(new DOMParser().parseFromString(xml, 'application/xml'), strumChoice({kind: 'pop', tone: 'soft'}, 3), {hands: true});
       const g = sc.events.filter((e) => e.inst === 'guitar');
-      return {n: g.length, tones: [...new Set(g.map((e) => e.tone))], mutes: g.filter((e) => e.mute).length, sound: await renderScoreForTest(sc, 100, 6)};
+      const mel = sc.events.filter((e) => e.hand === 'm'), piano = scoreOf(new DOMParser().parseFromString(xml, 'application/xml'), {lh: {family: 'dynamic', kind: 'adaptive', rhythm: '8', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}}, {hands: true});
+      return {n: g.length, tones: [...new Set(g.map((e) => e.tone))], mutes: g.filter((e) => e.mute).length, sound: await renderScoreForTest(sc, 100, 6),
+        melody: mel.length, melodyOnGuitar: mel.filter((e) => e.inst === 'guitar' && e.tone === 'soft').length,
+        pianoMelodyOnGuitar: piano.events.filter((e) => e.hand === 'm' && e.inst).length};
     });
     assert(heard.n > 50 && heard.tones.join() === 'soft' && heard.mutes > 5, 'Pop strums in the Soft tone, with its chucks: ' + JSON.stringify(heard));
+    assert(heard.melody > 20 && heard.melodyOnGuitar === heard.melody && heard.pianoMelodyOnGuitar === 0, 'the melody is on the guitar, in its tone, only with Strumming: ' + JSON.stringify(heard));
     assert(heard.sound.guitar === 13 && heard.sound.rms > 0.002 && heard.sound.peak < 1, 'on the sampled guitar, not clipping: ' + JSON.stringify(heard.sound));
     await bStrum.click(); await settle();
     assert(await sp.isHidden(), 'Strumming off: no panel');
