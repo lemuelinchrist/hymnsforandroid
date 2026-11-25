@@ -294,7 +294,7 @@ test('guitar: open shapes, strums down and up, picking', () => {
   assert.deepStrictEqual(['C', 'G', 'D', 'A', 'E', 'Am', 'Em', 'Dm', 'G/B', 'D/F#', 'B7'].map(fr),
     ['x32010', '320003', 'xx0232', 'x02220', '022100', 'x02210', '022000', 'xx0231', 'x20003', '200232', 'x21202']);
   const st = M.styles({time: [4, 4]}).find((f) => f.id === 'guitar');
-  assert.deepStrictEqual(st.kinds.map((k) => k.id), ['folk', 'pop', 'steady', 'country', 'pick', 'arp']);
+  assert.deepStrictEqual(st.kinds.map((k) => k.id), ['folk', 'pop', 'steady', 'ballad', 'country', 'pick', 'arp']);
   const g = (kind) => {
     const r = st.kinds.find((k) => k.id === kind).rhythms[0];
     return M.accompanyOn({bars: [{g: 0, len: 16}, {g: 16, len: 16}], first: 0, chords: [{g: 0, end: 32, info: M.chordInfo('G')}],

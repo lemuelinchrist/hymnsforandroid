@@ -453,6 +453,7 @@
       ['folk', 'Folk strum', 'down, down, up', 'D D U D D U', 'D D U'],
       ['pop', 'Pop', 'with a muted chuck', 'D - U K - U', 'D - U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - - D - -', 'D - -'],
+      ['ballad', 'Ballad', 'slow and open', 'D - - D - U', 'D - U'],
       ['country', 'Country', 'bass, then strums, the other bass', 'T D U A D U', 'T D U'],
       ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b A b g', 'T g b'],
       ['arp', 'Ballad picking', 'rolling up and down the strings', 'T b e b g b', 'T b e']]
@@ -460,6 +461,7 @@
       ['folk', 'Folk strum', 'down, then down-up', 'D - D U D U', 'D - D U'],
       ['pop', 'Pop', 'with a muted chuck', 'D - K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D -', 'D - D -'],
+      ['ballad', 'Ballad', 'bass, then strums', 'T - D - D -', 'T - D -'],
       ['country', 'Country', 'bass, then strums, the other bass', 'T - D U D U | A - D U D U', 'T - D U'],
       ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b e b g', 'T g b e'],
       ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b g e g', 'T g b g']]
@@ -467,6 +469,7 @@
       ['folk', 'Folk strum', 'down, down-up', 'D - D U', 'D U'],
       ['pop', 'Pop', 'with a muted chuck', 'D U K U', 'D U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D -', 'D -'],
+      ['ballad', 'Ballad', 'slow and open', 'D - - U', 'D -'],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T D A D', 'T D'],
       ['pick', 'Fingerpicking', 'bass and strings one by one', 'T e A b', 'T e'],
       ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b e', 'T g']]
@@ -474,6 +477,7 @@
       ['folk', 'Folk strum', 'down, down-up, up-down-up', 'D - D U - U D U', 'D - D U'],
       ['pop', 'Pop', 'with a muted chuck on beat 3', 'D - D U K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D - D -', 'D - D -'],
+      ['ballad', 'Ballad', 'slow and open', 'D - - - D - D U', 'D - D U'],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T - D U A - D U', 'T - D U'],
       ['pick', 'Fingerpicking', 'thumb on the beat, strings between', 'T e A b T e A b', 'T e A b'],
       ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b g e g b g', 'T g b g']];
