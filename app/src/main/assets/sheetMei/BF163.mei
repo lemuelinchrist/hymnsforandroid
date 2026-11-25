@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<meiHead><fileDesc><titleStmt><title type="main">Has the wine run dry so soon?</title>
+<title type="subordinate">Gospel</title>
+</titleStmt><pubStmt><identifier type="hymn">BF163</identifier><identifier type="number">163</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">guitar/ballad/8</identifier></pubStmt></fileDesc></meiHead>
+<music><body><mdiv><score>
+<scoreDef key.sig="1s" meter.count="4" meter.unit="4" meter.sym="common" midi.bpm="152"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<section>
+<measure n="1" metcon="false"><staff n="1"><layer n="1"><note xml:id="n0" dur="4" pname="b" oct="3"><verse n="1"><syl>Has</syl></verse></note><note xml:id="n1" dur="4" pname="c" oct="4"><verse n="1"><syl>the</syl></verse></note></layer></staff></measure>
+<measure n="2"><staff n="1"><layer n="1"><note xml:id="n2" dur="2" pname="d" oct="4"><verse n="1"><syl>wine</syl></verse></note><note xml:id="n3" dur="4" pname="d" oct="4"><verse n="1"><syl>run</syl></verse></note><note xml:id="n4" dur="4" pname="c" oct="4"><verse n="1"><syl>dry</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">G</harm><tie startid="#n4" endid="#n5"/></measure>
+<measure n="3"><staff n="1"><layer n="1"><note xml:id="n5" dur="2" pname="c" oct="4"/><note xml:id="n6" dur="4" pname="b" oct="3"><verse n="1"><syl>so</syl></verse></note><note xml:id="n7" dur="4" pname="d" oct="4"><verse n="1"><syl eol="1">soon</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">C</harm><tie startid="#n7" endid="#n8"/></measure>
+<measure n="4"><staff n="1"><layer n="1"><note xml:id="n8" dur="1" pname="d" oct="4"/></layer></staff><harm staff="1" place="above" tstamp="1">G</harm></measure>
+<measure n="5"><staff n="1"><layer n="1"><rest xml:id="n9" dur="2"/><note xml:id="n10" dur="4" pname="b" oct="3"><verse n="1"><syl>I</syl></verse></note><note xml:id="n11" dur="4" pname="c" oct="4"><verse n="1"><syl>have</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">C</harm></measure>
+<measure n="6"><staff n="1"><layer n="1"><note xml:id="n12" dur="2" pname="d" oct="4"><verse n="1"><syl wordpos="i" con="d">bare</syl></verse></note><note xml:id="n13" dur="4" pname="g" oct="4"><verse n="1"><syl wordpos="t">ly</syl></verse></note><note xml:id="n14" dur="4" pname="g" oct="4"><verse n="1"><syl wordpos="i" con="d">tast</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">G</harm><tie startid="#n14" endid="#n15"/></measure>
+<measure n="7"><staff n="1"><layer n="1"><note xml:id="n15" dur="2" pname="g" oct="4"/><note xml:id="n16" dur="4" pname="g" oct="4"><verse n="1"><syl wordpos="t">ed</syl></verse></note><note xml:id="n17" dur="4" pname="a" oct="4"><verse n="1"><syl eol="1">it</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">C</harm><tie startid="#n17" endid="#n18"/></measure>
+<measure n="8"><staff n="1"><layer n="1"><note xml:id="n18" dur="1" pname="a" oct="4"/></layer></staff><harm staff="1" place="above" tstamp="1">D7</harm></measure>
+<measure n="9"><staff n="1"><layer n="1"><rest xml:id="n19" dur="2"/><note xml:id="n20" dur="4" pname="g" oct="4"><verse n="1"><syl>Long</syl></verse></note><note xml:id="n21" dur="4" pname="a" oct="4"><verse n="1"><syl wordpos="i" con="d">be</syl></verse></note></layer></staff></measure>
+<measure n="10"><staff n="1"><layer n="1"><note xml:id="n22" dur="4" pname="b" oct="4"><verse n="1"><syl wordpos="t">fore</syl></verse></note><note xml:id="n23" dur="4" pname="a" oct="4"/><note xml:id="n24" dur="2" pname="g" oct="4"><verse n="1"><syl>my</syl></verse></note></layer></staff><slur startid="#n22" endid="#n23"/><harm staff="1" place="above" tstamp="1">G</harm></measure>
+<measure n="11"><staff n="1"><layer n="1"><note xml:id="n25" dur="4" pname="d" oct="4"><verse n="1"><syl>tongue</syl></verse></note><note xml:id="n26" dur="4" pname="c" oct="4"/><note xml:id="n27" dur="2" pname="b" oct="3"><verse n="1"><syl>has</syl></verse></note></layer></staff><slur startid="#n25" endid="#n26"/><harm staff="1" place="above" tstamp="1">C</harm></measure>
+<measure n="12"><staff n="1"><layer n="1"><note xml:id="n28" dur="4" pname="d" oct="4"><verse n="1"><syl>quenched</syl></verse></note><note xml:id="n29" dur="2" pname="d" oct="4"><verse n="1"><syl>its</syl></verse></note><note xml:id="n30" dur="4" pname="g" oct="3"><verse n="1"><syl eol="1">thirst</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">G</harm></measure>
+<measure n="13"><staff n="1"><layer n="1"><rest xml:id="n31" dur="2"/><note xml:id="n32" dur="4" pname="a" oct="3"><verse n="1"><syl>Has</syl></verse></note><note xml:id="n33" dur="4" pname="g" oct="3"><verse n="1"><syl>the</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">C</harm></measure>
+<measure n="14"><staff n="1"><layer n="1"><note xml:id="n34" dur="1" pname="b" oct="3"><verse n="1"><syl>wine</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">G</harm></measure>
+<measure n="15"><staff n="1"><layer n="1"><rest xml:id="n35" dur="2"/><note xml:id="n36" dur="4" pname="a" oct="3"><verse n="1"><syl>run</syl></verse></note><note xml:id="n37" dur="4" pname="g" oct="3"><verse n="1"><syl eol="1">dry</syl></verse></note></layer></staff><harm staff="1" place="above" tstamp="1">D7</harm><tie startid="#n37" endid="#n38"/></measure>
+<measure n="16" right="end"><staff n="1"><layer n="1"><note xml:id="n38" dur="1" pname="g" oct="3"/></layer></staff><harm staff="1" place="above" tstamp="1">G</harm></measure>
+</section>
+</score></mdiv></body>
+<back><div type="verses">
+<lg label="2."><l>I Have spent my final dime</l><l>On the thing I thought would last,</l><l>But as soon as I held it, it slipped away,</l><l>Now I'm still so dry.</l></lg>
+<lg label="3."><l>I Have climbed the highest peak;</l><l>Took me twenty years to train;</l><l>As I reached the top, I looked around and all I saw:</l><l>Vanity, that's all.</l></lg>
+<lg label="4."><l>I Have probed the greatest minds,</l><l>I've believed in ev'ry cause,</l><l>But my heart won't hear philosophy or reasonings,</l><l>Left again dissatisfied.</l></lg>
+<lg label="5."><l>Took me too, too long to see</l><l>That this world's all vanity;</l><l>I've been through too much to just pretend it's all okay;</l><l>Give me reality.</l></lg>
+<lg label="6."><l>In my deepest, darkest night,</l><l>On my knees I cried aloud,</l><l>Someone came to me, He changed my death to eternal life,</l><l>Gave me meaning, reason to live.</l></lg>
+<lg label="7."><l>I will call upon His name,</l><l>I will draw this well and drink;</l><l>When I call His name, Jesus Lord, the waters flow;</l><l>That's the name I love.</l></lg>
+<lg label="8."><l>All this time it was just Him,</l><l>He has saved the best for last;</l><l>Now I've finally found the wine that won't run dry,</l><l>And He's the sweetest wine of all.</l></lg>
+</div>
+</back></music></mei>

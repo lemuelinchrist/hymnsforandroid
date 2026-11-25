@@ -2653,7 +2653,7 @@ INSERT INTO hymns VALUES('BF159','','',NULL,'Therefore the redeemed of the Lord 
 INSERT INTO hymns VALUES('BF160','','','HALLELUJAH! LORD''S WITH US.','Come arise early to feast on the Lord,','BF',NULL,'Meetings',NULL,'160',NULL,NULL,NULL,NULL,NULL,'',NULL,NULL);
 INSERT INTO hymns VALUES('BF161','','','BY A TOUCH OF HIS DEAR LOVE,','There are times and times again,','BF',NULL,NULL,NULL,'161',NULL,NULL,NULL,'NS49',NULL,NULL,NULL,NULL);
 INSERT INTO hymns VALUES('BF162','','',NULL,'Fade, fade each earthly joy;','BF','G Major',NULL,NULL,'162',NULL,'4/4','15165461512','E531',NULL,NULL,1,'Jesus is Mine');
-INSERT INTO hymns VALUES('BF163','','',NULL,'Has the wine run dry so soon?','BF',NULL,'Gospel',NULL,'163',NULL,NULL,NULL,NULL,NULL,'SY410,',NULL,NULL);
+INSERT INTO hymns VALUES('BF163','','',NULL,'Has the wine run dry so soon?','BF','G Major','Gospel',NULL,'163',NULL,'4/4','3455435345111212',NULL,NULL,'SY410,',NULL,NULL);
 INSERT INTO hymns VALUES('BF164','','',NULL,'Out of my bondage, sorrow, and night,','BF','F Major',NULL,NULL,'164',NULL,'4/4','11177712111111121','E1050',NULL,NULL,1,'Jesus I come to Thee');
 INSERT INTO hymns VALUES('BF165','','',NULL,'Art thou hungering for the fullness','BF','C Major',NULL,NULL,'165',NULL,'3/4','5554323443','E641',NULL,NULL,1,'Art thou hung’ring for the fulness');
 INSERT INTO hymns VALUES('BF166','','','I LOVE YOU MORE','Are You the One who came from heaven?','BF',NULL,NULL,NULL,'166',NULL,NULL,NULL,'NS52',NULL,NULL,NULL,NULL);
