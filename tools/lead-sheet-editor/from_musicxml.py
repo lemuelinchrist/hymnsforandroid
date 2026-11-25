@@ -35,7 +35,9 @@ for m in part.getElementsByClass('Measure'):
             if notes and notes[-1]['p'] is None and 'ch' not in notes[-1] and chord is None: notes[-1]['d'] += L
             else: notes.append({'p': None, 'd': L})
         elif e.tie and e.tie.type in ('continue', 'stop') and notes and notes[-1]['p'] == e.pitch.midi:
-            notes[-1]['d'] += L; continue   # a tied note is one note here; the editor draws the tie where a bar needs it
+            if chord is None:
+                notes[-1]['d'] += L; continue   # a tied note is one note here; the editor draws the tie where a bar needs it
+            notes.append({'p': e.pitch.midi, 'd': L, 'tie': True})
         else:
             w = ''
             if e.lyrics:

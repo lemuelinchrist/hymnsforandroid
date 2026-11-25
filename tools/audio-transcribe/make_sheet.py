@@ -23,7 +23,9 @@ beats = np.load(d / 'beats.npy'); bidx = np.arange(len(beats)); U = 2
 # 1.5 beats put changes on beat 2.5)
 HPB = 2 if cfg['beats_per_bar'] % 2 == 0 else 1
 BAR = cfg['beats_per_bar'] * U   # OFF (where the bars start) is set after the chords' set-up: it may be found
-unit = lambda t: int(round(np.interp(t, beats, bidx) * U))
+bstep0 = float(np.median(np.diff(beats[:8]))) if len(beats) > 1 else 0.5
+beat_at = lambda t: (t - beats[0]) / bstep0 if t < beats[0] else float(np.interp(t, beats, bidx))
+unit = lambda t: int(round(beat_at(t) * U))
 raw = sorted(pretty_midi.PrettyMIDI(str(d / 'midi' / f"{cfg['midi']}.mid")).instruments[0].notes, key=lambda n: n.start)
 words = [w for s in json.load(open(d / 'lyrics.json')) for w in s['words'] if re.search(r'\w', w['word'])]
 text = ' '.join(w['word'].strip() for w in words)
@@ -107,7 +109,7 @@ def add_dominant_7th(chords, key, mode):
     return [c + ':7' if c == v else c for c in chords]
 def chords_for(first_u, n_halves, melody=(), priors=None):
     priors = priors or PRIORS
-    sec_t = lambda u: np.interp(u / U, bidx, beats)
+    sec_t = lambda u: beats[0] + (u / U) * bstep0 if u < 0 else np.interp(u / U, bidx, beats)
     score = np.zeros((n_halves, len(CH))); comp = np.zeros((4, n_halves, len(CH)))   # comp: acc, bass, melody, key (for tuning)
     for h in range(n_halves):
         ua, ub = first_u + h * BAR // HPB, first_u + (h + 1) * BAR // HPB
@@ -172,28 +174,33 @@ def find_bar_offset():
             vals.append(max(acc @ ch[2] for ch in CH))
         clarity.append(float(np.mean(vals)) if vals else 0.0)
     best = int(np.argmax(clarity))
+    # how much the accompaniment changes across each bar-line candidate; when the half-bar clarity is a near-tie (e.g.
+    # syncopation on beat 4 anticipating the next bar's chord), a dominant bar-line chord change picks the grid too
+    def chroma(a_, b_):
+        m = (C['t'] >= a_) & (C['t'] < b_)
+        if not m.any(): return None
+        v = C['acc'][:, m].mean(1); return v / (np.linalg.norm(v) + 1e-9)
+    change_all = {off: [] for off in range(nb)}
+    for off in range(nb):
+        for k in range(off + nb, len(beats) - half, nb):
+            if not any(t0 <= beats[k - half] and beats[k + half] <= t1 for t0, t1 in spans): continue
+            x, y = chroma(beats[k - half], beats[k]), chroma(beats[k], beats[k + half])
+            if x is None or y is None: continue
+            change_all[off].append(1 - float(x @ y))
+    change_all = {k: float(np.mean(v)) if v else 0.0 for k, v in change_all.items()}
+    rk_all = sorted(change_all, key=change_all.get, reverse=True)
+    if len(clarity) > 1 and max(clarity) - min(clarity) < 0.04 and change_all[rk_all[0]] > 1.5 * change_all[rk_all[1]]:
+        best = rk_all[0] % half
     sy = json.load(open(d / 'syllables.json')) if (d / 'syllables.json').exists() else []
     sy = [x for x in sy if any(t0 - 0.5 <= x['start'] < t1 for t0, t1 in spans)]
     weight = {}
     for off in range(best, nb, half):
         w = 0.0
         for i, x in enumerate(sy):
-            pos = np.interp(x['start'], beats, bidx); dur = (sy[i + 1]['start'] if i + 1 < len(sy) else x['end']) - x['start']
+            pos = beat_at(x['start']); dur = (sy[i + 1]['start'] if i + 1 < len(sy) else x['end']) - x['start']
             if round((pos - off) * 2) / 2 % nb == 0: w += dur
         weight[off] = w
-    # how much the accompaniment changes across each half-bar boundary of that grid, per candidate bar line
-    def chroma(a_, b_):
-        m = (C['t'] >= a_) & (C['t'] < b_)
-        if not m.any(): return None
-        v = C['acc'][:, m].mean(1); return v / (np.linalg.norm(v) + 1e-9)
-    change = {off: [] for off in range(best, nb, half)}
-    for k in range(best + half, len(beats) - half, half):
-        if not any(t0 <= beats[k - half] and beats[k + half] <= t1 for t0, t1 in spans): continue
-        x, y = chroma(beats[k - half], beats[k]), chroma(beats[k], beats[k + half])
-        if x is None or y is None: continue
-        for off in change:
-            if (k - off) % nb == 0: change[off].append(1 - float(x @ y))
-    change = {k: float(np.mean(v)) if v else 0.0 for k, v in change.items()}
+    change = {k: change_all[k] for k in range(best, nb, half)}
     ranked = sorted(change, key=change.get, reverse=True)
     by = 'held syllables'
     off = max(weight, key=weight.get) if weight else best
@@ -293,9 +300,6 @@ for sec in cfg['sections']:
         n = sung[fx['syl']]
         if 'pitch' in fx: n[2] = fx['pitch']
         if 'shift' in fx: n[0] += fx['shift']; n[1] = max(n[1], n[0] + 1)
-        if 'then' in fx:
-            n[1] = max(n[1], n[0] + 2); mid = n[0] + (n[1] - n[0]) // 2
-            notes.append([mid, n[1], fx['then'], None]); n[1] = mid
     notes.sort(key=lambda n: n[0])
     clean = []
     for n in notes:
@@ -307,6 +311,12 @@ for sec in cfg['sections']:
         n[1] = max(n[1], n[0] + 1); clean.append(n)
     for i in range(len(clean) - 1):
         if clean[i + 1][0] - clean[i][1] <= U: clean[i][1] = clean[i + 1][0]
+    sung_clean = [n for n in clean if n[3] is not None]
+    for fx in sec.get('fix', []):
+        if 'then' in fx:
+            n = sung_clean[fx['syl']]; idx = clean.index(n)
+            n[1] = max(n[1], n[0] + 2); mid = n[0] + (n[1] - n[0]) // 2
+            clean.insert(idx + 1, [mid, n[1], fx['then'], None]); n[1] = mid
     # key: a note outside the scale (a slide into the next note) moves to the nearest scale note, towards the next note
     scale = set(sec.get('scale', cfg.get('scale', [])))
     if scale:
@@ -352,9 +362,10 @@ for sec in cfg['sections']:
     rest = (BAR - (pos - first) % BAR) % BAR
     toks += ['r' + x for x in DUR[rest]] if rest else []
     nh = ((pos + rest - first) // BAR) * HPB
-    ch = add_dominant_7th(chords_for(first, nh, [(s_, e_, p_, l_) for s_, e_, p_, l_ in clean], key_priors(*sec_key)), *sec_key); chord_list += ch
+    upbeat_h = HPB if clean[0][0] > first else 0
+    ch = [None] * upbeat_h + add_dominant_7th(chords_for(first + upbeat_h * (BAR // HPB), nh - upbeat_h, [(s_, e_, p_, l_) for s_, e_, p_, l_ in clean], key_priors(*sec_key)), *sec_key); chord_list += ch
     cd = {1: '4', 2: '2', 3: '2.', 4: '1', 6: '1.'}[cfg['beats_per_bar'] // HPB]   # a chord's length in LilyPond
-    chord_toks.append(' '.join(c.replace(':', cd + ':') if ':' in c else c + cd for c in ch))
+    chord_toks.append(' '.join(('s' + cd) if c is None else (c.replace(':', cd + ':') if ':' in c else c + cd) for c in ch))
     toks += ['}'] if sec.get('repeat') else []
     if not sec.get('repeat'): toks += ['\\bar "||"'] if sec is not cfg['sections'][-1] else ['\\bar "|."']
     music.append(' '.join(toks))
@@ -427,7 +438,7 @@ last = None
 for i, meas in enumerate(score.parts[0].getElementsByClass('Measure')):
     for h in range(HPB):
         k = HPB * i + h
-        if k < len(chord_list) and chord_list[k] != last:
+        if k < len(chord_list) and chord_list[k] and chord_list[k] != last:
             meas.insert(h * cfg['beats_per_bar'] / HPB, harmony.ChordSymbol(sym(chord_list[k]))); last = chord_list[k]
 score.write('musicxml', str(d / 'sheet.musicxml'))
 for f in (d / 'sheet.musicxml~',): f.unlink(missing_ok=True)
