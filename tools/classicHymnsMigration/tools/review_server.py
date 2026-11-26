@@ -26,7 +26,9 @@ def hymns():
     only = os.path.join(PROJ, 'review', 'only.txt')   # optional: ids to show, instead of the usual list
     if os.path.exists(only):
         ids = open(only, encoding='utf8').read().split()
-        return [dict(h, first=True) for i in ids for h in _cache[0] if h['id'] == i]
+        seen = {}
+        for h in _cache[0]: seen.setdefault(h['id'], h)
+        return [dict(seen[i], first=True) for i in dict.fromkeys(ids) if i in seen]
     return [h for h in _cache[0] if h['first'] and ok.get(h['id'], {}).get('verdict') != 'ok']
 
 def _hymns():
