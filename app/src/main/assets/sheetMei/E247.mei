@@ -7,96 +7,106 @@
 <scoreDef key.sig="0" meter.count="4" meter.unit="4" meter.sym="common" midi.bpm="110"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
 <measure n="1" metcon="false"><staff n="1"><layer n="1">
-<note xml:id="n1" pname="c" oct="4" dur="4">
+<note xml:id="n1" dur="4" pname="c" oct="4">
 <verse n="1"><label>1.</label><syl>Our</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
-<note xml:id="n2" pname="c" oct="4" dur="4" dots="1">
+<note xml:id="n2" dur="4" dots="1" pname="c" oct="4">
 <verse n="1"><syl>blest</syl></verse></note>
-<note xml:id="n3" pname="c" oct="4" dur="8">
+<note xml:id="n3" dur="8" pname="c" oct="4">
 <verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
-<note xml:id="n4" pname="d" oct="4" dur="4">
+<note xml:id="n4" dur="4" pname="d" oct="4">
 <verse n="1"><syl wordpos="m" con="d">deem</syl></verse></note>
-<note xml:id="n5" pname="e" oct="4" dur="4">
+<note xml:id="n5" dur="4" pname="e" oct="4">
 <verse n="1"><syl wordpos="t">er</syl></verse></note>
 </layer></staff>
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Dm7/C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
-<note xml:id="n6" pname="f" oct="4" dur="4" dots="1">
+<note xml:id="n6" dur="4" dots="1" pname="f" oct="4">
 <verse n="1"><syl>ere</syl></verse></note>
-<note xml:id="n7" pname="f" oct="4" dur="8">
+<note xml:id="n7" dur="8" pname="f" oct="4">
 <verse n="1"><syl>He</syl></verse></note>
-<note xml:id="n8" pname="e" oct="4" dur="4">
+<note xml:id="n8" dur="4" pname="e" oct="4">
 <verse n="1"><syl eol="1">breathed</syl></verse></note>
-<note xml:id="n9" pname="g" oct="4" dur="4">
+<note xml:id="n9" dur="4" pname="g" oct="4">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
+<harm staff="1" tstamp="4.5" place="above">G7/D</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
-<note xml:id="n10" pname="c" oct="5" dur="4">
+<note xml:id="n10" dur="4" pname="c" oct="5">
 <verse n="1"><syl wordpos="i" con="d">ten</syl></verse></note>
-<note xml:id="n11" pname="e" oct="4" dur="4">
+<note xml:id="n11" dur="4" pname="e" oct="4">
 <verse n="1"><syl wordpos="t">der</syl></verse></note>
-<note xml:id="n12" pname="e" oct="4" dur="4">
+<note xml:id="n12" dur="4" pname="e" oct="4">
 <verse n="1"><syl>last</syl></verse></note>
-<note xml:id="n13" pname="f" oct="4" dur="4" accid="s" accid.ges="s">
+<note xml:id="n13" dur="4" pname="f" oct="4" accid="s">
 <verse n="1"><syl wordpos="i" con="d">fare</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/E</harm>
-<harm staff="1" tstamp="3" place="above">D7</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+<harm staff="1" tstamp="4" place="above">D7</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
-<note xml:id="n14" pname="g" oct="4" dur="2" dots="1">
+<note xml:id="n14" dur="2" dots="1" pname="g" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">well,</syl></verse></note>
-<note xml:id="n15" pname="f" oct="4" dur="4">
+<note xml:id="n15" dur="4" pname="f" oct="4">
 <verse n="1"><syl>A</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="3" place="above">G7</harm>
+<harm staff="1" tstamp="4" place="above">G7</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
-<note xml:id="n16" pname="e" oct="4" dur="4" dots="1">
+<note xml:id="n16" dur="4" dots="1" pname="e" oct="4">
 <verse n="1"><syl>guide,</syl></verse></note>
-<note xml:id="n17" pname="e" oct="4" dur="8">
+<note xml:id="n17" dur="8" pname="e" oct="4">
 <verse n="1"><syl>a</syl></verse></note>
-<note xml:id="n18" pname="f" oct="4" dur="4">
+<note xml:id="n18" dur="4" pname="f" oct="4">
 <verse n="1"><syl wordpos="i" con="d">com</syl></verse></note>
-<note xml:id="n19" pname="g" oct="4" dur="4">
+<note xml:id="n19" dur="4" pname="g" oct="4">
 <verse n="1"><syl wordpos="m" con="d">fort</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<harm staff="1" tstamp="4" place="above">C7</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
-<note xml:id="n20" pname="a" oct="4" dur="4">
+<note xml:id="n20" dur="4" pname="a" oct="4">
 <verse n="1"><syl wordpos="t">er,</syl></verse></note>
-<note xml:id="n21" pname="a" oct="4" dur="4">
+<note xml:id="n21" dur="4" pname="a" oct="4">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
-<note xml:id="n22" pname="g" oct="4" dur="4">
+<note xml:id="n22" dur="4" pname="g" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">queathed</syl></verse></note>
-<note xml:id="n23" pname="e" oct="4" dur="4">
+<note xml:id="n23" dur="4" pname="e" oct="4">
 <verse n="1"><syl>With</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">Bm7♭5/D</harm>
 <harm staff="1" tstamp="3" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
-<note xml:id="n24" pname="g" oct="4" dur="2" dots="1">
+<note xml:id="n24" dur="2" dots="1" pname="g" oct="4">
 <verse n="1"><syl>us</syl></verse></note>
-<note xml:id="n25" pname="f" oct="4" dur="4">
+<note xml:id="n25" dur="4" pname="f" oct="4">
 <verse n="1"><syl>to</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G/D</harm>
-<harm staff="1" tstamp="3" place="above">G7</harm>
+<harm staff="1" tstamp="1" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">G7</harm>
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
-<note xml:id="n26" pname="e" oct="4" dur="2" dots="1">
+<note xml:id="n26" dur="1" pname="e" oct="4">
 <verse n="1"><syl eol="1">dwell.</syl></verse></note>
-<rest xml:id="r27" dur="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
