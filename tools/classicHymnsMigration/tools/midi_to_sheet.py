@@ -85,7 +85,7 @@ DUR = {1: (16, 0), 2: (8, 0), 3: (8, 1), 4: (4, 0), 6: (4, 1), 8: (2, 0), 12: (2
 # ---- chords ----
 QUAL = [('', (0, 4, 7)), ('m', (0, 3, 7)), ('7', (0, 4, 7, 10)), ('Maj7', (0, 4, 7, 11)), ('m7', (0, 3, 7, 10)), ('dim', (0, 3, 6)),
         ('m7♭5', (0, 3, 6, 10)), ('dim7', (0, 3, 6, 9)), ('aug', (0, 4, 8)), ('sus4', (0, 5, 7)), ('sus2', (0, 2, 7)),
-        ('6', (0, 4, 7, 9)), ('m6', (0, 3, 7, 9)), ('add9', (0, 2, 4, 7)), ('mMaj7', (0, 3, 7, 11))]
+        ('6', (0, 4, 7, 9)), ('m6', (0, 3, 7, 9)), ('mMaj7', (0, 3, 7, 11))]
 SHARP_NAMES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B']
 FLAT_NAMES = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B']
 
@@ -140,21 +140,18 @@ def pieces(n, room):
         else: raise ValueError(n)
     return out
 
-def main():
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    if not args: print(__doc__); sys.exit(2)
-    hid = args[0]; path = os.path.join(MEI, hid + '.mei')
+def convert(hid, db, write, out_dir):
+    path = os.path.join(MEI, hid + '.mei')
     xml = open(path, encoding='utf8').read()
-    db = sqlite3.connect(':memory:'); db.executescript(open(os.path.join(ROOT, 'sqlite/hymns.sql'), encoding='utf8').read())
     tune = db.execute('select lower(trim(tune)) from hymns where _id=?', (hid,)).fetchone()[0]
     div, notes, bpm, (tn, td), ks = read_midi(os.path.join(PROJ, 'midi', 'm%s.mid' % tune))
     sd = re.search(r'<scoreDef\b[^>]*>', xml).group(0)
     sig = re.search(r'key\.sig="([^"]*)"', sd).group(1); alt, kind = key_alters(sig)
     o_n, o_d = int(re.search(r'meter\.count="(\d+)"', sd).group(1)), int(re.search(r'meter\.unit="(\d+)"', sd).group(1))
-    problems = []; info = []
+    problems = []; info = []; info_end = None
     if (o_n, o_d) != (tn, td): problems.append('time signature: sheet %d/%d, MIDI %d/%d' % (o_n, o_d, tn, td))
     msig = ('%d%s' % (abs(ks), 's' if ks > 0 else 'f')) if ks else '0'
-    if msig != sig: problems.append('key signature: sheet %s, MIDI %s' % (sig, msig))
+    key_differs = msig != sig   # the MIDI's key mark is often off: only a problem when the pitches differ too (checked below)
     if re.search(r'rptstart|rptend|<ending|<repeat|<fermata', xml): problems.append('the old sheet has repeats, endings or fermatas (not handled yet)')
     q = div // 4
     events = {}
@@ -168,8 +165,12 @@ def main():
         if (e - t) % q or t % q: problems.append('a note off the sixteenth grid at tick %d' % t); break
     bars = read_old(xml)
     old_total = sum(b[2] for b in bars); midi_total = sop[-1][1] // q
+    if midi_total != old_total and abs(midi_total - old_total) <= 16 and sop[-1][0] // q < old_total:
+        # the last note is held a little longer or shorter in the MIDI than on the sheet: the sheet's length stands
+        t, e, p = sop[-1]; sop[-1] = (t, old_total * q, p); midi_total = old_total
+        info_end = 'the last note is %d sixteenths on the sheet; the MIDI differs' % (old_total - t // q)
     if midi_total != old_total: problems.append('length: sheet %d sixteenths, MIDI %d' % (old_total, midi_total))
-    if problems: print(hid, '\n'.join(problems)); sys.exit(1)
+    if problems: print(hid, '\n'.join(problems)); return 1
     # which MIDI note takes which old note's words: the same onset
     by_onset = {t // q: i for i, (t, e, p) in enumerate(sop)}
     owner = {}; moved = []
@@ -182,7 +183,9 @@ def main():
             l, o, w, g = spell(sop[i][2], alt, kind)
             if (l, o) != (a['pname'], int(a['oct'])) or sop[i][1] - sop[i][0] != n * q:
                 info.append('bar %d: sheet %s%s %d/16, MIDI %s%s %d/16' % (bi + 1, a['pname'], a['oct'], n, l, o, (sop[i][1] - sop[i][0]) // q))
-    if moved: print(hid, '\n'.join(moved)); sys.exit(1)
+    if moved: print(hid, '\n'.join(moved)); return 1
+    if key_differs and any(x.startswith('bar') for x in info): problems.append('key signature: sheet %s, MIDI %s, and the notes differ' % (sig, msig))
+    if info_end: info.append(info_end)
     # the new bars
     bt = 0; idn = 0; body = []; slurs_all = []; extra_syl = 0
     beat = beats16(o_n, o_d)
@@ -289,10 +292,24 @@ def main():
     print('%s: tune %s, %d notes (sheet %d), %d melisma notes, %d notes differ in pitch or length, tempo %d' % (hid, tune, len(sop), sum(1 for b in bars for e in b[1] if 'pname' in e[2]), len(slurs_all), len(info), bpm))
     for d in info: print('  ', d)
     for p in problems: print('  PROBLEM', p)
-    if '--write' in sys.argv:
+    if write:
         out_path = path
-        if '--out' in sys.argv: out_path = os.path.join(sys.argv[sys.argv.index('--out') + 1], hid + '.mei'); os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        if out_dir: out_path = os.path.join(out_dir, hid + '.mei'); os.makedirs(out_dir, exist_ok=True)
         open(out_path, 'w', encoding='utf8').write(new); print('written', out_path)
-    sys.exit(1 if problems else 0)
+    return 1 if problems else 0
+
+
+def main():
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    out_dir = None
+    if '--out' in sys.argv:
+        out_dir = sys.argv[sys.argv.index('--out') + 1]; args = [a for a in args if a != out_dir]
+    if not args: print(__doc__); sys.exit(2)
+    db = sqlite3.connect(':memory:'); db.executescript(open(os.path.join(ROOT, 'sqlite/hymns.sql'), encoding='utf8').read())
+    bad = 0
+    for hid in args:
+        try: bad += convert(hid, db, '--write' in sys.argv, out_dir)
+        except Exception as e: print(hid, 'ERROR', e); bad += 1
+    sys.exit(1 if bad else 0)
 
 main()
