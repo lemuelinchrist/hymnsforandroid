@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sheet review</title>
+<style>
+:root{--bg:#f6f4ef;--fg:#222;--mut:#777;--card:#fff;--line:#d9d4c8;--ok:#2e7d32;--bad:#c62828;--acc:#1a5fb4}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1c1e;--fg:#eee;--mut:#999;--card:#2a2a2d;--line:#444;--ok:#66bb6a;--bad:#ef5350;--acc:#6aa9ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px system-ui,sans-serif;height:100vh;display:flex}
+#side{width:290px;border-right:1px solid var(--line);display:flex;flex-direction:column;background:var(--card)}
+#side header{padding:10px;border-bottom:1px solid var(--line)}#side h1{font-size:16px;margin:0 0 6px}
+#filters label{display:block;font-size:13px;color:var(--mut)}#count{font-size:13px;color:var(--mut);margin-top:4px}
+#list{overflow:auto;flex:1}.row{padding:7px 10px;border-bottom:1px solid var(--line);cursor:pointer;display:flex;gap:6px;align-items:baseline}
+.row.sel{background:color-mix(in srgb,var(--acc) 18%,transparent)}.row .id{font-weight:600;min-width:52px}.row .t{flex:1;font-size:13px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--line)}.dot.ok{background:var(--ok)}.dot.problem{background:var(--bad)}.dg{font-size:11px;color:var(--bad)}
+#main{flex:1;display:flex;flex-direction:column;min-width:0}
+#bar{padding:8px 12px;border-bottom:1px solid var(--line);background:var(--card);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#bar h2{font-size:16px;margin:0;flex:1;min-width:200px}button{font:inherit;padding:6px 12px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);cursor:pointer}
+button.ok{border-color:var(--ok);color:var(--ok)}button.bad{border-color:var(--bad);color:var(--bad)}button.on{background:color-mix(in srgb,currentColor 15%,transparent);font-weight:700}
+#note{flex:1;min-width:160px;padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);font:inherit}
+#diffs{padding:6px 12px;font-size:13px;color:var(--mut);border-bottom:1px solid var(--line);display:none}#diffs b{color:var(--bad)}
+#panes{flex:1;display:flex;min-height:0}.pane{flex:1;display:flex;flex-direction:column;min-width:0;border-right:1px solid var(--line)}.pane:last-child{border:0}
+.pane h3{margin:0;padding:5px 10px;font-size:13px;background:var(--card);border-bottom:1px solid var(--line)}iframe{flex:1;border:0;width:100%;background:#fff}
+#help{font-size:12px;color:var(--mut);padding:4px 12px}
+@media (max-width:900px){body{flex-direction:column}#side{width:100%;height:30vh}#panes{flex-direction:column}}
+</style></head><body>
+<div id="side"><header><h1>Sheets from the MIDI</h1>
+<div id="filters"><label><input type="radio" name="f" value="tune" checked> one hymn per tune</label><label><input type="radio" name="f" value="diff"> only with differing notes</label>
+<label><input type="radio" name="f" value="todo"> not reviewed yet</label><label><input type="radio" name="f" value="prob"> marked Problem</label><label><input type="radio" name="f" value="all"> all hymns</label></div><div id="count"></div></header>
+<div id="list"></div></div>
+<div id="main"><div id="bar"><h2 id="title">Loading…</h2><button class="ok" id="ok">OK (o)</button><button class="bad" id="bad">Problem (x)</button>
+<input id="note" placeholder="what is wrong (kept with the hymn)"><button id="prev">◀ (k)</button><button id="next">▶ (j)</button></div>
+<div id="diffs"></div><div id="panes"><div class="pane"><h3>OLD sheet</h3><iframe id="fo" allow="autoplay"></iframe></div><div class="pane"><h3>NEW sheet (from the MIDI) — plays in Chorale style</h3><iframe id="fn" allow="autoplay"></iframe></div></div>
+<div id="help">Press Play in each side to hear it (the same tempo setting on both). Keys: j next, k previous, o OK, x Problem. Answers are saved on the PC as you go.</div></div>
+<script>
+const H=location.hostname,P=+location.port,OLD='http://'+H+':'+(P+1)+'/',NEW='http://'+H+':'+(P+2)+'/';
+let hymns=[],verd={},cur=null,shown=[];
+const $=id=>document.getElementById(id);
+async function load(){hymns=await (await fetch('/api/hymns')).json();verd=await (await fetch('/api/verdicts')).json();render();const h=location.hash.slice(1);open_(h&&hymns.find(x=>x.id===h)?h:(shown[0]||hymns[0]).id)}
+function filt(){const f=document.querySelector('input[name=f]:checked').value;return hymns.filter(h=>f==='all'||(f==='tune'&&h.first)||(f==='diff'&&h.diffs.length)||(f==='todo'&&!verd[h.id]&&h.first)||(f==='prob'&&verd[h.id]&&verd[h.id].verdict==='problem'))}
+function render(){shown=filt();const L=$('list');L.innerHTML='';for(const h of shown){const r=document.createElement('div');r.className='row'+(h.id===cur?' sel':'');r.dataset.id=h.id;
+ const v=verd[h.id];r.innerHTML='<span class="dot '+(v?v.verdict:'')+'"></span><span class="id">'+h.id+'</span><span class="t">'+(h.title||'').replace(/</g,'&lt;')+'</span>'+(h.diffs.length?'<span class="dg">'+h.diffs.length+'Δ</span>':'');r.onclick=()=>open_(h.id);L.appendChild(r)}
+ const done=hymns.filter(h=>verd[h.id]).length;$('count').textContent=shown.length+' shown · '+done+' of '+hymns.length+' hymns answered'}
+function open_(id){cur=id;location.hash=id;const h=hymns.find(x=>x.id===id);$('title').textContent=id+' — '+(h.title||'')+'  (tune '+h.tune+')';
+ const u='#/h/'+id+'?tab=sheet';$('fo').src=OLD+u;$('fn').src=NEW+u;
+ const d=$('diffs');if(h.diffs.length){d.style.display='block';d.innerHTML='<b>Notes that follow the MIDI:</b> '+h.diffs.map(x=>x.replace(/</g,'&lt;')).join(' · ')}else d.style.display='none';
+ $('note').value=(verd[id]&&verd[id].note)||'';mark();render();const s=document.querySelector('.row.sel');if(s)s.scrollIntoView({block:'nearest'})}
+function mark(){const v=verd[cur];$('ok').classList.toggle('on',!!v&&v.verdict==='ok');$('bad').classList.toggle('on',!!v&&v.verdict==='problem')}
+async function save(verdict){const body={id:cur,verdict,note:$('note').value};verd=await (await fetch('/api/verdict',{method:'POST',body:JSON.stringify(body)})).json();mark();render()}
+function step(d){const i=shown.findIndex(h=>h.id===cur);const n=shown[Math.max(0,Math.min(shown.length-1,(i<0?0:i+d)))];if(n)open_(n.id)}
+$('ok').onclick=async()=>{await save(verd[cur]&&verd[cur].verdict==='ok'?'':'ok')};$('bad').onclick=async()=>{await save(verd[cur]&&verd[cur].verdict==='problem'?'':'problem')};
+$('note').onchange=()=>{if(verd[cur])save(verd[cur].verdict)};$('prev').onclick=()=>step(-1);$('next').onclick=()=>step(1);
+document.querySelectorAll('input[name=f]').forEach(e=>e.onchange=()=>{render()});
+addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'&&e.target.type!=='radio')return;if(e.key==='j')step(1);else if(e.key==='k')step(-1);else if(e.key==='o')$('ok').click();else if(e.key==='x')$('bad').click()});
+load();
+</script></body></html>
