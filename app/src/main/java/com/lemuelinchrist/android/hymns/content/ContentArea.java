@@ -56,6 +56,7 @@ public class ContentArea extends Fragment {
     private ShareButton shareButton;
     private YoutubeButton youtubeButton;
     private SimilarTuneButton similarTuneButton;
+    private JukeboxCard jukebox;
     private boolean faveNeedsRefresh;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -147,6 +148,7 @@ public class ContentArea extends Fragment {
                 (ImageButton)rootView.findViewById(getRid("youtubeButton")));
         similarTuneButton = new SimilarTuneButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("similarTuneButton")));
+        jukebox = new JukeboxCard(hymn, this, rootView.findViewById(R.id.jukeboxCard));
 
         return rootView;
     }

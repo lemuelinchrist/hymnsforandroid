@@ -178,6 +178,148 @@
 
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+                android:id="@+id/jukeboxCard"
+                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
+                android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+        >
+            <!-- plays the hymn's sheet in a style picked from a list (JukeboxCard; hidden when there is nothing to play) -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="6dp" android:paddingBottom="6dp">
+                <!-- the title row: a tap folds the card into it (CardFold); Hide / Show in the book's colour -->
+                <LinearLayout
+                        android:id="@+id/jukeboxHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:minHeight="44dp"
+                        android:background="@drawable/other_languages_row_ripple"
+                        android:clickable="true">
+                    <TextView
+                            style="@style/HymnLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/jukebox"/>
+                    <TextView
+                            android:id="@+id/jukeboxFold"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:id="@+id/jukeboxBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="6dp">
+                <!-- Play, and beside it the style and how far it has played -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                    <ImageButton
+                            android:id="@+id/jukeboxPlay"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/jukebox_play_bg"
+                            android:src="@drawable/ic_play_arrow_white_48dp"
+                            android:scaleType="centerInside"
+                            android:padding="10dp"
+                            android:contentDescription="@string/jukebox_play"/>
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="14dp"
+                            android:orientation="vertical">
+                        <Spinner
+                                android:id="@+id/jukeboxStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:minHeight="44dp"
+                                android:background="@drawable/jukebox_style_bg"
+                                android:paddingLeft="4dp"
+                                android:paddingRight="36dp"
+                                android:layout_marginBottom="10dp"
+                                android:spinnerMode="dropdown"
+                                android:popupBackground="?attr/hymnCardBackground"
+                                android:contentDescription="@string/jukebox_style"/>
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="8dp">
+                            <ProgressBar
+                                    android:id="@+id/jukeboxProgress"
+                                    style="?android:attr/progressBarStyleHorizontal"
+                                    android:layout_width="0dp"
+                                    android:layout_height="4dp"
+                                    android:layout_weight="1"
+                                    android:max="1"
+                                    android:progress="0"/>
+                            <TextView
+                                    android:id="@+id/jukeboxBar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:minWidth="72dp"
+                                    android:gravity="right"
+                                    android:textSize="12sp"
+                                    android:textColor="?attr/hymnTextMuted"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <!-- the tempo (a tap on it: the sheet's own again) and Loop -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="10dp">
+                    <TextView
+                            android:id="@+id/jukeboxTempo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="74dp"
+                            android:minHeight="40dp"
+                            android:gravity="center_vertical"
+                            android:textSize="14sp"
+                            android:textColor="?attr/hymnText"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="@string/jukebox_tempo_reset"/>
+                    <SeekBar
+                            android:id="@+id/jukeboxSpeed"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="20"
+                            android:contentDescription="@string/jukebox_tempo_label"/>
+                    <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/jukeboxLoop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/jukebox_loop"
+                            android:textColor="?attr/hymnText"
+                            android:textSize="14sp"
+                            app:switchPadding="6dp"/>
+                </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
                 android:id="@+id/linksCard"
                 android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
@@ -189,18 +331,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="14dp" android:paddingBottom="16dp">
-                <TextView
-                        style="@style/HymnLabel"
-                        android:layout_width="wrap_content"
+                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="6dp" android:paddingBottom="6dp">
+                <!-- the title row: a tap folds the card into it (CardFold); Hide / Show in the book's colour -->
+                <LinearLayout
+                        android:id="@+id/linksHeader"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/linksCard"
-                        android:layout_marginBottom="6dp"/>
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:minHeight="44dp"
+                        android:background="@drawable/other_languages_row_ripple"
+                        android:clickable="true">
+                    <TextView
+                            style="@style/HymnLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/linksCard"/>
+                    <TextView
+                            android:id="@+id/linksFold"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"/>
+                </LinearLayout>
                 <LinearLayout
                         android:id="@+id/linksList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

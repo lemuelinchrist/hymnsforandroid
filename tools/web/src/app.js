@@ -783,6 +783,114 @@ function metaNode(hymn) {
     items.length ? h('dl', null, items.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])) : null);
 }
 
+// A card of the hymn page that folds into its title row (as the Android app's JUKEBOX and LISTEN AND LINKS, which fold as
+// its OTHER LANGUAGES does): a tap on "TITLE      Hide ▴" hides the rest of the card, "Show ▾" brings it back. Kept for
+// every hymn (store key). -> the card's h2
+function foldTitle(card, title, key) {
+  const act = h('span', {class: 'fold-act'});
+  const btn = h('button', {type: 'button', class: 'fold-head'}, h('span', null, title), act);
+  const show = (folded) => {
+    card.classList.toggle('folded', folded);
+    btn.setAttribute('aria-expanded', String(!folded));
+    act.textContent = folded ? tr('Show') + ' ▾' : tr('Hide') + ' ▴';
+  };
+  btn.addEventListener('click', () => { const folded = !card.classList.contains('folded'); store.set(key, folded); show(folded); });
+  show(!!store.get(key, false));
+  return h('h2', null, btn);
+}
+
+// The jukebox card under the details (as the Android app's, JukeboxCard.java): Play, the style (jukebox.js STYLES: the
+// hymn's own, Piano, Guitar, Melody alone), how far it has played, the tempo and Loop. It plays the hymn's sheet (this
+// device's chord edits, the tempo the sheet names) without opening it; a change while it plays goes on from the same
+// bar. A hymn opens on its sheet's own style (Flowing when it names none); a style picked is for this page only. Loop
+// (on to begin with) and the tempo are kept for every hymn. Shown once the sheet is read, and only when it has a
+// melody (not a sheet of chords only). It folds into its title (foldTitle); folded, it goes on playing.
+// stopOthers(): the page's other sound stops (the Play button's, the sheet's).
+// -> {el, stop()}
+function jukeboxCard(hymn, stopOthers) {
+  const el = h('section', {class: 'card jukebox-card', hidden: true, 'aria-label': tr('Jukebox')});
+  const prefs = Object.assign({loop: true, speed: 1}, store.get('jukebox', {}));
+  const keep = () => store.set('jukebox', {loop: !!prefs.loop, speed: prefs.speed});
+  let J = null, info = null, juke = null, playing = false, disposed = false;
+  (async () => {
+    try {
+      const [mod, xml] = await Promise.all([import('./jukebox.js'), host.mei(hymn.sheetId)]);
+      J = mod; info = J.sheetInfo(xml);
+      if (disposed || !info.playable) return;
+      build();
+      el.hidden = false;
+    } catch (e) { /* no sheet to read: no jukebox */ }
+  })();
+
+  function build() {
+    prefs.speed = Math.max(J.MIN_SPEED, Math.min(J.MAX_SPEED, +prefs.speed || 1));
+    const playBtn = h('button', {class: 'jb-play', type: 'button', 'aria-pressed': 'false'});
+    // the styles, under their headings (Piano, Guitar); the hymn's own only for a sheet that names one
+    const select = h('select', {class: 'jb-style', 'aria-label': tr('Style')});
+    const groups = {};
+    for (const st of J.STYLES) {
+      if (st.id === 'own' && !info.own) continue;
+      const opt = h('option', {value: st.id}, tr(st.name));
+      if (!st.group) { select.appendChild(opt); continue; }
+      if (!groups[st.group]) select.appendChild(groups[st.group] = h('optgroup', {label: tr(st.group)}));
+      groups[st.group].appendChild(opt);
+    }
+    select.value = J.styleFor(null, info.own).id;
+    const fill = h('span', {class: 'jb-fill'});
+    const barText = h('span', {class: 'jb-bar'});
+    const tempoBtn = h('button', {class: 'jb-tempo', type: 'button', title: tr('The hymn\'s own tempo')});
+    const speed = h('input', {class: 'jb-speed', type: 'range', min: String(J.MIN_SPEED), max: String(J.MAX_SPEED), step: '0.05', 'aria-label': tr('Tempo')});
+    speed.value = String(prefs.speed);
+    const loopBtn = h('button', {class: 'jb-loop', type: 'button', 'aria-pressed': String(!!prefs.loop), title: tr('Play again and again')}, tr('Loop'));
+    el.append(foldTitle(el, tr('Jukebox'), 'jukeboxFolded'),
+      h('div', {class: 'jb-main'}, playBtn,
+        h('div', {class: 'jb-side'}, select, h('div', {class: 'jb-progress'}, h('span', {class: 'jb-track'}, fill), barText))),
+      h('div', {class: 'jb-row'}, tempoBtn, speed, loopBtn));
+
+    const showTempo = () => { tempoBtn.textContent = '♩ = ' + Math.round(info.bpm * prefs.speed); };
+    const show = () => {
+      playBtn.replaceChildren(icon(playing ? 'pause' : 'play'));
+      playBtn.setAttribute('aria-pressed', String(playing));
+      const label = playing ? tr('Stop') : tr('Play');
+      playBtn.title = label;
+      playBtn.setAttribute('aria-label', label);
+      if (!playing) { fill.style.width = '0'; barText.textContent = ''; }
+    };
+    const onBar = (bar, bars) => {
+      fill.style.width = (100 * bar / Math.max(1, bars)) + '%';
+      barText.textContent = tr('Bar {0} of {1}', bar, bars);
+    };
+    const options = () => ({style: select.value, loop: !!prefs.loop, speed: prefs.speed});
+    // Play: a new player reads the sheet again (its chord edits may have changed); a change while it plays does not
+    function start() {
+      if (!playing) {
+        stopOthers();
+        if (juke) juke.stop();
+        juke = J.jukeboxPlayer({
+          load: async () => {
+            await loadScript('music.js');   // the piano part's rules (window.LeadSheet)
+            const [xml, saved] = await Promise.all([host.mei(hymn.sheetId), host.edits.get(hymn.sheetId).catch(() => null)]);
+            return {xml, edits: saved && saved.bars};
+          },
+          onBar, onStop: () => { playing = false; show(); }});
+      }
+      playing = true;
+      show();
+      juke.play(options()).catch((e) => { console.error(e); playing = false; show(); toast(tr('Sorry, no tune for this hymn')); });
+    }
+    const again = () => { if (playing) start(); };
+    playBtn.addEventListener('click', () => { if (playing) { juke.stop(); playing = false; show(); } else start(); });
+    select.addEventListener('change', () => again());
+    speed.addEventListener('input', () => { prefs.speed = parseFloat(speed.value) || 1; showTempo(); });
+    speed.addEventListener('change', () => { keep(); again(); });
+    tempoBtn.addEventListener('click', () => { speed.value = '1'; prefs.speed = 1; showTempo(); keep(); again(); });
+    loopBtn.addEventListener('click', () => { prefs.loop = !prefs.loop; keep(); loopBtn.setAttribute('aria-pressed', String(prefs.loop)); again(); });
+    showTempo();
+    show();
+  }
+  return {el, stop() { disposed = true; if (juke) juke.stop(); }};
+}
+
 // the card under the details for links that open outside the app (the Android app's "Listen and links" card), in sections:
 // Recordings (the hymn's sung YouTube and SoundCloud links, or those of the nearest hymn above it that has some),
 // Instrumental (its instrumental recordings, each with a music-note icon and an Instrumental pill), Piano videos
@@ -843,10 +951,11 @@ function linksNode(hymn) {
     return box;
   };
   // every hymn has the search section, so the card is on every hymn page
-  return h('section', {class: 'card links-card'},
-    h('h2', null, tr('Listen and links')),
+  const card = h('section', {class: 'card links-card'});
+  append(card, [foldTitle(card, tr('Listen and links'), 'linksFolded'),   // it folds into its title, as the jukebox does
     section('rec', tr('Recordings'), own), section('inst', tr('Instrumental'), inst),
-    section('piano', tr('Piano videos'), piano), section('tunes', tr('New tunes'), tunes), section('search', tr('Search'), find));
+    section('piano', tr('Piano videos'), piano), section('tunes', tr('New tunes'), tunes), section('search', tr('Search'), find)]);
+  return card;
 }
 
 function familyNode(hymn) {
@@ -1017,7 +1126,9 @@ function hymnScreen(view, hymn) {
     h('button', {role: 'tab', 'data-tab': 'lyrics', onclick: () => showTab('lyrics')}, tr('Lyrics')),
     h('button', {role: 'tab', 'data-tab': 'sheet', onclick: () => showTab('sheet')}, tr('Sheet music'))) : null;
 
-  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, h('div', {class: 'lyrics-box'}, lyricsNode(hymn)), sameTuneNode(hymn), metaNode(hymn), linksNode(hymn));
+  const jukebox = hasSheet ? jukeboxCard(hymn, () => { Player.stop(); showPlay(false); }) : null;
+  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, h('div', {class: 'lyrics-box'}, lyricsNode(hymn)), sameTuneNode(hymn), metaNode(hymn),
+    jukebox && jukebox.el, linksNode(hymn));
   const sheetPane = hasSheet ? h('section', {class: 'pane sheet-pane'}) : null;
   const panes = h('div', {class: 'panes' + (hasSheet ? ' two' : '')}, lyricsPane, sheetPane);
   const page = h('article', {class: 'hymn', style: groupStyle(hymn.group)}, head, tabs, panes, swapBackButton(hymn));
@@ -1076,6 +1187,7 @@ function hymnScreen(view, hymn) {
     disposed = true;
     wide.removeEventListener('change', onWide);
     if (sheet) sheet.destroy();
+    if (jukebox) jukebox.stop();
     Player.stop();
     keys = {};
   };

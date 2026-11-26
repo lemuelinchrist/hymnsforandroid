@@ -689,7 +689,7 @@ def main():
     index = json.dumps({'sheets': sheet_ids, 'lyrics': lyric_ids, 'tunes': tunes}, separators=(',', ':')).encode('utf-8')
     version['indexFile'] = 'data/index-%s.json' % short_hash(index)
     write(os.path.join(DIST, version['indexFile']), index)
-    lazy_files = {'music.js', 'sheet.js', 'sheetpanel.js', 'sheetplayer.js', 'piano.js', 'pianopanel.js', 'editor.js'}
+    lazy_files = {'music.js', 'sheet.js', 'sheetpanel.js', 'sheetplayer.js', 'piano.js', 'pianopanel.js', 'editor.js', 'jukebox.js'}
     all_shell = sorted(os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/')
                        for r, _, ns in os.walk(DIST) for n in ns
                        if not re.match(r'(data|sheets|lyrics|hymns|verovio|midi)/', os.path.relpath(os.path.join(r, n), DIST).replace(os.sep, '/'))

@@ -74,6 +74,9 @@ public class LinksSection extends ContentComponent<View> {
         // for reference, so a little smaller than the lyrics, as the details card is
         this.size = lyricSize - 2;
         this.columns = Math.max(1, context.getResources().getInteger(R.integer.links_columns));
+        // the card folds into its title row, as the jukebox does
+        if (hymn != null) CardFold.attach(context, hymn.getHymnGroup(), card.findViewById(R.id.linksHeader), card.findViewById(R.id.linksFold),
+                list, CardFold.LINKS);
     }
 
     public void display() {
