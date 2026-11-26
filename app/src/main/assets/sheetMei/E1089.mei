@@ -16,9 +16,11 @@
 <note xml:id="n4" pname="f" oct="4" dur="8">
 <verse n="1"><syl>so</syl></verse></note>
 </layer></staff>
+
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">B♭/F</harm>
-<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">C7/G</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <beam>
@@ -34,9 +36,13 @@
 <note xml:id="n10" pname="g" oct="4" dur="4">
 <verse n="1"><syl eol="1" wordpos="t">less,</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="4" place="above">C</harm>
 <slur startid="#n5" endid="#n6"/>
 <slur startid="#n7" endid="#n8"/>
+
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="a" oct="4" dur="4">
@@ -48,8 +54,11 @@
 <note xml:id="n14" pname="b" oct="4" dur="4">
 <verse n="1"><syl>for</syl></verse></note>
 </layer></staff>
+
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">F/A</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">Gm</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" pname="a" oct="4" dur="4">
@@ -59,9 +68,11 @@
 <note xml:id="n17" pname="f" oct="4" dur="2">
 <verse n="1"><syl eol="1">slain.</syl></verse></note>
 </layer></staff>
+
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">B♭/F</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -74,9 +85,11 @@
 <note xml:id="n21" pname="f" oct="4" dur="8">
 <verse n="1"><syl>has</syl></verse></note>
 </layer></staff>
+
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">B♭/F</harm>
-<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">Am</harm>
+<harm staff="1" tstamp="4" place="above">C7/G</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <beam>
@@ -92,9 +105,13 @@
 <note xml:id="n27" pname="g" oct="4" dur="4">
 <verse n="1"><syl eol="1" wordpos="t">tion,</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="4" place="above">C</harm>
 <slur startid="#n22" endid="#n23"/>
 <slur startid="#n24" endid="#n25"/>
+
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="a" oct="4" dur="4">
@@ -109,10 +126,11 @@
 <verse n="1"><syl>from</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="3" place="above">F/A</harm>
-<harm staff="1" tstamp="4" place="above">B♭</harm>
 <slur startid="#n31" endid="#n32"/>
+
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/D</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="f" oct="4" dur="4">
@@ -122,8 +140,9 @@
 <note xml:id="n35" pname="f" oct="4" dur="2">
 <verse n="1"><syl eol="1">stain.</syl></verse></note>
 </layer></staff>
+
 <harm staff="1" tstamp="1" place="above">F/C</harm>
-<harm staff="1" tstamp="2" place="above">C7</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
 </measure>
 <sb/>
@@ -137,8 +156,10 @@
 <note xml:id="n39" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ing,</syl></verse></note>
 </layer></staff>
+
 <harm staff="1" tstamp="1" place="above">C/E</harm>
-<harm staff="1" tstamp="3" place="above">C7</harm>
+<harm staff="1" tstamp="3" place="above">Gm</harm>
+<harm staff="1" tstamp="4" place="above">C/E</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n40" pname="a" oct="4" dur="4" dots="1">
@@ -150,7 +171,10 @@
 <note xml:id="n43" pname="a" oct="4" dur="4">
 <verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
 </layer></staff>
+
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="c" oct="5" dur="4" dots="1">
@@ -168,15 +192,19 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">F/A</harm>
-<harm staff="1" tstamp="3" place="above">F</harm>
+
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">C7/G</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n50" pname="c" oct="5" dur="1">
 <verse n="1"><syl eol="1" wordpos="t">way,</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">C/E</harm>
-<harm staff="1" tstamp="3" place="above">C</harm>
+
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="2" place="above">C7/B♭</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">C/G</harm>
 </measure>
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
@@ -193,10 +221,10 @@
 <note xml:id="n56" pname="g" oct="4" dur="8"/>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="4" place="above">B♭</harm>
 <slur startid="#n53" endid="#n54"/>
 <slur startid="#n55" endid="#n56"/>
+
+<harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="14" right="end"><staff n="1"><layer n="1">
 <note xml:id="n57" pname="f" oct="4" dur="4">
@@ -206,6 +234,7 @@
 <note xml:id="n59" pname="f" oct="4" dur="2">
 <verse n="1"><syl eol="1" wordpos="t">way!</syl></verse></note>
 </layer></staff>
+
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>

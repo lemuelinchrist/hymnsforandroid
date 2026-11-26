@@ -4,7 +4,7 @@
 <title type="subordinate">Praise of the Lord—His Exaltation</title>
 </titleStmt><pubStmt><identifier type="hymn">E127</identifier><identifier type="number">127</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
-<scoreDef key.sig="1s" meter.count="9" meter.unit="8" midi.bpm="109"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<scoreDef key.sig="1s" meter.count="9" meter.unit="8" midi.bpm="217"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
 <measure n="1" metcon="false"><staff n="1"><layer n="1">
 <beam>
@@ -15,8 +15,9 @@
 <verse n="1"><syl>ten</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">D</harm>
 <slur startid="#n1" endid="#n2"/>
+
+<harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n4" pname="g" oct="4" dur="4" dots="1">
@@ -31,9 +32,9 @@
 <verse n="1"><syl wordpos="t">es</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="7" place="above">G/B</harm>
 <slur startid="#n6" endid="#n7"/>
+
+<harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="a" oct="4" dur="4" dots="1">
@@ -48,9 +49,9 @@
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="7" place="above">D/A</harm>
 <slur startid="#n11" endid="#n12"/>
+
+<harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n14" pname="a" oct="4" dur="4" dots="1">
@@ -65,9 +66,10 @@
 <verse n="1"><syl wordpos="i" con="d">ac</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">D7</harm>
-<harm staff="1" tstamp="7" place="above">D7/F♯</harm>
 <slur startid="#n16" endid="#n17"/>
+
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="4" place="above">D7</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -81,9 +83,9 @@
 <verse n="1"><syl wordpos="t">sand</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="7" place="above">D/A</harm>
 <slur startid="#n20" endid="#n21"/>
+
+<harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="d" oct="5" dur="4" dots="1">
@@ -98,9 +100,9 @@
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G/B</harm>
-<harm staff="1" tstamp="7" place="above">G7</harm>
 <slur startid="#n25" endid="#n26"/>
+
+<harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="g" oct="4" dur="4" dots="1">
@@ -115,9 +117,10 @@
 <verse n="1"><syl>at</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="7" place="above">Am</harm>
 <slur startid="#n30" endid="#n31"/>
+
+<harm staff="1" tstamp="1" place="above">C</harm>
+<harm staff="1" tstamp="7" place="above">Am/C</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="d" oct="4" dur="4" dots="1">
@@ -129,16 +132,18 @@
 <note xml:id="n36" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ho’ng</syl></verse></note>
 </layer></staff>
+
 <harm staff="1" tstamp="1" place="above">G/D</harm>
-<harm staff="1" tstamp="7" place="above">D7</harm>
+<harm staff="1" tstamp="4" place="above">C♯dim/E</harm>
+<harm staff="1" tstamp="7" place="above">G/D</harm>
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="g" oct="4" dur="2" dots="1">
 <verse n="1"><syl eol="1">chord.</syl></verse></note>
 <rest xml:id="r38" dur="4" dots="1"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">C/G</harm>
-<harm staff="1" tstamp="4" place="above">G</harm>
+
+<harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

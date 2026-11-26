@@ -376,4 +376,4 @@ def main():
         except Exception as e: print(hid, 'ERROR', e); bad += 1
     sys.exit(1 if bad else 0)
 
-main()
+if __name__ == "__main__": main()
