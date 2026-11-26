@@ -215,7 +215,9 @@ function analyse(doc, choice, loop = false) {
       if (!info || hasV2At(n.g, n.d)) return;
       const onChord = k >= 0 && Math.abs(harms[k].g - n.g) < 0.01, long = n.d >= 2 * n.bar.beat - 0.01;
       const onBeat = Math.abs(((n.g - n.bar.g) % n.bar.beat)) < 0.01;
-      const want = rh.on === 'all' ? true : rh.on === 'chord' ? onChord : rh.on === 'long' ? long : onBeat || long;
+      // 'beat': a note on a beat, or a note a beat long or longer that starts off the beat (a hymn whose melody sits on the off-beats,
+      // like E16, would hardly get a note under it otherwise); a short note between the beats is left alone, as a passing note
+      const want = rh.on === 'all' ? true : rh.on === 'chord' ? onChord : rh.on === 'long' ? long : onBeat || long || n.d >= n.bar.beat - 0.01;
       if (!want) return;
       const ps = M.fillUnder(n.p, info, rh.add);
       if (ps.length) { n.fill = ps; n.info = info; }
