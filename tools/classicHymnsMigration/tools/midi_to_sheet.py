@@ -17,7 +17,8 @@ up to the time signature, the key signature and time signature equal the MIDI's.
 import os, re, sys, sqlite3
 HERE = os.path.dirname(os.path.abspath(__file__)); PROJ = os.path.dirname(HERE)
 ROOT = os.path.abspath(os.path.join(PROJ, '..', '..'))
-MEI = os.path.join(ROOT, 'app/src/main/assets/sheetMei')
+MEI = os.environ.get('MEI_DIR') or os.path.join(ROOT, 'app/src/main/assets/sheetMei')   # (MEI_DIR: where the sheets to read are; they are written to the app's folder)
+OUT_MEI = os.path.join(ROOT, 'app/src/main/assets/sheetMei')
 
 # ---- MIDI ----
 def read_midi(path):
@@ -177,6 +178,7 @@ def convert(hid, db, write, out_dir):
     for t, e, p in sop:
         if (e - t) % q or t % q: problems.append('a note off the sixteenth grid at tick %d' % t); break
     bars = read_old(xml)
+    dropped = 0
     old_total = sum(b[2] for b in bars); midi_total = sop[-1][1] // q
     if midi_total != old_total and abs(midi_total - old_total) <= 16 and sop[-1][0] // q < old_total:
         # the last note is held a little longer or shorter in the MIDI than on the sheet: the sheet's length stands
@@ -202,6 +204,19 @@ def convert(hid, db, write, out_dir):
         info_shift = 'the MIDI is %d semitones %s than the sheet: moved to the sheet\'s key' % (abs(shift), 'lower' if shift > 0 else 'higher')
         key_differs = False
     else: info_shift = None
+    # a MIDI note with no note of its own on the sheet, far below the sheet's melody, is a lower voice (the bass where the soprano
+    # rests or holds), not the melody: it is dropped, and the note before goes on to its end when it ended where this one began
+    lo = min(old_midi(a) for b in bars for (t, n, a, tag) in b[1] if 'pname' in a)
+    old_start = {t for b in bars for (t, n, a, tag) in b[1] if 'pname' in a}
+    kept = []
+    for t, e, p in sop:
+        if p < lo - 2 and t // q not in old_start and t % q == 0 and kept:
+            pt, pe, pp = kept[-1]
+            if pe == t: kept[-1] = (pt, e, pp)
+            continue
+        kept.append((t, e, p))
+    dropped = len(sop) - len(kept)
+    if dropped: sop = kept; by_onset = {t_ // q: i for i, (t_, e__, p__) in enumerate(sop)}
     # the sheet writes the same note again where the MIDI holds one note on (a repeated note): the MIDI note is split there
     split = []
     for bi, (mh, els, tot, txt) in enumerate(bars):
@@ -226,6 +241,7 @@ def convert(hid, db, write, out_dir):
     if key_differs and any(x.startswith('bar') for x in info): problems.append('key signature: sheet %s, MIDI %s, and the notes differ' % (sig, msig))
     if info_end: info.append(info_end)
     if info_off: info.append(info_off)
+    if dropped: info.append('%d low MIDI notes dropped (a lower voice, not the melody)' % dropped)
     if info_shift: info.append(info_shift)
     # the new bars
     bt = 0; idn = 0; body = []; slurs_all = []; extra_syl = 0
@@ -341,7 +357,7 @@ def convert(hid, db, write, out_dir):
     for d in info: print('  ', d)
     for p in problems: print('  PROBLEM', p)
     if write:
-        out_path = path
+        out_path = os.path.join(OUT_MEI, hid + '.mei')
         if out_dir: out_path = os.path.join(out_dir, hid + '.mei'); os.makedirs(out_dir, exist_ok=True)
         open(out_path, 'w', encoding='utf8').write(new); print('written', out_path)
     return 1 if problems else 0

@@ -34,10 +34,10 @@
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" dur="8" pname="a" oct="4">
 <verse n="1"><syl wordpos="i" con="d">call</syl></verse></note>
-<note xml:id="n8" dur="4" dots="1" pname="g" oct="4">
+<note xml:id="n8" dur="2" dots="1" pname="g" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">ing,</syl></verse></note>
-<note xml:id="n9" dur="2" pname="c" oct="2"/>
 <beam>
+<note xml:id="n9" dur="8" pname="g" oct="4"/>
 <note xml:id="n10" dur="8" dots="1" pname="c" oct="4">
 <verse n="1"><syl>In</syl></verse></note>
 <note xml:id="n11" dur="16" pname="e" oct="4">
@@ -46,7 +46,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="1.5" place="above">C</harm>
-<slur startid="#n8" endid="#n9"/>
+<tie startid="#n8" endid="#n9"/>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" dur="4" dots="1" pname="g" oct="4">

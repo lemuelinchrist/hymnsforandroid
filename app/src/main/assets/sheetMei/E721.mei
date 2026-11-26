@@ -147,16 +147,18 @@
 </measure>
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
-<note xml:id="n39" dur="4" dots="1" pname="b" oct="4" accid.ges="f">
+<note xml:id="n39" dur="2" pname="b" oct="4" accid.ges="f">
 <verse n="1"><syl eol="1">thee.”</syl></verse></note>
-<note xml:id="n40" dur="4" pname="a" oct="3" accid.ges="f"/>
+<beam>
+<note xml:id="n40" dur="8" pname="b" oct="4" accid.ges="f"/>
 <note xml:id="n41" dur="8" pname="b" oct="4" accid.ges="f">
 <verse n="1"><syl>And</syl></verse></note>
+</beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="1.66667" place="above">Gm/B♭</harm>
 <harm staff="1" tstamp="2.66667" place="above">B♭7</harm>
-<slur startid="#n39" endid="#n40"/>
+<tie startid="#n39" endid="#n40"/>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <beam>

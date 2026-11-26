@@ -8,257 +8,255 @@
 <section>
 <measure n="1"><staff n="1"><layer n="1">
 <beam>
-<note xml:id="n1" pname="a" oct="4" dur="8">
+<note xml:id="n1" dur="8" pname="a" oct="4">
 <verse n="1"><label>1.</label><syl>This</syl></verse></note>
-<note xml:id="n2" pname="f" oct="4" dur="8">
+<note xml:id="n2" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>is</syl></verse></note>
-<note xml:id="n3" pname="f" oct="4" dur="8">
+<note xml:id="n3" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>my</syl></verse></note>
 </beam>
 <beam>
-<note xml:id="n4" pname="f" oct="4" dur="8">
+<note xml:id="n4" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl wordpos="i" con="d">won</syl></verse></note>
-<note xml:id="n5" pname="e" oct="4" dur="8">
+<note xml:id="n5" dur="8" pname="e" oct="4">
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
-<note xml:id="n6" pname="d" oct="4" dur="8">
+<note xml:id="n6" dur="8" pname="d" oct="4">
 <verse n="1"><syl wordpos="t">ful</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2.33333" place="above">Em7/D</harm>
+<harm staff="1" tstamp="2.66667" place="above">D</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
-<note xml:id="n7" pname="b" oct="4" dur="4" dots="1">
+<note xml:id="n7" dur="4" dots="1" pname="b" oct="4">
 <verse n="1"><syl wordpos="i" con="d">sto</syl></verse></note>
-<note xml:id="n8" pname="a" oct="4" dur="4" dots="1">
+<note xml:id="n8" dur="4" dots="1" pname="a" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <beam>
-<note xml:id="n9" pname="b" oct="4" dur="8">
+<note xml:id="n9" dur="8" pname="b" oct="4">
 <verse n="1"><syl>Christ</syl></verse></note>
-<note xml:id="n10" pname="a" oct="4" dur="8">
+<note xml:id="n10" dur="8" pname="a" oct="4">
 <verse n="1"><syl>to</syl></verse></note>
-<note xml:id="n11" pname="f" oct="4" dur="8">
+<note xml:id="n11" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>my</syl></verse></note>
 </beam>
-<note xml:id="n12" pname="a" oct="4" dur="4">
+<note xml:id="n12" dur="4" pname="a" oct="4">
 <verse n="1"><syl>heart</syl></verse></note>
-<note xml:id="n13" pname="f" oct="4" dur="8">
+<note xml:id="n13" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>has</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="1.33333" place="above">D</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
-<note xml:id="n14" pname="e" oct="4" dur="4" dots="1">
+<note xml:id="n14" dur="4" dots="1" pname="e" oct="4">
 <verse n="1"><syl eol="1">come;</syl></verse></note>
-<note xml:id="n15" pname="e" oct="4" dur="4"/>
+<note xml:id="n15" dur="4" pname="e" oct="4"/>
 <rest xml:id="r16" dur="8"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">Em</harm>
-<harm staff="1" tstamp="4" place="above">A</harm>
-<tie startid="#n14" endid="#n15"/>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<slur startid="#n14" endid="#n15"/>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
 <beam>
-<note xml:id="n17" pname="f" oct="4" dur="8">
+<note xml:id="n17" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
-<note xml:id="n18" pname="f" oct="4" dur="8">
+<note xml:id="n18" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl wordpos="t">sus,</syl></verse></note>
-<note xml:id="n19" pname="f" oct="4" dur="8">
+<note xml:id="n19" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 <beam>
-<note xml:id="n20" pname="f" oct="4" dur="8">
+<note xml:id="n20" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>King</syl></verse></note>
-<note xml:id="n21" pname="e" oct="4" dur="8"/>
-<note xml:id="n22" pname="d" oct="4" dur="8">
+<note xml:id="n21" dur="8" pname="e" oct="4"/>
+<note xml:id="n22" dur="8" pname="d" oct="4">
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="4" place="above">A/C♯</harm>
+<harm staff="1" tstamp="2.33333" place="above">Em7/D</harm>
+<harm staff="1" tstamp="2.66667" place="above">D</harm>
 <slur startid="#n20" endid="#n21"/>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
-<note xml:id="n23" pname="b" oct="4" dur="4" dots="1">
+<note xml:id="n23" dur="4" dots="1" pname="b" oct="4">
 <verse n="1"><syl wordpos="i" con="d">Glo</syl></verse></note>
-<note xml:id="n24" pname="a" oct="4" dur="4" dots="1">
+<note xml:id="n24" dur="4" dots="1" pname="a" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">Bm</harm>
-<harm staff="1" tstamp="4" place="above">D/A</harm>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <beam>
-<note xml:id="n25" pname="f" oct="4" dur="8">
+<note xml:id="n25" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>Finds</syl></verse></note>
-<note xml:id="n26" pname="d" oct="4" dur="8">
+<note xml:id="n26" dur="8" pname="d" oct="4">
 <verse n="1"><syl>in</syl></verse></note>
-<note xml:id="n27" pname="e" oct="4" dur="8">
+<note xml:id="n27" dur="8" pname="e" oct="4">
 <verse n="1"><syl>my</syl></verse></note>
 </beam>
 <beam>
-<note xml:id="n28" pname="f" oct="4" dur="8">
+<note xml:id="n28" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>heart</syl></verse></note>
-<note xml:id="n29" pname="d" oct="4" dur="8"/>
-<note xml:id="n30" pname="e" oct="4" dur="8">
+<note xml:id="n29" dur="8" pname="d" oct="4"/>
+<note xml:id="n30" dur="8" pname="e" oct="4">
 <verse n="1"><syl>a</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">A</harm>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="1.33333" place="above">D/F♯</harm>
+<harm staff="1" tstamp="1.66667" place="above">Em7/G</harm>
+<harm staff="1" tstamp="2" place="above">D/A</harm>
+<harm staff="1" tstamp="2.66667" place="above">A7</harm>
 <slur startid="#n28" endid="#n29"/>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
-<note xml:id="n31" pname="d" oct="4" dur="4" dots="1">
+<note xml:id="n31" dur="4" dots="1" pname="d" oct="4">
 <verse n="1"><syl eol="1">home.</syl></verse></note>
-<note xml:id="n32" pname="d" oct="4" dur="4"/>
+<note xml:id="n32" dur="4" pname="d" oct="4"/>
 <rest xml:id="r33" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="4" place="above">D7/F♯</harm>
-<tie startid="#n31" endid="#n32"/>
 </measure>
 <sb/>
-<scoreDef meter.count="9" meter.unit="8"/>
 <measure n="9"><staff n="1"><layer n="1">
 <beam>
-<note xml:id="n34" pname="b" oct="4" dur="8"/>
-<note xml:id="n35" pname="b" oct="4" dur="8" accid="f" accid.ges="f">
+<note xml:id="n34" dur="8" pname="b" oct="4"/>
+<note xml:id="n35" dur="8" pname="a" oct="4" accid="s">
 <verse n="1"><label>(C)</label><syl>Christ</syl></verse></note>
-<note xml:id="n36" pname="b" oct="4" dur="8" accid="n">
+<note xml:id="n36" dur="8" pname="b" oct="4">
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
-<note xml:id="n37" pname="d" oct="5" dur="4" dots="1">
+<note xml:id="n37" dur="4" dots="1" pname="d" oct="5">
 <verse n="1"><syl>me,</syl></verse></note>
-<note xml:id="n38" pname="b" oct="4" dur="4" dots="1"/>
+<note xml:id="n38" dur="4" dots="1" pname="b" oct="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">G/B</harm>
-<harm staff="1" tstamp="7" place="above">G</harm>
-<dir startid="#n35" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
-<slur startid="#n37" endid="#n38"/>
+<harm staff="1" tstamp="1.33333" place="above">Gdim</harm>
+<harm staff="1" tstamp="1.66667" place="above">G</harm>
+<slur startid="#n31" endid="#n34"/>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <beam>
-<note xml:id="n39" pname="a" oct="4" dur="8"/>
-<note xml:id="n40" pname="f" oct="4" dur="8">
+<note xml:id="n39" dur="8" pname="a" oct="4"/>
+<note xml:id="n40" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>Christ</syl></verse></note>
-<note xml:id="n41" pname="d" oct="4" dur="8">
+<note xml:id="n41" dur="8" pname="d" oct="4">
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
-<note xml:id="n42" pname="f" oct="4" dur="4" dots="1">
+<note xml:id="n42" dur="4" dots="1" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl eol="1">me,</syl></verse></note>
-<note xml:id="n43" pname="e" oct="4" dur="4" dots="1"/>
+<note xml:id="n43" dur="4" dots="1" pname="e" oct="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="4" place="above">Em</harm>
-<harm staff="1" tstamp="7" place="above">A</harm>
-<slur startid="#n39" endid="#n40"/>
+<harm staff="1" tstamp="2" place="above">D/A</harm>
+<harm staff="1" tstamp="3" place="above">A</harm>
+<slur startid="#n37" endid="#n39"/>
 <slur startid="#n42" endid="#n43"/>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
-<note xml:id="n44" pname="f" oct="4" dur="4">
+<note xml:id="n44" dur="4" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>Christ</syl></verse></note>
-<note xml:id="n45" pname="f" oct="4" dur="8">
+<note xml:id="n45" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>in</syl></verse></note>
-<note xml:id="n46" pname="f" oct="4" dur="4">
+<note xml:id="n46" dur="4" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>me,</syl></verse></note>
-<note xml:id="n47" pname="f" oct="4" dur="8">
+<note xml:id="n47" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>O</syl></verse></note>
 <beam>
-<note xml:id="n48" pname="f" oct="4" dur="8">
+<note xml:id="n48" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl wordpos="i" con="d">won</syl></verse></note>
-<note xml:id="n49" pname="e" oct="4" dur="8">
+<note xml:id="n49" dur="8" pname="e" oct="4">
 <verse n="1"><syl wordpos="m" con="d">der</syl></verse></note>
-<note xml:id="n50" pname="d" oct="4" dur="8">
+<note xml:id="n50" dur="8" pname="d" oct="4">
 <verse n="1"><syl wordpos="t">ful</syl></verse></note>
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="4" place="above">A/C♯</harm>
-<harm staff="1" tstamp="7" place="above">Bm</harm>
-<harm staff="1" tstamp="9" place="above">D/A</harm>
+<harm staff="1" tstamp="3.33333" place="above">Em7/D</harm>
+<harm staff="1" tstamp="3.66667" place="above">D</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
-<note xml:id="n51" pname="b" oct="4" dur="4" dots="1">
+<note xml:id="n51" dur="4" dots="1" pname="b" oct="4">
 <verse n="1"><syl wordpos="i" con="d">sto</syl></verse></note>
-<note xml:id="n52" pname="a" oct="4" dur="2" dots="1">
+<note xml:id="n52" dur="2" dots="1" pname="a" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">ry,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
 </measure>
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
-<note xml:id="n53" pname="d" oct="5" dur="4">
+<note xml:id="n53" dur="4" pname="d" oct="5">
 <verse n="1"><syl>Christ</syl></verse></note>
-<note xml:id="n54" pname="b" oct="4" dur="8">
+<note xml:id="n54" dur="8" pname="b" oct="4">
 <verse n="1"><syl>in</syl></verse></note>
-<note xml:id="n55" pname="a" oct="4" dur="4" dots="1">
+<note xml:id="n55" dur="4" dots="1" pname="a" oct="4">
 <verse n="1"><syl>me,</syl></verse></note>
-<note xml:id="n56" pname="f" oct="4" dur="4" dots="1"/>
+<note xml:id="n56" dur="4" dots="1" pname="f" oct="4" accid.ges="s"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">D/F♯</harm>
-<harm staff="1" tstamp="7" place="above">D</harm>
+<harm staff="1" tstamp="1" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
 <slur startid="#n55" endid="#n56"/>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
-<note xml:id="n57" pname="a" oct="4" dur="4">
+<note xml:id="n57" dur="4" pname="a" oct="4">
 <verse n="1"><syl>Christ</syl></verse></note>
 <beam>
-<note xml:id="n58" pname="b" oct="4" dur="16">
+<note xml:id="n58" dur="16" pname="b" oct="4">
 <verse n="1"><syl>in</syl></verse></note>
-<note xml:id="n59" pname="c" oct="5" dur="16"/>
+<note xml:id="n59" dur="16" pname="c" oct="5" accid.ges="s"/>
 </beam>
-<note xml:id="n60" pname="d" oct="5" dur="2" dots="1">
+<note xml:id="n60" dur="2" dots="1" pname="d" oct="5">
 <verse n="1"><syl eol="1">me,</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">A7</harm>
-<harm staff="1" tstamp="4" place="above">D</harm>
+<harm staff="1" tstamp="1" place="above">A7/E</harm>
+<harm staff="1" tstamp="1.66667" place="above">Esus4</harm>
+<harm staff="1" tstamp="1.83333" place="above">A/E</harm>
+<harm staff="1" tstamp="2" place="above">D/F♯</harm>
 <slur startid="#n58" endid="#n59"/>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
-<note xml:id="n61" pname="a" oct="4" dur="4">
+<note xml:id="n61" dur="4" pname="a" oct="4">
 <verse n="1"><syl>Christ</syl></verse></note>
-<note xml:id="n62" pname="b" oct="4" dur="8">
+<note xml:id="n62" dur="8" pname="b" oct="4">
 <verse n="1"><syl>in</syl></verse></note>
-<note xml:id="n63" pname="a" oct="4" dur="4">
+<note xml:id="n63" dur="4" pname="a" oct="4">
 <verse n="1"><syl>me,</syl></verse></note>
-<note xml:id="n64" pname="f" oct="4" dur="8">
+<note xml:id="n64" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>the</syl></verse></note>
 <beam>
-<note xml:id="n65" pname="a" oct="4" dur="8">
+<note xml:id="n65" dur="8" pname="a" oct="4">
 <verse n="1"><syl>hope</syl></verse></note>
-<note xml:id="n66" pname="f" oct="4" dur="8"/>
-<note xml:id="n67" pname="d" oct="4" dur="8">
+<note xml:id="n66" dur="8" pname="f" oct="4" accid.ges="s"/>
+<note xml:id="n67" dur="8" pname="d" oct="4">
 <verse n="1"><syl>of</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">D/F♯</harm>
-<harm staff="1" tstamp="3" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">D/A</harm>
-<harm staff="1" tstamp="7" place="above">Bm</harm>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="1.66667" place="above">G/D</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
 <slur startid="#n65" endid="#n66"/>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
-<note xml:id="n68" pname="e" oct="4" dur="4" dots="1">
+<note xml:id="n68" dur="4" dots="1" pname="e" oct="4">
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
-<note xml:id="n69" pname="d" oct="4" dur="4" dots="1">
+<note xml:id="n69" dur="4" dots="1" pname="d" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">ry.</syl></verse></note>
-<note xml:id="n70" pname="d" oct="4" dur="4"/>
-<rest xml:id="r71" dur="8"/>
+<note xml:id="n70" dur="4" dots="1" pname="d" oct="4"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">Em</harm>
-<harm staff="1" tstamp="3" place="above">A7</harm>
-<harm staff="1" tstamp="4" place="above">D</harm>
-<tie startid="#n69" endid="#n70"/>
+<harm staff="1" tstamp="1" place="above">A7</harm>
+<harm staff="1" tstamp="2" place="above">D</harm>
+<slur startid="#n69" endid="#n70"/>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">
