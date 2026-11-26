@@ -152,7 +152,7 @@ def convert(hid, db, write, out_dir):
     if (o_n, o_d) != (tn, td): problems.append('time signature: sheet %d/%d, MIDI %d/%d' % (o_n, o_d, tn, td))
     msig = ('%d%s' % (abs(ks), 's' if ks > 0 else 'f')) if ks else '0'
     key_differs = msig != sig   # the MIDI's key mark is often off: only a problem when the pitches differ too (checked below)
-    if re.search(r'rptstart|rptend|<ending|<repeat|<fermata', xml): problems.append('the old sheet has repeats, endings or fermatas (not handled yet)')
+    if re.search(r'rptstart|rptend|<ending|<repeat', xml): problems.append('the old sheet has repeats or endings (not handled yet)')
     q = div // 4
     events = {}
     for s_, e_, p_ in notes: events.setdefault(s_, []).append((e_, p_))
@@ -279,10 +279,17 @@ def convert(hid, db, write, out_dir):
                 else: out.append(x['xml'])
         flush()
         hh = ''.join('\n<harm staff="1" tstamp="%s" place="above">%s</harm>' % ('%g' % ts, nm) for ts, nm in harm_at(b0 * q, b1 * q))
+        fm = ''
+        for fid in re.findall(r'<fermata\b[^>]*startid="#([^"]+)"', txt):
+            ot = next((tg for (t_, n_, a_, tg) in els if a_.get('xml:id') == fid), None)
+            oi = next((k for k, v in owner.items() if v == ot), None) if ot else None
+            nx = next((x for x in xs if oi is not None and x['i'] == oi and not x.get('cont')), None)
+            if nx is None: problems.append('a fermata on %s could not be carried over' % fid); continue
+            fm += '\n<fermata startid="#%s" place="above"/>' % nx['id']
         sl = ''.join('\n<tie startid="#%s" endid="#%s"/>' % ab for ab in ties)
         mh2 = mh
         if bi == len(bars) - 1 and 'right="end"' not in mh2: mh2 = mh2[:-1] + ' right="end">'
-        body.append('%s<staff n="1"><layer n="1">\n%s\n</layer></staff>%s%s\n@@SLURS%d@@</measure>' % (mh2, '\n'.join(out), hh, sl, bi))
+        body.append('%s<staff n="1"><layer n="1">\n%s\n</layer></staff>%s%s%s\n@@SLURS%d@@</measure>' % (mh2, '\n'.join(out), hh, fm, sl, bi))
         if re.search(r'<sb/>', xml[xml.find(mh):][len(txt):len(txt) + 12]): body.append('<sb/>')
     # slurs: from the syllable's note to the notes after it, in the bar of the last one
     text = '\n'.join(body)
