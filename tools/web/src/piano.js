@@ -370,15 +370,14 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
       if (prev.fillEvents) prev.fillEvents.forEach((f) => { f.dg += n.d; });
       return;
     }
-    const pos = n.g - b.g, onDownbeat = pos < 0.01, onBeat = Math.abs(pos % b.beat) < 0.01;
-    const melVel = (onDownbeat ? 103 : onBeat ? 98 : n.d >= b.beat ? 96 : 90) - (ly > 1 ? 6 : 0);
+    const melVel = M.melodyVel(n.g - b.g, n.d, b.beat, ly);
     const ev = {g: n.g, dg: n.d, note: n.p, vel: melVel, hand: 'm', ids: [xmlId(n.el)].filter(Boolean)};
     if (guitarMelody) { ev.inst = 'guitar'; ev.tone = melodyTone; ev.vel = Math.min(127, Math.round(melVel * 1.2)); }   // one string against a six-string strum: a little more, so the tune leads
     put(bi, ev);
     if (n.fill) {
       const fillRoll = n.fill.length >= 2 ? 0.01 : 0;
       if (fillRoll) ev.off = n.fill.length * fillRoll;   // melody on top blooms cleanly out of the chord
-      ev.fillEvents = n.fill.map((p, fi) => ({g: n.g, dg: n.d, note: p, vel: Math.round(melVel * 0.64) - (n.fill.length - 1 - fi) * 3,
+      ev.fillEvents = n.fill.map((p, fi) => ({g: n.g, dg: n.d, note: p, vel: M.fillVel(melVel, n.fill.length, fi),
         off: fi * fillRoll, hand: 'f', ids: []}));
       ev.fillEvents.forEach((f) => put(bi, f));
     }
@@ -388,36 +387,12 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
   // the left hand, or the chords softly in its place — metrical weighting, arpeggio contour, gentle chord rolls & clean pedal lifts
   const tone = (choice && choice.lh && choice.lh.tone) || 'warm';
   const putLeft = (barEvs, b, bi, gap) => {
-      const pitches = barEvs.filter((e) => e.p).map((e) => e.p[0]);
-      const loP = pitches.length ? Math.min(...pitches) : 40, hiP = pitches.length ? Math.max(...pitches) : 60, spanP = Math.max(1, hiP - loP);
-      barEvs.forEach((e, k) => {
-        if (!e.p) return;
-        const pos = e.g - b.g, onDownbeat = pos < 0.01, onHalf = b.nominal >= 12 && Math.abs(pos - b.nominal / 2) < 0.01;
-        const onBeat = Math.abs(pos % b.beat) < 0.01;
-        // Metrical base velocity: grounded beat 1, warm beat 3, light weak beats, feathered offbeat arpeggio notes
-        let baseVel = onDownbeat ? 72 : onHalf ? 62 : onBeat ? 54 : 47;
-        if (e.fresh) baseVel += 4;
-        // Single-note moving lines (arpeggios / walking) get a natural pitch-contour swell and subtle human groove
-        const single = e.p.length === 1;
-        let microOff = 0;
-        if (single && !onDownbeat) {
-          const prevP = k > 0 && barEvs[k - 1].p ? barEvs[k - 1].p[0] : e.p[0];
-          const rising = e.p[0] > prevP;
-          const rel = (e.p[0] - loP) / spanP;
-          baseVel += Math.round((rising ? 5 : -3) + rel * 4);
-          microOff = onBeat ? 0.002 : (rising ? 0.005 : 0.003);
-        }
-        const roll = e.roll || (e.p.length > 1 ? 0.012 : 0);
-        if (e.up) baseVel -= 9;   // a guitar's up strum: lighter, from the top string down
-        // Clean pedal lift right before the next chord/bar so harmonies stay clear
-        const ringDur = e.ring ? Math.max(e.d, e.ring - 0.35) : e.d;
-        e.p.forEach((p, pi) => {
-          const voiceAdj = e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
-          const vel = Math.max(34, Math.min(86, baseVel + voiceAdj));
-          const off = roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff;
-          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', inst: e.inst, mute: e.mute, tone: e.inst ? tone : undefined, ids: gap ? [] : ['lh' + bi + 'n' + k]});
-        });
+    const dyn = M.leftDyn(barEvs.map((e) => ({e, pos: e.g - b.g})), {nominal: b.nominal, beat: b.beat});
+    barEvs.forEach((e, k) => {
+      (dyn[k] || []).forEach((x) => {
+        put(bi, {g: e.g, dg: x.dur, note: x.p, vel: x.vel, off: x.off, hand: 'l', inst: e.inst, mute: e.mute, tone: e.inst ? tone : undefined, ids: gap ? [] : ['lh' + bi + 'n' + k]});
       });
+    });
   };
   if (left) {
     bars.forEach((b, bi) => putLeft(left.filter((e) => e.g >= b.g - 1e-6 && e.g < b.g + b.len - 1e-6), b, bi, false));

@@ -516,28 +516,34 @@
     try { M.chordPitches(s).forEach(function (p, i) { S.note(p, S.now(), 0.5, i === 0 ? 0.12 : 0.08, 'soft'); }); } catch (e) {}
   }
   function stopPlay() { S.stop(); }
+  var VOL = 0.3;   // the viewer's MIDI velocities as the editor's loudness (0..1)
   function startPlay(from, to, loop, quiet) {
     var pl = M.playList(sheet), ev = [], tone = prefs.tone;
     pl.mel.forEach(function (m) {
-      ev.push({t: m.t, d: m.d, show: !quiet, hand: 'n', i: m.i, ps: [m.p], fire: function (when, sec) { if (prefs.mel) S.note(m.p, when, sec * 0.96, 0.26, tone); }});
+      ev.push({t: m.t, d: m.d, show: !quiet, hand: 'n', i: m.i, ps: [m.p], fire: function (when, sec) {
+        if (!prefs.mel) return;
+        if (pl.guitar) S.guitar(m.p, when + (m.off || 0), sec * 0.96, Math.min(1, m.vel * 1.2 / 127), {});   // a guitar sheet: the tune on the guitar too, as the viewer plays it
+        else S.note(m.p, when + (m.off || 0), sec * 0.96, m.vel / 127 * VOL, tone);
+      }});
     });
     (pl.v2 || []).forEach(function (m) {
-      ev.push({t: m.t, d: m.d, show: !quiet, hand: 'v', i: m.i, ps: [m.p], fire: function (when, sec) { if (prefs.mel) S.note(m.p, when, sec * 0.96, 0.23, tone); }});
+      ev.push({t: m.t, d: m.d, show: !quiet, hand: 'v', i: m.i, ps: [m.p], fire: function (when, sec) { if (prefs.mel) S.note(m.p, when, sec * 0.96, m.vel / 127 * VOL, tone); }});
     });
     if (prefs.acc) {
       pl.fill.forEach(function (f) {
-        ev.push({t: f.t, d: f.d, fire: function (when, sec) { f.ps.forEach(function (p) { S.note(p, when, sec * 0.96, 0.14, tone); }); if (prefs.keys && !quiet) setTimeout(function () { light(f.ps, sec * 900); }, Math.max(0, (when - S.now()) * 1000)); }});
+        ev.push({t: f.t, d: f.d, fire: function (when, sec) { f.ps.forEach(function (p, fi) { S.note(p, when + fi * 0.01, sec * 0.96, f.vels[fi] / 127 * VOL, tone); }); if (prefs.keys && !quiet) setTimeout(function () { light(f.ps, sec * 900); }, Math.max(0, (when - S.now()) * 1000)); }});
       });
       pl.left.forEach(function (l) {
         ev.push({t: l.t, d: l.d, show: !quiet, hand: 'l', i: l.i, ps: l.ps, fire: function (when, sec) {
-          if (l.inst === 'guitar') {   // a strum: the strings one after the other (down from the bass, up from the top), as the web app plays it
-            var roll = l.roll || (l.ps.length > 1 ? 0.012 : 0), vel = (l.up ? 0.45 : 0.55);
-            l.ps.forEach(function (p, pi) { S.guitar(p, when + (l.up ? l.ps.length - 1 - pi : pi) * roll, sec * 0.98, vel, {mute: l.mute}); });
-          } else l.ps.forEach(function (p) { S.note(p, when, sec * 0.98, 0.16, tone); });
+          var per = sec / l.d;   // seconds in a sixteenth of the note's own length (the viewer's dynamics: music.js leftDyn)
+          l.notes.forEach(function (x) {
+            if (l.inst === 'guitar') S.guitar(x.p, when + x.off, per * x.dur * 0.98, x.vel / 127, {mute: l.mute});   // a strum: the strings one after the other (down from the bass, up from the top)
+            else S.note(x.p, when + x.off, per * x.dur * 0.98, x.vel / 127 * VOL, tone);
+          });
         }});
       });
       if (!pl.left.length && !pl.fill.length) pl.pad.forEach(function (c) {
-        ev.push({t: c.t, d: c.d, fire: function (when, sec) { c.ps.forEach(function (p, i) { S.note(p, when, Math.max(0.05, sec - 0.03), i === 0 ? 0.11 : 0.065, 'soft'); }); }});
+        ev.push({t: c.t, d: c.d, fire: function (when, sec) { c.ps.forEach(function (p, i) { S.note(p, when + i * 0.01, Math.max(0.05, sec - 0.03), (i ? 38 : 48) / 127 * VOL, 'soft'); }); }});
       });
     }
     if (prefs.metro && !quiet) {
