@@ -8,26 +8,37 @@ import {soundDoc, bpmOf, handsOf, capoOf} from './sheet.js';
 import {scoreOf, strumChoice, PRESETS, presetChoice} from './piano.js';
 import * as Player from './player.js';
 
-// The list, in its order. JukeboxCard.java lists the same ids (keep them alike).
-// group: the heading it is under (Piano, Guitar; none: on its own). 'own' is the part the sheet names for itself
-// (sheet.js handsOf: Chorale for most of the hymns with four parts), what the hymn page's Play plays; it is offered only
-// for such a sheet. A hymn always opens on it (on Flowing when its sheet names none): a style picked is for that page
-// only, not kept for the next hymn.
+// The categories and styles, in their order. JukeboxCard.java lists the same groups and ids (keep them alike).
+// 'own' is the part the sheet names for itself (sheet.js handsOf: Chorale for most of the hymns with four parts), what
+// the hymn page's Play plays; it is offered only for such a sheet. A hymn always opens on it (on Flowing when its sheet
+// names none): a style picked is for that page only, not kept for the next hymn.
+export const GROUPS = [
+  {id: 'own', name: 'Hymn\'s own'},
+  {id: 'piano', name: 'Piano'},
+  {id: 'strum', name: 'Guitar strum'},
+  {id: 'pick', name: 'Guitar pick'},
+  {id: 'melody', name: 'Melody'},
+];
+
 export const STYLES = [
-  {id: 'own', group: null, name: 'The hymn\'s own style'},
-  {id: 'flowing', group: 'Piano', name: 'Flowing', preset: 'flowing'},
-  {id: 'plain', group: 'Piano', name: 'Plain', preset: 'plain'},
-  {id: 'chorale', group: 'Piano', name: 'Chorale', preset: 'chorale'},
-  {id: 'lively', group: 'Piano', name: 'Lively', preset: 'lively'},
-  {id: 'walking', group: 'Piano', name: 'Walking', preset: 'walking'},
-  {id: 'guitar-folk', group: 'Guitar', name: 'Folk strum', strum: 'folk'},
-  {id: 'guitar-pop', group: 'Guitar', name: 'Pop', strum: 'pop'},
-  {id: 'guitar-steady', group: 'Guitar', name: 'Steady', strum: 'steady'},
-  {id: 'guitar-ballad', group: 'Guitar', name: 'Ballad', strum: 'ballad'},
-  {id: 'guitar-country', group: 'Guitar', name: 'Country', strum: 'country'},
-  {id: 'guitar-pick', group: 'Guitar', name: 'Fingerpicking', strum: 'pick'},
-  {id: 'guitar-arp', group: 'Guitar', name: 'Ballad picking', strum: 'arp'},
-  {id: 'melody', group: null, name: 'Melody alone'},
+  {id: 'own', group: 'own', name: 'The hymn\'s own style'},
+  {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing'},
+  {id: 'plain', group: 'piano', name: 'Plain', preset: 'plain'},
+  {id: 'chorale', group: 'piano', name: 'Chorale', preset: 'chorale'},
+  {id: 'lively', group: 'piano', name: 'Lively', preset: 'lively'},
+  {id: 'walking', group: 'piano', name: 'Walking', preset: 'walking'},
+  {id: 'guitar-folk', group: 'strum', name: 'Folk strum', strum: 'folk'},
+  {id: 'guitar-pop', group: 'strum', name: 'Pop', strum: 'pop'},
+  {id: 'guitar-steady', group: 'strum', name: 'Steady', strum: 'steady'},
+  {id: 'guitar-ballad', group: 'strum', name: 'Ballad', strum: 'ballad'},
+  {id: 'guitar-country', group: 'strum', name: 'Country', strum: 'country'},
+  {id: 'guitar-pick', group: 'pick', name: 'Fingerpicking', strum: 'pick'},
+  {id: 'guitar-travis', group: 'pick', name: 'Folk picking', strum: 'travis'},
+  {id: 'guitar-pick-flow', group: 'pick', name: 'Adaptive picking', strum: 'pick-flow'},
+  {id: 'guitar-arp', group: 'pick', name: 'Ballad picking', strum: 'arp'},
+  {id: 'guitar-harp', group: 'pick', name: 'Gentle harp', strum: 'harp'},
+  {id: 'guitar-arp-flow', group: 'pick', name: 'Adaptive ballad', strum: 'arp-flow'},
+  {id: 'melody', group: 'melody', name: 'Melody alone'},
 ];
 export const DEFAULT_STYLE = 'own', FALLBACK_STYLE = 'flowing';   // a sheet without its own part: Flowing (piano.js DEFAULT)
 export const MIN_SPEED = 0.5, MAX_SPEED = 1.5;   // of the sheet's tempo, by twentieths (as the viewer's Play)

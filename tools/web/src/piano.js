@@ -78,7 +78,7 @@ export function pattern(lh, time) {
   const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
   const out = {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
-  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'settle', 'vary']) if (r[k] != null) out[k] = r[k];
+  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'pick', 'settle', 'vary']) if (r[k] != null) out[k] = r[k];
   if (out.vary && lh.seed) out.seed = lh.seed;   // the take (Shuffle)
   if (out.passing && lh.walk) out.passing = 2;   // More walking (Chorale)
   if (out.guitar && lh.capo != null) out.capo = lh.capo;
@@ -223,12 +223,15 @@ function analyse(doc, choice, loop = false) {
   }
 
   // the left hand
+  const sd = doc.getElementsByTagNameNS(MEI_NS, 'scoreDef')[0];
+  let sheetBpm = sd ? parseFloat(sd.getAttribute('midi.bpm')) || 0 : 0;
+  if (sheetBpm > 0) { while (sheetBpm > 250) sheetBpm /= 2; while (sheetBpm < 40) sheetBpm *= 2; }
   const base = pattern(choice.lh, [whole.count, whole.unit]);
   if (base && loop) base.end = false;   // played round again: the last bar goes on with the pattern, no closing strike
   let left = null;
   if (base && M.parsePattern(base.pat).length) {
     const mel = notes.map((n) => [n.g, n.g + n.d, n.fill ? n.fill[0] : n.p]).sort((a, b) => a[0] - b[0]);
-    left = M.accompanyOn({bars: bars.map((b) => ({g: b.g, len: b.len, beat: b.beat, fifths: b.fifths})), first, chords, mel, last, base}).events;
+    left = M.accompanyOn({bars: bars.map((b) => ({g: b.g, len: b.len, beat: b.beat, fifths: b.fifths})), first, chords, mel, last, base, bpm: sheetBpm}).events;
   }
   // played round again, an upbeat's missing beats are a rest before it comes back (none when the last bar is already short
   // by them). The rest is not silent: the accompaniment goes on through it, on the first bar's chord (when one starts
@@ -240,7 +243,7 @@ function analyse(doc, choice, loop = false) {
     if (gapG > 0 && gapChord && gapChord.info && base && M.parsePattern(base.pat).length) {
       const b0 = bars[0], at = endG;
       gapLeft = M.accompanyOn({bars: [{g: at, len: gapG, beat: b0.beat, fifths: b0.fifths}], first: at,
-        chords: [Object.assign({}, gapChord, {g: at, end: at + gapG})], mel: [], last: -1, base}).events;
+        chords: [Object.assign({}, gapChord, {g: at, end: at + gapG})], mel: [], last: -1, base, bpm: sheetBpm}).events;
     }
   }
   return {M, bars, notes, harms, chords, left, upbeat, first, endG, base, gapG, gapLeft, gapChord};
@@ -390,7 +393,7 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
     const dyn = M.leftDyn(barEvs.map((e) => ({e, pos: e.g - b.g})), {nominal: b.nominal, beat: b.beat});
     barEvs.forEach((e, k) => {
       (dyn[k] || []).forEach((x) => {
-        put(bi, {g: e.g, dg: x.dur, note: x.p, vel: x.vel, off: x.off, hand: 'l', inst: e.inst, mute: e.mute, tone: e.inst ? tone : undefined, ids: gap ? [] : ['lh' + bi + 'n' + k]});
+        put(bi, {g: e.g, dg: x.dur, note: x.p, vel: x.vel, off: x.off, hand: 'l', inst: e.inst, mute: e.mute, pluck: e.pluck, tone: e.inst ? tone : undefined, ids: gap ? [] : ['lh' + bi + 'n' + k]});
       });
     });
   };
@@ -419,6 +422,7 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
       if (e.off) out.off = e.off;
       if (e.inst) out.inst = e.inst;
       if (e.mute) out.mute = true;
+      if (e.pluck) out.pluck = true;
       if (e.tone) out.tone = e.tone;
       events.push(out);
       e.ids.forEach((id) => { if (!(id in idQ)) idQ[id] = q; });
@@ -436,6 +440,7 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
       if (e.off) out.off = e.off;
       if (e.inst) out.inst = e.inst;
       if (e.mute) out.mute = true;
+      if (e.pluck) out.pluck = true;
       if (e.tone) out.tone = e.tone;
       events.push(out);
     });

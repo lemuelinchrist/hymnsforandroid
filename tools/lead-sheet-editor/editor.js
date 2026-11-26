@@ -329,7 +329,7 @@
   }
   function applyStyle(fam, kind, r) {
     var cur = target() || inEffect() || {}, a = {pat: r.pat, rate: r.rate, low: r.low, style: fam.id + '/' + kind.id};
-    ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar'].forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
+    ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'pick', 'settle'].forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
     if (cur.pedal && r.rate) a.pedal = true;
     if (cur.end === false) a.end = false;
     setPattern(a);
@@ -530,7 +530,7 @@
         ev.push({t: l.t, d: l.d, show: !quiet, hand: 'l', i: l.i, ps: l.ps, fire: function (when, sec) {
           var per = sec / l.d;   // seconds in a sixteenth of the note's own length (the viewer's dynamics: music.js leftDyn)
           l.notes.forEach(function (x) {
-            if (l.inst === 'guitar') S.guitar(x.p, when + x.off, per * x.dur * 0.98, x.vel / 127, {mute: l.mute});   // a strum: the strings one after the other (down from the bass, up from the top)
+            if (l.inst === 'guitar') S.guitar(x.p, when + x.off, per * x.dur * 0.98, x.vel / 127, {mute: l.mute, pluck: l.pluck});   // a strum or fingerpluck
             else S.note(x.p, when + x.off, per * x.dur * 0.98, x.vel / 127 * VOL, tone);
           });
         }});

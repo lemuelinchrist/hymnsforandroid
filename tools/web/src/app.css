@@ -437,7 +437,7 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 .fold-act { font: 600 13px var(--ui); letter-spacing: 0; text-transform: none; color: var(--g); white-space: nowrap; }
 .card.folded > :not(h2) { display: none !important; }
 .card.folded > h2 { margin-bottom: 0; }
-/* the jukebox card (jukeboxCard, under the details): Play, the style and how far it has played; the tempo and Loop under them */
+/* the jukebox card (jukeboxCard, under the details): Play + active style + bar progress, category pills, sub-style chips, tempo and Loop */
 .jukebox-card { margin: 14px 0 8px; padding: 12px 18px 14px; font-size: 14px; }
 .jukebox-card h2 { margin: 0 0 10px; font: 700 12px var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .jb-main { display: flex; align-items: center; gap: 14px; }
@@ -446,11 +446,21 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 .jb-play[aria-pressed="true"] .icon svg { fill: none; stroke-width: 2.6; }
 .jb-play:active { filter: brightness(.9); }
 .jb-side { flex: 1; min-width: 0; display: grid; gap: 8px; }
-.jb-style { width: 100%; min-height: 40px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font: 15px var(--ui); }
-.jb-progress { display: flex; align-items: center; gap: 10px; min-height: 16px; }
+.jb-status { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; min-width: 0; }
+.jb-current { font: 600 15px var(--ui); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.jb-progress { display: flex; align-items: center; min-height: 6px; }
 .jb-track { flex: 1; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
 .jb-fill { display: block; width: 0; height: 100%; background: var(--g); transition: width .25s linear; }
-.jb-bar { flex: none; min-width: 7em; text-align: right; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.jb-bar { flex: none; text-align: right; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.jb-cats, .jb-subs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.jb-subs[hidden] { display: none; }
+.jb-subs { margin-top: 7px; padding-top: 7px; border-top: 1px solid var(--line); }
+.jb-cat, .jb-sub { min-height: 34px; padding: 0 12px; border-radius: 999px; font: 600 13px var(--ui); cursor: pointer; transition: background .12s, color .12s, border-color .12s; }
+.jb-cat { border: 1px solid var(--line); background: var(--hover); color: var(--ink); }
+.jb-cat[aria-pressed="true"] { border-color: transparent; background: var(--g); color: var(--surface); }
+.jb-sub { border: 1px solid var(--line); background: transparent; color: var(--ink); font-weight: 500; }
+.jb-sub[aria-pressed="true"] { border-color: var(--g); background: var(--g-soft); color: var(--g); font-weight: 600; }
+.jb-cat:hover:not([aria-pressed="true"]), .jb-sub:hover:not([aria-pressed="true"]) { border-color: var(--g); }
 .jb-row { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
 .jb-tempo { flex: none; min-width: 5.2em; min-height: 36px; padding: 0 4px; border: 0; border-radius: 6px; background: none; color: var(--ink); font: 14px var(--ui); text-align: left; cursor: pointer; font-variant-numeric: tabular-nums; }
 .jb-tempo:hover { background: var(--hover); }

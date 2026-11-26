@@ -2,14 +2,18 @@ package com.lemuelinchrist.android.hymns.content;
 
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.preference.PreferenceManager;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
@@ -19,38 +23,50 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.style.BookColors;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The JUKEBOX card under the details: plays the hymn's sheet music in a style picked from a list (the hymn's own; Piano:
- * Flowing, Plain, Chorale, Lively, Walking; Guitar: seven strums and pickings; Melody alone), with Play, Loop and the
- * tempo, and shows the bar it is at. It plays through the hidden sheet player ({@link SheetPlayer}), whose page makes the
- * notes with the web app's own jukebox (tools/web/src/jukebox.js), so the two apps sound the same. A change while it
- * plays goes on from the same bar. A hymn opens on its sheet's own style (Flowing when it names none); a style picked is
- * for this page only. Loop (on to begin with) and the tempo are kept for every hymn. The card is hidden for a hymn with
- * nothing to play (no sheet, or a sheet of chords only). It folds into its title row ({@link CardFold}); folded, it
- * goes on playing. One sound at a time: it stops the hymn's Play button, and
- * the Play button (or another page) stops it.
+ * The JUKEBOX card under the details: plays the hymn's sheet music in a style chosen by category (Hymn's own, Piano,
+ * Guitar strum, Guitar pick, Melody) and sub-style chips, with Play, Loop and the tempo, and shows the bar it is at.
+ * It plays through the hidden sheet player ({@link SheetPlayer}), whose page makes the notes with the web app's own
+ * jukebox (tools/web/src/jukebox.js), so the two apps sound the same. A change while it plays goes on from the same
+ * bar. A hymn opens on its sheet's own style (Flowing when it names none); a style picked is for this page only. Loop
+ * (on to begin with) and the tempo are kept for every hymn. The card is hidden for a hymn with nothing to play (no
+ * sheet, or a sheet of chords only). It folds into its title row ({@link CardFold}); folded, it goes on playing.
  */
 public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.Listener {
-    /** The styles of jukebox.js STYLES, in its order: its id, the heading it is under (0: none), its name. */
+    /** The categories of jukebox.js GROUPS, in its order: group id, label string resource. */
+    private static final Object[][] GROUPS = {
+            {"own", R.string.jukebox_group_own},
+            {"piano", R.string.jukebox_piano},
+            {"strum", R.string.jukebox_guitar_strum},
+            {"pick", R.string.jukebox_guitar_pick},
+            {"melody", R.string.jukebox_melody},
+    };
+    /** The styles of jukebox.js STYLES, in its order: style id, group id, label string resource. */
     private static final Object[][] STYLES = {
-            {"own", 0, R.string.jukebox_style_own},
-            {"flowing", R.string.jukebox_piano, R.string.jukebox_style_flowing},
-            {"plain", R.string.jukebox_piano, R.string.jukebox_style_plain},
-            {"chorale", R.string.jukebox_piano, R.string.jukebox_style_chorale},
-            {"lively", R.string.jukebox_piano, R.string.jukebox_style_lively},
-            {"walking", R.string.jukebox_piano, R.string.jukebox_style_walking},
-            {"guitar-folk", R.string.jukebox_guitar, R.string.jukebox_style_folk},
-            {"guitar-pop", R.string.jukebox_guitar, R.string.jukebox_style_pop},
-            {"guitar-steady", R.string.jukebox_guitar, R.string.jukebox_style_steady},
-            {"guitar-ballad", R.string.jukebox_guitar, R.string.jukebox_style_ballad},
-            {"guitar-country", R.string.jukebox_guitar, R.string.jukebox_style_country},
-            {"guitar-pick", R.string.jukebox_guitar, R.string.jukebox_style_pick},
-            {"guitar-arp", R.string.jukebox_guitar, R.string.jukebox_style_arp},
-            {"melody", 0, R.string.jukebox_style_melody},
+            {"own", "own", R.string.jukebox_style_own},
+            {"flowing", "piano", R.string.jukebox_style_flowing},
+            {"plain", "piano", R.string.jukebox_style_plain},
+            {"chorale", "piano", R.string.jukebox_style_chorale},
+            {"lively", "piano", R.string.jukebox_style_lively},
+            {"walking", "piano", R.string.jukebox_style_walking},
+            {"guitar-folk", "strum", R.string.jukebox_style_folk},
+            {"guitar-pop", "strum", R.string.jukebox_style_pop},
+            {"guitar-steady", "strum", R.string.jukebox_style_steady},
+            {"guitar-ballad", "strum", R.string.jukebox_style_ballad},
+            {"guitar-country", "strum", R.string.jukebox_style_country},
+            {"guitar-pick", "pick", R.string.jukebox_style_pick},
+            {"guitar-travis", "pick", R.string.jukebox_style_travis},
+            {"guitar-pick-flow", "pick", R.string.jukebox_style_pick_flow},
+            {"guitar-arp", "pick", R.string.jukebox_style_arp},
+            {"guitar-harp", "pick", R.string.jukebox_style_harp},
+            {"guitar-arp-flow", "pick", R.string.jukebox_style_arp_flow},
+            {"melody", "melody", R.string.jukebox_style_melody},
     };
     private static final String DEFAULT_STYLE = "own", FALLBACK_STYLE = "flowing";   // as jukebox.js
     private static final String PREF_LOOP = "jukeboxLoop", PREF_SPEED = "jukeboxSpeed";
@@ -61,16 +77,20 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
 
     private final String sheetId;
     private final SharedPreferences prefs;
-    private final List<String> styleIds = new ArrayList<>();
+    private final Map<String, String> lastByGroup = new HashMap<>();
+    private final Map<String, TextView> categoryPills = new HashMap<>();
     private ImageButton playButton;
-    private Spinner styleSpinner;
+    private TextView currentText, barText, tempoText;
     private ProgressBar progress;
-    private TextView barText, tempoText;
+    private WrapLayout categoryRow, substyleRow;
+    private View subDivider;
     private SeekBar speedBar;
     private SwitchCompat loopSwitch;
+    private int accent, cardBg, badgeBg, textCol, mutedStroke;
     private int bpm = DEFAULT_BPM;
     private boolean playing;
-    private String style;   // the one shown
+    private boolean hasOwn;
+    private String style;   // the active style id
 
     public JukeboxCard(Hymn hymn, Fragment parentFragment, View card) {
         super(hymn, parentFragment, card);
@@ -81,52 +101,56 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
             return;
         }
         String head = hymn.getSheetHead(sheetId);
-        boolean own = head != null && head.contains("type=\"hands\"");
+        hasOwn = head != null && head.contains("type=\"hands\"");
         bpm = tempoOf(head);
-        setUp(card, own);
+        setUp(card);
     }
 
-    private void setUp(View card, boolean own) {
-        int accent = BookColors.accent(context, hymn.getHymnGroup());
+    private void setUp(View card) {
+        accent = BookColors.accent(context, hymn.getHymnGroup());
+        cardBg = BookColors.color(context, R.attr.hymnCardBackground);
+        badgeBg = BookColors.color(context, R.attr.hymnBadgeBackground);
+        textCol = BookColors.color(context, R.attr.hymnText);
+        mutedStroke = withAlpha(BookColors.color(context, R.attr.hymnTextMuted), 0x44);
         ColorStateList accentList = ColorStateList.valueOf(accent);
 
         playButton = card.findViewById(R.id.jukeboxPlay);
         playButton.setBackgroundTintList(accentList);
         // the icon in the card's colour: white on the day accent, dark on the lighter night one
-        playButton.setImageTintList(ColorStateList.valueOf(BookColors.color(context, R.attr.hymnCardBackground)));
+        playButton.setImageTintList(ColorStateList.valueOf(cardBg));
         playButton.setOnClickListener(v -> {
             if (playing) SheetPlayer.get(context).stop();   // tells this card (onSheetStopped)
             else start();
         });
 
-        // the list: the hymn's own style only for a sheet that names one; a style under a heading shows it ("Piano · Flowing")
-        List<String> names = new ArrayList<>();
-        for (Object[] s : STYLES) {
-            if (s[0].equals("own") && !own) continue;
-            styleIds.add((String) s[0]);
-            String name = context.getString((Integer) s[2]);
-            int group = (Integer) s[1];
-            names.add(group == 0 ? name : context.getString(R.string.jukebox_in_group, context.getString(group), name));
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.jukebox_style_item, names);
-        adapter.setDropDownViewResource(R.layout.jukebox_style_dropdown);
-        styleSpinner = card.findViewById(R.id.jukeboxStyle);
-        styleSpinner.setAdapter(adapter);
-        style = styleIds.contains(DEFAULT_STYLE) ? DEFAULT_STYLE : FALLBACK_STYLE;
-        styleSpinner.setSelection(styleIds.indexOf(style), false);
-        styleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String chosen = styleIds.get(position);
-                if (chosen.equals(style)) return;   // the first call, or no change
-                style = chosen;
-                if (playing) start();
-            }
+        currentText = card.findViewById(R.id.jukeboxCurrent);
+        categoryRow = card.findViewById(R.id.jukeboxCategories);
+        subDivider = card.findViewById(R.id.jukeboxSubDivider);
+        substyleRow = card.findViewById(R.id.jukeboxSubstyles);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        for (Object[] g : GROUPS) {
+            String gid = (String) g[0];
+            for (Object[] s : STYLES) {
+                if (gid.equals(s[1])) {
+                    lastByGroup.put(gid, (String) s[0]);
+                    break;
+                }
             }
-        });
+        }
+        style = hasOwn ? DEFAULT_STYLE : FALLBACK_STYLE;
+        Object[] initial = styleRow(style);
+        if (initial != null) lastByGroup.put((String) initial[1], style);
+
+        categoryRow.removeAllViews();
+        for (Object[] g : GROUPS) {
+            String gid = (String) g[0];
+            if ("own".equals(gid) && !hasOwn) continue;
+            TextView pill = makePill(context.getString((Integer) g[1]), true, false);
+            pill.setOnClickListener(v -> chooseStyle(lastByGroup.get(gid)));
+            categoryPills.put(gid, pill);
+            categoryRow.addView(pill);
+        }
+        renderPills();
 
         // the tracks under the coloured parts, in the muted text colour (the theme's own are hardly seen on the card)
         ColorStateList track = ColorStateList.valueOf(BookColors.color(context, R.attr.hymnTextMuted));
@@ -176,6 +200,119 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         showStopped();
         CardFold.attach(context, hymn.getHymnGroup(), card.findViewById(R.id.jukeboxHeader),
                 card.findViewById(R.id.jukeboxFold), card.findViewById(R.id.jukeboxBody), CardFold.JUKEBOX);
+    }
+
+    private void chooseStyle(String chosen) {
+        if (chosen == null || chosen.equals(style)) return;
+        Object[] row = styleRow(chosen);
+        if (row == null) return;
+        style = chosen;
+        lastByGroup.put((String) row[1], style);
+        renderPills();
+        if (playing) start();
+    }
+
+    private void renderPills() {
+        Object[] cur = styleRow(style);
+        if (cur == null) return;
+        String activeGroup = (String) cur[1];
+        for (Map.Entry<String, TextView> e : categoryPills.entrySet()) {
+            applyPillAppearance(e.getValue(), true, e.getKey().equals(activeGroup));
+        }
+        List<Object[]> subs = stylesInGroup(activeGroup);
+        String styleLabel = context.getString((Integer) cur[2]);
+        if (subs.size() > 1) {
+            int groupLabel = groupLabelRes(activeGroup);
+            currentText.setText(groupLabel != 0
+                    ? context.getString(R.string.jukebox_in_group, context.getString(groupLabel), styleLabel)
+                    : styleLabel);
+            subDivider.setVisibility(View.VISIBLE);
+            substyleRow.setVisibility(View.VISIBLE);
+            substyleRow.removeAllViews();
+            for (Object[] s : subs) {
+                String sid = (String) s[0];
+                TextView chip = makePill(context.getString((Integer) s[2]), false, sid.equals(style));
+                chip.setOnClickListener(v -> chooseStyle(sid));
+                substyleRow.addView(chip);
+            }
+        } else {
+            currentText.setText(styleLabel);
+            subDivider.setVisibility(View.GONE);
+            substyleRow.setVisibility(View.GONE);
+            substyleRow.removeAllViews();
+        }
+    }
+
+    private TextView makePill(String text, boolean isCategory, boolean selected) {
+        TextView tv = new TextView(context);
+        tv.setText(text);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+        tv.setGravity(Gravity.CENTER);
+        tv.setSingleLine(true);
+        tv.setMinHeight(dp(34));
+        int padH = dp(12), padV = dp(6);
+        tv.setPadding(padH, padV, padH, padV);
+        tv.setLayoutParams(new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        applyPillAppearance(tv, isCategory, selected);
+        return tv;
+    }
+
+    private void applyPillAppearance(TextView tv, boolean isCategory, boolean selected) {
+        float radius = dp(999);
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadius(radius);
+        if (isCategory) {
+            if (selected) {
+                shape.setColor(accent);
+                tv.setTextColor(cardBg);
+            } else {
+                shape.setColor(badgeBg);
+                shape.setStroke(dp(1), mutedStroke);
+                tv.setTextColor(textCol);
+            }
+            tv.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
+        } else {
+            if (selected) {
+                shape.setColor(withAlpha(accent, 0x24));
+                shape.setStroke(dp(1), accent);
+                tv.setTextColor(accent);
+                tv.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
+            } else {
+                shape.setColor(Color.TRANSPARENT);
+                shape.setStroke(dp(1), mutedStroke);
+                tv.setTextColor(textCol);
+                tv.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
+            }
+        }
+        GradientDrawable mask = new GradientDrawable();
+        mask.setShape(GradientDrawable.RECTANGLE);
+        mask.setCornerRadius(radius);
+        mask.setColor(Color.WHITE);
+        tv.setBackground(new RippleDrawable(ColorStateList.valueOf(withAlpha(accent, 0x33)), shape, mask));
+        tv.setSelected(selected);
+    }
+
+    private static Object[] styleRow(String id) {
+        for (Object[] s : STYLES) if (s[0].equals(id)) return s;
+        return null;
+    }
+
+    private static int groupLabelRes(String gid) {
+        for (Object[] g : GROUPS) if (g[0].equals(gid)) return (Integer) g[1];
+        return 0;
+    }
+
+    private static List<Object[]> stylesInGroup(String gid) {
+        List<Object[]> out = new ArrayList<>();
+        for (Object[] s : STYLES) if (gid.equals(s[1])) out.add(s);
+        return out;
+    }
+
+    private int dp(float value) {
+        return Math.round(TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, value, context.getResources().getDisplayMetrics()));
     }
 
     /** Plays, or, while it plays, goes on from the same bar with what the card shows now. */

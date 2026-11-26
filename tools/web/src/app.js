@@ -825,27 +825,62 @@ function jukeboxCard(hymn, stopOthers) {
   function build() {
     prefs.speed = Math.max(J.MIN_SPEED, Math.min(J.MAX_SPEED, +prefs.speed || 1));
     const playBtn = h('button', {class: 'jb-play', type: 'button', 'aria-pressed': 'false'});
-    // the styles, under their headings (Piano, Guitar); the hymn's own only for a sheet that names one
-    const select = h('select', {class: 'jb-style', 'aria-label': tr('Style')});
-    const groups = {};
-    for (const st of J.STYLES) {
-      if (st.id === 'own' && !info.own) continue;
-      const opt = h('option', {value: st.id}, tr(st.name));
-      if (!st.group) { select.appendChild(opt); continue; }
-      if (!groups[st.group]) select.appendChild(groups[st.group] = h('optgroup', {label: tr(st.group)}));
-      groups[st.group].appendChild(opt);
+    let curStyle = J.styleFor(null, info.own);
+    const lastByGroup = {};
+    for (const g of J.GROUPS) {
+      const first = J.STYLES.find((s) => s.group === g.id);
+      if (first) lastByGroup[g.id] = first.id;
     }
-    select.value = J.styleFor(null, info.own).id;
+    lastByGroup[curStyle.group] = curStyle.id;
+
+    const curText = h('span', {class: 'jb-current'});
     const fill = h('span', {class: 'jb-fill'});
     const barText = h('span', {class: 'jb-bar'});
+    const catRow = h('div', {class: 'jb-cats', role: 'group', 'aria-label': tr('Category')});
+    const subRow = h('div', {class: 'jb-subs', role: 'group', 'aria-label': tr('Style')});
     const tempoBtn = h('button', {class: 'jb-tempo', type: 'button', title: tr('The hymn\'s own tempo')});
     const speed = h('input', {class: 'jb-speed', type: 'range', min: String(J.MIN_SPEED), max: String(J.MAX_SPEED), step: '0.05', 'aria-label': tr('Tempo')});
     speed.value = String(prefs.speed);
     const loopBtn = h('button', {class: 'jb-loop', type: 'button', 'aria-pressed': String(!!prefs.loop), title: tr('Play again and again')}, tr('Loop'));
     el.append(foldTitle(el, tr('Jukebox'), 'jukeboxFolded'),
       h('div', {class: 'jb-main'}, playBtn,
-        h('div', {class: 'jb-side'}, select, h('div', {class: 'jb-progress'}, h('span', {class: 'jb-track'}, fill), barText))),
+        h('div', {class: 'jb-side'},
+          h('div', {class: 'jb-status'}, curText, barText),
+          h('div', {class: 'jb-progress'}, h('span', {class: 'jb-track'}, fill)))),
+      catRow, subRow,
       h('div', {class: 'jb-row'}, tempoBtn, speed, loopBtn));
+
+    const catBtns = new Map();
+    for (const grp of J.GROUPS) {
+      if (grp.id === 'own' && !info.own) continue;
+      const b = h('button', {class: 'jb-cat', type: 'button', 'aria-pressed': 'false'}, tr(grp.name));
+      b.addEventListener('click', () => choose(J.styleFor(lastByGroup[grp.id], info.own)));
+      catBtns.set(grp.id, b);
+      catRow.appendChild(b);
+    }
+
+    function renderPills() {
+      const grp = J.GROUPS.find((g) => g.id === curStyle.group);
+      const subs = J.STYLES.filter((s) => s.group === curStyle.group);
+      curText.textContent = subs.length > 1 && grp ? tr(grp.name) + ' · ' + tr(curStyle.name) : tr(curStyle.name);
+      for (const [gid, b] of catBtns) b.setAttribute('aria-pressed', String(gid === curStyle.group));
+      subRow.textContent = '';
+      subRow.hidden = subs.length <= 1;
+      if (subs.length > 1) {
+        for (const st of subs) {
+          const sb = h('button', {class: 'jb-sub', type: 'button', 'aria-pressed': String(st.id === curStyle.id)}, tr(st.name));
+          sb.addEventListener('click', () => choose(st));
+          subRow.appendChild(sb);
+        }
+      }
+    }
+    function choose(st) {
+      if (!st || st.id === curStyle.id) return;
+      curStyle = st;
+      lastByGroup[st.group] = st.id;
+      renderPills();
+      again();
+    }
 
     const showTempo = () => { tempoBtn.textContent = '♩ = ' + Math.round(info.bpm * prefs.speed); };
     const show = () => {
@@ -860,7 +895,7 @@ function jukeboxCard(hymn, stopOthers) {
       fill.style.width = (100 * bar / Math.max(1, bars)) + '%';
       barText.textContent = tr('Bar {0} of {1}', bar, bars);
     };
-    const options = () => ({style: select.value, loop: !!prefs.loop, speed: prefs.speed});
+    const options = () => ({style: curStyle.id, loop: !!prefs.loop, speed: prefs.speed});
     // Play: a new player reads the sheet again (its chord edits may have changed); a change while it plays does not
     function start() {
       if (!playing) {
@@ -880,11 +915,11 @@ function jukeboxCard(hymn, stopOthers) {
     }
     const again = () => { if (playing) start(); };
     playBtn.addEventListener('click', () => { if (playing) { juke.stop(); playing = false; show(); } else start(); });
-    select.addEventListener('change', () => again());
     speed.addEventListener('input', () => { prefs.speed = parseFloat(speed.value) || 1; showTempo(); });
     speed.addEventListener('change', () => { keep(); again(); });
     tempoBtn.addEventListener('click', () => { speed.value = '1'; prefs.speed = 1; showTempo(); keep(); again(); });
     loopBtn.addEventListener('click', () => { prefs.loop = !prefs.loop; keep(); loopBtn.setAttribute('aria-pressed', String(prefs.loop)); again(); });
+    renderPills();
     showTempo();
     show();
   }
