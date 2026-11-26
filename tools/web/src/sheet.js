@@ -10,6 +10,7 @@
 import {host} from './host.js';
 import {tr} from './i18n.js';
 import {addPiano} from './piano.js';
+import {simplifyBars} from './simplify.js';
 
 const MEI_NS = 'http://www.music-encoding.org/ns/mei';
 const XML_NS = 'http://www.w3.org/XML/1998/namespace';
@@ -259,6 +260,35 @@ function scanBars(doc) {
 const normChord = (c) => (c || '').replace(/\s+/g, '').replace(/dim/g, '°').replace(/aug/g, '+').replace(/b5/g, '♭5');
 const sameChords = (a, b) => a.length === b.length && a.every((c, i) => Math.abs(c[0] - b[i][0]) < 1e-3 && normChord(c[1]) === normChord(b[i][1]));
 
+// Simplify: the chords of each bar by simplify.js (level light, medium or easy), as [bar index, chords]; the bars the user
+// edited are left as they are. Only what is shown: the sound is made from the sheet before this.
+function simplifyPlan(doc, level) {
+  const bars = scanBars(doc);
+  const edited = new Set();
+  bars.forEach((b, i) => { if (kids(b.el).some((c) => c.localName === 'harm' && c.getAttribute('type') === 'edit')) edited.add(i); });
+  const res = simplifyBars(bars, level, edited);
+  return res.map((chords, i) => (chords ? [i, chords] : null)).filter(Boolean);
+}
+
+function applyPlan(doc, plan) {
+  const measures = Array.from(mei(doc, 'measure'));
+  for (const [i, chords] of plan) {
+    const m = measures[i];
+    if (!m) continue;
+    const old = kids(m).filter((c) => c.localName === 'harm');
+    const staff = (old[0] && old[0].getAttribute('staff')) || '1';
+    old.forEach((c) => m.removeChild(c));
+    chords.forEach(([t, text]) => {
+      const hm = doc.createElementNS(MEI_NS, 'harm');
+      hm.setAttribute('staff', staff);
+      hm.setAttribute('tstamp', String(t));
+      hm.setAttribute('place', 'above');
+      hm.textContent = text;
+      m.appendChild(hm);
+    });
+  }
+}
+
 // replace the chords of the edited bars; the harms that are not in the original get type="edit"
 function applyEdits(doc, bars, edits) {
   for (const [key, e] of Object.entries(edits)) {
@@ -330,7 +360,7 @@ export class SheetView {
     this.credit = el('footer', 'sheet-credit');   // where the sheet is from, as in the Android viewer
     root.append(this.head, this.music, this.tail, this.verses, this.credit);
 
-    this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE, original: false, hands: false};
+    this.state = {guitar: false, shift: 0, staff: true, scale: DEFAULT_SCALE, original: false, hands: false, simplify: ''};
     this.piano = null;             // how the hands play when state.hands is on (piano.js: {lh, rh}); the app sets it
     this.baseBpm = 0;              // the tempo the sheet names itself (midi.bpm), 0 when it names none
     this.baseHands = null;         // the piano part the sheet starts with (handsOf), null when it names none
@@ -539,6 +569,8 @@ export class SheetView {
     let doc = parseXml(xml);
     const fifths = state.shift ? keyFifths(doc) : this.baseFifths;
     const tonic = TONIC[fifths + 7];
+    // Simplify: the chords worked out on the sheet as it is (before the guitar's capo and the piano part)
+    const plan = state.simplify && !this.editing && !this.chordsOnly ? simplifyPlan(doc, state.simplify) : null;
     this.steps = LETTERS.indexOf(tonic[0]) - LETTERS.indexOf(TONIC[this.baseFifths + 7][0]);
 
     // tail chords are plain text, so they are moved here: by the same interval as the key
@@ -550,6 +582,7 @@ export class SheetView {
 
     let capoText = '', capo = 0;
     if (state.guitar) {
+      if (plan) applyPlan(doc, plan);
       capo = CAPO[fifthsPc(fifths)];
       const iv = INTERVAL[capo];
       const chinese = /^(CS?|ZS?)\d/.test(this.shownId);   // Chinese words, also under a borrowed sheet
@@ -578,6 +611,8 @@ export class SheetView {
         console.error('piano part', e);
       }
     }
+
+    if (plan && !state.guitar) applyPlan(doc, plan);   // (with the piano part made from the chords as they sound)
 
     // ids the clicks can be traced back with: bar-<n> for the bars, chord-<n>-<beat> for the chords
     if (this.editing) {
