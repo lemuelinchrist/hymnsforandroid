@@ -14,6 +14,7 @@ melody lined up exactly: a low figure means the hymn needs a look by hand.
 import os, re, sys, sqlite3
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import midi_to_sheet as M
+THRESH = float(os.environ.get("THRESH", ".9"))   # how much of the melody must line up exactly
 
 def soprano(notes):
     ev = {}
@@ -130,12 +131,12 @@ def convert(hid, db, write, out_dir):
     if not 40 <= bpm <= 220:   # a tempo that cannot be right (a MIDI with an odd tempo event): the sheet's own stays
         m_ = re.search(r'midi\.bpm="(\d+)"', xml); bpm = int(m_.group(1)) if m_ else 100
     new = re.sub(r'midi\.bpm="\d+"', 'midi.bpm="%d"' % bpm, new, count=1) if 'midi.bpm' in new else new.replace('<scoreDef ', '<scoreDef midi.bpm="%d" ' % bpm, 1)
-    flag = '' if ratio >= .9 else '   LOOK'
+    flag = '' if ratio >= THRESH else '   LOOK'
     print('%s: tune %s, %d old notes, %.0f%% lined up exactly (%d MIDI notes, shift %+d), %d chords, tempo %d%s' % (hid, tune, len(old), ratio * 100, len(sop), sh, sum(len(c) for c in chords), bpm, flag))
-    if write and ratio >= .9:
+    if write and ratio >= THRESH:
         out_path = os.path.join(out_dir, hid + '.mei') if out_dir else os.path.join(M.OUT_MEI, hid + '.mei')
         os.makedirs(os.path.dirname(out_path), exist_ok=True); open(out_path, 'w', encoding='utf8').write(new); print('written', out_path)
-    return 0 if ratio >= .9 else 1
+    return 0 if ratio >= THRESH else 1
 
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith('--')]; out_dir = None
