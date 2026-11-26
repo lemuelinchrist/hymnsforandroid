@@ -15,6 +15,7 @@
 <verse n="1"><syl>Thy</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">FMaj7</harm>
 </measure>
@@ -26,6 +27,7 @@
 <note xml:id="n6" pname="g" oct="4" dur="4">
 <verse n="1"><syl eol="1">Lord,</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">B♭Maj7/F</harm>
 <harm staff="1" tstamp="2" place="above">Dm/F</harm>
@@ -40,6 +42,7 @@
 <verse n="1"><syl>Thy</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Fsus2</harm>
 <harm staff="1" tstamp="2" place="above">FMaj7</harm>
 <harm staff="1" tstamp="3" place="above">Fsus4</harm>
@@ -48,6 +51,7 @@
 <note xml:id="n10" pname="a" oct="4" dur="2" dots="1">
 <verse n="1"><syl eol="1">way;</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
@@ -61,6 +65,7 @@
 <verse n="1"><syl wordpos="t">cious</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F/A</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
@@ -71,6 +76,7 @@
 <note xml:id="n16" pname="b" oct="4" dur="4" accid.ges="n">
 <verse n="1"><syl eol="1" wordpos="t">ford,</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">Gsus4</harm>
 <harm staff="1" tstamp="3" place="above">G/B</harm>
@@ -84,6 +90,7 @@
 <verse n="1"><syl>Thy</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="2" place="above">Bm</harm>
 <harm staff="1" tstamp="3" place="above">Bdim</harm>
@@ -95,6 +102,7 @@
 </layer></staff>
 <slur startid="#n20" endid="#n21"/>
 <fermata startid="#n21" place="above"/>
+
 
 <harm staff="1" tstamp="1" place="above">Csus4</harm>
 <harm staff="1" tstamp="2" place="above">Fsus4/C</harm>
@@ -110,7 +118,9 @@
 <verse n="1"><syl>to</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">Gm</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="d" oct="5" dur="4" dots="1">
@@ -121,7 +131,10 @@
 <verse n="1"><syl eol="1" wordpos="t">right;</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="2" place="above">B♭Maj7</harm>
+<harm staff="1" tstamp="3" place="above">G/D</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n28" pname="g" oct="4" dur="4">
@@ -131,6 +144,7 @@
 <note xml:id="n30" pname="b" oct="4" dur="4">
 <verse n="1"><syl>faith,</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">Am/C</harm>
@@ -145,8 +159,9 @@
 <verse n="1"><syl eol="1">sight;</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Am7</harm>
-<harm staff="1" tstamp="2" place="above">F/A</harm>
+<harm staff="1" tstamp="2" place="above">Am</harm>
 </measure>
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
@@ -157,6 +172,7 @@
 <note xml:id="n36" pname="a" oct="4" dur="4">
 <verse n="1"><syl>with</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <harm staff="1" tstamp="2" place="above">Dsus4</harm>
@@ -171,6 +187,7 @@
 <verse n="1"><syl eol="1">light,</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="3" place="above">Gm7</harm>
 </measure>
@@ -183,16 +200,19 @@
 <verse n="1"><syl>Thy</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">Dm7/C</harm>
-<harm staff="1" tstamp="3" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n43" pname="f" oct="4" dur="2" dots="1">
 <verse n="1"><syl eol="1">way.</syl></verse></note>
 </layer></staff>
 
-<harm staff="1" tstamp="3" place="above">F</harm>
+
+<harm staff="1" tstamp="1" place="above">B♭/F</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

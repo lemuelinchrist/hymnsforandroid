@@ -17,6 +17,7 @@
 <verse n="1"><syl>to</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">B7/A</harm>
 <harm staff="1" tstamp="4" place="above">G7/B</harm>
@@ -28,6 +29,7 @@
 <verse n="1"><syl eol="1" wordpos="t">sus;</syl></verse></note>
 <rest xml:id="r7" dur="4"/>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">C/G</harm>
@@ -44,10 +46,11 @@
 <verse n="1"><syl>my</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="2" place="above">Dsus4/A</harm>
 <harm staff="1" tstamp="3" place="above">A/E</harm>
-<harm staff="1" tstamp="4" place="above">G</harm>
+<harm staff="1" tstamp="4" place="above">D7/F♯</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="b" oct="4" dur="2" dots="1">
@@ -55,7 +58,10 @@
 <rest xml:id="r13" dur="4"/>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="3" place="above">GMaj7</harm>
+<harm staff="1" tstamp="4" place="above">CMaj7/G</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -69,6 +75,7 @@
 <verse n="1"><syl>and</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">B7/A</harm>
 <harm staff="1" tstamp="4" place="above">G7/B</harm>
@@ -81,6 +88,7 @@
 <note xml:id="n20" pname="e" oct="4" dur="2">
 <verse n="1"><syl eol="1">am</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">A/C♯</harm>
@@ -96,6 +104,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">A7/E</harm>
 <harm staff="1" tstamp="4" place="above">D7/F♯</harm>
@@ -106,8 +115,8 @@
 <rest xml:id="r26" dur="4"/>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C/G</harm>
-<harm staff="1" tstamp="2" place="above">Gsus4</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
 </measure>
 </section></score></mdiv></body>

@@ -11,7 +11,8 @@
 <verse n="1"><label>1.</label><syl>Dear</syl></verse></note>
 </layer></staff>
 
-<harm staff="1" tstamp="1" place="above">B♭</harm>
+
+<harm staff="1" tstamp="1" place="above">Dm</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n2" pname="d" oct="5" dur="4">
@@ -28,6 +29,7 @@
 </layer></staff>
 <slur startid="#n4" endid="#n5"/>
 
+
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="4" place="above">Cm7/B♭</harm>
 </measure>
@@ -41,6 +43,7 @@
 <note xml:id="n10" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Thou</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">B♭sus2</harm>
 <harm staff="1" tstamp="4" place="above">B♭</harm>
@@ -64,6 +67,7 @@
 <slur startid="#n11" endid="#n12"/>
 <slur startid="#n14" endid="#n15"/>
 
+
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="4" place="above">Edim</harm>
 </measure>
@@ -76,8 +80,9 @@
 </layer></staff>
 <tie startid="#n17" endid="#n18"/>
 
+
 <harm staff="1" tstamp="1" place="above">Fsus2</harm>
-<harm staff="1" tstamp="4" place="above">E♭sus2</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <sb/>
 <measure n="6"><staff n="1"><layer n="1">
@@ -95,6 +100,7 @@
 </layer></staff>
 <slur startid="#n22" endid="#n23"/>
 
+
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="4" place="above">Cm7/B♭</harm>
 </measure>
@@ -108,6 +114,7 @@
 <note xml:id="n28" pname="f" oct="4" dur="8">
 <verse n="1"><syl>Though</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="4" place="above">Dm7</harm>
@@ -127,6 +134,7 @@
 </layer></staff>
 <slur startid="#n31" endid="#n32"/>
 
+
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
@@ -139,8 +147,8 @@
 </layer></staff>
 <tie startid="#n34" endid="#n35"/>
 
+
 <harm staff="1" tstamp="1" place="above">B♭</harm>
-<harm staff="1" tstamp="4" place="above">B♭/D</harm>
 </measure>
 <sb/>
 <measure n="10"><staff n="1"><layer n="1">
@@ -158,6 +166,7 @@
 </layer></staff>
 <slur startid="#n39" endid="#n40"/>
 
+
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
@@ -171,8 +180,8 @@
 <verse n="1"><syl>Our</syl></verse></note>
 </layer></staff>
 
-<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
-<harm staff="1" tstamp="4" place="above">Gm</harm>
+
+<harm staff="1" tstamp="1" place="above">Gm</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <beam>
@@ -193,6 +202,7 @@
 <slur startid="#n46" endid="#n47"/>
 <slur startid="#n49" endid="#n50"/>
 
+
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
@@ -205,7 +215,9 @@
 </layer></staff>
 <tie startid="#n52" endid="#n53"/>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">F7/A</harm>
 </measure>
 <sb/>
 <measure n="14"><staff n="1"><layer n="1">
@@ -223,8 +235,9 @@
 </layer></staff>
 <slur startid="#n57" endid="#n58"/>
 
-<harm staff="1" tstamp="1" place="above">B♭/D</harm>
-<harm staff="1" tstamp="4" place="above">Cm/E♭</harm>
+
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">Cm7/B♭</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n60" pname="f" oct="4" dur="4">
@@ -237,8 +250,9 @@
 <verse n="1"><syl>As</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">B♭</harm>
-<harm staff="1" tstamp="4" place="above">G7/D</harm>
+<harm staff="1" tstamp="4" place="above">G7</harm>
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n64" pname="g" oct="4" dur="4">
@@ -255,6 +269,7 @@
 </layer></staff>
 <slur startid="#n66" endid="#n67"/>
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
@@ -265,6 +280,7 @@
 <rest xml:id="r71" dur="8"/>
 </layer></staff>
 <tie startid="#n69" endid="#n70"/>
+
 
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 </measure>

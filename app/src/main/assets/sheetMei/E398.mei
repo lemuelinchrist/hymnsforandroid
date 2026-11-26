@@ -19,6 +19,7 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="2" place="above">C</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
@@ -38,8 +39,10 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">Adim/C</harm>
+<harm staff="1" tstamp="4" place="above">Am</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="g" oct="4" dur="4">
@@ -57,6 +60,7 @@
 </beam>
 </tuplet>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
@@ -79,9 +83,11 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="2" place="above">Em/B</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
+<harm staff="1" tstamp="4" place="above">A7/G</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -99,8 +105,10 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Dm7/F</harm>
-<harm staff="1" tstamp="3" place="above">Csus4/G</harm>
+<harm staff="1" tstamp="3" place="above">Gsus4</harm>
+<harm staff="1" tstamp="4" place="above">G/B</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n23" pname="g" oct="4" dur="4">
@@ -118,6 +126,7 @@
 </beam>
 </tuplet>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">C/G</harm>
@@ -140,8 +149,10 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">C/G</harm>
+<harm staff="1" tstamp="3" place="above">C/E</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
@@ -161,8 +172,10 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="2" place="above">Gsus4</harm>
 <harm staff="1" tstamp="3" place="above">D7/F♯</harm>
+<harm staff="1" tstamp="4" place="above">Am</harm>
 </measure>
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
@@ -181,6 +194,7 @@
 </layer></staff>
 <fermata startid="#n38" place="above"/>
 <dir startid="#n40" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+
 
 <harm staff="1" tstamp="3" place="above">Em7</harm>
 <harm staff="1" tstamp="4" place="above">C/E</harm>
@@ -202,7 +216,9 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">D/A</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n47" pname="a" oct="4" dur="4">
@@ -221,9 +237,11 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Esus4</harm>
 <harm staff="1" tstamp="2" place="above">G/B</harm>
 <harm staff="1" tstamp="3" place="above">Am7</harm>
+<harm staff="1" tstamp="4" place="above">A7/G</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n52" pname="f" oct="4" dur="4">
@@ -241,6 +259,7 @@
 </beam>
 </tuplet>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">F/A</harm>
@@ -263,6 +282,7 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">C/G</harm>
 <harm staff="1" tstamp="3" place="above">Edim</harm>
@@ -284,7 +304,9 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">D/A</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n66" pname="a" oct="4" dur="4">
@@ -302,6 +324,7 @@
 </beam>
 </tuplet>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">Esus4</harm>
 <harm staff="1" tstamp="3" place="above">Am</harm>
@@ -324,9 +347,11 @@
 </tuplet>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">Am</harm>
 <harm staff="1" tstamp="3" place="above">Em/G</harm>
+<harm staff="1" tstamp="4" place="above">G7</harm>
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n76" pname="c" oct="4" dur="2">
@@ -334,7 +359,9 @@
 <rest xml:id="r77" dur="4"/>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Csus4</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

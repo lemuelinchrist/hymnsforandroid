@@ -11,6 +11,7 @@
 <verse n="1"><label>1.</label><syl>Take,</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
@@ -24,6 +25,7 @@
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">G/B</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
@@ -34,6 +36,7 @@
 <note xml:id="n7" pname="d" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">Re</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">Bm</harm>
@@ -49,6 +52,7 @@
 <verse n="1"><syl>our</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="2" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -61,6 +65,7 @@
 <note xml:id="n13" pname="g" oct="4" dur="4">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -75,6 +80,7 @@
 <verse n="1"><syl>has</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="2" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
@@ -86,6 +92,7 @@
 <note xml:id="n19" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
@@ -100,6 +107,7 @@
 <verse n="1"><syl wordpos="i" con="d">dis</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="2" place="above">Em</harm>
 <harm staff="1" tstamp="3" place="above">Am/C</harm>
@@ -113,6 +121,7 @@
 <verse n="1"><syl>We</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -125,6 +134,7 @@
 <note xml:id="n29" pname="d" oct="4" dur="4">
 <verse n="1"><syl>now</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="4" place="above">G/B</harm>
@@ -140,6 +150,7 @@
 <verse n="1"><syl>On</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">Em</harm>
 </measure>
@@ -153,6 +164,7 @@
 <note xml:id="n37" pname="b" oct="4" dur="4">
 <verse n="1"><syl>the</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">B</harm>
@@ -169,6 +181,7 @@
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Em</harm>
 <harm staff="1" tstamp="4" place="above">G/B</harm>
 </measure>
@@ -183,6 +196,7 @@
 <verse n="1"><syl>now</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">G/B</harm>
 </measure>
@@ -192,6 +206,7 @@
 <note xml:id="n47" pname="f" oct="4" dur="2">
 <verse n="1"><syl>can</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -203,12 +218,14 @@
 </layer></staff>
 <tie startid="#n48" endid="#n49"/>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n49" pname="g" oct="4" dur="2"/>
 <rest xml:id="r50" dur="2"/>
 </layer></staff>
+
 
 </measure>
 </section></score></mdiv></body>

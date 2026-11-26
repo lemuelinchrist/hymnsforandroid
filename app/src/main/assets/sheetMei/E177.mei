@@ -11,6 +11,7 @@
 <verse n="1"><label>1.</label><syl wordpos="i" con="d">Ma</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
@@ -23,6 +24,7 @@
 <note xml:id="n5" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">ness</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="4" place="above">D</harm>
@@ -38,6 +40,7 @@
 <verse n="1"><syl wordpos="i" con="d">Up</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
@@ -51,6 +54,7 @@
 <verse n="1"><syl wordpos="t">ior’s</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
@@ -61,6 +65,7 @@
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
 <tie startid="#n14" endid="#n15"/>
+
 
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -75,6 +80,7 @@
 <note xml:id="n20" pname="a" oct="4" dur="8">
 <verse n="1"><syl wordpos="t">diant</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 <harm staff="1" tstamp="4" place="above">D</harm>
@@ -94,6 +100,7 @@
 </layer></staff>
 <slur startid="#n24" endid="#n25"/>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
@@ -107,6 +114,7 @@
 <verse n="1"><syl wordpos="i" con="d">o’er</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="4" place="above">D7</harm>
 </measure>
@@ -119,8 +127,8 @@
 </layer></staff>
 <tie startid="#n30" endid="#n31"/>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">Am7/G</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n33" pname="b" oct="4" dur="4">
@@ -133,6 +141,7 @@
 <verse n="1"><syl wordpos="i" con="d">o’er</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="4" place="above">D7</harm>
 </measure>
@@ -143,6 +152,7 @@
 <rest xml:id="r39" dur="8"/>
 </layer></staff>
 <tie startid="#n37" endid="#n38"/>
+
 
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>

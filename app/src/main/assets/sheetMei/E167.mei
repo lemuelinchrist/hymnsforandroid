@@ -11,6 +11,7 @@
 <verse n="1"><label>1.</label><syl>How</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Csus2</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
@@ -34,6 +35,7 @@
 </layer></staff>
 <slur startid="#n5" endid="#n6"/>
 
+
 <harm staff="1" tstamp="3" place="above">Dsus4/A</harm>
 <harm staff="1" tstamp="4" place="above">Asus2</harm>
 </measure>
@@ -47,6 +49,7 @@
 </beam>
 </layer></staff>
 <slur startid="#n10" endid="#n11"/>
+
 
 <harm staff="1" tstamp="1" place="above">G/B</harm>
 </measure>
@@ -72,8 +75,10 @@
 </layer></staff>
 <slur startid="#n15" endid="#n16"/>
 
+
 <harm staff="1" tstamp="1" place="above">F♯m</harm>
 <harm staff="1" tstamp="2" place="above">A/E</harm>
+<harm staff="1" tstamp="3" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">F♯dim</harm>
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
@@ -82,6 +87,7 @@
 <note xml:id="n20" pname="g" oct="4" dur="4">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
@@ -105,6 +111,7 @@
 </beam>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 <harm staff="1" tstamp="4" place="above">C/G</harm>
 </measure>
@@ -114,6 +121,7 @@
 <note xml:id="n28" pname="d" oct="4" dur="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">Bm</harm>
@@ -139,6 +147,7 @@
 </layer></staff>
 <slur startid="#n32" endid="#n33"/>
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">Am</harm>
 <harm staff="1" tstamp="3" place="above">G/D</harm>
@@ -148,6 +157,7 @@
 <verse n="1"><syl eol="1">end.</syl></verse></note>
 <rest xml:id="r37" dur="4"/>
 </layer></staff>
+
 
 <harm staff="1" tstamp="3" place="above">G</harm>
 </measure>

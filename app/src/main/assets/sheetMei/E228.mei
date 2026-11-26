@@ -15,6 +15,8 @@
 </layer></staff>
 <slur startid="#n1" endid="#n2"/>
 
+
+<harm staff="1" tstamp="1" place="above">F/C</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n3" pname="a" oct="4" dur="4" dots="1">
@@ -26,6 +28,7 @@
 <note xml:id="n6" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="i" con="d">di</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">C7/E</harm>
@@ -44,6 +47,7 @@
 <slur startid="#n7" endid="#n8"/>
 <slur startid="#n9" endid="#n10"/>
 
+
 <harm staff="1" tstamp="1" place="above">D7/C</harm>
 <harm staff="1" tstamp="2" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
@@ -60,6 +64,7 @@
 <verse n="1"><syl>us</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <harm staff="1" tstamp="3" place="above">Csus2</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
@@ -71,8 +76,8 @@
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">F/C</harm>
 <harm staff="1" tstamp="4" place="above">F/A</harm>
 </measure>
 <sb/>
@@ -87,8 +92,8 @@
 <verse n="1"><syl>this</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">B♭</harm>
-<harm staff="1" tstamp="2" place="above">Dm</harm>
 <harm staff="1" tstamp="3" place="above">B♭/D</harm>
 <harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
@@ -102,6 +107,7 @@
 <note xml:id="n24" pname="g" oct="4" dur="4">
 <verse n="1"><syl>In</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
@@ -119,6 +125,7 @@
 <verse n="1"><syl>of</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Dm</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
@@ -128,6 +135,7 @@
 <verse n="1"><syl eol="1">Thee.</syl></verse></note>
 <rest xml:id="r30" dur="4"/>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭/F</harm>

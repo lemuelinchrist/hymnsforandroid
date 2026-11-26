@@ -21,6 +21,7 @@
 <verse n="1"><syl>our</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭Maj7</harm>
@@ -39,8 +40,11 @@
 <verse n="1"><syl eol="1" wordpos="t">turn!</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
 <harm staff="1" tstamp="5" place="above">A♭/C</harm>
 <harm staff="1" tstamp="6" place="above">A♭/E♭</harm>
 </measure>
@@ -59,6 +63,7 @@
 <verse n="1"><syl>with</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">B♭m</harm>
 <harm staff="1" tstamp="2" place="above">B♭m/F</harm>
 <harm staff="1" tstamp="3" place="above">B♭m</harm>
@@ -76,6 +81,7 @@
 <note xml:id="n20" pname="e" oct="4" dur="2" dots="1">
 <verse n="1"><syl eol="1" wordpos="t">formed;</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">A♭sus4</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
@@ -100,6 +106,7 @@
 <verse n="1"><syl wordpos="i" con="d">Him</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
 <harm staff="1" tstamp="2" place="above">E♭Maj7</harm>
 <harm staff="1" tstamp="3" place="above">E♭/G</harm>
@@ -117,6 +124,7 @@
 <note xml:id="n30" pname="b" oct="4" dur="2" dots="1">
 <verse n="1"><syl eol="1" wordpos="t">joy,</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="2" place="above">E♭/B♭</harm>
@@ -139,11 +147,13 @@
 <verse n="1"><syl>we</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Fsus4</harm>
 <harm staff="1" tstamp="2" place="above">Dm7♭5/C</harm>
+<harm staff="1" tstamp="3" place="above">Fm</harm>
 <harm staff="1" tstamp="4" place="above">Cm7/E♭</harm>
 <harm staff="1" tstamp="5" place="above">A♭/C</harm>
-<harm staff="1" tstamp="6" place="above">Cm/E♭</harm>
+<harm staff="1" tstamp="6" place="above">A♭Maj7/E♭</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="a" oct="4" dur="4">
@@ -157,12 +167,13 @@
 </layer></staff>
 <fermata startid="#n40" place="above"/>
 
+
 <harm staff="1" tstamp="1" place="above">Ddim</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
 <harm staff="1" tstamp="4" place="above">E♭</harm>
 <harm staff="1" tstamp="5" place="above">Fm7</harm>
-<harm staff="1" tstamp="6" place="above">E♭/G</harm>
+<harm staff="1" tstamp="6" place="above">E♭7/G</harm>
 </measure>
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
@@ -177,9 +188,10 @@
 </layer></staff>
 <dir startid="#n42" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
 
+
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
-<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
 <harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
 <harm staff="1" tstamp="5" place="above">A♭/C</harm>
 <harm staff="1" tstamp="6" place="above">Fm/A♭</harm>
@@ -194,6 +206,7 @@
 <note xml:id="n48" pname="d" oct="5" dur="2" dots="1">
 <verse n="1"><syl eol="1" wordpos="t">turn!</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
@@ -213,6 +226,7 @@
 <verse n="1"><syl>hope!</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">B♭m</harm>
 <harm staff="1" tstamp="2" place="above">B♭m/F</harm>
 <harm staff="1" tstamp="3" place="above">B♭m</harm>
@@ -230,6 +244,7 @@
 <note xml:id="n56" pname="c" oct="5" dur="2" dots="1">
 <verse n="1"><syl eol="1" wordpos="t">turn!</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">E♭7/G</harm>
 <harm staff="1" tstamp="2" place="above">E♭</harm>
@@ -253,6 +268,7 @@
 <verse n="1"><syl>with</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭7/B♭</harm>
@@ -271,10 +287,11 @@
 <verse n="1"><syl eol="1" wordpos="t">formed;</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">D♭/F</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
-<harm staff="1" tstamp="5" place="above">C/G</harm>
-<harm staff="1" tstamp="6" place="above">Em</harm>
+<harm staff="1" tstamp="6" place="above">C/E</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n67" pname="b" oct="4" dur="4">
@@ -291,6 +308,7 @@
 <verse n="1"><syl>our</syl></verse></note>
 </layer></staff>
 <fermata startid="#n72" place="above"/>
+
 
 <harm staff="1" tstamp="1" place="above">B♭m/D♭</harm>
 <harm staff="1" tstamp="2" place="above">D♭</harm>
@@ -310,7 +328,9 @@
 <verse n="1"><syl eol="1" wordpos="t">turn!</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="2" place="above">Cm</harm>
 <harm staff="1" tstamp="3" place="above">E♭7</harm>
 <harm staff="1" tstamp="4" place="above">D♭/A♭</harm>
 <harm staff="1" tstamp="5" place="above">A♭</harm>

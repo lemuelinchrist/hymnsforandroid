@@ -16,13 +16,19 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import midi_to_sheet as M
 THRESH = float(os.environ.get("THRESH", ".9"))   # how much of the melody must line up exactly
 
-def soprano(notes):
+def soprano(notes, q=64):
+    """the melody: the top sounding note at each onset. Voices of a played MIDI do not start together: onsets less than a third of a
+    sixteenth apart are one onset (else a chord's later voices would look like melody notes)"""
+    starts = sorted({s for s, e, p in notes}); at = {}; first = None
+    for s in starts:
+        if first is None or s - first > q / 3: first = s
+        at[s] = first
     ev = {}
-    for s, e, p in notes: ev.setdefault(s, []).append((e, p))
+    for s, e, p in notes: ev.setdefault(at[s], []).append((e, p))
     sop = []
     for t in sorted(ev):
         e, p = max(ev[t], key=lambda x: x[1])
-        if any(s_ < t < e_ and p_ >= p for s_, e_, p_ in notes): continue
+        if any(at[s_] < t < e_ and p_ >= p for s_, e_, p_ in notes): continue
         sop.append((t, e, p))
     return sop
 
@@ -65,7 +71,7 @@ def convert(hid, db, write, out_dir):
         return (int(a['oct']) + 1) * 12 + M.NAT_PC[l] + al
     old = [(t, old_midi(a)) for b in bars for (t, n, a, tag) in b[1] if 'pname' in a]
     if len(old) < 4: print(hid, 'too few notes'); return 1
-    sop = soprano(notes)
+    sop = soprano(notes, q)
     S = [p % 12 for t, e, p in sop]
     # the shifts worth trying: by how well the pitch-class counts agree
     hist = lambda xs: [sum(1 for x in xs if x == k) for k in range(12)]
@@ -79,7 +85,7 @@ def convert(hid, db, write, out_dir):
     exact = sum(1 for i, j in pairs if (old[i][1] % 12) == ((sop[j][2] + sh) % 12))
     ratio = exact / len(old)
     # the map from the sheet's time (sixteenths) to the MIDI's (ticks)
-    anchors = [(old[i][0], sop[j][0]) for i, j in pairs]
+    anchors = [(old[i][0], sop[j][0]) for i, j in pairs if (old[i][1] % 12) == ((sop[j][2] + sh) % 12)]   # only the exact matches fix the time map
     if len(anchors) < 3: print(hid, 'PROBLEM too little of the melody lined up'); return 1
     def to_midi(t):
         a = anchors
@@ -112,7 +118,7 @@ def convert(hid, db, write, out_dir):
         # a chord for each beat of the bar, taken a little after the beat's start: the voices of a played MIDI do not start together
         pts = []; t_old = b0
         while t_old < b1:
-            pts.append((t_old, to_midi(t_old) + q)); t_old += beat16
+            pts.append((t_old, to_midi(t_old) + q * float(os.environ.get('OFFSET', '0.4')))); t_old += beat16
         out = []; prev = None
         for t_old, tm in pts:
             snd = [p + sh for s, e, p in notes if s <= tm < e]

@@ -17,6 +17,7 @@
 <verse n="1"><syl wordpos="t">or,</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">C/E</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -31,6 +32,7 @@
 <note xml:id="n8" pname="a" oct="4" dur="4">
 <verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">C7/G</harm>
@@ -47,6 +49,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="2" place="above">C7/G</harm>
 <harm staff="1" tstamp="3" place="above">F/A</harm>
@@ -61,6 +64,7 @@
 <note xml:id="n16" pname="f" oct="4" dur="4">
 <verse n="1"><syl eol="1" wordpos="t">er!</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="2" place="above">C/E</harm>
@@ -77,6 +81,7 @@
 <verse n="1"><syl>is</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="2" place="above">F/A</harm>
 <harm staff="1" tstamp="3" place="above">Gm/B♭</harm>
@@ -92,6 +97,7 @@
 <note xml:id="n24" pname="c" oct="4" dur="4">
 <verse n="1"><syl eol="1" wordpos="t">er,</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">Bdim/D</harm>
@@ -112,6 +118,7 @@
 <verse n="1"><syl wordpos="t">jah!</syl></verse></note>
 </layer></staff>
 <slur startid="#n26" endid="#n27"/>
+
 
 <harm staff="1" tstamp="1" place="above">C/E</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
@@ -137,7 +144,10 @@
 <slur startid="#n31" endid="#n32"/>
 <slur startid="#n33" endid="#n34"/>
 
+
 <harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
 <harm staff="1" tstamp="4" place="above">F/A</harm>
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
@@ -155,8 +165,9 @@
 </layer></staff>
 <slur startid="#n39" endid="#n40"/>
 
+
 <harm staff="1" tstamp="1" place="above">B♭/D</harm>
-<harm staff="1" tstamp="2" place="above">Dm</harm>
+<harm staff="1" tstamp="2" place="above">B♭Maj7</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
 <harm staff="1" tstamp="4" place="above">B♭</harm>
 </measure>
@@ -169,16 +180,19 @@
 <verse n="1"><syl>the</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="3" place="above">Gm/B♭</harm>
+<harm staff="1" tstamp="4" place="above">C7/B♭</harm>
 </measure>
 <measure n="11" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" pname="f" oct="4" dur="1">
 <verse n="1"><syl eol="1">Lord!</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">B♭/F</harm>
+<harm staff="1" tstamp="2" place="above">B♭/D</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
 </measure>
 </section></score></mdiv></body>

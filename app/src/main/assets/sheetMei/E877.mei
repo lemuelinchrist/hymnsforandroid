@@ -11,6 +11,7 @@
 <verse n="1"><label>1.</label><syl>I</syl></verse></note>
 </layer></staff>
 
+
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n2" pname="a" oct="4" dur="4">
@@ -23,8 +24,9 @@
 <verse n="1"><syl wordpos="i" con="d">de</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">A</harm>
+<harm staff="1" tstamp="2" place="above">Faug</harm>
 <harm staff="1" tstamp="3" place="above">D7/C</harm>
 <harm staff="1" tstamp="4" place="above">F/C</harm>
 </measure>
@@ -37,8 +39,8 @@
 <verse n="1"><syl>With</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">F/C</harm>
 <harm staff="1" tstamp="3" place="above">D7/C</harm>
 <harm staff="1" tstamp="4" place="above">F/C</harm>
 </measure>
@@ -53,8 +55,11 @@
 <verse n="1"><syl>in</syl></verse></note>
 </layer></staff>
 
+
+<harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">F/A</harm>
 <harm staff="1" tstamp="3" place="above">C/G</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -64,7 +69,8 @@
 <verse n="1"><syl>Where</syl></verse></note>
 </layer></staff>
 
-<harm staff="1" tstamp="1" place="above">C7</harm>
+
+<harm staff="1" tstamp="1" place="above">C7/E</harm>
 <harm staff="1" tstamp="2" place="above">B♭/D</harm>
 <harm staff="1" tstamp="3" place="above">C7</harm>
 </measure>
@@ -79,8 +85,9 @@
 <verse n="1"><syl wordpos="t">quered</syl></verse></note>
 </layer></staff>
 
-<harm staff="1" tstamp="1" place="above">Fsus4/C</harm>
-<harm staff="1" tstamp="2" place="above">F♯/D♭</harm>
+
+<harm staff="1" tstamp="1" place="above">C7</harm>
+<harm staff="1" tstamp="2" place="above">Fsus4/C</harm>
 <harm staff="1" tstamp="3" place="above">Em7♭5/G</harm>
 <harm staff="1" tstamp="4" place="above">Gdim7</harm>
 </measure>
@@ -93,10 +100,10 @@
 <verse n="1"><syl>Where</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C7</harm>
-<harm staff="1" tstamp="2" place="above">F♯/D♭</harm>
 <harm staff="1" tstamp="3" place="above">Em7♭5/G</harm>
-<harm staff="1" tstamp="4" place="above">B♭dim/D♭</harm>
+<harm staff="1" tstamp="4" place="above">Gdim7</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="b" oct="4" dur="4">
@@ -109,6 +116,8 @@
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
 
+
+<harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="2" place="above">C7/B♭</harm>
 <harm staff="1" tstamp="3" place="above">F/A</harm>
 <harm staff="1" tstamp="4" place="above">C/G</harm>
@@ -119,6 +128,7 @@
 <note xml:id="n27" pname="c" oct="5" dur="4">
 <verse n="1"><syl>Come,</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="4" place="above">F/C</harm>
@@ -135,6 +145,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">Adim/E♭</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
@@ -148,6 +159,7 @@
 <note xml:id="n34" pname="b" oct="4" dur="4">
 <verse n="1"><syl>To</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">Gsus4</harm>
 <harm staff="1" tstamp="2" place="above">Gsus4/D</harm>
@@ -165,6 +177,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C7/E</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
 <harm staff="1" tstamp="3" place="above">Dm7</harm>
@@ -177,6 +190,7 @@
 <note xml:id="n40" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Make</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">F/C</harm>
@@ -194,8 +208,8 @@
 <verse n="1"><syl wordpos="m" con="d">ver</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">A</harm>
-<harm staff="1" tstamp="2" place="above">A/E</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
 <harm staff="1" tstamp="4" place="above">Gm/D</harm>
 </measure>
@@ -207,6 +221,7 @@
 <note xml:id="n47" pname="a" oct="4" dur="4">
 <verse n="1"><syl>Clothed</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">A/D♭</harm>
 <harm staff="1" tstamp="2" place="above">Bm7</harm>
@@ -224,6 +239,7 @@
 <verse n="1"><syl wordpos="t">it’s</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">A/D♭</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
 <harm staff="1" tstamp="4" place="above">Gm/B♭</harm>
@@ -239,9 +255,11 @@
 <slur startid="#n52" endid="#n53"/>
 <fermata startid="#n53" place="above"/>
 
+
 <harm staff="1" tstamp="1" place="above">Asus4</harm>
 <harm staff="1" tstamp="2" place="above">A</harm>
 <harm staff="1" tstamp="3" place="above">C7</harm>
+<harm staff="1" tstamp="4" place="above">C7/E</harm>
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n55" pname="a" oct="4" dur="4">
@@ -253,9 +271,9 @@
 </layer></staff>
 <dir startid="#n55" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
 
-<harm staff="1" tstamp="1" place="above">C7/E</harm>
-<harm staff="1" tstamp="2" place="above">F</harm>
-<harm staff="1" tstamp="4" place="above">B/F♯</harm>
+
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">B/F♯</harm>
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n58" pname="c" oct="5" dur="4">
@@ -267,9 +285,9 @@
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">Gsus4</harm>
-<harm staff="1" tstamp="2" place="above">Gm/D</harm>
-<harm staff="1" tstamp="3" place="above">Gm</harm>
+<harm staff="1" tstamp="2" place="above">Gm</harm>
 <harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <measure n="20"><staff n="1"><layer n="1">
@@ -283,8 +301,9 @@
 <verse n="1"><syl wordpos="m" con="d">var</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">C/E</harm>
-<harm staff="1" tstamp="2" place="above">Cdim</harm>
+<harm staff="1" tstamp="2" place="above">D7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">Em7♭5/B♭</harm>
 </measure>
@@ -294,6 +313,7 @@
 <note xml:id="n67" pname="c" oct="5" dur="4">
 <verse n="1"><syl>Make</syl></verse></note>
 </layer></staff>
+
 
 <harm staff="1" tstamp="1" place="above">F/A</harm>
 <harm staff="1" tstamp="2" place="above">C/G</harm>
@@ -312,6 +332,7 @@
 <verse n="1"><syl wordpos="m" con="d">ver</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="2" place="above">D7/F♯</harm>
 <harm staff="1" tstamp="3" place="above">Gm</harm>
@@ -328,8 +349,10 @@
 </layer></staff>
 <slur startid="#n72" endid="#n73"/>
 
-<harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="3" place="above">F/C</harm>
+
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
 <harm staff="1" tstamp="4" place="above">FMaj7/A</harm>
 </measure>
 <measure n="24"><staff n="1"><layer n="1">
@@ -342,6 +365,8 @@
 <verse n="1"><syl>a</syl></verse></note>
 </layer></staff>
 
+
+<harm staff="1" tstamp="1" place="above">B♭Maj7</harm>
 <harm staff="1" tstamp="2" place="above">Gm7/B♭</harm>
 <harm staff="1" tstamp="4" place="above">Bdim</harm>
 </measure>
@@ -352,10 +377,9 @@
 <verse n="1"><syl wordpos="t">qu’ror,</syl></verse></note>
 </layer></staff>
 
+
 <harm staff="1" tstamp="1" place="above">F/C</harm>
-<harm staff="1" tstamp="2" place="above">F</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
-<harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n82" pname="a" oct="4" dur="2" dots="1">
@@ -364,7 +388,8 @@
 <verse n="1"><syl>in</syl></verse></note>
 </layer></staff>
 
-<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
+
+<harm staff="1" tstamp="4" place="above">E♭/B♭</harm>
 </measure>
 <measure n="27" right="end"><staff n="1"><layer n="1">
 <note xml:id="n84" pname="f" oct="4" dur="2">
@@ -373,8 +398,9 @@
 </layer></staff>
 <fermata startid="#n84" place="above"/>
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">B♭</harm>
+<harm staff="1" tstamp="2" place="above">B♭/F</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
 </measure>
 </section></score></mdiv></body>
