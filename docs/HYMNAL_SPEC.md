@@ -346,7 +346,7 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    else (another language's book names, a chapter the book doesn't have, a part before any book) stays plain text. Only
    the link is made: the Bible text is not copied into the app (it is copyrighted).
 5. **Jukebox card** (below the details; hidden when the hymn has nothing to play: no sheet to play (`Hymn.getSheetToPlay()`,
-   §7.2), or a chords-only sheet): label `JUKEBOX`, then a round Play button (❚❚ while playing) in the book's accent colour,
+   §7.2), or a chords-only sheet): a title row `JUKEBOX` with `Hide ▴` on its right (the fold, below), then a round Play button (❚❚ while playing) in the book's accent colour,
    beside it the **style** list and a thin progress line with `Bar 3 of 16`; under them the tempo (`♩ = 108`: the
    tempo the sheet names, times the slider; a tap on it sets the sheet's own again), a slider from half to one and a
    half times it, by twentieths, and a **Loop** switch (on to begin with: again and again; off: it plays once and stops). It plays
@@ -362,7 +362,11 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    player), and those stop it, as do a change of page and the app being paused. Android draws the card natively
    (`content/JukeboxCard`) and plays through `SheetPlayer` (§7.2), whose page makes the notes with the web app's own
    `jukebox.js`, so both apps sound the same.
-6. **Listen and links card** (below the jukebox; hidden when it has nothing to show): label `LISTEN AND LINKS`, then sections, each with a
+   **Folding** (this card and the next): a tap on the title row folds the card into it (`Show ▾`), as OTHER LANGUAGES
+   folds; the choice is kept for every hymn (Android: preferences `jukeboxFolded`, `linksFolded`, followed at once by
+   the pages next to it; web: `hfw.jukeboxFolded`, `hfw.linksFolded`), and is open to begin with. A folded jukebox goes
+   on playing. (Android: `content/CardFold`; web: `foldTitle` in `app.js`.)
+6. **Listen and links card** (below the jukebox; hidden when it has nothing to show; folds as the jukebox does): a title row `LISTEN AND LINKS` with `Hide ▴`, then sections, each with a
    heading (`RECORDINGS`, `INSTRUMENTAL`, `PIANO VIDEOS`, `NEW TUNES`, in capitals) and the number of links on its right; a section with nothing is left out.
    - **Recordings & Instrumental**: `link` rows of kind `youtube` (first) and `soundcloud`, in `n_order` (imported sorted by recording priority from `recordings.tsv`). Sung recordings (`instrumental` IS NULL/0) are keyed by `hymn_id` and shown under `RECORDINGS`; universal instrumental recordings (`instrumental` = 1) are keyed in `link.hymn_id` by the trimmed **tune code**, capped at **one per tune code** on import (keeping the single highest-priority match, while all matched instrumentals stay preserved in `recordings.tsv`), and shown in their own `INSTRUMENTAL` section right below `RECORDINGS` for every hymn across all languages sharing that tune (so a hymn with only an instrumental recording shows `INSTRUMENTAL` instead of `RECORDINGS`, never mistaken for a vocal recording). A row is a link at least 56 dp tall:
      a round icon (play for sung YouTube, cloud/queue-music for SoundCloud, music note for instrumental) in the book's accent colour, a first line, a second line and an arrow `↗`. The first

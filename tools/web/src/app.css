@@ -431,6 +431,12 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
   .lk-go { display: none; }
 }
 @media print { .links-card, .install { display: none; } }
+/* a card that folds into its title row (foldTitle): the jukebox, the links; "Hide ▴" / "Show ▾" in the book's colour */
+.fold-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 40px; margin: -8px 0; padding: 0;
+  border: 0; background: none; cursor: pointer; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; text-align: left; }
+.fold-act { font: 600 13px var(--ui); letter-spacing: 0; text-transform: none; color: var(--g); white-space: nowrap; }
+.card.folded > :not(h2) { display: none !important; }
+.card.folded > h2 { margin-bottom: 0; }
 /* the jukebox card (jukeboxCard, under the details): Play, the style and how far it has played; the tempo and Loop under them */
 .jukebox-card { margin: 14px 0 8px; padding: 12px 18px 14px; font-size: 14px; }
 .jukebox-card h2 { margin: 0 0 10px; font: 700 12px var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }

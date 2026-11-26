@@ -783,12 +783,29 @@ function metaNode(hymn) {
     items.length ? h('dl', null, items.map(([k, v]) => [h('dt', null, k), h('dd', null, v)])) : null);
 }
 
+// A card of the hymn page that folds into its title row (as the Android app's JUKEBOX and LISTEN AND LINKS, which fold as
+// its OTHER LANGUAGES does): a tap on "TITLE      Hide ▴" hides the rest of the card, "Show ▾" brings it back. Kept for
+// every hymn (store key). -> the card's h2
+function foldTitle(card, title, key) {
+  const act = h('span', {class: 'fold-act'});
+  const btn = h('button', {type: 'button', class: 'fold-head'}, h('span', null, title), act);
+  const show = (folded) => {
+    card.classList.toggle('folded', folded);
+    btn.setAttribute('aria-expanded', String(!folded));
+    act.textContent = folded ? tr('Show') + ' ▾' : tr('Hide') + ' ▴';
+  };
+  btn.addEventListener('click', () => { const folded = !card.classList.contains('folded'); store.set(key, folded); show(folded); });
+  show(!!store.get(key, false));
+  return h('h2', null, btn);
+}
+
 // The jukebox card under the details (as the Android app's, JukeboxCard.java): Play, the style (jukebox.js STYLES: the
 // hymn's own, Piano, Guitar, Melody alone), how far it has played, the tempo and Loop. It plays the hymn's sheet (this
 // device's chord edits, the tempo the sheet names) without opening it; a change while it plays goes on from the same
 // bar. A hymn opens on its sheet's own style (Flowing when it names none); a style picked is for this page only. Loop
 // (on to begin with) and the tempo are kept for every hymn. Shown once the sheet is read, and only when it has a
-// melody (not a sheet of chords only). stopOthers(): the page's other sound stops (the Play button's, the sheet's).
+// melody (not a sheet of chords only). It folds into its title (foldTitle); folded, it goes on playing.
+// stopOthers(): the page's other sound stops (the Play button's, the sheet's).
 // -> {el, stop()}
 function jukeboxCard(hymn, stopOthers) {
   const el = h('section', {class: 'card jukebox-card', hidden: true, 'aria-label': tr('Jukebox')});
@@ -825,7 +842,7 @@ function jukeboxCard(hymn, stopOthers) {
     const speed = h('input', {class: 'jb-speed', type: 'range', min: String(J.MIN_SPEED), max: String(J.MAX_SPEED), step: '0.05', 'aria-label': tr('Tempo')});
     speed.value = String(prefs.speed);
     const loopBtn = h('button', {class: 'jb-loop', type: 'button', 'aria-pressed': String(!!prefs.loop), title: tr('Play again and again')}, tr('Loop'));
-    el.append(h('h2', null, tr('Jukebox')),
+    el.append(foldTitle(el, tr('Jukebox'), 'jukeboxFolded'),
       h('div', {class: 'jb-main'}, playBtn,
         h('div', {class: 'jb-side'}, select, h('div', {class: 'jb-progress'}, h('span', {class: 'jb-track'}, fill), barText))),
       h('div', {class: 'jb-row'}, tempoBtn, speed, loopBtn));
@@ -934,10 +951,11 @@ function linksNode(hymn) {
     return box;
   };
   // every hymn has the search section, so the card is on every hymn page
-  return h('section', {class: 'card links-card'},
-    h('h2', null, tr('Listen and links')),
+  const card = h('section', {class: 'card links-card'});
+  append(card, [foldTitle(card, tr('Listen and links'), 'linksFolded'),   // it folds into its title, as the jukebox does
     section('rec', tr('Recordings'), own), section('inst', tr('Instrumental'), inst),
-    section('piano', tr('Piano videos'), piano), section('tunes', tr('New tunes'), tunes), section('search', tr('Search'), find));
+    section('piano', tr('Piano videos'), piano), section('tunes', tr('New tunes'), tunes), section('search', tr('Search'), find)]);
+  return card;
 }
 
 function familyNode(hymn) {

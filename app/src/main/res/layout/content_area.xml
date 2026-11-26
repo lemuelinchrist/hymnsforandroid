@@ -189,13 +189,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="14dp" android:paddingBottom="12dp">
-                <TextView
-                        style="@style/HymnLabel"
-                        android:layout_width="wrap_content"
+                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="6dp" android:paddingBottom="6dp">
+                <!-- the title row: a tap folds the card into it (CardFold); Hide / Show in the book's colour -->
+                <LinearLayout
+                        android:id="@+id/jukeboxHeader"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/jukebox"
-                        android:layout_marginBottom="8dp"/>
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:minHeight="44dp"
+                        android:background="@drawable/other_languages_row_ripple"
+                        android:clickable="true">
+                    <TextView
+                            style="@style/HymnLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/jukebox"/>
+                    <TextView
+                            android:id="@+id/jukeboxFold"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:id="@+id/jukeboxBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="6dp">
                 <!-- Play, and beside it the style and how far it has played -->
                 <LinearLayout
                         android:layout_width="match_parent"
@@ -290,6 +315,7 @@
                             android:textSize="14sp"
                             app:switchPadding="6dp"/>
                 </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -305,18 +331,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="14dp" android:paddingBottom="16dp">
-                <TextView
-                        style="@style/HymnLabel"
-                        android:layout_width="wrap_content"
+                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="6dp" android:paddingBottom="6dp">
+                <!-- the title row: a tap folds the card into it (CardFold); Hide / Show in the book's colour -->
+                <LinearLayout
+                        android:id="@+id/linksHeader"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/linksCard"
-                        android:layout_marginBottom="6dp"/>
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:minHeight="44dp"
+                        android:background="@drawable/other_languages_row_ripple"
+                        android:clickable="true">
+                    <TextView
+                            style="@style/HymnLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/linksCard"/>
+                    <TextView
+                            android:id="@+id/linksFold"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"/>
+                </LinearLayout>
                 <LinearLayout
                         android:id="@+id/linksList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"/>
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

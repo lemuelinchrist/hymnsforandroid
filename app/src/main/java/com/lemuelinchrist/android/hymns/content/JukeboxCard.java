@@ -30,7 +30,8 @@ import java.util.regex.Pattern;
  * notes with the web app's own jukebox (tools/web/src/jukebox.js), so the two apps sound the same. A change while it
  * plays goes on from the same bar. A hymn opens on its sheet's own style (Flowing when it names none); a style picked is
  * for this page only. Loop (on to begin with) and the tempo are kept for every hymn. The card is hidden for a hymn with
- * nothing to play (no sheet, or a sheet of chords only). One sound at a time: it stops the hymn's Play button, and
+ * nothing to play (no sheet, or a sheet of chords only). It folds into its title row ({@link CardFold}); folded, it
+ * goes on playing. One sound at a time: it stops the hymn's Play button, and
  * the Play button (or another page) stops it.
  */
 public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.Listener {
@@ -173,6 +174,8 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
             if (playing) start();
         });
         showStopped();
+        CardFold.attach(context, hymn.getHymnGroup(), card.findViewById(R.id.jukeboxHeader),
+                card.findViewById(R.id.jukeboxFold), card.findViewById(R.id.jukeboxBody), CardFold.JUKEBOX);
     }
 
     /** Plays, or, while it plays, goes on from the same bar with what the card shows now. */
