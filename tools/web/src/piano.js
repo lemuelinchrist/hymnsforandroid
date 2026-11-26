@@ -230,7 +230,20 @@ function analyse(doc, choice, loop = false) {
     const mel = notes.map((n) => [n.g, n.g + n.d, n.fill ? n.fill[0] : n.p]).sort((a, b) => a[0] - b[0]);
     left = M.accompanyOn({bars: bars.map((b) => ({g: b.g, len: b.len, beat: b.beat, fifths: b.fifths})), first, chords, mel, last, base}).events;
   }
-  return {M, bars, notes, harms, chords, left, upbeat, first, endG, base};
+  // played round again, an upbeat's missing beats are a rest before it comes back (none when the last bar is already short
+  // by them). The rest is not silent: the accompaniment goes on through it, on the first bar's chord (when one starts
+  // there) or else the last chord, as if one more bar began there.
+  let gapG = 0, gapLeft = null, gapChord = null;
+  if (loop && upbeat) {
+    gapG = Math.max(0, (bars[0].nominal - bars[0].len) - (bars[bars.length - 1].nominal - bars[bars.length - 1].len));
+    gapChord = chords.length ? (chords[0].g < bars[0].g + bars[0].len - 1e-6 ? chords[0] : chords[chords.length - 1]) : null;
+    if (gapG > 0 && gapChord && gapChord.info && base && M.parsePattern(base.pat).length) {
+      const b0 = bars[0], at = endG;
+      gapLeft = M.accompanyOn({bars: [{g: at, len: gapG, beat: b0.beat, fifths: b0.fifths}], first: at,
+        chords: [Object.assign({}, gapChord, {g: at, end: at + gapG})], mel: [], last: -1, base}).events;
+    }
+  }
+  return {M, bars, notes, harms, chords, left, upbeat, first, endG, base, gapG, gapLeft, gapChord};
 }
 
 // Adds the piano part to a parsed sheet (in place): choice as above. Returns what it added: {left, right} (numbers
@@ -340,7 +353,7 @@ export function playOrder(bars) {
 export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
   const A = analyse(doc, hands && choice ? choice : {lh: null, rh: {add: 0}}, loop);
   if (!A) return null;
-  const {M, bars, notes, chords, left} = A;
+  const {M, bars, notes, chords, left, gapG, gapLeft, gapChord} = A;
   const per = bars.map(() => []);
   const barIndex = (g) => { let k = 0; while (k < bars.length - 1 && bars[k + 1].g <= g + 1e-6) k++; return k; };
   const put = (bi, e) => per[bi].push(e);
@@ -374,9 +387,7 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
 
   // the left hand, or the chords softly in its place — metrical weighting, arpeggio contour, gentle chord rolls & clean pedal lifts
   const tone = (choice && choice.lh && choice.lh.tone) || 'warm';
-  if (left) {
-    bars.forEach((b, bi) => {
-      const barEvs = left.filter((e) => e.g >= b.g - 1e-6 && e.g < b.g + b.len - 1e-6);
+  const putLeft = (barEvs, b, bi, gap) => {
       const pitches = barEvs.filter((e) => e.p).map((e) => e.p[0]);
       const loP = pitches.length ? Math.min(...pitches) : 40, hiP = pitches.length ? Math.max(...pitches) : 60, spanP = Math.max(1, hiP - loP);
       barEvs.forEach((e, k) => {
@@ -404,10 +415,12 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
           const voiceAdj = e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
           const vel = Math.max(34, Math.min(86, baseVel + voiceAdj));
           const off = roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff;
-          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', inst: e.inst, mute: e.mute, tone: e.inst ? tone : undefined, ids: ['lh' + bi + 'n' + k]});
+          put(bi, {g: e.g, dg: ringDur, note: p, vel, off, hand: 'l', inst: e.inst, mute: e.mute, tone: e.inst ? tone : undefined, ids: gap ? [] : ['lh' + bi + 'n' + k]});
         });
       });
-    });
+  };
+  if (left) {
+    bars.forEach((b, bi) => putLeft(left.filter((e) => e.g >= b.g - 1e-6 && e.g < b.g + b.len - 1e-6), b, bi, false));
   } else {
     chords.forEach((c) => {
       if (!c.info) return;
@@ -437,6 +450,21 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
     });
     at += b.len;
   });
+  // round again, the rest before an upbeat's return keeps sounding: the accompaniment goes on (see analyse)
+  if (gapG > 0 && gapChord && gapChord.info) {
+    const b0 = bars[0], gb = {g: bars[bars.length - 1].g + bars[bars.length - 1].len, len: gapG, nominal: b0.nominal, beat: b0.beat}, gi = bars.length;
+    per[gi] = [];
+    if (gapLeft) putLeft(gapLeft.filter((e) => e.g >= gb.g - 1e-6 && e.g < gb.g + gb.len - 1e-6), gb, gi, true);
+    else M.chordPitches(gapChord.ch).forEach((p, k) => put(gi, {g: gb.g, dg: gapG, note: p, vel: k ? 38 : 48, off: k * 0.01, hand: 'c', ids: []}));
+    per[gi].forEach((e) => {
+      const out = {q: (at + e.g - gb.g) / 4, d: e.dg / 4, note: e.note, vel: e.vel, hand: e.hand, ids: e.ids};
+      if (e.off) out.off = e.off;
+      if (e.inst) out.inst = e.inst;
+      if (e.mute) out.mute = true;
+      if (e.tone) out.tone = e.tone;
+      events.push(out);
+    });
+  }
   // a chord that goes on from one bar to the next is one sound
   events.sort((x, y) => x.q - y.q || x.note - y.note);
   const open = {}, kept = [];
@@ -448,5 +476,6 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
     }
     kept.push(e);
   });
-  return {events: kept, length: at / 4, order, bars: bars.length, idQ, barAt};
+  const loopGap = A.gapG / 4;
+  return {events: kept, length: at / 4, order, bars: bars.length, idQ, barAt, loopGap};
 }

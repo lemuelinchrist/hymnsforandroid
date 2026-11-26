@@ -347,6 +347,19 @@ async function ui(page) {
     assert(await page.locator('.piano-panel').isVisible() && await sp.isHidden(), 'back on the piano sheet: Both hands\' panel, not the Strumming one');
     await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();   // the player row away again
   });
+  await test('played round and round, an upbeat\'s missing beats are a rest before it comes back', async () => {
+    const r = await page.evaluate(async () => {
+      const {scoreOf, DEFAULT} = await import('./piano.js'), {fetchGzJson} = await import('./files.js');
+      const v = await (await fetch('data/version.json')).json(), pack = await fetchGzJson(v.sheets.BF);
+      const doc = (t) => new DOMParser().parseFromString(t.replace(/<back>[\s\S]*<\/back>/, ''), 'application/xml');
+      const lp = scoreOf(doc(pack.BF65), DEFAULT, {hands: true, loop: true}), once = scoreOf(doc(pack.BF65), DEFAULT, {hands: true});
+      const inGap = lp.events.filter((e) => e.q >= lp.length - 1e-6);
+      return {bf65: lp.loopGap, gapNotes: inGap.length, gapHands: [...new Set(inGap.map((e) => e.hand))].join(), gapEnd: Math.max(...inGap.map((e) => e.q)) < lp.length + lp.loopGap, once: once.events.filter((e) => e.q >= once.length - 1e-6).length, e8: scoreOf(doc((await fetchGzJson(v.sheets.E)).E8), DEFAULT, {hands: true, loop: true}).loopGap};
+    });
+    assert(Math.abs(r.bf65 - 3.5) < 1e-6, 'BF65: an eighth-note upbeat and a whole last bar: 3.5 beats of rest: ' + JSON.stringify(r));
+    assert(r.gapNotes > 2 && r.gapHands === 'l' && r.gapEnd && r.once === 0, 'the rest keeps the accompaniment going (and only when looping): ' + JSON.stringify(r));
+    assert(Math.abs(r.e8 - 3) < 1e-6, 'E8: a one-beat upbeat and a whole last bar: 3 beats of rest: ' + JSON.stringify(r));
+  });
   await test('played round and round, the last bar goes on with the pattern instead of one closing strike', async () => {
     const r = await page.evaluate(async () => {
       const {scoreOf, strumChoice, DEFAULT} = await import('./piano.js'), {fetchGzJson} = await import('./files.js');
