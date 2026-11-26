@@ -339,6 +339,9 @@ export function handsOf(doc) {
 // ---- the view ----
 
 export class SheetView {
+  // the sheet's own style is Chorale (its chords are the complex ones that Simplify is for)
+  get chorale() { const l = this.baseHands && this.baseHands.lh; return !!l && l.family === 'dynamic' && l.kind === 'chorale'; }
+
   constructor(root) {
     this.root = root;
     root.classList.add('sheet');
@@ -570,7 +573,7 @@ export class SheetView {
     const fifths = state.shift ? keyFifths(doc) : this.baseFifths;
     const tonic = TONIC[fifths + 7];
     // Simplify: the chords worked out on the sheet as it is (before the guitar's capo and the piano part)
-    const plan = state.simplify && !this.editing && !this.chordsOnly ? simplifyPlan(doc, state.simplify) : null;
+    const plan = state.simplify && this.chorale && !this.editing && !this.chordsOnly ? simplifyPlan(doc, state.simplify) : null;
     this.steps = LETTERS.indexOf(tonic[0]) - LETTERS.indexOf(TONIC[this.baseFifths + 7][0]);
 
     // tail chords are plain text, so they are moved here: by the same interval as the key
