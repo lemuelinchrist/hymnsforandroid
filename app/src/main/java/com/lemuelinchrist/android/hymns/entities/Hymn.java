@@ -345,7 +345,7 @@ public class Hymn {
         if (hasOwnSheetMusic()) return hymnId;
         if (!hasOwnTune() && hasSheetMusic(parentHymn)) return parentHymn;
         if (!hasOwnTune() && hasSheetMusic(ancestorSheetId)) return ancestorSheetId;
-        if (hasOwnTune() && hasSheetMusic(tuneSheetId)) return tuneSheetId;
+        if (hasSheetMusic(tuneSheetId)) return tuneSheetId;
         return null;
     }
 

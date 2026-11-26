@@ -488,6 +488,10 @@ public class HymnsDao {
                 hymn.addRelated(parentHymn.getRelated());
 
             }
+            // no sheet of its own or from a parent (or no parent at all): the sheet of another hymn with the same tune
+            if (!hymn.hasOwnSheetMusic() && hymn.getRootSheetId() == null) {
+                hymn.setTuneSheetId(findSheetByTune(hymn));
+            }
 
             return hymn;
         } catch (Exception e) {

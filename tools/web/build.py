@@ -380,6 +380,8 @@ def build_hymn_shards(assets, groups, sheet_ids, lyric_ids, tunes):
             h['sheetId'] = find_sheet_by_tune(h)
         else:
             h['sheetId'] = None
+        if not h['sheetId']:
+            h['sheetId'] = find_sheet_by_tune(h)   # none of its own or its parent's (or no parent): a same-tune sheet
         h['lyricsId'] = hid if (h['sheetId'] and h['sheetId'] != hid and hid in lyric_ids) else None
         resolved[hid] = h
         return h

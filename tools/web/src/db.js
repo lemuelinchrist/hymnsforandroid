@@ -270,6 +270,7 @@ function loadHymn(id, seen, state) {
   if (!h.first && h.stanzas.length) h.first = plain(h.stanzas[0].text).split('\n')[0];
   // the sheet: its own, else its parent's (or grandparent's; SheetMusicButton.getRootMusicSheet), else a same-tune sheet
   h.sheetId = sheetIds.has(id) ? id : (parent && !h.ownTune ? parent.sheetId : (h.ownTune ? findSheetByTune(h) : null));
+  if (!h.sheetId) h.sheetId = findSheetByTune(h);   // none of its own or its parent's (or no parent): the sheet of a hymn with the same tune
   // a translation that borrows the sheet may have its own words for it (sheetLyrics/<id>.json)
   h.lyricsId = h.sheetId && h.sheetId !== id && lyricIds.has(id) ? id : null;
   if (!state.cut) cache.set(id, h);
