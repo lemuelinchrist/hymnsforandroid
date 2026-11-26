@@ -43,7 +43,7 @@ export function createSheetPanel(pane, o) {
     shift: Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, parseInt(p.get('t') || '0', 10) || 0)),
     scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, parseInt(p.get('z') || '', 10) || prefs.scale)),
     hands: !!prefs.hands,
-    simplify: ['light', 'medium', 'easy'].includes(prefs.simplify) ? prefs.simplify : '',   // simpler chords: shown only (simplify.js)
+    simplify: ['medium', 'easy'].includes(prefs.simplify) ? prefs.simplify : '',   // simpler chords: shown only (simplify.js)
   };
   const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands, simplify: state.simplify});
 
@@ -59,6 +59,12 @@ export function createSheetPanel(pane, o) {
   // "Chords only": the staff hidden, the chords over the words; lit while it is on
   // (just "Chords" under 400 px, where there is no room for more: sheet.css)
   const bStaff = btn([h('span', {class: 'full'}, tr('Chords only')), h('span', {class: 'short'}, tr('Chords'))], tr('Show or hide the staff (H)'), () => set({staff: !state.staff}), 'toggle');
+  // "Simplify" (piano sheet; the guitar sheet keeps Chords only and has Simplify in ⋯): simpler chords on the sheet, a choice of
+  // Original, Medium and Easy (simplify.js)
+  const simplifyMenu = (anchor) => popupMenu(anchor, [['', tr('Original chords')], ['medium', tr('Medium')], ['easy', tr('Easy')]].map(([level, label]) =>
+    ({icon: 'edit', label, checked: state.simplify === level, run: () => set({simplify: level})})), 'sheet-menu');
+  const bSimple = btn(tr('Simplify'), tr('Simpler chords on the sheet'), () => simplifyMenu(bSimple), 'toggle');
+  bSimple.setAttribute('aria-haspopup', 'menu');
   const bZoomOut = btn(icon('zoomOut'), tr('Smaller (Z)'), () => set({scale: state.scale - 5}), 'icon');
   const bZoomIn = btn(icon('zoomIn'), tr('Bigger (Shift+Z)'), () => set({scale: state.scale + 5}), 'icon');
   // both hands: a piano part made from the chords (piano.js); how the hands play is chosen in the panel at the bottom
@@ -78,18 +84,13 @@ export function createSheetPanel(pane, o) {
     // what the bar had no room for (fit(), sheet.css) is here instead: Both hands, then the zoom
     const fit = +bar.dataset.fit || 0;
     if (fit >= 3 && !bHands.hidden) items.push({icon: 'piano', label: tr('Both hands'), checked: !!state.hands, run: () => set({hands: !state.hands})});
-    if (fit >= 5 && !bStaff.hidden) items.push({icon: 'staff', label: tr('Chords only'), checked: !state.staff, run: () => set({staff: !state.staff})});
+    if ((fit >= 5 || !state.guitar) && !view.chordsOnly) items.push({icon: 'staff', label: tr('Chords only'), checked: !state.staff, run: () => set({staff: !state.staff})});
     if (fit >= 1) {
       if (state.scale > MIN_SCALE) items.push({icon: 'zoomOut', label: tr('Smaller'), run: () => set({scale: state.scale - 5})});
       if (state.scale < MAX_SCALE) items.push({icon: 'zoomIn', label: tr('Bigger'), run: () => set({scale: state.scale + 5})});
     }
     if (!view.chordsOnly) items.push({icon: 'edit', label: view.editing ? tr('Stop editing chords') : tr('Edit chords'), run: () => setEdit(!view.editing)});
-    // simpler chords on the sheet (not in the sound): Lighter keeps the chords' places, Medium a chord for two beats, Easy for a bar
-    if (!view.chordsOnly && !view.editing) {
-      for (const [level, label] of [['light', tr('Simpler chords: lighter')], ['medium', tr('Simpler chords: medium')], ['easy', tr('Simpler chords: easy')]]) {
-        items.push({icon: 'edit', label, checked: state.simplify === level, run: () => set({simplify: state.simplify === level ? '' : level})});
-      }
-    }
+    if (!view.chordsOnly && !view.editing && (state.guitar || fit >= 5)) items.push({icon: 'edit', label: tr('Simplify chords'), checked: !!state.simplify, run: () => simplifyMenu(bMore)});
     if (view.hasEdits()) items.push({icon: 'original', label: tr('Original chords'), checked: !!state.original, run: () => set({original: !state.original})});
     if (state.shift || state.scale !== DEFAULT_SCALE) items.push({icon: 'reset', label: tr('Original key and size'), run: () => set({shift: 0, scale: DEFAULT_SCALE})});
     // dark theme only: the sheet on light paper (black on white); remembered like the zoom
@@ -129,6 +130,7 @@ export function createSheetPanel(pane, o) {
     first ? exit : null,
     h('div', {class: 'seg'}, bPiano, bGuitar),
     bStaff,
+    bSimple,
     h('div', {class: 'transpose'}, bDown, keyLabel, bUp),
     bHands,
     h('div', {class: 'zoom'}, bZoomOut, bZoomIn),
@@ -274,7 +276,9 @@ export function createSheetPanel(pane, o) {
     bPiano.setAttribute('aria-pressed', String(!state.guitar));
     bGuitar.setAttribute('aria-pressed', String(state.guitar));
     bStaff.setAttribute('aria-pressed', String(!state.staff));
-    bStaff.hidden = !!view.chordsOnly;
+    bStaff.hidden = !!view.chordsOnly || !state.guitar;   // the piano sheet has Simplify here, Chords only is in ⋯
+    bSimple.hidden = !!view.chordsOnly || state.guitar;
+    bSimple.setAttribute('aria-pressed', String(!!state.simplify));
     bPlay.hidden = !full || !!view.chordsOnly;   // a sheet of chords over the words has no notes to play
     if (sp) {
       bPlay.replaceChildren(icon(sp.playing ? 'pause' : 'play'));

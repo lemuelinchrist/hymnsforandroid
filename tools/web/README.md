@@ -64,7 +64,7 @@ In front, what is used most: **Piano | Guitar**, **Chords only** (hides the staf
 guitarists and for those who read only chords), the key (**−** and **+**), **Both hands**, the zoom, and **⤢ Sheet only, for a music stand** (the
 sheet alone has ✕ back to the lyrics there). The rest is in **⋯**: **Edit chords** (for players who reharmonize; `E`),
 **Original chords** once the sheet has edits (a dot on ⋯ while it is on; `O`), **Original key and size** after a change,
-**Simpler chords** (lighter, medium, easy; a dot on ⋯ while it is on), **Light paper** in the dark theme, **Print** and **Save MIDI**. **Print** prints the sheet alone as it is shown (the key, Chords only, Both hands, edited
+**Chords only** (piano sheet; the guitar sheet has it as a button), **Simplify chords** (guitar sheet; the piano sheet has a Simplify button instead; Original, Medium or Easy, with a dot on ⋯ while it is on), **Light paper** in the dark theme, **Print** and **Save MIDI**. **Print** prints the sheet alone as it is shown (the key, Chords only, Both hands, edited
 chords), black on white: `sheet.js` lays the music out a page wide in page-high pieces that fit A4 and Letter, so no
 line of music is cut between pages (it does so for the browser's own printing too), and `sheet.css` leaves the rest of
 the page out (`html.print-sheet`). The hymn page has no print button of its own (the browser's Print still gives the
@@ -264,8 +264,7 @@ Offline: the service worker precaches only the core shell (`SHELL`) and `data/ve
 
 ### Simpler chords
 
-`src/simplify.js` makes the chords on the sheet simpler, at three levels: *lighter* (the same places, a triad or a plain
-dominant seventh, no slash bass), *medium* (a chord for two beats at least) and *easy* (a chord for the bar). It changes only
+`src/simplify.js` makes the chords on the sheet simpler, at two levels (and Original): *medium* (a chord for two beats at least) and *easy* (a chord for the bar). It changes only
 what is shown, never the sheet, the chord edits or the sound (`sheet.js` works it out on the sheet before the guitar's capo and
 the piano part, and leaves the bars the user edited as they are). `node tools/web/tests/simplify.mjs E84` shows a hymn's bars
 at each level, `--stats` the chords per bar over the English sheets, `--mei <level> <id>` the sheet with those chords.

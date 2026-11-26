@@ -4,8 +4,8 @@
 // A bar is {unit, count, len, events: [{onset, len, pc}], chords: [[tstamp, text]]}: the meter, the bar's length and its melody
 // notes (pitch class, in the meter's unit from beat 1) and its chords, as sheet.js scanBars reads them.
 //
-//   Lighter  the same chords at the same places, in a simple shape: a triad (major, minor, diminished, augmented) or a plain
-//            dominant seventh; no slash bass; a chord equal to the one before it in the bar is not written again.
+//   Lighter  (not offered; the last bars use its slots) the same chords at the same places, in a simple shape: a triad (major, minor, diminished, augmented) or a plain
+//            dominant seventh; no slash bass; a chord equal to the one before it (in the bar) is not written again.
 //   Medium   also a chord for two beats at least: the bar is cut in pairs of beats (half bars) and each gets one chord, the one
 //            that stays closest to the original harmony and fits the melody; the last two bars keep their rhythm.
 //   Easy     one chord for the bar (long bars: for each half), triads only, from the original chords and the key's main chords;
@@ -15,7 +15,8 @@
 // the chord does not hold, the time the original played another chord, a change of chord, and (a little) a chord the original
 // did not have.
 
-export const LEVELS = ['light', 'medium', 'easy'];
+// (the sheet shows Medium and Easy; Lighter is what the bars at the end are cut by)
+export const LEVELS = ['medium', 'easy'];
 
 const NAT = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11};
 const ALT = {'♭': -1, '♯': 1, '𝄫': -2, '𝄪': 2, b: -1, '#': 1};
@@ -181,7 +182,7 @@ export function simplifyBars(bars, level, skip) {
     const res = [];
     slots.filter((s) => s.bar === i && s.pick).forEach((s) => {
       const text = spellPc(s.pick.pc) + SUFFIX[s.pick.type];
-      if (text !== prev || res.length === 0) { res.push([Math.round(s.tstamp * 1000) / 1000, text]); prev = text; }
+      if (text !== prev) { res.push([Math.round(s.tstamp * 1000) / 1000, text]); prev = text; }
     });
     out[i] = res;
   });
