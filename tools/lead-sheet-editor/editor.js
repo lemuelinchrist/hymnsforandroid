@@ -404,7 +404,7 @@
     heardIdx = i; requestAnimationFrame(follow);
   }
 
-  // ---- the keyboard at the bottom: what sounds at the chosen note, and a way to set a pitch
+  // ---- the keyboard at the bottom: what sounds at the chosen note, and a way to listen to a pitch (it never changes the sheet)
   var KEY_LO = 36, KEY_HI = 84, keyEls = {};
   function buildKeys() {
     var box = $('keys'), whites = 0, p;
@@ -419,7 +419,7 @@
     }
     box.addEventListener('mousedown', function (e) {
       var k = e.target.closest('.k'); if (!k || !sheet) return;
-      e.preventDefault(); keyPressed(+k.dataset.p, e.shiftKey);
+      e.preventDefault(); keyPressed(+k.dataset.p);
     });
   }
   function keyboard() {
@@ -432,16 +432,9 @@
     if (rh && rh[mi] && (hand === 'n' || t < M.total(sheet.notes))) rh[mi].forEach(function (p) { if (keyEls[p]) keyEls[p].classList.add('left'); });
     if (m && !M.isRest(m) && (hand === 'n' || t < M.total(sheet.notes)) && keyEls[m.p]) keyEls[m.p].classList.add('mel');
   }
-  function keyPressed(p, shift) {
-    var n = list()[sel];
-    if (hand === 'l' && n) {
-      edit(function () { var ps = M.pitchesOf(n), at = ps.indexOf(p); if (at >= 0) ps.splice(at, 1); else ps.push(p); n.p = ps.length ? ps.sort(function (a, b) { return a - b; }) : null; delete n.tie; head = -1; });
-    } else if (shift && hand === 'n' && n && !M.isRest(n) && p < n.p) {   // a note added under the melody, by hand
-      edit(function () { var hs = (rh && rh[sel] ? rh[sel].slice() : []), at = hs.indexOf(p); if (at >= 0) hs.splice(at, 1); else hs.push(p); n.h = hs.sort(function (a, b) { return a - b; }); });
-      if (!prefs.left) { prefs.left = true; keep(); render(); }
-    }
-    else if (n) edit(function () { n.p = p; delete n.e; delete n.tie; n.w = n.w || ['']; });
+  function keyPressed(p) {   // the keyboard only plays: it never changes the sheet
     try { S.note(p, S.now(), 0.4, 0.22, prefs.tone); } catch (e) {}
+    light([p], 400);
   }
   function light(ps, ms) {
     ps.forEach(function (p) { var k = keyEls[p]; if (!k) return; k.classList.add('sound'); setTimeout(function () { k.classList.remove('sound'); }, Math.max(80, ms)); });

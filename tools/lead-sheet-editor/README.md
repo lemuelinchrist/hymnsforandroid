@@ -37,7 +37,7 @@ file may hold hand edits. The page draws with the app's own Verovio (`app/src/ma
   speed, Follow, **Go to this note**, and a long slider to jump anywhere in the song: grey lines are the places set by
   ear, the red one is the chosen note), then the keyboard. The player (Play, Loop, Click, speed, which parts sound, piano or organ tone) and a **keyboard** that shows
   what sounds at the chosen note: the melody note red, the piano part green, the notes of the chord with a dot. A click
-  on a key sets the chosen note to it; Shift and a key below the melody adds or removes a right-hand note.
+  on a key only plays it: it never changes the sheet (set a pitch with ↑ ↓ or the letters A–G).
 
 ## Guide: correcting a sheet step by step
 
@@ -204,7 +204,7 @@ figure that would reach the melody goes down an octave, whole, so the hands do n
 **Writing it out.** When the pattern is nearly right but single notes should be different, **Write it out as notes…**
 turns the left hand into notes of its own. From then on they are changed like melody notes (click one; ↑ ↓, the lengths,
 S, T, R, Delete, Ctrl C / V); on a chord, a click on one of its notes chooses that note alone, a second click the whole
-chord again; **Shift A–G** or a key of the keyboard adds a note to the chord. The chords no longer move a written-out
+chord again; **Shift A–G** adds a note to the chord. The chords no longer move a written-out
 left hand: **This bar from the chords again** makes the chosen bars anew, **Back to the pattern** drops the written
 notes. This is the way to a full piano sheet: let the pattern do most of it, then write the rest.
 
@@ -220,8 +220,7 @@ The added notes are the nearest notes of the chord from a third below the melody
 never below the F under middle C), so a note with no chord over it yet gets none. They are green on the sheet, they
 sound with the piano part, and the left hand stays under them.
 
-**One note by hand**: click the note and click a key of the keyboard below the melody: that note is added, or taken
-away if it was there. A note set by hand keeps its added notes whatever the card says (`h` in the file);
+**One note by hand**: the keyboard below no longer sets notes (it only plays), so a right-hand note by hand is not offered now. A note set by hand keeps its added notes whatever the card says (`h` in the file);
 **These notes as the choice above says** gives the chosen notes back to the card.
 
 ### 10. The head of the sheet
