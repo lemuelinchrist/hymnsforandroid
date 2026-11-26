@@ -23,6 +23,10 @@ def hymns():
     if not _cache: _cache.append(_hymns())
     ok = {}
     if os.path.exists(VERDICTS): ok = json.load(open(VERDICTS, encoding='utf8'))
+    only = os.path.join(PROJ, 'review', 'only.txt')   # optional: ids to show, instead of the usual list
+    if os.path.exists(only):
+        ids = open(only, encoding='utf8').read().split()
+        return [dict(h, first=True) for i in ids for h in _cache[0] if h['id'] == i]
     return [h for h in _cache[0] if h['first'] and ok.get(h['id'], {}).get('verdict') != 'ok']
 
 def _hymns():
