@@ -2,7 +2,7 @@
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">Must I go, and empty-handed</title>
 <title type="subordinate">Preaching of the Gospel—Empty-handed?</title>
-</titleStmt><pubStmt><identifier type="hymn">E930</identifier><identifier type="number">930</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
+</titleStmt><pubStmt><identifier type="hymn">E930</identifier><identifier type="number">930</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="0" meter.count="6" meter.unit="8" midi.bpm="80"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
@@ -20,8 +20,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="2.33333" place="above">Dm7/C</harm>
-<harm staff="1" tstamp="2.66667" place="above">C</harm>
+<harm staff="1" tstamp="5" place="above">Dm7/C</harm>
+<harm staff="1" tstamp="6" place="above">C</harm>
 <slur startid="#n3" endid="#n4"/>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
@@ -35,8 +35,8 @@
 <verse n="1"><syl eol="1" wordpos="t">ed,”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="1.66667" place="above">F/C</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n10" dur="4" pname="f" oct="4">
@@ -52,8 +52,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
-<harm staff="1" tstamp="2.33333" place="above">C/G</harm>
-<harm staff="1" tstamp="2.66667" place="above">G</harm>
+<harm staff="1" tstamp="5" place="above">C/G</harm>
+<harm staff="1" tstamp="6" place="above">G</harm>
 <slur startid="#n12" endid="#n13"/>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
@@ -65,8 +65,8 @@
 <verse n="1"><syl eol="1">meet?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
-<harm staff="1" tstamp="1.66667" place="above">G7</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -83,8 +83,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="2.33333" place="above">Dm7/C</harm>
-<harm staff="1" tstamp="2.66667" place="above">C</harm>
+<harm staff="1" tstamp="5" place="above">Dm7/C</harm>
+<harm staff="1" tstamp="6" place="above">C</harm>
 <slur startid="#n20" endid="#n21"/>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
@@ -98,8 +98,8 @@
 <verse n="1"><syl eol="1">Him,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="1.66667" place="above">F/C</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n27" dur="4" pname="a" oct="4">
@@ -112,8 +112,8 @@
 <verse n="1"><syl wordpos="t">y</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">C/E</harm>
-<harm staff="1" tstamp="2.66667" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C/E</harm>
+<harm staff="1" tstamp="6" place="above">C</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n31" dur="4" pname="e" oct="4">
@@ -124,8 +124,8 @@
 <verse n="1"><syl eol="1">feet?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
-<harm staff="1" tstamp="1.66667" place="above">G7</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
@@ -142,8 +142,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="2.33333" place="above">CMaj7</harm>
-<harm staff="1" tstamp="2.66667" place="above">F/C</harm>
+<harm staff="1" tstamp="5" place="above">CMaj7</harm>
+<harm staff="1" tstamp="6" place="above">F/C</harm>
 <slur startid="#n36" endid="#n37"/>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -157,8 +157,8 @@
 <verse n="1"><syl eol="1" wordpos="t">ed?”</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="1.66667" place="above">F/C</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n43" dur="4" pname="c" oct="5">
@@ -174,8 +174,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Am</harm>
-<harm staff="1" tstamp="2.33333" place="above">E/B</harm>
-<harm staff="1" tstamp="2.66667" place="above">Am/C</harm>
+<harm staff="1" tstamp="5" place="above">E/B</harm>
+<harm staff="1" tstamp="6" place="above">Am/C</harm>
 <slur startid="#n45" endid="#n46"/>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
@@ -187,9 +187,9 @@
 <verse n="1"><syl eol="1">so?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G/D</harm>
-<harm staff="1" tstamp="1.66667" place="above">D7</harm>
-<harm staff="1" tstamp="2" place="above">G</harm>
-<harm staff="1" tstamp="2.66667" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">D7</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
+<harm staff="1" tstamp="6" place="above">G7</harm>
 </measure>
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
@@ -206,8 +206,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="2.33333" place="above">Dm7/C</harm>
-<harm staff="1" tstamp="2.66667" place="above">C</harm>
+<harm staff="1" tstamp="5" place="above">Dm7/C</harm>
+<harm staff="1" tstamp="6" place="above">C</harm>
 <slur startid="#n53" endid="#n54"/>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
@@ -221,8 +221,8 @@
 <verse n="1"><syl eol="1">Him:</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="1.66667" place="above">F/C</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n60" dur="4" pname="a" oct="4">
@@ -235,8 +235,8 @@
 <verse n="1"><syl wordpos="m" con="d">ty-</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">C/E</harm>
-<harm staff="1" tstamp="2.66667" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C/E</harm>
+<harm staff="1" tstamp="6" place="above">C</harm>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n64" dur="4" pname="e" oct="4">
@@ -247,8 +247,8 @@
 <verse n="1"><syl eol="1">go?</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
-<harm staff="1" tstamp="1.66667" place="above">G7</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

@@ -2,7 +2,7 @@
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">Our goal—the holy city with the Lord</title>
 <title type="subordinate">Ultimate Manifestation—Our Goal</title>
-</titleStmt><pubStmt><identifier type="hymn">E973</identifier><identifier type="number">973</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
+</titleStmt><pubStmt><identifier type="hymn">E973</identifier><identifier type="number">973</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="0" meter.count="6" meter.unit="8" midi.bpm="125"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
@@ -15,7 +15,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="2" place="above">Cdim7</harm>
+<harm staff="1" tstamp="4" place="above">Cdim7</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n4" dur="4" dots="1" pname="g" oct="4">
@@ -39,8 +39,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="2" place="above">Dm/F</harm>
-<harm staff="1" tstamp="2.33333" place="above">F</harm>
+<harm staff="1" tstamp="4" place="above">Dm/F</harm>
+<harm staff="1" tstamp="5" place="above">F</harm>
 <slur startid="#n8" endid="#n9"/>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
@@ -50,7 +50,7 @@
 <rest xml:id="r13" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 <slur startid="#n11" endid="#n12"/>
 </measure>
 <sb/>
@@ -86,9 +86,9 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gsus4</harm>
-<harm staff="1" tstamp="1.66667" place="above">G7</harm>
-<harm staff="1" tstamp="2.33333" place="above">Em/G</harm>
-<harm staff="1" tstamp="2.66667" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
+<harm staff="1" tstamp="5" place="above">Em/G</harm>
+<harm staff="1" tstamp="6" place="above">G7</harm>
 <slur startid="#n21" endid="#n22"/>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
@@ -108,7 +108,7 @@
 <verse n="1"><syl>our</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7/D</harm>
-<harm staff="1" tstamp="2" place="above">G7/B</harm>
+<harm staff="1" tstamp="4" place="above">G7/B</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n29" dur="4" dots="1" pname="g" oct="4">
@@ -129,9 +129,9 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7/D</harm>
-<harm staff="1" tstamp="1.66667" place="above">G7/F</harm>
-<harm staff="1" tstamp="2" place="above">C/E</harm>
-<harm staff="1" tstamp="2.66667" place="above">G7/D</harm>
+<harm staff="1" tstamp="3" place="above">G7/F</harm>
+<harm staff="1" tstamp="4" place="above">C/E</harm>
+<harm staff="1" tstamp="6" place="above">G7/D</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n35" dur="4" dots="1" pname="f" oct="4">
@@ -140,7 +140,7 @@
 <rest xml:id="r37" dur="8"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 <slur startid="#n35" endid="#n36"/>
 </measure>
 <sb/>
@@ -153,7 +153,7 @@
 <verse n="1"><syl wordpos="t">its</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="2" place="above">Adim7</harm>
+<harm staff="1" tstamp="4" place="above">Adim7</harm>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n41" dur="4" pname="c" oct="5">
@@ -166,7 +166,7 @@
 <verse n="1"><syl wordpos="t">rious</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n45" dur="4" pname="a" oct="4">
@@ -177,8 +177,8 @@
 <note xml:id="n48" dur="8" pname="f" oct="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Gsus2</harm>
-<harm staff="1" tstamp="1.66667" place="above">C/G</harm>
-<harm staff="1" tstamp="2.66667" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">C/G</harm>
+<harm staff="1" tstamp="6" place="above">G7</harm>
 <slur startid="#n45" endid="#n46"/>
 <slur startid="#n47" endid="#n48"/>
 </measure>
@@ -199,7 +199,7 @@
 <verse n="1"><syl wordpos="t">its</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="2" place="above">Adim7</harm>
+<harm staff="1" tstamp="4" place="above">Adim7</harm>
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n54" dur="4" pname="e" oct="5">
@@ -212,7 +212,7 @@
 <verse n="1"><syl wordpos="t">rious</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n58" dur="4" pname="b" oct="4">
@@ -223,8 +223,8 @@
 <note xml:id="n61" dur="8" pname="d" oct="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G7</harm>
-<harm staff="1" tstamp="1.66667" place="above">Gsus2</harm>
-<harm staff="1" tstamp="2" place="above">G7</harm>
+<harm staff="1" tstamp="3" place="above">Gsus2</harm>
+<harm staff="1" tstamp="4" place="above">G7</harm>
 <slur startid="#n58" endid="#n59"/>
 <slur startid="#n60" endid="#n61"/>
 </measure>

@@ -253,7 +253,7 @@ def convert(hid, db, write, out_dir):
             snd = [p for s_, e_, p in notes if s_ <= t < e_]
             name = chord_name(snd, kind, 0) or prev
             if name and name != prev:
-                out.append((1 + (t - t0) / q / beat, name)); prev = name
+                out.append((1 + (t - t0) / q / (16 // o_d), name)); prev = name   # (a tstamp counts the meter's unit, eighths in 6/8, not the beat)
         return out
     sop_by_start = {t // q: i for i, (t, e, p) in enumerate(sop)}
     last_voiced = None
