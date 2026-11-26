@@ -113,6 +113,13 @@ A long note that crosses a bar line is still one note here: give it its whole le
   notes (**S**), click the second and press **T** (or **Tie**). It takes the pitch of the note before it, is drawn tied
   to it and is not played again; its own chord stays on it. T again makes it a separate note. In the file: `"tie": true`.
   A long note that only crosses a bar line needs none of this (step 4).
+- **A triplet** (three notes in the time of two, drawn with a bracket and a 3): click one note of an eighth, quarter
+  or half note's length and press **8** (or **Triplet**): it becomes three notes in the same time (the first keeps the
+  word; give the others pitches and words). Or choose three notes and press **8**: they become a triplet in the time
+  of their sum when that is an eighth, quarter or half note's time, else in the time of two of the first note's.
+  **8** on a triplet makes it three plain notes again. The three are played evenly. In the file the first note has
+  `"tp": true` and the three keep whole-sixteenth lengths (a quarter-note triplet is 3 + 2 + 3), which the page sets
+  itself; change the length of one and the triplet is dropped.
 - **A rest**: click the note and press **R**. R again makes it a note.
 - **A line that comes again**: choose its notes (Shift →, or Shift click on the last one), **Ctrl C**, click the note it
   should follow, **Ctrl V**. The notes come with their chords and without their words, since a repeated line is mostly
@@ -289,6 +296,7 @@ sheet is shown: "Both hands", `tools/web/README.md`. It does not read `piano.mei
 | a note's `p` | MIDI pitch (60 = middle C), `null` for a rest |
 | `d` | length in sixteenths (2 = eighth, 4 = quarter, 6 = dotted quarter); any length, the page writes ties where needed |
 | `w` | the syllable, one per verse; ends in `-` when the word goes on; `""` = held from the note before |
+| `tp` | `true` on the first of three notes: they are a triplet (a tuplet in the MEI, played evenly); the three's lengths add up to 4, 8 or 16 sixteenths and the page sets them |
 | `tie` | `true`: this note is the note before it held on (same pitch): drawn tied, not played again |
 | `ch`, `c`, `e` | chord symbol above the note; a comment; `true` to spell the note the other way (D♭ for C♯) |
 | `acc` | the left hand's pattern for the whole song: `{"pat": "1 5 8 5", "rate": 2, "low": 36, "pedal": true, "end": false, "style": "arp/open"}`. `pat` as in step 8; `rate` the length of a step in sixteenths (0 = one held step); `low` the lowest bass note (MIDI, 40 = E2 is the default: the bass is the first such note from there up; below it the sound is muddy and distorts); `end: false` plays the pattern to the end in place of a held last chord; `style` only tells the page which button to light. No `acc`: no left hand |
@@ -312,7 +320,7 @@ sheet is shown: "Both hands", `tools/web/README.md`. It does not read `piano.mei
 
 ## Limits
 
-One voice in each hand (the right hand's added notes move with the melody, in its rhythm); no triplets, no repeats or endings (write the lines out); the keys with up to six sharps or
+One voice in each hand (the right hand's added notes move with the melody, in its rhythm); triplets only of three equal notes (eighth, quarter, half), no repeats or endings (write the lines out); the keys with up to six sharps or
 five flats. A written-out left hand does not follow later changes of the melody's lengths: it keeps its own time. A
 sheet from someone's recording is a derivative of their arrangement: it stays in `temp/` (not tracked) until the owner
 decides what goes into the app.

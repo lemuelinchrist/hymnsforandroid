@@ -318,6 +318,35 @@ test('guitar with a capo: the guitar sheet\'s shape, above the capo, no slash ba
   assert.strictEqual(M.guitarShape(M.chordInfo('E'), 4)[1], 52, 'the C shape four frets higher: C3 on the A string sounds E3');
 });
 
+// a triplet: three notes in the time of two, whole sixteenths on the grid, a real tuplet in the MEI, even in playback
+function tripSong() {
+  const s = song();
+  s.notes.splice(4, 1, {p: 76, d: 6, w: ['to'], ch: 'C', tp: true}, {p: 77, d: 1, w: ['my']}, {p: 76, d: 1, w: ['sake']});
+  return s;
+}
+test('triplet: the lengths are fixed up, an invalid one is dropped', () => {
+  const s = tripSong(); M.fixTriplets(s.notes);
+  assert.deepStrictEqual(s.notes.slice(4, 7).map(n => n.d), [3, 2, 3]);
+  assert.strictEqual(M.total(s.notes), M.total(song().notes), 'the bar is still whole');
+  const bad = tripSong(); bad.notes[5].d = 4; bad.notes[6].d = 7; M.fixTriplets(bad.notes);   // 3+4+... no longer 4, 8 or 16
+  assert.ok(!bad.notes[4].tp, 'tp is dropped when the sum is no triplet');
+  assert.deepStrictEqual(M.tripSplit(4), [1, 2, 1]); assert.deepStrictEqual(M.tripSplit(16), [5, 6, 5]);
+});
+test('triplet: the MEI writes a tuplet of quarters and the bars add up', () => {
+  const s = tripSong(); M.fixTriplets(s.notes);
+  const mei = M.toMei(s);
+  assert.ok(/<tuplet num="3" numbase="2"[^>]*>(<note[^>]*dur="4"[^>]*>(<verse.*?<\/verse>)?<\/note>){3}<\/tuplet>/.test(mei.replace(/\n/g, '')), 'three quarters in a tuplet');
+  assert.deepStrictEqual(barSums(mei)[2].length, 1);
+  const eighths = tripSong(); eighths.notes.splice(4, 3, {p: 76, d: 2, tp: true, w: ['a']}, {p: 77, d: 1, w: ['b']}, {p: 76, d: 1, w: ['c']}, {p: 74, d: 4, w: ['d']}); M.fixTriplets(eighths.notes);
+  assert.ok(/<tuplet[^>]*><beam>(<note[^>]*dur="8"[^>]*>(<verse.*?<\/verse>)?<\/note>){3}<\/beam><\/tuplet>/.test(M.toMei(eighths).replace(/\n/g, '')), 'eighth triplet beamed inside the tuplet');
+});
+test('triplet: played evenly', () => {
+  const s = tripSong(); M.fixTriplets(s.notes);
+  const mel = M.playList(s).mel, g = mel.filter(m => m.i >= 4 && m.i <= 6);
+  assert.ok(Math.abs(g[1].t - g[0].t - 8 / 3) < 1e-9 && Math.abs(g[0].d - 8 / 3) < 1e-9 && Math.abs(g[2].t + g[2].d - g[0].t - 8) < 1e-9);
+  assert.strictEqual(mel.find(m => m.i === 7).t, M.onsets(s.notes)[7], 'what follows is on the grid');
+});
+
 // the app's Verovio takes it all
 const vfile = path.join(__dirname, '../../app/src/main/assets/viewer/verovio-toolkit-wasm.js');
 if (!fs.existsSync(vfile)) { console.log(count + ' tests passed (Verovio not found: its test is left out)'); return; }
@@ -334,6 +363,13 @@ const verovio = require(vfile);
       const svg = tk.renderToSVG(1);
       assert.ok(svg.includes('id="l1"') && svg.includes('con pedale'));
     })));
+  });
+  test('Verovio reads a triplet, with both staves', () => {
+    const s = tripSong(); M.fixTriplets(s.notes);
+    s.acc = {pat: '1 5 8 5', rate: 2, low: 48};
+    assert.ok(tk.loadData(M.toMei(s)));
+    assert.ok(tk.loadData(M.toMei(s, {left: M.accompany(s).events})));
+    assert.ok(tk.renderToSVG(1).includes('class="tuplet'), 'the 3 is drawn');
   });
   test('voice2 emits layer 2 only in non-rest measures and works with accompaniment', () => {
     const s = song();

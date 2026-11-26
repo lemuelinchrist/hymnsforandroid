@@ -122,6 +122,42 @@
   function gridOff(sheet) { var bar = barLen(sheet); return sheet.pickup > 0 && sheet.pickup < bar ? bar - sheet.pickup : 0; }
   function onsets(events) { var t = 0; return events.map(function (n) { var s = t; t += len(n); return s; }); }
   function total(events) { var t = 0; events.forEach(function (n) { t += len(n); }); return t; }
+  // ---- triplets: three notes with the first marked "tp" are played in the time of two. They keep whole-sixteenth lengths
+  // here (so the bars, the chords and the left hand stay on the grid): the three of a span S (4, 8 or 16 sixteenths: an
+  // eighth, quarter or half note triplet) are S/3 rounded; the MEI writes them as a real tuplet, and playList plays
+  // them evenly.
+  var TRIP = {4: 2, 8: 4, 16: 8};   // the span -> the written length of each note
+  function tripSplit(S) { var a = Math.round(S / 3), b = Math.round(2 * S / 3); return [a, b - a, S - b]; }
+  function fixTriplets(notes) {   // keeps "tp" only where this note and the next two make a triplet, and gives them their lengths
+    for (var i = 0; i < notes.length; i++) {
+      var n = notes[i];
+      if (!n.tp) continue;
+      var a = notes[i + 1], b = notes[i + 2], S = a && b ? len(n) + len(a) + len(b) : 0;
+      if (!TRIP[S]) { delete n.tp; continue; }
+      var sp = tripSplit(S); n.d = sp[0]; a.d = sp[1]; b.d = sp[2]; delete a.tp; delete b.tp; i += 2;
+    }
+    return notes;
+  }
+  function triplets(notes) {   // event index -> {k: 0..2, S, W (written length), at (index of the first)}
+    var out = {};
+    for (var i = 0; i + 2 < notes.length; i++) {
+      if (!notes[i].tp) continue;
+      var S = len(notes[i]) + len(notes[i + 1]) + len(notes[i + 2]);
+      if (!TRIP[S]) continue;
+      for (var k = 0; k < 3; k++) out[i + k] = {k: k, S: S, W: TRIP[S], at: i};
+      i += 2;
+    }
+    return out;
+  }
+  function timing(notes) {   // [{t, d}] in sixteenths, a triplet's notes evenly
+    var G = triplets(notes), t = 0, t0 = 0;
+    return notes.map(function (n, i) {
+      var g = G[i], d = g ? g.S / 3 : len(n), r = {t: t, d: d};
+      if (g && g.k === 0) t0 = t;
+      t = g ? (g.k === 2 ? t0 + g.S : t + d) : t + d;   // the end of a triplet is exactly on the grid
+      return r;
+    });
+  }
   // A note with "tie" is not sounded again: it is the note before it held on (same pitch), e.g. under a new chord.
   function tied(events, i) { var n = events[i], b = events[i - 1]; return !!(n && b && n.tie && samePitches(n, b)); }
 
@@ -157,7 +193,24 @@
         n -= take;
       }
     }
-    events.forEach(function (n, idx) { put(idx, isRest(n), len(n)); placed += len(n); });
+    var G = triplets(events), skip = 0;
+    events.forEach(function (n, idx) {
+      if (skip) { skip--; return; }
+      var g = G[idx];
+      if (g && g.k === 0) {   // a triplet is written whole: it needs the room in one bar, else it is written as plain notes
+        if (pos >= cur.len) open();
+        if (pos + g.S <= cur.len) {
+          var off0 = bar - cur.len;
+          for (var k = 0; k < 3; k++) {
+            var e = events[idx + k];
+            cur.items.push({id: pre + (idx + k), idx: idx + k, v: g.W, pos: pos + off0, rest: isRest(e), tp: k + 1});
+            pos += len(e);
+          }
+          placed += g.S; skip = 2; return;
+        }
+      }
+      put(idx, isRest(n), len(n)); placed += len(n);
+    });
     if (minTotal > placed) put(-1, true, minTotal - placed);   // the other hand goes on longer
     if (pos < cur.len && cur.items.length) put(-1, true, cur.len - pos);   // fill the last bar with rests
     return bars;
@@ -851,10 +904,11 @@
         return 'b' + Math.floor(it.pos / beat);
       }
       b.items.forEach(function (it, k) {
-        var beamable = !it.rest && it.v < 4, g = beamable ? group(it) : null;
+        var beamable = !it.rest && it.v < 4 && !it.tp, g = beamable ? group(it) : null;
         var prev = b.items[k - 1], next = b.items[k + 1];
-        var withPrev = beamable && prev && !prev.rest && prev.v < 4 && group(prev) === g;
-        var withNext = beamable && next && !next.rest && next.v < 4 && group(next) === g;
+        var withPrev = beamable && prev && !prev.rest && prev.v < 4 && !prev.tp && group(prev) === g;
+        var withNext = beamable && next && !next.rest && next.v < 4 && !next.tp && group(next) === g;
+        if (it.tp === 1) layer += '<tuplet num="3" numbase="2" num.visible="true" bracket.visible="true">' + (it.v < 4 && b.items.slice(k, k + 3).every(function (x) { return !x.rest; }) ? '<beam>' : '');
         if (beamable && withNext && !withPrev) { layer += '<beam>'; open = true; }
         var d = DUR[it.v], attrs = ' xml:id="' + it.id + '" dur="' + d[0] + '"' + (d[1] ? ' dots="1"' : '');
         if (it.rest) layer += '<' + (it.idx >= 0 && events[it.idx] && events[it.idx].hide ? 'space' : 'rest') + attrs + '/>';
@@ -896,6 +950,7 @@
         if (o.lead && !o.voice2 && it.idx >= 0 && piecesOf[it.idx][0] === it.id && events[it.idx].ch)
           extra += '<harm staff="1" place="above" tstamp="' + (1 + (it.pos - (bar - b.len)) / (16 / sheet.time[1])) + '">' + esc(symbolic(events[it.idx].ch)) + '</harm>';   // as the app's sheets (tools/hymn-midi reads tstamp)
         if (open && beamable && !withNext) { layer += '</beam>'; open = false; }
+        if (it.tp === 3) layer += (it.v < 4 && b.items.slice(k - 2, k + 1).every(function (x) { return !x.rest; }) ? '</beam>' : '') + '</tuplet>';
       });
       return {layer: layer, extra: extra};
     });
@@ -978,15 +1033,16 @@
   // ---- what to play: {mel: [{t, d, p, i}], fill: [{t, d, ps, i}], left: [{t, d, ps, i}], pad: [{t, d, ps}], total},
   // t and d in sixteenths
   function playList(sheet) {
-    var notes = sheet.notes, on = onsets(notes), mel = [], left = [], pad = [], fill = [], fills = rightHand(sheet);
+    var notes = sheet.notes, tm = timing(notes), on = tm.map(function (x) { return x.t; }), mel = [], left = [], pad = [], fill = [], fills = rightHand(sheet);
+    function dur(i) { return tm[i].d; }
     if (fills) fills.forEach(function (ps, i) {   // an added note lasts as long as its melody note, ties included, until the next added one
       if (!ps) return;
-      var d = len(notes[i]); for (var q = i + 1; tied(notes, q) && !fills[q]; q++) d += len(notes[q]);
+      var d = dur(i); for (var q = i + 1; tied(notes, q) && !fills[q]; q++) d += dur(q);
       fill.push({t: on[i], d: d, ps: ps, i: i});
     });
     notes.forEach(function (n, i) {
       if (isRest(n) || tied(notes, i)) return;
-      var d = len(n); for (var q = i + 1; tied(notes, q); q++) d += len(notes[q]);
+      var d = dur(i); for (var q = i + 1; tied(notes, q); q++) d += dur(q);
       mel.push({t: on[i], d: d, p: n.p, i: i});
     });
     var v2 = [], v2n = sheet.voice2 && sheet.voice2.length ? sheet.voice2 : null;
@@ -1020,5 +1076,5 @@
     chordSpans: chordSpans, chordFit: chordFit, parsePattern: parsePattern, patternText: patternText, voicing: voicing, styles: styles,
     findStyle: findStyle, styleName: styleName, rightHand: rightHand, fillUnder: fillUnder, chordsOnBeat: chordsOnBeat,
     accompany: accompany, accompanyOn: accompanyOn, barMei: barMei, leftHand: leftHand, sliceEvents: sliceEvents, replaceRange: replaceRange,
-    toMei: toMei, countLabel: countLabel, playList: playList};
+    toMei: toMei, countLabel: countLabel, playList: playList, fixTriplets: fixTriplets, triplets: triplets, tripSplit: tripSplit, TRIP: TRIP, timing: timing};
 });
