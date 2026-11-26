@@ -19,8 +19,11 @@ class Static(SimpleHTTPRequestHandler):
 
 _cache = []
 def hymns():
+    """what still needs a look: one hymn per tune (the others have the same melody and chords), and not the ones answered OK"""
     if not _cache: _cache.append(_hymns())
-    return _cache[0]
+    ok = {}
+    if os.path.exists(VERDICTS): ok = json.load(open(VERDICTS, encoding='utf8'))
+    return [h for h in _cache[0] if h['first'] and ok.get(h['id'], {}).get('verdict') != 'ok']
 
 def _hymns():
     out = []; diffs = {}

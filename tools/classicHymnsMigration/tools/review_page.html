@@ -23,8 +23,7 @@ button.ok{border-color:var(--ok);color:var(--ok)}button.bad{border-color:var(--b
 @media (max-width:900px){body{flex-direction:column}#side{width:100%;height:30vh}#panes{flex-direction:column}}
 </style></head><body>
 <div id="side"><header><h1>Sheets from the MIDI</h1>
-<div id="filters"><label><input type="radio" name="f" value="tune" checked> one hymn per tune</label><label><input type="radio" name="f" value="diff"> only with differing notes</label>
-<label><input type="radio" name="f" value="todo"> not reviewed yet</label><label><input type="radio" name="f" value="prob"> marked Problem</label><label><input type="radio" name="f" value="all"> all hymns</label></div><div id="count"></div></header>
+<div id="filters"><label><input type="radio" name="f" value="all" checked> to review</label><label><input type="radio" name="f" value="diff"> only with differing notes</label><label><input type="radio" name="f" value="prob"> marked Problem</label></div><div id="count"></div></header>
 <div id="list"></div></div>
 <div id="main"><div id="bar"><h2 id="title">Loading…</h2><button class="ok" id="ok">OK (o)</button><button class="bad" id="bad">Problem (x)</button>
 <input id="note" placeholder="what is wrong (kept with the hymn)"><button id="prev">◀ (k)</button><button id="next">▶ (j)</button></div>
