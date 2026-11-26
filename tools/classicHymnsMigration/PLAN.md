@@ -60,7 +60,7 @@ These are the viewer and player changes; each is its own task and can be done wh
 1. Pick the next tune in `INDEX.tsv`: tunes without `needs care` first, the most English hymns first. Set it `in progress` in `STATUS.tsv`.
 2. Make the draft from `midi/m<tune>.mid`: `python3 tools/midi_to_sheet.py <hymn> [--write]` (2026-11-26) keeps the old sheet's header, bars and words, takes the
    melody (top voice) and the chords (named from the four voices) from the MIDI, and says what differs from the old sheet; it refuses repeats, fermatas,
-   rests and mismatched lengths, which go by hand. Run it for each English hymn of the tune. First five tunes (22 hymns) done with it.
+   rests and mismatched lengths, which go by hand. Run it for each English hymn of the tune. The MIDI is moved into the sheet's key when that makes the melody match. `DIFFS.tsv` lists the notes where a new sheet follows the MIDI and not the old sheet. Done with it so far: see `STATUS.tsv`.
 3. Look at it and listen to it; fix what the draft got wrong (voices, rests, ties, the fermatas).
 4. Run the checks. Keep the original MIDI's tempo as `midi.bpm`.
 5. Import: write `app/src/main/assets/sheetMei/<hymn>.mei` for each English hymn of the tune (its own words), keep the hymn's id, source

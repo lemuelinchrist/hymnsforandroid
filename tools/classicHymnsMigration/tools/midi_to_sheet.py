@@ -173,6 +173,22 @@ def convert(hid, db, write, out_dir):
     if problems: print(hid, '\n'.join(problems)); return 1
     # which MIDI note takes which old note's words: the same onset
     by_onset = {t // q: i for i, (t, e, p) in enumerate(sop)}
+    # the MIDI may be in another key than the sheet (the keys of hymnal.net's sheets follow the book): when moving the whole
+    # tune by some semitones makes the melody match the old sheet, the MIDI is moved by that much
+    def old_midi(a):
+        l = a['pname']; acc = {'s': 1, 'f': -1, 'n': 0, 'ss': 2, 'ff': -2}
+        al = acc[a['accid']] if a.get('accid') in acc else acc[a['accid.ges']] if a.get('accid.ges') in acc else alt[l]
+        return (int(a['oct']) + 1) * 12 + NAT_PC[l] + al
+    pairs = [(old_midi(a), sop[by_onset[t]][2]) for mh, els, tot, txt in bars for (t, n, a, tag) in els if 'pname' in a and t in by_onset]
+    def score(sh): return sum(1 for o, m in pairs if m + sh == o)
+    shift = max(range(-7, 8), key=lambda sh: (score(sh), -abs(sh)))
+    if shift and score(shift) > score(0):
+        notes = [(s_, e_, p_ + shift) for s_, e_, p_ in notes]
+        events = {t: [(e_, p_ + shift) for e_, p_ in v] for t, v in events.items()}
+        sop = [(t, e_, p_ + shift) for t, e_, p_ in sop]
+        info_shift = 'the MIDI is %d semitones %s than the sheet: moved to the sheet\'s key' % (abs(shift), 'lower' if shift > 0 else 'higher')
+        key_differs = False
+    else: info_shift = None
     owner = {}; moved = []
     for bi, (mh, els, tot, txt) in enumerate(bars):
         for (t, n, a, tag) in els:
@@ -186,6 +202,7 @@ def convert(hid, db, write, out_dir):
     if moved: print(hid, '\n'.join(moved)); return 1
     if key_differs and any(x.startswith('bar') for x in info): problems.append('key signature: sheet %s, MIDI %s, and the notes differ' % (sig, msig))
     if info_end: info.append(info_end)
+    if info_shift: info.append(info_shift)
     # the new bars
     bt = 0; idn = 0; body = []; slurs_all = []; extra_syl = 0
     beat = beats16(o_n, o_d)
