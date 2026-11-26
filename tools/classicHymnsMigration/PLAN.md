@@ -66,7 +66,7 @@ These are the viewer and player changes; each is its own task and can be done wh
 3. Look at it and listen to it; fix what the draft got wrong (voices, rests, ties, the fermatas).
 4. Run the checks. Keep the original MIDI's tempo as `midi.bpm`.
 5. Import: write `app/src/main/assets/sheetMei/<hymn>.mei` for each English hymn of the tune (its own words), keep the hymn's id, source
-   `Hymns For Android`; the guitar sheet is derived. Rebuild the web app's data (`python3 tools/web/build.py`) to see it.
+   `Hymns For Android`; the guitar sheet is derived. Every sheet with a chorus needs its `(C)` label: `python3 tools/lead-sheet-editor/mark_chorus.py <hymn> --write`. Rebuild the web app's data (`python3 tools/web/build.py`) to see it.
 6. Mark the tune `imported` in `STATUS.tsv` and commit on `media/work` (small commit per tune). Push and deploy when Lemuel says.
 7. **MIDI files in the app**: none since 2026-11-26. Every hymn plays its sheet, and the English MIDIs are only here in `midi/`, as the reference for the sheets.
    Every English sheet names the Chorale accompaniment as its start (`<identifier type="hands">dynamic/chorale/half rh=1:beat</identifier>`);

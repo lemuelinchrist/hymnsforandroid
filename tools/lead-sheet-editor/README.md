@@ -316,6 +316,7 @@ sheet is shown: "Both hands", `tools/web/README.md`. It does not read `piano.mei
 | `sound.js` | the piano (Salamander Grand Piano MP3s from `tools/web/vendor/piano/`, with a synthesized fallback) and organ tones, the strums' steel-string guitar (FluidR3 GM, Frank Wen, CC-BY 3.0; `tools/web/vendor/guitar/`, served as `/guitar/*.mp3`; the left hand's guitar patterns D U K T A g b e play on it, each string a few ms after the last, a chuck damped at once) and the player (it schedules a little ahead of the clock, so it can loop and stop at once) |
 | `editor.js` | the page's behaviour: what is chosen, the panels, every change as an undo step and a save |
 | `test_music.js` | tests of `music.js`, and of its MEI through the app's Verovio |
+| `mark_chorus.py` | the (C) label at the first note of the chorus in our own sheets (run it after adding a sheet; `--write` to change them) |
 | `from_musicxml.py`, `finish_mei.py` | a MusicXML draft into `leadsheet.json`; `leadsheet.mei` into a sheet of the app |
 
 ## Limits
