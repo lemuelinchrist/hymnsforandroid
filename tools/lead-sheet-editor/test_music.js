@@ -347,6 +347,19 @@ test('triplet: played evenly', () => {
   assert.strictEqual(mel.find(m => m.i === 7).t, M.onsets(s.notes)[7], 'what follows is on the grid');
 });
 
+test('playList: the dynamics of the viewer (melodyVel, leftDyn)', () => {
+  const s = song(); s.acc = {pat: '1 5 8 5', rate: 2, low: 48};
+  const pl = M.playList(s);
+  assert.strictEqual(pl.mel[0].vel, 103, 'the upbeat counts from its first note: a downbeat');
+  assert.deepStrictEqual(pl.mel.slice(1, 4).map(m => m.vel), [103, 98, 98], 'beat 1, then the beats');
+  assert.ok(pl.left.length && pl.left.every(l => l.notes.length && l.notes.every(x => x.vel >= 34 && x.vel <= 86 && x.dur > 0)), 'every left-hand note has its velocity');
+  const bar2 = pl.left.filter(l => l.t === 2);
+  assert.ok(bar2.length && bar2[0].notes[0].vel >= 72, 'a bar starts grounded');
+  assert.strictEqual(M.melodyVel(0, 4, 4, 1), 103); assert.strictEqual(M.melodyVel(2, 2, 4, 2), 84);
+  assert.deepStrictEqual([0, 1, 2].map(i => M.fillVel(100, 3, i)), [58, 61, 64]);
+  assert.ok(!M.playList(song()).guitar && M.playList(Object.assign(song(), {acc: {pat: 'D', rate: 2, style: 'guitar/folk'}})).guitar, 'a guitar sheet plays its melody on the guitar');
+});
+
 // the app's Verovio takes it all
 const vfile = path.join(__dirname, '../../app/src/main/assets/viewer/verovio-toolkit-wasm.js');
 if (!fs.existsSync(vfile)) { console.log(count + ' tests passed (Verovio not found: its test is left out)'); return; }

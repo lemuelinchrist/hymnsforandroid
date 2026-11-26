@@ -621,6 +621,7 @@
       var prev = events[events.length - 1];
       if (!p && prev && !prev.p) { prev.d += d; return; }
       var e = {p: p, d: d}; if (ring) e.ring = ring;
+      if (src && src.fresh) e.fresh = true;   // the first note of a chord's stretch is played a little harder
       if (src && src.inst) { e.inst = src.inst; if (src.mute) e.mute = true; if (src.up) e.up = true; if (src.roll) e.roll = src.roll; }   // a guitar strum (played by the page, not written in the sheet)
       events.push(e);
     }
@@ -1007,6 +1008,42 @@
     return x + '</section>\n</score></mdiv></body></music></mei>';
   }
 
+  // ---- how the accompaniment is played: how hard, how early and how long each note sounds. One source for the editor's player
+  // and the viewer (tools/web/src/piano.js), so the two sound alike. Velocities are MIDI (0-127); positions are sixteenths
+  // from the start of the bar (an upbeat bar counts from its first note).
+  function melodyVel(pos, d, beat, layer) {   // the melody: beat 1 strongest, then the beats, then long notes, then the rest
+    var onDownbeat = pos < 0.01, onBeat = Math.abs(pos % beat) < 0.01;
+    return (onDownbeat ? 103 : onBeat ? 98 : d >= beat ? 96 : 90) - (layer > 1 ? 6 : 0);
+  }
+  function fillVel(melVel, count, fi) { return Math.round(melVel * 0.64) - (count - 1 - fi) * 3; }   // an added note under the melody
+  // the left hand's events of one bar, items: [{e, pos}], bar: {nominal, beat} -> for each item (none for a rest) the notes
+  // to sound [{p, vel, off (a roll, in seconds), dur}]: a grounded beat 1, a warm half bar, light weak beats and feathered
+  // offbeat arpeggio notes; a moving single line swells with its contour; a chord is rolled a little, its lowest note first
+  function leftDyn(items, bar) {
+    var pitches = items.filter(function (x) { return x.e.p; }).map(function (x) { return x.e.p[0]; });
+    var loP = pitches.length ? Math.min.apply(null, pitches) : 40, hiP = pitches.length ? Math.max.apply(null, pitches) : 60, spanP = Math.max(1, hiP - loP);
+    return items.map(function (it, k) {
+      var e = it.e;
+      if (!e.p || !e.p.length) return null;
+      var pos = it.pos, onDownbeat = pos < 0.01, onHalf = bar.nominal >= 12 && Math.abs(pos - bar.nominal / 2) < 0.01, onBeat = Math.abs(pos % bar.beat) < 0.01;
+      var baseVel = onDownbeat ? 72 : onHalf ? 62 : onBeat ? 54 : 47;
+      if (e.fresh) baseVel += 4;
+      var single = e.p.length === 1, microOff = 0;
+      if (single && !onDownbeat) {
+        var prevP = k > 0 && items[k - 1].e.p ? items[k - 1].e.p[0] : e.p[0], rising = e.p[0] > prevP, rel = (e.p[0] - loP) / spanP;
+        baseVel += Math.round((rising ? 5 : -3) + rel * 4);
+        microOff = onBeat ? 0.002 : (rising ? 0.005 : 0.003);
+      }
+      var roll = e.roll || (e.p.length > 1 ? 0.012 : 0);
+      if (e.up) baseVel -= 9;   // a guitar's up strum: lighter, from the top string down
+      var dur = e.ring ? Math.max(e.d, e.ring - 0.35) : e.d;   // a pedal lift just before the next chord keeps the harmonies clear
+      return e.p.map(function (p, pi) {
+        var voiceAdj = e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
+        return {p: p, vel: Math.max(34, Math.min(86, baseVel + voiceAdj)), off: roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff, dur: dur};
+      });
+    });
+  }
+
   // "1 & 2 &" under a note that starts at `pos` in its bar and is `v` long
   function countLabel(pos, v, beat, held) {
     var b0 = Math.floor(pos / beat) + 1, r0 = pos % beat, s;
@@ -1060,12 +1097,30 @@
       lh.events.forEach(function (e, i) {
         if (isRest(e) || tied(lh.events, i)) return;
         var d = len(e); for (var q = i + 1; tied(lh.events, q); q++) d += len(lh.events[q]);
-        left.push({t: lo[i], d: e.ring || d, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll});
+        left.push({t: lo[i], d: e.ring || d, g: d, ring: e.ring, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll, fresh: e.fresh});
       });
     }
     var off = gridOff(sheet);
     chordSpans(sheet).forEach(function (s) { if (s.info && s.end > s.g) pad.push({t: Math.max(0, s.g - off), d: s.end - Math.max(off, s.g), ps: chordPitches(s.ch)}); });
-    return {mel: mel, v2: v2, fill: fill, left: left, pad: pad, total: Math.max(total(notes), v2n ? total(v2n) : 0, lh ? total(lh.events) : 0)};
+    // how it is played (melodyVel, fillVel, leftDyn: the same as the viewer): a note's position in its bar counts an upbeat bar
+    // from its first note
+    var bar = barLen(sheet), beat = beatLen(sheet), off0 = gridOff(sheet), pick = off0 > 0 ? bar - off0 : 0;
+    function barOf(t) { return pick && t < pick ? 0 : Math.floor((t + off0) / bar); }
+    function posOf(t) { return pick && t < pick ? t : (t + off0) % bar; }
+    var fillAt = {}; fill.forEach(function (f) { fillAt[f.i] = f; });
+    mel.forEach(function (m) {
+      m.vel = melodyVel(posOf(m.t), m.d, beat, 1);
+      var f = fillAt[m.i]; if (f) { m.off = f.ps.length * 0.01; f.vels = f.ps.map(function (p, fi) { return fillVel(m.vel, f.ps.length, fi); }); }
+    });
+    v2.forEach(function (m) { m.vel = melodyVel(posOf(m.t), m.d, beat, 2); });
+    var byBar = {};
+    left.forEach(function (l) { (byBar[barOf(l.t)] = byBar[barOf(l.t)] || []).push(l); });
+    Object.keys(byBar).forEach(function (bi) {
+      var items = byBar[bi], dyn = leftDyn(items.map(function (l) { return {e: {p: l.ps, d: l.g, ring: l.ring, inst: l.inst, up: l.up, roll: l.roll, fresh: l.fresh}, pos: posOf(l.t)}; }), {nominal: bar, beat: beat});
+      items.forEach(function (l, k) { l.notes = dyn[k] || []; });
+    });
+    var acc = sheet.acc, guitar = !!(acc && (acc.guitar || /^guitar\//.test(acc.style || '')));
+    return {guitar: guitar, mel: mel, v2: v2, fill: fill, left: left, pad: pad, total: Math.max(total(notes), v2n ? total(v2n) : 0, lh ? total(lh.events) : 0)};
   }
 
   return {guitarShape: guitarShape, symbolic: symbolic, KEYS: KEYS, PC: PC, DUR: DUR, DUR_BUTTONS: DUR_BUTTONS, ROOTS: ROOTS, QUALITIES: QUALITIES, FLAT_NAMES: FLAT_NAMES, SHARP_NAMES: SHARP_NAMES,
@@ -1076,5 +1131,5 @@
     chordSpans: chordSpans, chordFit: chordFit, parsePattern: parsePattern, patternText: patternText, voicing: voicing, styles: styles,
     findStyle: findStyle, styleName: styleName, rightHand: rightHand, fillUnder: fillUnder, chordsOnBeat: chordsOnBeat,
     accompany: accompany, accompanyOn: accompanyOn, barMei: barMei, leftHand: leftHand, sliceEvents: sliceEvents, replaceRange: replaceRange,
-    toMei: toMei, countLabel: countLabel, playList: playList, fixTriplets: fixTriplets, triplets: triplets, tripSplit: tripSplit, TRIP: TRIP, timing: timing};
+    toMei: toMei, countLabel: countLabel, playList: playList, melodyVel: melodyVel, fillVel: fillVel, leftDyn: leftDyn, fixTriplets: fixTriplets, triplets: triplets, tripSplit: tripSplit, TRIP: TRIP, timing: timing};
 });
