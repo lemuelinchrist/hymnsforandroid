@@ -347,6 +347,20 @@ async function ui(page) {
     assert(await page.locator('.piano-panel').isVisible() && await sp.isHidden(), 'back on the piano sheet: Both hands\' panel, not the Strumming one');
     await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();   // the player row away again
   });
+  await test('a fermata holds the note: the music waits as long again, and what sounds with it is held', async () => {
+    const r = await page.evaluate(async () => {
+      const {scoreOf, DEFAULT} = await import('./piano.js'), {fetchGzJson} = await import('./files.js');
+      const v = await (await fetch('data/version.json')).json(), pack = await fetchGzJson(v.sheets.BF);
+      const text = pack.BF421.replace(/<back>[\s\S]*<\/back>/, ''), n = (text.match(/<fermata /g) || []).length;
+      const doc = (t) => new DOMParser().parseFromString(t, 'application/xml');
+      const withF = scoreOf(doc(text), DEFAULT, {hands: true}), without = scoreOf(doc(text.replace(/<fermata [^>]*\/>/g, '')), DEFAULT, {hands: true});
+      const ids = [...text.matchAll(/<fermata startid="#([^"]+)"/g)].map((m) => m[1]);
+      const held = withF.events.filter((e) => e.hand === 'm' && e.ids.some((id) => ids.includes(id)));
+      const heldNo = without.events.filter((e) => e.hand === 'm' && e.ids.some((id) => ids.includes(id)));
+      return {n, extra: withF.length - without.length, held: held.map((e) => e.d), plain: heldNo.map((e) => e.d), ordered: withF.events.every((e, i, a) => !i || a[i - 1].q <= e.q + 1e-9)};
+    });
+    assert(r.n > 0 && r.extra >= 1 * r.n * 0.5 && r.held.length > 0 && r.held.every((d, i) => d > r.plain[i] + 0.99) && r.ordered, 'longer by the waits, the note held: ' + JSON.stringify(r));
+  });
   await test('played round and round, an upbeat\'s missing beats are a rest before it comes back', async () => {
     const r = await page.evaluate(async () => {
       const {scoreOf, DEFAULT} = await import('./piano.js'), {fetchGzJson} = await import('./files.js');
