@@ -12,6 +12,7 @@
 </layer></staff>
 
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
@@ -36,6 +37,7 @@
 </layer></staff>
 
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="4" place="above">Gm7/F</harm>
 </measure>
@@ -55,6 +57,7 @@
 <note xml:id="n14" pname="c" oct="4" dur="8">
 <verse n="1"><syl>The</syl></verse></note>
 </layer></staff>
+
 
 
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -82,6 +85,7 @@
 </layer></staff>
 
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">F/A</harm>
 <harm staff="1" tstamp="3" place="above">F</harm>
@@ -103,6 +107,7 @@
 <note xml:id="n27" pname="g" oct="4" dur="8">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
+
 
 
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -130,6 +135,7 @@
 </layer></staff>
 
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2" place="above">F/C</harm>
 <harm staff="1" tstamp="3" place="above">Dm</harm>
@@ -154,6 +160,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </beam>
 </layer></staff>
+
 
 
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -184,6 +191,7 @@
 </layer></staff>
 
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
@@ -201,6 +209,7 @@
 </beam>
 </layer></staff>
 <dir startid="#n52" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
+
 
 
 <harm staff="1" tstamp="1" place="above">F</harm>
@@ -223,6 +232,7 @@
 <note xml:id="n59" pname="d" oct="5" dur="8" dots="1">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
+
 
 
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -249,8 +259,9 @@
 </layer></staff>
 
 
+
 <harm staff="1" tstamp="1" place="above">B♭/F</harm>
-<harm staff="1" tstamp="2" place="above">F</harm>
+<harm staff="1" tstamp="1.25" place="above">F</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <beam>
@@ -272,6 +283,7 @@
 <verse n="1"><syl>shall</syl></verse></note>
 </beam>
 </layer></staff>
+
 
 
 <harm staff="1" tstamp="1" place="above">Dm</harm>
@@ -301,6 +313,7 @@
 <fermata startid="#n79" place="above"/>
 
 
+
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
@@ -325,6 +338,7 @@
 </layer></staff>
 
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
@@ -347,6 +361,7 @@
 <verse n="1"><syl>that</syl></verse></note>
 </beam>
 </layer></staff>
+
 
 
 <harm staff="1" tstamp="1" place="above">B♭</harm>
@@ -377,6 +392,7 @@
 </layer></staff>
 
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="2" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">F/C</harm>
@@ -389,12 +405,14 @@
 <tie startid="#n103" endid="#n104"/>
 
 
+
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="18" right="end"><staff n="1"><layer n="1">
 <note xml:id="n104" pname="f" oct="4" dur="2" dots="1"/>
 <rest xml:id="r105" dur="4"/>
 </layer></staff>
+
 
 
 </measure>

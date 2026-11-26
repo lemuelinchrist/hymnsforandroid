@@ -115,17 +115,26 @@ def convert(hid, db, write, out_dir):
     for bi, (mh, els, tot, txt) in enumerate(bars):
         b0, b1 = bt, bt + tot; bt = b1
         m0, m1 = to_midi(b0), to_midi(b1)
-        # a chord for each beat of the bar, taken a little after the beat's start: the voices of a played MIDI do not start together
-        pts = []; t_old = b0
-        while t_old < b1:
-            pts.append((t_old, to_midi(t_old) + q * float(os.environ.get('OFFSET', '0.4')))); t_old += beat16
-        out = []; prev = None
-        for t_old, tm in pts:
+        # the chord at each beat of the bar, taken a little after the beat's start: the voices of a played MIDI do not start together
+        off = q * float(os.environ.get('OFFSET', '0.4'))
+        def name_at(t_old):
+            tm = to_midi(t_old) + off
             snd = [p + sh for s, e, p in notes if s <= tm < e]
-            name = M.chord_name(snd, kind, 0) if snd else None
-            name = name or prev
+            return M.chord_name(snd, kind, 0) if snd else None
+        beats = []; t_old = b0
+        while t_old < b1: beats.append(t_old); t_old += beat16
+        onsets_here = sorted({t for (t, n, a, tag) in els if 'pname' in a and b0 <= t < b1} - set(beats))   # the melody's notes between the beats
+        out = []; prev = None
+        for i, t_old in enumerate(beats):
+            name = name_at(t_old) or prev
             if name and name != prev:
-                out.append(((t_old - b0) / per + 1, name)); prev = name
+                # a chord that changes between two beats (a tune felt in dotted pulses, a syncopation) sounds from the first melody note
+                # after the previous beat at which it already stands, and not from the beat it is first seen at
+                at = t_old
+                for o in sorted((o for o in onsets_here if (beats[i - 1] if i else b0 - 1) < o < t_old), reverse=True):
+                    if name_at(o) == name: at = o
+                    else: break
+                out.append(((at - b0) / per + 1, name)); prev = name
         chords.append(out)
     # the new sheet: the old measures with their chords replaced
     parts = []; pos = 0
