@@ -451,7 +451,7 @@
   function edit(fn, keepRedo) {
     undo.push(JSON.stringify(sheet)); if (undo.length > 300) undo.shift();
     if (!keepRedo) redo = [];
-    fn(); changed = {}; touch();
+    fn(); M.fixTriplets(sheet.notes); changed = {}; touch();
   }
   function touch() { dirty = true; render(); status('Saving…', 'busy'); clearTimeout(saveTimer); saveTimer = setTimeout(save, 500); }
   function status(text, kind) { $('status').textContent = text; $('status').className = 'pill' + (kind ? ' ' + kind : ''); }
@@ -474,7 +474,7 @@
         else status('Not saved: ' + (r.j.error || r.code), 'warn');
       }).catch(function () { saving = false; dirty = true; status('Not saved: is the server running?', 'warn'); });
   }
-  function tidy(s) { s.time = s.time || [4, 4]; s.notes = s.notes || []; s.pickup = s.pickup || 0; if (!Array.isArray(s.left) || !s.left.length) delete s.left; if (!Array.isArray(s.voice2) || !s.voice2.length) delete s.voice2; return s; }
+  function tidy(s) { s.time = s.time || [4, 4]; s.notes = M.fixTriplets(s.notes || []); s.pickup = s.pickup || 0; if (!Array.isArray(s.left) || !s.left.length) delete s.left; if (!Array.isArray(s.voice2) || !s.voice2.length) delete s.voice2; return s; }
   function load(keepSel, why) {
     return fetch('/api/sheet' + q()).then(function (r) { return r.json(); }).then(function (j) {
       if (!j.sheet) { status(j.error || 'No sheet', 'warn'); return; }
@@ -682,6 +682,31 @@
         if (n.tie) delete n.tie;
         else { n.tie = true; n.p = hand === 'l' ? M.pitchesOf(b) : b.p; delete n.e; if (b.e) n.e = true; if (hand !== 'l') n.w = (n.w || ['']).map(function () { return ''; }); }
       });
+    }
+    else if (a === 'triplet') {
+      if (hand !== 'n' || !n) return;
+      var G = M.triplets(L), g = G[sel];
+      if (g) edit(function () {   // back to three plain notes, each as long as it is written
+        var at = g.at; delete L[at].tp; for (var k = 0; k < 3; k++) L[at + k].d = g.W; sel = anchor = at; head = -1;
+      });
+      else {
+        var at = lo(), cnt = hi() - lo() + 1, three = cnt === 3, S;
+        if (cnt !== 1 && !three) { toast('Choose one note (it becomes three in its time) or three notes'); return; }
+        if (three) {
+          S = L[at].d + L[at + 1].d + L[at + 2].d;
+          if (!M.TRIP[S]) { var w = L[at].d; S = w === 2 || w === 4 || w === 8 ? 2 * w : 0; }
+        } else S = n.d;
+        if (!M.TRIP[S]) { toast('A triplet is an eighth, quarter or half note\'s time: make the note one of those first'); return; }
+        edit(function () {
+          if (!three) {
+            var m1 = blank(L[at]), m2 = blank(L[at]);
+            m1.d = m2.d = 1; if (M.isRest(L[at])) { m1.p = null; m2.p = null; delete m1.w; delete m2.w; }
+            L.splice(at + 1, 0, m1, m2);
+          }
+          L[at].tp = true; L[at].d = S; L[at + 1].d = 1; L[at + 2].d = S - 1;   // fixTriplets then sets the real split of S
+          sel = anchor = at; head = -1;
+        });
+      }
     }
     else if (a === 'split') { if (n && n.d > 1) edit(function () { var h = Math.floor(n.d / 2), m = blank(n); m.d = n.d - h; if (M.isRest(n)) m.p = null; L.splice(sel + 1, 0, m); n.d = h; anchor = sel; }); }
     else if (a === 'del') {
@@ -943,6 +968,7 @@
       else if (/^[a-gA-G]$/.test(k)) letter(k, hand === 'l' && e.shiftKey);
       else if (k === 'r' || k === 'R') act('rest'); else if (k === 'n' || k === 'N' || k === 'Insert') act('after');
       else if (k === 't' || k === 'T') act('tie');
+      else if (k === '8') act('triplet');
       else if (k === 's' || k === 'S') act('split'); else if (k === 'Delete' || k === 'Backspace') act('del');
       else if (k === 'Enter' && hand === 'n') { var inp = $('verses').querySelector('input:not(:disabled)'); if (inp) { inp.focus(); inp.select(); } }
       else if ((k === 'h' || k === 'H') && hand === 'n') { $('chord').focus(); $('chord').select(); }
