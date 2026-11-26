@@ -202,6 +202,16 @@ def convert(hid, db, write, out_dir):
         info_shift = 'the MIDI is %d semitones %s than the sheet: moved to the sheet\'s key' % (abs(shift), 'lower' if shift > 0 else 'higher')
         key_differs = False
     else: info_shift = None
+    # the sheet writes the same note again where the MIDI holds one note on (a repeated note): the MIDI note is split there
+    split = []
+    for bi, (mh, els, tot, txt) in enumerate(bars):
+        for (t, n, a, tag) in els:
+            if 'pname' not in a or t in by_onset: continue
+            j = next((k for k, (s_, e_, p_) in enumerate(sop) if s_ < t * q < e_), None)
+            if j is not None and sop[j][2] == old_midi(a) and sop[j][0] % q == 0:
+                s_, e_, p_ = sop[j]; sop[j] = (s_, t * q, p_); sop.insert(j + 1, (t * q, e_, p_)); by_onset = {t_ // q: i for i, (t_, e__, p__) in enumerate(sop)}
+                split.append(t)
+    if split: info.append('%d held notes split where the sheet repeats the note' % len(split))
     owner = {}; moved = []
     for bi, (mh, els, tot, txt) in enumerate(bars):
         for (t, n, a, tag) in els:
