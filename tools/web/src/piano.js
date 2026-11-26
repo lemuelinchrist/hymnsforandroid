@@ -166,7 +166,23 @@ function readBars(doc) {
       } else if (name === 'section' || name === 'staffGrp' || name === 'ending') walk(c);
     });
   })(doc.getElementsByTagNameNS(MEI_NS, 'score')[0]);
+  if (dottedFeel(bars)) bars.forEach((b) => { if (b.unit === 4 && b.count === 3) { b.unit = 8; b.count = 6; b.beat = 6; } });
   return bars;
+}
+
+// A tune written in 3/4 that is felt in two dotted pulses (a short note and a long one, "short-long short-long": E16, "Our Father, as
+// the evergreen"): its notes start at 0 and 6 sixteenths of the bar (more often than at 8), not at 0, 4 and 8. It is played as 6/8 (its bars are as long), so
+// that the left hand, its passing notes and the notes under the melody follow the pulses of the tune and not three even beats.
+function dottedFeel(bars) {
+  const b3 = bars.filter((b) => b.unit === 4 && b.count === 3 && b.len >= b.nominal);
+  if (b3.length < 4 || b3.length < bars.length * 0.6) return false;
+  let six = 0, eight = 0;
+  for (const b of b3) {
+    const at = new Set(b.notes.filter((n) => (n.layer || 1) === 1).map((n) => Math.round(n.g - b.g)));
+    if (at.has(6)) six++;
+    if (at.has(8)) eight++;
+  }
+  return six >= b3.length * 0.6 && six >= eight * 1.3;   // a note starts at 6 in most bars, and clearly more often than at 8 (the third beat)
 }
 
 function fragment(doc, xml) {   // MEI text -> its nodes, in this document
@@ -215,9 +231,9 @@ function analyse(doc, choice, loop = false) {
       if (!info || hasV2At(n.g, n.d)) return;
       const onChord = k >= 0 && Math.abs(harms[k].g - n.g) < 0.01, long = n.d >= 2 * n.bar.beat - 0.01;
       const onBeat = Math.abs(((n.g - n.bar.g) % n.bar.beat)) < 0.01;
-      // 'beat': a note on a beat, or a note a beat long or longer that starts off the beat (a hymn whose melody sits on the off-beats,
+      // 'beat': a note on a beat, or a note a beat (at most a quarter) long or longer that starts off the beat (a hymn whose melody sits on the off-beats,
       // like E16, would hardly get a note under it otherwise); a short note between the beats is left alone, as a passing note
-      const want = rh.on === 'all' ? true : rh.on === 'chord' ? onChord : rh.on === 'long' ? long : onBeat || long || n.d >= n.bar.beat - 0.01;
+      const want = rh.on === 'all' ? true : rh.on === 'chord' ? onChord : rh.on === 'long' ? long : onBeat || long || n.d >= Math.min(n.bar.beat, 4) - 0.01;
       if (!want) return;
       const ps = M.fillUnder(n.p, info, rh.add);
       if (ps.length) { n.fill = ps; n.info = info; }
