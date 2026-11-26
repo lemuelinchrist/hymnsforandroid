@@ -58,11 +58,20 @@ These are the viewer and player changes; each is its own task and can be done wh
 
 ## 5. Per tune (the daily routine)
 1. Pick the next tune in `INDEX.tsv`: tunes without `needs care` first, the most English hymns first. Set it `in progress` in `STATUS.tsv`.
-2. Make the draft from `midi/m<tune>.mid`: `python3 tools/midi_to_sheet.py <hymn> [--write]` (2026-11-26) keeps the old sheet's header, bars and words, takes the
-   melody (top voice) and the chords (named from the four voices) from the MIDI, and says what differs from the old sheet; it refuses repeats, fermatas,
-   rests and mismatched lengths, which go by hand. Run it for each English hymn of the tune. The MIDI is moved into the sheet's key when that makes the melody match. `DIFFS.tsv` lists the notes where a new sheet follows the MIDI and not the old sheet. Done with it so far: see `STATUS.tsv`.
+2. Make the draft from `midi/m<tune>.mid` (2026-11-26), in one of two ways, for each English hymn of the tune:
+   - `python3 tools/midi_to_sheet.py <hymn> [--write]` keeps the old sheet's header, bars and words and takes the melody (top voice) and the chords (named from the
+     four voices) from the MIDI; it says what differs from the old sheet. It handles fermatas, a MIDI that starts late, a MIDI in another key, a held MIDI note where the sheet
+     repeats the note, and leaves out low bass notes that are not the melody. It refuses repeats, notes off the sixteenth grid, another time signature or length.
+     `DIFFS.tsv` lists the notes where a new sheet follows the MIDI and not the old sheet. Chord positions are counted in the meter's unit (eighths in 6/8).
+   - `python3 tools/midi_align.py <hymn> [--write]` for the ones it refuses: the old sheet keeps all its notes and words, and only the chords come from the MIDI,
+     lined up with the sheet's melody note for note (an edit-distance alignment on pitch classes; the voices of a hand-played MIDI that start a few ticks apart are one onset;
+     only exact matches fix the time map). It prints how much of the melody lined up exactly and writes nothing below `THRESH` (0.9 unless set). `MIDI_TUNE=<hymn>=<tune>` uses the MIDI of another tune
+     when the hymn's own tune code points to a MIDI with another melody (found by lining the sheet up against all 874). A hymn whose melody no MIDI has stays on its sheet (`skipped` in `STATUS.tsv`).
+   Done with them so far: see `STATUS.tsv`. Re-running either tool on a sheet it made is safe for `midi_align.py` (it only replaces the chords); for `midi_to_sheet.py` read the
+   original sheet from git (`MEI_DIR=<folder of the sheets before>`).
    `tools/review_server.py` serves a review page: the old and the new sheet side by side, each in its own copy of the web app (play both in Chorale
    style), OK / Problem buttons, answers kept in `review/verdicts.json` (usage in the file's header; the old copy is a build of the commit before the new sheets).
+   `review/only.txt` (ids, optional) limits the list to those hymns.
 3. Look at it and listen to it; fix what the draft got wrong (voices, rests, ties, the fermatas).
 4. Run the checks. Keep the original MIDI's tempo as `midi.bpm`.
 5. Import: write `app/src/main/assets/sheetMei/<hymn>.mei` for each English hymn of the tune (its own words), keep the hymn's id, source
