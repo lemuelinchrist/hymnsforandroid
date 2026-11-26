@@ -465,27 +465,6 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
       events.push(out);
     });
   }
-  // a fermata holds the note, and so what sounds with it: the music waits for as long again as the note lasts (at least a
-  // quarter, at most a whole note), then goes on. Everything after moves later; what sounds across it is held through.
-  const fermIds = new Set(Array.from(doc.getElementsByTagNameNS(MEI_NS, 'fermata')).map((f) => (f.getAttribute('startid') || '').replace(/^#/, '')).filter(Boolean));
-  const waits = [];
-  if (fermIds.size) {
-    events.forEach((e) => {
-      if (e.hand !== 'm' || !e.ids.some((id) => fermIds.has(id))) return;
-      const end = e.q + e.d;
-      if (!waits.some((w) => Math.abs(w.end - end) < 1e-6)) waits.push({end, extra: Math.min(4, Math.max(1, e.d))});
-    });
-    waits.sort((x, y) => x.end - y.end);
-    const shiftAt = (q) => waits.reduce((t, w) => t + (w.end <= q + 1e-6 ? w.extra : 0), 0);
-    events.forEach((e) => {
-      const end = e.q + e.d;
-      waits.forEach((w) => { if (e.q < w.end - 1e-6 && end >= w.end - 1e-6) e.d += w.extra; });
-      e.q += shiftAt(e.q);
-    });
-    Object.keys(idQ).forEach((id) => { idQ[id] += shiftAt(idQ[id]); });
-    barAt.forEach((b) => { b.q += shiftAt(b.q); });
-    at += waits.reduce((t, w) => t + w.extra, 0) * 4;
-  }
   // a chord that goes on from one bar to the next is one sound
   events.sort((x, y) => x.q - y.q || x.note - y.note);
   const open = {}, kept = [];
