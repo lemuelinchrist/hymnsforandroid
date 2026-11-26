@@ -154,13 +154,26 @@ def convert(hid, db, write, out_dir):
     key_differs = msig != sig   # the MIDI's key mark is often off: only a problem when the pitches differ too (checked below)
     if re.search(r'rptstart|rptend|<ending|<repeat', xml): problems.append('the old sheet has repeats or endings (not handled yet)')
     q = div // 4
-    events = {}
-    for s_, e_, p_ in notes: events.setdefault(s_, []).append((e_, p_))
-    onsets = sorted(events); sop = []
-    for t in onsets:
-        e, p = max(events[t], key=lambda x: x[1])
-        if any(s_ < t < e_ and p_ >= p for s_, e_, p_ in notes): continue   # the soprano holds while a lower voice moves
-        sop.append((t, e, p))
+    def soprano(notes):
+        events = {}
+        for s_, e_, p_ in notes: events.setdefault(s_, []).append((e_, p_))
+        onsets = sorted(events); sop = []
+        for t in onsets:
+            e, p = max(events[t], key=lambda x: x[1])
+            if any(s_ < t < e_ and p_ >= p for s_, e_, p_ in notes): continue   # the soprano holds while a lower voice moves
+            sop.append((t, e, p))
+        return events, onsets, sop
+    events, onsets, sop = soprano(notes)
+    # the MIDI may start later than the sheet (a rest or a count-in before the pickup): move it back by the offset that makes the
+    # most note onsets agree with the sheet
+    old_on = {t for b in read_old(xml) for (t, n, a, tag) in b[1] if 'pname' in a}
+    mon = [t // q for t, e, p in sop if t % q == 0]
+    best = max(range(0, 8 * 16 + 1), key=lambda off: (sum(1 for t in mon if t - off in old_on), -off))
+    if best and sum(1 for t in mon if t - best in old_on) > sum(1 for t in mon if t in old_on):
+        notes = [(s_ - best * q, e_ - best * q, p_) for s_, e_, p_ in notes if s_ >= best * q]
+        events, onsets, sop = soprano(notes)
+        info_off = 'the MIDI starts %d sixteenths after the sheet: moved back' % best
+    else: info_off = None
     for t, e, p in sop:
         if (e - t) % q or t % q: problems.append('a note off the sixteenth grid at tick %d' % t); break
     bars = read_old(xml)
@@ -202,6 +215,7 @@ def convert(hid, db, write, out_dir):
     if moved: print(hid, '\n'.join(moved)); return 1
     if key_differs and any(x.startswith('bar') for x in info): problems.append('key signature: sheet %s, MIDI %s, and the notes differ' % (sig, msig))
     if info_end: info.append(info_end)
+    if info_off: info.append(info_off)
     if info_shift: info.append(info_shift)
     # the new bars
     bt = 0; idn = 0; body = []; slurs_all = []; extra_syl = 0
