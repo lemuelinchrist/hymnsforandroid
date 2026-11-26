@@ -53,6 +53,7 @@ def align(O, S):
 def convert(hid, db, write, out_dir):
     path = os.path.join(M.MEI, hid + '.mei'); xml = open(path, encoding='utf8').read()
     tune = db.execute('select lower(trim(tune)) from hymns where _id=?', (hid,)).fetchone()[0]
+    tune = dict(x.split('=') for x in os.environ.get('MIDI_TUNE', '').split(',') if x).get(hid, tune)   # MIDI_TUNE=E811=5365317521: the MIDI of another tune
     div, notes, bpm, ts, ks = M.read_midi(os.path.join(M.PROJ, 'midi', 'm%s.mid' % tune)); q = div // 4
     sd = re.search(r'<scoreDef\b[^>]*>', xml).group(0)
     sig = re.search(r'key\.sig="([^"]*)"', sd).group(1); alt, kind = M.key_alters(sig)
