@@ -448,5 +448,9 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
     }
     kept.push(e);
   });
-  return {events: kept, length: at / 4, order, bars: bars.length, idQ, barAt};
+  // played round again, an upbeat's missing beats are a rest before it comes back: the bar before it (the last) may already
+  // be short by them (then none), else the whole of what the upbeat bar lacks
+  const first = bars[0], lastBar = bars[bars.length - 1];
+  const loopGap = A.upbeat ? Math.max(0, (first.nominal - first.len) - (lastBar.nominal - lastBar.len)) / 4 : 0;
+  return {events: kept, length: at / 4, order, bars: bars.length, idQ, barAt, loopGap};
 }
