@@ -176,6 +176,11 @@ public class Hymn {
         return id;
     }
 
+    /** The beginning of a sheet's MEI file (its header: the tempo, the piano part it names), or null. */
+    public String getSheetHead(String id) {
+        return readSheetHead(id);
+    }
+
     /** The beginning of a sheet's MEI file (its header), or null. */
     protected String readSheetHead(String id) {
         try (InputStream in = context.getAssets().open("sheetMei/" + id + ".mei")) {

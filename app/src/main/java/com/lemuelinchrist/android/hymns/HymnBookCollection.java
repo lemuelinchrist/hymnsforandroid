@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.lemuelinchrist.android.hymns.content.ContentArea;
 import com.lemuelinchrist.android.hymns.content.OnLyricVisibleListener;
 import com.lemuelinchrist.android.hymns.content.PlayButton;
+import com.lemuelinchrist.android.hymns.content.sheetmusic.SheetPlayer;
 import com.lemuelinchrist.android.hymns.dao.HymnsDao;
 import com.lemuelinchrist.android.hymns.logbook.HymnRecord;
 import com.lemuelinchrist.android.hymns.logbook.LogBook;
@@ -276,8 +277,9 @@ public class HymnBookCollection implements OnLyricVisibleListener {
 
     @Override
     public void onLyricVisible(String hymnId) {
-        // Sometimes music might be playing in the background. Stop it.
+        // Sometimes music might be playing in the background. Stop it (the Play button's, or another page's jukebox).
         PlayButton.stopCurrentlyPlayingButton();
+        SheetPlayer.stopIfActive();
 
         // any hymn but the related one ends the offer to go back (a swipe, Search, Back, a similar tune)
         if (relatedTo != null && !relatedTo.equals(hymnId)) {

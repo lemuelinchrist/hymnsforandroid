@@ -251,6 +251,7 @@ They start their own `serve.py` on a spare port and use Playwright (`npm i -g pl
 | `src/editor.js`, `src/edits.js` | the chord editor panel; edits on the device, export and import |
 | `src/piano.js`, `src/pianopanel.js` | Both hands: the piano part written into a sheet's MEI, and the notes to play (`scoreOf`, `playOrder`); the panel at the bottom that chooses how the hands play. The rules are `music.js`, copied by `build.py` from `tools/lead-sheet-editor/` |
 | `src/sheetplayer.js` | Play sheet: the row of controls, lighting up the notes, tap to play from there |
+| `src/jukebox.js` | the jukebox card's styles and player (the hymn page's card under the details, `jukeboxCard` in `app.js`); the Android app's card plays through it too (`android/play.js`) |
 | `src/files.js` | fetching and unpacking the gzipped data files |
 | `src/groups.js` | the hymnals; `build.py` fills them in from `HymnGroup.java` |
 | `src/sw.js`, `src/manifest.webmanifest` | service worker (offline) and install manifest; `build.py` writes the file lists in |

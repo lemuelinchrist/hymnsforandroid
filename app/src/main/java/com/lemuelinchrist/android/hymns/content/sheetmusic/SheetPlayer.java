@@ -11,9 +11,12 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.webkit.WebViewAssetLoader;
 import androidx.webkit.WebViewClientCompat;
 import com.lemuelinchrist.android.hymns.logbook.ChordEdits;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.regex.Pattern;
 
@@ -21,7 +24,8 @@ import java.util.regex.Pattern;
  * Plays a hymn's sheet music for the Play button, in a WebView nobody sees: assets/viewer/play.html runs the sheet
  * viewer's own player (tools/web/android/play.js), so the sound is the one the viewer's Play makes. It is used for a
  * hymn with no MIDI file and for a sheet of our own. The page loops the sheet until {@link #stop()}.
- * One player at a time; its WebView is dropped after a while without playing.
+ * The jukebox card plays through it too, in a style it chooses ({@link #play(String, Options, Listener)}): it is told the
+ * bar that sounds and when the play stops. One player at a time; its WebView is dropped after a while without playing.
  */
 public final class SheetPlayer {
     private static final String TAG = "SheetPlayer";
@@ -35,6 +39,31 @@ public final class SheetPlayer {
     private WebView webview;
     private boolean ready;
     private String wanted;   // the sheet to play as soon as the page is loaded
+    private String wantedJs;   // and how: the page's call
+    private int playNo;   // the number of the play now; the page's word about an older one is not listened to
+    private Listener listener;   // who started it (the jukebox), told when it stops
+
+    /** What the jukebox wants to know of its play. Called on the main thread. */
+    public interface Listener {
+        /** It stopped: the end, Stop, or another play took the player. */
+        void onSheetStopped();
+
+        /** The bar that sounds now, of how many the sheet has. */
+        void onSheetBar(int bar, int bars);
+    }
+
+    /** How the jukebox plays a sheet: a style of jukebox.js (its STYLES ids), again and again or once, the tempo's factor. */
+    public static final class Options {
+        public final String style;
+        public final boolean loop;
+        public final double speed;
+
+        public Options(String style, boolean loop, double speed) {
+            this.style = style;
+            this.loop = loop;
+            this.speed = speed;
+        }
+    }
 
     private SheetPlayer(Context context) {
         this.context = context.getApplicationContext();
@@ -57,23 +86,51 @@ public final class SheetPlayer {
         return wanted != null;
     }
 
-    /** Plays the sheet (assets/sheetMei/&lt;id&gt;.mei) from the start. Call it on the main thread. */
+    /** Plays the sheet (assets/sheetMei/&lt;id&gt;.mei) from the start, again and again. Call it on the main thread. */
     public void play(String sheetId) {
+        play(sheetId, null, null);
+    }
+
+    /**
+     * Plays the sheet in the jukebox's way: from the start, or, when the same listener's play of the same sheet goes
+     * on, from where it is with the new options. The listener is told when it stops. Call it on the main thread.
+     */
+    public void play(String sheetId, @Nullable Options options, @Nullable Listener l) {
         if (sheetId == null || !SHEET_ID.matcher(sheetId).matches()) return;
         handler.removeCallbacks(dropWebView);
+        if (listener != l) tellStopped();
+        listener = l;
+        playNo++;
         wanted = sheetId;
+        wantedJs = "sheetPlay('" + sheetId + "'" + (options == null ? "" : ", " + optionsJs(options)) + ")";
         if (webview == null) {
             create();
         } else if (ready) {
-            run("sheetPlay('" + sheetId + "')");
+            run(wantedJs);
         }
     }
 
     public void stop() {
+        playNo++;
         wanted = null;
         if (webview != null && ready) run("sheetStop()");
         handler.removeCallbacks(dropWebView);
         handler.postDelayed(dropWebView, IDLE_MS);
+        tellStopped();
+    }
+
+    private void tellStopped() {
+        Listener l = listener;
+        listener = null;
+        if (l != null) l.onSheetStopped();
+    }
+
+    private String optionsJs(Options o) {
+        try {
+            return new JSONObject().put("style", o.style).put("loop", o.loop).put("speed", o.speed).put("n", playNo).toString();
+        } catch (JSONException e) {
+            return "{}";
+        }
     }
 
     private void run(String js) {
@@ -100,7 +157,7 @@ public final class SheetPlayer {
             @Override
             public void onPageFinished(WebView view, String url) {
                 ready = true;
-                if (wanted != null) run("sheetPlay('" + wanted + "')");
+                if (wanted != null) run(wantedJs);
             }
         });
         webview.getSettings().setJavaScriptEnabled(true);
@@ -130,6 +187,26 @@ public final class SheetPlayer {
         @JavascriptInterface
         public void failed(String message) {
             Log.e(TAG, "could not play the sheet: " + message);
+        }
+
+        /** The jukebox's play n came to its end (or could not start). */
+        @JavascriptInterface
+        public void ended(final int n) {
+            handler.post(() -> {
+                if (n != playNo || wanted == null) return;
+                wanted = null;
+                handler.removeCallbacks(dropWebView);
+                handler.postDelayed(dropWebView, IDLE_MS);
+                tellStopped();
+            });
+        }
+
+        /** The bar the jukebox's play n is at. */
+        @JavascriptInterface
+        public void bar(final int n, final int bar, final int bars) {
+            handler.post(() -> {
+                if (n == playNo && listener != null) listener.onSheetBar(bar, bars);
+            });
         }
     }
 }
