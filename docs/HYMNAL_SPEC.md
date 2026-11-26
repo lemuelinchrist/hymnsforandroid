@@ -347,15 +347,15 @@ The hymns of a book, in reading/swipe order: `SELECT no FROM hymns WHERE hymn_gr
    the link is made: the Bible text is not copied into the app (it is copyrighted).
 5. **Jukebox card** (below the details; hidden when the hymn has nothing to play: no sheet to play (`Hymn.getSheetToPlay()`,
    §7.2), or a chords-only sheet): a title row `JUKEBOX` with `Hide ▴` on its right (the fold, below), then a round Play button (❚❚ while playing) in the book's accent colour,
-   beside it the **style** list and a thin progress line with `Bar 3 of 16`; under them the tempo (`♩ = 108`: the
+   beside it the active style name (`Guitar pick · Ballad picking`), `Bar 3 of 16` and a thin progress line; below them a row of **category pills** and (for multi-style categories) a row of **sub-style chips** for one-tap live switching; under them the tempo (`♩ = 108`: the
    tempo the sheet names, times the slider; a tap on it sets the sheet's own again), a slider from half to one and a
    half times it, by twentieths, and a **Loop** switch (on to begin with: again and again; off: it plays once and stops). It plays
-   the hymn's sheet without opening it (this device's chord edits, the sheet's tempo); a change of style, tempo or Loop
-   while it plays goes on from the same bar. The styles, in this order (`tools/web/src/jukebox.js` `STYLES`, which the
-   Android card lists by the same ids): **The hymn's own style** (only for a sheet that names its piano part, `<identifier
+   the hymn's sheet without opening it (this device's chord edits, the sheet's tempo); a change of category, sub-style, tempo or Loop
+   while it plays goes on from the same bar, and each category remembers the last sub-style chosen in it on that page. The categories and styles, in this order (`tools/web/src/jukebox.js` `GROUPS` and `STYLES`, which the
+   Android card lists by the same ids): **Hymn's own** ("The hymn's own style", only for a sheet that names its piano part, `<identifier
    type="hands">`: Chorale for most hymns with four parts), **Piano** · Flowing, Plain, Chorale, Lively,
-   Walking (the Style panel's presets, §11), **Guitar** · Folk strum, Pop, Steady, Ballad, Country, Fingerpicking, Ballad
-   picking (the guitar sheet's strums in the Warm tone, in its chord shapes above its capo), and **Melody alone**. A
+   Walking (the Style panel's presets, §11), **Guitar strum** · Folk strum, Pop, Steady, Ballad, Country, **Guitar pick** · Fingerpicking, Folk picking, Adaptive picking, Ballad picking, Gentle harp, Adaptive ballad
+   (the guitar sheet's strums and fingerpickings in the Warm tone, in its chord shapes above its capo), and **Melody** ("Melody alone"). A
    hymn always opens on the style its sheet names (Flowing when it names none); a style picked is for that page only,
    not carried to the next hymn. Loop and the tempo factor are kept on the device for every hymn (Android: preferences
    `jukeboxLoop`, `jukeboxSpeed`; web: `hfw.jukebox`). One sound at a time: starting it stops the button bar's Play (and the web app's sheet
@@ -970,7 +970,7 @@ on a second staff (bass clef, in a brace with the first), made from the chords b
 chord, arpeggios including full-bar Flowing/Ballad arches with warm 9ths and bass sustain, Guitar (the chord as a guitar's open shape in the first frets, strummed down over six strings or up over four, or fingerpicked; played on a sampled steel-string guitar, FluidR3 GM, CC BY 3.0, in a tone chosen under Advanced: Bright, Warm (the default), Mellow or Soft; a plucked string made in the browser plays while the samples load), and Dynamic styles: Adaptive (Flowing), calm while the melody moves and a fill from where it holds a note or rests, each stretch taking one of a few figures for its situation (a short chord, a fill, the late fill, the first bar of a chord, a bar where it goes on), some pressing two notes of the chord together, picked by a random number made from the song and the hymn's take (`seed`: none is the hymn's own, **Shuffle** in the panel picks another, the same notes every time), half the time keeping the last figure so that one carries on for a while; the last note before the next chord's bass is held for at least a beat (never an eighth and then a leap down to the bass), and in 6/8 and 9/8 a short chord is the bass alone; Rolled harp chords, contemporary Pulse, diatonic Walking bass, and Chorale, the bass and one tenor note as in a hymnal, which walk through the note of the key between where one leaps a third into the next chord; a More walking switch, shown only for Chorale, lets both walk, walks a fourth in two steps and moves the bass to another note of a chord that lasts a bar, or under a held melody note), and optionally one or two notes of the chord under each melody note that is chosen for it. It is
 made when the sheet is shown, from the sheet as shown (after transposing and after the device's chord edits), and
 written into the MEI before Verovio draws it; the sheet files have none of it. It is only on the piano sheet with the
-staff shown. The panel offers presets (Plain: Strike, hymn style, twice a bar; Chorale, with two notes on the beat in the right hand; Flowing, the default since 2026-11-24; Guitar, with a Strum row: folk strum, pop, steady, driving, ballad, country, fingerpicking, ballad picking; Lively;
+staff shown. The panel offers presets (Plain: Strike, hymn style, twice a bar; Chorale, with two notes on the beat in the right hand; Flowing, the default since 2026-11-24; Guitar, with Strum and Pick rows: Folk strum, Pop, Steady, Ballad, Country, and Fingerpicking, Folk picking, Adaptive picking, Ballad picking, Gentle harp, Adaptive ballad, where picked strings ring naturally until re-plucked or the chord changes, use a warmer finger-flesh envelope, drop the alternating bass on 4-string open shapes like D/Dm to the open A string, and pace fast-notated sheets under 210 ms per eighth in quarter notes; Lively;
 Walking) and the right hand (melody alone or two notes, added where a chord starts); a style that varies its figures (Flowing)
 also has **Shuffle**, which plays them in another order for that hymn, and **Original**, which brings the hymn's own back;
 Advanced shows every choice. A change
@@ -981,8 +981,8 @@ choice comes first, then this, then the device's choice, and changes made to suc
 On the guitar sheet, **Strumming** takes Both hands' place in the toolbar (B toggles whichever is shown): a guitar
 strums the chords when the sheet plays, with the staff or Chords only; nothing is added to the sheet. It is on until
 turned off (remembered on the device), so the guitar sheet plays on a guitar. Its own panel at
-the bottom (opened when it is turned on, tucked down to a bar after Done, like Both hands') has only two rows, Strum (the
-eight guitar strums) and Tone (Bright, Warm, Mellow, Soft; Warm by default), and "Use for all hymns": a change is that
+the bottom (opened when it is turned on, tucked down to a bar after Done, like Both hands') has three rows, Strum (the
+five guitar strums), Pick (the six guitar fingerpicking styles) and Tone (Bright, Warm, Mellow, Soft; Warm by default), and "Use for all hymns": a change is that
 hymn's own (`strumByHymn`), the device's choice is `strumForAll` (Both hands': `handsByHymn`, `handsForAll`). Choices
 saved under the earlier names (`piano`, `pianoOf`, `strum`, `strumOf`) are deleted, so every device starts from the
 defaults: before a change became the hymn's own, every change was kept for every hymn. The strums use the shapes of the chords the guitar sheet shows

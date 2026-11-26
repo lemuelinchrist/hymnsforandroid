@@ -92,8 +92,8 @@ off (choosing a style then turns Both hands on), and goes at Stop. It shows two 
 - **Style**, a preset named by what it is for: **Plain** (Strike, hymn style, twice a bar), **Chorale**
   (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
   harmony as in a hymnal), **Flowing** (the default: Dynamic, Adaptive), **Guitar**
-  (strummed or picked, with a **Strum** row under Style: Folk strum, Pop, Steady, Ballad, Country, Fingerpicking,
-  Ballad picking), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
+  (strummed or picked, with **Strum** and **Pick** rows under Style: Folk strum, Pop, Steady, Ballad, Country; Fingerpicking,
+  Folk picking, Adaptive picking, Ballad picking, Gentle harp, Adaptive ballad), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
   Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
 - **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
 - **Shuffle Style** (a row under Style, only where the style varies its figures: Flowing, in Advanced too): Flowing's left hand takes,

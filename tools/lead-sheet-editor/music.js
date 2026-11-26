@@ -407,8 +407,11 @@
     if (used.C) out.C = middle(c.tones.map(function (t) { return t[0]; }));
     if (used.t) out.t = [tenor()];
     if (used.D || used.U || used.K || used.T || used.A || used.g || used.b || used.e) {
-      var gs = guitarShape(c, opt.capo), on = gs.filter(function (p) { return p != null; });
-      out.D = on; out.U = out.K = on.slice(-4); out.T = [on[0]]; out.A = [on[1] != null ? on[1] : on[0]];
+      var cp = opt.capo | 0, gs = guitarShape(c, opt.capo), on = gs.filter(function (p) { return p != null; });
+      var alt = on[1] != null ? on[1] : on[0];
+      // 4-string open shapes (D, Dm): drop alternating thumb A to the open 5th string when it is a chord tone, else stay on root so A never duplicates g
+      if (on.length <= 4 && gs[0] == null && gs[1] == null) alt = pcs.indexOf(mod12(45 + cp)) >= 0 ? 45 + cp : on[0];
+      out.D = on; out.U = out.K = on.slice(-4); out.T = [on[0]]; out.A = [alt];
       ['g', 'b', 'e'].forEach(function (k, i) { var p = gs[3 + i]; out[k] = [p != null ? p : on[on.length - 1]]; });
     }
     return out;
@@ -501,39 +504,55 @@
          {id: '8', name: beat === 4 ? 'Eighths' : 'Twice a beat', pat: walkE, rate: eighth, low: 40, bassRing: true, shortPat: '1 - w -'}];
     var rolledRhythms = [{id: 'held', name: 'Held', pat: '1+5+8+10', rate: 0, low: 40, roll: 0.032}];
     if (half) rolledRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+5+8+10', rate: half, low: 40, roll: 0.028});
-    // guitar strums and picking, by the time signature: [id, name, hint, pattern, shortPat]
+    // guitar strums and picking, by the time signature: [id, name, hint, pattern, shortPat, extra]
     var GUITAR = m.compound ? [
       ['folk', 'Folk strum', 'down, down, up', 'D D U D D U', 'D D U'],
       ['pop', 'Pop', 'with a muted chuck', 'D - U K - U', 'D - U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - - D - -', 'D - -'],
       ['ballad', 'Ballad', 'slow and open', 'D - - D - U', 'D - U'],
       ['country', 'Country', 'bass, then strums, the other bass', 'T D U A D U', 'T D U'],
-      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b A b g', 'T g b'],
-      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T b e b g b', 'T b e']]
+      ['pick', 'Fingerpicking', 'thumb and finger pinch, unhurried', 'T+b - g A - b | T+e - b g - b', 'T+b - g', {pick: true, settle: true}],
+      ['travis', 'Folk picking', 'alternating thumb and strings, relaxed', 'T - g b - g | A - b e - b', 'T - g', {pick: true, settle: true}],
+      ['pick-flow', 'Adaptive picking', 'calm while singing, a gentle roll on held notes', 'T - - b - g', 'T - -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - b', latePat: 'b e -'}],
+      ['arp', 'Ballad picking', 'lyrical arch up the strings, held at the top', 'T g b e - - | T g b - e b', 'T g b', {pick: true, settle: true}],
+      ['harp', 'Gentle harp', 'serene quarter notes up the strings', 'T - g b - e | T - b e - b', 'T - g', {pick: true}],
+      ['arp-flow', 'Adaptive ballad', 'calm quarters while singing, blooming arch on held notes', 'T - - g - b', 'T - -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - -', latePat: 'b e -'}]]
       : n === 3 ? [
       ['folk', 'Folk strum', 'down, then down-up', 'D - D U D U', 'D - D U'],
       ['pop', 'Pop', 'with a muted chuck', 'D - K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D -', 'D - D -'],
       ['ballad', 'Ballad', 'bass, then strums', 'T - D - D -', 'T - D -'],
       ['country', 'Country', 'bass, then strums, the other bass', 'T - D U D U | A - D U D U', 'T - D U'],
-      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T g b e b g', 'T g b e'],
-      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b g e g', 'T g b g']]
+      ['pick', 'Fingerpicking', 'thumb and finger pinch, unhurried', 'T+b - g - e - | T - g b g -', 'T+b - g -', {pick: true, settle: true}],
+      ['travis', 'Folk picking', 'alternating thumb and strings, relaxed', 'T - g b e - | A - g b g -', 'T - g b', {pick: true, settle: true}],
+      ['pick-flow', 'Adaptive picking', 'calm while singing, a gentle roll on held notes', 'T - g - b -', 'T - g -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - g', latePat: 'b e -'}],
+      ['arp', 'Ballad picking', 'lyrical arch up the strings, held at the top', 'T g b e - - | T g b - e -', 'T g b -', {pick: true, settle: true}],
+      ['harp', 'Gentle harp', 'serene quarter notes up the strings', 'T - g - b - | T - b - e -', 'T - g -', {pick: true}],
+      ['arp-flow', 'Adaptive ballad', 'calm quarters while singing, blooming arch on held notes', 'T - g - b - | T - b - g -', 'T - g -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - -', latePat: 'b e -'}]]
       : n === 2 ? [
       ['folk', 'Folk strum', 'down, down-up', 'D - D U', 'D U'],
       ['pop', 'Pop', 'with a muted chuck', 'D U K U', 'D U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D -', 'D -'],
       ['ballad', 'Ballad', 'slow and open', 'D - - U', 'D -'],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T D A D', 'T D'],
-      ['pick', 'Fingerpicking', 'bass and strings one by one', 'T e A b', 'T e'],
-      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b e', 'T g']]
+      ['pick', 'Fingerpicking', 'thumb and finger pinch, unhurried', 'T+b - g b', 'T+b -', {pick: true, settle: true}],
+      ['travis', 'Folk picking', 'alternating thumb and strings, relaxed', 'T - b g', 'T -', {pick: true, settle: true}],
+      ['pick-flow', 'Adaptive picking', 'calm while singing, a gentle roll on held notes', 'T - b -', 'T -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b -', latePat: 'b -'}],
+      ['arp', 'Ballad picking', 'lyrical arch up the strings, held at the top', 'T g b -', 'T g', {pick: true, settle: true}],
+      ['harp', 'Gentle harp', 'serene quarter notes up the strings', 'T - g - | A - b -', 'T -', {pick: true}],
+      ['arp-flow', 'Adaptive ballad', 'calm quarters while singing, blooming arch on held notes', 'T - g -', 'T -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b -', latePat: 'b -'}]]
       : [
       ['folk', 'Folk strum', 'down, down-up, up-down-up', 'D - D U - U D U', 'D - D U'],
       ['pop', 'Pop', 'with a muted chuck on beat 3', 'D - D U K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D - D -', 'D - D -'],
       ['ballad', 'Ballad', 'slow and open', 'D - - - D - D U', 'D - D U'],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T - D U A - D U', 'T - D U'],
-      ['pick', 'Fingerpicking', 'thumb on the beat, strings between', 'T e A b T e A b', 'T e A b'],
-      ['arp', 'Ballad picking', 'rolling up and down the strings', 'T g b g e g b g', 'T g b g']];
+      ['pick', 'Fingerpicking', 'thumb and finger pinch, unhurried', 'T+b - g - A - e b | T+e - g b A - b -', 'T+b - g -', {pick: true, settle: true}],
+      ['travis', 'Folk picking', 'alternating thumb and strings, relaxed', 'T - b g A - e g | T - g b A - e b', 'T - b g', {pick: true, settle: true}],
+      ['pick-flow', 'Adaptive picking', 'calm while singing, a gentle roll on held notes', 'T - g - A - b - | T+b - g - A - g -', 'T - g -', {pick: true, adaptive: true, settle: true, fillPat: 'T - g b e - b g', latePat: 'g b e -'}],
+      ['arp', 'Ballad picking', 'lyrical arch up the strings, held at the top', 'T g b e - - b g | T g b - e - b -', 'T g b -', {pick: true, settle: true}],
+      ['harp', 'Gentle harp', 'serene quarter notes up the strings', 'T - g - b - e - | T - b - e - b -', 'T - g -', {pick: true}],
+      ['arp-flow', 'Adaptive ballad', 'calm quarters while singing, blooming arch on held notes', 'T - g - b - - - | T - b - g - - -', 'T - g -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - - b g', latePat: 'g b e -'}]];
     var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+t', rate: 0, low: 40, passing: true}];
     if (half) choraleRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+t', rate: half, low: 40, passing: true});
     return [
@@ -555,7 +574,8 @@
         })};
       })},
       {id: 'guitar', name: 'Guitar', hint: 'strummed or picked like a guitar', kinds: GUITAR.map(function (gk) {
-        return {id: gk[0], name: gk[1], hint: gk[2], rhythms: [{id: '8', name: '', pat: gk[3], shortPat: gk[4], rate: eighth, low: 40, guitar: true}]};
+        var extra = gk[5] || {};
+        return {id: gk[0], name: gk[1], hint: gk[2], pick: !!extra.pick, rhythms: [Object.assign({id: '8', name: '', pat: gk[3], shortPat: gk[4], rate: eighth, low: 40, guitar: true}, extra)]};
       })},
       {id: 'dynamic', name: 'Dynamic', hint: 'musical patterns that breathe and move', kinds: [
         {id: 'adaptive', name: 'Adaptive', hint: 'calm under singing, blooms on held notes, a different figure each time', rhythms: [
@@ -615,14 +635,22 @@
       for (var j = v2.length - 1; j >= 0; j--) if (!isRest(v2[j]) && !tied(v2, j)) { last = Math.max(last, v2on[j] + off); break; }
       mel.sort(function (a, b) { return a[0] - b[0]; });
     }
-    var out = accompanyOn({bars: bars, first: first, chords: spans, mel: mel, last: last, base: base, changes: changes});
+    var out = accompanyOn({bars: bars, first: first, chords: spans, mel: mel, last: last, base: base, changes: changes, bpm: sheet.tempo || 0});
     var events = [];
     function push(p, d, ring, src) {
       var prev = events[events.length - 1];
       if (!p && prev && !prev.p) { prev.d += d; return; }
       var e = {p: p, d: d}; if (ring) e.ring = ring;
       if (src && src.fresh) e.fresh = true;   // the first note of a chord's stretch is played a little harder
-      if (src && src.inst) { e.inst = src.inst; if (src.mute) e.mute = true; if (src.up) e.up = true; if (src.roll) e.roll = src.roll; }   // a guitar strum (played by the page, not written in the sheet)
+      if (src && src.inst) {
+        e.inst = src.inst;
+        if (src.mute) e.mute = true;
+        if (src.up) e.up = true;
+        if (src.roll != null) e.roll = src.roll;
+        if (src.pluck) e.pluck = true;
+        if (src.thumb) e.thumb = true;
+        if (src.rings) e.rings = src.rings;
+      }   // a guitar strum or fingerpluck (played by the page, not written in the sheet)
       events.push(e);
     }
     if (first) push(null, first - off);   // the upbeat
@@ -681,15 +709,30 @@
     function melPc(g) { for (var k = mel.length - 1; k >= 0; k--) if (mel[k][0] <= g + 0.01) return g < mel[k][1] ? mod12(mel[k][2]) : null; return null; }
     at.forEach(function (a, k) {
       var z = k + 1 < at.length ? at[k + 1] : endG, sp = spanAt(a), acc = patAt(a), parts = acc ? parsePattern(acc.pat) : [];
-      if (acc && !acc.guitar && /^guitar\//.test(acc.style || '')) acc = Object.assign({}, acc, {guitar: true});   // a saved pattern knows its style, not the flag
+      if (acc && /^guitar\//.test(acc.style || '')) {
+        if (!acc.guitar) acc = Object.assign({}, acc, {guitar: true});   // a saved pattern knows its style, not the flag
+        if (acc.pick == null && /^guitar\/(pick|travis|arp|harp)/.test(acc.style)) acc = Object.assign({}, acc, {pick: true});
+      }
       if (z <= a) return;
       if (acc !== lastA) { marks.push({g: a, a: acc, song: acc === base}); lastA = acc; }
       if (!sp || !sp.info || !parts.length) { events.push({g: a, d: z - a, p: null}); return; }
       var bi = barAt(a), barStart = bars[bi].g, barL = bars[bi].len, fresh = sp.g >= barStart || barStart === first && sp.g < first;
       var rate = acc.rate | 0, useParts = parts, bloom = -1, lateSteps = null;
-      // Short-chord adaptation (e.g. 2-beat chord in 4/4), and Adaptive: calm while the melody moves, a fill from where it
-      // holds a note or rests (the whole stretch when it holds from the start, else the late fill from that beat)
-      if (rate && acc.shortPat && (z - a) <= barL / 2) {
+      // Fast-notated sheets (e.g. cut-time 4/4 at ♩=200 or fast 3/4 at ♩=180, where an eighth step is under 210 ms):
+      // pace guitar picking in quarter notes so it plays at natural human speed instead of a frantic rush.
+      var isCompoundBar = bars[bi].beat === 6;
+      var halfTimed = !!(acc.pick && rate && tl.bpm > 0 && !isCompoundBar && (rate / 4) * (60 / tl.bpm) < 0.21);
+      if (halfTimed) {
+        rate *= 2;
+        if (barL === 12 && bars[bi].beat === 4) {
+          var waltzPat = /arp|harp/.test(acc.kind || acc.style || '') ? 'T g b | T b e' : 'T g b | A b e';
+          useParts = parsePattern((z - a) <= barL / 2 ? 'T g' : waltzPat);
+        } else if (acc.shortPat && (z - a) <= barL / 2) {
+          var spFast = parsePattern(acc.shortPat); if (spFast.length) useParts = spFast;
+        }
+      } else if (rate && acc.shortPat && (z - a) <= barL / 2) {
+        // Short-chord adaptation (e.g. 2-beat chord in 4/4), and Adaptive: calm while the melody moves, a fill from where it
+        // holds a note or rests (the whole stretch when it holds from the start, else the late fill from that beat)
         var spParts = parsePattern(acc.shortPat); if (spParts.length) useParts = spParts;
       } else if (rate && acc.adaptive && acc.fillPat && (bloom = holdFrom(a, z, rate, barL)) >= 0) {
         if (bloom === a) { var fpParts = parsePattern(acc.fillPat); if (fpParts.length) useParts = fpParts; }
@@ -703,20 +746,24 @@
           if (vp.length) { if (kind === 'late') lateSteps = vp[0]; else useParts = [vp[0], vp[0]]; }
         }
       }
-      var steps = useParts[fresh ? 0 : Math.min(1, useParts.length - 1)];
+      var qStart = halfTimed && !(barL === 12 && bars[bi].beat === 4) ? Math.round((a - sp.g) / rate) : 0;
+      var steps = halfTimed && qStart > 0 && useParts[0].length
+        ? useParts[Math.min(useParts.length - 1, Math.floor(qStart / useParts[0].length))]
+        : useParts[fresh ? 0 : Math.min(1, useParts.length - 1)];
       // what is played when in this stretch: [{toks | null, g, d}]
       var plan = [], isEnding = acc.end !== false && rate && sp === spans[spans.length - 1] && bi >= lastBar && lastBar >= 0;
       if (isEnding) {
         var all = acc.guitar ? ['D'] : ['1', '5']; if (!acc.guitar) steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378t]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
         plan.push({toks: all, g: a, d: z - a, ending: true});
       } else if (!rate) plan.push({toks: steps[0].toks || null, g: a, d: z - a});
-      else for (var t = a, q = 0; t < z; t += rate, q++) {
+      else for (var t = a, q = qStart; t < z; t += rate, q++) {
         if (lateSteps && t === bloom) { steps = lateSteps; q = 0; }
         var s = steps[q % steps.length], d = Math.min(rate, z - t), last = plan[plan.length - 1];
         if (s.hold && last && last.toks) last.d += d; else plan.push({toks: s.toks || null, g: t, d: d});
       }
-      // settle: the last beat of the stretch holds the note before it, so the hand has a beat to go back to the bass
-      if (acc.settle && rate && !isEnding) {
+      // settle: the last beat holds the note before it so the hand/fingers have a beat before jumping to the next chord's bass
+      var doSettle = acc.settle && rate && !isEnding && (!acc.pick || (z >= sp.end - 0.01 && (z - a) > (bars[bi].beat || rate * 2)));
+      if (doSettle) {
         var beatL = bars[bi].beat || rate * 2, lastBeat = z - beatL + 0.01;
         for (var pk = plan.length - 1; pk > 0; pk--) {
           var stp = plan[pk];
@@ -759,17 +806,39 @@
           else if (acc.bassRing && rate && pi === 0 && (st.toks || []).indexOf('1') >= 0 && z - st.g > st.d) e.ring = z - st.g;
           if (st.ending) e.roll = 0.032;
           else if (acc.roll && e.p.length > 1) e.roll = acc.roll;
-          if (acc.guitar) {   // strummed: down from the bass, up (U alone) from the top string, a little lighter
+          if (acc.guitar) {   // strummed: down from the bass, up (U alone) from the top string; picked: warm fingers, strings let ring
             e.inst = 'guitar';
-            if (e.p.length > 1 && !st.ending) e.roll = acc.roll || 0.012;
-            if ((st.toks || []).length === 1 && st.toks[0] === 'U') e.up = true;
-            if ((st.toks || []).indexOf('K') >= 0) { e.mute = true; e.roll = 0.004; }
+            if (acc.pick) {
+              e.pluck = true;
+              e.spanEnd = sp.end;
+              if ((st.toks || []).length === 1 && (st.toks[0] === 'T' || st.toks[0] === 'A')) e.thumb = true;
+              e.roll = e.p.length > 1 ? (st.ending ? 0.022 : 0.004) : 0;
+            } else {
+              if (e.p.length > 1 && !st.ending) e.roll = acc.roll || 0.012;
+              if ((st.toks || []).length === 1 && st.toks[0] === 'U') e.up = true;
+              if ((st.toks || []).indexOf('K') >= 0) { e.mute = true; e.roll = 0.004; }
+            }
           }
           if (pi === 0 && fresh) e.fresh = true;
           if (acc.passing && e.p.length === 2 || st.ending) { e.span = sp; e.pass = acc.passing === 2 ? 2 : acc.passing ? 1 : 0; }
         }
         events.push(e);
       });
+    });
+    // Fingerpicked guitar strings ring naturally over one another until that same string/pitch is plucked again or the chord ends
+    events.forEach(function (e, idx) {
+      if (!e.pluck || !e.p) return;
+      var cap = Math.min(e.spanEnd, e.g + 16);
+      e.rings = e.p.map(function (pitch) {
+        var stopG = cap;
+        for (var m = idx + 1; m < events.length; m++) {
+          var nx = events[m];
+          if (nx.g >= stopG) break;
+          if (nx.p && (nx.p.indexOf(pitch) >= 0 || nx.mute || (nx.inst === 'guitar' && !nx.pluck))) { stopG = nx.g; break; }
+        }
+        return Math.max(e.d, stopG - e.g - 0.2);
+      });
+      delete e.spanEnd;
     });
     passingNotes(events, bars, barAt, mel);
     return {events: events, marks: marks};
@@ -1034,12 +1103,14 @@
         baseVel += Math.round((rising ? 5 : -3) + rel * 4);
         microOff = onBeat ? 0.002 : (rising ? 0.005 : 0.003);
       }
-      var roll = e.roll || (e.p.length > 1 ? 0.012 : 0);
+      var roll = e.roll != null ? e.roll : (e.p.length > 1 ? 0.012 : 0);
       if (e.up) baseVel -= 9;   // a guitar's up strum: lighter, from the top string down
       var dur = e.ring ? Math.max(e.d, e.ring - 0.35) : e.d;   // a pedal lift just before the next chord keeps the harmonies clear
       return e.p.map(function (p, pi) {
-        var voiceAdj = e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
-        return {p: p, vel: Math.max(34, Math.min(86, baseVel + voiceAdj)), off: roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff, dur: dur};
+        var voiceAdj = e.pluck ? (e.p.length > 1 ? (pi === 0 ? 3 : -3) : (e.thumb ? 3 : -3))
+          : e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
+        var d0 = e.rings && e.rings[pi] != null ? e.rings[pi] : dur;
+        return {p: p, vel: Math.max(34, Math.min(86, baseVel + voiceAdj)), off: roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff, dur: d0};
       });
     });
   }
@@ -1097,7 +1168,7 @@
       lh.events.forEach(function (e, i) {
         if (isRest(e) || tied(lh.events, i)) return;
         var d = len(e); for (var q = i + 1; tied(lh.events, q); q++) d += len(lh.events[q]);
-        left.push({t: lo[i], d: e.ring || d, g: d, ring: e.ring, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll, fresh: e.fresh});
+        left.push({t: lo[i], d: e.ring || d, g: d, ring: e.ring, rings: e.rings, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll, pluck: e.pluck, thumb: e.thumb, fresh: e.fresh});
       });
     }
     var off = gridOff(sheet);
@@ -1116,7 +1187,7 @@
     var byBar = {};
     left.forEach(function (l) { (byBar[barOf(l.t)] = byBar[barOf(l.t)] || []).push(l); });
     Object.keys(byBar).forEach(function (bi) {
-      var items = byBar[bi], dyn = leftDyn(items.map(function (l) { return {e: {p: l.ps, d: l.g, ring: l.ring, inst: l.inst, up: l.up, roll: l.roll, fresh: l.fresh}, pos: posOf(l.t)}; }), {nominal: bar, beat: beat});
+      var items = byBar[bi], dyn = leftDyn(items.map(function (l) { return {e: {p: l.ps, d: l.g, ring: l.ring, rings: l.rings, inst: l.inst, up: l.up, roll: l.roll, pluck: l.pluck, thumb: l.thumb, fresh: l.fresh}, pos: posOf(l.t)}; }), {nominal: bar, beat: beat});
       items.forEach(function (l, k) { l.notes = dyn[k] || []; });
     });
     var acc = sheet.acc, guitar = !!(acc && (acc.guitar || /^guitar\//.test(acc.style || '')));

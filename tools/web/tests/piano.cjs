@@ -44,6 +44,9 @@ async function inPage({file, step, only}) {
     ['chorale', {lh: {family: 'dynamic', kind: 'chorale', rhythm: 'held'}, rh: {add: 1, on: 'beat'}}],
     ['guitar', {lh: {family: 'guitar', kind: 'folk', rhythm: '8'}, rh: {add: 0}}],
     ['picking', {lh: {family: 'guitar', kind: 'pick', rhythm: '8'}, rh: {add: 1, on: 'chord'}}],
+    ['travis', {lh: {family: 'guitar', kind: 'travis', rhythm: '8'}, rh: {add: 0}}],
+    ['pick-flow', {lh: {family: 'guitar', kind: 'pick-flow', rhythm: '8'}, rh: {add: 0}}],
+    ['arp-flow', {lh: {family: 'guitar', kind: 'arp-flow', rhythm: '8'}, rh: {add: 0}}],
     ['country', {lh: {family: 'guitar', kind: 'country', rhythm: '8'}, rh: {add: 0}}],
     ['pop', {lh: {family: 'guitar', kind: 'pop', rhythm: '8'}, rh: {add: 0}}],
     ['right only', {lh: null, rh: {add: 2, on: 'long'}}],
@@ -188,10 +191,13 @@ async function ui(page) {
     assert(await page.locator('.sheet-music g.note.fill').count() === 0, 'the melody alone');
     await pick('Style', 'Guitar');
     const strum = page.locator('.piano-panel .ce-row', {hasText: 'Strum'});
-    assert(await strum.isVisible(), 'Guitar shows the Strum row');
+    const pickRow = page.locator('.piano-panel .ce-row', {hasText: 'Pick'});
+    assert(await strum.isVisible() && await pickRow.isVisible(), 'Guitar shows both Strum and Pick rows');
     const folk = await left();
-    await pick('Strum', 'Fingerpicking');
+    await pick('Pick', 'Fingerpicking');
     assert(await left() !== folk && /Fingerpicking/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'picking plays other notes, and the bar says so');
+    await pick('Pick', 'Adaptive ballad');
+    assert(/Adaptive ballad/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'Adaptive ballad chosen');
     assert(await page.locator('.piano-panel .ce-row button:text-is("Guitar")').getAttribute('aria-pressed') === 'true', 'still the Guitar preset');
     assert(await page.locator('.piano-panel .ce-row', {hasText: 'Tone'}).isHidden(), 'the simple panel has no Tone row');
     await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
@@ -202,7 +208,7 @@ async function ui(page) {
     await pick('Tone', 'Warm');
     await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
     await pick('Style', 'Chorale');
-    assert(await strum.isHidden(), 'no Strum row for Chorale');
+    assert(await strum.isHidden() && await pickRow.isHidden(), 'no Strum or Pick row for Chorale');
     assert(await page.locator('.sheet-music g.note.fill').count() > 5, 'Chorale adds a note under the melody');
     const sw = page.locator('.piano-panel .pp-switch', {hasText: 'More walking'});
     assert(await sw.isVisible() && await sw.getAttribute('aria-checked') === 'false', 'Chorale shows More walking, off');
@@ -319,9 +325,11 @@ async function ui(page) {
     await page.click('.tb.playsheet'); await page.waitForTimeout(1200);
     assert(await sp.locator('.pp-body').isVisible(), 'Play again: open again');
     const rows = await sp.locator('.ce-row .ce-label').allTextContents();
-    assert(rows.join(',') === 'Strum,Tone', 'only the strum and the tone: ' + rows);
+    assert(rows.join(',') === 'Strum,Pick,Tone', 'Strum, Pick and Tone rows: ' + rows);
     assert(await sp.locator('.ce-row', {hasText: 'Tone'}).locator('button:text-is("Warm")').getAttribute('aria-pressed') === 'true', 'Warm to begin with');
     assert(await sp.locator('button:text-is("Use for all hymns")').isDisabled(), 'the device\'s already');
+    await sp.locator('.ce-row', {hasText: 'Pick'}).locator('button:text-is("Gentle harp")').click();
+    assert(/Gentle harp/.test(await sp.locator('.pp-summary').textContent()), 'Gentle harp picked');
     await sp.locator('.ce-row', {hasText: 'Strum'}).locator('button:text-is("Pop")').click();
     await sp.locator('.ce-row', {hasText: 'Tone'}).locator('button:text-is("Soft")').click();
     await sp.locator('button:text-is("Done")').click();
@@ -564,6 +572,37 @@ async function ui(page) {
     await page.click('.tabs button[data-tab="sheet"]'); await settle();
     await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();
     assert(await page.locator('.sheet-player').isHidden(), 'closed');
+  });
+  await test('the Jukebox card offers category pills and sub-style chips, remembers each category\'s pick, and switches while playing', async () => {
+    await page.click('.tabs button[data-tab="lyrics"]'); await settle();
+    const jb = page.locator('.jukebox-card');
+    await jb.waitFor({state: 'visible'});
+    const cats = await jb.locator('.jb-cats .jb-cat').allTextContents();
+    assert(cats.join(',') === 'Hymn\'s own,Piano,Guitar strum,Guitar pick,Melody', 'categories on E8: ' + cats);
+    assert((await jb.locator('.jb-current').textContent()) === 'The hymn\'s own style' && await jb.locator('.jb-subs').isHidden(), 'E8 starts on its own style');
+    await jb.locator('.jb-cat:text-is("Piano")').click();
+    assert((await jb.locator('.jb-current').textContent()) === 'Piano · Flowing', 'Piano starts on Flowing');
+    await jb.locator('.jb-cat:text-is("Guitar pick")').click();
+    const subs = await jb.locator('.jb-subs .jb-sub').allTextContents();
+    assert(subs.join(',') === 'Fingerpicking,Folk picking,Adaptive picking,Ballad picking,Gentle harp,Adaptive ballad', 'six guitar pick styles: ' + subs);
+    assert((await jb.locator('.jb-current').textContent()) === 'Guitar pick · Fingerpicking', 'starts category on Fingerpicking');
+    await jb.locator('.jb-sub:text-is("Gentle harp")').click();
+    assert((await jb.locator('.jb-current').textContent()) === 'Guitar pick · Gentle harp', 'switches sub-style');
+    await jb.locator('.jb-cat:text-is("Melody")').click();
+    assert(await jb.locator('.jb-subs').isHidden() && (await jb.locator('.jb-current').textContent()) === 'Melody alone', 'Melody hides sub-styles');
+    await jb.locator('.jb-cat:text-is("Guitar pick")').click();
+    assert((await jb.locator('.jb-current').textContent()) === 'Guitar pick · Gentle harp', 'remembers Gentle harp in Guitar pick');
+    await jb.locator('.jb-play').click(); await page.waitForTimeout(900);
+    assert(await jb.locator('.jb-play').getAttribute('aria-pressed') === 'true', 'Jukebox plays');
+    await jb.locator('.jb-sub:text-is("Adaptive ballad")').click(); await page.waitForTimeout(400);
+    assert(await jb.locator('.jb-play').getAttribute('aria-pressed') === 'true' && (await jb.locator('.jb-current').textContent()) === 'Guitar pick · Adaptive ballad', 'switches live while playing');
+    await jb.locator('.jb-play').click(); await page.waitForTimeout(300);
+    assert(await jb.locator('.jb-play').getAttribute('aria-pressed') === 'false', 'stopped');
+    // A hymn without <identifier type="hands"> omits Hymn's own and starts on Piano · Flowing
+    await page.goto(BASE + '#/h/NS143'); await page.waitForSelector('.jukebox-card'); await settle();
+    const nsCats = await page.locator('.jukebox-card .jb-cats .jb-cat').allTextContents();
+    assert(nsCats.join(',') === 'Piano,Guitar strum,Guitar pick,Melody', 'categories on NS143: ' + nsCats);
+    assert((await page.locator('.jukebox-card .jb-current').textContent()) === 'Piano · Flowing', 'NS143 starts on Piano · Flowing');
   });
   return failed;
 }

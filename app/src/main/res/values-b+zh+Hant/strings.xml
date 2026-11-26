@@ -85,6 +85,7 @@
     <string name="jukebox">點唱機</string>
     <string name="jukebox_play">播放</string>
     <string name="jukebox_stop">停止</string>
+    <string name="jukebox_category">類別</string>
     <string name="jukebox_style">風格</string>
     <string name="jukebox_loop">循環</string>
     <string name="jukebox_tempo">♩ = %1$d</string>
@@ -92,8 +93,11 @@
     <string name="jukebox_tempo_reset">速度；點一下回到詩歌原有的速度</string>
     <string name="jukebox_bar">第 %1$d 小節（共 %2$d）</string>
     <string name="jukebox_in_group">%1$s · %2$s</string>
+    <string name="jukebox_group_own">原有風格</string>
     <string name="jukebox_piano">鋼琴</string>
-    <string name="jukebox_guitar">吉他</string>
+    <string name="jukebox_guitar_strum">吉他刷弦</string>
+    <string name="jukebox_guitar_pick">吉他指彈</string>
+    <string name="jukebox_melody">旋律</string>
     <string name="jukebox_style_own">本詩歌原有的風格</string>
     <string name="jukebox_style_flowing">流動</string>
     <string name="jukebox_style_plain">簡單</string>
@@ -106,7 +110,11 @@
     <string name="jukebox_style_ballad">抒情</string>
     <string name="jukebox_style_country">鄉村</string>
     <string name="jukebox_style_pick">指彈</string>
+    <string name="jukebox_style_travis">民謠指彈</string>
+    <string name="jukebox_style_pick_flow">隨旋律指彈</string>
     <string name="jukebox_style_arp">抒情指彈</string>
+    <string name="jukebox_style_harp">柔和琶音</string>
+    <string name="jukebox_style_arp_flow">隨旋律抒情</string>
     <string name="jukebox_style_melody">只有旋律</string>
     <string name="otherLanguages">其他語言</string>
     <string name="otherLanguagesHide">隱藏</string>

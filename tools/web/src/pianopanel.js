@@ -116,12 +116,12 @@ function sheetPanel({cls, title, label, extra = [], rows, refresh, onAll}) {
 // time() -> the sheet's time signature, [4, 4]
 export function createPianoPanel({get, set, setUsual, time}) {
   const bAdv = toggle(tr('Advanced'), false, null, tr('All the choices'));
-  const presetRow = el('div', 'ce-row'), walkRow = el('div', 'ce-row'), strumRow = el('div', 'ce-row'), shuffleRow = el('div', 'ce-row');
+  const presetRow = el('div', 'ce-row'), walkRow = el('div', 'ce-row'), strumRow = el('div', 'ce-row'), pickRow = el('div', 'ce-row'), shuffleRow = el('div', 'ce-row');
   const famRow = el('div', 'ce-row'), kindRow = el('div', 'ce-row'), rhythmRow = el('div', 'ce-row'), octRow = el('div', 'ce-row');
   const toneRow = el('div', 'ce-row'), addRow = el('div', 'ce-row'), onRow = el('div', 'ce-row');
   let advanced = !!store.get('pianoAdvanced', false);
   const panel = sheetPanel({cls: 'piano-panel', title: tr('Style'), label: tr('How the two hands play'), extra: [bAdv],
-    rows: [presetRow, strumRow, famRow, kindRow, rhythmRow, octRow, toneRow, walkRow, shuffleRow, addRow, onRow],
+    rows: [presetRow, strumRow, pickRow, famRow, kindRow, rhythmRow, octRow, toneRow, walkRow, shuffleRow, addRow, onRow],
     refresh: (bAll) => refresh(bAll), onAll: () => setUsual(get().choice)});
   const change = (fn) => {
     const choice = JSON.parse(JSON.stringify(get().choice || DEFAULT));
@@ -136,7 +136,7 @@ export function createPianoPanel({get, set, setUsual, time}) {
     const all = styles(time()), cur = pattern(lh, time()), preset = presetOf(choice, time());
     bAdv.setAttribute('aria-checked', String(advanced));
     bAll.disabled = same(withoutTake(choice), usual);
-    for (const r of [presetRow, strumRow, famRow, kindRow, rhythmRow, octRow, toneRow, addRow, onRow, walkRow, shuffleRow]) r.textContent = '';
+    for (const r of [presetRow, strumRow, pickRow, famRow, kindRow, rhythmRow, octRow, toneRow, addRow, onRow, walkRow, shuffleRow]) r.textContent = '';
     const said = [];
     // More walking: Chorale's bass and tenor walk more (only there)
     const walks = !!(cur && cur.passing);
@@ -158,7 +158,7 @@ export function createPianoPanel({get, set, setUsual, time}) {
       }
     }
     presetRow.hidden = advanced;
-    strumRow.hidden = advanced || !cur || cur.family !== 'guitar';
+    strumRow.hidden = pickRow.hidden = advanced || !cur || cur.family !== 'guitar';
     for (const r of [famRow, kindRow, rhythmRow, octRow, onRow]) r.hidden = !advanced;
     // the guitar's tone: in Advanced only (Warm, the usual, is what the simple panel plays)
     const strums = !!(cur && cur.family === 'guitar');
@@ -167,15 +167,18 @@ export function createPianoPanel({get, set, setUsual, time}) {
       () => change((c) => { if (id === 'warm') delete c.lh.tone; else c.lh.tone = id; }))));
     if (!advanced) {
       presetRow.append(el('span', 'ce-label', tr('Style')), ...PRESETS.map((p) => btn(tr(p.name), preset === p, () => change((c) => {
-        if (p.anyKind && c.lh && c.lh.family === p.lh[0]) return;   // already a guitar: the Strum row chooses which
+        if (p.anyKind && c.lh && c.lh.family === p.lh[0]) return;   // already a guitar: the Strum / Pick rows choose which
         const n = presetChoice(p); if (c.lh && c.lh.walk) n.lh.walk = true; if (c.lh && c.lh.tone) n.lh.tone = c.lh.tone; c.lh = n.lh; c.rh = n.rh;
       }))));
       if (!preset) presetRow.append(btn(tr('Custom'), true, () => { advanced = true; store.set('pianoAdvanced', true); panel.fill(); }));
       addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.slice(0, 2).map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh = {add: n, on: (preset && preset.on) || 'chord'}; }))));
       if (!strumRow.hidden) {
         const fam = all.find((f) => f.id === 'guitar');
-        strumRow.append(el('span', 'ce-label', tr('Strum')), ...fam.kinds.map((k) => btn(tr(k.name), k.id === cur.kind, () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; }), '')));
-        fam.kinds.forEach((k, i) => { strumRow.children[i + 1].title = tr(k.hint); });
+        const strumKinds = fam.kinds.filter((k) => !k.pick), pickKinds = fam.kinds.filter((k) => k.pick);
+        strumRow.append(el('span', 'ce-label', tr('Strum')), ...strumKinds.map((k) => btn(tr(k.name), k.id === cur.kind, () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; }), '')));
+        strumKinds.forEach((k, i) => { strumRow.children[i + 1].title = tr(k.hint); });
+        pickRow.append(el('span', 'ce-label', tr('Pick')), ...pickKinds.map((k) => btn(tr(k.name), k.id === cur.kind, () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; }), '')));
+        pickKinds.forEach((k, i) => { pickRow.children[i + 1].title = tr(k.hint); });
       }
       said.push(preset ? tr(preset.name) : tr('Custom'));
       if (preset && preset.anyKind) said.push(tr(all.find((f) => f.id === cur.family).kinds.find((k) => k.id === cur.kind).name));
@@ -230,20 +233,26 @@ export function createPianoPanel({get, set, setUsual, time}) {
   return panel;
 }
 
-// The guitar sheet's Strumming: a guitar strums the chords the guitar sheet shows (piano.js strumChoice). Only the
-// strum (music.js's guitar kinds, with their hints) and the tone. get() -> {choice: {kind, tone}, usual};
+// The guitar sheet's Strumming: a guitar strums or picks the chords the guitar sheet shows (piano.js strumChoice).
+// Shows Strum, Pick and Tone rows (music.js's guitar kinds, with their hints). get() -> {choice: {kind, tone}, usual};
 // set(choice): this hymn's; setUsual(choice): for every hymn; time() -> the sheet's time signature.
 export function createStrumPanel({get, set, setUsual, time}) {
-  const strumRow = el('div', 'ce-row'), toneRow = el('div', 'ce-row');
+  const strumRow = el('div', 'ce-row'), pickRow = el('div', 'ce-row'), toneRow = el('div', 'ce-row');
   const panel = sheetPanel({cls: 'strum-panel', title: tr('Strumming'), label: tr('How the guitar strums'),
-    rows: [strumRow, toneRow], refresh: (bAll) => refresh(bAll), onAll: () => setUsual(get().choice)});
+    rows: [strumRow, pickRow, toneRow], refresh: (bAll) => refresh(bAll), onAll: () => setUsual(get().choice)});
   const change = (patch) => { set(Object.assign({}, STRUM_DEFAULT, get().choice, patch)); panel.fill(); };
   function refresh(bAll) {
     const {choice, usual} = get(), cur = Object.assign({}, STRUM_DEFAULT, choice);
     bAll.disabled = same(cur, Object.assign({}, STRUM_DEFAULT, usual));
     const fam = styles(time()).find((f) => f.id === 'guitar');
     const kind = fam.kinds.find((k) => k.id === cur.kind) || fam.kinds[0];
-    strumRow.replaceChildren(el('span', 'ce-label', tr('Strum')), ...fam.kinds.map((k) => {
+    const strumKinds = fam.kinds.filter((k) => !k.pick), pickKinds = fam.kinds.filter((k) => k.pick);
+    strumRow.replaceChildren(el('span', 'ce-label', tr('Strum')), ...strumKinds.map((k) => {
+      const b = btn(tr(k.name), k === kind, () => change({kind: k.id}));
+      b.title = tr(k.hint);
+      return b;
+    }));
+    pickRow.replaceChildren(el('span', 'ce-label', tr('Pick')), ...pickKinds.map((k) => {
       const b = btn(tr(k.name), k === kind, () => change({kind: k.id}));
       b.title = tr(k.hint);
       return b;

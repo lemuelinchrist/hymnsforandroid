@@ -289,26 +289,43 @@ test('Adaptive (Flowing): figures picked from a few, a beat before the bass, tak
   assert.strictEqual(lh68[0].d, 6, '... held for the beat');
 });
 
-test('guitar: open shapes, strums down and up, picking', () => {
+test('guitar: open shapes, strums down and up, natural picking, let-ring, D alternating bass, fast half-time', () => {
   const fr = (c) => M.guitarShape(M.chordInfo(c)).map((p, i) => p == null ? 'x' : p - [40, 45, 50, 55, 59, 64][i]).join('');
   assert.deepStrictEqual(['C', 'G', 'D', 'A', 'E', 'Am', 'Em', 'Dm', 'G/B', 'D/F#', 'B7'].map(fr),
     ['x32010', '320003', 'xx0232', 'x02220', '022100', 'x02210', '022000', 'xx0231', 'x20003', '200232', 'x21202']);
   const st = M.styles({time: [4, 4]}).find((f) => f.id === 'guitar');
-  assert.deepStrictEqual(st.kinds.map((k) => k.id), ['folk', 'pop', 'steady', 'ballad', 'country', 'pick', 'arp']);
-  const g = (kind) => {
+  assert.deepStrictEqual(st.kinds.map((k) => k.id),
+    ['folk', 'pop', 'steady', 'ballad', 'country', 'pick', 'travis', 'pick-flow', 'arp', 'harp', 'arp-flow']);
+  assert.deepStrictEqual(st.kinds.filter((k) => !k.pick).map((k) => k.id), ['folk', 'pop', 'steady', 'ballad', 'country']);
+  assert.deepStrictEqual(st.kinds.filter((k) => k.pick).map((k) => k.id), ['pick', 'travis', 'pick-flow', 'arp', 'harp', 'arp-flow']);
+  const g = (kind, chord = 'G', bpm = 100) => {
     const r = st.kinds.find((k) => k.id === kind).rhythms[0];
-    return M.accompanyOn({bars: [{g: 0, len: 16}, {g: 16, len: 16}], first: 0, chords: [{g: 0, end: 32, info: M.chordInfo('G')}],
-      mel: [[0, 32, 71]], last: 16, base: r}).events;
+    return M.accompanyOn({bars: [{g: 0, len: 16, beat: 4}, {g: 16, len: 16, beat: 4}], first: 0,
+      chords: [{g: 0, end: 32, info: M.chordInfo(chord)}], mel: [[0, 32, 71]], last: 16, base: r, bpm}).events;
   };
   const folk = g('folk');
   assert.deepStrictEqual(folk.slice(0, 6).map((e) => (e.up ? 'U' : 'D') + e.d), ['D4', 'D2', 'U4', 'U2', 'D2', 'U2'], 'D - D U - U D U');
-  assert.ok(folk.every((e) => e.inst === 'guitar'), 'a guitar plays it');
+  assert.ok(folk.every((e) => e.inst === 'guitar' && !e.pluck), 'a guitar strums it');
   assert.strictEqual(show(folk.slice(0, 3)), 'G2+B2+D3+G3+B3+G4/4 G2+B2+D3+G3+B3+G4/2 D3+G3+B3+G4/4', 'down: six strings; up: the top four');
-  assert.strictEqual(show(g('pick').slice(0, 4)), 'G2/2 G4/2 B2/2 B3/2', 'thumb, high E, the other bass, B string');
+  const pick = g('pick');
+  assert.strictEqual(show(pick.slice(0, 5)), 'G2+B3/4 G3/4 B2/4 G4/2 B3/2', 'thumb+B pinch, then unhurried alternating strings');
+  assert.ok(pick.slice(0, 4).every((e) => e.pluck && e.rings && e.rings[0] > e.d), 'picked strings ring naturally past their grid step');
+  // 4-string D chord (xx0232): alternating thumb A drops to open A2 (45) instead of duplicating the G string (A3 = 57)
+  const dPick = g('pick', 'D');
+  assert.strictEqual(show(dPick.slice(0, 3)), 'D3+D4/4 A3/4 A2/4', 'D chord: thumb D3, G string A3, alternating open A2');
+  // Adaptive picking: calm quarters under moving melody, gentler roll on held whole notes
+  const pf = st.kinds.find((k) => k.id === 'pick-flow').rhythms[0];
+  const moving = M.accompanyOn({bars: [{g: 0, len: 16, beat: 4}, {g: 16, len: 16, beat: 4}], first: 0,
+    chords: [{g: 0, end: 16, info: M.chordInfo('G')}, {g: 16, end: 32, info: M.chordInfo('C')}],
+    mel: [[0, 4, 71], [4, 8, 72], [8, 12, 74], [12, 16, 71], [16, 32, 72]], last: 16, base: Object.assign({}, pf, {end: false}), bpm: 100}).events;
+  assert.ok(moving.filter((e) => e.g < 16).length < moving.filter((e) => e.g >= 16).length, 'adaptive picking blooms on held notes');
+  // Fast-notated sheet (♩=200 in 4/4, e.g. NS151): auto half-time paces picking in quarter notes instead of 150ms eighths
+  const fastPick = g('travis', 'G', 200);
+  assert.ok(fastPick.slice(0, -1).every((e) => e.d >= 4), 'at ♩=200 picking steps in quarters or longer: ' + show(fastPick));
   const pop = g('pop');
   assert.deepStrictEqual(pop.slice(0, 6).map((e) => e.mute ? 'K' : e.up ? 'U' : 'D'), ['D', 'D', 'U', 'K', 'U', 'D'], 'D - D U K U D U: the chuck on beat 3');
   assert.strictEqual(show(g('country').slice(0, 4)), 'G2/4 G2+B2+D3+G3+B3+G4/2 D3+G3+B3+G4/2 B2/4', 'boom-chick: bass, strum, up, the other bass');
-  assert.strictEqual(show(g('pick').slice(-1)), 'G2+B2+D3+G3+B3+G4/16', 'the last bar: one strum');
+  assert.strictEqual(show(pick.slice(-1)), 'G2+B2+D3+G3+B3+G4/16', 'the last bar: one strum');
 });
 
 test('guitar with a capo: the guitar sheet\'s shape, above the capo, no slash bass', () => {

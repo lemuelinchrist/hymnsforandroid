@@ -325,26 +325,30 @@ function loadGuitar(c) {
 function playSampledGuitar(c, out, n, at, hit) {
   const T = GUITAR_TONES[n.tone] || GUITAR_TONES.warm;
   const vel = Math.max(0.05, Math.min(1, n.vel / 127));
+  const isPluck = !!n.pluck;   // fingerpicked strings: softer flesh/nail touch, warmer wood body, natural release
   const src = c.createBufferSource();
   src.buffer = hit.buf;
   src.playbackRate.value = Math.pow(2, (n.note - hit.midi) / 12);
   const body = c.createBiquadFilter();
-  body.type = 'peaking'; body.frequency.value = 200; body.Q.value = 0.8; body.gain.value = T.body;
+  body.type = 'peaking'; body.frequency.value = 200; body.Q.value = 0.8; body.gain.value = T.body + (isPluck ? 1.5 : 0);
+  const shelfGain = T.shelf + (isPluck ? -3.5 : 0);
   const shelf = c.createBiquadFilter();
-  shelf.type = 'highshelf'; shelf.frequency.value = 3000; shelf.gain.value = T.shelf;
+  shelf.type = 'highshelf'; shelf.frequency.value = isPluck ? 2800 : 3000; shelf.gain.value = shelfGain;
   const tone = c.createBiquadFilter();                   // harder strums are brighter; a chuck (mute) is dull and short
   tone.type = 'lowpass'; tone.Q.value = 0.4;
-  tone.frequency.value = n.mute ? 1200 : T.lp + T.span * Math.pow(vel, 1.3);
+  tone.frequency.value = n.mute ? 1200 : (isPluck ? T.lp * 0.84 : T.lp) + (isPluck ? T.span * 0.72 : T.span) * Math.pow(vel, 1.3);
+  const attack = T.attack + (isPluck ? 0.005 : 0);
+  const relTau = n.mute ? 0.025 : isPluck ? 0.14 : 0.07;
   const g = c.createGain();
-  const level = 0.42 * Math.pow(vel, 1.2) * GUITAR_LEVEL * (n.mute ? 0.9 : 1) * Math.pow(10, -T.shelf / 60);
+  const level = 0.42 * Math.pow(vel, 1.2) * GUITAR_LEVEL * (n.mute ? 0.9 : 1) * Math.pow(10, -shelfGain / (isPluck ? 65 : 60));
   const end = at + (n.mute ? Math.min(n.dur, 0.035) : n.dur);
   g.gain.setValueAtTime(0.0001, at);
-  g.gain.linearRampToValueAtTime(level, at + T.attack);
-  g.gain.setValueAtTime(level, Math.max(at + T.attack + 0.001, end));
-  g.gain.setTargetAtTime(0.0001, end, n.mute ? 0.025 : 0.07);   // the next strum damps it; a chuck at once
+  g.gain.linearRampToValueAtTime(level, at + attack);
+  g.gain.setValueAtTime(level, Math.max(at + attack + 0.001, end));
+  g.gain.setTargetAtTime(0.0001, end, relTau);           // the next strum damps it; fingerpicked strings fade gently; a chuck at once
   src.connect(body).connect(shelf).connect(tone).connect(g).connect(out);
   src.start(at);
-  src.stop(end + 0.45);
+  src.stop(end + relTau * 5 + 0.15);
   return src;
 }
 
@@ -379,23 +383,24 @@ function guitarBuffer(c, note) {
 function playGuitar(c, out, n, at) {
   const state = guitarDecoded.get(c), hit = state && nearestSample(state.map, n.note);
   if (hit) return playSampledGuitar(c, out, n, at, hit);
-  const vel = Math.max(0.05, Math.min(1, n.vel / 127));
+  const vel = Math.max(0.05, Math.min(1, n.vel / 127)), isPluck = !!n.pluck;
   const src = c.createBufferSource();
   src.buffer = guitarBuffer(c, n.note);
   const body = c.createBiquadFilter();                   // the wooden body: a little warmth low down
-  body.type = 'peaking'; body.frequency.value = 180; body.Q.value = 0.8; body.gain.value = 4;
+  body.type = 'peaking'; body.frequency.value = 180; body.Q.value = 0.8; body.gain.value = isPluck ? 5 : 4;
   const tone = c.createBiquadFilter();                   // harder strums are brighter; a chuck (mute) is dull and short
   tone.type = 'lowpass'; tone.Q.value = 0.4;
-  tone.frequency.value = n.mute ? 1500 : 2200 + 5200 * Math.pow(vel, 1.3);
+  tone.frequency.value = n.mute ? 1500 : (isPluck ? 1800 : 2200) + (isPluck ? 3800 : 5200) * Math.pow(vel, 1.3);
+  const attack = isPluck ? 0.006 : 0.002, relTau = n.mute ? 0.025 : isPluck ? 0.14 : 0.07;
   const g = c.createGain();
   const level = 0.42 * Math.pow(vel, 1.2) * (n.mute ? 0.9 : 1), end = at + (n.mute ? Math.min(n.dur, 0.035) : n.dur);
   g.gain.setValueAtTime(0.0001, at);
-  g.gain.linearRampToValueAtTime(level, at + 0.002);
-  g.gain.setValueAtTime(level, Math.max(at + 0.003, end));
-  g.gain.setTargetAtTime(0.0001, end, n.mute ? 0.025 : 0.07);   // the next strum damps it; a chuck at once
+  g.gain.linearRampToValueAtTime(level, at + attack);
+  g.gain.setValueAtTime(level, Math.max(at + attack + 0.001, end));
+  g.gain.setTargetAtTime(0.0001, end, relTau);           // the next strum damps it; a chuck at once
   src.connect(body).connect(tone).connect(g).connect(out);
   src.start(at);
-  src.stop(Math.min(at + 3.2, end + 0.45));
+  src.stop(Math.min(at + 3.2, end + relTau * 5 + 0.15));
   return src;
 }
 const playAny = (c, out, n, at, bufs) => n.inst === 'guitar' ? playGuitar(c, out, n, at) : playNote(c, out, n, at, bufs);
@@ -495,7 +500,7 @@ export function playScore(score, o) {
       if (when > horizon) break;
       i++;
       if (when < c.currentTime - 0.3) continue;         // the page was suspended: skip what is long past
-      const osc = playAny(c, out, {note: e.note, vel: e.vel, inst: e.inst, mute: e.mute, tone: e.tone, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(when, c.currentTime));
+      const osc = playAny(c, out, {note: e.note, vel: e.vel, inst: e.inst, mute: e.mute, pluck: e.pluck, tone: e.tone, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(when, c.currentTime));
       oscs.add(osc);
       osc.onended = () => oscs.delete(osc);
     }
@@ -549,7 +554,7 @@ export async function renderScoreForTest(score, bpm, seconds = 10) {
   const bufs = await loadPiano(c, {all: true});
   const spq = 60 / bpm;
   const guitar = score.events.some((e) => e.inst === 'guitar') ? await loadGuitar(c) : new Map();
-  for (const e of score.events) if (e.q * spq < seconds) playAny(c, g, {note: e.note, vel: e.vel, inst: e.inst, mute: e.mute, tone: e.tone, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(0.01, e.q * spq + 0.05 + (e.off || 0)), bufs);
+  for (const e of score.events) if (e.q * spq < seconds) playAny(c, g, {note: e.note, vel: e.vel, inst: e.inst, mute: e.mute, pluck: e.pluck, tone: e.tone, dur: Math.max(0.08, e.d * spq * 0.97)}, Math.max(0.01, e.q * spq + 0.05 + (e.off || 0)), bufs);
   const data = (await c.startRendering()).getChannelData(0);
   let peak = 0, sum = 0;
   for (const v of data) { peak = Math.max(peak, Math.abs(v)); sum += v * v; }

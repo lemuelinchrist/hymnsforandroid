@@ -60,22 +60,24 @@
     GSAMPLES.forEach(function (s) { var b = gbufs[s[0]], d = Math.abs(p - s[0]); if (b && d < bestDist) { bestDist = d; best = {midi: s[0], buf: b}; } });
     return best;
   }
-  // one guitar string: pitch, start, length (s), loudness 0..1 (a harder strum is brighter), o.mute = a chuck
+  // one guitar string: pitch, start, length (s), loudness 0..1 (a harder strum is brighter), o.mute = a chuck, o.pluck = fingerpicked
   function guitar(p, t, dur, vel, o) {
     var hit = nearestGuitar(p);
     if (!hit) return note(p, t, dur, vel * 0.55, 'piano');
-    var mute = !!(o && o.mute), v = Math.max(0.05, Math.min(1, vel));
+    var mute = !!(o && o.mute), isPluck = !!(o && o.pluck), v = Math.max(0.05, Math.min(1, vel));
     var src = ac.createBufferSource(); src.buffer = hit.buf; src.playbackRate.value = Math.pow(2, (p - hit.midi) / 12);
-    var body = ac.createBiquadFilter(); body.type = 'peaking'; body.frequency.value = 200; body.Q.value = 0.8; body.gain.value = 2;
-    var shelf = ac.createBiquadFilter(); shelf.type = 'highshelf'; shelf.frequency.value = 3000; shelf.gain.value = -4;
+    var body = ac.createBiquadFilter(); body.type = 'peaking'; body.frequency.value = 200; body.Q.value = 0.8; body.gain.value = isPluck ? 3.5 : 2;
+    var shelfGain = isPluck ? -7.5 : -4;
+    var shelf = ac.createBiquadFilter(); shelf.type = 'highshelf'; shelf.frequency.value = isPluck ? 2800 : 3000; shelf.gain.value = shelfGain;
     var tone = ac.createBiquadFilter(); tone.type = 'lowpass'; tone.Q.value = 0.4;
-    tone.frequency.value = mute ? 1200 : 2200 + 4200 * Math.pow(v, 1.3);
-    var g = ac.createGain(), level = 0.42 * Math.pow(v, 1.2) * 4.8 * (mute ? 0.9 : 1) * Math.pow(10, 4 / 60);
+    tone.frequency.value = mute ? 1200 : (isPluck ? 1850 : 2200) + (isPluck ? 3000 : 4200) * Math.pow(v, 1.3);
+    var attack = isPluck ? 0.009 : 0.004, relTau = mute ? 0.025 : isPluck ? 0.14 : 0.07;
+    var g = ac.createGain(), level = 0.42 * Math.pow(v, 1.2) * 4.8 * (mute ? 0.9 : 1) * Math.pow(10, -shelfGain / (isPluck ? 65 : 60));
     var end = t + (mute ? Math.min(dur, 0.035) : dur);
-    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(level, t + 0.004);
-    g.gain.setValueAtTime(level, Math.max(t + 0.005, end)); g.gain.setTargetAtTime(0.0001, end, mute ? 0.025 : 0.07);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(level, t + attack);
+    g.gain.setValueAtTime(level, Math.max(t + attack + 0.001, end)); g.gain.setTargetAtTime(0.0001, end, relTau);
     src.connect(body); body.connect(shelf); shelf.connect(tone); tone.connect(g); g.connect(out);
-    src.start(t); src.stop(end + 0.45);
+    src.start(t); src.stop(end + relTau * 5 + 0.15);
     var h = {o: src, g: g}; live.push(h);
     src.onended = function () { var i = live.indexOf(h); if (i >= 0) live.splice(i, 1); try { g.disconnect(); } catch (e) {} };
     return h;
