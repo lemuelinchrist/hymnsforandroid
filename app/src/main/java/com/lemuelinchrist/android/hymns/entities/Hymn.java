@@ -3,7 +3,6 @@ package com.lemuelinchrist.android.hymns.entities;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
-import android.media.MediaPlayer;
 import com.lemuelinchrist.android.hymns.content.sheetmusic.SheetPlayer;
 import android.util.Log;
 import android.widget.Toast;
@@ -53,7 +52,6 @@ public class Hymn {
     }
 
     private String verse;
-    private MediaPlayer mp;
 
     public Hymn(Context context) {
         this.context = context;
@@ -165,53 +163,17 @@ public class Hymn {
         this.tune = tune;
     }
 
-    /** Returns the R.raw resource id for this hymn's melody, or 0 if no tune or no file exists. */
-    private int getMelodyResourceId() {
-        if (tune == null) return 0;
-        String code = tune.trim().toLowerCase(Locale.ROOT);
-        if (code.isEmpty() || code.equals("0")) return 0;
-        try {
-            return R.raw.class.getDeclaredField("m" + code).getInt(null);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            return 0;
-        }
-    }
-
-    /** The name of this hymn's melody file in res/raw ("m123"), or null: the sheet viewer plays the sheet at its tempo. */
-    public String getMelodyFileName() {
-        return getMelodyResourceId() == 0 ? null : "m" + tune.trim().toLowerCase(Locale.ROOT);
-    }
-
-    /** Whether a melody file exists in R.raw for this hymn's tune (own or inherited). */
-    public boolean hasMelody() {
-        return getMelodyResourceId() != 0;
-    }
-
     /**
-     * The sheet the Play button plays in place of the MIDI file: the hymn's own sheet, or its parent's/ancestor's when
-     * the hymn has no tune of its own (as the sheet button picks it), when it has a melody (not a chords-only sheet)
-     * and it is a sheet of ours (it names Hymns For Android as its source) or the hymn has no MIDI file. Null: play the
-     * MIDI file.
+     * The sheet the Play button plays (there are no MIDI files since 2026-11-26): the hymn's own sheet, or its
+     * parent's/ancestor's when the hymn has no tune of its own (as the sheet button picks it), as long as it has a
+     * melody (not a chords-only sheet). Null: nothing to play.
      */
     public String getSheetToPlay() {
         String id = getRootSheetId();
         if (id == null) return null;
         String mei = readSheetHead(id);
         if (mei == null || mei.contains("type=\"kind\">chords<")) return null;
-        boolean ours = mei.contains("type=\"source\">Hymns For Android<");
-        return ours || !hasMelody() || playsSheetOnly() ? id : null;
-    }
-
-    /**
-     * New Songs, Be Filled and the Children's Hymnal play their sheet, never a MIDI file (2026-11-24: their MIDI files
-     * are deprecated; the ones no other hymn uses are removed). The tune of a translation of one of them is still the
-     * hymn's own file, which stays while a hymn of another book uses it.
-     */
-    private boolean playsSheetOnly() {
-        String g = getGroup();
-        if (g == null) return false;
-        g = g.trim().toUpperCase(Locale.ROOT);
-        return g.equals("NS") || g.equals("BF") || g.equals("CH");
+        return id;
     }
 
     /** The beginning of a sheet's MEI file (its header), or null. */
@@ -228,42 +190,22 @@ public class Hymn {
         }
     }
 
-    /** Whether Play has anything to play: a MIDI file for the tune or a sheet. */
+    /** Whether Play has anything to play: a sheet with a melody. */
     public boolean canPlay() {
-        return hasMelody() || getSheetToPlay() != null;
+        return getSheetToPlay() != null;
     }
 
     /** Starts the melody; false when there is none (the "not available" toast is shown) or it could not start. */
     public boolean playHymn() {
         try {
 
-            //	we don't want to play another thread while the song is still playing.
-            if (mp != null && mp.isPlaying()) {
-                return true;
-            }
-
             String sheet = getSheetToPlay();
-            if (sheet != null) {
-                // a sheet of ours, or a hymn with no MIDI file: the sheet is played, again and again as the MIDI file is
-                SheetPlayer.get(context).play(sheet);
-                return true;
-            }
-
-            int resId = getMelodyResourceId();
-            if (resId == 0) {
+            if (sheet == null) {
                 showNotAvailableToast();
                 return false;
             }
-
-            mp = MediaPlayer.create(context, resId);
-            if (mp == null) {
-                // the file exists but cannot be decoded (an empty or broken MIDI)
-                showNotAvailableToast();
-                return false;
-            }
-
-            mp.setLooping(true);
-            mp.start();
+            // the sheet is played, again and again
+            SheetPlayer.get(context).play(sheet);
             return true;
 
         } catch (Exception e) {
@@ -279,14 +221,6 @@ public class Hymn {
     }
 
     public void stopHymn() {
-        if (mp != null) {
-            try {
-                mp.stop();
-            } catch (IllegalStateException ignored) {
-            }
-            mp.release();
-            mp = null;
-        }
         SheetPlayer.stopIfActive();
     }
 

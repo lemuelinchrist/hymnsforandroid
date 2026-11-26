@@ -595,7 +595,7 @@ def build_tunes():
     """The app's tunes (res/raw/m<tune>.mid, one .mp3), for the Play button: midi/<hash>.<ext>, and
     {tune code (lower case): file} for the index. A file that is not a MIDI file or an MP3 is left out."""
     tunes, bad = {}, []
-    for name in sorted(os.listdir(RAW)):
+    for name in sorted(os.listdir(RAW)) if os.path.isdir(RAW) else []:   # no tune files since 2026-11-26: every hymn plays its sheet
         m = re.match(r'^m([0-9a-z]+)\.(mid|mp3)$', name)
         if not m:
             continue

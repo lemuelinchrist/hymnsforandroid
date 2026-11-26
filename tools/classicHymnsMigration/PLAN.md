@@ -64,8 +64,9 @@ These are the viewer and player changes; each is its own task and can be done wh
 5. Import: write `app/src/main/assets/sheetMei/<hymn>.mei` for each English hymn of the tune (its own words), keep the hymn's id, source
    `Hymns For Android`; the guitar sheet is derived. Rebuild the web app's data (`python3 tools/web/build.py`) to see it.
 6. Mark the tune `imported` in `STATUS.tsv` and commit on `media/work` (small commit per tune). Push and deploy when Lemuel says.
-7. **Retiring a MIDI**: only when every hymn that uses the tune code (any book, see `n all books`) plays a sheet, and no English hymn needs it. Then move it
-   to `archive/midi/` (README there) and remove it from `res/raw`. Never remove one that another book still plays.
+7. **MIDI files in the app**: none since 2026-11-26. Every hymn plays its sheet, and the English MIDIs are only here in `midi/`, as the reference for the sheets.
+   Every English sheet names the Chorale accompaniment as its start (`<identifier type="hands">dynamic/chorale/half rh=1:beat</identifier>`);
+   keep that line in each new sheet.
 
 ## 6. Order of work
 1. E142's tune (in progress): finish it by hand as the pilot; it decides the sheet format (section 3) and tests section 4.

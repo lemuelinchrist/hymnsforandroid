@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Writes INDEX.tsv: one row per English tune that has a MIDI (the work unit of classicHymnsMigration), with what a
-converter has to cope with. Reads sqlite/hymns.sql (built in memory), app/src/main/res/raw and the sheets in
+converter has to cope with. Reads sqlite/hymns.sql (built in memory), ../midi and the sheets in
 app/src/main/assets/sheetMei. Re-run it any time; it never touches STATUS.tsv. Usage: python3 make_index.py [--copy]
---copy also copies the MIDI files of the tunes into ../midi (they stay in res/raw until their sheets replace them)."""
+(--copy is no longer needed: the files are in ../midi.)"""
 import collections, os, re, shutil, sqlite3, struct, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); PROJ = os.path.dirname(HERE)
 ROOT = os.path.abspath(os.path.join(PROJ, '..', '..'))
-RAW = os.path.join(ROOT, 'app/src/main/res/raw'); MEI = os.path.join(ROOT, 'app/src/main/assets/sheetMei')
+RAW = os.path.join(PROJ, 'midi')   # the tunes' MIDI files (no longer in the app since 2026-11-26)
+MEI = os.path.join(ROOT, 'app/src/main/assets/sheetMei')
 
 def parse(path):
     d = open(path, 'rb').read(); fmt, nt, div = struct.unpack('>HHH', d[8:14]); p = 14
@@ -63,7 +64,6 @@ def main():
                             'tempo dips' if dips else '', 'monophonic' if mx == 1 else '') if x]
         rows.append((t, raw[t], ' '.join(h[0] for h in sorted(hymns[t], key=lambda h: int(re.sub(r'\D', '', h[0]) or 0))), len(hymns[t]), books[t],
                      hymns[t][0][1] or '', '%d/%d' % (num, den), round(end / bar, 1), bpm, mx, '%d%%' % round(off * 100), dips, src, '; '.join(hard)))
-        if '--copy' in sys.argv: shutil.copy2(os.path.join(RAW, raw[t]), os.path.join(PROJ, 'midi', raw[t]))
     with open(os.path.join(PROJ, 'INDEX.tsv'), 'w', encoding='utf8') as f:
         f.write('tune\tfile\tE hymns\tn E\tn all books\tkey\ttime\tmidi bars\tbpm\tmax voices\toff 16th grid\ttempo dips\tcurrent E sheet\tneeds care\n')
         for r in rows: f.write('\t'.join(str(x) for x in r) + '\n')
