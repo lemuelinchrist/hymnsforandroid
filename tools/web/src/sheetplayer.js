@@ -65,7 +65,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
 
   let score = null, scoreXml = '', scoreChoice = '', ctl = null, from = 0, bpm = DEFAULT_BPM, lastRender = -1, tempoFor = null, lastScroll = 0, starting = 0;
   let shownWhere = '', shownBar = 0, barRender = -1, shownStartBar = 0, startRender = -1;
-  const showTempo = () => { tempoLabel.textContent = '♩ = ' + Math.round(bpm * prefs.speed); };
+  const showTempo = () => { tempoLabel.textContent = '♩ = ' + Math.round((view.baseBpm || bpm) * prefs.speed); };
   showTempo();
 
   // the page follows the music until the reader scrolls it; the next Play follows again
@@ -154,6 +154,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
     if (ids || view.renders !== lastRender) {
       if (ids) lit = ids;
       lastRender = view.renders;
+      showTempo();   // the sheet's own tempo, before Play is pressed too
       const first = mark(lit);
       if (first && follow && ids && Date.now() - lastScroll > 600) {
         const r = first.getBoundingClientRect(), room = view.panelHeight || 0;
