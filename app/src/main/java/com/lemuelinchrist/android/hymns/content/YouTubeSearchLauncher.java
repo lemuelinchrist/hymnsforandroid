@@ -21,16 +21,23 @@ public class YouTubeSearchLauncher {
 
 
     public void launch(Hymn hymn) {
+        launch(hymn, "https://www.youtube.com/results?search_query=");
+    }
+
+    /** Searches SoundCloud for the hymn, with the same words as the YouTube search. */
+    public void launchSoundCloud(Hymn hymn) {
+        launch(hymn, "https://soundcloud.com/search/sounds?q=");
+    }
+
+    private void launch(Hymn hymn, String searchUrl) {
         String search = searchFor(hymn.getGroup(), hymn.getNo(), hymn.getFirstStanzaLine(), hymn.getFirstChorusLine());
 
-        Log.i(this.getClass().getName(),"Searching YouTube for: " + search.toString());
-//        passDirectlyToYouTube(search);
-        String url ="https://www.youtube.com/results?search_query="+getOnlyStrings(search.toString()).trim().replaceAll(" ","+");
-        Log.i(this.getClass().getName(),"Converting search to YouTube URL: " + url);
+        Log.i(this.getClass().getName(),"Searching for: " + search);
+        String url = searchUrl + getOnlyStrings(search).trim().replaceAll(" ","+");
+        Log.i(this.getClass().getName(),"Converting search to URL: " + url);
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         context.startActivity(i);
-
     }
 
     // The saints who post recordings put the number in the title ("Hymn 313", "NS 46") and other churches' hymnals
