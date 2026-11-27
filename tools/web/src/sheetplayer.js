@@ -65,7 +65,15 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
 
   let score = null, scoreXml = '', scoreChoice = '', ctl = null, from = 0, bpm = DEFAULT_BPM, lastRender = -1, tempoFor = null, lastScroll = 0, starting = 0;
   let shownWhere = '', shownBar = 0, barRender = -1, shownStartBar = 0, startRender = -1;
-  const showTempo = () => { tempoLabel.textContent = '♩ = ' + Math.round((view.baseBpm || bpm) * prefs.speed); };
+  const showTempo = () => {   // the tempo it plays at; with the slider away from the sheet's own, the share too (a tap on it: the sheet's own again)
+    const own = view.baseBpm || bpm, pct = Math.round(prefs.speed * 100);
+    tempoLabel.textContent = '♩ = ' + Math.round(own * prefs.speed) + (pct === 100 ? '' : ' (' + pct + '%)');
+    tempoLabel.title = pct === 100 ? '' : tr('Tap: the tune\'s own tempo (♩ = {0})', own);
+  };
+  tempoLabel.addEventListener('click', (e) => {
+    if (prefs.speed === 1) return;
+    e.preventDefault(); prefs.speed = 1; speed.value = '1'; showTempo(); keep(); restart();
+  });
   showTempo();
 
   // the page follows the music until the reader scrolls it; the next Play follows again
