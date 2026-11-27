@@ -26,12 +26,12 @@ export const STYLES = [
   {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing', shuffle: true},
   {id: 'lively', group: 'piano', name: 'Lively', preset: 'lively', shuffle: true},
   {id: 'walking', group: 'piano', name: 'Walking', preset: 'walking'},
+  {id: 'guitar-pick', group: 'guitar', name: 'Fingerpicking', strum: 'pick', shuffle: true},
   {id: 'guitar-folk', group: 'guitar', name: 'Folk strum', strum: 'folk'},
   {id: 'guitar-pop', group: 'guitar', name: 'Pop', strum: 'pop'},
   {id: 'guitar-steady', group: 'guitar', name: 'Steady', strum: 'steady'},
   {id: 'guitar-ballad', group: 'guitar', name: 'Ballad', strum: 'ballad'},
   {id: 'guitar-country', group: 'guitar', name: 'Country', strum: 'country'},
-  {id: 'guitar-pick', group: 'guitar', name: 'Fingerpicking', strum: 'pick', shuffle: true},
   {id: 'melody', group: 'melody', name: 'Melody alone'},
 ];
 export const DEFAULT_STYLE = 'own', FALLBACK_STYLE = 'flowing';   // a sheet without its own part: Flowing (piano.js DEFAULT)

@@ -56,12 +56,12 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
             {"flowing", "piano", R.string.jukebox_style_flowing, true, false},
             {"lively", "piano", R.string.jukebox_style_lively, true, false},
             {"walking", "piano", R.string.jukebox_style_walking, false, false},
+            {"guitar-pick", "guitar", R.string.jukebox_style_pick, true, false},
             {"guitar-folk", "guitar", R.string.jukebox_style_folk, false, false},
             {"guitar-pop", "guitar", R.string.jukebox_style_pop, false, false},
             {"guitar-steady", "guitar", R.string.jukebox_style_steady, false, false},
             {"guitar-ballad", "guitar", R.string.jukebox_style_ballad, false, false},
             {"guitar-country", "guitar", R.string.jukebox_style_country, false, false},
-            {"guitar-pick", "guitar", R.string.jukebox_style_pick, true, false},
             {"melody", "melody", R.string.jukebox_style_melody, false, false},
     };
     private static final String DEFAULT_STYLE = "own", FALLBACK_STYLE = "flowing";
