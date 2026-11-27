@@ -150,7 +150,7 @@ function readBars(doc) {
     if (staff) kids(staff).forEach((layer) => { if (layer.localName === 'layer') end = Math.max(end, walk(layer, 0, 1, parseInt(layer.getAttribute('n') || '1', 10))); });
     bar.len = Math.round(end) || nominal;
     kids(m).forEach((c) => {
-      if (c.localName === 'harm') bar.harms.push({g: g + (parseFloat(c.getAttribute('tstamp') || '1') - 1) * per, ch: c.textContent.trim()});
+      if (c.localName === 'harm') bar.harms.push({g: g + (parseFloat(c.getAttribute('tstamp') || '1') - 1) * per, ch: c.textContent.trim(), el: c});
     });
     g += bar.len;
     bars.push(bar);
@@ -377,6 +377,15 @@ export function playOrder(bars) {
 // round and round (the last bar then goes on with the pattern instead of ending on one held chord). Positions and lengths
 // are in quarter notes. An event is {q, d, note, vel, hand: 'm' melody | 'f' notes added to it | 'l' left hand | 'c' chord,
 // ids: the elements of the sheet that light up while it sounds}.
+// the chord symbols of a sheet that never sound (two chords on one beat: only the one nearest the beat is played), for the tools:
+// [{m: the bar's index, t: its tstamp, ch}]
+export function silentChords(doc) {
+  const A = analyse(doc, {lh: null, rh: {add: 0}}, false);
+  if (!A) return null;
+  const kept = new Set(A.chords.map((c) => c.src)), bars = [...doc.getElementsByTagNameNS(MEI_NS, 'measure')];
+  return A.harms.filter((h) => !kept.has(h)).map((h) => ({m: bars.indexOf(h.el.parentNode), t: h.el.getAttribute('tstamp'), ch: h.ch}));
+}
+
 export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
   const A = analyse(doc, hands && choice ? choice : {lh: null, rh: {add: 0}}, loop);
   if (!A) return null;

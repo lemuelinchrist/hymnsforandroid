@@ -298,8 +298,15 @@
         g = held ? c.g - r + beat : c.g - r;
       }
       g = Math.round(g);
-      if (out.length && g <= out[out.length - 1].g) { if (g < out[out.length - 1].g) g = out[out.length - 1].g; out.pop(); }
-      out.push({g: g, ch: c.ch, info: chordInfo(c.ch)});
+      // two chords on one beat: the one that stood nearest the beat is the one that sounds (the other is dropped), and not simply the later one
+      // (an off-beat chord used to take the beat from the chord that was on it)
+      var last = out[out.length - 1];
+      if (last && g <= last.g) {
+        if (g < last.g) g = last.g;
+        if (Math.abs(c.g - g) > last.moved + 1e-6) return;
+        out.pop();
+      }
+      out.push({g: g, ch: c.ch, info: chordInfo(c.ch), moved: Math.abs(c.g - g), src: c});
     });
     out.forEach(function (x, i) { x.end = i + 1 < out.length ? out[i + 1].g : Math.max(endG, x.g); });
     return out;

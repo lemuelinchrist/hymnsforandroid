@@ -182,6 +182,17 @@ test('any music, bar by bar: uneven bars, chords off the beat, the spellings of 
   assert.strictEqual(mei.layer, '<chord xml:id="x0" dur="2" dots="1"><note xml:id="x0k0" pname="f" oct="2"/><note xml:id="x0k1" pname="b" oct="2" accid.ges="f"/></chord>');
 });
 
+test('two chords on one beat: the one nearest the beat sounds', () => {
+  const bars = [{g: 0, len: 12, beat: 4}];
+  const sound = [[0, 4], [4, 8], [8, 10], [10, 12]];
+  // A♭/C is on beat 3; E♭/B♭ comes an eighth later, off the beat: it is dropped, A♭/C stays
+  const c1 = M.chordsOnBeat([{g: 0, ch: 'E♭'}, {g: 8, ch: 'A♭/C'}, {g: 10, ch: 'E♭/B♭'}], bars, sound, 12);
+  assert.deepStrictEqual(c1.map(c => [c.ch, c.g]), [['E♭', 0], ['A♭/C', 8]]);
+  // the other way round: the chord before the beat gives way to the one on it
+  const c2 = M.chordsOnBeat([{g: 0, ch: 'E♭'}, {g: 6, ch: 'B♭'}, {g: 8, ch: 'A♭'}], bars, [[0, 4], [4, 6], [6, 8], [8, 12]], 12);
+  assert.deepStrictEqual(c2.map(c => [c.ch, c.g]), [['E♭', 0], ['B♭', 4], ['A♭', 8]]);
+});
+
 test('written-out left hand: cut, replace, tie', () => {
   const s = song(); s.acc = {pat: '1 5 8 5', rate: 2, low: 36};
   const gen = M.accompany(s).events;
