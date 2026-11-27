@@ -492,7 +492,36 @@
     var rates = m.compound ? [[2, '8', 'Eighths'], [1, '16', 'Sixteenths']] : [[beat, '4', beat === 4 ? 'Quarters' : 'On the beat'], [beat / 2, '8', beat === 4 ? 'Eighths' : 'Twice a beat'], [beat / 4, '16', beat === 4 ? 'Sixteenths' : 'Four a beat']];
     rates = rates.filter(function (r) { return r[0] >= 1 && r[0] === Math.round(r[0]); });
     var eighth = m.compound ? 2 : Math.max(1, Math.round(beat / 2));
-    var pulsePat = m.compound ? '1 - 5 c - 5 | 1 - c 5 - c' : n === 3 ? '1 - - c - 5 | 1 - c - 5 -' : n === 2 ? '1 - 5 c' : '1 - - 5 8 - c - | 1 - - 5 c - 8 -';
+    // Lively (`dynamic/pulse`): phrase-shuffled upbeat piano weaving five joyful moods across 2–4 bar phrases
+    // (3-3-2 acoustic pop pulse, classic hymn bounce, driving quarter chords, gospel walk, and sparkling bouncy arpeggios)
+    // with crisp detached mid-chord bounce articulation (`bouncy: true`) and walking bass pickups (`w`).
+    var pulseMoods = [
+      {id: 'pop332', roll: 0.006, halfTimeMs: 0.175, vary: m.compound
+        ? {short: ['1 - c'], calm: ['1 - c 5 - c', '1+5 - c 5 - c'], cont: ['1 - c 5 - w', '1 - c c 5 -'], fill: ['1 - c 5 c w', '1 - c 5 - w'], late: ['5 - c', 'c - w']}
+        : n === 3 ? {short: ['1 - c -'], calm: ['1 - c - 5 c', '1 - - c 5 -'], cont: ['1 - c - 5 w', '1 - c 5 c -'], fill: ['1 - c - 5 w', '1 - c 5 c w'], late: ['c - 5 -', 'c - w -']}
+        : n === 2 ? {short: ['1 c'], calm: ['1 - c 5', '1 c 5 c'], cont: ['1 - c w', '1 c 5 w'], fill: ['1 - c w'], late: ['c 5']}
+        : {short: ['1 - c -', '1 - c 5'], calm: ['1 - - c - - 5 -', '1+5 - - c - - c -', '1 - - c - 5 c -'], cont: ['1 - - c - - w -', '1 - - c - 5 w -'], fill: ['1 - - c - 5 c -', '1 - - c - 5 w -'], late: ['c - 5 -', 'c - w -']}},
+      {id: 'bounce', roll: 0.006, halfTimeMs: 0.175, vary: m.compound
+        ? {short: ['1 c c'], calm: ['1 - c 5 - c', '1 c c 5 c c'], cont: ['1 - c 5 - w', '1 c c 5 - w'], fill: ['1 - c 5 c c', '1 - c 5 - w'], late: ['5 c c', '5 - w']}
+        : n === 3 ? {short: ['1 - c -'], calm: ['1 - c - c -', '1 - c - 5 c'], cont: ['1 - c - c w', '1 - c - 5 w'], fill: ['1 - c - c -', '1 - c - 5 w'], late: ['c - c -', 'c - w -']}
+        : n === 2 ? {short: ['1 c'], calm: ['1 c 5 c', '1 - c 5'], cont: ['1 c 5 w', '1 c - w'], fill: ['1 c 5 w'], late: ['5 c']}
+        : {short: ['1 - c -', '1 c 5 c'], calm: ['1 - c - 5 - c -', '1 - c 5 - c - 5', '1 - c - 5 - c 5'], cont: ['1 - c - 5 - w -', '1 - c 5 - c w -'], fill: ['1 - c - 5 - c 5', '1 - c - 5 - w -'], late: ['5 - c -', '5 - w -']}},
+      {id: 'drive', roll: 0.006, halfTimeMs: 0.175, vary: m.compound
+        ? {short: ['1+c - c'], calm: ['1+c - c 5+c - c', '1+c c c 5+c - c'], cont: ['1+c - c 5+c - w', '1+c - c c - w'], fill: ['1+c - c 5+c c c', '1+c - c 5+c - w'], late: ['5+c - c', '5+c - w']}
+        : n === 3 ? {short: ['1+c - c -'], calm: ['1+c - c - c -', '1+c - c - 5+c -'], cont: ['1+c - c - c w', '1+c - c - 5 w'], fill: ['1+c - c - 5+c -', '1+c - c - 5 w'], late: ['c - c -', '5+c - w -']}
+        : n === 2 ? {short: ['1+c c'], calm: ['1+c c 5+c c', '1+c - 5+c c'], cont: ['1+c c 5+c w'], fill: ['1+c c 5+c w'], late: ['5+c c']}
+        : {short: ['1+c - c -', '1+c - 5+c -'], calm: ['1+c - c - 5+c - c -', '1+c - c - 1+c - c 5', '1+c - c 5 1+c - c -'], cont: ['1+c - c - 5+c - w -', '1+c - c - 5+c - c w'], fill: ['1+c - c - 5+c - c 5', '1+c - c - 5+c - w -'], late: ['5+c - c -', '5+c - w -']}},
+      {id: 'gospel', roll: 0.006, halfTimeMs: 0.175, vary: m.compound
+        ? {short: ['1 - c'], calm: ['1 - c 5 - w', '1 c 5 c - w'], cont: ['1 - c 3 - w', '1 - c 5 c w'], fill: ['1 c 5 c - w', '1 - c 5 - w'], late: ['5 - w', 'c - w']}
+        : n === 3 ? {short: ['1 - c -'], calm: ['1 - c - w -', '1 - c 5 - w'], cont: ['1 - c - 3 w', '1 - c 5 c w'], fill: ['1 - c 5 - w', '1 - c - w -'], late: ['c - w -', '5 - w -']}
+        : n === 2 ? {short: ['1 w'], calm: ['1 c 5 w', '1 - c w'], cont: ['1 c 3 w'], fill: ['1 c 5 w'], late: ['c w']}
+        : {short: ['1 - c -', '1 - w -'], calm: ['1 - c - 3 - c w', '1 - c 5 - c w -', '1 - - c 5 - w -'], cont: ['1 - c - 5 - w -', '1 - c 3 - c w -'], fill: ['1 - c 5 - c w -', '1 - c - 3 - c w'], late: ['5 - w -', 'c - w -']}},
+      {id: 'sparkle', roll: 0.006, halfTimeMs: 0.175, vary: m.compound
+        ? {short: ['1 5 c'], calm: ['1 5 c 8 c 5', '1 5 10 8 5 c'], cont: ['1 5 c 8 c w', '1 5 c 5 c w'], fill: ['1 5 10 8 c 5', '1 5 c 8 c w'], late: ['8 c 5', 'c 5 w']}
+        : n === 3 ? {short: ['1 5 c -'], calm: ['1 5 c 8 c 5', '1 - 5 c 8 c'], cont: ['1 5 c 8 c w', '1 - 5 c 5 w'], fill: ['1 5 10 8 c 5', '1 5 c 8 c w'], late: ['8 c 5 -', 'c 5 w -']}
+        : n === 2 ? {short: ['1 5'], calm: ['1 5 c 8', '1 5 c 5'], cont: ['1 5 c w'], fill: ['1 5 10 8'], late: ['c 8']}
+        : {short: ['1 5 c -', '1 5 8 -'], calm: ['1 5 c - 5 c 8 -', '1 - 5 c - c 5 -', '1 5 10 - 5 c 8 -'], cont: ['1 5 c - 5 c w -', '1 - 5 c - c w -'], fill: ['1 5 10 - 5 c 8 -', '1 5 c - 5 c w -'], late: ['5 c 8 -', '5 c w -']}}];
+    var pulseShort = m.compound ? '1 - c' : n === 2 ? '1 c' : '1 - c -';
     var adaptCalm = m.compound ? '1 - 5 c - 5' : n === 3 ? '1 - 5 - c -' : n === 2 ? '1 - c -' : '1 - - 5 - - c -';
     var adaptFill = m.compound ? '1 - 5 9 - 10' : n === 3 ? '1 - 5 - 9 -' : n === 2 ? '1 - 10 -' : '1 - 5 - 9 - 10 -';
     var adaptLate = m.compound ? 'c - 5' : n === 2 ? 'c -' : 'c - 9 -';
@@ -642,8 +671,8 @@
         {id: 'adaptive', name: 'Adaptive', hint: 'phrase-shuffled flowing piano: warm pedaled sway, serene arches, soft rolled chords and lyrical walks, unhurried on pauses', rhythms: [
           {id: '8', name: '', pat: adaptCalm, fillPat: adaptFill, latePat: adaptLate, shortPat: m.compound ? '1 - -' : '1 - c -', rate: eighth, low: 40, bassRing: true, chordPedal: true, adaptive: true, smooth: true, settle: true, feather: true, roll: 0.020, vary: adaptVary, moods: adaptMoods}]},
         {id: 'rolled', name: 'Rolled', hint: 'soft upward harp-like chords', rhythms: rolledRhythms},
-        {id: 'pulse', name: 'Pulse', hint: 'modern ballad groove with breath', rhythms: [
-          {id: '8', name: '', pat: pulsePat, shortPat: '1 - 5 c', rate: eighth, low: 40, bassRing: true, smooth: true}]},
+        {id: 'pulse', name: 'Pulse', hint: 'phrase-shuffled lively piano: joyful 3-3-2 pop pulse, cheerful bounce, driving chords, gospel walk and sparkling arpeggios', rhythms: [
+          {id: '8', name: '', pat: pulseMoods[0].vary.calm[0], fillPat: pulseMoods[0].vary.fill[0], latePat: pulseMoods[0].vary.late[0], shortPat: pulseShort, rate: eighth, low: 40, smooth: true, adaptive: true, bouncy: true, roll: 0.006, vary: pulseMoods[0].vary, moods: pulseMoods}]},
         {id: 'walking', name: 'Walking', hint: 'bass steps smoothly into each chord', rhythms: walkRhythms},
         {id: 'chorale', name: 'Chorale', hint: 'bass and tenor, as in a hymnal', rhythms: choraleRhythms}]}];
   }
@@ -707,6 +736,7 @@
       if (src && src.pause) e.pause = true;
       if (src && src.walk) e.walk = true;
       if (src && src.feather) e.feather = true;
+      if (src && src.bouncy) e.bouncy = true;
       if (src && src.roll != null) e.roll = src.roll;
       if (src && src.inst) {
         e.inst = src.inst;
@@ -783,7 +813,7 @@
     var moodCache = {};
     function moodForBar(acc, bi) {
       if (!acc || !acc.moods || !acc.moods.length) return null;
-      var key = (acc.guitar ? 'g:' : 'p:') + acc.moods.length + ':' + (acc.seed | 0);
+      var key = (acc.guitar ? 'g:' : 'p:') + acc.moods[0].id + ':' + acc.moods.length + ':' + (acc.seed | 0);
       if (!moodCache[key]) {
         var sched = [], curM = null, pLen = 0, pIdx = 0;
         var isPauseBar = function (b) {
@@ -848,8 +878,14 @@
       } else if (pianoHalfTimed) {
         rate *= 2;
         var pfStr = (z - a) <= barL / 2 ? '1 c' : barL === 12 ? (fresh ? '1 5 c' : '1 c 5') : (fresh ? '1 5 c 8' : '1 c 5 c');
-        if (curMood.id === 'rolled') pfStr = (z - a) <= barL / 2 ? '1+5+10 -' : barL === 12 ? '1+5+10 c -' : '1+5+10 - c -';
-        if (curMood.id === 'walk' && (z - a) > barL / 2) pfStr = barL === 12 ? '1 c w' : '1 5 c w';
+        if (acc.bouncy) {
+          if ((z - a) <= barL / 2) pfStr = curMood.id === 'drive' ? '1+c c' : '1 c';
+          else if (barL === 12) pfStr = curMood.id === 'drive' ? '1+c c c' : curMood.id === 'gospel' ? '1 c w' : '1 c c';
+          else pfStr = curMood.id === 'drive' ? '1+c c 5+c c' : curMood.id === 'gospel' ? '1 c 5 w' : '1 c 5 c';
+        } else {
+          if (curMood.id === 'rolled') pfStr = (z - a) <= barL / 2 ? '1+5+10 -' : barL === 12 ? '1+5+10 c -' : '1+5+10 - c -';
+          if (curMood.id === 'walk' && (z - a) > barL / 2) pfStr = barL === 12 ? '1 c w' : '1 5 c w';
+        }
         var pfParts = parsePattern(pfStr); if (pfParts.length) useParts = [pfParts[0], pfParts[0]];
       } else if (rate && acc.shortPat && (z - a) <= barL / 2) {
         // Short-chord adaptation (e.g. 2-beat chord in 4/4), and Adaptive: calm while the melody moves, a fill from where it
@@ -951,7 +987,7 @@
             if (ringLen > st.d) e.ring = ringLen;
           }
           else if (acc.bassRing && rate && pi === 0 && (st.toks || []).indexOf('1') >= 0 && z - st.g > st.d) e.ring = z - st.g;
-          if (st.ending) e.roll = curMood && !acc.guitar ? 0.036 : 0.032;
+          if (st.ending) e.roll = acc.bouncy ? 0.022 : curMood && !acc.guitar ? 0.036 : 0.032;
           else if (curMood && !acc.guitar && e.p.length > 1) e.roll = curMood.roll || 0.018;
           else if (acc.roll && e.p.length > 1) e.roll = acc.roll;
           if (acc.guitar) {   // strummed: down from the bass, up (U alone) from the top string; picked: warm fingers, strings let ring
@@ -974,6 +1010,7 @@
             if (st.isPause) e.pause = true;
             if (isWalk) e.walk = true;
           }
+          if (acc.bouncy && !st.ending) e.bouncy = true;
           if (acc.passing && e.p.length === 2 || st.ending) { e.span = sp; e.pass = acc.passing === 2 ? 2 : acc.passing ? 1 : 0; }
         }
         events.push(e);
@@ -1272,6 +1309,9 @@
       }
       var roll = e.roll != null ? e.roll : (e.p.length > 1 ? 0.012 : 0);
       if (e.up) baseVel -= 9;   // a guitar's up strum: lighter, from the top string down
+      var isChordPop = !!(e.bouncy && !onDownbeat && e.p.length >= 2 && e.p[0] >= 48);
+      var isSyncPush = !!(e.bouncy && !onBeat && e.p.length >= 2);
+      var isBassStep = !!(e.bouncy && e.p.length === 1 && e.p[0] < 54);
       var dur = e.ring ? Math.max(e.d, e.ring - 0.35) : e.d;   // a pedal lift just before the next chord keeps the harmonies clear
       return e.p.map(function (p, pi) {
         var voiceAdj = e.pluck ? (e.p.length > 1 ? (pi === 0 && e.thumb ? 3 : -3) : (e.thumb ? 3 : -3))
@@ -1280,7 +1320,18 @@
           : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
         var d0 = e.rings && e.rings[pi] != null ? e.rings[pi] : dur;
         var minV = e.feather ? 30 : 34, maxV = e.feather ? 82 : 86;
-        return {p: p, vel: Math.max(minV, Math.min(maxV, baseVel + voiceAdj)), off: roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff, dur: d0};
+        var vel = Math.max(minV, Math.min(maxV, baseVel + voiceAdj));
+        var off = roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff;
+        if (e.bouncy) {
+          if (e.p.length > 1) off = pi * 0.006;
+          if (onDownbeat) vel = Math.min(88, vel + 6);
+          else if (isSyncPush) vel = Math.min(82, vel + 12);
+          else if (isChordPop) vel = Math.min(78, vel + (onBeat ? 9 : 6));
+          else if (onHalf && isBassStep) vel = Math.min(80, vel + 5);
+          if (isChordPop && !e.ring) d0 = Math.max(0.55, Math.min(e.d * 0.62, e.d - 0.35));
+          else if (onDownbeat && e.p.length >= 3 && !e.ring && pi > 0) d0 = Math.max(0.6, Math.min(e.d * 0.65, e.d - 0.35));
+        }
+        return {p: p, vel: vel, off: off, dur: d0};
       });
     });
   }
@@ -1338,7 +1389,7 @@
       lh.events.forEach(function (e, i) {
         if (isRest(e) || tied(lh.events, i)) return;
         var d = len(e); for (var q = i + 1; tied(lh.events, q); q++) d += len(lh.events[q]);
-        left.push({t: lo[i], d: e.ring || d, g: d, ring: e.ring, rings: e.rings, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll, pluck: e.pluck, thumb: e.thumb, fresh: e.fresh, cont: e.cont, pause: e.pause, walk: e.walk, feather: e.feather});
+        left.push({t: lo[i], d: e.ring || d, g: d, ring: e.ring, rings: e.rings, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll, pluck: e.pluck, thumb: e.thumb, fresh: e.fresh, cont: e.cont, pause: e.pause, walk: e.walk, feather: e.feather, bouncy: e.bouncy});
       });
     }
     var off = gridOff(sheet);
@@ -1357,7 +1408,7 @@
     var byBar = {};
     left.forEach(function (l) { (byBar[barOf(l.t)] = byBar[barOf(l.t)] || []).push(l); });
     Object.keys(byBar).forEach(function (bi) {
-      var items = byBar[bi], dyn = leftDyn(items.map(function (l) { return {e: {p: l.ps, d: l.g, ring: l.ring, rings: l.rings, inst: l.inst, up: l.up, roll: l.roll, pluck: l.pluck, thumb: l.thumb, fresh: l.fresh, cont: l.cont, pause: l.pause, walk: l.walk, feather: l.feather}, pos: posOf(l.t)}; }), {nominal: bar, beat: beat});
+      var items = byBar[bi], dyn = leftDyn(items.map(function (l) { return {e: {p: l.ps, d: l.g, ring: l.ring, rings: l.rings, inst: l.inst, up: l.up, roll: l.roll, pluck: l.pluck, thumb: l.thumb, fresh: l.fresh, cont: l.cont, pause: l.pause, walk: l.walk, feather: l.feather, bouncy: l.bouncy}, pos: posOf(l.t)}; }), {nominal: bar, beat: beat});
       items.forEach(function (l, k) { l.notes = dyn[k] || []; });
     });
     var acc = sheet.acc, guitar = !!(acc && (acc.guitar || /^guitar\//.test(acc.style || '')));
