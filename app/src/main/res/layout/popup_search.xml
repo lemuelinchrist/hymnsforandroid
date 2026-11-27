@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The YouTube button's menu (content/YoutubeButton): the same rounded card as the Share menu (popup_share) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_round_bg"
+    android:minWidth="236dp"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <LinearLayout style="@style/ShareRow" android:id="@+id/searchYoutube">
+        <ImageView style="@style/ShareRowIcon" android:src="@drawable/ic_set_youtube" />
+        <TextView style="@style/ShareRowText" android:text="@string/search_youtube" />
+    </LinearLayout>
+    <LinearLayout style="@style/ShareRow" android:id="@+id/searchSoundcloud">
+        <ImageView style="@style/ShareRowIcon" android:src="@drawable/ic_set_soundcloud" />
+        <TextView style="@style/ShareRowText" android:text="@string/search_soundcloud" />
+    </LinearLayout>
+</LinearLayout>

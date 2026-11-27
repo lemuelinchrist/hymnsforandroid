@@ -1,10 +1,12 @@
 package com.lemuelinchrist.android.hymns.content;
 
 import android.content.SharedPreferences;
-import android.view.ContextThemeWrapper;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
-import androidx.appcompat.widget.PopupMenu;
+import android.widget.PopupWindow;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import com.lemuelinchrist.android.hymns.R;
@@ -40,20 +42,30 @@ public class YoutubeButton extends ContentComponent<ImageButton> {
         });
     }
 
-    /** The drop-down under the button: search YouTube or SoundCloud for the hymn, each with its icon. */
+    /** The menu under the button (the Share menu's card): search YouTube or SoundCloud for the hymn. */
     private void showMenu(View anchor, final Hymn hymn) {
-        // the DayNight overlay gives the menu readable text in Light, Dark and Black (it showed pale text on a pale menu)
-        PopupMenu menu = new PopupMenu(new ContextThemeWrapper(context, androidx.appcompat.R.style.ThemeOverlay_AppCompat_DayNight), anchor);
-        menu.getMenu().add(0, R.id.search_youtube, 0, R.string.search_youtube).setIcon(R.drawable.ic_youtube_24dp);
-        menu.getMenu().add(0, R.id.search_soundcloud, 1, R.string.search_soundcloud).setIcon(R.drawable.ic_soundcloud_24dp);
-        menu.setForceShowIcon(true);
-        menu.setOnMenuItemClickListener(item -> {
-            YouTubeSearchLauncher launcher = new YouTubeSearchLauncher(context);
-            if (item.getItemId() == R.id.search_soundcloud) launcher.launchSoundCloud(hymn);
-            else launcher.launch(hymn);
-            return true;
+        View card = LayoutInflater.from(context).inflate(R.layout.popup_search, null);
+        PopupWindow popup = new PopupWindow(card, ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        float density = context.getResources().getDisplayMetrics().density;
+        popup.setElevation(12 * density);
+        card.findViewById(R.id.searchYoutube).setOnClickListener(row -> {
+            popup.dismiss();
+            new YouTubeSearchLauncher(context).launch(hymn);
         });
-        menu.show();
+        card.findViewById(R.id.searchSoundcloud).setOnClickListener(row -> {
+            popup.dismiss();
+            new YouTubeSearchLauncher(context).launchSoundCloud(hymn);
+        });
+        // under the button, kept inside the screen with a margin
+        card.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int[] at = new int[2];
+        anchor.getLocationOnScreen(at);
+        int screenWidth = context.getResources().getDisplayMetrics().widthPixels;
+        int margin = (int) (12 * density);
+        int x = Math.max(margin, Math.min(at[0] + anchor.getWidth() / 2 - card.getMeasuredWidth() / 2,
+                screenWidth - card.getMeasuredWidth() - margin));
+        popup.showAtLocation(anchor, Gravity.TOP | Gravity.START, x, at[1] + anchor.getHeight());
     }
 
     /**
