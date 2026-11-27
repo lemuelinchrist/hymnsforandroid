@@ -289,12 +289,33 @@
                         android:layout_height="1dp"
                         android:layout_marginTop="8dp"
                         android:background="?attr/hymnBadgeBackground"/>
-                <com.lemuelinchrist.android.hymns.content.WrapLayout
+                <!-- the sub-style: a drop-down and a dice that picks one at random -->
+                <LinearLayout
                         android:id="@+id/jukeboxSubstyles"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
-                        android:contentDescription="@string/jukebox_style"/>
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:visibility="gone">
+                    <Spinner
+                            android:id="@+id/jukeboxSubSpinner"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:maxWidth="260dp"
+                            android:spinnerMode="dropdown"
+                            android:contentDescription="@string/jukebox_style"/>
+                    <ImageButton
+                            android:id="@+id/jukeboxDice"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="8dp"
+                            android:padding="8dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_dice_24dp"
+                            android:contentDescription="@string/jukebox_random"/>
+                </LinearLayout>
                 <!-- the tempo (a tap on it: the sheet's own again) and Loop -->
                 <LinearLayout
                         android:layout_width="match_parent"

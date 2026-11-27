@@ -11,6 +11,9 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -23,18 +26,19 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.style.BookColors;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Random;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * The JUKEBOX card under the details: plays the hymn's sheet music in a style chosen by category (Hymn's own, Piano,
- * Guitar strum, Guitar pick, Melody) and sub-style chips, with Play, Loop and the tempo, and shows the bar it is at.
+ * Guitar strum, Guitar pick, Melody) and sub-style drop-down with a dice to pick one at random, with Play, Loop and the tempo, and shows the bar it is at.
  * It plays through the hidden sheet player ({@link SheetPlayer}), whose page makes the notes with the web app's own
  * jukebox (tools/web/src/jukebox.js), so the two apps sound the same. A change while it plays goes on from the same
- * bar. A hymn opens on its sheet's own style (Flowing when it names none); a style picked is for this page only. Loop
+ * bar. A hymn opens on its sheet's own style (a style of Piano chosen at random when it names none; a category opens on a random style, never a fixed one); a style picked is for this page only. Loop
  * (on to begin with) and the tempo are kept for every hymn. The card is hidden for a hymn with nothing to play (no
  * sheet, or a sheet of chords only). It folds into its title row ({@link CardFold}); folded, it goes on playing.
  */
@@ -77,13 +81,16 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
 
     private final String sheetId;
     private final SharedPreferences prefs;
-    private final Map<String, String> lastByGroup = new HashMap<>();
+    private final Random random = new Random();
     private final Map<String, TextView> categoryPills = new HashMap<>();
     private ImageButton playButton;
     private TextView currentText, barText, tempoText;
     private ProgressBar progress;
-    private WrapLayout categoryRow, substyleRow;
-    private View subDivider;
+    private WrapLayout categoryRow;
+    private View substyleRow, subDivider;
+    private Spinner subSpinner;
+    private ImageButton diceButton;
+    private boolean updatingSpinner;
     private SeekBar speedBar;
     private SwitchCompat loopSwitch;
     private int accent, cardBg, badgeBg, textCol, mutedStroke;
@@ -128,25 +135,37 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         subDivider = card.findViewById(R.id.jukeboxSubDivider);
         substyleRow = card.findViewById(R.id.jukeboxSubstyles);
 
-        for (Object[] g : GROUPS) {
-            String gid = (String) g[0];
-            for (Object[] s : STYLES) {
-                if (gid.equals(s[1])) {
-                    lastByGroup.put(gid, (String) s[0]);
-                    break;
-                }
+        subSpinner = card.findViewById(R.id.jukeboxSubSpinner);
+        diceButton = card.findViewById(R.id.jukeboxDice);
+        diceButton.setImageTintList(ColorStateList.valueOf(accent));
+        diceButton.setBackground(outline(badgeBg, mutedStroke));
+        subSpinner.setBackground(outline(Color.TRANSPARENT, mutedStroke));
+        diceButton.setOnClickListener(v -> chooseStyle(randomIn(groupOf(style), style)));
+        subSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (updatingSpinner) return;
+                List<Object[]> subs = stylesInGroup(groupOf(style));
+                if (position >= 0 && position < subs.size()) chooseStyle((String) subs.get(position)[0]);
             }
-        }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        // a hymn opens on its own style; one without goes to Piano with a style chosen at random (there is no default)
         style = hasOwn ? DEFAULT_STYLE : FALLBACK_STYLE;
-        Object[] initial = styleRow(style);
-        if (initial != null) lastByGroup.put((String) initial[1], style);
+        if (stylesInGroup(groupOf(style)).size() > 1) style = randomIn(groupOf(style), null);
 
         categoryRow.removeAllViews();
         for (Object[] g : GROUPS) {
             String gid = (String) g[0];
             if ("own".equals(gid) && !hasOwn) continue;
             TextView pill = makePill(context.getString((Integer) g[1]), true, false);
-            pill.setOnClickListener(v -> chooseStyle(lastByGroup.get(gid)));
+            pill.setOnClickListener(v -> {
+                if (!gid.equals(groupOf(style))) chooseStyle(randomStyleOf(gid));
+            });
             categoryPills.put(gid, pill);
             categoryRow.addView(pill);
         }
@@ -207,7 +226,6 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         Object[] row = styleRow(chosen);
         if (row == null) return;
         style = chosen;
-        lastByGroup.put((String) row[1], style);
         renderPills();
         if (playing) start();
     }
@@ -228,19 +246,67 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
                     : styleLabel);
             subDivider.setVisibility(View.VISIBLE);
             substyleRow.setVisibility(View.VISIBLE);
-            substyleRow.removeAllViews();
-            for (Object[] s : subs) {
-                String sid = (String) s[0];
-                TextView chip = makePill(context.getString((Integer) s[2]), false, sid.equals(style));
-                chip.setOnClickListener(v -> chooseStyle(sid));
-                substyleRow.addView(chip);
+            List<String> labels = new ArrayList<>();
+            int selected = 0;
+            for (int i = 0; i < subs.size(); i++) {
+                labels.add(context.getString((Integer) subs.get(i)[2]));
+                if (subs.get(i)[0].equals(style)) selected = i;
             }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, labels) {
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    return tint((TextView) super.getView(position, convertView, parent), false);
+                }
+
+                @Override
+                public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    return tint((TextView) super.getDropDownView(position, convertView, parent), true);
+                }
+            };
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            updatingSpinner = true;
+            subSpinner.setAdapter(adapter);
+            subSpinner.setSelection(selected, false);
+            updatingSpinner = false;
         } else {
             currentText.setText(styleLabel);
             subDivider.setVisibility(View.GONE);
             substyleRow.setVisibility(View.GONE);
-            substyleRow.removeAllViews();
         }
+    }
+
+    private TextView tint(TextView tv, boolean dropDown) {
+        tv.setTextColor(textCol);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        if (dropDown) tv.setBackgroundColor(cardBg);
+        return tv;
+    }
+
+    private GradientDrawable outline(int fill, int stroke) {
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadius(dp(10));
+        shape.setColor(fill);
+        shape.setStroke(dp(1), stroke);
+        return shape;
+    }
+
+    private static String groupOf(String styleId) {
+        Object[] row = styleRow(styleId);
+        return row == null ? "" : (String) row[1];
+    }
+
+    private String randomStyleOf(String gid) {
+        List<Object[]> subs = stylesInGroup(gid);
+        return subs.isEmpty() ? null : randomIn(gid, null);
+    }
+
+    /** A style of the group chosen at random, other than {@code not} when the group has another. */
+    private String randomIn(String gid, String not) {
+        List<Object[]> pool = new ArrayList<>();
+        for (Object[] s : stylesInGroup(gid)) if (!s[0].equals(not)) pool.add(s);
+        if (pool.isEmpty()) pool = stylesInGroup(gid);
+        return (String) pool.get(random.nextInt(pool.size()))[0];
     }
 
     private TextView makePill(String text, boolean isCategory, boolean selected) {

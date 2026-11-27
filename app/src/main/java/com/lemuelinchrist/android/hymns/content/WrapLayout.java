@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Lays out variable-width pill/chip views in rows, wrapping to the next line when a row is full, with uniform
- * horizontal and vertical spacing. Used by {@link JukeboxCard} for its category and sub-style rows without needing a
+ * Lays out variable-width pill/chip views in centred rows, wrapping to the next line when a row is full, with uniform
+ * horizontal and vertical spacing. Used by {@link JukeboxCard} for its category row without needing a
  * MaterialComponents theme.
  */
 public class WrapLayout extends ViewGroup {
@@ -54,25 +54,41 @@ public class WrapLayout extends ViewGroup {
         setMeasuredDimension(resolveSize(totalW, widthMeasureSpec), resolveSize(totalH, heightMeasureSpec));
     }
 
+    /** Each row is centred in the width. */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         boolean rtl = getLayoutDirection() == LAYOUT_DIRECTION_RTL;
         int width = r - l;
         int avail = Math.max(0, width - getPaddingLeft() - getPaddingRight());
-        int x = 0, y = getPaddingTop(), rowH = 0;
-        for (int i = 0, n = getChildCount(); i < n; i++) {
-            View c = getChildAt(i);
-            if (c.getVisibility() == GONE) continue;
-            int cw = c.getMeasuredWidth(), ch = c.getMeasuredHeight();
-            if (x > 0 && x + cw > avail) {
-                y += rowH + vGap;
-                x = 0;
-                rowH = 0;
+        int y = getPaddingTop();
+        int n = getChildCount();
+        int i = 0;
+        while (i < n) {
+            // the row: children from i while they fit
+            int x = 0, rowH = 0, j = i;
+            while (j < n) {
+                View c = getChildAt(j);
+                if (c.getVisibility() != GONE) {
+                    int cw = c.getMeasuredWidth();
+                    if (x > 0 && x + cw > avail) break;
+                    x += cw + hGap;
+                    rowH = Math.max(rowH, c.getMeasuredHeight());
+                }
+                j++;
             }
-            int left = rtl ? width - getPaddingRight() - x - cw : getPaddingLeft() + x;
-            c.layout(left, y, left + cw, y + ch);
-            x += cw + hGap;
-            rowH = Math.max(rowH, ch);
+            int rowW = Math.max(0, x - hGap);
+            int offset = Math.max(0, (avail - rowW) / 2);
+            int cx = 0;
+            for (int k = i; k < j; k++) {
+                View c = getChildAt(k);
+                if (c.getVisibility() == GONE) continue;
+                int cw = c.getMeasuredWidth(), ch = c.getMeasuredHeight();
+                int left = rtl ? width - getPaddingRight() - offset - cx - cw : getPaddingLeft() + offset + cx;
+                c.layout(left, y, left + cw, y + ch);
+                cx += cw + hGap;
+            }
+            y += rowH + vGap;
+            i = j;
         }
     }
 

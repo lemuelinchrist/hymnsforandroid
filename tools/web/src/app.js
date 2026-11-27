@@ -825,19 +825,22 @@ function jukeboxCard(hymn, stopOthers) {
   function build() {
     prefs.speed = Math.max(J.MIN_SPEED, Math.min(J.MAX_SPEED, +prefs.speed || 1));
     const playBtn = h('button', {class: 'jb-play', type: 'button', 'aria-pressed': 'false'});
+    // a category with several styles starts on one of them chosen at random (no default); the dice picks another
+    const subsOf = (gid) => J.STYLES.filter((x) => x.group === gid);
+    const randomIn = (gid, not) => {
+      const pool = subsOf(gid).filter((x) => x.id !== not);
+      return pool[Math.floor(Math.random() * pool.length)] || null;
+    };
     let curStyle = J.styleFor(null, info.own);
-    const lastByGroup = {};
-    for (const g of J.GROUPS) {
-      const first = J.STYLES.find((s) => s.group === g.id);
-      if (first) lastByGroup[g.id] = first.id;
-    }
-    lastByGroup[curStyle.group] = curStyle.id;
+    if (subsOf(curStyle.group).length > 1) curStyle = randomIn(curStyle.group);
 
     const curText = h('span', {class: 'jb-current'});
     const fill = h('span', {class: 'jb-fill'});
     const barText = h('span', {class: 'jb-bar'});
     const catRow = h('div', {class: 'jb-cats', role: 'group', 'aria-label': tr('Category')});
-    const subRow = h('div', {class: 'jb-subs', role: 'group', 'aria-label': tr('Style')});
+    const subSelect = h('select', {class: 'jb-select', 'aria-label': tr('Style')});
+    const diceBtn = h('button', {class: 'jb-dice', type: 'button', title: tr('Pick a style at random'), 'aria-label': tr('Pick a style at random')}, icon('dice'));
+    const subRow = h('div', {class: 'jb-subs'}, subSelect, diceBtn);
     const tempoBtn = h('button', {class: 'jb-tempo', type: 'button', title: tr('The hymn\'s own tempo')});
     const speed = h('input', {class: 'jb-speed', type: 'range', min: String(J.MIN_SPEED), max: String(J.MAX_SPEED), step: '0.05', 'aria-label': tr('Tempo')});
     speed.value = String(prefs.speed);
@@ -854,7 +857,10 @@ function jukeboxCard(hymn, stopOthers) {
     for (const grp of J.GROUPS) {
       if (grp.id === 'own' && !info.own) continue;
       const b = h('button', {class: 'jb-cat', type: 'button', 'aria-pressed': 'false'}, tr(grp.name));
-      b.addEventListener('click', () => choose(J.styleFor(lastByGroup[grp.id], info.own)));
+      b.addEventListener('click', () => {
+        if (grp.id === curStyle.group) return;
+        choose(subsOf(grp.id).length > 1 ? randomIn(grp.id) : J.STYLES.find((x) => x.group === grp.id));
+      });
       catBtns.set(grp.id, b);
       catRow.appendChild(b);
     }
@@ -864,24 +870,22 @@ function jukeboxCard(hymn, stopOthers) {
       const subs = J.STYLES.filter((s) => s.group === curStyle.group);
       curText.textContent = subs.length > 1 && grp ? tr(grp.name) + ' · ' + tr(curStyle.name) : tr(curStyle.name);
       for (const [gid, b] of catBtns) b.setAttribute('aria-pressed', String(gid === curStyle.group));
-      subRow.textContent = '';
       subRow.hidden = subs.length <= 1;
       if (subs.length > 1) {
-        for (const st of subs) {
-          const sb = h('button', {class: 'jb-sub', type: 'button', 'aria-pressed': String(st.id === curStyle.id)}, tr(st.name));
-          sb.addEventListener('click', () => choose(st));
-          subRow.appendChild(sb);
-        }
+        subSelect.textContent = '';
+        for (const st of subs) subSelect.appendChild(h('option', {value: st.id}, tr(st.name)));
+        subSelect.value = curStyle.id;
       }
     }
     function choose(st) {
       if (!st || st.id === curStyle.id) return;
       curStyle = st;
-      lastByGroup[st.group] = st.id;
       renderPills();
       again();
     }
 
+    subSelect.addEventListener('change', () => choose(J.STYLES.find((x) => x.id === subSelect.value)));
+    diceBtn.addEventListener('click', () => choose(randomIn(curStyle.group, curStyle.id)));
     const showTempo = () => { tempoBtn.textContent = '♩ = ' + Math.round(info.bpm * prefs.speed); };
     const show = () => {
       playBtn.replaceChildren(icon(playing ? 'pause' : 'play'));
