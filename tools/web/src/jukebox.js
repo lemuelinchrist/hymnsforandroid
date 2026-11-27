@@ -22,7 +22,7 @@ export const GROUPS = [
 
 export const STYLES = [
   {id: 'own', group: 'own', name: 'The hymn\'s own style'},
-  {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing'},
+  {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing', shuffle: true},
   {id: 'plain', group: 'piano', name: 'Plain', preset: 'plain'},
   {id: 'chorale', group: 'piano', name: 'Chorale', preset: 'chorale'},
   {id: 'lively', group: 'piano', name: 'Lively', preset: 'lively'},
@@ -32,12 +32,7 @@ export const STYLES = [
   {id: 'guitar-steady', group: 'strum', name: 'Steady', strum: 'steady'},
   {id: 'guitar-ballad', group: 'strum', name: 'Ballad', strum: 'ballad'},
   {id: 'guitar-country', group: 'strum', name: 'Country', strum: 'country'},
-  {id: 'guitar-pick', group: 'pick', name: 'Fingerpicking', strum: 'pick'},
-  {id: 'guitar-travis', group: 'pick', name: 'Folk picking', strum: 'travis'},
-  {id: 'guitar-pick-flow', group: 'pick', name: 'Adaptive picking', strum: 'pick-flow'},
-  {id: 'guitar-arp', group: 'pick', name: 'Ballad picking', strum: 'arp'},
-  {id: 'guitar-harp', group: 'pick', name: 'Gentle harp', strum: 'harp'},
-  {id: 'guitar-arp-flow', group: 'pick', name: 'Adaptive ballad', strum: 'arp-flow'},
+  {id: 'guitar-pick', group: 'pick', name: 'Fingerpicking', strum: 'pick', shuffle: true},
   {id: 'melody', group: 'melody', name: 'Melody alone'},
 ];
 export const DEFAULT_STYLE = 'own', FALLBACK_STYLE = 'flowing';   // a sheet without its own part: Flowing (piano.js DEFAULT)
@@ -45,9 +40,10 @@ export const MIN_SPEED = 0.5, MAX_SPEED = 1.5;   // of the sheet's tempo, by twe
 const DEFAULT_BPM = 110;   // as sheetplayer.js and play.js
 
 // the style an id means for a sheet: none or an unknown id is the default; 'own' for a sheet without its own part is
-// Flowing
+// Flowing; legacy picking ids map to the unified phrase-shuffled Fingerpicking
 export function styleFor(id, hasOwn) {
-  const s = STYLES.find((x) => x.id === id) || STYLES.find((x) => x.id === DEFAULT_STYLE);
+  const norm = /^guitar-(travis|pick-flow|arp|harp|arp-flow)$/.test(id || '') ? 'guitar-pick' : id;
+  const s = STYLES.find((x) => x.id === norm) || STYLES.find((x) => x.id === DEFAULT_STYLE);
   return s.id === 'own' && !hasOwn ? STYLES.find((x) => x.id === FALLBACK_STYLE) : s;
 }
 
@@ -71,16 +67,17 @@ function tempoOf(doc) {
 }
 
 // The notes of a sheet in a style: {score, bpm, mute} (mute: the parts not heard, for player.js), or null when there is
-// nothing to play. edits: this device's chord edits of the sheet ({bar: ...}) or null.
-export function jukeboxScore(xml, edits, styleId, loop) {
+// nothing to play. edits: this device's chord edits of the sheet ({bar: ...}) or null. seed: phrase-shuffle take (0 = hymn's own).
+export function jukeboxScore(xml, edits, styleId, loop, seed = 0) {
   const doc = soundDoc(xml, edits || null);
   const own = handsOf(doc);
   const style = styleFor(styleId, !!own);
   let choice = null, mute = {};
   if (style.id === 'own') choice = own;
   else if (style.preset) choice = presetChoice(PRESETS.find((p) => p.id === style.preset));
-  else if (style.strum) choice = strumChoice({kind: style.strum, tone: 'warm'}, capoOf(doc));   // in the guitar sheet's shapes, above its capo
+  else if (style.strum) choice = strumChoice({kind: style.strum, tone: 'warm', seed: seed | 0}, capoOf(doc));   // in the guitar sheet's shapes, above its capo
   else mute = {c: true, f: true, l: true};   // the melody alone: without the chords the viewer plays softly under it
+  if (seed && choice && choice.lh) choice.lh.seed = seed | 0;
   const score = scoreOf(doc, choice, {hands: !!choice, loop: !!loop});
   if (!score || !score.events.some((e) => !mute[e.hand])) return null;
   return {score, bpm: tempoOf(doc), mute};
@@ -88,7 +85,7 @@ export function jukeboxScore(xml, edits, styleId, loop) {
 
 // The jukebox's player. load() -> {xml, edits}: the sheet (once); onBar(bar, bars): the bar that sounds now (only
 // when it changes); onStop(): it stopped by itself (the end, or another Play took the sound), not by stop().
-// play({style, loop, speed}) starts it from the start, or, while it plays, goes on from where it is with the new choice.
+// play({style, loop, speed, seed}) starts it from the start, or, while it plays, goes on from where it is with the new choice.
 export function jukeboxPlayer({load, onBar, onStop}) {
   let sheet = null, ctl = null, token = 0, shownBar = 0;
   const barOf = (score, q) => {
@@ -102,7 +99,7 @@ export function jukeboxPlayer({load, onBar, onStop}) {
     Player.unlock();                                 // inside the tap: iOS lets the sound start only there
     if (!sheet) sheet = await load();
     if (mine !== token) return false;                // stopped, or played again, while loading
-    const made = jukeboxScore(sheet.xml, sheet.edits, o.style, o.loop);
+    const made = jukeboxScore(sheet.xml, sheet.edits, o.style, o.loop, o.seed | 0);
     if (!made) throw new Error('nothing to play');
     const {score, bpm, mute} = made;
     shownBar = 0;

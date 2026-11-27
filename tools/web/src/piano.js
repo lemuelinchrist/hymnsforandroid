@@ -16,14 +16,14 @@ const ACC = {s: 1, f: -1, n: 0, x: 2, ss: 2, ff: -2};
 const ACCID = {'-2': 'ff', '-1': 'f', '0': 'n', '1': 's', '2': 'x'}, ACCID_GES = {'-2': 'ff', '-1': 'f', '1': 's', '2': 'ss'};
 
 // The default is the Flowing preset (2026-11-24; it was Plain, the strike hymn style).
-export const DEFAULT = {lh: {family: 'dynamic', kind: 'adaptive', rhythm: '8', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}};
+export const DEFAULT = {lh: {family: 'dynamic', kind: 'adaptive', rhythm: '8', oct: 0, pedal: false}, rh: {add: 1, on: 'chord'}};
 
 // The panel's simple choices: a style of music.js by what it is for, and the right hand that goes with it (which can
 // be changed: Melody alone or Two notes, added where a chord starts, or for Chorale on the beat). The default is Flowing.
 export const PRESETS = [
   {id: 'plain', name: 'Plain', lh: ['strike', 'hymn', 'half'], add: 0},
   {id: 'chorale', name: 'Chorale', lh: ['dynamic', 'chorale', 'half'], add: 1, on: 'beat'},
-  {id: 'flowing', name: 'Flowing', lh: ['dynamic', 'adaptive', '8'], add: 0},
+  {id: 'flowing', name: 'Flowing', lh: ['dynamic', 'adaptive', '8'], add: 1},
   {id: 'guitar', name: 'Guitar', lh: ['guitar', 'folk', '8'], add: 0, anyKind: true},   // any strum: the panel's Strum row
   {id: 'lively', name: 'Lively', lh: ['dynamic', 'pulse', '8'], add: 1},
   {id: 'walking', name: 'Walking', lh: ['dynamic', 'walking', '4'], add: 0},
@@ -59,7 +59,9 @@ export function forgetOldChoices() {
 // in the shapes of the chords the guitar sheet shows, above its capo
 export function strumChoice(strum, capo) {
   const s = Object.assign({}, STRUM_DEFAULT, strum || {});
-  return {lh: {family: 'guitar', kind: s.kind, rhythm: '', oct: 0, pedal: false, tone: s.tone, capo: capo | 0}, rh: {add: 0, on: 'chord'}};
+  const lh = {family: 'guitar', kind: s.kind, rhythm: '', oct: 0, pedal: false, tone: s.tone, capo: capo | 0};
+  if (s.seed) lh.seed = s.seed;
+  return {lh, rh: {add: 0, on: 'chord'}};
 }
 
 const lib = () => window.LeadSheet;
@@ -74,12 +76,13 @@ export function pattern(lh, time) {
   if (!lh) return null;
   const fam = styles(time).find((f) => f.id === lh.family);
   if (!fam) return null;
-  const kind = fam.kinds.find((k) => k.id === lh.kind) || fam.kinds[0];
+  const rawKind = fam.id === 'guitar' && /^(travis|pick-flow|arp|harp|arp-flow)$/.test(lh.kind) ? 'pick' : lh.kind;
+  const kind = fam.kinds.find((k) => k.id === rawKind) || fam.kinds[0];
   const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
   const out = {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
-  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'pick', 'settle', 'vary']) if (r[k] != null) out[k] = r[k];
-  if (out.vary && lh.seed) out.seed = lh.seed;   // the take (Shuffle)
+  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'chordPedal', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'pick', 'settle', 'vary', 'moods', 'feather']) if (r[k] != null) out[k] = r[k];
+  if ((out.vary || out.moods) && lh.seed) out.seed = lh.seed;   // the take (Shuffle)
   if (out.passing && lh.walk) out.passing = 2;   // More walking (Chorale)
   if (out.guitar && lh.capo != null) out.capo = lh.capo;
   return out;
@@ -260,8 +263,11 @@ function analyse(doc, choice, loop = false) {
     gapChord = chords.length ? (chords[0].g < bars[0].g + bars[0].len - 1e-6 ? chords[0] : chords[chords.length - 1]) : null;
     if (gapG > 0 && gapChord && gapChord.info && base && M.parsePattern(base.pat).length) {
       const b0 = bars[0], at = endG;
+      // Keep the upbeat rest gently moving right into the next stanza (avoid sparse pause fills or settling out its last beat)
+      const gapBase = Object.assign({}, base, {adaptive: false, settle: false});
+      if (gapBase.moods && gapBase.moods.length) gapBase.moods = [gapBase.moods[0]];
       gapLeft = M.accompanyOn({bars: [{g: at, len: gapG, beat: b0.beat, fifths: b0.fifths}], first: at,
-        chords: [Object.assign({}, gapChord, {g: at, end: at + gapG})], mel: [], last: -1, base, bpm: sheetBpm}).events;
+        chords: [Object.assign({}, gapChord, {g: at, end: at + gapG})], mel: [], last: -1, base: gapBase, bpm: sheetBpm}).events;
     }
   }
   return {M, bars, notes, harms, chords, left, upbeat, first, endG, base, gapG, gapLeft, gapChord};
@@ -396,9 +402,10 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
     if (guitarMelody) { ev.inst = 'guitar'; ev.tone = melodyTone; ev.vel = Math.min(127, Math.round(melVel * 1.2)); }   // one string against a six-string strum: a little more, so the tune leads
     put(bi, ev);
     if (n.fill) {
-      const fillRoll = n.fill.length >= 2 ? 0.01 : 0;
+      const whisper = !!(A.base && A.base.feather && n.fill.length === 1);
+      const fillRoll = whisper ? 0.012 : n.fill.length >= 2 ? 0.01 : 0;
       if (fillRoll) ev.off = n.fill.length * fillRoll;   // melody on top blooms cleanly out of the chord
-      ev.fillEvents = n.fill.map((p, fi) => ({g: n.g, dg: n.d, note: p, vel: M.fillVel(melVel, n.fill.length, fi),
+      ev.fillEvents = n.fill.map((p, fi) => ({g: n.g, dg: n.d, note: p, vel: whisper ? Math.round(melVel * 0.55) : M.fillVel(melVel, n.fill.length, fi),
         off: fi * fillRoll, hand: 'f', ids: []}));
       ev.fillEvents.forEach((f) => put(bi, f));
     }

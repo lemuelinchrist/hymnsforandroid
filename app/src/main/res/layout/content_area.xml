@@ -261,6 +261,23 @@
                             android:scaleType="fitCenter"
                             android:src="@drawable/ic_dice_24dp"
                             android:contentDescription="@string/jukebox_random"/>
+                    <TextView
+                            android:id="@+id/jukeboxShuffle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="8dp"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:gravity="center"
+                            android:drawableStart="@drawable/ic_shuffle_24dp"
+                            android:drawablePadding="6dp"
+                            android:text="@string/jukebox_shuffle"
+                            android:textSize="13sp"
+                            android:singleLine="true"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:visibility="gone"
+                            android:contentDescription="@string/jukebox_shuffle_desc"/>
                 </LinearLayout>
                 <!-- the tempo (a tap on it: the sheet's own again) and Loop -->
                 <LinearLayout

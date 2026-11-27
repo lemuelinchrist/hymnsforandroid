@@ -376,9 +376,11 @@
     function at(lad, d) {
       if (d === 9) {
         var isDim = c.tones[2] && c.tones[2][0] === 6;
-        if (isDim) return lad[nt];   // avoid clashing 9th on diminished/half-diminished chords
+        if (isDim || c.slash) return lad[nt];   // avoid clashing 9th on diminished/half-diminished or slash chords (e.g. C/E)
         var oct = lad[nt], ninth = oct + mod12(c.root + 2 - oct);
-        return ninth <= oct + 4 ? ninth : oct + 2;
+        var p9 = ninth <= oct + 4 ? ninth : oct + 2;
+        if (opt.melPcs && opt.melPcs.some(function (mp) { var df = mod12(mp - p9); return df === 1 || df === 11; })) return oct;
+        return p9;
       }
       return lad[d < 8 ? {1: 0, 3: 1, 5: 2, 7: Math.min(3, nt)}[d] : nt + {8: 0, 10: 1, 12: 2}[d]];
     }
@@ -484,18 +486,45 @@
     rates = rates.filter(function (r) { return r[0] >= 1 && r[0] === Math.round(r[0]); });
     var eighth = m.compound ? 2 : Math.max(1, Math.round(beat / 2));
     var pulsePat = m.compound ? '1 - 5 c - 5 | 1 - c 5 - c' : n === 3 ? '1 - - c - 5 | 1 - c - 5 -' : n === 2 ? '1 - 5 c' : '1 - - 5 8 - c - | 1 - - 5 c - 8 -';
-    var adaptCalm = m.compound ? '1 - - 5 - -' : n === 3 ? '1 - 5 - c -' : n === 2 ? '1 - 5 -' : '1 - - - 5 - 8 - | 1 - - - c - 5 -';
-    var adaptFill = m.compound ? '1 5 8 10 - -' : n === 3 ? '1 5 8 - 10 -' : n === 2 ? '1 5 8 -' : '1 5 8 - 10 - - -';
-    var adaptLate = m.compound ? '8 10 -' : '5 8 10 -';
-    // Adaptive picks, for each stretch, one of a few figures for its situation (accompanyOn, `vary`): a short chord
-    // (half a bar or less), a fill from the beat where the melody holds, the late fill after it, the first bar of a
-    // chord (calm), and a bar where the chord goes on (cont). `c` presses two notes of the chord together. Every
-    // figure ends on a held note (`settle` also holds the last note for a beat, see accompanyOn), so a run of eighths
-    // never leaps straight from a high note to the bass of the next chord
-    var adaptVary = m.compound ? {short: ['1 - 5', '1 - -'], fill: ['1 5 8 10 - -', '1 - 5 c - -', '1 5 8 c - -', '1 - - 5 - -'], late: ['8 - -', 'c - -', '10 - -'], calm: ['1 - - 5 - -', '1 - - c - -'], cont: ['1 - - c - -', '1 - - 5 - -']}
-      : n === 3 ? {short: ['1 - 5 8', '1 - c -'], fill: ['1 5 8 - 10 -', '1 5 8 - c -', '1 - c - 5 -', '1 - 5 - 10 -'], late: ['5 8 10 -', '8 - 10 -', 'c - 8 -'], calm: ['1 - 5 - c -', '1 - c - c -', '1 - c - 5 -'], cont: ['1 - c - 5 -', '1 - 5 - c -']}
-      : n === 2 ? {short: ['1 -'], fill: ['1 5 8 -', '1 - c -', '1 - 10 -'], late: ['8 -', 'c -'], calm: ['1 - 5 -', '1 - c -'], cont: ['1 - c -', '1 - 5 -']}
-      : {short: ['1 5 8 -', '1 - c -', '1 - 5 -', '1 - 8 -'], fill: ['1 5 8 - 10 - - -', '1 5 8 10 - - c -', '1 - 5 - 8 - 10 -', '1 5 8 - c - 5 -'], late: ['5 8 10 -', '8 - 10 -', 'c - 8 -', 'c - 10 -'], calm: ['1 - - - 5 - 8 -', '1 - - - c - 5 -', '1 - 5 - c - - -'], cont: ['1 - - - c - 5 -', '1 - c - - - 5 -', '1 - - - 5 - 8 -']};
+    var adaptCalm = m.compound ? '1 - 5 c - 5' : n === 3 ? '1 - 5 - c -' : n === 2 ? '1 - c -' : '1 - - 5 - - c -';
+    var adaptFill = m.compound ? '1 - 5 9 - 10' : n === 3 ? '1 - 5 - 9 -' : n === 2 ? '1 - 10 -' : '1 - 5 - 9 - 10 -';
+    var adaptLate = m.compound ? 'c - 5' : n === 2 ? 'c -' : 'c - 9 -';
+    // Adaptive (Flowing) weaves six calm pianist moods across the song by musical phrase (2–4 bars, transitioning
+    // cleanly right after a cadence pause bar or every 4 bars, deterministic from songSeed + seed so Shuffle Style
+    // creates fresh coherent takes). Pauses stay unhurried (warm 9th/10th shimmer, quiet walking pickup `w`, or gentle
+    // settling instead of frantic eighth-note runs), with smart per-chord sustain pedal and feathered upper notes.
+    var adaptMoods = [
+      {id: 'sway', roll: 0.018, halfTimeMs: 0.21, vary: m.compound
+        ? {short: ['1 - -'], calm: ['1 - 5 c - 5', '1 - 5 10 - 5'], cont: ['1 - c 5 - c', '1 - 5 9 - 5'], fill: ['1 - 5 9 - 10', '1 - 5 10 - 8', '1 - c 9 - -'], late: ['c - 5', '9 - 8']}
+        : n === 3 ? {short: ['1 - c -', '1 - 5 -'], calm: ['1 - 5 - c -', '1 - c - 5 -', '1 - 5 - 10 -'], cont: ['1 - c - 9 -', '1 - 5 - c -'], fill: ['1 - 5 - 9 -', '1 - 5 - 10 -', '1 - c - 9 -'], late: ['c - 9 -', '5 - 10 -']}
+        : n === 2 ? {short: ['1 -'], calm: ['1 - c -', '1 - 5 -'], cont: ['1 - c -', '1 - 5 -'], fill: ['1 - 10 -', '1 - 9 -'], late: ['c -', '9 -']}
+        : {short: ['1 - c -', '1 - 10 -', '1 - 5 -'], calm: ['1 - - 5 - - c -', '1 - - 5 - - 10 -', '1 - 5 - c - - -'], cont: ['1 - - c - - 5 -', '1 - - 5 - - 9 -'], fill: ['1 - 5 - 9 - 10 -', '1 - - 5 - - 9 -', '1 - 5 - c - 9 -'], late: ['c - 9 -', '9 - 10 -', '5 - c -']}},
+      {id: 'serene', roll: 0.016, halfTimeMs: 0.20, vary: m.compound
+        ? {short: ['1 - -'], calm: ['1 5 8 10 - 8', '1 5 8 c - 8'], cont: ['1 5 8 9 - 8', '1 5 c 8 - 5'], fill: ['1 5 8 9 - 10', '1 5 8 10 - -'], late: ['9 - 10', 'c - 8']}
+        : n === 3 ? {short: ['1 - 10 -', '1 - c -'], calm: ['1 - 5 - 10 -', '1 - 5 - c -', '1 - 5 - 9 -'], cont: ['1 - 5 - 9 -', '1 - c - 8 -'], fill: ['1 - 5 - 9 -', '1 - 5 - 10 -'], late: ['9 - 10 -', 'c - 8 -']}
+        : n === 2 ? {short: ['1 -'], calm: ['1 - 10 -', '1 - c -'], cont: ['1 - 9 -', '1 - c -'], fill: ['1 - 9 -', '1 - 10 -'], late: ['9 -', 'c -']}
+        : {short: ['1 - 10 -', '1 - c -', '1 - 5 -'], calm: ['1 - 5 - 10 - 8 -', '1 - 5 - c - 8 -', '1 - 5 - 9 - 8 -'], cont: ['1 - 5 - 9 - 10 -', '1 - c - 9 - 8 -'], fill: ['1 - 5 - 9 - 10 -', '1 - 5 - 10 - 9 -', '1 - 5 - c - 10 -'], late: ['9 - 10 -', 'c - 8 -', '8 - 9 -']}},
+      {id: 'velvet', roll: 0.024, halfTimeMs: 0.21, vary: m.compound
+        ? {short: ['1 - -'], calm: ['1 - 5 c - -', '1 - 5 10 - -'], cont: ['1 - - c - 5', '1 - 5 9 - -'], fill: ['1+5 - - 9 - -', '1 - 5 10 - w'], late: ['c - -', '9 - -']}
+        : n === 3 ? {short: ['1 - c -', '1 - 5 -'], calm: ['1 - 5 - c -', '1 - - c - -'], cont: ['1 - c - 5 -', '1 - 5 - 9 -'], fill: ['1+5 - 9 - - -', '1 - 5 - w -', '1 - c - 9 -'], late: ['c - - -', '9 - - -']}
+        : n === 2 ? {short: ['1 -'], calm: ['1 - c -', '1 - 5 -'], cont: ['1 - c -'], fill: ['1+5 - 9 -', '1 - w -'], late: ['c -']}
+        : {short: ['1 - c -', '1 - 5 -'], calm: ['1 - - 5 - - c -', '1 - 5 - c - - -', '1 - - - 5 - c -'], cont: ['1 - - - c - 5 -', '1 - - 5 - - 9 -'], fill: ['1+5 - - - 9 - - -', '1 - 5 - 10 - - -', '1 - - - c - w -'], late: ['c - - -', '9 - - -', '5 - w -']}},
+      {id: 'walk', roll: 0.018, halfTimeMs: 0.21, vary: m.compound
+        ? {short: ['1 - -'], calm: ['1 - 5 c - 5', '1 - 5 10 - 5'], cont: ['1 - c 5 - w', '1 - 5 c - w'], fill: ['1 - 5 c - w', '1 - 5 9 - w', '1 - 5 10 - w'], late: ['c - w', '9 - w']}
+        : n === 3 ? {short: ['1 - w -', '1 - c -'], calm: ['1 - 5 - c -', '1 - c - 5 -'], cont: ['1 - c - w -', '1 - 5 - w -'], fill: ['1 - 5 - w -', '1 - c - w -', '1 - 10 - w -'], late: ['c - w -', '5 - w -']}
+        : n === 2 ? {short: ['1 -'], calm: ['1 - c -', '1 - 5 -'], cont: ['1 - w -'], fill: ['1 - w -', '1 - c -'], late: ['w -']}
+        : {short: ['1 - w -', '1 - c -'], calm: ['1 - 5 - c - - -', '1 - - 5 - - c -', '1 - 5 - 10 - - -'], cont: ['1 - c - 5 - w -', '1 - - - c - w -'], fill: ['1 - 5 - c - w -', '1 - 5 - 10 - w -', '1 - c - 9 - w -'], late: ['c - w -', '9 - w -', '5 - w -']}},
+      {id: 'rolled', roll: 0.030, halfTimeMs: 0.21, vary: m.compound
+        ? {short: ['1 - -'], calm: ['1+5+10 - - c - -', '1+5 - - c - 5'], cont: ['1+5 - - c - -', '1 - - c - -'], fill: ['1+5+10 - - 9 - -', '1+5+9 - - c - -'], late: ['c - -', '9 - -']}
+        : n === 3 ? {short: ['1+5+10 - - -', '1+5 - - -'], calm: ['1+5+10 - c - - -', '1+5 - c - 5 -'], cont: ['1+5 - c - - -', '1 - c - 5 -'], fill: ['1+5+10 - 9 - - -', '1+5+9 - c - - -'], late: ['c - - -', '9 - - -']}
+        : n === 2 ? {short: ['1+5 -'], calm: ['1+5+10 - - -', '1+5 - c -'], cont: ['1+5 - - -'], fill: ['1+5+10 - - -', '1+5+9 - - -'], late: ['c -']}
+        : {short: ['1+5+10 - - -', '1+5 - - -'], calm: ['1+5+10 - - - c - - -', '1+5 - - - c - 5 -', '1+5+8 - - - c - - -'], cont: ['1+5 - - - c - - -', '1 - - - c - 5 -'], fill: ['1+5+10 - - - 9 - - -', '1+5+9 - - - c - - -', '1+5+10 - - - - - w -'], late: ['c - - -', '9 - - -']}},
+      {id: 'ballad', roll: 0.018, halfTimeMs: 0.27, vary: m.compound
+        ? {short: ['1 - -'], calm: ['1 5 8 10 - 8', '1 5 9 8 - 5'], cont: ['1 5 8 c - 8', '1 5 10 8 - 5'], fill: ['1 - 5 9 - -', '1 - 5 10 - -'], late: ['9 - -', 'c - -']}
+        : n === 3 ? {short: ['1 - 5 8', '1 - c -'], calm: ['1 - 5 8 10 -', '1 - 5 8 c -'], cont: ['1 - 5 9 8 -', '1 - 5 c 8 -'], fill: ['1 - 5 - 10 -', '1 - 5 - 9 -'], late: ['9 - - -', 'c - - -']}
+        : n === 2 ? {short: ['1 -'], calm: ['1 - 5 8', '1 - c -'], cont: ['1 - 5 8'], fill: ['1 - 10 -', '1 - 9 -'], late: ['9 -']}
+        : {short: ['1 - 5 8', '1 - c -'], calm: ['1 - 5 8 10 - 8 5', '1 - 5 9 10 - 8 -', '1 - 5 8 c - 8 -'], cont: ['1 - 5 8 9 - 8 -', '1 - 5 c - - 8 5'], fill: ['1 - 5 - 9 - 10 -', '1 - 5 - 10 - - -', '1 - 5 - c - 9 -'], late: ['9 - - -', 'c - 8 -', '10 - - -']}}];
+    var adaptVary = adaptMoods[0].vary;
     var walkQ = m.compound ? '1 5 w' : n === 3 ? '1 5 w' : n === 2 ? '1 w' : '1 5 8 w';
     var walkE = m.compound ? '1 - 5 8 - w' : n === 3 ? '1 - 5 - w -' : n === 2 ? '1 5 8 w' : '1 - 5 - 8 - w -';
     var walkRhythms = m.compound
@@ -504,6 +533,51 @@
          {id: '8', name: beat === 4 ? 'Eighths' : 'Twice a beat', pat: walkE, rate: eighth, low: 40, bassRing: true, shortPat: '1 - w -'}];
     var rolledRhythms = [{id: 'held', name: 'Held', pat: '1+5+8+10', rate: 0, low: 40, roll: 0.032}];
     if (half) rolledRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+5+8+10', rate: half, low: 40, roll: 0.028});
+    // Unified phrase-shuffled guitar picking (`guitar/pick`): weaves eight acoustic fingerstyle moods across
+    // 2–4 bar musical phrases (pinch, Travis folk, calm quarters, ballad arch, rise & shimmer, gentle harp,
+    // breathing plucked chords, and 3-3-2 / alternating plucked chords), deterministic per songSeed + seed.
+    var guitarPickMoods = [
+      {id: 'pinch', vary: m.compound
+        ? {short: ['T+b - g'], calm: ['T+b - g A - b', 'T+e - b g - b'], cont: ['T+e - b g - b'], fill: ['T+b g b e - -', 'T+e - b g - -'], late: ['b - g', 'e - -']}
+        : n === 3 ? {short: ['T+b - g -'], calm: ['T+b - g - e -', 'T+e - g - b -'], cont: ['T - g b g -', 'T+b - g - b -'], fill: ['T+b - g b e -', 'T+e - g - - -'], late: ['g - e -', 'b - - -']}
+        : n === 2 ? {short: ['T+b -'], calm: ['T+b - g b', 'T+e - g -'], cont: ['T+b - g -'], fill: ['T+b - e -'], late: ['b -']}
+        : {short: ['T+b - g -', 'T+e - g -'], calm: ['T+b - g - A - e b', 'T+e - g b A - b -'], cont: ['T+e - g b A - b -', 'T+b - g - A - g -'], fill: ['T+b - g b e - b -', 'T+e - b g b - - -'], late: ['g - b -', 'b - e -']}},
+      {id: 'travis', vary: m.compound
+        ? {short: ['T - g'], calm: ['T - g b - g', 'A - b e - b'], cont: ['A - b e - b', 'T - b g - b'], fill: ['T g b e - b', 'T - g b - e'], late: ['b - e', 'g - b']}
+        : n === 3 ? {short: ['T - g b'], calm: ['T - g b e -', 'A - g b g -'], cont: ['A - g b e -', 'T - b g b -'], fill: ['T - g b e -', 'T - b e - -'], late: ['b e -', 'g - b -']}
+        : n === 2 ? {short: ['T -'], calm: ['T - b g', 'A - e b'], cont: ['A - b g'], fill: ['T - e b'], late: ['b -']}
+        : {short: ['T - b g', 'T - g b'], calm: ['T - b g A - e g', 'T - g b A - e b'], cont: ['T - g b A - b g', 'T - b g A - g b'], fill: ['T - g b e - b -', 'T - b g e - - -'], late: ['g b e -', 'b - g -']}},
+      {id: 'quarters', vary: m.compound
+        ? {short: ['T - -'], calm: ['T - - b - g', 'T - - g - b'], cont: ['A - - b - g', 'T - - e - b'], fill: ['T - g b - e', 'T - - b - e'], late: ['b - -', 'e - -']}
+        : n === 3 ? {short: ['T - g -'], calm: ['T - g - b -', 'T - b - g -'], cont: ['A - g - b -', 'T - g - e -'], fill: ['T - g - e -', 'T - b - e -'], late: ['g - b -']}
+        : n === 2 ? {short: ['T -'], calm: ['T - g -', 'T - b -'], cont: ['A - b -'], fill: ['T - e -'], late: ['b -']}
+        : {short: ['T - g -', 'T - b -'], calm: ['T - g - A - b -', 'T - b - A - g -'], cont: ['T - g - A - e -', 'T - b - A - e -'], fill: ['T - g - b - e -', 'T - b - e - - -'], late: ['g - b -', 'b - e -']}},
+      {id: 'arch', vary: m.compound
+        ? {short: ['T g b'], calm: ['T g b e - -', 'T g b - e b'], cont: ['T g b - e b', 'T g b e - b'], fill: ['T g b e - -', 'T - g b e -'], late: ['b e -', 'e - -']}
+        : n === 3 ? {short: ['T g b -'], calm: ['T g b e - -', 'T g b - e -'], cont: ['T g b - e -', 'T - g b e -'], fill: ['T g b e - -', 'T - g b - -'], late: ['b e -', 'g - e -']}
+        : n === 2 ? {short: ['T g'], calm: ['T g b -', 'T g e -'], cont: ['T g b -'], fill: ['T g e -'], late: ['b -']}
+        : {short: ['T g b -', 'T - b -'], calm: ['T g b e - - b g', 'T g b - e - b -'], cont: ['T g b - e - b -', 'T - g b e - b -'], fill: ['T g b e - - - -', 'T - g b e - - -'], late: ['g b e -', 'b - e -']}},
+      {id: 'shimmer', vary: m.compound
+        ? {short: ['T g b'], calm: ['T g b e - -', 'T - g e - -'], cont: ['T g b - - -', 'T - b e - -'], fill: ['T g b e - -'], late: ['e - -']}
+        : n === 3 ? {short: ['T g b -'], calm: ['T g b e - -', 'T - g e - -'], cont: ['T g b - - -', 'T - b e - -'], fill: ['T g b e - -', 'T - g - e -'], late: ['e - - -', 'b - - -']}
+        : n === 2 ? {short: ['T -'], calm: ['T g b -', 'T - e -'], cont: ['T g b -'], fill: ['T g e -'], late: ['e -']}
+        : {short: ['T g b -', 'T - e -'], calm: ['T g b e - - - -', 'T - g b e - - -'], cont: ['T g b - - - b -', 'T - g e - - b -'], fill: ['T g b e - - - -', 'T - g - e - - -'], late: ['b - e -', 'e - - -']}},
+      {id: 'harp', vary: m.compound
+        ? {short: ['T - g'], calm: ['T - g b - e', 'T - b e - b'], cont: ['T - b e - b', 'T - g e - b'], fill: ['T - g b - e', 'T - g e - -'], late: ['b - e', 'e - -']}
+        : n === 3 ? {short: ['T - g -'], calm: ['T - g - b -', 'T - b - e -'], cont: ['T - g - e -', 'T - b - g -'], fill: ['T - g - e -', 'T - b - e -'], late: ['b - e -']}
+        : n === 2 ? {short: ['T -'], calm: ['T - g -', 'A - b -'], cont: ['T - b -'], fill: ['T - e -'], late: ['b -']}
+        : {short: ['T - g -', 'T - b -'], calm: ['T - g - b - e -', 'T - b - e - b -'], cont: ['T - g - e - b -', 'T - b - g - e -'], fill: ['T - g - b - e -', 'T - g - e - - -'], late: ['g - e -', 'b - e -']}},
+      {id: 'pluck-calm', vary: m.compound
+        ? {short: ['T+g+b+e - -'], calm: ['T+g+b+e - - g+b+e - -', 'T+g+b+e - - A+g+b+e - -'], cont: ['T+g+b+e - - g+b+e - b'], fill: ['T+g+b+e - - g+b+e - -'], late: ['g+b+e - -']}
+        : n === 3 ? {short: ['T+g+b+e - - -'], calm: ['T+g+b+e - g+b+e - - -', 'T+g+b+e - - - g+b+e -'], cont: ['T+g+b+e - g+b+e - g+b+e -', 'T+g+b+e - - - g+b+e -'], fill: ['T+g+b+e - g+b+e - - -', 'T+g+b+e - - - b -'], late: ['g+b+e - - -']}
+        : n === 2 ? {short: ['T+g+b+e -'], calm: ['T+g+b+e - g+b+e -'], cont: ['T+g+b+e - - -'], fill: ['T+g+b+e - - -'], late: ['g+b+e -']}
+        : {short: ['T+g+b+e - - -'], calm: ['T+g+b+e - - - A+g+b+e - - -', 'T+g+b+e - - - g+b+e - - -'], cont: ['T+g+b+e - - - g+b+e - b -', 'T+g+b+e - - - A+g+b+e - - -'], fill: ['T+g+b+e - - - g+b+e - - -', 'T+g+b+e - - - - - b -'], late: ['g+b+e - - -', 'b - - -']}},
+      {id: 'pluck-groove', vary: m.compound
+        ? {short: ['T+g+b+e - -'], calm: ['T+g+b+e - g+b+e A+g+b+e - g+b+e', 'T+g+b+e - - g+b+e - g+b+e'], cont: ['T+g+b+e - - A+g+b+e - g+b+e'], fill: ['T+g+b+e - - g+b+e - -'], late: ['g+b+e - -']}
+        : n === 3 ? {short: ['T+g+b+e - g+b+e -'], calm: ['T+g+b+e - g+b+e - g+b+e -', 'T+g+b+e - g+b+e - A+g+b+e -'], cont: ['T+g+b+e - g+b+e - g+b+e -'], fill: ['T+g+b+e - g+b+e - - -'], late: ['g+b+e - - -']}
+        : n === 2 ? {short: ['T+g+b+e -'], calm: ['T+g+b+e - g+b+e -', 'T+g+b+e - A+g+b+e -'], cont: ['T+g+b+e - g+b+e -'], fill: ['T+g+b+e - - -'], late: ['g+b+e -']}
+        : {short: ['T+g+b+e - g+b+e -', 'T+g+b+e - - -'], calm: ['T+g+b+e - - g+b+e - - A+g+b+e -', 'T+g+b+e - g+b+e - A+g+b+e - g+b+e -'], cont: ['T+g+b+e - - g+b+e - - g+b+e -', 'T+g+b+e - g+b+e - A+g+b+e - - -'], fill: ['T+g+b+e - - g+b+e - - - -', 'T+g+b+e - - - A+g+b+e - - -'], late: ['g+b+e - - -', 'A+g+b+e - - -']}}];
+    var pickExtra = {pick: true, adaptive: true, settle: true, fillPat: m.compound ? 'T g b e - -' : n === 2 ? 'T g b -' : 'T g b e - - - -', latePat: m.compound ? 'b - e' : n === 2 ? 'b -' : 'g - b -', vary: guitarPickMoods[0].vary, moods: guitarPickMoods};
     // guitar strums and picking, by the time signature: [id, name, hint, pattern, shortPat, extra]
     var GUITAR = m.compound ? [
       ['folk', 'Folk strum', 'down, down, up', 'D D U D D U', 'D D U'],
@@ -511,48 +585,28 @@
       ['steady', 'Steady', 'a strum on each beat', 'D - - D - -', 'D - -'],
       ['ballad', 'Ballad', 'slow and open', 'D - - D - U', 'D - U'],
       ['country', 'Country', 'bass, then strums, the other bass', 'T D U A D U', 'T D U'],
-      ['pick', 'Fingerpicking', 'thumb and finger pinch, unhurried', 'T+b - g A - b | T+e - b g - b', 'T+b - g', {pick: true, settle: true}],
-      ['travis', 'Folk picking', 'alternating thumb and strings, relaxed', 'T - g b - g | A - b e - b', 'T - g', {pick: true, settle: true}],
-      ['pick-flow', 'Adaptive picking', 'calm while singing, a gentle roll on held notes', 'T - - b - g', 'T - -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - b', latePat: 'b e -'}],
-      ['arp', 'Ballad picking', 'lyrical arch up the strings, held at the top', 'T g b e - - | T g b - e b', 'T g b', {pick: true, settle: true}],
-      ['harp', 'Gentle harp', 'serene quarter notes up the strings', 'T - g b - e | T - b e - b', 'T - g', {pick: true}],
-      ['arp-flow', 'Adaptive ballad', 'calm quarters while singing, blooming arch on held notes', 'T - - g - b', 'T - -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - -', latePat: 'b e -'}]]
+      ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g A - b | T+e - b g - b', 'T+b - g', pickExtra]]
       : n === 3 ? [
       ['folk', 'Folk strum', 'down, then down-up', 'D - D U D U', 'D - D U'],
       ['pop', 'Pop', 'with a muted chuck', 'D - K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D -', 'D - D -'],
       ['ballad', 'Ballad', 'bass, then strums', 'T - D - D -', 'T - D -'],
       ['country', 'Country', 'bass, then strums, the other bass', 'T - D U D U | A - D U D U', 'T - D U'],
-      ['pick', 'Fingerpicking', 'thumb and finger pinch, unhurried', 'T+b - g - e - | T - g b g -', 'T+b - g -', {pick: true, settle: true}],
-      ['travis', 'Folk picking', 'alternating thumb and strings, relaxed', 'T - g b e - | A - g b g -', 'T - g b', {pick: true, settle: true}],
-      ['pick-flow', 'Adaptive picking', 'calm while singing, a gentle roll on held notes', 'T - g - b -', 'T - g -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - g', latePat: 'b e -'}],
-      ['arp', 'Ballad picking', 'lyrical arch up the strings, held at the top', 'T g b e - - | T g b - e -', 'T g b -', {pick: true, settle: true}],
-      ['harp', 'Gentle harp', 'serene quarter notes up the strings', 'T - g - b - | T - b - e -', 'T - g -', {pick: true}],
-      ['arp-flow', 'Adaptive ballad', 'calm quarters while singing, blooming arch on held notes', 'T - g - b - | T - b - g -', 'T - g -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - -', latePat: 'b e -'}]]
+      ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g - e - | T - g b g -', 'T+b - g -', pickExtra]]
       : n === 2 ? [
       ['folk', 'Folk strum', 'down, down-up', 'D - D U', 'D U'],
       ['pop', 'Pop', 'with a muted chuck', 'D U K U', 'D U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D -', 'D -'],
       ['ballad', 'Ballad', 'slow and open', 'D - - U', 'D -'],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T D A D', 'T D'],
-      ['pick', 'Fingerpicking', 'thumb and finger pinch, unhurried', 'T+b - g b', 'T+b -', {pick: true, settle: true}],
-      ['travis', 'Folk picking', 'alternating thumb and strings, relaxed', 'T - b g', 'T -', {pick: true, settle: true}],
-      ['pick-flow', 'Adaptive picking', 'calm while singing, a gentle roll on held notes', 'T - b -', 'T -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b -', latePat: 'b -'}],
-      ['arp', 'Ballad picking', 'lyrical arch up the strings, held at the top', 'T g b -', 'T g', {pick: true, settle: true}],
-      ['harp', 'Gentle harp', 'serene quarter notes up the strings', 'T - g - | A - b -', 'T -', {pick: true}],
-      ['arp-flow', 'Adaptive ballad', 'calm quarters while singing, blooming arch on held notes', 'T - g -', 'T -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b -', latePat: 'b -'}]]
+      ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g b', 'T+b -', pickExtra]]
       : [
       ['folk', 'Folk strum', 'down, down-up, up-down-up', 'D - D U - U D U', 'D - D U'],
       ['pop', 'Pop', 'with a muted chuck on beat 3', 'D - D U K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D - D -', 'D - D -'],
       ['ballad', 'Ballad', 'slow and open', 'D - - - D - D U', 'D - D U'],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T - D U A - D U', 'T - D U'],
-      ['pick', 'Fingerpicking', 'thumb and finger pinch, unhurried', 'T+b - g - A - e b | T+e - g b A - b -', 'T+b - g -', {pick: true, settle: true}],
-      ['travis', 'Folk picking', 'alternating thumb and strings, relaxed', 'T - b g A - e g | T - g b A - e b', 'T - b g', {pick: true, settle: true}],
-      ['pick-flow', 'Adaptive picking', 'calm while singing, a gentle roll on held notes', 'T - g - A - b - | T+b - g - A - g -', 'T - g -', {pick: true, adaptive: true, settle: true, fillPat: 'T - g b e - b g', latePat: 'g b e -'}],
-      ['arp', 'Ballad picking', 'lyrical arch up the strings, held at the top', 'T g b e - - b g | T g b - e - b -', 'T g b -', {pick: true, settle: true}],
-      ['harp', 'Gentle harp', 'serene quarter notes up the strings', 'T - g - b - e - | T - b - e - b -', 'T - g -', {pick: true}],
-      ['arp-flow', 'Adaptive ballad', 'calm quarters while singing, blooming arch on held notes', 'T - g - b - - - | T - b - g - - -', 'T - g -', {pick: true, adaptive: true, settle: true, fillPat: 'T g b e - - b g', latePat: 'g b e -'}]];
+      ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g - A - e b | T+e - g b A - b -', 'T+b - g -', pickExtra]];
     var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+t', rate: 0, low: 40, passing: true}];
     if (half) choraleRhythms.push({id: 'half', name: 'Twice a bar', pat: '1+t', rate: half, low: 40, passing: true});
     return [
@@ -578,8 +632,8 @@
         return {id: gk[0], name: gk[1], hint: gk[2], pick: !!extra.pick, rhythms: [Object.assign({id: '8', name: '', pat: gk[3], shortPat: gk[4], rate: eighth, low: 40, guitar: true}, extra)]};
       })},
       {id: 'dynamic', name: 'Dynamic', hint: 'musical patterns that breathe and move', kinds: [
-        {id: 'adaptive', name: 'Adaptive', hint: 'calm under singing, blooms on held notes, a different figure each time', rhythms: [
-          {id: '8', name: '', pat: adaptCalm, fillPat: adaptFill, latePat: adaptLate, shortPat: m.compound ? '1 - 5' : '1 5 8 -', rate: eighth, low: 40, bassRing: true, adaptive: true, smooth: true, settle: true, vary: adaptVary}]},
+        {id: 'adaptive', name: 'Adaptive', hint: 'phrase-shuffled flowing piano: warm pedaled sway, serene arches, soft rolled chords and lyrical walks, unhurried on pauses', rhythms: [
+          {id: '8', name: '', pat: adaptCalm, fillPat: adaptFill, latePat: adaptLate, shortPat: m.compound ? '1 - -' : '1 - c -', rate: eighth, low: 40, bassRing: true, chordPedal: true, adaptive: true, smooth: true, settle: true, feather: true, roll: 0.020, vary: adaptVary, moods: adaptMoods}]},
         {id: 'rolled', name: 'Rolled', hint: 'soft upward harp-like chords', rhythms: rolledRhythms},
         {id: 'pulse', name: 'Pulse', hint: 'modern ballad groove with breath', rhythms: [
           {id: '8', name: '', pat: pulsePat, shortPat: '1 - 5 c', rate: eighth, low: 40, bassRing: true, smooth: true}]},
@@ -642,11 +696,15 @@
       if (!p && prev && !prev.p) { prev.d += d; return; }
       var e = {p: p, d: d}; if (ring) e.ring = ring;
       if (src && src.fresh) e.fresh = true;   // the first note of a chord's stretch is played a little harder
+      if (src && src.cont) e.cont = true;
+      if (src && src.pause) e.pause = true;
+      if (src && src.walk) e.walk = true;
+      if (src && src.feather) e.feather = true;
+      if (src && src.roll != null) e.roll = src.roll;
       if (src && src.inst) {
         e.inst = src.inst;
         if (src.mute) e.mute = true;
         if (src.up) e.up = true;
-        if (src.roll != null) e.roll = src.roll;
         if (src.pluck) e.pluck = true;
         if (src.thumb) e.thumb = true;
         if (src.rings) e.rings = src.rings;
@@ -707,6 +765,41 @@
       return z - h >= Math.max(6, barL / 2) ? h : -1;
     }
     function melPc(g) { for (var k = mel.length - 1; k >= 0; k--) if (mel[k][0] <= g + 0.01) return g < mel[k][1] ? mod12(mel[k][2]) : null; return null; }
+    function melPcsIn(g, d) {
+      var out = [];
+      for (var k = 0; k < mel.length && mel[k][0] < g + d; k++) if (mel[k][1] > g) out.push(mod12(mel[k][2]));
+      return out;
+    }
+    // Phrase-grouped mood schedule for styles with `moods` (Adaptive / Flowing): stay in one mood for a musical
+    // phrase (2–4 bars, transitioning cleanly right after a long-pause cadence bar or every 4 bars) without repeating
+    // the same mood back-to-back, deterministic from songSeed + acc.seed.
+    var moodCache = {};
+    function moodForBar(acc, bi) {
+      if (!acc || !acc.moods || !acc.moods.length) return null;
+      var key = (acc.guitar ? 'g:' : 'p:') + acc.moods.length + ':' + (acc.seed | 0);
+      if (!moodCache[key]) {
+        var sched = [], curM = null, pLen = 0, pIdx = 0;
+        var isPauseBar = function (b) {
+          var lastOn = b.g;
+          for (var k = 0; k < mel.length && mel[k][0] < b.g + b.len; k++) if (mel[k][0] >= b.g) lastOn = mel[k][0];
+          return b.len >= (b.beat || 4) * 2 && (b.g + b.len - lastOn) >= Math.max(6, b.len / 2);
+        };
+        bars.forEach(function (b, idx) {
+          var prevPause = idx > 0 && isPauseBar(bars[idx - 1]);
+          if (!curM || pLen >= 4 || (prevPause && pLen >= 2)) {
+            var prevId = curM ? curM.id : null;
+            var cands = acc.moods.filter(function (m) { return m.id !== prevId; });
+            if (!cands.length) cands = acc.moods;
+            curM = cands[Math.floor(rnd(songSeed + (acc.seed | 0) * 104729 + pIdx * 6151) * cands.length)];
+            pLen = 0; pIdx++;
+          }
+          sched[idx] = curM;
+          if (b.len >= (b.beat || 4) * 2) pLen++;
+        });
+        moodCache[key] = sched;
+      }
+      return moodCache[key][bi] || acc.moods[0];
+    }
     at.forEach(function (a, k) {
       var z = k + 1 < at.length ? at[k + 1] : endG, sp = spanAt(a), acc = patAt(a), parts = acc ? parsePattern(acc.pat) : [];
       if (acc && /^guitar\//.test(acc.style || '')) {
@@ -718,32 +811,58 @@
       if (!sp || !sp.info || !parts.length) { events.push({g: a, d: z - a, p: null}); return; }
       var bi = barAt(a), barStart = bars[bi].g, barL = bars[bi].len, fresh = sp.g >= barStart || barStart === first && sp.g < first;
       var rate = acc.rate | 0, useParts = parts, bloom = -1, lateSteps = null;
-      // Fast-notated sheets (e.g. cut-time 4/4 at ♩=200 or fast 3/4 at ♩=180, where an eighth step is under 210 ms):
-      // pace guitar picking in quarter notes so it plays at natural human speed instead of a frantic rush.
+      var curMood = rate ? moodForBar(acc, bi) : null;
+      // When looping (acc.end === false), the last bar should keep flowing into the next stanza instead of
+      // landing on a sparse chord-hold mood (rolled/velvet/pluck-calm/shimmer) that feels like a closing strike.
+      var loopLast = acc.end === false && lastBar >= 0 && bi >= lastBar;
+      if (loopLast && curMood && /^(rolled|velvet|pluck-calm|shimmer)$/.test(curMood.id)) curMood = acc.moods[0];
+      var activeVary = curMood ? curMood.vary : acc.vary;
+      // Fast-notated sheets (e.g. cut-time 4/4 at ♩=200 or fast 3/4 at ♩=180): relax guitar picking and flowing piano
+      // into spacious quarter-note pacing so they never sound frantic.
       var isCompoundBar = bars[bi].beat === 6;
       var halfTimed = !!(acc.pick && rate && tl.bpm > 0 && !isCompoundBar && (rate / 4) * (60 / tl.bpm) < 0.21);
+      var pianoHalfTimed = !!(curMood && !acc.guitar && rate && tl.bpm > 0 && !isCompoundBar && (rate / 4) * (60 / tl.bpm) < (curMood.halfTimeMs || 0.21));
       if (halfTimed) {
         rate *= 2;
-        if (barL === 12 && bars[bi].beat === 4) {
-          var waltzPat = /arp|harp/.test(acc.kind || acc.style || '') ? 'T g b | T b e' : 'T g b | A b e';
+        var mid = curMood ? curMood.id : '';
+        if (/^pluck/.test(mid)) {
+          var plStr = (z - a) <= barL / 2 ? 'T+g+b+e -' : barL === 12 ? 'T+g+b+e g+b+e -' : 'T+g+b+e - A+g+b+e -';
+          useParts = parsePattern(plStr);
+        } else if (barL === 12 && bars[bi].beat === 4) {
+          var waltzPat = /arch|shimmer|harp/.test(mid || acc.kind || acc.style || '') ? 'T g b | T b e' : 'T g b | A b e';
           useParts = parsePattern((z - a) <= barL / 2 ? 'T g' : waltzPat);
+        } else if (mid) {
+          var gpStr = (z - a) <= barL / 2 ? (/arch|shimmer|harp/.test(mid) ? 'T g' : 'T+b g')
+            : /arch|shimmer|harp/.test(mid) ? 'T g b e | T b e b' : 'T+b g A b | T+e g A b';
+          useParts = parsePattern(gpStr);
         } else if (acc.shortPat && (z - a) <= barL / 2) {
           var spFast = parsePattern(acc.shortPat); if (spFast.length) useParts = spFast;
         }
+      } else if (pianoHalfTimed) {
+        rate *= 2;
+        var pfStr = (z - a) <= barL / 2 ? '1 c' : barL === 12 ? (fresh ? '1 5 c' : '1 c 5') : (fresh ? '1 5 c 8' : '1 c 5 c');
+        if (curMood.id === 'rolled') pfStr = (z - a) <= barL / 2 ? '1+5+10 -' : barL === 12 ? '1+5+10 c -' : '1+5+10 - c -';
+        if (curMood.id === 'walk' && (z - a) > barL / 2) pfStr = barL === 12 ? '1 c w' : '1 5 c w';
+        var pfParts = parsePattern(pfStr); if (pfParts.length) useParts = [pfParts[0], pfParts[0]];
       } else if (rate && acc.shortPat && (z - a) <= barL / 2) {
         // Short-chord adaptation (e.g. 2-beat chord in 4/4), and Adaptive: calm while the melody moves, a fill from where it
         // holds a note or rests (the whole stretch when it holds from the start, else the late fill from that beat)
         var spParts = parsePattern(acc.shortPat); if (spParts.length) useParts = spParts;
-      } else if (rate && acc.adaptive && acc.fillPat && (bloom = holdFrom(a, z, rate, barL)) >= 0) {
+      } else if (rate && acc.adaptive && acc.fillPat && !loopLast && (bloom = holdFrom(a, z, rate, barL)) >= 0) {
         if (bloom === a) { var fpParts = parsePattern(acc.fillPat); if (fpParts.length) useParts = fpParts; }
         else { var lp = parsePattern(acc.latePat || acc.fillPat); lateSteps = lp.length ? lp[0] : null; }
       }
-      if (acc.vary && rate) {
+      if (activeVary && rate && !pianoHalfTimed && !halfTimed) {
         var kind = acc.shortPat && (z - a) <= barL / 2 ? 'short' : bloom === a ? 'fill' : bloom > a ? 'late' : fresh ? 'calm' : 'cont';
-        var vl = acc.vary[kind];
+        var baseKind = kind === 'late' ? (fresh ? 'calm' : 'cont') : kind;
+        var vl = activeVary[baseKind];
         if (vl && vl.length) {
-          var vp = parsePattern(vl[varyPick(kind, vl.length, a, acc.seed | 0)]);
-          if (vp.length) { if (kind === 'late') lateSteps = vp[0]; else useParts = [vp[0], vp[0]]; }
+          var vp = parsePattern(vl[varyPick(baseKind, vl.length, a, acc.seed | 0)]);
+          if (vp.length) useParts = [vp[0], vp[0]];
+        }
+        if (kind === 'late' && activeVary.late && activeVary.late.length) {
+          var lvp = parsePattern(activeVary.late[varyPick('late', activeVary.late.length, a, acc.seed | 0)]);
+          if (lvp.length) lateSteps = lvp[0];
         }
       }
       var qStart = halfTimed && !(barL === 12 && bars[bi].beat === 4) ? Math.round((a - sp.g) / rate) : 0;
@@ -753,21 +872,23 @@
       // what is played when in this stretch: [{toks | null, g, d}]
       var plan = [], isEnding = acc.end !== false && rate && sp === spans[spans.length - 1] && bi >= lastBar && lastBar >= 0;
       if (isEnding) {
-        var all = acc.guitar ? ['D'] : ['1', '5']; if (!acc.guitar) steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378t]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
+        var all = acc.guitar ? ['D'] : curMood ? ['1', '5', '8', '10'] : ['1', '5'];
+        if (!acc.guitar && !curMood) steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378t]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
         plan.push({toks: all, g: a, d: z - a, ending: true});
       } else if (!rate) plan.push({toks: steps[0].toks || null, g: a, d: z - a});
       else for (var t = a, q = qStart; t < z; t += rate, q++) {
         if (lateSteps && t === bloom) { steps = lateSteps; q = 0; }
         var s = steps[q % steps.length], d = Math.min(rate, z - t), last = plan[plan.length - 1];
-        if (s.hold && last && last.toks) last.d += d; else plan.push({toks: s.toks || null, g: t, d: d});
+        if (s.hold && last && last.toks) last.d += d; else plan.push({toks: s.toks || null, g: t, d: d, isPause: bloom >= 0 && t >= bloom});
       }
       // settle: the last beat holds the note before it so the hand/fingers have a beat before jumping to the next chord's bass
-      var doSettle = acc.settle && rate && !isEnding && (!acc.pick || (z >= sp.end - 0.01 && (z - a) > (bars[bi].beat || rate * 2)));
+      // (preserve an intentional connecting bass step `w`, which steps smoothly into the next chord's bass)
+      var doSettle = acc.settle && rate && !isEnding && !pianoHalfTimed && (!acc.pick || (z >= sp.end - 0.01 && (z - a) > (bars[bi].beat || rate * 2)));
       if (doSettle) {
         var beatL = bars[bi].beat || rate * 2, lastBeat = z - beatL + 0.01;
         for (var pk = plan.length - 1; pk > 0; pk--) {
           var stp = plan[pk];
-          if (stp.g > lastBeat && stp.toks) { plan[pk - 1].d += stp.d; plan.splice(pk, 1); }
+          if (stp.g > lastBeat && stp.toks && stp.toks.indexOf('w') < 0) { plan[pk - 1].d += stp.d; plan.splice(pk, 1); }
         }
       }
       // the figure counted up from the bass and the chord in the middle each go down an octave, whole, where one of
@@ -775,7 +896,18 @@
       var spIdx = spans.indexOf(sp), nextSp = spIdx >= 0 && spIdx + 1 < spans.length ? spans[spIdx + 1] : null;
       var under = melLow(a, z - a);
       var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w', 'D', 'U', 'K', 'T', 'A', 'g', 'b', 'e']}]],
-        {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth, prevTen: prevTen, under: under === Infinity ? null : under, mel: melPc(a), capo: acc.capo});
+        {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth, prevTen: prevTen, under: under === Infinity ? null : under, mel: melPc(a), melPcs: melPcsIn(a, z - a), capo: acc.capo});
+      // For Flowing's optional connecting bass `w`: only keep it when it genuinely steps smoothly into a moving next bass
+      if (curMood && !isEnding && plan.length > 1) {
+        var lastSt = plan[plan.length - 1];
+        if (lastSt.toks && lastSt.toks.indexOf('w') >= 0) {
+          var nb = nextSp && nextSp.info ? (acc.low != null ? acc.low : 40) + mod12(nextSp.info.bass - (acc.low != null ? acc.low : 40)) : -1;
+          var wp = v.w && v.w[0];
+          var smoothStep = nextSp && nextSp.info && nextSp.info.bass !== sp.info.bass && wp != null &&
+            Math.min(Math.abs(nb - wp), Math.abs(nb - 12 - wp), Math.abs(nb + 12 - wp)) <= 3;
+          if (!smoothStep) { plan[plan.length - 2].d += lastSt.d; plan.pop(); }
+        }
+      }
       var shift = {fig: 0, mid: 0};
       function layer(t) { return /[\dw]/.test(t) ? 'fig' : 'mid'; }
       if (!acc.guitar) ['fig', 'mid'].forEach(function (L) {   // a guitar stays where its strings are
@@ -797,21 +929,30 @@
           prevMid = midNotes.reduce(function (s, p) { return s + (p - 12 * shift.mid); }, 0) / midNotes.length;
         }
       }
+      var walkSt = acc.chordPedal ? plan.find(function (st) { return st.toks && st.toks.indexOf('w') >= 0; }) : null;
+      var pedalLimit = walkSt ? walkSt.g : z;
       plan.forEach(function (st, pi) {
         var o = [];
         (st.toks || []).forEach(function (t) { v[t].forEach(function (p) { p -= 12 * shift[layer(t)]; if (o.indexOf(p) < 0) o.push(p); }); });
+        var isWalk = !!(st.toks && st.toks.indexOf('w') >= 0);
         var e = {g: st.g, d: st.d, p: o.length ? o.sort(function (x, y) { return x - y; }) : null};
         if (e.p) {
           if (acc.pedal && rate && z - st.g > st.d) e.ring = z - st.g;
+          else if (acc.chordPedal && rate && !isWalk) {
+            var stopAt = st.g < pedalLimit ? pedalLimit : z;
+            var ringLen = Math.min(stopAt - st.g, 14);   // warm per-chord damper pedal, lifting cleanly before `w` or chord change
+            if (ringLen > st.d) e.ring = ringLen;
+          }
           else if (acc.bassRing && rate && pi === 0 && (st.toks || []).indexOf('1') >= 0 && z - st.g > st.d) e.ring = z - st.g;
-          if (st.ending) e.roll = 0.032;
+          if (st.ending) e.roll = curMood && !acc.guitar ? 0.036 : 0.032;
+          else if (curMood && !acc.guitar && e.p.length > 1) e.roll = curMood.roll || 0.018;
           else if (acc.roll && e.p.length > 1) e.roll = acc.roll;
           if (acc.guitar) {   // strummed: down from the bass, up (U alone) from the top string; picked: warm fingers, strings let ring
             e.inst = 'guitar';
             if (acc.pick) {
               e.pluck = true;
               e.spanEnd = sp.end;
-              if ((st.toks || []).length === 1 && (st.toks[0] === 'T' || st.toks[0] === 'A')) e.thumb = true;
+              if ((st.toks || []).indexOf('T') >= 0 || (st.toks || []).indexOf('A') >= 0) e.thumb = true;
               e.roll = e.p.length > 1 ? (st.ending ? 0.022 : 0.004) : 0;
             } else {
               if (e.p.length > 1 && !st.ending) e.roll = acc.roll || 0.012;
@@ -820,6 +961,12 @@
             }
           }
           if (pi === 0 && fresh) e.fresh = true;
+          if (acc.feather) {
+            e.feather = true;
+            if (!fresh) e.cont = true;
+            if (st.isPause) e.pause = true;
+            if (isWalk) e.walk = true;
+          }
           if (acc.passing && e.p.length === 2 || st.ending) { e.span = sp; e.pass = acc.passing === 2 ? 2 : acc.passing ? 1 : 0; }
         }
         events.push(e);
@@ -1095,22 +1242,38 @@
       var e = it.e;
       if (!e.p || !e.p.length) return null;
       var pos = it.pos, onDownbeat = pos < 0.01, onHalf = bar.nominal >= 12 && Math.abs(pos - bar.nominal / 2) < 0.01, onBeat = Math.abs(pos % bar.beat) < 0.01;
-      var baseVel = onDownbeat ? 72 : onHalf ? 62 : onBeat ? 54 : 47;
+      var baseVel = e.feather
+        ? (onDownbeat ? 68 : onHalf ? 58 : onBeat ? 52 : 45)
+        : (onDownbeat ? 72 : onHalf ? 62 : onBeat ? 54 : 47);
       if (e.fresh) baseVel += 4;
+      if (e.feather) {
+        if (e.cont) baseVel -= 4;     // continuation bars breathe noticeably softer
+        if (e.pause) baseVel -= 5;    // pause notes taper softly instead of intruding
+        if (e.walk) baseVel += 2;     // gentle warmth on connecting bass pickup
+      }
       var single = e.p.length === 1, microOff = 0;
       if (single && !onDownbeat) {
-        var prevP = k > 0 && items[k - 1].e.p ? items[k - 1].e.p[0] : e.p[0], rising = e.p[0] > prevP, rel = (e.p[0] - loP) / spanP;
-        baseVel += Math.round((rising ? 5 : -3) + rel * 4);
-        microOff = onBeat ? 0.002 : (rising ? 0.005 : 0.003);
+        var rel = (e.p[0] - loP) / spanP;
+        if (e.feather) {
+          baseVel -= Math.round(rel * 7);   // feathered upper shimmer: softer & slightly laid-back
+          microOff = e.pause ? 0.008 : 0.003;
+        } else {
+          var prevP = k > 0 && items[k - 1].e.p ? items[k - 1].e.p[0] : e.p[0], rising = e.p[0] > prevP;
+          baseVel += Math.round((rising ? 5 : -3) + rel * 4);
+          microOff = onBeat ? 0.002 : (rising ? 0.005 : 0.003);
+        }
       }
       var roll = e.roll != null ? e.roll : (e.p.length > 1 ? 0.012 : 0);
       if (e.up) baseVel -= 9;   // a guitar's up strum: lighter, from the top string down
       var dur = e.ring ? Math.max(e.d, e.ring - 0.35) : e.d;   // a pedal lift just before the next chord keeps the harmonies clear
       return e.p.map(function (p, pi) {
-        var voiceAdj = e.pluck ? (e.p.length > 1 ? (pi === 0 ? 3 : -3) : (e.thumb ? 3 : -3))
-          : e.inst ? 0 : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
+        var voiceAdj = e.pluck ? (e.p.length > 1 ? (pi === 0 && e.thumb ? 3 : -3) : (e.thumb ? 3 : -3))
+          : e.inst ? 0
+          : e.feather && e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(6, pi * 2))
+          : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
         var d0 = e.rings && e.rings[pi] != null ? e.rings[pi] : dur;
-        return {p: p, vel: Math.max(34, Math.min(86, baseVel + voiceAdj)), off: roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff, dur: d0};
+        var minV = e.feather ? 30 : 34, maxV = e.feather ? 82 : 86;
+        return {p: p, vel: Math.max(minV, Math.min(maxV, baseVel + voiceAdj)), off: roll ? (e.up ? e.p.length - 1 - pi : pi) * roll : microOff, dur: d0};
       });
     });
   }
@@ -1168,7 +1331,7 @@
       lh.events.forEach(function (e, i) {
         if (isRest(e) || tied(lh.events, i)) return;
         var d = len(e); for (var q = i + 1; tied(lh.events, q); q++) d += len(lh.events[q]);
-        left.push({t: lo[i], d: e.ring || d, g: d, ring: e.ring, rings: e.rings, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll, pluck: e.pluck, thumb: e.thumb, fresh: e.fresh});
+        left.push({t: lo[i], d: e.ring || d, g: d, ring: e.ring, rings: e.rings, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll, pluck: e.pluck, thumb: e.thumb, fresh: e.fresh, cont: e.cont, pause: e.pause, walk: e.walk, feather: e.feather});
       });
     }
     var off = gridOff(sheet);
@@ -1187,7 +1350,7 @@
     var byBar = {};
     left.forEach(function (l) { (byBar[barOf(l.t)] = byBar[barOf(l.t)] || []).push(l); });
     Object.keys(byBar).forEach(function (bi) {
-      var items = byBar[bi], dyn = leftDyn(items.map(function (l) { return {e: {p: l.ps, d: l.g, ring: l.ring, rings: l.rings, inst: l.inst, up: l.up, roll: l.roll, pluck: l.pluck, thumb: l.thumb, fresh: l.fresh}, pos: posOf(l.t)}; }), {nominal: bar, beat: beat});
+      var items = byBar[bi], dyn = leftDyn(items.map(function (l) { return {e: {p: l.ps, d: l.g, ring: l.ring, rings: l.rings, inst: l.inst, up: l.up, roll: l.roll, pluck: l.pluck, thumb: l.thumb, fresh: l.fresh, cont: l.cont, pause: l.pause, walk: l.walk, feather: l.feather}, pos: posOf(l.t)}; }), {nominal: bar, beat: beat});
       items.forEach(function (l, k) { l.notes = dyn[k] || []; });
     });
     var acc = sheet.acc, guitar = !!(acc && (acc.guitar || /^guitar\//.test(acc.style || '')));
