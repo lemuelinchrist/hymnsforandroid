@@ -106,6 +106,31 @@ function accidOf(note) {
   return {written: w in ACC ? ACC[w] : null, sounding: g in ACC ? ACC[g] : null, child};
 }
 
+// Every note gets its sounding accidental written out (accid.ges, not drawn) where the key signature or an accidental earlier in
+// the bar gives it. Verovio's transposing (6.3) ignores the key signature: in D major an F with no accidental of its own came out
+// a semitone up as G♭, not G, and played so (2026-11-27). Run on the sheet before it is transposed. Returns the number of notes set.
+export function spellOut(doc) {
+  let fifths = 0, ka = keyAlter(0), state = {}, set = 0;
+  for (const e of Array.from(doc.getElementsByTagNameNS(MEI_NS, '*'))) {
+    const name = e.localName;
+    if (name === 'scoreDef' || name === 'staffDef' || name === 'keySig') {
+      const f = keySig(e, fifths);
+      if (f !== fifths) { fifths = f; ka = keyAlter(f); }
+    } else if (name === 'measure') state = {};
+    else if (name === 'note') {
+      const pname = e.getAttribute('pname'), oct = e.getAttribute('oct');
+      if (!pname || !(pname in ka)) continue;
+      const staff = e.closest ? e.closest('staff') : null, key = (staff ? staff.getAttribute('n') || '1' : '1') + pname + oct, acc = accidOf(e);
+      if (acc.written != null) { state[key] = acc.written; continue; }
+      if (acc.sounding != null) continue;
+      const alter = key in state ? state[key] : ka[pname];
+      e.setAttribute('accid.ges', alter ? ACCID_GES[alter] : 'n');
+      set++;
+    }
+  }
+  return set;
+}
+
 // The bars of the music as the generator needs them, in the order of the file:
 // [{el, g, len, nominal, beat, unit, count, fifths, notes: [{el, g, d, p, alter, written, key, tiedTo}], harms: [{g, ch}]}]
 // g and the lengths are in sixteenths, g from the first bar line.

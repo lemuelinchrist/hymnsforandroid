@@ -9,7 +9,7 @@
 // from is the app's (host.js).
 import {host} from './host.js';
 import {tr} from './i18n.js';
-import {addPiano, silentChords} from './piano.js';
+import {addPiano, silentChords, spellOut} from './piano.js';
 import {simplifyBars} from './simplify.js';
 
 const MEI_NS = 'http://www.music-encoding.org/ns/mei';
@@ -555,6 +555,7 @@ export class SheetView {
     this.baseHands = handsOf(doc);
     if (this.onSheet) this.onSheet();
     this.baseXml = new XMLSerializer().serializeToString(doc);
+    this.spelledXml = null;
   }
 
   // the MEI for the current state: transposed by Verovio (notes, key signature and chord symbols), then made
@@ -563,8 +564,10 @@ export class SheetView {
     const {tk, state} = this;
     let xml = this.baseXml;
     if (state.shift) {
+      // the accidentals the key gives written out first: Verovio's transposing does not read the key signature (spellOut)
+      if (!this.spelledXml) { const d = parseXml(xml); spellOut(d); this.spelledXml = new XMLSerializer().serializeToString(d); }
       tk.setOptions({transpose: (state.shift > 0 ? '+' : '') + state.shift});
-      tk.loadData(xml);
+      tk.loadData(this.spelledXml);
       xml = tk.getMEI();
       tk.setOptions({transpose: ''});
     }
