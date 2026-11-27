@@ -127,6 +127,11 @@ def convert(hid, db, write, out_dir):
         out = []; prev = None
         for i, t_old in enumerate(beats):
             name = name_at(t_old) or prev
+            if os.environ.get('DUMP'):   # DUMP=file: what the MIDI plays at each beat, to read the chords by hand
+                tm_ = to_midi(t_old); nn = 'C C# D Eb E F F# G Ab A Bb B'.split()
+                snd_ = sorted({p + sh for s_, e_, p in notes if s_ < to_midi(t_old + beat16) - 10 and e_ > tm_ + 20})
+                mel_ = [a_.get('pname', '') + a_.get('oct', '') for (t2, n2, a_, tg_) in els if 'pname' in a_ and t2 <= t_old < t2 + n2]
+                open(os.environ['DUMP'], 'a', encoding='utf8').write('%s\t%d\t%g\t%s\t%s\t%s\n' % (hid, bi + 1, (t_old - b0) / per + 1, name, ' '.join(nn[p % 12] + str(p // 12 - 1) for p in snd_), ''.join(mel_)))
             if name and name != prev:
                 # a chord that changes between two beats (a tune felt in dotted pulses, a syncopation) sounds from the first melody note
                 # after the previous beat at which it already stands, and not from the beat it is first seen at
