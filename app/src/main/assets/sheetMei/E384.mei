@@ -216,10 +216,12 @@
 <harm staff="1" tstamp="3" place="above">E♭</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
-<note xml:id="n62" pname="b" oct="4" dur="4" dots="1">
+<beam>
+<note xml:id="n62" pname="b" oct="4" dur="8" dots="1">
 <verse n="1"><syl>Lord,</syl></verse></note>
 <note xml:id="n63" pname="e" oct="4" dur="16">
 <verse n="1"><syl>Thy</syl></verse></note>
+</beam>
 <note xml:id="n64" pname="g" oct="4" dur="2">
 <verse n="1"><syl>will</syl></verse></note>
 <note xml:id="n65" pname="f" oct="4" dur="4">
@@ -227,8 +229,8 @@
 </layer></staff>
 <fermata startid="#n62" place="above"/>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
-<harm staff="1" tstamp="2.75" place="above">E♭</harm>
-<harm staff="1" tstamp="4.75" place="above">B♭7</harm>
+<harm staff="1" tstamp="2" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">B♭7</harm>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n66" pname="e" oct="4" dur="2" dots="1">
