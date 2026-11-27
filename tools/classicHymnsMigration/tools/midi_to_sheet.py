@@ -88,6 +88,7 @@ QUAL = [('', (0, 4, 7)), ('m', (0, 3, 7)), ('7', (0, 4, 7, 10)), ('Maj7', (0, 4,
         ('m7♭5', (0, 3, 6, 10)), ('dim7', (0, 3, 6, 9)), ('aug', (0, 4, 8)), ('sus4', (0, 5, 7)), ('sus2', (0, 2, 7)),
         ('6', (0, 4, 7, 9)), ('m6', (0, 3, 7, 9)), ('mMaj7', (0, 3, 7, 11))]
 SHARP_NAMES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B']
+import simplify_dim as SD
 FLAT_NAMES = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B']
 
 def chord_name(pitches, kind, key_pc):
@@ -106,7 +107,7 @@ def chord_name(pitches, kind, key_pc):
     if best is None: return None
     _, root, q = best
     s = names[root] + q
-    return s + ('' if bass == root else '/' + names[bass])
+    return SD.simplify(s + ('' if bass == root else '/' + names[bass]))   # diminished chords as the plain chord (simplify_dim.py)
 
 # ---- the old sheet ----
 ELEM = re.compile(r'<note\b[^>]*?/>|<note\b[^>]*>.*?</note>|<rest\b[^>]*/>', re.S)
