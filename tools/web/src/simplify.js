@@ -6,7 +6,7 @@
 //
 //   Medium   light touch-ups only: the same chords at the same places, in a simple shape: a triad (major, minor, diminished,
 //            augmented) or a plain dominant seventh, with its slash bass; a chord equal to the one before it is not written again;
-//            at most three chords in a bar of four beats or more (two in a shorter one): the shortest chords go first.
+//            at most three chord changes in a bar of four beats or more (two in a shorter one): the shortest chords go first.
 //   Easy     one chord for the bar (long bars: for each half), triads only, from the original chords and the key's main chords;
 //            the last two bars keep their rhythm (a chord for two beats at least).
 //
@@ -27,7 +27,7 @@ const CHORD = /^([A-G])(𝄫|𝄪|♭|♯|b|#)?(.*?)(?:\/([A-G])(𝄫|𝄪|♭|�
 
 // the cost of ...
 const W_FIT = 0.9, W_DEV = 2.0, W_NEW = 0.4, W_SEVENTH = 0.25;
-const MAX_MEDIUM = 3;   // chords in a bar of four beats or more (fewer beats: two)
+const MAX_MEDIUM = 3;   // chord changes in a bar of four beats or more (fewer beats: two)
 const W_CHANGE = {easy: 1.6};
 
 // "B♭m7/E" -> {pc: 10, spell: 'B♭', type: 'm'}; null when it is not a chord (N.C., a word)
@@ -93,8 +93,9 @@ export function simplifyBars(bars, level, skip) {
     // medium keeps a slash bass and the places of the chords, but writes at most MAX_MEDIUM chords in a bar
     const bass = level === 'medium';
     const write = (c) => light(c) + (bass && c.bass != null && c.bass !== c.pc ? '/' + c.bassSpell : '');
+    let last = null;   // the chord the bar before ended on
     bars.forEach((b, i) => {
-      if (unknown[i]) return;
+      if (unknown[i]) { last = null; return; }
       let list = [], changed = false, prev = null;   // the first chord of a bar is always written
       parsed[i].forEach(([t, text, c]) => {
         const s = write(c);
@@ -102,8 +103,10 @@ export function simplifyBars(bars, level, skip) {
         prev = s; list.push([t, s]); if (s !== text) changed = true;
       });
       if (bass) {
-        const end = beatsOf(b).lenQ * b.unit / 4 + 1, max = beatsOf(b).nb >= 4 ? MAX_MEDIUM : Math.min(2, beatsOf(b).nb);
-        while (list.length > max) {   // the shortest chord goes (the one before it goes on), never the first
+        // a change is a chord that differs from the one before it (the first one too, against the bar before)
+        const end = beatsOf(b).lenQ * b.unit / 4 + 1, nb = beatsOf(b).nb, max = nb >= 4 ? MAX_MEDIUM : Math.min(2, nb);
+        const budget = () => max + (list.length && list[0][1] === last ? 1 : 0);
+        while (list.length > budget()) {   // the shortest chord goes (the one before it goes on), never the first
           let k = 1;
           for (let j = 2; j < list.length; j++) {
             const d = (list[j + 1] ? list[j + 1][0] : end) - list[j][0], dk = (list[k + 1] ? list[k + 1][0] : end) - list[k][0];
@@ -113,6 +116,7 @@ export function simplifyBars(bars, level, skip) {
           list = list.filter((x, j) => j === 0 || x[1] !== list[j - 1][1]);
         }
       }
+      if (list.length) last = list[list.length - 1][1];
       if (changed) out[i] = list;
     });
     return out;

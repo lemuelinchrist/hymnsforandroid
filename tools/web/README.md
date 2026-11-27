@@ -264,7 +264,7 @@ Offline: the service worker precaches only the core shell (`SHELL`) and `data/ve
 
 ### Simpler chords
 
-`src/simplify.js` makes the chords on the sheet simpler (only on sheets whose own style is Chorale, `view.chorale`: they are the ones with the complex chords; any other sheet has the Chords only button instead), at two levels (and Original): *medium* (light touch-ups: the same chords at the same places as plain triads or sevenths, with the slash bass, no repeats, at most three in a bar) and *easy* (a chord for the bar). It changes only
+`src/simplify.js` makes the chords on the sheet simpler (only on sheets whose own style is Chorale, `view.chorale`: they are the ones with the complex chords; any other sheet has the Chords only button instead), at two levels (and Original): *medium* (light touch-ups: the same chords at the same places as plain triads or sevenths, with the slash bass, no repeats, at most three chord changes in a bar) and *easy* (a chord for the bar). It changes only
 what is shown, never the sheet, the chord edits or the sound (`sheet.js` works it out on the sheet before the guitar's capo and
 the piano part, and leaves the bars the user edited as they are). `node tools/web/tests/simplify.mjs E84` shows a hymn's bars
 at each level, `--stats` the chords per bar over the English sheets, `--mei <level> <id>` the sheet with those chords.
