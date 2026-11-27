@@ -33,6 +33,11 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="2.75" place="above">D♭/A♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<harm staff="1" tstamp="3.75" place="above">A♭sus4</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+<harm staff="1" tstamp="4.75" place="above">A♭sus4</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n9" dur="4" pname="e" oct="4" accid.ges="f">
@@ -72,6 +77,10 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="2.75" place="above">D♭sus2</harm>
+<harm staff="1" tstamp="3" place="above">D♭</harm>
+<harm staff="1" tstamp="4" place="above">D♭sus2</harm>
+<harm staff="1" tstamp="4.75" place="above">D♭</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n20" dur="4" pname="f" oct="4">
@@ -81,7 +90,7 @@
 <note xml:id="n22" dur="2" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl eol="1">ring,</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="1" place="above">D♭/A♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭</harm>
 </measure>
 <sb/>
@@ -112,6 +121,11 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="2.75" place="above">D♭/A♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
+<harm staff="1" tstamp="3.75" place="above">A♭sus4</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
+<harm staff="1" tstamp="4.75" place="above">A♭sus4</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n31" dur="4" pname="e" oct="4" accid.ges="f">
@@ -207,6 +221,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="4" place="above">Fm7/E♭</harm>
+<harm staff="1" tstamp="4.75" place="above">E♭</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n56" dur="4" pname="c" oct="5">
@@ -241,6 +256,7 @@
 </layer></staff>
 <fermata startid="#n63" place="above"/>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="4.5" place="above">B♭m/D♭</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <beam>
@@ -269,6 +285,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="2.75" place="above">E♭7</harm>
+<harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
 <harm staff="1" tstamp="4" place="above">E♭7</harm>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">

@@ -24,6 +24,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">G/D</harm>
+<harm staff="1" tstamp="6" place="above">D</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" dur="4" pname="f" oct="4" accid.ges="s">
@@ -35,7 +36,8 @@
 <note xml:id="n9" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl wordpos="i" con="d">With</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">A7</harm>
+<harm staff="1" tstamp="1" place="above">F♯m/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
 <harm staff="1" tstamp="4" place="above">D</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
@@ -48,8 +50,9 @@
 <note xml:id="n13" dur="8" pname="g" oct="4">
 <verse n="1"><syl wordpos="t">y</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="4" place="above">A7</harm>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="4" place="above">A</harm>
+<harm staff="1" tstamp="6" place="above">A7</harm>
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n14" dur="4" dots="1" pname="f" oct="4" accid.ges="s">
@@ -74,6 +77,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">G/D</harm>
+<harm staff="1" tstamp="6" place="above">D</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n21" dur="4" pname="f" oct="4" accid.ges="s">
@@ -85,8 +89,10 @@
 <note xml:id="n24" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>Who</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">A7</harm>
+<harm staff="1" tstamp="1" place="above">F♯m/A</harm>
+<harm staff="1" tstamp="3" place="above">A7</harm>
 <harm staff="1" tstamp="4" place="above">Bm</harm>
+<harm staff="1" tstamp="6" place="above">Bm/D</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n25" dur="4" pname="a" oct="4">
@@ -99,7 +105,9 @@
 <verse n="1"><syl>us</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A/E</harm>
-<harm staff="1" tstamp="4" place="above">E7</harm>
+<harm staff="1" tstamp="3" place="above">E</harm>
+<harm staff="1" tstamp="4" place="above">Esus2</harm>
+<harm staff="1" tstamp="6" place="above">E7</harm>
 </measure>
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
@@ -123,6 +131,9 @@
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
+<harm staff="1" tstamp="3" place="above">Bm7/A</harm>
+<harm staff="1" tstamp="4" place="above">A</harm>
+<harm staff="1" tstamp="6" place="above">Dsus4/A</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n36" dur="4" pname="f" oct="4" accid.ges="s">
@@ -135,6 +146,8 @@
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">Em7/D</harm>
+<harm staff="1" tstamp="4" place="above">D</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n40" dur="4" pname="b" oct="4">
@@ -147,7 +160,9 @@
 <verse n="1"><syl>to</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
+<harm staff="1" tstamp="3" place="above">Bm/D</harm>
 <harm staff="1" tstamp="4" place="above">A/E</harm>
+<harm staff="1" tstamp="6" place="above">E7</harm>
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
 <note xml:id="n44" dur="4" dots="1" pname="a" oct="4">
@@ -157,8 +172,8 @@
 <verse n="1"><syl>We</syl></verse></note>
 </layer></staff>
 <tie startid="#n44" endid="#n45"/>
-<harm staff="1" tstamp="1" place="above">A/E</harm>
-<harm staff="1" tstamp="4" place="above">A7</harm>
+<harm staff="1" tstamp="1" place="above">A</harm>
+<harm staff="1" tstamp="6" place="above">A7</harm>
 </measure>
 <sb/>
 <measure n="14"><staff n="1"><layer n="1">
@@ -172,6 +187,9 @@
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="3" place="above">A7/E</harm>
+<harm staff="1" tstamp="4" place="above">D/F♯</harm>
+<harm staff="1" tstamp="6" place="above">D</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n51" dur="4" pname="d" oct="5">
@@ -184,7 +202,9 @@
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7/A♯</harm>
-<harm staff="1" tstamp="4" place="above">Bm7/A</harm>
+<harm staff="1" tstamp="3" place="above">A♯7</harm>
+<harm staff="1" tstamp="4" place="above">D/A</harm>
+<harm staff="1" tstamp="6" place="above">E7/G♯</harm>
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <beam>
@@ -200,8 +220,11 @@
 <verse n="1"><syl wordpos="t">nal</syl></verse></note>
 </layer></staff>
 <slur startid="#n55" endid="#n56"/>
-<harm staff="1" tstamp="1" place="above">Bm7/A</harm>
-<harm staff="1" tstamp="4" place="above">A7</harm>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="2" place="above">Dsus4/A</harm>
+<harm staff="1" tstamp="3" place="above">D/A</harm>
+<harm staff="1" tstamp="4" place="above">F♯m/A</harm>
+<harm staff="1" tstamp="6" place="above">A7</harm>
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n60" dur="4" dots="1" pname="d" oct="4">

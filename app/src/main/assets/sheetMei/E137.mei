@@ -61,7 +61,7 @@
 <verse n="1"><syl>With</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
-<harm staff="1" tstamp="4" place="above">F/C</harm>
+<harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <sb/>
 <measure n="6"><staff n="1"><layer n="1">
@@ -74,7 +74,10 @@
 <note xml:id="n19" dur="4" pname="a" oct="4">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">C</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <beam>
@@ -94,8 +97,11 @@
 </layer></staff>
 <slur startid="#n19" endid="#n20"/>
 <slur startid="#n22" endid="#n23"/>
-<harm staff="1" tstamp="1" place="above">Am7</harm>
-<harm staff="1" tstamp="2" place="above">FMaj7</harm>
+<harm staff="1" tstamp="1" place="above">Am</harm>
+<harm staff="1" tstamp="1.5" place="above">Gm</harm>
+<harm staff="1" tstamp="2" place="above">F</harm>
+<harm staff="1" tstamp="2.5" place="above">Em</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
@@ -140,6 +146,8 @@
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">F/A</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <beam>
@@ -160,6 +168,10 @@
 <slur startid="#n36" endid="#n37"/>
 <slur startid="#n39" endid="#n40"/>
 <harm staff="1" tstamp="1" place="above">C7</harm>
+<harm staff="1" tstamp="1.5" place="above">F/C</harm>
+<harm staff="1" tstamp="2" place="above">C7</harm>
+<harm staff="1" tstamp="2.5" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C7</harm>
 <harm staff="1" tstamp="4" place="above">Dm</harm>
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
@@ -181,6 +193,7 @@
 </layer></staff>
 <slur startid="#n45" endid="#n47"/>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="2.5" place="above">C7</harm>
 <harm staff="1" tstamp="3" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">C7</harm>
 </measure>

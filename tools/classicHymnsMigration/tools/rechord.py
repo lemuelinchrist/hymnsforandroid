@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Names the chords of sheets made by midi_to_sheet.py again (chords.py), leaving everything else of the sheet as it is now:
+"""Names the chords of sheets made by midi_to_sheet.py again (with the converter as it is now), leaving everything else of the sheet as it is now:
 notes, words, tempo, credit, hand fixes. The conversion is run from the ORIGINAL sheets (git f43b1ce5e) into a scratch folder, and its
 chords go into the current sheet only where the notes of every bar are the same; otherwise the sheet is left alone and named in the report.
 

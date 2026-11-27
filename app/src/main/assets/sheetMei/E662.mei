@@ -27,7 +27,9 @@
 </layer></staff>
 <slur startid="#n4" endid="#n5"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
-<harm staff="1" tstamp="4" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+<harm staff="1" tstamp="4" place="above">B♭m/D♭</harm>
+<harm staff="1" tstamp="5" place="above">D♭</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" dur="4" dots="1" pname="e" oct="4" accid.ges="f">
@@ -55,6 +57,7 @@
 <slur startid="#n12" endid="#n13"/>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
 <harm staff="1" tstamp="4" place="above">E♭7</harm>
+<harm staff="1" tstamp="6" place="above">E♭</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -82,7 +85,9 @@
 </layer></staff>
 <slur startid="#n20" endid="#n21"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
-<harm staff="1" tstamp="4" place="above">D♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭/C</harm>
+<harm staff="1" tstamp="4" place="above">B♭m/D♭</harm>
+<harm staff="1" tstamp="5" place="above">D♭</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n23" dur="4" pname="e" oct="4" accid.ges="f">
@@ -95,6 +100,7 @@
 <verse n="1"><syl>On</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
+<harm staff="1" tstamp="6" place="above">A♭/C</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <beam>
@@ -111,7 +117,10 @@
 </layer></staff>
 <slur startid="#n27" endid="#n28"/>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
+<harm staff="1" tstamp="2" place="above">A/D♭</harm>
+<harm staff="1" tstamp="3" place="above">D♭</harm>
 <harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="6" place="above">E♭</harm>
 </measure>
 <measure n="9" right="end"><staff n="1"><layer n="1">
 <note xml:id="n32" dur="4" dots="1" pname="a" oct="4" accid.ges="f">
@@ -119,7 +128,7 @@
 <note xml:id="n33" dur="4" dots="1" pname="a" oct="4" accid.ges="f"/>
 </layer></staff>
 <tie startid="#n32" endid="#n33"/>
-<harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
+<harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

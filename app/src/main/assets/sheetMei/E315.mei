@@ -25,6 +25,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="5.5" place="above">Fsus4</harm>
+<harm staff="1" tstamp="6" place="above">F</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <beam>
@@ -39,6 +41,8 @@
 <verse n="1"><syl eol="1">Lord’s;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">Fsus4</harm>
+<harm staff="1" tstamp="3" place="above">F</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -60,6 +64,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
+<harm staff="1" tstamp="5.5" place="above">Am7/C</harm>
+<harm staff="1" tstamp="6" place="above">C</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <beam>
@@ -74,6 +80,8 @@
 <verse n="1"><syl eol="1" wordpos="t">fords;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Fsus4</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -95,6 +103,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="5.5" place="above">Gm7/F</harm>
+<harm staff="1" tstamp="6" place="above">F</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <beam>
@@ -129,8 +139,12 @@
 <verse n="1"><syl>and</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">F7</harm>
-<harm staff="1" tstamp="4" place="above">Gm/B♭</harm>
+<harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="2" place="above">Gm7/F</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
+<harm staff="1" tstamp="4" place="above">B♭</harm>
+<harm staff="1" tstamp="5.5" place="above">B♭Maj7</harm>
+<harm staff="1" tstamp="6" place="above">Gm/B♭</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <beam>
@@ -145,6 +159,8 @@
 <verse n="1"><syl eol="1">sin.</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C7</harm>
+<harm staff="1" tstamp="2" place="above">F/C</harm>
+<harm staff="1" tstamp="3" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <sb/>
@@ -176,6 +192,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Fsus4</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n49" dur="4" dots="1" pname="g" oct="4">
@@ -199,7 +217,9 @@
 <note xml:id="n55" dur="4" dots="1" pname="c" oct="5">
 <verse n="1"><syl eol="1" wordpos="t">vine;</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G7</harm>
+<harm staff="1" tstamp="1" place="above">G</harm>
+<harm staff="1" tstamp="2" place="above">Gsus2</harm>
+<harm staff="1" tstamp="3" place="above">G7</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
 <sb/>
@@ -233,6 +253,8 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
+<harm staff="1" tstamp="3" place="above">Fsus4</harm>
+<harm staff="1" tstamp="4" place="above">F</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <beam>
@@ -253,7 +275,10 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="2.5" place="above">B♭Maj7</harm>
+<harm staff="1" tstamp="3" place="above">Gm7/B♭</harm>
 <harm staff="1" tstamp="4" place="above">F/C</harm>
+<harm staff="1" tstamp="6" place="above">C7</harm>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n71" dur="4" dots="1" pname="f" oct="4">
@@ -261,7 +286,7 @@
 <note xml:id="n72" dur="4" dots="1" pname="f" oct="4"/>
 </layer></staff>
 <tie startid="#n71" endid="#n72"/>
-<harm staff="1" tstamp="1" place="above">F/C</harm>
+<harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

@@ -89,7 +89,6 @@ QUAL = [('', (0, 4, 7)), ('m', (0, 3, 7)), ('7', (0, 4, 7, 10)), ('Maj7', (0, 4,
         ('6', (0, 4, 7, 9)), ('m6', (0, 3, 7, 9)), ('mMaj7', (0, 3, 7, 11))]
 SHARP_NAMES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B']
 import simplify_dim as SD
-import chords as CH
 import slur_to_tie as ST
 FLAT_NAMES = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B']
 
@@ -249,17 +248,14 @@ def convert(hid, db, write, out_dir):
     # the new bars
     bt = 0; idn = 0; body = []; slurs_all = []; extra_syl = 0
     beat = beats16(o_n, o_d)
-    prev_chord = [None]
     def harm_at(t0, t1):
-        # one chord a beat (a dotted beat in 6/8, 9/8, 12/8), named by the notes that last through the beat (chords.py); it stays
-        # while the beat only passes through other notes. (tstamps count the meter's unit, eighths in 6/8, not the beat)
-        out = []; step = beat * q; k = 0
-        while t0 + k * step < t1 - 1e-6:
-            a = t0 + k * step; b = min(a + step, t1)
-            name = CH.window_chord(notes, a, b, kind, prev_chord[0])
-            if name and (name != prev_chord[0] or k == 0):   # the first chord of a bar is always written
-                out.append((1 + k * beat / (16 // o_d), name)); prev_chord[0] = name
-            k += 1
+        out = []; prev = None
+        for t in onsets:
+            if t < t0 or t >= t1: continue
+            snd = [p for s_, e_, p in notes if s_ <= t < e_]
+            name = chord_name(snd, kind, 0) or prev
+            if name and name != prev:
+                out.append((1 + (t - t0) / q / (16 // o_d), name)); prev = name   # (a tstamp counts the meter's unit, eighths in 6/8, not the beat)
         return out
     sop_by_start = {t // q: i for i, (t, e, p) in enumerate(sop)}
     last_voiced = None
