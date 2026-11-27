@@ -844,7 +844,7 @@ function jukeboxCard(hymn, stopOthers, onChange) {
       const pool = subsOf(gid).filter((x) => x.id !== not);
       return pool[Math.floor(Math.random() * pool.length)] || null;
     };
-    let curStyle = J.styleFor(null, info.own);
+    let curStyle = J.styleFor(null, info.own), seed = 0;
     if (subsOf(curStyle.group).length > 1) curStyle = randomIn(curStyle.group);
 
     const curText = h('span', {class: 'jb-current'});
@@ -853,7 +853,8 @@ function jukeboxCard(hymn, stopOthers, onChange) {
     const catRow = h('div', {class: 'jb-cats', role: 'group', 'aria-label': tr('Category')});
     const subSelect = h('select', {class: 'jb-select', 'aria-label': tr('Style')});
     const diceBtn = h('button', {class: 'jb-dice', type: 'button', title: tr('Pick a style at random'), 'aria-label': tr('Pick a style at random')}, icon('dice'));
-    const subRow = h('div', {class: 'jb-subs'}, subSelect, diceBtn);
+    const shuffleBtn = h('button', {class: 'jb-shuffle', type: 'button', title: tr('Shuffle this style\'s phrasing'), 'aria-label': tr('Shuffle this style\'s phrasing')}, icon('shuffle'), h('span', null, tr('Shuffle')));
+    const subRow = h('div', {class: 'jb-subs'}, subSelect, diceBtn, shuffleBtn);
     const tempoBtn = h('button', {class: 'jb-tempo', type: 'button', title: tr('The hymn\'s own tempo')});
     const speed = h('input', {class: 'jb-speed', type: 'range', min: String(J.MIN_SPEED), max: String(J.MAX_SPEED), step: '0.05', 'aria-label': tr('Tempo')});
     speed.value = String(prefs.speed);
@@ -882,10 +883,14 @@ function jukeboxCard(hymn, stopOthers, onChange) {
     function renderPills() {
       const grp = J.GROUPS.find((g) => g.id === curStyle.group);
       const subs = J.STYLES.filter((s) => s.group === curStyle.group);
-      curText.textContent = subs.length > 1 && grp ? tr(grp.name) + ' · ' + tr(curStyle.name) : tr(curStyle.name);
+      const baseTitle = subs.length > 1 && grp ? tr(grp.name) + ' · ' + tr(curStyle.name) : tr(curStyle.name);
+      curText.textContent = curStyle.shuffle && seed ? baseTitle + ' · ' + tr('Shuffled') : baseTitle;
       for (const [gid, b] of catBtns) b.setAttribute('aria-pressed', String(gid === curStyle.group));
-      subRow.hidden = subs.length <= 1;
-      if (subs.length > 1) {
+      const hasSubs = subs.length > 1, canShuffle = !!curStyle.shuffle;
+      subRow.hidden = !hasSubs && !canShuffle;
+      subSelect.hidden = diceBtn.hidden = !hasSubs;
+      shuffleBtn.hidden = !canShuffle;
+      if (hasSubs) {
         subSelect.textContent = '';
         for (const st of subs) subSelect.appendChild(h('option', {value: st.id}, tr(st.name)));
         subSelect.value = curStyle.id;
@@ -894,12 +899,19 @@ function jukeboxCard(hymn, stopOthers, onChange) {
     function choose(st) {
       if (!st || st.id === curStyle.id) return;
       curStyle = st;
+      seed = 0;
       renderPills();
       again();
     }
 
     subSelect.addEventListener('change', () => choose(J.STYLES.find((x) => x.id === subSelect.value)));
     diceBtn.addEventListener('click', () => choose(randomIn(curStyle.group, curStyle.id)));
+    shuffleBtn.addEventListener('click', () => {
+      if (!curStyle.shuffle) return;
+      seed = 1 + Math.floor(Math.random() * 99999);
+      renderPills();
+      again();
+    });
     const showTempo = () => { tempoBtn.textContent = '♩ = ' + Math.round(info.bpm * prefs.speed); };
     const show = () => {
       playBtn.replaceChildren(icon(playing ? 'pause' : 'play'));
@@ -914,7 +926,7 @@ function jukeboxCard(hymn, stopOthers, onChange) {
       fill.style.width = (100 * bar / Math.max(1, bars)) + '%';
       barText.textContent = tr('Bar {0} of {1}', bar, bars);
     };
-    const options = () => ({style: curStyle.id, loop: !!prefs.loop, speed: prefs.speed});
+    const options = () => ({style: curStyle.id, loop: !!prefs.loop, speed: prefs.speed, seed});
     // Play: a new player reads the sheet again (its chord edits may have changed); a change while it plays does not
     function start() {
       if (!playing) {

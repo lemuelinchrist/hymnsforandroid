@@ -66,7 +66,7 @@ window.sheetPlay = async (id, o) => {
     const piano = !!store.get('sheet', {}).hands || !!named;
     const strum = store.get(SAVED.strumOf, {})[id] || store.get(SAVED.strum, STRUM_DEFAULT);
     const choice = piano ? (store.get(SAVED.handsOf, {})[id] || named || store.get(SAVED.hands, PIANO_DEFAULT)) : strumChoice(strum, capoOf(doc));
-    const score = scoreOf(doc, choice, {hands: true});
+    const score = scoreOf(doc, choice, {hands: true, loop: true});
     if (!score || !score.events.length) throw new Error('nothing to play in ' + id);
     if (mine !== token) return;                         // stopped (or another sheet) while loading
     let bpm = bpmOf(doc) || DEFAULT_BPM;

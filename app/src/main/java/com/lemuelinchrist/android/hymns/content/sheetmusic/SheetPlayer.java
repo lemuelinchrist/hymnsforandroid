@@ -52,16 +52,22 @@ public final class SheetPlayer {
         void onSheetBar(int bar, int bars);
     }
 
-    /** How the jukebox plays a sheet: a style of jukebox.js (its STYLES ids), again and again or once, the tempo's factor. */
+    /** How the jukebox plays a sheet: a style of jukebox.js (its STYLES ids), again and again or once, the tempo's factor, and an optional phrase-shuffle seed. */
     public static final class Options {
         public final String style;
         public final boolean loop;
         public final double speed;
+        public final int seed;
 
         public Options(String style, boolean loop, double speed) {
+            this(style, loop, speed, 0);
+        }
+
+        public Options(String style, boolean loop, double speed, int seed) {
             this.style = style;
             this.loop = loop;
             this.speed = speed;
+            this.seed = seed;
         }
     }
 
@@ -127,7 +133,7 @@ public final class SheetPlayer {
 
     private String optionsJs(Options o) {
         try {
-            return new JSONObject().put("style", o.style).put("loop", o.loop).put("speed", o.speed).put("n", playNo).toString();
+            return new JSONObject().put("style", o.style).put("loop", o.loop).put("speed", o.speed).put("seed", o.seed).put("n", playNo).toString();
         } catch (JSONException e) {
             return "{}";
         }

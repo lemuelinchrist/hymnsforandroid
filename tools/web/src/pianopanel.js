@@ -143,9 +143,9 @@ export function createPianoPanel({get, set, setUsual, time}) {
     walkRow.hidden = !walks;
     if (walks) walkRow.append(el('span', 'ce-label'), toggle(tr('More walking'), !!lh.walk, () => change((c) => { if (c.lh.walk) delete c.lh.walk; else c.lh.walk = true; }),
       tr('The bass and the tenor walk between the chords more often')));
-    // Shuffle: a style that varies its figures (Adaptive) plays them in another order, the same notes every time; Original
+    // Shuffle: a style that varies its figures (Flowing, Fingerpicking) plays them in another order, the same notes every time; Original
     // is the hymn's own take again
-    const varies = !!(cur && cur.vary);
+    const varies = !!(cur && (cur.vary || cur.moods));
     shuffleRow.hidden = !varies;
     if (varies) {
       const shuffle = btn(tr('Shuffle Style'), false, () => change((c) => { c.lh.seed = 1 + Math.floor(Math.random() * 99999); }));
@@ -234,21 +234,28 @@ export function createPianoPanel({get, set, setUsual, time}) {
 }
 
 // The guitar sheet's Strumming: a guitar strums or picks the chords the guitar sheet shows (piano.js strumChoice).
-// Shows Strum, Pick and Tone rows (music.js's guitar kinds, with their hints). get() -> {choice: {kind, tone}, usual};
+// Shows Strum, Pick, Tone, and (for Fingerpicking) Shuffle Style rows. get() -> {choice: {kind, tone, seed?}, usual};
 // set(choice): this hymn's; setUsual(choice): for every hymn; time() -> the sheet's time signature.
 export function createStrumPanel({get, set, setUsual, time}) {
-  const strumRow = el('div', 'ce-row'), pickRow = el('div', 'ce-row'), toneRow = el('div', 'ce-row');
+  const strumRow = el('div', 'ce-row'), pickRow = el('div', 'ce-row'), shuffleRow = el('div', 'ce-row'), toneRow = el('div', 'ce-row');
+  const stripSeed = (c) => { const x = Object.assign({}, STRUM_DEFAULT, c); delete x.seed; return x; };
   const panel = sheetPanel({cls: 'strum-panel', title: tr('Strumming'), label: tr('How the guitar strums'),
-    rows: [strumRow, pickRow, toneRow], refresh: (bAll) => refresh(bAll), onAll: () => setUsual(get().choice)});
-  const change = (patch) => { set(Object.assign({}, STRUM_DEFAULT, get().choice, patch)); panel.fill(); };
+    rows: [strumRow, pickRow, shuffleRow, toneRow], refresh: (bAll) => refresh(bAll), onAll: () => setUsual(stripSeed(get().choice))});
+  const change = (patch) => {
+    const next = Object.assign({}, STRUM_DEFAULT, get().choice, patch);
+    if (!next.seed) delete next.seed;
+    set(next);
+    panel.fill();
+  };
   function refresh(bAll) {
     const {choice, usual} = get(), cur = Object.assign({}, STRUM_DEFAULT, choice);
-    bAll.disabled = same(cur, Object.assign({}, STRUM_DEFAULT, usual));
+    if (/^(travis|pick-flow|arp|harp|arp-flow)$/.test(cur.kind)) cur.kind = 'pick';
+    bAll.disabled = same(stripSeed(cur), stripSeed(usual));
     const fam = styles(time()).find((f) => f.id === 'guitar');
     const kind = fam.kinds.find((k) => k.id === cur.kind) || fam.kinds[0];
     const strumKinds = fam.kinds.filter((k) => !k.pick), pickKinds = fam.kinds.filter((k) => k.pick);
     strumRow.replaceChildren(el('span', 'ce-label', tr('Strum')), ...strumKinds.map((k) => {
-      const b = btn(tr(k.name), k === kind, () => change({kind: k.id}));
+      const b = btn(tr(k.name), k === kind, () => change({kind: k.id, seed: 0}));
       b.title = tr(k.hint);
       return b;
     }));
@@ -257,9 +264,25 @@ export function createStrumPanel({get, set, setUsual, time}) {
       b.title = tr(k.hint);
       return b;
     }));
+    const varies = !!(kind.rhythms[0] && (kind.rhythms[0].vary || kind.rhythms[0].moods));
+    shuffleRow.hidden = !varies;
+    shuffleRow.textContent = '';
+    if (varies) {
+      const shuf = btn(tr('Shuffle Style'), false, () => change({seed: 1 + Math.floor(Math.random() * 99999)}));
+      shuf.title = tr('Shuffle this style\'s phrasing');
+      shuffleRow.append(el('span', 'ce-label'), shuf);
+      if (cur.seed) {
+        const orig = btn(tr('Original'), false, () => change({seed: 0}));
+        orig.title = tr('Back to the left hand this hymn starts with');
+        shuffleRow.append(orig);
+      }
+    }
     const tone = TONES.find((t) => t[0] === cur.tone) || TONES[1];
     toneRow.replaceChildren(el('span', 'ce-label', tr('Tone')), ...TONES.map(([id, name]) => btn(tr(name), tone[0] === id, () => change({tone: id}))));
-    return [tr(kind.name), tr(tone[1])].join(' · ');
+    const parts = [tr(kind.name)];
+    if (varies && cur.seed) parts.push(tr('Shuffled'));
+    parts.push(tr(tone[1]));
+    return parts.join(' · ');
   }
   return panel;
 }

@@ -91,14 +91,11 @@ off (choosing a style then turns Both hands on), and goes at Stop. It shows two 
 
 - **Style**, a preset named by what it is for: **Plain** (Strike, hymn style, twice a bar), **Chorale**
   (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
-  harmony as in a hymnal), **Flowing** (the default: Dynamic, Adaptive), **Guitar**
-  (strummed or picked, with **Strum** and **Pick** rows under Style: Folk strum, Pop, Steady, Ballad, Country; Fingerpicking,
-  Folk picking, Adaptive picking, Ballad picking, Gentle harp, Adaptive ballad), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
+  harmony as in a hymnal), **Flowing** (the default: Dynamic, Adaptive, with Two notes — whisper-soft on chord changes), **Guitar**
+  (strummed or picked, with **Strum** and **Pick** rows under Style: Folk strum, Pop, Steady, Ballad, Country; and phrase-shuffled Fingerpicking weaving fingerpicking, ballad arches, harp, and 4-string plucked chords), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
   Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
 - **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
-- **Shuffle Style** (a row under Style, only where the style varies its figures: Flowing, in Advanced too): Flowing's left hand takes,
-  for each chord, one of a few figures (`music.js` `adaptVary`: quarter-note and eighth-note runs, held notes and pressed
-  chords) by a random number made from the song and the hymn's take. Shuffle Style picks another take (`lh.seed`, kept for the
+- **Shuffle Style** (in Style, Strumming, and as **Shuffle** on the Jukebox card for phrase-shuffled styles: **Flowing** and **Fingerpicking**): Flowing weaves six calm pianist moods (`music.js` `adaptMoods`) and Fingerpicking weaves eight acoustic guitar moods (`guitarPickMoods`) across musical phrases (2–4 bars, transitioning after cadence pauses or every 4 bars) by a random number made from the song and the hymn's take. Shuffle picks another take (`seed`, kept for the
   hymn in `handsByHymn`, never for "Use for all hymns"), so the notes change but are the same every time the song plays;
   **Original** brings the hymn's own take back. Every figure holds its last note for at least a beat before the next
   chord's bass: eighths never run up and then leap straight down.
