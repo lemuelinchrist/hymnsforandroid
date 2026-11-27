@@ -126,7 +126,12 @@ def convert(hid, db, write, out_dir):
         def name_at(t_old):
             tm = to_midi(t_old) + off
             snd = [p + sh for s, e, p in notes if s <= tm < e]
-            return M.chord_name(snd, kind, 0) if snd else None
+            name = M.chord_name(snd, kind, 0) if snd else None
+            if name and os.environ.get('BARE'):   # BARE=file: where the MIDI sounds no third (a bare fifth or octave), so major or minor was a guess
+                pcs = {p % 12 for p in snd}; low = min(snd) % 12
+                if not any((low + i) % 12 in pcs for i in (3, 4)) or len(pcs) <= 2:
+                    open(os.environ['BARE'], 'a', encoding='utf8').write('%s\t%d\t%g\t%s\t%s\n' % (hid, bi + 1, (t_old - b0) / per + 1, name, ' '.join(str(p % 12) for p in sorted(set(snd)))))
+            return name
         # SUB=2: the chord on every half beat too (a chord that changes on the "and", which the player plays since 2026-11-27)
         beats = []; t_old = b0; step = beat16 / int(os.environ.get('SUB', '1'))
         while t_old < b1: beats.append(t_old); t_old += step
