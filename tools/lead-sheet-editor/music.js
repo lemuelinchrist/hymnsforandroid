@@ -288,25 +288,22 @@
   }
   // Chords at any place in their bars, moved onto the beat as chordSpans does: chords [{g, ch}] in order, bars
   // [{g, len, beat}], sound [[from, to]] the melody's notes (tied ones as one) -> [{g, ch, info, end}]
+  // The chords as they are played: each at its own time, off the beat too (a chord on the "and" changes there; 2026-11-27,
+  // before that an off-beat chord was moved onto a beat and often lost to the chord on it). Two chords closer than an eighth:
+  // only one sounds, the one on the beat (or, with neither or both on it, the first; at one place, the later one).
+  var MIN_APART = 2;   // sixteenths
   function chordsOnBeat(chords, bars, sound, endG) {
     var out = [];
     chords.forEach(function (c) {
       var k = 0; while (k < bars.length - 1 && bars[k + 1].g <= c.g + 1e-6) k++;
-      var beat = bars[k].beat, r = (c.g - bars[k].g) % beat, g = c.g;
-      if (r > 1e-6) {
-        var held = sound.some(function (m) { return Math.abs(m[0] - c.g) < 0.01 && m[1] > c.g - r + beat + 0.01; });
-        g = held ? c.g - r + beat : c.g - r;
-      }
-      g = Math.round(g);
-      // two chords on one beat: the one that stood nearest the beat is the one that sounds (the other is dropped), and not simply the later one
-      // (an off-beat chord used to take the beat from the chord that was on it)
+      var g = Math.round(c.g), r = (g - bars[k].g) % bars[k].beat, onBeat = Math.abs(r) < 1e-6;
       var last = out[out.length - 1];
-      if (last && g <= last.g) {
-        if (g < last.g) g = last.g;
-        if (Math.abs(c.g - g) > last.moved + 1e-6) return;
+      if (last && g - last.g < MIN_APART - 1e-6) {
+        if (g > last.g && !(onBeat && !last.onBeat)) return;
+        g = Math.max(g, last.g);
         out.pop();
       }
-      out.push({g: g, ch: c.ch, info: chordInfo(c.ch), moved: Math.abs(c.g - g), src: c});
+      out.push({g: g, ch: c.ch, info: chordInfo(c.ch), onBeat: onBeat, src: c});
     });
     out.forEach(function (x, i) { x.end = i + 1 < out.length ? out[i + 1].g : Math.max(endG, x.g); });
     return out;
@@ -919,10 +916,21 @@
         if (!acc.guitar && !curMood) steps.forEach(function (s) { (s.toks || []).forEach(function (t) { if (/^[378t]$/.test(t) && all.indexOf(t) < 0) all.push(t); }); });   // one hand can hold it
         plan.push({toks: all, g: a, d: z - a, ending: true});
       } else if (!rate) plan.push({toks: steps[0].toks || null, g: a, d: z - a});
-      else for (var t = a, q = qStart; t < z; t += rate, q++) {
-        if (lateSteps && t === bloom) { steps = lateSteps; q = 0; }
-        var s = steps[q % steps.length], d = Math.min(rate, z - t), last = plan[plan.length - 1];
-        if (s.hold && last && last.toks) last.d += d; else plan.push({toks: s.toks || null, g: t, d: d, isPause: bloom >= 0 && t >= bloom});
+      else {
+        // a chord that comes off the pattern's grid (on the "and"): its first step sounds there and lasts to the next step of
+        // the bar's grid, and the pattern goes on from there in time with the bar
+        var t0 = a, q0 = qStart, offGrid = (a - barStart) % rate;
+        if (offGrid > 1e-6 && !halfTimed) {
+          var s0 = steps[q0 % steps.length], next = Math.min(z, a - offGrid + rate);
+          plan.push({toks: (s0.hold ? steps[0].toks : s0.toks) || null, g: a, d: next - a});
+          t0 = next; q0++;
+        }
+        var swapped = false;
+        for (var t = t0, q = q0; t < z; t += rate, q++) {
+          if (lateSteps && !swapped && t >= bloom) { steps = lateSteps; q = 0; swapped = true; }
+          var s = steps[q % steps.length], d = Math.min(rate, z - t), last = plan[plan.length - 1];
+          if (s.hold && last && last.toks) last.d += d; else plan.push({toks: s.toks || null, g: t, d: d, isPause: bloom >= 0 && t >= bloom});
+        }
       }
       // settle: the last beat holds the note before it so the hand/fingers have a beat before jumping to the next chord's bass
       // (preserve an intentional connecting bass step `w`, which steps smoothly into the next chord's bass)
