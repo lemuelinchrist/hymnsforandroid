@@ -376,12 +376,12 @@ export function playOrder(bars) {
 // are in quarter notes. An event is {q, d, note, vel, hand: 'm' melody | 'f' notes added to it | 'l' left hand | 'c' chord,
 // ids: the elements of the sheet that light up while it sounds}.
 // the chord symbols of a sheet that never sound (two chords on one beat: only the one nearest the beat is played), for the tools:
-// [{m: the bar's index, t: its tstamp, ch}]
+// [{m: the bar's index, t: its tstamp, ch, el: its <harm>}]
 export function silentChords(doc) {
   const A = analyse(doc, {lh: null, rh: {add: 0}}, false);
   if (!A) return null;
   const kept = new Set(A.chords.map((c) => c.src)), bars = [...doc.getElementsByTagNameNS(MEI_NS, 'measure')];
-  return A.harms.filter((h) => !kept.has(h)).map((h) => ({m: bars.indexOf(h.el.parentNode), t: h.el.getAttribute('tstamp'), ch: h.ch}));
+  return A.harms.filter((h) => !kept.has(h)).map((h) => ({m: bars.indexOf(h.el.parentNode), t: h.el.getAttribute('tstamp'), ch: h.ch, el: h.el}));
 }
 
 export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {

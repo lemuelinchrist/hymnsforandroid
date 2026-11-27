@@ -9,7 +9,7 @@
 // from is the app's (host.js).
 import {host} from './host.js';
 import {tr} from './i18n.js';
-import {addPiano} from './piano.js';
+import {addPiano, silentChords} from './piano.js';
 import {simplifyBars} from './simplify.js';
 
 const MEI_NS = 'http://www.music-encoding.org/ns/mei';
@@ -570,6 +570,14 @@ export class SheetView {
     }
     this.soundXml = xml;
     let doc = parseXml(xml);
+    // chord symbols that never sound (two on one beat: only the one nearest the beat is played) are marked here and not drawn (taken out
+    // below, once the piano part and the capo are made from all the chords); what plays (soundXml) is untouched, and while the chords
+    // are being edited every one is shown
+    if (!this.editing) {
+      try {
+        for (const s of silentChords(doc) || []) if (s.el.getAttribute('type') !== 'edit') s.el.setAttribute('silent', '1');
+      } catch (e) { /* the sheet is shown with all its chords */ }
+    }
     const fifths = state.shift ? keyFifths(doc) : this.baseFifths;
     const tonic = TONIC[fifths + 7];
     // Simplify: the chords worked out on the sheet as it is (before the guitar's capo and the piano part)
@@ -616,6 +624,8 @@ export class SheetView {
     }
 
     if (plan && !state.guitar) applyPlan(doc, plan);   // (with the piano part made from the chords as they sound)
+
+    for (const h of Array.from(mei(doc, 'harm'))) if (h.getAttribute('silent') && h.parentNode) h.parentNode.removeChild(h);
 
     // ids the clicks can be traced back with: bar-<n> for the bars, chord-<n>-<beat> for the chords
     if (this.editing) {
