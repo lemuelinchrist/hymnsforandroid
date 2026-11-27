@@ -804,23 +804,36 @@ function foldTitle(card, title, key) {
 // device's chord edits, the tempo the sheet names) without opening it; a change while it plays goes on from the same
 // bar. A hymn opens on its sheet's own style (Flowing when it names none); a style picked is for this page only. Loop
 // (on to begin with) and the tempo are kept for every hymn. Shown once the sheet is read, and only when it has a
-// melody (not a sheet of chords only). It folds into its title (foldTitle); folded, it goes on playing.
-// stopOthers(): the page's other sound stops (the Play button's, the sheet's).
-// -> {el, stop()}
-function jukeboxCard(hymn, stopOthers) {
+// melody (not a sheet of chords only). It is hidden until the page's Play is pressed on the lyrics (open()): it then shows
+// above the lyrics and plays; its X (close) stops it and hides it until Play is pressed again.
+// stopOthers(): the page's other sound stops (the Play button's, the sheet's). onChange(): it started, stopped or shown.
+// -> {el, ready (a promise: true when there is a melody to play), open(), toggle(), stopPlay(), playing, stop()}
+function jukeboxCard(hymn, stopOthers, onChange) {
   const el = h('section', {class: 'card jukebox-card', hidden: true, 'aria-label': tr('Jukebox')});
   const prefs = Object.assign({loop: true}, store.get('jukebox', {}), {speed: 1});   // the tempo is not kept: every hymn starts at its own
   const keep = () => store.set('jukebox', {loop: !!prefs.loop});
-  let J = null, info = null, juke = null, playing = false, disposed = false;
-  (async () => {
+  let J = null, info = null, juke = null, playing = false, disposed = false, startIt = null, stopIt = null;
+  const changed = () => { if (onChange) onChange(); };
+  const ready = (async () => {
     try {
       const [mod, xml] = await Promise.all([import('./jukebox.js'), host.mei(hymn.sheetId)]);
       J = mod; info = J.sheetInfo(xml);
-      if (disposed || !info.playable) return;
+      if (disposed || !info.playable) return false;
       build();
-      el.hidden = false;
-    } catch (e) { /* no sheet to read: no jukebox */ }
+      return true;
+    } catch (e) { return false; /* no sheet to read: no jukebox */ }
   })();
+  // Play: shows the card and plays in it, or, while it plays, stops it (the card stays). false: nothing to play
+  async function toggle() {
+    Player.unlock();
+    if (!(await ready) || disposed) return false;
+    if (playing) { stopIt(); return true; }
+    el.hidden = false;
+    startIt();
+    changed();
+    return true;
+  }
+  function close() { if (playing) stopIt(); el.hidden = true; changed(); }
 
   function build() {
     prefs.speed = Math.max(J.MIN_SPEED, Math.min(J.MAX_SPEED, +prefs.speed || 1));
@@ -845,7 +858,8 @@ function jukeboxCard(hymn, stopOthers) {
     const speed = h('input', {class: 'jb-speed', type: 'range', min: String(J.MIN_SPEED), max: String(J.MAX_SPEED), step: '0.05', 'aria-label': tr('Tempo')});
     speed.value = String(prefs.speed);
     const loopBtn = h('button', {class: 'jb-loop', type: 'button', 'aria-pressed': String(!!prefs.loop), title: tr('Play again and again')}, tr('Loop'));
-    el.append(foldTitle(el, tr('Jukebox'), 'jukeboxFolded'),
+    const closeBtn = h('button', {class: 'jb-close', type: 'button', title: tr('Close the jukebox'), 'aria-label': tr('Close the jukebox'), onclick: close}, icon('close'));
+    el.append(h('h2', {class: 'jb-head'}, h('span', null, tr('Jukebox')), closeBtn),
       h('div', {class: 'jb-main'}, playBtn,
         h('div', {class: 'jb-side'},
           h('div', {class: 'jb-status'}, curText, barText),
@@ -890,6 +904,7 @@ function jukeboxCard(hymn, stopOthers) {
     const show = () => {
       playBtn.replaceChildren(icon(playing ? 'pause' : 'play'));
       playBtn.setAttribute('aria-pressed', String(playing));
+      changed();
       const label = playing ? tr('Stop') : tr('Play');
       playBtn.title = label;
       playBtn.setAttribute('aria-label', label);
@@ -918,7 +933,9 @@ function jukeboxCard(hymn, stopOthers) {
       juke.play(options()).catch((e) => { console.error(e); playing = false; show(); toast(tr('Sorry, no tune for this hymn')); });
     }
     const again = () => { if (playing) start(); };
-    playBtn.addEventListener('click', () => { if (playing) { juke.stop(); playing = false; show(); } else start(); });
+    startIt = start;
+    stopIt = () => { if (juke) juke.stop(); playing = false; show(); };
+    playBtn.addEventListener('click', () => { if (playing) stopIt(); else start(); });
     speed.addEventListener('input', () => { prefs.speed = parseFloat(speed.value) || 1; showTempo(); });
     speed.addEventListener('change', () => { keep(); again(); });
     tempoBtn.addEventListener('click', () => { speed.value = '1'; prefs.speed = 1; showTempo(); keep(); again(); });
@@ -927,7 +944,8 @@ function jukeboxCard(hymn, stopOthers) {
     showTempo();
     show();
   }
-  return {el, stop() { disposed = true; if (juke) juke.stop(); }};
+  return {el, ready, toggle, close, get playing() { return playing; }, stopPlay() { if (playing) stopIt(); },
+    stop() { disposed = true; if (juke) juke.stop(); }};
 }
 
 // the card under the details for links that open outside the app (the Android app's "Listen and links" card), in sections:
@@ -1074,7 +1092,7 @@ function hymnScreen(view, hymn) {
   let tunePlaying = false, hiddenToken = null;   // hiddenToken: the lyrics' Play is playing the sheet unseen (playSheetHidden)
   const showPlay = (on) => { tunePlaying = on; if (!on) hiddenToken = null; refreshPlay(); };
   function refreshPlay() {
-    const on = tunePlaying || !!(sheet && sheet.playing), onSheet = sheetShown();
+    const on = tunePlaying || !!(sheet && sheet.playing) || !!(jukebox && jukebox.playing), onSheet = sheetShown();
     playBtn.replaceChildren(icon(on ? 'pause' : 'play'));
     playBtn.setAttribute('aria-pressed', String(on));
     playBtn.disabled = !on && !onSheet && !tune && !hasSheet;
@@ -1125,7 +1143,18 @@ function hymnScreen(view, hymn) {
       playSheetFromLyrics();
     }
   }
+  // Play on the lyrics (a narrow screen: the sheet music is another tab, with a playback panel of its own): the jukebox card
+  // shows above the lyrics and plays in it. Where there is no melody to play in it, the tune plays as before.
+  const jukeboxHere = () => !!jukebox && tab === 'lyrics' && !wide.matches;
   function togglePlay() {
+    if (jukebox && jukebox.playing) { jukebox.stopPlay(); return; }
+    if (jukeboxHere() && !hiddenToken && Player.playing() !== hymn.id) {
+      jukebox.toggle().then((ok) => { if (!ok && !disposed) togglePlayPlain(); });
+      return;
+    }
+    togglePlayPlain();
+  }
+  function togglePlayPlain() {
     if (hiddenToken) { hiddenToken = null; Player.stop(); showPlay(false); return; }
     if (Player.playing() === hymn.id) { Player.stop(); showPlay(false); return; }
     if (sheet && sheet.playing) { sheet.togglePlay(); return; }
@@ -1165,9 +1194,9 @@ function hymnScreen(view, hymn) {
     h('button', {role: 'tab', 'data-tab': 'lyrics', onclick: () => showTab('lyrics')}, tr('Lyrics')),
     h('button', {role: 'tab', 'data-tab': 'sheet', onclick: () => showTab('sheet')}, tr('Sheet music'))) : null;
 
-  const jukebox = hasSheet ? jukeboxCard(hymn, () => { Player.stop(); showPlay(false); }) : null;
-  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, h('div', {class: 'lyrics-box'}, lyricsNode(hymn)), sameTuneNode(hymn), metaNode(hymn),
-    jukebox && jukebox.el, linksNode(hymn));
+  const jukebox = hasSheet ? jukeboxCard(hymn, () => { Player.stop(); showPlay(false); }, () => refreshPlay()) : null;
+  const lyricsPane = h('section', {class: 'pane lyrics-pane'}, jukebox && jukebox.el, h('div', {class: 'lyrics-box'}, lyricsNode(hymn)), sameTuneNode(hymn), metaNode(hymn),
+    linksNode(hymn));
   const sheetPane = hasSheet ? h('section', {class: 'pane sheet-pane'}) : null;
   const panes = h('div', {class: 'panes' + (hasSheet ? ' two' : '')}, lyricsPane, sheetPane);
   const page = h('article', {class: 'hymn', style: groupStyle(hymn.group)}, head, tabs, panes, swapBackButton(hymn));
@@ -1181,6 +1210,7 @@ function hymnScreen(view, hymn) {
   }
   function showTab(t) {
     tab = t;
+    if (t === 'sheet' && jukebox) jukebox.stopPlay();   // the sheet has a playback panel of its own
     document.body.classList.remove('bars-away', 'tabs-away');
     page.dataset.tab = t;
     if (tabs) for (const b of tabs.children) b.setAttribute('aria-selected', String(b.dataset.tab === t));

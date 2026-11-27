@@ -119,100 +119,46 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-
-                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
-                android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-        >
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="10dp"
-                    android:id="@+id/stanzaView"
-            >
-                <TextView
-                        android:id="@+id/jellybeanLyrics"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/lyricFiller"
-                        android:textIsSelectable="true"/>
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-                android:id="@+id/detailsCard"
-                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
-                android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-        >
-            <!-- Meter, Time, Tune, Author, Composer -->
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="14dp" android:paddingBottom="16dp">
-                <TextView
-                        android:id="@+id/detailsLabel"
-                        style="@style/HymnLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/details"
-                        android:layout_marginBottom="6dp"/>
-                <!-- one row per item: label | value (filled by LyricsArea); the value column wraps -->
-                <TableLayout
-                        android:id="@+id/detailsTable"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:shrinkColumns="1"/>
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
                 android:id="@+id/jukeboxCard"
                 android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
                 android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="0dp"
+                android:visibility="gone"
         >
-            <!-- plays the hymn's sheet in a style picked from a list (JukeboxCard; hidden when there is nothing to play) -->
+            <!-- plays the hymn's sheet in a style picked from a list (JukeboxCard; gone until Play is pressed; the X closes it) -->
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="6dp" android:paddingBottom="6dp">
-                <!-- the title row: a tap folds the card into it (CardFold); Hide / Show in the book's colour -->
+                <!-- the title row: the X closes the card (and stops it) -->
                 <LinearLayout
                         android:id="@+id/jukeboxHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:minHeight="44dp"
-                        android:background="@drawable/other_languages_row_ripple"
-                        android:clickable="true">
+                        android:minHeight="44dp">
                     <TextView
                             style="@style/HymnLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/jukebox"/>
-                    <TextView
-                            android:id="@+id/jukeboxFold"
+                    <View
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:textSize="14sp"
-                            android:fontFamily="sans-serif-medium"/>
+                            android:layout_height="1dp"
+                            android:layout_weight="1"/>
+                    <ImageButton
+                            android:id="@+id/jukeboxClose"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="-10dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:padding="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_close_24dp"
+                            android:contentDescription="@string/jukebox_close"/>
                 </LinearLayout>
                 <LinearLayout
                         android:id="@+id/jukeboxBody"
@@ -352,6 +298,65 @@
                             app:switchPadding="6dp"/>
                 </LinearLayout>
                 </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+
+                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
+                android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+        >
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/stanzaView"
+            >
+                <TextView
+                        android:id="@+id/jellybeanLyrics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/lyricFiller"
+                        android:textIsSelectable="true"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+                android:id="@+id/detailsCard"
+                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
+                android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+        >
+            <!-- Meter, Time, Tune, Author, Composer -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="14dp" android:paddingBottom="16dp">
+                <TextView
+                        android:id="@+id/detailsLabel"
+                        style="@style/HymnLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/details"
+                        android:layout_marginBottom="6dp"/>
+                <!-- one row per item: label | value (filled by LyricsArea); the value column wraps -->
+                <TableLayout
+                        android:id="@+id/detailsTable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:shrinkColumns="1"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

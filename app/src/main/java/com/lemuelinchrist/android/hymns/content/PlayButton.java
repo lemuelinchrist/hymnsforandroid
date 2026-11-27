@@ -14,6 +14,7 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 public class PlayButton extends ContentComponent<ImageButton> {
     private boolean isPlaying=false;
     private static PlayButton currentlyPlayingButton;
+    private JukeboxCard jukebox;
 
     public PlayButton(final Hymn hymn, Fragment parentFragment, ImageButton imageButton) {
         super(hymn,parentFragment,imageButton);
@@ -23,6 +24,10 @@ public class PlayButton extends ContentComponent<ImageButton> {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (jukebox != null && jukebox.isAvailable()) {
+                    jukebox.togglePlay();   // shows the jukebox card and plays in it (logs the play)
+                    return;
+                }
                 logToHistory();
                 if(isPlaying){
                     stop();
@@ -33,6 +38,13 @@ public class PlayButton extends ContentComponent<ImageButton> {
             }
         });
     }
+    /** The page's jukebox card: this button shows it and plays in it, and follows what it does. */
+    public void setJukebox(JukeboxCard card) {
+        jukebox = card;
+        card.setPlayStateListener(playing -> view.setImageResource(
+                playing ? R.drawable.ic_pause_white_48dp : R.drawable.ic_play_arrow_white_48dp));
+    }
+
     public void play() {
         stopCurrentlyPlayingButton();
         if (!hymn.playHymn()) {

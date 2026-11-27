@@ -437,8 +437,11 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 .fold-act { font: 600 13px var(--ui); letter-spacing: 0; text-transform: none; color: var(--g); white-space: nowrap; }
 .card.folded > :not(h2) { display: none !important; }
 .card.folded > h2 { margin-bottom: 0; }
-/* the jukebox card (jukeboxCard, under the details): Play + active style + bar progress, category pills, sub-style chips, tempo and Loop */
-.jukebox-card { margin: 14px 0 8px; padding: 12px 18px 14px; font-size: 14px; }
+/* the jukebox card (jukeboxCard, above the lyrics; shown by Play): Play + active style + bar progress, category pills, sub-style chips, tempo and Loop */
+.jukebox-card { margin: 0 0 14px; padding: 12px 18px 14px; font-size: 14px; }
+.jukebox-card .jb-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; margin: -8px 0 4px; }
+.jb-close { flex: none; width: 40px; height: 40px; margin-right: -10px; display: grid; place-items: center; border: 0; border-radius: 50%; background: none; color: var(--muted); cursor: pointer; }
+.jb-close:hover { background: var(--hover); color: var(--ink); }
 .jukebox-card h2 { margin: 0 0 10px; font: 700 12px var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .jb-main { display: flex; align-items: center; gap: 14px; }
 .jb-play { flex: none; width: 52px; height: 52px; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer; background: var(--g); color: var(--surface); }
@@ -470,6 +473,7 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 .jb-speed { flex: 1; min-width: 0; accent-color: var(--g); }
 .jb-loop { flex: none; min-height: 36px; padding: 0 16px; border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--ink); font: 600 13px var(--ui); cursor: pointer; }
 .jb-loop[aria-pressed="true"] { border-color: transparent; background: var(--g-soft); color: var(--g); }
+.jukebox-card[hidden] { display: none; }
 @media print { .jukebox-card { display: none; } }
 .stanza { break-inside: avoid; }
 @media (min-width: 760px) and (max-width: 1079px), (min-width: 640px) and (orientation: landscape) and (max-height: 600px) {

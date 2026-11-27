@@ -39,8 +39,9 @@ import java.util.regex.Pattern;
  * It plays through the hidden sheet player ({@link SheetPlayer}), whose page makes the notes with the web app's own
  * jukebox (tools/web/src/jukebox.js), so the two apps sound the same. A change while it plays goes on from the same
  * bar. A hymn opens on its sheet's own style (a style of Piano chosen at random when it names none; a category opens on a random style, never a fixed one); a style picked is for this page only. Loop
- * (on to begin with) and the tempo are kept for every hymn. The card is hidden for a hymn with nothing to play (no
- * sheet, or a sheet of chords only). It folds into its title row ({@link CardFold}); folded, it goes on playing.
+ * (on to begin with) and the tempo are kept for every hymn. The card is gone until the page's Play button is pressed (it then
+ * shows and plays), and its X stops it and takes it away again. It sits above the lyrics, under the button bar. A hymn
+ * with nothing to play (no sheet, or a sheet of chords only) has none.
  */
 public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.Listener {
     /** The categories of jukebox.js GROUPS, in its order: group id, label string resource. */
@@ -91,6 +92,8 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
     private Spinner subSpinner;
     private ImageButton diceButton;
     private boolean updatingSpinner;
+    private View cardView;
+    private PlayStateListener playStateListener;
     private SeekBar speedBar;
     private SwitchCompat loopSwitch;
     private int accent, cardBg, badgeBg, textCol, mutedStroke;
@@ -103,17 +106,46 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         super(hymn, parentFragment, card);
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
         sheetId = hymn.getSheetToPlay();
-        if (sheetId == null) {
-            card.setVisibility(View.GONE);
-            return;
-        }
+        card.setVisibility(View.GONE);   // shown by open(), when Play is pressed
+        if (sheetId == null) return;
         String head = hymn.getSheetHead(sheetId);
         hasOwn = head != null && head.contains("type=\"hands\"");
         bpm = tempoOf(head);
         setUp(card);
     }
 
+    /** Told when the card starts or stops playing (the page's Play button follows it). */
+    public interface PlayStateListener {
+        void onPlayingChanged(boolean playing);
+    }
+
+    public boolean isAvailable() {
+        return sheetId != null;
+    }
+
+    public void setPlayStateListener(PlayStateListener l) {
+        playStateListener = l;
+    }
+
+    /** The page's Play button: shows the card and plays in it; while it plays, stops it (the card stays). */
+    public void togglePlay() {
+        if (sheetId == null) return;
+        if (playing) {
+            SheetPlayer.get(context).stop();   // tells this card (onSheetStopped)
+            return;
+        }
+        cardView.setVisibility(View.VISIBLE);
+        start();
+    }
+
+    /** The X: stops the music and takes the card away until Play is pressed again. */
+    private void close() {
+        if (playing) SheetPlayer.get(context).stop();
+        cardView.setVisibility(View.GONE);
+    }
+
     private void setUp(View card) {
+        cardView = card;
         accent = BookColors.accent(context, hymn.getHymnGroup());
         cardBg = BookColors.color(context, R.attr.hymnCardBackground);
         badgeBg = BookColors.color(context, R.attr.hymnBadgeBackground);
@@ -217,8 +249,9 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
             if (playing) start();
         });
         showStopped();
-        CardFold.attach(context, hymn.getHymnGroup(), card.findViewById(R.id.jukeboxHeader),
-                card.findViewById(R.id.jukeboxFold), card.findViewById(R.id.jukeboxBody), CardFold.JUKEBOX);
+        ImageButton closeButton = card.findViewById(R.id.jukeboxClose);
+        closeButton.setImageTintList(ColorStateList.valueOf(BookColors.color(context, R.attr.hymnTextMuted)));
+        closeButton.setOnClickListener(v -> close());
     }
 
     private void chooseStyle(String chosen) {
@@ -391,6 +424,7 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         playing = true;
         playButton.setImageResource(R.drawable.ic_pause_white_48dp);
         playButton.setContentDescription(context.getString(R.string.jukebox_stop));
+        if (playStateListener != null) playStateListener.onPlayingChanged(true);
     }
 
     @Override
@@ -412,6 +446,7 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         playButton.setContentDescription(context.getString(R.string.jukebox_play));
         progress.setProgress(0);
         barText.setText("");
+        if (playStateListener != null) playStateListener.onPlayingChanged(false);
     }
 
     private void tempoChanged() {

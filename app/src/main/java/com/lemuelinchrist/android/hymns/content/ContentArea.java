@@ -149,6 +149,7 @@ public class ContentArea extends Fragment {
         similarTuneButton = new SimilarTuneButton(hymn,this,
                 (ImageButton)rootView.findViewById(getRid("similarTuneButton")));
         jukebox = new JukeboxCard(hymn, this, rootView.findViewById(R.id.jukeboxCard));
+        playButton.setJukebox(jukebox);
 
         return rootView;
     }
