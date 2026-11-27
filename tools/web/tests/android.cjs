@@ -100,17 +100,18 @@ const BF500 = 'id=BF500&variant=piano&accent=%230099cc&accentNight=%2333b5e5&tun
     const bg = await page.locator('.sheet-bar .seg .tb[aria-pressed="true"]').evaluate((e) => getComputedStyle(e).backgroundColor);
     assert(bg === 'rgb(0, 153, 204)', 'Piano pressed in the day colour: ' + bg);
   });
-  await test('Both hands opens its panel; ▶ plays at the tune\'s tempo and shades the bar', async () => {
+  await test('Both hands opens the unified dock; ▶ plays at the tune\'s tempo and shades the bar', async () => {
     await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Both hands")'); await page.waitForTimeout(800);   // not in the bar on a phone
-    assert(await page.locator('.piano-panel .pp-body').isVisible(), 'the panel');
-    const pressed = await page.locator('.piano-panel .ce-btn[aria-pressed="true"]').first().evaluate((e) => getComputedStyle(e).backgroundColor);
-    assert(pressed === 'rgb(0, 153, 204)', 'the panel in the book\'s colour too: ' + pressed);
-    await page.click('.piano-panel button:text-is("Done")');
+    assert(await page.locator('.ud-dock.sheet-dock .ud-drawer').isVisible(), 'the unified dock drawer');
+    const pressed = await page.locator('.ud-dock.sheet-dock .ud-chip[aria-pressed="true"]').first().evaluate((e) => getComputedStyle(e).backgroundColor);
+    assert(pressed === 'rgb(0, 153, 204)', 'the dock in the book\'s colour too: ' + pressed);
+    await page.click('.ud-dock.sheet-dock .ud-expand');
+    assert(await page.locator('.ud-dock.sheet-dock .ud-drawer').isHidden(), 'collapsed to slim bar');
     await page.click('.tb.playsheet'); await page.waitForTimeout(1500);
-    assert((await page.locator('.sheet-player .tb.primary').textContent()).includes('Stop'), 'it plays');
-    assert(await page.locator('.sp-tempo').textContent() === '♩ = 89', 'the tune\'s tempo: ' + await page.locator('.sp-tempo').textContent());
+    assert(await page.locator('.ud-dock.sheet-dock .ud-play').getAttribute('aria-pressed') === 'true', 'it plays');
+    assert(await page.locator('.ud-dock.sheet-dock .ud-tempo').textContent() === '♩ = 89', 'the tune\'s tempo: ' + await page.locator('.ud-dock.sheet-dock .ud-tempo').textContent());
     assert(await page.locator('.sp-bar').isVisible() && await page.locator('[id^="lh"].playing').count() > 0, 'the bar and the left hand light up');
-    await page.click('.tb.playsheet'); await page.waitForTimeout(300);
+    await page.click('.ud-dock.sheet-dock .ud-close'); await page.waitForTimeout(300);
     await page.click('.sheet-bar .tb.sheet-more'); await page.click('.share-menu button:has-text("Both hands")'); await page.waitForTimeout(500);
   });
   await test('chord editing fits a phone: three lines, saved through the app, Back closes it', async () => {

@@ -120,186 +120,189 @@
 
         <androidx.cardview.widget.CardView
                 android:id="@+id/jukeboxCard"
-                android:layout_width="match_parent" android:layout_height="wrap_content" app:cardCornerRadius="5dp" app:cardElevation="?attr/hymnCardElevation" app:cardBackgroundColor="?attr/hymnCardBackground"
-                android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="0dp"
-                android:visibility="gone"
-        >
-            <!-- plays the hymn's sheet in a style picked from a list (JukeboxCard; gone until Play is pressed; the X closes it) -->
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="?attr/hymnCardElevation"
+                app:cardBackgroundColor="?attr/hymnCardBackground"
+                app:cardPreventCornerOverlap="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone">
+            <!-- Unified Proposal 1 Jukebox inline card: 3dp top progress edge, 1-row Play/Style/Loop/Expand/Close bar,
+                 and a collapsible drawer with 4 segmented category tabs, scrollable style chips (+ refresh shuffle side-buttons),
+                 Chorale More walking switch, and Tempo slider. -->
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="25dp" android:paddingRight="25dp" android:paddingTop="6dp" android:paddingBottom="6dp">
-                <!-- the title row: the X closes the card (and stops it) -->
+                    android:orientation="vertical">
+                <ProgressBar
+                        android:id="@+id/jukeboxProgress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:max="100"
+                        android:progress="0"/>
+                <!-- Main slim 1-row bar -->
                 <LinearLayout
                         android:id="@+id/jukeboxHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:minHeight="44dp">
-                    <TextView
-                            style="@style/HymnLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/jukebox"/>
-                    <View
-                            android:layout_width="0dp"
-                            android:layout_height="1dp"
-                            android:layout_weight="1"/>
-                    <ImageButton
-                            android:id="@+id/jukeboxClose"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginEnd="-10dp"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:padding="10dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_close_24dp"
-                            android:contentDescription="@string/jukebox_close"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:id="@+id/jukeboxBody"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingTop="2dp"
-                        android:paddingBottom="6dp">
-                <!-- Play, and beside it the active style and how far it has played -->
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:paddingStart="12dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
                     <ImageButton
                             android:id="@+id/jukeboxPlay"
-                            android:layout_width="52dp"
-                            android:layout_height="52dp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:background="@drawable/jukebox_play_bg"
                             android:src="@drawable/ic_play_arrow_white_48dp"
                             android:scaleType="centerInside"
-                            android:padding="10dp"
+                            android:padding="9dp"
                             android:contentDescription="@string/jukebox_play"/>
                     <LinearLayout
+                            android:id="@+id/jukeboxMeta"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:layout_marginStart="14dp"
-                            android:orientation="vertical">
-                        <LinearLayout
+                            android:layout_marginStart="11dp"
+                            android:layout_marginEnd="4dp"
+                            android:orientation="vertical"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp">
+                        <TextView
+                                android:id="@+id/jukeboxCurrent"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical">
-                            <TextView
-                                    android:id="@+id/jukeboxCurrent"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:singleLine="true"
-                                    android:ellipsize="end"
-                                    android:textSize="15sp"
-                                    android:fontFamily="sans-serif-medium"
-                                    android:textColor="?attr/hymnText"/>
-                            <TextView
-                                    android:id="@+id/jukeboxBar"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:gravity="end"
-                                    android:textSize="12sp"
-                                    android:textColor="?attr/hymnTextMuted"/>
-                        </LinearLayout>
-                        <ProgressBar
-                                android:id="@+id/jukeboxProgress"
-                                style="?android:attr/progressBarStyleHorizontal"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textColor="?attr/hymnText"/>
+                        <TextView
+                                android:id="@+id/jukeboxSub"
                                 android:layout_width="match_parent"
-                                android:layout_height="4dp"
-                                android:layout_marginTop="8dp"
-                                android:max="1"
-                                android:progress="0"/>
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                android:textSize="12sp"
+                                android:textColor="?attr/hymnTextMuted"/>
                     </LinearLayout>
+                    <ImageButton
+                            android:id="@+id/jukeboxLoop"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:padding="9dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_loop_24dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/jukebox_loop"/>
+                    <ImageButton
+                            android:id="@+id/jukeboxExpand"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="2dp"
+                            android:padding="9dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_expand_more_24dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/jukebox_expand"/>
+                    <ImageButton
+                            android:id="@+id/jukeboxClose"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="2dp"
+                            android:padding="9dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_close_24dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/jukebox_close"/>
                 </LinearLayout>
-                <!-- Category pills and sub-style chips -->
-                <com.lemuelinchrist.android.hymns.content.WrapLayout
-                        android:id="@+id/jukeboxCategories"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:contentDescription="@string/jukebox_category"/>
+                <!-- Collapsible drawer -->
                 <View
-                        android:id="@+id/jukeboxSubDivider"
+                        android:id="@+id/jukeboxDrawerDivider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
                         android:background="?attr/hymnBadgeBackground"/>
-                <!-- the sub-style: a drop-down and a dice that picks one at random -->
                 <LinearLayout
-                        android:id="@+id/jukeboxSubstyles"
+                        android:id="@+id/jukeboxDrawer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:visibility="gone">
-                    <Spinner
-                            android:id="@+id/jukeboxSubSpinner"
-                            android:layout_width="0dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            android:maxWidth="260dp"
-                            android:spinnerMode="dropdown"
-                            android:contentDescription="@string/jukebox_style"/>
-                    <ImageButton
-                            android:id="@+id/jukeboxDice"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="8dp"
-                            android:padding="8dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_dice_24dp"
-                            android:contentDescription="@string/jukebox_random"/>
-                </LinearLayout>
-                <!-- the tempo (a tap on it: the sheet's own again) and Loop -->
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_marginTop="10dp">
-                    <TextView
-                            android:id="@+id/jukeboxTempo"
-                            android:layout_width="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="12dp">
+                    <!-- 4-tab category bar -->
+                    <LinearLayout
+                            android:id="@+id/jukeboxCategories"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:minWidth="74dp"
-                            android:minHeight="40dp"
+                            android:orientation="horizontal"
+                            android:padding="3dp"
+                            android:contentDescription="@string/jukebox_category"/>
+                    <!-- Horizontal style chips (including attached refresh side-buttons on Flowing, Lively, Fingerpicking) -->
+                    <HorizontalScrollView
+                            android:id="@+id/jukeboxSubScroll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:scrollbars="none"
+                            android:overScrollMode="never">
+                        <LinearLayout
+                                android:id="@+id/jukeboxSubstyles"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:contentDescription="@string/jukebox_style"/>
+                    </HorizontalScrollView>
+                    <!-- Tempo + Chorale More walking switch -->
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
                             android:gravity="center_vertical"
-                            android:textSize="14sp"
-                            android:textColor="?attr/hymnText"
-                            android:background="?android:attr/selectableItemBackground"
-                            android:contentDescription="@string/jukebox_tempo_reset"/>
-                    <SeekBar
-                            android:id="@+id/jukeboxSpeed"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:max="20"
-                            android:contentDescription="@string/jukebox_tempo_label"/>
-                    <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/jukeboxLoop"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:text="@string/jukebox_loop"
-                            android:textColor="?attr/hymnText"
-                            android:textSize="14sp"
-                            app:switchPadding="6dp"/>
-                </LinearLayout>
+                            android:layout_marginTop="8dp">
+                        <TextView
+                                android:id="@+id/jukeboxTempo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:minWidth="62dp"
+                                android:minHeight="36dp"
+                                android:gravity="center_vertical"
+                                android:textSize="13sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textColor="?attr/hymnText"
+                                android:background="?android:attr/selectableItemBackground"
+                                android:contentDescription="@string/jukebox_tempo_reset"/>
+                        <SeekBar
+                                android:id="@+id/jukeboxSpeed"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="20"
+                                android:contentDescription="@string/jukebox_tempo_label"/>
+                        <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/jukeboxWalk"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/jukebox_more_walking"
+                                android:textColor="?attr/hymnText"
+                                android:textSize="12.5sp"
+                                app:switchPadding="6dp"
+                                android:visibility="gone"/>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
 

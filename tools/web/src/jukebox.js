@@ -15,24 +15,23 @@ import * as Player from './player.js';
 export const GROUPS = [
   {id: 'own', name: 'Hymn\'s own'},
   {id: 'piano', name: 'Piano'},
-  {id: 'strum', name: 'Guitar strum'},
-  {id: 'pick', name: 'Guitar pick'},
+  {id: 'guitar', name: 'Guitar'},
   {id: 'melody', name: 'Melody'},
 ];
 
 export const STYLES = [
   {id: 'own', group: 'own', name: 'The hymn\'s own style'},
-  {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing'},
   {id: 'plain', group: 'piano', name: 'Plain', preset: 'plain'},
-  {id: 'chorale', group: 'piano', name: 'Chorale', preset: 'chorale'},
-  {id: 'lively', group: 'piano', name: 'Lively', preset: 'lively'},
+  {id: 'chorale', group: 'piano', name: 'Chorale', preset: 'chorale', walk: true},
+  {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing', shuffle: true},
+  {id: 'lively', group: 'piano', name: 'Lively', preset: 'lively', shuffle: true},
   {id: 'walking', group: 'piano', name: 'Walking', preset: 'walking'},
-  {id: 'guitar-folk', group: 'strum', name: 'Folk strum', strum: 'folk'},
-  {id: 'guitar-pop', group: 'strum', name: 'Pop', strum: 'pop'},
-  {id: 'guitar-steady', group: 'strum', name: 'Steady', strum: 'steady'},
-  {id: 'guitar-ballad', group: 'strum', name: 'Ballad', strum: 'ballad'},
-  {id: 'guitar-country', group: 'strum', name: 'Country', strum: 'country'},
-  {id: 'guitar-pick', group: 'pick', name: 'Fingerpicking', strum: 'pick'},
+  {id: 'guitar-folk', group: 'guitar', name: 'Folk strum', strum: 'folk'},
+  {id: 'guitar-pop', group: 'guitar', name: 'Pop', strum: 'pop'},
+  {id: 'guitar-steady', group: 'guitar', name: 'Steady', strum: 'steady'},
+  {id: 'guitar-ballad', group: 'guitar', name: 'Ballad', strum: 'ballad'},
+  {id: 'guitar-country', group: 'guitar', name: 'Country', strum: 'country'},
+  {id: 'guitar-pick', group: 'guitar', name: 'Fingerpicking', strum: 'pick', shuffle: true},
   {id: 'melody', group: 'melody', name: 'Melody alone'},
 ];
 export const DEFAULT_STYLE = 'own', FALLBACK_STYLE = 'flowing';   // a sheet without its own part: Flowing (piano.js DEFAULT)
@@ -68,7 +67,8 @@ function tempoOf(doc) {
 
 // The notes of a sheet in a style: {score, bpm, mute} (mute: the parts not heard, for player.js), or null when there is
 // nothing to play. edits: this device's chord edits of the sheet ({bar: ...}) or null. seed: phrase-shuffle take (0 = hymn's own).
-export function jukeboxScore(xml, edits, styleId, loop, seed = 0) {
+// walk: More walking (Chorale).
+export function jukeboxScore(xml, edits, styleId, loop, seed = 0, walk = false) {
   const doc = soundDoc(xml, edits || null);
   const own = handsOf(doc);
   const style = styleFor(styleId, !!own);
@@ -78,6 +78,7 @@ export function jukeboxScore(xml, edits, styleId, loop, seed = 0) {
   else if (style.strum) choice = strumChoice({kind: style.strum, tone: 'warm', seed: seed | 0}, capoOf(doc));   // in the guitar sheet's shapes, above its capo
   else mute = {c: true, f: true, l: true};   // the melody alone: without the chords the viewer plays softly under it
   if (seed && choice && choice.lh) choice.lh.seed = seed | 0;
+  if (walk && choice && choice.lh) choice.lh.walk = true;
   const score = scoreOf(doc, choice, {hands: !!choice, loop: !!loop});
   if (!score || !score.events.some((e) => !mute[e.hand])) return null;
   return {score, bpm: tempoOf(doc), mute};
@@ -99,7 +100,7 @@ export function jukeboxPlayer({load, onBar, onStop}) {
     Player.unlock();                                 // inside the tap: iOS lets the sound start only there
     if (!sheet) sheet = await load();
     if (mine !== token) return false;                // stopped, or played again, while loading
-    const made = jukeboxScore(sheet.xml, sheet.edits, o.style, o.loop, o.seed | 0);
+    const made = jukeboxScore(sheet.xml, sheet.edits, o.style, o.loop, o.seed | 0, !!o.walk);
     if (!made) throw new Error('nothing to play');
     const {score, bpm, mute} = made;
     shownBar = 0;

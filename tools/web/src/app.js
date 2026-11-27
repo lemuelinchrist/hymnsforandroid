@@ -799,20 +799,32 @@ function foldTitle(card, title, key) {
   return h('h2', null, btn);
 }
 
-// The jukebox card under the details (as the Android app's, JukeboxCard.java): Play, the style (jukebox.js STYLES: the
-// hymn's own, Piano, Guitar, Melody alone), how far it has played, the tempo and Loop. It plays the hymn's sheet (this
-// device's chord edits, the tempo the sheet names) without opening it; a change while it plays goes on from the same
-// bar. A hymn opens on its sheet's own style (Flowing when it names none); a style picked is for this page only. Loop
-// (on to begin with) and the tempo are kept for every hymn. Shown once the sheet is read, and only when it has a
-// melody (not a sheet of chords only). It is hidden until the page's Play is pressed on the lyrics (open()): it then shows
-// above the lyrics and plays; its X (close) stops it and hides it until Play is pressed again.
-// stopOthers(): the page's other sound stops (the Play button's, the sheet's). onChange(): it started, stopped or shown.
-// -> {el, ready (a promise: true when there is a melody to play), open(), toggle(), stopPlay(), playing, stop()}
+// The jukebox (Proposal 1 Unified Bottom Dock on the lyrics tab): floating frosted bottom mini-player matching the
+// sheet viewer's dock, with a 3px top progress bar, slim 1-row Play/Style/Loop/Expand/Close bar, and an expandable
+// drawer with 4 category tabs (Hymn's own | Piano | Guitar | Melody), Dice randomizer, horizontal style chips with
+// attached refresh shuffle side-buttons (Flowing, Lively, Fingerpicking), Chorale More walking switch, and Tempo slider.
 function jukeboxCard(hymn, stopOthers, onChange) {
-  const el = h('section', {class: 'card jukebox-card', hidden: true, 'aria-label': tr('Jukebox')});
+  const JB_IC = {
+    play: '<svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M7.5 5.2v13.6L19 12z"/></svg>',
+    stop: '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>',
+    loop: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>',
+    chevUp: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>',
+    chevDown: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>',
+    close: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>',
+    refresh: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36L21 8"/><path d="M21 3v5h-5"/></svg>',
+  };
+  const el = h('section', {class: 'ud-dock jukebox-dock', hidden: true, role: 'region', 'aria-label': tr('Jukebox')});
   const prefs = Object.assign({loop: true}, store.get('jukebox', {}), {speed: 1});   // the tempo is not kept: every hymn starts at its own
   const keep = () => store.set('jukebox', {loop: !!prefs.loop});
-  let J = null, info = null, juke = null, playing = false, disposed = false, startIt = null, stopIt = null;
+  let J = null, info = null, juke = null, playing = false, disposed = false, expanded = true, startIt = null, stopIt = null, ro = null;
+  const setHeight = () => {
+    if (!el.hidden) document.body.style.setProperty('--editor-h', (el.offsetHeight + 14) + 'px');
+  };
+  const syncBody = () => {
+    document.body.classList.toggle('jukebox-open', !el.hidden);
+    if (el.hidden) document.body.style.removeProperty('--editor-h');
+    else setHeight();
+  };
   const changed = () => { if (onChange) onChange(); };
   const ready = (async () => {
     try {
@@ -823,106 +835,165 @@ function jukeboxCard(hymn, stopOthers, onChange) {
       return true;
     } catch (e) { return false; /* no sheet to read: no jukebox */ }
   })();
-  // Play: shows the card and plays in it, or, while it plays, stops it (the card stays). false: nothing to play
+  // Play: shows the dock and plays in it, or, while it plays, stops it (the dock stays). false: nothing to play
   async function toggle() {
     Player.unlock();
     if (!(await ready) || disposed) return false;
     if (playing) { stopIt(); return true; }
     el.hidden = false;
+    syncBody();
     startIt();
     changed();
     return true;
   }
-  function close() { if (playing) stopIt(); el.hidden = true; changed(); }
+  function close() { if (playing) stopIt(); el.hidden = true; syncBody(); changed(); }
 
   function build() {
     prefs.speed = Math.max(J.MIN_SPEED, Math.min(J.MAX_SPEED, +prefs.speed || 1));
-    const playBtn = h('button', {class: 'jb-play', type: 'button', 'aria-pressed': 'false'});
-    // a category with several styles starts on one of them chosen at random (no default); the dice picks another
     const subsOf = (gid) => J.STYLES.filter((x) => x.group === gid);
     const randomIn = (gid, not) => {
       const pool = subsOf(gid).filter((x) => x.id !== not);
       return pool[Math.floor(Math.random() * pool.length)] || null;
     };
-    let curStyle = J.styleFor(null, info.own);
+    let curStyle = J.styleFor(null, info.own), curSeed = 0, curWalk = false;
     if (subsOf(curStyle.group).length > 1) curStyle = randomIn(curStyle.group);
 
-    const curText = h('span', {class: 'jb-current'});
-    const fill = h('span', {class: 'jb-fill'});
-    const barText = h('span', {class: 'jb-bar'});
-    const catRow = h('div', {class: 'jb-cats', role: 'group', 'aria-label': tr('Category')});
-    const subSelect = h('select', {class: 'jb-select', 'aria-label': tr('Style')});
-    const diceBtn = h('button', {class: 'jb-dice', type: 'button', title: tr('Pick a style at random'), 'aria-label': tr('Pick a style at random')}, icon('dice'));
-    const subRow = h('div', {class: 'jb-subs'}, subSelect, diceBtn);
-    const tempoBtn = h('button', {class: 'jb-tempo', type: 'button', title: tr('The hymn\'s own tempo')});
-    const speed = h('input', {class: 'jb-speed', type: 'range', min: String(J.MIN_SPEED), max: String(J.MAX_SPEED), step: '0.05', 'aria-label': tr('Tempo')});
+    const fill = h('i');
+    const progBar = h('div', {class: 'ud-prog', 'aria-hidden': 'true'}, fill);
+    const playBtn = h('button', {class: 'ud-play', type: 'button', 'aria-pressed': 'false'});
+    const nameEl = h('div', {class: 'ud-name'});
+    const tempoBadge = h('span');
+    const extraBadge = h('span');
+    const barBadge = h('span');
+    const subEl = h('div', {class: 'ud-sub'}, tempoBadge, extraBadge, barBadge);
+    const metaBtn = h('button', {class: 'ud-meta', type: 'button', 'aria-expanded': 'true', title: tr('Style & tempo')}, nameEl, subEl);
+    const loopBtn = h('button', {class: 'ud-icbtn ud-loop', type: 'button', 'aria-pressed': String(!!prefs.loop), title: tr('Play again and again'), 'aria-label': tr('Loop')});
+    loopBtn.innerHTML = JB_IC.loop;
+    const expandBtn = h('button', {class: 'ud-icbtn ud-expand', type: 'button', 'aria-expanded': 'true', title: tr('Style & tempo'), 'aria-label': tr('Style & tempo')});
+    const closeBtn = h('button', {class: 'ud-icbtn ud-close', type: 'button', title: tr('Close the jukebox'), 'aria-label': tr('Close the jukebox'), onclick: close});
+    closeBtn.innerHTML = JB_IC.close;
+    const bar = h('div', {class: 'ud-bar'}, playBtn, metaBtn, loopBtn, expandBtn, closeBtn);
+
+    const tabsEl = h('div', {class: 'ud-tabs', role: 'group', 'aria-label': tr('Category')});
+    const chipRail = h('div', {class: 'ud-rail', role: 'group', 'aria-label': tr('Style')});
+    const tempoBtn = h('button', {class: 'ud-tempo', type: 'button', title: tr('The hymn\'s own tempo')});
+    const speed = h('input', {class: 'ud-speed', type: 'range', min: String(J.MIN_SPEED), max: String(J.MAX_SPEED), step: '0.05', 'aria-label': tr('Tempo')});
     speed.value = String(prefs.speed);
-    const loopBtn = h('button', {class: 'jb-loop', type: 'button', 'aria-pressed': String(!!prefs.loop), title: tr('Play again and again')}, tr('Loop'));
-    const closeBtn = h('button', {class: 'jb-close', type: 'button', title: tr('Close the jukebox'), 'aria-label': tr('Close the jukebox'), onclick: close}, icon('close'));
-    el.append(h('h2', {class: 'jb-head'}, h('span', null, tr('Jukebox')), closeBtn),
-      h('div', {class: 'jb-main'}, playBtn,
-        h('div', {class: 'jb-side'},
-          h('div', {class: 'jb-status'}, curText, barText),
-          h('div', {class: 'jb-progress'}, h('span', {class: 'jb-track'}, fill)))),
-      catRow, subRow,
-      h('div', {class: 'jb-row'}, tempoBtn, speed, loopBtn));
+    const mixWrap = h('div', {class: 'ud-mix'});
+    const optRow = h('div', {class: 'ud-row'}, h('div', {class: 'ud-tempo-wrap'}, tempoBtn, speed), mixWrap);
+    const drawer = h('div', {class: 'ud-drawer'}, tabsEl, chipRail, optRow);
+
+    el.append(progBar, bar, drawer);
+    ro = new ResizeObserver(setHeight);
+    ro.observe(el);
+
+    const setExpanded = (on) => {
+      expanded = !!on;
+      drawer.hidden = !expanded;
+      el.classList.toggle('open', expanded);
+      metaBtn.setAttribute('aria-expanded', String(expanded));
+      expandBtn.setAttribute('aria-expanded', String(expanded));
+      expandBtn.classList.toggle('on', expanded);
+      expandBtn.innerHTML = expanded ? JB_IC.chevDown : JB_IC.chevUp;
+      setHeight();
+    };
+    metaBtn.addEventListener('click', () => setExpanded(!expanded));
+    expandBtn.addEventListener('click', () => setExpanded(!expanded));
+    setExpanded(true);
 
     const catBtns = new Map();
     for (const grp of J.GROUPS) {
       if (grp.id === 'own' && !info.own) continue;
-      const b = h('button', {class: 'jb-cat', type: 'button', 'aria-pressed': 'false'}, tr(grp.name));
+      const b = h('button', {type: 'button', 'aria-pressed': 'false'}, tr(grp.name));
       b.addEventListener('click', () => {
         if (grp.id === curStyle.group) return;
-        choose(subsOf(grp.id).length > 1 ? randomIn(grp.id) : J.STYLES.find((x) => x.group === grp.id));
+        choose(subsOf(grp.id).length > 1 ? randomIn(grp.id) : J.STYLES.find((x) => x.group === grp.id), 0);
       });
       catBtns.set(grp.id, b);
-      catRow.appendChild(b);
+      tabsEl.appendChild(b);
     }
 
-    function renderPills() {
-      const grp = J.GROUPS.find((g) => g.id === curStyle.group);
-      const subs = J.STYLES.filter((s) => s.group === curStyle.group);
-      curText.textContent = subs.length > 1 && grp ? tr(grp.name) + ' · ' + tr(curStyle.name) : tr(curStyle.name);
+    function renderStyles() {
+      const subs = subsOf(curStyle.group);
+      const parts = [tr(curStyle.name)];
+      if (curStyle.walk && curWalk) parts.push(tr('More walking'));
+      if (curStyle.shuffle && curSeed > 0) parts.push(tr('Shuffled'));
+      nameEl.textContent = parts.join(' · ');
+      extraBadge.textContent = prefs.loop ? ' · ' + tr('Loop') : '';
       for (const [gid, b] of catBtns) b.setAttribute('aria-pressed', String(gid === curStyle.group));
-      subRow.hidden = subs.length <= 1;
+
+      chipRail.textContent = '';
       if (subs.length > 1) {
-        subSelect.textContent = '';
-        for (const st of subs) subSelect.appendChild(h('option', {value: st.id}, tr(st.name)));
-        subSelect.value = curStyle.id;
+        chipRail.hidden = false;
+        for (const st of subs) {
+          const on = st.id === curStyle.id;
+          if (st.shuffle) {
+            const wrap = h('span', {class: 'ud-split' + (on ? ' active' : '')});
+            const main = h('button', {class: 'ud-chip ud-split-main', type: 'button', 'aria-pressed': String(on)}, tr(st.name));
+            main.addEventListener('click', () => choose(st, 0));
+            const side = h('button', {class: 'ud-chip ud-split-side', type: 'button', title: tr('Shuffle this style\'s phrasing'), 'aria-label': tr('Shuffle Style')});
+            side.innerHTML = JB_IC.refresh;
+            side.addEventListener('click', () => choose(st, 1 + Math.floor(Math.random() * 99999)));
+            wrap.append(main, side);
+            chipRail.appendChild(wrap);
+          } else {
+            const b = h('button', {class: 'ud-chip', type: 'button', 'aria-pressed': String(on)}, tr(st.name));
+            b.addEventListener('click', () => choose(st, 0));
+            chipRail.appendChild(b);
+          }
+        }
+      } else {
+        chipRail.hidden = true;
       }
+
+      mixWrap.textContent = '';
+      if (curStyle.walk) {
+        const sw = h('button', {class: 'ud-switch', type: 'button', role: 'switch', 'aria-checked': String(curWalk), title: tr('The bass and the tenor walk between the chords more often')},
+          h('span', {class: 'ud-track', 'aria-hidden': 'true'}), h('span', {class: 'ud-switch-lbl'}, tr('More walking')));
+        sw.addEventListener('click', () => { curWalk = !curWalk; renderStyles(); again(); });
+        mixWrap.appendChild(sw);
+      }
+      setHeight();
     }
-    function choose(st) {
-      if (!st || st.id === curStyle.id) return;
+
+    function choose(st, seed = 0) {
+      if (!st) return;
+      if (st.id === curStyle.id && seed === curSeed) return;
       curStyle = st;
-      renderPills();
+      curSeed = st.shuffle ? seed : 0;
+      renderStyles();
       again();
     }
 
-    subSelect.addEventListener('change', () => choose(J.STYLES.find((x) => x.id === subSelect.value)));
-    diceBtn.addEventListener('click', () => choose(randomIn(curStyle.group, curStyle.id)));
-    const showTempo = () => { tempoBtn.textContent = '♩ = ' + Math.round(info.bpm * prefs.speed); };
+    const showTempo = () => {
+      const txt = '♩ = ' + Math.round(info.bpm * prefs.speed);
+      tempoBtn.textContent = txt;
+      tempoBadge.textContent = txt;
+    };
     const show = () => {
-      playBtn.replaceChildren(icon(playing ? 'pause' : 'play'));
+      playBtn.innerHTML = playing ? JB_IC.stop : JB_IC.play;
       playBtn.setAttribute('aria-pressed', String(playing));
       changed();
       const label = playing ? tr('Stop') : tr('Play');
       playBtn.title = label;
       playBtn.setAttribute('aria-label', label);
-      if (!playing) { fill.style.width = '0'; barText.textContent = ''; }
+      loopBtn.classList.toggle('on', !!prefs.loop);
+      loopBtn.setAttribute('aria-pressed', String(!!prefs.loop));
+      extraBadge.textContent = prefs.loop ? ' · ' + tr('Loop') : '';
+      if (!playing) { fill.style.width = '0'; barBadge.textContent = ''; }
     };
-    const onBar = (bar, bars) => {
-      fill.style.width = (100 * bar / Math.max(1, bars)) + '%';
-      barText.textContent = tr('Bar {0} of {1}', bar, bars);
+    const onBar = (barNo, bars) => {
+      fill.style.width = (100 * barNo / Math.max(1, bars)) + '%';
+      barBadge.textContent = ' · ' + tr('Bar {0} of {1}', barNo, bars);
     };
-    const options = () => ({style: curStyle.id, loop: !!prefs.loop, speed: prefs.speed});
-    // Play: a new player reads the sheet again (its chord edits may have changed); a change while it plays does not
+    const options = () => ({style: curStyle.id, loop: !!prefs.loop, speed: prefs.speed, seed: curSeed, walk: !!(curStyle.walk && curWalk)});
     function start() {
       if (!playing) {
         stopOthers();
         if (juke) juke.stop();
         juke = J.jukeboxPlayer({
           load: async () => {
-            await loadScript('music.js');   // the piano part's rules (window.LeadSheet)
+            await loadScript('music.js');
             const [xml, saved] = await Promise.all([host.mei(hymn.sheetId), host.edits.get(hymn.sheetId).catch(() => null)]);
             return {xml, edits: saved && saved.bars};
           },
@@ -939,13 +1010,13 @@ function jukeboxCard(hymn, stopOthers, onChange) {
     speed.addEventListener('input', () => { prefs.speed = parseFloat(speed.value) || 1; showTempo(); });
     speed.addEventListener('change', () => { keep(); again(); });
     tempoBtn.addEventListener('click', () => { speed.value = '1'; prefs.speed = 1; showTempo(); keep(); again(); });
-    loopBtn.addEventListener('click', () => { prefs.loop = !prefs.loop; keep(); loopBtn.setAttribute('aria-pressed', String(prefs.loop)); again(); });
-    renderPills();
+    loopBtn.addEventListener('click', () => { prefs.loop = !prefs.loop; keep(); show(); again(); });
+    renderStyles();
     showTempo();
     show();
   }
   return {el, ready, toggle, close, get playing() { return playing; }, stopPlay() { if (playing) stopIt(); },
-    stop() { disposed = true; if (juke) juke.stop(); }};
+    stop() { disposed = true; if (ro) ro.disconnect(); if (juke) juke.stop(); document.body.classList.remove('jukebox-open'); }};
 }
 
 // the card under the details for links that open outside the app (the Android app's "Listen and links" card), in sections:

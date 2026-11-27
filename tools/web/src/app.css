@@ -437,44 +437,6 @@ body:not(.ready) .topbar .searchbox, body:not(.ready) .hymnal-btn { visibility: 
 .fold-act { font: 600 13px var(--ui); letter-spacing: 0; text-transform: none; color: var(--g); white-space: nowrap; }
 .card.folded > :not(h2) { display: none !important; }
 .card.folded > h2 { margin-bottom: 0; }
-/* the jukebox card (jukeboxCard, above the lyrics; shown by Play): Play + active style + bar progress, category pills, sub-style chips, tempo and Loop */
-.jukebox-card { margin: 0 0 14px; padding: 12px 18px 14px; font-size: 14px; }
-.jukebox-card .jb-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; margin: -8px 0 4px; }
-.jb-close { flex: none; width: 40px; height: 40px; margin-right: -10px; display: grid; place-items: center; border: 0; border-radius: 50%; background: none; color: var(--muted); cursor: pointer; }
-.jb-close:hover { background: var(--hover); color: var(--ink); }
-.jukebox-card h2 { margin: 0 0 10px; font: 700 12px var(--ui); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.jb-main { display: flex; align-items: center; gap: 14px; }
-.jb-play { flex: none; width: 52px; height: 52px; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer; background: var(--g); color: var(--surface); }
-.jb-play .icon svg { width: 26px; height: 26px; fill: currentColor; }
-.jb-play[aria-pressed="true"] .icon svg { fill: none; stroke-width: 2.6; }
-.jb-play:active { filter: brightness(.9); }
-.jb-side { flex: 1; min-width: 0; display: grid; gap: 8px; }
-.jb-status { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; min-width: 0; }
-.jb-current { font: 600 15px var(--ui); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.jb-progress { display: flex; align-items: center; min-height: 6px; }
-.jb-track { flex: 1; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
-.jb-fill { display: block; width: 0; height: 100%; background: var(--g); transition: width .25s linear; }
-.jb-bar { flex: none; text-align: right; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.jb-cats, .jb-subs { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 10px; }
-.jb-subs[hidden] { display: none; }
-.jb-subs { margin-top: 7px; padding-top: 7px; border-top: 1px solid var(--line); }
-.jb-cat { min-height: 34px; padding: 0 12px; border-radius: 999px; font: 600 13px var(--ui); cursor: pointer; transition: background .12s, color .12s, border-color .12s; }
-.jb-cat { border: 1px solid var(--line); background: var(--hover); color: var(--ink); }
-.jb-cat[aria-pressed="true"] { border-color: transparent; background: var(--g); color: var(--surface); }
-.jb-subs { align-items: center; flex-wrap: nowrap; gap: 8px; }
-.jb-select { flex: 0 1 220px; min-width: 0; min-height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font: 500 14px var(--ui); }
-.jb-dice { flex: none; width: 38px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 10px; background: var(--hover); color: var(--g); cursor: pointer; }
-.jb-dice .icon svg { width: 22px; height: 22px; }
-.jb-dice:hover { border-color: var(--g); }
-.jb-cat:hover:not([aria-pressed="true"]) { border-color: var(--g); }
-.jb-row { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
-.jb-tempo { flex: none; min-width: 5.2em; min-height: 36px; padding: 0 4px; border: 0; border-radius: 6px; background: none; color: var(--ink); font: 14px var(--ui); text-align: left; cursor: pointer; font-variant-numeric: tabular-nums; }
-.jb-tempo:hover { background: var(--hover); }
-.jb-speed { flex: 1; min-width: 0; accent-color: var(--g); }
-.jb-loop { flex: none; min-height: 36px; padding: 0 16px; border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--ink); font: 600 13px var(--ui); cursor: pointer; }
-.jb-loop[aria-pressed="true"] { border-color: transparent; background: var(--g-soft); color: var(--g); }
-.jukebox-card[hidden] { display: none; }
-@media print { .jukebox-card { display: none; } }
 .stanza { break-inside: avoid; }
 @media (min-width: 760px) and (max-width: 1079px), (min-width: 640px) and (orientation: landscape) and (max-height: 600px) {
   .lyrics { column-width: 21em; column-gap: 2.5em; }
@@ -537,4 +499,7 @@ body.bars-away .topbar { transform: translateY(-100%); }
 @container (min-width: 44.5em) { .lyrics { width: auto; max-width: none; margin-inline: 0; } }
 
 /* the Both hands bar belongs to the sheet: not over the lyrics on a phone */
-@media (max-width: 1079px) { body:has(.hymn[data-tab="lyrics"]) .pp-panel { display: none !important; } }
+@media (max-width: 1079px) {
+  body:has(.hymn[data-tab="lyrics"]) .ud-dock.sheet-dock { display: none !important; }
+  body:has(.hymn[data-tab="sheet"]) .ud-dock.jukebox-dock { display: none !important; }
+}

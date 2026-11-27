@@ -7,14 +7,14 @@ import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -26,51 +26,46 @@ import com.lemuelinchrist.android.hymns.entities.Hymn;
 import com.lemuelinchrist.android.hymns.style.BookColors;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The JUKEBOX card under the details: plays the hymn's sheet music in a style chosen by category (Hymn's own, Piano,
- * Guitar strum, Guitar pick, Melody) and sub-style drop-down with a dice to pick one at random, with Play, Loop and the tempo, and shows the bar it is at.
- * It plays through the hidden sheet player ({@link SheetPlayer}), whose page makes the notes with the web app's own
- * jukebox (tools/web/src/jukebox.js), so the two apps sound the same. A change while it plays goes on from the same
- * bar. A hymn opens on its sheet's own style (a style of Piano chosen at random when it names none; a category opens on a random style, never a fixed one); a style picked is for this page only. Loop
- * (on to begin with) and the tempo are kept for every hymn. The card is gone until the page's Play button is pressed (it then
- * shows and plays), and its X stops it and takes it away again. It sits above the lyrics, under the button bar. A hymn
- * with nothing to play (no sheet, or a sheet of chords only) has none.
+ * The inline Jukebox card on the hymn lyrics page, styled in the unified Proposal 1 look shared with the sheet
+ * music bottom dock: a 3dp top progress bar, a slim 1-row Play/Style/Loop/Expand/Close bar, and a collapsible
+ * drawer with four segmented category tabs (Hymn's own, Piano, Guitar, Melody), a Dice randomizer, horizontal
+ * style pills (with attached refresh side-buttons on Flowing, Lively, and Fingerpicking), Chorale More walking
+ * switch, and a Tempo slider. Plays through the hidden sheet player ({@link SheetPlayer}) using tools/web/src/jukebox.js.
  */
 public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.Listener {
     /** The categories of jukebox.js GROUPS, in its order: group id, label string resource. */
     private static final Object[][] GROUPS = {
             {"own", R.string.jukebox_group_own},
             {"piano", R.string.jukebox_piano},
-            {"strum", R.string.jukebox_guitar_strum},
-            {"pick", R.string.jukebox_guitar_pick},
+            {"guitar", R.string.jukebox_guitar},
             {"melody", R.string.jukebox_melody},
     };
-    /** The styles of jukebox.js STYLES, in its order: style id, group id, label string resource. */
+    /** The styles of jukebox.js STYLES: style id, group id, label string resource, shuffle flag, walk flag. */
     private static final Object[][] STYLES = {
-            {"own", "own", R.string.jukebox_style_own},
-            {"flowing", "piano", R.string.jukebox_style_flowing},
-            {"plain", "piano", R.string.jukebox_style_plain},
-            {"chorale", "piano", R.string.jukebox_style_chorale},
-            {"lively", "piano", R.string.jukebox_style_lively},
-            {"walking", "piano", R.string.jukebox_style_walking},
-            {"guitar-folk", "strum", R.string.jukebox_style_folk},
-            {"guitar-pop", "strum", R.string.jukebox_style_pop},
-            {"guitar-steady", "strum", R.string.jukebox_style_steady},
-            {"guitar-ballad", "strum", R.string.jukebox_style_ballad},
-            {"guitar-country", "strum", R.string.jukebox_style_country},
-            {"guitar-pick", "pick", R.string.jukebox_style_pick},
-            {"melody", "melody", R.string.jukebox_style_melody},
+            {"own", "own", R.string.jukebox_style_own, false, false},
+            {"plain", "piano", R.string.jukebox_style_plain, false, false},
+            {"chorale", "piano", R.string.jukebox_style_chorale, false, true},
+            {"flowing", "piano", R.string.jukebox_style_flowing, true, false},
+            {"lively", "piano", R.string.jukebox_style_lively, true, false},
+            {"walking", "piano", R.string.jukebox_style_walking, false, false},
+            {"guitar-folk", "guitar", R.string.jukebox_style_folk, false, false},
+            {"guitar-pop", "guitar", R.string.jukebox_style_pop, false, false},
+            {"guitar-steady", "guitar", R.string.jukebox_style_steady, false, false},
+            {"guitar-ballad", "guitar", R.string.jukebox_style_ballad, false, false},
+            {"guitar-country", "guitar", R.string.jukebox_style_country, false, false},
+            {"guitar-pick", "guitar", R.string.jukebox_style_pick, true, false},
+            {"melody", "melody", R.string.jukebox_style_melody, false, false},
     };
-    private static final String DEFAULT_STYLE = "own", FALLBACK_STYLE = "flowing";   // as jukebox.js
+    private static final String DEFAULT_STYLE = "own", FALLBACK_STYLE = "flowing";
     private static final String PREF_LOOP = "jukeboxLoop";
-    // the tempo: half to one and a half times the sheet's, by twentieths (as the viewer's Play); the seek bar's 10 is 1
     private static final double MIN_SPEED = 0.5, STEP = 0.05;
     private static final int DEFAULT_BPM = 110;
     private static final Pattern BPM = Pattern.compile("midi\\.bpm=\"([0-9.]+)\"");
@@ -78,30 +73,28 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
     private final String sheetId;
     private final SharedPreferences prefs;
     private final Random random = new Random();
-    private final Map<String, TextView> categoryPills = new HashMap<>();
-    private ImageButton playButton;
-    private TextView currentText, barText, tempoText;
+    private final Map<String, TextView> categoryTabs = new HashMap<>();
+    private ImageButton playButton, loopButton, expandButton;
+    private TextView currentText, subText, tempoText;
     private ProgressBar progress;
-    private WrapLayout categoryRow;
-    private View substyleRow, subDivider;
-    private Spinner subSpinner;
-    private ImageButton diceButton;
-    private boolean updatingSpinner;
-    private View cardView;
-    private PlayStateListener playStateListener;
+    private LinearLayout categoryRow, substyleRow;
+    private View cardView, drawerView, drawerDivider, subScroll;
     private SeekBar speedBar;
-    private SwitchCompat loopSwitch;
-    private int accent, cardBg, badgeBg, textCol, mutedStroke;
+    private SwitchCompat walkSwitch;
+    private PlayStateListener playStateListener;
+    private int accent, cardBg, badgeBg, textCol, mutedCol, mutedStroke, accentSoft;
     private int bpm = DEFAULT_BPM;
-    private boolean playing;
+    private int curBar = 0, curBars = 0;
+    private int seed = 0;
+    private boolean playing, loopOn = true, expanded = true, moreWalk = false;
     private boolean hasOwn;
-    private String style;   // the active style id
+    private String style;
 
     public JukeboxCard(Hymn hymn, Fragment parentFragment, View card) {
         super(hymn, parentFragment, card);
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
         sheetId = hymn.getSheetToPlay();
-        card.setVisibility(View.GONE);   // shown by open(), when Play is pressed
+        card.setVisibility(View.GONE);
         if (sheetId == null) return;
         String head = hymn.getSheetHead(sheetId);
         hasOwn = head != null && head.contains("type=\"hands\"");
@@ -126,7 +119,7 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
     public void togglePlay() {
         if (sheetId == null) return;
         if (playing) {
-            SheetPlayer.get(context).stop();   // tells this card (onSheetStopped)
+            SheetPlayer.get(context).stop();
             return;
         }
         cardView.setVisibility(View.VISIBLE);
@@ -145,73 +138,88 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         cardBg = BookColors.color(context, R.attr.hymnCardBackground);
         badgeBg = BookColors.color(context, R.attr.hymnBadgeBackground);
         textCol = BookColors.color(context, R.attr.hymnText);
-        mutedStroke = withAlpha(BookColors.color(context, R.attr.hymnTextMuted), 0x44);
+        mutedCol = BookColors.color(context, R.attr.hymnTextMuted);
+        mutedStroke = withAlpha(mutedCol, 0x38);
+        accentSoft = withAlpha(accent, 0x22);
         ColorStateList accentList = ColorStateList.valueOf(accent);
 
         playButton = card.findViewById(R.id.jukeboxPlay);
         playButton.setBackgroundTintList(accentList);
-        // the icon in the card's colour: white on the day accent, dark on the lighter night one
         playButton.setImageTintList(ColorStateList.valueOf(cardBg));
         playButton.setOnClickListener(v -> {
-            if (playing) SheetPlayer.get(context).stop();   // tells this card (onSheetStopped)
+            if (playing) SheetPlayer.get(context).stop();
             else start();
         });
 
         currentText = card.findViewById(R.id.jukeboxCurrent);
+        subText = card.findViewById(R.id.jukeboxSub);
+        drawerView = card.findViewById(R.id.jukeboxDrawer);
+        drawerDivider = card.findViewById(R.id.jukeboxDrawerDivider);
+        drawerView.setBackgroundColor(withAlpha(badgeBg, 0x77));
+
+        View meta = card.findViewById(R.id.jukeboxMeta);
+        expandButton = card.findViewById(R.id.jukeboxExpand);
+        View.OnClickListener toggleExpand = v -> setExpanded(!expanded);
+        meta.setOnClickListener(toggleExpand);
+        expandButton.setOnClickListener(toggleExpand);
+
+        loopOn = prefs.getBoolean(PREF_LOOP, true);
+        loopButton = card.findViewById(R.id.jukeboxLoop);
+        loopButton.setOnClickListener(v -> {
+            loopOn = !loopOn;
+            prefs.edit().putBoolean(PREF_LOOP, loopOn).apply();
+            updateLoopButton();
+            updateSubtitle();
+            if (playing) start();
+        });
+        updateLoopButton();
+
+        ImageButton closeButton = card.findViewById(R.id.jukeboxClose);
+        closeButton.setImageTintList(ColorStateList.valueOf(mutedCol));
+        closeButton.setOnClickListener(v -> close());
+
         categoryRow = card.findViewById(R.id.jukeboxCategories);
-        subDivider = card.findViewById(R.id.jukeboxSubDivider);
+        categoryRow.setBackground(roundedRect(badgeBg, dp(11), 0, 0));
+        subScroll = card.findViewById(R.id.jukeboxSubScroll);
         substyleRow = card.findViewById(R.id.jukeboxSubstyles);
 
-        subSpinner = card.findViewById(R.id.jukeboxSubSpinner);
-        diceButton = card.findViewById(R.id.jukeboxDice);
-        diceButton.setImageTintList(ColorStateList.valueOf(accent));
-        diceButton.setBackground(outline(badgeBg, mutedStroke));
-        subSpinner.setBackground(outline(Color.TRANSPARENT, mutedStroke));
-        diceButton.setOnClickListener(v -> chooseStyle(randomIn(groupOf(style), style)));
-        subSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (updatingSpinner) return;
-                List<Object[]> subs = stylesInGroup(groupOf(style));
-                if (position >= 0 && position < subs.size()) chooseStyle((String) subs.get(position)[0]);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        // a hymn opens on its own style; one without goes to Piano with a style chosen at random (there is no default)
+        // a hymn opens on its own style; one without goes to Piano with a style chosen at random
         style = hasOwn ? DEFAULT_STYLE : FALLBACK_STYLE;
         if (stylesInGroup(groupOf(style)).size() > 1) style = randomIn(groupOf(style), null);
 
         categoryRow.removeAllViews();
+        categoryTabs.clear();
         for (Object[] g : GROUPS) {
             String gid = (String) g[0];
             if ("own".equals(gid) && !hasOwn) continue;
-            TextView pill = makePill(context.getString((Integer) g[1]), true, false);
-            pill.setOnClickListener(v -> {
-                if (!gid.equals(groupOf(style))) chooseStyle(randomStyleOf(gid));
+            TextView tab = new TextView(context);
+            tab.setText(context.getString((Integer) g[1]));
+            tab.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f);
+            tab.setGravity(Gravity.CENTER);
+            tab.setSingleLine(true);
+            tab.setEllipsize(TextUtils.TruncateAt.END);
+            tab.setMinHeight(dp(32));
+            tab.setPadding(dp(6), dp(5), dp(6), dp(5));
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+            tab.setLayoutParams(lp);
+            tab.setOnClickListener(v -> {
+                if (!gid.equals(groupOf(style))) chooseStyle(randomStyleOf(gid), 0);
             });
-            categoryPills.put(gid, pill);
-            categoryRow.addView(pill);
+            categoryTabs.put(gid, tab);
+            categoryRow.addView(tab);
         }
-        renderPills();
 
-        // the tracks under the coloured parts, in the muted text colour (the theme's own are hardly seen on the card)
-        ColorStateList track = ColorStateList.valueOf(BookColors.color(context, R.attr.hymnTextMuted));
+        ColorStateList track = ColorStateList.valueOf(withAlpha(mutedCol, 0x33));
         progress = card.findViewById(R.id.jukeboxProgress);
         progress.setProgressTintList(accentList);
         progress.setProgressBackgroundTintList(track);
-        barText = card.findViewById(R.id.jukeboxBar);
 
         tempoText = card.findViewById(R.id.jukeboxTempo);
         speedBar = card.findViewById(R.id.jukeboxSpeed);
         speedBar.setProgressTintList(accentList);
         speedBar.setThumbTintList(accentList);
         speedBar.setProgressBackgroundTintList(track);
-        speedBar.setProgress(stepOf(1));   // the tempo is not kept: every hymn starts at its own
-        showTempo();
+        speedBar.setProgress(stepOf(1));
         speedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int step, boolean fromUser) {
@@ -224,99 +232,196 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                tempoChanged();
+                if (playing) start();
             }
         });
-        // a tap on the tempo: the sheet's own again
         tempoText.setOnClickListener(v -> {
             speedBar.setProgress(stepOf(1));
-            tempoChanged();
-        });
-
-        loopSwitch = card.findViewById(R.id.jukeboxLoop);
-        loopSwitch.setChecked(prefs.getBoolean(PREF_LOOP, true));
-        int off = BookColors.color(context, R.attr.hymnTextMuted);
-        int[][] states = {{android.R.attr.state_checked}, {}};
-        loopSwitch.setThumbTintList(new ColorStateList(states, new int[]{accent, off}));
-        loopSwitch.setTrackTintList(new ColorStateList(states, new int[]{withAlpha(accent, 0x66), withAlpha(off, 0x44)}));
-        loopSwitch.setOnCheckedChangeListener((b, on) -> {
-            prefs.edit().putBoolean(PREF_LOOP, on).apply();
+            showTempo();
             if (playing) start();
         });
+
+        walkSwitch = card.findViewById(R.id.jukeboxWalk);
+        int[][] states = {{android.R.attr.state_checked}, {}};
+        walkSwitch.setThumbTintList(new ColorStateList(states, new int[]{accent, mutedCol}));
+        walkSwitch.setTrackTintList(new ColorStateList(states, new int[]{withAlpha(accent, 0x66), withAlpha(mutedCol, 0x44)}));
+        walkSwitch.setOnCheckedChangeListener((b, on) -> {
+            moreWalk = on;
+            renderHeaderTitle();
+            if (playing) start();
+        });
+
+        setExpanded(true);
+        renderStyles();
+        showTempo();
         showStopped();
-        ImageButton closeButton = card.findViewById(R.id.jukeboxClose);
-        closeButton.setImageTintList(ColorStateList.valueOf(BookColors.color(context, R.attr.hymnTextMuted)));
-        closeButton.setOnClickListener(v -> close());
     }
 
-    private void chooseStyle(String chosen) {
-        if (chosen == null || chosen.equals(style)) return;
+    private void setExpanded(boolean on) {
+        expanded = on;
+        drawerView.setVisibility(on ? View.VISIBLE : View.GONE);
+        drawerDivider.setVisibility(on ? View.VISIBLE : View.GONE);
+        expandButton.setRotation(on ? 0f : 180f);
+        expandButton.setImageTintList(ColorStateList.valueOf(on ? accent : mutedCol));
+        expandButton.setBackground(on ? circleButton(accentSoft, 0) : null);
+    }
+
+    private void updateLoopButton() {
+        loopButton.setImageTintList(ColorStateList.valueOf(loopOn ? accent : mutedCol));
+        loopButton.setBackground(loopOn ? circleButton(accentSoft, 0) : null);
+    }
+
+    private void chooseStyle(String chosen, int newSeed) {
+        if (chosen == null) return;
         Object[] row = styleRow(chosen);
         if (row == null) return;
+        boolean canShuffle = (Boolean) row[3];
+        int nextSeed = canShuffle ? newSeed : 0;
+        if (chosen.equals(style) && nextSeed == seed) return;
         style = chosen;
-        renderPills();
+        seed = nextSeed;
+        renderStyles();
         if (playing) start();
     }
 
-    private void renderPills() {
+    private void renderHeaderTitle() {
+        Object[] cur = styleRow(style);
+        if (cur == null) return;
+        StringBuilder sb = new StringBuilder(context.getString((Integer) cur[2]));
+        if ((Boolean) cur[4] && moreWalk) {
+            sb.append(" · ").append(context.getString(R.string.jukebox_more_walking));
+        }
+        if ((Boolean) cur[3] && seed > 0) {
+            sb.append(" · ").append(context.getString(R.string.jukebox_shuffled));
+        }
+        currentText.setText(sb.toString());
+    }
+
+    private void updateSubtitle() {
+        StringBuilder sb = new StringBuilder(context.getString(R.string.jukebox_tempo, Math.round(bpm * speed())));
+        if (loopOn) sb.append(" · ").append(context.getString(R.string.jukebox_loop));
+        if (playing && curBar > 0 && curBars > 0) {
+            sb.append(" · ").append(context.getString(R.string.jukebox_bar, curBar, curBars));
+        }
+        subText.setText(sb.toString());
+    }
+
+    private void renderStyles() {
         Object[] cur = styleRow(style);
         if (cur == null) return;
         String activeGroup = (String) cur[1];
-        for (Map.Entry<String, TextView> e : categoryPills.entrySet()) {
-            applyPillAppearance(e.getValue(), true, e.getKey().equals(activeGroup));
-        }
-        List<Object[]> subs = stylesInGroup(activeGroup);
-        String styleLabel = context.getString((Integer) cur[2]);
-        if (subs.size() > 1) {
-            int groupLabel = groupLabelRes(activeGroup);
-            currentText.setText(groupLabel != 0
-                    ? context.getString(R.string.jukebox_in_group, context.getString(groupLabel), styleLabel)
-                    : styleLabel);
-            subDivider.setVisibility(View.VISIBLE);
-            substyleRow.setVisibility(View.VISIBLE);
-            List<String> labels = new ArrayList<>();
-            int selected = 0;
-            for (int i = 0; i < subs.size(); i++) {
-                labels.add(context.getString((Integer) subs.get(i)[2]));
-                if (subs.get(i)[0].equals(style)) selected = i;
-            }
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, labels) {
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    return tint((TextView) super.getView(position, convertView, parent), false);
-                }
+        renderHeaderTitle();
 
-                @Override
-                public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                    return tint((TextView) super.getDropDownView(position, convertView, parent), true);
-                }
-            };
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            updatingSpinner = true;
-            subSpinner.setAdapter(adapter);
-            subSpinner.setSelection(selected, false);
-            updatingSpinner = false;
-        } else {
-            currentText.setText(styleLabel);
-            subDivider.setVisibility(View.GONE);
-            substyleRow.setVisibility(View.GONE);
+        for (Map.Entry<String, TextView> e : categoryTabs.entrySet()) {
+            boolean on = e.getKey().equals(activeGroup);
+            TextView tv = e.getValue();
+            tv.setTextColor(on ? accent : mutedCol);
+            tv.setTypeface(Typeface.create(on ? "sans-serif-medium" : "sans-serif", Typeface.NORMAL));
+            tv.setBackground(on ? roundedRect(cardBg, dp(8), 0, 0) : null);
         }
+
+        List<Object[]> subs = stylesInGroup(activeGroup);
+        substyleRow.removeAllViews();
+        if (subs.size() > 1) {
+            subScroll.setVisibility(View.VISIBLE);
+            for (int i = 0; i < subs.size(); i++) {
+                Object[] s = subs.get(i);
+                String sid = (String) s[0];
+                String label = context.getString((Integer) s[2]);
+                boolean on = sid.equals(style);
+                boolean canShuffle = (Boolean) s[3];
+                View chip = canShuffle ? makeSplitChip(sid, label, on) : makeChip(sid, label, on);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                if (i > 0) lp.setMarginStart(dp(6));
+                substyleRow.addView(chip, lp);
+            }
+        } else {
+            subScroll.setVisibility(View.GONE);
+        }
+
+        boolean showWalk = (Boolean) cur[4];
+        walkSwitch.setVisibility(showWalk ? View.VISIBLE : View.GONE);
+        if (showWalk) walkSwitch.setChecked(moreWalk);
     }
 
-    private TextView tint(TextView tv, boolean dropDown) {
-        tv.setTextColor(textCol);
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        if (dropDown) tv.setBackgroundColor(cardBg);
+    private View makeChip(String sid, String label, boolean selected) {
+        TextView tv = new TextView(context);
+        tv.setText(label);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+        tv.setGravity(Gravity.CENTER);
+        tv.setSingleLine(true);
+        tv.setMinHeight(dp(34));
+        tv.setPadding(dp(13), dp(6), dp(13), dp(6));
+        tv.setTextColor(selected ? cardBg : textCol);
+        tv.setTypeface(Typeface.create(selected ? "sans-serif-medium" : "sans-serif", Typeface.NORMAL));
+        tv.setBackground(ripple(roundedRect(selected ? accent : cardBg, dp(999), dp(1), selected ? accent : mutedStroke), dp(999)));
+        tv.setOnClickListener(v -> chooseStyle(sid, 0));
         return tv;
     }
 
-    private GradientDrawable outline(int fill, int stroke) {
-        GradientDrawable shape = new GradientDrawable();
-        shape.setShape(GradientDrawable.RECTANGLE);
-        shape.setCornerRadius(dp(10));
-        shape.setColor(fill);
-        shape.setStroke(dp(1), stroke);
-        return shape;
+    private View makeSplitChip(String sid, String label, boolean selected) {
+        LinearLayout wrap = new LinearLayout(context);
+        wrap.setOrientation(LinearLayout.HORIZONTAL);
+        wrap.setGravity(Gravity.CENTER_VERTICAL);
+        wrap.setBackground(roundedRect(selected ? accent : cardBg, dp(999), dp(1), selected ? accent : mutedStroke));
+        wrap.setClipToOutline(true);
+
+        TextView main = new TextView(context);
+        main.setText(label);
+        main.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+        main.setGravity(Gravity.CENTER);
+        main.setSingleLine(true);
+        main.setMinHeight(dp(34));
+        main.setPadding(dp(13), dp(6), dp(9), dp(6));
+        main.setTextColor(selected ? cardBg : textCol);
+        main.setTypeface(Typeface.create(selected ? "sans-serif-medium" : "sans-serif", Typeface.NORMAL));
+        main.setBackground(ripple(null, 0));
+        main.setOnClickListener(v -> chooseStyle(sid, 0));
+
+        View divider = new View(context);
+        divider.setLayoutParams(new LinearLayout.LayoutParams(dp(1), dp(22)));
+        divider.setBackgroundColor(selected ? withAlpha(cardBg, 0x55) : mutedStroke);
+
+        ImageButton side = new ImageButton(context);
+        side.setLayoutParams(new LinearLayout.LayoutParams(dp(34), dp(34)));
+        side.setPadding(dp(9), dp(9), dp(9), dp(9));
+        side.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        side.setImageResource(R.drawable.ic_refresh_24dp);
+        side.setImageTintList(ColorStateList.valueOf(selected ? cardBg : mutedCol));
+        side.setBackground(ripple(null, 0));
+        side.setContentDescription(context.getString(R.string.jukebox_shuffle));
+        side.setOnClickListener(v -> chooseStyle(sid, 1 + random.nextInt(99999)));
+
+        wrap.addView(main);
+        wrap.addView(divider);
+        wrap.addView(side);
+        return wrap;
+    }
+
+    private GradientDrawable roundedRect(int fill, float radius, int strokeWidth, int strokeColor) {
+        GradientDrawable d = new GradientDrawable();
+        d.setShape(GradientDrawable.RECTANGLE);
+        d.setCornerRadius(radius);
+        d.setColor(fill);
+        if (strokeWidth > 0) d.setStroke(strokeWidth, strokeColor);
+        return d;
+    }
+
+    private RippleDrawable circleButton(int fill, int stroke) {
+        GradientDrawable bg = new GradientDrawable();
+        bg.setShape(GradientDrawable.OVAL);
+        bg.setColor(fill);
+        if (stroke != 0) bg.setStroke(dp(1), stroke);
+        return ripple(bg, dp(999));
+    }
+
+    private RippleDrawable ripple(GradientDrawable content, float maskRadius) {
+        GradientDrawable mask = new GradientDrawable();
+        mask.setShape(GradientDrawable.RECTANGLE);
+        mask.setCornerRadius(maskRadius);
+        mask.setColor(Color.WHITE);
+        return new RippleDrawable(ColorStateList.valueOf(withAlpha(accent, 0x33)), content, mask);
     }
 
     private static String groupOf(String styleId) {
@@ -329,7 +434,6 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         return subs.isEmpty() ? null : randomIn(gid, null);
     }
 
-    /** A style of the group chosen at random, other than {@code not} when the group has another. */
     private String randomIn(String gid, String not) {
         List<Object[]> pool = new ArrayList<>();
         for (Object[] s : stylesInGroup(gid)) if (!s[0].equals(not)) pool.add(s);
@@ -337,65 +441,9 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         return (String) pool.get(random.nextInt(pool.size()))[0];
     }
 
-    private TextView makePill(String text, boolean isCategory, boolean selected) {
-        TextView tv = new TextView(context);
-        tv.setText(text);
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-        tv.setGravity(Gravity.CENTER);
-        tv.setSingleLine(true);
-        tv.setMinHeight(dp(34));
-        int padH = dp(12), padV = dp(6);
-        tv.setPadding(padH, padV, padH, padV);
-        tv.setLayoutParams(new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        applyPillAppearance(tv, isCategory, selected);
-        return tv;
-    }
-
-    private void applyPillAppearance(TextView tv, boolean isCategory, boolean selected) {
-        float radius = dp(999);
-        GradientDrawable shape = new GradientDrawable();
-        shape.setShape(GradientDrawable.RECTANGLE);
-        shape.setCornerRadius(radius);
-        if (isCategory) {
-            if (selected) {
-                shape.setColor(accent);
-                tv.setTextColor(cardBg);
-            } else {
-                shape.setColor(badgeBg);
-                shape.setStroke(dp(1), mutedStroke);
-                tv.setTextColor(textCol);
-            }
-            tv.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
-        } else {
-            if (selected) {
-                shape.setColor(withAlpha(accent, 0x24));
-                shape.setStroke(dp(1), accent);
-                tv.setTextColor(accent);
-                tv.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
-            } else {
-                shape.setColor(Color.TRANSPARENT);
-                shape.setStroke(dp(1), mutedStroke);
-                tv.setTextColor(textCol);
-                tv.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
-            }
-        }
-        GradientDrawable mask = new GradientDrawable();
-        mask.setShape(GradientDrawable.RECTANGLE);
-        mask.setCornerRadius(radius);
-        mask.setColor(Color.WHITE);
-        tv.setBackground(new RippleDrawable(ColorStateList.valueOf(withAlpha(accent, 0x33)), shape, mask));
-        tv.setSelected(selected);
-    }
-
     private static Object[] styleRow(String id) {
         for (Object[] s : STYLES) if (s[0].equals(id)) return s;
         return null;
-    }
-
-    private static int groupLabelRes(String gid) {
-        for (Object[] g : GROUPS) if (g[0].equals(gid)) return (Integer) g[1];
-        return 0;
     }
 
     private static List<Object[]> stylesInGroup(String gid) {
@@ -415,10 +463,13 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
             logToHistory();
             PlayButton.stopCurrentlyPlayingButton();
         }
-        SheetPlayer.get(context).play(sheetId, new SheetPlayer.Options(style, loopSwitch.isChecked(), speed()), this);
+        Object[] cur = styleRow(style);
+        boolean walk = cur != null && (Boolean) cur[4] && moreWalk;
+        SheetPlayer.get(context).play(sheetId, new SheetPlayer.Options(style, loopOn, speed(), seed, walk), this);
         playing = true;
-        playButton.setImageResource(R.drawable.ic_pause_white_48dp);
+        playButton.setImageResource(R.drawable.ic_stop_24dp);
         playButton.setContentDescription(context.getString(R.string.jukebox_stop));
+        updateSubtitle();
         if (playStateListener != null) playStateListener.onPlayingChanged(true);
     }
 
@@ -431,25 +482,26 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
     @Override
     public void onSheetBar(int bar, int bars) {
         if (!playing) return;
+        curBar = bar;
+        curBars = bars;
         progress.setMax(Math.max(1, bars));
         progress.setProgress(bar);
-        barText.setText(context.getString(R.string.jukebox_bar, bar, bars));
+        updateSubtitle();
     }
 
     private void showStopped() {
+        curBar = 0;
+        curBars = 0;
         playButton.setImageResource(R.drawable.ic_play_arrow_white_48dp);
         playButton.setContentDescription(context.getString(R.string.jukebox_play));
         progress.setProgress(0);
-        barText.setText("");
+        updateSubtitle();
         if (playStateListener != null) playStateListener.onPlayingChanged(false);
-    }
-
-    private void tempoChanged() {
-        if (playing) start();
     }
 
     private void showTempo() {
         tempoText.setText(context.getString(R.string.jukebox_tempo, Math.round(bpm * speed())));
+        updateSubtitle();
     }
 
     private double speed() {
@@ -460,7 +512,6 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         return (int) Math.max(0, Math.min(20, Math.round((speed - MIN_SPEED) / STEP)));
     }
 
-    /** The tempo the sheet names (midi.bpm), as play.js and jukebox.js read it: brought between 40 and 250. */
     private static int tempoOf(String head) {
         double bpm = DEFAULT_BPM;
         if (head != null) {
