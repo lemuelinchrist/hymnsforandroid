@@ -22,7 +22,7 @@ export const GROUPS = [
 
 export const STYLES = [
   {id: 'own', group: 'own', name: 'The hymn\'s own style'},
-  {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing', shuffle: true},
+  {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing'},
   {id: 'plain', group: 'piano', name: 'Plain', preset: 'plain'},
   {id: 'chorale', group: 'piano', name: 'Chorale', preset: 'chorale'},
   {id: 'lively', group: 'piano', name: 'Lively', preset: 'lively'},
@@ -32,7 +32,7 @@ export const STYLES = [
   {id: 'guitar-steady', group: 'strum', name: 'Steady', strum: 'steady'},
   {id: 'guitar-ballad', group: 'strum', name: 'Ballad', strum: 'ballad'},
   {id: 'guitar-country', group: 'strum', name: 'Country', strum: 'country'},
-  {id: 'guitar-pick', group: 'pick', name: 'Fingerpicking', strum: 'pick', shuffle: true},
+  {id: 'guitar-pick', group: 'pick', name: 'Fingerpicking', strum: 'pick'},
   {id: 'melody', group: 'melody', name: 'Melody alone'},
 ];
 export const DEFAULT_STYLE = 'own', FALLBACK_STYLE = 'flowing';   // a sheet without its own part: Flowing (piano.js DEFAULT)
