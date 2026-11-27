@@ -147,6 +147,7 @@ export function popupMenu(anchor, items, cls = '') {
   document.body.appendChild(menu);
   const r = anchor.getBoundingClientRect();
   menu.style.top = (r.bottom + 4) + 'px';
+  menu.style.maxHeight = Math.max(120, innerHeight - r.bottom - 4 - 8) + 'px';   // a long menu scrolls instead of running off the screen
   // the menu's right edge sits under the button's right edge, but never past either side of the screen (the ⋯ can be on the left when the bar wraps)
   const w = menu.offsetWidth;
   menu.style.left = Math.max(8, Math.min(r.right - w, innerWidth - w - 8)) + 'px';

@@ -303,7 +303,7 @@ body.piano-open .swap-back, body.piano-peek .swap-back { display: none; }
 @media print { .chord-editor { display: none !important; } }
 
 /* the Share menu under the hymn's Share button */
-.share-menu { position: fixed; z-index: 60; min-width: 14.5em; padding: 8px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 2px 6px rgba(20, 30, 50, .12), 0 10px 30px rgba(20, 30, 50, .18); display: grid; gap: 2px; }
+.share-menu { position: fixed; z-index: 60; min-width: 14.5em; padding: 8px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 2px 6px rgba(20, 30, 50, .12), 0 10px 30px rgba(20, 30, 50, .18); display: grid; gap: 2px; overflow-y: auto; overscroll-behavior: contain; }
 .share-menu button { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; padding: 7px 14px 7px 8px; border-radius: 14px; cursor: pointer; font: 500 16px var(--ui); white-space: nowrap; }
 .share-menu button:hover, .share-menu button:focus-visible { background: var(--hover); }
 .share-menu .tick { color: var(--g); margin-left: auto; padding-left: 8px; }
