@@ -5,7 +5,8 @@
 // notes (pitch class, in the meter's unit from beat 1) and its chords, as sheet.js scanBars reads them.
 //
 //   Medium   light touch-ups only: the same chords at the same places, in a simple shape: a triad (major, minor, diminished,
-//            augmented) or a plain dominant seventh; no slash bass; a chord equal to the one before it is not written again.
+//            augmented) or a plain dominant seventh, with its slash bass; a chord equal to the one before it is not written again;
+//            at most three chords in a bar of four beats or more (two in a shorter one): the shortest chords go first.
 //   Easy     one chord for the bar (long bars: for each half), triads only, from the original chords and the key's main chords;
 //            the last two bars keep their rhythm (a chord for two beats at least).
 //
@@ -22,10 +23,11 @@ const SHAPES = {M: [0, 4, 7], m: [0, 3, 7], d: [0, 3, 6], a: [0, 4, 8], 7: [0, 4
 const SUFFIX = {M: '', m: 'm', d: '°', a: '+', 7: '7'};
 const SHARPS = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 const FLATS = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'G♭', 'G', 'A♭', 'A', 'B♭', 'B'];
-const CHORD = /^([A-G])(𝄫|𝄪|♭|♯|b|#)?(.*?)(?:\/([A-G])(?:𝄫|𝄪|♭|♯|b|#)?)?$/;
+const CHORD = /^([A-G])(𝄫|𝄪|♭|♯|b|#)?(.*?)(?:\/([A-G])(𝄫|𝄪|♭|♯|b|#)?)?$/;
 
 // the cost of ...
 const W_FIT = 0.9, W_DEV = 2.0, W_NEW = 0.4, W_SEVENTH = 0.25;
+const MAX_MEDIUM = 3;   // chords in a bar of four beats or more (fewer beats: two)
 const W_CHANGE = {easy: 1.6};
 
 // "B♭m7/E" -> {pc: 10, spell: 'B♭', type: 'm'}; null when it is not a chord (N.C., a word)
@@ -38,7 +40,10 @@ export function shapeOf(text) {
   else if (/^(aug|\+)/.test(q)) type = 'a';
   else if (/^(m(?!aj|a)|min)/.test(q)) type = 'm';
   else if (/^(7|9|11|13)/.test(q)) type = '7';
-  return {pc, spell: m[1] + (m[2] ? ({b: '♭', '#': '♯'}[m[2]] || m[2]) : ''), type};
+  const sp = (l, a) => l + (a ? ({b: '♭', '#': '♯'}[a] || a) : '');
+  const out = {pc, spell: sp(m[1], m[2]), type};
+  if (m[4]) { out.bass = ((NAT[m[4]] + (ALT[m[5]] || 0)) % 12 + 12) % 12; out.bassSpell = sp(m[4], m[5]); }
+  return out;
 }
 
 const key = (c) => c.pc + c.type;
@@ -85,15 +90,30 @@ export function simplifyBars(bars, level, skip) {
   });
 
   if (level === 'light' || level === 'medium') {
+    // medium keeps a slash bass and the places of the chords, but writes at most MAX_MEDIUM chords in a bar
+    const bass = level === 'medium';
+    const write = (c) => light(c) + (bass && c.bass != null && c.bass !== c.pc ? '/' + c.bassSpell : '');
     bars.forEach((b, i) => {
-      const res = []; let changed = false, prev = null;   // the first chord of a bar is always written
       if (unknown[i]) return;
+      let list = [], changed = false, prev = null;   // the first chord of a bar is always written
       parsed[i].forEach(([t, text, c]) => {
-        const s = light(c);
+        const s = write(c);
         if (s === prev) { changed = true; return; }
-        prev = s; res.push([t, s]); if (s !== text) changed = true;
+        prev = s; list.push([t, s]); if (s !== text) changed = true;
       });
-      if (changed) out[i] = res;
+      if (bass) {
+        const end = beatsOf(b).lenQ * b.unit / 4 + 1, max = beatsOf(b).nb >= 4 ? MAX_MEDIUM : Math.min(2, beatsOf(b).nb);
+        while (list.length > max) {   // the shortest chord goes (the one before it goes on), never the first
+          let k = 1;
+          for (let j = 2; j < list.length; j++) {
+            const d = (list[j + 1] ? list[j + 1][0] : end) - list[j][0], dk = (list[k + 1] ? list[k + 1][0] : end) - list[k][0];
+            if (d <= dk) k = j;
+          }
+          list.splice(k, 1); changed = true;
+          list = list.filter((x, j) => j === 0 || x[1] !== list[j - 1][1]);
+        }
+      }
+      if (changed) out[i] = list;
     });
     return out;
   }
