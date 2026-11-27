@@ -4,12 +4,10 @@
 // A bar is {unit, count, len, events: [{onset, len, pc}], chords: [[tstamp, text]]}: the meter, the bar's length and its melody
 // notes (pitch class, in the meter's unit from beat 1) and its chords, as sheet.js scanBars reads them.
 //
-//   Lighter  (not offered; the last bars use its slots) the same chords at the same places, in a simple shape: a triad (major, minor, diminished, augmented) or a plain
-//            dominant seventh; no slash bass; a chord equal to the one before it (in the bar) is not written again.
-//   Medium   also a chord for two beats at least: the bar is cut in pairs of beats (half bars) and each gets one chord, the one
-//            that stays closest to the original harmony and fits the melody; the last two bars keep their rhythm.
+//   Medium   light touch-ups only: the same chords at the same places, in a simple shape: a triad (major, minor, diminished,
+//            augmented) or a plain dominant seventh; no slash bass; a chord equal to the one before it is not written again.
 //   Easy     one chord for the bar (long bars: for each half), triads only, from the original chords and the key's main chords;
-//            the last two bars as in Medium.
+//            the last two bars keep their rhythm (a chord for two beats at least).
 //
 // The choice is made over the whole hymn (a cheapest path through the candidates of each slot): it costs the melody notes
 // the chord does not hold, the time the original played another chord, a change of chord, and (a little) a chord the original
@@ -28,7 +26,7 @@ const CHORD = /^([A-G])(𝄫|𝄪|♭|♯|b|#)?(.*?)(?:\/([A-G])(?:𝄫|𝄪|♭
 
 // the cost of ...
 const W_FIT = 0.9, W_DEV = 2.0, W_NEW = 0.4, W_SEVENTH = 0.25;
-const W_CHANGE = {medium: 0.5, easy: 1.6};
+const W_CHANGE = {easy: 1.6};
 
 // "B♭m7/E" -> {pc: 10, spell: 'B♭', type: 'm'}; null when it is not a chord (N.C., a word)
 export function shapeOf(text) {
@@ -86,7 +84,7 @@ export function simplifyBars(bars, level, skip) {
     return list;
   });
 
-  if (level === 'light') {
+  if (level === 'light' || level === 'medium') {
     bars.forEach((b, i) => {
       const res = []; let changed = false, prev = null;   // the first chord of a bar is always written
       if (unknown[i]) return;
@@ -120,7 +118,7 @@ export function simplifyBars(bars, level, skip) {
   bars.forEach((b, i) => {
     if (unknown[i]) { slots.push({bar: i, skip: true}); return; }
     const {beatQ, lenQ, nb} = beatsOf(b);
-    const lv = i >= bars.length - 2 ? (level === 'easy' ? 'medium' : 'light') : level;
+    const lv = i >= bars.length - 2 && level === 'easy' ? 'half' : level;
     let beat = 0;
     groups(nb, lv).forEach((g, k, arr) => {
       const from = beat * beatQ, to = k === arr.length - 1 ? lenQ : (beat + g) * beatQ;
