@@ -574,7 +574,7 @@ async function ui(page) {
     await page.click('.sheet-player .tb.icon:text-is("✕")'); await settle();
     assert(await page.locator('.sheet-player').isHidden(), 'closed');
   });
-  await test('the Jukebox card offers categories, dropdown/dice, and phrase Shuffle for Flowing and Guitar pick', async () => {
+  await test('the Jukebox card offers categories, dropdown and dice', async () => {
     const prevVp = page.viewportSize();
     await page.setViewportSize({width: 420, height: 840});
     try {
@@ -586,14 +586,9 @@ async function ui(page) {
       assert(cats.join(',') === 'Piano,Guitar strum,Guitar pick,Melody', 'categories on NS143: ' + cats);
       await jb.locator('.jb-cat:text-is("Piano")').click();
       await jb.locator('.jb-select').selectOption('flowing');
-      assert(await jb.locator('.jb-shuffle').isVisible(), 'Piano · Flowing shows Shuffle button');
-      await jb.locator('.jb-shuffle').click();
-      assert(/Shuffled/.test(await jb.locator('.jb-current').textContent()), 'Shuffle updates title to Shuffled');
+      assert(await jb.locator('.jb-dice').isVisible() && await jb.locator('.jb-shuffle').count() === 0, 'Piano shows dice only, no duplicate shuffle button');
       await jb.locator('.jb-cat:text-is("Guitar pick")').click();
-      assert(await jb.locator('.jb-select').isHidden() && await jb.locator('.jb-dice').isHidden(), 'single Guitar pick hides dropdown and dice');
-      assert(await jb.locator('.jb-shuffle').isVisible(), 'Guitar pick shows Shuffle button');
-      await jb.locator('.jb-shuffle').click();
-      assert(/Fingerpicking · Shuffled/.test(await jb.locator('.jb-current').textContent()), 'Guitar pick shuffles live');
+      assert(await jb.locator('.jb-subs').isHidden() && (await jb.locator('.jb-current').textContent()) === 'Fingerpicking', 'single Guitar pick hides sub-row');
       await jb.locator('.jb-cat:text-is("Melody")').click();
       assert(await jb.locator('.jb-subs').isHidden(), 'Melody hides sub-row');
       await jb.locator('.jb-close').click();
