@@ -63,7 +63,7 @@
 <note xml:id="n17" dur="4" pname="a" oct="4"/>
 <rest xml:id="r18" dur="8"/>
 </layer></staff>
-<slur startid="#n16" endid="#n17"/>
+<tie startid="#n16" endid="#n17"/>
 <harm staff="1" tstamp="1" place="above">A/E</harm>
 </measure>
 <sb/>
@@ -124,7 +124,7 @@
 <note xml:id="n36" dur="8" pname="e" oct="4">
 <verse n="1"><syl>Christ</syl></verse></note>
 </layer></staff>
-<slur startid="#n34" endid="#n35"/>
+<tie startid="#n34" endid="#n35"/>
 <harm staff="1" tstamp="1" place="above">A/E</harm>
 </measure>
 <sb/>
@@ -151,7 +151,7 @@
 <note xml:id="n44" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl>Christ</syl></verse></note>
 </layer></staff>
-<slur startid="#n42" endid="#n43"/>
+<tie startid="#n42" endid="#n43"/>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
@@ -177,7 +177,7 @@
 <note xml:id="n52" dur="8" pname="a" oct="4">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
-<slur startid="#n50" endid="#n51"/>
+<tie startid="#n50" endid="#n51"/>
 <harm staff="1" tstamp="1" place="above">E</harm>
 </measure>
 <sb/>
@@ -227,7 +227,7 @@
 <verse n="1"><syl>us.</syl></verse></note>
 <note xml:id="n67" dur="4" dots="1" pname="a" oct="4"/>
 </layer></staff>
-<slur startid="#n66" endid="#n67"/>
+<tie startid="#n66" endid="#n67"/>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
 </section></score></mdiv></body>

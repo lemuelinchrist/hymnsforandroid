@@ -42,7 +42,7 @@
 <note xml:id="n11" dur="8" pname="c" oct="4">
 <verse n="1"><syl>How</syl></verse></note>
 </layer></staff>
-<slur startid="#n9" endid="#n10"/>
+<tie startid="#n9" endid="#n10"/>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
@@ -105,7 +105,7 @@
 <note xml:id="n30" dur="8" pname="f" oct="4">
 <verse n="1"><syl>Is</syl></verse></note>
 </layer></staff>
-<slur startid="#n28" endid="#n29"/>
+<tie startid="#n28" endid="#n29"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
@@ -138,7 +138,7 @@
 <note xml:id="n40" dur="8" pname="d" oct="5">
 <verse n="1"><syl>Thus</syl></verse></note>
 </layer></staff>
-<slur startid="#n38" endid="#n39"/>
+<tie startid="#n38" endid="#n39"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -167,7 +167,7 @@
 <verse n="1"><syl eol="1">can.</syl></verse></note>
 <note xml:id="n48" dur="4" dots="1" pname="f" oct="4"/>
 </layer></staff>
-<slur startid="#n47" endid="#n48"/>
+<tie startid="#n47" endid="#n48"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 </section></score></mdiv></body>

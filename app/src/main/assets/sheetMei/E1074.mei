@@ -53,7 +53,8 @@
 <verse n="1"><syl>is</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<slur startid="#n10" endid="#n12"/>
+<tie startid="#n10" endid="#n11"/>
+<tie startid="#n11" endid="#n12"/>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n15" dur="2" dots="1" pname="d" oct="4">

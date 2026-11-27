@@ -134,7 +134,6 @@
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n37" endid="#n38"/>
 <tie startid="#n38" endid="#n39"/>
-<slur startid="#n37" endid="#n39"/>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n39" pname="a" oct="4" dur="2" dots="1"/>
@@ -275,7 +274,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <tie startid="#n80" endid="#n81"/>
-<slur startid="#n80" endid="#n82"/>
+<tie startid="#n81" endid="#n82"/>
 </measure>
 <sb/>
 <measure n="21"><staff n="1"><layer n="1">

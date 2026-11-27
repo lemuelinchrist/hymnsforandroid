@@ -77,7 +77,7 @@
 <note xml:id="n21" dur="8" pname="g" oct="4">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
-<slur startid="#n19" endid="#n20"/>
+<tie startid="#n19" endid="#n20"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="4" place="above">G7</harm>
 </measure>
@@ -146,7 +146,7 @@
 <note xml:id="n41" dur="8" pname="g" oct="4">
 <verse n="1"><label>(C)</label><syl>He</syl></verse></note>
 </layer></staff>
-<slur startid="#n39" endid="#n40"/>
+<tie startid="#n39" endid="#n40"/>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -212,7 +212,7 @@
 <note xml:id="n61" dur="8" pname="g" oct="4">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
-<slur startid="#n59" endid="#n60"/>
+<tie startid="#n59" endid="#n60"/>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <sb/>
@@ -282,7 +282,7 @@
 <note xml:id="n81" dur="8" pname="a" oct="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
-<slur startid="#n79" endid="#n80"/>
+<tie startid="#n79" endid="#n80"/>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">Am7/E</harm>
 </measure>
@@ -312,7 +312,7 @@
 <verse n="1"><syl eol="1">hand.</syl></verse></note>
 <note xml:id="n89" dur="4" dots="1" pname="c" oct="4"/>
 </layer></staff>
-<slur startid="#n88" endid="#n89"/>
+<tie startid="#n88" endid="#n89"/>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 </section></score></mdiv></body>

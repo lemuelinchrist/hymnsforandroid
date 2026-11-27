@@ -56,7 +56,7 @@
 <note xml:id="n16" dur="8" pname="e" oct="5" accid.ges="f">
 <verse n="1"><syl>A</syl></verse></note>
 </layer></staff>
-<slur startid="#n14" endid="#n15"/>
+<tie startid="#n14" endid="#n15"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
@@ -106,7 +106,7 @@
 <note xml:id="n31" dur="4" pname="b" oct="4" accid.ges="f"/>
 <rest xml:id="r32" dur="8"/>
 </layer></staff>
-<slur startid="#n30" endid="#n31"/>
+<tie startid="#n30" endid="#n31"/>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
 </measure>
 <sb/>
@@ -207,7 +207,7 @@
 <verse n="1"><syl eol="1">life!</syl></verse></note>
 <note xml:id="n60" dur="4" dots="1" pname="a" oct="4" accid.ges="f"/>
 </layer></staff>
-<slur startid="#n59" endid="#n60"/>
+<tie startid="#n59" endid="#n60"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
 </section></score></mdiv></body>

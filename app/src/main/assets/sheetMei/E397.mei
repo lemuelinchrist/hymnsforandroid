@@ -48,7 +48,7 @@
 <verse n="1"><syl eol="1" wordpos="t">in,</syl></verse></note>
 <note xml:id="n12" dur="4" dots="1" pname="f" oct="4" accid.ges="s"/>
 </layer></staff>
-<slur startid="#n11" endid="#n12"/>
+<tie startid="#n11" endid="#n12"/>
 <harm staff="1" tstamp="1" place="above">B</harm>
 <harm staff="1" tstamp="4" place="above">B7</harm>
 </measure>
@@ -94,7 +94,7 @@
 <verse n="1"><syl eol="1">sin,</syl></verse></note>
 <note xml:id="n24" dur="4" dots="1" pname="b" oct="4"/>
 </layer></staff>
-<slur startid="#n23" endid="#n24"/>
+<tie startid="#n23" endid="#n24"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <sb/>
@@ -140,7 +140,7 @@
 <verse n="1"><syl eol="1">care,</syl></verse></note>
 <note xml:id="n36" dur="4" dots="1" pname="f" oct="4" accid.ges="s"/>
 </layer></staff>
-<slur startid="#n35" endid="#n36"/>
+<tie startid="#n35" endid="#n36"/>
 <harm staff="1" tstamp="1" place="above">B</harm>
 <harm staff="1" tstamp="4" place="above">B7</harm>
 </measure>
@@ -187,7 +187,7 @@
 <verse n="1"><syl eol="1">prayer.</syl></verse></note>
 <note xml:id="n48" dur="4" dots="1" pname="g" oct="4"/>
 </layer></staff>
-<slur startid="#n47" endid="#n48"/>
+<tie startid="#n47" endid="#n48"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <sb/>
@@ -286,7 +286,7 @@
 <verse n="1"><syl eol="1">now.</syl></verse></note>
 <note xml:id="n76" dur="4" dots="1" pname="g" oct="4"/>
 </layer></staff>
-<slur startid="#n75" endid="#n76"/>
+<tie startid="#n75" endid="#n76"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 </section></score></mdiv></body>

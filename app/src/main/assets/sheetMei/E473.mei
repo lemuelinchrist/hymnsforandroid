@@ -66,7 +66,7 @@
 <note xml:id="n18" dur="8" pname="c" oct="5">
 <verse n="1"><syl>When</syl></verse></note>
 </layer></staff>
-<slur startid="#n16" endid="#n17"/>
+<tie startid="#n16" endid="#n17"/>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">C7</harm>
 </measure>
@@ -121,7 +121,7 @@
 <note xml:id="n34" dur="8" pname="c" oct="4">
 <verse n="1"><syl>All</syl></verse></note>
 </layer></staff>
-<slur startid="#n32" endid="#n33"/>
+<tie startid="#n32" endid="#n33"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -176,7 +176,7 @@
 <note xml:id="n51" dur="8" pname="c" oct="5">
 <verse n="1"><syl>In</syl></verse></note>
 </layer></staff>
-<slur startid="#n49" endid="#n50"/>
+<tie startid="#n49" endid="#n50"/>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">C7</harm>
 </measure>
@@ -193,7 +193,7 @@
 <verse n="1"><syl>in</syl></verse></note>
 </beam>
 </layer></staff>
-<slur startid="#n53" endid="#n54"/>
+<tie startid="#n53" endid="#n54"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 <harm staff="1" tstamp="4" place="above">F7</harm>
 </measure>
@@ -229,7 +229,7 @@
 <verse n="1"><syl eol="1">home.</syl></verse></note>
 <note xml:id="n66" dur="4" dots="1" pname="f" oct="4"/>
 </layer></staff>
-<slur startid="#n65" endid="#n66"/>
+<tie startid="#n65" endid="#n66"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 </section></score></mdiv></body>

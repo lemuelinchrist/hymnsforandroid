@@ -23,7 +23,7 @@
 <note xml:id="n6" dur="4" pname="a" oct="4" accid.ges="f">
 <verse n="1"><syl>of</syl></verse></note>
 </layer></staff>
-<slur startid="#n3" endid="#n4"/>
+<tie startid="#n3" endid="#n4"/>
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <harm staff="1" tstamp="3" place="above">FmMaj7/E</harm>
 <harm staff="1" tstamp="4" place="above">Fm7/E♭</harm>
@@ -67,7 +67,7 @@
 <note xml:id="n17" dur="2" pname="d" oct="5" accid.ges="f"/>
 <rest xml:id="r18" dur="4"/>
 </layer></staff>
-<slur startid="#n16" endid="#n17"/>
+<tie startid="#n16" endid="#n17"/>
 <harm staff="1" tstamp="1" place="above">B♭m7</harm>
 <harm staff="1" tstamp="4" place="above">D♭7/B</harm>
 <harm staff="1" tstamp="6" place="above">G/B</harm>
@@ -131,7 +131,7 @@
 <note xml:id="n36" dur="4" pname="c" oct="4">
 <verse n="1"><syl wordpos="i" con="d">To</syl></verse></note>
 </layer></staff>
-<slur startid="#n34" endid="#n35"/>
+<tie startid="#n34" endid="#n35"/>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <harm staff="1" tstamp="6" place="above">A♭/C</harm>
 </measure>
@@ -190,7 +190,7 @@
 <note xml:id="n53" dur="4" pname="c" oct="5">
 <verse n="1"><syl>For</syl></verse></note>
 </layer></staff>
-<slur startid="#n51" endid="#n52"/>
+<tie startid="#n51" endid="#n52"/>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
 <harm staff="1" tstamp="2" place="above">E♭/G</harm>
 <harm staff="1" tstamp="3" place="above">E♭/F</harm>
@@ -256,7 +256,7 @@
 <verse n="1"><syl eol="1">Bread.</syl></verse></note>
 <note xml:id="n69" dur="2" dots="1" pname="f" oct="4"/>
 </layer></staff>
-<slur startid="#n68" endid="#n69"/>
+<tie startid="#n68" endid="#n69"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <sb/>
@@ -315,7 +315,7 @@
 <verse n="1"><syl eol="1">too;</syl></verse></note>
 <note xml:id="n85" dur="2" dots="1" pname="g" oct="4"/>
 </layer></staff>
-<slur startid="#n84" endid="#n85"/>
+<tie startid="#n84" endid="#n85"/>
 <harm staff="1" tstamp="1" place="above">Dm7/C</harm>
 <harm staff="1" tstamp="4" place="above">C</harm>
 </measure>
@@ -372,7 +372,7 @@
 <verse n="1"><syl eol="1">do.”</syl></verse></note>
 <note xml:id="n100" dur="2" dots="1" pname="f" oct="4"/>
 </layer></staff>
-<slur startid="#n99" endid="#n100"/>
+<tie startid="#n99" endid="#n100"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 </section></score></mdiv></body>

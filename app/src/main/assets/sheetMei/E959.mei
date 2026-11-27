@@ -167,7 +167,7 @@
 <note xml:id="n48" dur="8" pname="b" oct="4">
 <verse n="1"><syl>come</syl></verse></note>
 </layer></staff>
-<slur startid="#n46" endid="#n47"/>
+<tie startid="#n46" endid="#n47"/>
 <harm staff="1" tstamp="1" place="above">D7/A</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -284,7 +284,7 @@
 <verse n="1"><syl eol="1" wordpos="t">turn.</syl></verse></note>
 <note xml:id="n81" dur="4" dots="1" pname="g" oct="4"/>
 </layer></staff>
-<slur startid="#n80" endid="#n81"/>
+<tie startid="#n80" endid="#n81"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 </section></score></mdiv></body>

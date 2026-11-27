@@ -90,6 +90,7 @@ QUAL = [('', (0, 4, 7)), ('m', (0, 3, 7)), ('7', (0, 4, 7, 10)), ('Maj7', (0, 4,
 SHARP_NAMES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B']
 import simplify_dim as SD
 import chords as CH
+import slur_to_tie as ST
 FLAT_NAMES = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B']
 
 def chord_name(pitches, kind, key_pc):
@@ -358,6 +359,7 @@ def convert(hid, db, write, out_dir):
     head = xml[:xml.index('<section>') + len('<section>')]; tail = xml[xml.index('</section>'):]
     head = re.sub(r'midi\.bpm="\d+"', 'midi.bpm="%d"' % bpm, head, count=1) if 'midi.bpm' in head else head.replace('<scoreDef ', '<scoreDef midi.bpm="%d" ' % bpm, 1)
     new = head + '\n' + text + '\n' + tail
+    new, _ = ST.convert(new)   # a slur over notes of one pitch is a tie (slur_to_tie.py): the player holds it
     # the old words that found no note
     old_words = sum(1 for b in bars for e in b[1] if 'pname' in e[2] and '<syl' in e[3]); new_words = new.count('<syl')
     # (the other verses live in the back matter and stay as they were)

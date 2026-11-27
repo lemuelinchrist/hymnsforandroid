@@ -21,7 +21,7 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<slur startid="#n5" endid="#n7"/>
+<tie startid="#n5" endid="#n6"/>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="e" oct="4" dur="2" dots="1"/>
@@ -82,7 +82,6 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <tie startid="#n23" endid="#n24"/>
-<slur startid="#n23" endid="#n25"/>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n24" pname="e" oct="4" dur="2" dots="1"/>

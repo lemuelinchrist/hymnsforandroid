@@ -168,7 +168,8 @@
 <note xml:id="n36" dur="2" pname="f" oct="4"/>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F</harm>
-<slur startid="#n34" endid="#n36"/>
+<tie startid="#n34" endid="#n35"/>
+<tie startid="#n35" endid="#n36"/>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

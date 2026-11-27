@@ -36,7 +36,7 @@
 <note xml:id="n9" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl wordpos="i" con="d">A</syl></verse></note>
 </layer></staff>
-<slur startid="#n7" endid="#n8"/>
+<tie startid="#n7" endid="#n8"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
@@ -64,7 +64,7 @@
 <note xml:id="n17" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl>He</syl></verse></note>
 </layer></staff>
-<slur startid="#n15" endid="#n16"/>
+<tie startid="#n15" endid="#n16"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
@@ -118,7 +118,7 @@
 <verse n="1"><syl eol="1" wordpos="t">mayed.</syl></verse></note>
 <note xml:id="n33" dur="4" dots="1" pname="a" oct="4" accid.ges="f"/>
 </layer></staff>
-<slur startid="#n32" endid="#n33"/>
+<tie startid="#n32" endid="#n33"/>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
 </measure>
 </section></score></mdiv></body>

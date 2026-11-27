@@ -113,7 +113,7 @@
 <note xml:id="n30" dur="8" pname="a" oct="4">
 <verse n="1"><syl>lay</syl></verse></note>
 </layer></staff>
-<slur startid="#n28" endid="#n29"/>
+<tie startid="#n28" endid="#n29"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
@@ -134,7 +134,7 @@
 <verse n="1"><syl eol="1">low,</syl></verse></note>
 <note xml:id="n36" dur="4" dots="1" pname="f" oct="4" accid.ges="s"/>
 </layer></staff>
-<slur startid="#n35" endid="#n36"/>
+<tie startid="#n35" endid="#n36"/>
 <harm staff="1" tstamp="1" place="above">F♯</harm>
 </measure>
 <measure n="13"><staff n="1"><layer n="1">
@@ -175,7 +175,7 @@
 <verse n="1"><syl eol="1">go.</syl></verse></note>
 <note xml:id="n47" dur="4" dots="1" pname="d" oct="4"/>
 </layer></staff>
-<slur startid="#n46" endid="#n47"/>
+<tie startid="#n46" endid="#n47"/>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
 </section></score></mdiv></body>

@@ -37,7 +37,6 @@
 <harm staff="1" tstamp="3" place="above">B♭</harm>
 <tie startid="#n7" endid="#n8"/>
 <tie startid="#n8" endid="#n9"/>
-<slur startid="#n7" endid="#n9"/>
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="d" oct="4" dur="2" dots="1"/>
@@ -70,7 +69,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n16" endid="#n17"/>
-<slur startid="#n16" endid="#n18"/>
+<tie startid="#n17" endid="#n18"/>
 </measure>
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
@@ -261,7 +260,6 @@
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <tie startid="#n71" endid="#n72"/>
 <tie startid="#n72" endid="#n73"/>
-<slur startid="#n71" endid="#n73"/>
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
 <note xml:id="n73" pname="f" oct="4" dur="2" dots="1"/>

@@ -112,7 +112,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
 <harm staff="1" tstamp="2.5" place="above">F/C</harm>
-<slur startid="#n22" endid="#n23"/>
+<tie startid="#n22" endid="#n23"/>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n25" dur="4" pname="b" oct="4" accid.ges="f">
@@ -165,8 +165,8 @@
 <harm staff="1" tstamp="1.5" place="above">C7/E</harm>
 <harm staff="1" tstamp="2" place="above">Fsus4</harm>
 <harm staff="1" tstamp="2.5" place="above">F</harm>
-<slur startid="#n32" endid="#n33"/>
-<slur startid="#n34" endid="#n35"/>
+<tie startid="#n32" endid="#n33"/>
+<tie startid="#n34" endid="#n35"/>
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n37" dur="4" pname="a" oct="4"/>
@@ -175,7 +175,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">F/C</harm>
 <harm staff="1" tstamp="2" place="above">C</harm>
-<slur startid="#n36" endid="#n37"/>
+<tie startid="#n36" endid="#n37"/>
 </measure>
 <measure n="17"><staff n="1"><layer n="1">
 <note xml:id="n39" dur="4" pname="f" oct="4">

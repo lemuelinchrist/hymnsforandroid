@@ -129,7 +129,7 @@
 <note xml:id="n35" dur="8" pname="g" oct="4">
 <verse n="1"><label>(C)</label><syl>O</syl></verse></note>
 </layer></staff>
-<slur startid="#n33" endid="#n34"/>
+<tie startid="#n33" endid="#n34"/>
 <harm staff="1" tstamp="1" place="above">C/G</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -188,7 +188,7 @@
 <note xml:id="n52" dur="8" pname="e" oct="4">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
-<slur startid="#n50" endid="#n51"/>
+<tie startid="#n50" endid="#n51"/>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
@@ -246,7 +246,7 @@
 <note xml:id="n69" dur="8" pname="g" oct="4">
 <verse n="1"><syl>O</syl></verse></note>
 </layer></staff>
-<slur startid="#n67" endid="#n68"/>
+<tie startid="#n67" endid="#n68"/>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
@@ -301,7 +301,7 @@
 <verse n="1"><syl eol="1" wordpos="t">day.</syl></verse></note>
 <note xml:id="n85" dur="4" dots="1" pname="c" oct="4"/>
 </layer></staff>
-<slur startid="#n84" endid="#n85"/>
+<tie startid="#n84" endid="#n85"/>
 <harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 </section></score></mdiv></body>

@@ -48,7 +48,7 @@
 <verse n="1"><syl eol="1">said;</syl></verse></note>
 <note xml:id="n13" dur="4" dots="1" pname="g" oct="4" accid.ges="s"/>
 </layer></staff>
-<slur startid="#n12" endid="#n13"/>
+<tie startid="#n12" endid="#n13"/>
 <harm staff="1" tstamp="1" place="above">E</harm>
 </measure>
 <sb/>
@@ -97,7 +97,7 @@
 <verse n="1"><syl eol="1" wordpos="t">stead!</syl></verse></note>
 <note xml:id="n27" dur="4" dots="1" pname="b" oct="3"/>
 </layer></staff>
-<slur startid="#n26" endid="#n27"/>
+<tie startid="#n26" endid="#n27"/>
 <harm staff="1" tstamp="1" place="above">B</harm>
 </measure>
 <sb/>
@@ -151,7 +151,7 @@
 <note xml:id="n42" dur="8" pname="f" oct="4" accid.ges="s">
 <verse n="1"><syl wordpos="t">ly</syl></verse></note>
 </layer></staff>
-<slur startid="#n40" endid="#n41"/>
+<tie startid="#n40" endid="#n41"/>
 <harm staff="1" tstamp="1" place="above">E/G♯</harm>
 <harm staff="1" tstamp="4" place="above">B7</harm>
 </measure>

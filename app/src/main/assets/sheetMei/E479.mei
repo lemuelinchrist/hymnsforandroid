@@ -49,7 +49,7 @@
 <note xml:id="n16" dur="2" pname="d" oct="4"/>
 <rest xml:id="r17" dur="4"/>
 </layer></staff>
-<slur startid="#n15" endid="#n16"/>
+<tie startid="#n15" endid="#n16"/>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -95,7 +95,7 @@
 <note xml:id="n33" dur="2" pname="c" oct="4"/>
 <rest xml:id="r34" dur="4"/>
 </layer></staff>
-<slur startid="#n32" endid="#n33"/>
+<tie startid="#n32" endid="#n33"/>
 </measure>
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
@@ -118,7 +118,7 @@
 <verse n="1"><syl eol="1" wordpos="t">pear,</syl></verse></note>
 <note xml:id="n42" dur="2" dots="1" pname="c" oct="5"/>
 </layer></staff>
-<slur startid="#n41" endid="#n42"/>
+<tie startid="#n41" endid="#n42"/>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n43" dur="4" pname="d" oct="5">
@@ -141,7 +141,7 @@
 <note xml:id="n50" dur="2" pname="d" oct="4"/>
 <rest xml:id="r51" dur="4"/>
 </layer></staff>
-<slur startid="#n49" endid="#n50"/>
+<tie startid="#n49" endid="#n50"/>
 </measure>
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
@@ -187,7 +187,7 @@
 <note xml:id="n67" dur="2" pname="c" oct="4"/>
 <rest xml:id="r68" dur="4"/>
 </layer></staff>
-<slur startid="#n66" endid="#n67"/>
+<tie startid="#n66" endid="#n67"/>
 </measure>
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">
@@ -204,7 +204,7 @@
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n73" dur="1" dots="1" pname="g" oct="4"/>
 </layer></staff>
-<slur startid="#n72" endid="#n73"/>
+<tie startid="#n72" endid="#n73"/>
 </measure>
 <measure n="19"><staff n="1"><layer n="1">
 <note xml:id="n74" dur="4" pname="b" oct="4">
@@ -220,7 +220,7 @@
 <measure n="20"><staff n="1"><layer n="1">
 <note xml:id="n78" dur="1" dots="1" pname="c" oct="5"/>
 </layer></staff>
-<slur startid="#n77" endid="#n78"/>
+<tie startid="#n77" endid="#n78"/>
 </measure>
 <sb/>
 <measure n="21"><staff n="1"><layer n="1">
@@ -279,7 +279,7 @@
 <note xml:id="n99" dur="4" pname="a" oct="4">
 <verse n="1"><syl>the</syl></verse></note>
 </layer></staff>
-<slur startid="#n96" endid="#n97"/>
+<tie startid="#n96" endid="#n97"/>
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n100" dur="2" dots="1" pname="g" oct="4">
@@ -297,14 +297,14 @@
 <note xml:id="n105" dur="4" pname="g" oct="4">
 <verse n="1"><syl>as</syl></verse></note>
 </layer></staff>
-<slur startid="#n102" endid="#n103"/>
+<tie startid="#n102" endid="#n103"/>
 </measure>
 <measure n="28" right="end"><staff n="1"><layer n="1">
 <note xml:id="n106" dur="2" dots="1" pname="c" oct="5">
 <verse n="1"><syl eol="1">He.</syl></verse></note>
 <note xml:id="n107" dur="2" dots="1" pname="c" oct="5"/>
 </layer></staff>
-<slur startid="#n106" endid="#n107"/>
+<tie startid="#n106" endid="#n107"/>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

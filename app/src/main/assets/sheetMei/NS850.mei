@@ -24,7 +24,6 @@
 <dir startid="#n2" place="above" staff="1"><rend rend="box" fontweight="bold">Chorus</rend></dir>
 <tie startid="#n4" endid="#n5"/>
 <tie startid="#n5" endid="#n6"/>
-<slur startid="#n4" endid="#n6"/>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="g" oct="4" dur="4"/>
@@ -52,7 +51,7 @@
 <harm staff="1" tstamp="3" place="above">Em</harm>
 <slur startid="#n10" endid="#n11"/>
 <tie startid="#n12" endid="#n13"/>
-<slur startid="#n12" endid="#n14"/>
+<tie startid="#n13" endid="#n14"/>
 </measure>
 <sb/>
 <measure n="4"><staff n="1"><layer n="1">
@@ -81,7 +80,6 @@
 <harm staff="1" tstamp="3" place="above">Em</harm>
 <tie startid="#n20" endid="#n21"/>
 <tie startid="#n21" endid="#n22"/>
-<slur startid="#n20" endid="#n22"/>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n22" pname="g" oct="4" dur="4"/>
@@ -109,7 +107,7 @@
 <harm staff="1" tstamp="3" place="above">Em</harm>
 <slur startid="#n26" endid="#n27"/>
 <tie startid="#n28" endid="#n29"/>
-<slur startid="#n28" endid="#n30"/>
+<tie startid="#n29" endid="#n30"/>
 </measure>
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">

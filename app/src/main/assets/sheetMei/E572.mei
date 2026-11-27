@@ -66,7 +66,7 @@
 <verse n="1"><syl eol="1" wordpos="t">tow;</syl></verse></note>
 <note xml:id="n18" dur="2" dots="1" pname="a" oct="4" accid.ges="f"/>
 </layer></staff>
-<slur startid="#n17" endid="#n18"/>
+<tie startid="#n17" endid="#n18"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
 <sb/>
@@ -117,7 +117,7 @@
 <note xml:id="n34" dur="4" pname="g" oct="4">
 <verse n="1"><syl>me</syl></verse></note>
 </layer></staff>
-<slur startid="#n29" endid="#n30"/>
+<tie startid="#n29" endid="#n30"/>
 <slur startid="#n32" endid="#n33"/>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
 <harm staff="1" tstamp="2" place="above">Cm/E♭</harm>
@@ -130,7 +130,7 @@
 <verse n="1"><syl eol="1">now.</syl></verse></note>
 <note xml:id="n36" dur="2" dots="1" pname="a" oct="4" accid.ges="f"/>
 </layer></staff>
-<slur startid="#n35" endid="#n36"/>
+<tie startid="#n35" endid="#n36"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
 <sb/>
@@ -156,7 +156,7 @@
 <note xml:id="n43" dur="2" pname="b" oct="4" accid.ges="f"/>
 <rest xml:id="r44" dur="4"/>
 </layer></staff>
-<slur startid="#n42" endid="#n43"/>
+<tie startid="#n42" endid="#n43"/>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
@@ -183,7 +183,7 @@
 <note xml:id="n53" dur="4" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl>Yes,</syl></verse></note>
 </layer></staff>
-<slur startid="#n50" endid="#n51"/>
+<tie startid="#n50" endid="#n51"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="6" place="above">E♭7/G</harm>
 </measure>
@@ -242,7 +242,7 @@
 <verse n="1"><syl eol="1">now.</syl></verse></note>
 <note xml:id="n69" dur="2" dots="1" pname="a" oct="4" accid.ges="f"/>
 </layer></staff>
-<slur startid="#n68" endid="#n69"/>
+<tie startid="#n68" endid="#n69"/>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 </measure>
 </section></score></mdiv></body>

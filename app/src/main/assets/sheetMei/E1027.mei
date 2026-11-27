@@ -72,7 +72,7 @@
 <note xml:id="n20" dur="4" pname="a" oct="4"/>
 <rest xml:id="r21" dur="8"/>
 </layer></staff>
-<slur startid="#n19" endid="#n20"/>
+<tie startid="#n19" endid="#n20"/>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
 <sb/>
@@ -143,7 +143,7 @@
 <note xml:id="n42" dur="8" pname="d" oct="4">
 <verse n="1"><label>(C)</label><syl>Come</syl></verse></note>
 </layer></staff>
-<slur startid="#n40" endid="#n41"/>
+<tie startid="#n40" endid="#n41"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
@@ -153,7 +153,7 @@
 <note xml:id="n45" dur="8" pname="b" oct="4">
 <verse n="1"><syl>come</syl></verse></note>
 </layer></staff>
-<slur startid="#n43" endid="#n44"/>
+<tie startid="#n43" endid="#n44"/>
 <harm staff="1" tstamp="1" place="above">D7/A</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -268,7 +268,7 @@
 <verse n="1"><syl eol="1">home!</syl></verse></note>
 <note xml:id="n78" dur="4" dots="1" pname="g" oct="4"/>
 </layer></staff>
-<slur startid="#n77" endid="#n78"/>
+<tie startid="#n77" endid="#n78"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 </section></score></mdiv></body>

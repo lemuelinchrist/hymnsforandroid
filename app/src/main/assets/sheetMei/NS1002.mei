@@ -25,7 +25,6 @@
 </layer></staff>
 <tie startid="#n4" endid="#n5"/>
 <tie startid="#n5" endid="#n6"/>
-<slur startid="#n4" endid="#n6"/>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n6" pname="f" oct="4" dur="2" dots="1"/>
@@ -47,7 +46,6 @@
 <harm staff="1" tstamp="1" place="above">C7</harm>
 <tie startid="#n10" endid="#n11"/>
 <tie startid="#n11" endid="#n12"/>
-<slur startid="#n10" endid="#n12"/>
 </measure>
 <measure n="5"><staff n="1"><layer n="1">
 <note xml:id="n12" pname="g" oct="4" dur="2"/>
@@ -62,7 +60,7 @@
 </beam>
 </layer></staff>
 <tie startid="#n14" endid="#n15"/>
-<slur startid="#n16" endid="#n18"/>
+<tie startid="#n16" endid="#n17"/>
 </measure>
 <sb/>
 <measure n="6"><staff n="1"><layer n="1">
@@ -168,7 +166,7 @@
 <harm staff="1" tstamp="1" place="above">Fm</harm>
 <tie startid="#n46" endid="#n47"/>
 <tie startid="#n47" endid="#n48"/>
-<slur startid="#n46" endid="#n50"/>
+<tie startid="#n49" endid="#n50"/>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n48" pname="f" oct="4" dur="1"/>
@@ -263,7 +261,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <tie startid="#n72" endid="#n73"/>
-<slur startid="#n72" endid="#n74"/>
+<tie startid="#n73" endid="#n74"/>
 </measure>
 <sb/>
 <measure n="25"><staff n="1"><layer n="1">

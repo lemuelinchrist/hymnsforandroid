@@ -194,7 +194,8 @@
 <note xml:id="n54" dur="8" pname="d" oct="5" accid.ges="f"/>
 </beam>
 </layer></staff>
-<slur startid="#n52" endid="#n54"/>
+<tie startid="#n52" endid="#n53"/>
+<tie startid="#n53" endid="#n54"/>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">

@@ -134,7 +134,7 @@
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n29" dur="2" pname="f" oct="4"/>
 </layer></staff>
-<slur startid="#n28" endid="#n29"/>
+<tie startid="#n28" endid="#n29"/>
 <harm staff="1" tstamp="1" place="above">G7/D</harm>
 </measure>
 <sb/>
@@ -201,7 +201,7 @@
 <measure n="24"><staff n="1"><layer n="1">
 <note xml:id="n44" dur="2" pname="a" oct="4"/>
 </layer></staff>
-<slur startid="#n43" endid="#n44"/>
+<tie startid="#n43" endid="#n44"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <sb/>
@@ -239,7 +239,7 @@
 <measure n="28"><staff n="1"><layer n="1">
 <note xml:id="n52" dur="2" pname="a" oct="4"/>
 </layer></staff>
-<slur startid="#n51" endid="#n52"/>
+<tie startid="#n51" endid="#n52"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="29"><staff n="1"><layer n="1">
@@ -277,7 +277,7 @@
 <measure n="32"><staff n="1"><layer n="1">
 <note xml:id="n60" dur="2" pname="b" oct="4"/>
 </layer></staff>
-<slur startid="#n59" endid="#n60"/>
+<tie startid="#n59" endid="#n60"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <sb/>
@@ -321,7 +321,7 @@
 <verse n="1"><syl>it’s</syl></verse></note>
 </beam>
 </layer></staff>
-<slur startid="#n67" endid="#n68"/>
+<tie startid="#n67" endid="#n68"/>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 </measure>
 <measure n="37"><staff n="1"><layer n="1">
@@ -429,7 +429,7 @@
 <measure n="48"><staff n="1"><layer n="1">
 <note xml:id="n94" dur="2" pname="f" oct="4"/>
 </layer></staff>
-<slur startid="#n93" endid="#n94"/>
+<tie startid="#n93" endid="#n94"/>
 <harm staff="1" tstamp="1" place="above">G7/D</harm>
 </measure>
 <sb/>
@@ -496,7 +496,7 @@
 <measure n="56"><staff n="1"><layer n="1">
 <note xml:id="n109" dur="2" pname="a" oct="4"/>
 </layer></staff>
-<slur startid="#n108" endid="#n109"/>
+<tie startid="#n108" endid="#n109"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <sb/>
@@ -534,7 +534,7 @@
 <measure n="60"><staff n="1"><layer n="1">
 <note xml:id="n117" dur="2" pname="a" oct="4"/>
 </layer></staff>
-<slur startid="#n116" endid="#n117"/>
+<tie startid="#n116" endid="#n117"/>
 <harm staff="1" tstamp="1" place="above">F</harm>
 </measure>
 <measure n="61"><staff n="1"><layer n="1">
@@ -572,7 +572,7 @@
 <measure n="64"><staff n="1"><layer n="1">
 <note xml:id="n125" dur="2" pname="b" oct="4"/>
 </layer></staff>
-<slur startid="#n124" endid="#n125"/>
+<tie startid="#n124" endid="#n125"/>
 <harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <sb/>
@@ -616,7 +616,7 @@
 <verse n="1"><syl>it’s</syl></verse></note>
 </beam>
 </layer></staff>
-<slur startid="#n132" endid="#n133"/>
+<tie startid="#n132" endid="#n133"/>
 <harm staff="1" tstamp="1" place="above">C7</harm>
 </measure>
 <measure n="69"><staff n="1"><layer n="1">
@@ -661,7 +661,9 @@
 <measure n="76" right="end"><staff n="1"><layer n="1">
 <note xml:id="n143" dur="2" pname="c" oct="5"/>
 </layer></staff>
-<slur startid="#n140" endid="#n143"/>
+<tie startid="#n140" endid="#n141"/>
+<tie startid="#n141" endid="#n142"/>
+<tie startid="#n142" endid="#n143"/>
 </measure>
 </section></score></mdiv></body>
 </music></mei>

@@ -57,7 +57,7 @@
 <note xml:id="n15" dur="4" pname="e" oct="4"/>
 <rest xml:id="r16" dur="8"/>
 </layer></staff>
-<slur startid="#n14" endid="#n15"/>
+<tie startid="#n14" endid="#n15"/>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
 <sb/>
@@ -236,7 +236,7 @@
 <verse n="1"><syl eol="1" wordpos="t">ry.</syl></verse></note>
 <note xml:id="n70" dur="4" dots="1" pname="d" oct="4"/>
 </layer></staff>
-<slur startid="#n69" endid="#n70"/>
+<tie startid="#n69" endid="#n70"/>
 <harm staff="1" tstamp="1" place="above">A7</harm>
 <harm staff="1" tstamp="4" place="above">D</harm>
 </measure>

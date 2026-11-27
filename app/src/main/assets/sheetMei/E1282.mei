@@ -110,7 +110,7 @@
 <harm staff="1" tstamp="1" place="above">Am</harm>
 <harm staff="1" tstamp="1.5" place="above">Am7</harm>
 <harm staff="1" tstamp="2" place="above">C/G</harm>
-<slur startid="#n23" endid="#n24"/>
+<tie startid="#n23" endid="#n24"/>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n27" dur="2" pname="g" oct="4">
@@ -204,7 +204,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<slur startid="#n46" endid="#n47"/>
+<tie startid="#n46" endid="#n47"/>
 </measure>
 <measure n="18"><staff n="1"><layer n="1">
 <note xml:id="n50" dur="4" pname="c" oct="5">
@@ -292,7 +292,7 @@
 <harm staff="1" tstamp="1" place="above">G7</harm>
 <harm staff="1" tstamp="1.5" place="above">A♯/F</harm>
 <harm staff="1" tstamp="2.5" place="above">G7/D</harm>
-<slur startid="#n69" endid="#n70"/>
+<tie startid="#n69" endid="#n70"/>
 </measure>
 <measure n="26"><staff n="1"><layer n="1">
 <note xml:id="n72" dur="2" pname="c" oct="5">
@@ -372,7 +372,7 @@
 <measure n="33" right="end"><staff n="1"><layer n="1">
 <note xml:id="n90" dur="1" pname="c" oct="4"/>
 </layer></staff>
-<slur startid="#n89" endid="#n90"/>
+<tie startid="#n89" endid="#n90"/>
 </measure>
 </section></score></mdiv></body>
 </music></mei>

@@ -121,7 +121,6 @@
 <harm staff="1" tstamp="1" place="above">B♭sus4</harm>
 <tie startid="#n35" endid="#n36"/>
 <tie startid="#n36" endid="#n37"/>
-<slur startid="#n35" endid="#n37"/>
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n37" pname="f" oct="4" dur="2" dots="1"/>
@@ -218,7 +217,7 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭sus4</harm>
 <tie startid="#n64" endid="#n65"/>
-<slur startid="#n64" endid="#n66"/>
+<tie startid="#n65" endid="#n66"/>
 </measure>
 <sb/>
 <measure n="17"><staff n="1"><layer n="1">

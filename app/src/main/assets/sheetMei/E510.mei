@@ -93,7 +93,7 @@
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3.5" place="above">Dsus4</harm>
 <fermata startid="#n18" place="above"/>
-<slur startid="#n18" endid="#n19"/>
+<tie startid="#n18" endid="#n19"/>
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n21" dur="2" pname="a" oct="4">
@@ -158,7 +158,7 @@
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n34" dur="2" dots="1" pname="d" oct="4"/>
 </layer></staff>
-<slur startid="#n33" endid="#n34"/>
+<tie startid="#n33" endid="#n34"/>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

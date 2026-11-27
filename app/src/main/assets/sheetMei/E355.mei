@@ -48,7 +48,7 @@
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">E♭</harm>
 <harm staff="1" tstamp="3.5" place="above">A♭/E♭</harm>
-<slur startid="#n7" endid="#n8"/>
+<tie startid="#n7" endid="#n8"/>
 <slur startid="#n9" endid="#n10"/>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
@@ -81,7 +81,7 @@
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
-<slur startid="#n15" endid="#n16"/>
+<tie startid="#n15" endid="#n16"/>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n18" dur="2" pname="g" oct="4">
@@ -154,7 +154,7 @@
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n34" dur="2" dots="1" pname="e" oct="4" accid.ges="f"/>
 </layer></staff>
-<slur startid="#n33" endid="#n34"/>
+<tie startid="#n33" endid="#n34"/>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">
