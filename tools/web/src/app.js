@@ -1126,8 +1126,8 @@ function hymnScreen(view, hymn) {
       const named = S.handsOf(doc), id = hymn.sheetId;
       const piano = !!store.get('sheet', {}).hands || !!named;
       const choice = piano
-        ? (store.get(P.SAVED.handsOf, {})[id] || named || store.get(P.SAVED.hands, P.DEFAULT))
-        : P.strumChoice(store.get(P.SAVED.strumOf, {})[id] || store.get(P.SAVED.strum, P.STRUM_DEFAULT), S.capoOf(doc));
+        ? (store.get(P.SAVED.handsOf, {})[id] || named || P.DEFAULT)
+        : P.strumChoice(store.get(P.SAVED.strumOf, {})[id] || P.STRUM_DEFAULT, S.capoOf(doc));
       const score = P.scoreOf(doc, choice, {hands: true, loop: true});
       if (!score || !score.events.length) throw new Error('nothing to play in ' + id);
       let bpm = S.bpmOf(doc) || 110;

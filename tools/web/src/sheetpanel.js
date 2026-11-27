@@ -5,7 +5,7 @@
 // is this alone (tools/web/android). What differs between the two comes in as options, or through host.js.
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE} from './sheet.js';
 import {createEditor} from './editor.js';
-import {createPianoPanel, createStrumPanel, withoutTake} from './pianopanel.js';
+import {createPianoPanel, createStrumPanel} from './pianopanel.js';
 import {createSheetPlayer} from './sheetplayer.js';
 import {DEFAULT as PIANO_DEFAULT, STRUM_DEFAULT, SAVED, forgetOldChoices} from './piano.js';
 import {host as appHost} from './host.js';
@@ -170,44 +170,35 @@ export function createSheetPanel(pane, o) {
   }
 
   // how the hands play: this hymn's own (a change in the panel), else the one the sheet starts with (a sheet of ours
-  // that names its piano part), else the device's choice for every hymn ("Use for all hymns")
+  // that names its piano part), else the default (Flowing)
   function pianoChoice() {
-    const own = store.get(SAVED.handsOf, {})[o.sheetId], usual = store.get(SAVED.hands, PIANO_DEFAULT);
-    return {choice: own || view.baseHands || usual, usual};
+    const own = store.get(SAVED.handsOf, {})[o.sheetId];
+    return {choice: own || view.baseHands || PIANO_DEFAULT};
   }
   function keepOwn(choice) {
     if (!state.hands) set({hands: true});   // chosen while playing without Both hands: a style is only heard with the piano part
     const all = store.get(SAVED.handsOf, {});
-    // the same as what the hymn plays without one: none of its own, so that it follows the device's choice
-    if (JSON.stringify(choice) === JSON.stringify(view.baseHands || store.get(SAVED.hands, PIANO_DEFAULT))) delete all[o.sheetId];
+    if (JSON.stringify(choice) === JSON.stringify(view.baseHands || PIANO_DEFAULT)) delete all[o.sheetId];
     else all[o.sheetId] = choice;
     store.set(SAVED.handsOf, all);
     view.piano = choice;
     view.set({});
   }
-  function setUsual(choice) {
-    store.set(SAVED.hands, withoutTake(choice));   // the take (Shuffle) stays with this hymn
-    keepOwn(choice);
-  }
   view.piano = pianoChoice().choice;
   view.onSheet = () => { view.piano = pianoChoice().choice; if (panel) panel.refresh(); };   // the sheet may name its own piano part
 
-  // how the guitar strums on the guitar sheet ({kind, tone}): this hymn's own, else the device's
+  // how the guitar strums on the guitar sheet ({kind, tone}): this hymn's own, else the default
   function strumPick() {
-    const own = store.get(SAVED.strumOf, {})[o.sheetId], usual = store.get(SAVED.strum, STRUM_DEFAULT);
-    return {choice: own || usual, usual};
+    const own = store.get(SAVED.strumOf, {})[o.sheetId];
+    return {choice: own || STRUM_DEFAULT};
   }
   function keepStrum(choice) {
     const all = store.get(SAVED.strumOf, {});
-    if (JSON.stringify(choice) === JSON.stringify(store.get(SAVED.strum, STRUM_DEFAULT))) delete all[o.sheetId];
+    if (JSON.stringify(choice) === JSON.stringify(STRUM_DEFAULT)) delete all[o.sheetId];
     else all[o.sheetId] = choice;
     store.set(SAVED.strumOf, all);
     view.strum = choice;
     if (sp) sp.refresh();   // nothing on the sheet changes: only what is heard
-  }
-  function setStrumUsual(choice) {
-    store.set(SAVED.strum, choice);
-    keepStrum(choice);
   }
   view.strum = strumPick().choice;
 
@@ -222,11 +213,11 @@ export function createSheetPanel(pane, o) {
     if (!wantPiano && panel) panel.show('hidden');
     if (!wantStrum && strumPanel) strumPanel.show('hidden');
     if (wantPiano && !panel) {
-      panel = createPianoPanel({get: pianoChoice, set: keepOwn, setUsual, time: () => view.time});
+      panel = createPianoPanel({get: pianoChoice, set: keepOwn, time: () => view.time});
       bookColour(panel.el);
     }
     if (wantStrum && !strumPanel) {
-      strumPanel = createStrumPanel({get: strumPick, set: keepStrum, setUsual: setStrumUsual, time: () => view.time});
+      strumPanel = createStrumPanel({get: strumPick, set: keepStrum, time: () => view.time});
       bookColour(strumPanel.el);
     }
     const p = wantPiano ? panel : wantStrum ? strumPanel : null;

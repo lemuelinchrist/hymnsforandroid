@@ -92,14 +92,12 @@ off (choosing a style then turns Both hands on), and goes at Stop. It shows two 
 - **Style**, a preset named by what it is for: **Plain** (Strike, hymn style, twice a bar), **Chorale**
   (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
   harmony as in a hymnal), **Flowing** (the default: Dynamic, Adaptive, with Two notes — whisper-soft on chord changes), **Guitar**
-  (strummed or picked, with **Strum** and **Pick** rows under Style: Folk strum, Pop, Steady, Ballad, Country; and phrase-shuffled Fingerpicking weaving fingerpicking, ballad arches, harp, and 4-string plucked chords), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking). A choice made in
-  Advanced that is none of them shows as **Custom**. A preset sets the right hand, which can then be changed.
+  (strummed or picked, with **Strum** and **Pick** rows under Style: Folk strum, Pop, Steady, Ballad, Country; and phrase-shuffled Fingerpicking weaving fingerpicking, ballad arches, harp, and 4-string plucked chords), **Lively** (Dynamic, Pulse, with Two notes) and **Walking** (Dynamic, Walking, with Two notes). A preset sets the right hand, which can then be changed.
 - **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
-- **Shuffle Style** (in the sheet viewer's Style and Strumming panels for phrase-shuffled styles: **Flowing** and **Fingerpicking**): Flowing weaves six calm pianist moods (`music.js` `adaptMoods`) and Fingerpicking weaves eight acoustic guitar moods (`guitarPickMoods`) across musical phrases (2–4 bars, transitioning after cadence pauses or every 4 bars) by a random number made from the song and the hymn's take. Shuffle Style picks another take (`seed`, kept for the
-  hymn in `handsByHymn`, never for "Use for all hymns"), so the notes change but are the same every time the song plays;
-  **Original** brings the hymn's own take back. Every figure holds its last note for at least a beat before the next
+- **Shuffle side-button** (a narrow refresh icon button attached to **Flowing** and **Fingerpicking** in the Style and Strumming panels): Flowing weaves six calm pianist moods (`music.js` `adaptMoods`) and Fingerpicking weaves eight acoustic guitar moods (`guitarPickMoods`) across musical phrases (2–4 bars, transitioning after cadence pauses or every 4 bars) by a random number made from the song and the hymn's take. Tapping the refresh side-button picks another take (`seed`, kept for the
+  hymn in `handsByHymn` or `strumByHymn`), so the notes change but are the same every time the song plays; tapping the main **Flowing** or **Fingerpicking** button returns to the hymn's own take. Every figure holds its last note for at least a beat before the next
   chord's bass: eighths never run up and then leap straight down.
-- **More walking** (a switch under Style, only with Chorale, in Advanced too): both lower voices may walk at a change, a
+- **More walking** (a switch under Style, only with Chorale): both lower voices may walk at a change, a
   fourth is walked in two steps, and in a chord of a bar or more, or of two or three beats while the melody holds one note
   through it, the bass moves to another note of it halfway, towards the next bass.
 
@@ -107,8 +105,7 @@ off (choosing a style then turns Both hands on), and goes at Stop. It shows two 
 chord's bass on the lowest string that has it), strummed down over every string or up over the top four, lighter, with a muted chuck (Pop), or
 picked (thumb on the basses, the G, B and high E strings between), by the time signature. It sounds as a guitar:
 FluidR3 GM's steel-string acoustic guitar (`vendor/guitar/`, 13 MP3s, about 270 KB, loaded when a sheet first strums
-and cached offline like the piano), in a **Tone** chosen in Advanced: Bright (the samples as they are), Warm (the
-default: the pick's edge rounded), Mellow, Soft (no pick click). `player.js` GUITAR_TONES: a low-pass that opens with
+and cached offline like the piano), in the **Warm** tone by default (the pick's edge rounded; Bright, Warm, Mellow and Soft are available in the guitar sheet's Strumming panel). `player.js` GUITAR_TONES: a low-pass that opens with
 harder strums, a high-shelf cut above 3 kHz, a slower attack, a little body. While the samples load, or without them,
 a plucked string made in the browser (Karplus-Strong) plays. The melody stays on the piano. A listening page compared
 six sample sets by ear before FluidR3 steel and Warm were chosen.
@@ -116,26 +113,11 @@ six sample sets by ear before FluidR3 steel and Warm were chosen.
 **Strumming** (the guitar sheet): there is no switch for it; the guitar sheet always plays strummed, on a guitar (the melody too), and its panel opens when Play is pressed and goes at Stop (the piano sheet's Style panel the same, besides being there while Both hands is on). A guitar strums the chords when the sheet plays
 (`piano.js` strumChoice: the guitar kinds, the tone, and the guitar sheet's capo, so the shapes are those of the chords
 the guitar sheet shows, played above the capo). Its panel (`pianopanel.js` createStrumPanel, the same sheet at the
-bottom as Both hands', `.pp-panel`) has only Strum and Tone, and "Use for all hymns": kept per hymn in `strumByHymn`, for
-every hymn in `strumForAll` (Both hands': `handsByHymn`, `handsForAll`; `piano.js` SAVED). The names before
-2026-11-24 (`piano`, `pianoOf`, `strum`, `strumOf`) are deleted when the sheet loads: devices used before a change
-became the hymn's own kept every change for every hymn, so they start again from the defaults. Nothing is added to the sheet.
+bottom as Both hands', `.pp-panel`) has Strum, Pick (with the refresh side-button attached to Fingerpicking), and Tone: kept per hymn in `strumByHymn` (Both hands': `handsByHymn`; `piano.js` SAVED). Earlier device-wide and Advanced keys (`piano`, `pianoOf`, `strum`, `strumOf`, `handsForAll`, `strumForAll`, `pianoAdvanced`) are deleted when the sheet loads so every device starts cleanly from the per-hymn defaults. Nothing is added to the sheet.
 
-Advanced, Pedal and More walking are switches (`role="switch"`), the other choices buttons.
+**More walking** is a switch (`role="switch"`), the other choices buttons.
 
-**Advanced** (a switch, remembered on the device) shows every choice instead:
-
-- **Left hand**: none, **Strike**, **Bass + chord**, **Arpeggio**, **Guitar** or **Dynamic**; then its **Pattern** (Strike: two notes, three
-  notes, open, or the hymn style: root and fifth where the chord starts, third and fifth higher up in the bars it lasts;
-  Bass + chord, by the time signature: root and fifth, bass and chords, slow, in eighths, a waltz ...; Arpeggio: open,
-  wide, broken chord, Alberti, rise and hold; Dynamic: adaptive, rolled, pulse, walking, chorale), its **Rhythm** where it has more than one (Strike: held, twice a bar or
-  every beat; Arpeggio: quarters, eighths or sixteenths), the **Octave** (Lower or Higher) and **Pedal**.
-- **Right hand**: the melody alone, or two or three notes, and **When**: where a chord starts (the default), on the beat, on long
-  notes or on every note.
-
-A change is this hymn's own; **Use for all hymns** makes the choice the device's, which every hymn without a choice of
-its own plays (a hymn whose choice becomes the same as the device's drops its own, and follows the device's from then
-on). Both hands stays on from hymn to hymn, like the zoom. A style is kept by its name, not its notes, so the same arpeggio fits 4/4, 3/4 and 6/8.
+Every change is kept for that hymn alone (`handsByHymn` / `strumByHymn`); every other hymn starts from its own `<identifier type="hands">` if present or the default (`Flowing` / `Folk strum · Warm`). Both hands stays on from hymn to hymn, like the zoom. A style is kept by its name, not its notes, so the same pattern fits 4/4, 3/4 and 6/8.
 
 The rules are the lead sheet editor's (`tools/lead-sheet-editor/music.js`, which `build.py` copies into the app; its
 README says what a pattern is): the upbeat bar stays empty, a pattern starts again with every chord and every bar, the

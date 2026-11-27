@@ -149,11 +149,25 @@ body.editing-chords #view, body.piano-open #view, body.piano-peek #view { paddin
 .pp-panel .ce-row { margin-bottom: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }   /* a row is one line: it scrolls sideways on a phone, so the sheet stays in view */
 .pp-panel .ce-row::-webkit-scrollbar { display: none; }
 .pp-panel .ce-row .ce-btn { flex: none; }
+.pp-split { display: inline-flex; flex: none; align-items: stretch; }
+.pp-split .pp-split-main { border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 0; padding-right: 10px; }
+.pp-split .pp-split-side {
+  min-width: 34px; padding: 0 8px; border-top-left-radius: 0; border-bottom-left-radius: 0;
+  color: var(--muted); border-left: 1px solid var(--line-strong);
+}
+.pp-split.active .pp-split-side {
+  background: var(--g); border-color: var(--g); color: var(--surface);
+  border-left-color: color-mix(in srgb, var(--surface) 35%, transparent);
+}
+.pp-split .pp-split-side:active { filter: brightness(.88); }
 @media (max-width: 700px) {
   .pp-panel { padding-top: 8px; }
   .pp-panel .ce-top { margin-bottom: 6px; }
   .pp-panel .ce-row { margin-bottom: 4px; }
   .pp-panel .ce-btn { height: 34px; min-width: 0; padding: 0 10px; font-size: 14px; }
+  .pp-panel .pp-split .pp-split-main { padding-right: 8px; }
+  .pp-panel .pp-split .pp-split-side { min-width: 30px; padding: 0 7px; }
+  .pp-panel .pp-split .pp-split-side svg { width: 15px; height: 15px; }
   .pp-panel .ce-label { width: 4.8em; font-size: 11px; }
 }
 .pp-panel .ce-row[hidden] { display: none; }

@@ -1,16 +1,15 @@
 // How the two hands play (piano.js), the "Style" panel: a sheet at the bottom of the screen, in the chord editor's
-// clothes. It opens when Both hands is turned on, and is there (as the slim bar) while the sheet plays; Done tucks it down to a slim bar that names the style (a tap or a drag
-// up opens it again); it is gone when neither Both hands nor playing needs it. It shows the presets (piano.js PRESETS) and the right hand,
-// Melody alone or Two notes; Advanced shows every choice instead (kept on the device). A change is this hymn's own;
-// "Use for all hymns" makes the choice the device's, which every hymn without its own plays.
-// The guitar sheet's Strumming has a panel of the same kind (createStrumPanel): only the strum and the tone.
+// clothes. It opens when Both hands is turned on, and is there (as the slim bar) while the sheet plays; Done tucks it
+// down to a slim bar that names the style (a tap or a drag up opens it again); it is gone when neither Both hands nor
+// playing needs it. It shows the presets (piano.js PRESETS) and the right hand (Melody alone or Two notes). Every
+// change is kept on the device for that hymn alone.
+// The guitar sheet's Strumming has a panel of the same kind (createStrumPanel): Strum, Pick, Shuffle Style (for
+// Fingerpicking), and Tone.
 
 import {styles, pattern, DEFAULT, PRESETS, presetChoice, presetOf, TONES, STRUM_DEFAULT} from './piano.js';
 import {tr} from './i18n.js';
-import {store} from './ui.js';
 
-const ADD = [[0, 'Melody alone'], [1, 'Two notes'], [2, 'Three notes']];
-const ON = [['chord', 'Where a chord starts'], ['beat', 'On the beat'], ['long', 'Long notes'], ['all', 'Every note']];
+const ADD = [[0, 'Melody alone'], [1, 'Two notes']];
 
 function el(tag, cls, text, attrs) {
   const e = document.createElement(tag);
@@ -29,19 +28,28 @@ function toggle(label, on, onclick, title) {
   if (onclick) b.addEventListener('click', onclick);
   return b;
 }
+const REFRESH_ICON = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36L21 8"/><path d="M21 3v5h-5"/></svg>';
+
 function btn(label, pressed, onclick, cls = '') {
   const b = el('button', 'ce-btn ' + cls, label, {type: 'button', 'aria-pressed': String(!!pressed)});
   b.addEventListener('click', onclick);
   return b;
 }
-const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-// a choice without its take (Shuffle): the take belongs to the hymn, "Use for all hymns" does not carry it
-export const withoutTake = (choice) => { const c = JSON.parse(JSON.stringify(choice)); if (c.lh) delete c.lh.seed; return c; };
+function splitBtn(label, pressed, onMain, onSide, sideLabel, sideTitle, mainTitle) {
+  const wrap = el('span', 'pp-split' + (pressed ? ' active' : ''));
+  const main = btn(label, pressed, onMain, 'pp-split-main');
+  if (mainTitle) main.title = mainTitle;
+  const side = el('button', 'ce-btn pp-split-side', null, {type: 'button', 'aria-label': sideLabel, title: sideTitle || sideLabel});
+  side.innerHTML = REFRESH_ICON;
+  side.addEventListener('click', onSide);
+  wrap.append(main, side);
+  return wrap;
+}
 
 // The sheet at the bottom both panels are: open, tucked down to a slim bar that names what plays (a tap or a drag up
-// opens it), or hidden. title: its name; label: what it is for (read out, and the bar's tooltip); extra: buttons
-// before "Use for all hymns" and Done; rows: its rows of choices; refresh(): fills them and returns the bar's summary.
-function sheetPanel({cls, title, label, extra = [], rows, refresh, onAll}) {
+// opens it), or hidden. title: its name; label: what it is for (read out, and the bar's tooltip); rows: its rows of
+// choices; refresh(): fills them and returns the bar's summary.
+function sheetPanel({cls, title, label, rows, refresh}) {
   const root = el('section', 'chord-editor pp-panel ' + cls, null, {'aria-label': label});
   // the bar it tucks down to: a handle, what plays now, and a chevron; a tap or a drag up opens the panel
   const peek = el('button', 'pp-peek', null, {type: 'button', 'aria-expanded': 'false', title: label});
@@ -49,15 +57,14 @@ function sheetPanel({cls, title, label, extra = [], rows, refresh, onAll}) {
   peek.append(el('span', 'pp-handle', null, {'aria-hidden': 'true'}), el('strong', 'pp-title', title), summary,
     el('span', 'pp-chev', '⌃', {'aria-hidden': 'true'}));
   const grip = el('div', 'pp-handle pp-grip', null, {'aria-hidden': 'true'});
-  const bAll = el('button', 'ce-btn', tr('Use for all hymns'), {type: 'button', title: tr('Play every hymn this way, unless it has its own')});
   const bDone = el('button', 'ce-btn primary', tr('Done'), {type: 'button'});
   const top = el('div', 'ce-top');
-  top.append(el('strong', 'ce-title', title), el('span', 'grow'), ...extra, bAll, bDone);
+  top.append(el('strong', 'ce-title', title), el('span', 'grow'), bDone);
   const body = el('div', 'pp-body');
   body.append(grip, top, ...rows);
   root.append(peek, body);
 
-  const fill = () => { summary.textContent = refresh(bAll); setHeight(); };
+  const fill = () => { summary.textContent = refresh(); setHeight(); };
   // 'hidden' (off, or nothing to play it on), 'peek' (the slim bar) or 'open'
   let mode = 'hidden';
   function show(m) {
@@ -88,7 +95,6 @@ function sheetPanel({cls, title, label, extra = [], rows, refresh, onAll}) {
   window.addEventListener('pointerup', onUp);
   peek.addEventListener('click', () => show('open'));
   grip.addEventListener('click', () => show('peek'));
-  bAll.addEventListener('click', () => { onAll(); fill(); });
   bDone.addEventListener('click', () => show('peek'));
 
   document.body.appendChild(root);
@@ -112,17 +118,12 @@ function sheetPanel({cls, title, label, extra = [], rows, refresh, onAll}) {
   };
 }
 
-// get() -> {choice, usual: the device's choice}; set(choice): this hymn's; setUsual(choice): for every hymn;
-// time() -> the sheet's time signature, [4, 4]
-export function createPianoPanel({get, set, setUsual, time}) {
-  const bAdv = toggle(tr('Advanced'), false, null, tr('All the choices'));
-  const presetRow = el('div', 'ce-row'), walkRow = el('div', 'ce-row'), strumRow = el('div', 'ce-row'), pickRow = el('div', 'ce-row'), shuffleRow = el('div', 'ce-row');
-  const famRow = el('div', 'ce-row'), kindRow = el('div', 'ce-row'), rhythmRow = el('div', 'ce-row'), octRow = el('div', 'ce-row');
-  const toneRow = el('div', 'ce-row'), addRow = el('div', 'ce-row'), onRow = el('div', 'ce-row');
-  let advanced = !!store.get('pianoAdvanced', false);
-  const panel = sheetPanel({cls: 'piano-panel', title: tr('Style'), label: tr('How the two hands play'), extra: [bAdv],
-    rows: [presetRow, strumRow, pickRow, famRow, kindRow, rhythmRow, octRow, toneRow, walkRow, shuffleRow, addRow, onRow],
-    refresh: (bAll) => refresh(bAll), onAll: () => setUsual(get().choice)});
+// get() -> {choice}; set(choice): this hymn's; time() -> the sheet's time signature, [4, 4]
+export function createPianoPanel({get, set, time}) {
+  const presetRow = el('div', 'ce-row'), strumRow = el('div', 'ce-row'), pickRow = el('div', 'ce-row');
+  const walkRow = el('div', 'ce-row'), addRow = el('div', 'ce-row');
+  const panel = sheetPanel({cls: 'piano-panel', title: tr('Style'), label: tr('How the two hands play'),
+    rows: [presetRow, strumRow, pickRow, walkRow, addRow], refresh});
   const change = (fn) => {
     const choice = JSON.parse(JSON.stringify(get().choice || DEFAULT));
     choice.rh = choice.rh || {add: 0, on: 'chord'};
@@ -131,126 +132,87 @@ export function createPianoPanel({get, set, setUsual, time}) {
     panel.fill();
   };
 
-  function refresh(bAll) {
-    const {choice, usual} = get(), lh = choice.lh || null, rh = choice.rh || {add: 0, on: 'chord'};
+  function refresh() {
+    const {choice} = get(), lh = choice.lh || null, rh = choice.rh || {add: 0, on: 'chord'};
     const all = styles(time()), cur = pattern(lh, time()), preset = presetOf(choice, time());
-    bAdv.setAttribute('aria-checked', String(advanced));
-    bAll.disabled = same(withoutTake(choice), usual);
-    for (const r of [presetRow, strumRow, pickRow, famRow, kindRow, rhythmRow, octRow, toneRow, addRow, onRow, walkRow, shuffleRow]) r.textContent = '';
+    for (const r of [presetRow, strumRow, pickRow, walkRow, addRow]) r.textContent = '';
     const said = [];
     // More walking: Chorale's bass and tenor walk more (only there)
     const walks = !!(cur && cur.passing);
     walkRow.hidden = !walks;
     if (walks) walkRow.append(el('span', 'ce-label'), toggle(tr('More walking'), !!lh.walk, () => change((c) => { if (c.lh.walk) delete c.lh.walk; else c.lh.walk = true; }),
       tr('The bass and the tenor walk between the chords more often')));
-    // Shuffle: a style that varies its figures (Flowing, Fingerpicking) plays them in another order, the same notes every time; Original
-    // is the hymn's own take again
     const varies = !!(cur && (cur.vary || cur.moods));
-    shuffleRow.hidden = !varies;
-    if (varies) {
-      const shuffle = btn(tr('Shuffle Style'), false, () => change((c) => { c.lh.seed = 1 + Math.floor(Math.random() * 99999); }));
-      shuffle.title = tr('Play the left hand in another order');
-      shuffleRow.append(el('span', 'ce-label'), shuffle);
-      if (lh.seed) {
-        const orig = btn(tr('Original'), false, () => change((c) => { delete c.lh.seed; }));
-        orig.title = tr('Back to the left hand this hymn starts with');
-        shuffleRow.append(orig);
-      }
-    }
-    presetRow.hidden = advanced;
-    strumRow.hidden = pickRow.hidden = advanced || !cur || cur.family !== 'guitar';
-    for (const r of [famRow, kindRow, rhythmRow, octRow, onRow]) r.hidden = !advanced;
-    // the guitar's tone: in Advanced only (Warm, the usual, is what the simple panel plays)
-    const strums = !!(cur && cur.family === 'guitar');
-    toneRow.hidden = !advanced || !strums;
-    if (!toneRow.hidden) toneRow.append(el('span', 'ce-label', tr('Tone')), ...TONES.map(([id, name]) => btn(tr(name), (lh.tone || 'warm') === id,
-      () => change((c) => { if (id === 'warm') delete c.lh.tone; else c.lh.tone = id; }))));
-    if (!advanced) {
-      presetRow.append(el('span', 'ce-label', tr('Style')), ...PRESETS.map((p) => btn(tr(p.name), preset === p, () => change((c) => {
-        if (p.anyKind && c.lh && c.lh.family === p.lh[0]) return;   // already a guitar: the Strum / Pick rows choose which
+    const isGuitar = !!(cur && cur.family === 'guitar');
+    strumRow.hidden = pickRow.hidden = !isGuitar;
+    const selectPreset = (p) => change((c) => {
+      if (p.anyKind && c.lh && c.lh.family === p.lh[0]) return;   // already a guitar: the Strum / Pick rows choose which
+      const n = presetChoice(p); if (c.lh && c.lh.walk) n.lh.walk = true; if (c.lh && c.lh.tone) n.lh.tone = c.lh.tone; c.lh = n.lh; c.rh = n.rh;
+    });
+    const shufflePreset = (p) => change((c) => {
+      const same = preset === p;
+      if (!same) {
         const n = presetChoice(p); if (c.lh && c.lh.walk) n.lh.walk = true; if (c.lh && c.lh.tone) n.lh.tone = c.lh.tone; c.lh = n.lh; c.rh = n.rh;
-      }))));
-      if (!preset) presetRow.append(btn(tr('Custom'), true, () => { advanced = true; store.set('pianoAdvanced', true); panel.fill(); }));
-      addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.slice(0, 2).map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh = {add: n, on: (preset && preset.on) || 'chord'}; }))));
-      if (!strumRow.hidden) {
-        const fam = all.find((f) => f.id === 'guitar');
-        const strumKinds = fam.kinds.filter((k) => !k.pick), pickKinds = fam.kinds.filter((k) => k.pick);
-        strumRow.append(el('span', 'ce-label', tr('Strum')), ...strumKinds.map((k) => btn(tr(k.name), k.id === cur.kind, () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; }), '')));
-        strumKinds.forEach((k, i) => { strumRow.children[i + 1].title = tr(k.hint); });
-        pickRow.append(el('span', 'ce-label', tr('Pick')), ...pickKinds.map((k) => btn(tr(k.name), k.id === cur.kind, () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; }), '')));
-        pickKinds.forEach((k, i) => { pickRow.children[i + 1].title = tr(k.hint); });
       }
-      said.push(preset ? tr(preset.name) : tr('Custom'));
-      if (preset && preset.anyKind) said.push(tr(all.find((f) => f.id === cur.family).kinds.find((k) => k.id === cur.kind).name));
-      if (rh.add) said.push(tr(ADD[rh.add][1]));
-      if (walks && lh.walk) said.push(tr('More walking'));
-      if (varies && lh.seed) said.push(tr('Shuffled'));
-      if (strums && lh.tone && lh.tone !== 'warm') said.push(tr(TONES.find((t) => t[0] === lh.tone)[1]));
-      return said.join(' · ');
-    }
-    famRow.append(el('span', 'ce-label', tr('Left hand')),
-      btn(tr('No left hand'), !cur, () => change((c) => { c.lh = null; })),
-      ...all.map((f) => btn(tr(f.name), cur && cur.family === f.id, () => change((c) => {
-        const walk = !!(c.lh && c.lh.walk);
-        c.lh = {family: f.id, kind: f.kinds[0].id, rhythm: '', oct: (c.lh && c.lh.oct) || 0, pedal: !!(c.lh && c.lh.pedal)};
-        if (walk) c.lh.walk = true;
-      }))));
-    kindRow.hidden = octRow.hidden = !cur;
-    rhythmRow.hidden = true;
-    if (cur) {
-      const fam = all.find((f) => f.id === cur.family), kind = fam.kinds.find((k) => k.id === cur.kind);
-      said.push(tr(fam.name), tr(kind.name));
-      kindRow.append(el('span', 'ce-label', tr('Pattern')), ...fam.kinds.map((k) => btn(tr(k.name), k.id === cur.kind, () => change((c) => { c.lh.kind = k.id; }))));
-      if (kind.rhythms.length > 1) {
-        rhythmRow.hidden = false;
-        rhythmRow.append(el('span', 'ce-label', tr('Rhythm')), ...kind.rhythms.map((r) => btn(tr(r.name), r.id === cur.rhythm, () => change((c) => { c.lh.rhythm = r.id; }))));
-        const r = kind.rhythms.find((x) => x.id === cur.rhythm);
-        if (r && r.name) said.push(tr(r.name));
+      c.lh.seed = 1 + Math.floor(Math.random() * 99999);
+    });
+    presetRow.append(el('span', 'ce-label', tr('Style')), ...PRESETS.map((p) => {
+      const pPat = pattern(presetChoice(p).lh, time());
+      if (pPat && (pPat.vary || pPat.moods)) {
+        return splitBtn(tr(p.name), preset === p, () => selectPreset(p), () => shufflePreset(p),
+          tr('Shuffle Style'), tr('Shuffle this style\'s phrasing'));
       }
-      const oct = lh.oct || 0;
-      const lower = btn(tr('Lower'), oct < 0, () => change((c) => { c.lh.oct = Math.max(-1, (c.lh.oct || 0) - 1); }));
-      const higher = btn(tr('Higher'), oct > 0, () => change((c) => { c.lh.oct = Math.min(1, (c.lh.oct || 0) + 1); }));
-      lower.disabled = oct <= -1; higher.disabled = oct >= 1;
-      const pedal = toggle(tr('Pedal'), cur.pedal, () => change((c) => { c.lh.pedal = !c.lh.pedal; }));
-      pedal.disabled = !cur.rate;
-      octRow.append(el('span', 'ce-label', tr('Octave')), lower, higher, el('span', 'ce-gap'), pedal);
-      if (oct) said.push(tr(oct < 0 ? 'Lower' : 'Higher'));
-      if (cur.pedal && cur.rate) said.push(tr('Pedal'));
-      if (walks && lh.walk) said.push(tr('More walking'));
-      if (varies && lh.seed) said.push(tr('Shuffled'));
-      if (strums && lh.tone && lh.tone !== 'warm') said.push(tr(TONES.find((t) => t[0] === lh.tone)[1]));
-    } else said.push(tr('No left hand'));
-    addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh.add = n; }))));
-    onRow.hidden = !rh.add;
-    if (rh.add) {
-      said.push(tr(ADD[rh.add][1]));
-      onRow.append(el('span', 'ce-label', tr('When')), ...ON.map(([id, label]) => btn(tr(label), rh.on === id, () => change((c) => { c.rh.on = id; }))));
+      return btn(tr(p.name), preset === p, () => selectPreset(p));
+    }));
+    addRow.append(el('span', 'ce-label', tr('Right hand')), ...ADD.map(([n, label]) => btn(tr(label), rh.add === n, () => change((c) => { c.rh = {add: n, on: (preset && preset.on) || 'chord'}; }))));
+    if (isGuitar) {
+      const fam = all.find((f) => f.id === 'guitar');
+      const strumKinds = fam.kinds.filter((k) => !k.pick), pickKinds = fam.kinds.filter((k) => k.pick);
+      strumRow.append(el('span', 'ce-label', tr('Strum')), ...strumKinds.map((k) => {
+        const b = btn(tr(k.name), k.id === cur.kind, () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; delete c.lh.seed; }));
+        b.title = tr(k.hint);
+        return b;
+      }));
+      pickRow.append(el('span', 'ce-label', tr('Pick')), ...pickKinds.map((k) => {
+        const kVaries = !!(k.rhythms[0] && (k.rhythms[0].vary || k.rhythms[0].moods));
+        if (kVaries) {
+          return splitBtn(tr(k.name), k.id === cur.kind,
+            () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; delete c.lh.seed; }),
+            () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; c.lh.seed = 1 + Math.floor(Math.random() * 99999); }),
+            tr('Shuffle Style'), tr('Shuffle this style\'s phrasing'), tr(k.hint));
+        }
+        const b = btn(tr(k.name), k.id === cur.kind, () => change((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; delete c.lh.seed; }));
+        b.title = tr(k.hint);
+        return b;
+      }));
     }
+    said.push(preset ? tr(preset.name) : tr('Custom'));
+    if (preset && preset.anyKind) said.push(tr(all.find((f) => f.id === cur.family).kinds.find((k) => k.id === cur.kind).name));
+    if (rh.add && ADD[rh.add]) said.push(tr(ADD[rh.add][1]));
+    if (walks && lh.walk) said.push(tr('More walking'));
+    if (varies && lh.seed) said.push(tr('Shuffled'));
     return said.join(' · ');
   }
 
-  bAdv.addEventListener('click', () => { advanced = !advanced; store.set('pianoAdvanced', advanced); panel.fill(); });
   return panel;
 }
 
 // The guitar sheet's Strumming: a guitar strums or picks the chords the guitar sheet shows (piano.js strumChoice).
-// Shows Strum, Pick, Tone, and (for Fingerpicking) Shuffle Style rows. get() -> {choice: {kind, tone, seed?}, usual};
-// set(choice): this hymn's; setUsual(choice): for every hymn; time() -> the sheet's time signature.
-export function createStrumPanel({get, set, setUsual, time}) {
-  const strumRow = el('div', 'ce-row'), pickRow = el('div', 'ce-row'), shuffleRow = el('div', 'ce-row'), toneRow = el('div', 'ce-row');
-  const stripSeed = (c) => { const x = Object.assign({}, STRUM_DEFAULT, c); delete x.seed; return x; };
+// Shows Strum, Pick (with an attached shuffle side-button on Fingerpicking), and Tone rows. get() -> {choice: {kind, tone, seed?}};
+// set(choice): this hymn's; time() -> the sheet's time signature.
+export function createStrumPanel({get, set, time}) {
+  const strumRow = el('div', 'ce-row'), pickRow = el('div', 'ce-row'), toneRow = el('div', 'ce-row');
   const panel = sheetPanel({cls: 'strum-panel', title: tr('Strumming'), label: tr('How the guitar strums'),
-    rows: [strumRow, pickRow, shuffleRow, toneRow], refresh: (bAll) => refresh(bAll), onAll: () => setUsual(stripSeed(get().choice))});
+    rows: [strumRow, pickRow, toneRow], refresh});
   const change = (patch) => {
     const next = Object.assign({}, STRUM_DEFAULT, get().choice, patch);
     if (!next.seed) delete next.seed;
     set(next);
     panel.fill();
   };
-  function refresh(bAll) {
-    const {choice, usual} = get(), cur = Object.assign({}, STRUM_DEFAULT, choice);
+  function refresh() {
+    const {choice} = get(), cur = Object.assign({}, STRUM_DEFAULT, choice);
     if (/^(travis|pick-flow|arp|harp|arp-flow)$/.test(cur.kind)) cur.kind = 'pick';
-    bAll.disabled = same(stripSeed(cur), stripSeed(usual));
     const fam = styles(time()).find((f) => f.id === 'guitar');
     const kind = fam.kinds.find((k) => k.id === cur.kind) || fam.kinds[0];
     const strumKinds = fam.kinds.filter((k) => !k.pick), pickKinds = fam.kinds.filter((k) => k.pick);
@@ -260,23 +222,18 @@ export function createStrumPanel({get, set, setUsual, time}) {
       return b;
     }));
     pickRow.replaceChildren(el('span', 'ce-label', tr('Pick')), ...pickKinds.map((k) => {
-      const b = btn(tr(k.name), k === kind, () => change({kind: k.id}));
+      const kVaries = !!(k.rhythms[0] && (k.rhythms[0].vary || k.rhythms[0].moods));
+      if (kVaries) {
+        return splitBtn(tr(k.name), k === kind,
+          () => change({kind: k.id, seed: 0}),
+          () => change({kind: k.id, seed: 1 + Math.floor(Math.random() * 99999)}),
+          tr('Shuffle Style'), tr('Shuffle this style\'s phrasing'), tr(k.hint));
+      }
+      const b = btn(tr(k.name), k === kind, () => change({kind: k.id, seed: 0}));
       b.title = tr(k.hint);
       return b;
     }));
     const varies = !!(kind.rhythms[0] && (kind.rhythms[0].vary || kind.rhythms[0].moods));
-    shuffleRow.hidden = !varies;
-    shuffleRow.textContent = '';
-    if (varies) {
-      const shuf = btn(tr('Shuffle Style'), false, () => change({seed: 1 + Math.floor(Math.random() * 99999)}));
-      shuf.title = tr('Shuffle this style\'s phrasing');
-      shuffleRow.append(el('span', 'ce-label'), shuf);
-      if (cur.seed) {
-        const orig = btn(tr('Original'), false, () => change({seed: 0}));
-        orig.title = tr('Back to the left hand this hymn starts with');
-        shuffleRow.append(orig);
-      }
-    }
     const tone = TONES.find((t) => t[0] === cur.tone) || TONES[1];
     toneRow.replaceChildren(el('span', 'ce-label', tr('Tone')), ...TONES.map(([id, name]) => btn(tr(name), tone[0] === id, () => change({tone: id}))));
     const parts = [tr(kind.name)];
