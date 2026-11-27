@@ -1,9 +1,12 @@
 // Unified Bottom Dock (Proposal 1 "Apple Music" Mini-Player) for Sheet Music (shared between web and Android viewer).
-// Replaces both the old top playback bar and the old bottom Style/Strumming panels with one frosted floating bottom dock:
+// Matches the Jukebox layout 1:1:
 //   - Razor-thin 3px top progress bar along the dock's top edge
 //   - Slim 1-row bar: circular Play/Stop FAB, From-start (when playing/open), Style + BPM summary, Loop toggle, Expand chevron, Close
-//   - Expandable drawer: horizontal style pills with attached refresh side-buttons (Flowing, Lively, Fingerpicking),
-//     Guitar Strum/Pick or Tone rows, Chorale More walking switch, Tempo slider, Parts (All | Melody | Acc.), and Right hand (1 / 2 notes).
+//   - Expandable drawer:
+//       * Piano sheet: segmented category tabs (Hymn's own | Piano | Guitar | Melody), organized style pill rail
+//         with attached refresh side-buttons (Flowing, Lively, Fingerpicking), Chorale More walking switch,
+//         Tempo slider, and Right hand (RH: 1 note | RH: 2 notes).
+//       * Guitar sheet: Guitar style pill rail (Folk strum..Fingerpicking ↻), Tone rail, and Tempo slider.
 
 import {styles, pattern, DEFAULT, PRESETS, presetChoice, presetOf, TONES, STRUM_DEFAULT} from './piano.js';
 import {MIN_SPEED, MAX_SPEED} from './sheetplayer.js';
@@ -19,6 +22,9 @@ const IC = {
   close: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>',
   refresh: '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36L21 8"/><path d="M21 3v5h-5"/></svg>',
 };
+
+const PIANO_PRESETS = PRESETS.filter((p) => !p.anyKind);
+const GUITAR_PRESET = PRESETS.find((p) => p.anyKind);
 
 function el(tag, cls, text, attrs) {
   const e = document.createElement(tag);
@@ -53,13 +59,11 @@ function splitChip(label, pressed, onMain, onSide, sideLabel, sideTitle, mainTit
   return wrap;
 }
 
-// Unified floating bottom dock for the Sheet Music screen (Piano & Guitar sheets).
-//   player: createSheetPlayer() controller
-//   getPiano / setPiano: per-hymn piano choice
-//   getStrum / setStrum: per-hymn guitar strum/pick/tone choice
-//   isGuitar / hasStaff / hasHands: current sheet view state
-//   time(): current time signature [count, unit]
-export function createSheetDock({player, getPiano, setPiano, getStrum, setStrum, isGuitar, hasStaff, hasHands, time}) {
+function sameChoice(a, b) {
+  return !!a && !!b && JSON.stringify(a) === JSON.stringify(b);
+}
+
+export function createSheetDock({player, getPiano, setPiano, getBaseHands, getStrum, setStrum, isGuitar, hasStaff, hasHands, setHands, time}) {
   const root = el('section', 'ud-dock sheet-dock', null, {role: 'region', 'aria-label': tr('Play the sheet')});
   const progBar = el('div', 'ud-prog', null, {'aria-hidden': 'true'});
   const progFill = el('i');
@@ -74,8 +78,8 @@ export function createSheetDock({player, getPiano, setPiano, getStrum, setStrum,
   const nameEl = el('div', 'ud-name');
   const subEl = el('div', 'ud-sub');
   const tempoBadge = el('span', 'ud-sub-tempo');
-  const barBadge = el('span', 'ud-sub-bar');
   const extraBadge = el('span', 'ud-sub-extra');
+  const barBadge = el('span', 'ud-sub-bar');
   subEl.append(tempoBadge, extraBadge, barBadge);
   meta.append(nameEl, subEl);
   const bLoop = el('button', 'ud-icbtn ud-loop', null, {type: 'button', title: tr('Play again and again'), 'aria-label': tr('Loop'), 'aria-pressed': 'false'});
@@ -85,10 +89,10 @@ export function createSheetDock({player, getPiano, setPiano, getStrum, setStrum,
   bClose.innerHTML = IC.close;
   bar.append(bPlay, bStart, meta, bLoop, bExpand, bClose);
 
-  // Expandable drawer
+  // Expandable drawer (same organized layout as Jukebox)
   const drawer = el('div', 'ud-drawer');
-  const styleRail = el('div', 'ud-rail ud-styles');
-  const subRail = el('div', 'ud-rail ud-substyles');
+  const tabsEl = el('div', 'ud-tabs', null, {role: 'group', 'aria-label': tr('Category')});
+  const styleRail = el('div', 'ud-rail ud-styles', null, {role: 'group', 'aria-label': tr('Style')});
   const toneRail = el('div', 'ud-rail ud-tones');
   const optRow = el('div', 'ud-row ud-opts');
   const tempoWrap = el('div', 'ud-tempo-wrap');
@@ -98,10 +102,9 @@ export function createSheetDock({player, getPiano, setPiano, getStrum, setStrum,
   tempoWrap.append(tempoBtn, speed);
   const mixWrap = el('div', 'ud-mix');
   optRow.append(tempoWrap, mixWrap);
-  drawer.append(styleRail, subRail, toneRail, optRow);
+  drawer.append(tabsEl, styleRail, toneRail, optRow);
   root.append(progBar, bar, drawer);
 
-  // Wire transport controls
   bPlay.addEventListener('click', () => player.toggle());
   bStart.addEventListener('click', () => player.fromStart());
   bLoop.addEventListener('click', () => player.setLoop(!player.loop));
@@ -112,6 +115,7 @@ export function createSheetDock({player, getPiano, setPiano, getStrum, setStrum,
   tempoBtn.addEventListener('click', () => { if (player.speed !== 1) { speed.value = '1'; player.setSpeed(1, true); } });
 
   let mode = 'hidden';   // 'hidden' | 'peek' | 'open'
+  let ownPicked = false; // distinguishes "Hymn's own" tab from the Piano tab when baseHands matches a Piano preset (e.g. Chorale)
   const setHeight = () => { if (!root.hidden) document.body.style.setProperty('--editor-h', (root.offsetHeight + 14) + 'px'); };
   function show(m) {
     if (m === mode) { if (m !== 'hidden') refresh(); return; }
@@ -131,7 +135,6 @@ export function createSheetDock({player, getPiano, setPiano, getStrum, setStrum,
   meta.addEventListener('click', toggleOpen);
   bExpand.addEventListener('click', toggleOpen);
 
-  // Drag up on bar to expand, drag down to collapse
   let dragY = null;
   bar.addEventListener('pointerdown', (e) => {
     if (e.target.closest('button:not(.ud-meta)')) return;
@@ -200,19 +203,14 @@ export function createSheetDock({player, getPiano, setPiano, getStrum, setStrum,
 
     updateTempo();
     setProgress(player.bar, player.bars);
+    extraBadge.textContent = player.loop ? ' · ' + tr('Loop') : '';
 
-    const extras = [];
-    if (player.loop) extras.push(tr('Loop'));
-    if (player.part === 'mel') extras.push(tr('Melody'));
-    else if (player.part === 'acc') extras.push(tr('Acc.'));
-    extraBadge.textContent = extras.length ? ' · ' + extras.join(' · ') : '';
-
-    // Fill style rails & context options
+    tabsEl.textContent = '';
     styleRail.textContent = '';
-    subRail.textContent = '';
     toneRail.textContent = '';
     mixWrap.textContent = '';
-    subRail.hidden = true;
+    tabsEl.hidden = true;
+    styleRail.hidden = true;
     toneRail.hidden = true;
 
     const tSig = time();
@@ -248,93 +246,128 @@ export function createSheetDock({player, getPiano, setPiano, getStrum, setStrum,
       parts.push(tr(tone[1]));
       summary = parts.join(' · ');
     } else if (staff) {
-      styleRail.hidden = false;
       const {choice} = getPiano(), lh = choice.lh || null, rh = choice.rh || {add: 0, on: 'chord'};
       const cur = pattern(lh, tSig), preset = presetOf(choice, tSig);
-      const selectPreset = (p) => changePiano((c) => {
-        if (p.anyKind && c.lh && c.lh.family === p.lh[0]) return;
-        const n = presetChoice(p);
-        if (c.lh && c.lh.walk) n.lh.walk = true;
-        if (c.lh && c.lh.tone) n.lh.tone = c.lh.tone;
-        c.lh = n.lh; c.rh = n.rh;
-      });
-      const shufflePreset = (p) => changePiano((c) => {
-        if (preset !== p) {
-          const n = presetChoice(p);
-          if (c.lh && c.lh.walk) n.lh.walk = true;
-          if (c.lh && c.lh.tone) n.lh.tone = c.lh.tone;
-          c.lh = n.lh; c.rh = n.rh;
-        }
-        c.lh.seed = 1 + Math.floor(Math.random() * 99999);
-      });
-      for (const p of PRESETS) {
-        const pPat = pattern(presetChoice(p).lh, tSig);
-        const on = hands && preset === p;
-        if (pPat && (pPat.vary || pPat.moods)) {
-          styleRail.append(splitChip(tr(p.name), on, () => selectPreset(p), () => shufflePreset(p),
-            tr('Shuffle Style'), tr('Shuffle this style\'s phrasing')));
-        } else {
-          styleRail.append(chip(tr(p.name), on, () => selectPreset(p)));
-        }
-      }
-      const isGuitarPreset = !!(hands && cur && cur.family === 'guitar');
-      if (isGuitarPreset) {
-        subRail.hidden = false;
-        const fam = allStyles.find((f) => f.id === 'guitar');
-        for (const k of fam.kinds) {
-          const kVaries = !!(k.rhythms[0] && (k.rhythms[0].vary || k.rhythms[0].moods));
-          if (kVaries) {
-            subRail.append(splitChip(tr(k.name), k.id === cur.kind,
-              () => changePiano((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; delete c.lh.seed; }),
-              () => changePiano((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; c.lh.seed = 1 + Math.floor(Math.random() * 99999); }),
-              tr('Shuffle Style'), tr('Shuffle this style\'s phrasing'), tr(k.hint)));
+      const baseHands = getBaseHands ? getBaseHands() : null;
+      const isOwn = !!(hands && baseHands && sameChoice(choice, baseHands));
+      const isGuitarCat = !!(hands && cur && cur.family === 'guitar');
+      const activeCat = !hands ? 'melody' : (isOwn && (ownPicked || !preset)) ? 'own' : isGuitarCat ? 'guitar' : 'piano';
+
+      const cats = [];
+      if (baseHands) cats.push(['own', 'Hymn\'s own']);
+      cats.push(['piano', 'Piano'], ['guitar', 'Guitar'], ['melody', 'Melody']);
+      tabsEl.hidden = false;
+      for (const [cid, label] of cats) {
+        const b = el('button', null, tr(label), {type: 'button', 'aria-pressed': String(cid === activeCat)});
+        b.addEventListener('click', () => {
+          if (cid === activeCat) return;
+          if (cid === 'melody') {
+            ownPicked = false;
+            setHands(false);
+            refresh();
+          } else if (cid === 'own' && baseHands) {
+            ownPicked = true;
+            setPiano(JSON.parse(JSON.stringify(baseHands)));
+            refresh();
+          } else if (cid === 'guitar') {
+            ownPicked = false;
+            changePiano((c) => {
+              if (c.lh && c.lh.family === 'guitar') return;
+              const n = presetChoice(GUITAR_PRESET);
+              if (c.lh && c.lh.tone) n.lh.tone = c.lh.tone;
+              c.lh = n.lh; c.rh = n.rh;
+            });
           } else {
-            const b = chip(tr(k.name), k.id === cur.kind, () => changePiano((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; delete c.lh.seed; }), 'sm');
-            b.title = tr(k.hint);
-            subRail.append(b);
+            ownPicked = false;
+            if (!hands || isGuitarCat || !preset) {
+              const target = !hands && !isGuitarCat && preset ? choice : (baseHands && presetOf(baseHands, tSig) && !presetOf(baseHands, tSig).anyKind ? baseHands : DEFAULT);
+              setPiano(JSON.parse(JSON.stringify(target)));
+            }
+            refresh();
+          }
+        });
+        tabsEl.append(b);
+      }
+
+      if (activeCat === 'piano') {
+        styleRail.hidden = false;
+        const selectPreset = (p) => {
+          ownPicked = false;
+          changePiano((c) => {
+            const n = presetChoice(p);
+            if (c.lh && c.lh.walk) n.lh.walk = true;
+            if (c.lh && c.lh.tone) n.lh.tone = c.lh.tone;
+            c.lh = n.lh; c.rh = n.rh;
+          });
+        };
+        const shufflePreset = (p) => {
+          ownPicked = false;
+          changePiano((c) => {
+            if (preset !== p) {
+              const n = presetChoice(p);
+              if (c.lh && c.lh.walk) n.lh.walk = true;
+              if (c.lh && c.lh.tone) n.lh.tone = c.lh.tone;
+              c.lh = n.lh; c.rh = n.rh;
+            }
+            c.lh.seed = 1 + Math.floor(Math.random() * 99999);
+          });
+        };
+        for (const p of PIANO_PRESETS) {
+          const pPat = pattern(presetChoice(p).lh, tSig);
+          const on = preset === p;
+          if (pPat && (pPat.vary || pPat.moods)) {
+            styleRail.append(splitChip(tr(p.name), on, () => selectPreset(p), () => shufflePreset(p),
+              tr('Shuffle Style'), tr('Shuffle this style\'s phrasing')));
+          } else {
+            styleRail.append(chip(tr(p.name), on, () => selectPreset(p)));
           }
         }
-      }
-      // More walking switch (Chorale only)
-      const walks = !!(hands && cur && cur.passing);
-      if (walks) {
-        mixWrap.append(toggle(tr('More walking'), !!lh.walk,
-          () => changePiano((c) => { if (c.lh.walk) delete c.lh.walk; else c.lh.walk = true; }),
-          tr('The bass and the tenor walk between the chords more often')));
-      }
-      // Right hand segmented control (1 / 2 notes)
-      if (hands) {
+        const walks = !!(cur && cur.passing);
+        if (walks) {
+          mixWrap.append(toggle(tr('More walking'), !!lh.walk,
+            () => { ownPicked = false; changePiano((c) => { if (c.lh.walk) delete c.lh.walk; else c.lh.walk = true; }); },
+            tr('The bass and the tenor walk between the chords more often')));
+        }
         const rhSeg = el('div', 'ud-seg', null, {role: 'group', 'aria-label': tr('Right hand')});
         [[0, 'RH: 1 note', 'Melody alone'], [1, 'RH: 2 notes', 'Two notes']].forEach(([n, lbl, title]) => {
           const b = el('button', null, tr(lbl), {type: 'button', 'aria-pressed': String(rh.add === n), title: tr(title)});
-          b.addEventListener('click', () => changePiano((c) => { c.rh = {add: n, on: (preset && preset.on) || 'chord'}; }));
+          b.addEventListener('click', () => { ownPicked = false; changePiano((c) => { c.rh = {add: n, on: (preset && preset.on) || 'chord'}; }); });
           rhSeg.append(b);
         });
         mixWrap.append(rhSeg);
-      }
-      if (!hands) {
-        summary = tr('Melody');
-      } else {
+
         const said = [preset ? tr(preset.name) : tr('Custom')];
-        if (preset && preset.anyKind) said.push(tr(allStyles.find((f) => f.id === cur.family).kinds.find((k) => k.id === cur.kind).name));
         if (walks && lh.walk) said.push(tr('More walking'));
         const varies = !!(cur && (cur.vary || cur.moods));
         if (varies && lh.seed) said.push(tr('Shuffled'));
         summary = said.join(' · ');
+      } else if (activeCat === 'guitar') {
+        styleRail.hidden = false;
+        const fam = allStyles.find((f) => f.id === 'guitar');
+        for (const k of fam.kinds) {
+          const kVaries = !!(k.rhythms[0] && (k.rhythms[0].vary || k.rhythms[0].moods));
+          if (kVaries) {
+            styleRail.append(splitChip(tr(k.name), k.id === cur.kind,
+              () => { ownPicked = false; changePiano((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; delete c.lh.seed; }); },
+              () => { ownPicked = false; changePiano((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; c.lh.seed = 1 + Math.floor(Math.random() * 99999); }); },
+              tr('Shuffle Style'), tr('Shuffle this style\'s phrasing'), tr(k.hint)));
+          } else {
+            const b = chip(tr(k.name), k.id === cur.kind, () => { ownPicked = false; changePiano((c) => { c.lh.kind = k.id; c.lh.rhythm = ''; delete c.lh.seed; }); });
+            b.title = tr(k.hint);
+            styleRail.append(b);
+          }
+        }
+        const kindObj = fam.kinds.find((k) => k.id === cur.kind) || fam.kinds[0];
+        const varies = !!(cur && (cur.vary || cur.moods));
+        summary = tr('Guitar') + ' · ' + tr(kindObj.name) + (varies && lh.seed ? ' · ' + tr('Shuffled') : '');
+      } else if (activeCat === 'own') {
+        summary = tr('Hymn\'s own') + (preset ? ' · ' + tr(preset.name) : '');
+      } else {
+        summary = tr('Melody alone');
       }
     } else {
-      styleRail.hidden = true;
       summary = tr('Chords only');
     }
-
-    // Parts segmented control (All | Melody | Acc.)
-    const partSeg = el('div', 'ud-seg ud-parts', null, {role: 'group', 'aria-label': tr('What is heard')});
-    [['all', 'All'], ['mel', 'Melody'], ['acc', 'Acc.']].forEach(([id, lbl]) => {
-      const b = el('button', null, tr(lbl), {type: 'button', 'data-part': id, 'aria-pressed': String(player.part === id)});
-      b.addEventListener('click', () => player.setPart(id));
-      partSeg.append(b);
-    });
-    mixWrap.prepend(partSeg);
 
     nameEl.textContent = summary;
     setHeight();

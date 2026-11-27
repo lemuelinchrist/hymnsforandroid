@@ -74,7 +74,7 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
     private final SharedPreferences prefs;
     private final Random random = new Random();
     private final Map<String, TextView> categoryTabs = new HashMap<>();
-    private ImageButton playButton, loopButton, expandButton, diceButton;
+    private ImageButton playButton, loopButton, expandButton;
     private TextView currentText, subText, tempoText;
     private ProgressBar progress;
     private LinearLayout categoryRow, substyleRow;
@@ -182,11 +182,6 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         categoryRow.setBackground(roundedRect(badgeBg, dp(11), 0, 0));
         subScroll = card.findViewById(R.id.jukeboxSubScroll);
         substyleRow = card.findViewById(R.id.jukeboxSubstyles);
-
-        diceButton = card.findViewById(R.id.jukeboxDice);
-        diceButton.setImageTintList(accentList);
-        diceButton.setBackground(circleButton(cardBg, mutedStroke));
-        diceButton.setOnClickListener(v -> chooseStyle(randomPlayableStyle(style), 0));
 
         // a hymn opens on its own style; one without goes to Piano with a style chosen at random
         style = hasOwn ? DEFAULT_STYLE : FALLBACK_STYLE;
@@ -437,15 +432,6 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
     private String randomStyleOf(String gid) {
         List<Object[]> subs = stylesInGroup(gid);
         return subs.isEmpty() ? null : randomIn(gid, null);
-    }
-
-    private String randomPlayableStyle(String not) {
-        List<Object[]> pool = new ArrayList<>();
-        for (Object[] s : STYLES) {
-            String g = (String) s[1];
-            if (("piano".equals(g) || "guitar".equals(g)) && !s[0].equals(not)) pool.add(s);
-        }
-        return pool.isEmpty() ? FALLBACK_STYLE : (String) pool.get(random.nextInt(pool.size()))[0];
     }
 
     private String randomIn(String gid, String not) {

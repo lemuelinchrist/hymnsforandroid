@@ -240,30 +240,14 @@
                         android:paddingEnd="12dp"
                         android:paddingTop="10dp"
                         android:paddingBottom="12dp">
-                    <!-- 4-tab category bar + dice randomizer -->
+                    <!-- 4-tab category bar -->
                     <LinearLayout
+                            android:id="@+id/jukeboxCategories"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center_vertical">
-                        <LinearLayout
-                                android:id="@+id/jukeboxCategories"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:padding="3dp"
-                                android:contentDescription="@string/jukebox_category"/>
-                        <ImageButton
-                                android:id="@+id/jukeboxDice"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
-                                android:layout_marginStart="8dp"
-                                android:padding="8dp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_dice_24dp"
-                                android:contentDescription="@string/jukebox_random"/>
-                    </LinearLayout>
+                            android:padding="3dp"
+                            android:contentDescription="@string/jukebox_category"/>
                     <!-- Horizontal style chips (including attached refresh side-buttons on Flowing, Lively, Fingerpicking) -->
                     <HorizontalScrollView
                             android:id="@+id/jukeboxSubScroll"

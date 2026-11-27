@@ -215,10 +215,12 @@ export function createSheetPanel(pane, o) {
       dock = createSheetDock({
         player: sp,
         getPiano: pianoChoice, setPiano: keepOwn,
+        getBaseHands: () => view.baseHands,
         getStrum: strumPick, setStrum: keepStrum,
         isGuitar: () => !!state.guitar,
         hasStaff: () => !!state.staff,
         hasHands: () => !!state.hands,
+        setHands: (on) => set({hands: !!on}),
         time: () => view.time,
       });
       bookColour(dock.el);

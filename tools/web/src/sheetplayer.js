@@ -9,7 +9,6 @@ import {host} from './host.js';
 
 export const MIN_SPEED = 0.5, MAX_SPEED = 1.5;   // of the tune's tempo, by twentieths
 const DEFAULT_BPM = 110;   // hymnal.net's own tunes run 90 to 130 (median 120); the same as the MIDI files we made ourselves
-const PARTS = [['all', true, true], ['mel', true, false], ['acc', false, true]];
 
 function el(tag, cls, attrs) {
   const e = document.createElement(tag);
@@ -23,9 +22,8 @@ const param = (id) => id.replace(/_\d+$/, '');   // an element the left hand's n
 // kept between hymns; stopTune(): stops the tune's own Play button; onchange({started}): playback state or settings changed;
 // onprogress(bar, bars): the sounding bar moved.
 export function createSheetPlayer(view, {tune, store, stopTune, onchange, onprogress}) {
-  const prefs = Object.assign({speed: 1, loop: false, mel: true, acc: true}, store.get('sheetPlayer', {}), {speed: 1});   // the tempo is not kept: every hymn starts at its own
-  if (!prefs.mel && !prefs.acc) prefs.mel = prefs.acc = true;
-  const keep = () => store.set('sheetPlayer', {loop: prefs.loop, mel: prefs.mel, acc: prefs.acc});
+  const prefs = Object.assign({speed: 1, loop: false}, store.get('sheetPlayer', {}), {speed: 1});   // the tempo is not kept: every hymn starts at its own
+  const keep = () => store.set('sheetPlayer', {loop: prefs.loop});
 
   let score = null, scoreXml = '', scoreChoice = '', ctl = null, from = 0, bpm = DEFAULT_BPM, lastRender = -1, tempoFor = null, lastScroll = 0, starting = 0;
   let open = false, canPlay = true, shownBar = 0, totalBars = 0, barRender = -1, shownStartBar = 0, startRender = -1;
@@ -153,7 +151,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange, onprog
     const b = await tempo();
     if (mine !== starting) return;
     try {
-      ctl = Player.playScore(sc, {from: at, bpm: b, speed: prefs.speed, loop: prefs.loop, mute: {m: !prefs.mel, f: !prefs.mel, l: !prefs.acc, c: !prefs.acc},
+      ctl = Player.playScore(sc, {from: at, bpm: b, speed: prefs.speed, loop: prefs.loop, mute: handsOn() || strumOn() ? {} : {c: true, f: true, l: true},
         onFrame, onEnd: () => { ctl = null; lit = []; show(false); mark(null); }});
       show(true, !again);
     } catch (e) {
@@ -203,19 +201,12 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange, onprog
     get speed() { return prefs.speed; },
     get baseBpm() { return view.baseBpm || bpm; },
     get currentBpm() { return Math.round((view.baseBpm || bpm) * prefs.speed); },
-    get part() { return prefs.mel && prefs.acc ? 'all' : prefs.mel ? 'mel' : 'acc'; },
     get bar() { return lastReportedBar; },
     get bars() { return totalBars; },
     setLoop(on) { prefs.loop = !!on; keep(); restart(); if (onchange) onchange({}); },
     setSpeed(v, commit = false) {
       prefs.speed = Math.max(MIN_SPEED, Math.min(MAX_SPEED, parseFloat(v) || 1));
       if (commit) { keep(); restart(); }
-      if (onchange) onchange({});
-    },
-    setPart(id) {
-      const row = PARTS.find((p) => p[0] === id) || PARTS[0];
-      prefs.mel = row[1]; prefs.acc = row[2];
-      keep(); restart();
       if (onchange) onchange({});
     },
     fromStart() {

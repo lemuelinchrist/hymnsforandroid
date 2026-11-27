@@ -875,15 +875,13 @@ function jukeboxCard(hymn, stopOthers, onChange) {
     const bar = h('div', {class: 'ud-bar'}, playBtn, metaBtn, loopBtn, expandBtn, closeBtn);
 
     const tabsEl = h('div', {class: 'ud-tabs', role: 'group', 'aria-label': tr('Category')});
-    const diceBtn = h('button', {class: 'ud-icbtn outlined', type: 'button', title: tr('Pick a style at random'), 'aria-label': tr('Pick a style at random')}, icon('dice'));
-    const tabsRow = h('div', {class: 'ud-tabs-row'}, tabsEl, diceBtn);
     const chipRail = h('div', {class: 'ud-rail', role: 'group', 'aria-label': tr('Style')});
     const tempoBtn = h('button', {class: 'ud-tempo', type: 'button', title: tr('The hymn\'s own tempo')});
     const speed = h('input', {class: 'ud-speed', type: 'range', min: String(J.MIN_SPEED), max: String(J.MAX_SPEED), step: '0.05', 'aria-label': tr('Tempo')});
     speed.value = String(prefs.speed);
     const mixWrap = h('div', {class: 'ud-mix'});
     const optRow = h('div', {class: 'ud-row'}, h('div', {class: 'ud-tempo-wrap'}, tempoBtn, speed), mixWrap);
-    const drawer = h('div', {class: 'ud-drawer'}, tabsRow, chipRail, optRow);
+    const drawer = h('div', {class: 'ud-drawer'}, tabsEl, chipRail, optRow);
 
     el.append(progBar, bar, drawer);
     ro = new ResizeObserver(setHeight);
@@ -967,11 +965,6 @@ function jukeboxCard(hymn, stopOthers, onChange) {
       again();
     }
 
-    diceBtn.addEventListener('click', () => {
-      const pool = J.STYLES.filter((x) => (x.group === 'piano' || x.group === 'guitar') && x.id !== curStyle.id);
-      const pick = pool[Math.floor(Math.random() * pool.length)];
-      if (pick) choose(pick, 0);
-    });
     const showTempo = () => {
       const txt = '♩ = ' + Math.round(info.bpm * prefs.speed);
       tempoBtn.textContent = txt;
