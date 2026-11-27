@@ -1,5 +1,6 @@
 // The chord simplifier (src/simplify.js) over the sheets: chords a bar before and after, and how much of the melody they hold.
 //   node tools/web/tests/simplify.mjs [E8 E1 ...]        these sheets, shown bar by bar
+//   node tools/web/tests/simplify.mjs --rank             the sheets where Medium cuts most, by meter
 //   node tools/web/tests/simplify.mjs --stats            all English sheets: the numbers per level
 import fs from 'fs';
 import {simplifyBars, shapeOf, LEVELS} from '../src/simplify.js';
@@ -55,11 +56,24 @@ if (args.includes('--stats')) {
   }
   console.log('sheets', ids.length, 'bars', tot.bars);
   console.log('chord symbols per bar:', ['orig', ...LEVELS].map((k) => k + ' ' + (tot[k] / tot.bars).toFixed(2)).join('  '));
-} else {
+} else if (args[0] !== '--rank') {
   for (const id of args) {
     const bars = read(fs.readFileSync(DIR + id + '.mei', 'utf8'));
     const res = LEVELS.map((lv) => simplifyBars(bars, lv));
     console.log(id, bars[0].count + '/' + bars[0].unit);
     bars.forEach((b, i) => console.log(String(i + 1).padStart(3), fmt(b.chords).padEnd(34), LEVELS.map((lv, k) => fmt(res[k][i] || b.chords).padEnd(22)).join(' ')));
+  }
+}
+if (args[0] === '--rank') {   // the sheets where Medium cuts most (per bar), by meter
+  const rows = [];
+  for (const f of fs.readdirSync(DIR).filter((f) => /^E\d+\.mei$/.test(f))) {
+    const bars = read(fs.readFileSync(DIR + f, 'utf8')); if (bars.length < 8) continue;
+    const res = simplifyBars(bars, 'medium');
+    const o = bars.reduce((x, b) => x + b.chords.length, 0), m = res.reduce((x, r, i) => x + (r || bars[i].chords).length, 0);
+    rows.push([f.slice(0, -4), bars[0].count + '/' + bars[0].unit, bars.length, (o / bars.length).toFixed(1), (m / bars.length).toFixed(1), o - m]);
+  }
+  const by = {}; rows.forEach((r) => (by[r[1]] = by[r[1]] || []).push(r));
+  for (const k of Object.keys(by).sort((a, b) => by[b].length - by[a].length).slice(0, 4)) {
+    console.log(k, by[k].length, 'sheets; most cut:'); by[k].sort((a, b) => b[5] - a[5]).slice(0, 4).forEach((r) => console.log('  ', r.join(' ')));
   }
 }
