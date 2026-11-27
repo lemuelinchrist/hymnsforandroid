@@ -109,6 +109,12 @@ def convert(hid, db, write, out_dir):
             else: hi = mid
         (t0, m0), (t1, m1) = a[lo], a[hi]
         return t0 + (tm - m0) * (t1 - t0) / (m1 - m0) if m1 > m0 else t0
+    if os.environ.get('TIMING'):   # TIMING=file: how well the MIDI's onsets (all voices) land on the sheet's grid of half beats (eighths in 6/8), once lined up
+        b16 = M.beats16(int(re.search(r'meter\.count="(\d+)"', sd).group(1)), unit); g = b16 / (3 if b16 == 6 else 2)
+        ons = sorted({s for s, e, p in notes}); ons = [o for i, o in enumerate(ons) if i == 0 or o - ons[i - 1] > q / 3]
+        lo, hi = anchors[0][1], anchors[-1][1]; ons = [o for o in ons if lo <= o <= hi]
+        hit = sum(1 for o in ons if abs((to_old(o) / g) - round(to_old(o) / g)) * g <= 0.6)   # within 0.6 of a sixteenth
+        open(os.environ['TIMING'], 'a').write('%s\t%.3f\t%d\n' % (hid, hit / max(1, len(ons)), len(ons)))
     beat16 = M.beats16(int(re.search(r'meter\.count="(\d+)"', sd).group(1)), unit)
     # the chords bar by bar
     chords = []; bt = 0; per = 16 / unit

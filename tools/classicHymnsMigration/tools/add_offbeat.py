@@ -12,7 +12,9 @@ It reads the MIDI again every half beat (midi_align.py with SUB=2) and adds a ha
       - not a chord over a bass that is not one of its notes (E♭/F),
       - not the chord before with one note added on another root (C -> Am7/C: the A is a passing note),
       - not the chord before on the same root and bass in another shape (Dm7 -> Dm, Cm7 -> C7), except a triad that becomes its seventh (F -> F7),
-      - not a chromatic chord spelled against its own bass (B/E♭ over an E♭ chord: passing notes).
+      - not a chromatic chord spelled against its own bass (B/E♭ over an E♭ chord: passing notes),
+      - not the chord before over another bass a leap away (E♭ -> E♭/B♭: a bass in broken chords, as in a MIDI played like a piano part),
+      - not half a beat before the same chord on the next beat, and nothing in the last bar (its chord closes the hymn).
 After an added chord the sheet's chord comes back where the MIDI has it again (C - A♭/C - C), when that is on a beat with no
 chord of its own in the sheet.
 """
@@ -48,6 +50,7 @@ def passing(new, prev, sig):
     if a['bass'] not in a['tones']: return True                  # a bass outside the chord (E♭/F): a passing bass
     if b and a['root'] != b['root'] and b['tones'] <= a['tones']: return True
     if b and a['root'] == b['root'] and a['bass'] == b['bass'] and not (a['q'] == '7' and b['q'] == ''): return True   # Dm7 -> Dm, Cm7 -> C7: no change
+    if b and a['root'] == b['root'] and min((a['bass'] - b['bass']) % 12, (b['bass'] - a['bass']) % 12) > 2: return True   # E♭ -> E♭/B♭: a broken-chord bass
     if a['root'] not in scale(sig) and a['bletter'] and a['bass'] != a['root']:
         letters = 'CDEFGAB'
         if letters[(letters.index(a['letter']) + 2) % 7] != a['bletter'] and a['q'] != '7': return True
@@ -94,13 +97,15 @@ def main():
         cur, mid = bars_of(cur_xml), bars_of(open(p, encoding='utf8').read())
         if len(cur) != len(mid): print(h, 'bars differ'); continue
         adds = [[] for _ in cur]
-        for bi in range(len(cur)):
+        for bi in range(len(cur) - 1):   # never in the last bar: its chord closes the hymn
             here = {round(t, 3) for t, c in cur[bi]}
             for k, (t, c) in enumerate(mid[bi]):
                 if on_beat(t) or round(t, 3) in here: continue
                 before_mid = at(mid, bi, t - 0.25); before_cur = at(cur, bi, t)
                 if c == before_cur or before_mid != before_cur: continue
                 if passing(c, before_cur, sig): continue
+                nxt = [cc for tt, cc in cur[bi] if t < tt <= t + per_beat / 2 + 1e-6]   # the same chord on the beat that follows: an anticipation
+                if nxt and nxt[0] == c: continue
                 adds[bi].append((t, c))
                 # the sheet's chord comes back where the MIDI goes back to it, on a beat with no chord in the sheet
                 if k + 1 < len(mid[bi]):
