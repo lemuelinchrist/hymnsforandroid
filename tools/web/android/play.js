@@ -64,8 +64,8 @@ window.sheetPlay = async (id, o) => {
     // own strum choice, else the device's, else the folk strum in the Warm tone (piano.js STRUM_DEFAULT), in the shapes
     // above the sheet's capo.
     const piano = !!store.get('sheet', {}).hands || !!named;
-    const strum = store.get(SAVED.strumOf, {})[id] || store.get(SAVED.strum, STRUM_DEFAULT);
-    const choice = piano ? (store.get(SAVED.handsOf, {})[id] || named || store.get(SAVED.hands, PIANO_DEFAULT)) : strumChoice(strum, capoOf(doc));
+    const strum = store.get(SAVED.strumOf, {})[id] || STRUM_DEFAULT;
+    const choice = piano ? (store.get(SAVED.handsOf, {})[id] || named || PIANO_DEFAULT) : strumChoice(strum, capoOf(doc));
     const score = scoreOf(doc, choice, {hands: true, loop: true});
     if (!score || !score.events.length) throw new Error('nothing to play in ' + id);
     if (mine !== token) return;                         // stopped (or another sheet) while loading

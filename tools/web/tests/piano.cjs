@@ -177,13 +177,13 @@ async function ui(page) {
     assert(await page.locator('.piano-panel .pp-body').isVisible(), 'dragged up: open');
   });
   let hymnStyle = 0;
-  await test('a preset changes how the left hand plays, and the right hand gets notes', async () => {
-    // the device's choice is Flowing until it is changed: here it becomes Plain, which the tests below start from
+  await test('a preset changes how the left hand plays, and the right hand gets notes (no Advanced or Use for all hymns)', async () => {
+    assert(await page.locator('.piano-panel .pp-switch:has-text("Advanced")').count() === 0, 'Advanced switch is retired');
+    assert(await page.locator('.piano-panel button:text-is("Use for all hymns")').count() === 0, 'Use for all hymns button is retired');
+    assert(await page.locator('.piano-panel .ce-row', {hasText: 'When'}).count() === 0, 'no When row in the panel');
+    assert(await page.locator('.piano-panel button:text-is("Three notes")').count() === 0, 'no Three notes in the panel');
     await pick('Style', 'Plain');
-    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
     hymnStyle = await left();
-    assert(await page.locator('.piano-panel .ce-row', {hasText: 'When'}).isHidden(), 'no When row in the simple panel');
-    assert(await page.locator('.piano-panel button:text-is("Three notes")').count() === 0, 'no Three notes in the simple panel');
     await pick('Style', 'Flowing');
     assert(await page.locator('.piano-panel .pp-switch', {hasText: 'More walking'}).isHidden(), 'More walking is only for Chorale');
     assert(await left() > 0 && await left() !== hymnStyle, 'Flowing plays its own left hand: ' + await left() + ' / ' + hymnStyle);
@@ -195,16 +195,9 @@ async function ui(page) {
     const folk = await left();
     await pick('Pick', 'Fingerpicking');
     assert(await left() !== folk && /Fingerpicking/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'picking plays other notes, and the bar says so');
-    assert(await page.locator('.piano-panel button:text-is("Shuffle Style")').isVisible(), 'Fingerpicking shows Shuffle Style');
+    assert(await page.locator('.piano-panel .ce-row', {hasText: 'Pick'}).locator('.pp-split-side').isVisible(), 'Fingerpicking has an attached refresh side-button');
     assert(await page.locator('.piano-panel .ce-row button:text-is("Guitar")').getAttribute('aria-pressed') === 'true', 'still the Guitar preset');
-    assert(await page.locator('.piano-panel .ce-row', {hasText: 'Tone'}).isHidden(), 'the simple panel has no Tone row');
-    await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
-    const tone = page.locator('.piano-panel .ce-row', {hasText: 'Tone'});
-    assert(await tone.isVisible() && await tone.locator('button:text-is("Warm")').getAttribute('aria-pressed') === 'true', 'Advanced: the guitar\'s Tone, Warm to begin with');
-    await pick('Tone', 'Mellow');
-    assert(await tone.locator('button:text-is("Mellow")').getAttribute('aria-pressed') === 'true', 'Mellow chosen');
-    await pick('Tone', 'Warm');
-    await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
+    assert(await page.locator('.piano-panel .ce-row', {hasText: 'Tone'}).count() === 0, 'no Tone row in the Style panel');
     await pick('Style', 'Chorale');
     assert(await strum.isHidden() && await pickRow.isHidden(), 'no Strum or Pick row for Chorale');
     assert(await page.locator('.sheet-music g.note.fill').count() > 5, 'Chorale adds a note under the melody');
@@ -217,39 +210,21 @@ async function ui(page) {
     await sw.click(); await settle();
     await pick('Right hand', 'Melody alone');
     assert(await page.locator('.sheet-music g.note.fill').count() === 0, 'and it can be taken off');
-    await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
-    await pick('Left hand', 'Arpeggio');
-    await pick('Right hand', 'Three notes');
-    assert(await page.locator('.sheet-music g.note.fill').count() > 10, 'notes added under the melody');
-    await pick('Left hand', 'No left hand');
-    assert(await staves() === 1, 'no left hand, no second staff');
-    await page.click('.piano-panel .pp-switch:has-text("Advanced")'); await settle();
-    assert(await page.locator('.piano-panel button:text-is("Custom")').count() === 1, 'not a preset: Custom');
     await pick('Style', 'Plain');
     assert(await left() === hymnStyle, 'Plain again');
   });
-  await test('a change is this hymn\'s own; Use for all hymns makes it the device\'s', async () => {
-    assert(await page.locator('.piano-panel button:text-is("Use for all hymns")').isDisabled(), 'Plain is already the device\'s');
+  await test('a change is kept for this hymn alone; other hymns keep their own default', async () => {
     await pick('Style', 'Flowing');
     const here = await left();
     await page.click('.piano-panel button:text-is("Done")');
     await openSheet('E10');
     assert(await staves() === 2, 'both hands stay on for the next hymn');
-    assert(/Plain/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'E10 plays the device\'s Plain');
+    assert(/Flowing/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'E10 starts on its own default');
     await openSheet('E8');
     assert(await left() === here, 'E8 keeps its own Flowing: ' + await left() + ' / ' + here);
     assert(await page.locator('.piano-panel .pp-peek').isVisible(), 'another hymn: the panel is tucked down, not open');
-    await page.click('.piano-panel .pp-peek');
-    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
-    await openSheet('E10');
-    assert(/Flowing/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'now E10 plays Flowing too');
-    await page.click('.piano-panel .pp-peek');
-    await pick('Style', 'Plain');
-    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
-    await page.click('.piano-panel button:text-is("Done")');
-    await openSheet('E8');
   });
-  await test('Shuffle plays the left hand in another order for this hymn; Original brings the first back; Use for all hymns does not carry it', async () => {
+  await test('Shuffle side-button plays the left hand in another order for this hymn; tapping Flowing resets it', async () => {
     // what the left hand draws: its own elements (ids like left()'s), their glyphs, places and lines. Verovio gives glyphs and
     // stems new random names whenever it draws, some of them starting with "lh" too
     const sig = () => page.evaluate(() => {
@@ -260,43 +235,40 @@ async function ui(page) {
     const own = () => page.evaluate(() => (JSON.parse(localStorage.getItem('hfw.handsByHymn') || '{}').E8 || {}).lh);
     await page.click('.piano-panel .pp-peek');
     await pick('Style', 'Flowing');
-    const shuffle = page.locator('.piano-panel .ce-row button:text-is("Shuffle Style")'), original = page.locator('.piano-panel .ce-row button:text-is("Original")');
-    assert(await shuffle.isVisible(), 'Flowing shows Shuffle Style');
-    assert(await original.count() === 0, 'no Original before a shuffle');
+    const shuffle = page.locator('.piano-panel .ce-row', {hasText: 'Style'}).locator('.pp-split-side');
+    assert(await shuffle.isVisible(), 'Flowing has an attached refresh side-button');
     const first = await sig();
     await shuffle.click(); await settle();
     const second = await sig();
     assert(second !== first, 'another order plays other notes');
-    assert(await original.isVisible() && /Shuffled/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'Original appears and the bar says Shuffled');
+    assert(/Shuffled/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'the bar says Shuffled');
     assert((await own() || {}).seed > 0, 'the take is kept for the hymn');
     await page.reload(); await page.waitForSelector('.sheet-music svg'); await settle();
     await page.click('.piano-panel .pp-peek'); await settle();   // open again, as it was when the notes were drawn the first time
     assert(await sig() === second, 'the same notes after a reload');
-    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
-    const all = await page.evaluate(() => JSON.parse(localStorage.getItem('hfw.handsForAll')).lh);
-    assert(all.kind === 'adaptive' && all.seed === undefined, 'the device\'s choice is Flowing without the take');
-    assert((await own() || {}).seed > 0, 'the hymn keeps its take');
     await openSheet('E10');
     await page.click('.piano-panel .pp-peek');
-    assert(await page.locator('.piano-panel .ce-row button:text-is("Original")').count() === 0, 'another hymn starts on its own take');
+    assert(!(await page.locator('.piano-panel .pp-summary').textContent()).includes('Shuffled'), 'another hymn starts on its own take');
     await openSheet('E8');
     await page.click('.piano-panel .pp-peek');
-    await original.click(); await settle();
-    assert(await sig() === first && await original.count() === 0, 'Original plays the first notes again');
+    await pick('Style', 'Flowing');
+    assert(await sig() === first, 'tapping Flowing plays the first notes again');
     assert(!(await page.locator('.piano-panel .pp-summary').textContent()).includes('Shuffled'), 'and the bar no longer says Shuffled');
     await pick('Style', 'Plain');
-    await page.click('.piano-panel button:text-is("Use for all hymns")'); await settle();
     await page.click('.piano-panel button:text-is("Done")');
   });
-  await test('choices kept under the old names (one hymn\'s style carried to every hymn) are forgotten', async () => {
+  await test('choices kept under the old names (and retired device-wide / Advanced keys) are forgotten', async () => {
     await page.evaluate(() => {
       localStorage.setItem('hfw.piano', JSON.stringify({lh: {family: 'dynamic', kind: 'adaptive', rhythm: '8', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}}));
       localStorage.setItem('hfw.pianoOf', JSON.stringify({E8: {lh: {family: 'dynamic', kind: 'walking', rhythm: '4', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}}}));
       localStorage.setItem('hfw.strum', JSON.stringify({kind: 'pop', tone: 'soft'}));
+      localStorage.setItem('hfw.handsForAll', JSON.stringify({lh: {family: 'dynamic', kind: 'walking', rhythm: '4', oct: 0, pedal: false}, rh: {add: 0, on: 'chord'}}));
+      localStorage.setItem('hfw.strumForAll', JSON.stringify({kind: 'pop', tone: 'soft'}));
+      localStorage.setItem('hfw.pianoAdvanced', 'true');
     });
     await page.reload(); await page.waitForSelector('.sheet-music svg'); await settle();
     assert(/Plain/.test(await page.locator('.piano-panel .pp-summary').textContent()), 'E8 plays Plain, not the old choices: ' + await page.locator('.piano-panel .pp-summary').textContent());
-    assert(await page.evaluate(() => ['piano', 'pianoOf', 'strum', 'strumOf'].every((k) => localStorage.getItem('hfw.' + k) === null)), 'the old keys are gone');
+    assert(await page.evaluate(() => ['piano', 'pianoOf', 'strum', 'strumOf', 'handsForAll', 'strumForAll', 'pianoAdvanced'].every((k) => localStorage.getItem('hfw.' + k) === null)), 'the old keys are gone');
   });
   await test('it follows the key, and is not there on the guitar sheet or with the staff hidden', async () => {
     await page.keyboard.press('+'); await settle();
@@ -325,11 +297,12 @@ async function ui(page) {
     const rows = await sp.locator('.ce-row .ce-label').allTextContents();
     assert(rows.join(',') === 'Strum,Pick,Tone', 'Strum, Pick and Tone rows: ' + rows);
     assert(await sp.locator('.ce-row', {hasText: 'Tone'}).locator('button:text-is("Warm")').getAttribute('aria-pressed') === 'true', 'Warm to begin with');
-    assert(await sp.locator('button:text-is("Use for all hymns")').isDisabled(), 'the device\'s already');
+    assert(await sp.locator('button:text-is("Use for all hymns")').count() === 0, 'Use for all hymns is retired from Strumming panel');
     await sp.locator('.ce-row', {hasText: 'Pick'}).locator('button:text-is("Fingerpicking")').click();
     assert(/Fingerpicking/.test(await sp.locator('.pp-summary').textContent()), 'Fingerpicking picked');
-    assert(await sp.locator('button:text-is("Shuffle Style")').isVisible(), 'Strumming panel shows Shuffle Style for Fingerpicking');
-    await sp.locator('button:text-is("Shuffle Style")').click();
+    const spShuffle = sp.locator('.ce-row', {hasText: 'Pick'}).locator('.pp-split-side');
+    assert(await spShuffle.isVisible(), 'Strumming panel shows attached refresh side-button on Fingerpicking');
+    await spShuffle.click();
     assert(/Shuffled/.test(await sp.locator('.pp-summary').textContent()), 'Fingerpicking shuffled in Strumming panel');
     await sp.locator('.ce-row', {hasText: 'Strum'}).locator('button:text-is("Pop")').click();
     await sp.locator('.ce-row', {hasText: 'Tone'}).locator('button:text-is("Soft")').click();

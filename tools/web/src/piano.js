@@ -26,7 +26,7 @@ export const PRESETS = [
   {id: 'flowing', name: 'Flowing', lh: ['dynamic', 'adaptive', '8'], add: 1},
   {id: 'guitar', name: 'Guitar', lh: ['guitar', 'folk', '8'], add: 0, anyKind: true},   // any strum: the panel's Strum row
   {id: 'lively', name: 'Lively', lh: ['dynamic', 'pulse', '8'], add: 1},
-  {id: 'walking', name: 'Walking', lh: ['dynamic', 'walking', '4'], add: 0},
+  {id: 'walking', name: 'Walking', lh: ['dynamic', 'walking', '4'], add: 1},
 ];
 export function presetChoice(p) {
   return {lh: {family: p.lh[0], kind: p.lh[1], rhythm: p.lh[2], oct: 0, pedal: false}, rh: {add: p.add, on: p.on || 'chord'}};
@@ -47,13 +47,11 @@ export function presetOf(choice, time) {
 export const TONES = [['bright', 'Bright'], ['warm', 'Warm'], ['mellow', 'Mellow'], ['soft', 'Soft']];
 export const STRUM_DEFAULT = {kind: 'folk', tone: 'warm'};
 
-// Where the choices are kept on the device (ui.js store): a hymn's own, and the one for every hymn ("Use for all
-// hymns"). Until 2026-11-24 they were `pianoOf`, `piano`, `strumOf` and `strum`; before the panel made a change the
-// hymn's own, every change was kept as `piano`, the choice for every hymn, so devices carried one hymn's style to the
-// next. Those are forgotten (forgetOldChoices), so every device starts again from the defaults.
-export const SAVED = {handsOf: 'handsByHymn', hands: 'handsForAll', strumOf: 'strumByHymn', strum: 'strumForAll'};
+// Where the choices are kept on the device (ui.js store): per hymn. Older device-wide and Advanced keys are cleared on start
+// so every hymn starts cleanly from its own default unless the user picks a style for that hymn.
+export const SAVED = {handsOf: 'handsByHymn', strumOf: 'strumByHymn'};
 export function forgetOldChoices() {
-  try { for (const k of ['piano', 'pianoOf', 'strum', 'strumOf']) localStorage.removeItem('hfw.' + k); } catch (e) { /* no storage */ }
+  try { for (const k of ['piano', 'pianoOf', 'strum', 'strumOf', 'handsForAll', 'strumForAll', 'pianoAdvanced']) localStorage.removeItem('hfw.' + k); } catch (e) { /* no storage */ }
 }
 // The guitar sheet's strumming ({kind, tone}) as a choice to play: a guitar's strums only (the melody is the sheet's),
 // in the shapes of the chords the guitar sheet shows, above its capo
