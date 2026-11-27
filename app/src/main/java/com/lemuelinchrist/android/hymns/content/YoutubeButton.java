@@ -1,14 +1,17 @@
 package com.lemuelinchrist.android.hymns.content;
 
 import android.content.SharedPreferences;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageButton;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
+import com.lemuelinchrist.android.hymns.R;
 import com.lemuelinchrist.android.hymns.entities.Hymn;
 
 /**
- * The YouTube button in the button bar: it searches YouTube for the hymn ({@link YouTubeSearchLauncher}). It is shown
+ * The YouTube button in the button bar: a tap opens a drop-down to search YouTube or SoundCloud for the hymn ({@link YouTubeSearchLauncher}). It is shown
  * only when Settings → YouTube Button is on. (The hymn's own piano videos are in the links card, {@link LinksSection}.)
  *
  * @author Lemuel Cantos
@@ -32,9 +35,25 @@ public class YoutubeButton extends ContentComponent<ImageButton> {
             @Override
             public void onClick(View v) {
                 logToHistory();
-                new YouTubeSearchLauncher(context).launch(hymn);
+                showMenu(v, hymn);
             }
         });
+    }
+
+    /** The drop-down under the button: search YouTube or SoundCloud for the hymn, each with its icon. */
+    private void showMenu(View anchor, final Hymn hymn) {
+        // the DayNight overlay gives the menu readable text in Light, Dark and Black (it showed pale text on a pale menu)
+        PopupMenu menu = new PopupMenu(new ContextThemeWrapper(context, androidx.appcompat.R.style.ThemeOverlay_AppCompat_DayNight), anchor);
+        menu.getMenu().add(0, R.id.search_youtube, 0, R.string.search_youtube).setIcon(R.drawable.ic_youtube_24dp);
+        menu.getMenu().add(0, R.id.search_soundcloud, 1, R.string.search_soundcloud).setIcon(R.drawable.ic_soundcloud_24dp);
+        menu.setForceShowIcon(true);
+        menu.setOnMenuItemClickListener(item -> {
+            YouTubeSearchLauncher launcher = new YouTubeSearchLauncher(context);
+            if (item.getItemId() == R.id.search_soundcloud) launcher.launchSoundCloud(hymn);
+            else launcher.launch(hymn);
+            return true;
+        });
+        menu.show();
     }
 
     /**

@@ -470,9 +470,11 @@ Toggle. Filled heart when the hymn is in Favorites. Stored as in §8.4.
 Resolve the sheet (§11.1). Hidden when none; otherwise open the viewer with
 `id=<sheet hymn id>` and `lyrics=<this hymn id>`. (`SheetMusicActivity` still shows "Sorry! sheet music not available" if the sheet cannot be opened.)
 
-### 7.4 YouTube (optional; Settings → YouTube Button, a switch, off by default)
+### 7.4 YouTube and SoundCloud search (optional; Settings → YouTube Button, a switch, off by default)
 
-When the switch is on the button is shown on every hymn; a tap opens `https://www.youtube.com/results?search_query=` +
+When the switch is on the button is shown on every hymn; a tap opens a small menu with two choices, each with its
+one-colour icon: Search YouTube (`https://www.youtube.com/results?search_query=`) and Search SoundCloud
+(`https://soundcloud.com/search/sounds?q=`), each followed by
 the query below, with the characters `+ . ; ! " ' : ,` removed and spaces as `+`. (Until v5.8.1 the setting also had a
 "plays YouTube piano videos" choice; the videos are in the links card now, §6.1. An old setting of "search" becomes on,
 "disabled" and "piano" become off.)
