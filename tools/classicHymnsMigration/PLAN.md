@@ -67,6 +67,10 @@ These are the viewer and player changes; each is its own task and can be done wh
      lined up with the sheet's melody note for note (an edit-distance alignment on pitch classes; the voices of a hand-played MIDI that start a few ticks apart are one onset;
      only exact matches fix the time map). It prints how much of the melody lined up exactly and writes nothing below `THRESH` (0.9 unless set). `MIDI_TUNE=<hymn>=<tune>` uses the MIDI of another tune
      when the hymn's own tune code points to a MIDI with another melody (found by lining the sheet up against all 874). A hymn whose melody no MIDI has stays on its sheet (`skipped` in `STATUS.tsv`).
+   - `python3 tools/add_offbeat.py [<hymn>...] [--write]` (2026-11-27): `midi_align.py` read the MIDI's chord on each beat only, so a chord that changes
+     on the "and" was lost (the player plays chords off the beat since that day). This adds them to the sheets it made, as they are now: read every half beat
+     (`SUB=2`; each eighth in 6/8, 9/8, 12/8), only where the sheet still agrees with the MIDI just before, without passing notes (rules in the file's header).
+     E16 and E17 (and their tunes' hymns) were done by hand first and are the reference; 331 hymns got 3,941 chords.
    Done with them so far: see `STATUS.tsv`. Re-running either tool on a sheet it made is safe for `midi_align.py` (it only replaces the chords); for `midi_to_sheet.py` read the
    original sheet from git (`MEI_DIR=<folder of the sheets before>`).
    `tools/review_server.py` serves a review page: the old and the new sheet side by side, each in its own copy of the web app (play both in Chorale

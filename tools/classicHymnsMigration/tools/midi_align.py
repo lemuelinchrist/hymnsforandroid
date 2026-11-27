@@ -121,8 +121,9 @@ def convert(hid, db, write, out_dir):
             tm = to_midi(t_old) + off
             snd = [p + sh for s, e, p in notes if s <= tm < e]
             return M.chord_name(snd, kind, 0) if snd else None
-        beats = []; t_old = b0
-        while t_old < b1: beats.append(t_old); t_old += beat16
+        # SUB=2: the chord on every half beat too (a chord that changes on the "and", which the player plays since 2026-11-27)
+        beats = []; t_old = b0; step = beat16 / int(os.environ.get('SUB', '1'))
+        while t_old < b1: beats.append(t_old); t_old += step
         onsets_here = sorted({t for (t, n, a, tag) in els if 'pname' in a and b0 <= t < b1} - set(beats))   # the melody's notes between the beats
         out = []; prev = None
         for i, t_old in enumerate(beats):
