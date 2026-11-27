@@ -123,6 +123,7 @@ body.sheet-only #view { max-width: 1200px; padding-top: 12px; }
 .sheet-music.editing g.measure { cursor: pointer; }
 .sheet-music.editing g.harm, .sheet-music.editing g.note, .sheet-music.editing g.rest { cursor: pointer; }
 .sheet-music g.harm.edit text, .sheet-music g.harm.edit tspan { fill: #b3261e; }
+.sheet-music g.harm.harm-hidden { visibility: hidden; }
 .sheet.dark .sheet-music g.harm.edit text, .sheet.dark .sheet-music g.harm.edit tspan { fill: #ff8a80; }
 .sheet-music g.bar-selected > g.staff > path { stroke: var(--g); stroke-width: 22px; }
 .sheet.dark .sheet-music g.bar-selected > g.staff > path { stroke: var(--g) !important; stroke-width: 22px; }

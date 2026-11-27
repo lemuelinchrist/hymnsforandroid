@@ -627,7 +627,19 @@ export class SheetView {
 
     for (const h of Array.from(mei(doc, 'harm'))) if (h.getAttribute('silent') && h.parentNode) h.parentNode.removeChild(h);
 
-    // ids the clicks can be traced back with: bar-<n> for the bars, chord-<n>-<beat> for the chords
+    // ids the clicks can be traced back with: bar-<n> for the bars, chord-<n>-<beat> for the chords. Read only: harm-<n>-<i>-<rank> (0 the bar's
+    // first beat, 1 another beat, 2 off the beat),
+    // so that labels drawn on top of each other can be thinned out after the drawing (declutter)
+    if (!this.editing) {
+      const sd = mei(doc, 'scoreDef')[0], unit = sd ? +sd.getAttribute('meter.unit') || 4 : 4, count = sd ? +sd.getAttribute('meter.count') || 4 : 4;
+      const per = unit === 8 && count % 3 === 0 && count > 3 ? 3 : 1;
+      Array.from(mei(doc, 'measure')).forEach((m, i) => {
+        kids(m).filter((c) => c.localName === 'harm').forEach((c, k) => {
+          const t = parseFloat(c.getAttribute('tstamp') || '1'), on = Math.abs(t - Math.round(t)) < 1e-6 && (Math.round(t) - 1) % per === 0;
+          c.setAttributeNS(XML_NS, 'xml:id', 'harm-' + (i + 1) + '-' + k + '-' + (t === 1 ? 0 : on ? 1 : 2));
+        });
+      });
+    }
     if (this.editing) {
       Array.from(mei(doc, 'measure')).forEach((m, i) => {
         m.setAttributeNS(XML_NS, 'xml:id', 'bar-' + (i + 1));
@@ -673,7 +685,25 @@ export class SheetView {
     this.music.innerHTML = html;
     this.music.style.minHeight = '';
     this.music.classList.toggle('editing', this.editing);
+    if (!this.editing) this.declutter();
     this.mark();
+  }
+
+  // Chord labels that the drawing put on top of each other (several chords under one long note): the less important one is
+  // hidden: a chord off the beat before one on a beat, before the one that starts a bar; of two alike, the later one (all
+  // still sound; editing shows them all)
+  declutter() {
+    const systems = Array.from(this.music.querySelectorAll('g.system'));
+    const all = Array.from(this.music.querySelectorAll('g.harm')).map((g) => ({g, r: g.getBoundingClientRect(), rank: +(/-(\d)$/.exec(g.id) || [0, 1])[1], s: systems.indexOf(g.closest('g.system'))}))
+      .filter((h) => h.r.width > 0).sort((a, b) => a.s - b.s || a.r.left - b.r.left);   // line by line, left to right
+    let prev = null;
+    for (const h of all) {
+      if (prev && h.s === prev.s && h.r.left < prev.r.right + 2) {
+        if (h.rank >= prev.rank) { h.g.classList.add('harm-hidden'); continue; }
+        prev.g.classList.add('harm-hidden');
+      }
+      prev = h;
+    }
   }
 
   // ---- editing the chords ----
