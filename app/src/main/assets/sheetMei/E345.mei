@@ -39,9 +39,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="2.75" place="above">Em7/D</harm>
-<harm staff="1" tstamp="3" place="above">D</harm>
-<harm staff="1" tstamp="4.75" place="above">Dsus4</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <beam>
@@ -62,8 +59,6 @@
 <verse n="1"><syl>And</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="2.75" place="above">G/D</harm>
-<harm staff="1" tstamp="3" place="above">D</harm>
 </measure>
 <sb/>
 <measure n="4"><staff n="1"><layer n="1">
@@ -113,7 +108,6 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A/E</harm>
 <harm staff="1" tstamp="2" place="above">C♯m/E</harm>
-<harm staff="1" tstamp="2.75" place="above">E7</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
 </measure>
 <sb/>
@@ -149,10 +143,6 @@
 <verse n="1"><syl eol="1" wordpos="t">day,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7/E</harm>
-<harm staff="1" tstamp="3" place="above">A/E</harm>
-<harm staff="1" tstamp="3.75" place="above">A7</harm>
-<harm staff="1" tstamp="4" place="above">A/E</harm>
-<harm staff="1" tstamp="4.5" place="above">A/C♯</harm>
 </measure>
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
@@ -165,10 +155,7 @@
 <note xml:id="n41" dur="4" pname="g" oct="4">
 <verse n="1"><syl wordpos="t">light,</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">A</harm>
-<harm staff="1" tstamp="2" place="above">A7</harm>
-<harm staff="1" tstamp="3" place="above">A</harm>
-<harm staff="1" tstamp="4" place="above">A7</harm>
+<harm staff="1" tstamp="1" place="above">A7/E</harm>
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <beam>
@@ -187,10 +174,6 @@
 <verse n="1"><syl eol="1">way,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="1.75" place="above">Dsus4</harm>
-<harm staff="1" tstamp="2" place="above">D</harm>
-<harm staff="1" tstamp="2.75" place="above">G/D</harm>
-<harm staff="1" tstamp="3" place="above">D</harm>
 </measure>
 <sb/>
 <measure n="10"><staff n="1"><layer n="1">
@@ -212,10 +195,6 @@
 <verse n="1"><syl>me,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="1.75" place="above">Dsus2</harm>
-<harm staff="1" tstamp="2" place="above">D</harm>
-<harm staff="1" tstamp="2.75" place="above">Dsus4</harm>
-<harm staff="1" tstamp="3" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">Bm7/D</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
@@ -235,9 +214,6 @@
 <verse n="1"><syl eol="1">sin,</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A7</harm>
-<harm staff="1" tstamp="3" place="above">A</harm>
-<harm staff="1" tstamp="3.75" place="above">F♯m/A</harm>
-<harm staff="1" tstamp="4" place="above">A7</harm>
 </measure>
 <sb/>
 <measure n="12"><staff n="1"><layer n="1">
@@ -267,12 +243,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="2" place="above">DMaj7</harm>
-<harm staff="1" tstamp="2.75" place="above">Bm7/D</harm>
-<harm staff="1" tstamp="3" place="above">D</harm>
-<harm staff="1" tstamp="3.75" place="above">G/D</harm>
-<harm staff="1" tstamp="4" place="above">D</harm>
-<harm staff="1" tstamp="4.75" place="above">Em/G</harm>
 </measure>
 <measure n="13" right="end"><staff n="1"><layer n="1">
 <note xml:id="n66" dur="4" pname="f" oct="4" accid.ges="s">
@@ -282,10 +252,10 @@
 <note xml:id="n68" dur="2" pname="d" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">in.</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">D/A</harm>
+<fermata startid="#n68" place="above"/>
+<harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="2" place="above">A7</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
-<fermata startid="#n68" place="above"/>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

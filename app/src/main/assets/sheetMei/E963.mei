@@ -25,8 +25,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
-<harm staff="1" tstamp="3" place="above">D♭/A♭</harm>
-<harm staff="1" tstamp="3.5" place="above">A♭</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n7" dur="2" pname="a" oct="4" accid.ges="f">
@@ -35,8 +33,7 @@
 <verse n="1"><syl eol="1" wordpos="t">ior,</syl></verse></note>
 <rest xml:id="r9" dur="8"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">E♭sus4/B♭</harm>
-<harm staff="1" tstamp="2" place="above">B♭m7</harm>
+<harm staff="1" tstamp="1" place="above">B♭m7</harm>
 <harm staff="1" tstamp="3" place="above">E♭7</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -58,10 +55,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
-<harm staff="1" tstamp="2.5" place="above">E♭sus4</harm>
-<harm staff="1" tstamp="3" place="above">E♭7</harm>
-<harm staff="1" tstamp="3.5" place="above">E♭sus2</harm>
-<harm staff="1" tstamp="4" place="above">E♭7</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n16" dur="2" dots="1" pname="e" oct="4" accid.ges="f">
@@ -90,8 +83,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
-<harm staff="1" tstamp="3" place="above">D♭/A♭</harm>
-<harm staff="1" tstamp="3.5" place="above">A♭</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n24" dur="2" pname="b" oct="4" accid.ges="f">
@@ -120,7 +111,7 @@
 <verse n="1"><syl>for</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
-<harm staff="1" tstamp="4.5" place="above">E♭7</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n32" dur="2" dots="1" pname="a" oct="4" accid.ges="f">
@@ -149,10 +140,7 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
-<harm staff="1" tstamp="3" place="above">A♭/E♭</harm>
-<harm staff="1" tstamp="3.5" place="above">E♭7</harm>
-<harm staff="1" tstamp="4" place="above">A♭/E♭</harm>
-<harm staff="1" tstamp="4.5" place="above">E♭</harm>
+<harm staff="1" tstamp="4" place="above">Cm7/E♭</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n40" dur="2" pname="a" oct="4" accid.ges="f">
@@ -181,21 +169,18 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭/B♭</harm>
-<harm staff="1" tstamp="2.5" place="above">E♭sus4/B♭</harm>
-<harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
-<harm staff="1" tstamp="3.5" place="above">B♭7</harm>
-<harm staff="1" tstamp="4" place="above">Gm/B♭</harm>
-<harm staff="1" tstamp="4.5" place="above">B♭7</harm>
+<harm staff="1" tstamp="2" place="above">Cm7/B♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭7</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n48" dur="2" dots="1" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl eol="1">sky;</syl></verse></note>
 <rest xml:id="r49" dur="4"/>
 </layer></staff>
+<fermata startid="#n48" place="above"/>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="2" place="above">A♭/E♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭7</harm>
-<fermata startid="#n48" place="above"/>
 </measure>
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
@@ -217,10 +202,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
-<harm staff="1" tstamp="3" place="above">D♭/A♭</harm>
-<harm staff="1" tstamp="3.5" place="above">A♭</harm>
-<harm staff="1" tstamp="4" place="above">A♭sus4</harm>
-<harm staff="1" tstamp="4.5" place="above">A♭</harm>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n56" dur="2" pname="b" oct="4" accid.ges="f">
@@ -234,10 +215,10 @@
 <verse n="1"><syl>shall</syl></verse></note>
 </beam>
 </layer></staff>
+<fermata startid="#n57" place="above"/>
 <harm staff="1" tstamp="1" place="above">B♭m/D♭</harm>
 <harm staff="1" tstamp="3" place="above">D♭</harm>
 <harm staff="1" tstamp="4" place="above">B♭/D</harm>
-<fermata startid="#n57" place="above"/>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n60" dur="4" pname="e" oct="4" accid.ges="f">
@@ -250,7 +231,7 @@
 <verse n="1"><syl>and</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭/E♭</harm>
-<harm staff="1" tstamp="4.5" place="above">E♭7</harm>
+<harm staff="1" tstamp="4" place="above">E♭7</harm>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n64" dur="1" pname="a" oct="4" accid.ges="f">

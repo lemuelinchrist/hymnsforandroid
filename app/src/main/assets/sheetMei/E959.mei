@@ -25,11 +25,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="2.5" place="above">Am7/G</harm>
-<harm staff="1" tstamp="3" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">G/B</harm>
-<harm staff="1" tstamp="5" place="above">D7/A</harm>
-<harm staff="1" tstamp="6" place="above">G</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <beam>
@@ -48,10 +43,7 @@
 </beam>
 <rest xml:id="r12" dur="8"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">Am/C</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
-<harm staff="1" tstamp="4" place="above">C/G</harm>
-<harm staff="1" tstamp="5" place="above">G</harm>
+<harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <beam>
@@ -72,8 +64,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="5.5" place="above">Gsus4</harm>
-<harm staff="1" tstamp="6" place="above">G</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <beam>
@@ -87,9 +77,9 @@
 <note xml:id="n22" dur="4" dots="1" pname="a" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">layed?</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">A/E</harm>
-<harm staff="1" tstamp="4" place="above">D7</harm>
 <fermata startid="#n22" place="above"/>
+<harm staff="1" tstamp="1" place="above">C/E</harm>
+<harm staff="1" tstamp="4" place="above">D7</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -111,11 +101,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="2.5" place="above">Am7/G</harm>
-<harm staff="1" tstamp="3" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">G/B</harm>
-<harm staff="1" tstamp="5" place="above">D7/A</harm>
-<harm staff="1" tstamp="6" place="above">G</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <beam>
@@ -134,10 +119,7 @@
 </beam>
 <rest xml:id="r34" dur="8"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">Am/C</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
-<harm staff="1" tstamp="4" place="above">C/G</harm>
-<harm staff="1" tstamp="5" place="above">G</harm>
+<harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <beam>
@@ -158,11 +140,7 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">C</harm>
-<harm staff="1" tstamp="2" place="above">Csus2</harm>
-<harm staff="1" tstamp="3" place="above">C</harm>
 <harm staff="1" tstamp="4" place="above">G</harm>
-<harm staff="1" tstamp="5" place="above">G/B</harm>
-<harm staff="1" tstamp="6" place="above">C</harm>
 </measure>
 <sb/>
 <measure n="8"><staff n="1"><layer n="1">
@@ -179,10 +157,8 @@
 <note xml:id="n45" dur="8" pname="d" oct="4">
 <verse n="1"><label>(C)</label><syl>Come</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G/D</harm>
-<harm staff="1" tstamp="3" place="above">D7</harm>
-<harm staff="1" tstamp="4" place="above">G</harm>
 <fermata startid="#n44" place="above"/>
+<harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 <measure n="9"><staff n="1"><layer n="1">
 <note xml:id="n46" dur="4" dots="1" pname="a" oct="4">
@@ -191,9 +167,8 @@
 <note xml:id="n48" dur="8" pname="b" oct="4">
 <verse n="1"><syl>come</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="3" place="above">D7</harm>
-<harm staff="1" tstamp="6" place="above">G/D</harm>
 <slur startid="#n46" endid="#n47"/>
+<harm staff="1" tstamp="1" place="above">D7/A</harm>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n49" dur="4" pname="g" oct="4">
@@ -201,10 +176,9 @@
 <note xml:id="n50" dur="8" pname="a" oct="4"/>
 <note xml:id="n51" dur="4" dots="1" pname="b" oct="4"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G/B</harm>
-<harm staff="1" tstamp="3" place="above">D</harm>
-<harm staff="1" tstamp="4" place="above">G</harm>
 <slur startid="#n49" endid="#n51"/>
+<harm staff="1" tstamp="1" place="above">Bm7</harm>
+<harm staff="1" tstamp="4" place="above">G</harm>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <beam>
@@ -224,11 +198,9 @@
 <verse n="1"><syl>we</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">D/A</harm>
-<harm staff="1" tstamp="3" place="above">D/F♯</harm>
-<harm staff="1" tstamp="4" place="above">E7</harm>
-<harm staff="1" tstamp="6" place="above">A7</harm>
 <fermata startid="#n56" place="above"/>
+<harm staff="1" tstamp="1" place="above">D/A</harm>
+<harm staff="1" tstamp="4" place="above">E7</harm>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n58" dur="4" pname="d" oct="5"/>
@@ -237,14 +209,13 @@
 <note xml:id="n60" dur="4" pname="c" oct="5"/>
 <rest xml:id="r61" dur="8"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">D</harm>
-<harm staff="1" tstamp="3" place="above">A7/E</harm>
-<harm staff="1" tstamp="4" place="above">D7/F♯</harm>
 <fermata startid="#n58" place="above"/>
 <fermata startid="#n59" place="above"/>
 <fermata startid="#n60" place="above"/>
 <slur startid="#n57" endid="#n58"/>
 <slur startid="#n59" endid="#n60"/>
+<harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="4" place="above">D7/F♯</harm>
 </measure>
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
@@ -266,11 +237,6 @@
 </beam>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G</harm>
-<harm staff="1" tstamp="2.5" place="above">Am7/G</harm>
-<harm staff="1" tstamp="3" place="above">G</harm>
-<harm staff="1" tstamp="4" place="above">G/B</harm>
-<harm staff="1" tstamp="5" place="above">D7/A</harm>
-<harm staff="1" tstamp="6" place="above">G</harm>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <beam>
@@ -289,10 +255,7 @@
 </beam>
 <rest xml:id="r73" dur="8"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">Am/C</harm>
-<harm staff="1" tstamp="2" place="above">C</harm>
-<harm staff="1" tstamp="4" place="above">C/G</harm>
-<harm staff="1" tstamp="5" place="above">G</harm>
+<harm staff="1" tstamp="1" place="above">C</harm>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <beam>
@@ -312,20 +275,17 @@
 <verse n="1"><syl wordpos="i" con="d">re</syl></verse></note>
 </beam>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G/B</harm>
-<harm staff="1" tstamp="3" place="above">C</harm>
-<harm staff="1" tstamp="4" place="above">G/D</harm>
-<harm staff="1" tstamp="6" place="above">D7</harm>
 <fermata startid="#n78" place="above"/>
 <fermata startid="#n79" place="above"/>
+<harm staff="1" tstamp="1" place="above">Em7/B</harm>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n80" dur="4" dots="1" pname="g" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">turn.</syl></verse></note>
 <note xml:id="n81" dur="4" dots="1" pname="g" oct="4"/>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">G</harm>
 <slur startid="#n80" endid="#n81"/>
+<harm staff="1" tstamp="1" place="above">G</harm>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">
