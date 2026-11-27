@@ -79,7 +79,7 @@ export function pattern(lh, time) {
   const r = kind.rhythms.find((x) => x.id === lh.rhythm) || kind.rhythms.find((x) => x.id === '8') || kind.rhythms[0];   // an arpeggio starts in eighths
   const out = {pat: r.pat, rate: r.rate, low: r.low + 12 * (lh.oct || 0), pedal: !!lh.pedal && r.rate > 0,
     family: fam.id, kind: kind.id, rhythm: r.id};
-  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'chordPedal', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'pick', 'settle', 'vary', 'moods', 'feather']) if (r[k] != null) out[k] = r[k];
+  for (const k of ['shortPat', 'fillPat', 'latePat', 'bassRing', 'chordPedal', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'pick', 'settle', 'vary', 'moods', 'feather', 'bouncy']) if (r[k] != null) out[k] = r[k];
   if ((out.vary || out.moods) && lh.seed) out.seed = lh.seed;   // the take (Shuffle)
   if (out.passing && lh.walk) out.passing = 2;   // More walking (Chorale)
   if (out.guitar && lh.capo != null) out.capo = lh.capo;
