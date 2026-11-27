@@ -1,20 +1,21 @@
-// Simpler chords for the piano sheet ("Simplify" in the toolbar, three levels). Only what is shown changes: the sheet, its
+// Simpler chords for the piano sheet ("Simplify" in the toolbar, two levels). Only what is shown changes: the sheet, its
 // chord edits and what plays stay as they are. Pure functions on plain bars, so that it runs in node as well (tests/simplify.mjs).
 //
-// A bar is {unit, count, len, events: [{onset, len, pc}], chords: [[tstamp, text]]}: the meter, the bar's length and its melody
-// notes (pitch class, in the meter's unit from beat 1) and its chords, as sheet.js scanBars reads them.
+// A bar is {unit, count, len, events: [{onset, len, pc}], chords: [[tstamp, text]], fifths}: the meter, the bar's length, its
+// melody notes (pitch class, in the meter's unit from beat 1), its chords, as sheet.js scanBars reads them, and the key signature.
 //
-//   Medium   light touch-ups only: the same chords at the same places, in a simple shape: a triad (major, minor, diminished,
-//            augmented) or a plain dominant seventh, with its slash bass; a chord equal to the one before it is not written again;
-//            at most three chord changes in a bar of four beats or more (two in a shorter one): the shortest chords go first.
-//   Easy     one chord for the bar (long bars: for each half), triads only, from the original chords and the key's main chords;
-//            the last two bars keep their rhythm (a chord for two beats at least).
+// The chords are weighed by what they do in the key (2026-11-27). The main chords, on the 1st, 2nd, 4th, 5th and 6th degrees
+// (I ii IV V vi; in a minor key i ii iv V VI), carry the tune: both levels keep every one of them, at its place, so the hymn
+// stays recognizable. A secondary dominant (a major chord or seventh that goes to the chord a fifth below it: E7 -> Am) is
+// kept too. The other chords (iii, vii, chromatic and passing chords) are colour.
 //
-// The choice is made over the whole hymn (a cheapest path through the candidates of each slot): it costs the melody notes
-// the chord does not hold, the time the original played another chord, a change of chord, and (a little) a chord the original
-// did not have.
+//   Medium   light touch-ups: the same chords at the same places, in a simple shape (a triad or a plain seventh) with their
+//            slash bass; a chord equal to the one before it is not written again. A bar of four beats or more has at most
+//            three changes (a shorter bar two): what goes first is colour (the shortest first), then a change of the bass only
+//            (C -> C/E); a main chord or a secondary dominant never goes.
+//   Easy     plain triads in root position, no slash bass; each main chord and secondary dominant at its place; a colour chord
+//            becomes the main chord that shares most of its notes and holds the melody best.
 
-// (the sheet shows Medium and Easy; Lighter is what the bars at the end are cut by)
 export const LEVELS = ['medium', 'easy'];
 
 const NAT = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11};
@@ -24,11 +25,7 @@ const SUFFIX = {M: '', m: 'm', d: '°', a: '+', 7: '7'};
 const SHARPS = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 const FLATS = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'G♭', 'G', 'A♭', 'A', 'B♭', 'B'];
 const CHORD = /^([A-G])(𝄫|𝄪|♭|♯|b|#)?(.*?)(?:\/([A-G])(𝄫|𝄪|♭|♯|b|#)?)?$/;
-
-// the cost of ...
-const W_FIT = 0.9, W_DEV = 2.0, W_NEW = 0.4, W_SEVENTH = 0.25;
 const MAX_MEDIUM = 3;   // chord changes in a bar of four beats or more (fewer beats: two)
-const W_CHANGE = {easy: 1.6};
 
 // "B♭m7/E" -> {pc: 10, spell: 'B♭', type: 'm'}; null when it is not a chord (N.C., a word)
 export function shapeOf(text) {
@@ -46,167 +43,145 @@ export function shapeOf(text) {
   return out;
 }
 
-const key = (c) => c.pc + c.type;
 const tones = (c) => SHAPES[c.type].map((i) => (c.pc + i) % 12);
 
-// ---- the bars as slots: where a chord may change ----
-
-function beatsOf(bar) {
-  const compound = bar.unit === 8 && bar.count % 3 === 0 && bar.count > 3;
-  const beatQ = compound ? 1.5 : 1, lenQ = bar.len * 4 / bar.unit;
-  return {beatQ, lenQ, nb: Math.max(1, Math.round(lenQ / beatQ))};
+// the key: its tonic and whether it is minor (the key signature's major key, or its relative minor when the hymn ends there)
+export function keyOf(bars) {
+  const all = [];
+  bars.forEach((b) => b.chords.forEach(([, t]) => { const c = shapeOf(t); if (c) all.push(c); }));
+  const f = bars.find((b) => b.fifths != null);
+  let major = f ? ((f.fifths * 7) % 12 + 12) % 12 : null;
+  const last = all.length ? all[all.length - 1] : null;
+  if (major == null) {   // no key signature: the last chord is the tonic
+    if (!last) return null;
+    return {tonic: last.pc, minor: last.type === 'm', flats: last.spell.includes('♭') || last.spell === 'F'};
+  }
+  const minor = !!last && last.pc === (major + 9) % 12;
+  return {tonic: minor ? (major + 9) % 12 : major, minor, flats: f.fifths < 0};
 }
 
-// how many beats each slot of a bar holds
-function groups(nb, level) {
-  if (level === 'light') return Array(nb).fill(1);
-  if (level === 'easy') return nb <= 4 ? [nb] : [Math.floor(nb / 2), nb - Math.floor(nb / 2)];
-  if (nb <= 3) return [nb];
-  const out = Array(Math.floor(nb / 2)).fill(2);
-  if (nb % 2) out[out.length - 1] = 3;
-  return out;
+// the main chords of a key: [{pc, type}] on its 1st, 2nd, 4th, 5th and 6th degrees
+function mainChords(key) {
+  const t = key.tonic, at = (iv, type) => ({pc: (t + iv) % 12, type});
+  return key.minor ? [at(0, 'm'), at(2, 'd'), at(5, 'm'), at(7, 'M'), at(8, 'M')] : [at(0, 'M'), at(2, 'm'), at(5, 'M'), at(7, 'M'), at(9, 'm')];
 }
 
 export function simplifyBars(bars, level, skip) {
   skip = skip || new Set();
   const out = bars.map(() => null);
-  // the original chords in order, carried over the bars
-  const parsed = bars.map((b) => b.chords.map(([t, text]) => [t, text, shapeOf(text)]));
-  const unknown = bars.map((b, i) => skip.has(i) || parsed[i].some((c) => !c[2]));
-  const light = (c) => c.spell + SUFFIX[c.type];
-
-  // the original chord at each moment, as segments [from, to, chord] in quarters of its bar
-  let carry = null;
-  const segs = bars.map((b, i) => {
-    const {lenQ} = beatsOf(b), list = [];
-    const at = parsed[i].map(([t, , c]) => [(t - 1) * 4 / b.unit, c]);
-    if (!at.length || at[0][0] > 1e-6) at.unshift([0, carry]);
-    at.forEach(([q, c], k) => {
-      const to = k + 1 < at.length ? at[k + 1][0] : lenQ;
-      if (c && to > q) list.push([q, to, c]);
-    });
-    if (at.length && at[at.length - 1][1]) carry = at[at.length - 1][1];
-    return list;
-  });
-
-  if (level === 'light' || level === 'medium') {
-    // medium keeps a slash bass and the places of the chords, but writes at most MAX_MEDIUM chords in a bar
-    const bass = level === 'medium';
-    const write = (c) => light(c) + (bass && c.bass != null && c.bass !== c.pc ? '/' + c.bassSpell : '');
-    let last = null;   // the chord the bar before ended on
-    bars.forEach((b, i) => {
-      if (unknown[i]) { last = null; return; }
-      let list = [], changed = false, prev = null;   // the first chord of a bar is always written
-      parsed[i].forEach(([t, text, c]) => {
-        const s = write(c);
-        if (s === prev) { changed = true; return; }
-        prev = s; list.push([t, s]); if (s !== text) changed = true;
-      });
-      if (bass) {
-        // a change is a chord that differs from the one before it (the first one too, against the bar before)
-        const end = beatsOf(b).lenQ * b.unit / 4 + 1, nb = beatsOf(b).nb, max = nb >= 4 ? MAX_MEDIUM : Math.min(2, nb);
-        const budget = () => max + (list.length && list[0][1] === last ? 1 : 0);
-        while (list.length > budget()) {   // the shortest chord goes (the one before it goes on), never the first
-          let k = 1;
-          for (let j = 2; j < list.length; j++) {
-            const d = (list[j + 1] ? list[j + 1][0] : end) - list[j][0], dk = (list[k + 1] ? list[k + 1][0] : end) - list[k][0];
-            if (d <= dk) k = j;
-          }
-          list.splice(k, 1); changed = true;
-          list = list.filter((x, j) => j === 0 || x[1] !== list[j - 1][1]);
-        }
-      }
-      if (list.length) last = list[list.length - 1][1];
-      if (changed) out[i] = list;
-    });
-    return out;
-  }
-
-  // the key's main chords, from the last chord of the hymn (the tonic)
-  const all = segs.flat();
-  const home = all.length ? all[all.length - 1][2] : null;
+  const key = keyOf(bars);
+  if (!key) return out;
+  const main = mainChords(key), mainPcs = new Set(main.map((c) => c.pc));
   const spellings = {};
-  all.forEach(([, , c]) => { if (!(c.pc in spellings)) spellings[c.pc] = c.spell; });
-  const flatKey = home ? (home.spell.includes('♭') || ['F'].includes(home.spell)) : false;
-  const spellPc = (pc) => spellings[pc] || (flatKey ? FLATS : SHARPS)[pc];
-  const main = [];
-  if (home) {
-    const major = home.type !== 'm', t = home.pc;
-    const add = (iv, type) => main.push({pc: (t + iv) % 12, type});
-    if (major) { add(0, 'M'); add(5, 'M'); add(7, 'M'); add(9, 'm'); add(2, 'm'); }
-    else { add(0, 'm'); add(5, 'm'); add(7, 'M'); add(8, 'M'); add(3, 'M'); }
-  }
+  bars.forEach((b) => b.chords.forEach(([, t]) => { const c = shapeOf(t); if (c && !(c.pc in spellings)) spellings[c.pc] = c.spell; }));
+  const spellPc = (pc) => spellings[pc] || (key.flats ? FLATS : SHARPS)[pc];
 
-  // the slots
-  const slots = [];
+  // every chord of the hymn in order: {bar, t, text, c, from, to (in quarters from the bar's start), role}
+  const list = [];
   bars.forEach((b, i) => {
-    if (unknown[i]) { slots.push({bar: i, skip: true}); return; }
-    const {beatQ, lenQ, nb} = beatsOf(b);
-    const lv = i >= bars.length - 2 && level === 'easy' ? 'half' : level;
-    let beat = 0;
-    groups(nb, lv).forEach((g, k, arr) => {
-      const from = beat * beatQ, to = k === arr.length - 1 ? lenQ : (beat + g) * beatQ;
-      beat += g;
-      slots.push({bar: i, from, to, tstamp: 1 + from * b.unit / 4, first: k === 0});
-    });
+    const parsed = b.chords.map(([t, text]) => [t, text, shapeOf(text)]).sort((p, q) => p[0] - q[0]);   // (a sheet may list them out of order)
+    const unknown = skip.has(i) || parsed.some((p) => !p[2]);
+    const lenQ = b.len * 4 / b.unit;
+    parsed.forEach(([t, text, c], k) => list.push({bar: i, t, text, c, unknown,
+      from: (t - 1) * 4 / b.unit, to: k + 1 < parsed.length ? (parsed[k + 1][0] - 1) * 4 / b.unit : lenQ}));
+  });
+  list.forEach((x, k) => {
+    if (x.unknown) return;
+    const next = list.slice(k + 1).find((y) => y.c && y.c.pc !== x.c.pc);
+    if (mainPcs.has(x.c.pc)) x.role = 'main';
+    else if ((x.c.type === 'M' || x.c.type === '7') && next && next.c && (next.c.pc + 7) % 12 === x.c.pc) x.role = 'secondary';
+    else x.role = 'colour';
   });
 
-  const triadOnly = level === 'easy';
-  slots.forEach((s) => {
-    if (s.skip) return;
-    const b = bars[s.bar];
-    const overlap = (a, z) => Math.max(0, Math.min(z, s.to) - Math.max(a, s.from));
-    // the original chords of the slot, in time
-    const orig = segs[s.bar].map(([a, z, c]) => [overlap(a, z), triadOnly && c.type === '7' ? {pc: c.pc, type: 'M'} : c]).filter((x) => x[0] > 1e-6);
-    const cands = new Map();
-    orig.forEach(([, c]) => cands.set(key(c), Object.assign({orig: true}, c)));
-    main.forEach((c) => { if (!cands.has(key(c))) cands.set(key(c), Object.assign({orig: false}, c)); });
-    if (!cands.size) { s.skip = true; return; }
-    // the melody of the slot: [pitch class, weight in quarters]; a note that starts the slot weighs more
-    const notes = [];
+  // the melody under a chord: [pitch class, weight in quarters]
+  const melody = (x) => {
+    const b = bars[x.bar], notes = [];
     b.events.forEach((e) => {
       if (e.pc == null) return;
-      const a = (e.onset - 1) * 4 / b.unit, z = a + e.len * 4 / b.unit, w = overlap(a, z);
-      if (w > 1e-6) notes.push([e.pc, w * (Math.abs(a - s.from) < 1e-6 ? 1.5 : 1)]);
+      const a = (e.onset - 1) * 4 / b.unit, z = a + e.len * 4 / b.unit, w = Math.min(z, x.to) - Math.max(a, x.from);
+      if (w > 1e-6) notes.push([e.pc, w * (Math.abs(a - x.from) < 1e-6 ? 1.5 : 1)]);
     });
-    s.cands = [...cands.values()].map((c) => {
-      const t = tones(c);
-      const miss = notes.reduce((x, [pc, w]) => x + (t.includes(pc) ? 0 : w), 0);
-      const agree = orig.reduce((x, [w, o]) => x + (key(o) === key(c) ? w : 0), 0);
-      return {c, cost: W_FIT * miss + W_DEV * (s.to - s.from - agree) + (c.orig ? 0 : W_NEW) + (c.type === '7' ? W_SEVENTH : 0)};
-    });
+    return notes;
+  };
+
+  list.forEach((x) => {
+    if (x.unknown) return;
+    x.out = x.c.spell + SUFFIX[x.c.type] + (x.c.bass != null && x.c.bass !== x.c.pc ? '/' + x.c.bassSpell : '');
   });
 
-  // the cheapest path
-  const live = slots.filter((s) => !s.skip);
-  const change = W_CHANGE[level];
-  let best = null;
-  live.forEach((s, i) => {
-    const row = s.cands.map((x) => {
-      if (i === 0) return {x, total: x.cost, from: null};
-      let pick = null;
-      best.forEach((p) => {
-        const t = p.total + (key(p.x.c) === key(x.c) ? 0 : change);
-        if (!pick || t < pick.total) pick = {total: t, p};
+  // Medium: per bar, the chords where they change, at most MAX_MEDIUM changes
+  let prev = null;   // the chord the bar before ended on
+  const kept = bars.map((b, i) => {
+    const mine = list.filter((x) => x.bar === i);
+    if (!mine.length) return null;   // no chord here: the one before goes on
+    if (mine.some((x) => x.unknown)) { prev = null; return null; }
+    let res = [];
+    mine.forEach((x) => { if ((res.length ? res[res.length - 1].out : null) !== x.out) res.push(Object.assign({}, x)); });
+    const beats = b.unit === 8 && b.count % 3 === 0 && b.count > 3 ? b.count / 3 : b.len * 4 / b.unit;
+    const max = beats >= 4 - 1e-6 ? MAX_MEDIUM : beats >= 2 - 1e-6 ? 2 : 1;
+    const changes = () => res.length - (res.length && res[0].out === prev ? 1 : 0);
+    // what goes first: colour (the shortest first), then a change of the bass only; never the first chord of the bar,
+    // a main chord that changes the harmony, or a secondary dominant
+    const rank = (x, k) => (k === 0 ? null : x.role === 'colour' ? 0 : res[k - 1].c.pc === x.c.pc ? 1 : null);
+    while (changes() > max) {
+      let pick = -1;
+      res.forEach((x, k) => {
+        const r = rank(x, k);
+        if (r == null) return;
+        if (pick < 0 || r < rank(res[pick], pick) || (r === rank(res[pick], pick) && x.to - x.from < res[pick].to - res[pick].from)) pick = k;
       });
-      return {x, total: pick.total + x.cost, from: pick.p};
-    });
-    s.row = row; best = row;
+      if (pick < 0) break;
+      res[pick - 1].to = res[pick].to;
+      res.splice(pick, 1);
+      res = res.filter((x, k) => k === 0 || x.out !== res[k - 1].out);
+    }
+    prev = res.length ? res[res.length - 1].out : prev;
+    return {mine, res};
   });
-  if (!live.length) return out;
-  let end = best.reduce((a, b) => (b.total < a.total ? b : a));
-  for (let i = live.length - 1; i >= 0; i--) { live[i].pick = end.x.c; end = end.from; }
 
-  // the chords of each bar: written where they change
-  let prev = null;
-  bars.forEach((b, i) => {
-    if (unknown[i]) { prev = null; return; }
-    const res = [];
-    slots.filter((s) => s.bar === i && s.pick).forEach((s) => {
-      const text = spellPc(s.pick.pc) + SUFFIX[s.pick.type];
-      if (text !== prev) { res.push([Math.round(s.tstamp * 1000) / 1000, text]); prev = text; }
+  if (level === 'easy') {
+    const flat = [];
+    kept.forEach((k) => { if (k) k.res.forEach((x) => flat.push(x)); else flat.push({unknown: true}); });
+    // each chord as a plain triad; a colour chord as the main chord nearest to it
+    flat.forEach((x) => {
+      if (x.unknown) return;
+      let c = {pc: x.c.pc, type: x.c.type === '7' ? 'M' : x.c.type};
+      if (x.role === 'colour') {
+        const own = tones(x.c), notes = melody(x);
+        let best = null;
+        main.forEach((m) => {
+          const t = tones(m);
+          const score = 2 * own.filter((p) => t.includes(p)).length + notes.reduce((s, [pc, w]) => s + (t.includes(pc) ? w : 0), 0)
+            + (t.includes(x.c.bass != null ? x.c.bass : x.c.pc) ? 0.5 : 0);
+          if (!best || score > best.score) best = {score, c: m};
+        });
+        c = best.c;
+      }
+      x.out = (c.pc === x.c.pc ? x.c.spell : spellPc(c.pc)) + SUFFIX[c.type];
+      x.pcOut = c.pc;
     });
-    out[i] = res;
+    // a chord shorter than a beat goes on in the one before it (one change a beat at most), but a V that resolves to I stays
+    const beatQ = (b) => (b.unit === 8 && b.count % 3 === 0 && b.count > 3 ? 1.5 : b.unit === 2 ? 2 : 1);
+    let last = null;
+    flat.forEach((x, k) => {
+      if (x.unknown) { last = null; return; }
+      const next = flat[k + 1], short = x.to - x.from < beatQ(bars[x.bar]) - 1e-6 && x.from > 1e-6;
+      const cadence = x.pcOut === (key.tonic + 7) % 12 && next && !next.unknown && next.pcOut === key.tonic && x.to - x.from >= beatQ(bars[x.bar]) / 2 - 1e-6;
+      if (short && !cadence && last) x.out = last.out;
+      else last = x;
+    });
+    kept.forEach((k) => { if (k) k.res = k.res.filter((x, j) => j === 0 || x.out !== k.res[j - 1].out); });
+  }
+
+  // the chords of each bar, written where they change
+  let before = null;
+  kept.forEach((k, i) => {
+    if (!k) return;
+    const texts = [];
+    k.res.forEach((x) => { if ((texts.length ? texts[texts.length - 1][1] : null) !== x.out) texts.push([x.t, x.out]); });
+    const orig = bars[i].chords.slice().sort((p, q) => p[0] - q[0]);
+    if (texts.length !== orig.length || texts.some(([t, o], j) => o !== orig[j][1] || t !== orig[j][0])) out[i] = texts;
+    before = texts.length ? texts[texts.length - 1][1] : before;
   });
   return out;
 }

@@ -27,7 +27,7 @@ function read(xml) {
       events.push({onset: 1 + t, len, pc}); t += len;
     }
     const chords = [...body.matchAll(/<harm\b[^>]*tstamp="([^"]*)"[^>]*>([^<]*)<\/harm>/g)].map((h) => [+h[1], h[2]]);
-    bars.push({unit, count, len: t, events, chords});
+    bars.push({unit, count, len: t, events, chords, fifths: f});
   }
   return bars;
 }

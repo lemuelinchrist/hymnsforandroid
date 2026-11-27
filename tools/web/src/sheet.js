@@ -215,7 +215,7 @@ function scanBars(doc) {
     return ((NAT[l] + alt) % 12 + 12) % 12;
   };
   const scanBar = (m) => {
-    const bar = {el: m, unit, count, events: [], len: 0};
+    const bar = {el: m, unit, count, events: [], len: 0, fifths};
     const walk = (e, start, factor) => {
       let onset = start;
       kids(e).forEach((c) => {
