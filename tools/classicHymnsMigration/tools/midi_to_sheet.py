@@ -257,6 +257,7 @@ def convert(hid, db, write, out_dir):
         return out
     sop_by_start = {t // q: i for i, (t, e, p) in enumerate(sop)}
     last_voiced = None
+    chords_seen = False
     for bi, (mh, els, tot, txt) in enumerate(bars):
         b0, b1 = bt, bt + tot; bt = b1
         # notes of this bar: from the soprano, cut at the bar lines
@@ -318,7 +319,11 @@ def convert(hid, db, write, out_dir):
                 if short: run = [x['xml']]; bs = (x['st'] - b0) // beat
                 else: out.append(x['xml'])
         flush()
-        hh = ''.join('\n<harm staff="1" tstamp="%s" place="above">%s</harm>' % ('%g' % ts, nm) for ts, nm in harm_at(b0 * q, b1 * q))
+        hs = harm_at(b0 * q, b1 * q)
+        if not hs and not chords_seen:   # an opening in unison or octaves has no chord to name: the old sheet's chords stand
+            hs = [(float(a), b) for a, b in re.findall(r'<harm\b[^>]*tstamp="([^"]*)"[^>]*>([^<]*)</harm>', txt)]
+        chords_seen = chords_seen or bool(hs)
+        hh = ''.join('\n<harm staff="1" tstamp="%s" place="above">%s</harm>' % ('%g' % ts, nm) for ts, nm in hs)
         fm = ''
         for fid in re.findall(r'<fermata\b[^>]*startid="#([^"]+)"', txt):
             ot = next((tg for (t_, n_, a_, tg) in els if a_.get('xml:id') == fid), None)

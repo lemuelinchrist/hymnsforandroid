@@ -135,6 +135,8 @@ def convert(hid, db, write, out_dir):
                     if name_at(o) == name: at = o
                     else: break
                 out.append(((at - b0) / per + 1, name)); prev = name
+        if not out and not any(chords):   # an opening in unison or octaves has no chord to name: the old sheet's chords stand
+            out = [(float(a), b) for a, b in re.findall(r'<harm\b[^>]*tstamp="([^"]*)"[^>]*>([^<]*)</harm>', txt)]
         chords.append(out)
     # the new sheet: the old measures with their chords replaced
     parts = []; pos = 0

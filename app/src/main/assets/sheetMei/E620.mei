@@ -10,6 +10,7 @@
 <note xml:id="n1" dur="4" pname="f" oct="4">
 <verse n="1"><label>1.</label><syl>The</syl></verse></note>
 </layer></staff>
+<harm staff="1" tstamp="1" place="above">F7</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n2" dur="4" dots="1" pname="b" oct="3" accid.ges="f">
@@ -29,6 +30,8 @@
 </layer></staff>
 <slur startid="#n4" endid="#n5"/>
 <slur startid="#n6" endid="#n7"/>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="4" place="above">F7/C</harm>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n8" dur="2" dots="1" pname="f" oct="4">
