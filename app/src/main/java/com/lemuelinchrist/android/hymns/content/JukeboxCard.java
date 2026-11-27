@@ -69,7 +69,7 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
             {"melody", "melody", R.string.jukebox_style_melody},
     };
     private static final String DEFAULT_STYLE = "own", FALLBACK_STYLE = "flowing";   // as jukebox.js
-    private static final String PREF_LOOP = "jukeboxLoop", PREF_SPEED = "jukeboxSpeed";
+    private static final String PREF_LOOP = "jukeboxLoop";
     // the tempo: half to one and a half times the sheet's, by twentieths (as the viewer's Play); the seek bar's 10 is 1
     private static final double MIN_SPEED = 0.5, STEP = 0.05;
     private static final int DEFAULT_BPM = 110;
@@ -164,7 +164,7 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
         speedBar.setProgressTintList(accentList);
         speedBar.setThumbTintList(accentList);
         speedBar.setProgressBackgroundTintList(track);
-        speedBar.setProgress(stepOf(prefs.getFloat(PREF_SPEED, 1f)));
+        speedBar.setProgress(stepOf(1));   // the tempo is not kept: every hymn starts at its own
         showTempo();
         speedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -349,7 +349,6 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
     }
 
     private void tempoChanged() {
-        prefs.edit().putFloat(PREF_SPEED, (float) speed()).apply();
         if (playing) start();
     }
 

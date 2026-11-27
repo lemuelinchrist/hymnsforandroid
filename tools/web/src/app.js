@@ -809,8 +809,8 @@ function foldTitle(card, title, key) {
 // -> {el, stop()}
 function jukeboxCard(hymn, stopOthers) {
   const el = h('section', {class: 'card jukebox-card', hidden: true, 'aria-label': tr('Jukebox')});
-  const prefs = Object.assign({loop: true, speed: 1}, store.get('jukebox', {}));
-  const keep = () => store.set('jukebox', {loop: !!prefs.loop, speed: prefs.speed});
+  const prefs = Object.assign({loop: true}, store.get('jukebox', {}), {speed: 1});   // the tempo is not kept: every hymn starts at its own
+  const keep = () => store.set('jukebox', {loop: !!prefs.loop});
   let J = null, info = null, juke = null, playing = false, disposed = false;
   (async () => {
     try {

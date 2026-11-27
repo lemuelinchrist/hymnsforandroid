@@ -25,10 +25,9 @@ const param = (id) => id.replace(/_\d+$/, '');   // an element the left hand's n
 // view: the SheetView; tune: the url of the hymn's tune file (its tempo is the sheet's tempo); store: {get, set} for what is
 // kept between hymns; stopTune(): stops the tune's own Play button; onchange(): the toolbar's button follows
 export function createSheetPlayer(view, {tune, store, stopTune, onchange}) {
-  const prefs = Object.assign({speed: 1, loop: false, mel: true, acc: true}, store.get('sheetPlayer', {}));
+  const prefs = Object.assign({speed: 1, loop: false, mel: true, acc: true}, store.get('sheetPlayer', {}), {speed: 1});   // the tempo is not kept: every hymn starts at its own
   if (!prefs.mel && !prefs.acc) prefs.mel = prefs.acc = true;
-  prefs.speed = Math.max(MIN_SPEED, Math.min(MAX_SPEED, +prefs.speed || 1));
-  const keep = () => store.set('sheetPlayer', prefs);
+  const keep = () => store.set('sheetPlayer', {loop: prefs.loop, mel: prefs.mel, acc: prefs.acc});
   const root = el('div', 'sheet-player', null, {role: 'group', 'aria-label': tr('Play the sheet')});
   root.hidden = true;
 
