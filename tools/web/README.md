@@ -82,12 +82,7 @@ piano part of it: a second staff with a left hand made from the chords, and, if 
 melody. Nothing of it is in the sheet files: it is worked out for the sheet as it is shown, so it follows the key
 (transposing) and this device's chord edits, and every hymn that has chords has it.
 
-Turning Both hands on opens a panel at the bottom of the screen that chooses how the hands play. **Done** tucks it
-down to a slim bar that names the style ("Both hands · Bass + chord · In eighths · Pedal"); a tap on the bar, or a
-drag up, opens it again, and a drag down on the open panel's top tucks it away. There is no toolbar button for it: the bar
-is there whenever Both hands is on (not while editing chords, on the guitar sheet or with the staff hidden), and the next
-hymn starts with it tucked down. It is named **Style**; it is also there, open, while the sheet plays with Both hands
-off (choosing a style then turns Both hands on), and goes at Stop. It shows two rows:
+Turning Both hands on or pressing Play on the sheet opens one **Unified Bottom Dock** (`pianopanel.js` `createSheetDock`, `.ud-dock.sheet-dock`, shared with Android's sheet viewer — replacing both the old top playback bar and separate bottom Style/Strumming panels). It floats at the bottom with a 3 px top progress line, a slim 1-row bar (circular Play/Stop, From-start `|◀`, active style + `♩ = <bpm>` / bar summary, Loop icon toggle, Expand/Collapse chevron, and Close `✕`), and an expandable drawer (tapped or dragged up/down; hidden while editing chords or on chords-only sheets). The web Lyrics tab's Jukebox (`app.js` `jukeboxCard`, `.ud-dock.jukebox-dock`) uses the exact same floating bottom dock. Inside the sheet dock's drawer:
 
 - **Style**, a preset named by what it is for: **Plain** (Strike, hymn style, twice a bar), **Chorale**
   (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part

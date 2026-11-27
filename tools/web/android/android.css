@@ -11,7 +11,6 @@ body { min-height: 100vh; background: var(--surface); }
 
 .sheet-top { position: sticky; top: 0; z-index: 20; transition: transform .2s ease; background: var(--surface); }
 .sheet-top .sheet-bar { padding-top: calc(10px + var(--it)); padding-left: calc(12px + var(--il)); padding-right: calc(12px + var(--ir)); }
-.sheet-top .sheet-player { padding-left: calc(12px + var(--il)); }
 body.bars-away .sheet-top { transform: translateY(-100%); }
 
 .sheet-host { padding: 10px var(--ir) calc(20px + var(--ib)) var(--il); }
@@ -20,6 +19,7 @@ body.bars-away .sheet-top { transform: translateY(-100%); }
 
 /* the panels at the bottom: above the on-screen keyboard and clear of the cutout */
 .chord-editor { bottom: var(--kb); padding-left: calc(12px + var(--il)); padding-right: calc(12px + var(--ir)); }
+.ud-dock { left: calc(10px + var(--il)); right: calc(10px + var(--ir)); bottom: calc(10px + var(--ib)); }
 body.editing-chords #view { padding-bottom: calc(var(--editor-h, 280px) + var(--kb) + 16px); }
 
 /* phones on their side: slimmer bars */

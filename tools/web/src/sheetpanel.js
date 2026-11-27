@@ -5,7 +5,7 @@
 // is this alone (tools/web/android). What differs between the two comes in as options, or through host.js.
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE} from './sheet.js';
 import {createEditor} from './editor.js';
-import {createPianoPanel, createStrumPanel} from './pianopanel.js';
+import {createSheetDock} from './pianopanel.js';
 import {createSheetPlayer} from './sheetplayer.js';
 import {DEFAULT as PIANO_DEFAULT, STRUM_DEFAULT, SAVED, forgetOldChoices} from './piano.js';
 import {host as appHost} from './host.js';
@@ -185,7 +185,7 @@ export function createSheetPanel(pane, o) {
     view.set({});
   }
   view.piano = pianoChoice().choice;
-  view.onSheet = () => { view.piano = pianoChoice().choice; if (panel) panel.refresh(); };   // the sheet may name its own piano part
+  view.onSheet = () => { view.piano = pianoChoice().choice; if (dock) dock.refresh(); };   // the sheet may name its own piano part
 
   // how the guitar strums on the guitar sheet ({kind, tone}): this hymn's own, else the default
   function strumPick() {
@@ -202,29 +202,31 @@ export function createSheetPanel(pane, o) {
   }
   view.strum = strumPick().choice;
 
-  // The Style panel (piano sheet) is there while Both hands is on; both panels (the piano's Style, the guitar's
-  // Strumming) are there while the sheet plays, and go at Stop. Pressing Play opens the panel (not on a restart of
-  // the same play: another speed, key or style). There is no Strumming switch: the guitar sheet plays with it.
-  let panel = null, strumPanel = null;
+  // Unified Bottom Dock: replaces the old top playback bar and bottom Style/Strumming panels with one floating dock.
+  // Shown while the player is open (Play pressed until Close) OR while Both hands is on (piano sheet with staff).
+  let dock = null;
   function syncPanel(openIt = false) {
     const ready = !view.chordsOnly && !view.editing && view.renders > 0;
-    const playing = !!(sp && sp.playing);
-    const wantPiano = ready && (state.hands || playing) && !state.guitar && state.staff, wantStrum = ready && playing && state.guitar;
-    if (!wantPiano && panel) panel.show('hidden');
-    if (!wantStrum && strumPanel) strumPanel.show('hidden');
-    if (wantPiano && !panel) {
-      panel = createPianoPanel({get: pianoChoice, set: keepOwn, time: () => view.time});
-      bookColour(panel.el);
+    const playerOpen = !!(sp && sp.open);
+    const wantHands = !state.guitar && state.staff && state.hands;
+    const want = ready && (playerOpen || wantHands);
+    if (!want) { if (dock) dock.show('hidden'); return; }
+    if (!dock && sp) {
+      dock = createSheetDock({
+        player: sp,
+        getPiano: pianoChoice, setPiano: keepOwn,
+        getStrum: strumPick, setStrum: keepStrum,
+        isGuitar: () => !!state.guitar,
+        hasStaff: () => !!state.staff,
+        hasHands: () => !!state.hands,
+        time: () => view.time,
+      });
+      bookColour(dock.el);
     }
-    if (wantStrum && !strumPanel) {
-      strumPanel = createStrumPanel({get: strumPick, set: keepStrum, time: () => view.time});
-      bookColour(strumPanel.el);
-    }
-    const p = wantPiano ? panel : wantStrum ? strumPanel : null;
-    if (!p) return;
-    if (openIt) p.show('open');
-    else if (p.mode === 'hidden') p.show('peek');
-    else p.refresh();
+    if (!dock) return;
+    if (openIt) dock.show('open');
+    else if (dock.mode === 'hidden') dock.show('peek');
+    else dock.refresh();
   }
 
   // chord editing: only on the piano sheet with the staff shown and the edits in place
@@ -232,7 +234,7 @@ export function createSheetPanel(pane, o) {
   function setEdit(on) {
     if (on && view.chordsOnly) return;   // chords over the words only: nothing to edit on a staff
     document.body.classList.remove('bars-away');
-    if (on && panel) panel.show('hidden');
+    if (on && dock) dock.show('hidden');
     if (on) {
       Object.assign(state, {guitar: false, staff: true, original: false});
       if (!editor) {
@@ -307,8 +309,11 @@ export function createSheetPanel(pane, o) {
   const barObserver = new ResizeObserver(fit);
   barObserver.observe(bar);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
-  sp = createSheetPlayer(view, {tune: o.tune || null, store, stopTune, onchange: (i) => updateBar(view.info, !!(i && i.started))});
-  top.appendChild(sp.el);
+  sp = createSheetPlayer(view, {
+    tune: o.tune || null, store, stopTune,
+    onchange: (i) => updateBar(view.info, !!(i && i.started)),
+    onprogress: (barNo, total) => { if (dock) dock.setProgress(barNo, total); },
+  });
   view.onsound = () => sp.refresh();
   view.onchange = (st, info) => updateBar(info);
   view.onedited = () => { updateBar(); if (editor) editor.refresh(); };
@@ -330,7 +335,7 @@ export function createSheetPanel(pane, o) {
     get chordsOnly() { return !!view.chordsOnly; },
     get failed() { return !!view.failed; },
     destroy() {
-      sp.destroy(); if (editor) editor.destroy(); if (panel) panel.destroy(); if (strumPanel) strumPanel.destroy(); view.destroy(); themeListeners.delete(onTheme);
+      sp.destroy(); if (editor) editor.destroy(); if (dock) dock.destroy(); view.destroy(); themeListeners.delete(onTheme);
       stopHiding(); stopPinch(); barObserver.disconnect();
     },
   };
