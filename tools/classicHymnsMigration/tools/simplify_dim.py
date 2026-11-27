@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Diminished and half-diminished chords written as the plain chords a pianist reads at sight.
+"""Chords written as the plain chords a pianist reads at sight.
+
+Two rules. (1) A minor seventh over its own third (C♯m7/E: C♯ E G♯ B on an E) is the sixth chord of the relative major, so it is
+written as that chord: C♯m7/E -> E. (2) Diminished and half-diminished chords, below.
 
 A diminished triad on X (X, X+3, X+6) is the top of the dominant seventh a major third below it: G♯dim = E7 without its root, so
 G♯dim -> E/G♯ (the bass stays where it was). Diminished sevenths and half-diminished chords (Xdim7, Xm7♭5) go the same way
@@ -16,7 +19,13 @@ DIM = re.compile(r'^([A-G])([♭♯]?)(dim7|dim|°7|°|m7♭5|ø7|ø)(?:/([A-G][
 
 def pc(letter, acc): return (NAT[letter] + {'': 0, '♯': 1, '♭': -1}[acc]) % 12
 
+M7INV = re.compile(r'^([A-G][♭♯]?)m7/([A-G][♭♯]?)$')
+
 def simplify(chord):
+    mi = M7INV.match(chord)
+    if mi:
+        r, b = mi.groups()
+        if (pc(b[0], b[1:]) - pc(r[0], r[1:])) % 12 == 3: return b
     m = DIM.match(chord)
     if not m: return chord
     L, acc, q, bass = m.groups()
