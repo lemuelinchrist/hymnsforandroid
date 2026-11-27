@@ -27,20 +27,20 @@ button.ok{border-color:var(--ok);color:var(--ok)}button.bad{border-color:var(--b
 <div id="list"></div></div>
 <div id="main"><div id="bar"><h2 id="title">Loading…</h2><button class="ok" id="ok">OK (o)</button><button class="bad" id="bad">Problem (x)</button>
 <input id="note" placeholder="what is wrong (kept with the hymn)"><button id="prev">◀ (k)</button><button id="next">▶ (j)</button></div>
-<div id="diffs"></div><div id="panes"><div class="pane"><h3>OLD sheet</h3><iframe id="fo" allow="autoplay"></iframe></div><div class="pane"><h3>NEW sheet (from the MIDI) — plays in Chorale style</h3><iframe id="fn" allow="autoplay"></iframe></div></div>
+<div id="diffs"></div><div id="panes"><div class="pane"><h3 id="lo">OLD sheet</h3><iframe id="fo" allow="autoplay"></iframe></div><div class="pane"><h3 id="ln">NEW sheet (from the MIDI) — plays in Chorale style</h3><iframe id="fn" allow="autoplay"></iframe></div></div>
 <div id="help">Press Play in each side to hear it (the same tempo setting on both). Keys: j next, k previous, o OK, x Problem. Answers are saved on the PC as you go.</div></div>
 <script>
 const H=location.hostname,P=+location.port,OLD='http://'+H+':'+(P+1)+'/',NEW='http://'+H+':'+(P+2)+'/';
 let hymns=[],verd={},cur=null,shown=[];
 const $=id=>document.getElementById(id);
-async function load(){hymns=await (await fetch('/api/hymns')).json();verd=await (await fetch('/api/verdicts')).json();render();const h=location.hash.slice(1);open_(h&&hymns.find(x=>x.id===h)?h:(shown[0]||hymns[0]).id)}
+async function load(){try{const c=await (await fetch('/api/config')).json();$('lo').textContent=c.old;$('ln').textContent=c.new;window.DL=c.diffs}catch(e){}hymns=await (await fetch('/api/hymns')).json();verd=await (await fetch('/api/verdicts')).json();render();const h=location.hash.slice(1);open_(h&&hymns.find(x=>x.id===h)?h:(shown[0]||hymns[0]).id)}
 function filt(){const f=document.querySelector('input[name=f]:checked').value;return hymns.filter(h=>f==='all'||(f==='tune'&&h.first)||(f==='diff'&&h.diffs.length)||(f==='todo'&&!verd[h.id]&&h.first)||(f==='prob'&&verd[h.id]&&verd[h.id].verdict==='problem'))}
 function render(){shown=filt();const L=$('list');L.innerHTML='';for(const h of shown){const r=document.createElement('div');r.className='row'+(h.id===cur?' sel':'');r.dataset.id=h.id;
  const v=verd[h.id];r.innerHTML='<span class="dot '+(v?v.verdict:'')+'"></span><span class="id">'+h.id+'</span><span class="t">'+(h.title||'').replace(/</g,'&lt;')+'</span>'+(h.diffs.length?'<span class="dg">'+h.diffs.length+'Δ</span>':'');r.onclick=()=>open_(h.id);L.appendChild(r)}
  const done=hymns.filter(h=>verd[h.id]).length;$('count').textContent=shown.length+' shown · '+done+' of '+hymns.length+' hymns answered'}
 function open_(id){cur=id;location.hash=id;const h=hymns.find(x=>x.id===id);$('title').textContent=id+' — '+(h.title||'')+'  (tune '+h.tune+')';
  const u='#/h/'+id+'?tab=sheet';$('fo').src=OLD+u;$('fn').src=NEW+u;
- const d=$('diffs');if(h.diffs.length){d.style.display='block';d.innerHTML='<b>Notes that follow the MIDI:</b> '+h.diffs.map(x=>x.replace(/</g,'&lt;')).join(' · ')}else d.style.display='none';
+ const d=$('diffs');if(h.diffs.length){d.style.display='block';d.innerHTML='<b>'+(window.DL||'Notes that follow the MIDI:')+'</b> '+h.diffs.map(x=>x.replace(/</g,'&lt;')).join(' · ')}else d.style.display='none';
  $('note').value=(verd[id]&&verd[id].note)||'';mark();render();const s=document.querySelector('.row.sel');if(s)s.scrollIntoView({block:'nearest'})}
 function mark(){const v=verd[cur];$('ok').classList.toggle('on',!!v&&v.verdict==='ok');$('bad').classList.toggle('on',!!v&&v.verdict==='problem')}
 async function save(verdict){const body={id:cur,verdict,note:$('note').value};verd=await (await fetch('/api/verdict',{method:'POST',body:JSON.stringify(body)})).json();mark();render()}
