@@ -122,14 +122,14 @@
                 android:id="@+id/jukeboxCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="?attr/hymnCardElevation"
                 app:cardBackgroundColor="?attr/hymnCardBackground"
                 app:cardPreventCornerOverlap="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="0dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
                 android:visibility="gone">
             <!-- Unified Proposal 1 Jukebox inline card: 3dp top progress edge, 1-row Play/Style/Loop/Expand/Close bar,
                  and a collapsible drawer with 4 segmented category tabs, scrollable style chips (+ refresh shuffle side-buttons),
