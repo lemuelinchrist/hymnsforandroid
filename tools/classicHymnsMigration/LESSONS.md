@@ -123,3 +123,15 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
 - Spots for a listen: E577 bars 5-8 and 14; E384 bars 4, 7, 8, 12, 15; E1353 bars 7 and 13; E1226/E1354 bar 1; E715 bar 3 (D/A or D7/A?);
   the dominant endings of E75/E1108.
 - Optional: respell 411 slash chords spelled the wrong way; the half-beat pass for the `midi_to_sheet.py` hymns; fermatas in playback.
+
+## 8. Voices for every English hymn (branch voices/original, 2026-11-28)
+
+- `add_voices.py` was run over all English sheets: 1,130 now have their four voices (the pilot 14 included); 197 were refused because
+  more than 2 melody notes are not the MIDI's top voice (the MIDI is another arrangement, or in another key/layout), 21 for tuplets,
+  repeats or endings. Those keep the melody-only sheet and need a look by hand (or the printed page).
+- A melody note an octave off the MIDI's top is accepted (same voice); up to 2 notes with another pitch class are accepted and
+  reported ("N melody notes differ from the MIDI top"): look at those bars when listening.
+- Medium chords: hymns cleaned by hand (hand_medium.txt, from batches 1-3 and the earlier hand work) are filed as `<harm type="medium">`;
+  all the others as `type="medium-auto"`: the converter's chords, from which the player and viewer work Medium out with Simplify, as before.
+  A hymn becomes hand-made Medium by editing its `medium-auto` harms and renaming the type to `medium`.
+- Sheets grew from 48 to 63 MB.

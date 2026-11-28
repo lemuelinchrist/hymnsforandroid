@@ -2,9 +2,9 @@
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">Jesus! that name we love</title>
 <title type="subordinate">Praise of the Lord—His Name</title>
-</titleStmt><pubStmt><identifier type="hymn">E65</identifier><identifier type="number">65</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
+</titleStmt><pubStmt><identifier type="hymn">E65</identifier><identifier type="number">65</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier><identifier type="parts">SATB</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
-<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common" midi.bpm="100"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<scoreDef key.sig="1f" meter.count="4" meter.unit="4" meter.sym="common" midi.bpm="100"><staffGrp symbol="brace" bar.thru="true"><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/><staffDef n="2" lines="5" clef.shape="F" clef.line="4"/></staffGrp></scoreDef>
 <section>
 <measure n="1"><staff n="1"><layer n="1">
 <note xml:id="n1" dur="2" pname="a" oct="4">
@@ -13,7 +13,9 @@
 <verse n="1"><syl wordpos="t">sus!</syl></verse></note>
 <note xml:id="n3" dur="4" pname="f" oct="4">
 <verse n="1"><syl>that</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v1" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v2" dur="1"/></layer><layer n="2"><rest xml:id="v3" dur="1"/></layer></staff>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n4" dur="4" dots="1" pname="f" oct="4">
@@ -22,7 +24,9 @@
 <verse n="1"><syl>we</syl></verse></note>
 <note xml:id="n6" dur="2" pname="d" oct="4">
 <verse n="1"><syl eol="1">love,</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v4" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v5" dur="1"/></layer><layer n="2"><rest xml:id="v6" dur="1"/></layer></staff>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
 <note xml:id="n7" dur="2" pname="c" oct="4">
@@ -31,12 +35,16 @@
 <verse n="1"><syl wordpos="t">sus,</syl></verse></note>
 <note xml:id="n9" dur="4" pname="a" oct="4">
 <verse n="1"><syl>our</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v7" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v8" dur="1"/></layer><layer n="2"><rest xml:id="v9" dur="1"/></layer></staff>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" dur="1" pname="g" oct="4">
 <verse n="1"><syl eol="1">Lord!</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v10" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v11" dur="1"/></layer><layer n="2"><rest xml:id="v12" dur="1"/></layer></staff>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -46,7 +54,9 @@
 <verse n="1"><syl wordpos="t">sus,</syl></verse></note>
 <note xml:id="n13" dur="4" pname="f" oct="4">
 <verse n="1"><syl>all</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v13" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v14" dur="1"/></layer><layer n="2"><rest xml:id="v15" dur="1"/></layer></staff>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n14" dur="4" dots="1" pname="f" oct="4">
@@ -55,7 +65,9 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n16" dur="2" pname="d" oct="4">
 <verse n="1"><syl eol="1" wordpos="t">bove,</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v16" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v17" dur="1"/></layer><layer n="2"><rest xml:id="v18" dur="1"/></layer></staff>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
 <note xml:id="n17" dur="4" pname="c" oct="4">
@@ -65,13 +77,17 @@
 <verse n="1"><syl wordpos="t">sus,</syl></verse></note>
 <note xml:id="n20" dur="4" pname="g" oct="4">
 <verse n="1"><syl>the</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v19" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v20" dur="1"/></layer><layer n="2"><rest xml:id="v21" dur="1"/></layer></staff>
 <slur startid="#n17" endid="#n18"/>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n21" dur="1" pname="f" oct="4">
 <verse n="1"><syl eol="1">Lord!</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v22" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v23" dur="1"/></layer><layer n="2"><rest xml:id="v24" dur="1"/></layer></staff>
 </measure>
 <sb/>
 <measure n="9"><staff n="1"><layer n="1">
@@ -81,7 +97,9 @@
 <verse n="1"><syl>Lord,</syl></verse></note>
 <note xml:id="n24" dur="4" pname="c" oct="5">
 <verse n="1"><syl>our</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v25" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v26" dur="1"/></layer><layer n="2"><rest xml:id="v27" dur="1"/></layer></staff>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
 <note xml:id="n25" dur="4" dots="1" pname="c" oct="5">
@@ -90,7 +108,9 @@
 <verse n="1"><syl>must</syl></verse></note>
 <note xml:id="n27" dur="2" pname="c" oct="5">
 <verse n="1"><syl eol="1">be;</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v28" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v29" dur="1"/></layer><layer n="2"><rest xml:id="v30" dur="1"/></layer></staff>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
 <note xml:id="n28" dur="2" pname="c" oct="5">
@@ -99,7 +119,9 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n30" dur="4" pname="c" oct="5">
 <verse n="1"><syl>that’s</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v31" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v32" dur="1"/></layer><layer n="2"><rest xml:id="v33" dur="1"/></layer></staff>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n31" dur="4" dots="1" pname="c" oct="5">
@@ -108,7 +130,9 @@
 <verse n="1"><syl>have</syl></verse></note>
 <note xml:id="n33" dur="2" pname="g" oct="4">
 <verse n="1"><syl eol="1">we,</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v34" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v35" dur="1"/></layer><layer n="2"><rest xml:id="v36" dur="1"/></layer></staff>
 </measure>
 <sb/>
 <measure n="13"><staff n="1"><layer n="1">
@@ -118,7 +142,9 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 <note xml:id="n36" dur="4" pname="f" oct="4">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v37" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v38" dur="1"/></layer><layer n="2"><rest xml:id="v39" dur="1"/></layer></staff>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
 <note xml:id="n37" dur="4" dots="1" pname="f" oct="4">
@@ -127,7 +153,9 @@
 <verse n="1"><syl>from</syl></verse></note>
 <note xml:id="n39" dur="2" pname="d" oct="4">
 <verse n="1"><syl eol="1">Thee.</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v40" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v41" dur="1"/></layer><layer n="2"><rest xml:id="v42" dur="1"/></layer></staff>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
 <note xml:id="n40" dur="4" pname="c" oct="4">
@@ -137,13 +165,17 @@
 <verse n="1"><syl wordpos="t">sus,</syl></verse></note>
 <note xml:id="n43" dur="4" pname="g" oct="4">
 <verse n="1"><syl>our</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v43" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v44" dur="1"/></layer><layer n="2"><rest xml:id="v45" dur="1"/></layer></staff>
 <slur startid="#n40" endid="#n41"/>
 </measure>
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n44" dur="1" pname="f" oct="4">
 <verse n="1"><syl eol="1">Lord!</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><rest xml:id="v46" dur="1"/></layer></staff>
+<staff n="2"><layer n="1"><rest xml:id="v47" dur="1"/></layer><layer n="2"><rest xml:id="v48" dur="1"/></layer></staff>
 </measure>
 </section></score></mdiv></body>
 <back><div type="verses">

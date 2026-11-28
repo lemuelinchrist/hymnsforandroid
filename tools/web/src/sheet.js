@@ -320,11 +320,15 @@ export function levelOf(state) {
 }
 
 // the chords of a level kept, the other set taken out (a voiced sheet; Easy keeps the Medium chords to simplify them)
+// a voiced sheet whose Medium chords were made by hand (type="medium"); otherwise they are the converter's (type="medium-auto") and
+// Medium is worked out from them with Simplify
+export function handMedium(doc) { return Array.from(mei(doc, 'harm')).some(h => h.getAttribute('type') === 'medium'); }
+
 export function chordLevel(doc, level) {
   if (!isVoiced(doc)) return doc;
   const original = level === 'original';
   for (const h of Array.from(mei(doc, 'harm'))) {
-    const medium = h.getAttribute('type') === 'medium';
+    const medium = /^medium/.test(h.getAttribute('type') || '');
     if (original === medium) h.parentNode.removeChild(h);
     else if (medium) h.removeAttribute('type');
   }
@@ -577,6 +581,7 @@ export class SheetView {
     this.baseBpm = bpmOf(doc);
     this.baseHands = handsOf(doc);
     this.voiced = isVoiced(doc);
+    this.hand = this.voiced && handMedium(doc);
     if (this.onSheet) this.onSheet();
     this.baseXml = new XMLSerializer().serializeToString(doc);
     this.spelledXml = null;
@@ -612,7 +617,7 @@ export class SheetView {
     const tonic = TONIC[fifths + 7];
     // Simplify: the chords worked out on the sheet as it is (before the guitar's capo and the piano part)
     // (a voiced sheet's Medium chords are its own, hand-made: only Easy is worked out, from them)
-    const simplifyTo = !this.chorale || this.editing || this.chordsOnly || level === 'original' || (voiced && level === 'medium') ? '' : level;
+    const simplifyTo = !this.chorale || this.editing || this.chordsOnly || level === 'original' || (this.hand && level === 'medium') ? '' : level;
     const plan = simplifyTo ? simplifyPlan(doc, simplifyTo) : null;
     if (voiced && level !== 'original') melodyOnly(doc);   // Medium and Easy: the melody, Original: the four parts
     this.steps = LETTERS.indexOf(tonic[0]) - LETTERS.indexOf(TONIC[this.baseFifths + 7][0]);
