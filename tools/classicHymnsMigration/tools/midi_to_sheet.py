@@ -125,8 +125,12 @@ def read_old(xml):
     bars = []; t = 0
     for m in MEAS.finditer(xml):
         mh = re.match(r'<measure\b[^>]*>', m.group(0)).group(0); els = []
+        tup = [(u.start(), u.end(), int(u.group(2)) / int(u.group(1))) for u in   # a tuplet (3 in the time of 2) takes numbase/num of the written time
+               re.finditer(r'<tuplet\b[^>]*?\bnum="(\d+)"[^>]*?\bnumbase="(\d+)"[^>]*>.*?</tuplet>', m.group(0), re.S)]
         for e in ELEM.finditer(m.group(0)):
             tag = e.group(0); a = attrs(tag); n = dur16(a)
+            for u0, u1, f in tup:
+                if u0 <= e.start() < u1: n = n * f
             els.append((t, n, a, tag)); t += n
         bars.append((mh, els, sum(x[1] for x in els), m.group(0)))
     return bars
