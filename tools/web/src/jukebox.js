@@ -106,7 +106,7 @@ export function jukeboxPlayer({load, onBar, onStop}) {
     shownBar = 0;
     const speed = Math.max(MIN_SPEED, Math.min(MAX_SPEED, +o.speed || 1));
     // the old notes stop here: their onEnd sees another token, so it is not a stop
-    ctl = Player.playScore(score, {from: o.loop ? from : Math.min(from, score.length - 0.25), bpm, speed, loop: !!o.loop, mute,
+    ctl = Player.playScore(score, {from: o.loop ? from : Math.min(from, score.length - 0.25), bpm, speed, loop: !!o.loop, mute, barsOnly: !!o.barsOnly, frameGap: o.barsOnly ? 120 : 0,
       onFrame: (q) => {
         if (mine !== token) return;
         const bar = barOf(score, q);
