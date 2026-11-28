@@ -76,7 +76,7 @@ These are the viewer and player changes; each is its own task and can be done wh
    `tools/review_server.py` serves a review page: the old and the new sheet side by side, each in its own copy of the web app (play both in Chorale
    style), OK / Problem buttons, answers kept in `review/verdicts.json` (usage in the file's header; the old copy is a build of the commit before the new sheets).
    `review/only.txt` (ids, optional) limits the list to those hymns.
-3. Look at it and listen to it; fix what the draft got wrong (voices, rests, ties, the fermatas).
+3. Look at it and listen to it; fix what the draft got wrong (voices, rests, ties, the fermatas). The known misreadings and the hand routine are in `LESSONS.md`.
 4. Run the checks. Keep the original MIDI's tempo as `midi.bpm`.
 5. Import: write `app/src/main/assets/sheetMei/<hymn>.mei` for each English hymn of the tune (its own words), keep the hymn's id, source
    `Hymns For Android`; the guitar sheet is derived. Every sheet with a chorus needs its `(C)` label: `python3 tools/lead-sheet-editor/mark_chorus.py <hymn> --write`. Rebuild the web app's data (`python3 tools/web/build.py`) to see it.

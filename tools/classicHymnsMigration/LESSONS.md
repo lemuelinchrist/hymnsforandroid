@@ -1,0 +1,97 @@
+# Lessons and findings (2026-11-24 to 2026-11-28)
+
+What we learned while making the English sheets from the MIDIs: the taste we aim for, how the MIDI gets misread, the tool bugs
+found (all fixed), what was tried and undone, and how to redo a hymn. Read this before touching a hymn's chords again.
+The commits named here hold the details (`git show <hash>`).
+
+## 1. The taste: what a good chord sheet is here
+- **Clean classic four-part hymnal harmony.** "Complex doesn't always mean good." The aim is the hymnal's own setting, with
+  enough movement to sound good and still be easy to play on the piano. Not the lead-sheet style (sus2, add9, maj7 and 7ths
+  everywhere, ii-V on every bar).
+- **Keep the real moves**: walking basses (E245 bars 23-24, E1130 E♭-G♭-F), secondary dominants (E884's C → C/E, B♭7 → E♭m),
+  4-3 suspensions at cadences, V-I and ii-V-I at the ends of lines.
+- **Remove the noise**: a sus or add chord flickering on a half beat, a chord for every passing note, a chord that changes and
+  comes back within a beat.
+- **When two readings differ, take the cleaner one.** Reference pairs from the listening review (2026-11-27): E594 is better
+  than E663 (same melody: E663 has some nice chords but also noise), and E340 (plain, classic) is better than E580 (complex in
+  the wrong way). E663 and E1063 now take E594's chords.
+- **Endings close V (or ii-V) → I on the home chord.** A vi → I, a iii → I or a final IV/I "Amen" chord sounds wrong. An
+  ending over a held tonic bass (a pedal) is fine when the MIDI plays it.
+- **Diminished chords** are written as the plain chord they stand for (G♯dim → E/G♯, Edim/B♭ → C7/B♭): pianists read those
+  more easily (`tools/simplify_dim.py`, 55774dcda, kept after a side-by-side review).
+- **A rule that fits one bar is not a general rule.** C♯m7/E → E was right in E541/E751 bar 15 (an E over a walking bass), but
+  "a minor seventh over its own third is the relative major" for all sheets was wrong and was reverted (107754758, af748dc0c).
+  Look at the context before turning a fix into a rule.
+
+## 2. How the MIDI gets misread (and how to spot it)
+The MIDIs are four-part settings played as one track. A chord named from "the notes sounding at the beat" is wrong in these
+cases, all found by ear and fixed in bulk:
+
+| Misreading | What the MIDI really does | Found in | Fix |
+|---|---|---|---|
+| iii or vi just before the last chord | the V with its 6th in the melody (named iii/5), or the tonic arriving half a beat early (named vi) | E1349, E245, 38 hymns (51cf4c03f) | V (V7 where the 7th sounds) carries to the end |
+| a minor chord on the 3rd, or a 7th on the 6th, over the dominant bass before V or I | the V with its 6th in the melody | E235 (E7/D was D7), 114 hymns (65fd00b1d) | write V / V7, or drop it if the V before goes on |
+| a final IV over the tonic ("Amen") | the Amen chord under the closing fermata | 15 hymns (f8cf4606d) | left out: end on I |
+| major chord on a bare fifth or octave | no third sounds yet; it comes in a moment later | E715's A on "tears" (Am), E1243 in F minor played as F major, 178 chords (386848626) | the key's own quality: ii, iii, vi minor (i, iv in minor). `midi_align.py BARE=<file>` lists them |
+| inversions jumping under one chord | a bass played in broken chords, like a piano part | E245 (5138459a1) | a bass leap under the same chord is not a change |
+| chords on passing notes | the melody or an inner voice passing | E715 bars 2 and 6, E720 | keep only real harmonic moves |
+| no chord at all in the first bars | the MIDI plays the opening in unison or octaves | E834 bars 1-2 and 106 more (6d41f9df5) | the old sheet's chords kept there |
+| an E7/D in a hymn in G | a D7 with its 6th in the melody | E235 | V7 |
+
+When a hymn sounds wrong, suspect first: the chord just before the last one, any chord that is not diatonic, and anything on a half beat.
+
+## 3. Tool bugs found (all fixed; worth knowing if an old sheet looks odd)
+- **Triplets** (2026-11-28): `midi_align.py` read a tuplet at its written length (three quarters, not two), so the chords
+  after a triplet came half a beat late or past the end of the bar (an F♯m in E337, D♭/F in E303). E152 by hand (1036dbfc0) and 16 more by
+  `tools/tuplet_chords.py` (7b0e2095d). `read_old` in `midi_to_sheet.py` now counts tuplets. Check: no E or NS sheet has a chord past
+  its bar's end.
+- **Chord order**: `add_offbeat.py` put the chords it added at the end of the bar's list; the viewer, Simplify and the player
+  expect time order. 786 bars in 245 sheets were sorted (953cb6744); Simplify sorts by itself as well.
+- **6/8, 9/8, 12/8**: chord positions are counted in the meter's unit (eighths), not the dotted beat (6a3e72975). `add_offbeat.py`
+  samples every eighth there (`SUB=3`).
+- **Jittery voices**: a hand-played MIDI starts its voices a few ticks apart; they count as one onset, and only exact pitch matches
+  fix the time map (90439b206, E20 "stand").
+- **A chord between two beats** goes at the melody note it starts with (d202c6134, E16 bar 8).
+- **Low bass notes** taken as melody (E1151, E1024): left out (6f37b3355).
+- **Tempo**: `midi.bpm` is always quarter notes a minute, whatever the meter. A MIDI that counts half notes doubles the tempo (E25 and E52
+  at 154 → 92). The user sets tempos by ear: E154 120, E152 130, E889 and its tune 110, E25/E52 92.
+- **Ties**: a slur over notes of one pitch with no syllable on the later ones is a tie (5e6ceaf37); otherwise the player strikes the note again.
+
+## 4. What was tried and undone
+- **One chord per beat, named by the notes that last** (`chords.py`, 92587d667): cleaner, but it lost the colour of the four parts
+  and the user disliked it ("the playing feels less colorful"). Reverted in dbed5ccc6. Clean up noise by hand, hymn by hand, instead.
+- **Relative-major rule** for minor sevenths over their third: reverted (see 1).
+- **Stretching a fermata note by hand** (E384 bar 15): reverted. The sheet keeps its written lengths.
+
+## 5. How to redo a hymn's chords by hand (the E1130 way)
+1. `python3 tools/show_hymn.py E152` (add `SUB=2` for every half beat): the bars, the sheet's chords and what the MIDI plays on each beat.
+   For a bar with a tuplet, check the times by the notes' real positions.
+2. Read it beat by beat. Name the chord of the four voices, skip passing notes, and keep the moves in section 1.
+3. `python3 tools/set_chords.py E152 "1: 1 Fm, 2 Fm/A♭, 3 C, 4 D♭; 2: 1 C, 3 Fm"`. It writes into the hymns of the same tune that have the
+   same melody too (it compares pitch, octave and duration, not other attributes).
+4. Rebuild (`python3 tools/web/build.py`) and listen on the local server before committing.
+
+Other sources, by how well they worked:
+- **A photo of the hymnal page** is the most accurate (E223, E1201, E346, E384, E577): read the four parts bar by bar. Pages are often in
+  another key than our sheet: keep our key and transpose the reading.
+- **Another hymn with the same melody** whose chords are better (E30, E11 and E865 take E884's; E841 takes E439's; E663 takes E594's).
+- A MIDI of another tune with the same melody: `MIDI_TUNE=<hymn>=<tune>` (E1356, E811, E897).
+
+## 6. Player, viewer and Simplify facts the sheets rely on
+- **Off-beat chords sound** where they are written (2eb30da7e). Of two chords closer than an eighth, the one on the beat wins.
+  A chord that never sounds is hidden in the viewer.
+- **Overlapping chord labels**: the viewer hides the less important label (the bar's first beat, then other beats, then off-beats).
+- **Transposing**: Verovio's transposition ignores the key signature, so the viewer first writes the implied accidental onto every note
+  (`spellOut` in piano.js). Checked across all 1,362 hymns at +1, -1, +2 and +5.
+- **Simplify** (tools/web/src/simplify.js, 24c88a601): both levels keep every chord on degrees 1, 2, 4, 5 and 6, and every secondary
+  dominant, so the hymn stays recognizable. Medium uses light shapes, keeps the slash bass, and has at most 3 changes a bar. Easy uses
+  plain triads, turns colour chords into the nearest main chord, and has at most one change a beat (a V into I may be half a beat). The
+  key comes from the key signature, plus the last chord for minor. So a sheet with a wrong key signature or a wrong last chord simplifies badly.
+
+## 7. Open items (2026-11-28)
+- Noisiest hymns still to clean by hand: 151 (98 tunes) score above 1.0, 35 above 1.5. Next: E287, E1334, E1311, E952, E74, E659, E1313.
+  Skip E702.
+- Hymnal page photos needed: E1340 (12/8 or 3/4?), E379/E393, E598, E993, E1296.
+- Spots for a listen: E577 bars 5-8 and 14; E384 bars 4, 7, 8, 12, 15; E1353 bars 7 and 13; E1226/E1354 bar 1; E715 bar 3 (D/A or D7/A?);
+  the dominant endings of E75/E1108.
+- Optional: respell 411 slash chords spelled the wrong way; the half-beat pass for the `midi_to_sheet.py` hymns; fermatas in playback.
