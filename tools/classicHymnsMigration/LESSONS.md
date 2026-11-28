@@ -157,3 +157,13 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
   the soprano played a wrong note against the voices, and the printed bar was ambiguous. tools/fix_naturals.py writes the missing
   accidental (printed when the layer itself had the altered note, accid.ges when only another layer had it). Run on the 987 voiced
   sheets of master: 429 notes in 241 sheets. NOT for hymnal.net sheets (there the carry is what the page means).
+- **Checks run over all 987 voiced sheets of master** (2026-11-28): (1) every layer of a bar has the same length: yes in all; (2) the sheet's
+  soprano and bass against the MIDI's top and lowest note, eighth by eighth, aligned at the sheet's first note (a sheet that starts with a
+  pickup rest is not aligned at time 0: an easy mistake in such a check): 972 sheets within 5%; the rest are the few melody notes that
+  differ from the MIDI by design, except E456 and E1168; (3) voice crossings (the soprano under the alto): E456/E1168 52% (from bar 17 the
+  MIDI has a descant above the melody, so the melody is the third voice: put back to melody-only), E929 8% (bars 16-18) and E1308 5%: listen;
+  (4) bars whose length is not the meter's, in sheets with one meter: E1341 bar 23, E443 bar 8 (5.5 beats in 4/4), E498, E532 bar 22, E560 bar 8
+  (4.5 beats), E581 bars 49-50, E649, E759, E777, E992: the voices are aligned with the MIDI there, but the melody's printed bar is wrong
+  (as in E114, the bar that drifted the voices): the printed page or a listen settles them.
+- A detector of arpeggio patterns (one new low note over notes that hold on) was tried for the E501 kind of piano MIDI: it flags E501 (0.16)
+  but also hymns the ear passed (E316, E1278, E702 0.26-0.28: walking basses), and misses E1222/E1271 (0.01). Not used.
