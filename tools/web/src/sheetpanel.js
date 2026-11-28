@@ -3,6 +3,7 @@
 // zoom, the sheet alone, and ⋯ (Edit chords, Original chords, the original key and size, light paper, Print, Save MIDI); the
 // player's row under it. The web app shows it beside the lyrics or alone (#/sheet/E8); the Android app's sheet viewer
 // is this alone (tools/web/android). What differs between the two comes in as options, or through host.js.
+import {setReview, reviewOn} from './piano.js';
 import {SheetView, MAX_SHIFT, MIN_SCALE, MAX_SCALE, DEFAULT_SCALE, levelOf} from './sheet.js';
 import {createEditor} from './editor.js';
 import {createSheetDock} from './pianopanel.js';
@@ -62,7 +63,7 @@ export function createSheetPanel(pane, o) {
   // "Simplify" (piano sheet; the guitar sheet keeps Chords only and has Simplify in ⋯): simpler chords on the sheet, a choice of
   // Original, Medium and Easy (simplify.js)
   const simplifyMenu = (anchor) => popupMenu(anchor, [['original', tr('Original')], ['medium', tr('Medium')], ['easy', tr('Easy')]].map(([level, label]) =>
-    ({icon: 'edit', label, checked: levelOf(state) === level, run: () => set({simplify: level})})), 'sheet-menu');
+    ({icon: 'edit', label, checked: levelOf(state) === level, run: () => set({simplify: level})})).concat(view.voiced ? [{icon: 'edit', label: 'Review: hear the chords', checked: reviewOn(), run: () => setReview(!reviewOn())}] : []), 'sheet-menu');
   const bSimple = btn(tr('Simplify'), tr('Simpler chords on the sheet'), () => simplifyMenu(bSimple), 'toggle');
   bSimple.setAttribute('aria-haspopup', 'menu');
   const bZoomOut = btn(icon('zoomOut'), tr('Smaller (Z)'), () => set({scale: state.scale - 5}), 'icon');
