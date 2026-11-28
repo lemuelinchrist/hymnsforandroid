@@ -105,7 +105,7 @@ The hymn page's **Play** button (▶ in the header, or `Space`; `M` plays the sh
 shown (the Sheet music tab, or beside the lyrics on a wide screen) and the tune with the lyrics alone, so there is one
 Play button, and it plays what is in front of you; the sheet alone (Sheet only) has a ▶ of its own in its toolbar. It plays the
 sheet as it is shown: in its key (transposing), with this
-device's chord edits, and, with Both hands on, the piano part, else the melody with the chords softly under it. The notes
+device's chord edits, and the piano style chosen in the dock (the melody with the chords softly under it when the dock's **Melody** is chosen). Both hands only shows the left hand on the sheet: the style plays with it on or off, and picking a style leaves it as it is (`melody` in the saved `sheet` choice). The notes
 that sound light up, the bar that sounds is shaded, and the page follows them until the reader scrolls it by hand (the
 next Play follows again); a tap on a note, or on a bar, highlights that start measure in red and plays from there (stopping and pressing Play starts from the red measure again until "From the start" or ✕ clears it, while Loop wraps back to the beginning of the sheet on subsequent passes). A row under the toolbar, there from the first
 Play until its ✕, has Play / Stop, back to the start, the **tempo** (a slider showing ♩ = beats a minute, from half to one

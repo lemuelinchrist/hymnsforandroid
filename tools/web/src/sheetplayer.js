@@ -72,7 +72,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange, onprog
   const musicObserver = new MutationObserver(() => { if (open) showStartBar(true); });
   musicObserver.observe(view.music, {childList: true});
 
-  const handsOn = () => !!(view.state.hands && view.piano && !view.state.guitar && view.state.staff);
+  const handsOn = () => !!(!view.state.melody && view.piano && !view.state.guitar && view.state.staff);
   const strumOn = () => !!(view.state.guitar && view.strum);   // the guitar sheet always plays strummed
   const accompaniment = () => (handsOn() ? view.piano : strumOn() ? strumChoice(view.strum, view.info.capo) : null);
   const choiceNow = () => JSON.stringify([accompaniment(), prefs.loop]);
@@ -189,7 +189,7 @@ export function createSheetPlayer(view, {tune, store, stopTune, onchange, onprog
     const sc = currentScore();
     if (!sc) return;
     await tempo();
-    const name = (view.shownId || 'sheet') + (view.state.hands ? '-piano' : '') + '.mid';
+    const name = (view.shownId || 'sheet') + (handsOn() ? '-piano' : '') + '.mid';
     host.saveFile(name, 'audio/midi', Player.toMidi(sc, bpm * prefs.speed, view.title.textContent));
   }
 

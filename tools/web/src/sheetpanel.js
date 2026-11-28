@@ -18,7 +18,7 @@ forgetOldChoices();   // the choices kept under their old names (piano.js SAVED)
 // remembered between hymns: piano or guitar, the staff, the zoom, both hands (the guitar sheet always plays strummed, on a guitar).
 // Transposition is per hymn (in the URL only).
 function sheetPrefs() {
-  return Object.assign({guitar: false, staff: true, scale: DEFAULT_SCALE, hands: false, simplify: ''}, store.get('sheet', {}));
+  return Object.assign({guitar: false, staff: true, scale: DEFAULT_SCALE, hands: false, melody: false, simplify: ''}, store.get('sheet', {}));
 }
 
 // pane: the element to fill. o:
@@ -43,13 +43,14 @@ export function createSheetPanel(pane, o) {
     shift: Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, parseInt(p.get('t') || '0', 10) || 0)),
     scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, parseInt(p.get('z') || '', 10) || prefs.scale)),
     hands: !!prefs.hands,
+    melody: !!prefs.melody,   // playing the melody alone (the dock's Melody): apart from Both hands, which only shows the left hand on the sheet
     simplify: ['medium', 'easy'].includes(prefs.simplify) ? prefs.simplify : '',   // Medium (the default, ''), Easy; Original is for this hymn only (sheet.js levelOf)
   };
   // Original (the four voices) is a choice for the hymn at hand: it is not kept, the next hymn opens at the level that was kept before
   let keptLevel = state.simplify;
   const keep = () => {
     if (state.simplify !== 'original') keptLevel = state.simplify;
-    store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands, simplify: keptLevel});
+    store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands, melody: state.melody, simplify: keptLevel});
   };
 
   const btn = (label, title, onclick, cls = '') => h('button', {type: 'button', class: 'tb ' + cls, title, 'aria-label': title, onclick}, label);
@@ -181,7 +182,7 @@ export function createSheetPanel(pane, o) {
     return {choice: own || view.baseHands || PIANO_DEFAULT};
   }
   function keepOwn(choice) {
-    if (!state.hands) set({hands: true});   // chosen while playing without Both hands: a style is only heard with the piano part
+    if (state.melody) set({melody: false});   // a style chosen while the melody alone was playing: it plays now (Both hands is left as it is)
     const all = store.get(SAVED.handsOf, {});
     if (JSON.stringify(choice) === JSON.stringify(view.baseHands || PIANO_DEFAULT)) delete all[o.sheetId];
     else all[o.sheetId] = choice;
@@ -224,8 +225,8 @@ export function createSheetPanel(pane, o) {
         getStrum: strumPick, setStrum: keepStrum,
         isGuitar: () => !!state.guitar,
         hasStaff: () => !!state.staff,
-        hasHands: () => !!state.hands,
-        setHands: (on) => set({hands: !!on}),
+        hasHands: () => !state.melody,   // a style is playing (not the melody alone)
+        setHands: (on) => set({melody: !on}),
         time: () => view.time,
       });
       bookColour(dock.el);
