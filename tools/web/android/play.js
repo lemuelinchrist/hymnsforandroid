@@ -39,7 +39,7 @@ function jukebox(id, o) {
       onStop: () => { if (bridge && bridge.ended) bridge.ended(jukeN); }});
   }
   jukeN = o.n | 0;
-  juke.play(o).catch((e) => {
+  juke.play({...o, barsOnly: true}).catch((e) => {
     console.error(e);
     if (bridge && bridge.failed) bridge.failed(String(e && e.message || e));
     if (bridge && bridge.ended) bridge.ended(o.n | 0);

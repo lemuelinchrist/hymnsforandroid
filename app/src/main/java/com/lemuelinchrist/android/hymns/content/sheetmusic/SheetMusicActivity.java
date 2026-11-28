@@ -146,6 +146,7 @@ public class SheetMusicActivity extends AppCompatActivity {
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
                 .addPathHandler("/res/", new WebViewAssetLoader.ResourcesPathHandler(this))
                 .build();
+        webview.setWebChromeClient(new SheetPlayer.AudioLog());   // the player's audio lines to logcat (HymnsAudio)
         webview.setWebViewClient(new WebViewClientCompat() {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {

@@ -96,7 +96,10 @@ function createRoomIR(c) {
   return ir;
 }
 
-function makeBus(c) {
+// The Android app's WebViews ('; wv)' in the user agent): the room reverb is the dearest part of the sound (a quarter of the
+// audio work, measured) and a tablet that throttles its cores a little way into a song chops without it being spared.
+const ANDROID_WEBVIEW = /Android/.test(navigator.userAgent) && /; wv\)/.test(navigator.userAgent);
+function makeBus(c, {reverb = !ANDROID_WEBVIEW} = {}) {
   const comp = c.createDynamicsCompressor();
   comp.threshold.value = -10;
   comp.ratio.value = 4;
@@ -106,7 +109,7 @@ function makeBus(c) {
   bus.gain.value = 0.85;
   bus.connect(comp).connect(c.destination);
   // Subtle room send (dry stays crisp; ~15% warm acoustic tail)
-  try {
+  if (reverb) try {
     const conv = c.createConvolver();
     conv.buffer = createRoomIR(c);
     const wet = c.createGain();
@@ -116,6 +119,24 @@ function makeBus(c) {
   return bus;
 }
 
+// Android only, for finding what chops the sound: every 10 s while it plays, one line the app copies to logcat (tag
+// HymnsAudio): the audio clock against the wall clock, how often the audio ran dry (Chrome's playoutStats), the latency,
+// the JS heap, and the slowest frame of the highlight loop since the last line.
+let frameMax = 0;
+function logAudioStats(c) {
+  const wall0 = performance.now(), clock0 = c.currentTime;
+  setInterval(() => {
+    if (c.state !== 'running' || !current) { frameMax = 0; return; }
+    let st = null;
+    try { st = c.playoutStats ? c.playoutStats.toJSON() : null; } catch (e) { /* not in this WebView */ }
+    const mem = performance.memory ? Math.round(performance.memory.usedJSHeapSize / 1048576) : null;
+    console.log('audio-stats ' + JSON.stringify({wall: Math.round((performance.now() - wall0) / 100) / 10, clock: Math.round((c.currentTime - clock0) * 10) / 10,
+      glitches: st && st.fallbackFramesEvents, glitchMs: st && Math.round(st.fallbackFramesDuration * 1000), latMs: st && Math.round(st.averageLatency * 1000),
+      baseMs: Math.round(c.baseLatency * 1000), outMs: Math.round((c.outputLatency || 0) * 1000), rate: c.sampleRate, heapMB: mem, frameMaxMs: Math.round(frameMax * 10) / 10}));
+    frameMax = 0;
+  }, 10000);
+}
+
 function audio() {
   if (!ctx) {
     // iPhone: play even with the ring/silent switch on, like a music app (Safari 17+)
@@ -123,6 +144,7 @@ function audio() {
     // 'playback': a larger audio buffer. The default (low latency) makes tablets and phones crackle when many notes sound
     ctx = new (window.AudioContext || window.webkitAudioContext)({latencyHint: 'playback'});
     master = makeBus(ctx);
+    if (ANDROID_WEBVIEW) logAudioStats(ctx);
   }
   if (ctx.state === 'suspended') ctx.resume();
   loadPiano(ctx);
@@ -322,18 +344,35 @@ function loadGuitar(c) {
   return state.ready;
 }
 
+// The guitar's body (a little warmth low down) and the cut of the pick's brightness do not change from note to note: they
+// are the same for every string of a tone, so they sit once on a shared bus (out <- shelf <- body <- bus) and a voice
+// has only its own low-pass, as a piano note does. Before, each of the six strings of a strum had all three filters,
+// which a tablet could not keep up with while strumming.
+const guitarBuses = new WeakMap();                       // the output gain of a play -> Map<tone/pluck, the bus gain>
+function guitarBus(c, out, toneName, T, isPluck) {
+  let m = guitarBuses.get(out);
+  if (!m) guitarBuses.set(out, m = new Map());
+  const key = toneName + (isPluck ? '/pluck' : '/strum');
+  if (m.has(key)) return m.get(key);
+  const bus = c.createGain();
+  const body = c.createBiquadFilter();
+  body.type = 'peaking'; body.frequency.value = 200; body.Q.value = 0.8; body.gain.value = T.body + (isPluck ? 1.5 : 0);
+  const shelf = c.createBiquadFilter();
+  shelf.type = 'highshelf'; shelf.frequency.value = isPluck ? 2800 : 3000; shelf.gain.value = T.shelf + (isPluck ? -3.5 : 0);
+  bus.connect(body).connect(shelf).connect(out);
+  m.set(key, bus);
+  return bus;
+}
+
 function playSampledGuitar(c, out, n, at, hit) {
-  const T = GUITAR_TONES[n.tone] || GUITAR_TONES.warm;
+  const toneName = GUITAR_TONES[n.tone] ? n.tone : 'warm';
+  const T = GUITAR_TONES[toneName];
   const vel = Math.max(0.05, Math.min(1, n.vel / 127));
   const isPluck = !!n.pluck;   // fingerpicked strings: softer flesh/nail touch, warmer wood body, natural release
   const src = c.createBufferSource();
   src.buffer = hit.buf;
   src.playbackRate.value = Math.pow(2, (n.note - hit.midi) / 12);
-  const body = c.createBiquadFilter();
-  body.type = 'peaking'; body.frequency.value = 200; body.Q.value = 0.8; body.gain.value = T.body + (isPluck ? 1.5 : 0);
   const shelfGain = T.shelf + (isPluck ? -3.5 : 0);
-  const shelf = c.createBiquadFilter();
-  shelf.type = 'highshelf'; shelf.frequency.value = isPluck ? 2800 : 3000; shelf.gain.value = shelfGain;
   const tone = c.createBiquadFilter();                   // harder strums are brighter; a chuck (mute) is dull and short
   tone.type = 'lowpass'; tone.Q.value = 0.4;
   tone.frequency.value = n.mute ? 1200 : (isPluck ? T.lp * 0.84 : T.lp) + (isPluck ? T.span * 0.72 : T.span) * Math.pow(vel, 1.3);
@@ -346,7 +385,7 @@ function playSampledGuitar(c, out, n, at, hit) {
   g.gain.linearRampToValueAtTime(level, at + attack);
   g.gain.setValueAtTime(level, Math.max(at + attack + 0.001, end));
   g.gain.setTargetAtTime(0.0001, end, relTau);           // the next strum damps it; fingerpicked strings fade gently; a chuck at once
-  src.connect(body).connect(shelf).connect(tone).connect(g).connect(out);
+  src.connect(tone).connect(g).connect(guitarBus(c, out, toneName, T, isPluck));
   src.start(at);
   src.stop(end + relTau * 5 + 0.15);
   return src;
@@ -507,14 +546,33 @@ export function playScore(score, o) {
     if (!o.loop && c.currentTime > t0Ref.t0 + (full - from) * spq + 0.4) { finish(); return; }
     timer = setTimeout(tick, 200);
   };
+  // The elements lit are those of the events that sound at q: the scan starts where the longest event could still sound
+  // (a binary search), not at the first event, so a frame costs the same at the end of a long hymn as at the start.
+  let longest = 0.25;
+  for (const e of evs) if (e.d > longest) longest = e.d;
+  const firstNear = (q) => {
+    let lo = 0, hi = evs.length;
+    while (lo < hi) { const mid = (lo + hi) >> 1; if (evs[mid].q < q - longest) lo = mid + 1; else hi = mid; }
+    return lo;
+  };
+  let lastFrame = -1e9;
   const frame = () => {
     if (stopped) return;
-    const q = position(), ids = new Set();
-    for (const e of evs) { if (e.q > q) break; if (e.ids.length && q < e.q + Math.max(e.d, 0.25)) e.ids.forEach((id) => ids.add(id)); }
-    const list = Array.from(ids), sig = list.join(',');
-    if (o.onFrame) o.onFrame(q, sig !== shown ? list : null);
-    shown = sig;
     raf = requestAnimationFrame(frame);
+    const now = performance.now();
+    if (o.frameGap && now - lastFrame < o.frameGap) return;   // the hidden jukebox needs the bar, not every screen refresh
+    lastFrame = now;
+    const q = position();
+    if (o.barsOnly) { if (o.onFrame) o.onFrame(q, null); }
+    else {
+      const ids = new Set();
+      for (let k = firstNear(q); k < evs.length; k++) { const e = evs[k]; if (e.q > q) break; if (e.ids.length && q < e.q + Math.max(e.d, 0.25)) e.ids.forEach((id) => ids.add(id)); }
+      const list = Array.from(ids), sig = list.join(',');
+      if (o.onFrame) o.onFrame(q, sig !== shown ? list : null);
+      shown = sig;
+    }
+    const took = performance.now() - now;
+    if (took > frameMax) frameMax = took;
   };
   const control = {
     key,

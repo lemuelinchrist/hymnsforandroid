@@ -122,6 +122,15 @@ draws it. It is not there on the guitar sheet, with the staff hidden, or on a ch
 
 ## Play sheet
 
+**Sound load on tablets.** Playing chopped on an Honor Pad 10 (an Android WebView) a little way into a song, worst with the
+guitar strums. Two things were cut: in the Android WebViews (`; wv)` in the user agent) the room reverb (a convolver, about
+a quarter of the audio work) is not made; and a guitar voice has only its own low-pass, because the body and treble-cut
+filters, the same for every string of a tone, sit once on a shared bus (`guitarBus` in `player.js`; before, a six-string
+strum ran 18 filters). The hidden jukebox player works out only the bar (`barsOnly`, at most every 120 ms), and the lit
+notes are found from a binary search, not from the first event. Every 10 s while it plays, the Android WebViews log one
+line `audio-stats {...}` (the audio clock against the wall clock, latency, heap, the slowest frame), which the app copies
+to logcat as tag `HymnsAudio`.
+
 The hymn page's **Play** button (▶ in the header, or `Space`; `M` plays the sheet) plays the sheet while the sheet is
 shown (the Sheet music tab, or beside the lyrics on a wide screen) and the tune with the lyrics alone, so there is one
 Play button, and it plays what is in front of you; the sheet alone (Sheet only) has a ▶ of its own in its toolbar. It plays the

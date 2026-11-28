@@ -6,9 +6,11 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -176,6 +178,7 @@ public final class SheetPlayer {
         webview.getSettings().setDomStorageEnabled(true);   // the viewer's saved settings (Both hands)
         webview.getSettings().setMediaPlaybackRequiresUserGesture(false);   // the Play button was the tap, in the app
         webview.addJavascriptInterface(new Bridge(), "HymnsPlay");
+        webview.setWebChromeClient(new AudioLog());
         ready = false;
         webview.loadUrl("https://" + WebViewAssetLoader.DEFAULT_DOMAIN + "/assets/viewer/play.html");
     }
@@ -185,6 +188,16 @@ public final class SheetPlayer {
             webview.destroy();
             webview = null;
             ready = false;
+        }
+    }
+
+    /** Copies the player's audio lines (player.js logAudioStats: glitches, latency) to logcat, tag HymnsAudio. */
+    static final class AudioLog extends WebChromeClient {
+        @Override
+        public boolean onConsoleMessage(ConsoleMessage m) {
+            String text = m.message();
+            if (text != null && text.startsWith("audio-stats ")) Log.i("HymnsAudio", text.substring(12));
+            return true;
         }
     }
 
