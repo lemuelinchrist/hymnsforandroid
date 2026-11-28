@@ -36,8 +36,8 @@ import java.util.regex.Pattern;
 /**
  * The inline Jukebox card on the hymn lyrics page, styled in the unified Proposal 1 look shared with the sheet
  * music bottom dock: a 3dp top progress bar, a slim 1-row Play/Style/Loop/Expand/Close bar, and a collapsible
- * drawer with four segmented category tabs (Hymn's own, Piano, Guitar, Melody), a Dice randomizer, horizontal
- * style pills (with attached refresh side-buttons on Flowing, Lively, and Fingerpicking), Chorale More walking
+ * drawer with four segmented category tabs (Hymn's own, Piano, Guitar, Melody), horizontal style pills (with
+ * attached refresh side-buttons on Flowing, Lively, Fingerpicking, Folk strum, and Ballad), Chorale More walking
  * switch, and a Tempo slider. Plays through the hidden sheet player ({@link SheetPlayer}) using tools/web/src/jukebox.js.
  */
 public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.Listener {
@@ -57,10 +57,10 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
             {"lively", "piano", R.string.jukebox_style_lively, true, false},
             {"walking", "piano", R.string.jukebox_style_walking, false, false},
             {"guitar-pick", "guitar", R.string.jukebox_style_pick, true, false},
-            {"guitar-folk", "guitar", R.string.jukebox_style_folk, false, false},
+            {"guitar-folk", "guitar", R.string.jukebox_style_folk, true, false},
             {"guitar-pop", "guitar", R.string.jukebox_style_pop, false, false},
             {"guitar-steady", "guitar", R.string.jukebox_style_steady, false, false},
-            {"guitar-ballad", "guitar", R.string.jukebox_style_ballad, false, false},
+            {"guitar-ballad", "guitar", R.string.jukebox_style_ballad, true, false},
             {"guitar-country", "guitar", R.string.jukebox_style_country, false, false},
             {"melody", "melody", R.string.jukebox_style_melody, false, false},
     };

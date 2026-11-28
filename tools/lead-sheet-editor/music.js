@@ -327,7 +327,7 @@
     var parts = String(str || '').split('|').map(function (part) {
       return part.trim().split(/\s+/).filter(Boolean).map(function (st) {
         if (st === '-' || st === '_') return {hold: true};
-        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|9|10|12|c|C|t|w|D|U|K|T|A|g|b|e)$/.test(x); });
+        var toks = st.split('+').filter(function (x) { return /^(1|3|5|7|8|9|10|12|c|C|t|w|D|d|B|U|K|k|T|A|g|b|e)$/.test(x); });
         return toks.length ? {toks: toks} : {rest: true};
       });
     }).filter(function (p) { return p.length; });
@@ -413,13 +413,14 @@
     if (used.c) out.c = middle([c.tones[1][0], c.tones[c.seventh ? 3 : 2][0]]);
     if (used.C) out.C = middle(c.tones.map(function (t) { return t[0]; }));
     if (used.t) out.t = [tenor()];
-    if (used.D || used.U || used.K || used.T || used.A || used.g || used.b || used.e) {
+    if (used.D || used.d || used.B || used.U || used.K || used.k || used.T || used.A || used.g || used.b || used.e) {
       var cp = opt.capo | 0, gs = guitarShape(c, opt.capo), on = gs.filter(function (p) { return p != null; });
       var alt = on[1] != null ? on[1] : on[0];
       // 4-string open shapes (D, Dm): drop alternating thumb A to the open 5th string when it is a chord tone, else stay on root so A never duplicates g
       if (on.length <= 4 && gs[0] == null && gs[1] == null) alt = pcs.indexOf(mod12(45 + cp)) >= 0 ? 45 + cp : on[0];
       else if (gs[3] != null && alt === gs[3]) alt = on[0];
-      out.D = on; out.U = out.K = on.slice(-4); out.T = [on[0]]; out.A = [alt];
+      out.D = on; out.d = on.slice(-4); out.B = on.slice(0, Math.min(3, on.length));
+      out.U = out.K = out.k = on.slice(-4); out.T = [on[0]]; out.A = [alt];
       ['g', 'b', 'e'].forEach(function (k, i) { var p = gs[3 + i]; out[k] = [p != null ? p : on[on.length - 1]]; });
     }
     return out;
@@ -619,33 +620,96 @@
         : n === 2 ? {short: ['T+g+b+e -'], calm: ['T+g+b+e - g+b+e -', 'T+g+b+e - A+g+b+e -'], cont: ['T+g+b+e - g+b+e -'], fill: ['T+g+b+e - - -'], late: ['g+b+e -']}
         : {short: ['T+g+b+e - g+b+e -', 'T+g+b+e - - -'], calm: ['T+g+b+e - - g+b+e - - A+g+b+e -', 'T+g+b+e - g+b+e - A+g+b+e - g+b+e -'], cont: ['T+g+b+e - - g+b+e - - g+b+e -', 'T+g+b+e - g+b+e - A+g+b+e - - -'], fill: ['T+g+b+e - - g+b+e - - - -', 'T+g+b+e - - - A+g+b+e - - -'], late: ['g+b+e - - -', 'A+g+b+e - - -']}}];
     var pickExtra = {pick: true, adaptive: true, settle: true, fillPat: m.compound ? 'T g b e - -' : n === 2 ? 'T g b -' : 'T g b e - - - -', latePat: m.compound ? 'b - e' : n === 2 ? 'b -' : 'g - b -', vary: guitarPickMoods[0].vary, moods: guitarPickMoods};
+    // Dynamic phrase-shuffled Folk strumming (`guitar/folk`): weaves six acoustic folk moods across 2–4 bar phrases
+    // (classic campfire, bass-strum folk, 3-3-2 acoustic push, open breathe, soft palm-damped pocket, and pick-strum hybrid)
+    var guitarFolkMoods = [
+      {id: 'campfire', vary: m.compound
+        ? {short: ['D d U', 'D - U'], calm: ['D - U d - U', 'D d U B d U'], cont: ['B - U d - U', 'B d U d - U'], fill: ['D - - d - U', 'D - U d - -'], late: ['d - U', 'd U -']}
+        : n === 3 ? {short: ['D - d U', 'B - d U'], calm: ['D - d U d U', 'D - d U - U'], cont: ['B - d U d U', 'B - d - d U'], fill: ['D - - U d U', 'D - d - - U'], late: ['d U - -', '- U d U']}
+        : n === 2 ? {short: ['D U', 'd U'], calm: ['D - d U', 'D U d U'], cont: ['B - d U'], fill: ['D - - U'], late: ['d U']}
+        : {short: ['D - d U', 'B - d U'], calm: ['D - d U - U d U', 'D - d U - U d -', 'D - B U - U d U'], cont: ['B - d U - U d U', 'B - d U - U - U', 'D - d - - U d U'], fill: ['D - - U - U d U', 'D - d U - - d U'], late: ['- U d U', '- U d -', 'd - U -']}},
+      {id: 'bassfolk', vary: m.compound
+        ? {short: ['T d U'], calm: ['T - U A d U', 'T d U A - U'], cont: ['A - U T d U', 'T - U d - U'], fill: ['T - - A - U'], late: ['A - U', 'd - U']}
+        : n === 3 ? {short: ['T - d U'], calm: ['T - d U d U', 'T - d - d U'], cont: ['A - d U d U', 'A - d - d U'], fill: ['T - d - - U', 'T - d U - -'], late: ['d - U -', 'd U - -']}
+        : n === 2 ? {short: ['T d'], calm: ['T - d U', 'T d A U'], cont: ['A - d U'], fill: ['T - - U'], late: ['d U']}
+        : {short: ['T - d U', 'T - d -'], calm: ['T - d U - U d U', 'T - d U A - d U', 'T - d U A U d U'], cont: ['A - d U - U d U', 'T - d U A - d -', 'A - d U T - d U'], fill: ['T - d U - - A U', 'T - - U A - d U'], late: ['A - d U', 'A - d -']}},
+      {id: 'push', vary: m.compound
+        ? {short: ['D - U'], calm: ['D - U - d U', 'D - - U d U'], cont: ['B - U - d U', 'B - - U d U'], fill: ['D - - U d -'], late: ['- d U']}
+        : n === 3 ? {short: ['D - - U'], calm: ['D - - U d U', 'D - d - - U'], cont: ['B - - U d U', 'B - d - - U'], fill: ['D - - U d -'], late: ['- U d -']}
+        : n === 2 ? {short: ['D U'], calm: ['D - - U', 'D - d U'], cont: ['B - - U'], fill: ['D - - U'], late: ['- U']}
+        : {short: ['D - - U', 'D - d U'], calm: ['D - - U - d U -', 'D - - d - U d U', 'D - d U - d - U'], cont: ['B - - U - d U -', 'B - - d - U d U', 'D - - U - d - U'], fill: ['D - - U - d - -', 'D - - d - - d U'], late: ['- d U -', '- d - U']}},
+      {id: 'breathe', vary: m.compound
+        ? {short: ['D - -'], calm: ['D - - d - U', 'D - - - - U'], cont: ['B - - d - U', 'T - - d - U'], fill: ['D - - - - U', 'D - - - - -'], late: ['d - -', '- - U']}
+        : n === 3 ? {short: ['D - - -'], calm: ['D - - - d U', 'D - - U - -'], cont: ['B - - - d U', 'T - - - d U'], fill: ['D - - - - U', 'D - - - - -'], late: ['- - d U', 'd - - -']}
+        : n === 2 ? {short: ['D -'], calm: ['D - - U', 'D - d -'], cont: ['B - - U'], fill: ['D - - -'], late: ['- U']}
+        : {short: ['D - - U', 'D - d -'], calm: ['D - - - d U - U', 'D - - U - - d U', 'D - - - B - d U'], cont: ['B - - - d U - U', 'B - - U d - - U', 'T - - - d - U -'], fill: ['D - - - - - d U', 'D - - - d - - -'], late: ['d - - U', 'd - - -']}},
+      {id: 'pocket', vary: m.compound
+        ? {short: ['D k U'], calm: ['D - U k - U', 'D d U k d U'], cont: ['B - U k - U', 'T - U k d U'], fill: ['D - - k - U'], late: ['k - U']}
+        : n === 3 ? {short: ['D - k U'], calm: ['D - k U d U', 'D - d U k U'], cont: ['B - k U d U', 'T - k U d U'], fill: ['D - k U - -'], late: ['k U - -', 'd U - -']}
+        : n === 2 ? {short: ['D k'], calm: ['D U k U', 'D - k U'], cont: ['B U k U'], fill: ['D - k U'], late: ['k U']}
+        : {short: ['D - k U', 'D - d U'], calm: ['D - k U - U d U', 'D - d U k - d U', 'D - k U - U k U'], cont: ['B - k U - U d U', 'B - d U k - d U', 'T - k U - U d U'], fill: ['D - k U - - d U', 'D - - U k - d U'], late: ['k - d U', '- U k U']}},
+      {id: 'hybrid', vary: m.compound
+        ? {short: ['T g d'], calm: ['T g b d - U', 'T g d A b U'], cont: ['A g b d - U', 'T - g d - U'], fill: ['T g b e - -', 'T g b d - -'], late: ['g b d', 'g b e']}
+        : n === 3 ? {short: ['T g d U'], calm: ['T g d U d U', 'T g b d - U'], cont: ['A g d U d U', 'T g b d - -'], fill: ['T g b e - -', 'T - g b d -'], late: ['g b d -', 'g b - -']}
+        : n === 2 ? {short: ['T g'], calm: ['T g d U', 'T b d U'], cont: ['A g d U'], fill: ['T g b -'], late: ['g d']}
+        : {short: ['T g d U', 'T - d U'], calm: ['T g d U - U d U', 'T - g b d - U -', 'T g d U A g d U'], cont: ['T g b d - U d U', 'A g d U - U d -', 'T - g b d U - U'], fill: ['T g b e - - d U', 'T - g b d - - -'], late: ['g b d -', 'g b e -']}}];
+    // Dynamic phrase-shuffled Ballad strumming (`guitar/ballad`): weaves five tender, unhurried acoustic ballad moods
+    // across 2–4 bar phrases (open swell, bass & soft brush, gentle arpeggio shimmer, tender sway, and rolled harp bloom)
+    var guitarBalladMoods = [
+      {id: 'open', roll: 0.022, softStrum: true, vary: m.compound
+        ? {short: ['D - -', 'D - U'], calm: ['D - - d - U', 'D - - B - U'], cont: ['B - - d - U', 'B - - d - -'], fill: ['D - - - - U', 'D - - - - -'], late: ['d - U', 'd - -']}
+        : n === 3 ? {short: ['D - - -'], calm: ['D - - - d U', 'D - - - d -', 'T - d - d -'], cont: ['B - - - d U', 'B - - - d -'], fill: ['D - - - - U', 'D - - - - -'], late: ['d - - -', '- - d U']}
+        : n === 2 ? {short: ['D -'], calm: ['D - - U', 'D - d -'], cont: ['B - - U'], fill: ['D - - -'], late: ['- U']}
+        : {short: ['D - - U', 'D - - -'], calm: ['D - - - d - d U', 'D - - - B - d U', 'D - - - d - - U'], cont: ['B - - - d - d U', 'B - - - d - - U', 'D - - - - - d U'], fill: ['D - - - - - d U', 'D - - - d - - -'], late: ['d - - U', 'd - - -']}},
+      {id: 'lullaby', roll: 0.020, softStrum: true, vary: m.compound
+        ? {short: ['T - d'], calm: ['T - - d - U', 'T - d A - U'], cont: ['A - - d - U', 'T - - d - -'], fill: ['T - - A - -', 'T - - - - U'], late: ['d - -', 'A - U']}
+        : n === 3 ? {short: ['T - d -'], calm: ['T - d - d U', 'T - d - d -', 'T - - d - U'], cont: ['A - d - d U', 'A - d - d -'], fill: ['T - d - - -', 'T - - - d -'], late: ['d - - -', 'd - U -']}
+        : n === 2 ? {short: ['T -'], calm: ['T - d -', 'T - d U'], cont: ['A - d -'], fill: ['T - - -'], late: ['d -']}
+        : {short: ['T - d -', 'T - - U'], calm: ['T - - d - - d U', 'T - d - A - d U', 'T - - - A - d U'], cont: ['A - - d - - d U', 'T - d - A - d -', 'A - - - d - - U'], fill: ['T - - - A - - U', 'T - - d - - - -'], late: ['A - d -', 'd - - U']}},
+      {id: 'shimmer', roll: 0.022, softStrum: true, vary: m.compound
+        ? {short: ['D g b'], calm: ['D - g b - e', 'D - - g b U'], cont: ['B - g b - e', 'T - g b - -'], fill: ['D - g b e -', 'T g b e - -'], late: ['g b e', 'b - e']}
+        : n === 3 ? {short: ['D - b -'], calm: ['D - g b - U', 'D - - g b -'], cont: ['B - g b - U', 'T - g b - -'], fill: ['D - g b e -', 'T g b e - -'], late: ['g b - -', 'b - - -']}
+        : n === 2 ? {short: ['D -'], calm: ['D - g b', 'D g b -'], cont: ['B - g b'], fill: ['D - b -'], late: ['g b']}
+        : {short: ['D - b -', 'T g b -'], calm: ['D - - g b - d U', 'D - g b - - d U', 'D - - b e - d -'], cont: ['B - - g b - d U', 'T - g b - - d -', 'B - g b e - - -'], fill: ['D - g b e - - -', 'T g b e - - d -'], late: ['g b e -', 'b - e -']}},
+      {id: 'sway', roll: 0.021, softStrum: true, vary: m.compound
+        ? {short: ['D - U'], calm: ['D - U B - U', 'D - - d - U'], cont: ['B - U d - U', 'T - U d - -'], fill: ['D - - - - U'], late: ['d - U']}
+        : n === 3 ? {short: ['D - - U'], calm: ['D - - U d -', 'D - - d - U'], cont: ['B - - U d -', 'T - - d - U'], fill: ['D - - U - -'], late: ['- U d -']}
+        : n === 2 ? {short: ['D -'], calm: ['D - - U', 'D - d -'], cont: ['B - - U'], fill: ['D - - -'], late: ['- U']}
+        : {short: ['D - - U', 'D - d -'], calm: ['D - - U - - d U', 'D - - d - - d U', 'D - - U d - - U'], cont: ['B - - U - - d U', 'B - - d - - d -', 'T - - U - - d U'], fill: ['D - - U - - - -', 'D - - - d - - -'], late: ['- - d U', 'd - - -']}},
+      {id: 'harp', roll: 0.028, softStrum: true, vary: m.compound
+        ? {short: ['D - -'], calm: ['D - - B - -', 'D - - - - U'], cont: ['B - - d - -', 'T - - - - U'], fill: ['D - - - - -'], late: ['d - -']}
+        : n === 3 ? {short: ['D - - -'], calm: ['D - - - - U', 'D - - - d -'], cont: ['B - - - - U', 'T - - - d -'], fill: ['D - - - - -'], late: ['- - d -']}
+        : n === 2 ? {short: ['D -'], calm: ['D - - -', 'D - - U'], cont: ['B - - -'], fill: ['D - - -'], late: ['- -']}
+        : {short: ['D - - -', 'D - - U'], calm: ['D - - - B - - U', 'D - - - d - - -', 'D - - - - - d U'], cont: ['B - - - d - - -', 'T - - - d - - U'], fill: ['D - - - - - - -', 'D - - - - - d -'], late: ['d - - -', 'b - - -']}}];
+    var folkExtra = {adaptive: true, fillPat: guitarFolkMoods[0].vary.fill[0], latePat: guitarFolkMoods[0].vary.late[0], vary: guitarFolkMoods[0].vary, moods: guitarFolkMoods};
+    var balladExtra = {adaptive: true, fillPat: guitarBalladMoods[0].vary.fill[0], latePat: guitarBalladMoods[0].vary.late[0], vary: guitarBalladMoods[0].vary, moods: guitarBalladMoods};
     // guitar strums and picking, by the time signature: [id, name, hint, pattern, shortPat, extra]
     var GUITAR = m.compound ? [
-      ['folk', 'Folk strum', 'down, down, up', 'D D U D D U', 'D D U'],
+      ['folk', 'Folk strum', 'phrase-shuffled acoustic folk strumming: campfire, bass-strum, 3-3-2 push, open breathe, soft pocket and pick-strum hybrid', guitarFolkMoods[0].vary.calm[0], guitarFolkMoods[0].vary.short[0], folkExtra],
       ['pop', 'Pop', 'with a muted chuck', 'D - U K - U', 'D - U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - - D - -', 'D - -'],
-      ['ballad', 'Ballad', 'slow and open', 'D - - D - U', 'D - U'],
+      ['ballad', 'Ballad', 'phrase-shuffled acoustic ballad strumming: open swell, bass & brush, arpeggio shimmer, tender sway and rolled chords', guitarBalladMoods[0].vary.calm[0], guitarBalladMoods[0].vary.short[0], balladExtra],
       ['country', 'Country', 'bass, then strums, the other bass', 'T D U A D U', 'T D U'],
       ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g A - b | T+e - b g - b', 'T+b - g', pickExtra]]
       : n === 3 ? [
-      ['folk', 'Folk strum', 'down, then down-up', 'D - D U D U', 'D - D U'],
+      ['folk', 'Folk strum', 'phrase-shuffled acoustic folk strumming: campfire, bass-strum, 3-3-2 push, open breathe, soft pocket and pick-strum hybrid', guitarFolkMoods[0].vary.calm[0], guitarFolkMoods[0].vary.short[0], folkExtra],
       ['pop', 'Pop', 'with a muted chuck', 'D - K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D -', 'D - D -'],
-      ['ballad', 'Ballad', 'bass, then strums', 'T - D - D -', 'T - D -'],
+      ['ballad', 'Ballad', 'phrase-shuffled acoustic ballad strumming: open swell, bass & brush, arpeggio shimmer, tender sway and rolled chords', guitarBalladMoods[0].vary.calm[0], guitarBalladMoods[0].vary.short[0], balladExtra],
       ['country', 'Country', 'bass, then strums, the other bass', 'T - D U D U | A - D U D U', 'T - D U'],
       ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g - e - | T - g b g -', 'T+b - g -', pickExtra]]
       : n === 2 ? [
-      ['folk', 'Folk strum', 'down, down-up', 'D - D U', 'D U'],
+      ['folk', 'Folk strum', 'phrase-shuffled acoustic folk strumming: campfire, bass-strum, 3-3-2 push, open breathe, soft pocket and pick-strum hybrid', guitarFolkMoods[0].vary.calm[0], guitarFolkMoods[0].vary.short[0], folkExtra],
       ['pop', 'Pop', 'with a muted chuck', 'D U K U', 'D U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D -', 'D -'],
-      ['ballad', 'Ballad', 'slow and open', 'D - - U', 'D -'],
+      ['ballad', 'Ballad', 'phrase-shuffled acoustic ballad strumming: open swell, bass & brush, arpeggio shimmer, tender sway and rolled chords', guitarBalladMoods[0].vary.calm[0], guitarBalladMoods[0].vary.short[0], balladExtra],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T D A D', 'T D'],
       ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g b', 'T+b -', pickExtra]]
       : [
-      ['folk', 'Folk strum', 'down, down-up, up-down-up', 'D - D U - U D U', 'D - D U'],
+      ['folk', 'Folk strum', 'phrase-shuffled acoustic folk strumming: campfire, bass-strum, 3-3-2 push, open breathe, soft pocket and pick-strum hybrid', guitarFolkMoods[0].vary.calm[0], guitarFolkMoods[0].vary.short[0], folkExtra],
       ['pop', 'Pop', 'with a muted chuck on beat 3', 'D - D U K U D U', 'D - K U'],
       ['steady', 'Steady', 'a strum on each beat', 'D - D - D - D -', 'D - D -'],
-      ['ballad', 'Ballad', 'slow and open', 'D - - - D - D U', 'D - D U'],
+      ['ballad', 'Ballad', 'phrase-shuffled acoustic ballad strumming: open swell, bass & brush, arpeggio shimmer, tender sway and rolled chords', guitarBalladMoods[0].vary.calm[0], guitarBalladMoods[0].vary.short[0], balladExtra],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T - D U A - D U', 'T - D U'],
       ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g - A - e b | T+e - g b A - b -', 'T+b - g -', pickExtra]];
     var choraleRhythms = [{id: 'held', name: 'Held', pat: '1+t', rate: 0, low: 40, passing: true}];
@@ -750,6 +814,10 @@
         if (src.pluck) e.pluck = true;
         if (src.thumb) e.thumb = true;
         if (src.rings) e.rings = src.rings;
+        if (src.strumDyn) e.strumDyn = true;
+        if (src.stroke) e.stroke = src.stroke;
+        if (src.softMute) e.softMute = true;
+        if (src.softStrum) e.softStrum = true;
       }   // a guitar strum or fingerpluck (played by the page, not written in the sheet)
       events.push(e);
     }
@@ -857,12 +925,14 @@
       // When looping (acc.end === false), the last bar should keep flowing into the next stanza instead of
       // landing on a sparse chord-hold mood (rolled/velvet/pluck-calm/shimmer) that feels like a closing strike.
       var loopLast = acc.end === false && lastBar >= 0 && bi >= lastBar;
-      if (loopLast && curMood && /^(rolled|velvet|pluck-calm|shimmer)$/.test(curMood.id)) curMood = acc.moods[0];
+      if (loopLast && curMood && /^(rolled|velvet|pluck-calm|shimmer|breathe|harp)$/.test(curMood.id)) curMood = acc.moods[0];
       var activeVary = curMood ? curMood.vary : acc.vary;
-      // Fast-notated sheets (e.g. cut-time 4/4 at ♩=200 or fast 3/4 at ♩=180): relax guitar picking and flowing piano
+      var strumDyn = !!(acc.guitar && !acc.pick && (acc.moods || acc.vary));
+      // Fast-notated sheets (e.g. cut-time 4/4 at ♩=200 or fast 3/4 at ♩=180): relax guitar picking, dynamic folk/ballad strums, and flowing piano
       // into spacious quarter-note pacing so they never sound frantic.
       var isCompoundBar = bars[bi].beat === 6;
       var halfTimed = !!(acc.pick && rate && tl.bpm > 0 && !isCompoundBar && (rate / 4) * (60 / tl.bpm) < 0.21);
+      var strumHalfTimed = !!(strumDyn && rate && tl.bpm > 0 && !isCompoundBar && (rate / 4) * (60 / tl.bpm) < 0.175);
       var pianoHalfTimed = !!(curMood && !acc.guitar && rate && tl.bpm > 0 && !isCompoundBar && (rate / 4) * (60 / tl.bpm) < (curMood.halfTimeMs || 0.21));
       if (halfTimed) {
         rate *= 2;
@@ -880,6 +950,20 @@
         } else if (acc.shortPat && (z - a) <= barL / 2) {
           var spFast = parsePattern(acc.shortPat); if (spFast.length) useParts = spFast;
         }
+      } else if (strumHalfTimed) {
+        rate *= 2;
+        var fmId = curMood ? curMood.id : 'campfire';
+        var fStr;
+        if (curMood && curMood.softStrum) {
+          if ((z - a) <= barL / 2) fStr = fmId === 'lullaby' ? 'T -' : 'D -';
+          else if (barL === 12) fStr = fmId === 'lullaby' ? 'T d -' : fmId === 'shimmer' ? 'D g b' : fmId === 'sway' ? 'D - U' : 'D - d';
+          else fStr = fmId === 'lullaby' ? 'T - A d' : fmId === 'shimmer' ? 'D - g b' : fmId === 'sway' ? 'D - - U' : fmId === 'harp' ? 'D - B -' : (fresh ? 'D - d U' : 'B - d -');
+        } else {
+          if ((z - a) <= barL / 2) fStr = fmId === 'bassfolk' || fmId === 'hybrid' ? 'T d' : fmId === 'breathe' ? 'D -' : 'D U';
+          else if (barL === 12) fStr = fmId === 'bassfolk' ? 'T d U' : fmId === 'push' ? 'D - U' : fmId === 'breathe' ? 'D - d' : fmId === 'pocket' ? 'D k U' : fmId === 'hybrid' ? 'T g d' : 'D d U';
+          else fStr = fmId === 'bassfolk' ? 'T d A d' : fmId === 'push' ? 'D - d U' : fmId === 'breathe' ? 'D - d -' : fmId === 'pocket' ? 'D k d U' : fmId === 'hybrid' ? 'T g d U' : (fresh ? 'D d U d' : 'B d U d');
+        }
+        var fParts = parsePattern(fStr); if (fParts.length) useParts = [fParts[0], fParts[0]];
       } else if (pianoHalfTimed) {
         rate *= 2;
         var pfStr = (z - a) <= barL / 2 ? '1 c' : barL === 12 ? (fresh ? '1 5 c' : '1 c 5') : (fresh ? '1 5 c 8' : '1 c 5 c');
@@ -900,7 +984,7 @@
         if (bloom === a) { var fpParts = parsePattern(acc.fillPat); if (fpParts.length) useParts = fpParts; }
         else { var lp = parsePattern(acc.latePat || acc.fillPat); lateSteps = lp.length ? lp[0] : null; }
       }
-      if (activeVary && rate && !pianoHalfTimed && !halfTimed) {
+      if (activeVary && rate && !pianoHalfTimed && !halfTimed && !strumHalfTimed) {
         var kind = acc.shortPat && (z - a) <= barL / 2 ? 'short' : bloom === a ? 'fill' : bloom > a ? 'late' : fresh ? 'calm' : 'cont';
         var baseKind = kind === 'late' ? (fresh ? 'calm' : 'cont') : kind;
         var vl = activeVary[baseKind];
@@ -954,7 +1038,7 @@
       // their notes would reach the melody
       var spIdx = spans.indexOf(sp), nextSp = spIdx >= 0 && spIdx + 1 < spans.length ? spans[spIdx + 1] : null;
       var under = melLow(a, z - a);
-      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w', 'D', 'U', 'K', 'T', 'A', 'g', 'b', 'e']}]],
+      var v = voicing(sp.info, acc.low, [[{toks: ['1', '3', '5', '7', '8', '9', '10', '12', 'c', 'C', 't', 'w', 'D', 'd', 'B', 'U', 'K', 'k', 'T', 'A', 'g', 'b', 'e']}]],
         {next: nextSp, prevMid: prevMid, smooth: !!acc.smooth, prevTen: prevTen, under: under === Infinity ? null : under, mel: melPc(a), melPcs: melPcsIn(a, z - a), capo: acc.capo});
       // For Flowing's optional connecting bass `w`: only keep it when it genuinely steps smoothly into a moving next bass
       if (curMood && !isEnding && plan.length > 1) {
@@ -1008,15 +1092,40 @@
           else if (acc.roll && e.p.length > 1) e.roll = acc.roll;
           if (acc.guitar) {   // strummed: down from the bass, up (U alone) from the top string; picked: warm fingers, strings let ring
             e.inst = 'guitar';
-            if (acc.pick) {
+            var sToks = st.toks || [];
+            var isSoftStrum = !!(curMood && curMood.softStrum);
+            var pickedInStrum = !acc.pick && strumDyn && sToks.length > 0 && sToks.every(function (t) { return /^[TAgbe]$/.test(t); });
+            if (acc.pick || pickedInStrum) {
               e.pluck = true;
               e.spanEnd = sp.end;
-              if ((st.toks || []).indexOf('T') >= 0 || (st.toks || []).indexOf('A') >= 0) e.thumb = true;
+              if (sToks.indexOf('T') >= 0 || sToks.indexOf('A') >= 0) e.thumb = true;
               e.roll = e.p.length > 1 ? (st.ending ? 0.022 : 0.004) : 0;
+              if (strumDyn) { e.strumDyn = true; if (isSoftStrum) e.softStrum = true; if (!fresh) e.cont = true; if (st.isPause) e.pause = true; }
             } else {
-              if (e.p.length > 1 && !st.ending) e.roll = acc.roll || 0.012;
-              if ((st.toks || []).length === 1 && st.toks[0] === 'U') e.up = true;
-              if ((st.toks || []).indexOf('K') >= 0) { e.mute = true; e.roll = 0.004; }
+              var stroke = sToks.length === 1 ? sToks[0] : 'D';
+              if (strumDyn) {
+                e.strumDyn = true;
+                e.stroke = st.ending ? 'D' : stroke;
+                if (isSoftStrum) e.softStrum = true;
+                if (!fresh) e.cont = true;
+                if (st.isPause) e.pause = true;
+              }
+              if (st.ending) e.roll = isSoftStrum ? 0.036 : 0.030;
+              else if (e.p.length > 1) {
+                if (strumDyn) {
+                  var mRoll = curMood && curMood.roll ? curMood.roll : 0;
+                  e.roll = stroke === 'U' ? (isSoftStrum ? 0.009 : 0.0075)
+                    : stroke === 'd' ? (isSoftStrum ? 0.0115 : 0.0095)
+                    : stroke === 'B' ? (isSoftStrum ? 0.014 : 0.011)
+                    : stroke === 'k' ? 0.0055 : stroke === 'K' ? 0.004
+                    : mRoll ? (st.isPause ? Math.max(mRoll, 0.026) : mRoll)
+                    : st.isPause ? 0.024 : (fresh && pi === 0 ? 0.016 : 0.013);
+                } else {
+                  e.roll = acc.roll || 0.012;
+                }
+              }
+              if (stroke === 'U') e.up = true;
+              if (stroke === 'K' || stroke === 'k') { e.mute = true; if (stroke === 'k') e.softMute = true; if (!strumDyn) e.roll = 0.004; }
             }
           }
           if (pi === 0 && fresh) e.fresh = true;
@@ -1041,7 +1150,7 @@
         for (var m = idx + 1; m < events.length; m++) {
           var nx = events[m];
           if (nx.g >= stopG) break;
-          if (nx.p && (nx.p.indexOf(pitch) >= 0 || nx.mute || (nx.inst === 'guitar' && !nx.pluck))) { stopG = nx.g; break; }
+          if (nx.p && (nx.p.indexOf(pitch) >= 0 || nx.mute || (nx.inst === 'guitar' && !nx.pluck && nx.p[0] <= pitch))) { stopG = nx.g; break; }
         }
         return Math.max(e.d, stopG - e.g - 0.2);
       });
@@ -1324,16 +1433,49 @@
         }
       }
       var roll = e.roll != null ? e.roll : (e.p.length > 1 ? 0.012 : 0);
-      if (e.up) baseVel -= 9;   // a guitar's up strum: lighter, from the top string down
+      if (e.strumDyn && !e.pluck) {
+        var backbeat = !e.softStrum && ((bar.nominal === 16 && (Math.abs(pos - 4) < 0.01 || Math.abs(pos - 12) < 0.01))
+          || (bar.nominal === 12 && Math.abs(pos - 4) < 0.01));
+        var softAdj = e.softStrum ? -3 : 0;
+        if (e.stroke === 'D') {
+          baseVel = (onDownbeat ? 73 : onHalf ? 65 : onBeat ? 61 : 54) + softAdj;
+          if (e.fresh) baseVel += 4;
+          if (e.cont && onDownbeat) baseVel -= 5;
+          if (e.pause) baseVel -= 6;
+        } else if (e.stroke === 'd') {
+          baseVel = (backbeat ? 63 : onBeat ? 57 : 51) + softAdj + (e.pause ? -5 : 0);
+        } else if (e.stroke === 'B') {
+          baseVel = (onDownbeat ? 65 : 58) + softAdj + (e.cont && onDownbeat ? -3 : 0);
+        } else if (e.stroke === 'U') {
+          baseVel = (onBeat ? 50 : 46) + softAdj + (!e.softStrum && (Math.abs(pos - 6) < 0.01 || Math.abs(pos - 10) < 0.01) ? 3 : 0) + (e.pause ? -4 : 0);
+        } else if (e.stroke === 'k') {
+          baseVel = Math.max(38, Math.min(54, (backbeat ? 51 : 47) + (e.cont ? -2 : 0)));
+        }
+      } else if (e.strumDyn && e.pluck) {
+        baseVel = (onDownbeat ? 70 : onHalf ? 64 : onBeat ? 58 : 51) + (e.softStrum ? -3 : 0) + (e.fresh ? 3 : 0) + (e.cont && onDownbeat ? -4 : 0);
+      } else if (e.up) {
+        baseVel -= 9;   // a guitar's up strum: lighter, from the top string down
+      }
       var isChordPop = !!(e.bouncy && !onDownbeat && e.p.length >= 2 && e.p[0] >= 48);
       var isSyncPush = !!(e.bouncy && !onBeat && e.p.length >= 2);
       var isBassStep = !!(e.bouncy && e.p.length === 1 && e.p[0] < 54);
       var dur = e.ring ? Math.max(e.d, e.ring - 0.35) : e.d;   // a pedal lift just before the next chord keeps the harmonies clear
       return e.p.map(function (p, pi) {
-        var voiceAdj = e.pluck ? (e.p.length > 1 ? (pi === 0 && e.thumb ? 3 : -3) : (e.thumb ? 3 : -3))
-          : e.inst ? 0
-          : e.feather && e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(6, pi * 2))
-          : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
+        var voiceAdj;
+        if (e.strumDyn && !e.pluck) {
+          var lastI = e.p.length - 1;
+          if (e.stroke === 'D') voiceAdj = pi <= 1 ? 3 : pi === lastI ? 1 : -1;
+          else if (e.stroke === 'B') voiceAdj = pi === 0 ? 3 : -2;
+          else if (e.stroke === 'd') voiceAdj = pi >= lastI - 1 ? 2 : -2;
+          else if (e.stroke === 'U') voiceAdj = 2 - (lastI - pi) * 2;
+          else if (e.stroke === 'k') voiceAdj = pi === 0 ? -2 : 0;
+          else voiceAdj = 0;
+        } else {
+          voiceAdj = e.pluck ? (e.p.length > 1 ? (pi === 0 && e.thumb ? 3 : -3) : (e.thumb ? 3 : -3))
+            : e.inst ? 0
+            : e.feather && e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(6, pi * 2))
+            : e.p.length > 1 ? (pi === 0 ? 4 : -4 - Math.min(4, pi)) : 0;
+        }
         var d0 = e.rings && e.rings[pi] != null ? e.rings[pi] : dur;
         var minV = e.feather ? 30 : 34, maxV = e.feather ? 82 : 86;
         var vel = Math.max(minV, Math.min(maxV, baseVel + voiceAdj));
@@ -1405,7 +1547,7 @@
       lh.events.forEach(function (e, i) {
         if (isRest(e) || tied(lh.events, i)) return;
         var d = len(e); for (var q = i + 1; tied(lh.events, q); q++) d += len(lh.events[q]);
-        left.push({t: lo[i], d: e.ring || d, g: d, ring: e.ring, rings: e.rings, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll, pluck: e.pluck, thumb: e.thumb, fresh: e.fresh, cont: e.cont, pause: e.pause, walk: e.walk, feather: e.feather, bouncy: e.bouncy});
+        left.push({t: lo[i], d: e.ring || d, g: d, ring: e.ring, rings: e.rings, ps: pitchesOf(e), i: i, inst: e.inst, mute: e.mute, up: e.up, roll: e.roll, pluck: e.pluck, thumb: e.thumb, fresh: e.fresh, cont: e.cont, pause: e.pause, walk: e.walk, feather: e.feather, bouncy: e.bouncy, strumDyn: e.strumDyn, stroke: e.stroke, softMute: e.softMute, softStrum: e.softStrum});
       });
     }
     var off = gridOff(sheet);
@@ -1432,7 +1574,7 @@
     var byBar = {};
     left.forEach(function (l) { (byBar[barOf(l.t)] = byBar[barOf(l.t)] || []).push(l); });
     Object.keys(byBar).forEach(function (bi) {
-      var items = byBar[bi], dyn = leftDyn(items.map(function (l) { return {e: {p: l.ps, d: l.g, ring: l.ring, rings: l.rings, inst: l.inst, up: l.up, roll: l.roll, pluck: l.pluck, thumb: l.thumb, fresh: l.fresh, cont: l.cont, pause: l.pause, walk: l.walk, feather: l.feather, bouncy: l.bouncy}, pos: posOf(l.t)}; }), {nominal: bar, beat: beat});
+      var items = byBar[bi], dyn = leftDyn(items.map(function (l) { return {e: {p: l.ps, d: l.g, ring: l.ring, rings: l.rings, inst: l.inst, up: l.up, roll: l.roll, pluck: l.pluck, thumb: l.thumb, fresh: l.fresh, cont: l.cont, pause: l.pause, walk: l.walk, feather: l.feather, bouncy: l.bouncy, strumDyn: l.strumDyn, stroke: l.stroke, softMute: l.softMute, softStrum: l.softStrum}, pos: posOf(l.t)}; }), {nominal: bar, beat: beat});
       items.forEach(function (l, k) { l.notes = dyn[k] || []; });
     });
     var acc = sheet.acc, guitar = !!(acc && (acc.guitar || /^guitar\//.test(acc.style || '')));

@@ -333,21 +333,39 @@ test('guitar: open shapes, strums down and up, phrase-shuffled picking, plucked 
     return M.accompanyOn({bars: [{g: 0, len: 16, beat: 4}, {g: 16, len: 16, beat: 4}], first: 0,
       chords: [{g: 0, end: 32, info: M.chordInfo(chord)}], mel: [[0, 32, 71]], last: 16, base: r, bpm}).events;
   };
+  const folkR = st.kinds.find((k) => k.id === 'folk').rhythms[0];
+  const balladR = st.kinds.find((k) => k.id === 'ballad').rhythms[0];
+  assert.strictEqual(folkR.moods.length, 6, 'dynamic Folk strum weaves 6 acoustic folk moods');
+  assert.strictEqual(balladR.moods.length, 5, 'dynamic Ballad strum weaves 5 lyrical ballad moods');
   const folk = g('folk');
-  assert.deepStrictEqual(folk.slice(0, 6).map((e) => (e.up ? 'U' : 'D') + e.d), ['D4', 'D2', 'U4', 'U2', 'D2', 'U2'], 'D - D U - U D U');
-  assert.ok(folk.every((e) => e.inst === 'guitar' && !e.pluck), 'a guitar strums it');
-  assert.strictEqual(show(folk.slice(0, 3)), 'G2+B2+D3+G3+B3+G4/4 G2+B2+D3+G3+B3+G4/2 D3+G3+B3+G4/4', 'down: six strings; up: the top four');
+  assert.ok(folk.every((e) => e.inst === 'guitar' && e.strumDyn), 'dynamic Folk strum marks acoustic strum dynamics');
+  assert.strictEqual(show(folk.slice(-1)), 'G2+B2+D3+G3+B3+G4/16', 'folk last bar: full open strum');
   const pickR = st.kinds.find((k) => k.id === 'pick').rhythms[0];
   assert.strictEqual(pickR.moods.length, 8, 'unified Fingerpicking weaves all 8 picking, ballad, harp and plucked-chord moods');
-  // Phrase-shuffled picking: deterministic per seed, different across takes, weaves single-string & 4-string plucked-chord phrases
+  // Phrase-shuffled picking, folk strum & ballad strum: deterministic per seed, different across takes
   const bars8 = [], ch8 = [], mel8 = [];
   for (let b = 0; b < 8; b++) {
     bars8.push({g: b * 16, len: 16, beat: 4});
     ch8.push({g: b * 16, end: (b + 1) * 16, info: M.chordInfo(['G', 'D', 'Em', 'C'][b % 4])});
     mel8.push([b * 16, b * 16 + 8, 71], [b * 16 + 8, (b + 1) * 16, 74]);
   }
-  const runPick = (seed, bpm = 100) => M.accompanyOn({bars: bars8, first: 0, chords: ch8, mel: mel8, last: 112,
-    base: Object.assign({}, pickR, {seed}), bpm}).events;
+  const runGuitar = (r, seed, bpm = 100) => M.accompanyOn({bars: bars8, first: 0, chords: ch8, mel: mel8, last: 112,
+    base: Object.assign({}, r, {seed}), bpm}).events;
+  const runPick = (seed, bpm = 100) => runGuitar(pickR, seed, bpm);
+  assert.strictEqual(show(runGuitar(folkR, 0)), show(runGuitar(folkR, 0)), 'folk strum: same seed plays the same arrangement');
+  assert.notStrictEqual(show(runGuitar(folkR, 0)), show(runGuitar(folkR, 1)), 'folk strum: another seed shuffles phrases');
+  assert.strictEqual(show(runGuitar(balladR, 0)), show(runGuitar(balladR, 0)), 'ballad strum: same seed plays the same arrangement');
+  assert.notStrictEqual(show(runGuitar(balladR, 0)), show(runGuitar(balladR, 1)), 'ballad strum: another seed shuffles phrases');
+  const folkTakes = [0, 1, 2, 3, 4].flatMap((sd) => runGuitar(folkR, sd).filter((e) => e.p && e.g < 112));
+  assert.ok(folkTakes.some((e) => e.stroke === 'D') && folkTakes.some((e) => e.stroke === 'd') && folkTakes.some((e) => e.stroke === 'U'), 'folk strum uses differentiated D, d, U strokes');
+  assert.ok(folkTakes.some((e) => e.pluck && e.thumb && e.rings && e.rings[0] > e.d), 'folk bass-strum/hybrid lets plucked bass ring under treble strums');
+  const balladEv = runGuitar(balladR, 0).filter((e) => e.p && e.g < 112);
+  assert.ok(balladEv.every((e) => e.softStrum), 'ballad strum applies soft lyrical dynamics');
+  assert.ok(balladEv.some((e) => e.stroke === 'D' && e.roll >= 0.020), 'ballad down-strums use lush slow rolls');
+  const fastFolk = runGuitar(folkR, 0, 200).filter((e) => e.p && e.g < 112);
+  assert.ok(fastFolk.every((e) => e.d >= 4), 'at ♩=200 folk strum relaxes to quarter-feel pacing');
+  const fastBallad = runGuitar(balladR, 0, 200).filter((e) => e.p && e.g < 112);
+  assert.ok(fastBallad.every((e) => e.d >= 4), 'at ♩=200 ballad strum relaxes to quarter-feel pacing');
   assert.strictEqual(show(runPick(0)), show(runPick(0)), 'same seed plays the same picking');
   assert.notStrictEqual(show(runPick(0)), show(runPick(1)), 'another seed shuffles phrases');
   assert.notStrictEqual(show(runPick(1)), show(runPick(2)), 'and another');
