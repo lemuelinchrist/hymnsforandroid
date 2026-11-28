@@ -161,6 +161,11 @@ def convert(h, write):
     note = ', %d melody notes differ from the MIDI top' % bad if bad else ''
     hand = h in HAND
     vs = voices(bars, mnotes, div, shift, t0, first[0])
+    # a MIDI that is a piano accompaniment (broken chords, sixteenths in the lower voices) or has one line only is no four-part setting:
+    # the notes of the tenor and bass per melody note stay near 2 (a chorale), and almost none are sixteenths
+    nmel = sum(len(b[2]) for b in bars); lower = vs['T'] + vs['B']
+    ratio = len(lower) / max(nmel, 1); fast = sum(1 for a, d, p in lower if d <= 1) / max(len(lower), 1)
+    if not 1.6 <= ratio <= 2.5 or fast > 0.25: return '%s: refused (the MIDI is not a four-part setting: %.1f lower notes per melody note, %d%% sixteenths)' % (h, ratio, fast * 100)
     original = chords_of(bars, [n for b in bars for n in b[2]], vs, kind, unit)
     # the new file
     ids = [0]; ms = list(re.finditer(r'<measure\b.*?</measure>', x, re.S)); pieces = []; last = 0

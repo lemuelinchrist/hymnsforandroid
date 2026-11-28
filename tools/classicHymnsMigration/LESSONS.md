@@ -139,3 +139,7 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
   plays the chords of the level shown (Medium or Easy, as a sheet without voices would) instead of the four voices, so wrong chords can
   be heard. It is kept in localStorage `hfw.reviewChords`. 45 more sheets lined up when add_voices tried the transposition with the
   fewest melody notes off; of the 152 still refused, about 85 have a MIDI that is another setting (under 40% of the melody matches): they need the printed page.
+- **Not every MIDI is a four-part setting** (found on E33, 2026-11-28): some are a piano accompaniment (broken chords, sixteenths in the
+  lower voices) or one line only; ranking their simultaneous notes gives nonsense voices. add_voices.py now refuses a MIDI unless the
+  tenor and bass have 1.6-2.5 notes per melody note and at most 25% sixteenths (a chorale: about 2.0 and none; E33 had 3.3 and 41%).
+  207 sheets that the first roll-out had voiced were put back to their melody-only sheets (kept in the commit history; list: this commit's message).

@@ -2,9 +2,9 @@
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">Jesus, Jesus, Jesus</title>
 <title type="subordinate">Assurance and Joy of Salvation—Loved by the Lord</title>
-</titleStmt><pubStmt><identifier type="hymn">E287</identifier><identifier type="number">287</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier><identifier type="parts">SATB</identifier></pubStmt></fileDesc></meiHead>
+</titleStmt><pubStmt><identifier type="hymn">E287</identifier><identifier type="number">287</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
-<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common" midi.bpm="110"><staffGrp symbol="brace" bar.thru="true"><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/><staffDef n="2" lines="5" clef.shape="F" clef.line="4"/></staffGrp></scoreDef>
+<scoreDef key.sig="4f" meter.count="4" meter.unit="4" meter.sym="common" midi.bpm="110"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
 <measure n="1"><staff n="1"><layer n="1">
 <note xml:id="n1" pname="e" oct="4" dur="4">
@@ -15,28 +15,17 @@
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n4" pname="c" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">sus,</syl></verse></note>
-</layer>
-<layer n="2"><note xml:id="v1" dur="4" pname="a" oct="3" accid.ges="f"/><note xml:id="v2" dur="4" pname="g" oct="3"/><note xml:id="v3" dur="4" pname="f" oct="3"/><note xml:id="v4" dur="4" pname="g" oct="3"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v5" dur="1" pname="a" oct="2" accid.ges="f"/></layer><layer n="2"><note xml:id="v6" dur="1" pname="a" oct="2" accid.ges="f"/></layer></staff>
-<harm type="medium" staff="1" tstamp="1" place="above">A♭</harm>
-<harm type="medium" staff="1" tstamp="3" place="above">D♭/A♭</harm>
-<harm type="medium" staff="1" tstamp="4" place="above">A♭</harm>
+</layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
-<harm staff="1" tstamp="2" place="above">A♭Maj7</harm>
 <harm staff="1" tstamp="3" place="above">D♭/A♭</harm>
-<harm staff="1" tstamp="4" place="above">A♭Maj7</harm>
+<harm staff="1" tstamp="4" place="above">A♭</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n5" pname="e" oct="4" dur="2">
 <verse n="1"><syl wordpos="i" con="d">Je</syl></verse></note>
 <note xml:id="n6" pname="c" oct="4" dur="2">
 <verse n="1"><syl eol="1" wordpos="t">sus!</syl></verse></note>
-</layer>
-<layer n="2"><note xml:id="v7" dur="4" pname="c" oct="4"/><note xml:id="v8" dur="4" pname="d" oct="4" accid.ges="f"/><note xml:id="v9" dur="2" pname="e" oct="3" accid.ges="f"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v10" dur="4" pname="a" oct="3" accid.ges="f"/><note xml:id="v11" dur="4" pname="f" oct="3"/><note xml:id="v12" dur="2" pname="e" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v13" dur="1" pname="a" oct="2" accid.ges="f"/></layer></staff>
-<harm type="medium" staff="1" tstamp="1" place="above">A♭</harm>
-<harm type="medium" staff="1" tstamp="2" place="above">D♭/A♭</harm>
-<harm type="medium" staff="1" tstamp="3" place="above">A♭</harm>
+</layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="2" place="above">D♭/A♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
@@ -50,31 +39,20 @@
 <verse n="1"><syl>Name</syl></verse></note>
 <note xml:id="n10" pname="f" oct="4" dur="4">
 <verse n="1"><syl>on</syl></verse></note>
-</layer>
-<layer n="2"><note xml:id="v14" dur="2" pname="d" oct="4" accid.ges="f"/><note xml:id="v15" dur="2" pname="d" oct="4" accid.ges="f"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v16" dur="2" pname="a" oct="3" accid.ges="f"/><note xml:id="v17" dur="2" pname="d" oct="4" accid.ges="f"/></layer><layer n="2"><note xml:id="v18" dur="4" pname="d" oct="3" accid.ges="f"/><note xml:id="v19" dur="4" pname="c" oct="3"/><note xml:id="v20" dur="4" pname="b" oct="2" accid.ges="f"/><note xml:id="v21" dur="4" pname="d" oct="3" accid.ges="f"/></layer></staff>
-<harm type="medium" staff="1" tstamp="1" place="above">D♭</harm>
-<harm type="medium" staff="1" tstamp="2" place="above">D♭/C</harm>
-<harm type="medium" staff="1" tstamp="3" place="above">B♭m</harm>
-<harm type="medium" staff="1" tstamp="4" place="above">D♭</harm>
+</layer></staff>
 <harm staff="1" tstamp="1" place="above">D♭</harm>
-<harm staff="1" tstamp="2" place="above">D♭Maj7/C</harm>
-<harm staff="1" tstamp="3" place="above">B♭m7</harm>
+<harm staff="1" tstamp="2" place="above">D♭/C</harm>
+<harm staff="1" tstamp="3" place="above">B♭m</harm>
 <harm staff="1" tstamp="4" place="above">D♭</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n11" pname="g" oct="4" dur="2">
 <verse n="1"><syl eol="1">earth,</syl></verse></note>
 <note xml:id="n12" pname="e" oct="4" dur="2"/>
-</layer>
-<layer n="2"><note xml:id="v22" dur="4" pname="e" oct="4" accid.ges="f"/><note xml:id="v23" dur="4" pname="f" oct="4"/><note xml:id="v24" dur="2" pname="g" oct="4"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v25" dur="4" pname="b" oct="3" accid.ges="f"/><note xml:id="v26" dur="4" pname="a" oct="3" accid.ges="f"/><note xml:id="v27" dur="2" pname="g" oct="3"/></layer><layer n="2"><note xml:id="v28" dur="1" pname="e" oct="3" accid.ges="f"/></layer></staff>
+</layer></staff>
 <slur startid="#n11" endid="#n12"/>
-<harm type="medium" staff="1" tstamp="1" place="above">E♭</harm>
-<harm type="medium" staff="1" tstamp="3" place="above">A♭</harm>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
-<harm staff="1" tstamp="2" place="above">A♭Maj7/E♭</harm>
-<harm staff="1" tstamp="3" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">A♭</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -86,12 +64,7 @@
 <verse n="1"><syl>I,</syl></verse></note>
 <note xml:id="n16" pname="e" oct="5" dur="4">
 <verse n="1"><syl>a</syl></verse></note>
-</layer>
-<layer n="2"><note xml:id="v29" dur="2" pname="c" oct="4"/><note xml:id="v30" dur="4" pname="g" oct="4" accid="f"/><note xml:id="v31" dur="4" pname="f" oct="4"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v32" dur="2" dots="1" pname="a" oct="3" accid.ges="f"/><note xml:id="v33" dur="4" pname="f" oct="3"/></layer><layer n="2"><note xml:id="v34" dur="2" dots="1" pname="a" oct="2" accid.ges="f"/><note xml:id="v35" dur="4" pname="a" oct="2" accid="n"/></layer></staff>
-<harm type="medium" staff="1" tstamp="1" place="above">A♭</harm>
-<harm type="medium" staff="1" tstamp="3" place="above">A♭7</harm>
-<harm type="medium" staff="1" tstamp="4" place="above">F7/A</harm>
+</layer></staff>
 <harm staff="1" tstamp="1" place="above">A♭</harm>
 <harm staff="1" tstamp="3" place="above">A♭7</harm>
 <harm staff="1" tstamp="4" place="above">F7/A</harm>
@@ -103,16 +76,10 @@
 <note xml:id="n19" pname="f" oct="4" dur="4">
 <verse n="1"><syl eol="1" wordpos="t">ner,</syl></verse></note>
 <note xml:id="n20" pname="c" oct="5" dur="4"/>
-</layer>
-<layer n="2"><note xml:id="v36" dur="2" pname="f" oct="4"/><note xml:id="v37" dur="4" pname="e" oct="4" accid.ges="f"/><note xml:id="v38" dur="4" pname="d" oct="4" accid="n"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v39" dur="4" pname="f" oct="3"/><note xml:id="v40" dur="4" pname="b" oct="3" accid.ges="f"/><note xml:id="v41" dur="4" pname="b" oct="3" accid.ges="f"/><note xml:id="v42" dur="4" pname="a" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v43" dur="2" pname="b" oct="2" accid.ges="f"/><note xml:id="v44" dur="2" pname="b" oct="2" accid.ges="f"/></layer></staff>
+</layer></staff>
 <slur startid="#n17" endid="#n18"/>
 <slur startid="#n19" endid="#n20"/>
-<harm type="medium" staff="1" tstamp="1" place="above">B♭m</harm>
-<harm type="medium" staff="1" tstamp="4" place="above">B♭7</harm>
-<harm staff="1" tstamp="1" place="above">B♭sus4</harm>
-<harm staff="1" tstamp="2" place="above">B♭m</harm>
-<harm staff="1" tstamp="3" place="above">B♭sus4</harm>
+<harm staff="1" tstamp="1" place="above">B♭m</harm>
 <harm staff="1" tstamp="4" place="above">B♭7</harm>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
@@ -124,28 +91,18 @@
 <verse n="1"><syl>know</syl></verse></note>
 <note xml:id="n24" pname="f" oct="4" dur="4">
 <verse n="1"><syl>its</syl></verse></note>
-</layer>
-<layer n="2"><note xml:id="v45" dur="1" pname="d" oct="4" accid.ges="f"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v46" dur="4" pname="g" oct="3"/><note xml:id="v47" dur="4" pname="a" oct="3" accid.ges="f"/><note xml:id="v48" dur="4" pname="b" oct="3" accid.ges="f"/><note xml:id="v49" dur="4" pname="a" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v50" dur="1" pname="e" oct="3" accid.ges="f"/></layer></staff>
-<harm type="medium" staff="1" tstamp="1" place="above">E♭7</harm>
-<harm type="medium" staff="1" tstamp="2" place="above">D♭/E♭</harm>
+</layer></staff>
 <harm staff="1" tstamp="1" place="above">E♭7</harm>
-<harm staff="1" tstamp="2" place="above">A♭sus4/E♭</harm>
-<harm staff="1" tstamp="3" place="above">E♭sus4</harm>
-<harm staff="1" tstamp="4" place="above">A♭sus4/E♭</harm>
+<harm staff="1" tstamp="2" place="above">D♭/E♭</harm>
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n25" pname="b" oct="4" dur="2">
 <verse n="1"><syl eol="1">worth?</syl></verse></note>
 <note xml:id="n26" pname="a" oct="4" dur="2"/>
-</layer>
-<layer n="2"><note xml:id="v51" dur="2" pname="g" oct="4"/><note xml:id="v52" dur="2" pname="e" oct="4" accid.ges="f"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v53" dur="2" pname="g" oct="3"/><note xml:id="v54" dur="2" pname="a" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v55" dur="2" pname="e" oct="3" accid.ges="f"/><note xml:id="v56" dur="2" pname="a" oct="2" accid.ges="f"/></layer></staff>
+</layer></staff>
 <slur startid="#n25" endid="#n26"/>
 <fermata startid="#n26" place="above"/>
-<harm type="medium" staff="1" tstamp="1" place="above">E♭7</harm>
-<harm type="medium" staff="1" tstamp="3" place="above">A♭</harm>
-<harm staff="1" tstamp="1" place="above">E♭</harm>
+<harm staff="1" tstamp="1" place="above">E♭7</harm>
 <harm staff="1" tstamp="3" place="above">A♭</harm>
 </measure>
 </section></score></mdiv></body>

@@ -2,16 +2,14 @@
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">My King will soon come back again</title>
 <title type="subordinate">Hope of Glory—Longing and Praying</title>
-</titleStmt><pubStmt><identifier type="hymn">E960</identifier><identifier type="number">960</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier><identifier type="parts">SATB</identifier></pubStmt></fileDesc></meiHead>
+</titleStmt><pubStmt><identifier type="hymn">E960</identifier><identifier type="number">960</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
-<scoreDef key.sig="4f" meter.count="6" meter.unit="8" midi.bpm="100"><staffGrp symbol="brace" bar.thru="true"><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/><staffDef n="2" lines="5" clef.shape="F" clef.line="4"/></staffGrp></scoreDef>
+<scoreDef key.sig="4f" meter.count="6" meter.unit="8" midi.bpm="100"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
 <measure n="1" metcon="false"><staff n="1"><layer n="1">
 <note xml:id="n1" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><label>1.</label><syl>My</syl></verse></note>
-</layer>
-<layer n="2"><rest xml:id="v1" dur="8"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v2" dur="8"/></layer><layer n="2"><rest xml:id="v3" dur="8"/></layer></staff>
+</layer></staff>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n2" dur="4" pname="c" oct="5">
@@ -25,9 +23,7 @@
 <note xml:id="n6" dur="8" pname="f" oct="4">
 <verse n="1"><syl>come</syl></verse></note>
 </beam>
-</layer>
-<layer n="2"><rest xml:id="v4" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v5" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v6" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <slur startid="#n4" endid="#n5"/>
 </measure>
 <measure n="3"><staff n="1"><layer n="1">
@@ -39,9 +35,7 @@
 <verse n="1"><syl eol="1" wordpos="t">gain,</syl></verse></note>
 <note xml:id="n10" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl>The</syl></verse></note>
-</layer>
-<layer n="2"><rest xml:id="v7" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v8" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v9" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <beam>
@@ -58,9 +52,7 @@
 <note xml:id="n16" dur="8" pname="c" oct="5">
 <verse n="1"><syl>with</syl></verse></note>
 </beam>
-</layer>
-<layer n="2"><rest xml:id="v10" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v11" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v12" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <slur startid="#n11" endid="#n12"/>
 <slur startid="#n14" endid="#n15"/>
 </measure>
@@ -71,9 +63,7 @@
 <note xml:id="n18" dur="4" pname="b" oct="4" accid.ges="f"/>
 <note xml:id="n19" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl>The</syl></verse></note>
-</layer>
-<layer n="2"><rest xml:id="v13" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v14" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v15" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <tie startid="#n17" endid="#n18"/>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
@@ -88,9 +78,7 @@
 <note xml:id="n24" dur="8" pname="f" oct="4">
 <verse n="1"><syl>to</syl></verse></note>
 </beam>
-</layer>
-<layer n="2"><rest xml:id="v16" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v17" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v18" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <slur startid="#n22" endid="#n23"/>
 </measure>
 <measure n="7"><staff n="1"><layer n="1">
@@ -102,9 +90,7 @@
 <verse n="1"><syl eol="1" wordpos="t">deemed</syl></verse></note>
 <note xml:id="n28" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl>Will</syl></verse></note>
-</layer>
-<layer n="2"><rest xml:id="v19" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v20" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v21" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n29" dur="4" pname="f" oct="4">
@@ -118,9 +104,7 @@
 <note xml:id="n33" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl wordpos="i" con="d">there</syl></verse></note>
 </beam>
-</layer>
-<layer n="2"><rest xml:id="v22" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v23" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v24" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <slur startid="#n31" endid="#n32"/>
 </measure>
 <sb/>
@@ -130,9 +114,7 @@
 <note xml:id="n35" dur="4" pname="a" oct="4" accid.ges="f"/>
 <note xml:id="n36" dur="8" pname="c" oct="5">
 <verse n="1"><syl>The</syl></verse></note>
-</layer>
-<layer n="2"><rest xml:id="v25" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v26" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v27" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <tie startid="#n34" endid="#n35"/>
 </measure>
 <measure n="10"><staff n="1"><layer n="1">
@@ -147,9 +129,7 @@
 <note xml:id="n41" dur="8" pname="e" oct="4" accid="n">
 <verse n="1"><syl wordpos="i" con="d">ful</syl></verse></note>
 </beam>
-</layer>
-<layer n="2"><rest xml:id="v28" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v29" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v30" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <slur startid="#n39" endid="#n40"/>
 </measure>
 <measure n="11"><staff n="1"><layer n="1">
@@ -161,9 +141,7 @@
 <verse n="1"><syl eol="1">plan,</syl></verse></note>
 <note xml:id="n45" dur="8" pname="c" oct="5">
 <verse n="1"><syl>His</syl></verse></note>
-</layer>
-<layer n="2"><rest xml:id="v31" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v32" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v33" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 </measure>
 <measure n="12"><staff n="1"><layer n="1">
 <beam>
@@ -180,9 +158,7 @@
 <note xml:id="n51" dur="8" pname="f" oct="4">
 <verse n="1"><syl>I</syl></verse></note>
 </beam>
-</layer>
-<layer n="2"><rest xml:id="v34" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v35" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v36" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <slur startid="#n46" endid="#n47"/>
 <slur startid="#n49" endid="#n50"/>
 </measure>
@@ -193,9 +169,7 @@
 <note xml:id="n53" dur="4" pname="e" oct="4" accid.ges="f"/>
 <note xml:id="n54" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl>His</syl></verse></note>
-</layer>
-<layer n="2"><rest xml:id="v37" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v38" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v39" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <tie startid="#n52" endid="#n53"/>
 </measure>
 <measure n="14"><staff n="1"><layer n="1">
@@ -210,9 +184,7 @@
 <note xml:id="n59" dur="8" pname="f" oct="4">
 <verse n="1"><syl>I</syl></verse></note>
 </beam>
-</layer>
-<layer n="2"><rest xml:id="v40" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v41" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v42" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <slur startid="#n57" endid="#n58"/>
 </measure>
 <measure n="15"><staff n="1"><layer n="1">
@@ -224,9 +196,7 @@
 <verse n="1"><syl eol="1">see</syl></verse></note>
 <note xml:id="n63" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl wordpos="i" con="d">Be</syl></verse></note>
-</layer>
-<layer n="2"><rest xml:id="v43" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v44" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v45" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 </measure>
 <measure n="16"><staff n="1"><layer n="1">
 <note xml:id="n64" dur="4" pname="f" oct="4">
@@ -240,18 +210,14 @@
 <note xml:id="n68" dur="8" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl wordpos="i" con="d">ap</syl></verse></note>
 </beam>
-</layer>
-<layer n="2"><rest xml:id="v46" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v47" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v48" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <slur startid="#n66" endid="#n67"/>
 </measure>
 <measure n="17" right="end"><staff n="1"><layer n="1">
 <note xml:id="n69" dur="4" dots="1" pname="a" oct="4" accid.ges="f">
 <verse n="1"><syl eol="1" wordpos="t">pear.</syl></verse></note>
 <note xml:id="n70" dur="4" dots="1" pname="a" oct="4" accid.ges="f"/>
-</layer>
-<layer n="2"><rest xml:id="v49" dur="2" dots="1"/></layer></staff>
-<staff n="2"><layer n="1"><rest xml:id="v50" dur="2" dots="1"/></layer><layer n="2"><rest xml:id="v51" dur="2" dots="1"/></layer></staff>
+</layer></staff>
 <tie startid="#n69" endid="#n70"/>
 </measure>
 </section></score></mdiv></body>
