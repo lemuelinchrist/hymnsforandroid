@@ -442,11 +442,18 @@ export function silentChords(doc) {
   return A.harms.filter((h) => !kept.has(h)).map((h) => ({m: bars.indexOf(h.el.parentNode), t: h.el.getAttribute('tstamp'), ch: h.ch, el: h.el}));
 }
 
+// REVIEW (branch voices/original only): a voiced sheet plays the chords of its level in Chorale (made from the chords, as on a sheet
+// without voices) instead of its four voices, so the chords of Medium and Easy can be heard and checked
+let reviewChords = false;
+try { reviewChords = localStorage.getItem('hfw.reviewChords') === '1'; } catch (e) { /* off */ }
+export const reviewOn = () => reviewChords;
+export function setReview(on) { reviewChords = !!on; try { localStorage.setItem('hfw.reviewChords', on ? '1' : '0'); } catch (e) { /* kept for this visit */ } }
+
 export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
   // a sheet with its four voices plays them as written in Chorale (and under the melody alone): the hymnal's own parts, not a
   // part made from the chords; any other style is made from the chords as usual
   const chorale = !!(choice && choice.lh && choice.lh.family === 'dynamic' && choice.lh.kind === 'chorale');
-  const useParts = isVoiced(doc) && (!(hands && choice) || chorale);
+  const useParts = isVoiced(doc) && !reviewChords && (!(hands && choice) || chorale);
   const A = analyse(doc, hands && choice && !useParts ? choice : {lh: null, rh: {add: 0}}, loop);
   if (!A) return null;
   const {M, bars, notes, chords, gapG} = A;

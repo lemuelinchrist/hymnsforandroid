@@ -135,3 +135,7 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
   all the others as `type="medium-auto"`: the converter's chords, from which the player and viewer work Medium out with Simplify, as before.
   A hymn becomes hand-made Medium by editing its `medium-auto` harms and renaming the type to `medium`.
 - Sheets grew from 48 to 63 MB.
+- Review player (branch voices/original only, never for master): the level menu of a voiced sheet has "Review: hear the chords". On, Chorale
+  plays the chords of the level shown (Medium or Easy, as a sheet without voices would) instead of the four voices, so wrong chords can
+  be heard. It is kept in localStorage `hfw.reviewChords`. 45 more sheets lined up when add_voices tried the transposition with the
+  fewest melody notes off; of the 152 still refused, about 85 have a MIDI that is another setting (under 40% of the melody matches): they need the printed page.
