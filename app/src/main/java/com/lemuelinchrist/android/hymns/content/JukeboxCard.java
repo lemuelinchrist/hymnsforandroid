@@ -58,8 +58,6 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
             {"walking", "piano", R.string.jukebox_style_walking, false, false},
             {"guitar-pick", "guitar", R.string.jukebox_style_pick, true, false},
             {"guitar-folk", "guitar", R.string.jukebox_style_folk, true, false},
-            {"guitar-pop", "guitar", R.string.jukebox_style_pop, false, false},
-            {"guitar-steady", "guitar", R.string.jukebox_style_steady, false, false},
             {"guitar-ballad", "guitar", R.string.jukebox_style_ballad, true, false},
             {"guitar-country", "guitar", R.string.jukebox_style_country, false, false},
             {"melody", "melody", R.string.jukebox_style_melody, false, false},

@@ -686,29 +686,21 @@
     // guitar strums and picking, by the time signature: [id, name, hint, pattern, shortPat, extra]
     var GUITAR = m.compound ? [
       ['folk', 'Folk strum', 'phrase-shuffled acoustic folk strumming: campfire, bass-strum, 3-3-2 push, open breathe, soft pocket and pick-strum hybrid', guitarFolkMoods[0].vary.calm[0], guitarFolkMoods[0].vary.short[0], folkExtra],
-      ['pop', 'Pop', 'with a muted chuck', 'D - U K - U', 'D - U'],
-      ['steady', 'Steady', 'a strum on each beat', 'D - - D - -', 'D - -'],
       ['ballad', 'Ballad', 'phrase-shuffled acoustic ballad strumming: open swell, bass & brush, arpeggio shimmer, tender sway and rolled chords', guitarBalladMoods[0].vary.calm[0], guitarBalladMoods[0].vary.short[0], balladExtra],
       ['country', 'Country', 'bass, then strums, the other bass', 'T D U A D U', 'T D U'],
       ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g A - b | T+e - b g - b', 'T+b - g', pickExtra]]
       : n === 3 ? [
       ['folk', 'Folk strum', 'phrase-shuffled acoustic folk strumming: campfire, bass-strum, 3-3-2 push, open breathe, soft pocket and pick-strum hybrid', guitarFolkMoods[0].vary.calm[0], guitarFolkMoods[0].vary.short[0], folkExtra],
-      ['pop', 'Pop', 'with a muted chuck', 'D - K U D U', 'D - K U'],
-      ['steady', 'Steady', 'a strum on each beat', 'D - D - D -', 'D - D -'],
       ['ballad', 'Ballad', 'phrase-shuffled acoustic ballad strumming: open swell, bass & brush, arpeggio shimmer, tender sway and rolled chords', guitarBalladMoods[0].vary.calm[0], guitarBalladMoods[0].vary.short[0], balladExtra],
       ['country', 'Country', 'bass, then strums, the other bass', 'T - D U D U | A - D U D U', 'T - D U'],
       ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g - e - | T - g b g -', 'T+b - g -', pickExtra]]
       : n === 2 ? [
       ['folk', 'Folk strum', 'phrase-shuffled acoustic folk strumming: campfire, bass-strum, 3-3-2 push, open breathe, soft pocket and pick-strum hybrid', guitarFolkMoods[0].vary.calm[0], guitarFolkMoods[0].vary.short[0], folkExtra],
-      ['pop', 'Pop', 'with a muted chuck', 'D U K U', 'D U'],
-      ['steady', 'Steady', 'a strum on each beat', 'D - D -', 'D -'],
       ['ballad', 'Ballad', 'phrase-shuffled acoustic ballad strumming: open swell, bass & brush, arpeggio shimmer, tender sway and rolled chords', guitarBalladMoods[0].vary.calm[0], guitarBalladMoods[0].vary.short[0], balladExtra],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T D A D', 'T D'],
       ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g b', 'T+b -', pickExtra]]
       : [
       ['folk', 'Folk strum', 'phrase-shuffled acoustic folk strumming: campfire, bass-strum, 3-3-2 push, open breathe, soft pocket and pick-strum hybrid', guitarFolkMoods[0].vary.calm[0], guitarFolkMoods[0].vary.short[0], folkExtra],
-      ['pop', 'Pop', 'with a muted chuck on beat 3', 'D - D U K U D U', 'D - K U'],
-      ['steady', 'Steady', 'a strum on each beat', 'D - D - D - D -', 'D - D -'],
       ['ballad', 'Ballad', 'phrase-shuffled acoustic ballad strumming: open swell, bass & brush, arpeggio shimmer, tender sway and rolled chords', guitarBalladMoods[0].vary.calm[0], guitarBalladMoods[0].vary.short[0], balladExtra],
       ['country', 'Country', 'bass, strum, the other bass, strum', 'T - D U A - D U', 'T - D U'],
       ['pick', 'Fingerpicking', 'phrase-shuffled fingerpicking, ballad arches, harp and plucked chords', 'T+b - g - A - e b | T+e - g b A - b -', 'T+b - g -', pickExtra]];

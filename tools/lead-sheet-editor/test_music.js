@@ -325,8 +325,8 @@ test('guitar: open shapes, strums down and up, phrase-shuffled picking, plucked 
   assert.deepStrictEqual(['C', 'G', 'D', 'A', 'E', 'Am', 'Em', 'Dm', 'G/B', 'D/F#', 'B7'].map(fr),
     ['x32010', '320003', 'xx0232', 'x02220', '022100', 'x02210', '022000', 'xx0231', 'x20003', '200232', 'x21202']);
   const st = M.styles({time: [4, 4]}).find((f) => f.id === 'guitar');
-  assert.deepStrictEqual(st.kinds.map((k) => k.id), ['folk', 'pop', 'steady', 'ballad', 'country', 'pick']);
-  assert.deepStrictEqual(st.kinds.filter((k) => !k.pick).map((k) => k.id), ['folk', 'pop', 'steady', 'ballad', 'country']);
+  assert.deepStrictEqual(st.kinds.map((k) => k.id), ['folk', 'ballad', 'country', 'pick']);
+  assert.deepStrictEqual(st.kinds.filter((k) => !k.pick).map((k) => k.id), ['folk', 'ballad', 'country']);
   assert.deepStrictEqual(st.kinds.filter((k) => k.pick).map((k) => k.id), ['pick']);
   const g = (kind, chord = 'G', bpm = 100, seed = 0) => {
     const r = Object.assign({}, st.kinds.find((k) => k.id === kind).rhythms[0], seed ? {seed} : {});
@@ -382,8 +382,7 @@ test('guitar: open shapes, strums down and up, phrase-shuffled picking, plucked 
   // Fast-notated sheet (♩=200 in 4/4, e.g. NS151): auto half-time paces picking in quarter notes instead of 150ms eighths
   const fastPick = runPick(0, 200).filter((e) => e.p && e.g < 112);
   assert.ok(fastPick.every((e) => e.d >= 4), 'at ♩=200 picking steps in quarters or longer: ' + show(fastPick.slice(0, 8)));
-  const pop = g('pop');
-  assert.deepStrictEqual(pop.slice(0, 6).map((e) => e.mute ? 'K' : e.up ? 'U' : 'D'), ['D', 'D', 'U', 'K', 'U', 'D'], 'D - D U K U D U: the chuck on beat 3');
+  assert.ok(folkTakes.some((e) => e.mute && e.softMute), 'folk pocket mood includes soft palm-damped brush k');
   assert.strictEqual(show(g('country').slice(0, 4)), 'G2/4 G2+B2+D3+G3+B3+G4/2 D3+G3+B3+G4/2 B2/4', 'boom-chick: bass, strum, up, the other bass');
   assert.strictEqual(show(g('pick').slice(-1)), 'G2+B2+D3+G3+B3+G4/16', 'the last bar: one strum');
 });
