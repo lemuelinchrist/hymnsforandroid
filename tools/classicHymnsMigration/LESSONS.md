@@ -145,3 +145,9 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
   (E1118, E1165, E1214, E1280, E1287, E1289, E1337, E720) went back to melody-only. 974 sheets keep their voices.
   The two detectors disagree on about 100 more hymns (a four-part MIDI whose voices the rank rule cannot pull apart, or a sheet whose
   melody is not the MIDI's): listed by comparing midi_kinds.tsv with the refused ones.
+- Group C of the refused hymns (2026-11-28, 34 hymns whose melody differed from the MIDI by under 15%): 10 have a piano MIDI (E1017, E1054,
+  E1101, E1199, E1265, E1284, E190, E580, E870, E877: left out), 6 more have 29-43% sixteenths or sixteenth-note runs (E1066, E1125, E1351,
+  E1359, E566, E881: left out), and 18 got their voices after three rules were loosened: up to 10% of the melody notes may differ from the
+  MIDI top (the voice above the melody is then still dropped as the MIDI's soprano), a MIDI judged four-part may have 1.0-2.5 lower
+  notes per melody note (a melody that moves over held voices), and the same limit of 25% sixteenths. E501 was marked wrong by ear
+  (a piano arpeggio pattern in the tenor or bass that midi_kind.py had not caught: look for repeated broken-chord figures next).
