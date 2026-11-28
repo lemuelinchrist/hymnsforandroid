@@ -236,6 +236,77 @@
     lhPanel(); rhPanel(); recPanel();
   }
 
+  // ---- the app's presets (matching tools/web/src/piano.js PRESETS: left + right hand together)
+  var PRESETS = [
+    {id: 'plain', name: 'Plain', lh: ['strike', 'hymn', 'half'], add: 0},
+    {id: 'chorale', name: 'Chorale', lh: ['dynamic', 'chorale', 'half'], add: 1, on: 'beat'},
+    {id: 'flowing', name: 'Flowing', lh: ['dynamic', 'adaptive', '8'], add: 1},
+    {id: 'lively', name: 'Lively', lh: ['dynamic', 'pulse', '8'], add: 1},
+    {id: 'walking', name: 'Walking', lh: ['dynamic', 'walking', '4'], add: 1},
+    {id: 'guitar', name: 'Guitar', lh: ['guitar', 'folk', '8'], add: 0, anyKind: true}
+  ];
+  var STYLE_FLAGS = ['shortPat', 'fillPat', 'latePat', 'bassRing', 'chordPedal', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'pick', 'settle', 'vary', 'moods', 'feather', 'bouncy'];
+  function presetEntry(p) {
+    var st = M.styles(sheet), fam = st.filter(function (x) { return x.id === p.lh[0]; })[0];
+    if (!fam) return null;
+    var kind = fam.kinds.filter(function (k) { return k.id === p.lh[1]; })[0] || fam.kinds[0];
+    var r = kind.rhythms.filter(function (x) { return x.id === p.lh[2]; })[0] || kind.rhythms.filter(function (x) { return x.id === '8'; })[0] || kind.rhythms[0];
+    return {fam: fam, kind: kind, r: r};
+  }
+  function activePreset() {
+    if (!sheet || (lh && lh.written)) return null;
+    var cur = sheet.acc; if (!cur || !M.parsePattern(cur.pat).length) return null;
+    var f = M.findStyle(sheet, cur); if (!f) return null;
+    var st = M.styles(sheet), fam = st[f.family], kind = fam.kinds[f.kind], r = kind.rhythms[f.rhythm];
+    var rhi = sheet.rh || {add: 0}, add = rhi.add | 0, on = rhi.on || 'chord';
+    if (add > 1 || cur.pedal || cur.low !== r.low) return null;
+    for (var i = 0; i < PRESETS.length; i++) {
+      var p = PRESETS[i], e = presetEntry(p);
+      if (!e || e.fam.id !== fam.id) continue;
+      if (!p.anyKind && (e.kind.id !== kind.id || e.r.id !== r.id)) continue;
+      if (add === 0 || on === (p.on || 'chord')) return p;
+    }
+    return null;
+  }
+  function applyPreset(p, shuffle) {
+    var e = presetEntry(p); if (!e) return;
+    var cur = sheet.acc || {}, a = {pat: e.r.pat, rate: e.r.rate, low: e.r.low, style: e.fam.id + '/' + e.kind.id};
+    STYLE_FLAGS.forEach(function (k) { if (e.r[k] != null) a[k] = e.r[k]; });
+    if (e.r.passing && (cur.walk || cur.passing === 2)) { a.walk = true; a.passing = 2; }
+    if (shuffle && (e.r.vary || e.r.moods)) a.seed = 1 + Math.floor(Math.random() * 99999);
+    edit(function () {
+      delete sheet.left;
+      sheet.acc = a;
+      if (p.add) sheet.rh = {add: p.add, on: p.on || 'chord'}; else delete sheet.rh;
+    });
+    if (!prefs.left) { prefs.left = true; keep(); render(); }
+    audition();
+  }
+  function presetPanel() {
+    var box = $('presets'); if (!box || !sheet) return;
+    var curP = activePreset(), curAcc = sheet.acc || {};
+    var stTxt = curP ? '· ' + curP.name + (curAcc.seed && (curAcc.vary || curAcc.moods) ? ' (shuffled)' : '') : '';
+    $('presetState').textContent = stTxt;
+    box.innerHTML = '';
+    PRESETS.forEach(function (p) {
+      var e = presetEntry(p), on = curP && curP.id === p.id;
+      var varies = !!(e && (e.r.vary || e.r.moods));
+      if (varies) {
+        var wrap = document.createElement('span'); wrap.className = 'split-chip' + (on ? ' on' : '');
+        var main = document.createElement('button'); main.type = 'button'; main.textContent = p.name; main.title = e.kind.hint || '';
+        main.onclick = function () { applyPreset(p, false); };
+        var side = document.createElement('button'); side.type = 'button'; side.textContent = '↻'; side.title = 'Shuffle ' + p.name + ' phrasing';
+        side.onclick = function () { applyPreset(p, true); };
+        wrap.appendChild(main); wrap.appendChild(side); box.appendChild(wrap);
+      } else {
+        var b = document.createElement('button'); b.type = 'button'; b.textContent = p.name; b.className = on ? 'on' : '';
+        b.title = e && e.kind.hint ? e.kind.hint : '';
+        b.onclick = function () { applyPreset(p, false); };
+        box.appendChild(b);
+      }
+    });
+  }
+
   // ---- the right hand's panel: notes of the chord under the melody
   var RH_ON = {chord: 'where a chord starts', beat: 'on the beat', long: 'on long notes', all: 'on every note'};
   function rhPanel() {
@@ -304,7 +375,11 @@
       $('lhLow').textContent = M.noteName(sheet, cur.low == null ? 36 : cur.low);
       $('lhPedal').classList.toggle('on', !!cur.pedal); $('lhEnd').classList.toggle('on', cur.end !== false);
       $('lhPedal').disabled = !(cur.rate | 0);
+      var hasWalk = !!cur.passing, hasShuffle = !!(cur.vary || cur.moods);
+      $('lhWalk').hidden = !hasWalk; $('lhWalk').classList.toggle('on', !!(cur.walk || cur.passing === 2));
+      $('lhShuffle').hidden = !hasShuffle;
     }
+    presetPanel();
     document.querySelectorAll('#lhScope button').forEach(function (b) { b.classList.toggle('on', b.dataset.scope === scope); b.disabled = hand !== 'n'; });
     var ch = $('lhChanges'); ch.innerHTML = '';
     sheet.notes.forEach(function (m, i) {
@@ -329,7 +404,8 @@
   }
   function applyStyle(fam, kind, r) {
     var cur = target() || inEffect() || {}, a = {pat: r.pat, rate: r.rate, low: r.low, style: fam.id + '/' + kind.id};
-    ['shortPat', 'fillPat', 'latePat', 'bassRing', 'chordPedal', 'adaptive', 'roll', 'smooth', 'passing', 'guitar', 'pick', 'settle', 'vary', 'moods', 'feather'].forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
+    STYLE_FLAGS.forEach(function (k) { if (r[k] != null) a[k] = r[k]; });
+    if (r.passing && (cur.walk || cur.passing === 2)) { a.walk = true; a.passing = 2; }
     if (cur.pedal && r.rate) a.pedal = true;
     if (cur.end === false) a.end = false;
     setPattern(a);
@@ -524,7 +600,7 @@
     });
     if (prefs.acc) {
       pl.fill.forEach(function (f) {
-        ev.push({t: f.t, d: f.d, fire: function (when, sec) { f.ps.forEach(function (p, fi) { S.note(p, when + fi * 0.01, sec * 0.96, f.vels[fi] / 127 * VOL, tone); }); if (prefs.keys && !quiet) setTimeout(function () { light(f.ps, sec * 900); }, Math.max(0, (when - S.now()) * 1000)); }});
+        ev.push({t: f.t, d: f.d, fire: function (when, sec) { f.ps.forEach(function (p, fi) { S.note(p, when + fi * (f.roll || 0), sec * 0.96, f.vels[fi] / 127 * VOL, tone); }); if (prefs.keys && !quiet) setTimeout(function () { light(f.ps, sec * 900); }, Math.max(0, (when - S.now()) * 1000)); }});
       });
       pl.left.forEach(function (l) {
         ev.push({t: l.t, d: l.d, show: !quiet, hand: 'l', i: l.i, ps: l.ps, fire: function (when, sec) {
@@ -708,6 +784,35 @@
       }
     }
     else if (a === 'split') { if (n && n.d > 1) edit(function () { var h = Math.floor(n.d / 2), m = blank(n); m.d = n.d - h; if (M.isRest(n)) m.p = null; L.splice(sel + 1, 0, m); n.d = h; anchor = sel; }); }
+    else if (a === 'merge') {
+      var m0 = lo(), m1 = hi();
+      if (m0 === m1) m1 = m0 + 1;
+      if (m0 >= 0 && m1 < L.length && m1 > m0) edit(function () {
+        var first = L[m0], sum = 0, ch = first.ch || '', maxV = first.w ? first.w.length : 0;
+        for (var i = m0; i <= m1; i++) {
+          sum += M.len(L[i]);
+          if (!ch && L[i].ch) ch = L[i].ch;
+          if (L[i].w && L[i].w.length > maxV) maxV = L[i].w.length;
+        }
+        first.d = sum; delete first.tp;
+        if (ch) first.ch = ch;
+        if (hand !== 'l' && maxV) {
+          var w = [];
+          for (var vi = 0; vi < maxV; vi++) {
+            var cur = '';
+            for (var k = m0; k <= m1; k++) {
+              var s = (L[k].w && L[k].w[vi]) || '';
+              if (!s) continue;
+              cur = !cur ? s : /-$/.test(cur) ? cur.slice(0, -1) + s : cur + ' ' + s;
+            }
+            w.push(cur);
+          }
+          first.w = w;
+        }
+        L.splice(m0 + 1, m1 - m0);
+        sel = anchor = m0; head = -1;
+      });
+    }
     else if (a === 'del') {
       if (!ns.length) return;
       edit(function () {
@@ -761,6 +866,8 @@
     else if (a === 'lhdown' || a === 'lhup') tweak(function (x) { x.low = clamp((x.low == null ? 36 : x.low) + (a === 'lhup' ? 12 : -12), 24, 60); });
     else if (a === 'lhpedal') tweak(function (x) { if (x.pedal) delete x.pedal; else x.pedal = true; });
     else if (a === 'lhend') tweak(function (x) { if (x.end === false) delete x.end; else x.end = false; });
+    else if (a === 'lhwalk') tweak(function (x) { if (x.walk || x.passing === 2) { delete x.walk; x.passing = 1; } else { x.walk = true; x.passing = 2; } });
+    else if (a === 'lhshuffle') tweak(function (x) { x.seed = 1 + Math.floor(Math.random() * 99999); });
     else if (a === 'writeout') {
       if (!lh || lh.written) return;
       edit(function () { sheet.left = lh.events.map(function (e) { return {p: e.p ? e.p.slice() : null, d: e.d}; }); });
@@ -968,7 +1075,7 @@
       else if (k === 'r' || k === 'R') act('rest'); else if (k === 'n' || k === 'N' || k === 'Insert') act('after');
       else if (k === 't' || k === 'T') act('tie');
       else if (k === '8') act('triplet');
-      else if (k === 's' || k === 'S') act('split'); else if (k === 'Delete' || k === 'Backspace') act('del');
+      else if (k === 's' || k === 'S') act('split'); else if (k === 'j' || k === 'J') act('merge'); else if (k === 'Delete' || k === 'Backspace') act('del');
       else if (k === 'Enter' && hand === 'n') { var inp = $('verses').querySelector('input:not(:disabled)'); if (inp) { inp.focus(); inp.select(); } }
       else if ((k === 'h' || k === 'H') && hand === 'n') { $('chord').focus(); $('chord').select(); }
       else done = false;

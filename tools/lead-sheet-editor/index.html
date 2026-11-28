@@ -63,6 +63,7 @@
       <button data-act="hiderest" title="Hide or show the chosen rest(s) (invisible space in MEI)">Hide rest</button>
       <button data-act="before" title="New note before this one">+ Before</button><button data-act="after" title="New note after this one (N)">+ After</button>
       <button data-act="split" title="Cut this note into two halves (S)">Split</button>
+      <button data-act="merge" title="Merge chosen notes (or this note and the next) into one (J)">Merge</button>
       <button data-act="triplet" title="Make the chosen note (or three notes) a triplet, or a triplet plain again (8)">Triplet</button>
       <button data-act="tie" title="Tie this note to the one before: held on, not played again (T)">Tie</button>
       <button data-act="del" title="Remove (Delete)">Delete</button>
@@ -97,6 +98,11 @@
       </div>
       <div class="row mel-only" id="commentRow"><label for="comment">Comment</label><input type="text" id="comment" placeholder="e.g. sounds too high"></div>
       <div class="keys mel-only">Words: <kbd>Space</kbd> next note, <kbd>-</kbd> the word goes on, empty = held from the note before.</div>
+    </div>
+
+    <div class="card lead-only" id="presetCard">
+      <h2>App styles <span id="presetState"></span></h2>
+      <div class="chips" id="presets"></div>
     </div>
 
     <div class="card lead-only" id="rhCard">
@@ -136,6 +142,8 @@
           <span class="seg" title="The whole left hand an octave lower or higher"><button data-act="lhdown">▼</button><span id="lhLow">C2</span><button data-act="lhup">▲</button></span>
           <button data-act="lhpedal" id="lhPedal" class="toggle" title="Let the notes ring until the chord or the bar ends">Pedal</button>
           <button data-act="lhend" id="lhEnd" class="toggle" title="The last bar is one held chord">Held ending</button>
+          <button data-act="lhwalk" id="lhWalk" class="toggle" title="The bass and the tenor walk between the chords more often" hidden>More walking</button>
+          <button data-act="lhshuffle" id="lhShuffle" title="Shuffle this style's phrasing" hidden>↻ Shuffle</button>
         </div>
         <div class="scope">
           <span>Applies to</span>
@@ -222,7 +230,7 @@
         <p><kbd>↑</kbd> <kbd>↓</kbd> pitch, a step of the key · <kbd>Shift</kbd> a semitone · <kbd>Ctrl</kbd> an octave</p>
         <p><kbd>A</kbd>–<kbd>G</kbd> that note, the nearest one</p>
         <p><kbd>3</kbd> 16th <kbd>4</kbd> 8th <kbd>5</kbd> quarter <kbd>6</kbd> half <kbd>7</kbd> whole · <kbd>.</kbd> dot</p>
-        <p><kbd>N</kbd> new note · <kbd>S</kbd> split · <kbd>8</kbd> triplet · <kbd>T</kbd> tie · <kbd>R</kbd> rest · <kbd>Del</kbd> remove</p>
+        <p><kbd>N</kbd> new note · <kbd>S</kbd> split · <kbd>J</kbd> merge · <kbd>8</kbd> triplet · <kbd>T</kbd> tie · <kbd>R</kbd> rest · <kbd>Del</kbd> remove</p>
         <p><kbd>Enter</kbd> words: <kbd>Space</kbd> next note, <kbd>-</kbd> the word goes on</p>
       </div>
       <div>

@@ -50,13 +50,17 @@ test('the lead sheet: bars add up, upbeat first', () => {
   assert.ok(!mei.includes('staff n="2"'));
 });
 
-test('chords move the left hand on the beat', () => {
+test('chordSpans keeps off-beat chords at their written time', () => {
   const s = song();
-  s.notes = [{p: 67, d: 14, ch: 'G'}, {p: 69, d: 4, ch: 'C'}, {p: 67, d: 14}, {p: 66, d: 3, ch: 'D'}, {p: 67, d: 13}]; s.pickup = 0;
+  s.notes = [{p: 67, d: 14, ch: 'G'}, {p: 69, d: 2, ch: 'D/F#'}, {p: 67, d: 15, ch: 'Em'}, {p: 66, d: 1, ch: 'C'}, {p: 67, d: 16, ch: 'D'}]; s.pickup = 0;
   const sp = M.chordSpans(s);
-  // C sits on the last eighth of bar 1 and is held over the bar line: it starts with bar 2.
-  // D sits on a sixteenth after beat 1 of bar 3 and ends before beat 2: it starts with that beat 1.
-  assert.deepStrictEqual(sp.map(x => [x.ch, x.g, x.end]), [['G', 0, 16], ['C', 16, 32], ['D', 32, 48]]);
+  // D/F# sits on the last eighth of bar 1 (g=14) and plays there; C at g=31 is only a sixteenth before D on beat 1 (g=32), so D wins.
+  assert.deepStrictEqual(sp.map(x => [x.ch, x.g, x.end]), [['G', 0, 14], ['D/F#', 14, 16], ['Em', 16, 32], ['D', 32, 48]]);
+  // Guitar accompaniment also changes to D/F# on the "and" of beat 4 (g=14)
+  s.acc = {pat: 'D - D U - U D U', shortPat: 'D - D U', rate: 2, low: 40, style: 'guitar/folk', guitar: true};
+  const lh = M.accompany(s), on = M.onsets(lh.events);
+  const at14 = lh.events[on.indexOf(14)];
+  assert.ok(at14 && at14.p && at14.p[0] % 12 === 6, 'D/F# sounds at g=14 with F# bass: ' + JSON.stringify(at14));
 });
 
 test('patterns: text to steps', () => {
@@ -121,7 +125,7 @@ test('every style of every time signature gives whole bars', () => {
       const lh = M.accompany(s), where = time.join('/') + ' ' + f.id + '/' + k.id + '/' + r.id;
       assert.ok(M.findStyle(s, s.acc), 'found again: ' + where);
       barSums(M.toMei(s, {left: lh.events})).forEach(x => assert.deepStrictEqual(x, [bar, bar], where));
-      lh.events.forEach(e => (e.p || []).forEach(p => assert.ok(p >= 24 && p <= 67, where + ' ' + nm(p))));
+      lh.events.forEach(e => (e.p || []).forEach(p => assert.ok(p >= 24 && p <= 70, where + ' ' + nm(p))));
     })));
   });
 });

@@ -217,20 +217,22 @@
   }
 
   // ---- the chords in time
-  // [{i (note), ch, info, g, end}]: where each chord sounds for the left hand. The left hand moves on the beat: a chord
-  // on a note that starts off the beat and is held over the next beat (an anticipation) starts with that beat, any
-  // other off-beat chord with the beat it is in.
+  // [{i (note), ch, info, g, end}]: where each chord sounds for the left hand and pad. Each chord plays at its own time,
+  // off the beat too (matching chordsOnBeat). Two chords closer than an eighth (MIN_APART): only one sounds, the one
+  // on the beat (or, with neither or both on it, the first; at one place, the later one).
+  var MIN_APART = 2;   // sixteenths
   function chordSpans(sheet) {
     var notes = sheet.notes, on = onsets(notes), off = gridOff(sheet), beat = beatLen(sheet), bar = barLen(sheet), out = [];
     notes.forEach(function (n, i) {
       if (!n.ch) return;
-      var g = on[i] + off, r = g % beat;
-      if (r) {
-        var held = len(n); for (var q = i + 1; tied(notes, q); q++) held += len(notes[q]);
-        g = (!isRest(n) && g + held > g - r + beat) ? g - r + beat : g - r;
+      var g = on[i] + off, onBeat = g % beat === 0;
+      var last = out[out.length - 1];
+      if (last && g - last.g < MIN_APART) {
+        if (g > last.g && !(onBeat && !last.onBeat)) return;
+        g = Math.max(g, last.g);
+        out.pop();
       }
-      if (out.length && g <= out[out.length - 1].g) { if (g < out[out.length - 1].g) g = out[out.length - 1].g; out.pop(); }
-      out.push({i: i, ch: n.ch, info: chordInfo(n.ch), g: g});
+      out.push({i: i, ch: n.ch, info: chordInfo(n.ch), g: g, onBeat: onBeat});
     });
     var end = Math.ceil((total(notes) + off) / bar) * bar;
     out.forEach(function (s, k) { s.end = k + 1 < out.length ? out[k + 1].g : Math.max(end, s.g); });
@@ -272,7 +274,7 @@
       if (Array.isArray(n.h)) ps = n.h.filter(function (p) { return p < n.p; });
       else if (rh && rh.add > 0 && chord) {
         var d = len(n), g = on[i] + off; for (var q = i + 1; tied(notes, q); q++) d += len(notes[q]);
-        var want = rh.on === 'all' ? true : rh.on === 'chord' ? !!n.ch : rh.on === 'long' ? d >= 2 * beat : g % beat === 0 || d >= 2 * beat;
+        var want = rh.on === 'all' ? true : rh.on === 'chord' ? !!n.ch : rh.on === 'long' ? d >= 2 * beat : g % beat === 0 || d >= 2 * beat || d >= Math.min(beat, 4);
         if (want && !hasV2At(on[i], d)) ps = fillUnder(n.p, chord, rh.add);
       }
       if (!ps || !ps.length) return null;
@@ -291,7 +293,6 @@
   // The chords as they are played: each at its own time, off the beat too (a chord on the "and" changes there; 2026-11-27,
   // before that an off-beat chord was moved onto a beat and often lost to the chord on it). Two chords closer than an eighth:
   // only one sounds, the one on the beat (or, with neither or both on it, the first; at one place, the later one).
-  var MIN_APART = 2;   // sixteenths
   function chordsOnBeat(chords, bars, sound, endG) {
     var out = [];
     chords.forEach(function (c) {
@@ -1407,10 +1408,18 @@
     var bar = barLen(sheet), beat = beatLen(sheet), off0 = gridOff(sheet), pick = off0 > 0 ? bar - off0 : 0;
     function barOf(t) { return pick && t < pick ? 0 : Math.floor((t + off0) / bar); }
     function posOf(t) { return pick && t < pick ? t : (t + off0) % bar; }
-    var fillAt = {}; fill.forEach(function (f) { fillAt[f.i] = f; });
+    var fillAt = {}, feather = !!(sheet.acc && sheet.acc.feather);
+    fill.forEach(function (f) { fillAt[f.i] = f; });
     mel.forEach(function (m) {
       m.vel = melodyVel(posOf(m.t), m.d, beat, 1);
-      var f = fillAt[m.i]; if (f) { m.off = f.ps.length * 0.01; f.vels = f.ps.map(function (p, fi) { return fillVel(m.vel, f.ps.length, fi); }); }
+      var f = fillAt[m.i];
+      if (f) {
+        var whisper = feather && f.ps.length === 1;
+        var fillRoll = whisper ? 0.012 : f.ps.length >= 2 ? 0.01 : 0;
+        if (fillRoll) m.off = f.ps.length * fillRoll;
+        f.roll = fillRoll;
+        f.vels = f.ps.map(function (p, fi) { return whisper ? Math.round(m.vel * 0.55) : fillVel(m.vel, f.ps.length, fi); });
+      }
     });
     v2.forEach(function (m) { m.vel = melodyVel(posOf(m.t), m.d, beat, 2); });
     var byBar = {};
