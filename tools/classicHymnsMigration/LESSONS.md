@@ -134,7 +134,7 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
 - Medium chords: hymns cleaned by hand (hand_medium.txt, from batches 1-3 and the earlier hand work) are filed as `<harm type="medium">`;
   all the others as `type="medium-auto"`: the converter's chords, from which the player and viewer work Medium out with Simplify, as before.
   A hymn becomes hand-made Medium by editing its `medium-auto` harms and renaming the type to `medium`.
-- Sheets grew from 48 to about 63 MB when every voiced sheet is in. Only the high-confidence ones are on master (a four-part MIDI, no melody note differing from the MIDI, 1.8-2.3 lower notes per melody note, at most 10% sixteenths: 727 sheets); the rest are on branch voices/original for a check by ear.
+- Sheets grew from 48 to about 63 MB when every voiced sheet is in. 727 high-confidence sheets went to master first; after a listening check of the first few (all fine) 160 more followed (those that only had a melody note or two off the MIDI, or a note count a little off 2). The 87 whose MIDI looks like a piano part (sixteenths in the lower voices, or judged not four-part) stay on branch voices/original for a check by ear.
 - **Not every MIDI is a four-part setting** (found on E33, 2026-11-28): some are a piano accompaniment (broken chords, sixteenths in the
   lower voices) or one line only; ranking their simultaneous notes gives nonsense voices. add_voices.py now refuses a MIDI unless the
   tenor and bass have 1.6-2.5 notes per melody note and at most 25% sixteenths (a chorale: about 2.0 and none; E33 had 3.3 and 41%).
