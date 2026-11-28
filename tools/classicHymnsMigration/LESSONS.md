@@ -185,3 +185,11 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
   midi_to_sheet.read_midi: it is the printed melody, exactly. Both sheets match it note for note after the note-length corrections made
   from our own MIDI. E443's tune ('From Weber' in our data, incipit sfmmmmsf fmrrsfm) is not among the hymnary's tunes for the text nor among the
   7,6,7,6 tunes of the CCEH: a photo of the printed page is needed to check it.
+- **A sheet made from a photo of the printed page** (E393 and E379, 2026-11-28; the script is pages/build_E393.py, the page read is in it): the noteheads
+  are found on the photo by image analysis (numpy only: dark pixels, an opening with a 9-pixel box leaves the heads, the stems and staff
+  lines go), each head is put on the staff lines found at its place (spacing about 18 px, five lines fitted per place: the photo is curved),
+  and hollow heads, ledger lines and accidentals are looked at in zooms with the line grid drawn on them. The first reading by eye was wrong in
+  places (a head on the second ledger line read as the third); the numbers were right every time they were checked in a zoom with the grid.
+  The sheet we had (hymnal.net's) had the page's melody but the wrong rhythm of its last phrase ('hand,' alone before the double bar, then
+  3/4: Choose, out and A-flat as two eighths, the); the MIDI of the tune code is another tune and was not used. The page's one accidental
+  (a flat before the tenor's C in 'own') is C-flat, so the chord there is a diminished one (F dim over A-flat).
