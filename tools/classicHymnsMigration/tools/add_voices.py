@@ -64,7 +64,8 @@ def voices(bars, mnotes, div, shift, t0, first16):
         sop = next((p for o, e, p in mel if o <= c0 < e), None)
         # the soprano is the sheet's melody: the MIDI's note for it (the top one, when it is the melody's pitch) is not a lower voice
         low = [x for x in snd]
-        if low and sop is not None and low[0][0] % 12 == sop % 12: low = low[1:]
+        # (where the MIDI's top note is not the melody's pitch, a top note at or above the melody is still the MIDI's soprano)
+        if low and sop is not None and (low[0][0] % 12 == sop % 12 or (len(low) >= 4 and low[0][0] >= sop)): low = low[1:]
         if not low: continue
         if len(low) >= 3: pick = {'A': low[0], 'T': low[1] if len(low) == 3 else low[-2], 'B': low[-1]}
         elif len(low) == 2:   # one of alto and tenor doubles a note (a unison): the one whose last pitch is nearer
@@ -160,7 +161,8 @@ def convert(h, write):
     # the first note may not be the melody's pitch (a pickup, a chord): the transposition with the fewest melody notes off
     shift = min(range(shift - 11, shift + 12), key=lambda sh: (count(sh), abs(sh - shift)))
     bad = count(shift)
-    if bad > 2: return '%s: refused (%d melody notes are not the top voice of the MIDI)' % (h, bad)
+    nmel0 = sum(len(b[2]) for b in bars)
+    if bad > max(2, nmel0 // 10): return '%s: refused (%d melody notes are not the top voice of the MIDI)' % (h, bad)
     note = ', %d melody notes differ from the MIDI top' % bad if bad else ''
     hand = h in HAND
     vs = voices(bars, mnotes, div, shift, t0, first[0])
@@ -168,7 +170,8 @@ def convert(h, write):
     # the notes of the tenor and bass per melody note stay near 2 (a chorale), and almost none are sixteenths
     nmel = sum(len(b[2]) for b in bars); lower = vs['T'] + vs['B']
     ratio = len(lower) / max(nmel, 1); fast = sum(1 for a, d, p in lower if d <= 1) / max(len(lower), 1)
-    if not 1.6 <= ratio <= 2.5 or fast > 0.25: return '%s: refused (the MIDI is not a four-part setting: %.1f lower notes per melody note, %d%% sixteenths)' % (h, ratio, fast * 100)
+    # (a MIDI judged four-part may have a melody that moves over held lower voices: fewer lower notes per melody note)
+    if not (1.0 if kd == 'four-part' else 1.6) <= ratio <= 2.5 or fast > 0.25: return '%s: refused (the MIDI is not a four-part setting: %.1f lower notes per melody note, %d%% sixteenths)' % (h, ratio, fast * 100)
     original = chords_of(bars, [n for b in bars for n in b[2]], vs, kind, unit)
     # the new file
     ids = [0]; ms = list(re.finditer(r'<measure\b.*?</measure>', x, re.S)); pieces = []; last = 0
