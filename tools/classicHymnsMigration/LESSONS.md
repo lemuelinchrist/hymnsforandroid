@@ -167,3 +167,14 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
   (as in E114, the bar that drifted the voices): the printed page or a listen settles them.
 - A detector of arpeggio patterns (one new low note over notes that hold on) was tried for the E501 kind of piano MIDI: it flags E501 (0.16)
   but also hymns the ear passed (E316, E1278, E702 0.26-0.28: walking basses), and misses E1222/E1271 (0.01). Not used.
+- **Decisions on the bar-length check** (2026-11-28, from the ear and the printed pages): E1341 bar 23 is right as it is; E443 bar 8 (a D written
+  as a half note, an eighth in the MIDI), E560 bar 8 (an E written dotted) and E532 bar 22 (an F written as a half note) had a wrong
+  note length in the melody, corrected and the voices made again (tools/strip_voices.py, correct the note, tools/add_voices.py, tools/fix_naturals.py);
+  E581 bars 49-51 are 3/2, E498 chorus 9/8, E649 chorus 6/4, E759 chorus 4/4 (its chords' tstamp from eighths to quarters), E777 from
+  'shall be done' (bar 10) to the end 3/4: written with tools/change_meter.py (a <scoreDef meter.../> between bars, which the player and the
+  viewer follow); E992 had no half rest at the end of seven bars of 4/2 (bars 2, 3, 6, 7, 10, 14, 15): added in every layer.
+  Always check a sheet's bar lengths against its meter after a conversion: tools in this folder do not.
+- The arpeggio detector was right after all (the user listened): 41 voiced sheets with a score over 0.10 went back to melody-only with
+  tools/strip_voices.py: E1022 E1030 E104 E1078 E1130 E1198 E1220 E1278 E1288 E1307 E1326 E1329 E1345 E1403 E166 E2 E254 E265 E299 E316
+  E349 E455 E485 E547 E597 E611 E63 E638 E657 E66 E702 E712 E731 E743 E76 E821 E844 E847 E862 E886 E951 (their chords are the sheet's ordinary ones).
+  E1222 and E1271 (a close call) were put back as correct for now and will be revisited.
