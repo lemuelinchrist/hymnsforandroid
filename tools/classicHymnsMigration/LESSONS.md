@@ -178,3 +178,10 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
   tools/strip_voices.py: E1022 E1030 E104 E1078 E1130 E1198 E1220 E1278 E1288 E1307 E1326 E1329 E1345 E1403 E166 E2 E254 E265 E299 E316
   E349 E455 E485 E547 E597 E611 E63 E638 E657 E66 E702 E712 E731 E743 E76 E821 E844 E847 E862 E886 E951 (their chords are the sheet's ordinary ones).
   E1222 and E1271 (a close call) were put back as correct for now and will be revisited.
+- **Checking a melody against a printed score** (E560, E532, 2026-11-28): hymnary.org refuses scripted downloads (403), but the Christian
+  Classics Ethereal Hymnary (ccel.org/cceh) still serves its tune pages with a four-part PDF and MIDI per tune (the PDF is marked public domain):
+  find the tune by its name index (cceh/index/name_<letter>.htm) or its incipit in do-re-mi form (our tune code is that incipit in digits:
+  E560 1335566551275545 is Melita, E532 123542123436511712 is Pater Omnium), download <tune>a.mid and read its top voice with
+  midi_to_sheet.read_midi: it is the printed melody, exactly. Both sheets match it note for note after the note-length corrections made
+  from our own MIDI. E443's tune ('From Weber' in our data, incipit sfmmmmsf fmrrsfm) is not among the hymnary's tunes for the text nor among the
+  7,6,7,6 tunes of the CCEH: a photo of the printed page is needed to check it.
