@@ -418,6 +418,7 @@
       var alt = on[1] != null ? on[1] : on[0];
       // 4-string open shapes (D, Dm): drop alternating thumb A to the open 5th string when it is a chord tone, else stay on root so A never duplicates g
       if (on.length <= 4 && gs[0] == null && gs[1] == null) alt = pcs.indexOf(mod12(45 + cp)) >= 0 ? 45 + cp : on[0];
+      else if (gs[3] != null && alt === gs[3]) alt = on[0];
       out.D = on; out.U = out.K = on.slice(-4); out.T = [on[0]]; out.A = [alt];
       ['g', 'b', 'e'].forEach(function (k, i) { var p = gs[3 + i]; out[k] = [p != null ? p : on[on.length - 1]]; });
     }
@@ -435,15 +436,21 @@
   // A chord as a guitar plays it in the first frets: the bass (the chord's, or the slash note) on the lowest string that
   // has it within four frets, the strings under it silent, every other string on its lowest fret that is a note of the
   // chord. This gives the open shapes guitarists use (C x32010, G 320003, D xx0232, Am x02210). -> six pitches or null.
-  // With a capo (the guitar sheet's: a number, 0 for none) the shape is the one of the chord the guitar sheet shows,
-  // a capo's frets lower, played above the capo, and the bass is the chord's root (the guitar sheet has no slash basses).
+  // With a capo (the guitar sheet's: a number, 0 for none) the shape is moved a capo's frets lower and played above
+  // the capo, keeping slash basses (e.g. E/G# with capo 4 plays the C/E shape 032010 above fret 4) even though the
+  // guitar sheet hides slash basses on screen. When a slash bass sits a 2nd below the next string (Am/G, F/G, Dm/C),
+  // that adjacent bass string is muted (3x2210, 3x3211, x3x231) so the low end stays clean.
   var STRINGS = [40, 45, 50, 55, 59, 64];
   function guitarShape(c, capo) {
-    var cp = capo | 0, root = c.root - cp, bass = (capo != null ? c.root : c.bass) - cp;
+    var cp = capo | 0, root = c.root - cp, bass = c.bass - cp;
     var pcs = c.tones.map(function (t) { return mod12(root + t[0]); }), out = [null, null, null, null, null, null], low = -1;
     for (var k = 0; k < 4 && low < 0; k++) { var f0 = mod12(bass - STRINGS[k]); if (f0 <= 4) { out[k] = STRINGS[k] + f0; low = k; } }
     if (low < 0) { low = 0; out[0] = 40 + mod12(bass - 40); }   // nowhere in the first frets: the low E string, higher up
-    for (var s = low + 1; s < 6; s++) for (var f = 0; f <= 4; f++) if (pcs.indexOf(mod12(STRINGS[s] + f)) >= 0) { out[s] = STRINGS[s] + f; break; }
+    for (var s = low + 1; s < 6; s++) for (var f = 0; f <= 4; f++) if (pcs.indexOf(mod12(STRINGS[s] + f)) >= 0) {
+      var p = STRINGS[s] + f;
+      if (c.slash && s === low + 1 && p - out[low] <= 2) break;
+      out[s] = p; break;
+    }
     return out.map(function (p) { return p == null ? null : p + cp; });
   }
   function meter(sheet) { var bar = barLen(sheet), beat = beatLen(sheet); return {bar: bar, beat: beat, beats: Math.round(bar / beat), compound: compound(sheet)}; }

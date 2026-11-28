@@ -370,11 +370,13 @@ test('guitar: open shapes, strums down and up, phrase-shuffled picking, plucked 
   assert.strictEqual(show(g('pick').slice(-1)), 'G2+B2+D3+G3+B3+G4/16', 'the last bar: one strum');
 });
 
-test('guitar with a capo: the guitar sheet\'s shape, above the capo, no slash bass', () => {
+test('guitar with a capo: open shapes above the capo, honoring slash basses cleanly', () => {
   const fr = (c, capo) => M.guitarShape(M.chordInfo(c), capo).map((p, i) => p == null ? 'x' : p - [40, 45, 50, 55, 59, 64][i] - capo).join('');
-  // E with capo 4: the guitar sheet shows C, played x32010 above the fourth fret, sounding E
-  assert.deepStrictEqual([['E', 4], ['B', 4], ['Ab', 1], ['E/G#', 4], ['C', 0]].map(([c, k]) => fr(c, k)), ['x32010', '320003', '320003', 'x32010', 'x32010']);
+  // E with capo 4: C shape (x32010) above fret 4; E/G# with capo 4 keeps the slash bass as C/E (032010) above fret 4
+  assert.deepStrictEqual([['E', 4], ['B', 4], ['Ab', 1], ['E/G#', 4], ['C', 0], ['Am/G', 0], ['F/G', 0], ['Dm/C', 0]].map(([c, k]) => fr(c, k)),
+    ['x32010', '320003', '320003', '032010', 'x32010', '3x2210', '3x3211', 'x3x231']);
   assert.strictEqual(M.guitarShape(M.chordInfo('E'), 4)[1], 52, 'the C shape four frets higher: C3 on the A string sounds E3');
+  assert.strictEqual(M.guitarShape(M.chordInfo('E/G#'), 4)[0], 44, 'E/G# capo 4: open E string at fret 4 sounds G#2');
 });
 
 // a triplet: three notes in the time of two, whole sixteenths on the grid, a real tuplet in the MEI, even in playback

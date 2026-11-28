@@ -106,9 +106,7 @@ a plucked string made in the browser (Karplus-Strong) plays. The melody stays on
 six sample sets by ear before FluidR3 steel and Warm were chosen.
 
 **Strumming** (the guitar sheet): there is no switch for it; the guitar sheet always plays strummed, on a guitar (the melody too), and its panel opens when Play is pressed and goes at Stop (the piano sheet's Style panel the same, besides being there while Both hands is on). A guitar strums the chords when the sheet plays
-(`piano.js` strumChoice: the guitar kinds, the tone, and the guitar sheet's capo, so the shapes are those of the chords
-the guitar sheet shows, played above the capo). Its panel (`pianopanel.js` createStrumPanel, the same sheet at the
-bottom as Both hands', `.pp-panel`) has Strum, Pick (with the refresh side-button attached to Fingerpicking), and Tone: kept per hymn in `strumByHymn` (Both hands': `handsByHymn`; `piano.js` SAVED). Earlier device-wide and Advanced keys (`piano`, `pianoOf`, `strum`, `strumOf`, `handsForAll`, `strumForAll`, `pianoAdvanced`) are deleted when the sheet loads so every device starts cleanly from the per-hymn defaults. Nothing is added to the sheet.
+(`piano.js` strumChoice: the guitar kinds, the tone, and the guitar sheet's capo, so the shapes are played above the capo while still honoring slash basses from the sheet's sounding chords even though the guitar sheet hides them on screen). Its panel (`pianopanel.js` createSheetDock, matching the Jukebox layout) has the guitar styles (with the refresh side-button attached to Fingerpicking) and Tone: kept per hymn in `strumByHymn` (Both hands': `handsByHymn`; `piano.js` SAVED). Earlier device-wide and Advanced keys (`piano`, `pianoOf`, `strum`, `strumOf`, `handsForAll`, `strumForAll`, `pianoAdvanced`) are deleted when the sheet loads so every device starts cleanly from the per-hymn defaults. Nothing is added to the sheet.
 
 **More walking** is a switch (`role="switch"`), the other choices buttons.
 

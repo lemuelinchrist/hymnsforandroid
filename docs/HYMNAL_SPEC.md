@@ -965,8 +965,7 @@ strums or picks the chords when the sheet plays, with the staff or Chords only; 
 the bottom (opened when Play starts, tucked down to a bar after Done, like Both hands', and hidden at Stop) has Strum (the
 five guitar strums), Pick (the unified phrase-shuffled Fingerpicking, with its attached refresh side-button), and Tone (Bright, Warm, Mellow, Soft; Warm by default): every change is kept for that
 hymn alone (`strumByHymn`). Choices
-saved under earlier device-wide or Advanced keys (`piano`, `pianoOf`, `strum`, `strumOf`, `handsForAll`, `strumForAll`, `pianoAdvanced`) are deleted on load so every device starts cleanly from the per-hymn defaults. The strums use the shapes of the chords the guitar sheet shows
-(no slash basses), played above its capo, so they sound in the sheet's key as a guitarist with the capo would play them.
+saved under earlier device-wide or Advanced keys (`piano`, `pianoOf`, `strum`, `strumOf`, `handsForAll`, `strumForAll`, `pianoAdvanced`) are deleted on load so every device starts cleanly from the per-hymn defaults. The strums use the chord shapes above the guitar sheet's capo, still honoring slash basses from the sheet's sounding chords (even though the guitar sheet hides slash basses on screen), muting an adjacent bass string when it sits a 2nd above the slash bass (`Am/G` → `3x2210`, `F/G` → `3x3211`).
 The hymn page's Play plays both hands for such a sheet even when the viewer's Both hands is off; the sheet's tempo is its `midi.bpm`. The rules (the upbeat bar stays empty; a pattern starts again with every chord and bar;
 chords are moved onto the beat for the left hand; the left hand stays under the right; the last bar is one held chord)
 and the patterns are those of the lead sheet editor: `tools/lead-sheet-editor/music.js` is the one implementation,
