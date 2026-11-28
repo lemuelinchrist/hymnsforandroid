@@ -144,6 +144,8 @@ toolbar, stanza numbers, chorus text and the button bar; *night* = Material 200,
 
 ¹ "Big" = a language hymnal (as opposed to the BF/NS/CH song collections). Used only by Similar Tune (§7.5).
 
+Chinese lyrics (`C`, `CS`, `Z`, `ZS`) write the second-person pronoun for God (the Lord, the Father, the Spirit) as 祢 and for a person as 你 (a sinner, a fellow believer, the singer's own soul, Satan or death, and Christ speaking to us); 祂 is God in the third person and 它 a thing. The simplified books follow the traditional ones character by character. The search form does not fold 祢 into 你.
+
 Youth books share their language's colours by design. `I` (Indonesian) is **disabled by default** (§10).
 
 A rebuild SHOULD keep this table as data (JSON) rather than code, so a new language is a data change. Adding a
