@@ -123,3 +123,25 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
 - Spots for a listen: E577 bars 5-8 and 14; E384 bars 4, 7, 8, 12, 15; E1353 bars 7 and 13; E1226/E1354 bar 1; E715 bar 3 (D/A or D7/A?);
   the dominant endings of E75/E1108.
 - Optional: respell 411 slash chords spelled the wrong way; the half-beat pass for the `midi_to_sheet.py` hymns; fermatas in playback.
+
+## 8. Voices for every English hymn (branch voices/original, 2026-11-28)
+
+- `add_voices.py` was run over all English sheets: 1,130 now have their four voices (the pilot 14 included); 197 were refused because
+  more than 2 melody notes are not the MIDI's top voice (the MIDI is another arrangement, or in another key/layout), 21 for tuplets,
+  repeats or endings. Those keep the melody-only sheet and need a look by hand (or the printed page).
+- A melody note an octave off the MIDI's top is accepted (same voice); up to 2 notes with another pitch class are accepted and
+  reported ("N melody notes differ from the MIDI top"): look at those bars when listening.
+- Medium chords: hymns cleaned by hand (hand_medium.txt, from batches 1-3 and the earlier hand work) are filed as `<harm type="medium">`;
+  all the others as `type="medium-auto"`: the converter's chords, from which the player and viewer work Medium out with Simplify, as before.
+  A hymn becomes hand-made Medium by editing its `medium-auto` harms and renaming the type to `medium`.
+- Sheets grew from 48 to about 63 MB when every voiced sheet is in. Only the high-confidence ones are on master (a four-part MIDI, no melody note differing from the MIDI, 1.8-2.3 lower notes per melody note, at most 10% sixteenths: 727 sheets); the rest are on branch voices/original for a check by ear.
+- **Not every MIDI is a four-part setting** (found on E33, 2026-11-28): some are a piano accompaniment (broken chords, sixteenths in the
+  lower voices) or one line only; ranking their simultaneous notes gives nonsense voices. add_voices.py now refuses a MIDI unless the
+  tenor and bass have 1.6-2.5 notes per melody note and at most 25% sixteenths (a chorale: about 2.0 and none; E33 had 3.3 and 41%).
+  207 sheets that the first roll-out had voiced were put back to their melody-only sheets (kept in the commit history; list: this commit's message).
+- `tools/midi_kind.py` classifies every MIDI (midi_kinds.tsv: 650 four-part, 117 mostly four-part, 72 piano, 14 one line, 21 other). It counts
+  the notes that start together, how many sound, and how many are sixteenths. add_voices.py now takes only four-part and mostly-four-part
+  MIDIs. Its verdicts were checked by eye on E33 and E1118 (both piano: right). 8 voiced sheets that it calls piano/other/one line
+  (E1118, E1165, E1214, E1280, E1287, E1289, E1337, E720) went back to melody-only. 974 sheets keep their voices.
+  The two detectors disagree on about 100 more hymns (a four-part MIDI whose voices the rank rule cannot pull apart, or a sheet whose
+  melody is not the MIDI's): listed by comparing midi_kinds.tsv with the refused ones.

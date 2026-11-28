@@ -2,8 +2,8 @@
 """Adds the MIDI's four voices to a sheet (2026-11-28, the three-level design in LESSONS.md section 6).
 
 The sheet keeps its melody and words as they are (staff 1, layer 1: the soprano). The alto goes in as staff 1 layer 2, the tenor and
-bass as staff 2 (bass clef), layers 1 and 2. The chords the sheet had move to <harm type="medium"> (the Medium level: hand-made, or
-what the converter gave), and new chords without a type are named from the four voices, as they sound: the Original level.
+bass as staff 2 (bass clef), layers 1 and 2. The chords the sheet had move to <harm type="medium> (the Medium level: hand-made, or
+what the converter gave: type="medium-auto" when it was not cleaned by hand, so Medium works it out with Simplify; hymns listed in hand_medium.txt are type="medium"), and new chords without a type are named from the four voices, as they sound: the Original level.
 
 The MIDI is laid on the sheet by time from its first note, so only MIDIs on the sixteenth grid that play the sheet once as written are
 taken (tools/read_hymn.py shows whether the top voice is the melody in every bar); tuplets, repeats and endings are refused.
@@ -16,6 +16,7 @@ import midi_to_sheet as M
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
 SHEETS = os.path.join(ROOT, 'app/src/main/assets/sheetMei')
+HAND = set(open(os.path.join(HERE, '..', 'hand_medium.txt')).read().split()) if os.path.exists(os.path.join(HERE, '..', 'hand_medium.txt')) else set()
 ACC = {'s': 1, 'f': -1, 'n': 0, 'ss': 2, 'ff': -2}
 
 
@@ -135,6 +136,9 @@ def convert(h, write):
     if 'type="parts"' in x: return '%s: has its voices already' % h
     tune = tune_of(h)
     if not tune: return '%s: no tune in STATUS.tsv' % h
+    import midi_kind   # the kind of MIDI (tools/midi_kind.py): a piano accompaniment or one line is no four-part setting
+    kd = midi_kind.kind(os.path.join(HERE, '..', 'midi', 'm%s.mid' % tune))[0]
+    if kd not in ('four-part', 'mostly-four-part'): return '%s: refused (the MIDI is a %s)' % (h, kd)
     sd = re.search(r'<scoreDef\b[^>]*>', x).group(0)
     unit = int(re.search(r'meter\.unit="(\d+)"', sd).group(1)); sig = re.search(r'key\.sig="([^"]*)"', sd).group(1)
     alt, kind = M.key_alters(sig)
@@ -145,13 +149,26 @@ def convert(h, write):
     top0 = max(p for s, e, p in mnotes if s == t0)
     shift = first[2] - top0
     # the melody must be the MIDI's top voice everywhere
-    q16 = div / 4; bad = 0
-    for o, d, p in (n for b in bars for n in b[2]):
-        tm = t0 + (o - first[0]) * q16 + q16 * 0.2
-        top = max([pp for s, e, pp in mnotes if s <= tm < e] or [-99]) + shift
-        if top != p: bad += 1
-    if bad: return '%s: refused (%d melody notes are not the top voice of the MIDI)' % (h, bad)
+    q16 = div / 4
+    def count(sh):
+        n = 0
+        for o, d, p in (n for b in bars for n in b[2]):
+            tm = t0 + (o - first[0]) * q16 + q16 * 0.2
+            top = max([pp for s, e, pp in mnotes if s <= tm < e] or [-99]) + sh
+            if top != p and top % 12 != p % 12: n += 1   # (an octave apart is the same voice)
+        return n
+    # the first note may not be the melody's pitch (a pickup, a chord): the transposition with the fewest melody notes off
+    shift = min(range(shift - 11, shift + 12), key=lambda sh: (count(sh), abs(sh - shift)))
+    bad = count(shift)
+    if bad > 2: return '%s: refused (%d melody notes are not the top voice of the MIDI)' % (h, bad)
+    note = ', %d melody notes differ from the MIDI top' % bad if bad else ''
+    hand = h in HAND
     vs = voices(bars, mnotes, div, shift, t0, first[0])
+    # a MIDI that is a piano accompaniment (broken chords, sixteenths in the lower voices) or has one line only is no four-part setting:
+    # the notes of the tenor and bass per melody note stay near 2 (a chorale), and almost none are sixteenths
+    nmel = sum(len(b[2]) for b in bars); lower = vs['T'] + vs['B']
+    ratio = len(lower) / max(nmel, 1); fast = sum(1 for a, d, p in lower if d <= 1) / max(len(lower), 1)
+    if not 1.6 <= ratio <= 2.5 or fast > 0.25: return '%s: refused (the MIDI is not a four-part setting: %.1f lower notes per melody note, %d%% sixteenths)' % (h, ratio, fast * 100)
     original = chords_of(bars, [n for b in bars for n in b[2]], vs, kind, unit)
     # the new file
     ids = [0]; ms = list(re.finditer(r'<measure\b.*?</measure>', x, re.S)); pieces = []; last = 0
@@ -162,17 +179,17 @@ def convert(h, write):
         ten = layer_xml(bar, vs['T'], alt, kind, ids, acc2); bas = layer_xml(bar, vs['B'], alt, kind, ids, dict())
         m = re.sub(r'(<staff n="1">.*?</layer>)', lambda g: g.group(1) + '\n<layer n="2">' + alto + '</layer>', m, count=1, flags=re.S)
         m = m.replace('</staff>', '</staff>\n<staff n="2"><layer n="1">' + ten + '</layer><layer n="2">' + bas + '</layer></staff>', 1)
-        m = re.sub(r'<harm\b(?![^>]*type=)', '<harm type="medium"', m)
+        m = re.sub(r'<harm\b(?![^>]*type=)', '<harm type="%s"' % ('medium' if hand else 'medium-auto'), m)
         m = m.replace('</measure>', ''.join('<harm staff="1" tstamp="%g" place="above">%s</harm>\n' % (t, c) for t, c in original[bi]) + '</measure>')
         pieces.append(x[last:mm.start()]); pieces.append(m); last = mm.end()
     pieces.append(x[last:]); new = ''.join(pieces)
     new = new.replace('<staffGrp>', '<staffGrp symbol="brace" bar.thru="true">', 1)
     new = re.sub(r'(<staffDef n="1"[^>]*/>)', r'\1<staffDef n="2" lines="5" clef.shape="F" clef.line="4"/>', new, count=1)
     new = new.replace('</pubStmt>', '<identifier type="parts">SATB</identifier></pubStmt>', 1)
-    n_orig = sum(len(c) for c in original); n_med = len(re.findall(r'<harm type="medium"', new))
+    n_orig = sum(len(c) for c in original); n_med = len(re.findall(r'<harm type="medium', new))
     if write: open(path, 'w', encoding='utf8').write(new)
     return '%s: tune %s, MIDI %+d, %d bars, voices A %d T %d B %d notes; chords: Original %d, Medium %d%s' % (
-        h, tune, shift, len(bars), len(vs['A']), len(vs['T']), len(vs['B']), n_orig, n_med, ' (written)' if write else '')
+        h, tune, shift, len(bars), len(vs['A']), len(vs['T']), len(vs['B']), n_orig, n_med, note + (' (written)' if write else ''))
 
 
 if __name__ == '__main__':

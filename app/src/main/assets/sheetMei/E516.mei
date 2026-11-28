@@ -2,9 +2,9 @@
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">Lord of all being, throned afar</title>
 <title type="subordinate">Experience of Christ—As Everything</title>
-</titleStmt><pubStmt><identifier type="hymn">E516</identifier><identifier type="number">516</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
+</titleStmt><pubStmt><identifier type="hymn">E516</identifier><identifier type="number">516</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier><identifier type="parts">SATB</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
-<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common" midi.bpm="140"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
+<scoreDef key.sig="2s" meter.count="4" meter.unit="4" meter.sym="common" midi.bpm="140"><staffGrp symbol="brace" bar.thru="true"><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/><staffDef n="2" lines="5" clef.shape="F" clef.line="4"/></staffGrp></scoreDef>
 <section>
 <measure n="1"><staff n="1"><layer n="1">
 <note xml:id="n1" pname="d" oct="4" dur="2">
@@ -13,10 +13,14 @@
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n3" pname="g" oct="4" dur="4">
 <verse n="1"><syl>all</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v1" dur="2" pname="a" oct="3"/><note xml:id="v2" dur="4" pname="d" oct="4"/><note xml:id="v3" dur="4" pname="c" oct="4" accid.ges="s"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v4" dur="2" pname="f" oct="3" accid.ges="s"/><note xml:id="v5" dur="4" pname="a" oct="3"/><note xml:id="v6" dur="4" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v7" dur="2" pname="d" oct="3"/><note xml:id="v8" dur="4" pname="d" oct="3"/><note xml:id="v9" dur="4" pname="e" oct="3"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">D</harm>
+<harm type="medium-auto" staff="1" tstamp="4" place="above">A7/E</harm>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="4" place="above">A7/E</harm>
 </measure>
@@ -26,11 +30,16 @@
 <note xml:id="n5" pname="b" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ing,</syl></verse></note>
 <note xml:id="n6" pname="c" oct="5" dur="4"/>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v10" dur="2" pname="d" oct="4"/><note xml:id="v11" dur="4" pname="d" oct="4"/><note xml:id="v12" dur="4" pname="e" oct="4"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v13" dur="2" pname="f" oct="3" accid.ges="s"/><note xml:id="v14" dur="2" pname="g" oct="3"/></layer><layer n="2"><note xml:id="v15" dur="2" pname="d" oct="3"/><note xml:id="v16" dur="4" pname="g" oct="3"/><note xml:id="v17" dur="4" pname="e" oct="3"/></layer></staff>
 <slur startid="#n5" endid="#n6"/>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">D</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">G</harm>
+<harm type="medium-auto" staff="1" tstamp="4" place="above">A/E</harm>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
 <harm staff="1" tstamp="4" place="above">A/E</harm>
@@ -41,11 +50,16 @@
 <note xml:id="n8" pname="c" oct="5" dur="4">
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 <note xml:id="n9" pname="b" oct="4" dur="4"/>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v18" dur="2" pname="f" oct="4" accid.ges="s"/><note xml:id="v19" dur="4" pname="e" oct="4"/><note xml:id="v20" dur="4" pname="d" oct="4"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v21" dur="2" pname="a" oct="3"/><note xml:id="v22" dur="4" pname="a" oct="3"/><note xml:id="v23" dur="4" pname="g" oct="3" accid="s"/></layer><layer n="2"><note xml:id="v24" dur="2" pname="d" oct="3"/><note xml:id="v25" dur="2" pname="e" oct="3"/></layer></staff>
 <slur startid="#n8" endid="#n9"/>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">D</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">A/E</harm>
+<harm type="medium-auto" staff="1" tstamp="4" place="above">E7</harm>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">A/E</harm>
 <harm staff="1" tstamp="4" place="above">E7</harm>
@@ -53,10 +67,13 @@
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n10" pname="a" oct="4" dur="1">
 <verse n="1"><syl eol="1" wordpos="t">far,</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v26" dur="1" pname="c" oct="4" accid.ges="s"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v27" dur="1" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v28" dur="1" pname="a" oct="2"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
 <sb/>
@@ -67,10 +84,15 @@
 <verse n="1"><syl wordpos="i" con="d">glo</syl></verse></note>
 <note xml:id="n13" pname="a" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ry</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v29" dur="2" pname="d" oct="4"/><note xml:id="v30" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v31" dur="4" pname="d" oct="4"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v32" dur="2" pname="f" oct="3" accid.ges="s"/><note xml:id="v33" dur="4" pname="g" oct="3"/><note xml:id="v34" dur="4" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v35" dur="2" pname="d" oct="3"/><note xml:id="v36" dur="4" pname="e" oct="3"/><note xml:id="v37" dur="4" pname="f" oct="3" accid.ges="s"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">D</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">A7/E</harm>
+<harm type="medium-auto" staff="1" tstamp="4" place="above">D/F♯</harm>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">A7/E</harm>
 <harm staff="1" tstamp="4" place="above">D/F♯</harm>
@@ -80,10 +102,14 @@
 <verse n="1"><syl>flames</syl></verse></note>
 <note xml:id="n15" pname="a" oct="4" dur="2">
 <verse n="1"><syl>from</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v38" dur="2" pname="d" oct="4"/><note xml:id="v39" dur="2" pname="d" oct="4"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v40" dur="2" pname="g" oct="3"/><note xml:id="v41" dur="2" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v42" dur="2" pname="g" oct="3"/><note xml:id="v43" dur="2" pname="f" oct="3" accid.ges="s"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">G</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">D/F♯</harm>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="3" place="above">D/F♯</harm>
 </measure>
@@ -92,20 +118,27 @@
 <verse n="1"><syl>sun</syl></verse></note>
 <note xml:id="n17" pname="f" oct="4" dur="2">
 <verse n="1"><syl>and</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v44" dur="2" pname="e" oct="4"/><note xml:id="v45" dur="2" pname="d" oct="4"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v46" dur="2" pname="a" oct="3"/><note xml:id="v47" dur="2" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v48" dur="2" pname="c" oct="3" accid.ges="s"/><note xml:id="v49" dur="2" pname="d" oct="3"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">A7/C♯</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">D</harm>
 <harm staff="1" tstamp="1" place="above">A7/C♯</harm>
 <harm staff="1" tstamp="3" place="above">D</harm>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n18" pname="e" oct="4" dur="1">
 <verse n="1"><syl eol="1">star;</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v50" dur="1" pname="c" oct="4" accid.ges="s"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v51" dur="1" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v52" dur="1" pname="a" oct="2"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
 <sb/>
@@ -116,10 +149,15 @@
 <verse n="1"><syl wordpos="t">ter</syl></verse></note>
 <note xml:id="n21" pname="e" oct="4" dur="4">
 <verse n="1"><syl>and</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v53" dur="2" pname="d" oct="4"/><note xml:id="v54" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v55" dur="4" pname="c" oct="4" accid.ges="s"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v56" dur="2" pname="a" oct="3"/><note xml:id="v57" dur="4" pname="a" oct="3"/><note xml:id="v58" dur="4" pname="g" oct="3"/></layer><layer n="2"><note xml:id="v59" dur="2" pname="d" oct="3"/><note xml:id="v60" dur="4" pname="a" oct="2"/><note xml:id="v61" dur="4" pname="a" oct="2"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">D</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">F♯m/A</harm>
+<harm type="medium-auto" staff="1" tstamp="4" place="above">A7</harm>
 <harm staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="3" place="above">F♯m/A</harm>
 <harm staff="1" tstamp="4" place="above">A7</harm>
@@ -131,12 +169,16 @@
 <note xml:id="n24" pname="a" oct="4" dur="4">
 <verse n="1"><syl>of</syl></verse></note>
 <note xml:id="n25" pname="d" oct="5" dur="4"/>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v62" dur="4" pname="f" oct="3" accid.ges="s"/><note xml:id="v63" dur="4" pname="d" oct="4"/><note xml:id="v64" dur="2" pname="d" oct="4"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v65" dur="2" pname="f" oct="3" accid.ges="s"/><note xml:id="v66" dur="4" pname="f" oct="3" accid.ges="s"/><note xml:id="v67" dur="4" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v68" dur="2" pname="b" oct="2"/><note xml:id="v69" dur="2" pname="f" oct="3" accid.ges="s"/></layer></staff>
 <slur startid="#n22" endid="#n23"/>
 <slur startid="#n24" endid="#n25"/>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">Bm</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">D/F♯</harm>
 <harm staff="1" tstamp="1" place="above">Bm</harm>
 <harm staff="1" tstamp="3" place="above">D/F♯</harm>
 </measure>
@@ -147,12 +189,18 @@
 <note xml:id="n28" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ery</syl></verse></note>
 <note xml:id="n29" pname="f" oct="4" dur="4"/>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v70" dur="2" pname="d" oct="4"/><note xml:id="v71" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v72" dur="4" pname="d" oct="4"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v73" dur="4" pname="g" oct="3"/><note xml:id="v74" dur="4" pname="a" oct="3"/><note xml:id="v75" dur="2" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v76" dur="4" pname="g" oct="3"/><note xml:id="v77" dur="4" pname="f" oct="3" accid.ges="s"/><note xml:id="v78" dur="4" pname="e" oct="3"/><note xml:id="v79" dur="4" pname="d" oct="3"/></layer></staff>
 <slur startid="#n26" endid="#n27"/>
 <slur startid="#n28" endid="#n29"/>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">G</harm>
+<harm type="medium-auto" staff="1" tstamp="2" place="above">D/F♯</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">A7/E</harm>
+<harm type="medium-auto" staff="1" tstamp="4" place="above">D</harm>
 <harm staff="1" tstamp="1" place="above">G</harm>
 <harm staff="1" tstamp="2" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">A7/E</harm>
@@ -161,10 +209,13 @@
 <measure n="12"><staff n="1"><layer n="1">
 <note xml:id="n30" pname="e" oct="4" dur="1">
 <verse n="1"><syl eol="1">sphere,</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v80" dur="1" pname="c" oct="4" accid.ges="s"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v81" dur="1" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v82" dur="1" pname="a" oct="2"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">A</harm>
 <harm staff="1" tstamp="1" place="above">A</harm>
 </measure>
 <sb/>
@@ -175,10 +226,15 @@
 <verse n="1"><syl>to</syl></verse></note>
 <note xml:id="n33" pname="c" oct="5" dur="4">
 <verse n="1"><syl>each</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v83" dur="2" pname="d" oct="4"/><note xml:id="v84" dur="4" pname="d" oct="4"/><note xml:id="v85" dur="4" pname="g" oct="4"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v86" dur="2" pname="a" oct="3"/><note xml:id="v87" dur="4" pname="g" oct="3"/><note xml:id="v88" dur="4" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v89" dur="2" pname="f" oct="3" accid.ges="s"/><note xml:id="v90" dur="4" pname="g" oct="3"/><note xml:id="v91" dur="4" pname="e" oct="3"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">D/F♯</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">G</harm>
+<harm type="medium-auto" staff="1" tstamp="4" place="above">A7/E</harm>
 <harm staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm staff="1" tstamp="3" place="above">G</harm>
 <harm staff="1" tstamp="4" place="above">A7/E</harm>
@@ -188,11 +244,17 @@
 <verse n="1"><syl wordpos="i" con="d">lov</syl></verse></note>
 <note xml:id="n35" pname="g" oct="4" dur="4">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v92" dur="4" dots="1" pname="f" oct="4" accid.ges="s"/><note xml:id="v93" dur="8" pname="g" oct="4"/><note xml:id="v94" dur="4" pname="a" oct="4"/><note xml:id="v95" dur="4" pname="d" oct="4"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v96" dur="2" dots="1" pname="a" oct="3"/><note xml:id="v97" dur="4" pname="b" oct="3"/></layer><layer n="2"><note xml:id="v98" dur="4" dots="1" pname="d" oct="3"/><note xml:id="v99" dur="8" pname="e" oct="3"/><note xml:id="v100" dur="4" pname="f" oct="3" accid.ges="s"/><note xml:id="v101" dur="4" pname="g" oct="3"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">D</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">D/F♯</harm>
+<harm type="medium-auto" staff="1" tstamp="4" place="above">G</harm>
 <harm staff="1" tstamp="1" place="above">D</harm>
+<harm staff="1" tstamp="2.5" place="above">Asus4/E</harm>
 <harm staff="1" tstamp="3" place="above">D/F♯</harm>
 <harm staff="1" tstamp="4" place="above">G</harm>
 </measure>
@@ -201,10 +263,15 @@
 <verse n="1"><syl>heart</syl></verse></note>
 <note xml:id="n37" pname="e" oct="4" dur="2">
 <verse n="1"><syl>how</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v102" dur="2" pname="d" oct="4"/><note xml:id="v103" dur="2" pname="c" oct="4" accid.ges="s"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v104" dur="2" pname="a" oct="3"/><note xml:id="v105" dur="4" pname="a" oct="3"/><note xml:id="v106" dur="4" pname="g" oct="3"/></layer><layer n="2"><note xml:id="v107" dur="2" pname="a" oct="3"/><note xml:id="v108" dur="2" pname="a" oct="2"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">D/A</harm>
+<harm type="medium-auto" staff="1" tstamp="3" place="above">A</harm>
+<harm type="medium-auto" staff="1" tstamp="4" place="above">A7</harm>
 <harm staff="1" tstamp="1" place="above">D/A</harm>
 <harm staff="1" tstamp="3" place="above">A</harm>
 <harm staff="1" tstamp="4" place="above">A7</harm>
@@ -212,10 +279,13 @@
 <measure n="16" right="end"><staff n="1"><layer n="1">
 <note xml:id="n38" pname="d" oct="4" dur="1">
 <verse n="1"><syl eol="1">near.</syl></verse></note>
-</layer></staff>
+</layer>
+<layer n="2"><note xml:id="v109" dur="1" pname="f" oct="3" accid.ges="s"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v110" dur="1" pname="f" oct="3" accid.ges="s"/></layer><layer n="2"><note xml:id="v111" dur="1" pname="d" oct="3"/></layer></staff>
 
 
 
+<harm type="medium-auto" staff="1" tstamp="1" place="above">D</harm>
 <harm staff="1" tstamp="1" place="above">D</harm>
 </measure>
 </section></score></mdiv></body>
