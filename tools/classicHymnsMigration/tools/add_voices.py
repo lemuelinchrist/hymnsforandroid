@@ -136,6 +136,9 @@ def convert(h, write):
     if 'type="parts"' in x: return '%s: has its voices already' % h
     tune = tune_of(h)
     if not tune: return '%s: no tune in STATUS.tsv' % h
+    import midi_kind   # the kind of MIDI (tools/midi_kind.py): a piano accompaniment or one line is no four-part setting
+    kd = midi_kind.kind(os.path.join(HERE, '..', 'midi', 'm%s.mid' % tune))[0]
+    if kd not in ('four-part', 'mostly-four-part'): return '%s: refused (the MIDI is a %s)' % (h, kd)
     sd = re.search(r'<scoreDef\b[^>]*>', x).group(0)
     unit = int(re.search(r'meter\.unit="(\d+)"', sd).group(1)); sig = re.search(r'key\.sig="([^"]*)"', sd).group(1)
     alt, kind = M.key_alters(sig)
