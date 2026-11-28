@@ -67,7 +67,9 @@ When a hymn sounds wrong, suspect first: the chord just before the last one, any
 1. `python3 tools/show_hymn.py E152` (add `SUB=2` for every half beat): the bars, the sheet's chords and what the MIDI plays on each beat.
    For a bar with a tuplet, check the times by the notes' real positions. The samples blur where the voices move every half beat
    (they catch the old and the new notes together); for a MIDI on the grid (`off 16th grid` 0% in `INDEX.tsv`) read the voices exactly with
-   `python3 tools/midi_voices.py <tune> <pickup quarters> <quarters a bar> [0.5]` (E74, E659, E1313). The MIDI can be in another key than
+   `python3 tools/midi_voices.py <tune> <pickup quarters> <quarters a bar> [0.5]` (E74, E659, E1313), or better
+   `python3 tools/read_hymn.py <hymn>`: the same voices laid bar by bar under the sheet's melody and chords, already in the sheet's key,
+   with a check that the top voice is the melody (if most bars differ, the MIDI does not line up by time: E406). The MIDI can be in another key than
    the sheet (E659's in G for a sheet in F): transpose the reading.
 2. Read it beat by beat. Name the chord of the four voices, skip passing notes, and keep the moves in section 1.
 3. `python3 tools/set_chords.py E152 "1: 1 Fm, 2 Fm/A♭, 3 C, 4 D♭; 2: 1 C, 3 Fm"`. It writes into the hymns of the same tune that have the
@@ -93,10 +95,17 @@ Other sources, by how well they worked:
 
 ## 7. Open items (2026-11-28)
 - Noisiest hymns still to clean by hand: 151 (98 tunes) score above 1.0, 35 above 1.5. Done so far: batch 1 (6dde673ab, E1130 and 11 tunes),
-  batch 2 (2026-11-28: E287, E1334, E1311, E952, E74, E659, E1313). Skip E702.
+  batch 2 (2026-11-28: E287, E1334, E1311, E952, E74, E659, E1313), batch 3 (2026-11-28: 19 tunes, 40 sheets: E702, E149, E789, E743,
+  E844, E803, E335, E418, E190, E1151, E1196, E344, E1243, E1302, E592, E943, E713, E602, E921 and their tune-mates). E702 sounded good
+  but was cleaned too, to be easier to play. E406 left alone: its MIDI is played too freely to line up (do it from the hymnal page).
 - Common noise in batch 2: a chromatic or neighbour-note melody over a held bass read as a new chord on every half beat (E1334's C-D♭-D-E♭
   over A♭ gave A♭sus4, E/A♭, A♭), sus2/sus4/Maj7 named from passing notes, 16th-note chords at the end of a bar, and the chord with
   its 6th in the melody named as the relative minor (E659's B♭ as Gm/B♭, E1313's D as Bm/D).
+- Batch 3 patterns: a waltz or "oom-pah" piano part (E702: bass and chord on beat 1, two voices in thirds after) is one chord a bar; a broken
+  bass alternating root and fifth (E844: C-G-C-G) is one chord; a drone of open fifths (E1243) gives Fm or B♭m a bar, the passing notes
+  above it are not chords; a piano MIDI with five or six notes puts accompaniment above the melody (E190): read the bass and chord tones.
+  Diminished chords follow the rule of section 1 (E°7 → C7/E, A°7 → F7/A, G♯°7 → E7/G♯); the converter often spelled them as nonsense
+  (G♭7/E, A/D♭, A♭7/F♯). The last bar follows section 1 too: no IV over the tonic before the final chord (E190).
 - Hymnal page photos needed: E1340 (12/8 or 3/4?), E379/E393, E598, E993, E1296.
 - Spots for a listen: E577 bars 5-8 and 14; E384 bars 4, 7, 8, 12, 15; E1353 bars 7 and 13; E1226/E1354 bar 1; E715 bar 3 (D/A or D7/A?);
   the dominant endings of E75/E1108.

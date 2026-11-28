@@ -48,12 +48,10 @@
 <note xml:id="n13" dur="4" pname="d" oct="5" accid.ges="s">
 <verse n="1"><syl wordpos="i" con="d">be</syl></verse></note>
 </layer></staff>
+<slur startid="#n10" endid="#n11"/>
 <harm staff="1" tstamp="1" place="above">G♯m</harm>
-<harm staff="1" tstamp="2" place="above">BMaj7/F♯</harm>
 <harm staff="1" tstamp="2.5" place="above">E</harm>
 <harm staff="1" tstamp="3" place="above">B/D♯</harm>
-<harm staff="1" tstamp="4" place="above">B</harm>
-<slur startid="#n10" endid="#n11"/>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n14" dur="4" pname="c" oct="5" accid.ges="s">
@@ -63,7 +61,7 @@
 <note xml:id="n16" dur="2" pname="b" oct="4">
 <verse n="1"><syl eol="1">man,</syl></verse></note>
 </layer></staff>
-<harm staff="1" tstamp="1" place="above">C♯m7/E</harm>
+<harm staff="1" tstamp="1" place="above">C♯m/E</harm>
 <harm staff="1" tstamp="2" place="above">F♯</harm>
 <harm staff="1" tstamp="3" place="above">B</harm>
 </measure>
@@ -110,12 +108,10 @@
 <note xml:id="n29" dur="4" pname="d" oct="5" accid.ges="s">
 <verse n="1"><syl>His</syl></verse></note>
 </layer></staff>
+<slur startid="#n26" endid="#n27"/>
 <harm staff="1" tstamp="1" place="above">G♯m</harm>
-<harm staff="1" tstamp="2" place="above">BMaj7/F♯</harm>
 <harm staff="1" tstamp="2.5" place="above">E</harm>
 <harm staff="1" tstamp="3" place="above">B/D♯</harm>
-<harm staff="1" tstamp="4" place="above">B</harm>
-<slur startid="#n26" endid="#n27"/>
 </measure>
 <measure n="8"><staff n="1"><layer n="1">
 <note xml:id="n30" dur="4" pname="c" oct="5" accid.ges="s">
@@ -142,7 +138,6 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B</harm>
 <harm staff="1" tstamp="2" place="above">B/D♯</harm>
-<harm staff="1" tstamp="2.5" place="above">Esus2</harm>
 <harm staff="1" tstamp="3" place="above">F♯sus4</harm>
 <harm staff="1" tstamp="4" place="above">F♯</harm>
 </measure>
@@ -157,8 +152,6 @@
 <verse n="1"><syl eol="1" wordpos="t">vil;</syl></verse></note>
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">G♯m</harm>
-<harm staff="1" tstamp="2" place="above">G♯m/B</harm>
-<harm staff="1" tstamp="2.5" place="above">C♯sus2</harm>
 <harm staff="1" tstamp="3" place="above">D♯sus4</harm>
 <harm staff="1" tstamp="4" place="above">D♯7</harm>
 </measure>
