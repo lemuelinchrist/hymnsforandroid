@@ -2,7 +2,7 @@
 """Adds the MIDI's four voices to a sheet (2026-11-28, the three-level design in LESSONS.md section 6).
 
 The sheet keeps its melody and words as they are (staff 1, layer 1: the soprano). The alto goes in as staff 1 layer 2, the tenor and
-bass as staff 2 (bass clef), layers 1 and 2. The chords the sheet had move to <harm type="medium"> (the Medium level: hand-made, or
+bass as staff 2 (bass clef), layers 1 and 2. The chords the sheet had move to <harm type="medium> (the Medium level: hand-made, or
 what the converter gave: type="medium-auto" when it was not cleaned by hand, so Medium works it out with Simplify; hymns listed in hand_medium.txt are type="medium"), and new chords without a type are named from the four voices, as they sound: the Original level.
 
 The MIDI is laid on the sheet by time from its first note, so only MIDIs on the sixteenth grid that play the sheet once as written are
@@ -146,11 +146,17 @@ def convert(h, write):
     top0 = max(p for s, e, p in mnotes if s == t0)
     shift = first[2] - top0
     # the melody must be the MIDI's top voice everywhere
-    q16 = div / 4; bad = 0
-    for o, d, p in (n for b in bars for n in b[2]):
-        tm = t0 + (o - first[0]) * q16 + q16 * 0.2
-        top = max([pp for s, e, pp in mnotes if s <= tm < e] or [-99]) + shift
-        if top != p and top % 12 != p % 12: bad += 1   # (an octave apart is the same voice)
+    q16 = div / 4
+    def count(sh):
+        n = 0
+        for o, d, p in (n for b in bars for n in b[2]):
+            tm = t0 + (o - first[0]) * q16 + q16 * 0.2
+            top = max([pp for s, e, pp in mnotes if s <= tm < e] or [-99]) + sh
+            if top != p and top % 12 != p % 12: n += 1   # (an octave apart is the same voice)
+        return n
+    # the first note may not be the melody's pitch (a pickup, a chord): the transposition with the fewest melody notes off
+    shift = min(range(shift - 11, shift + 12), key=lambda sh: (count(sh), abs(sh - shift)))
+    bad = count(shift)
     if bad > 2: return '%s: refused (%d melody notes are not the top voice of the MIDI)' % (h, bad)
     note = ', %d melody notes differ from the MIDI top' % bad if bad else ''
     hand = h in HAND
@@ -172,7 +178,7 @@ def convert(h, write):
     new = new.replace('<staffGrp>', '<staffGrp symbol="brace" bar.thru="true">', 1)
     new = re.sub(r'(<staffDef n="1"[^>]*/>)', r'\1<staffDef n="2" lines="5" clef.shape="F" clef.line="4"/>', new, count=1)
     new = new.replace('</pubStmt>', '<identifier type="parts">SATB</identifier></pubStmt>', 1)
-    n_orig = sum(len(c) for c in original); n_med = len(re.findall(r'<harm type="medium"', new))
+    n_orig = sum(len(c) for c in original); n_med = len(re.findall(r'<harm type="medium', new))
     if write: open(path, 'w', encoding='utf8').write(new)
     return '%s: tune %s, MIDI %+d, %d bars, voices A %d T %d B %d notes; chords: Original %d, Medium %d%s' % (
         h, tune, shift, len(bars), len(vs['A']), len(vs['T']), len(vs['B']), n_orig, n_med, note + (' (written)' if write else ''))
