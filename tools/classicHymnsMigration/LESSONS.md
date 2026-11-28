@@ -93,6 +93,19 @@ Other sources, by how well they worked:
   plain triads, turns colour chords into the nearest main chord, and has at most one change a beat (a V into I may be half a beat). The
   key comes from the key signature, plus the last chord for minor. So a sheet with a wrong key signature or a wrong last chord simplifies badly.
 
+## 6b. Three levels with the four voices (pilot, 2026-11-28)
+Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the MIDI's four voices and three levels share them.
+- **Original**: the raw, unedited voices (soprano and alto on the treble staff, tenor and bass on the bass staff) and chords named from
+  them exactly as they sound (`<harm>` with no type). Never edited by hand: a wrong Original chord means wrong notes or a naming bug.
+- **Medium**: the melody with simplified chords (`<harm type="medium">`): the hand clean-ups of batches 1-3 are this. Sheets without
+  hand-made Medium chords get them from simplify.js, which since this day has no limit on chord changes a bar.
+- **Easy**: worked out from Medium (simplify.js).
+- Medium is the default level; the guitar sheet uses Medium's chords. Chorale plays the four voices at every level (the hymnal's own
+  parts); Flowing, the guitar and the rest play the chords of the level shown. Chord editing is off on voiced sheets for now.
+- `tools/add_voices.py <hymn>... --write` adds the voices: only on-grid MIDIs that play the sheet once, the melody the top voice in every
+  bar; tuplets, repeats and endings are refused. Pilot: E789, E149, E602, E803, E743 and their tune-mates (14 sheets). E889's family
+  points at another tune entry and did not line up.
+
 ## 7. Open items (2026-11-28)
 - Noisiest hymns still to clean by hand: 151 (98 tunes) score above 1.0, 35 above 1.5. Done so far: batch 1 (6dde673ab, E1130 and 11 tunes),
   batch 2 (2026-11-28: E287, E1334, E1311, E952, E74, E659, E1313), batch 3 (2026-11-28: 19 tunes, 40 sheets: E702, E149, E789, E743,

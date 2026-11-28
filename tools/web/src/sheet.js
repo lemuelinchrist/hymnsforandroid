@@ -9,7 +9,7 @@
 // from is the app's (host.js).
 import {host} from './host.js';
 import {tr} from './i18n.js';
-import {addPiano, silentChords, spellOut} from './piano.js';
+import {addPiano, isVoiced, melodyOnly, silentChords, spellOut} from './piano.js';
 import {simplifyBars} from './simplify.js';
 
 const MEI_NS = 'http://www.music-encoding.org/ns/mei';
@@ -309,9 +309,32 @@ function applyEdits(doc, bars, edits) {
   }
 }
 
-// the sheet as it sounds with this device's chord edits (the bars as edits.js keeps them), for playing it without a view
-export function soundDoc(xml, editBars) {
-  const doc = parseXml(xml);
+// ---- the three levels (2026-11-28) ----
+// Original, Medium, Easy: state.simplify 'original', 'medium' or 'easy' ('' is the default: Medium). A sheet with its four voices
+// (isVoiced) has two sets of chords: the Original ones, named from the voices as they sound (<harm> with no type), and the Medium
+// ones, hand-made (<harm type="medium">). Original shows the four parts with their chords; Medium and Easy show the melody with
+// the Medium chords (Easy simplified from them by simplify.js). Any other sheet has one set: Medium and Easy are worked out from it.
+export function levelOf(state) {
+  const v = state && state.simplify;
+  return v === 'original' || v === 'easy' ? v : 'medium';
+}
+
+// the chords of a level kept, the other set taken out (a voiced sheet; Easy keeps the Medium chords to simplify them)
+export function chordLevel(doc, level) {
+  if (!isVoiced(doc)) return doc;
+  const original = level === 'original';
+  for (const h of Array.from(mei(doc, 'harm'))) {
+    const medium = h.getAttribute('type') === 'medium';
+    if (original === medium) h.parentNode.removeChild(h);
+    else if (medium) h.removeAttribute('type');
+  }
+  return doc;
+}
+
+// the sheet as it sounds with this device's chord edits (the bars as edits.js keeps them), for playing it without a view; a voiced
+// sheet with the chords of `level` (Medium unless said): its voices play in Chorale, the chords in any other style
+export function soundDoc(xml, editBars, level = 'medium') {
+  const doc = chordLevel(parseXml(xml), level);
   if (editBars && Object.keys(editBars).length) applyEdits(doc, scanBars(doc), editBars);
   return doc;
 }
@@ -553,6 +576,7 @@ export class SheetView {
     this.baseFifths = keyFifths(doc);
     this.baseBpm = bpmOf(doc);
     this.baseHands = handsOf(doc);
+    this.voiced = isVoiced(doc);
     if (this.onSheet) this.onSheet();
     this.baseXml = new XMLSerializer().serializeToString(doc);
     this.spelledXml = null;
@@ -571,8 +595,11 @@ export class SheetView {
       xml = tk.getMEI();
       tk.setOptions({transpose: ''});
     }
-    this.soundXml = xml;
+    const voiced = this.voiced, level = state.guitar && voiced && levelOf(state) === 'original' ? 'medium' : levelOf(state);   // (the guitar sheet: Medium's chords at most)
     let doc = parseXml(xml);
+    if (voiced) { chordLevel(doc, level); xml = new XMLSerializer().serializeToString(doc); }
+    this.soundXml = xml;
+    this.level = level;
     // chord symbols that never sound (two on one beat: only the one nearest the beat is played) are marked here and not drawn (taken out
     // below, once the piano part and the capo are made from all the chords); what plays (soundXml) is untouched, and while the chords
     // are being edited every one is shown
@@ -584,7 +611,10 @@ export class SheetView {
     const fifths = state.shift ? keyFifths(doc) : this.baseFifths;
     const tonic = TONIC[fifths + 7];
     // Simplify: the chords worked out on the sheet as it is (before the guitar's capo and the piano part)
-    const plan = state.simplify && this.chorale && !this.editing && !this.chordsOnly ? simplifyPlan(doc, state.simplify) : null;
+    // (a voiced sheet's Medium chords are its own, hand-made: only Easy is worked out, from them)
+    const simplifyTo = !this.chorale || this.editing || this.chordsOnly || level === 'original' || (voiced && level === 'medium') ? '' : level;
+    const plan = simplifyTo ? simplifyPlan(doc, simplifyTo) : null;
+    if (voiced && level !== 'original') melodyOnly(doc);   // Medium and Easy: the melody, Original: the four parts
     this.steps = LETTERS.indexOf(tonic[0]) - LETTERS.indexOf(TONIC[this.baseFifths + 7][0]);
 
     // tail chords are plain text, so they are moved here: by the same interval as the key
@@ -617,7 +647,7 @@ export class SheetView {
     // both hands: the piano part is made for the sheet as it now is (this key, these chords), and only where there
     // is a staff to read it from
     this.handsShown = false;
-    if (state.hands && this.piano && !state.guitar && state.staff && !this.chordsOnly) {
+    if (state.hands && this.piano && !state.guitar && state.staff && !this.chordsOnly && !(voiced && level === 'original')) {
       try {
         const both = doc.cloneNode(true), added = addPiano(both, this.piano);   // on a copy: all of it, or the sheet as it was
         if (added.left + added.right > 0) { doc = both; this.handsShown = true; }

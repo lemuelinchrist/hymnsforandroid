@@ -10,9 +10,8 @@
 // kept too. The other chords (iii, vii, chromatic and passing chords) are colour.
 //
 //   Medium   light touch-ups: the same chords at the same places, in a simple shape (a triad or a plain seventh) with their
-//            slash bass; a chord equal to the one before it is not written again. A bar of four beats or more has at most
-//            three changes (a shorter bar two): what goes first is colour (the shortest first), then a change of the bass only
-//            (C -> C/E); a main chord or a secondary dominant never goes.
+//            slash bass; a chord equal to the one before it is not written again. (Until 2026-11-28 a bar had at most three
+//            changes; no more.) A sheet with its four voices has hand-made Medium chords and does not use this (sheet.js levelOf).
 //   Easy     plain triads in root position, no slash bass; each main chord and secondary dominant at its place; a colour chord
 //            becomes the main chord that shares most of its notes and holds the melody best.
 
@@ -117,8 +116,8 @@ export function simplifyBars(bars, level, skip) {
     if (mine.some((x) => x.unknown)) { prev = null; return null; }
     let res = [];
     mine.forEach((x) => { if ((res.length ? res[res.length - 1].out : null) !== x.out) res.push(Object.assign({}, x)); });
-    const beats = b.unit === 8 && b.count % 3 === 0 && b.count > 3 ? b.count / 3 : b.len * 4 / b.unit;
-    const max = beats >= 4 - 1e-6 ? MAX_MEDIUM : beats >= 2 - 1e-6 ? 2 : 1;
+    // no limit on the changes since 2026-11-28 (the chords in simple shapes are simple enough); MAX_MEDIUM stays for the tools
+    const max = Infinity;
     const changes = () => res.length - (res.length && res[0].out === prev ? 1 : 0);
     // what goes first: colour (the shortest first), then a change of the bass only; never the first chord of the bar,
     // a main chord that changes the harmony, or a secondary dominant

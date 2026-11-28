@@ -110,7 +110,9 @@ async function inPage({file, step, only}) {
         else {
           const badEv = sc.events.find((e, k) => !(e.q >= 0 && e.d > 0 && e.note > 20 && e.note < 110 && e.q + e.d <= sc.length + 4) || (k && e.q < sc.events[k - 1].q));
           if (badEv) out.problems.push(where + ': a note at ' + badEv.q + ' (' + badEv.note + ', ' + badEv.d + ') of ' + sc.length);
-          const lost = Object.keys(sc.idQ).filter((id) => !have.has(id));
+          // (a sheet with its four voices: the alto, tenor and bass are drawn at the Original level only, so they may be missing here)
+          const parts = /type="parts"/.test(text) ? new Set(Array.from(text.matchAll(/xml:id="(v\d+)"/g)).map((m) => m[1])) : new Set();
+          const lost = Object.keys(sc.idQ).filter((id) => !have.has(id) && !parts.has(id));
           if (lost.length) out.problems.push(where + ': ' + lost.length + ' elements to light up are not in the sheet, e.g. ' + lost[0]);
           if (hands && choice.lh && !sc.events.some((e) => e.hand === 'l') && added.left) out.problems.push(where + ': no left hand in the notes to play');
           if (sc.order.length < sc.bars) out.problems.push(where + ': ' + sc.order.length + ' bars played of ' + sc.bars);

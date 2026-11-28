@@ -134,13 +134,34 @@ export function spellOut(doc) {
 // The bars of the music as the generator needs them, in the order of the file:
 // [{el, g, len, nominal, beat, unit, count, fifths, notes: [{el, g, d, p, alter, written, key, tiedTo}], harms: [{g, ch}]}]
 // g and the lengths are in sixteenths, g from the first bar line.
+// a sheet that has its four voices written out (tools/classicHymnsMigration/tools/add_voices.py): <identifier type="parts">
+export function isVoiced(doc) {
+  for (const i of doc.getElementsByTagNameNS(MEI_NS, 'identifier')) if (i.getAttribute('type') === 'parts') return true;
+  return false;
+}
+
+// only the melody: the alto (staff 1, layer 2) and the staff of the tenor and bass taken out
+export function melodyOnly(doc) {
+  for (const m of Array.from(doc.getElementsByTagNameNS(MEI_NS, 'measure'))) {
+    for (const st of kids(m).filter((c) => c.localName === 'staff')) {
+      if (st.getAttribute('n') === '2') { m.removeChild(st); continue; }
+      kids(st).forEach((l) => { if (l.localName === 'layer' && l.getAttribute('n') !== '1') st.removeChild(l); });
+    }
+  }
+  for (const sd of Array.from(doc.getElementsByTagNameNS(MEI_NS, 'staffDef'))) if (sd.getAttribute('n') === '2') sd.parentNode.removeChild(sd);
+  for (const g of Array.from(doc.getElementsByTagNameNS(MEI_NS, 'staffGrp'))) { g.removeAttribute('symbol'); g.removeAttribute('bar.thru'); }
+  return doc;
+}
+
 function readBars(doc) {
   const bars = [];
   let unit = 4, count = 4, fifths = 0, g = 0;
   const tiedTo = new Set();
   for (const t of doc.getElementsByTagNameNS(MEI_NS, 'tie')) tiedTo.add((t.getAttribute('endid') || '').replace('#', ''));
+  const voiced = isVoiced(doc);
   const measure = (m) => {
-    const per = 16 / unit, nominal = Math.round(count * per), ka = keyAlter(fifths), state = {};
+    const per = 16 / unit, nominal = Math.round(count * per), ka = keyAlter(fifths);
+    let state = {};   // the accidentals written so far in the bar, per staff
     const bar = {el: m, g, unit, count, fifths, nominal, beat: unit === 8 && count % 3 === 0 ? 6 : Math.max(1, Math.round(per)), notes: [], harms: []};
     const par = m.parentNode;
     bar.ending = par && par.localName === 'ending' ? parseInt(par.getAttribute('n') || '1', 10) || 1 : 0;   // which ending the bar is in
@@ -148,7 +169,8 @@ function readBars(doc) {
     bar.rptend = m.getAttribute('right') === 'rptend';
     const staff = kids(m).find((c) => c.localName === 'staff');
     let end = 0;
-    const walk = (e, start, factor, layerN) => {
+    bar.parts = [];   // a sheet with its four voices (parts): the alto (staff 1 layer 2), tenor and bass (staff 2), apart from the melody
+    const walk = (e, start, factor, layerN, into) => {
       let at = start;
       kids(e).forEach((c) => {
         const name = c.localName;
@@ -160,17 +182,27 @@ function readBars(doc) {
             const alter = acc.sounding != null ? acc.sounding : acc.written != null ? acc.written : key in state ? state[key] : ka[pname];
             if (acc.written != null) state[key] = acc.written;
             const tie = c.getAttribute('tie') || '';
-            bar.notes.push({el: c, g: g + at, d, p: 12 * (oct + 1) + STEP[pname] + alter, alter, written: acc.written != null, key, pname, layer: layerN,
+            into.push({el: c, g: g + at, d, p: 12 * (oct + 1) + STEP[pname] + alter, alter, written: acc.written != null, key, pname, layer: layerN,
               tiedTo: tiedTo.has(xmlId(c)) || tie === 'm' || tie === 't'});
           }
           at += d;
         } else if (name === 'mRest' || name === 'mSpace') at += nominal;
-        else if (name === 'tuplet') at = walk(c, at, factor * parseInt(c.getAttribute('numbase') || '2', 10) / parseInt(c.getAttribute('num') || '3', 10), layerN);
-        else if (name === 'beam' || name === 'layer') at = walk(c, at, factor, layerN);
+        else if (name === 'tuplet') at = walk(c, at, factor * parseInt(c.getAttribute('numbase') || '2', 10) / parseInt(c.getAttribute('num') || '3', 10), layerN, into);
+        else if (name === 'beam' || name === 'layer') at = walk(c, at, factor, layerN, into);
       });
       return at;
     };
-    if (staff) kids(staff).forEach((layer) => { if (layer.localName === 'layer') end = Math.max(end, walk(layer, 0, 1, parseInt(layer.getAttribute('n') || '1', 10))); });
+    if (staff) kids(staff).forEach((layer) => {
+      if (layer.localName !== 'layer') return;
+      const n = parseInt(layer.getAttribute('n') || '1', 10);
+      end = Math.max(end, walk(layer, 0, 1, n, voiced && n > 1 ? bar.parts : bar.notes));
+    });
+    if (voiced) {
+      state = {};
+      kids(m).filter((c) => c.localName === 'staff' && c.getAttribute('n') === '2').forEach((st) => kids(st).forEach((layer) => {
+        if (layer.localName === 'layer') walk(layer, 0, 1, 10 + parseInt(layer.getAttribute('n') || '1', 10), bar.parts);
+      }));
+    }
     bar.len = Math.round(end) || nominal;
     kids(m).forEach((c) => {
       if (c.localName === 'harm') bar.harms.push({g: g + (parseFloat(c.getAttribute('tstamp') || '1') - 1) * per, ch: c.textContent.trim(), el: c});
@@ -299,6 +331,7 @@ function analyse(doc, choice, loop = false) {
 // Adds the piano part to a parsed sheet (in place): choice as above. Returns what it added: {left, right} (numbers
 // of notes), for the tests.
 export function addPiano(doc, choice) {
+  if (isVoiced(doc)) melodyOnly(doc);   // a sheet with its four voices: the piano part goes under the melody alone
   const out = {left: 0, right: 0}, A = choice && analyse(doc, choice);
   if (!A) return out;
   const {M, bars, chords, left, upbeat} = A, rh = choice.rh && choice.rh.add > 0 ? choice.rh : null;
@@ -410,9 +443,14 @@ export function silentChords(doc) {
 }
 
 export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
-  const A = analyse(doc, hands && choice ? choice : {lh: null, rh: {add: 0}}, loop);
+  // a sheet with its four voices plays them as written in Chorale (and under the melody alone): the hymnal's own parts, not a
+  // part made from the chords; any other style is made from the chords as usual
+  const chorale = !!(choice && choice.lh && choice.lh.family === 'dynamic' && choice.lh.kind === 'chorale');
+  const useParts = isVoiced(doc) && (!(hands && choice) || chorale);
+  const A = analyse(doc, hands && choice && !useParts ? choice : {lh: null, rh: {add: 0}}, loop);
   if (!A) return null;
-  const {M, bars, notes, chords, left, gapG, gapLeft, gapChord} = A;
+  const {M, bars, notes, chords, gapG} = A;
+  let {left, gapLeft, gapChord} = A;
   const per = bars.map(() => []);
   const barIndex = (g) => { let k = 0; while (k < bars.length - 1 && bars[k + 1].g <= g + 1e-6) k++; return k; };
   const put = (bi, e) => per[bi].push(e);
@@ -444,6 +482,19 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
     prevByLayer[ly] = ev;
   });
 
+  // the alto, tenor and bass, a tied note one note (per voice), a little under the melody, the bass a little more than the inner voices
+  if (useParts) {
+    const prevV = {};
+    bars.forEach((b, bi) => b.parts.forEach((n) => {
+      const prev = prevV[n.layer];
+      if (n.tiedTo && prev && prev.note === n.p && Math.abs(prev.g + prev.dg - n.g) < 0.01) { prev.dg += n.d; prev.ids.push(xmlId(n.el)); return; }
+      const vel = Math.round(M.melodyVel(n.g - b.g, n.d, b.beat, 2) * (n.layer === 12 ? 0.72 : 0.6));
+      const ev = {g: n.g, dg: n.d, note: n.p, vel, hand: 'l', ids: [xmlId(n.el)].filter(Boolean)};
+      put(bi, ev); prevV[n.layer] = ev;
+    }));
+    left = null; gapLeft = null; gapChord = null;
+  }
+
   // the left hand, or the chords softly in its place — metrical weighting, arpeggio contour, gentle chord rolls & clean pedal lifts
   const tone = (choice && choice.lh && choice.lh.tone) || 'warm';
   const putLeft = (barEvs, b, bi, gap) => {
@@ -456,7 +507,7 @@ export function scoreOf(doc, choice, {hands = false, loop = false} = {}) {
   };
   if (left) {
     bars.forEach((b, bi) => putLeft(left.filter((e) => e.g >= b.g - 1e-6 && e.g < b.g + b.len - 1e-6), b, bi, false));
-  } else {
+  } else if (!useParts) {
     chords.forEach((c) => {
       if (!c.info) return;
       const pitches = M.chordPitches(c.ch);
