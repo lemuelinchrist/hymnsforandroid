@@ -65,7 +65,10 @@ When a hymn sounds wrong, suspect first: the chord just before the last one, any
 
 ## 5. How to redo a hymn's chords by hand (the E1130 way)
 1. `python3 tools/show_hymn.py E152` (add `SUB=2` for every half beat): the bars, the sheet's chords and what the MIDI plays on each beat.
-   For a bar with a tuplet, check the times by the notes' real positions.
+   For a bar with a tuplet, check the times by the notes' real positions. The samples blur where the voices move every half beat
+   (they catch the old and the new notes together); for a MIDI on the grid (`off 16th grid` 0% in `INDEX.tsv`) read the voices exactly with
+   `python3 tools/midi_voices.py <tune> <pickup quarters> <quarters a bar> [0.5]` (E74, E659, E1313). The MIDI can be in another key than
+   the sheet (E659's in G for a sheet in F): transpose the reading.
 2. Read it beat by beat. Name the chord of the four voices, skip passing notes, and keep the moves in section 1.
 3. `python3 tools/set_chords.py E152 "1: 1 Fm, 2 Fm/A♭, 3 C, 4 D♭; 2: 1 C, 3 Fm"`. It writes into the hymns of the same tune that have the
    same melody too (it compares pitch, octave and duration, not other attributes).
@@ -89,8 +92,11 @@ Other sources, by how well they worked:
   key comes from the key signature, plus the last chord for minor. So a sheet with a wrong key signature or a wrong last chord simplifies badly.
 
 ## 7. Open items (2026-11-28)
-- Noisiest hymns still to clean by hand: 151 (98 tunes) score above 1.0, 35 above 1.5. Next: E287, E1334, E1311, E952, E74, E659, E1313.
-  Skip E702.
+- Noisiest hymns still to clean by hand: 151 (98 tunes) score above 1.0, 35 above 1.5. Done so far: batch 1 (6dde673ab, E1130 and 11 tunes),
+  batch 2 (2026-11-28: E287, E1334, E1311, E952, E74, E659, E1313). Skip E702.
+- Common noise in batch 2: a chromatic or neighbour-note melody over a held bass read as a new chord on every half beat (E1334's C-D♭-D-E♭
+  over A♭ gave A♭sus4, E/A♭, A♭), sus2/sus4/Maj7 named from passing notes, 16th-note chords at the end of a bar, and the chord with
+  its 6th in the melody named as the relative minor (E659's B♭ as Gm/B♭, E1313's D as Bm/D).
 - Hymnal page photos needed: E1340 (12/8 or 3/4?), E379/E393, E598, E993, E1296.
 - Spots for a listen: E577 bars 5-8 and 14; E384 bars 4, 7, 8, 12, 15; E1353 bars 7 and 13; E1226/E1354 bar 1; E715 bar 3 (D/A or D7/A?);
   the dominant endings of E75/E1108.
