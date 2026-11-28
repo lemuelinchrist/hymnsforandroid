@@ -8,6 +8,8 @@ import {soundDoc, bpmOf, handsOf, capoOf} from './sheet.js';
 import {scoreOf, strumChoice, PRESETS, presetChoice} from './piano.js';
 import * as Player from './player.js';
 
+// random: true marks the styles that may be picked at random (a hymn with no part of its own opens on one; a category
+// tab picks one of its random styles). Plain, Chorale, Pop, Steady and Melody alone are never picked by chance, only by hand.
 // The categories and styles, in their order. JukeboxCard.java lists the same groups and ids (keep them alike).
 // 'own' is the part the sheet names for itself (sheet.js handsOf: Chorale for most of the hymns with four parts), what
 // the hymn page's Play plays; it is offered only for such a sheet. A hymn always opens on it (on Flowing when its sheet
@@ -23,15 +25,15 @@ export const STYLES = [
   {id: 'own', group: 'own', name: 'The hymn\'s own style'},
   {id: 'plain', group: 'piano', name: 'Plain', preset: 'plain'},
   {id: 'chorale', group: 'piano', name: 'Chorale', preset: 'chorale', walk: true},
-  {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing', shuffle: true},
-  {id: 'lively', group: 'piano', name: 'Lively', preset: 'lively', shuffle: true},
-  {id: 'walking', group: 'piano', name: 'Walking', preset: 'walking'},
-  {id: 'guitar-pick', group: 'guitar', name: 'Fingerpicking', strum: 'pick', shuffle: true},
-  {id: 'guitar-folk', group: 'guitar', name: 'Folk strum', strum: 'folk'},
+  {id: 'flowing', group: 'piano', name: 'Flowing', preset: 'flowing', shuffle: true, random: true},
+  {id: 'lively', group: 'piano', name: 'Lively', preset: 'lively', shuffle: true, random: true},
+  {id: 'walking', group: 'piano', name: 'Walking', preset: 'walking', random: true},
+  {id: 'guitar-pick', group: 'guitar', name: 'Fingerpicking', strum: 'pick', shuffle: true, random: true},
+  {id: 'guitar-folk', group: 'guitar', name: 'Folk strum', strum: 'folk', random: true},
   {id: 'guitar-pop', group: 'guitar', name: 'Pop', strum: 'pop'},
   {id: 'guitar-steady', group: 'guitar', name: 'Steady', strum: 'steady'},
-  {id: 'guitar-ballad', group: 'guitar', name: 'Ballad', strum: 'ballad'},
-  {id: 'guitar-country', group: 'guitar', name: 'Country', strum: 'country'},
+  {id: 'guitar-ballad', group: 'guitar', name: 'Ballad', strum: 'ballad', random: true},
+  {id: 'guitar-country', group: 'guitar', name: 'Country', strum: 'country', random: true},
   {id: 'melody', group: 'melody', name: 'Melody alone'},
 ];
 export const DEFAULT_STYLE = 'own', FALLBACK_STYLE = 'flowing';   // a sheet without its own part: Flowing (piano.js DEFAULT)

@@ -852,7 +852,8 @@ function jukeboxCard(hymn, stopOthers, onChange) {
     prefs.speed = Math.max(J.MIN_SPEED, Math.min(J.MAX_SPEED, +prefs.speed || 1));
     const subsOf = (gid) => J.STYLES.filter((x) => x.group === gid);
     const randomIn = (gid, not) => {
-      const pool = subsOf(gid).filter((x) => x.id !== not);
+      let pool = subsOf(gid).filter((x) => x.random && x.id !== not);
+      if (!pool.length) pool = subsOf(gid).filter((x) => x.id !== not);
       return pool[Math.floor(Math.random() * pool.length)] || null;
     };
     let curStyle = J.styleFor(null, info.own), curSeed = 0, curWalk = false;

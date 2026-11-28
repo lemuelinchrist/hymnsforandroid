@@ -64,6 +64,10 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
             {"guitar-country", "guitar", R.string.jukebox_style_country, false, false},
             {"melody", "melody", R.string.jukebox_style_melody, false, false},
     };
+    // the styles that may be picked at random (as `random: true` in jukebox.js); Plain, Chorale and Melody alone only by hand
+    private static final java.util.Set<String> RANDOM_STYLES = new java.util.HashSet<>(java.util.Arrays.asList(
+            "flowing", "lively", "walking", "guitar-pick", "guitar-folk",
+            "guitar-ballad", "guitar-country"));
     private static final String DEFAULT_STYLE = "own", FALLBACK_STYLE = "flowing";
     private static final String PREF_LOOP = "jukeboxLoop";
     private static final double MIN_SPEED = 0.5, STEP = 0.05;
@@ -436,7 +440,8 @@ public class JukeboxCard extends ContentComponent<View> implements SheetPlayer.L
 
     private String randomIn(String gid, String not) {
         List<Object[]> pool = new ArrayList<>();
-        for (Object[] s : stylesInGroup(gid)) if (!s[0].equals(not)) pool.add(s);
+        for (Object[] s : stylesInGroup(gid)) if (!s[0].equals(not) && RANDOM_STYLES.contains(s[0])) pool.add(s);
+        if (pool.isEmpty()) for (Object[] s : stylesInGroup(gid)) if (!s[0].equals(not)) pool.add(s);
         if (pool.isEmpty()) pool = stylesInGroup(gid);
         return (String) pool.get(random.nextInt(pool.size()))[0];
     }
