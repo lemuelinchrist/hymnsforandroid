@@ -135,7 +135,8 @@ export function popupMenu(anchor, items, cls = '') {
   document.querySelector('.share-menu')?.remove();
   const menu = h('div', {class: 'share-menu ' + cls, role: 'menu'}, items.map((it) =>
     h('button', {role: it.checked == null ? 'menuitem' : 'menuitemcheckbox', 'aria-checked': it.checked == null ? null : String(!!it.checked),
-      onclick: () => { close(); it.run(); }}, h('span', {class: 'tile'}, icon(it.icon)), it.label,
+      disabled: it.disabled ? '' : null, 'aria-disabled': it.disabled ? 'true' : null,
+      onclick: () => { if (it.disabled) return; close(); it.run(); }}, h('span', {class: 'tile'}, icon(it.icon)), it.label,
     it.checked ? h('span', {class: 'tick'}, icon('check')) : null)));
   const close = () => {
     menu.remove();

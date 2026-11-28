@@ -43,9 +43,14 @@ export function createSheetPanel(pane, o) {
     shift: Math.max(-MAX_SHIFT, Math.min(MAX_SHIFT, parseInt(p.get('t') || '0', 10) || 0)),
     scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, parseInt(p.get('z') || '', 10) || prefs.scale)),
     hands: !!prefs.hands,
-    simplify: ['original', 'medium', 'easy'].includes(prefs.simplify) ? prefs.simplify : '',   // Original, Medium (the default, ''), Easy: sheet.js levelOf
+    simplify: ['medium', 'easy'].includes(prefs.simplify) ? prefs.simplify : '',   // Medium (the default, ''), Easy; Original is for this hymn only (sheet.js levelOf)
   };
-  const keep = () => store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands, simplify: state.simplify});
+  // Original (the four voices) is a choice for the hymn at hand: it is not kept, the next hymn opens at the level that was kept before
+  let keptLevel = state.simplify;
+  const keep = () => {
+    if (state.simplify !== 'original') keptLevel = state.simplify;
+    store.set('sheet', {guitar: state.guitar, staff: state.staff, scale: state.scale, hands: state.hands, simplify: keptLevel});
+  };
 
   const btn = (label, title, onclick, cls = '') => h('button', {type: 'button', class: 'tb ' + cls, title, 'aria-label': title, onclick}, label);
   // on a narrow screen (sheet.css) Piano | Guitar show their icons instead of the words (the staff button keeps its words)
@@ -62,7 +67,7 @@ export function createSheetPanel(pane, o) {
   // "Simplify" (piano sheet; the guitar sheet keeps Chords only and has Simplify in ⋯): simpler chords on the sheet, a choice of
   // Original, Medium and Easy (simplify.js)
   const simplifyMenu = (anchor) => popupMenu(anchor, [['original', tr('Original')], ['medium', tr('Medium')], ['easy', tr('Easy')]].map(([level, label]) =>
-    ({icon: 'edit', label, checked: levelOf(state) === level, run: () => set({simplify: level})})), 'sheet-menu');
+    ({icon: 'edit', label, checked: levelOf(state) === level, disabled: level === 'original' && !view.voiced, run: () => set({simplify: level})})), 'sheet-menu');
   const bSimple = btn(tr('Simplify'), tr('Simpler chords on the sheet'), () => simplifyMenu(bSimple), 'toggle');
   bSimple.setAttribute('aria-haspopup', 'menu');
   const bZoomOut = btn(icon('zoomOut'), tr('Smaller (Z)'), () => set({scale: state.scale - 5}), 'icon');
