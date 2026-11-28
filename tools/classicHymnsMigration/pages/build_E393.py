@@ -161,7 +161,7 @@ def build(write):
     out.append(x[last:]); new = ''.join(out)
     new = new.replace('<staffGrp>', '<staffGrp symbol="brace" bar.thru="true">', 1)
     new = re.sub(r'(<staffDef n="1"[^>]*/>)', r'\1<staffDef n="2" lines="5" clef.shape="F" clef.line="4"/>', new, count=1)
-    new = new.replace('</pubStmt>', '<identifier type="parts">SATB</identifier></pubStmt>', 1)
+    new = new.replace('</pubStmt>', '<identifier type="parts">SATB</identifier><identifier type="requiredFermata">true</identifier></pubStmt>', 1)   # the tune cannot be listened to without its fermatas
     if write: open(PATH, 'w', encoding='utf8').write(new)
     for bi, o in enumerate(original): print(bi + 1, ' '.join('%g:%s' % (t, c) for t, c in o))
     return new
