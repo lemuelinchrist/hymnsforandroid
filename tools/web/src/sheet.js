@@ -315,8 +315,8 @@ function applyEdits(doc, bars, edits) {
 // ones, hand-made (<harm type="medium">). Original shows the four parts with their chords; Medium and Easy show the melody with
 // the Medium chords (Easy simplified from them by simplify.js). Any other sheet has one set: Medium and Easy are worked out from it.
 export function levelOf(state) {
-  const v = state && state.simplify;
-  return v === 'original' || v === 'easy' ? v : 'medium';
+  // Simplify is switched off for now (its button is hidden, sheetpanel.js): every sheet shows its own chords, as in v5.11
+  return 'original';
 }
 
 // the chords of a level kept, the other set taken out (a voiced sheet; Easy keeps the Medium chords to simplify them)

@@ -2,7 +2,7 @@
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
 <meiHead><fileDesc><titleStmt><title type="main">Resting on the faithfulness of Christ our Lord</title>
 <title type="subordinate">Experience of Christ—Resting on Him</title>
-</titleStmt><pubStmt><identifier type="hymn">E580</identifier><identifier type="number">580</identifier><identifier type="source">Hymns For Android</identifier><identifier type="hands">dynamic/chorale/half rh=1:beat</identifier></pubStmt></fileDesc></meiHead>
+</titleStmt><pubStmt><identifier type="hymn">E580</identifier><identifier type="number">580</identifier></pubStmt></fileDesc></meiHead>
 <music><body><mdiv><score>
 <scoreDef key.sig="2f" meter.count="4" meter.unit="4" meter.sym="common" midi.bpm="95"><staffGrp><staffDef n="1" lines="5" clef.shape="G" clef.line="2"/></staffGrp></scoreDef>
 <section>
@@ -30,8 +30,6 @@
 </layer></staff>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/B♭</harm>
-<harm staff="1" tstamp="3.5" place="above">B♭</harm>
-<harm staff="1" tstamp="4" place="above">Gm/B♭</harm>
 </measure>
 <measure n="2"><staff n="1"><layer n="1">
 <note xml:id="n9" pname="f" oct="4" dur="4">
@@ -41,13 +39,8 @@
 <note xml:id="n11" pname="b" oct="4" dur="2">
 <verse n="1"><syl eol="1">Lord,</syl></verse></note>
 </layer></staff>
-
-
-
 <harm staff="1" tstamp="1" place="above">B♭</harm>
-<harm staff="1" tstamp="3" place="above">Cm7</harm>
-<harm staff="1" tstamp="4" place="above">B♭/D</harm>
-<harm staff="1" tstamp="4.5" place="above">E♭</harm>
+<harm staff="1" tstamp="3" place="above">B♭/D</harm>
 </measure>
 <sb/>
 <measure n="3"><staff n="1"><layer n="1">
@@ -72,13 +65,8 @@
 <verse n="1"><syl>His</syl></verse></note>
 </beam>
 </layer></staff>
-
-
-
 <harm staff="1" tstamp="1" place="above">E♭</harm>
-<harm staff="1" tstamp="2" place="above">E♭/B♭</harm>
 <harm staff="1" tstamp="3" place="above">E♭/G</harm>
-<harm staff="1" tstamp="4" place="above">F/A</harm>
 </measure>
 <measure n="4"><staff n="1"><layer n="1">
 <note xml:id="n20" pname="g" oct="4" dur="4">
@@ -88,14 +76,8 @@
 <note xml:id="n22" pname="f" oct="4" dur="2">
 <verse n="1"><syl eol="1">word,</syl></verse></note>
 </layer></staff>
-
-
-
-<harm staff="1" tstamp="1" place="above">Gm/B♭</harm>
-<harm staff="1" tstamp="2" place="above">B♭</harm>
-<harm staff="1" tstamp="3" place="above">F</harm>
-<harm staff="1" tstamp="4" place="above">Csus4/G</harm>
-<harm staff="1" tstamp="4.5" place="above">F/C</harm>
+<harm staff="1" tstamp="1" place="above">B♭</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
 </measure>
 <sb/>
 <measure n="5"><staff n="1"><layer n="1">
@@ -120,13 +102,8 @@
 <verse n="1"><syl>His</syl></verse></note>
 </beam>
 </layer></staff>
-
-
-
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="3" place="above">F/A</harm>
-<harm staff="1" tstamp="4" place="above">Dm7/A</harm>
-<harm staff="1" tstamp="4.5" place="above">F/A</harm>
 </measure>
 <measure n="6"><staff n="1"><layer n="1">
 <note xml:id="n31" pname="f" oct="4" dur="4">
@@ -136,11 +113,7 @@
 <note xml:id="n33" pname="b" oct="4" dur="2">
 <verse n="1"><syl eol="1">pow’r,</syl></verse></note>
 </layer></staff>
-
-
-
-<harm staff="1" tstamp="1" place="above">Gm7</harm>
-<harm staff="1" tstamp="2" place="above">Gm</harm>
+<harm staff="1" tstamp="1" place="above">Gm</harm>
 <harm staff="1" tstamp="3" place="above">B♭/F</harm>
 <harm staff="1" tstamp="4" place="above">B♭/D</harm>
 </measure>
@@ -167,13 +140,8 @@
 <verse n="1"><syl>from</syl></verse></note>
 </beam>
 </layer></staff>
-
-
-
 <harm staff="1" tstamp="1" place="above">Cm</harm>
-<harm staff="1" tstamp="2" place="above">E♭</harm>
-<harm staff="1" tstamp="3" place="above">F</harm>
-<harm staff="1" tstamp="4" place="above">F7/A</harm>
+<harm staff="1" tstamp="3" place="above">F7</harm>
 </measure>
 <measure n="8" right="end"><staff n="1"><layer n="1">
 <note xml:id="n42" pname="b" oct="4" dur="4">
@@ -183,9 +151,6 @@
 <note xml:id="n44" pname="b" oct="4" dur="2">
 <verse n="1"><syl eol="1">hour.</syl></verse></note>
 </layer></staff>
-
-
-
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="2" place="above">E♭/B♭</harm>
 <harm staff="1" tstamp="3" place="above">B♭</harm>
