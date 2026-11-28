@@ -186,7 +186,7 @@
 <note xml:id="n40" dur="2" dots="1" pname="e" oct="4" accid.ges="f">
 <verse n="1"><syl eol="1">King.</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v109" dur="4" pname="d" oct="4" accid="n"/><note xml:id="v110" dur="4" pname="d" oct="4"/><note xml:id="v111" dur="4" pname="d" oct="4"/><note xml:id="v112" dur="4" pname="g" oct="3"/><note xml:id="v113" dur="4" pname="c" oct="4"/><note xml:id="v114" dur="4" pname="d" oct="4" accid="f"/></layer></staff>
+<layer n="2"><note xml:id="v109" dur="4" pname="d" oct="4" accid="n"/><note accid="f" xml:id="v110" dur="4" pname="d" oct="4"/><note xml:id="v111" dur="4" pname="d" oct="4"/><note xml:id="v112" dur="4" pname="g" oct="3"/><note xml:id="v113" dur="4" pname="c" oct="4"/><note xml:id="v114" dur="4" pname="d" oct="4" accid="f"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v115" dur="4" pname="c" oct="4"/><note xml:id="v116" dur="4" pname="b" oct="3" accid.ges="f"/><note xml:id="v117" dur="4" pname="a" oct="3" accid.ges="f"/><note xml:id="v118" dur="4" pname="g" oct="3"/><note xml:id="v119" dur="4" pname="a" oct="3" accid.ges="f"/><note xml:id="v120" dur="4" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v121" dur="4" pname="b" oct="2" accid.ges="f"/><note xml:id="v122" dur="4" pname="b" oct="2" accid.ges="f"/><note xml:id="v123" dur="4" pname="b" oct="2" accid.ges="f"/><note xml:id="v124" dur="2" dots="1" pname="e" oct="3" accid.ges="f"/></layer></staff>
 <fermata startid="#n40" place="above"/>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">B♭7</harm>
