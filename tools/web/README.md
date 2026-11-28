@@ -82,41 +82,13 @@ piano part of it: a second staff with a left hand made from the chords, and, if 
 melody. Nothing of it is in the sheet files: it is worked out for the sheet as it is shown, so it follows the key
 (transposing) and this device's chord edits, and every hymn that has chords has it.
 
-Turning Both hands on or pressing Play on the sheet opens one **Unified Bottom Dock** (`pianopanel.js` `createSheetDock`, `.ud-dock.sheet-dock`, shared with Android's sheet viewer — matching the Jukebox layout 1:1). It floats at the bottom with a 3 px top progress line, a slim 1-row bar (circular Play/Stop, From-start `|◀`, active style + `♩ = <bpm>` / bar summary, Loop icon toggle, Expand/Collapse chevron, and Close `✕`), and an expandable drawer (tapped or dragged up/down; hidden while editing chords or on chords-only sheets) with the segmented category tabs (`Hymn's own` | `Piano` | `Guitar` | `Melody`) on the piano sheet, organized horizontal style pills, Tempo slider, and Right hand (`RH: 1 note` | `RH: 2 notes`). The web Lyrics tab's Jukebox (`app.js` `jukeboxCard`, `.ud-dock.jukebox-dock`) uses the exact same floating bottom dock. Inside the sheet dock's drawer:
+Turning Both hands on or pressing Play on the sheet opens one **Unified Bottom Dock** (`pianopanel.js` `createSheetDock`, `.ud-dock.sheet-dock`, shared with Android's sheet viewer — matching the Jukebox layout 1:1). It floats at the bottom with a 3 px top progress line, a slim 1-row bar (circular Play/Stop, From-start `|◀`, active style + `♩ = <bpm>` / bar summary, Loop icon toggle, Expand/Collapse chevron, and Close `✕`), and an expandable drawer (tapped or dragged up/down; hidden while editing chords or on chords-only sheets) with the segmented category tabs (`Hymn's own` | `Piano` | `Guitar` | `Melody`) on the piano sheet, organized horizontal style pills (with attached `↻` shuffle side-buttons on phrase-shuffled styles), Chorale `More walking` switch, Tempo slider, and Right hand (`RH: 1 note` | `RH: 2 notes`). The web Lyrics tab's Jukebox (`app.js` `jukeboxCard`, `.ud-dock.jukebox-dock`) uses the exact same floating bottom dock.
 
-- **Style**, a preset named by what it is for: **Plain** (Strike, hymn style, twice a bar), **Chorale**
-  (bass and tenor, walking through the note between where one leaps a third, with Two notes on the beat: four-part
-  harmony as in a hymnal), **Flowing** (the default: Dynamic, Adaptive, with Two notes — whisper-soft on chord changes), **Guitar**
-  (strummed or picked: dynamic phrase-shuffled **Folk strum** `↻`, dynamic phrase-shuffled **Ballad** `↻`, **Country**, and phrase-shuffled **Fingerpicking** `↻` weaving fingerpicking, ballad arches, harp, and 4-string plucked chords), **Lively** (Dynamic, Pulse — phrase-shuffled across five upbeat moods with crisp detached mid-chord bounce articulation: 3-3-2 pop pulse, cheerful hymn bounce, driving quarter chords, gospel walk, and sparkling bouncy arpeggios, with Two notes) and **Walking** (Dynamic, Walking, with Two notes). A preset sets the right hand, which can then be changed.
-- **Right hand**: **Melody alone** or **Two notes** (a note of the chord added where a chord starts; with Chorale on the beat).
-- **Shuffle side-button** (a narrow refresh icon button attached to **Flowing**, **Lively**, and **Fingerpicking** in the Style and Strumming panels): Flowing weaves six calm pianist moods (`music.js` `adaptMoods`), Lively weaves five upbeat moods (`pulseMoods`), and Fingerpicking weaves eight acoustic guitar moods (`guitarPickMoods`) across musical phrases (2–4 bars, transitioning after cadence pauses or every 4 bars) by a random number made from the song and the hymn's take. Tapping the refresh side-button picks another take (`seed`, kept for the
-  hymn in `handsByHymn` or `strumByHymn`), so the notes change but are the same every time the song plays; tapping the main **Flowing**, **Lively**, or **Fingerpicking** button returns to the hymn's own take. Every figure holds its last note for at least a beat before the next
-  chord's bass: eighths never run up and then leap straight down.
-- **More walking** (a switch under Style, only with Chorale): both lower voices may walk at a change, a
-  fourth is walked in two steps, and in a chord of a bar or more, or of two or three beats while the melody holds one note
-  through it, the bass moves to another note of it halfway, towards the next bass.
+On the **guitar sheet**, there is no Both hands switch: the sheet always plays strummed or picked on the sampled steel-string guitar (melody included), honoring slash basses above the guitar sheet's capo even though slash basses are hidden on screen. Its bottom dock shows the four guitar styles (**Folk strum** `↻`, **Ballad** `↻`, **Country**, **Fingerpicking** `↻`), **Tone** (`Bright`, `Warm` default, `Mellow`, `Soft`), and **Tempo**.
 
-**Guitar** plays the chords as a guitar does in the first frets (the open shapes: C x32010, G 320003, D xx0232; a slash
-chord's bass on the lowest string that has it), strummed with differentiated full/treble/bass/up and soft palm-damped strokes, or
-picked (thumb on the basses, the G, B and high E strings between), by the time signature. It sounds as a guitar:
-FluidR3 GM's steel-string acoustic guitar (`vendor/guitar/`, 13 MP3s, about 270 KB, loaded when a sheet first strums
-and cached offline like the piano), in the **Warm** tone by default (the pick's edge rounded; Bright, Warm, Mellow and Soft are available in the guitar sheet's Strumming panel). `player.js` GUITAR_TONES: a low-pass that opens with
-harder strums, a high-shelf cut above 3 kHz, a slower attack, a little body. While the samples load, or without them,
-a plucked string made in the browser (Karplus-Strong) plays. The melody stays on the piano. A listening page compared
-six sample sets by ear before FluidR3 steel and Warm were chosen.
+Every style choice is stored per hymn (`handsByHymn` / `strumByHymn`; legacy device-wide and Advanced keys are cleared on load by `forgetOldChoices()`), falling back to the sheet's `<identifier type="hands">` if present or the defaults (`Flowing` on piano, `Folk strum · Warm` on guitar).
 
-**Strumming** (the guitar sheet): there is no switch for it; the guitar sheet always plays strummed, on a guitar (the melody too), and its panel opens when Play is pressed and goes at Stop (the piano sheet's Style panel the same, besides being there while Both hands is on). A guitar strums the chords when the sheet plays
-(`piano.js` strumChoice: the guitar kinds, the tone, and the guitar sheet's capo, so the shapes are played above the capo while still honoring slash basses from the sheet's sounding chords even though the guitar sheet hides them on screen). Its panel (`pianopanel.js` createSheetDock, matching the Jukebox layout) has the guitar styles (with attached refresh side-buttons on dynamic phrase-shuffled **Folk strum**, **Ballad**, and **Fingerpicking**) and Tone: kept per hymn in `strumByHymn` (Both hands': `handsByHymn`; `piano.js` SAVED). Earlier device-wide and Advanced keys (`piano`, `pianoOf`, `strum`, `strumOf`, `handsForAll`, `strumForAll`, `pianoAdvanced`) are deleted when the sheet loads so every device starts cleanly from the per-hymn defaults. Nothing is added to the sheet.
-
-**More walking** is a switch (`role="switch"`), the other choices buttons.
-
-Every change is kept for that hymn alone (`handsByHymn` / `strumByHymn`); every other hymn starts from its own `<identifier type="hands">` if present or the default (`Flowing` / `Folk strum · Warm`). Both hands stays on from hymn to hymn, like the zoom. A style is kept by its name, not its notes, so the same pattern fits 4/4, 3/4 and 6/8.
-
-The rules are the lead sheet editor's (`tools/lead-sheet-editor/music.js`, which `build.py` copies into the app; its
-README says what a pattern is): the upbeat bar stays empty, a pattern starts again with every chord and every bar, the
-left hand moves on the beat and stays under the right hand, the last bar is one held chord. `src/piano.js` reads the
-bars, the chords and the melody of a sheet and writes the second staff and the added notes into the MEI before Verovio
-draws it. It is not there on the guitar sheet, with the staff hidden, or on a chords-only sheet.
+For the full technical specification of all Piano & Guitar accompaniment styles, pattern tokens, phrase-shuffled mood engines (`Flowing`, `Lively`, `Fingerpicking`, `Folk strum`, `Ballad`), guitar capo/slash-bass voicings, dynamics, tempo-aware pacing, and audio synthesis, see **[`docs/ACCOMPANIMENT_STYLES.md`](../../docs/ACCOMPANIMENT_STYLES.md)**. The rules live in `tools/lead-sheet-editor/music.js` (copied into the web app by `build.py`) and are applied to MEI sheets by `src/piano.js`.
 
 ## Play sheet
 
