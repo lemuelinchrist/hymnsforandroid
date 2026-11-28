@@ -123,7 +123,7 @@
 <note xml:id="n25" dur="4" pname="f" oct="4">
 <verse n="1"><syl>has</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v64" dur="4" dots="1" pname="b" oct="3" accid="n"/><note xml:id="v65" dur="8" pname="b" oct="3"/><note xml:id="v66" dur="4" pname="b" oct="3"/><note xml:id="v67" dur="4" pname="b" oct="3"/></layer></staff>
+<layer n="2"><note xml:id="v64" dur="4" dots="1" pname="b" oct="3" accid="n"/><note accid="f" xml:id="v65" dur="8" pname="b" oct="3"/><note xml:id="v66" dur="4" pname="b" oct="3"/><note xml:id="v67" dur="4" pname="b" oct="3"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v68" dur="4" dots="1" pname="g" oct="3"/><note xml:id="v69" dur="8" pname="g" oct="3"/><note xml:id="v70" dur="4" pname="g" oct="3"/><note xml:id="v71" dur="4" pname="f" oct="3"/></layer><layer n="2"><note xml:id="v72" dur="4" dots="1" pname="d" oct="3"/><note xml:id="v73" dur="8" pname="d" oct="3"/><note xml:id="v74" dur="4" pname="d" oct="3"/><note xml:id="v75" dur="4" pname="d" oct="3"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">G7/D</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">Em7/D</harm>

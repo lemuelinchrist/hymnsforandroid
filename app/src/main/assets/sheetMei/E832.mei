@@ -13,7 +13,7 @@
 <verse n="1"><syl>the</syl></verse></note>
 <note xml:id="n3" dur="4" pname="g" oct="4" accid="f">
 <verse n="1"><syl>Son</syl></verse></note>
-<note xml:id="n4" dur="4" pname="g" oct="4">
+<note accid="n" xml:id="n4" dur="4" pname="g" oct="4">
 <verse n="1"><syl>of</syl></verse></note>
 </layer>
 <layer n="2"><note xml:id="v1" dur="4" dots="1" pname="e" oct="4" accid.ges="f"/><note xml:id="v2" dur="8" pname="e" oct="4" accid.ges="f"/><note xml:id="v3" dur="4" pname="e" oct="4" accid.ges="f"/><note xml:id="v4" dur="4" pname="e" oct="4" accid.ges="f"/></layer></staff>
@@ -83,7 +83,7 @@
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 </layer>
 <layer n="2"><note xml:id="v38" dur="4" dots="1" pname="f" oct="4"/><note xml:id="v39" dur="8" pname="f" oct="4"/><note xml:id="v40" dur="4" pname="f" oct="4"/><note xml:id="v41" dur="4" pname="f" oct="4"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v42" dur="4" dots="1" pname="b" oct="3" accid="n"/><note xml:id="v43" dur="8" pname="b" oct="3"/><note xml:id="v44" dur="4" pname="b" oct="3"/><note xml:id="v45" dur="4" pname="b" oct="3"/></layer><layer n="2"><note xml:id="v46" dur="4" dots="1" pname="d" oct="3"/><note xml:id="v47" dur="8" pname="d" oct="3"/><note xml:id="v48" dur="4" pname="d" oct="3"/><note xml:id="v49" dur="4" pname="d" oct="3"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v42" dur="4" dots="1" pname="b" oct="3" accid="n"/><note accid="f" xml:id="v43" dur="8" pname="b" oct="3"/><note xml:id="v44" dur="4" pname="b" oct="3"/><note xml:id="v45" dur="4" pname="b" oct="3"/></layer><layer n="2"><note xml:id="v46" dur="4" dots="1" pname="d" oct="3"/><note xml:id="v47" dur="8" pname="d" oct="3"/><note xml:id="v48" dur="4" pname="d" oct="3"/><note xml:id="v49" dur="4" pname="d" oct="3"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">G7/D</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">B♭/D</harm>
 <harm type="medium-auto" staff="1" tstamp="4" place="above">G7/D</harm>

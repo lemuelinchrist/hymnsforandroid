@@ -46,7 +46,7 @@
 <verse n="1"><syl wordpos="i" con="d">hous</syl></verse></note>
 <note xml:id="n8" dur="8" pname="g" oct="4" accid="f">
 <verse n="1"><syl wordpos="t">es</syl></verse></note>
-<note xml:id="n9" dur="4" pname="g" oct="4">
+<note accid="n" xml:id="n9" dur="4" pname="g" oct="4">
 <verse n="1"><syl>and</syl></verse></note>
 </layer>
 <layer n="2"><note xml:id="v19" dur="4" dots="1" pname="e" oct="4" accid.ges="f"/><note xml:id="v20" dur="8" pname="e" oct="4" accid.ges="f"/><note xml:id="v21" dur="4" pname="e" oct="4" accid.ges="f"/></layer></staff>
@@ -207,7 +207,7 @@
 </beam>
 </layer>
 <layer n="2"><note xml:id="v106" dur="2" pname="e" oct="4" accid.ges="f"/><note xml:id="v107" dur="8" pname="a" oct="3" accid="n"/><note xml:id="v108" dur="8" pname="e" oct="4" accid.ges="f"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v109" dur="2" pname="b" oct="3" accid.ges="f"/><note xml:id="v110" dur="8" pname="a" oct="3" accid="n"/><note xml:id="v111" dur="8" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v112" dur="2" pname="e" oct="3" accid.ges="f"/><note xml:id="v113" dur="8" pname="c" oct="3"/><note xml:id="v114" dur="8" pname="c" oct="3"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v109" dur="2" pname="b" oct="3" accid.ges="f"/><note xml:id="v110" dur="8" pname="a" oct="3" accid="n"/><note accid="f" xml:id="v111" dur="8" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v112" dur="2" pname="e" oct="3" accid.ges="f"/><note xml:id="v113" dur="8" pname="c" oct="3"/><note xml:id="v114" dur="8" pname="c" oct="3"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">E♭</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">F/C</harm>
 <harm type="medium-auto" staff="1" tstamp="3.5" place="above">F7/C</harm>
@@ -278,7 +278,7 @@
 <verse n="1"><syl>child</syl></verse></note>
 <note xml:id="n52" dur="8" pname="g" oct="4" accid="f">
 <verse n="1"><syl>of</syl></verse></note>
-<note xml:id="n53" dur="4" pname="g" oct="4">
+<note accid="n" xml:id="n53" dur="4" pname="g" oct="4">
 <verse n="1"><syl>the</syl></verse></note>
 </layer>
 <layer n="2"><note xml:id="v148" dur="4" dots="1" pname="e" oct="4" accid.ges="f"/><note xml:id="v149" dur="8" pname="e" oct="4" accid.ges="f"/><note xml:id="v150" dur="4" pname="e" oct="4" accid.ges="f"/></layer></staff>

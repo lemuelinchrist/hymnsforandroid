@@ -407,7 +407,7 @@
 <note xml:id="n90" dur="4" pname="g" oct="4">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v255" dur="4" pname="d" oct="4" tie="t"/><note xml:id="v256" dur="4" pname="f" oct="4"/><note xml:id="v257" dur="4" pname="e" oct="4" accid="n"/><note xml:id="v258" dur="4" pname="e" oct="4" tie="i"/></layer></staff>
+<layer n="2"><note xml:id="v255" dur="4" pname="d" oct="4" tie="t"/><note xml:id="v256" dur="4" pname="f" oct="4"/><note xml:id="v257" dur="4" pname="e" oct="4" accid="n"/><note accid="f" xml:id="v258" dur="4" pname="e" oct="4" tie="i"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v259" dur="4" pname="b" oct="3" accid.ges="f" tie="t"/><note xml:id="v260" dur="4" pname="d" oct="4"/><note xml:id="v261" dur="4" pname="g" oct="3"/><note xml:id="v262" dur="4" pname="g" oct="3" tie="i"/></layer><layer n="2"><note xml:id="v263" dur="4" pname="g" oct="3" tie="t"/><note xml:id="v264" dur="4" pname="g" oct="3"/><note xml:id="v265" dur="4" pname="c" oct="3"/><note xml:id="v266" dur="4" pname="c" oct="3" tie="i"/></layer></staff>
 <tie startid="#n86" endid="#n87"/>
 <harm type="medium-auto" staff="1" tstamp="2" place="above">Gm7</harm>
@@ -430,7 +430,7 @@
 <verse n="1"><syl wordpos="i" con="d">a</syl></verse></note>
 </beam>
 </layer>
-<layer n="2"><note xml:id="v267" dur="8" dots="1" pname="e" oct="4" accid="n" tie="t"/><note xml:id="v268" dur="16" pname="e" oct="4"/><note xml:id="v269" dur="8" dots="1" pname="e" oct="4"/><note xml:id="v270" dur="16" pname="e" oct="4"/></layer></staff>
+<layer n="2"><note xml:id="v267" dur="8" dots="1" pname="e" oct="4" accid="n" tie="t"/><note accid="f" xml:id="v268" dur="16" pname="e" oct="4"/><note xml:id="v269" dur="8" dots="1" pname="e" oct="4"/><note xml:id="v270" dur="16" pname="e" oct="4"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v271" dur="8" dots="1" pname="g" oct="3" tie="t"/><note xml:id="v272" dur="16" pname="g" oct="3"/><note xml:id="v273" dur="8" dots="1" pname="g" oct="3"/><note xml:id="v274" dur="16" pname="g" oct="3"/></layer><layer n="2"><note xml:id="v275" dur="8" dots="1" pname="c" oct="3" tie="t"/><note xml:id="v276" dur="16" pname="c" oct="3"/><note xml:id="v277" dur="8" dots="1" pname="c" oct="3"/><note xml:id="v278" dur="16" pname="c" oct="3"/></layer></staff>
 <tie startid="#n90" endid="#n91"/>
 <harm type="medium-auto" staff="1" tstamp="1.75" place="above">C</harm>

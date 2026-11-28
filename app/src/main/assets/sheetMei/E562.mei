@@ -94,7 +94,7 @@
 <note xml:id="n20" dur="4" pname="c" oct="4">
 <verse n="1"><syl>I</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v43" dur="2" pname="b" oct="3" accid="n"/><note xml:id="v44" dur="4" pname="b" oct="3"/><note xml:id="v45" dur="2" pname="c" oct="4"/><note xml:id="v46" dur="4" pname="b" oct="3" accid="f"/></layer></staff>
+<layer n="2"><note xml:id="v43" dur="2" pname="b" oct="3" accid="n"/><note accid="f" xml:id="v44" dur="4" pname="b" oct="3"/><note xml:id="v45" dur="2" pname="c" oct="4"/><note xml:id="v46" dur="4" pname="b" oct="3" accid="f"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v47" dur="2" pname="d" oct="3"/><note xml:id="v48" dur="4" pname="f" oct="3"/><note xml:id="v49" dur="2" pname="e" oct="3"/><note xml:id="v50" dur="4" pname="e" oct="3"/></layer><layer n="2"><note xml:id="v51" dur="2" pname="g" oct="2"/><note xml:id="v52" dur="4" pname="g" oct="2"/><note xml:id="v53" dur="2" pname="c" oct="3"/><note xml:id="v54" dur="4" pname="e" oct="3"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">G</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">G7</harm>

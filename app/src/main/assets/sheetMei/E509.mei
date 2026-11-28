@@ -161,7 +161,7 @@
 <note xml:id="n37" dur="4" dots="1" pname="g" oct="4">
 <verse n="1"><syl wordpos="i" con="d">for</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v103" dur="2" dots="1" pname="d" oct="4" accid="n"/><note xml:id="v104" dur="4" dots="1" pname="d" oct="4"/></layer></staff>
+<layer n="2"><note xml:id="v103" dur="2" dots="1" pname="d" oct="4" accid="n"/><note accid="f" xml:id="v104" dur="4" dots="1" pname="d" oct="4"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v105" dur="2" dots="1" pname="a" oct="3" accid.ges="f"/><note xml:id="v106" dur="4" dots="1" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v107" dur="2" dots="1" pname="b" oct="2" accid.ges="f"/><note xml:id="v108" dur="4" dots="1" pname="b" oct="2" accid.ges="f"/></layer></staff>
 <tie startid="#n35" endid="#n36"/>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">B♭7</harm>
@@ -327,8 +327,8 @@
 <verse n="1"><syl>His</syl></verse></note>
 </beam>
 </layer>
-<layer n="2"><note xml:id="v210" dur="2" pname="d" oct="4" accid.ges="f" tie="i"/><note xml:id="v211" dur="8" pname="d" oct="4" accid.ges="f" tie="t"/><rest xml:id="v212" dur="8"/><note xml:id="v213" dur="8" pname="b" oct="3" accid="n"/><note xml:id="v214" dur="8" pname="b" oct="3"/><note xml:id="v215" dur="8" pname="b" oct="3"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v216" dur="2" pname="a" oct="3" accid.ges="f" tie="i"/><note xml:id="v217" dur="8" pname="a" oct="3" accid.ges="f" tie="t"/><rest xml:id="v218" dur="8"/><note xml:id="v219" dur="8" pname="a" oct="3" accid.ges="f"/><note xml:id="v220" dur="8" pname="a" oct="3" accid.ges="f"/><note xml:id="v221" dur="8" pname="a" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v222" dur="2" pname="d" oct="3" accid.ges="f" tie="i"/><note xml:id="v223" dur="8" pname="d" oct="3" accid.ges="f" tie="t"/><rest xml:id="v224" dur="8"/><note xml:id="v225" dur="8" pname="d" oct="3" accid="n"/><note xml:id="v226" dur="8" pname="d" oct="3"/><note xml:id="v227" dur="8" pname="d" oct="3"/></layer></staff>
+<layer n="2"><note xml:id="v210" dur="2" pname="d" oct="4" accid.ges="f" tie="i"/><note xml:id="v211" dur="8" pname="d" oct="4" accid.ges="f" tie="t"/><rest xml:id="v212" dur="8"/><note xml:id="v213" dur="8" pname="b" oct="3" accid="n"/><note accid="f" xml:id="v214" dur="8" pname="b" oct="3"/><note xml:id="v215" dur="8" pname="b" oct="3"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v216" dur="2" pname="a" oct="3" accid.ges="f" tie="i"/><note xml:id="v217" dur="8" pname="a" oct="3" accid.ges="f" tie="t"/><rest xml:id="v218" dur="8"/><note xml:id="v219" dur="8" pname="a" oct="3" accid.ges="f"/><note xml:id="v220" dur="8" pname="a" oct="3" accid.ges="f"/><note xml:id="v221" dur="8" pname="a" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v222" dur="2" pname="d" oct="3" accid.ges="f" tie="i"/><note xml:id="v223" dur="8" pname="d" oct="3" accid.ges="f" tie="t"/><rest xml:id="v224" dur="8"/><note xml:id="v225" dur="8" pname="d" oct="3" accid="n"/><note accid="f" xml:id="v226" dur="8" pname="d" oct="3"/><note xml:id="v227" dur="8" pname="d" oct="3"/></layer></staff>
 <tie startid="#n71" endid="#n72"/>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">D♭</harm>
 <harm type="medium-auto" staff="1" tstamp="7" place="above">E7/D</harm>

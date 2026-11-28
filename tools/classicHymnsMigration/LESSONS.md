@@ -151,3 +151,9 @@ Decided after batch 3: the cleaned chords lost complexity, so a sheet keeps the 
   MIDI top (the voice above the melody is then still dropped as the MIDI's soprano), a MIDI judged four-part may have 1.0-2.5 lower
   notes per melody note (a melody that moves over held voices), and the same limit of 25% sixteenths. E501 was marked wrong by ear
   (a piano arpeggio pattern in the tenor or bass that midi_kind.py had not caught: look for repeated broken-chord figures next).
+- **Accidentals the player carries** (found on E789 bar 9, 'O what peace we often forfeit', 2026-11-28): piano.js carries a written
+  accidental through the bar over all layers of a staff (the melody first, then the alto), so a plain G after a G♭ plays G♭ again. The sheets
+  of our own converter mean "no carry" (a note without accidental is the key's note), so after an altered note the natural was missing:
+  the soprano played a wrong note against the voices, and the printed bar was ambiguous. tools/fix_naturals.py writes the missing
+  accidental (printed when the layer itself had the altered note, accid.ges when only another layer had it). Run on the 987 voiced
+  sheets of master: 429 notes in 241 sheets. NOT for hymnal.net sheets (there the carry is what the page means).

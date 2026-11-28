@@ -28,7 +28,7 @@
 <note xml:id="n6" dur="4" pname="e" oct="4">
 <verse n="1"><syl wordpos="t">ing</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v4" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v5" dur="8" pname="c" oct="4" accid="n"/><note xml:id="v6" dur="8" pname="c" oct="4" accid="s"/><note xml:id="v7" dur="4" pname="d" oct="4"/><note xml:id="v8" dur="4" pname="c" oct="4" accid.ges="s"/></layer></staff>
+<layer n="2"><note xml:id="v4" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v5" dur="8" pname="c" oct="4" accid="n"/><note xml:id="v6" dur="8" pname="c" oct="4" accid="s"/><note accid.ges="n" xml:id="v7" dur="4" pname="d" oct="4"/><note xml:id="v8" dur="4" pname="c" oct="4" accid.ges="s"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v9" dur="4" pname="a" oct="3"/><note xml:id="v10" dur="4" pname="a" oct="3"/><note xml:id="v11" dur="4" pname="a" oct="3"/><note xml:id="v12" dur="4" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v13" dur="4" pname="a" oct="2"/><note xml:id="v14" dur="4" pname="a" oct="2"/><note xml:id="v15" dur="4" pname="a" oct="2"/><note xml:id="v16" dur="4" pname="a" oct="2"/></layer></staff>
 <slur startid="#n3" endid="#n4"/>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">A</harm>
@@ -106,7 +106,7 @@
 <note xml:id="n22" dur="8" pname="a" oct="4"/>
 </beam>
 </layer>
-<layer n="2"><note xml:id="v45" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v46" dur="8" pname="c" oct="4" accid="n"/><note xml:id="v47" dur="8" pname="c" oct="4" accid="s"/><note xml:id="v48" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v49" dur="8" pname="d" oct="4"/><note xml:id="v50" dur="8" pname="c" oct="4" accid.ges="s"/></layer></staff>
+<layer n="2"><note xml:id="v45" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v46" dur="8" pname="c" oct="4" accid="n"/><note xml:id="v47" dur="8" pname="c" oct="4" accid="s"/><note xml:id="v48" dur="4" pname="c" oct="4" accid.ges="s"/><note accid.ges="n" xml:id="v49" dur="8" pname="d" oct="4"/><note xml:id="v50" dur="8" pname="c" oct="4" accid.ges="s"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v51" dur="4" pname="a" oct="3"/><note xml:id="v52" dur="4" pname="a" oct="3"/><note xml:id="v53" dur="4" pname="a" oct="3"/><note xml:id="v54" dur="8" pname="b" oct="3"/><note xml:id="v55" dur="8" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v56" dur="4" pname="a" oct="2"/><note xml:id="v57" dur="4" pname="a" oct="2"/><note xml:id="v58" dur="4" pname="f" oct="3" accid.ges="s"/><note xml:id="v59" dur="8" pname="f" oct="3" accid="n"/><note xml:id="v60" dur="8" pname="f" oct="3" accid="s"/></layer></staff>
 <slur startid="#n18" endid="#n19"/>
 <slur startid="#n21" endid="#n22"/>
@@ -269,7 +269,7 @@
 <note xml:id="n52" dur="8" pname="a" oct="4"/>
 </beam>
 </layer>
-<layer n="2"><note xml:id="v131" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v132" dur="8" pname="c" oct="4" accid="n"/><note xml:id="v133" dur="8" pname="c" oct="4" accid="s"/><note xml:id="v134" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v135" dur="8" pname="d" oct="4"/><note xml:id="v136" dur="8" pname="c" oct="4" accid.ges="s"/></layer></staff>
+<layer n="2"><note xml:id="v131" dur="4" pname="c" oct="4" accid.ges="s"/><note xml:id="v132" dur="8" pname="c" oct="4" accid="n"/><note xml:id="v133" dur="8" pname="c" oct="4" accid="s"/><note xml:id="v134" dur="4" pname="c" oct="4" accid.ges="s"/><note accid.ges="n" xml:id="v135" dur="8" pname="d" oct="4"/><note xml:id="v136" dur="8" pname="c" oct="4" accid.ges="s"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v137" dur="4" pname="a" oct="3"/><note xml:id="v138" dur="4" pname="a" oct="3"/><note xml:id="v139" dur="4" pname="a" oct="3"/><note xml:id="v140" dur="8" pname="b" oct="3"/><note xml:id="v141" dur="8" pname="a" oct="3"/></layer><layer n="2"><note xml:id="v142" dur="4" pname="a" oct="2"/><note xml:id="v143" dur="4" pname="a" oct="2"/><note xml:id="v144" dur="4" pname="f" oct="3" accid.ges="s"/><note xml:id="v145" dur="8" pname="f" oct="3" accid="n"/><note xml:id="v146" dur="8" pname="f" oct="3" accid="s"/></layer></staff>
 <slur startid="#n48" endid="#n49"/>
 <slur startid="#n51" endid="#n52"/>

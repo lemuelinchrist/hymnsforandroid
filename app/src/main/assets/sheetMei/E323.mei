@@ -163,7 +163,7 @@
 <note xml:id="n33" dur="4" pname="f" oct="4">
 <verse n="1"><syl wordpos="t">sus</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v91" dur="4" pname="a" oct="3" accid="n"/><note xml:id="v92" dur="4" pname="c" oct="4"/><note xml:id="v93" dur="4" pname="b" oct="3" accid.ges="f"/><note xml:id="v94" dur="4" pname="a" oct="3"/></layer></staff>
+<layer n="2"><note xml:id="v91" dur="4" pname="a" oct="3" accid="n"/><note xml:id="v92" dur="4" pname="c" oct="4"/><note xml:id="v93" dur="4" pname="b" oct="3" accid.ges="f"/><note accid="f" xml:id="v94" dur="4" pname="a" oct="3"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v95" dur="4" dots="1" pname="f" oct="3"/><note xml:id="v96" dur="8" pname="c" oct="3"/><note xml:id="v97" dur="8" pname="d" oct="3" accid="n"/><note xml:id="v98" dur="8" pname="e" oct="3" accid="n"/><note xml:id="v99" dur="4" pname="f" oct="3"/></layer><layer n="2"><note xml:id="v100" dur="4" pname="f" oct="3"/><note xml:id="v101" dur="4" pname="f" oct="2"/><note xml:id="v102" dur="4" pname="f" oct="2"/><note xml:id="v103" dur="4" pname="f" oct="2"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">F</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">Gm7/F</harm>
@@ -210,7 +210,7 @@
 </beam>
 </layer>
 <layer n="2"><note xml:id="v116" dur="4" pname="a" oct="3" accid="n"/><note xml:id="v117" dur="8" pname="b" oct="3" accid.ges="f"/><note xml:id="v118" dur="8" pname="c" oct="4"/><note xml:id="v119" dur="8" pname="d" oct="4" accid="n"/><note xml:id="v120" dur="8" pname="e" oct="4" accid="n"/><note xml:id="v121" dur="4" pname="f" oct="4"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v122" dur="4" pname="f" oct="3"/><note xml:id="v123" dur="8" pname="f" oct="3"/><note xml:id="v124" dur="8" pname="e" oct="3" accid="n"/><note xml:id="v125" dur="8" pname="f" oct="3"/><note xml:id="v126" dur="8" pname="g" oct="3"/><note xml:id="v127" dur="8" pname="a" oct="3" accid="n"/><note xml:id="v128" dur="8" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v129" dur="4" pname="d" oct="3" accid="n"/><note xml:id="v130" dur="8" pname="d" oct="3"/><note xml:id="v131" dur="8" pname="c" oct="3"/><note xml:id="v132" dur="4" pname="b" oct="2" accid.ges="f"/><note xml:id="v133" dur="4" pname="f" oct="3"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v122" dur="4" pname="f" oct="3"/><note xml:id="v123" dur="8" pname="f" oct="3"/><note xml:id="v124" dur="8" pname="e" oct="3" accid="n"/><note xml:id="v125" dur="8" pname="f" oct="3"/><note xml:id="v126" dur="8" pname="g" oct="3"/><note xml:id="v127" dur="8" pname="a" oct="3" accid="n"/><note xml:id="v128" dur="8" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v129" dur="4" pname="d" oct="3" accid="n"/><note accid="f" xml:id="v130" dur="8" pname="d" oct="3"/><note xml:id="v131" dur="8" pname="c" oct="3"/><note xml:id="v132" dur="4" pname="b" oct="2" accid.ges="f"/><note xml:id="v133" dur="4" pname="f" oct="3"/></layer></staff>
 <slur startid="#n39" endid="#n40"/>
 <slur startid="#n42" endid="#n43"/>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">Dm</harm>
@@ -253,7 +253,7 @@
 <verse n="1"><syl>a</syl></verse></note>
 </layer>
 <layer n="2"><note xml:id="v142" dur="4" dots="1" pname="c" oct="4"/><note xml:id="v143" dur="8" pname="c" oct="4"/><note xml:id="v144" dur="4" pname="c" oct="4"/><note xml:id="v145" dur="4" pname="d" oct="4" accid="n"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v146" dur="4" dots="1" pname="g" oct="3"/><note xml:id="v147" dur="8" pname="g" oct="3"/><note xml:id="v148" dur="4" pname="f" oct="3"/><note xml:id="v149" dur="8" pname="g" oct="3" accid="f"/><note xml:id="v150" dur="8" pname="g" oct="3" accid="n"/></layer><layer n="2"><note xml:id="v151" dur="4" dots="1" pname="e" oct="3" accid="n"/><note xml:id="v152" dur="8" pname="e" oct="3"/><note xml:id="v153" dur="4" pname="f" oct="3"/><note xml:id="v154" dur="8" pname="d" oct="3" accid="n"/><note xml:id="v155" dur="8" pname="e" oct="3"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v146" dur="4" dots="1" pname="g" oct="3"/><note xml:id="v147" dur="8" pname="g" oct="3"/><note xml:id="v148" dur="4" pname="f" oct="3"/><note xml:id="v149" dur="8" pname="g" oct="3" accid="f"/><note xml:id="v150" dur="8" pname="g" oct="3" accid="n"/></layer><layer n="2"><note xml:id="v151" dur="4" dots="1" pname="e" oct="3" accid="n"/><note accid="f" xml:id="v152" dur="8" pname="e" oct="3"/><note xml:id="v153" dur="4" pname="f" oct="3"/><note xml:id="v154" dur="8" pname="d" oct="3" accid="n"/><note xml:id="v155" dur="8" pname="e" oct="3"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">C/E</harm>
 <harm type="medium-auto" staff="1" tstamp="2.5" place="above">C7/E</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">F</harm>
@@ -275,8 +275,8 @@
 <note xml:id="n53" dur="4" pname="g" oct="4">
 <verse n="1"><syl>And</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v156" dur="4" dots="1" pname="d" oct="4" accid="n"/><note xml:id="v157" dur="8" pname="d" oct="4"/><note xml:id="v158" dur="4" pname="d" oct="4"/><note xml:id="v159" dur="8" pname="d" oct="4"/><note xml:id="v160" dur="8" pname="e" oct="4" accid="n"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v161" dur="4" dots="1" pname="a" oct="3" accid="n"/><note xml:id="v162" dur="8" pname="a" oct="3"/><note xml:id="v163" dur="4" pname="g" oct="3"/><note xml:id="v164" dur="4" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v165" dur="4" dots="1" pname="g" oct="3" accid="f"/><note xml:id="v166" dur="8" pname="g" oct="3" accid.ges="f"/><note xml:id="v167" dur="4" pname="g" oct="3" accid="n"/><note xml:id="v168" dur="4" pname="b" oct="2" accid.ges="f"/></layer></staff>
+<layer n="2"><note xml:id="v156" dur="4" dots="1" pname="d" oct="4" accid="n"/><note accid="f" xml:id="v157" dur="8" pname="d" oct="4"/><note xml:id="v158" dur="4" pname="d" oct="4"/><note xml:id="v159" dur="8" pname="d" oct="4"/><note xml:id="v160" dur="8" pname="e" oct="4" accid="n"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v161" dur="4" dots="1" pname="a" oct="3" accid="n"/><note accid="f" xml:id="v162" dur="8" pname="a" oct="3"/><note xml:id="v163" dur="4" pname="g" oct="3"/><note xml:id="v164" dur="4" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v165" dur="4" dots="1" pname="g" oct="3" accid="f"/><note xml:id="v166" dur="8" pname="g" oct="3" accid.ges="f"/><note xml:id="v167" dur="4" pname="g" oct="3" accid="n"/><note xml:id="v168" dur="4" pname="b" oct="2" accid.ges="f"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">D/F♯</harm>
 <harm type="medium-auto" staff="1" tstamp="2.5" place="above">D7/F♯</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">Gm</harm>

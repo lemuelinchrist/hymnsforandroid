@@ -16,7 +16,7 @@
 <note xml:id="n4" dur="4" pname="d" oct="4">
 <verse n="1"><syl>of</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v1" dur="4" dots="1" pname="c" oct="4"/><note xml:id="v2" dur="8" pname="c" oct="4"/><note xml:id="v3" dur="4" pname="b" oct="3" accid="n"/><note xml:id="v4" dur="4" pname="b" oct="3"/></layer></staff>
+<layer n="2"><note xml:id="v1" dur="4" dots="1" pname="c" oct="4"/><note xml:id="v2" dur="8" pname="c" oct="4"/><note xml:id="v3" dur="4" pname="b" oct="3" accid="n"/><note accid="f" xml:id="v4" dur="4" pname="b" oct="3"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v5" dur="4" dots="1" pname="f" oct="3"/><note xml:id="v6" dur="8" pname="f" oct="3"/><note xml:id="v7" dur="4" pname="d" oct="3"/><note xml:id="v8" dur="4" pname="g" oct="3"/></layer><layer n="2"><note xml:id="v9" dur="4" dots="1" pname="f" oct="2"/><note xml:id="v10" dur="8" pname="f" oct="2"/><note xml:id="v11" dur="4" pname="g" oct="2"/><note xml:id="v12" dur="4" pname="g" oct="2"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">F</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">G</harm>
@@ -75,7 +75,7 @@
 <note xml:id="n15" dur="4" pname="g" oct="4">
 <verse n="1"><syl>and</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v34" dur="4" dots="1" pname="c" oct="4"/><note xml:id="v35" dur="8" pname="c" oct="4"/><note xml:id="v36" dur="4" pname="b" oct="3" accid="n"/><note xml:id="v37" dur="4" pname="b" oct="3"/></layer></staff>
+<layer n="2"><note xml:id="v34" dur="4" dots="1" pname="c" oct="4"/><note xml:id="v35" dur="8" pname="c" oct="4"/><note xml:id="v36" dur="4" pname="b" oct="3" accid="n"/><note accid="f" xml:id="v37" dur="4" pname="b" oct="3"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v38" dur="4" dots="1" pname="f" oct="3"/><note xml:id="v39" dur="8" pname="f" oct="3"/><note xml:id="v40" dur="4" pname="g" oct="3"/><note xml:id="v41" dur="4" pname="g" oct="3"/></layer><layer n="2"><note xml:id="v42" dur="4" dots="1" pname="f" oct="3"/><note xml:id="v43" dur="8" pname="f" oct="3"/><note xml:id="v44" dur="4" pname="f" oct="3"/><note xml:id="v45" dur="4" pname="f" oct="3"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">F</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">G7/F</harm>
@@ -225,7 +225,7 @@
 <note xml:id="n43" dur="8" pname="f" oct="4">
 <verse n="1"><syl wordpos="i" con="d">sup</syl></verse></note>
 </layer>
-<layer n="2"><note xml:id="v120" dur="4" pname="b" oct="3" accid="n"/><note xml:id="v121" dur="4" pname="b" oct="3"/><note xml:id="v122" dur="4" dots="1" pname="b" oct="3" accid="f"/><note xml:id="v123" dur="8" pname="a" oct="3"/></layer></staff>
+<layer n="2"><note xml:id="v120" dur="4" pname="b" oct="3" accid="n"/><note accid="f" xml:id="v121" dur="4" pname="b" oct="3"/><note xml:id="v122" dur="4" dots="1" pname="b" oct="3" accid="f"/><note xml:id="v123" dur="8" pname="a" oct="3"/></layer></staff>
 <staff n="2"><layer n="1"><note xml:id="v124" dur="4" pname="f" oct="3"/><note xml:id="v125" dur="4" pname="d" oct="3"/><note xml:id="v126" dur="4" dots="1" pname="e" oct="3"/><note xml:id="v127" dur="8" pname="f" oct="3"/></layer><layer n="2"><note xml:id="v128" dur="4" pname="g" oct="2"/><note xml:id="v129" dur="4" pname="g" oct="2"/><note xml:id="v130" dur="4" dots="1" pname="c" oct="3"/><note xml:id="v131" dur="8" pname="f" oct="2"/></layer></staff>
 <harm type="medium-auto" staff="1" tstamp="1" place="above">G7</harm>
 <harm type="medium-auto" staff="1" tstamp="3" place="above">C7</harm>

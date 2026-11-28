@@ -192,7 +192,7 @@
 </beam>
 </layer>
 <layer n="2"><note xml:id="v102" dur="4" dots="1" pname="g" oct="3"/><note xml:id="v103" dur="8" pname="g" oct="4"/><note xml:id="v104" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v105" dur="8" pname="g" oct="4" accid="n"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v106" dur="4" dots="1" pname="g" oct="3"/><note xml:id="v107" dur="8" pname="g" oct="4"/><note xml:id="v108" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v109" dur="8" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v110" dur="8" pname="e" oct="3" accid.ges="f"/><note xml:id="v111" dur="8" pname="b" oct="2" accid.ges="f"/><note xml:id="v112" dur="8" pname="e" oct="2" accid.ges="f"/><note xml:id="v113" dur="8" pname="g" oct="4"/><note xml:id="v114" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v115" dur="8" pname="e" oct="3" accid.ges="f"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v106" dur="4" dots="1" pname="g" oct="3"/><note xml:id="v107" dur="8" pname="g" oct="4"/><note xml:id="v108" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v109" dur="8" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v110" dur="8" pname="e" oct="3" accid.ges="f"/><note xml:id="v111" dur="8" pname="b" oct="2" accid.ges="f"/><note xml:id="v112" dur="8" pname="e" oct="2" accid.ges="f"/><note accid.ges="n" xml:id="v113" dur="8" pname="g" oct="4"/><note xml:id="v114" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v115" dur="8" pname="e" oct="3" accid.ges="f"/></layer></staff>
 <harm type="medium" staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="1" place="above">E♭</harm>
 <harm staff="1" tstamp="1.5" place="above">E♭/B♭</harm>
@@ -231,7 +231,7 @@
 <beam>
 <note xml:id="n42" dur="8" pname="g" oct="4" accid="f">
 <verse n="1"><syl>sing</syl></verse></note>
-<note xml:id="n43" dur="8" pname="g" oct="4">
+<note accid="n" xml:id="n43" dur="8" pname="g" oct="4">
 <verse n="1"><syl>His</syl></verse></note>
 </beam>
 </layer>
@@ -277,7 +277,7 @@
 </beam>
 </layer>
 <layer n="2"><note xml:id="v156" dur="4" dots="1" pname="d" oct="4"/><note xml:id="v157" dur="8" pname="g" oct="4"/><note xml:id="v158" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v159" dur="8" pname="g" oct="4" accid="n"/></layer></staff>
-<staff n="2"><layer n="1"><note xml:id="v160" dur="4" dots="1" pname="b" oct="3" accid.ges="f"/><note xml:id="v161" dur="8" pname="g" oct="4"/><note xml:id="v162" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v163" dur="8" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v164" dur="4" dots="1" pname="b" oct="2" accid.ges="f"/><note xml:id="v165" dur="8" pname="g" oct="4"/><note xml:id="v166" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v167" dur="8" pname="e" oct="3" accid.ges="f"/></layer></staff>
+<staff n="2"><layer n="1"><note xml:id="v160" dur="4" dots="1" pname="b" oct="3" accid.ges="f"/><note xml:id="v161" dur="8" pname="g" oct="4"/><note xml:id="v162" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v163" dur="8" pname="b" oct="3" accid.ges="f"/></layer><layer n="2"><note xml:id="v164" dur="4" dots="1" pname="b" oct="2" accid.ges="f"/><note accid.ges="n" xml:id="v165" dur="8" pname="g" oct="4"/><note xml:id="v166" dur="8" pname="g" oct="4" accid="f"/><note xml:id="v167" dur="8" pname="e" oct="3" accid.ges="f"/></layer></staff>
 <harm type="medium" staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="1" place="above">B♭</harm>
 <harm staff="1" tstamp="2.5" place="above">Gm</harm>
